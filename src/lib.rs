@@ -6,6 +6,7 @@ use std::fs::File;
 use std::io::BufReader;
 
 use xml::reader::{self, EventReader, XmlEvent};
+use xml::attribute::OwnedAttribute;
 
 #[derive(Debug)]
 pub enum Error {    
@@ -32,7 +33,8 @@ pub struct Device {
 pub struct Peripheral {
     name: String,
     address: String,
-    registers: Vec<Register>,
+    derived_from: Option<String>,
+    registers: Option<Vec<Register>>,
     description: Option<String>,
 }
 
@@ -48,6 +50,21 @@ pub struct Field {
     description: Option<String>,
     bits: String,
 }
+
+pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
+    let mut depth = 1;
+    loop {
+        match try!(r.next()) {
+            XmlEvent::StartElement { .. }  => depth += 1,
+            XmlEvent::EndElement { .. } => depth -= 1,
+            _ => {},
+        }
+        if depth == 0 {
+            return Ok(())
+        }
+    }
+}
+
 
 pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
     let mut result: Option<String> = None;
@@ -83,7 +100,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     "description" => p_desc = try!(read_text(r)),
                     "bitOffset" => p_offset = try!(read_text(r)),
                     "bitWidth" => p_width = try!(read_text(r)),
-                    _ => {},
+                    _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
@@ -141,7 +158,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                     "description" => p_desc = try!(read_text(r)),
                     "addressOffset" => p_offset = try!(read_text(r)),
                     "fields" => p_fields = Some(try!(read_fields(r))),
-                    _ => {},
+                    _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
@@ -186,11 +203,19 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Re
     }
 }
 
-pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Peripheral, Error> {
+pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedAttribute]) -> Result<Peripheral, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_addr: Option<String> = None;
+    let mut p_derived_from: Option<String> = None;
     let mut p_registers: Option<Vec<Register>> = None;
+
+    for a in attrs.iter() {
+        if a.name.local_name == "derivedFrom" {
+            p_derived_from = Some(a.value.clone());
+        }
+    }
+
     loop {
         let e = try!(r.next());
         println!("read_peripheral: {:?}", e);
@@ -201,17 +226,26 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Perip
                     "description" => p_desc = try!(read_text(r)),
                     "baseAddress" => p_addr = try!(read_text(r)),
                     "registers" => { p_registers = Some(try!(read_registers(r))); },
-                    _ => {},
+                    _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "peripheral" => return Ok(Peripheral {
-                        name: p_name.unwrap(),
-                        description: p_desc,
-                        address: p_addr.unwrap(),
-                        registers: p_registers.unwrap(),
-                    }),
+                    "peripheral" => {
+                        if p_name.is_none() {
+                            return Err(Error::StateError("Peripheral missing name"))
+                        }
+                        if p_addr.is_none() {
+                            return Err(Error::StateError("Peripheral missing address"))
+                        }
+                        return Ok(Peripheral {
+                            name: p_name.unwrap(),
+                            address: p_addr.unwrap(),
+                            description: p_desc,
+                            derived_from: p_derived_from,
+                            registers: p_registers,
+                        })
+                    },
                     _ => return Err(Error::StateError("expected </peripheral>")),
                 }
             },
@@ -226,9 +260,9 @@ pub fn read_peripherals<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<
         let e = try!(r.next());
         println!("read_peripherals: {:?}", e);
         match e {
-            XmlEvent::StartElement { name, .. } => {
+            XmlEvent::StartElement { name, attributes, .. } => {
                 match name.local_name.as_ref() {
-                    "peripheral" => periphs.push(try!(read_peripheral(r))),
+                    "peripheral" => periphs.push(try!(read_peripheral(r, &attributes))),
                     _ => return Err(Error::StateError("Expected <peripheral>")),
                 }
             },
@@ -257,16 +291,21 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                 match name.local_name.as_ref() {
                     "name" => { d_name = try!(read_text(r)); },
                     "description" => { d_desc = try!(read_text(r)); },
-                    "peripherals" => { d_periphs = Some(try!(read_peripherals(r))); },
-                    _ => return Err(Error::StateError("Expected name or description"))
+                    "peripherals" => { d_periphs = Some(try!(read_peripherals(r))); },                    
+                    _ => try!(read_unknown(r)),
                 }
             },
-            XmlEvent::EndElement { .. } => {
-                return Ok(Device { 
-                    name: d_name.unwrap(), 
-                    description: d_desc,
-                    peripherals: d_periphs.unwrap(),
-                })
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "device" => {
+                        return Ok(Device { 
+                            name: d_name.unwrap(), 
+                            description: d_desc,
+                            peripherals: d_periphs.unwrap()
+                        })
+                    },
+                    _ => return Err(Error::StateError("Expected </device>"))
+                }
             },
             _ => {},
         }
@@ -337,5 +376,17 @@ mod tests {
         let p = &periphs[0];
         assert_eq!(p.name, "RNG");
         //assert_eq!(p.description.as_ref(), Some("Random Number Generator"));
+    }
+
+    #[test]
+    fn test_svd() {
+        use std::fs::File;
+        use std::io::BufReader;
+
+        let file = File::open("svd/STMicro/STM32F40x.svd").unwrap();
+        let file = BufReader::new(file);
+        let mut reader = EventReader::new(file);
+        let _d = read_document(&mut reader).unwrap();
+
     }
 }
