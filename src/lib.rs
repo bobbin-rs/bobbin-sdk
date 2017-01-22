@@ -33,8 +33,8 @@ pub struct Device {
 pub struct Peripheral {
     name: String,
     address: String,
+    registers: Vec<Register>,
     derived_from: Option<String>,
-    registers: Option<Vec<Register>>,
     description: Option<String>,
 }
 
@@ -151,7 +151,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_offset: Option<String> = None;
-    let mut p_fields: Option<Vec<Field>> = None;
+    let mut p_fields: Vec<Field> = Vec::new();
     loop {
         let e = try!(r.next());
         println!("read_register: {:?}", e);
@@ -161,18 +161,26 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "addressOffset" => p_offset = try!(read_text(r)),
-                    "fields" => p_fields = Some(try!(read_fields(r))),
+                    "fields" => p_fields = try!(read_fields(r)),
                     _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "register" => return Ok(Register {
-                        name: p_name.unwrap(),
-                        description: p_desc,
-                        offset: p_offset.unwrap(),
-                        fields: p_fields.unwrap(),
-                    }),
+                    "register" => {
+                        if p_name.is_none() {
+                            return Err(Error::StateError("Register missing name"))
+                        }
+                        if p_offset.is_none() {
+                            return Err(Error::StateError("Register missing offset"))
+                        }
+                        return Ok(Register {
+                            name: p_name.unwrap(),
+                            offset: p_offset.unwrap(),
+                            description: p_desc,
+                            fields: p_fields,
+                        })
+                    },
                     _ => return Err(Error::StateError("expected </register>")),
                 }
             },
@@ -212,7 +220,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
     let mut p_desc: Option<String> = None;
     let mut p_addr: Option<String> = None;
     let mut p_derived_from: Option<String> = None;
-    let mut p_registers: Option<Vec<Register>> = None;
+    let mut p_registers: Vec<Register> = Vec::new();
 
     for a in attrs.iter() {
         if a.name.local_name == "derivedFrom" {
@@ -229,7 +237,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "baseAddress" => p_addr = try!(read_text(r)),
-                    "registers" => { p_registers = Some(try!(read_registers(r))); },
+                    "registers" => { p_registers = try!(read_registers(r)); },
                     _ => try!(read_unknown(r)),
                 }
             },
@@ -302,10 +310,16 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "device" => {
+                        if d_name.is_none() {
+                            return Err(Error::StateError("No name found for device"))
+                        }
+                        if d_periphs.is_none() {
+                            return Err(Error::StateError("No peripherals found for device"))
+                        }
                         return Ok(Device { 
                             name: d_name.unwrap(), 
+                            peripherals: d_periphs.unwrap(),
                             description: d_desc,
-                            peripherals: d_periphs.unwrap()
                         })
                     },
                     _ => return Err(Error::StateError("Expected </device>"))
@@ -331,6 +345,9 @@ pub fn read_document<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Documen
                 }
             }
             XmlEvent::EndDocument => {
+                if device.is_none() {
+                    return Err(Error::StateError("No device found in document"))
+                }
                 return Ok(Document { device: device.unwrap()})
             },
             _ => {},
