@@ -47,8 +47,9 @@ pub struct Register {
 
 pub struct Field {
     name: String,
-    description: Option<String>,
     bits: String,
+    description: Option<String>,
+    access: Option<String>,
 }
 
 pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
@@ -88,6 +89,7 @@ pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<Stri
 pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
+    let mut p_access: Option<String> = None;
     let mut p_offset: Option<String> = None;
     let mut p_width: Option<String> = None;
     loop {
@@ -98,6 +100,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
+                    "access" => p_access = try!(read_text(r)),
                     "bitOffset" => p_offset = try!(read_text(r)),
                     "bitWidth" => p_width = try!(read_text(r)),
                     _ => try!(read_unknown(r)),
@@ -108,6 +111,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     "field" => return Ok(Field {
                         name: p_name.unwrap(),
                         description: p_desc,
+                        access: p_access,
                         bits: format!("[{}:{}]", p_offset.unwrap(), p_width.unwrap()),
                     }),
                     _ => return Err(Error::StateError("expected </field>")),
