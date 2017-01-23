@@ -155,10 +155,25 @@ fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> st
 
 fn write_register<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Register) -> std::io::Result<()> {
     if cfg.compact {
-        try!(write!(&mut cfg.out, "\n{}(register", indent(depth)));
-        try!(write!(&mut cfg.out, " {}", d.name));
+        
+        if d.dim.is_some() {
+            try!(write!(&mut cfg.out, "\n{}(register-array", indent(depth)));
+            try!(write!(&mut cfg.out, " {:?}", d.name));            
+        } else {
+            try!(write!(&mut cfg.out, "\n{}(register", indent(depth)));
+            try!(write!(&mut cfg.out, " {}", d.name));
+        }        
         try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
-        if let Some(ref desc) = d.description {        
+        if let Some(ref dim) = d.dim {
+            try!(write!(&mut cfg.out, " (dim {})", dim));
+        }
+        if let Some(ref dim_increment) = d.dim_increment {
+            try!(write!(&mut cfg.out, " (dim_increment {})", dim_increment));
+        }
+        if let Some(ref dim_index) = d.dim_index {
+            try!(write!(&mut cfg.out, " (dim_index {})", dim_index));
+        }
+        if let Some(ref desc) = d.description {
             try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
         }        
         for p in d.fields.iter() {
@@ -169,6 +184,15 @@ fn write_register<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Register) -> 
         try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
         try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         try!(writeln!(&mut cfg.out, "{}(offset {})", indent(depth + 1), d.offset.to_lowercase()));
+        if let Some(ref dim) = d.dim {
+            try!(write!(&mut cfg.out, "{}(dim {})", indent(depth + 1), dim));
+        }
+        if let Some(ref dim_increment) = d.dim_increment {
+            try!(write!(&mut cfg.out, "{}(dim_increment {})", indent(depth + 1), dim_increment));
+        }        
+        if let Some(ref dim_index) = d.dim_index {
+            try!(write!(&mut cfg.out, "{}(dim_index {})", indent(depth + 1), dim_index));
+        }
         if let Some(ref desc) = d.description {        
             try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
         }
