@@ -78,6 +78,13 @@ pub struct Field {
     pub bits: String,
     pub description: Option<String>,
     pub access: Option<String>,
+    pub enumerated_values: Vec<EnumeratedValue>,
+}
+
+pub struct EnumeratedValue {
+    pub value: String,
+    pub name: Option<String>,
+    pub description: Option<String>,    
 }
 
 pub fn read_bit_range(s: &str) -> Result<(usize, usize), Error> {
@@ -136,6 +143,67 @@ pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<Stri
     }
 }
 
+pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>) -> Result<EnumeratedValue, Error> {
+    let mut p_value: Option<String> = None;
+    let mut p_name: Option<String> = None;
+    let mut p_desc: Option<String> = None;
+    loop {
+        let e = try!(r.next());
+        match e {
+            XmlEvent::StartElement { name, .. } => {
+                match name.local_name.as_ref() {
+                    "value" => p_value = try!(read_text(r)),
+                    "name" => p_name = try!(read_text(r)),
+                    "description" => p_desc = try!(read_text(r)),
+                    _ => try!(read_unknown(r)),
+                }
+            },
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "enumeratedValue" => {
+                        if p_value.is_none() {
+                            return Err(Error::StateError("enumerated value without value"))
+                        }
+                        return Ok(EnumeratedValue {
+                            value: p_value.unwrap(),
+                            name: p_name,
+                            description: p_desc,
+                        })
+                        
+                    },
+                    _ => return Err(Error::StateError("Expected </enumeratedValue>"))
+                }
+            },
+            _ => {},
+        }
+    }   
+}
+
+pub fn read_enumerated_values<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<EnumeratedValue>, Error> {
+    let mut values: Vec<EnumeratedValue> = Vec::new();
+    loop {
+        let e = try!(r.next());
+        // println!("read_fields: {:?}", e);
+        match e {
+            XmlEvent::StartElement { name, .. } => {
+                match name.local_name.as_ref() {
+                    "name" => try!(read_unknown(r)),
+                    "enumeratedValue" => values.push(try!(read_enumerated_value(r))),
+                    _ => return Err(Error::StateError("Expected <enumeratedValue>")),
+                }
+            },
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "enumeratedValues" => {
+                        return Ok(values)
+                    }
+                    _ => return Err(Error::StateError("Expected </enumeratedValues>"))
+                }
+            },
+            _ => {},
+        }
+    }
+}
 
 pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Error> {
     let mut p_name: Option<String> = None;
@@ -144,6 +212,8 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
     let mut p_offset: Option<u64> = None;
     let mut p_width: Option<u64> = None;
     let mut p_range: Option<String> = None;
+    let mut p_enumerated_values: Vec<EnumeratedValue> = Vec::new();
+
     loop {
         let e = try!(r.next());
         // println!("read_field: {:?}", e);
@@ -156,6 +226,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     "bitOffset" => p_offset = try!(read_u64(r)),
                     "bitWidth" => p_width = try!(read_u64(r)),
                     "bitRange" => p_range = try!(read_text(r)),
+                    "enumeratedValues" => p_enumerated_values = try!(read_enumerated_values(r)),
                     _ => try!(read_unknown(r)),
                 }
             },
@@ -192,6 +263,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                         description: p_desc,
                         access: p_access,
                         bits: bits,
+                        enumerated_values: p_enumerated_values,
                     }),
                     _ => return Err(Error::StateError("expected </field>")),
                 }
