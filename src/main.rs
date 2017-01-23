@@ -90,8 +90,19 @@ fn write_device<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Device) -> std:
 fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral) -> std::io::Result<()> {    
     if cfg.compact {
         try!(write!(&mut cfg.out, "\n{}(peripheral", indent(depth)));
-        try!(write!(&mut cfg.out, " {}", d.name));
+        if let Some(ref group_name) = d.group_name {
+            if group_name != &d.name {
+                try!(write!(&mut cfg.out, " ({} {})", group_name, d.name));
+            } else {
+                try!(write!(&mut cfg.out, " {}", d.name));
+            }
+        } else {
+            try!(write!(&mut cfg.out, " {}", d.name));
+        }
         try!(write!(&mut cfg.out, " {}", d.address.to_lowercase()));
+        if let Some(ref derived_from) = d.derived_from {
+            try!(write!(&mut cfg.out, " (derived-from {})", derived_from))
+        }        
         if let Some(ref desc) = d.description {        
             try!(write!(&mut cfg.out, " {:?}", normalize(&desc)));
         }
@@ -101,14 +112,15 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral)
         for p in d.registers.iter() {
             try!(write_register(cfg, depth + 1, p));
         }
-        if let Some(ref derived_from) = d.derived_from {
-            try!(write!(&mut cfg.out, " (from {})", derived_from))
-        }
+
         try!(write!(&mut cfg.out, ")"));
     } else {
         try!(writeln!(&mut cfg.out, "{}(peripheral", indent(depth)));
         try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         try!(writeln!(&mut cfg.out, "{}(address {})", indent(depth + 1), d.address.to_lowercase()));
+        if let Some(ref group_name) = d.group_name {
+            try!(writeln!(&mut cfg.out, "{}(group {})", indent(depth + 1), group_name));
+        }        
         if let Some(ref derived_from) = d.derived_from {
             try!(writeln!(&mut cfg.out, "{}(derived-from {})", indent(depth + 1), derived_from))
         }
@@ -173,6 +185,11 @@ fn write_register<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Register) -> 
         if let Some(ref dim_index) = d.dim_index {
             try!(write!(&mut cfg.out, " (dim_index {})", dim_index));
         }
+        if let Some(ref reset_value) = d.reset_value {
+            if reset_value != "0x00000000" && reset_value != "0" {
+                try!(write!(&mut cfg.out, " (reset {})", reset_value));
+            }            
+        }
         if let Some(ref desc) = d.description {
             try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
         }        
@@ -193,6 +210,11 @@ fn write_register<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Register) -> 
         if let Some(ref dim_index) = d.dim_index {
             try!(write!(&mut cfg.out, "{}(dim_index {})", indent(depth + 1), dim_index));
         }
+        if let Some(ref reset_value) = d.reset_value {
+            if reset_value != "0x00000000" {
+                try!(write!(&mut cfg.out, "{}(reset {})", indent(depth + 1), reset_value));
+            }
+        }        
         if let Some(ref desc) = d.description {        
             try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
         }

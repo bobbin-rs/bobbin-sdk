@@ -40,6 +40,7 @@ pub struct Peripheral {
     pub address: String,
     pub registers: Vec<Register>,
     pub clusters: Vec<Cluster>,
+    pub group_name: Option<String>,
     pub derived_from: Option<String>,
     pub description: Option<String>,
 }
@@ -56,6 +57,7 @@ pub struct Register {
     pub offset: String,
     pub fields: Vec<Field>,
     pub description: Option<String>,
+    pub reset_value: Option<String>,
     pub dim: Option<u64>,
     pub dim_index: Option<String>,
     pub dim_increment: Option<String>,
@@ -219,6 +221,7 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
     let mut p_desc: Option<String> = None;
     let mut p_offset: Option<String> = None;
     let mut p_registers: Vec<Register> = Vec::new();
+
     loop {
         let e = try!(r.next());
         // println!("read_register: {:?}", e);
@@ -261,6 +264,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_offset: Option<String> = None;
+    let mut p_reset_value: Option<String> = None;
     let mut p_fields: Vec<Field> = Vec::new();
     let mut dim: Option<u64> = None;
     let mut dim_increment: Option<String> = None;
@@ -274,6 +278,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "addressOffset" => p_offset = try!(read_text(r)),
+                    "resetValue" => p_reset_value = try!(read_text(r)),
                     "dim" => dim = try!(read_u64(r)),
                     "dimIncrement" => dim_increment = try!(read_text(r)),
                     "dimIndex" => dim_index = try!(read_text(r)),
@@ -293,7 +298,8 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                         return Ok(Register {
                             name: p_name.unwrap(),
                             offset: p_offset.unwrap(),
-                            description: p_desc,
+                            reset_value: p_reset_value,
+                            description: p_desc,                                                        
                             dim: dim,
                             dim_index: dim_index,
                             dim_increment: dim_increment,
@@ -340,6 +346,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_addr: Option<String> = None;
+    let mut p_group_name: Option<String> = None;    
     let mut p_derived_from: Option<String> = None;
     let mut p_registers: Vec<Register> = Vec::new();
     let mut p_clusters: Vec<Cluster> = Vec::new();
@@ -359,6 +366,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "baseAddress" => p_addr = try!(read_text(r)),
+                    "groupName" => p_group_name = try!(read_text(r)),
                     "registers" => { 
                         let (regs, clusters) = try!(read_registers(r)); 
                         p_registers = regs;
@@ -380,6 +388,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                             name: p_name.unwrap(),
                             address: p_addr.unwrap(),
                             description: p_desc,
+                            group_name: p_group_name,
                             derived_from: p_derived_from,
                             registers: p_registers,
                             clusters: p_clusters,
