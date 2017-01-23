@@ -38,11 +38,21 @@ pub struct Device {
 pub struct Peripheral {
     pub name: String,
     pub address: String,
+    pub interrupts: Vec<Interrupt>,
     pub registers: Vec<Register>,
     pub clusters: Vec<Cluster>,
     pub group_name: Option<String>,
+    pub dim: Option<u64>,
+    pub dim_index: Option<String>,
+    pub dim_increment: Option<String>,    
     pub derived_from: Option<String>,
     pub description: Option<String>,
+}
+
+pub struct Interrupt {
+    pub name: String,
+    pub value: u64,
+    pub description: Option<String>,    
 }
 
 pub struct Cluster {
@@ -342,12 +352,55 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(Vec<R
     }
 }
 
+pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interrupt, Error> {
+    let mut p_name: Option<String> = None;
+    let mut p_desc: Option<String> = None;
+    let mut p_value: Option<u64> = None;
+    loop {
+        let e = try!(r.next());
+        match e {
+            XmlEvent::StartElement { name, .. } => {
+                match name.local_name.as_ref() {
+                    "name" => p_name = try!(read_text(r)),
+                    "description" => p_desc = try!(read_text(r)),
+                    "value" => p_value = try!(read_u64(r)),
+                    _ => try!(read_unknown(r)),
+                }            
+            },
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "interrupt" => {
+                        if p_name.is_none() {
+                            return Err(Error::StateError("Interrupt missing name"))
+                        }
+                        if p_value.is_none() {
+                            return Err(Error::StateError("Interrupt missing value"))
+                        }
+                        return Ok(Interrupt {
+                            name: p_name.unwrap(),
+                            value: p_value.unwrap(),
+                            description: p_desc,
+                        })
+                    },
+                    _ => return Err(Error::StateError("expected </interrupt>")),
+                }
+            },
+            _ => {},
+        }
+    }
+}
+
+
 pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedAttribute]) -> Result<Peripheral, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_addr: Option<String> = None;
-    let mut p_group_name: Option<String> = None;    
+    let mut p_group_name: Option<String> = None;  
+    let mut dim: Option<u64> = None;
+    let mut dim_increment: Option<String> = None;
+    let mut dim_index: Option<String> = None;      
     let mut p_derived_from: Option<String> = None;
+    let mut p_interrupts: Vec<Interrupt> = Vec::new();
     let mut p_registers: Vec<Register> = Vec::new();
     let mut p_clusters: Vec<Cluster> = Vec::new();
 
@@ -367,6 +420,10 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                     "description" => p_desc = try!(read_text(r)),
                     "baseAddress" => p_addr = try!(read_text(r)),
                     "groupName" => p_group_name = try!(read_text(r)),
+                    "dim" => dim = try!(read_u64(r)),
+                    "dimIncrement" => dim_increment = try!(read_text(r)),
+                    "dimIndex" => dim_index = try!(read_text(r)),
+                    "interrupt" => p_interrupts.push(try!(read_interrupt(r))),
                     "registers" => { 
                         let (regs, clusters) = try!(read_registers(r)); 
                         p_registers = regs;
@@ -389,7 +446,11 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                             address: p_addr.unwrap(),
                             description: p_desc,
                             group_name: p_group_name,
+                            dim: dim,
+                            dim_index: dim_index,
+                            dim_increment: dim_increment,                            
                             derived_from: p_derived_from,
+                            interrupts: p_interrupts,
                             registers: p_registers,
                             clusters: p_clusters,
                         })

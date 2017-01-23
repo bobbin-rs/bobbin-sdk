@@ -106,6 +106,9 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral)
         if let Some(ref desc) = d.description {        
             try!(write!(&mut cfg.out, " {:?}", normalize(&desc)));
         }
+        for p in d.interrupts.iter() {
+            try!(write_interrupt(cfg, depth + 1, p));
+        }
         for p in d.clusters.iter() {
             try!(write_cluster(cfg, depth + 1, p));
         }
@@ -137,6 +140,29 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral)
     }
     Ok(())
 }
+
+fn write_interrupt<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Interrupt) -> std::io::Result<()> {
+    if cfg.compact {
+        try!(write!(&mut cfg.out, "\n{}(interrupt", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        try!(write!(&mut cfg.out, " {}", d.value));
+        if let Some(ref desc) = d.description {        
+            try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
+        }        
+        try!(write!(&mut cfg.out, ")"));
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(interrupt", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        try!(writeln!(&mut cfg.out, "{}(value {})", indent(depth + 1), d.value));
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        try!(writeln!(&mut cfg.out, "{})", indent(depth)));
+    }
+    Ok(())
+}
+
+
 
 fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> std::io::Result<()> {
     if cfg.compact {
