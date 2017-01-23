@@ -10,6 +10,7 @@ use xml::attribute::OwnedAttribute;
 
 #[derive(Debug)]
 pub enum Error {    
+    ParseError(&'static str),
     StateError(&'static str),
     XmlError(reader::Error),
 }
@@ -21,35 +22,35 @@ impl From<reader::Error> for Error {
 }
 
 pub struct Document {
-    device: Device,
+    pub device: Device,
 }
 
 pub struct Device {
-    name: String,
-    peripherals: Vec<Peripheral>,
-    description: Option<String>,
+    pub name: String,
+    pub peripherals: Vec<Peripheral>,
+    pub description: Option<String>,
 }
 
 pub struct Peripheral {
-    name: String,
-    address: String,
-    registers: Vec<Register>,
-    derived_from: Option<String>,
-    description: Option<String>,
+    pub name: String,
+    pub address: String,
+    pub registers: Vec<Register>,
+    pub derived_from: Option<String>,
+    pub description: Option<String>,
 }
 
 pub struct Register {
-    name: String,
-    offset: String,
-    fields: Vec<Field>,
-    description: Option<String>,
+    pub name: String,
+    pub offset: String,
+    pub fields: Vec<Field>,
+    pub description: Option<String>,
 }
 
 pub struct Field {
-    name: String,
-    bits: String,
-    description: Option<String>,
-    access: Option<String>,
+    pub name: String,
+    pub bits: String,
+    pub description: Option<String>,
+    pub access: Option<String>,
 }
 
 pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
@@ -66,12 +67,24 @@ pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Erro
     }
 }
 
+pub fn read_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
+    let text = try!(read_text(r));
+    if let Some(text) = text {
+        if let Ok(v) = text.parse::<u64>() {
+            Ok(Some(v))
+        } else {
+            Err(Error::ParseError("Invalid number"))
+        }
+    } else {
+        return Ok(None)
+    }
+}
 
 pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
     let mut result: Option<String> = None;
     loop {
         let e = try!(r.next());
-        println!("read_text: {:?}", e);
+        //println!("read_text: {:?}", e);
 
         match e {
             XmlEvent::Characters(s) => result = Some(s),
@@ -90,29 +103,43 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
     let mut p_access: Option<String> = None;
-    let mut p_offset: Option<String> = None;
-    let mut p_width: Option<String> = None;
+    let mut p_offset: Option<u64> = None;
+    let mut p_width: Option<u64> = None;
+    let mut p_range: Option<String> = None;
     loop {
         let e = try!(r.next());
-        println!("read_field: {:?}", e);
+        // println!("read_field: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "access" => p_access = try!(read_text(r)),
-                    "bitOffset" => p_offset = try!(read_text(r)),
-                    "bitWidth" => p_width = try!(read_text(r)),
+                    "bitOffset" => p_offset = try!(read_u64(r)),
+                    "bitWidth" => p_width = try!(read_u64(r)),
+                    "bitRange" => p_range = try!(read_text(r)),
                     _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
+                let mut bits = String::new();      
+                if let Some(p_range) = p_range {
+                    bits = String::from(&p_range[1..p_range.len()-1]).replace(":"," ")  ;
+                }
+                if let Some(p_offset) = p_offset {
+                    if let Some(p_width) = p_width {
+                        bits = format!("{} {}",  p_offset + p_width - 1, p_offset)
+                    }
+                }                
+                if bits.len() == 0 {
+                    return Err(Error::StateError("No field width specified"));
+                }
                 match name.local_name.as_ref() {
                     "field" => return Ok(Field {
                         name: p_name.unwrap(),
                         description: p_desc,
                         access: p_access,
-                        bits: format!("[{}:{}]", p_offset.unwrap(), p_width.unwrap()),
+                        bits: bits,
                     }),
                     _ => return Err(Error::StateError("expected </field>")),
                 }
@@ -126,7 +153,7 @@ pub fn read_fields<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Field
     let mut fields: Vec<Field> = Vec::new();
     loop {
         let e = try!(r.next());
-        println!("read_fields: {:?}", e);
+        // println!("read_fields: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
@@ -154,7 +181,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
     let mut p_fields: Vec<Field> = Vec::new();
     loop {
         let e = try!(r.next());
-        println!("read_register: {:?}", e);
+        // println!("read_register: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
@@ -194,7 +221,7 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Re
     let mut regs: Vec<Register> = Vec::new();
     loop {
         let e = try!(r.next());
-        println!("read_registers: {:?}", e);
+        // println!("read_registers: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
@@ -230,7 +257,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
 
     loop {
         let e = try!(r.next());
-        println!("read_peripheral: {:?}", e);
+        // println!("read_peripheral: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
@@ -270,7 +297,7 @@ pub fn read_peripherals<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<
     let mut periphs: Vec<Peripheral> = Vec::new();
     loop {
         let e = try!(r.next());
-        println!("read_peripherals: {:?}", e);
+        // println!("read_peripherals: {:?}", e);
         match e {
             XmlEvent::StartElement { name, attributes, .. } => {
                 match name.local_name.as_ref() {
@@ -297,7 +324,7 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
     let mut d_periphs: Option<Vec<Peripheral>> = None;
     loop {
         let e = try!(r.next());
-        println!("read_device: {:?}", e);
+        // println!("read_device: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. }  => {
                 match name.local_name.as_ref() {
@@ -335,7 +362,7 @@ pub fn read_document<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Documen
     let mut device: Option<Device> = None;
     loop {
         let e = try!(r.next());
-        println!("read_document: {:?}", e);
+        // println!("read_document: {:?}", e);
         match e {
             XmlEvent::StartDocument {..} => {},
             XmlEvent::StartElement { name, .. } => {
