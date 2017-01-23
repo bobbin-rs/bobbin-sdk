@@ -1,16 +1,23 @@
 extern crate xml;
 extern crate clap;
 extern crate svd2chip;
-
+extern crate regex;
+#[macro_use] extern crate lazy_static;
 
 use svd2chip::*;
 
 use xml::reader::{EventReader};
+use regex::Regex;
 
 use std::fs::File;
 use std::io::{BufReader, Write};
 
 use clap::{Arg, App};
+
+pub struct Config<'a, W: 'a + Write> {
+    out: &'a mut W,
+    compact: bool
+}
 
 fn indent(size: usize) -> String {
     const INDENT: &'static str = "    ";
@@ -20,10 +27,15 @@ fn indent(size: usize) -> String {
 
 fn main() {
     let matches = App::new("svd2chip")
+        .arg(Arg::with_name("compact")
+            .short("c")
+            .long("compact"))
         .arg(Arg::with_name("input"))
         .get_matches();
+
     if !matches.is_present("input") {
         println!("{}", matches.usage());
+        std::process::exit(1);
     }
     let input = matches.value_of("input").unwrap();
     let mut out = std::io::stdout();
@@ -33,58 +45,166 @@ fn main() {
     let mut reader = EventReader::new(file);
     let doc = read_document(&mut reader).unwrap();
     let dev = doc.device;
-    write_device(&mut out, 0, &dev).unwrap();
+
+    let mut cfg = Config {
+        out: &mut out,
+        compact: matches.is_present("compact")
+    };
+
+    write_device(&mut cfg, 0, &dev).unwrap();
 }
 
-fn write_device<W: Write>(out: &mut W, depth: usize, d: &Device) -> std::io::Result<()> {
-    try!(writeln!(out, "{}(device", indent(depth)));
-    try!(writeln!(out, "{}(name {})", indent(depth + 1), d.name));
-    if let Some(ref desc) = d.description {        
-        try!(writeln!(out, "{}(description {:?})", indent(depth + 1), desc));
+fn normalize(s: &str) -> std::borrow::Cow<str> {
+    lazy_static! {
+        static ref RE: Regex = Regex::new(r"\s+").unwrap();
     }
-    for p in d.peripherals.iter() {
-        try!(write_peripheral(out, depth + 1, p));
+    RE.replace_all(s, " ")
+}
+
+
+fn write_device<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Device) -> std::io::Result<()> {   
+    if cfg.compact {
+        try!(write!(&mut cfg.out, "{}(device", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        if let Some(ref desc) = d.description {        
+            try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
+        }
+        for p in d.peripherals.iter() {
+            try!(write_peripheral(cfg, depth + 1, p));
+        }
+        try!(writeln!(&mut cfg.out, ")"));
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(device", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        for p in d.peripherals.iter() {
+            try!(write_peripheral(cfg, depth + 1, p));
+        }
+        try!(writeln!(&mut cfg.out, ")"));
     }
-    try!(writeln!(out, "{})", indent(depth)));
     Ok(())
 }
 
-fn write_peripheral<W: Write>(out: &mut W, depth: usize, d: &Peripheral) -> std::io::Result<()> {
-    try!(writeln!(out, "{}(peripheral", indent(depth)));
-    try!(writeln!(out, "{}(name {})", indent(depth + 1), d.name));
-    if let Some(ref desc) = d.description {        
-        try!(writeln!(out, "{}(description {:?})", indent(depth + 1), desc));
+fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral) -> std::io::Result<()> {    
+    if cfg.compact {
+        try!(write!(&mut cfg.out, "\n{}(peripheral", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        try!(write!(&mut cfg.out, " {}", d.address.to_lowercase()));
+        if let Some(ref desc) = d.description {        
+            try!(write!(&mut cfg.out, " {:?}", normalize(&desc)));
+        }
+        for p in d.clusters.iter() {
+            try!(write_cluster(cfg, depth + 1, p));
+        }
+        for p in d.registers.iter() {
+            try!(write_register(cfg, depth + 1, p));
+        }
+        if let Some(ref derived_from) = d.derived_from {
+            try!(write!(&mut cfg.out, " (from {})", derived_from))
+        }
+        try!(write!(&mut cfg.out, ")"));
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(peripheral", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        try!(writeln!(&mut cfg.out, "{}(address {})", indent(depth + 1), d.address.to_lowercase()));
+        if let Some(ref derived_from) = d.derived_from {
+            try!(writeln!(&mut cfg.out, "{}(derived-from {})", indent(depth + 1), derived_from))
+        }
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        for p in d.registers.iter() {
+            try!(write_register(cfg, depth + 1, p));
+        }
+        try!(writeln!(&mut cfg.out, "{})", indent(depth)));
     }
-    for p in d.registers.iter() {
-        try!(write_register(out, depth + 1, p));
-    }
-    try!(writeln!(out, "{})", indent(depth)));
     Ok(())
 }
 
-fn write_register<W: Write>(out: &mut W, depth: usize, d: &Register) -> std::io::Result<()> {
-    try!(writeln!(out, "{}(register", indent(depth)));
-    try!(writeln!(out, "{}(name {})", indent(depth + 1), d.name));
-    if let Some(ref desc) = d.description {        
-        try!(writeln!(out, "{}(description {:?})", indent(depth + 1), desc));
+fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> std::io::Result<()> {
+    if cfg.compact {
+        try!(write!(&mut cfg.out, "\n{}(cluster", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
+        if let Some(ref desc) = d.description {        
+            try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
+        }        
+        for p in d.registers.iter() {
+            try!(write_register(cfg, depth + 1, p));
+        }
+        try!(write!(&mut cfg.out, ")"));
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(cluster", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        try!(writeln!(&mut cfg.out, "{}(offset {})", indent(depth + 1), d.offset.to_lowercase()));
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        for p in d.registers.iter() {
+            try!(write_register(cfg, depth + 1, p));
+        }
+        try!(writeln!(&mut cfg.out, "{})", indent(depth)));
     }
-    for p in d.fields.iter() {
-        try!(write_field(out, depth + 1, p));
-    }
-    try!(writeln!(out, "{})", indent(depth)));
     Ok(())
 }
 
-fn write_field<W: Write>(out: &mut W, depth: usize, d: &Field) -> std::io::Result<()> {
-    try!(writeln!(out, "{}(field", indent(depth)));
-    try!(writeln!(out, "{}(name {})", indent(depth + 1), d.name));
-    try!(writeln!(out, "{}(bits {})", indent(depth + 1), d.bits));
-    if let Some(ref access) = d.access {
-        try!(writeln!(out, "{}(access {})", indent(depth + 1), access));
+fn write_register<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Register) -> std::io::Result<()> {
+    if cfg.compact {
+        try!(write!(&mut cfg.out, "\n{}(register", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
+        if let Some(ref desc) = d.description {        
+            try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
+        }        
+        for p in d.fields.iter() {
+            try!(write_field(cfg, depth + 1, p));
+        }
+        try!(write!(&mut cfg.out, ")"));
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        try!(writeln!(&mut cfg.out, "{}(offset {})", indent(depth + 1), d.offset.to_lowercase()));
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        for p in d.fields.iter() {
+            try!(write_field(cfg, depth + 1, p));
+        }
+        try!(writeln!(&mut cfg.out, "{})", indent(depth)));
     }
-    if let Some(ref desc) = d.description {        
-        try!(writeln!(out, "{}(description {:?})", indent(depth + 1), desc));
+    Ok(())
+}
+
+fn write_field<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Field) -> std::io::Result<()> {
+    if cfg.compact {        
+        try!(write!(&mut cfg.out, "\n{}(field", indent(depth)));
+        try!(write!(&mut cfg.out, " {}", d.name));
+        try!(write!(&mut cfg.out, " {}", d.bits));
+        if let Some(ref access) = d.access {
+            if access != "read-write" {
+                try!(write!(&mut cfg.out, " {}", access));
+            }            
+        }
+        if let Some(ref desc) = d.description {        
+            if desc != &d.name {
+                try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
+            }            
+        }        
+        try!(write!(&mut cfg.out, ")"));            
+    } else {
+        try!(writeln!(&mut cfg.out, "{}(field", indent(depth)));
+        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        try!(writeln!(&mut cfg.out, "{}(bits {})", indent(depth + 1), d.bits));
+        if let Some(ref access) = d.access {
+            try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
+        }
+        if let Some(ref desc) = d.description {        
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
+        }
+        try!(writeln!(&mut cfg.out, "{})", indent(depth)));            
     }
-    try!(writeln!(out, "{})", indent(depth)));
+
     Ok(())
 }

@@ -1,10 +1,14 @@
 #![allow(dead_code, unused_imports)]
 
 extern crate xml;
+extern crate regex;
+#[macro_use] extern crate lazy_static;
 
+use std::mem;
 use std::fs::File;
 use std::io::BufReader;
 
+use regex::Regex;
 use xml::reader::{self, EventReader, XmlEvent};
 use xml::attribute::OwnedAttribute;
 
@@ -35,7 +39,15 @@ pub struct Peripheral {
     pub name: String,
     pub address: String,
     pub registers: Vec<Register>,
+    pub clusters: Vec<Cluster>,
     pub derived_from: Option<String>,
+    pub description: Option<String>,
+}
+
+pub struct Cluster {
+    pub name: String,
+    pub offset: String,
+    pub registers: Vec<Register>,
     pub description: Option<String>,
 }
 
@@ -51,6 +63,17 @@ pub struct Field {
     pub bits: String,
     pub description: Option<String>,
     pub access: Option<String>,
+}
+
+pub fn read_bit_range(s: &str) -> Result<(usize, usize), Error> {
+    lazy_static! {
+        static ref RE: Regex = Regex::new(r"\[(\d+):(\d+)\]").unwrap();
+    }
+    let caps = RE.captures(s).unwrap();
+    
+    let hi = caps.get(1).unwrap().as_str().parse::<usize>().unwrap();
+    let lo = caps.get(2).unwrap().as_str().parse::<usize>().unwrap();
+    Ok((lo, hi))
 }
 
 pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
@@ -123,13 +146,27 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
             },
             XmlEvent::EndElement { name } => {
                 let mut bits = String::new();      
-                if let Some(p_range) = p_range {
-                    bits = String::from(&p_range[1..p_range.len()-1]).replace(":"," ")  ;
+                if let Some(ref p_range) = p_range {
+                    let (mut lo, mut hi) = try!(read_bit_range(p_range));
+                    if lo > hi {
+                        mem::swap(&mut lo, &mut hi)
+                    }
+                    if hi != lo {
+                        bits = format!("({} {})", lo, 1 + hi - lo);
+                    } else {
+                        bits = format!("{}", lo);
+                    }
                 }
                 if let Some(p_offset) = p_offset {
                     if let Some(p_width) = p_width {
-                        bits = format!("{} {}",  p_offset + p_width - 1, p_offset)
-                    }
+                        if p_width > 1 {
+                            bits = format!("({} {})", p_offset, p_width);
+                        } else {
+                            bits = format!("{}", p_offset)
+                        }
+                    } else {
+                        bits = format!("{}", p_offset)
+                    }                     
                 }                
                 if bits.len() == 0 {
                     return Err(Error::StateError("No field width specified"));
@@ -174,6 +211,49 @@ pub fn read_fields<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Field
     }
 }
 
+pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster, Error> {
+    let mut p_name: Option<String> = None;
+    let mut p_desc: Option<String> = None;
+    let mut p_offset: Option<String> = None;
+    let mut p_registers: Vec<Register> = Vec::new();
+    loop {
+        let e = try!(r.next());
+        // println!("read_register: {:?}", e);
+        match e {
+            XmlEvent::StartElement { name, .. } => {
+                match name.local_name.as_ref() {
+                    "name" => p_name = try!(read_text(r)),
+                    "description" => p_desc = try!(read_text(r)),
+                    "addressOffset" => p_offset = try!(read_text(r)),
+                    "register" => p_registers.push(try!(read_register(r))),
+                    _ => try!(read_unknown(r)),
+                }
+            },
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "cluster" => {
+                        if p_name.is_none() {
+                            return Err(Error::StateError("Cluster missing name"))
+                        }
+                        if p_offset.is_none() {
+                            return Err(Error::StateError("Cluster missing offset"))
+                        }
+                        return Ok(Cluster {
+                            name: p_name.unwrap(),
+                            offset: p_offset.unwrap(),
+                            description: p_desc,
+                            registers: p_registers,
+                        })
+                    },
+                    _ => return Err(Error::StateError("expected </cluster>")),
+                }
+            },
+            _ => {},
+        }
+    }
+}
+
+
 pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Register, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
@@ -217,8 +297,9 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
 }
 
 
-pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Register>, Error> {
+pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(Vec<Register>, Vec<Cluster>), Error> {
     let mut regs: Vec<Register> = Vec::new();
+    let mut clusters: Vec<Cluster> = Vec::new();
     loop {
         let e = try!(r.next());
         // println!("read_registers: {:?}", e);
@@ -226,13 +307,14 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Re
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "register" => regs.push(try!(read_register(r))),
-                    _ => return Err(Error::StateError("Expected <register>")),
+                    "cluster" => clusters.push(try!(read_cluster(r))),
+                    _ => return Err(Error::StateError("Expected <register> or <cluster>")),
                 }
             },
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "registers" => {
-                        return Ok(regs)
+                        return Ok((regs, clusters))
                     }
                     _ => return Err(Error::StateError("Expected </registers>"))
                 }
@@ -248,6 +330,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
     let mut p_addr: Option<String> = None;
     let mut p_derived_from: Option<String> = None;
     let mut p_registers: Vec<Register> = Vec::new();
+    let mut p_clusters: Vec<Cluster> = Vec::new();
 
     for a in attrs.iter() {
         if a.name.local_name == "derivedFrom" {
@@ -264,7 +347,11 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
                     "baseAddress" => p_addr = try!(read_text(r)),
-                    "registers" => { p_registers = try!(read_registers(r)); },
+                    "registers" => { 
+                        let (regs, clusters) = try!(read_registers(r)); 
+                        p_registers = regs;
+                        p_clusters = clusters;
+                    },
                     _ => try!(read_unknown(r)),
                 }
             },
@@ -283,6 +370,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>, attrs: &[OwnedA
                             description: p_desc,
                             derived_from: p_derived_from,
                             registers: p_registers,
+                            clusters: p_clusters,
                         })
                     },
                     _ => return Err(Error::StateError("expected </peripheral>")),
