@@ -84,7 +84,7 @@ pub struct Field {
 pub struct EnumeratedValue {
     pub value: String,
     pub name: Option<String>,
-    pub description: Option<String>,    
+    pub description: Option<String>,
 }
 
 pub fn read_bit_range(s: &str) -> Result<(usize, usize), Error> {
@@ -147,6 +147,7 @@ pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>) -> Result
     let mut p_value: Option<String> = None;
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
+    
     loop {
         let e = try!(r.next());
         match e {
@@ -188,6 +189,7 @@ pub fn read_enumerated_values<R: std::io::Read>(r: &mut EventReader<R>) -> Resul
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => try!(read_unknown(r)),
+                    "usage" => try!(read_unknown(r)),
                     "enumeratedValue" => values.push(try!(read_enumerated_value(r))),
                     _ => return Err(Error::StateError("Expected <enumeratedValue>")),
                 }
@@ -212,6 +214,8 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
     let mut p_offset: Option<u64> = None;
     let mut p_width: Option<u64> = None;
     let mut p_range: Option<String> = None;
+    let mut p_lsb: Option<u64> = None;
+    let mut p_msb: Option<u64> = None;
     let mut p_enumerated_values: Vec<EnumeratedValue> = Vec::new();
 
     loop {
@@ -226,12 +230,21 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     "bitOffset" => p_offset = try!(read_u64(r)),
                     "bitWidth" => p_width = try!(read_u64(r)),
                     "bitRange" => p_range = try!(read_text(r)),
-                    "enumeratedValues" => p_enumerated_values = try!(read_enumerated_values(r)),
+                    "lsb" => p_lsb = try!(read_u64(r)),
+                    "msb" => p_msb = try!(read_u64(r)),
+                    "enumeratedValues" => p_enumerated_values.append(&mut try!(read_enumerated_values(r))),
                     _ => try!(read_unknown(r)),
                 }
             },
             XmlEvent::EndElement { name } => {
                 let mut bits = String::new();      
+                if let Some(ref lsb) = p_lsb {
+                    if let Some(ref msb) = p_msb {
+                        bits = format!("({} {})", lsb, 1 + msb - lsb);
+                    } else {
+                        return Err(Error::StateError("No msb specified"));
+                    }
+                }
                 if let Some(ref p_range) = p_range {
                     let (mut lo, mut hi) = try!(read_bit_range(p_range));
                     if lo > hi {
