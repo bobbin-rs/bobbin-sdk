@@ -115,6 +115,9 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Peripheral)
         if let Some(ref desc) = d.description {        
             try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), normalize(desc)));
         }
+        for p in d.clusters.iter() {
+            try!(write_cluster(cfg, depth + 1, p));
+        }        
         for p in d.registers.iter() {
             try!(write_register(cfg, depth + 1, p));
         }
