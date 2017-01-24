@@ -15,8 +15,8 @@ use xml::attribute::OwnedAttribute;
 
 #[derive(Debug)]
 pub enum Error {
-    ParseError(&'static str),
-    StateError(&'static str),
+    ParseError(String),
+    StateError(String),
     XmlError(reader::Error),
 }
 
@@ -125,10 +125,17 @@ pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Erro
 pub fn read_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
     let text = try!(read_text(r));
     if let Some(text) = text {
+        if text.starts_with("0x") {
+            if let Ok(v) = u64::from_str_radix(&text[2..], 16) {
+                return Ok(Some(v))
+            } else {
+                return Err(Error::ParseError(format!("Invalid hex number: {:?}", text)))
+            }
+        } 
         if let Ok(v) = text.parse::<u64>() {
             Ok(Some(v))
         } else {
-            Err(Error::ParseError("Invalid number"))
+            Err(Error::ParseError(format!("Invalid number: {:?}", text)))
         }
     } else {
         return Ok(None);
@@ -139,12 +146,12 @@ pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<Stri
     let mut result: Option<String> = None;
     loop {
         let e = try!(r.next());
-        // println!("read_text: {:?}", e);
+        //println!("read_text: {:?}", e);
 
         match e {
             XmlEvent::Characters(s) => result = Some(s),
             XmlEvent::EndElement { .. } => return Ok(result),
-            _ => return Err(Error::StateError("Unexpected text end")),
+            _ => return Err(Error::StateError(format!("Unexpected text end"))),
         }
     }
 }
@@ -170,7 +177,7 @@ pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
                 match name.local_name.as_ref() {
                     "enumeratedValue" => {
                         if p_value.is_none() {
-                            return Err(Error::StateError("enumerated value without value"));
+                            return Err(Error::StateError(format!("enumerated value without value")));
                         }
                         return Ok(EnumeratedValue {
                             value: p_value.unwrap(),
@@ -179,7 +186,7 @@ pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
                         });
 
                     }
-                    _ => return Err(Error::StateError("Expected </enumeratedValue>")),
+                    _ => return Err(Error::StateError(format!("Expected </enumeratedValue>"))),
                 }
             }
             _ => {}
@@ -199,13 +206,13 @@ pub fn read_enumerated_values<R: std::io::Read>(r: &mut EventReader<R>)
                     "name" => try!(read_unknown(r)),
                     "usage" => try!(read_unknown(r)),
                     "enumeratedValue" => values.push(try!(read_enumerated_value(r))),
-                    _ => return Err(Error::StateError("Expected <enumeratedValue>")),
+                    _ => return Err(Error::StateError(format!("Expected <enumeratedValue>"))),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "enumeratedValues" => return Ok(values),
-                    _ => return Err(Error::StateError("Expected </enumeratedValues>")),
+                    _ => return Err(Error::StateError(format!("Expected </enumeratedValues>"))),
                 }
             }
             _ => {}
@@ -250,7 +257,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     if let Some(ref msb) = p_msb {
                         bits = format!("({} {})", lsb, 1 + msb - lsb);
                     } else {
-                        return Err(Error::StateError("No msb specified"));
+                        return Err(Error::StateError(format!("No msb specified")));
                     }
                 }
                 if let Some(ref p_range) = p_range {
@@ -276,7 +283,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     }
                 }
                 if bits.len() == 0 {
-                    return Err(Error::StateError("No field width specified"));
+                    return Err(Error::StateError(format!("No field width specified")));
                 }
                 match name.local_name.as_ref() {
                     "field" => {
@@ -288,7 +295,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                             enumerated_values: p_enumerated_values,
                         })
                     }
-                    _ => return Err(Error::StateError("expected </field>")),
+                    _ => return Err(Error::StateError(format!("expected </field>"))),
                 }
             }
             _ => {}
@@ -305,13 +312,13 @@ pub fn read_fields<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Field
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "field" => fields.push(try!(read_field(r))),
-                    _ => return Err(Error::StateError("Expected <field>")),
+                    _ => return Err(Error::StateError(format!("Expected <field>"))),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "fields" => return Ok(fields),
-                    _ => return Err(Error::StateError("Expected </fields>")),
+                    _ => return Err(Error::StateError(format!("Expected </fields>"))),
                 }
             }
             _ => {}
@@ -346,10 +353,10 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                 match name.local_name.as_ref() {
                     "cluster" => {
                         if p_name.is_none() {
-                            return Err(Error::StateError("Cluster missing name"));
+                            return Err(Error::StateError(format!("Cluster missing name")));
                         }
                         if p_offset.is_none() {
-                            return Err(Error::StateError("Cluster missing offset"));
+                            return Err(Error::StateError(format!("Cluster missing offset")));
                         }
                         return Ok(Cluster {
                             name: p_name.unwrap(),
@@ -360,7 +367,7 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                             registers: p_registers,
                         });
                     }
-                    _ => return Err(Error::StateError("expected </cluster>")),
+                    _ => return Err(Error::StateError(format!("expected </cluster>"))),
                 }
             }
             _ => {}
@@ -405,10 +412,10 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                 match name.local_name.as_ref() {
                     "register" => {
                         if p_name.is_none() {
-                            return Err(Error::StateError("Register missing name"));
+                            return Err(Error::StateError(format!("Register missing name")));
                         }
                         if p_offset.is_none() {
-                            return Err(Error::StateError("Register missing offset"));
+                            return Err(Error::StateError(format!("Register missing offset")));
                         }
                         return Ok(Register {
                             name: p_name.unwrap(),
@@ -424,7 +431,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                             fields: p_fields,
                         });
                     }
-                    _ => return Err(Error::StateError("expected </register>")),
+                    _ => return Err(Error::StateError(format!("expected </register>"))),
                 }
             }
             _ => {}
@@ -445,13 +452,13 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>)
                 match name.local_name.as_ref() {
                     "register" => regs.push(try!(read_register(r))),
                     "cluster" => clusters.push(try!(read_cluster(r))),
-                    _ => return Err(Error::StateError("Expected <register> or <cluster>")),
+                    _ => return Err(Error::StateError(format!("Expected <register> or <cluster>"))),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "registers" => return Ok((regs, clusters)),
-                    _ => return Err(Error::StateError("Expected </registers>")),
+                    _ => return Err(Error::StateError(format!("Expected </registers>"))),
                 }
             }
             _ => {}
@@ -478,10 +485,10 @@ pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interr
                 match name.local_name.as_ref() {
                     "interrupt" => {
                         if p_name.is_none() {
-                            return Err(Error::StateError("Interrupt missing name"));
+                            return Err(Error::StateError(format!("Interrupt missing name")));
                         }
                         if p_value.is_none() {
-                            return Err(Error::StateError("Interrupt missing value"));
+                            return Err(Error::StateError(format!("Interrupt missing value")));
                         }
                         return Ok(Interrupt {
                             name: p_name.unwrap(),
@@ -489,7 +496,7 @@ pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interr
                             description: p_desc,
                         });
                     }
-                    _ => return Err(Error::StateError("expected </interrupt>")),
+                    _ => return Err(Error::StateError(format!("expected </interrupt>"))),
                 }
             }
             _ => {}
@@ -549,10 +556,10 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                 match name.local_name.as_ref() {
                     "peripheral" => {
                         if p_name.is_none() {
-                            return Err(Error::StateError("Peripheral missing name"));
+                            return Err(Error::StateError(format!("Peripheral missing name")));
                         }
                         if p_addr.is_none() {
-                            return Err(Error::StateError("Peripheral missing address"));
+                            return Err(Error::StateError(format!("Peripheral missing address")));
                         }
                         return Ok(Peripheral {
                             name: p_name.unwrap(),
@@ -570,7 +577,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                             clusters: p_clusters,
                         });
                     }
-                    _ => return Err(Error::StateError("expected </peripheral>")),
+                    _ => return Err(Error::StateError(format!("expected </peripheral>"))),
                 }
             }
             _ => {}
@@ -587,13 +594,13 @@ pub fn read_peripherals<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<
             XmlEvent::StartElement { name, attributes, .. } => {
                 match name.local_name.as_ref() {
                     "peripheral" => periphs.push(try!(read_peripheral(r, &attributes))),
-                    _ => return Err(Error::StateError("Expected <peripheral>")),
+                    _ => return Err(Error::StateError(format!("Expected <peripheral>"))),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "peripherals" => return Ok(periphs),
-                    _ => return Err(Error::StateError("Expected </peripherals>")),
+                    _ => return Err(Error::StateError(format!("Expected </peripherals>"))),
                 }
             }
             _ => {}
@@ -635,10 +642,10 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                 match name.local_name.as_ref() {
                     "device" => {
                         if d_name.is_none() {
-                            return Err(Error::StateError("No name found for device"));
+                            return Err(Error::StateError(format!("No name found for device")));
                         }
                         if d_periphs.is_none() {
-                            return Err(Error::StateError("No peripherals found for device"));
+                            return Err(Error::StateError(format!("No peripherals found for device")));
                         }
                         return Ok(Device {
                             name: d_name.unwrap(),
@@ -648,7 +655,7 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                             access: d_access,
                         });
                     }
-                    _ => return Err(Error::StateError("Expected </device>")),
+                    _ => return Err(Error::StateError(format!("Expected </device>"))),
                 }
             }
             _ => {}
@@ -667,12 +674,12 @@ pub fn read_document<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Documen
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "device" => device = Some(try!(read_device(r))),
-                    _ => return Err(Error::StateError("Expected device")),
+                    _ => return Err(Error::StateError(format!("Expected device"))),
                 }
             }
             XmlEvent::EndDocument => {
                 if device.is_none() {
-                    return Err(Error::StateError("No device found in document"));
+                    return Err(Error::StateError(format!("No device found in document")));
                 }
                 return Ok(Document { device: device.unwrap() });
             }
