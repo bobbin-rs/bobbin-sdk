@@ -435,6 +435,9 @@ fn write_field<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Field) -> std::i
                           indent(depth + 1),
                           normalize(desc)));
         }
+        for v in d.enumerated_values.iter() {
+            try!(write_enumerated_value(cfg, depth + 1, v));
+        }        
         try!(writeln!(&mut cfg.out, "{})", indent(depth)));
     }
 
@@ -447,9 +450,9 @@ fn write_enumerated_value<W: Write>(cfg: &mut Config<W>,
                                     -> std::io::Result<()> {
     if cfg.compact {
         try!(write!(&mut cfg.out,
-                    "\n{}(value {}",
+                    "\n{}(value {:?}",
                     indent(depth),
-                    d.value.replace("#", "0b")));
+                    d.value));
         // if let Some(ref name) = d.name {
         //     try!(write!(&mut cfg.out, " {}", name));
         // }
@@ -460,14 +463,14 @@ fn write_enumerated_value<W: Write>(cfg: &mut Config<W>,
     } else {
         try!(writeln!(&mut cfg.out, "{}(value", indent(depth)));
         try!(writeln!(&mut cfg.out,
-                      "{}(value {})",
+                      "{}(value {:?})",
                       indent(depth + 1),
-                      d.value.replace("#", "0b")));
-        // if let Some(ref name) = d.name {
-        //     try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), name));
-        // }
+                      d.value));
+        if let Some(ref name) = d.name {
+            try!(writeln!(&mut cfg.out, "{}(name {:?})", indent(depth + 1), name));
+        }
         if let Some(ref desc) = d.description {
-            try!(writeln!(&mut cfg.out, "{}(desc {})", indent(depth + 1), desc));
+            try!(writeln!(&mut cfg.out, "{}(description {:?})", indent(depth + 1), desc));
         }
         try!(writeln!(&mut cfg.out, "{})", indent(depth)));
     }
