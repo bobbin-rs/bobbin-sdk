@@ -85,10 +85,10 @@ fn write_device<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Device) -> std:
         try!(writeln!(&mut cfg.out, "{}(device", indent(depth)));
         try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         if let Some(ref size) = d.size {
-            try!(write!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
+            try!(writeln!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
         }
         if let Some(ref access) = d.access {
-            try!(write!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
+            try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
         }
         if let Some(ref desc) = d.description {
             try!(writeln!(&mut cfg.out,
@@ -151,7 +151,7 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>,
                       indent(depth + 1),
                       d.address.to_lowercase()));
         if let Some(ref group_name) = d.group_name {
-            try!(writeln!(&mut cfg.out, "{}(group {})", indent(depth + 1), group_name));
+            try!(writeln!(&mut cfg.out, "{}(group-name {})", indent(depth + 1), group_name));
         }
         if let Some(ref size) = d.size {
             try!(write!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
@@ -267,12 +267,13 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
             try!(write!(&mut cfg.out, " {:?}", d.name));
             if let Some(ref dim) = d.dim {
                 try!(write!(&mut cfg.out, " (dim {}", dim));
-                if let Some(ref dim_index) = d.dim_index {
-                    try!(write!(&mut cfg.out, " {}", dim_index));
-                }
                 if let Some(ref dim_increment) = d.dim_increment {
                     try!(write!(&mut cfg.out, " {}", dim_increment));
+                }                
+                if let Some(ref dim_index) = d.dim_index {
+                    try!(write!(&mut cfg.out, " {:?}", dim_index));
                 }
+
                 try!(write!(&mut cfg.out, ")"));
             }
         } else {
@@ -307,42 +308,46 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
         try!(write!(&mut cfg.out, ")"));
     } else {
         try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
-        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        if d.dim.is_some() {
+            try!(writeln!(&mut cfg.out, "{}(name {:?})", indent(depth + 1), d.name));
+            if let Some(ref dim) = d.dim {
+                try!(writeln!(&mut cfg.out, "{}(dim {})", indent(depth + 1), dim));
+            }
+            if let Some(ref dim_increment) = d.dim_increment {
+                try!(writeln!(&mut cfg.out,
+                            "{}(dim-increment {})",
+                            indent(depth + 1),
+                            dim_increment));
+            }
+            if let Some(ref dim_index) = d.dim_index {
+                try!(writeln!(&mut cfg.out,
+                            "{}(dim-index {:?})",
+                            indent(depth + 1),
+                            dim_index));
+            }            
+        } else {
+            try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        } 
         try!(writeln!(&mut cfg.out,
                       "{}(offset {})",
                       indent(depth + 1),
-                      d.offset.to_lowercase()));
-        if let Some(ref dim) = d.dim {
-            try!(write!(&mut cfg.out, "{}(dim {})", indent(depth + 1), dim));
-        }
-        if let Some(ref dim_increment) = d.dim_increment {
-            try!(write!(&mut cfg.out,
-                        "{}(dim_increment {})",
-                        indent(depth + 1),
-                        dim_increment));
-        }
-        if let Some(ref dim_index) = d.dim_index {
-            try!(write!(&mut cfg.out,
-                        "{}(dim_index {})",
-                        indent(depth + 1),
-                        dim_index));
-        }
+                      d.offset.to_lowercase()));        
         if let Some(ref size) = d.size {
-            try!(write!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
+            try!(writeln!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
         }
         if let Some(ref access) = d.access {
-            try!(write!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
+            try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
         }
         if let Some(ref reset_value) = d.reset_value {
             if reset_value != "0x00000000" {
-                try!(write!(&mut cfg.out,
+                try!(writeln!(&mut cfg.out,
                             "{}(reset-value {})",
                             indent(depth + 1),
                             reset_value));
             }
         }
         if let Some(ref reset_mask) = d.reset_mask {
-            try!(write!(&mut cfg.out,
+            try!(writeln!(&mut cfg.out,
                         "{}(reset-mask {})",
                         indent(depth + 1),
                         reset_mask));
