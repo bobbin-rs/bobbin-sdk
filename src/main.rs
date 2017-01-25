@@ -154,10 +154,10 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>,
             try!(writeln!(&mut cfg.out, "{}(group-name {})", indent(depth + 1), group_name));
         }
         if let Some(ref size) = d.size {
-            try!(write!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
+            try!(writeln!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
         }
         if let Some(ref access) = d.access {
-            try!(write!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
+            try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
         }
         if let Some(ref derived_from) = d.derived_from {
             try!(writeln!(&mut cfg.out,
@@ -214,7 +214,22 @@ fn write_interrupt<W: Write>(cfg: &mut Config<W>,
 fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> std::io::Result<()> {
     if cfg.compact {
         try!(write!(&mut cfg.out, "\n{}(cluster", indent(depth)));
-        try!(write!(&mut cfg.out, " {}", d.name));
+        if d.dim.is_some() {            
+            try!(write!(&mut cfg.out, " {:?}", d.name));
+            if let Some(ref dim) = d.dim {
+                try!(write!(&mut cfg.out, " (dim {}", dim));
+            }
+            if let Some(ref dim_increment) = d.dim_increment {
+                try!(write!(&mut cfg.out, " {}", dim_increment));
+            }                
+            if let Some(ref dim_index) = d.dim_index {
+                try!(write!(&mut cfg.out, " {:?}", dim_index));
+            }
+            try!(write!(&mut cfg.out, ")"));            
+        } else {
+            try!(write!(&mut cfg.out, " {}", d.name));
+        }
+
         try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
         if let Some(ref size) = d.size {
             try!(write!(&mut cfg.out, " {}", size));
@@ -231,7 +246,28 @@ fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> st
         try!(write!(&mut cfg.out, ")"));
     } else {
         try!(writeln!(&mut cfg.out, "{}(cluster", indent(depth)));
-        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        if d.dim.is_some() {
+            try!(writeln!(&mut cfg.out, "{}(name {:?})", indent(depth + 1), d.name));
+            if let Some(ref dim) = d.dim {
+                try!(writeln!(&mut cfg.out, "{}(dim {})", indent(depth + 1), dim));
+            }
+            if let Some(ref dim_increment) = d.dim_increment {
+                try!(writeln!(&mut cfg.out,
+                            "{}(dim-increment {})",
+                            indent(depth + 1),
+                            dim_increment));
+            }
+            if let Some(ref dim_index) = d.dim_index {
+                try!(writeln!(&mut cfg.out,
+                            "{}(dim-index {:?})",
+                            indent(depth + 1),
+                            dim_index));
+            }                    
+        } else {
+            try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+        }
+         
+        
         try!(writeln!(&mut cfg.out,
                       "{}(offset {})",
                       indent(depth + 1),
@@ -263,7 +299,7 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
     if cfg.compact {
 
         if d.dim.is_some() {
-            try!(write!(&mut cfg.out, "\n{}(register-array", indent(depth)));
+            try!(write!(&mut cfg.out, "\n{}(register", indent(depth)));
             try!(write!(&mut cfg.out, " {:?}", d.name));
             if let Some(ref dim) = d.dim {
                 try!(write!(&mut cfg.out, " (dim {}", dim));
@@ -307,8 +343,8 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
         }
         try!(write!(&mut cfg.out, ")"));
     } else {
-        try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
         if d.dim.is_some() {
+            try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
             try!(writeln!(&mut cfg.out, "{}(name {:?})", indent(depth + 1), d.name));
             if let Some(ref dim) = d.dim {
                 try!(writeln!(&mut cfg.out, "{}(dim {})", indent(depth + 1), dim));
@@ -326,6 +362,7 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
                             dim_index));
             }            
         } else {
+            try!(writeln!(&mut cfg.out, "{}(register", indent(depth)));
             try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         } 
         try!(writeln!(&mut cfg.out,

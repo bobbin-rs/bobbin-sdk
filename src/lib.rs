@@ -67,6 +67,9 @@ pub struct Cluster {
     pub access: Option<String>,
     pub registers: Vec<Register>,
     pub description: Option<String>,
+    pub dim: Option<u64>,
+    pub dim_index: Option<String>,
+    pub dim_increment: Option<String>,    
 }
 
 pub struct Register {
@@ -333,6 +336,9 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
     let mut p_access: Option<String> = None;
     let mut p_offset: Option<String> = None;
     let mut p_registers: Vec<Register> = Vec::new();
+    let mut dim: Option<u64> = None;
+    let mut dim_increment: Option<String> = None;
+    let mut dim_index: Option<String> = None;
 
     loop {
         let e = try!(r.next());
@@ -345,6 +351,9 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),                    
                     "addressOffset" => p_offset = try!(read_text(r)),
+                    "dim" => dim = try!(read_u64(r)),
+                    "dimIncrement" => dim_increment = try!(read_text(r)),
+                    "dimIndex" => dim_index = try!(read_text(r)),                    
                     "register" => p_registers.push(try!(read_register(r))),
                     _ => try!(read_unknown(r)),
                 }
@@ -364,6 +373,9 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                             size: p_size,
                             access: p_access,
                             description: p_desc,
+                            dim: dim,
+                            dim_index: dim_index,
+                            dim_increment: dim_increment,                            
                             registers: p_registers,
                         });
                     }
