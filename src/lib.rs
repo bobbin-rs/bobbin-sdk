@@ -1,9 +1,12 @@
 #![allow(dead_code, unused_imports)]
 
+extern crate chip;
 extern crate xml;
 extern crate regex;
 #[macro_use]
 extern crate lazy_static;
+
+use chip::*;
 
 use std::mem;
 use std::fs::File;
@@ -30,84 +33,84 @@ pub struct Document {
     pub device: Device,
 }
 
-pub struct Device {
-    pub name: String,
-    pub peripherals: Vec<Peripheral>,
-    pub size: Option<u64>,
-    pub access: Option<String>,
-    pub description: Option<String>,
-}
+// pub struct Device {
+//     pub name: String,
+//     pub peripherals: Vec<Peripheral>,
+//     pub size: Option<u64>,
+//     pub access: Option<String>,
+//     pub description: Option<String>,
+// }
 
-pub struct Peripheral {
-    pub name: String,
-    pub address: String,
-    pub interrupts: Vec<Interrupt>,
-    pub registers: Vec<Register>,
-    pub clusters: Vec<Cluster>,
-    pub group_name: Option<String>,
-    pub dim: Option<u64>,
-    pub dim_index: Option<String>,
-    pub dim_increment: Option<String>,
-    pub size: Option<u64>,
-    pub access: Option<String>,
-    pub derived_from: Option<String>,
-    pub description: Option<String>,
-}
+// pub struct Peripheral {
+//     pub name: String,
+//     pub address: String,
+//     pub interrupts: Vec<Interrupt>,
+//     pub registers: Vec<Register>,
+//     pub clusters: Vec<Cluster>,
+//     pub group_name: Option<String>,
+//     pub dim: Option<u64>,
+//     pub dim_index: Option<String>,
+//     pub dim_increment: Option<String>,
+//     pub size: Option<u64>,
+//     pub access: Option<String>,
+//     pub derived_from: Option<String>,
+//     pub description: Option<String>,
+// }
 
-pub struct Interrupt {
-    pub name: String,
-    pub value: u64,
-    pub description: Option<String>,
-}
+// pub struct Interrupt {
+//     pub name: String,
+//     pub value: u64,
+//     pub description: Option<String>,
+// }
 
-pub struct Cluster {
-    pub name: String,
-    pub offset: String,
-    pub size: Option<u64>,
-    pub access: Option<String>,
-    pub registers: Vec<Register>,
-    pub description: Option<String>,
-    pub dim: Option<u64>,
-    pub dim_index: Option<String>,
-    pub dim_increment: Option<String>,    
-}
+// pub struct Cluster {
+//     pub name: String,
+//     pub offset: String,
+//     pub size: Option<u64>,
+//     pub access: Option<String>,
+//     pub registers: Vec<Register>,
+//     pub description: Option<String>,
+//     pub dim: Option<u64>,
+//     pub dim_index: Option<String>,
+//     pub dim_increment: Option<String>,    
+// }
 
-pub struct Register {
-    pub name: String,
-    pub offset: String,
-    pub fields: Vec<Field>,
-    pub description: Option<String>,
-    pub size: Option<u64>,
-    pub access: Option<String>,
-    pub reset_value: Option<String>,
-    pub reset_mask: Option<String>,
-    pub dim: Option<u64>,
-    pub dim_index: Option<String>,
-    pub dim_increment: Option<String>,
-}
+// pub struct Register {
+//     pub name: String,
+//     pub offset: String,
+//     pub fields: Vec<Field>,
+//     pub description: Option<String>,
+//     pub size: Option<u64>,
+//     pub access: Option<String>,
+//     pub reset_value: Option<String>,
+//     pub reset_mask: Option<String>,
+//     pub dim: Option<u64>,
+//     pub dim_index: Option<String>,
+//     pub dim_increment: Option<String>,
+// }
 
-pub struct Field {
-    pub name: String,
-    pub bits: String,
-    pub description: Option<String>,
-    pub access: Option<String>,
-    pub enumerated_values: Vec<EnumeratedValue>,
-}
+// pub struct Field {
+//     pub name: String,
+//     pub bits: String,
+//     pub description: Option<String>,
+//     pub access: Option<String>,
+//     pub enumerated_values: Vec<EnumeratedValue>,
+// }
 
-pub struct EnumeratedValue {
-    pub value: String,
-    pub name: Option<String>,
-    pub description: Option<String>,
-}
+// pub struct EnumeratedValue {
+//     pub value: String,
+//     pub name: Option<String>,
+//     pub description: Option<String>,
+// }
 
-pub fn read_bit_range(s: &str) -> Result<(usize, usize), Error> {
+pub fn read_bit_range(s: &str) -> Result<(u64, u64), Error> {
     lazy_static! {
         static ref RE: Regex = Regex::new(r"\[(\d+):(\d+)\]").unwrap();
     }
     let caps = RE.captures(s).unwrap();
 
-    let hi = caps.get(1).unwrap().as_str().parse::<usize>().unwrap();
-    let lo = caps.get(2).unwrap().as_str().parse::<usize>().unwrap();
+    let hi = caps.get(1).unwrap().as_str().parse::<u64>().unwrap();
+    let lo = caps.get(2).unwrap().as_str().parse::<u64>().unwrap();
     Ok((lo, hi))
 }
 
@@ -255,37 +258,30 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                 }
             }
             XmlEvent::EndElement { name } => {
-                let mut bits = String::new();
-                if let Some(ref lsb) = p_lsb {
-                    if let Some(ref msb) = p_msb {
-                        bits = format!("({} {})", lsb, 1 + msb - lsb);
+                let bit_offset: u64;
+                let bit_width: u64;
+                if let Some(lsb) = p_lsb {
+                    if let Some(msb) = p_msb {
+                        bit_offset = lsb;
+                        bit_width = 1 + msb - lsb;
                     } else {
                         return Err(Error::StateError(format!("No msb specified")));
                     }
-                }
-                if let Some(ref p_range) = p_range {
-                    let (mut lo, mut hi) = try!(read_bit_range(p_range));
+                } else if let Some(p_range) = p_range {
+                    let (mut lo, mut hi) = try!(read_bit_range(&p_range));
                     if lo > hi {
                         mem::swap(&mut lo, &mut hi)
                     }
-                    if hi != lo {
-                        bits = format!("({} {})", lo, 1 + hi - lo);
+                    bit_offset = lo;
+                    bit_width = 1 + hi - lo;
+                } else if let Some(p_offset) = p_offset {
+                    bit_offset = p_offset;
+                    bit_width = if let Some(p_width) = p_width {
+                        p_width
                     } else {
-                        bits = format!("{}", lo);
-                    }
-                }
-                if let Some(p_offset) = p_offset {
-                    if let Some(p_width) = p_width {
-                        if p_width > 1 {
-                            bits = format!("({} {})", p_offset, p_width);
-                        } else {
-                            bits = format!("{}", p_offset)
-                        }
-                    } else {
-                        bits = format!("{}", p_offset)
-                    }
-                }
-                if bits.len() == 0 {
+                        1
+                    };
+                } else {
                     return Err(Error::StateError(format!("No field width specified")));
                 }
                 match name.local_name.as_ref() {
@@ -293,8 +289,9 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                         return Ok(Field {
                             name: p_name.unwrap(),
                             description: p_desc,
-                            access: p_access,
-                            bits: bits,
+                            access: p_access.map(|a| Access::from(a.as_ref())),
+                            offset: bit_offset,
+                            size: bit_width,
                             enumerated_values: p_enumerated_values,
                         })
                     }
@@ -334,10 +331,13 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
     let mut p_desc: Option<String> = None;
     let mut p_size: Option<u64> = None;
     let mut p_access: Option<String> = None;
-    let mut p_offset: Option<String> = None;
+    let mut p_reset_value: Option<u64> = None;
+    let mut p_reset_mask: Option<u64> = None;
+    
+    let mut p_offset: Option<u64> = None;
     let mut p_registers: Vec<Register> = Vec::new();
     let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<String> = None;
+    let mut dim_increment: Option<u64> = None;
     let mut dim_index: Option<String> = None;
 
     loop {
@@ -350,9 +350,11 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                     "description" => p_desc = try!(read_text(r)),
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),                    
-                    "addressOffset" => p_offset = try!(read_text(r)),
+                    "resetValue" => p_reset_value = try!(read_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_u64(r)),                    
+                    "addressOffset" => p_offset = try!(read_u64(r)),
                     "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_text(r)),
+                    "dimIncrement" => dim_increment = try!(read_u64(r)),
                     "dimIndex" => dim_index = try!(read_text(r)),                    
                     "register" => p_registers.push(try!(read_register(r))),
                     _ => try!(read_unknown(r)),
@@ -371,11 +373,14 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
                             name: p_name.unwrap(),
                             offset: p_offset.unwrap(),
                             size: p_size,
-                            access: p_access,
+                            access: p_access.map(|a| Access::from(a.as_ref())),
+                            reset_value: p_reset_value,
+                            reset_mask: p_reset_mask,
                             description: p_desc,
                             dim: dim,
                             dim_index: dim_index,
-                            dim_increment: dim_increment,                            
+                            dim_increment: dim_increment,
+                            clusters: Vec::new(),
                             registers: p_registers,
                         });
                     }
@@ -391,14 +396,14 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
 pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Register, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
-    let mut p_offset: Option<String> = None;
+    let mut p_offset: Option<u64> = None;
     let mut p_size: Option<u64> = None;
     let mut p_access: Option<String> = None;
-    let mut p_reset_value: Option<String> = None;
-    let mut p_reset_mask: Option<String> = None;
+    let mut p_reset_value: Option<u64> = None;
+    let mut p_reset_mask: Option<u64> = None;
     let mut p_fields: Vec<Field> = Vec::new();
     let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<String> = None;
+    let mut dim_increment: Option<u64> = None;
     let mut dim_index: Option<String> = None;
     loop {
         let e = try!(r.next());
@@ -408,13 +413,13 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
-                    "addressOffset" => p_offset = try!(read_text(r)),
+                    "addressOffset" => p_offset = try!(read_u64(r)),
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),
-                    "resetValue" => p_reset_value = try!(read_text(r)),
-                    "resetMask" => p_reset_mask = try!(read_text(r)),
+                    "resetValue" => p_reset_value = try!(read_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_u64(r)),
                     "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_text(r)),
+                    "dimIncrement" => dim_increment = try!(read_u64(r)),
                     "dimIndex" => dim_index = try!(read_text(r)),
                     "fields" => p_fields = try!(read_fields(r)),
                     _ => try!(read_unknown(r)),
@@ -433,7 +438,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
                             name: p_name.unwrap(),
                             offset: p_offset.unwrap(),
                             size: p_size,
-                            access: p_access,
+                            access: p_access.map(|a| Access::from(a.as_ref())),
                             reset_value: p_reset_value,
                             reset_mask: p_reset_mask,
                             description: p_desc,
@@ -522,13 +527,16 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                                          -> Result<Peripheral, Error> {
     let mut p_name: Option<String> = None;
     let mut p_desc: Option<String> = None;
-    let mut p_addr: Option<String> = None;
+    let mut p_addr: Option<u64> = None;
     let mut p_group_name: Option<String> = None;
     let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<String> = None;
+    let mut dim_increment: Option<u64> = None;
     let mut dim_index: Option<String> = None;
     let mut p_size: Option<u64> = None;
     let mut p_access: Option<String> = None;
+    let mut p_reset_value: Option<u64> = None;
+    let mut p_reset_mask: Option<u64> = None;
+    
     let mut p_derived_from: Option<String> = None;
     let mut p_interrupts: Vec<Interrupt> = Vec::new();
     let mut p_registers: Vec<Register> = Vec::new();
@@ -548,13 +556,15 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
                     "description" => p_desc = try!(read_text(r)),
-                    "baseAddress" => p_addr = try!(read_text(r)),
+                    "baseAddress" => p_addr = try!(read_u64(r)),
                     "groupName" => p_group_name = try!(read_text(r)),
                     "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_text(r)),
+                    "dimIncrement" => dim_increment = try!(read_u64(r)),
                     "dimIndex" => dim_index = try!(read_text(r)),
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),
+                    "resetValue" => p_reset_value = try!(read_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_u64(r)),                    
                     "interrupt" => p_interrupts.push(try!(read_interrupt(r))),
                     "registers" => {
                         let (regs, clusters) = try!(read_registers(r));
@@ -582,7 +592,9 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                             dim_index: dim_index,
                             dim_increment: dim_increment,
                             size: p_size,
-                            access: p_access,
+                            access: p_access.map(|a| Access::from(a.as_ref())),
+                            reset_value: p_reset_value,
+                            reset_mask: p_reset_mask,
                             derived_from: p_derived_from,
                             interrupts: p_interrupts,
                             registers: p_registers,
@@ -664,7 +676,7 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                             peripherals: d_periphs.unwrap(),
                             description: d_desc,
                             size: d_size,
-                            access: d_access,
+                            access: d_access.map(|a| Access::from(a.as_ref())),
                         });
                     }
                     _ => return Err(Error::StateError(format!("Expected </device>"))),

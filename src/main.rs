@@ -1,3 +1,4 @@
+extern crate chip;
 extern crate xml;
 extern crate clap;
 extern crate svd2chip;
@@ -6,6 +7,8 @@ extern crate regex;
 extern crate lazy_static;
 
 use svd2chip::*;
+use chip::*;
+
 
 use xml::reader::EventReader;
 use regex::Regex;
@@ -119,7 +122,7 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>,
         } else {
             try!(write!(&mut cfg.out, " {}", d.name));
         }
-        try!(write!(&mut cfg.out, " {}", d.address.to_lowercase()));
+        try!(write!(&mut cfg.out, " 0x{:x}", d.address));
         if let Some(ref size) = d.size {
             try!(write!(&mut cfg.out, " {}", size));
         }
@@ -147,9 +150,9 @@ fn write_peripheral<W: Write>(cfg: &mut Config<W>,
         try!(writeln!(&mut cfg.out, "{}(peripheral", indent(depth)));
         try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         try!(writeln!(&mut cfg.out,
-                      "{}(address {})",
+                      "{}(address 0x{:x})",
                       indent(depth + 1),
-                      d.address.to_lowercase()));
+                      d.address));
         if let Some(ref group_name) = d.group_name {
             try!(writeln!(&mut cfg.out, "{}(group-name {})", indent(depth + 1), group_name));
         }
@@ -230,7 +233,7 @@ fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> st
             try!(write!(&mut cfg.out, " {}", d.name));
         }
 
-        try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
+        try!(write!(&mut cfg.out, " 0x{:x}", d.offset));
         if let Some(ref size) = d.size {
             try!(write!(&mut cfg.out, " {}", size));
         }
@@ -269,11 +272,11 @@ fn write_cluster<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Cluster) -> st
          
         
         try!(writeln!(&mut cfg.out,
-                      "{}(offset {})",
+                      "{}(offset 0x{:x})",
                       indent(depth + 1),
-                      d.offset.to_lowercase()));
+                      d.offset));
         if let Some(ref size) = d.size {
-            try!(write!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
+            try!(write!(&mut cfg.out, "{}(size 0x{:x})", indent(depth + 1), size));
         }
         if let Some(ref access) = d.access {
             try!(write!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
@@ -316,24 +319,20 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
             try!(write!(&mut cfg.out, "\n{}(register", indent(depth)));
             try!(write!(&mut cfg.out, " {}", d.name));
         }
-        try!(write!(&mut cfg.out, " {}", d.offset.to_lowercase()));
+        try!(write!(&mut cfg.out, " 0x{:x}", d.offset));
         if let Some(ref size) = d.size {
             try!(write!(&mut cfg.out, " {}", size));
         }
-        if let Some(ref reset_value) = d.reset_value {
-            if reset_value != "0x00000000" && reset_value != "0" {
+        if let Some(reset_value) = d.reset_value {
+            if reset_value != 0 {
                 try!(write!(&mut cfg.out, " {}", reset_value));
             }
         }
-        if let Some(ref reset_mask) = d.reset_mask {
-            if reset_mask != "0xFFFFFFFF" && reset_mask != "0xFFFF" && reset_mask != "0xFF" {
-                try!(write!(&mut cfg.out, " (reset-mask {})", reset_mask));
-            }
+        if let Some(reset_mask) = d.reset_mask {
+            try!(write!(&mut cfg.out, " (reset-mask {})", reset_mask));
         }
         if let Some(ref access) = d.access {
-            if access != "read-write" {
-                try!(write!(&mut cfg.out, " {}", access));
-            }
+            try!(write!(&mut cfg.out, " {}", access));
         }
         if let Some(ref desc) = d.description {
             try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
@@ -351,7 +350,7 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
             }
             if let Some(ref dim_increment) = d.dim_increment {
                 try!(writeln!(&mut cfg.out,
-                            "{}(dim-increment {})",
+                            "{}(dim-increment 0x{:x})",
                             indent(depth + 1),
                             dim_increment));
             }
@@ -366,26 +365,26 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
             try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
         } 
         try!(writeln!(&mut cfg.out,
-                      "{}(offset {})",
+                      "{}(offset 0x{:x})",
                       indent(depth + 1),
-                      d.offset.to_lowercase()));        
+                      d.offset));        
         if let Some(ref size) = d.size {
             try!(writeln!(&mut cfg.out, "{}(size {})", indent(depth + 1), size));
         }
         if let Some(ref access) = d.access {
             try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
         }
-        if let Some(ref reset_value) = d.reset_value {
-            if reset_value != "0x00000000" {
+        if let Some(reset_value) = d.reset_value {
+            if reset_value != 0 {
                 try!(writeln!(&mut cfg.out,
-                            "{}(reset-value {})",
+                            "{}(reset-value 0x{:x})",
                             indent(depth + 1),
                             reset_value));
             }
         }
-        if let Some(ref reset_mask) = d.reset_mask {
+        if let Some(reset_mask) = d.reset_mask {
             try!(writeln!(&mut cfg.out,
-                        "{}(reset-mask {})",
+                        "{}(reset-mask 0x{:x})",
                         indent(depth + 1),
                         reset_mask));
         }
@@ -403,43 +402,23 @@ fn write_register<W: Write>(cfg: &mut Config<W>,
     Ok(())
 }
 
-fn write_field<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Field) -> std::io::Result<()> {
-    if cfg.compact {
-        try!(write!(&mut cfg.out, "\n{}(field", indent(depth)));
-        try!(write!(&mut cfg.out, " {}", d.name));
-        try!(write!(&mut cfg.out, " {}", d.bits));
-        if let Some(ref access) = d.access {
-            if access != "read-write" {
-                try!(write!(&mut cfg.out, " {}", access));
-            }
-        }
-        if let Some(ref desc) = d.description {
-            if desc != &d.name {
-                try!(write!(&mut cfg.out, " {:?}", normalize(desc)));
-            }
-        }
-        for v in d.enumerated_values.iter() {
-            try!(write_enumerated_value(cfg, depth + 1, v));
-        }
-        try!(write!(&mut cfg.out, ")"));
-    } else {
-        try!(writeln!(&mut cfg.out, "{}(field", indent(depth)));
-        try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
-        try!(writeln!(&mut cfg.out, "{}(bits {})", indent(depth + 1), d.bits));
-        if let Some(ref access) = d.access {
-            try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
-        }
-        if let Some(ref desc) = d.description {
-            try!(writeln!(&mut cfg.out,
-                          "{}(description {:?})",
-                          indent(depth + 1),
-                          normalize(desc)));
-        }
-        for v in d.enumerated_values.iter() {
-            try!(write_enumerated_value(cfg, depth + 1, v));
-        }        
-        try!(writeln!(&mut cfg.out, "{})", indent(depth)));
+fn write_field<W: Write>(cfg: &mut Config<W>, depth: usize, d: &Field) -> std::io::Result<()> {    
+    try!(writeln!(&mut cfg.out, "{}(field", indent(depth)));
+    try!(writeln!(&mut cfg.out, "{}(name {})", indent(depth + 1), d.name));
+    try!(writeln!(&mut cfg.out, "{}(bits {} {})", indent(depth + 1), d.offset, d.size));
+    if let Some(ref access) = d.access {
+        try!(writeln!(&mut cfg.out, "{}(access {})", indent(depth + 1), access));
     }
+    if let Some(ref desc) = d.description {
+        try!(writeln!(&mut cfg.out,
+                        "{}(description {:?})",
+                        indent(depth + 1),
+                        normalize(desc)));
+    }
+    for v in d.enumerated_values.iter() {
+        try!(write_enumerated_value(cfg, depth + 1, v));
+    }        
+    try!(writeln!(&mut cfg.out, "{})", indent(depth)));    
 
     Ok(())
 }
