@@ -33,75 +33,12 @@ pub struct Document {
     pub device: Device,
 }
 
-// pub struct Device {
-//     pub name: String,
-//     pub peripherals: Vec<Peripheral>,
-//     pub size: Option<u64>,
-//     pub access: Option<String>,
-//     pub description: Option<String>,
-// }
-
-// pub struct Peripheral {
-//     pub name: String,
-//     pub address: String,
-//     pub interrupts: Vec<Interrupt>,
-//     pub registers: Vec<Register>,
-//     pub clusters: Vec<Cluster>,
-//     pub group_name: Option<String>,
-//     pub dim: Option<u64>,
-//     pub dim_index: Option<String>,
-//     pub dim_increment: Option<String>,
-//     pub size: Option<u64>,
-//     pub access: Option<String>,
-//     pub derived_from: Option<String>,
-//     pub description: Option<String>,
-// }
-
-// pub struct Interrupt {
-//     pub name: String,
-//     pub value: u64,
-//     pub description: Option<String>,
-// }
-
-// pub struct Cluster {
-//     pub name: String,
-//     pub offset: String,
-//     pub size: Option<u64>,
-//     pub access: Option<String>,
-//     pub registers: Vec<Register>,
-//     pub description: Option<String>,
-//     pub dim: Option<u64>,
-//     pub dim_index: Option<String>,
-//     pub dim_increment: Option<String>,    
-// }
-
-// pub struct Register {
-//     pub name: String,
-//     pub offset: String,
-//     pub fields: Vec<Field>,
-//     pub description: Option<String>,
-//     pub size: Option<u64>,
-//     pub access: Option<String>,
-//     pub reset_value: Option<String>,
-//     pub reset_mask: Option<String>,
-//     pub dim: Option<u64>,
-//     pub dim_index: Option<String>,
-//     pub dim_increment: Option<String>,
-// }
-
-// pub struct Field {
-//     pub name: String,
-//     pub bits: String,
-//     pub description: Option<String>,
-//     pub access: Option<String>,
-//     pub enumerated_values: Vec<EnumeratedValue>,
-// }
-
-// pub struct EnumeratedValue {
-//     pub value: String,
-//     pub name: Option<String>,
-//     pub description: Option<String>,
-// }
+fn normalize(s: &str) -> String {
+    lazy_static! {
+        static ref RE: Regex = Regex::new(r"\s+").unwrap();
+    }
+    RE.replace_all(s, " ").to_string()
+}
 
 pub fn read_bit_range(s: &str) -> Result<(u64, u64), Error> {
     lazy_static! {
@@ -161,6 +98,10 @@ pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<Stri
         }
     }
 }
+pub fn read_description<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
+    read_text(r).map(|t| t.map(|s| normalize(s.as_ref())))
+}
+
 
 pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
                                                -> Result<EnumeratedValue, Error> {
@@ -175,7 +116,7 @@ pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
                 match name.local_name.as_ref() {
                     "value" => p_value = try!(read_text(r)),
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
@@ -244,7 +185,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     "access" => p_access = try!(read_text(r)),
                     "bitOffset" => p_offset = try!(read_u64(r)),
                     "bitWidth" => p_width = try!(read_u64(r)),
@@ -347,7 +288,7 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),                    
                     "resetValue" => p_reset_value = try!(read_u64(r)),
@@ -412,7 +353,7 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     "addressOffset" => p_offset = try!(read_u64(r)),
                     "size" => p_size = try!(read_u64(r)),
                     "access" => p_access = try!(read_text(r)),
@@ -493,7 +434,7 @@ pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interr
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     "value" => p_value = try!(read_u64(r)),
                     _ => try!(read_unknown(r)),
                 }
@@ -555,7 +496,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
                     "name" => p_name = try!(read_text(r)),
-                    "description" => p_desc = try!(read_text(r)),
+                    "description" => p_desc = try!(read_description(r)),
                     "baseAddress" => p_addr = try!(read_u64(r)),
                     "groupName" => p_group_name = try!(read_text(r)),
                     "dim" => dim = try!(read_u64(r)),
@@ -654,7 +595,7 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                         d_access = try!(read_text(r));
                     }
                     "description" => {
-                        d_desc = try!(read_text(r));
+                        d_desc = try!(read_description(r));
                     }
                     "peripherals" => {
                         d_periphs = Some(try!(read_peripherals(r)));
