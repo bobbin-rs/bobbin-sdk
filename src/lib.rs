@@ -123,35 +123,23 @@ pub fn read_description<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Opti
 
 
 pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
-                                               -> Result<EnumeratedValue, Error> {
-    let mut p_value: Option<String> = None;
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
+                                               -> Result<EnumeratedValue, Error> {                                                
+    let mut v = EnumeratedValue::default();
 
     loop {
         let e = try!(r.next());
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "value" => p_value = try!(read_opt_text(r)),
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
+                    "value" => v.value = try!(read_text(r)),
+                    "name" => v.name = try!(read_opt_text(r)),
+                    "description" => v.description = try!(read_description(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "enumeratedValue" => {
-                        if p_value.is_none() {
-                            return Err(Error::StateError(format!("enumerated value without value")));
-                        }
-                        return Ok(EnumeratedValue {
-                            value: p_value.unwrap(),
-                            name: p_name,
-                            description: p_desc,
-                        });
-
-                    }
+                    "enumeratedValue" => return Ok(v),
                     _ => return Err(Error::StateError(format!("Expected </enumeratedValue>"))),
                 }
             }
