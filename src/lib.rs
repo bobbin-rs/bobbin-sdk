@@ -444,35 +444,21 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>)
 }
 
 pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interrupt, Error> {
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
-    let mut p_value: Option<u64> = None;
+    let mut i = Interrupt::default();
     loop {
         let e = try!(r.next());
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
-                    "value" => p_value = try!(read_opt_u64(r)),
+                    "name" => i.name = try!(read_text(r)),
+                    "description" => i.description = try!(read_description(r)),
+                    "value" => i.value = try!(read_u64(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "interrupt" => {
-                        if p_name.is_none() {
-                            return Err(Error::StateError(format!("Interrupt missing name")));
-                        }
-                        if p_value.is_none() {
-                            return Err(Error::StateError(format!("Interrupt missing value")));
-                        }
-                        return Ok(Interrupt {
-                            name: p_name.unwrap(),
-                            value: p_value.unwrap(),
-                            description: p_desc,
-                        });
-                    }
+                    "interrupt" => return Ok(i),
                     _ => return Err(Error::StateError(format!("expected </interrupt>"))),
                 }
             }
