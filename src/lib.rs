@@ -187,15 +187,12 @@ pub fn read_enumerated_values<R: std::io::Read>(r: &mut EventReader<R>)
 }
 
 pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Error> {
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
-    let mut p_access: Option<String> = None;
+    let mut f = Field::default();
     let mut p_offset: Option<u64> = None;
     let mut p_width: Option<u64> = None;
     let mut p_range: Option<String> = None;
     let mut p_lsb: Option<u64> = None;
     let mut p_msb: Option<u64> = None;
-    let mut p_enumerated_values: Vec<EnumeratedValue> = Vec::new();
 
     loop {
         let e = try!(r.next());
@@ -203,27 +200,23 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
-                    "access" => p_access = try!(read_opt_text(r)),
+                    "name" => f.name = try!(read_text(r)),
+                    "description" => f.description = try!(read_description(r)),
+                    "access" => f.access = try!(read_opt_text(r)).map(Access::from),
                     "bitOffset" => p_offset = try!(read_opt_u64(r)),
                     "bitWidth" => p_width = try!(read_opt_u64(r)),
                     "bitRange" => p_range = try!(read_opt_text(r)),
                     "lsb" => p_lsb = try!(read_opt_u64(r)),
                     "msb" => p_msb = try!(read_opt_u64(r)),
-                    "enumeratedValues" => {
-                        p_enumerated_values.append(&mut try!(read_enumerated_values(r)))
-                    }
+                    "enumeratedValues" => f.enumerated_values = try!(read_enumerated_values(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
-                let bit_offset: u64;
-                let bit_width: u64;
                 if let Some(lsb) = p_lsb {
                     if let Some(msb) = p_msb {
-                        bit_offset = lsb;
-                        bit_width = 1 + msb - lsb;
+                        f.bit_offset = lsb;
+                        f.bit_width = 1 + msb - lsb;
                     } else {
                         return Err(Error::StateError(format!("No msb specified")));
                     }
@@ -232,11 +225,11 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     if lo > hi {
                         mem::swap(&mut lo, &mut hi)
                     }
-                    bit_offset = lo;
-                    bit_width = 1 + hi - lo;
+                    f.bit_offset = lo;
+                    f.bit_width = 1 + hi - lo;
                 } else if let Some(p_offset) = p_offset {
-                    bit_offset = p_offset;
-                    bit_width = if let Some(p_width) = p_width {
+                    f.bit_offset = p_offset;
+                    f.bit_width = if let Some(p_width) = p_width {
                         p_width
                     } else {
                         1
@@ -245,16 +238,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                     return Err(Error::StateError(format!("No field width specified")));
                 }
                 match name.local_name.as_ref() {
-                    "field" => {
-                        return Ok(Field {
-                            name: p_name.unwrap(),
-                            description: p_desc,
-                            access: p_access.map(Access::from),
-                            offset: bit_offset,
-                            size: bit_width,
-                            enumerated_values: p_enumerated_values,
-                        })
-                    }
+                    "field" => return Ok(f),
                     _ => return Err(Error::StateError(format!("expected </field>"))),
                 }
             }
