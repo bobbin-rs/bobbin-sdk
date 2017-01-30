@@ -354,60 +354,30 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
 
 
 pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Register, Error> {
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
-    let mut p_offset: Option<u64> = None;
-    let mut p_size: Option<u64> = None;
-    let mut p_access: Option<String> = None;
-    let mut p_reset_value: Option<u64> = None;
-    let mut p_reset_mask: Option<u64> = None;
-    let mut p_fields: Vec<Field> = Vec::new();
-    let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<u64> = None;
-    let mut dim_index: Option<String> = None;
+    let mut reg = Register::default();
     loop {
         let e = try!(r.next());
         // println!("read_register: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
-                    "addressOffset" => p_offset = try!(read_opt_u64(r)),
-                    "size" => p_size = try!(read_opt_u64(r)),
-                    "access" => p_access = try!(read_opt_text(r)),
-                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),
-                    "dim" => dim = try!(read_opt_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
-                    "dimIndex" => dim_index = try!(read_opt_text(r)),
-                    "fields" => p_fields = try!(read_fields(r)),
+                    "name" => reg.name = try!(read_text(r)),
+                    "description" => reg.description = try!(read_description(r)),
+                    "addressOffset" => reg.offset = try!(read_u64(r)),
+                    "size" => reg.size = try!(read_opt_u64(r)),
+                    "access" => reg.access = try!(read_opt_text(r)).map(Access::from),
+                    "resetValue" => reg.reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => reg.reset_mask = try!(read_opt_u64(r)),
+                    "dim" => reg.dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => reg.dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => reg.dim_index = try!(read_opt_text(r)),
+                    "fields" => reg.fields = try!(read_fields(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "register" => {
-                        if p_name.is_none() {
-                            return Err(Error::StateError(format!("Register missing name")));
-                        }
-                        if p_offset.is_none() {
-                            return Err(Error::StateError(format!("Register missing offset")));
-                        }
-                        return Ok(Register {
-                            name: p_name.unwrap(),
-                            offset: p_offset.unwrap(),
-                            size: p_size,
-                            access: p_access.map(|a| Access::from(a.as_ref())),
-                            reset_value: p_reset_value,
-                            reset_mask: p_reset_mask,
-                            description: p_desc,
-                            dim: dim,
-                            dim_index: dim_index,
-                            dim_increment: dim_increment,
-                            fields: p_fields,
-                        });
-                    }
+                    "register" => return Ok(reg),
                     _ => return Err(Error::StateError(format!("expected </register>"))),
                 }
             }
