@@ -485,26 +485,11 @@ pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interr
 pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                                          attrs: &[OwnedAttribute])
                                          -> Result<Peripheral, Error> {
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
-    let mut p_addr: Option<u64> = None;
-    let mut p_group_name: Option<String> = None;
-    let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<u64> = None;
-    let mut dim_index: Option<String> = None;
-    let mut p_size: Option<u64> = None;
-    let mut p_access: Option<String> = None;
-    let mut p_reset_value: Option<u64> = None;
-    let mut p_reset_mask: Option<u64> = None;
-    
-    let mut p_derived_from: Option<String> = None;
-    let mut p_interrupts: Vec<Interrupt> = Vec::new();
-    let mut p_registers: Vec<Register> = Vec::new();
-    let mut p_clusters: Vec<Cluster> = Vec::new();
+    let mut p = Peripheral::default();
 
     for a in attrs.iter() {
         if a.name.local_name == "derivedFrom" {
-            p_derived_from = Some(a.value.clone());
+            p.derived_from = Some(a.value.clone());
         }
     }
 
@@ -514,53 +499,29 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
-                    "baseAddress" => p_addr = try!(read_opt_u64(r)),
-                    "groupName" => p_group_name = try!(read_opt_text(r)),
-                    "dim" => dim = try!(read_opt_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
-                    "dimIndex" => dim_index = try!(read_opt_text(r)),
-                    "size" => p_size = try!(read_opt_u64(r)),
-                    "access" => p_access = try!(read_opt_text(r)),
-                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),                    
-                    "interrupt" => p_interrupts.push(try!(read_interrupt(r))),
+                    "name" => p.name = try!(read_text(r)),
+                    "description" => p.description = try!(read_description(r)),
+                    "baseAddress" => p.address = try!(read_u64(r)),
+                    "groupName" => p.group_name = try!(read_opt_text(r)),
+                    "dim" => p.dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => p.dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => p.dim_index = try!(read_opt_text(r)),
+                    "size" => p.size = try!(read_opt_u64(r)),
+                    "access" => p.access = try!(read_opt_text(r)).map(|s| Access::from(s.as_ref())),
+                    "resetValue" => p.reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => p.reset_mask = try!(read_opt_u64(r)),                    
+                    "interrupt" => p.interrupts.push(try!(read_interrupt(r))),
                     "registers" => {
                         let (regs, clusters) = try!(read_registers(r));
-                        p_registers = regs;
-                        p_clusters = clusters;
+                        p.registers = regs;
+                        p.clusters = clusters;
                     }
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "peripheral" => {
-                        if p_name.is_none() {
-                            return Err(Error::StateError(format!("Peripheral missing name")));
-                        }
-                        if p_addr.is_none() {
-                            return Err(Error::StateError(format!("Peripheral missing address")));
-                        }
-                        return Ok(Peripheral {
-                            name: p_name.unwrap(),
-                            address: p_addr.unwrap(),
-                            description: p_desc,
-                            group_name: p_group_name,
-                            dim: dim,
-                            dim_index: dim_index,
-                            dim_increment: dim_increment,
-                            size: p_size,
-                            access: p_access.map(|a| Access::from(a.as_ref())),
-                            reset_value: p_reset_value,
-                            reset_mask: p_reset_mask,
-                            derived_from: p_derived_from,
-                            interrupts: p_interrupts,
-                            registers: p_registers,
-                            clusters: p_clusters,
-                        });
-                    }
+                    "peripheral" => return Ok(p),                    
                     _ => return Err(Error::StateError(format!("expected </peripheral>"))),
                 }
             }
