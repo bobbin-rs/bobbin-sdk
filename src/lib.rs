@@ -40,7 +40,7 @@ fn normalize(s: &str) -> String {
     RE.replace_all(s, " ").to_string()
 }
 
-pub fn read_bit_range(s: &str) -> Result<(u64, u64), Error> {
+fn read_bit_range(s: &str) -> Result<(u64, u64), Error> {
     lazy_static! {
         static ref RE: Regex = Regex::new(r"\[(\d+):(\d+)\]").unwrap();
     }
@@ -51,7 +51,7 @@ pub fn read_bit_range(s: &str) -> Result<(u64, u64), Error> {
     Ok((lo, hi))
 }
 
-pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
+fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Error> {
     let mut depth = 1;
     loop {
         match try!(r.next()) {
@@ -65,9 +65,10 @@ pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Erro
     }
 }
 
-pub fn read_opt_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
+fn read_opt_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
     let text = try!(read_opt_text(r));
-    if let Some(text) = text {
+    if let Some(mut text) = text {
+        text = text.to_lowercase();
         if text.starts_with("0x") {
             if let Ok(v) = u64::from_str_radix(&text[2..], 16) {
                 return Ok(Some(v))
