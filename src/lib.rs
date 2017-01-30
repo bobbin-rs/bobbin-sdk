@@ -65,8 +65,8 @@ pub fn read_unknown<R: std::io::Read>(r: &mut EventReader<R>) -> Result<(), Erro
     }
 }
 
-pub fn read_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
-    let text = try!(read_text(r));
+pub fn read_opt_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>, Error> {
+    let text = try!(read_opt_text(r));
     if let Some(text) = text {
         if text.starts_with("0x") {
             if let Ok(v) = u64::from_str_radix(&text[2..], 16) {
@@ -85,12 +85,19 @@ pub fn read_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<u64>,
     }
 }
 
-pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
+pub fn read_u64<R: std::io::Read>(r: &mut EventReader<R>) -> Result<u64, Error> {
+    if let Some(value) = try!(read_opt_u64(r)) {
+        Ok(value)
+    } else {
+        Err(Error::ParseError(format!("Missing number value")))
+    }
+}
+
+
+pub fn read_opt_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
     let mut result: Option<String> = None;
     loop {
         let e = try!(r.next());
-        //println!("read_text: {:?}", e);
-
         match e {
             XmlEvent::Characters(s) => result = Some(s),
             XmlEvent::EndElement { .. } => return Ok(result),
@@ -98,8 +105,20 @@ pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<Stri
         }
     }
 }
+
+
+pub fn read_text<R: std::io::Read>(r: &mut EventReader<R>) -> Result<String, Error> {
+    if let Some(text) = try!(read_opt_text(r)) {
+        Ok(text)
+    } else {
+        return Err(Error::StateError(format!("Expected non-empty text")))
+    }
+}
+
+
+
 pub fn read_description<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Option<String>, Error> {
-    read_text(r).map(|t| t.map(|s| normalize(s.as_ref())))
+    read_opt_text(r).map(|t| t.map(|s| normalize(s.as_ref())))
 }
 
 
@@ -114,8 +133,8 @@ pub fn read_enumerated_value<R: std::io::Read>(r: &mut EventReader<R>)
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "value" => p_value = try!(read_text(r)),
-                    "name" => p_name = try!(read_text(r)),
+                    "value" => p_value = try!(read_opt_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
                     _ => try!(read_unknown(r)),
                 }
@@ -184,14 +203,14 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
-                    "access" => p_access = try!(read_text(r)),
-                    "bitOffset" => p_offset = try!(read_u64(r)),
-                    "bitWidth" => p_width = try!(read_u64(r)),
-                    "bitRange" => p_range = try!(read_text(r)),
-                    "lsb" => p_lsb = try!(read_u64(r)),
-                    "msb" => p_msb = try!(read_u64(r)),
+                    "access" => p_access = try!(read_opt_text(r)),
+                    "bitOffset" => p_offset = try!(read_opt_u64(r)),
+                    "bitWidth" => p_width = try!(read_opt_u64(r)),
+                    "bitRange" => p_range = try!(read_opt_text(r)),
+                    "lsb" => p_lsb = try!(read_opt_u64(r)),
+                    "msb" => p_msb = try!(read_opt_u64(r)),
                     "enumeratedValues" => {
                         p_enumerated_values.append(&mut try!(read_enumerated_values(r)))
                     }
@@ -287,16 +306,16 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
-                    "size" => p_size = try!(read_u64(r)),
-                    "access" => p_access = try!(read_text(r)),                    
-                    "resetValue" => p_reset_value = try!(read_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_u64(r)),                    
-                    "addressOffset" => p_offset = try!(read_u64(r)),
-                    "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_u64(r)),
-                    "dimIndex" => dim_index = try!(read_text(r)),                    
+                    "size" => p_size = try!(read_opt_u64(r)),
+                    "access" => p_access = try!(read_opt_text(r)),                    
+                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),                    
+                    "addressOffset" => p_offset = try!(read_opt_u64(r)),
+                    "dim" => dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => dim_index = try!(read_opt_text(r)),                    
                     "register" => p_registers.push(try!(read_register(r))),
                     _ => try!(read_unknown(r)),
                 }
@@ -352,16 +371,16 @@ pub fn read_register<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Registe
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
-                    "addressOffset" => p_offset = try!(read_u64(r)),
-                    "size" => p_size = try!(read_u64(r)),
-                    "access" => p_access = try!(read_text(r)),
-                    "resetValue" => p_reset_value = try!(read_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_u64(r)),
-                    "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_u64(r)),
-                    "dimIndex" => dim_index = try!(read_text(r)),
+                    "addressOffset" => p_offset = try!(read_opt_u64(r)),
+                    "size" => p_size = try!(read_opt_u64(r)),
+                    "access" => p_access = try!(read_opt_text(r)),
+                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),
+                    "dim" => dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => dim_index = try!(read_opt_text(r)),
                     "fields" => p_fields = try!(read_fields(r)),
                     _ => try!(read_unknown(r)),
                 }
@@ -433,9 +452,9 @@ pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interr
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
-                    "value" => p_value = try!(read_u64(r)),
+                    "value" => p_value = try!(read_opt_u64(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
@@ -495,17 +514,17 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_text(r)),
+                    "name" => p_name = try!(read_opt_text(r)),
                     "description" => p_desc = try!(read_description(r)),
-                    "baseAddress" => p_addr = try!(read_u64(r)),
-                    "groupName" => p_group_name = try!(read_text(r)),
-                    "dim" => dim = try!(read_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_u64(r)),
-                    "dimIndex" => dim_index = try!(read_text(r)),
-                    "size" => p_size = try!(read_u64(r)),
-                    "access" => p_access = try!(read_text(r)),
-                    "resetValue" => p_reset_value = try!(read_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_u64(r)),                    
+                    "baseAddress" => p_addr = try!(read_opt_u64(r)),
+                    "groupName" => p_group_name = try!(read_opt_text(r)),
+                    "dim" => dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => dim_index = try!(read_opt_text(r)),
+                    "size" => p_size = try!(read_opt_u64(r)),
+                    "access" => p_access = try!(read_opt_text(r)),
+                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),                    
                     "interrupt" => p_interrupts.push(try!(read_interrupt(r))),
                     "registers" => {
                         let (regs, clusters) = try!(read_registers(r));
@@ -574,52 +593,28 @@ pub fn read_peripherals<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<
 }
 
 pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, Error> {
-    let mut d_name: Option<String> = None;
-    let mut d_desc: Option<String> = None;
-    let mut d_size: Option<u64> = None;
-    let mut d_access: Option<String> = None;
-    let mut d_periphs: Option<Vec<Peripheral>> = None;
+    let mut d = Device::default();
     loop {
         let e = try!(r.next());
         // println!("read_device: {:?}", e);
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => {
-                        d_name = try!(read_text(r));
-                    }
-                    "size" => {
-                        d_size = try!(read_u64(r));
-                    }
-                    "access" => {
-                        d_access = try!(read_text(r));
-                    }
-                    "description" => {
-                        d_desc = try!(read_description(r));
-                    }
-                    "peripherals" => {
-                        d_periphs = Some(try!(read_peripherals(r)));
-                    }                    
+                    "vendor" => d.vendor = try!(read_opt_text(r)),
+                    "vendor_id" => d.vendor_id = try!(read_opt_text(r)),
+                    "name" => d.name = try!(read_text(r)),
+                    "size" => d.size = try!(read_opt_u64(r)),
+                    "access" => d.access = try!(read_opt_text(r)).map(|s| Access::from(s.as_ref())),
+                    "description" => d.description = try!(read_description(r)),
+                    "peripherals" => d.peripherals = try!(read_peripherals(r)),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
                     "device" => {
-                        if d_name.is_none() {
-                            return Err(Error::StateError(format!("No name found for device")));
-                        }
-                        if d_periphs.is_none() {
-                            return Err(Error::StateError(format!("No peripherals found for device")));
-                        }
-                        return Ok(Device {
-                            name: d_name.unwrap(),
-                            peripherals: d_periphs.unwrap(),
-                            description: d_desc,
-                            size: d_size,
-                            access: d_access.map(|a| Access::from(a.as_ref())),
-                        });
-                    }
+                        return Ok(d)
+                    },
                     _ => return Err(Error::StateError(format!("Expected </device>"))),
                 }
             }
