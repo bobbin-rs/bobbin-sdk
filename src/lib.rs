@@ -249,7 +249,7 @@ pub fn read_field<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Field, Err
                         return Ok(Field {
                             name: p_name.unwrap(),
                             description: p_desc,
-                            access: p_access.map(|a| Access::from(a.as_ref())),
+                            access: p_access.map(Access::from),
                             offset: bit_offset,
                             size: bit_width,
                             enumerated_values: p_enumerated_values,
@@ -287,18 +287,7 @@ pub fn read_fields<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Vec<Field
 }
 
 pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster, Error> {
-    let mut p_name: Option<String> = None;
-    let mut p_desc: Option<String> = None;
-    let mut p_size: Option<u64> = None;
-    let mut p_access: Option<String> = None;
-    let mut p_reset_value: Option<u64> = None;
-    let mut p_reset_mask: Option<u64> = None;
-    
-    let mut p_offset: Option<u64> = None;
-    let mut p_registers: Vec<Register> = Vec::new();
-    let mut dim: Option<u64> = None;
-    let mut dim_increment: Option<u64> = None;
-    let mut dim_index: Option<String> = None;
+    let mut c = Cluster::default();
 
     loop {
         let e = try!(r.next());
@@ -306,44 +295,23 @@ pub fn read_cluster<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Cluster,
         match e {
             XmlEvent::StartElement { name, .. } => {
                 match name.local_name.as_ref() {
-                    "name" => p_name = try!(read_opt_text(r)),
-                    "description" => p_desc = try!(read_description(r)),
-                    "size" => p_size = try!(read_opt_u64(r)),
-                    "access" => p_access = try!(read_opt_text(r)),                    
-                    "resetValue" => p_reset_value = try!(read_opt_u64(r)),
-                    "resetMask" => p_reset_mask = try!(read_opt_u64(r)),                    
-                    "addressOffset" => p_offset = try!(read_opt_u64(r)),
-                    "dim" => dim = try!(read_opt_u64(r)),
-                    "dimIncrement" => dim_increment = try!(read_opt_u64(r)),
-                    "dimIndex" => dim_index = try!(read_opt_text(r)),                    
-                    "register" => p_registers.push(try!(read_register(r))),
+                    "name" => c.name = try!(read_text(r)),
+                    "description" => c.description = try!(read_description(r)),
+                    "size" => c.size = try!(read_opt_u64(r)),
+                    "access" => c.access = try!(read_opt_text(r)).map(Access::from),                    
+                    "resetValue" => c.reset_value = try!(read_opt_u64(r)),
+                    "resetMask" => c.reset_mask = try!(read_opt_u64(r)),                    
+                    "addressOffset" => c.offset = try!(read_u64(r)),
+                    "dim" => c.dim = try!(read_opt_u64(r)),
+                    "dimIncrement" => c.dim_increment = try!(read_opt_u64(r)),
+                    "dimIndex" => c.dim_index = try!(read_opt_text(r)),                    
+                    "register" => c.registers.push(try!(read_register(r))),
                     _ => try!(read_unknown(r)),
                 }
             }
             XmlEvent::EndElement { name } => {
                 match name.local_name.as_ref() {
-                    "cluster" => {
-                        if p_name.is_none() {
-                            return Err(Error::StateError(format!("Cluster missing name")));
-                        }
-                        if p_offset.is_none() {
-                            return Err(Error::StateError(format!("Cluster missing offset")));
-                        }
-                        return Ok(Cluster {
-                            name: p_name.unwrap(),
-                            offset: p_offset.unwrap(),
-                            size: p_size,
-                            access: p_access.map(|a| Access::from(a.as_ref())),
-                            reset_value: p_reset_value,
-                            reset_mask: p_reset_mask,
-                            description: p_desc,
-                            dim: dim,
-                            dim_index: dim_index,
-                            dim_increment: dim_increment,
-                            clusters: Vec::new(),
-                            registers: p_registers,
-                        });
-                    }
+                    "cluster" => return Ok(c),
                     _ => return Err(Error::StateError(format!("expected </cluster>"))),
                 }
             }
@@ -463,7 +431,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                     "dimIncrement" => p.dim_increment = try!(read_opt_u64(r)),
                     "dimIndex" => p.dim_index = try!(read_opt_text(r)),
                     "size" => p.size = try!(read_opt_u64(r)),
-                    "access" => p.access = try!(read_opt_text(r)).map(|s| Access::from(s.as_ref())),
+                    "access" => p.access = try!(read_opt_text(r)).map(Access::from),
                     "resetValue" => p.reset_value = try!(read_opt_u64(r)),
                     "resetMask" => p.reset_mask = try!(read_opt_u64(r)),                    
                     "interrupt" => p.interrupts.push(try!(read_interrupt(r))),
@@ -521,7 +489,7 @@ pub fn read_device<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Device, E
                     "vendor_id" => d.vendor_id = try!(read_opt_text(r)),
                     "name" => d.name = try!(read_text(r)),
                     "size" => d.size = try!(read_opt_u64(r)),
-                    "access" => d.access = try!(read_opt_text(r)).map(|s| Access::from(s.as_ref())),
+                    "access" => d.access = try!(read_opt_text(r)).map(Access::from),
                     "description" => d.description = try!(read_description(r)),
                     "peripherals" => d.peripherals = try!(read_peripherals(r)),
                     _ => try!(read_unknown(r)),
