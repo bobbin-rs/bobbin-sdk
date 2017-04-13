@@ -1,0 +1,8 @@
+[package]
+name = "nucleo-f303ze"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[dependencies]
+stm32f3 = { path = "../../bobbin-stm32/stm32f3"}

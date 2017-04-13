@@ -1,0 +1,11 @@
+[package]
+name = "nucleo-f031k6"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[dependencies]
+stm32l0 = { path = "../../bobbin-stm32/stm32l0"}
+
+[profile.dev]
+panic = "abort"
