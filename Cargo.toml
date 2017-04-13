@@ -1,0 +1,9 @@
+[package]
+name = "bobbin-chip"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+clap = "2.20"
+bobbin-sexp = { git = "https://github.com/bobbin-rs/bobbin-sexp.git" }
+bobbin-sexp-tokenizer = { git = "https://github.com/bobbin-rs/bobbin-sexp.git" }
