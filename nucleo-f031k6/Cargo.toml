@@ -5,7 +5,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
 [dependencies]
-stm32l0 = { path = "../../bobbin-stm32/stm32l0"}
+stm32l0 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
 
 [profile.dev]
 panic = "abort"

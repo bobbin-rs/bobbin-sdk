@@ -5,4 +5,4 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
 [dependencies]
-stm32f3 = { path = "../../bobbin-stm32/stm32f3"}
+stm32f3 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
