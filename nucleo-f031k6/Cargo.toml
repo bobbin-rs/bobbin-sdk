@@ -6,6 +6,19 @@ build = "build.rs"
 
 [dependencies]
 stm32l0 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
+#stm32l0 = { path = "../../bobbin-stm32/stm32l0"}
+r0 = "0.1.0"
+
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
 
 [profile.dev]
 panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true

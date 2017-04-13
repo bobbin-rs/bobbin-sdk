@@ -1,3 +1,6 @@
+use r0;
+use hal;
+
 #[doc(hidden)]
 #[export_name = "_default_exception_handler"]
 pub unsafe extern "C" fn default_handler_entry_point() -> ! {
@@ -25,12 +28,12 @@ pub unsafe extern "C" fn reset() -> ! {
         fn main();
     }    
     
-    // r0::zero_bss(&mut _sbss, &_ebss);
-    // r0::init_data(&mut _sdata, &_edata, &_sidata);
+    r0::zero_bss(&mut _sbss, &_ebss);
+    r0::init_data(&mut _sdata, &_edata, &_sidata);
 
-    // // // Copy ISR vectors to RAM
-    // r0::init_data(&mut _srvector, &_ervector, &_svector); 
-    // hal::scb::set_tbloff(0x20000000 >> 7);
+    // // Copy ISR vectors to RAM
+    r0::init_data(&mut _srvector, &_ervector, &_svector); 
+    hal::scb::set_tbloff(0x20000000 >> 7);
         
     main();
     loop {}
