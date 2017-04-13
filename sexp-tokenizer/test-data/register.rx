@@ -1,0 +1,10 @@
+(register
+    ; This is a comment
+    (name ctrla) ; This is another comment
+    (reset 0u32)
+    (fields
+        (mode 3 5)
+        (enable 1)
+        (swrst 0)
+    )
+)

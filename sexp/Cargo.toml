@@ -1,0 +1,7 @@
+[package]
+name = "bobbin-sexp"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+bobbin-sexp-tokenizer = { git = "https://github.com/bobbin-rs/bobbin-sexp.git" }
