@@ -11,7 +11,11 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> R
     let out_path = Path::new(matches.value_of("output").expect("No output path specified"));
     try!(writeln!(out, "Generating Register Access Layer: {}\n", out_path.to_string_lossy()));
 
-    let p_mod = out_path.join("mod.rs");
+    let p_mod = if d.exceptions.len() == 0 { 
+        out_path.join("lib.rs")
+    } else {
+        out_path.join("mod.rs")
+    };
     let mut f_mod = try!(File::create(p_mod));
     try!(gen_mod(matches, &mut f_mod, d, out_path));
 
@@ -23,7 +27,11 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
     // Only add module import if not generating cortex-core
 
     if d.exceptions.len() == 0 {
-        try!(writeln!(out, "pub use cortex_core::chip::*;"));
+        try!(writeln!(out, "#![no_std]"));
+        try!(writeln!(out, ""));
+        try!(writeln!(out, "extern crate bobbin_cortexm;"));
+        try!(writeln!(out, ""));
+        try!(writeln!(out, "pub use bobbin_cortexm::chip::{{exc, nvic, scb, systick, mpu, fpu}};"));
         try!(writeln!(out, ""));
     }
 
