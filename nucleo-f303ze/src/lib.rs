@@ -15,13 +15,11 @@ pub mod lang_items;
 pub mod led;
 pub mod btn;
 pub mod pin;
+pub mod timer;
 
-pub fn delay(n: usize) {
-    for _ in 0..n {
-        unsafe { asm!("nop") }
-    }
-}
+pub use timer::delay;
 
 pub fn init() {
     hal::clock::enable_pll_external_mode();
+    timer::init();
 }
