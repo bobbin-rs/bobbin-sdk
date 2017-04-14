@@ -145,7 +145,7 @@ impl<'a> BufReader<'a> {
                             self.state = ReadString(self.pos);
                             self.pos += 1;
                         },
-                        b'a' ... b'z' | b'A' ... b'Z' | b'_' => {
+                        b'a' ... b'z' | b'A' ... b'Z' | b'_' | b':' => {
                             self.state = ReadSymbol(self.pos);
                             self.pos += 1;
                         },
@@ -195,7 +195,7 @@ impl<'a> BufReader<'a> {
                     self.pos += 1;
                 },
                 ReadSymbol(p) => match c {
-                    b'a' ... b'z' | b'A' ... b'Z' | b'0' ... b'9' | b'_' | b'-' => self.pos += 1,
+                    b'a' ... b'z' | b'A' ... b'Z' | b'0' ... b'9' | b'_' | b'-' | b':' | b'*' => self.pos += 1,
                     _ => {
                         self.state = Start;
                         return Some(Symbol(self.unchecked_from(p)));
@@ -331,6 +331,15 @@ mod tests {
 
         assert_eq!(parse_number(b"123u33"), Error("u33","Invalid Number Suffix"));
         
+    }
+
+    #[test]
+    fn test_symbol() {
+        let mut r = BufReader::new(b"core::cmp::min");
+        assert_eq!(r.read(),Some(Token::DocStart("")));
+        assert_eq!(r.read(), Some(Token::Symbol("core::cmp::min")));
+        assert_eq!(r.read(),Some(Token::DocEnd("")));
+        assert_eq!(r.read(), None);        
     }
 
     #[test]
