@@ -11,9 +11,9 @@ pub extern "C" fn main() -> ! {
     loop {
         led0.toggle();
         if btn0.get() {
-            board::delay(1_000_000);
+            board::delay(10_000_000);
         } else {
-            board::delay(100_000);
+            board::delay(1_000_000);
         }        
     }
 }

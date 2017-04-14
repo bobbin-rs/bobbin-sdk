@@ -22,4 +22,6 @@ pub fn delay(n: usize) {
     }
 }
 
-pub fn init() {}
+pub fn init() {
+    hal::clock::init_pll();
+}
