@@ -16,6 +16,7 @@ pub mod led;
 pub mod btn;
 pub mod pin;
 pub mod timer;
+pub mod usart;
 
 pub use timer::delay;
 
