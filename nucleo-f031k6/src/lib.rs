@@ -15,12 +15,11 @@ pub mod lang_items;
 pub mod led;
 pub mod btn;
 pub mod pin;
-pub mod timer;
+pub mod tim;
 pub mod usart;
 
-pub use timer::delay;
+pub use tim::delay;
 
 pub fn init() {
     hal::clock::init_pll();
-    timer::init();
 }
