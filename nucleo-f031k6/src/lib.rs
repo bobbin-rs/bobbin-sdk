@@ -9,8 +9,8 @@ extern crate compiler_builtins;
 extern crate stm32l0;
 pub use stm32l0::{chip, hal, driver};
 
-pub mod lang_items;
 pub mod exceptions;
+pub mod lang_items;
 
 pub mod led;
 pub mod btn;
