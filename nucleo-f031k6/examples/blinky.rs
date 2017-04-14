@@ -4,14 +4,16 @@
 
 extern crate nucleo_f031k6 as board;
 
-use board::driver::gpio::{self, GPIOB};
+use board::chip::gpio::GPIOB;
+use board::hal::rcc;
+use board::driver::gpio;
 
 // LED = PB3
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-            
+    rcc::set_gpio_enabled(GPIOB, true);
     let led = gpio::pin(GPIOB, 3).into_digital_output();
 
     loop {

@@ -4,14 +4,16 @@
 
 extern crate nucleo_f303ze as board;
 
-use board::driver::gpio::{self, GPIOA};
+use board::chip::gpio::GPIOA;
+use board::hal::rcc;
+use board::driver::gpio;
 
 // LED @ D13 = PA5
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-            
+    rcc::set_gpio_enabled(GPIOA, true);
     let led = gpio::pin(GPIOA, 5).into_digital_output();
 
     loop {
