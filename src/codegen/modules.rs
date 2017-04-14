@@ -9,7 +9,7 @@ use super::{size_type, field_getter, field_setter, field_with, field_name, to_ca
 
 pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
     let out_path = Path::new(matches.value_of("output").expect("No output path specified"));
-    let p_mod = if d.exceptions.len() == 0 { 
+    let p_mod = if matches.is_present("root") { 
         out_path.join("lib.rs")
     } else {
         out_path.join("mod.rs")
@@ -24,9 +24,9 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
 
     // Only add module import if not generating cortex-core
 
-    if let Some(_) = d.interrupt_count {
+    let p_mod = if matches.is_present("root") { 
         try!(writeln!(out, "#![no_std]"));
-    }
+    };
 
     // Generate Imports
 
@@ -95,7 +95,7 @@ pub fn gen_exceptions<W: Write>(matches: &ArgMatches, out: &mut W, exceptions: &
     try!(writeln!(out, ""));
 
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-    try!(writeln!(out, "pub struct Exception(usize);"));
+    try!(writeln!(out, "pub struct Exception(pub usize);"));
     try!(writeln!(out, ""));
     
     try!(writeln!(out, "impl Exception {{"));
@@ -239,7 +239,7 @@ pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &Pe
 
     if pg.modules.len() == 0 {
         try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-        try!(write!(out, "pub struct {}(u32);\n\n", p_type));    
+        try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
     }
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
@@ -280,7 +280,7 @@ pub fn gen_peripheral<W: Write>(matches: &ArgMatches, out: &mut W, p: &Periphera
     try!(write!(out, "\n"));
 
     try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-    try!(write!(out, "pub struct {}(u32);\n\n", p_type));    
+    try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
 
     if p.registers.len() > 0 {
         try!(gen_registers(matches, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));

@@ -41,6 +41,8 @@ fn main() {
             .long("registers"))
         .arg(Arg::with_name("panic")
             .long("panic"))
+        .arg(Arg::with_name("root")
+            .long("root"))            
         .arg(Arg::with_name("input"))
         .arg(Arg::with_name("output"))
         .get_matches();
