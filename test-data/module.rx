@@ -1,0 +1,27 @@
+(device
+    (name STM32F3x)
+    (size 0x20)
+    (description "STM32F3x")
+    (crate
+        (name bobbin_cortexm)
+        (module (name chip::exc))
+        (module (name chip::nvic))
+        (module (name chip::scb))
+        (module (name chip::systick))
+        (module (name chip::mpu))
+        (module (name chip::fpu))
+    )
+    (crate (name stm32_common))
+    (peripheral-group
+        (name GPIO)
+        (module (name stm32_common::chip::gpio::*))
+        (peripheral 
+            (name GPIOA)
+            (address 0x50000000)
+        )
+        (peripheral
+            (name GPIOB)
+            (address 0x50000400)
+        )    
+    )
+)

@@ -5,7 +5,7 @@ use std::path::Path;
 use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
-use {Access, Device, Peripheral, PeripheralGroup, Interrupt, Exception, Cluster, Register, Field, EnumeratedValue};
+use {Access, Device, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Exception, Cluster, Register, Field, EnumeratedValue};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -186,6 +186,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("peripheral") => d.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
                     Some("peripheral-group") => d.peripheral_groups.push(try!(read_peripheral_group(ctx, &arr[1..]))),
                     Some("exceptions") => d.exceptions.extend(try!(read_exceptions(ctx, &arr[1..]))),
+                    Some("crate") => d.crates.push(try!(read_crate(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             }
@@ -229,6 +230,42 @@ fn read_exception(ctx: &Context, s: &[Sexp]) -> Result<Exception, ReadError> {
 }
 
 
+fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
+    let path = ctx.path();
+    let mut c = Crate::default();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => c.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("module") => c.modules.push(try!(read_module(ctx, &arr[1..]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(c)
+}
+
+
+fn read_module(ctx: &Context, s: &[Sexp]) -> Result<Module, ReadError> {
+    let mut m = Module::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => m.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("as") => m._as = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(m)
+}
+
+
+
 
 fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, ReadError> {
     let path = ctx.path();
@@ -240,6 +277,7 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => pg.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral") => pg.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
+                Some("module") => pg.modules.push(try!(read_module(ctx, &arr[1..]))),
                 Some("prototype") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    
@@ -275,7 +313,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
     for s in s.iter() {
         // println!("{:?}", s);
         match s {
-            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {                
                 Some("include") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    

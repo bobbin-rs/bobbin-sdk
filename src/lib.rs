@@ -86,7 +86,20 @@ pub struct Device {
     pub exceptions: Vec<Exception>,
     pub peripheral_groups: Vec<PeripheralGroup>,
     pub peripherals: Vec<Peripheral>,
-    
+    pub crates: Vec<Crate>,
+}
+
+#[derive(Debug, Default)] 
+pub struct Crate {
+    pub name: String,
+    pub modules: Vec<Module>,
+}
+
+
+#[derive(Debug, Default)] 
+pub struct Module {
+    pub name: String,
+    pub _as: Option<String>,
 }
 
 #[derive(Debug, Default)]
@@ -94,6 +107,7 @@ pub struct PeripheralGroup {
     pub name: String,
     pub peripherals: Vec<Peripheral>,
     pub prototype: Option<Peripheral>,
+    pub modules: Vec<Module>,
 }
 
 #[derive(Debug, Clone, Default)]

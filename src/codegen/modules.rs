@@ -9,8 +9,6 @@ use super::{size_type, field_getter, field_setter, field_with, field_name, to_ca
 
 pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
     let out_path = Path::new(matches.value_of("output").expect("No output path specified"));
-    try!(writeln!(out, "Generating Register Access Layer: {}\n", out_path.to_string_lossy()));
-
     let p_mod = if d.exceptions.len() == 0 { 
         out_path.join("lib.rs")
     } else {
@@ -26,12 +24,21 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
 
     // Only add module import if not generating cortex-core
 
-    if d.exceptions.len() == 0 {
+    if let Some(_) = d.interrupt_count {
         try!(writeln!(out, "#![no_std]"));
-        try!(writeln!(out, ""));
-        try!(writeln!(out, "extern crate bobbin_cortexm;"));
-        try!(writeln!(out, ""));
-        try!(writeln!(out, "pub use bobbin_cortexm::chip::{{exc, nvic, scb, systick, mpu, fpu}};"));
+    }
+
+    // Generate Imports
+
+    for c in d.crates.iter() {
+        try!(writeln!(out, "extern crate {};", c.name));
+        for m in c.modules.iter() {
+            if let Some(ref use_as) = m._as {
+                try!(writeln!(out, "pub use {}::{} as {};", c.name, m.name, use_as));
+            } else {
+                try!(writeln!(out, "pub use {}::{};", c.name, m.name));
+            }
+        }
         try!(writeln!(out, ""));
     }
 
@@ -209,7 +216,19 @@ pub fn gen_interrupts<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, i
     Ok(())
 }
 
-pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &PeripheralGroup) -> Result<()> {    
+pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+    if pg.modules.len() > 0 {
+        for m in pg.modules.iter() {
+            if let Some(ref use_as) = m._as {
+                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
+            } else {
+                try!(writeln!(out, "pub use {};", m.name));
+            }
+        }
+        try!(writeln!(out, ""));
+    }
+
+
     let p_type = to_camel(&pg.name);
 
     for p in pg.peripherals.iter() {
@@ -218,9 +237,10 @@ pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &Pe
     }    
     try!(write!(out, "\n"));
 
-    try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-    try!(write!(out, "pub struct {}(u32);\n\n", p_type));    
-    
+    if pg.modules.len() == 0 {
+        try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
+        try!(write!(out, "pub struct {}(u32);\n\n", p_type));    
+    }
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
     } else {
@@ -232,7 +252,7 @@ pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &Pe
     }
     if p0.clusters.len() > 0 {
         try!(gen_clusters(matches, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
-    }
+    }    
     Ok(())
 }
 
