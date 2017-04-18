@@ -6,6 +6,9 @@
 extern crate r0;
 extern crate compiler_builtins;
 
+#[macro_use]
+pub mod console;
+
 extern crate stm32l0;
 pub use stm32l0::{chip, hal, driver};
 

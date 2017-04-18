@@ -10,10 +10,10 @@ pub extern "C" fn main() -> ! {
     let btn0 = board::btn::btn0();
     loop {
         led0.toggle();
-        if btn0.get() {
-            board::delay(1000);            
-        } else {
+        if btn0.get() {            
             board::delay(500);
+        } else {
+            board::delay(250);            
         }        
     }
 }
