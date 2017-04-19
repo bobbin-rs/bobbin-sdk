@@ -25,5 +25,5 @@ pub use tim::delay;
 
 pub fn init() {
     hal::clock::init_pll();
-    console::init();
+    console::CONSOLE.init(115_200);
 }

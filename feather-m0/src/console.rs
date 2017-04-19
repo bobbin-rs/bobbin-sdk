@@ -1,5 +1,5 @@
 use core::fmt::{self, Write, Arguments};
-use pin;
+//use pin;
 use usart;
 
 /// Macro for sending `print!`-formatted messages over the Console
@@ -30,12 +30,12 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Console {
-    pub fn init(&self, _baud: u32) {
-        usart::usart2(pin::pa2(), pin::pa3());
+    pub fn init(&self, baud: u32) {
+        usart::usart0(baud);
     }
 
     pub fn usart(&self) -> ::driver::usart::UsartDevice {
-        unsafe { usart::usart2_unchecked(pin::pa2(), pin::pa3()) }
+        unsafe { usart::usart0_unchecked() }
     }
 }
 

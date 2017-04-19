@@ -6,22 +6,17 @@
 extern crate r0;
 extern crate compiler_builtins;
 
-extern crate log;
-
 #[macro_use]
 pub mod console;
 
-#[macro_use]
-pub mod logger;
-
-extern crate stm32f3;
-pub use stm32f3::{chip, hal, driver};
+extern crate samd;
+pub use samd::{chip, hal, driver};
 
 pub mod exceptions;
 pub mod lang_items;
 
 pub mod led;
-pub mod btn;
+// pub mod btn;
 pub mod pin;
 pub mod tim;
 pub mod usart;
@@ -29,6 +24,6 @@ pub mod usart;
 pub use tim::delay;
 
 pub fn init() {
-    hal::clock::enable_pll_external_mode();
+    hal::clock::run_48mhz();
     console::CONSOLE.init(115_200);
 }

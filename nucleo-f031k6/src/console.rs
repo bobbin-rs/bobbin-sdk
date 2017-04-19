@@ -1,4 +1,4 @@
-use core::fmt::{Write, Arguments};
+use core::fmt::{self, Write, Arguments};
 use pin;
 use usart;
 
@@ -25,20 +25,40 @@ macro_rules! println {
     };
 }
 
-pub fn init() {
-    usart::usart2(pin::pa2(), pin::pa15());
+pub const CONSOLE: Console = Console {};
+
+pub struct Console {}
+
+impl Console {
+    pub fn init(&self, _baud: u32) {
+        usart::usart2(pin::pa2(), pin::pa15());
+    }
+
+    pub fn usart(&self) -> ::driver::usart::UsartDevice {
+        unsafe { usart::usart2_unchecked(pin::pa2(), pin::pa15()) }
+    }
 }
 
-fn console() -> ::driver::usart::UsartDevice {
-    unsafe { usart::usart2_unchecked(pin::pa2(), pin::pa15()) }
+impl Write for Console {
+    fn write_str(&mut self, s: &str) -> fmt::Result {        
+        let usart = self.usart();
+        for byte in s.as_bytes().iter().cloned() {
+            if byte == b'\n' {
+                usart.putc(b'\r')
+            }
+            usart.putc(byte)
+        }
+        Ok(())
+    }
 }
 
 #[doc(hidden)]
 pub fn write_fmt(args: Arguments) {    
-    console().write_fmt(args).ok();
+    CONSOLE.write_fmt(args).ok();
 }
 
 #[doc(hidden)]
 pub fn write_str(s: &str) {
-    console().write_str(s).ok();
+    CONSOLE.write_str(s).ok();
 }
+
