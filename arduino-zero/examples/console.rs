@@ -13,7 +13,6 @@ pub extern "C" fn main() -> ! {
     loop {
         println!("Hello, World! {}", i);
         i = i.wrapping_add(1);
-        //board::delay(1000);
-        for _ in 0..10_000_000 { unsafe { asm!("nop") }}
+        board::delay(1024);
     }
 }

@@ -11,9 +11,8 @@ pub extern "C" fn main() -> ! {
     let led0 = board::led::led0();
     loop {
         led0.set(true);
-        for _ in 0..10_000_000 { unsafe { asm!("nop")}}
-        
+        board::delay(1024);
         led0.set(false);
-        for _ in 0..10_000_000 { unsafe { asm!("nop")}}
+        board::delay(1024);
     }
 }

@@ -15,7 +15,7 @@ pub extern "C" fn main() -> ! {
     let mut i = 0u32;
     loop {
         write!(u, "Hello, {}\n", i).unwrap();
-        for _ in 0..10_000_000 { unsafe { asm!("nop") }}
+        board::delay(1024);
         i = i.wrapping_add(1);
     }
 }
