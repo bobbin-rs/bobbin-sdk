@@ -1,0 +1,25 @@
+[package]
+name = "frdm-k64f"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[dependencies]
+kinetis-k = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
+#kinetis-k = { path = "../../bobbin-kinetis/kinetis-k"}
+r0 = "0.1.0"
+log = { version="0.3", default-features = false }
+
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
