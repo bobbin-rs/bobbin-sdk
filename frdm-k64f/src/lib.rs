@@ -23,16 +23,16 @@ pub mod lang_items;
 pub mod led;
 pub mod sw;
 pub mod pin;
-//pub mod tim;
+pub mod tim;
 pub mod uart;
 
-//pub use tim::delay;
+pub use tim::delay;
 
-pub fn delay(n: u32) {
-    for _ in 0..25_000*n {
-        unsafe { asm!("nop") }
-    }
-}
+// pub fn delay(n: u32) {
+//     for _ in 0..25_000*n {
+//         unsafe { asm!("nop") }
+//     }
+// }
 
 pub fn init() {
     hal::clock::init();
