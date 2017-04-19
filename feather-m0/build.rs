@@ -4,9 +4,9 @@ use std::path::PathBuf;
 
 fn main() {
     // Pass our linker script to the top crate
-    let script = match env::var("CARGO_FEATURE_BOOTLOADER") {
-        Ok(_) => "samd.ld",
-        Err(_) => "samd-no-bootloader.ld"
+    let script = match env::var("CARGO_FEATURE_NO_BOOTLOADER") {
+        Ok(_) => "samd-no-bootloader.ld",
+        Err(_) => "samd.ld"
     };
 
     let script_out = "samd.ld";
