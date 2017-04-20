@@ -5,7 +5,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
 [dependencies]
-samd = { git = "https://github.com/bobbin-rs/bobbin-samd"}
+samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
 #samd = { path = "../../bobbin-sam/samd"}
 r0 = "0.1.0"
 
