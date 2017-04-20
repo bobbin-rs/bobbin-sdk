@@ -1,5 +1,6 @@
 use r0;
 use hal;
+use ::core::ptr;
 
 #[doc(hidden)]
 #[export_name = "_default_exception_handler"]
@@ -29,26 +30,7 @@ pub unsafe extern "C" fn reset() -> ! {
     }    
     
     // Disable Watchdog
-    // Write 0xC520 followed by 0xD928 within 20 bus clock cycles to a specific unlock register (WDOG_UNLOCK).
-    
-    asm!("
-
-        /* unlock */
-
-        ldr r1, =0x4005200e
-        ldr r0, =0xc520
-        strh r0, [r1]
-        ldr r0, =0xd928
-        strh r0, [r1]
-
-        /* disable */
-
-        ldr r1, =0x40052000
-        /* ldr r0, =0x01d2 */
-        ldr r0, =0x00d2 
-        strh r0, [r1]
-
-    ");
+    ptr::write_volatile(0x40048100 as *mut u32, 0);
 
     r0::zero_bss(&mut _sbss, &_ebss);
     r0::init_data(&mut _sdata, &_edata, &_sidata);
