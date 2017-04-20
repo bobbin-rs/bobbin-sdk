@@ -13,13 +13,3 @@ log = { version="0.3", default-features = false }
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
-
-[profile.dev]
-panic = "abort"
-opt-level = "s"
-lto = false
-
-[profile.release]
-panic = "abort"
-debug = true
-lto = true
