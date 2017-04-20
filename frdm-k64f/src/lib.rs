@@ -8,8 +8,8 @@ extern crate compiler_builtins;
 
 extern crate log;
 
-extern crate kinetis_k;
-pub use kinetis_k::{chip, hal};
+extern crate k64;
+pub use k64::{chip, hal};
 
 #[macro_use]
 pub mod console;

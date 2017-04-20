@@ -5,8 +5,8 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
 [dependencies]
-kinetis-k = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
-#kinetis-k = { path = "../../bobbin-kinetis/kinetis-k"}
+k64 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
+#k64 = { path = "../../bobbin-kinetis/k64"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 
