@@ -1,5 +1,5 @@
 use chip::port::PORTA;
-use driver::port;
+use hal::port;
 
 pub type Led = port::PinOutput;
 

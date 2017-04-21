@@ -34,7 +34,7 @@ impl Console {
         usart::usart0(baud);
     }
 
-    pub fn usart(&self) -> ::driver::usart::UsartDevice {
+    pub fn usart(&self) -> ::hal::usart::UsartDevice {
         unsafe { usart::usart0_unchecked() }
     }
 }

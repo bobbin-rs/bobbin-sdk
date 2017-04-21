@@ -1,7 +1,7 @@
 use chip::tc::*;
 use hal::pm;
 use hal::gclk;
-use driver::tc::*;
+use hal::tc::*;
 
 // Note: actually ticks at 1.024kHz
 pub fn delay(ticks: u16) {

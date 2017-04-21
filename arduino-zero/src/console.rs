@@ -29,7 +29,7 @@ pub fn init() {
     let _ = usart::usart2(115_200);
 }
 
-fn console() -> ::driver::usart::UsartDevice {
+fn console() -> ::hal::usart::UsartDevice {
     unsafe { usart::usart2_unchecked() }
 }
 

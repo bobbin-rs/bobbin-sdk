@@ -1,5 +1,5 @@
 use chip::port::{PORTA, PORTB};
-use driver::port;
+use hal::port;
 
 macro_rules! pindef {
     ($id:ident, $port:expr, $pin:expr) => {

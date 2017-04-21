@@ -10,7 +10,7 @@ extern crate compiler_builtins;
 pub mod console;
 
 extern crate samd;
-pub use samd::{chip, hal, driver};
+pub use samd::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;

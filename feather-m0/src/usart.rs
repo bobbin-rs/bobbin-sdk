@@ -1,6 +1,6 @@
 use chip::sercom::SERCOM0;
-use driver::usart;
-use driver::port::PMux;
+use hal::usart;
+use hal::port::PMux;
 use pin;
 use hal::pm;
 use chip::gclk;
