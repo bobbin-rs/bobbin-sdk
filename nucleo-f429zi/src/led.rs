@@ -1,6 +1,6 @@
 use chip::gpio::GPIOB;
 use hal::rcc;
-use driver::gpio;
+use hal::gpio;
 
 // LED GREEN = PB0
 // LED BLUE = PB7

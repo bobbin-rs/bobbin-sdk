@@ -31,11 +31,11 @@ pub struct Console {}
 
 impl Console {
     pub fn init(&self, _baud: u32) {
-        usart::usart2(pin::pa2(), pin::pa3());
+        usart::usart3(pin::pd8(), pin::pd9());
     }
 
-    pub fn usart(&self) -> ::driver::usart::UsartDevice {
-        unsafe { usart::usart2_unchecked(pin::pa2(), pin::pa3()) }
+    pub fn usart(&self) -> ::hal::usart::UsartDevice {
+        unsafe { usart::usart3_unchecked(pin::pd8(), pin::pd9()) }
     }
 }
 

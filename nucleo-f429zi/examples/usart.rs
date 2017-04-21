@@ -6,13 +6,13 @@ extern crate nucleo_f429zi as board;
 use core::fmt::Write;
 
 // USART2
-// TX = PA2(AF7)
-// RX = PA3(AF7)
+// TX = PD8(AF7)
+// RX = PD9(AF7)
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let mut u = board::usart::usart2(board::pin::pa2(), board::pin::pa3());
+    let mut u = board::usart::usart3(board::pin::pd8(), board::pin::pd9());
     
     let mut i = 0;
     loop {
