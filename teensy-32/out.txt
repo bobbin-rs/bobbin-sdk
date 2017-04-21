@@ -1,0 +1,1044 @@
+
+target/thumbv7em-none-eabihf/debug/examples/blinky:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000410 <_reset>:
+     410:	b5d0      	push	{r4, r6, r7, lr}
+     412:	af02      	add	r7, sp, #8
+     414:	f248 1098 	movw	r0, #33176	; 0x8198
+     418:	f248 1198 	movw	r1, #33176	; 0x8198
+     41c:	2201      	movs	r2, #1
+     41e:	2401      	movs	r4, #1
+     420:	4930      	ldr	r1, [pc, #192]	; (4e4 <_reset+0xd4>)
+     422:	f24c 5020 	movw	r0, #50464	; 0xc520
+     426:	8008      	strh	r0, [r1, #0]
+     428:	f64d 1028 	movw	r0, #55592	; 0xd928
+     42c:	8008      	strh	r0, [r1, #0]
+     42e:	492e      	ldr	r1, [pc, #184]	; (4e8 <_reset+0xd8>)
+     430:	f04f 00d2 	mov.w	r0, #210	; 0xd2
+     434:	8008      	strh	r0, [r1, #0]
+     436:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     43a:	f6c1 71ff 	movt	r1, #8191	; 0x1fff
+     43e:	4281      	cmp	r1, r0
+     440:	bf28      	it	cs
+     442:	2200      	movcs	r2, #0
+     444:	2a00      	cmp	r2, #0
+     446:	d146      	bne.n	4d6 <_reset+0xc6>
+     448:	1a09      	subs	r1, r1, r0
+     44a:	f248 1098 	movw	r0, #33176	; 0x8198
+     44e:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     452:	f000 fbe4 	bl	c1e <__aeabi_memclr4>
+     456:	f248 1098 	movw	r0, #33176	; 0x8198
+     45a:	f248 1198 	movw	r1, #33176	; 0x8198
+     45e:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     462:	f6c1 71ff 	movt	r1, #8191	; 0x1fff
+     466:	4281      	cmp	r1, r0
+     468:	bf28      	it	cs
+     46a:	2400      	movcs	r4, #0
+     46c:	2c00      	cmp	r4, #0
+     46e:	d12c      	bne.n	4ca <_reset+0xba>
+     470:	1a0a      	subs	r2, r1, r0
+     472:	f248 1098 	movw	r0, #33176	; 0x8198
+     476:	f241 2138 	movw	r1, #4664	; 0x1238
+     47a:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     47e:	f2c0 0100 	movt	r1, #0
+     482:	f000 fbc4 	bl	c0e <__aeabi_memcpy4>
+     486:	f248 0000 	movw	r0, #32768	; 0x8000
+     48a:	f248 1198 	movw	r1, #33176	; 0x8198
+     48e:	2201      	movs	r2, #1
+     490:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     494:	f6c1 71ff 	movt	r1, #8191	; 0x1fff
+     498:	4281      	cmp	r1, r0
+     49a:	bf28      	it	cs
+     49c:	2200      	movcs	r2, #0
+     49e:	2a00      	cmp	r2, #0
+     4a0:	d113      	bne.n	4ca <_reset+0xba>
+     4a2:	1a0a      	subs	r2, r1, r0
+     4a4:	f248 0000 	movw	r0, #32768	; 0x8000
+     4a8:	f240 0100 	movw	r1, #0
+     4ac:	f6c1 70ff 	movt	r0, #8191	; 0x1fff
+     4b0:	f2c0 0100 	movt	r1, #0
+     4b4:	f000 fbab 	bl	c0e <__aeabi_memcpy4>
+     4b8:	f64f 7000 	movw	r0, #65280	; 0xff00
+     4bc:	f2c0 003f 	movt	r0, #63	; 0x3f
+     4c0:	f000 fb61 	bl	b86 <_ZN14bobbin_cortexm3hal3scb10set_tbloff17hb3769130add1c394E>
+     4c4:	f000 f813 	bl	4ee <main>
+     4c8:	e7fe      	b.n	4c8 <_reset+0xb8>
+     4ca:	f640 40b8 	movw	r0, #3256	; 0xcb8
+     4ce:	f2c0 0000 	movt	r0, #0
+     4d2:	f000 fb6b 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     4d6:	f640 40a4 	movw	r0, #3236	; 0xca4
+     4da:	f2c0 0000 	movt	r0, #0
+     4de:	f000 fb65 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     4e2:	bf00      	nop
+     4e4:	4005200e 	.word	0x4005200e
+     4e8:	40052000 	.word	0x40052000
+
+000004ec <_bus_fault>:
+     4ec:	e7fe      	b.n	4ec <_bus_fault>
+
+000004ee <main>:
+     4ee:	b5d0      	push	{r4, r6, r7, lr}
+     4f0:	af02      	add	r7, sp, #8
+     4f2:	b082      	sub	sp, #8
+     4f4:	f000 f89c 	bl	630 <_ZN9teensy_324init17h20d11490384b8f1dE>
+     4f8:	466c      	mov	r4, sp
+     4fa:	4620      	mov	r0, r4
+     4fc:	f000 f823 	bl	546 <_ZN9teensy_323led4led017h607d48ef44b9cb14E>
+     500:	4620      	mov	r0, r4
+     502:	2101      	movs	r1, #1
+     504:	f000 f8fc 	bl	700 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE>
+     508:	4620      	mov	r0, r4
+     50a:	f000 f979 	bl	800 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E>
+     50e:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
+     512:	f000 f876 	bl	602 <_ZN9teensy_325delay17h1d3ade7e835c0968E>
+     516:	e7f7      	b.n	508 <main+0x1a>
+
+00000518 <_ZN36_$LT$k64_hal..port..Pin$LT$T$GT$$GT$7set_mux17h567c07df93e8f25dE>:
+     518:	b5f0      	push	{r4, r5, r6, r7, lr}
+     51a:	af03      	add	r7, sp, #12
+     51c:	b081      	sub	sp, #4
+     51e:	460c      	mov	r4, r1
+     520:	6801      	ldr	r1, [r0, #0]
+     522:	6845      	ldr	r5, [r0, #4]
+     524:	466e      	mov	r6, sp
+     526:	4630      	mov	r0, r6
+     528:	9100      	str	r1, [sp, #0]
+     52a:	4629      	mov	r1, r5
+     52c:	f000 fae8 	bl	b00 <_ZN14kinetis_common4chip4port4Port3pcr17h47f14e6c1df236e8E>
+     530:	b2e1      	uxtb	r1, r4
+     532:	f000 fb19 	bl	b68 <_ZN14kinetis_common4chip4port3Pcr7set_mux17hb81f2c430a7a2bbdE>
+     536:	4602      	mov	r2, r0
+     538:	4630      	mov	r0, r6
+     53a:	4629      	mov	r1, r5
+     53c:	f000 fafa 	bl	b34 <_ZN14kinetis_common4chip4port4Port7set_pcr17h2bebdaa477db7599E>
+     540:	b001      	add	sp, #4
+     542:	bdf0      	pop	{r4, r5, r6, r7, pc}
+
+00000544 <rust_begin_unwind>:
+     544:	e7fe      	b.n	544 <rust_begin_unwind>
+
+00000546 <_ZN9teensy_323led4led017h607d48ef44b9cb14E>:
+     546:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+     54a:	af03      	add	r7, sp, #12
+     54c:	b086      	sub	sp, #24
+     54e:	f24b 0600 	movw	r6, #45056	; 0xb000
+     552:	4680      	mov	r8, r0
+     554:	2101      	movs	r1, #1
+     556:	f2c4 0604 	movt	r6, #16388	; 0x4004
+     55a:	4630      	mov	r0, r6
+     55c:	f000 f869 	bl	632 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE>
+     560:	4668      	mov	r0, sp
+     562:	4631      	mov	r1, r6
+     564:	2205      	movs	r2, #5
+     566:	f000 f8c8 	bl	6fa <_ZN7k64_hal4port3pin17h6a3d7527bfc43921E>
+     56a:	e9dd 4500 	ldrd	r4, r5, [sp]
+     56e:	a802      	add	r0, sp, #8
+     570:	2101      	movs	r1, #1
+     572:	e9cd 4502 	strd	r4, r5, [sp, #8]
+     576:	f7ff ffcf 	bl	518 <_ZN36_$LT$k64_hal..port..Pin$LT$T$GT$$GT$7set_mux17h567c07df93e8f25dE>
+     57a:	f24f 0040 	movw	r0, #61504	; 0xf040
+     57e:	f64a 71ff 	movw	r1, #45055	; 0xafff
+     582:	f2c4 000f 	movt	r0, #16399	; 0x400f
+     586:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     58a:	428c      	cmp	r4, r1
+     58c:	dd0f      	ble.n	5ae <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x68>
+     58e:	42b4      	cmp	r4, r6
+     590:	d01f      	beq.n	5d2 <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x8c>
+     592:	f24c 0100 	movw	r1, #49152	; 0xc000
+     596:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     59a:	428c      	cmp	r4, r1
+     59c:	d01b      	beq.n	5d6 <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x90>
+     59e:	f24d 0100 	movw	r1, #53248	; 0xd000
+     5a2:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     5a6:	428c      	cmp	r4, r1
+     5a8:	d10d      	bne.n	5c6 <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x80>
+     5aa:	30c0      	adds	r0, #192	; 0xc0
+     5ac:	e017      	b.n	5de <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x98>
+     5ae:	f249 0100 	movw	r1, #36864	; 0x9000
+     5b2:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     5b6:	428c      	cmp	r4, r1
+     5b8:	d00f      	beq.n	5da <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x94>
+     5ba:	f24a 0100 	movw	r1, #40960	; 0xa000
+     5be:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     5c2:	428c      	cmp	r4, r1
+     5c4:	d00b      	beq.n	5de <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x98>
+     5c6:	f640 5024 	movw	r0, #3364	; 0xd24
+     5ca:	f2c0 0000 	movt	r0, #0
+     5ce:	f000 faed 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     5d2:	3040      	adds	r0, #64	; 0x40
+     5d4:	e003      	b.n	5de <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x98>
+     5d6:	3080      	adds	r0, #128	; 0x80
+     5d8:	e001      	b.n	5de <_ZN9teensy_323led4led017h607d48ef44b9cb14E+0x98>
+     5da:	f506 2034 	add.w	r0, r6, #737280	; 0xb4000
+     5de:	ae05      	add	r6, sp, #20
+     5e0:	9005      	str	r0, [sp, #20]
+     5e2:	4630      	mov	r0, r6
+     5e4:	f000 f9f8 	bl	9d8 <_ZN14kinetis_common4chip4gpio4Gpio4pddr17hb5c0628bc5ea7ae0E>
+     5e8:	4629      	mov	r1, r5
+     5ea:	2201      	movs	r2, #1
+     5ec:	f000 fa6c 	bl	ac8 <_ZN14kinetis_common4chip4gpio4Pddr7set_pdd17hae5fa5a41921c654E>
+     5f0:	4601      	mov	r1, r0
+     5f2:	4630      	mov	r0, r6
+     5f4:	f000 fa02 	bl	9fc <_ZN14kinetis_common4chip4gpio4Gpio8set_pddr17h98064bf226c79fefE>
+     5f8:	e9c8 4500 	strd	r4, r5, [r8]
+     5fc:	b006      	add	sp, #24
+     5fe:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+
+00000602 <_ZN9teensy_325delay17h1d3ade7e835c0968E>:
+     602:	f246 11a8 	movw	r1, #25000	; 0x61a8
+     606:	fba0 0101 	umull	r0, r1, r0, r1
+     60a:	2900      	cmp	r1, #0
+     60c:	bf18      	it	ne
+     60e:	2101      	movne	r1, #1
+     610:	b931      	cbnz	r1, 620 <_ZN9teensy_325delay17h1d3ade7e835c0968E+0x1e>
+     612:	b120      	cbz	r0, 61e <_ZN9teensy_325delay17h1d3ade7e835c0968E+0x1c>
+     614:	2100      	movs	r1, #0
+     616:	bf00      	nop
+     618:	3101      	adds	r1, #1
+     61a:	4281      	cmp	r1, r0
+     61c:	d3fc      	bcc.n	618 <_ZN9teensy_325delay17h1d3ade7e835c0968E+0x16>
+     61e:	4770      	bx	lr
+     620:	b580      	push	{r7, lr}
+     622:	466f      	mov	r7, sp
+     624:	f640 40fc 	movw	r0, #3324	; 0xcfc
+     628:	f2c0 0000 	movt	r0, #0
+     62c:	f000 fabe 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000630 <_ZN9teensy_324init17h20d11490384b8f1dE>:
+     630:	4770      	bx	lr
+
+00000632 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE>:
+     632:	b5b0      	push	{r4, r5, r7, lr}
+     634:	af02      	add	r7, sp, #8
+     636:	b082      	sub	sp, #8
+     638:	f64a 72ff 	movw	r2, #45055	; 0xafff
+     63c:	460c      	mov	r4, r1
+     63e:	f247 0100 	movw	r1, #28672	; 0x7000
+     642:	f2c4 0104 	movt	r1, #16388	; 0x4004
+     646:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     64a:	4290      	cmp	r0, r2
+     64c:	dd1a      	ble.n	684 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0x52>
+     64e:	f24b 0200 	movw	r2, #45056	; 0xb000
+     652:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     656:	4290      	cmp	r0, r2
+     658:	d029      	beq.n	6ae <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0x7c>
+     65a:	f24c 0200 	movw	r2, #49152	; 0xc000
+     65e:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     662:	4290      	cmp	r0, r2
+     664:	d02c      	beq.n	6c0 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0x8e>
+     666:	f24d 0200 	movw	r2, #53248	; 0xd000
+     66a:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     66e:	4290      	cmp	r0, r2
+     670:	d13d      	bne.n	6ee <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xbc>
+     672:	ad01      	add	r5, sp, #4
+     674:	9101      	str	r1, [sp, #4]
+     676:	4628      	mov	r0, r5
+     678:	f000 f908 	bl	88c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>
+     67c:	4621      	mov	r1, r4
+     67e:	f000 f967 	bl	950 <_ZN8k64_chip3sim5Scgc59set_porte17h27ed4e1b95e51079E>
+     682:	e02e      	b.n	6e2 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xb0>
+     684:	f249 0200 	movw	r2, #36864	; 0x9000
+     688:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     68c:	4290      	cmp	r0, r2
+     68e:	d020      	beq.n	6d2 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xa0>
+     690:	f24a 0200 	movw	r2, #40960	; 0xa000
+     694:	f2c4 0204 	movt	r2, #16388	; 0x4004
+     698:	4290      	cmp	r0, r2
+     69a:	d128      	bne.n	6ee <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xbc>
+     69c:	ad01      	add	r5, sp, #4
+     69e:	9101      	str	r1, [sp, #4]
+     6a0:	4628      	mov	r0, r5
+     6a2:	f000 f8f3 	bl	88c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>
+     6a6:	4621      	mov	r1, r4
+     6a8:	f000 f925 	bl	8f6 <_ZN8k64_chip3sim5Scgc59set_portb17hb79f0d28e3f9d205E>
+     6ac:	e019      	b.n	6e2 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xb0>
+     6ae:	ad01      	add	r5, sp, #4
+     6b0:	9101      	str	r1, [sp, #4]
+     6b2:	4628      	mov	r0, r5
+     6b4:	f000 f8ea 	bl	88c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>
+     6b8:	4621      	mov	r1, r4
+     6ba:	f000 f92b 	bl	914 <_ZN8k64_chip3sim5Scgc59set_portc17hf2a17337c701243dE>
+     6be:	e010      	b.n	6e2 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xb0>
+     6c0:	ad01      	add	r5, sp, #4
+     6c2:	9101      	str	r1, [sp, #4]
+     6c4:	4628      	mov	r0, r5
+     6c6:	f000 f8e1 	bl	88c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>
+     6ca:	4621      	mov	r1, r4
+     6cc:	f000 f931 	bl	932 <_ZN8k64_chip3sim5Scgc59set_portd17h8cd96c16b04fd161E>
+     6d0:	e007      	b.n	6e2 <_ZN7k64_hal3sim16set_port_enabled17hb12d07b6bdb579daE+0xb0>
+     6d2:	ad01      	add	r5, sp, #4
+     6d4:	9101      	str	r1, [sp, #4]
+     6d6:	4628      	mov	r0, r5
+     6d8:	f000 f8d8 	bl	88c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>
+     6dc:	4621      	mov	r1, r4
+     6de:	f000 f8fb 	bl	8d8 <_ZN8k64_chip3sim5Scgc59set_porta17hcbcd04f03f78953aE>
+     6e2:	4601      	mov	r1, r0
+     6e4:	4628      	mov	r0, r5
+     6e6:	f000 f8e4 	bl	8b2 <_ZN8k64_chip3sim3Sim9set_scgc517ha6a74fc51d32e9bcE>
+     6ea:	b002      	add	sp, #8
+     6ec:	bdb0      	pop	{r4, r5, r7, pc}
+     6ee:	f640 5010 	movw	r0, #3344	; 0xd10
+     6f2:	f2c0 0000 	movt	r0, #0
+     6f6:	f000 fa59 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000006fa <_ZN7k64_hal4port3pin17h6a3d7527bfc43921E>:
+     6fa:	e9c0 1200 	strd	r1, r2, [r0]
+     6fe:	4770      	bx	lr
+
+00000700 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE>:
+     700:	b580      	push	{r7, lr}
+     702:	466f      	mov	r7, sp
+     704:	b082      	sub	sp, #8
+     706:	f24f 0200 	movw	r2, #61440	; 0xf000
+     70a:	2901      	cmp	r1, #1
+     70c:	f2c4 020f 	movt	r2, #16399	; 0x400f
+     710:	d11b      	bne.n	74a <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0x4a>
+     712:	6801      	ldr	r1, [r0, #0]
+     714:	f64a 73ff 	movw	r3, #45055	; 0xafff
+     718:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     71c:	4299      	cmp	r1, r3
+     71e:	dd30      	ble.n	782 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0x82>
+     720:	f24b 0300 	movw	r3, #45056	; 0xb000
+     724:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     728:	4299      	cmp	r1, r3
+     72a:	d046      	beq.n	7ba <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xba>
+     72c:	f24c 0300 	movw	r3, #49152	; 0xc000
+     730:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     734:	4299      	cmp	r1, r3
+     736:	d042      	beq.n	7be <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xbe>
+     738:	f24d 0300 	movw	r3, #53248	; 0xd000
+     73c:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     740:	4299      	cmp	r1, r3
+     742:	d157      	bne.n	7f4 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xf4>
+     744:	f502 7280 	add.w	r2, r2, #256	; 0x100
+     748:	e03a      	b.n	7c0 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xc0>
+     74a:	6801      	ldr	r1, [r0, #0]
+     74c:	f64a 73ff 	movw	r3, #45055	; 0xafff
+     750:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     754:	4299      	cmp	r1, r3
+     756:	dd22      	ble.n	79e <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0x9e>
+     758:	f24b 0300 	movw	r3, #45056	; 0xb000
+     75c:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     760:	4299      	cmp	r1, r3
+     762:	d038      	beq.n	7d6 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xd6>
+     764:	f24c 0300 	movw	r3, #49152	; 0xc000
+     768:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     76c:	4299      	cmp	r1, r3
+     76e:	d034      	beq.n	7da <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xda>
+     770:	f24d 0300 	movw	r3, #53248	; 0xd000
+     774:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     778:	4299      	cmp	r1, r3
+     77a:	d13b      	bne.n	7f4 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xf4>
+     77c:	f502 7280 	add.w	r2, r2, #256	; 0x100
+     780:	e02c      	b.n	7dc <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xdc>
+     782:	f249 0300 	movw	r3, #36864	; 0x9000
+     786:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     78a:	4299      	cmp	r1, r3
+     78c:	d018      	beq.n	7c0 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xc0>
+     78e:	f24a 0300 	movw	r3, #40960	; 0xa000
+     792:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     796:	4299      	cmp	r1, r3
+     798:	d12c      	bne.n	7f4 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xf4>
+     79a:	3240      	adds	r2, #64	; 0x40
+     79c:	e010      	b.n	7c0 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xc0>
+     79e:	f249 0300 	movw	r3, #36864	; 0x9000
+     7a2:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     7a6:	4299      	cmp	r1, r3
+     7a8:	d018      	beq.n	7dc <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xdc>
+     7aa:	f24a 0300 	movw	r3, #40960	; 0xa000
+     7ae:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     7b2:	4299      	cmp	r1, r3
+     7b4:	d11e      	bne.n	7f4 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xf4>
+     7b6:	3240      	adds	r2, #64	; 0x40
+     7b8:	e010      	b.n	7dc <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xdc>
+     7ba:	3280      	adds	r2, #128	; 0x80
+     7bc:	e000      	b.n	7c0 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xc0>
+     7be:	32c0      	adds	r2, #192	; 0xc0
+     7c0:	6841      	ldr	r1, [r0, #4]
+     7c2:	9200      	str	r2, [sp, #0]
+     7c4:	2000      	movs	r0, #0
+     7c6:	2201      	movs	r2, #1
+     7c8:	f000 f92a 	bl	a20 <_ZN14kinetis_common4chip4gpio4Psor8set_ptso17hddcb4c1dd0ed1035E>
+     7cc:	4601      	mov	r1, r0
+     7ce:	4668      	mov	r0, sp
+     7d0:	f000 f8cd 	bl	96e <_ZN14kinetis_common4chip4gpio4Gpio8set_psor17haaf17387fcb07be8E>
+     7d4:	e00c      	b.n	7f0 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xf0>
+     7d6:	3280      	adds	r2, #128	; 0x80
+     7d8:	e000      	b.n	7dc <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$3set17h9f0f095b557066bbE+0xdc>
+     7da:	32c0      	adds	r2, #192	; 0xc0
+     7dc:	6841      	ldr	r1, [r0, #4]
+     7de:	9201      	str	r2, [sp, #4]
+     7e0:	2000      	movs	r0, #0
+     7e2:	2201      	movs	r2, #1
+     7e4:	f000 f938 	bl	a58 <_ZN14kinetis_common4chip4gpio4Pcor8set_ptco17h9588a9345758a28eE>
+     7e8:	4601      	mov	r1, r0
+     7ea:	a801      	add	r0, sp, #4
+     7ec:	f000 f8d0 	bl	990 <_ZN14kinetis_common4chip4gpio4Gpio8set_pcor17hc22025f3a5423b10E>
+     7f0:	b002      	add	sp, #8
+     7f2:	bd80      	pop	{r7, pc}
+     7f4:	f640 5024 	movw	r0, #3364	; 0xd24
+     7f8:	f2c0 0000 	movt	r0, #0
+     7fc:	f000 f9d6 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000800 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E>:
+     800:	b580      	push	{r7, lr}
+     802:	466f      	mov	r7, sp
+     804:	b082      	sub	sp, #8
+     806:	6802      	ldr	r2, [r0, #0]
+     808:	f24f 0100 	movw	r1, #61440	; 0xf000
+     80c:	f64a 73ff 	movw	r3, #45055	; 0xafff
+     810:	f2c4 010f 	movt	r1, #16399	; 0x400f
+     814:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     818:	429a      	cmp	r2, r3
+     81a:	dd14      	ble.n	846 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x46>
+     81c:	f24b 0300 	movw	r3, #45056	; 0xb000
+     820:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     824:	429a      	cmp	r2, r3
+     826:	d01c      	beq.n	862 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x62>
+     828:	f24c 0300 	movw	r3, #49152	; 0xc000
+     82c:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     830:	429a      	cmp	r2, r3
+     832:	d018      	beq.n	866 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x66>
+     834:	f24d 0300 	movw	r3, #53248	; 0xd000
+     838:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     83c:	429a      	cmp	r2, r3
+     83e:	d11f      	bne.n	880 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x80>
+     840:	f501 7180 	add.w	r1, r1, #256	; 0x100
+     844:	e010      	b.n	868 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x68>
+     846:	f249 0300 	movw	r3, #36864	; 0x9000
+     84a:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     84e:	429a      	cmp	r2, r3
+     850:	d00a      	beq.n	868 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x68>
+     852:	f24a 0300 	movw	r3, #40960	; 0xa000
+     856:	f2c4 0304 	movt	r3, #16388	; 0x4004
+     85a:	429a      	cmp	r2, r3
+     85c:	d110      	bne.n	880 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x80>
+     85e:	3140      	adds	r1, #64	; 0x40
+     860:	e002      	b.n	868 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x68>
+     862:	3180      	adds	r1, #128	; 0x80
+     864:	e000      	b.n	868 <_ZN60_$LT$k64_hal..port..Pin$LT$k64_hal..port..ModeOutput$GT$$GT$6toggle17h2643f95865838629E+0x68>
+     866:	31c0      	adds	r1, #192	; 0xc0
+     868:	9101      	str	r1, [sp, #4]
+     86a:	6841      	ldr	r1, [r0, #4]
+     86c:	2000      	movs	r0, #0
+     86e:	2201      	movs	r2, #1
+     870:	f000 f90e 	bl	a90 <_ZN14kinetis_common4chip4gpio4Ptor8set_ptto17h8d9949372969fb19E>
+     874:	4601      	mov	r1, r0
+     876:	a801      	add	r0, sp, #4
+     878:	f000 f89c 	bl	9b4 <_ZN14kinetis_common4chip4gpio4Gpio8set_ptor17hda66ace9738286bdE>
+     87c:	b002      	add	sp, #8
+     87e:	bd80      	pop	{r7, pc}
+     880:	f640 5024 	movw	r0, #3364	; 0xd24
+     884:	f2c0 0000 	movt	r0, #0
+     888:	f000 f990 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+0000088c <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E>:
+     88c:	6801      	ldr	r1, [r0, #0]
+     88e:	f241 0038 	movw	r0, #4152	; 0x1038
+     892:	2201      	movs	r2, #1
+     894:	4408      	add	r0, r1
+     896:	4288      	cmp	r0, r1
+     898:	bf28      	it	cs
+     89a:	2200      	movcs	r2, #0
+     89c:	b90a      	cbnz	r2, 8a2 <_ZN8k64_chip3sim3Sim5scgc517h8330734912adce67E+0x16>
+     89e:	6800      	ldr	r0, [r0, #0]
+     8a0:	4770      	bx	lr
+     8a2:	b580      	push	{r7, lr}
+     8a4:	466f      	mov	r7, sp
+     8a6:	f640 609c 	movw	r0, #3740	; 0xe9c
+     8aa:	f2c0 0000 	movt	r0, #0
+     8ae:	f000 f97d 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000008b2 <_ZN8k64_chip3sim3Sim9set_scgc517ha6a74fc51d32e9bcE>:
+     8b2:	6802      	ldr	r2, [r0, #0]
+     8b4:	f241 0038 	movw	r0, #4152	; 0x1038
+     8b8:	2301      	movs	r3, #1
+     8ba:	4410      	add	r0, r2
+     8bc:	4290      	cmp	r0, r2
+     8be:	bf28      	it	cs
+     8c0:	2300      	movcs	r3, #0
+     8c2:	b90b      	cbnz	r3, 8c8 <_ZN8k64_chip3sim3Sim9set_scgc517ha6a74fc51d32e9bcE+0x16>
+     8c4:	6001      	str	r1, [r0, #0]
+     8c6:	4770      	bx	lr
+     8c8:	b580      	push	{r7, lr}
+     8ca:	466f      	mov	r7, sp
+     8cc:	f640 60b0 	movw	r0, #3760	; 0xeb0
+     8d0:	f2c0 0000 	movt	r0, #0
+     8d4:	f000 f96a 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000008d8 <_ZN8k64_chip3sim5Scgc59set_porta17hcbcd04f03f78953aE>:
+     8d8:	2902      	cmp	r1, #2
+     8da:	bf3e      	ittt	cc
+     8dc:	f420 7000 	biccc.w	r0, r0, #512	; 0x200
+     8e0:	ea40 2041 	orrcc.w	r0, r0, r1, lsl #9
+     8e4:	4770      	bxcc	lr
+     8e6:	b580      	push	{r7, lr}
+     8e8:	466f      	mov	r7, sp
+     8ea:	f640 50d8 	movw	r0, #3544	; 0xdd8
+     8ee:	f2c0 0000 	movt	r0, #0
+     8f2:	f000 f95b 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000008f6 <_ZN8k64_chip3sim5Scgc59set_portb17hb79f0d28e3f9d205E>:
+     8f6:	2902      	cmp	r1, #2
+     8f8:	bf3e      	ittt	cc
+     8fa:	f420 6080 	biccc.w	r0, r0, #1024	; 0x400
+     8fe:	ea40 2081 	orrcc.w	r0, r0, r1, lsl #10
+     902:	4770      	bxcc	lr
+     904:	b580      	push	{r7, lr}
+     906:	466f      	mov	r7, sp
+     908:	f640 50ec 	movw	r0, #3564	; 0xdec
+     90c:	f2c0 0000 	movt	r0, #0
+     910:	f000 f94c 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000914 <_ZN8k64_chip3sim5Scgc59set_portc17hf2a17337c701243dE>:
+     914:	2902      	cmp	r1, #2
+     916:	bf3e      	ittt	cc
+     918:	f420 6000 	biccc.w	r0, r0, #2048	; 0x800
+     91c:	ea40 20c1 	orrcc.w	r0, r0, r1, lsl #11
+     920:	4770      	bxcc	lr
+     922:	b580      	push	{r7, lr}
+     924:	466f      	mov	r7, sp
+     926:	f640 6000 	movw	r0, #3584	; 0xe00
+     92a:	f2c0 0000 	movt	r0, #0
+     92e:	f000 f93d 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000932 <_ZN8k64_chip3sim5Scgc59set_portd17h8cd96c16b04fd161E>:
+     932:	2902      	cmp	r1, #2
+     934:	bf3e      	ittt	cc
+     936:	f420 5080 	biccc.w	r0, r0, #4096	; 0x1000
+     93a:	ea40 3001 	orrcc.w	r0, r0, r1, lsl #12
+     93e:	4770      	bxcc	lr
+     940:	b580      	push	{r7, lr}
+     942:	466f      	mov	r7, sp
+     944:	f640 6014 	movw	r0, #3604	; 0xe14
+     948:	f2c0 0000 	movt	r0, #0
+     94c:	f000 f92e 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000950 <_ZN8k64_chip3sim5Scgc59set_porte17h27ed4e1b95e51079E>:
+     950:	2902      	cmp	r1, #2
+     952:	bf3e      	ittt	cc
+     954:	f420 5000 	biccc.w	r0, r0, #8192	; 0x2000
+     958:	ea40 3041 	orrcc.w	r0, r0, r1, lsl #13
+     95c:	4770      	bxcc	lr
+     95e:	b580      	push	{r7, lr}
+     960:	466f      	mov	r7, sp
+     962:	f640 6028 	movw	r0, #3624	; 0xe28
+     966:	f2c0 0000 	movt	r0, #0
+     96a:	f000 f91f 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+0000096e <_ZN14kinetis_common4chip4gpio4Gpio8set_psor17haaf17387fcb07be8E>:
+     96e:	6802      	ldr	r2, [r0, #0]
+     970:	2301      	movs	r3, #1
+     972:	1d10      	adds	r0, r2, #4
+     974:	4290      	cmp	r0, r2
+     976:	bf28      	it	cs
+     978:	2300      	movcs	r3, #0
+     97a:	b90b      	cbnz	r3, 980 <_ZN14kinetis_common4chip4gpio4Gpio8set_psor17haaf17387fcb07be8E+0x12>
+     97c:	6001      	str	r1, [r0, #0]
+     97e:	4770      	bx	lr
+     980:	b580      	push	{r7, lr}
+     982:	466f      	mov	r7, sp
+     984:	f241 003c 	movw	r0, #4156	; 0x103c
+     988:	f2c0 0000 	movt	r0, #0
+     98c:	f000 f90e 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000990 <_ZN14kinetis_common4chip4gpio4Gpio8set_pcor17hc22025f3a5423b10E>:
+     990:	6802      	ldr	r2, [r0, #0]
+     992:	2301      	movs	r3, #1
+     994:	f102 0008 	add.w	r0, r2, #8
+     998:	4290      	cmp	r0, r2
+     99a:	bf28      	it	cs
+     99c:	2300      	movcs	r3, #0
+     99e:	b90b      	cbnz	r3, 9a4 <_ZN14kinetis_common4chip4gpio4Gpio8set_pcor17hc22025f3a5423b10E+0x14>
+     9a0:	6001      	str	r1, [r0, #0]
+     9a2:	4770      	bx	lr
+     9a4:	b580      	push	{r7, lr}
+     9a6:	466f      	mov	r7, sp
+     9a8:	f241 0050 	movw	r0, #4176	; 0x1050
+     9ac:	f2c0 0000 	movt	r0, #0
+     9b0:	f000 f8fc 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000009b4 <_ZN14kinetis_common4chip4gpio4Gpio8set_ptor17hda66ace9738286bdE>:
+     9b4:	6802      	ldr	r2, [r0, #0]
+     9b6:	2301      	movs	r3, #1
+     9b8:	f102 000c 	add.w	r0, r2, #12
+     9bc:	4290      	cmp	r0, r2
+     9be:	bf28      	it	cs
+     9c0:	2300      	movcs	r3, #0
+     9c2:	b90b      	cbnz	r3, 9c8 <_ZN14kinetis_common4chip4gpio4Gpio8set_ptor17hda66ace9738286bdE+0x14>
+     9c4:	6001      	str	r1, [r0, #0]
+     9c6:	4770      	bx	lr
+     9c8:	b580      	push	{r7, lr}
+     9ca:	466f      	mov	r7, sp
+     9cc:	f241 0064 	movw	r0, #4196	; 0x1064
+     9d0:	f2c0 0000 	movt	r0, #0
+     9d4:	f000 f8ea 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000009d8 <_ZN14kinetis_common4chip4gpio4Gpio4pddr17hb5c0628bc5ea7ae0E>:
+     9d8:	6801      	ldr	r1, [r0, #0]
+     9da:	2201      	movs	r2, #1
+     9dc:	f101 0014 	add.w	r0, r1, #20
+     9e0:	4288      	cmp	r0, r1
+     9e2:	bf28      	it	cs
+     9e4:	2200      	movcs	r2, #0
+     9e6:	b90a      	cbnz	r2, 9ec <_ZN14kinetis_common4chip4gpio4Gpio4pddr17hb5c0628bc5ea7ae0E+0x14>
+     9e8:	6800      	ldr	r0, [r0, #0]
+     9ea:	4770      	bx	lr
+     9ec:	b580      	push	{r7, lr}
+     9ee:	466f      	mov	r7, sp
+     9f0:	f241 0078 	movw	r0, #4216	; 0x1078
+     9f4:	f2c0 0000 	movt	r0, #0
+     9f8:	f000 f8d8 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+000009fc <_ZN14kinetis_common4chip4gpio4Gpio8set_pddr17h98064bf226c79fefE>:
+     9fc:	6802      	ldr	r2, [r0, #0]
+     9fe:	2301      	movs	r3, #1
+     a00:	f102 0014 	add.w	r0, r2, #20
+     a04:	4290      	cmp	r0, r2
+     a06:	bf28      	it	cs
+     a08:	2300      	movcs	r3, #0
+     a0a:	b90b      	cbnz	r3, a10 <_ZN14kinetis_common4chip4gpio4Gpio8set_pddr17h98064bf226c79fefE+0x14>
+     a0c:	6001      	str	r1, [r0, #0]
+     a0e:	4770      	bx	lr
+     a10:	b580      	push	{r7, lr}
+     a12:	466f      	mov	r7, sp
+     a14:	f241 008c 	movw	r0, #4236	; 0x108c
+     a18:	f2c0 0000 	movt	r0, #0
+     a1c:	f000 f8c6 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000a20 <_ZN14kinetis_common4chip4gpio4Psor8set_ptso17hddcb4c1dd0ed1035E>:
+     a20:	b580      	push	{r7, lr}
+     a22:	466f      	mov	r7, sp
+     a24:	2920      	cmp	r1, #32
+     a26:	d211      	bcs.n	a4c <_ZN14kinetis_common4chip4gpio4Psor8set_ptso17hddcb4c1dd0ed1035E+0x2c>
+     a28:	2a02      	cmp	r2, #2
+     a2a:	bf3f      	itttt	cc
+     a2c:	f001 011f 	andcc.w	r1, r1, #31
+     a30:	408a      	lslcc	r2, r1
+     a32:	2301      	movcc	r3, #1
+     a34:	fa03 f101 	lslcc.w	r1, r3, r1
+     a38:	bf3e      	ittt	cc
+     a3a:	4388      	biccc	r0, r1
+     a3c:	4310      	orrcc	r0, r2
+     a3e:	bd80      	popcc	{r7, pc}
+     a40:	f640 7008 	movw	r0, #3848	; 0xf08
+     a44:	f2c0 0000 	movt	r0, #0
+     a48:	f000 f8b0 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     a4c:	f640 60f4 	movw	r0, #3828	; 0xef4
+     a50:	f2c0 0000 	movt	r0, #0
+     a54:	f000 f8aa 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000a58 <_ZN14kinetis_common4chip4gpio4Pcor8set_ptco17h9588a9345758a28eE>:
+     a58:	b580      	push	{r7, lr}
+     a5a:	466f      	mov	r7, sp
+     a5c:	2920      	cmp	r1, #32
+     a5e:	d211      	bcs.n	a84 <_ZN14kinetis_common4chip4gpio4Pcor8set_ptco17h9588a9345758a28eE+0x2c>
+     a60:	2a02      	cmp	r2, #2
+     a62:	bf3f      	itttt	cc
+     a64:	f001 011f 	andcc.w	r1, r1, #31
+     a68:	408a      	lslcc	r2, r1
+     a6a:	2301      	movcc	r3, #1
+     a6c:	fa03 f101 	lslcc.w	r1, r3, r1
+     a70:	bf3e      	ittt	cc
+     a72:	4388      	biccc	r0, r1
+     a74:	4310      	orrcc	r0, r2
+     a76:	bd80      	popcc	{r7, pc}
+     a78:	f640 7030 	movw	r0, #3888	; 0xf30
+     a7c:	f2c0 0000 	movt	r0, #0
+     a80:	f000 f894 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     a84:	f640 701c 	movw	r0, #3868	; 0xf1c
+     a88:	f2c0 0000 	movt	r0, #0
+     a8c:	f000 f88e 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000a90 <_ZN14kinetis_common4chip4gpio4Ptor8set_ptto17h8d9949372969fb19E>:
+     a90:	b580      	push	{r7, lr}
+     a92:	466f      	mov	r7, sp
+     a94:	2920      	cmp	r1, #32
+     a96:	d211      	bcs.n	abc <_ZN14kinetis_common4chip4gpio4Ptor8set_ptto17h8d9949372969fb19E+0x2c>
+     a98:	2a02      	cmp	r2, #2
+     a9a:	bf3f      	itttt	cc
+     a9c:	f001 011f 	andcc.w	r1, r1, #31
+     aa0:	408a      	lslcc	r2, r1
+     aa2:	2301      	movcc	r3, #1
+     aa4:	fa03 f101 	lslcc.w	r1, r3, r1
+     aa8:	bf3e      	ittt	cc
+     aaa:	4388      	biccc	r0, r1
+     aac:	4310      	orrcc	r0, r2
+     aae:	bd80      	popcc	{r7, pc}
+     ab0:	f640 7058 	movw	r0, #3928	; 0xf58
+     ab4:	f2c0 0000 	movt	r0, #0
+     ab8:	f000 f878 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     abc:	f640 7044 	movw	r0, #3908	; 0xf44
+     ac0:	f2c0 0000 	movt	r0, #0
+     ac4:	f000 f872 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000ac8 <_ZN14kinetis_common4chip4gpio4Pddr7set_pdd17hae5fa5a41921c654E>:
+     ac8:	b580      	push	{r7, lr}
+     aca:	466f      	mov	r7, sp
+     acc:	2920      	cmp	r1, #32
+     ace:	d211      	bcs.n	af4 <_ZN14kinetis_common4chip4gpio4Pddr7set_pdd17hae5fa5a41921c654E+0x2c>
+     ad0:	2a02      	cmp	r2, #2
+     ad2:	bf3f      	itttt	cc
+     ad4:	f001 011f 	andcc.w	r1, r1, #31
+     ad8:	408a      	lslcc	r2, r1
+     ada:	2301      	movcc	r3, #1
+     adc:	fa03 f101 	lslcc.w	r1, r3, r1
+     ae0:	bf3e      	ittt	cc
+     ae2:	4388      	biccc	r0, r1
+     ae4:	4310      	orrcc	r0, r2
+     ae6:	bd80      	popcc	{r7, pc}
+     ae8:	f640 7080 	movw	r0, #3968	; 0xf80
+     aec:	f2c0 0000 	movt	r0, #0
+     af0:	f000 f85c 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     af4:	f640 706c 	movw	r0, #3948	; 0xf6c
+     af8:	f2c0 0000 	movt	r0, #0
+     afc:	f000 f856 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000b00 <_ZN14kinetis_common4chip4port4Port3pcr17h47f14e6c1df236e8E>:
+     b00:	b580      	push	{r7, lr}
+     b02:	466f      	mov	r7, sp
+     b04:	2920      	cmp	r1, #32
+     b06:	d209      	bcs.n	b1c <_ZN14kinetis_common4chip4port4Port3pcr17h47f14e6c1df236e8E+0x1c>
+     b08:	6802      	ldr	r2, [r0, #0]
+     b0a:	eb02 0081 	add.w	r0, r2, r1, lsl #2
+     b0e:	2101      	movs	r1, #1
+     b10:	4290      	cmp	r0, r2
+     b12:	bf28      	it	cs
+     b14:	2100      	movcs	r1, #0
+     b16:	b939      	cbnz	r1, b28 <_ZN14kinetis_common4chip4port4Port3pcr17h47f14e6c1df236e8E+0x28>
+     b18:	6800      	ldr	r0, [r0, #0]
+     b1a:	bd80      	pop	{r7, pc}
+     b1c:	f640 7094 	movw	r0, #3988	; 0xf94
+     b20:	f2c0 0000 	movt	r0, #0
+     b24:	f000 f842 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     b28:	f241 00e4 	movw	r0, #4324	; 0x10e4
+     b2c:	f2c0 0000 	movt	r0, #0
+     b30:	f000 f83c 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000b34 <_ZN14kinetis_common4chip4port4Port7set_pcr17h2bebdaa477db7599E>:
+     b34:	b580      	push	{r7, lr}
+     b36:	466f      	mov	r7, sp
+     b38:	2920      	cmp	r1, #32
+     b3a:	d209      	bcs.n	b50 <_ZN14kinetis_common4chip4port4Port7set_pcr17h2bebdaa477db7599E+0x1c>
+     b3c:	6803      	ldr	r3, [r0, #0]
+     b3e:	eb03 0081 	add.w	r0, r3, r1, lsl #2
+     b42:	2101      	movs	r1, #1
+     b44:	4298      	cmp	r0, r3
+     b46:	bf28      	it	cs
+     b48:	2100      	movcs	r1, #0
+     b4a:	b939      	cbnz	r1, b5c <_ZN14kinetis_common4chip4port4Port7set_pcr17h2bebdaa477db7599E+0x28>
+     b4c:	6002      	str	r2, [r0, #0]
+     b4e:	bd80      	pop	{r7, pc}
+     b50:	f640 70a8 	movw	r0, #4008	; 0xfa8
+     b54:	f2c0 0000 	movt	r0, #0
+     b58:	f000 f828 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+     b5c:	f241 00f8 	movw	r0, #4344	; 0x10f8
+     b60:	f2c0 0000 	movt	r0, #0
+     b64:	f000 f822 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000b68 <_ZN14kinetis_common4chip4port3Pcr7set_mux17hb81f2c430a7a2bbdE>:
+     b68:	2908      	cmp	r1, #8
+     b6a:	bf3e      	ittt	cc
+     b6c:	f420 60e0 	biccc.w	r0, r0, #1792	; 0x700
+     b70:	ea40 2001 	orrcc.w	r0, r0, r1, lsl #8
+     b74:	4770      	bxcc	lr
+     b76:	b580      	push	{r7, lr}
+     b78:	466f      	mov	r7, sp
+     b7a:	f640 70bc 	movw	r0, #4028	; 0xfbc
+     b7e:	f2c0 0000 	movt	r0, #0
+     b82:	f000 f813 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000b86 <_ZN14bobbin_cortexm3hal3scb10set_tbloff17hb3769130add1c394E>:
+     b86:	f1b0 7f00 	cmp.w	r0, #33554432	; 0x2000000
+     b8a:	bf3f      	itttt	cc
+     b8c:	01c0      	lslcc	r0, r0, #7
+     b8e:	f64e 5108 	movwcc	r1, #60680	; 0xed08
+     b92:	f2ce 0100 	movtcc	r1, #57344	; 0xe000
+     b96:	6008      	strcc	r0, [r1, #0]
+     b98:	bf38      	it	cc
+     b9a:	4770      	bxcc	lr
+     b9c:	b580      	push	{r7, lr}
+     b9e:	466f      	mov	r7, sp
+     ba0:	f241 1084 	movw	r0, #4484	; 0x1184
+     ba4:	f2c0 0000 	movt	r0, #0
+     ba8:	f000 f800 	bl	bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>
+
+00000bac <_ZN4core9panicking5panic17h9932acf82a1d7172E>:
+     bac:	b580      	push	{r7, lr}
+     bae:	466f      	mov	r7, sp
+     bb0:	b08c      	sub	sp, #48	; 0x30
+     bb2:	e890 100e 	ldmia.w	r0, {r1, r2, r3, ip}
+     bb6:	6900      	ldr	r0, [r0, #16]
+     bb8:	e9cd 1207 	strd	r1, r2, [sp, #28]
+     bbc:	a907      	add	r1, sp, #28
+     bbe:	f241 222c 	movw	r2, #4652	; 0x122c
+     bc2:	9101      	str	r1, [sp, #4]
+     bc4:	2101      	movs	r1, #1
+     bc6:	f2c0 0200 	movt	r2, #0
+     bca:	9102      	str	r1, [sp, #8]
+     bcc:	2100      	movs	r1, #0
+     bce:	e9cd 1103 	strd	r1, r1, [sp, #12]
+     bd2:	e9cd 2105 	strd	r2, r1, [sp, #20]
+     bd6:	e9cd 3c09 	strd	r3, ip, [sp, #36]	; 0x24
+     bda:	900b      	str	r0, [sp, #44]	; 0x2c
+     bdc:	a801      	add	r0, sp, #4
+     bde:	a909      	add	r1, sp, #36	; 0x24
+     be0:	f000 f800 	bl	be4 <_ZN4core9panicking9panic_fmt17hf33b40e8207d5356E>
+
+00000be4 <_ZN4core9panicking9panic_fmt17hf33b40e8207d5356E>:
+     be4:	b5f0      	push	{r4, r5, r6, r7, lr}
+     be6:	af03      	add	r7, sp, #12
+     be8:	b085      	sub	sp, #20
+     bea:	f100 0408 	add.w	r4, r0, #8
+     bee:	e9d0 ce00 	ldrd	ip, lr, [r0]
+     bf2:	cc1c      	ldmia	r4, {r2, r3, r4}
+     bf4:	6940      	ldr	r0, [r0, #20]
+     bf6:	e9d1 5600 	ldrd	r5, r6, [r1]
+     bfa:	6889      	ldr	r1, [r1, #8]
+     bfc:	e9cd 4000 	strd	r4, r0, [sp]
+     c00:	e9cd 5602 	strd	r5, r6, [sp, #8]
+     c04:	9104      	str	r1, [sp, #16]
+     c06:	4660      	mov	r0, ip
+     c08:	4671      	mov	r1, lr
+     c0a:	f7ff fc9b 	bl	544 <rust_begin_unwind>
+
+00000c0e <__aeabi_memcpy4>:
+     c0e:	b12a      	cbz	r2, c1c <__aeabi_memcpy4+0xe>
+     c10:	f811 3b01 	ldrb.w	r3, [r1], #1
+     c14:	3a01      	subs	r2, #1
+     c16:	f800 3b01 	strb.w	r3, [r0], #1
+     c1a:	d1f9      	bne.n	c10 <__aeabi_memcpy4+0x2>
+     c1c:	4770      	bx	lr
+
+00000c1e <__aeabi_memclr4>:
+     c1e:	b121      	cbz	r1, c2a <__aeabi_memclr4+0xc>
+     c20:	2200      	movs	r2, #0
+     c22:	f800 2b01 	strb.w	r2, [r0], #1
+     c26:	3901      	subs	r1, #1
+     c28:	d1fb      	bne.n	c22 <__aeabi_memclr4+0x4>
+     c2a:	4770      	bx	lr
+     c2c:	0000      	movs	r0, r0
+	...
+
+00000c30 <str.0>:
+     c30:	552f 6573 7372 6a2f 7363 6f6f 2e2f 6163     /Users/jcsoo/.ca
+     c40:	6772 2f6f 6572 6967 7473 7972 732f 6372     rgo/registry/src
+     c50:	672f 7469 7568 2e62 6f63 2d6d 6531 6363     /github.com-1ecc
+     c60:	3236 3939 6264 6539 3863 3332 722f 2d30     6299db9ec823/r0-
+     c70:	2e30 2e31 2f30 7273 2f63 696c 2e62 7372     0.1.0/src/lib.rs
+
+00000c80 <str.1>:
+     c80:	7461 6574 706d 2074 6f74 7320 6275 7274     attempt to subtr
+     c90:	6361 2074 6977 6874 6f20 6576 6672 6f6c     act with overflo
+     ca0:	0077 0000                                   w...
+
+00000ca4 <panic_loc.2>:
+     ca4:	0c80 0000 0021 0000 0c30 0000 0050 0000     ....!...0...P...
+     cb4:	0031 0000                                   1...
+
+00000cb8 <panic_loc.5>:
+     cb8:	0c80 0000 0021 0000 0c30 0000 0050 0000     ....!...0...P...
+     cc8:	001b 0000 0000 0000                         ........
+
+00000cd0 <str.r>:
+     cd0:	7461 6574 706d 2074 6f74 6d20 6c75 6974     attempt to multi
+     ce0:	6c70 2079 6977 6874 6f20 6576 6672 6f6c     ply with overflo
+     cf0:	7377                                             w
+
+00000cf1 <str.u>:
+     cf1:	7273 2f63 696c 2e62 7372 d000                    src/lib.rs.
+
+00000cfc <panic_loc.v>:
+     cfc:	0cd0 0000 0021 0000 0cf1 0000 000a 0000     ....!...........
+     d0c:	0021 0000                                   !...
+
+00000d10 <_ZN7k64_hal3sim16set_port_enabled14_MSG_FILE_LINE17he54c0533005345c2E>:
+     d10:	0d40 0000 0013 0000 0d60 0000 0035 0000     @.......`...5...
+     d20:	0011 0000                                   ....
+
+00000d24 <_ZN36_$LT$k64_hal..port..Pin$LT$T$GT$$GT$4gpio14_MSG_FILE_LINE17hd98c392b71c32a13E>:
+     d24:	0d40 0000 0013 0000 0da0 0000 0036 0000     @...........6...
+     d34:	002b 0000 0000 0000 0000 0000               +...........
+
+00000d40 <str.g>:
+     d40:	6f6e 2074 6579 2074 6d69 6c70 6d65 6e65     not yet implemen
+     d50:	6574 0064 0000 0000 0000 0000 0000 0000     ted.............
+
+00000d60 <str.h>:
+     d60:	552f 6573 7372 6a2f 7363 6f6f 622f 626f     /Users/jcsoo/bob
+     d70:	6962 2f6e 6f62 6262 6e69 6b2d 6e69 7465     bin/bobbin-kinet
+     d80:	7369 6b2f 3436 682d 6c61 732f 6372 732f     is/k64-hal/src/s
+     d90:	6d69 722e 0073 0000 0000 0000 0000 0000     im.rs...........
+
+00000da0 <str.i>:
+     da0:	552f 6573 7372 6a2f 7363 6f6f 622f 626f     /Users/jcsoo/bob
+     db0:	6962 2f6e 6f62 6262 6e69 6b2d 6e69 7465     bin/bobbin-kinet
+     dc0:	7369 6b2f 3436 682d 6c61 732f 6372 702f     is/k64-hal/src/p
+     dd0:	726f 2e74 7372 0000                         ort.rs..
+
+00000dd8 <_ZN8k64_chip3sim5Scgc59set_porta14_MSG_FILE_LINE17hb820db7d76c406e6E>:
+     dd8:	0ed0 0000 0023 0000 0e40 0000 0036 0000     ....#...@...6...
+     de8:	04ed 0000                                   ....
+
+00000dec <_ZN8k64_chip3sim5Scgc59set_portb14_MSG_FILE_LINE17he16f4b0b7d43461fE>:
+     dec:	0ed0 0000 0023 0000 0e40 0000 0036 0000     ....#...@...6...
+     dfc:	04f7 0000                                   ....
+
+00000e00 <_ZN8k64_chip3sim5Scgc59set_portc14_MSG_FILE_LINE17hd556cc144c8ad8c0E>:
+     e00:	0ed0 0000 0023 0000 0e40 0000 0036 0000     ....#...@...6...
+     e10:	0501 0000                                   ....
+
+00000e14 <_ZN8k64_chip3sim5Scgc59set_portd14_MSG_FILE_LINE17ha893a89c72df4465E>:
+     e14:	0ed0 0000 0023 0000 0e40 0000 0036 0000     ....#...@...6...
+     e24:	050b 0000                                   ....
+
+00000e28 <_ZN8k64_chip3sim5Scgc59set_porte14_MSG_FILE_LINE17h72d173643cb35e66E>:
+     e28:	0ed0 0000 0023 0000 0e40 0000 0036 0000     ....#...@...6...
+     e38:	0515 0000 0000 0000                         ........
+
+00000e40 <str.3>:
+     e40:	552f 6573 7372 6a2f 7363 6f6f 622f 626f     /Users/jcsoo/bob
+     e50:	6962 2f6e 6f62 6262 6e69 6b2d 6e69 7465     bin/bobbin-kinet
+     e60:	7369 6b2f 3436 632d 6968 2f70 7273 2f63     is/k64-chip/src/
+     e70:	6973 2e6d 7372 0000 0000 0000 0000 0000     sim.rs..........
+
+00000e80 <str.4>:
+     e80:	7461 6574 706d 2074 6f74 6120 6464 7720     attempt to add w
+     e90:	7469 2068 766f 7265 6c66 776f               ith overflow
+
+00000e9c <panic_loc.q>:
+     e9c:	0e80 0000 001c 0000 0e40 0000 0036 0000     ........@...6...
+     eac:	007a 0000                                   z...
+
+00000eb0 <panic_loc.r>:
+     eb0:	0e80 0000 001c 0000 0e40 0000 0036 0000     ........@...6...
+     ec0:	007d 0000 0000 0000 0000 0000 0000 0000     }...............
+
+00000ed0 <str.5c>:
+     ed0:	7361 6573 7472 6f69 206e 6166 6c69 6465     assertion failed
+     ee0:	203a 7628 6c61 6575 2620 2120 2931 3d20     : (value & !1) =
+     ef0:	203d 0030                                   = 0.
+
+00000ef4 <_ZN14kinetis_common4chip4gpio4Psor8set_ptso14_MSG_FILE_LINE17h85b74503e88d2cb9E>:
+     ef4:	1110 0000 001c 0000 0fd0 0000 0042 0000     ............B...
+     f04:	007a 0000                                   z...
+
+00000f08 <_ZN14kinetis_common4chip4gpio4Psor8set_ptso14_MSG_FILE_LINE17h3988f0413d9d7388E>:
+     f08:	1130 0000 0023 0000 0fd0 0000 0042 0000     0...#.......B...
+     f18:	007b 0000                                   {...
+
+00000f1c <_ZN14kinetis_common4chip4gpio4Pcor8set_ptco14_MSG_FILE_LINE17h5e1d1804987c2daaE>:
+     f1c:	1110 0000 001c 0000 0fd0 0000 0042 0000     ............B...
+     f2c:	00bc 0000                                   ....
+
+00000f30 <_ZN14kinetis_common4chip4gpio4Pcor8set_ptco14_MSG_FILE_LINE17h6fda2393becedd0aE>:
+     f30:	1130 0000 0023 0000 0fd0 0000 0042 0000     0...#.......B...
+     f40:	00bd 0000                                   ....
+
+00000f44 <_ZN14kinetis_common4chip4gpio4Ptor8set_ptto14_MSG_FILE_LINE17h4ea6567aad993697E>:
+     f44:	1110 0000 001c 0000 0fd0 0000 0042 0000     ............B...
+     f54:	00fe 0000                                   ....
+
+00000f58 <_ZN14kinetis_common4chip4gpio4Ptor8set_ptto14_MSG_FILE_LINE17hdf349ce60637c4c9E>:
+     f58:	1130 0000 0023 0000 0fd0 0000 0042 0000     0...#.......B...
+     f68:	00ff 0000                                   ....
+
+00000f6c <_ZN14kinetis_common4chip4gpio4Pddr7set_pdd14_MSG_FILE_LINE17h4a87d778009fc502E>:
+     f6c:	1110 0000 001c 0000 0fd0 0000 0042 0000     ............B...
+     f7c:	0182 0000                                   ....
+
+00000f80 <_ZN14kinetis_common4chip4gpio4Pddr7set_pdd14_MSG_FILE_LINE17hbdeb5be9879cbb98E>:
+     f80:	1130 0000 0023 0000 0fd0 0000 0042 0000     0...#.......B...
+     f90:	0183 0000                                   ....
+
+00000f94 <_ZN14kinetis_common4chip4port4Port3pcr14_MSG_FILE_LINE17hfe8074c224100997E>:
+     f94:	1110 0000 001c 0000 10a0 0000 0042 0000     ............B...
+     fa4:	0007 0000                                   ....
+
+00000fa8 <_ZN14kinetis_common4chip4port4Port7set_pcr14_MSG_FILE_LINE17h6034fa84ea4c1474E>:
+     fa8:	1110 0000 001c 0000 10a0 0000 0042 0000     ............B...
+     fb8:	000b 0000                                   ....
+
+00000fbc <_ZN14kinetis_common4chip4port3Pcr7set_mux14_MSG_FILE_LINE17h7f85f7a676296e8bE>:
+     fbc:	1160 0000 0023 0000 10a0 0000 0042 0000     `...#.......B...
+     fcc:	006c 0000                                   l...
+
+00000fd0 <str.0>:
+     fd0:	552f 6573 7372 6a2f 7363 6f6f 622f 626f     /Users/jcsoo/bob
+     fe0:	6962 2f6e 6f62 6262 6e69 6b2d 6e69 7465     bin/bobbin-kinet
+     ff0:	7369 6b2f 6e69 7465 7369 632d 6d6f 6f6d     is/kinetis-commo
+    1000:	2f6e 7273 2f63 6863 7069 672f 6970 2e6f     n/src/chip/gpio.
+    1010:	7372 0000 0000 0000 0000 0000 0000 0000     rs..............
+
+00001020 <str.1>:
+    1020:	7461 6574 706d 2074 6f74 6120 6464 7720     attempt to add w
+    1030:	7469 2068 766f 7265 6c66 776f               ith overflow
+
+0000103c <panic_loc.4>:
+    103c:	1020 0000 001c 0000 0fd0 0000 0042 0000      ...........B...
+    104c:	0012 0000                                   ....
+
+00001050 <panic_loc.5>:
+    1050:	1020 0000 001c 0000 0fd0 0000 0042 0000      ...........B...
+    1060:	0016 0000                                   ....
+
+00001064 <panic_loc.6>:
+    1064:	1020 0000 001c 0000 0fd0 0000 0042 0000      ...........B...
+    1074:	001a 0000                                   ....
+
+00001078 <panic_loc.8>:
+    1078:	1020 0000 001c 0000 0fd0 0000 0042 0000      ...........B...
+    1088:	0022 0000                                   "...
+
+0000108c <panic_loc.9>:
+    108c:	1020 0000 001c 0000 0fd0 0000 0042 0000      ...........B...
+    109c:	0025 0000                                   %...
+
+000010a0 <str.H>:
+    10a0:	552f 6573 7372 6a2f 7363 6f6f 622f 626f     /Users/jcsoo/bob
+    10b0:	6962 2f6e 6f62 6262 6e69 6b2d 6e69 7465     bin/bobbin-kinet
+    10c0:	7369 6b2f 6e69 7465 7369 632d 6d6f 6f6d     is/kinetis-commo
+    10d0:	2f6e 7273 2f63 6863 7069 702f 726f 2e74     n/src/chip/port.
+    10e0:	7372 0000                                   rs..
+
+000010e4 <panic_loc.I>:
+    10e4:	1020 0000 001c 0000 10a0 0000 0042 0000      ...........B...
+    10f4:	0008 0000                                   ....
+
+000010f8 <panic_loc.J>:
+    10f8:	1020 0000 001c 0000 10a0 0000 0042 0000      ...........B...
+    1108:	000c 0000 0000 0000                         ........
+
+00001110 <str.O>:
+    1110:	7361 6573 7472 6f69 206e 6166 6c69 6465     assertion failed
+    1120:	203a 6e69 6564 2078 203c 3233 0000 0000     : index < 32....
+
+00001130 <str.P>:
+    1130:	7361 6573 7472 6f69 206e 6166 6c69 6465     assertion failed
+    1140:	203a 7628 6c61 6575 2620 2120 2931 3d20     : (value & !1) =
+    1150:	203d 0030 0000 0000 0000 0000 0000 0000     = 0.............
+
+00001160 <str.77>:
+    1160:	7361 6573 7472 6f69 206e 6166 6c69 6465     assertion failed
+    1170:	203a 7628 6c61 6575 2620 2120 2937 3d20     : (value & !7) =
+    1180:	203d 0030                                   = 0.
+
+00001184 <_ZN14bobbin_cortexm4chip3scb4Vtor10set_tbloff14_MSG_FILE_LINE17hb111bf7aaf4808c4E>:
+    1184:	1200 0000 002a 0000 11a0 0000 0059 0000     ....*.......Y...
+    1194:	01d9 0000 0000 0000 0000 0000               ............
+
+000011a0 <str.Q>:
+    11a0:	552f 6573 7372 6a2f 7363 6f6f 2e2f 6163     /Users/jcsoo/.ca
+    11b0:	6772 2f6f 6967 2f74 6863 6365 6f6b 7475     rgo/git/checkout
+    11c0:	2f73 6f62 6262 6e69 632d 726f 6574 6d78     s/bobbin-cortexm
+    11d0:	392d 6664 6163 6163 6231 6239 3030 6538     -9dfcaca1b9b008e
+    11e0:	2f66 6535 3831 3163 2f36 7273 2f63 6863     f/5e18c16/src/ch
+    11f0:	7069 732f 6263 722e 0073 0000 0000 0000     ip/scb.rs.......
+
+00001200 <str.8k>:
+    1200:	7361 6573 7472 6f69 206e 6166 6c69 6465     assertion failed
+    1210:	203a 7628 6c61 6575 2620 2120 3333 3535     : (value & !3355
+    1220:	3434 3133 2029 3d3d 3020 0000               4431) == 0..
