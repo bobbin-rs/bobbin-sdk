@@ -27,62 +27,6 @@ timgen_def!(tim13, tim13_unchecked, TIM13);
 timgen_def!(tim14, tim14_unchecked, TIM14);
 
 
-// pub fn tim2() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM2, true);    
-//     tim_gen::device(TIM2)
-// }
-
-// pub unsafe fn tim2_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM2)
-// }
-
-
-// pub fn tim3() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM3, true);    
-//     tim_gen::device(TIM3)
-// }
-
-// pub unsafe fn tim3_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM3)
-// }
-
-// pub fn tim4() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM4, true);    
-//     tim_gen::device(TIM4)
-// }
-
-// pub unsafe fn tim4_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM4)
-// }
-
-// pub fn tim15() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM15, true);    
-//     tim_gen::device(TIM15)
-// }
-
-// pub fn tim15_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM15)
-// }
-
-// pub fn tim16() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM16, true);    
-//     tim_gen::device(TIM16)
-// }
-
-// pub fn tim16_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM16)
-// }
-
-// pub fn tim17() -> tim_gen::TimGenDevice {
-//     rcc::set_tim_gen_enabled(TIM17, true);    
-//     tim_gen::device(TIM17)
-// }
-
-// pub fn tim17_unchecked() -> tim_gen::TimGenDevice {
-//     tim_gen::device(TIM17)
-// }
-
-
 // PLL Mode with 8Mhz External Oscillator
 //   168Mhz System Clock
 //   84Mhz AHB Clock
