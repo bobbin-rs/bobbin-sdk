@@ -101,7 +101,10 @@ pub fn set_mode_fbe() {
         // PLLSTEN0=0: MCGPLLCLK is disabled in any of the Stop modes.
         // PRDIV0=1: Divide Factor 2
         //MCG_C5 = MCG_C5_PRDIV0(0x01);
-        MCG.set_c5(mcg::C5(0).set_prdiv0(0x01));
+
+        // PLL Divide by 4
+
+        MCG.set_c5(mcg::C5(0).set_prdiv0(0x03));
 
         // LOLIE0=0: No interrupt request is generated on loss of lock.
         // PLLS=0: FLL is selected.
@@ -109,7 +112,7 @@ pub fn set_mode_fbe() {
         // VDIV0=0: Multiply Factor 24
         //MCG_C6 = 0x00U;
 
-        MCG.set_c6(mcg::C6(0));
+        MCG.set_c6(mcg::C6(0).set_vdiv0(0b00110));
 
         /* Wait until the source of the FLL reference clock is the external reference clock. */
         //while((MCG_S & MCG_S_IREFST_MASK) != 0x00U) {}
@@ -149,6 +152,8 @@ pub fn set_mode_pbe() {
 
         /* MCG_C5: ??=0,PLLCLKEN0=0,PLLSTEN0=0,PRDIV0=1 */
         //MCG_C5 = MCG_C5_PRDIV0(0x01);                    
+
+        // PLL Divide by 4
 
         m.set_c5(mcg::C5(0).set_prdiv0(0x3));
 

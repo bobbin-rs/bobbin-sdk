@@ -101,6 +101,9 @@ pub fn set_mode_fbe() {
         // PLLSTEN0=0: MCGPLLCLK is disabled in any of the Stop modes.
         // PRDIV0=1: Divide Factor 2
         //MCG_C5 = MCG_C5_PRDIV0(0x01);
+
+        // PLL Divide by 2
+
         MCG.set_c5(mcg::C5(0).set_prdiv0(0x01));
 
         // LOLIE0=0: No interrupt request is generated on loss of lock.
@@ -109,7 +112,7 @@ pub fn set_mode_fbe() {
         // VDIV0=0: Multiply Factor 24
         //MCG_C6 = 0x00U;
 
-        MCG.set_c6(mcg::C6(0));
+        MCG.set_c6(mcg::C6(0).set_vdiv0(0b01110));
 
         /* Wait until the source of the FLL reference clock is the external reference clock. */
         //while((MCG_S & MCG_S_IREFST_MASK) != 0x00U) {}
@@ -150,12 +153,18 @@ pub fn set_mode_pbe() {
         /* MCG_C5: ??=0,PLLCLKEN0=0,PLLSTEN0=0,PRDIV0=1 */
         //MCG_C5 = MCG_C5_PRDIV0(0x01);                    
 
-        m.set_c5(mcg::C5(0).set_prdiv0(0x3));
+        //m.set_c5(mcg::C5(0).set_prdiv0(0x3));
+
+        // PLL Divide by 2
+
+        m.set_c5(mcg::C5(0).set_prdiv0(0x1));
 
         /* MCG_C6: LOLIE0=0,PLLS=1,CME0=0,VDIV0=0 */
         //MCG_C6 = MCG_C6_PLLS_MASK;
 
-        m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b00110));
+        // VDIV = 0b01110 (Multiply Factor 30) - different from k64
+
+        m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b01110));
         
         /* Wait until external reference clock is selected as MCG output */
         //while((MCG_S & 0x0CU) != 0x08U) {}
@@ -196,8 +205,8 @@ pub fn set_mode_pee() {
 
         /* MCG_C5: ??=0,PLLCLKEN0=0,PLLSTEN0=0,PRDIV0=1 */
        
-        // PRDIV0 = 0x3 (Divide by 4)
-        m.set_c5(mcg::C5(0).set_prdiv0(0x3));
+        // PRDIV0 = 0x1 (Divide by 1)
+        m.set_c5(mcg::C5(0).set_prdiv0(0x1));
 
         /* MCG_C6: LOLIE0=0,PLLS=1,CME0=0,VDIV0=0 */
         // MCG_C6 = MCG_C6_PLLS_MASK;
