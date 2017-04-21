@@ -1,6 +1,6 @@
 use chip::tim_gen::{TIM2, TIM21, TIM22};
 use hal::rcc;
-use driver::tim_gen;
+use hal::tim_gen;
 
 pub fn tim2() -> tim_gen::TimGenDevice {
     rcc::set_tim_gen_enabled(TIM2, true);    

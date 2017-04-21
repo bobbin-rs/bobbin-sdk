@@ -1,7 +1,7 @@
 use chip::usart::USART2;
 use hal::rcc;
-use driver::usart;
-use driver::gpio;
+use hal::usart;
+use hal::gpio;
 
 pub fn usart2(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> usart::UsartDevice {
     rcc::set_usart_enabled(USART2, true);

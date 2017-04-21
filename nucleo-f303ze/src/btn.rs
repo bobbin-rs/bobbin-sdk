@@ -1,6 +1,6 @@
 use chip::gpio::GPIOC;
 use hal::rcc;
-use driver::gpio;
+use hal::gpio;
 
 // BTN0 = PC13
 pub fn btn0() -> gpio::PinInput { 

@@ -1,6 +1,6 @@
 use chip::gpio::GPIOB;
 use hal::rcc;
-use driver::gpio;
+use hal::gpio;
 
 pub type Led = gpio::PinOutput;
 

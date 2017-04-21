@@ -1,6 +1,6 @@
 use chip::gpio::{GPIOA, GPIOB, GPIOC, GPIOD, GPIOE};
 use hal::rcc;
-use driver::gpio;
+use hal::gpio;
 
 macro_rules! pindef {
     ($id:ident, $port:expr, $pin:expr) => {

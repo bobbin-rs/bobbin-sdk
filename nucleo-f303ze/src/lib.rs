@@ -15,7 +15,7 @@ pub mod console;
 pub mod logger;
 
 extern crate stm32f3;
-pub use stm32f3::{chip, hal, driver};
+pub use stm32f3::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;

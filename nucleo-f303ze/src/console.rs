@@ -34,7 +34,7 @@ impl Console {
         usart::usart2(pin::pa2(), pin::pa3());
     }
 
-    pub fn usart(&self) -> ::driver::usart::UsartDevice {
+    pub fn usart(&self) -> ::hal::usart::UsartDevice {
         unsafe { usart::usart2_unchecked(pin::pa2(), pin::pa3()) }
     }
 }

@@ -10,7 +10,7 @@ extern crate compiler_builtins;
 pub mod console;
 
 extern crate stm32l0;
-pub use stm32l0::{chip, hal, driver};
+pub use stm32l0::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;

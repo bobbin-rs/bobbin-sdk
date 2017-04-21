@@ -1,6 +1,6 @@
 use chip::gpio::GPIOA;
 use hal::rcc;
-use driver::gpio;
+use hal::gpio;
 
 // LED @ D13 = PA5
 pub fn led0() -> gpio::PinOutput {
