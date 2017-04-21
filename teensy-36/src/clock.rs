@@ -4,7 +4,7 @@ use chip::mcg::{self, MCG};
 
 pub const CLOCK: ClockDevice = ClockDevice::Clock0;
 
-// Teensy 3.5 Clock Setup
+// Teensy 3.6 Clock Setup
 //
 // External Clock 16Mhz
 // Boot Clock Mode (Fast clock boot) = about 21MHz
@@ -61,7 +61,7 @@ pub fn setup_osc() {
         // OSC.set_erclk_enable(1);
         OSC.with_cr(|cr| cr.set_erclken(1));
         // SIM.set_clkdiv(0x0, 0x1, 0x2, 0x3);
-        SIM.with_clkdiv1(|r| r.set_outdiv1(0x0).set_outdiv2(0x1).set_outdiv3(0x2).set_outdiv4(0x4));
+        SIM.with_clkdiv1(|r| r.set_outdiv1(0x0).set_outdiv2(0x1).set_outdiv3(0x2).set_outdiv4(0x4));        
     }
 }
 
@@ -202,9 +202,9 @@ pub fn set_mode_pee() {
         /* MCG_C6: LOLIE0=0,PLLS=1,CME0=0,VDIV0=0 */
         // MCG_C6 = MCG_C6_PLLS_MASK;
 
-        // VDIV = 0b00110 (Multiply Factor 30)
+        // VDIV = 0b01110 (Multiply Factor 30) - different from k64
 
-        m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b00110));
+        m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b01110));
         
         /* Wait until output of the PLL is selected */
         // while((MCG_S & 0x0CU) != 0x0CU) {}
