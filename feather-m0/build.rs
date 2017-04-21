@@ -6,11 +6,11 @@ fn main() {
     // Pass our linker script to the top crate
     let script = match env::var("CARGO_FEATURE_NO_BOOTLOADER") {
         Ok(_) => "samd-no-bootloader.ld",
-        Err(_) => "samd.ld"
+        Err(_) => "samd-bootloader.ld"
     };
 
     let script_out = "samd.ld";
-
+    println!("cargo:warning=Using {}", script);
     let src = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").unwrap());
     let out = PathBuf::from(env::var_os("OUT_DIR").unwrap());
 
