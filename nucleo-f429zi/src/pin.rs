@@ -1,4 +1,4 @@
-use chip::gpio::{GPIOA, GPIOB, GPIOC, GPIOD, GPIOE};
+use chip::gpio::{GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG};
 use hal::rcc;
 use hal::gpio;
 
@@ -119,3 +119,37 @@ pindef!(pe12, GPIOE, 12);
 pindef!(pe13, GPIOE, 13);
 pindef!(pe14, GPIOE, 14);
 pindef!(pe15, GPIOE, 15);
+
+pindef!(pf0, GPIOF, 0);
+pindef!(pf1, GPIOF, 1);
+pindef!(pf2, GPIOF, 2);
+pindef!(pf3, GPIOF, 3);
+pindef!(pf4, GPIOF, 4);
+pindef!(pf5, GPIOF, 5);
+pindef!(pf6, GPIOF, 6);
+pindef!(pf7, GPIOF, 7);
+pindef!(pf8, GPIOF, 8);
+pindef!(pf9, GPIOF, 9);
+pindef!(pf10, GPIOF, 10);
+pindef!(pf11, GPIOF, 11);
+pindef!(pf12, GPIOF, 12);
+pindef!(pf13, GPIOF, 13);
+pindef!(pf14, GPIOF, 14);
+pindef!(pf15, GPIOF, 15);
+
+pindef!(pg0, GPIOG, 0);
+pindef!(pg1, GPIOG, 1);
+pindef!(pg2, GPIOG, 2);
+pindef!(pg3, GPIOG, 3);
+pindef!(pg4, GPIOG, 4);
+pindef!(pg5, GPIOG, 5);
+pindef!(pg6, GPIOG, 6);
+pindef!(pg7, GPIOG, 7);
+pindef!(pg8, GPIOG, 8);
+pindef!(pg9, GPIOG, 9);
+pindef!(pg10, GPIOG, 10);
+pindef!(pg11, GPIOG, 11);
+pindef!(pg12, GPIOG, 12);
+pindef!(pg13, GPIOG, 13);
+pindef!(pg14, GPIOG, 14);
+pindef!(pg15, GPIOG, 15);
