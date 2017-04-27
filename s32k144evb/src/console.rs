@@ -1,6 +1,5 @@
 use core::fmt::{self, Write, Arguments};
-use pin;
-use uart;
+use serial;
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -25,17 +24,17 @@ macro_rules! println {
     };
 }
 
+pub fn init() {
+    serial::serial1();
+}
+
 pub const CONSOLE: Console = Console {};
 
 pub struct Console {}
 
 impl Console {
-    pub fn init(&self, _baud: u32) {
-        uart::uart0(pin::pb16(), pin::pb17());
-    }
-
-    pub fn uart(&self) -> ::hal::uart::UartDevice {
-        unsafe { uart::uart0_unchecked(pin::pb16(), pin::pb17()) }
+    pub fn uart(&self) -> ::hal::lpuart::LpuartDevice {
+        serial::serial1_unchecked()
     }
 }
 

@@ -1,7 +1,6 @@
 use chip::lpuart::{LPUART0, LPUART1};
 use hal::pcc;
 use hal::lpuart;
-use hal::port;
 use pin;
 
 // serial0 using UART0 / PTA2 / PTA3 AltFn6
@@ -25,6 +24,10 @@ pub fn serial0() -> lpuart::LpuartDevice {
     u
 }
 
+pub fn serial0_unchecked() -> lpuart::LpuartDevice {
+    lpuart::device(LPUART0)
+}
+
 // pub unsafe fn uart0_unchecked(rx: port::PinUnknown, tx: port::PinUnknown) -> uart::UartDevice {
 //     let tx = tx.into_altfn_unchecked();
 //     let rx = rx.into_altfn_unchecked();
@@ -46,4 +49,8 @@ pub fn serial1() -> lpuart::LpuartDevice {
     let u = lpuart::device(LPUART1);
     u.set_osr(0b1111).set_sbr(22).set_te(true);    
     u
+}
+
+pub fn serial1_unchecked() -> lpuart::LpuartDevice {
+    lpuart::device(LPUART1)
 }

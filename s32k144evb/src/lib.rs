@@ -11,11 +11,11 @@ extern crate log;
 extern crate s32k144;
 pub use s32k144::{chip, hal};
 
-// #[macro_use]
-// pub mod console;
+#[macro_use]
+pub mod console;
 
-// #[macro_use]
-// pub mod logger;
+#[macro_use]
+pub mod logger;
 
 pub mod exceptions;
 pub mod lang_items;
@@ -37,5 +37,5 @@ pub fn delay(n: u32) {
 
 pub fn init() {
     clock::init();
-    // console::CONSOLE.init(115_200);
+    console::init();
 }
