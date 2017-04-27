@@ -8,7 +8,7 @@ use core::fmt::Write;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let mut u = board::serial::serial0();
+    let mut u = board::serial::serial1();
     let led0 = board::led::led_red();
     let mut i = 0;
     loop {
@@ -16,7 +16,7 @@ pub extern "C" fn main() -> ! {
         write!(u, "Hello, World: {}\r\n", i).unwrap();
         
         i += 1;
-        board::delay(500);
+        board::delay(1000);
     }
 }
 
