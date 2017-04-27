@@ -1,15 +1,13 @@
-use chip::port::{PORTA, PORTC};
-use hal::{sim, port};
+use hal::port;
+use pin;
 
-// SW2 = PTC6
-// SW3 = PTA4
+// SW2 = PTC12
+// SW3 = PTC13
 
 pub fn sw2() -> port::PinInput { 
-    sim::set_port_enabled(PORTC, true);
-    port::pin(PORTC, 6).into_input().with_pull(port::Pull::PullUp)
+    pin::ptc12().into_input().with_pull(port::Pull::PullUp)
 }
 
 pub fn sw3() -> port::PinInput { 
-    sim::set_port_enabled(PORTA, true);
-    port::pin(PORTA, 4).into_input().with_pull(port::Pull::PullUp)
+    pin::ptc13().into_input().with_pull(port::Pull::PullUp)
 }

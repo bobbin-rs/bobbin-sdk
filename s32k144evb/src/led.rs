@@ -1,12 +1,18 @@
-use chip::port::PORTD;
-use chip::pcc::PCC;
 use hal::port;
+use pin;
 
-// LED RED = PTD0
+// LED BLUE = PTD0
+// LED Red = PTD15
+// LED Green = PTD16
 
-pub fn led0() -> port::PinOutput {
-    unsafe {
-        PCC.with_portd(|r| r.set_cgc(1));
-    }
-    port::pin(PORTD, 0).into_output()
+pub fn led_blue() -> port::PinOutput {
+    pin::ptd0().into_output()
+}
+
+pub fn led_red() -> port::PinOutput {
+    pin::ptd15().into_output()
+}
+
+pub fn led_green() -> port::PinOutput {
+    pin::ptd16().into_output()
 }

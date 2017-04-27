@@ -21,16 +21,16 @@ pub mod exceptions;
 pub mod lang_items;
 
 pub mod clock;
+pub mod pin;
 pub mod led;
-// pub mod sw;
-// pub mod pin;
+pub mod sw;
 // pub mod tim;
-// pub mod uart;
+pub mod serial;
 
 // pub use tim::delay;
 
 pub fn delay(n: u32) {
-    for _ in 0..25_000*n {
+    for _ in 0..10_000*n {
         unsafe { asm!("nop") }
     }
 }
