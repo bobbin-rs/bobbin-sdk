@@ -7,7 +7,7 @@ use pin;
 // serial1 using UART1 / PTC6 / PTC7 AltFn2
 
 pub fn serial0() -> lpuart::LpuartDevice {
-    pcc::set_lpuart_enabled(LPUART0, true, 0b110);   // Use SPLLDIV2_CLK = 40Mhz 
+    pcc::set_lpuart_enabled(LPUART0, true, pcc::Source::SPLLDIV2);   // Use SPLLDIV2_CLK = 40Mhz 
     
     unsafe {
         LPUART0.with_global(|r| r.set_rst(1));
@@ -36,7 +36,7 @@ pub fn serial0_unchecked() -> lpuart::LpuartDevice {
 
 
 pub fn serial1() -> lpuart::LpuartDevice {
-    pcc::set_lpuart_enabled(LPUART1, true, 0b110);   // Use SPLLDIV2_CLK = 40Mhz 
+    pcc::set_lpuart_enabled(LPUART1, true, pcc::Source::SPLLDIV2);   // Use SPLLDIV2_CLK = 40Mhz 
 
     unsafe {
         LPUART1.with_global(|r| r.set_rst(1));
