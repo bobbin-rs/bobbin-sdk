@@ -20,7 +20,7 @@ pub fn serial0() -> lpuart::LpuartDevice {
     
 
     let u = lpuart::device(LPUART0);
-    u.set_osr(0b1111).set_sbr(22).set_te(true);    
+    u.set_osr(0b1111).set_sbr(22).set_te(true).set_re(true).set_txfe(true).set_rxfe(true);
     u
 }
 
@@ -47,7 +47,7 @@ pub fn serial1() -> lpuart::LpuartDevice {
     let _tx = pin::ptc7().into_altfn(2);
 
     let u = lpuart::device(LPUART1);
-    u.set_osr(0b1111).set_sbr(22).set_te(true);    
+    u.set_osr(0b1111).set_sbr(22).set_te(true).set_re(true).set_txfe(true).set_rxfe(true);
     u
 }
 

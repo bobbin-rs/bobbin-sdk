@@ -11,12 +11,13 @@ pub extern "C" fn main() -> ! {
     let mut u = board::serial::serial1();
     let led0 = board::led::led_red();
     let mut i = 0;
+    write!(u, "Running LPUART Test\r\n").unwrap();
     loop {
-        led0.toggle();
-        write!(u, "Hello, World: {}\r\n", i).unwrap();
-        
-        i += 1;
-        board::delay(1000);
+        if let Some(c) = u.try_getc() {
+            write!(u, "{}: {:?}\r\n", i, c as char).unwrap();
+            led0.toggle();        
+            i += 1;
+        }        
     }
 }
 
