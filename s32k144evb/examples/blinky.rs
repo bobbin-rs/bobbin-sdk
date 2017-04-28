@@ -15,13 +15,9 @@ pub extern "C" fn main() -> ! {
         led0.toggle();
         led1.toggle();
         if sw2.get() {
-            for _ in 0..2_000_000 {
-                unsafe { asm!("nop") }
-            }
+            board::delay(100);
         } else {
-            for _ in 0..10_000_000 {
-                unsafe { asm!("nop") }
-            }
+            board::delay(500);
         }
     }
 }

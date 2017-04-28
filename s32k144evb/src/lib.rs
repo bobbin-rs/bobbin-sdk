@@ -24,16 +24,16 @@ pub mod clock;
 pub mod pin;
 pub mod led;
 pub mod sw;
-// pub mod tim;
+pub mod timer;
 pub mod serial;
 
-// pub use tim::delay;
+pub use timer::delay;
 
-pub fn delay(n: u32) {
-    for _ in 0..10_000*n {
-        unsafe { asm!("nop") }
-    }
-}
+// pub fn delay(n: u32) {
+//     for _ in 0..10_000*n {
+//         unsafe { asm!("nop") }
+//     }
+// }
 
 pub fn init() {
     clock::init();
