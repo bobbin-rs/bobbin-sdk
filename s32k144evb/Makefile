@@ -14,5 +14,8 @@ uart:
 	arm-none-eabi-objdump -h target/thumbv7em-none-eabihf/debug/examples/uart > headers.txt
 	arm-none-eabi-objdump -d target/thumbv7em-none-eabihf/debug/examples/uart > asm.txt	
 
+irq:
+	xargo build --example irq
+
 clean:
 	xargo clean
