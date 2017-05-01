@@ -1,7 +1,8 @@
 #![no_std]
 #![no_main]
 #![feature(asm)]
-extern crate s32k144evb as board;
+
+extern crate evb_s32k144 as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate s32k144evb as board;
+extern crate evb_s32k144 as board;
 
 use core::fmt::Write;
 
