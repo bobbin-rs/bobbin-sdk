@@ -1,5 +1,6 @@
 #![no_std]
 #![no_main]
+#![feature(const_fn)]
 
 #[macro_use]
 extern crate evb_s32k144 as board;
@@ -9,22 +10,22 @@ extern crate simple_semaphore;
 
 use simple_semaphore::{Semaphore, SemaphoreReader, SemaphoreWriter};
 use board::hal::lpit::Timer;
+use core::cell::UnsafeCell;
 
 // Assume PIT bus clock is 40Mhz
 
 macro_rules! timer_client {
     ($timer:expr) => {
-        {
-            
-            static mut DRIVER: Option<Driver> = None;
-            unsafe extern "C" fn handler() {                
-                DRIVER.as_ref().unwrap().handle_irq()
+        {            
+            static mut DRIVER: UnsafeCell<Option<Driver>> = UnsafeCell::new(None);
+            unsafe extern "C" fn handler() {
+                (&mut *DRIVER.get()).as_ref().unwrap().handle_irq()
             }
             $timer.set_handler(Some(handler));
             
             let (r, w) = static_semaphore!();
             unsafe {
-                DRIVER = Some(Driver::new($timer.clone(), w));
+                DRIVER = UnsafeCell::new(Some(Driver::new($timer.clone(), w)));
             }            
             Client::new($timer, r)
         }
