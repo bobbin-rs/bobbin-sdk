@@ -14,19 +14,53 @@ use core::cell::UnsafeCell;
 
 // Assume PIT bus clock is 40Mhz
 
+pub trait HandleIrq {
+    fn handle_irq(&self);
+}
+
+static mut HANDLERS: [Option<&'static HandleIrq>; 8] = [None; 8];
+
+unsafe extern "C" fn handle_irq(index: usize) {
+    if let Some(handler) = HANDLERS[index] {
+        handler.handle_irq();
+    }
+}
+
+unsafe extern "C" fn handle_irq_0() { handle_irq(0) }
+unsafe extern "C" fn handle_irq_1() { handle_irq(1) }
+unsafe extern "C" fn handle_irq_2() { handle_irq(2) }
+unsafe extern "C" fn handle_irq_3() { handle_irq(3) }
+
+
+pub fn register(h: &'static HandleIrq) -> unsafe extern "C" fn() {
+    unsafe {
+        for i in 0..HANDLERS.len() {
+            if HANDLERS[i].is_none() {
+                HANDLERS[i] = Some(h);
+                return match i {
+                    0 => handle_irq_0,
+                    1 => handle_irq_1,
+                    2 => handle_irq_2,
+                    3 => handle_irq_3,
+                    _ => panic!("Out of IRQ handler slots")
+                }
+            }
+        }
+        panic!("Out of IRQ handler slots")
+    }
+}
+
+
 macro_rules! timer_client {
     ($timer:expr) => {
         {            
-            static mut DRIVER: UnsafeCell<Option<Driver>> = UnsafeCell::new(None);
-            unsafe extern "C" fn handler() {
-                (&mut *DRIVER.get()).as_ref().unwrap().handle_irq()
-            }
-            $timer.set_handler(Some(handler));
-            
             let (r, w) = static_semaphore!();
+            static mut DRIVER: UnsafeCell<Option<Driver>> = UnsafeCell::new(None);            
             unsafe {
                 DRIVER = UnsafeCell::new(Some(Driver::new($timer.clone(), w)));
+                $timer.set_handler(Some(register((&*DRIVER.get()).as_ref().unwrap() as &HandleIrq)));
             }            
+        
             Client::new($timer, r)
         }
     }
@@ -80,8 +114,9 @@ impl<'a> Driver<'a> {
             writer: writer,
         }
     }
-    
-    pub fn handle_irq(&self) {
+}
+impl<'a> HandleIrq for Driver<'a> {    
+    fn handle_irq(&self) {
         if self.timer.tif() {
             self.timer.clr_tif();
             self.writer.write(1);
