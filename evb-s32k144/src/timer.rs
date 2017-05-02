@@ -6,6 +6,11 @@ pub fn lpit0() -> lpit::Timer {
     lpit::timer(lpit::LPIT0, 0)
 }
 
+pub fn lpit1() -> lpit::Timer {
+    pcc::set_lpit_enabled(true, pcc::Source::SPLLDIV2);
+    lpit::timer(lpit::LPIT0, 1)
+}
+
 static mut DELAY_DONE: bool = false;
 pub fn delay(ms: u32) {
     unsafe { DELAY_DONE = false; }
