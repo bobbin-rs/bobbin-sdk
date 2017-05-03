@@ -9,20 +9,36 @@ extern crate evb_s32k144 as board;
 extern crate simple_semaphore;
 
 use simple_semaphore::{Semaphore, SemaphoreReader, SemaphoreWriter};
+use board::chip::irq::Irq;
 use board::hal::lpit::Timer;
-use core::cell::UnsafeCell;
+use board::hal::nvic;
 
 // Assume PIT bus clock is 40Mhz
+
+pub struct Guard {
+    index: usize,
+    irq: Irq,
+}
+
+impl Drop for Guard {
+    fn drop(&mut self) {
+        unsafe {
+            println!("drop: {}, {}", self.index, self.irq.0);
+            self.irq.set_handler(None);
+            HANDLERS[self.index] = None;
+        }
+    }
+}
 
 pub trait HandleIrq {
     fn handle_irq(&self);
 }
 
-static mut HANDLERS: [Option<&'static HandleIrq>; 8] = [None; 8];
+static mut HANDLERS: [Option<*const HandleIrq>; 4] = [None; 4];
 
 unsafe extern "C" fn handle_irq(index: usize) {
     if let Some(handler) = HANDLERS[index] {
-        handler.handle_irq();
+        (&*handler).handle_irq();
     }
 }
 
@@ -32,51 +48,41 @@ unsafe extern "C" fn handle_irq_2() { handle_irq(2) }
 unsafe extern "C" fn handle_irq_3() { handle_irq(3) }
 
 
-pub fn register(h: &'static HandleIrq) -> unsafe extern "C" fn() {
+pub fn register(irq: Irq, handler: *const HandleIrq) -> Guard {    
     unsafe {
-        for i in 0..HANDLERS.len() {
-            if HANDLERS[i].is_none() {
-                HANDLERS[i] = Some(h);
-                return match i {
-                    0 => handle_irq_0,
-                    1 => handle_irq_1,
-                    2 => handle_irq_2,
-                    3 => handle_irq_3,
-                    _ => panic!("Out of IRQ handler slots")
-                }
-            }
-        }
-        panic!("Out of IRQ handler slots")
+        let channel = irq.0 - 48;
+        println!("registering {} {} {:p}", irq.0, channel, handler);
+        HANDLERS[channel] = Some(handler);
+        irq.set_handler(Some(match channel {
+            0 => handle_irq_0,
+            1 => handle_irq_1,
+            2 => handle_irq_2,
+            3 => handle_irq_3,
+            _ => panic!("Only channel 0..3 supported")
+        }));
+        nvic::set_enabled(irq.0, true);
+        Guard { index: channel, irq: irq }
     }
 }
 
 
-macro_rules! timer_client {
-    ($timer:expr) => {
-        {            
-            let (r, w) = static_semaphore!();
-            static mut DRIVER: UnsafeCell<Option<Driver>> = UnsafeCell::new(None);            
-            unsafe {
-                DRIVER = UnsafeCell::new(Some(Driver::new($timer.clone(), w)));
-                $timer.set_handler(Some(register((&*DRIVER.get()).as_ref().unwrap() as &HandleIrq)));
-            }            
-        
-            Client::new($timer, r)
-        }
-    }
-}
-
-pub struct Client<'a> {
-    timer: Timer,
+pub struct Driver<'a> {
+    timer: Timer,    
     reader: SemaphoreReader<'a>,
+    writer: SemaphoreWriter<'a>,
 }
 
-impl<'a> Client<'a> {
-    pub fn new(timer: Timer, reader: SemaphoreReader<'a>) -> Self {
-        Client {
+impl<'a> Driver<'a> {
+    pub fn new(timer: Timer, reader: SemaphoreReader<'a>, writer: SemaphoreWriter<'a>) -> Self {        
+        Driver {
             timer: timer,
             reader: reader,
+            writer: writer,
         }
+    }
+
+    pub fn irq(&self) -> Irq {
+        self.timer.irq()
     }
 
     pub fn start(&self, period: u32) {
@@ -102,19 +108,7 @@ impl<'a> Client<'a> {
     }
 }
 
-pub struct Driver<'a> {
-    timer: Timer,
-    writer: SemaphoreWriter<'a>
-}
 
-impl<'a> Driver<'a> {
-    pub fn new(timer: Timer, writer: SemaphoreWriter<'a>) -> Self {       
-        Driver { 
-            timer: timer,
-            writer: writer,
-        }
-    }
-}
 impl<'a> HandleIrq for Driver<'a> {    
     fn handle_irq(&self) {
         if self.timer.tif() {
@@ -124,17 +118,22 @@ impl<'a> HandleIrq for Driver<'a> {
     }
 }
 
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    
-    let client0 = timer_client!(board::timer::lpit0());
-    let client1 = timer_client!(board::timer::lpit1());
+    board::init();    
+
+    let (r0, w0) = static_semaphore!();
+    let (r1, w1) = static_semaphore!();
+    let client0 = Driver::new(board::timer::lpit0(), r0, w0);
+    let client1 = Driver::new(board::timer::lpit1(), r1, w1);
+    println!("client0: {:p}", &client0);
+    println!("client1: {:p}", &client1);
+    let _guard_1 = register(client0.irq(), &client0 as *const HandleIrq);
+    let _guard_2 = register(client1.irq(), &client1 as *const HandleIrq);
 
     client0.start(700);
 
-    client1.start(500);
+    client1.start(500);    
 
     let mut i = 0;
     let mut j = 0;
