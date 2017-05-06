@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
-use board::chip::can::{Can, Esr1};
+use board::chip::can::{Can};
 use board::hal::can::Code;
 
 #[no_mangle]
@@ -77,7 +77,7 @@ pub extern "C" fn main() -> ! {
 
     c0.set_mi(0, 0x0);
     c0.set_id(0, 0x123 << 18); 
-    c0.set_code(0, Code::RxEmpty);
+    c0.set_code(0, Code::RxEmpty);    
 
     // Setup TX Mailbox
     c0.set_code(1, Code::TxInactive);
@@ -108,7 +108,7 @@ pub extern "C" fn main() -> ! {
                 c0.set_code(1, Code::TxData);
                 c0.set_id(1, i << 18); 
                 //c0.set_id(1, 0x123 << 0); 
-                c0.set_dlc(1, 0x8);
+                c0.write(1, &[0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
             }
             i += 1;
             
@@ -120,7 +120,12 @@ pub extern "C" fn main() -> ! {
             //c0.set_id(0, 0x123 << 18);
             c0.set_id(0, 0);
             c0.set_code(0, Code::RxEmpty);
-            
+            let mut buf = [0u8; 8];
+            let n = c0.read(0, &mut buf);
+            for i in 0..n {
+                print!(" {:02x}", buf[i]);
+            }
+            println!("");
         }
         if c0.bufi(1) {
             c0.clr_bufi(1);
