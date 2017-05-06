@@ -26,6 +26,7 @@ pub mod led;
 pub mod sw;
 pub mod timer;
 pub mod serial;
+pub mod can;
 
 pub use timer::delay;
 
