@@ -13,6 +13,8 @@ pub extern "C" fn main() -> ! {
     println!("FLEXCAN Test");
 
     let c0 = board::can::can0();
+    let rx = c0.mbuf(0);
+    let tx = c0.mbuf(1);
 
     // Initialize the Module Configuration Register (CAN_MCR)
     // Initialize the Control 1 Register (CAN_CTRL1) and optionally the CAN Bit Timing Register (CAN_CBT). 
@@ -75,17 +77,16 @@ pub extern "C" fn main() -> ! {
 
     // Setup RX Mailbox
 
-    c0.set_mi(0, 0x0);
-    c0.set_id(0, 0x123 << 18); 
-    c0.set_code(0, Code::RxEmpty);    
+    rx.set_idmask(0x0);
+    rx.set_code(Code::RxEmpty);    
 
     // Setup TX Mailbox
-    c0.set_code(1, Code::TxInactive);
+    tx.set_code(Code::TxInactive);
 
 
     dump_can(c0.can);
-    println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", c0.code(0), c0.dlc(0), c0.id(0), c0.time_stamp(0));
-    println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", c0.code(1), c0.dlc(1), c0.id(1), c0.time_stamp(1));
+    println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id(), rx.time_stamp());
+    println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id(), tx.time_stamp());
 
     // Enable CAN Peripheral
     println!("Exit Freeze Mode");
@@ -104,36 +105,31 @@ pub extern "C" fn main() -> ! {
             println!("Tick...");
 
             // Transmit Message
-            if let Code::TxInactive = c0.code(1) {
-                c0.set_code(1, Code::TxData);
-                c0.set_id(1, i << 18); 
-                //c0.set_id(1, 0x123 << 0); 
-                c0.write(1, &[0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
+            if let Code::TxInactive = tx.code() {
+                tx.set_code(Code::TxData);
+                tx.set_id(i << 18);
+                tx.write(&[0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
             }
             i += 1;
             
         }
 
-        if c0.bufi(0) {
-            c0.clr_bufi(0);
-            println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", c0.code(0), c0.dlc(0), c0.id(0), c0.time_stamp(0));
-            //c0.set_id(0, 0x123 << 18);
-            c0.set_id(0, 0);
-            c0.set_code(0, Code::RxEmpty);
+        if rx.flag() {
+            rx.clr_flag();
+            println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id(), rx.time_stamp());
+            rx.set_id(0);
+            rx.set_code(Code::RxEmpty);
             let mut buf = [0u8; 8];
-            let n = c0.read(0, &mut buf);
+            let n = rx.read(&mut buf);
             for i in 0..n {
                 print!(" {:02x}", buf[i]);
             }
             println!("");
         }
-        if c0.bufi(1) {
-            c0.clr_bufi(1);
-            println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", c0.code(1), c0.dlc(1), c0.id(1), c0.time_stamp(1));
+        if tx.flag() {
+            tx.clr_flag();
+            println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id(), tx.time_stamp());
         }
-        
-
-        // If message available, print out message
     }
 }
 
