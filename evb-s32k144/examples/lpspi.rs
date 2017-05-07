@@ -39,14 +39,23 @@ pub extern "C" fn main() -> ! {
         println!("FSR:    {:?}", s.fsr());
         println!("TCR:    {:?}", s.tcr());
         println!("RSR:    {:?}", s.rsr());
-    }
-    
+    }    
 
     loop {
-        println!("Sending...");
-        t.send(0xFD00);
-        println!("Receiving...");
-        println!("{:08x}", t.recv());
+        // dump_register(&t, 0x7e);
+        for i in 0u8..128 {
+            dump_register(&t, i);
+        }
+        // dump_register(&t, 0x0500);
+        // dump_register(&t, 0x7e00);
         board::delay(1000);
+    }
+
+    fn dump_register(t: &lpspi::Target, value: u8) {
+        let v: u16 = ((value as u16) << 9) | (1 << 8);        
+        t.send(v);
+        let result = t.recv();
+        let r = result as u8;
+        println!("{:02x}: {:02x}", value, r);
     }
 }
