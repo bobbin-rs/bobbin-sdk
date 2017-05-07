@@ -456,7 +456,7 @@ impl ::core::fmt::Display for Wdc {
 
 impl ::core::fmt::Debug for Wdc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wmc() != 0 { try!(write!(f, " wmc=0x{:x}", self.wmc()))}
       if self.nwp() != 0 { try!(write!(f, " nwp=0x{:x}", self.nwp()))}
       try!(write!(f, "]"));
@@ -488,7 +488,7 @@ impl ::core::fmt::Display for Mc {
 
 impl ::core::fmt::Debug for Mc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.mc() != 0 { try!(write!(f, " mc=0x{:x}", self.mc()))}
       try!(write!(f, "]"));
       Ok(())
@@ -530,7 +530,7 @@ impl ::core::fmt::Display for Fsc {
 
 impl ::core::fmt::Debug for Fsc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.lhc() != 0 { try!(write!(f, " lhc"))}
       if self.rcc() != 0 { try!(write!(f, " rcc=0x{:x}", self.rcc()))}
       try!(write!(f, "]"));
@@ -584,7 +584,7 @@ impl ::core::fmt::Display for Ms {
 
 impl ::core::fmt::Debug for Ms {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.otws() != 0 { try!(write!(f, " otws"))}
       if self.nms() != 0 { try!(write!(f, " nms"))}
       if self.rss() != 0 { try!(write!(f, " rss=0x{:x}", self.rss()))}
@@ -628,7 +628,7 @@ impl ::core::fmt::Display for See {
 
 impl ::core::fmt::Debug for See {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.otwe() != 0 { try!(write!(f, " otwe"))}
       if self.spife() != 0 { try!(write!(f, " spife"))}
       try!(write!(f, "]"));
@@ -682,7 +682,7 @@ impl ::core::fmt::Display for Wds {
 
 impl ::core::fmt::Debug for Wds {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.fnms() != 0 { try!(write!(f, " fnms"))}
       if self.sdms() != 0 { try!(write!(f, " sdms"))}
       if self.wds() != 0 { try!(write!(f, " wds=0x{:x}", self.wds()))}
@@ -715,7 +715,7 @@ impl ::core::fmt::Display for Gpm {
 
 impl ::core::fmt::Debug for Gpm {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.gpm() != 0 { try!(write!(f, " gpm=0x{:x}", self.gpm()))}
       try!(write!(f, "]"));
       Ok(())
@@ -746,7 +746,7 @@ impl ::core::fmt::Display for Lc {
 
 impl ::core::fmt::Debug for Lc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.lkc() != 0 { try!(write!(f, " lkc=0x{:x}", self.lkc()))}
       try!(write!(f, "]"));
       Ok(())
@@ -799,7 +799,7 @@ impl ::core::fmt::Display for Rc {
 
 impl ::core::fmt::Debug for Rc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.pdc() != 0 { try!(write!(f, " pdc"))}
       if self.v2c_vextc() != 0 { try!(write!(f, " v2c_vextc=0x{:x}", self.v2c_vextc()))}
       if self.v1rtc() != 0 { try!(write!(f, " v1rtc=0x{:x}", self.v1rtc()))}
@@ -843,7 +843,7 @@ impl ::core::fmt::Display for Ss {
 
 impl ::core::fmt::Debug for Ss {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.v2s_vexts() != 0 { try!(write!(f, " v2s_vexts=0x{:x}", self.v2s_vexts()))}
       if self.v1s() != 0 { try!(write!(f, " v1s"))}
       try!(write!(f, "]"));
@@ -897,7 +897,7 @@ impl ::core::fmt::Display for Suee {
 
 impl ::core::fmt::Debug for Suee {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.v2oe_vextoe() != 0 { try!(write!(f, " v2oe_vextoe"))}
       if self.v2ue_vextue() != 0 { try!(write!(f, " v2ue_vextue"))}
       if self.v1ue() != 0 { try!(write!(f, " v1ue"))}
@@ -963,7 +963,7 @@ impl ::core::fmt::Display for Canc {
 
 impl ::core::fmt::Debug for Canc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.cfdc() != 0 { try!(write!(f, " cfdc"))}
       if self.pncok() != 0 { try!(write!(f, " pncok"))}
       if self.cpnc() != 0 { try!(write!(f, " cpnc"))}
@@ -1063,7 +1063,7 @@ impl ::core::fmt::Display for Ts {
 
 impl ::core::fmt::Debug for Ts {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.cts() != 0 { try!(write!(f, " cts"))}
       if self.cpnerr() != 0 { try!(write!(f, " cpnerr"))}
       if self.cpns() != 0 { try!(write!(f, " cpns"))}
@@ -1122,7 +1122,7 @@ impl ::core::fmt::Display for Tee {
 
 impl ::core::fmt::Debug for Tee {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.cbse() != 0 { try!(write!(f, " cbse"))}
       if self.cfe() != 0 { try!(write!(f, " cfe"))}
       if self.cwe() != 0 { try!(write!(f, " cwe"))}
@@ -1155,7 +1155,7 @@ impl ::core::fmt::Display for Dr {
 
 impl ::core::fmt::Debug for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.cdr() != 0 { try!(write!(f, " cdr=0x{:x}", self.cdr()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1186,7 +1186,7 @@ impl ::core::fmt::Display for Id {
 
 impl ::core::fmt::Debug for Id {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1217,7 +1217,7 @@ impl ::core::fmt::Display for M {
 
 impl ::core::fmt::Debug for M {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.m() != 0 { try!(write!(f, " m=0x{:x}", self.m()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1270,7 +1270,7 @@ impl ::core::fmt::Display for Fc {
 
 impl ::core::fmt::Debug for Fc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.ide() != 0 { try!(write!(f, " ide"))}
       if self.pndm() != 0 { try!(write!(f, " pndm"))}
       if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
@@ -1303,7 +1303,7 @@ impl ::core::fmt::Display for Dm {
 
 impl ::core::fmt::Debug for Dm {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.dm() != 0 { try!(write!(f, " dm=0x{:x}", self.dm()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1334,7 +1334,7 @@ impl ::core::fmt::Display for Wps {
 
 impl ::core::fmt::Debug for Wps {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wpvs() != 0 { try!(write!(f, " wpvs"))}
       try!(write!(f, "]"));
       Ok(())
@@ -1376,7 +1376,7 @@ impl ::core::fmt::Display for Wpe {
 
 impl ::core::fmt::Debug for Wpe {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wpre() != 0 { try!(write!(f, " wpre"))}
       if self.wpfe() != 0 { try!(write!(f, " wpfe"))}
       try!(write!(f, "]"));
@@ -1441,7 +1441,7 @@ impl ::core::fmt::Display for Ges {
 
 impl ::core::fmt::Debug for Ges {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wpe() != 0 { try!(write!(f, " wpe"))}
       if self.trxe() != 0 { try!(write!(f, " trxe"))}
       if self.supe() != 0 { try!(write!(f, " supe"))}
@@ -1508,7 +1508,7 @@ impl ::core::fmt::Display for Ses {
 
 impl ::core::fmt::Debug for Ses {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.po() != 0 { try!(write!(f, " po"))}
       if self.otw() != 0 { try!(write!(f, " otw"))}
       if self.spif() != 0 { try!(write!(f, " spif"))}
@@ -1564,7 +1564,7 @@ impl ::core::fmt::Display for Sues {
 
 impl ::core::fmt::Debug for Sues {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.v2o_vexto() != 0 { try!(write!(f, " v2o_vexto"))}
       if self.v2u_vextu() != 0 { try!(write!(f, " v2u_vextu"))}
       if self.v1u() != 0 { try!(write!(f, " v1u"))}
@@ -1630,7 +1630,7 @@ impl ::core::fmt::Display for Tes {
 
 impl ::core::fmt::Debug for Tes {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.pnfdeo() != 0 { try!(write!(f, " pnfdeo"))}
       if self.cbs() != 0 { try!(write!(f, " cbs"))}
       if self.cf() != 0 { try!(write!(f, " cf"))}
@@ -1675,7 +1675,7 @@ impl ::core::fmt::Display for Wpes {
 
 impl ::core::fmt::Debug for Wpes {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wpr() != 0 { try!(write!(f, " wpr"))}
       if self.wpf() != 0 { try!(write!(f, " wpf"))}
       try!(write!(f, "]"));
@@ -1729,7 +1729,7 @@ impl ::core::fmt::Display for Mtpnvs {
 
 impl ::core::fmt::Debug for Mtpnvs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.wrcnts() != 0 { try!(write!(f, " wrcnts=0x{:x}", self.wrcnts()))}
       if self.eccs() != 0 { try!(write!(f, " eccs"))}
       if self.nvmps() != 0 { try!(write!(f, " nvmps"))}
@@ -1773,7 +1773,7 @@ impl ::core::fmt::Display for Sc {
 
 impl ::core::fmt::Debug for Sc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.rlc() != 0 { try!(write!(f, " rlc=0x{:x}", self.rlc()))}
       if self.v2suc_vextsuc() != 0 { try!(write!(f, " v2suc_vextsuc"))}
       try!(write!(f, "]"));
@@ -1838,7 +1838,7 @@ impl ::core::fmt::Display for Sbccc {
 
 impl ::core::fmt::Debug for Sbccc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.v1rtsuc() != 0 { try!(write!(f, " v1rtsuc=0x{:x}", self.v1rtsuc()))}
       if self.fnmc() != 0 { try!(write!(f, " fnmc"))}
       if self.sdmc() != 0 { try!(write!(f, " sdmc"))}
@@ -1872,7 +1872,7 @@ impl ::core::fmt::Display for Mtpnvcrc {
 
 impl ::core::fmt::Debug for Mtpnvcrc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.crcc() != 0 { try!(write!(f, " crcc=0x{:x}", self.crcc()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1903,7 +1903,7 @@ impl ::core::fmt::Display for Ids {
 
 impl ::core::fmt::Debug for Ids {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "[0x{:02x}", self.0));
       if self.ids() != 0 { try!(write!(f, " ids=0x{:x}", self.ids()))}
       try!(write!(f, "]"));
       Ok(())
