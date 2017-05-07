@@ -1,7 +1,7 @@
 use std::io::{Write, Result};
 use clap::{ArgMatches};
 use {Device, Register};
-use super::{size_type, field_getter, field_setter, field_with, to_camel};
+use super::{size_type, field_getter, field_setter, field_with, field_name, to_camel};
 
 pub fn gen_registers<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
     if matches.is_present("panic") {
@@ -207,6 +207,7 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
     try!(writeln!(out, "impl {} {{", reg_struct));
 
     for f in r.fields.iter() {
+        assert!(f.dim.is_none(), "{}: Field arrays are not currently implemented", f.name);
         let f_getter = field_getter(&f.name);
         let f_setter = field_setter(&f.name);
         let f_offset = f.bit_offset;
@@ -239,5 +240,52 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
     }
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
+
+    try!(writeln!(out, "impl ::core::fmt::Display for {} {{", reg_struct));
+    try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
+    try!(writeln!(out, "       self.0.fmt(f)"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, "}}"));        
+    try!(writeln!(out, ""));
+
+
+    try!(writeln!(out, "impl ::core::fmt::Debug for {} {{", reg_struct));
+    try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));        
+    try!(writeln!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));"));
+    for f in r.fields.iter() {
+        let f_name = field_name(&f.name);
+        let f_getter = field_getter(&f.name);
+
+        if let Some(dim) = f.dim {
+            for i in 0..dim {
+                match f.bit_width {
+                    1 => {
+                        try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]\"))}}", f_getter, i, f_getter, i));
+                    },
+                    32 => {},
+                    _ => {
+                        try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})))}}", f_getter, i, f_name, i, f_getter, i));
+                    }
+                }                    
+            }
+        } else {
+            match f.bit_width {
+                1 => {
+                    try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}\"))}}", f_getter, f_getter));
+                },
+                32 => {},
+                _ => {
+                    try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}=0x{{:x}}\", self.{}()))}}", f_getter, f_name, f_getter));
+                }
+            }
+        }
+        
+    }
+    try!(writeln!(out, "      try!(write!(f, \"]\"));"));
+    try!(writeln!(out, "      Ok(())"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, "}}"));        
+    try!(writeln!(out, ""));    
+
     Ok(())
 }
