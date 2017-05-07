@@ -4,33 +4,30 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
+use board::hal::lpspi;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("LPSPI Test");
 
     let l1 = board::spi::lpspi1();
-
-    let mut cfg = board::hal::lpspi::Config::default();
-    cfg.master = true;
-
-    cfg.sckpcs = 4;
-    cfg.pcssck = 9;
-    cfg.dbt = 8;
-    cfg.sckdiv = 8;
-
-    cfg.txwater = 3;
-
-    l1.set_enabled(false);
-    l1.configure(&cfg);
-    let mut tgt = board::hal::lpspi::Target::default();
-    tgt.cpha = true;
-    tgt.prescale = 2;
-    tgt.pcs = 3;
-    tgt.framesz = 15;
-
-    l1.configure_target(&tgt);
+    l1.set_enabled(false);    
+    
+    l1.configure(lpspi::Config::default()
+        .master(true)
+        .sckpcs(4)
+        .pcssck(9)
+        .dbt(8)
+        .sckdiv(8)
+        .txwater(3)        
+    );
     l1.set_enabled(true);
+    let t = l1.target()
+        .cpha(true)
+        .prescale(2)
+        .pcs(3)
+        .framesz(15);
     unsafe {
         let s = l1.lpspi;
         println!("CR:     {:?}", s.cr());
@@ -47,9 +44,9 @@ pub extern "C" fn main() -> ! {
 
     loop {
         println!("Sending...");
-        l1.send(0xFD00);
+        t.send(0xFD00);
         println!("Receiving...");
-        println!("{:08x}", l1.recv());
+        println!("{:08x}", t.recv());
         board::delay(1000);
     }
 }
