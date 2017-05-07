@@ -41,21 +41,18 @@ pub extern "C" fn main() -> ! {
         println!("RSR:    {:?}", s.rsr());
     }    
 
-    loop {
-        // dump_register(&t, 0x7e);
-        for i in 0u8..128 {
-            dump_register(&t, i);
-        }
-        // dump_register(&t, 0x0500);
-        // dump_register(&t, 0x7e00);
-        board::delay(1000);
+    let u = board::uja1169::device(t);
+    for i in 0..128 {
+        println!("{:02x}: {:02x}", i, u.read_register(i));
     }
-
-    fn dump_register(t: &lpspi::Target, value: u8) {
-        let v: u16 = ((value as u16) << 9) | (1 << 8);        
-        t.send(v);
-        let result = t.recv();
-        let r = result as u8;
-        println!("{:02x}: {:02x}", value, r);
+    loop {
+        let r = u.reg();
+        println!("ids:   {:08x}", r.ids().0);
+        println!("ms:    {:08x}", r.ms().0);
+        println!("wds:   {:08x}", r.wds().0);
+        println!("sc:    {:08x}", r.sc().0);
+        println!("sbccc: {:08x}", r.sbccc().0);
+        println!("");
+        board::delay(1000);
     }
 }

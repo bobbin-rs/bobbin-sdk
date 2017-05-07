@@ -28,6 +28,7 @@ pub mod timer;
 pub mod serial;
 pub mod can;
 pub mod spi;
+pub mod uja1169;
 
 pub use timer::delay;
 

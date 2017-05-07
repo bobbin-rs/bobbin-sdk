@@ -1,0 +1,545 @@
+; bobbin-chip --registers --panic registers.rx > registers.rs
+
+(device (name UJA1169) (peripheral (size 0x8)
+    (register
+        (name WDC)
+        (offset 0x00)
+        (description "Watchdog control")
+        (field
+            (name WMC)
+            (bit-offset 5)
+            (bit-width 3)
+        )
+        (field
+            (name NWP)
+            (bit-offset 0)
+            (bit-width 4)
+        )
+    )
+    (register
+        (name MC)
+        (offset 0x01)
+        (description "Mode control")
+        (field
+            (name MC)
+            (bit-offset 0)
+            (bit-width 3)
+        )
+    )
+    (register
+        (name FSC)
+        (offset 0x02)
+        (description "Fail-safe control")
+        (field
+            (name LHC)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name RCC)
+            (bit-offset 0)
+            (bit-width 2)
+        )        
+    )
+    (register
+        (name MS)
+        (offset 0x03)
+        (description "Main status")
+        (field
+            (name OTWS)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field
+            (name NMS)
+            (bit-offset 5)
+            (bit-width 1)
+        )
+        (field
+            (name RSS)
+            (bit-offset 0)
+            (bit-width 5)
+        )        
+    )     
+    (register
+        (name SEE)
+        (offset 0x04)
+        (description "System event enable")
+        (field
+            (name OTWE)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name SPIFE)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name WDS)
+        (offset 0x05)
+        (description "Watchdog status")
+        (field
+            (name FNMS)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+        (field
+            (name SDMS)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name WDS)
+            (bit-offset 0)
+            (bit-width 2)
+        )        
+    )    
+    (register
+        (name GPM)
+        (offset 0x06)
+        (dim 4)
+        (dim-increment 1)
+        (description "Memory n")
+        (field
+            (name GPM)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )
+    (register
+        (name LC)
+        (offset 0x0a)
+        (description "Lock control")
+        (field
+            (name LKC)
+            (dim 7)
+            (dim-increment 1)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name RC)
+        (offset 0x10)
+        (description "Regulator control")
+        (field
+            (name PDC)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field
+            (name V2C_VEXTC)
+            (bit-offset 2)
+            (bit-width 2)
+        )        
+        (field
+            (name V1RTC)
+            (bit-offset 0)
+            (bit-width 2)
+        )        
+    )
+    (register
+        (name SS)
+        (offset 0x1b)
+        (description "Supply status")
+        (field
+            (name V2S_VEXTS)
+            (bit-offset 1)
+            (bit-width 2)
+        )
+        (field
+            (name V1S)
+            (bit-offset 0)
+            (bit-width 1)
+        )        
+    )
+    (register
+        (name SUEE)
+        (offset 0x1c)
+        (description "Supply event enable")
+        (field
+            (name V2OE_VEXTOE)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name V2UE_VEXTUE)
+            (bit-offset 1)
+            (bit-width 1)
+        )        
+        (field
+            (name V1UE)
+            (bit-offset 0)
+            (bit-width 1)
+        )        
+    )
+
+    (register
+        (name CANC)
+        (offset 0x20)
+        (description "CAN Control")
+        (field
+            (name CFDC)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field
+            (name PNCOK)
+            (bit-offset 5)
+            (bit-width 1)
+        )
+        (field
+            (name CPNC)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field
+            (name CMC)
+            (bit-offset 0)
+            (bit-width 2)
+        )
+    )
+    (register
+        (name TS)
+        (offset 0x22)
+        (description "Transceiver Status")
+        (field
+            (name CTS)
+            (bit-offset 7)
+            (bit-width 1)
+        )
+        (field
+            (name CPNERR)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field
+            (name CPNS)
+            (bit-offset 5)
+            (bit-width 1)
+        )
+        (field
+            (name COSCS)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field
+            (name CBSS)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+        (field
+            (name VCS)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name CFS)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )    
+    (register
+        (name TEE)
+        (offset 0x23)
+        (description "Transceiver event enable")    
+        (field 
+            (name CBSE)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field 
+            (name CFE)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field 
+            (name CWE)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name DR)
+        (offset 0x26)
+        (description "Data rate")
+        (field
+            (name CDR)
+            (bit-offset 0)
+            (bit-width 3)
+        )
+    )
+    (register
+        (name ID)
+        (offset 0x27)
+        (description "Identifier")
+        (dim 4)
+        (dim-increment 1)
+        (field
+            (name ID)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )
+    (register
+        (name M)
+        (offset 0x2a)
+        (description "Mask")
+        (dim 4)
+        (dim-increment 1)
+        (field
+            (name M)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )    
+    (register
+        (name FC)
+        (offset 0x2f)
+        (description "Frame control")
+        (field 
+            (name IDE)
+            (bit-offset 7)
+            (bit-width 1)
+        )
+        (field 
+            (name PNDM)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field 
+            (name DLC)
+            (bit-offset 0)
+            (bit-width 4)
+        )
+    )    
+    (register
+        (name DM)
+        (offset 0x68)
+        (description "Data mask")
+        (dim 8)
+        (dim-increment 1)
+        (field
+            (name DM)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )      
+    (register
+        (name WPS)
+        (offset 0x4b)
+        (description "Wake pin status")
+        (field
+            (name WPVS)
+            (bit-offset 1)    
+            (bit-width 1)
+        )    
+    )
+    (register
+        (name WPE)
+        (offset 0x4c)
+        (description "Wake pin enable")
+        (field
+            (name WPRE)
+            (bit-offset 1)    
+            (bit-width 1)
+        )    
+        (field
+            (name WPFE)
+            (bit-offset 0)
+            (bit-width 1)
+        )    
+    )
+    (register
+        (name GES)
+        (offset 0x60)
+        (description "Global event status")
+        (field
+            (name WPE)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+        (field
+            (name TRXE)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name SUPE)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name SYSE)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name SES)
+        (offset 0x61)
+        (description "System event status")
+        (field
+            (name PO)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field
+            (name OTW)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name SPIF)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name WDF)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name SUES)
+        (offset 0x62)
+        (description "Supply event status")
+        (field
+            (name V2O_VEXTO)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name V2U_VEXTU)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name V1U)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )
+    (register
+        (name TES)
+        (offset 0x63)
+        (description "Transceiver event status")
+        (field
+            (name PNFDEO)
+            (bit-offset 5)
+            (bit-width 1)
+        )
+        (field
+            (name CBS)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field
+            (name CF)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name CW)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )   
+    (register
+        (name WPES)
+        (offset 0x64)
+        (description "Wake pin event status")
+        (field
+            (name WPR)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name WPF)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )   
+    (register
+        (name MTPNVS)
+        (offset 0x70)
+        (description "MTPNV status")
+        (field
+            (name WRCNTS)
+            (bit-offset 2)
+            (bit-width 6)
+        )
+        (field
+            (name ECCS)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name NVMPS)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )          
+    (register
+        (name SC)
+        (offset 0x73)
+        (description "Start-up control")
+        (field
+            (name RLC)
+            (bit-offset 4)
+            (bit-width 2)
+        )
+        (field
+            (name V2SUC_VEXTSUC)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+    )  
+    (register
+        (name SBCCC)
+        (offset 0x74)
+        (description "SBC configuration control")
+        (field
+            (name V1RTSUC)
+            (bit-offset 4)
+            (bit-width 2)
+        )
+        (field
+            (name FNMC)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+        (field
+            (name SDMC)
+            (bit-offset 2)
+            (bit-width 1)
+        )
+        (field
+            (name SLPC)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )     
+    (register
+        (name MTPNVCRC)
+        (offset 0x75)
+        (description "MTPNV CRC control")
+        (field
+            (name CRCC)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )
+    (register
+        (name IDS)
+        (offset 0x7e)
+        (description "Identification")
+        (field
+            (name IDS)
+            (bit-offset 0)
+            (bit-width 8)
+        )
+    )                   
+))
