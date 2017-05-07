@@ -124,7 +124,7 @@ pub extern "C" fn main() -> ! {
     }
 
     // Set Self Reception Disabled = False
-    c0.set_srxdis(false);
+    c0.set_srxdis(true);
     // Enable Individual Request Masking
     c0.set_irmq(true);
 
