@@ -114,10 +114,8 @@
         (description "Lock control")
         (field
             (name LKC)
-            (dim 7)
-            (dim-increment 1)
             (bit-offset 0)
-            (bit-width 1)
+            (bit-width 7)
         )
     )
     (register

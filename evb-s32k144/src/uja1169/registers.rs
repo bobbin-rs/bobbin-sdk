@@ -448,6 +448,22 @@ impl Wdc {
 
 }
 
+impl ::core::fmt::Display for Wdc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Wdc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wmc() != 0 { try!(write!(f, " wmc=0x{:x}", self.wmc()))}
+      if self.nwp() != 0 { try!(write!(f, " nwp=0x{:x}", self.nwp()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Mc(pub u8);
 
 impl Mc {
@@ -462,6 +478,21 @@ impl Mc {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Mc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Mc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.mc() != 0 { try!(write!(f, " mc=0x{:x}", self.mc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Fsc(pub u8);
@@ -489,6 +520,22 @@ impl Fsc {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Fsc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Fsc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.lhc() != 0 { try!(write!(f, " lhc"))}
+      if self.rcc() != 0 { try!(write!(f, " rcc=0x{:x}", self.rcc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Ms(pub u8);
@@ -529,6 +576,23 @@ impl Ms {
 
 }
 
+impl ::core::fmt::Display for Ms {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ms {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.otws() != 0 { try!(write!(f, " otws"))}
+      if self.nms() != 0 { try!(write!(f, " nms"))}
+      if self.rss() != 0 { try!(write!(f, " rss=0x{:x}", self.rss()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct See(pub u8);
 
 impl See {
@@ -554,6 +618,22 @@ impl See {
      self
   }
 
+}
+
+impl ::core::fmt::Display for See {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for See {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.otwe() != 0 { try!(write!(f, " otwe"))}
+      if self.spife() != 0 { try!(write!(f, " spife"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Wds(pub u8);
@@ -594,6 +674,23 @@ impl Wds {
 
 }
 
+impl ::core::fmt::Display for Wds {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Wds {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.fnms() != 0 { try!(write!(f, " fnms"))}
+      if self.sdms() != 0 { try!(write!(f, " sdms"))}
+      if self.wds() != 0 { try!(write!(f, " wds=0x{:x}", self.wds()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Gpm(pub u8);
 
 impl Gpm {
@@ -610,20 +707,50 @@ impl Gpm {
 
 }
 
+impl ::core::fmt::Display for Gpm {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Gpm {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.gpm() != 0 { try!(write!(f, " gpm=0x{:x}", self.gpm()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Lc(pub u8);
 
 impl Lc {
   pub fn lkc(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+     ((self.0 as u8) >> 0) & 0x7f // [6:0]
   }
 
   pub fn set_lkc(mut self, value: u8) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
+     assert!((value & !0x7f) == 0);
+     self.0 &= !(0x7f << 0);
      self.0 |= value << 0;
      self
   }
 
+}
+
+impl ::core::fmt::Display for Lc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Lc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.lkc() != 0 { try!(write!(f, " lkc=0x{:x}", self.lkc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Rc(pub u8);
@@ -664,6 +791,23 @@ impl Rc {
 
 }
 
+impl ::core::fmt::Display for Rc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Rc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.pdc() != 0 { try!(write!(f, " pdc"))}
+      if self.v2c_vextc() != 0 { try!(write!(f, " v2c_vextc=0x{:x}", self.v2c_vextc()))}
+      if self.v1rtc() != 0 { try!(write!(f, " v1rtc=0x{:x}", self.v1rtc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Ss(pub u8);
 
 impl Ss {
@@ -689,6 +833,22 @@ impl Ss {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Ss {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ss {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.v2s_vexts() != 0 { try!(write!(f, " v2s_vexts=0x{:x}", self.v2s_vexts()))}
+      if self.v1s() != 0 { try!(write!(f, " v1s"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Suee(pub u8);
@@ -727,6 +887,23 @@ impl Suee {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Suee {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Suee {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.v2oe_vextoe() != 0 { try!(write!(f, " v2oe_vextoe"))}
+      if self.v2ue_vextue() != 0 { try!(write!(f, " v2ue_vextue"))}
+      if self.v1ue() != 0 { try!(write!(f, " v1ue"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Canc(pub u8);
@@ -776,6 +953,24 @@ impl Canc {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Canc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Canc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cfdc() != 0 { try!(write!(f, " cfdc"))}
+      if self.pncok() != 0 { try!(write!(f, " pncok"))}
+      if self.cpnc() != 0 { try!(write!(f, " cpnc"))}
+      if self.cmc() != 0 { try!(write!(f, " cmc=0x{:x}", self.cmc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Ts(pub u8);
@@ -860,6 +1055,27 @@ impl Ts {
 
 }
 
+impl ::core::fmt::Display for Ts {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ts {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cts() != 0 { try!(write!(f, " cts"))}
+      if self.cpnerr() != 0 { try!(write!(f, " cpnerr"))}
+      if self.cpns() != 0 { try!(write!(f, " cpns"))}
+      if self.coscs() != 0 { try!(write!(f, " coscs"))}
+      if self.cbss() != 0 { try!(write!(f, " cbss"))}
+      if self.vcs() != 0 { try!(write!(f, " vcs"))}
+      if self.cfs() != 0 { try!(write!(f, " cfs"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Tee(pub u8);
 
 impl Tee {
@@ -898,6 +1114,23 @@ impl Tee {
 
 }
 
+impl ::core::fmt::Display for Tee {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Tee {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cbse() != 0 { try!(write!(f, " cbse"))}
+      if self.cfe() != 0 { try!(write!(f, " cfe"))}
+      if self.cwe() != 0 { try!(write!(f, " cwe"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Dr(pub u8);
 
 impl Dr {
@@ -912,6 +1145,21 @@ impl Dr {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Dr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Dr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cdr() != 0 { try!(write!(f, " cdr=0x{:x}", self.cdr()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Id(pub u8);
@@ -930,6 +1178,21 @@ impl Id {
 
 }
 
+impl ::core::fmt::Display for Id {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Id {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct M(pub u8);
 
 impl M {
@@ -944,6 +1207,21 @@ impl M {
      self
   }
 
+}
+
+impl ::core::fmt::Display for M {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for M {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.m() != 0 { try!(write!(f, " m=0x{:x}", self.m()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Fc(pub u8);
@@ -984,6 +1262,23 @@ impl Fc {
 
 }
 
+impl ::core::fmt::Display for Fc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Fc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.ide() != 0 { try!(write!(f, " ide"))}
+      if self.pndm() != 0 { try!(write!(f, " pndm"))}
+      if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Dm(pub u8);
 
 impl Dm {
@@ -1000,6 +1295,21 @@ impl Dm {
 
 }
 
+impl ::core::fmt::Display for Dm {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Dm {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.dm() != 0 { try!(write!(f, " dm=0x{:x}", self.dm()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Wps(pub u8);
 
 impl Wps {
@@ -1014,6 +1324,21 @@ impl Wps {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Wps {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Wps {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wpvs() != 0 { try!(write!(f, " wpvs"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Wpe(pub u8);
@@ -1041,6 +1366,22 @@ impl Wpe {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Wpe {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Wpe {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wpre() != 0 { try!(write!(f, " wpre"))}
+      if self.wpfe() != 0 { try!(write!(f, " wpfe"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Ges(pub u8);
@@ -1092,6 +1433,24 @@ impl Ges {
 
 }
 
+impl ::core::fmt::Display for Ges {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ges {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wpe() != 0 { try!(write!(f, " wpe"))}
+      if self.trxe() != 0 { try!(write!(f, " trxe"))}
+      if self.supe() != 0 { try!(write!(f, " supe"))}
+      if self.syse() != 0 { try!(write!(f, " syse"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Ses(pub u8);
 
 impl Ses {
@@ -1141,6 +1500,24 @@ impl Ses {
 
 }
 
+impl ::core::fmt::Display for Ses {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ses {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.po() != 0 { try!(write!(f, " po"))}
+      if self.otw() != 0 { try!(write!(f, " otw"))}
+      if self.spif() != 0 { try!(write!(f, " spif"))}
+      if self.wdf() != 0 { try!(write!(f, " wdf"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Sues(pub u8);
 
 impl Sues {
@@ -1177,6 +1554,23 @@ impl Sues {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Sues {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Sues {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.v2o_vexto() != 0 { try!(write!(f, " v2o_vexto"))}
+      if self.v2u_vextu() != 0 { try!(write!(f, " v2u_vextu"))}
+      if self.v1u() != 0 { try!(write!(f, " v1u"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Tes(pub u8);
@@ -1228,6 +1622,24 @@ impl Tes {
 
 }
 
+impl ::core::fmt::Display for Tes {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Tes {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.pnfdeo() != 0 { try!(write!(f, " pnfdeo"))}
+      if self.cbs() != 0 { try!(write!(f, " cbs"))}
+      if self.cf() != 0 { try!(write!(f, " cf"))}
+      if self.cw() != 0 { try!(write!(f, " cw"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Wpes(pub u8);
 
 impl Wpes {
@@ -1253,6 +1665,22 @@ impl Wpes {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Wpes {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Wpes {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wpr() != 0 { try!(write!(f, " wpr"))}
+      if self.wpf() != 0 { try!(write!(f, " wpf"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Mtpnvs(pub u8);
@@ -1293,6 +1721,23 @@ impl Mtpnvs {
 
 }
 
+impl ::core::fmt::Display for Mtpnvs {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Mtpnvs {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.wrcnts() != 0 { try!(write!(f, " wrcnts=0x{:x}", self.wrcnts()))}
+      if self.eccs() != 0 { try!(write!(f, " eccs"))}
+      if self.nvmps() != 0 { try!(write!(f, " nvmps"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Sc(pub u8);
 
 impl Sc {
@@ -1318,6 +1763,22 @@ impl Sc {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Sc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Sc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.rlc() != 0 { try!(write!(f, " rlc=0x{:x}", self.rlc()))}
+      if self.v2suc_vextsuc() != 0 { try!(write!(f, " v2suc_vextsuc"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 
 pub struct Sbccc(pub u8);
@@ -1369,6 +1830,24 @@ impl Sbccc {
 
 }
 
+impl ::core::fmt::Display for Sbccc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Sbccc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.v1rtsuc() != 0 { try!(write!(f, " v1rtsuc=0x{:x}", self.v1rtsuc()))}
+      if self.fnmc() != 0 { try!(write!(f, " fnmc"))}
+      if self.sdmc() != 0 { try!(write!(f, " sdmc"))}
+      if self.slpc() != 0 { try!(write!(f, " slpc"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Mtpnvcrc(pub u8);
 
 impl Mtpnvcrc {
@@ -1385,6 +1864,21 @@ impl Mtpnvcrc {
 
 }
 
+impl ::core::fmt::Display for Mtpnvcrc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Mtpnvcrc {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.crcc() != 0 { try!(write!(f, " crcc=0x{:x}", self.crcc()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
 pub struct Ids(pub u8);
 
 impl Ids {
@@ -1399,5 +1893,20 @@ impl Ids {
      self
   }
 
+}
+
+impl ::core::fmt::Display for Ids {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+
+impl ::core::fmt::Debug for Ids {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.ids() != 0 { try!(write!(f, " ids=0x{:x}", self.ids()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
 }
 

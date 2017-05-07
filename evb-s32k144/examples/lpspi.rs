@@ -47,11 +47,11 @@ pub extern "C" fn main() -> ! {
     }
     loop {
         let r = u.reg();
-        println!("ids:   {:08x}", r.ids().0);
-        println!("ms:    {:08x}", r.ms().0);
-        println!("wds:   {:08x}", r.wds().0);
-        println!("sc:    {:08x}", r.sc().0);
-        println!("sbccc: {:08x}", r.sbccc().0);
+        println!("ids:   {:?}", r.ids());
+        println!("ms:    {:?}", r.ms());
+        println!("wds:   {:?}", r.wds());
+        println!("sc:    {:?}", r.sc());
+        println!("sbccc: {:?}", r.sbccc());
         println!("");
         board::delay(1000);
     }
