@@ -85,8 +85,8 @@ pub extern "C" fn main() -> ! {
 
 
     dump_can(c0.can);
-    println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id(), rx.time_stamp());
-    println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id(), tx.time_stamp());
+    println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
+    println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
 
     // Enable CAN Peripheral
     println!("Exit Freeze Mode");
@@ -107,7 +107,7 @@ pub extern "C" fn main() -> ! {
             // Transmit Message
             if let Code::TxInactive = tx.code() {
                 tx.set_code(Code::TxData);
-                tx.set_id(i << 18);
+                tx.set_id_std(i);
                 tx.write(&[0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
             }
             i += 1;
@@ -116,8 +116,8 @@ pub extern "C" fn main() -> ! {
 
         if rx.flag() {
             rx.clr_flag();
-            println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id(), rx.time_stamp());
-            rx.set_id(0);
+            println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
+            rx.set_id_std(0);
             rx.set_code(Code::RxEmpty);
             let mut buf = [0u8; 8];
             let n = rx.read(&mut buf);
@@ -128,7 +128,7 @@ pub extern "C" fn main() -> ! {
         }
         if tx.flag() {
             tx.clr_flag();
-            println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id(), tx.time_stamp());
+            println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
         }
     }
 }
