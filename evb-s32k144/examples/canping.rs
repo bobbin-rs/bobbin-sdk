@@ -58,6 +58,10 @@ pub extern "C" fn main() -> ! {
     // Turn on V2 regulator
     r.with_rc(|r| r.set_v2c_vextc(0b11));
 
+    // // Transceiver to Active mode
+
+    r.with_canc(|r| r.set_cmc(0b01));
+
     println!("CAN STATUS");
     println!("0x0 WDS:     {:?}", r.wds());
     println!("0x1 MC:      {:?}", r.mc());
@@ -119,22 +123,24 @@ pub extern "C" fn main() -> ! {
     unsafe {
         let mut can = c0.can;        
         can.with_ctrl1(|r| {
-            r.set_propseg(0x4).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0).set_rjw(1)
+            r.set_propseg(0x6).set_pseg1(0x03).set_pseg2(0x03).set_presdiv(0).set_rjw(3).set_smp(1)
         });
     }
 
     // Set Self Reception Disabled = False
-    c0.set_srxdis(true);
+    c0.set_srxdis(false);
+
     // Enable Individual Request Masking
     c0.set_irmq(true);
 
     // Set Loopback Mode = True
-    //c0.set_lpb(true);
+    c0.set_lpb(false);
 
     // Setup RX Mailbox
 
-    rx.set_idmask(0x0);
-    rx.set_code(Code::RxEmpty);    
+    rx.set_idmask(0);
+    tx.set_id_std(0);
+    rx.set_code(Code::RxEmpty);
 
     // Setup TX Mailbox
     tx.set_code(Code::TxInactive);
@@ -154,45 +160,53 @@ pub extern "C" fn main() -> ! {
     timer.clr_tif();
     timer.set_tie(true);
     timer.set_enabled(true);    
-    let mut i = 0;
     loop {
         if timer.tif() {
             timer.clr_tif();
-            println!("Tick...");
             //dump_can(c0.can);
             // println!("CAN STATUS");
             // println!("0x0 WDS:     {:?}", r.wds());
             // println!("0x1 MC:      {:?}", r.mc());
             // println!("0x10 RC:     {:?}", r.rc());
             // println!("0x1b SS:     {:?}", r.ss());
-            // println!("0x20 CANC:   {:?}", r.canc());
-            // println!("0x22 TS:     {:?}", r.ts());
             // println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
             // Transmit Message
-            if let Code::TxInactive = tx.code() {
-                tx.set_code(Code::TxData);
-                tx.set_id_std(i);
-                tx.write(&[i as u8, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
-            }
-            i += 1;
+            // if let Code::TxInactive = tx.code() {
+                //tx.set_id_std(0x7E0);
+                tx.set_id_std(0x7df);
+                //tx.write(&[0x02, 0x01, 0x0c]);
+                tx.write(&[0x02, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);
+                //tx.write(&[0x02, 0x01, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00]);
+                // println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
+            // }
             
         }
 
         if rx.flag() {
-            rx.clr_flag();
             //println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
-            let mut buf = [0u8; 8];
+            let mut buf = [0u8; 16];
             let n = rx.read(&mut buf);
-            print!("{:04x}: {:08x}", rx.time_stamp(), rx.id_std());
+            //println!("RX: {:?} {:?}", rx.mb8h0(), rx.mb8h1());
+            print!("< {:04x}: {:08x}", rx.time_stamp(), rx.id_std());
             for i in 0..n {
                 print!(" {:02x}", buf[i]);
             }
             println!("");
             rx.set_id_std(0);
-            rx.set_code(Code::RxEmpty);            
+            //rx.set_code(Code::RxEmpty);            
+            let _ = c0.timer();
+            rx.clr_flag();
         }
         if tx.flag() {
             tx.clr_flag();
+            let mut buf = [0u8; 16];
+            let n = tx.read(&mut buf);            
+            //println!("TX: {:?} {:?}", tx.mb8h0(), tx.mb8h1());
+            print!("> {:04x}: {:08x}", tx.time_stamp(), tx.id_std());
+            for i in 0..n {
+                print!(" {:02x}", buf[i]);
+            }            
+            println!("");
             //println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
         }
     }
