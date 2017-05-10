@@ -7,7 +7,7 @@ extern crate evb_s32k144 as board;
 use board::hal::lpspi;
 use board::uja1169::Mode;
 use board::chip::can::{Can};
-use board::hal::can::Code;
+use board::hal::can::{Code, CanId, ExtendedId};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -134,21 +134,31 @@ pub extern "C" fn main() -> ! {
     c0.set_irmq(true);
 
     // Set Loopback Mode = True
-    c0.set_lpb(false);
+    //c0.set_lpb(true);
 
     // Setup RX Mailbox
 
-    rx.set_idmask(0);
-    tx.set_id_std(0);
+    //rx.set_idmask(0x1FFC0000);
+    //rx.set_idmask(0x1ffc0000);
+    rx.set_idmask(0x1fffffff);
+    //rx.set_idmask(0x0);
+    //rx.set_id_ext(0x018DAF10E);
+    //rx.set_id_ext(0x018DB33F1);
+    rx.set_id(CanId::Ext(ExtendedId(0x018DAF10E)));
     rx.set_code(Code::RxEmpty);
+
+    unsafe {
+        let mut can = c0.can;
+        println!("RXIMR0: {:?}", can.rximr(0));
+    }
 
     // Setup TX Mailbox
     tx.set_code(Code::TxInactive);
 
 
     dump_can(c0.can);
-    println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
-    println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
+    println!("RX: Code = {:?} DLC: {} ID: {:?} TS: {:08x}", rx.code(), rx.dlc(), rx.id(), rx.time_stamp());
+    println!("TX: Code = {:?} DLC: {} ID: {:?} TS: {:08x}", tx.code(), tx.dlc(), tx.id(), tx.time_stamp());
 
     // Enable CAN Peripheral
     println!("Exit Freeze Mode");
@@ -173,9 +183,12 @@ pub extern "C" fn main() -> ! {
             // Transmit Message
             // if let Code::TxInactive = tx.code() {
                 //tx.set_id_std(0x7E0);
-                tx.set_id_std(0x7df);
+                //tx.set_id_std(0x7df);
+                //tx.write(&[0x02, 0x01, 0x00, 0x55, 0x55, 0x55, 0x55, 0x55]);
+                //tx.write(&[0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
                 //tx.write(&[0x02, 0x01, 0x0c]);
-                tx.write(&[0x02, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);
+                let id = CanId::Ext(ExtendedId(0x018DB33F1));
+                tx.write(id, &[0x02, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);
                 //tx.write(&[0x02, 0x01, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00]);
                 // println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
             // }
@@ -185,24 +198,25 @@ pub extern "C" fn main() -> ! {
         if rx.flag() {
             //println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
             let mut buf = [0u8; 16];
-            let n = rx.read(&mut buf);
+            let (id, n) = rx.read(&mut buf);
             //println!("RX: {:?} {:?}", rx.mb8h0(), rx.mb8h1());
-            print!("< {:04x}: {:08x}", rx.time_stamp(), rx.id_std());
+            print!("< {:04x}: {:?}", rx.time_stamp(), id);
             for i in 0..n {
                 print!(" {:02x}", buf[i]);
             }
             println!("");
-            rx.set_id_std(0);
-            //rx.set_code(Code::RxEmpty);            
+            
+            rx.set_id(CanId::Ext(ExtendedId(0x018DAF10E)));
+            rx.set_code(Code::RxEmpty);            
             let _ = c0.timer();
             rx.clr_flag();
         }
         if tx.flag() {
             tx.clr_flag();
             let mut buf = [0u8; 16];
-            let n = tx.read(&mut buf);            
+            let (id, n) = tx.read(&mut buf);            
             //println!("TX: {:?} {:?}", tx.mb8h0(), tx.mb8h1());
-            print!("> {:04x}: {:08x}", tx.time_stamp(), tx.id_std());
+            print!("> {:04x}: {:?}", tx.time_stamp(), id);
             for i in 0..n {
                 print!(" {:02x}", buf[i]);
             }            
