@@ -51,7 +51,6 @@
     )
     (port-group (name PORTA)
         (port (name PA0)
-            (altfn 0)
             (altfn 1 LPTIM1_IN1)
             (altfn 2 TIM2_CH1)
             (altfn 4 USART2_CTS)

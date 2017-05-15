@@ -88,6 +88,7 @@ pub struct Device {
     pub peripherals: Vec<Peripheral>,
     pub crates: Vec<Crate>,
     pub regions: Vec<Region>,
+    pub port_groups: Vec<PortGroup>,    
 }
 
 #[derive(Debug, Default)] 
@@ -219,6 +220,7 @@ pub struct Region {
 
 #[derive(Debug, Clone, Default)]
 pub struct PortGroup {
+    pub name: String,
     pub ports: Vec<Port>,
 }
 
@@ -226,12 +228,12 @@ pub struct PortGroup {
 pub struct Port {
     pub name: String,
     pub description: Option<String>,
-    pub altfns: Option<AltFn>,
+    pub altfns: Vec<AltFn>,
 }
 
 #[derive(Debug, Clone, Default)]
 pub struct AltFn {
-    pub index: u8,
+    pub index: u64,
     pub signal: String,
     pub description: Option<String>,
 }
