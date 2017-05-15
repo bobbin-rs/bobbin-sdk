@@ -87,6 +87,7 @@ pub struct Device {
     pub peripheral_groups: Vec<PeripheralGroup>,
     pub peripherals: Vec<Peripheral>,
     pub crates: Vec<Crate>,
+    pub regions: Vec<Region>,
 }
 
 #[derive(Debug, Default)] 
@@ -125,6 +126,7 @@ pub struct Peripheral {
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,
     pub registers: Vec<Register>,
+    pub signals: Vec<Signal>,
 
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
@@ -135,6 +137,12 @@ pub struct Peripheral {
 pub struct Interrupt {
     pub name: String,
     pub value: u64,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Signal {
+    pub name: String,
     pub description: Option<String>,
 }
 
@@ -197,6 +205,34 @@ pub struct Field {
 pub struct EnumeratedValue {
     pub value: String,
     pub name: Option<String>,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Region {
+    pub name: String,
+    pub rtype: String,
+    pub offset: u64,
+    pub size: u64,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct PortGroup {
+    pub ports: Vec<Port>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Port {
+    pub name: String,
+    pub description: Option<String>,
+    pub altfns: Option<AltFn>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct AltFn {
+    pub index: u8,
+    pub signal: String,
     pub description: Option<String>,
 }
 

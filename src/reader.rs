@@ -5,7 +5,7 @@ use std::path::Path;
 use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
-use {Access, Device, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Exception, Cluster, Register, Field, EnumeratedValue};
+use {Access, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal, Exception, Cluster, Register, Field, EnumeratedValue};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -187,6 +187,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("peripheral-group") => d.peripheral_groups.push(try!(read_peripheral_group(ctx, &arr[1..]))),
                     Some("exceptions") => d.exceptions.extend(try!(read_exceptions(ctx, &arr[1..]))),
                     Some("crate") => d.crates.push(try!(read_crate(ctx, &arr[1..]))),
+                    Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             }
@@ -248,6 +249,43 @@ fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
     Ok(c)
 }
 
+
+fn read_regions(ctx: &Context, s: &[Sexp]) -> Result<Vec<Region>, ReadError> {
+    let path = ctx.path();
+    let mut regions: Vec<Region> = Vec::new();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("region") => regions.push(try!(read_region(ctx, &arr[1..]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(regions)
+}
+
+fn read_region(ctx: &Context, s: &[Sexp]) -> Result<Region, ReadError> {
+    let path = ctx.path();
+    let mut r = Region::default();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => r.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("type") => r.rtype = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("offset") => r.offset = try!(expect_u64(ctx, &arr[1])),
+                Some("size") => r.size = try!(expect_u64(ctx, &arr[1])),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(r)
+}
 
 fn read_module(ctx: &Context, s: &[Sexp]) -> Result<Module, ReadError> {
     let mut m = Module::default();
@@ -343,6 +381,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("reset-value") => p.reset_value = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("reset-mask") => p.reset_mask = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("interrupt") => p.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
+                Some("signal") => p.signals.push(try!(read_signal(ctx, &arr[1..]))),
                 Some("cluster") => p.clusters.push(try!(read_cluster(ctx, &arr[1..]))),
                 Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
@@ -370,6 +409,21 @@ fn read_interrupt(ctx: &Context, s: &[Sexp]) -> Result<Interrupt, ReadError> {
         }
     }
     Ok(i)
+}
+
+fn read_signal(ctx: &Context, s: &[Sexp]) -> Result<Signal, ReadError> {
+    let mut sig = Signal::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => sig.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("description") => sig.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(sig)
 }
 
 fn read_cluster(ctx: &Context, s: &[Sexp]) -> Result<Cluster, ReadError> {
