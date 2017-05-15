@@ -73,6 +73,19 @@ impl From<String> for Access {
         Access::from(other.as_ref())
     }
 }
+#[derive(Debug)]
+pub enum TopLevel {
+    Board(Board),
+    Device(Device),
+}
+
+#[derive(Debug, Default)]
+pub struct Board {
+    pub name: String,
+    pub description: Option<String>,
+    pub devices: Vec<Device>,
+    pub connections: Vec<Connection>,
+}
 
 #[derive(Debug, Default)]
 pub struct Device {
@@ -88,7 +101,16 @@ pub struct Device {
     pub peripherals: Vec<Peripheral>,
     pub crates: Vec<Crate>,
     pub regions: Vec<Region>,
+    pub signals: Vec<Signal>,
     pub port_groups: Vec<PortGroup>,    
+}
+
+#[derive(Debug, Default)] 
+pub struct Connection {
+    pub device_a: String,
+    pub signal_a: String,
+    pub device_b: String,
+    pub signal_b: String,
 }
 
 #[derive(Debug, Default)] 
