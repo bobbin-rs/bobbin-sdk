@@ -5,9 +5,9 @@ use std::path::Path;
 use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
-use {Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
+use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, EnumeratedValue};
-use {PortGroup, Port, AltFn};
+use {PortGroup, Port, AltFn, Clock};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -149,21 +149,22 @@ fn expect_access(ctx: &Context, s: &Sexp) -> Result<Access, ReadError> {
     }
 }
 
-pub fn read<R: Read>(r: &mut R, p: &Path) -> Result<Device, ReadError> {    
+pub fn read<R: Read>(r: &mut R, p: &Path) -> Result<TopLevel, ReadError> {    
     let mut buf: Vec<u8> = Vec::new();
     try!(r.read_to_end(&mut buf));
     let ctx = Context::new(p, &buf);
     read_buf(&ctx)
 }
 
-fn read_buf(ctx: &Context) -> Result<Device, ReadError> {
+fn read_buf(ctx: &Context) -> Result<TopLevel, ReadError> {
     let buf = ctx.buf();
     let p = ctx.path();
     let s = try!(parse(buf));
     if let Some((head, rest)) = s.split_first() {
         match head {
-            // &Sexp::Token(Token::Symbol("board")) => read_board(ctx, rest),
-            &Sexp::Token(Token::Symbol("device")) => read_device(ctx, rest),
+            &Sexp::Token(Token::Symbol("board")) => read_board(ctx, rest).map(TopLevel::Board),
+            &Sexp::Token(Token::Symbol("device")) => read_device(ctx, rest).map(TopLevel::Device),
+            &Sexp::Token(Token::Symbol("peripheral")) => read_peripheral(ctx, rest).map(TopLevel::Peripheral),
             h @ _ => Err(ReadError::Error(format!("{}: Expected device, got {:?}", ctx.location_of(head), h))),
         }
     } else {
@@ -181,6 +182,7 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
                     Some("description") => b.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                     Some("device") => b.devices.push(try!(read_device(ctx, &arr[1..]))),
                     Some("connections") => b.connections.extend(try!(read_connections(ctx, &arr[1..]))),
+                    Some("clock") => b.clocks.push(try!(read_clock(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             },
@@ -209,20 +211,29 @@ fn read_connections(ctx: &Context, s: &[Sexp]) -> Result<Vec<Connection>, ReadEr
 }
 
 fn read_connection(ctx: &Context, s: &[Sexp]) -> Result<Connection, ReadError> {
-    let path = ctx.path();
     let mut connection: Connection = Connection::default();
 
-    if s.len() != 4 {
-        return Err(ReadError::Error(format!("Expected 4 items for Connection, got {:?}", s)));
+    if s.len() != 2 {
+        return Err(ReadError::Error(format!("Expected (src, dst) for Connection, got {:?}", s)));
     }
-
-    connection.device_a = String::from(try!(expect_symbol(ctx, &s[0])));
-    connection.signal_a = String::from(try!(expect_symbol(ctx, &s[1])));
-    connection.device_b = String::from(try!(expect_symbol(ctx, &s[2])));
-    connection.signal_b = String::from(try!(expect_symbol(ctx, &s[3])));
+    if let Sexp::List(ref arr, _, _) = s[0] {
+        if arr.len() != 2 {
+            return Err(ReadError::Error(format!("Expected (obj, signal) for Src, got {:?}", s)));            
+        }
+        connection.device_a = String::from(try!(expect_symbol(ctx, &arr[0])));
+        connection.signal_a = String::from(try!(expect_symbol(ctx, &arr[1])));
+    }
+    if let Sexp::List(ref arr, _, _) = s[1] {
+        if arr.len() != 2 {
+            return Err(ReadError::Error(format!("Expected (obj, signal) for Dst, got {:?}", s)));            
+        }
+        connection.device_b = String::from(try!(expect_symbol(ctx, &arr[0])));
+        connection.signal_b = String::from(try!(expect_symbol(ctx, &arr[1])));
+    }
 
     Ok(connection)
 }
+
 
 fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
     let path = ctx.path();
@@ -246,6 +257,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
                     Some("signal") => d.signals.push(try!(read_signal(ctx, &arr[1..]))),
                     Some("port-group") => d.port_groups.push(try!(read_port_group(ctx, &arr[1..]))),
+                    Some("clock") => d.clocks.push(try!(read_clock(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             }
@@ -532,6 +544,23 @@ fn read_signal(ctx: &Context, s: &[Sexp]) -> Result<Signal, ReadError> {
     }
     Ok(sig)
 }
+
+fn read_clock(ctx: &Context, s: &[Sexp]) -> Result<Clock, ReadError> {
+    let mut clk = Clock::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => clk.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("speed") => clk.speed = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("description") => clk.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(clk)
+}
+
 
 fn read_cluster(ctx: &Context, s: &[Sexp]) -> Result<Cluster, ReadError> {
     let mut c = Cluster::default();

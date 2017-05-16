@@ -16,7 +16,7 @@
             (size 0x00004000)
         )
     )
-    (signal (name CLKIN))
+    (clock (name XTAL0))
     (crate
         (name bobbin_cortexm)
         (module (name chip::exc))

@@ -77,6 +77,7 @@ impl From<String> for Access {
 pub enum TopLevel {
     Board(Board),
     Device(Device),
+    Peripheral(Peripheral),
 }
 
 #[derive(Debug, Default)]
@@ -85,6 +86,7 @@ pub struct Board {
     pub description: Option<String>,
     pub devices: Vec<Device>,
     pub connections: Vec<Connection>,
+    pub clocks: Vec<Clock>,
 }
 
 #[derive(Debug, Default)]
@@ -103,6 +105,7 @@ pub struct Device {
     pub regions: Vec<Region>,
     pub signals: Vec<Signal>,
     pub port_groups: Vec<PortGroup>,    
+    pub clocks: Vec<Clock>,
 }
 
 #[derive(Debug, Default)] 
@@ -259,6 +262,14 @@ pub struct AltFn {
     pub signal: String,
     pub description: Option<String>,
 }
+
+#[derive(Debug, Clone, Default)]
+pub struct Clock {
+    pub name: String,
+    pub speed: Option<u64>,
+    pub description: Option<String>,
+}
+
 
 impl Device {
     pub fn get_peripheral(&self, name: &str) -> Option<&Peripheral> {
