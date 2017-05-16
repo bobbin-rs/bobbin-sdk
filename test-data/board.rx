@@ -17,8 +17,6 @@
     (device (name SW0) (signal (name OUT)))
     (clock (name XTAL0) (speed 8000000))
     (connections
-        (connection (MCU PA0) (GPS UART_RX))
-        (connection (MCU PA1) (GPS UART_TX))
         (connection (MCU PA4) (LED0 IN))
         (connection (MCU PA5) (LED1 IN))
         (connection (MCU PA3) (SW0 OUT))
@@ -26,7 +24,41 @@
         (connection (MCU PA1) (ARDUINO D1))
         (connection (MCU PA2) (ARDUINO D2))
         (connection (MCU PA3) (ARDUINO D3))
-        (connection (MCU PA4) (ARDUINO D3))
-        (connection (MCU PA5) (ARDUINO D3))
+        (connection (MCU PA4) (ARDUINO D4))
+        (connection (MCU PA5) (ARDUINO D5))
+        (connection (ARDUINO D0) (GPS UART_RX))
+        (connection (ARDUINO D1) (GPS UART_TX))
     )
+
+    (path
+        (MCU USART2_RX)
+        (MCU PA0)
+        (ARDUINO D0)
+        (GPS UART_RX)
+    )
+    (path
+        (MCU USART2_TX)
+        (MCU PA1)
+        (ARDUINO D1)
+        (GPS UART_TX)
+    )
+    (path
+        (MCU PA4_OUT)
+        (MCU PA4)
+        (ARDUINO D4)
+        (LED0 IN)
+    )
+    (path
+        (MCU PA5_OUT)
+        (MCU PA5)
+        (ARDUINO D5)
+        (LED1 IN)
+    )
+    (path
+        (MCU PA3_IN)
+        (MCU PA3)
+        (ARDUINO D3)
+        (BTN0 OUT)    
+    )
+
 )

@@ -86,6 +86,7 @@ pub struct Board {
     pub description: Option<String>,
     pub devices: Vec<Device>,
     pub connections: Vec<Connection>,
+    pub paths: Vec<Path>,
     pub clocks: Vec<Clock>,
 }
 
@@ -115,6 +116,18 @@ pub struct Connection {
     pub device_b: String,
     pub signal_b: String,
 }
+
+#[derive(Debug, Default)] 
+pub struct Path {
+    pub path_elements: Vec<PathElement>,
+}
+
+#[derive(Debug, Default)] 
+pub struct PathElement {
+    pub device: String,
+    pub signal: String,
+}
+
 
 #[derive(Debug, Default)] 
 pub struct Crate {

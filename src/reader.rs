@@ -7,6 +7,7 @@ use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, EnumeratedValue};
+use {PathElement};
 use {PortGroup, Port, AltFn, Clock};
 
 #[derive(Debug)]
@@ -183,6 +184,7 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
                     Some("device") => b.devices.push(try!(read_device(ctx, &arr[1..]))),
                     Some("connections") => b.connections.extend(try!(read_connections(ctx, &arr[1..]))),
                     Some("clock") => b.clocks.push(try!(read_clock(ctx, &arr[1..]))),
+                    Some("path") => b.paths.push(try!(read_path(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             },
@@ -234,6 +236,27 @@ fn read_connection(ctx: &Context, s: &[Sexp]) -> Result<Connection, ReadError> {
     Ok(connection)
 }
 
+
+fn read_path(ctx: &Context, s: &[Sexp]) -> Result<::Path, ReadError> {
+    let mut path: ::Path = ::Path::default();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => {
+                if arr.len() != 2 {
+                    return Err(ReadError::Error(format!("Expected (src, dst) for Path Element, got {:?}", s)));
+                }
+                let mut pe = PathElement::default();
+                pe.device = String::from(try!(expect_symbol(ctx, &arr[0])));
+                pe.signal = String::from(try!(expect_symbol(ctx, &arr[1])));
+                path.path_elements.push(pe)
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(path)
+}
 
 fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
     let path = ctx.path();
