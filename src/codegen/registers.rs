@@ -250,8 +250,14 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
 
 
     try!(writeln!(out, "impl ::core::fmt::Debug for {} {{", reg_struct));
-    try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));        
-    try!(writeln!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));"));
+    try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
+    match size {
+        "u8" => try!(writeln!(out, "      try!(write!(f, \"[0x{{:02x}}\", self.0));")),
+        "u16" => try!(writeln!(out, "      try!(write!(f, \"[0x{{:04x}}\", self.0));")),
+        "u32" => try!(writeln!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));")),
+        s @ _ => panic!("invalid size: {}", s),
+    }        
+    
     for f in r.fields.iter() {
         let f_name = field_name(&f.name);
         let f_getter = field_getter(&f.name);
