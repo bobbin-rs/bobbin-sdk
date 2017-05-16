@@ -265,6 +265,7 @@ pub struct PortGroup {
 #[derive(Debug, Clone, Default)]
 pub struct Port {
     pub name: String,
+    pub index: Option<u64>,
     pub description: Option<String>,
     pub altfns: Vec<AltFn>,
 }

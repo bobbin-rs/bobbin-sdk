@@ -513,12 +513,13 @@ fn read_port(ctx: &Context, s: &[Sexp]) -> Result<Port, ReadError> {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("index") => p.index = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("altfn") => p.altfns.push(try!(read_altfn(ctx, &arr[1..]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
         }
-    }
+    }    
 
     Ok(p)
 }

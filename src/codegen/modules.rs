@@ -60,6 +60,15 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(gen_interrupts(matches, &mut f_mod, &d, interrupt_count));
     }
 
+    // Generate Signals
+    {
+        let p_name = "signals";
+        try!(writeln!(out, "pub mod {};", p_name));
+        let p_mod = path.join(format!("{}.rs", p_name));
+        let mut f_mod = try!(File::create(p_mod));
+        try!(gen_signals(matches, &mut f_mod, &d));
+    }
+
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().expect("Expected group name").to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
@@ -215,6 +224,34 @@ pub fn gen_interrupts<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, i
     // try!(writeln!(out,"}}"));    
     Ok(())
 }
+
+pub fn gen_signals<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
+    try!(writeln!(out, "pub enum Signal {{"));
+
+    for s in d.signals.iter() {
+        try!(writeln!(out, "   {},", s.name));
+    }
+
+    for p in d.peripherals.iter() {
+        for s in p.signals.iter() {
+            try!(writeln!(out, "   {},", s.name));
+        }
+    }
+
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for s in p.signals.iter() {
+                try!(writeln!(out, "   {},", s.name));
+            }
+        }
+    }
+
+
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out,""));  
+    Ok(())
+}
+
 
 pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     if pg.modules.len() > 0 {
