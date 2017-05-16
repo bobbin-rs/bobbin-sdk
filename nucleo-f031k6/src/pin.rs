@@ -6,7 +6,7 @@ macro_rules! pindef {
     ($id:ident, $port:expr, $pin:expr) => {
         pub fn $id() -> gpio::PinUnknown { 
             rcc::set_gpio_enabled($port, true);
-            gpio::pin($port, $pin)
+            gpio::pin(($port, $pin))
         }
     }
 }
