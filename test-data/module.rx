@@ -50,7 +50,7 @@
             (signal (name USART2_CK))
         )
     )
-    (port-group (name PORTA)
+    (port-group (name gpio::GPIOA) (ptype gpio::Gpio)
         (port (name PA0) (index 0)
             (altfn 1 LPTIM1_IN1)
             (altfn 2 TIM2_CH1)

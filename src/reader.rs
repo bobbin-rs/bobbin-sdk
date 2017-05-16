@@ -8,7 +8,7 @@ use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, EnumeratedValue};
 use {PathElement};
-use {PortGroup, Port, AltFn, Clock};
+use {Port, Pin, AltFn, Clock};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -279,7 +279,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("crate") => d.crates.push(try!(read_crate(ctx, &arr[1..]))),
                     Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
                     Some("signal") => d.signals.push(try!(read_signal(ctx, &arr[1..]))),
-                    Some("port-group") => d.port_groups.push(try!(read_port_group(ctx, &arr[1..]))),
+                    Some("port") => d.ports.push(try!(read_port(ctx, &arr[1..]))),
                     Some("clock") => d.clocks.push(try!(read_clock(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
@@ -485,16 +485,17 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
     Ok(p)
 }
 
-fn read_port_group(ctx: &Context, s: &[Sexp]) -> Result<PortGroup, ReadError> {
+fn read_port(ctx: &Context, s: &[Sexp]) -> Result<Port, ReadError> {
     let path = ctx.path();
-    let mut pg = PortGroup::default();
+    let mut pg = Port::default();
 
     for s in s.iter() {
         // println!("{:?}", s);
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => pg.name = String::from(try!(read_name(ctx, &arr[1]))),
-                Some("port") => pg.ports.push(try!(read_port(ctx, &arr[1..]))),
+                Some("ptype") => pg.ptype = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("pin") => pg.pins.push(try!(read_pin(ctx, &arr[1..]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
@@ -504,9 +505,9 @@ fn read_port_group(ctx: &Context, s: &[Sexp]) -> Result<PortGroup, ReadError> {
     Ok(pg)
 }
 
-fn read_port(ctx: &Context, s: &[Sexp]) -> Result<Port, ReadError> {
+fn read_pin(ctx: &Context, s: &[Sexp]) -> Result<Pin, ReadError> {
     let path = ctx.path();
-    let mut p = Port::default();
+    let mut p = Pin::default();
 
     for s in s.iter() {
         // println!("{:?}", s);

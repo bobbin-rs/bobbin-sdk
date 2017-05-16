@@ -60,13 +60,13 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(gen_interrupts(matches, &mut f_mod, &d, interrupt_count));
     }
 
-    // Generate Signals
+    // Generate Pins
     {
-        let p_name = "signals";
+        let p_name = "pins";
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_signals(matches, &mut f_mod, &d));
+        try!(gen_pins(matches, &mut f_mod, &d));
     }
 
     for p in d.peripherals.iter() {
@@ -225,29 +225,42 @@ pub fn gen_interrupts<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, i
     Ok(())
 }
 
-pub fn gen_signals<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
-    try!(writeln!(out, "pub enum Signal {{"));
+pub fn gen_pins<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
 
-    for s in d.signals.iter() {
-        try!(writeln!(out, "   {},", s.name));
-    }
+    for port in d.ports.iter() {
+        for pin in port.pins.iter() {            
+            try!(writeln!(out, "pub const {}: (super::{}, usize) = (super::{}, {});", pin.name, port.ptype, port.name, pin.index.unwrap()));
 
-    for p in d.peripherals.iter() {
-        for s in p.signals.iter() {
-            try!(writeln!(out, "   {},", s.name));
-        }
-    }
-
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for s in p.signals.iter() {
-                try!(writeln!(out, "   {},", s.name));
+            for af in pin.altfns.iter() {
+                let sym = format!("{}_{}", pin.name, af.signal);
+                try!(writeln!(out, "pub const {}: (super::{}, usize, usize) = (super::{}, {}, {});", sym, port.ptype, port.name, pin.index.unwrap(), af.index));
             }
+            try!(writeln!(out,""));  
         }
     }
 
+    // try!(writeln!(out, "pub enum Signal {{"));
 
-    try!(writeln!(out, "}}"));
+    // for s in d.signals.iter() {
+    //     try!(writeln!(out, "   {},", s.name));
+    // }
+
+    // for p in d.peripherals.iter() {
+    //     for s in p.signals.iter() {
+    //         try!(writeln!(out, "   {},", s.name));
+    //     }
+    // }
+
+    // for pg in d.peripheral_groups.iter() {
+    //     for p in pg.peripherals.iter() {
+    //         for s in p.signals.iter() {
+    //             try!(writeln!(out, "   {},", s.name));
+    //         }
+    //     }
+    // }
+
+
+    // try!(writeln!(out, "}}"));
     try!(writeln!(out,""));  
     Ok(())
 }

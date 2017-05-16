@@ -105,7 +105,7 @@ pub struct Device {
     pub crates: Vec<Crate>,
     pub regions: Vec<Region>,
     pub signals: Vec<Signal>,
-    pub port_groups: Vec<PortGroup>,    
+    pub ports: Vec<Port>,    
     pub clocks: Vec<Clock>,
 }
 
@@ -257,13 +257,14 @@ pub struct Region {
 }
 
 #[derive(Debug, Clone, Default)]
-pub struct PortGroup {
+pub struct Port {
     pub name: String,
-    pub ports: Vec<Port>,
+    pub ptype: String,    
+    pub pins: Vec<Pin>,
 }
 
 #[derive(Debug, Clone, Default)]
-pub struct Port {
+pub struct Pin {
     pub name: String,
     pub index: Option<u64>,
     pub description: Option<String>,
