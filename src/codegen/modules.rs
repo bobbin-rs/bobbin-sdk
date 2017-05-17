@@ -1,5 +1,5 @@
 use std::io::{Write, Result};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use clap::{ArgMatches};
 use std::fs::File;
 
@@ -7,24 +7,39 @@ use {Access, Device, PeripheralGroup, Peripheral, Register, Cluster, Field, Inte
 
 use super::{size_type, field_getter, field_setter, field_with, field_name, to_camel};
 
+pub struct Config {
+    pub path: PathBuf,
+    pub is_root: bool,
+}
+
+impl<'a> From<&'a ArgMatches<'a>> for Config {
+    fn from(matches: &'a ArgMatches) -> Config {
+        Config {
+            path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
+            is_root: matches.is_present("root")
+        }
+    }
+}
+
 pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
-    let out_path = Path::new(matches.value_of("output").expect("No output path specified"));
-    let p_mod = if matches.is_present("root") { 
+    let cfg = Config::from(matches);
+    let out_path = &cfg.path;
+    let p_mod = if cfg.is_root {
         out_path.join("lib.rs")
     } else {
         out_path.join("mod.rs")
     };
     let mut f_mod = try!(File::create(p_mod));
-    try!(gen_mod(matches, &mut f_mod, d, out_path));
+    try!(gen_mod(&cfg, &mut f_mod, d, out_path));
 
     Ok(())
 }
 
-pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     // Only add module import if not generating cortex-core
 
-    let p_mod = if matches.is_present("root") { 
+    let p_mod = if cfg.is_root { 
         try!(writeln!(out, "#![no_std]"));
     };
 
@@ -48,7 +63,7 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_exceptions(matches, &mut f_mod, &d.exceptions));
+        try!(gen_exceptions(cfg, &mut f_mod, &d.exceptions));
     }
 
     // Generate Interrupts
@@ -57,7 +72,7 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_interrupts(matches, &mut f_mod, &d, interrupt_count));
+        try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
     }
 
     // Generate Pins
@@ -66,7 +81,7 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_pins(matches, &mut f_mod, &d));
+        try!(gen_pins(cfg, &mut f_mod, &d));
     }
 
     for p in d.peripherals.iter() {
@@ -74,7 +89,7 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral(matches, &mut f_mod, p));
+        try!(gen_peripheral(cfg, &mut f_mod, p));
     }
 
     for pg in d.peripheral_groups.iter() {
@@ -82,12 +97,12 @@ pub fn gen_mod<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, path: &P
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral_group(matches, &mut f_mod, pg));
+        try!(gen_peripheral_group(cfg, &mut f_mod, pg));
     }
     Ok(())
 }
 
-pub fn gen_exceptions<W: Write>(matches: &ArgMatches, out: &mut W, exceptions: &Vec<Exception>) -> Result<()> {
+pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exception>) -> Result<()> {
     try!(writeln!(out, "pub type Handler = unsafe extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
@@ -143,7 +158,7 @@ pub fn gen_exceptions<W: Write>(matches: &ArgMatches, out: &mut W, exceptions: &
     try!(writeln!(out,"}}"));    
     Ok(())
 }
-pub fn gen_interrupts<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
+pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
     let mut interrupts: Vec<Option<&Interrupt>> = Vec::with_capacity(interrupt_count as usize);
 
     for _ in 0..interrupt_count {
@@ -225,19 +240,40 @@ pub fn gen_interrupts<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device, i
     Ok(())
 }
 
-pub fn gen_pins<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+    let mut count: usize = 0;
+
+    let pmod = "gpio";
+    let ptyp = "Gpio";
+
+    try!(writeln!(out, "pub type Pin = (super::{}::{}, usize);", pmod, ptyp));
+    try!(writeln!(out, "pub type PinFn = (super::{}::{}, usize, usize);", pmod, ptyp));
+    try!(writeln!(out, ""));
 
     for port in d.ports.iter() {
         for pin in port.pins.iter() {            
-            try!(writeln!(out, "pub const {}: (super::{}, usize) = (super::{}, {});", pin.name, port.ptype, port.name, pin.index.unwrap()));
+            try!(writeln!(out, "pub const {}: Pin = (super::{}::{}, {});", 
+                pin.name, pmod, port.name, pin.index.unwrap()));
 
             for af in pin.altfns.iter() {
-                let sym = format!("{}_{}", pin.name, af.signal);
-                try!(writeln!(out, "pub const {}: (super::{}, usize, usize) = (super::{}, {}, {});", sym, port.ptype, port.name, pin.index.unwrap(), af.index));
+                let name = format!("{}_{}", pin.name, af.signal);
+                try!(writeln!(out, "pub const {}: PinFn = (super::{}::{}, {}, {});", 
+                    name, pmod, port.name, pin.index.unwrap(), af.index));
             }
             try!(writeln!(out,""));  
+            count += 1;
         }
     }
+
+    try!(writeln!(out, "pub const PIN: [Pin; {}] = [", count));
+
+    for port in d.ports.iter() {
+        for pin in port.pins.iter() {
+            try!(writeln!(out,"  {},", pin.name));  
+        }
+    }
+    try!(writeln!(out, "];"));
+    
 
     // try!(writeln!(out, "pub enum Signal {{"));
 
@@ -266,7 +302,7 @@ pub fn gen_pins<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Resu
 }
 
 
-pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
             if let Some(ref use_as) = m._as {
@@ -278,14 +314,25 @@ pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &Pe
         try!(writeln!(out, ""));
     }
 
+    let mut count: usize = 0;
 
     let p_type = to_camel(&pg.name);
 
     for p in pg.peripherals.iter() {
         let p_name = p.name.to_uppercase();
         try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p_name, p_type, p_type, p.address));            
+        count += 1;
     }    
     try!(write!(out, "\n"));
+
+    try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
+    for p in pg.peripherals.iter() {
+        let p_name = p.name.to_uppercase();
+        try!(writeln!(out, "   {},", p_name));
+        count += 1;
+    }    
+    try!(writeln!(out, "];"));
+    try!(writeln!(out, ""));
 
     if pg.modules.len() == 0 {
         try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
@@ -298,15 +345,15 @@ pub fn gen_peripheral_group<W: Write>(matches: &ArgMatches, out: &mut W, pg: &Pe
     };
 
     if p0.registers.len() > 0 {
-        try!(gen_registers(matches, out, &p_type, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_registers(cfg, out, &p_type, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
     if p0.clusters.len() > 0 {
-        try!(gen_clusters(matches, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_clusters(cfg, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }    
     Ok(())
 }
 
-pub fn gen_peripheral<W: Write>(matches: &ArgMatches, out: &mut W, p: &Peripheral) -> Result<()> {
+pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
 
     if let Some(dim) = p.dim {
@@ -333,27 +380,27 @@ pub fn gen_peripheral<W: Write>(matches: &ArgMatches, out: &mut W, p: &Periphera
     try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
 
     if p.registers.len() > 0 {
-        try!(gen_registers(matches, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
+        try!(gen_registers(cfg, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
     if p.clusters.len() > 0 {
-        try!(gen_clusters(matches, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
+        try!(gen_clusters(cfg, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
     Ok(())
 }
 
-pub fn gen_peripheral_enum<W: Write>(matches: &ArgMatches, out: &mut W, p: &Peripheral) -> Result<()> {
+pub fn gen_peripheral_enum<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_name = to_camel(&p.name);
     try!(write!(out, "pub enum {} {{\n", p_name));
     try!(write!(out, "  {} = 0x{:08x}, \n", p_name, p.address));
     try!(write!(out, "}}\n"));
     try!(write!(out, "\n"));
 
-    try!(gen_registers(matches, out, &p_name, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
+    try!(gen_registers(cfg, out, &p_name, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
 
     Ok(())
 }
 
-pub fn gen_clusters<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, clusters: &[Cluster], size: Option<u64>, access: Option<Access>) -> Result<()> {
+pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters: &[Cluster], size: Option<u64>, access: Option<Access>) -> Result<()> {
     try!(write!(out, "impl {} {{\n", p_type));
 
     for c in clusters.iter() {
@@ -371,7 +418,7 @@ pub fn gen_clusters<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, c
         try!(write!(out, "pub mod {} {{\n", mod_name));
         try!(write!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]\n"));
         try!(write!(out, "   pub struct {}(pub u32);\n\n", c_type));
-        try!(gen_registers(matches, out, &c_type, &c.registers[..], c.size.or(size), c.access.or(access)));
+        try!(gen_registers(cfg, out, &c_type, &c.registers[..], c.size.or(size), c.access.or(access)));
         try!(write!(out, "}}\n"));
         try!(write!(out, "// End of {}\n\n", mod_name));
     }
@@ -379,7 +426,7 @@ pub fn gen_clusters<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, c
     Ok(())
 }
 
-pub fn gen_registers<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
+pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
     try!(write!(out, "impl {} {{\n", p_type));
     
     for r in regs.iter() {  
@@ -455,7 +502,7 @@ pub fn gen_registers<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, 
         try!(write!(out, "pub struct {}(pub {});\n\n", r_type, r_size));
         try!(write!(out, "impl {} {{\n", r_type));        
         for f in r.fields.iter() {
-            try!(gen_field(matches, out, &f, &r_size, f.access.or(access)))
+            try!(gen_field(cfg, out, &f, &r_size, f.access.or(access)))
         }
         try!(write!(out, "}}\n\n"));
 
@@ -505,7 +552,7 @@ pub fn gen_registers<W: Write>(matches: &ArgMatches, out: &mut W, p_type: &str, 
     Ok(())
 }
 
-pub fn gen_field<W: Write>(matches: &ArgMatches, out: &mut W, f: &Field, size: &str, access: Option<Access>) -> Result<()> {
+pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, access: Option<Access>) -> Result<()> {
     let f_access = f.access.or(access).unwrap();
     let f_getter = field_getter(&f.name);
     let f_setter = field_setter(&f.name);

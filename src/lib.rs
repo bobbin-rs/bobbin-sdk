@@ -259,6 +259,7 @@ pub struct Region {
 #[derive(Debug, Clone, Default)]
 pub struct Port {
     pub name: String,
+    pub index: Option<u64>,
     pub ptype: String,    
     pub pins: Vec<Pin>,
 }
