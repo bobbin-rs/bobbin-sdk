@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
+[build-dependencies]
+bobbin-sexp = { git = "https://github.com/bobbin-rs/bobbin-sexp" }
+bobbin-sexp-tokenizer = { git = "https://github.com/bobbin-rs/bobbin-sexp" }
+
 [dependencies]
 #stm32l0 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
 stm32l0 = { path = "../../bobbin-stm32/stm32l0"}

@@ -1,0 +1,29 @@
+(pins
+    ; Digital 
+
+    (d0 pa10)
+    (d1 pa9)
+    (d2 pa12)
+    (d3 pb0)
+    (d4 pb7)
+    (d5 pb6)
+    (d6 pb1)
+    (d7 pc14)
+    (d8 pc15)
+    (d9 pa8)
+    (d10 pa11)
+    (d11 pb5)
+    (d12 pb4)
+    (d13 pb3)
+    
+    ; Analog
+
+    (a0 pa0)
+    (a1 pa1)
+    (a2 pa3)
+    (a3 pa4)    
+    (a4 pc5)
+    (a5 pc6)
+    (a6 pc7)
+    (a7 pc2)
+)
