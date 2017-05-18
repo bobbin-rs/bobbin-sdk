@@ -29,8 +29,8 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Console {
-    pub fn init(&self, _baud: u32) {
-        usart::usart2_enabled();
+    pub fn init(&self) {
+
     }
 
     pub fn usart(&self) -> ::hal::usart::UsartDevice {

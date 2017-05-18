@@ -25,6 +25,9 @@ pub mod usart;
 pub use tim::delay;
 
 pub fn init() {
-    hal::clock::init_pll();
-    console::CONSOLE.init(115_200);
+    hal::clock::init_pll();    
+    led::init();
+    btn::init();
+    usart::init();
+    console::CONSOLE.init();
 }
