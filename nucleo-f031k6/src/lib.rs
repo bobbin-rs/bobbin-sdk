@@ -17,7 +17,7 @@ pub mod lang_items;
 
 pub mod led;
 pub mod btn;
-pub mod pin;
+//pub mod pin;
 pub mod tim;
 pub mod usart;
 

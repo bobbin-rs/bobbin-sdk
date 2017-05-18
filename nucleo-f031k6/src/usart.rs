@@ -27,11 +27,9 @@ pub fn init() {
     let tx = PA2;
     let rx = PA15;
 
-    rcc::set_gpio_enabled(tx.port(), true);
-    rcc::set_gpio_enabled(rx.port(), true);
     rcc::set_usart_enabled(USART2, true);    
-    gpio::pinfn((tx.port(), tx.index(), tx.af_usart2_tx()));
-    gpio::pinfn((rx.port(), rx.index(), rx.af_usart2_rx()));
+    gpio::pin(tx).into_altfn(tx.af_usart2_tx());
+    gpio::pin(rx).into_altfn(rx.af_usart2_rx());
     let u = usart::device(USART2);
     u.enable(32_000_000 / 115_200);    
 }
