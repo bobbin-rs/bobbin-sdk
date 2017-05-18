@@ -9,7 +9,7 @@ use core::fmt::Write;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let mut u = board::usart::usart2_enabled();
+    let mut u = board::usart::usart2();
 
     let mut i = 0;
     loop {

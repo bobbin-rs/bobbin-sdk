@@ -34,7 +34,7 @@ impl Console {
     }
 
     pub fn usart(&self) -> ::hal::usart::UsartDevice {
-        unsafe { usart::usart2() }
+        usart::usart2()
     }
 }
 

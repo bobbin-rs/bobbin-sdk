@@ -36,6 +36,6 @@ pub fn init() {
     u.enable(32_000_000 / 115_200);    
 }
 
-pub unsafe fn usart2() -> usart::UsartDevice {
+pub fn usart2() -> usart::UsartDevice {
     usart::device(USART2) 
 }
