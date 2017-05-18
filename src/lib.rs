@@ -105,7 +105,6 @@ pub struct Device {
     pub crates: Vec<Crate>,
     pub regions: Vec<Region>,
     pub signals: Vec<Signal>,
-    pub ports: Vec<Port>,    
     pub clocks: Vec<Clock>,
 }
 
@@ -166,6 +165,7 @@ pub struct Peripheral {
     pub clusters: Vec<Cluster>,
     pub registers: Vec<Register>,
     pub signals: Vec<Signal>,
+    pub pins: Vec<Pin>,
 
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
@@ -254,14 +254,6 @@ pub struct Region {
     pub offset: u64,
     pub size: u64,
     pub description: Option<String>,
-}
-
-#[derive(Debug, Clone, Default)]
-pub struct Port {
-    pub name: String,
-    pub index: Option<u64>,
-    pub ptype: String,    
-    pub pins: Vec<Pin>,
 }
 
 #[derive(Debug, Clone, Default)]

@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 use clap::{ArgMatches};
 use std::fs::File;
 
-use {Access, Device, PeripheralGroup, Peripheral, Register, Cluster, Field, Interrupt, Exception};
+use {Access, Device, PeripheralGroup, Peripheral, Register, Cluster, Field, Interrupt, Exception, Pin};
 
 use super::{size_type, field_getter, field_setter, field_with, field_name, to_camel};
 
@@ -75,14 +75,14 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
     }
 
-    // Generate Pins
-    {
-        let p_name = "pins";
-        try!(writeln!(out, "pub mod {};", p_name));
-        let p_mod = path.join(format!("{}.rs", p_name));
-        let mut f_mod = try!(File::create(p_mod));
-        try!(gen_pins(cfg, &mut f_mod, &d));
-    }
+    // // Generate Pins
+    // {
+    //     let p_name = "pins";
+    //     try!(writeln!(out, "pub mod {};", p_name));
+    //     let p_mod = path.join(format!("{}.rs", p_name));
+    //     let mut f_mod = try!(File::create(p_mod));
+    //     try!(gen_pins(cfg, &mut f_mod, &d));
+    // }
 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().expect("Expected group name").to_lowercase();
@@ -240,64 +240,20 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     Ok(())
 }
 
-pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
-    let mut count: usize = 0;
+pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, p_type: &str, p_name: &str, pins: &[Pin]) -> Result<()> {
 
-    let pmod = "gpio";
-    let ptyp = "Gpio";
+    for pin in pins.iter() {
+        try!(writeln!(out, "pub const {}: Pin = ({}, {});", 
+            pin.name, p_name, pin.index.unwrap()));
 
-    try!(writeln!(out, "pub type Pin = (super::{}::{}, usize);", pmod, ptyp));
-    try!(writeln!(out, "pub type PinFn = (super::{}::{}, usize, usize);", pmod, ptyp));
-    try!(writeln!(out, ""));
-
-    for port in d.ports.iter() {
-        for pin in port.pins.iter() {            
-            try!(writeln!(out, "pub const {}: Pin = (super::{}::{}, {});", 
-                pin.name, pmod, port.name, pin.index.unwrap()));
-
-            for af in pin.altfns.iter() {
-                let name = format!("{}_{}", pin.name, af.signal);
-                try!(writeln!(out, "pub const {}: PinFn = (super::{}::{}, {}, {});", 
-                    name, pmod, port.name, pin.index.unwrap(), af.index));
-            }
-            try!(writeln!(out,""));  
-            count += 1;
+        for af in pin.altfns.iter() {
+            let name = format!("{}_{}", pin.name, af.signal);
+            try!(writeln!(out, "pub const {}: PinFn = ({}, {}, {});", 
+                name, p_name, pin.index.unwrap(), af.index));
         }
+        try!(writeln!(out,""));
     }
 
-    try!(writeln!(out, "pub const PIN: [Pin; {}] = [", count));
-
-    for port in d.ports.iter() {
-        for pin in port.pins.iter() {
-            try!(writeln!(out,"  {},", pin.name));  
-        }
-    }
-    try!(writeln!(out, "];"));
-    
-
-    // try!(writeln!(out, "pub enum Signal {{"));
-
-    // for s in d.signals.iter() {
-    //     try!(writeln!(out, "   {},", s.name));
-    // }
-
-    // for p in d.peripherals.iter() {
-    //     for s in p.signals.iter() {
-    //         try!(writeln!(out, "   {},", s.name));
-    //     }
-    // }
-
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         for s in p.signals.iter() {
-    //             try!(writeln!(out, "   {},", s.name));
-    //         }
-    //     }
-    // }
-
-
-    // try!(writeln!(out, "}}"));
-    try!(writeln!(out,""));  
     Ok(())
 }
 
@@ -349,7 +305,36 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
     if p0.clusters.len() > 0 {
         try!(gen_clusters(cfg, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
-    }    
+    }
+
+    if p0.pins.len() > 0 {
+        let mut pin_count: usize = 0;
+
+        try!(writeln!(out, "pub type Pin = ({}, usize);", p_type));
+        try!(writeln!(out, "pub type PinFn = ({}, usize, usize);", p_type));
+        try!(writeln!(out, ""));
+        
+        for p in pg.peripherals.iter() {
+            let p_name = p.name.to_uppercase();
+
+            if p.pins.len() > 0 {
+                try!(gen_pins(cfg, out, &p_type, &p_name, &p.pins[..]));
+                pin_count += p.pins.len();
+            }
+        }    
+
+        try!(writeln!(out, "pub const PIN: [(&'static str, Pin); {}] = [", pin_count));
+
+        for p in pg.peripherals.iter() {
+            for pin in p.pins.iter() {
+                try!(writeln!(out,"  (\"{}\", {}),", pin.name, pin.name));          
+            }
+        }
+        try!(writeln!(out, "];"));
+        try!(writeln!(out,""));          
+    }
+
+
     Ok(())
 }
 
@@ -382,9 +367,11 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     if p.registers.len() > 0 {
         try!(gen_registers(cfg, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
+
     if p.clusters.len() > 0 {
         try!(gen_clusters(cfg, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
+
     Ok(())
 }
 

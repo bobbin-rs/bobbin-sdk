@@ -8,7 +8,7 @@ use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, EnumeratedValue};
 use {PathElement};
-use {Port, Pin, AltFn, Clock};
+use {Pin, AltFn, Clock};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -279,7 +279,6 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("crate") => d.crates.push(try!(read_crate(ctx, &arr[1..]))),
                     Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
                     Some("signal") => d.signals.push(try!(read_signal(ctx, &arr[1..]))),
-                    Some("port") => d.ports.push(try!(read_port(ctx, &arr[1..]))),
                     Some("clock") => d.clocks.push(try!(read_clock(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
@@ -472,6 +471,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("reset-mask") => p.reset_mask = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("interrupt") => p.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
                 Some("signal") => p.signals.push(try!(read_signal(ctx, &arr[1..]))),
+                Some("pin") => p.pins.push(try!(read_pin(ctx, &arr[1..]))),
                 Some("cluster") => p.clusters.push(try!(read_cluster(ctx, &arr[1..]))),
                 Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
@@ -483,27 +483,6 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
         }        
     }
     Ok(p)
-}
-
-fn read_port(ctx: &Context, s: &[Sexp]) -> Result<Port, ReadError> {
-    let path = ctx.path();
-    let mut pg = Port::default();
-
-    for s in s.iter() {
-        // println!("{:?}", s);
-        match s {
-            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
-                Some("name") => pg.name = String::from(try!(read_name(ctx, &arr[1]))),
-                Some("index") => pg.index = Some(try!(expect_u64(ctx, &arr[1]))),
-                Some("ptype") => pg.ptype = String::from(try!(read_name(ctx, &arr[1]))),
-                Some("pin") => pg.pins.push(try!(read_pin(ctx, &arr[1..]))),
-                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
-            },
-            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
-        }
-    }
-
-    Ok(pg)
 }
 
 fn read_pin(ctx: &Context, s: &[Sexp]) -> Result<Pin, ReadError> {
