@@ -1,5 +1,4 @@
 use chip::usart::{USART2};
-use chip::pins;
 use hal::rcc;
 use hal::usart;
 use hal::gpio;
@@ -23,12 +22,15 @@ use hal::gpio;
 // USART2
 // TX = PA2[4] 
 // RX = PA15[4]
-pub fn usart2_enabled() -> usart::UsartDevice {    
-    rcc::set_gpio_enabled(pins::PA2_USART2_TX.0, true);
-    rcc::set_gpio_enabled(pins::PA15_USART2_RX.0, true);
+pub fn usart2_enabled() -> usart::UsartDevice {
+    let tx = ::chip::gpio::PA2_USART2_TX;
+    let rx = ::chip::gpio::PA15_USART2_RX;
+
+    rcc::set_pinfn_enabled(tx, true);
+    rcc::set_pinfn_enabled(rx, true);
     rcc::set_usart_enabled(USART2, true);
-    let _tx = gpio::pin_af(pins::PA2_USART2_TX);
-    let _rx = gpio::pin_af(pins::PA15_USART2_RX);
+    let _tx = gpio::pinfn(tx);
+    let _rx = gpio::pinfn(rx);
     let u = usart::device(USART2);
     u.enable(32_000_000 / 115_200);    
     u
