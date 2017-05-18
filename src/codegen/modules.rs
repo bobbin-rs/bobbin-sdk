@@ -281,15 +281,17 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }    
     try!(write!(out, "\n"));
 
-    try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
-    for p in pg.peripherals.iter() {
-        let p_name = p.name.to_uppercase();
-        try!(writeln!(out, "   {},", p_name));
-        count += 1;
-    }    
-    try!(writeln!(out, "];"));
-    try!(writeln!(out, ""));
-
+    if pg.peripherals.len() > 0 {
+        try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
+        for p in pg.peripherals.iter() {
+            let p_name = p.name.to_uppercase();
+            try!(writeln!(out, "   {},", p_name));
+            count += 1;
+        }    
+        try!(writeln!(out, "];"));
+        try!(writeln!(out, ""));
+    }
+    
     if pg.modules.len() == 0 {
         try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
         try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
