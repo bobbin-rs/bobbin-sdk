@@ -59,8 +59,8 @@ fn gen_config() {
 }
 
 fn pins() -> Result<(), BuildError> {
-    let src_path = Path::new("src/pins.rx");
-    let dst_path = Path::new("src/pins.rs");
+    let src_path = Path::new("src/pin.rx");
+    let dst_path = Path::new("src/pin.rs");
 
     let mut src = File::open(src_path)?;
     let dst = File::create(dst_path)?;
@@ -83,6 +83,7 @@ fn pins() -> Result<(), BuildError> {
 
 fn gen_pins<W: Write>(mut w: W, s: &[Sexp]) -> Result<(), BuildError> {
     writeln!(w, "use hal::gpio;")?;
+    writeln!(w, "pub use hal::pin::*;")?;
     writeln!(w, "")?;
 
     for s in s.iter() {

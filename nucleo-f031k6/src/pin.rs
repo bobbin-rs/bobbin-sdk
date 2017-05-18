@@ -1,73 +1,25 @@
-use chip::gpio::{GPIOA, GPIOB, GPIOC, GPIOH};
-use hal::rcc;
 use hal::gpio;
+pub use hal::pin::*;
 
-macro_rules! pindef {
-    ($id:ident, $port:expr, $pin:expr) => {
-        pub fn $id() -> gpio::PinUnknown { 
-            rcc::set_gpio_enabled($port, true);
-            gpio::pin(($port, $pin))
-        }
-    }
-}
-
-pindef!(d0, GPIOA, 10);
-pindef!(d1, GPIOA, 9);
-pindef!(d2, GPIOA, 12);
-pindef!(d3, GPIOB, 0);
-pindef!(d4, GPIOB, 7);
-pindef!(d5, GPIOB, 6);
-pindef!(d6, GPIOB, 1);
-pindef!(d7, GPIOC, 14);
-pindef!(d8, GPIOC, 15);
-pindef!(d9, GPIOA, 8);
-pindef!(d10, GPIOA, 11);
-pindef!(d11, GPIOB, 5);
-pindef!(d12, GPIOB, 4);
-
-pindef!(a0, GPIOA, 0);
-pindef!(a1, GPIOA, 1);
-pindef!(a2, GPIOA, 3);
-pindef!(a3, GPIOA, 4);
-pindef!(a4, GPIOC, 5);
-pindef!(a5, GPIOC, 6);
-pindef!(a6, GPIOC, 7);
-pindef!(a7, GPIOC, 2);
-
-pindef!(pa0, GPIOA, 0);
-pindef!(pa1, GPIOA, 1);
-pindef!(pa2, GPIOA, 2);
-pindef!(pa3, GPIOA, 3);
-pindef!(pa4, GPIOA, 4);
-pindef!(pa5, GPIOA, 5);
-pindef!(pa6, GPIOA, 6);
-pindef!(pa7, GPIOA, 7);
-pindef!(pa8, GPIOA, 8);
-pindef!(pa9, GPIOA, 9);
-pindef!(pa10, GPIOA, 10);
-pindef!(pa11, GPIOA, 11);
-pindef!(pa12, GPIOA, 12);
-pindef!(pa13, GPIOA, 13);
-pindef!(pa14, GPIOA, 14);
-pindef!(pa15, GPIOA, 15);
-
-pindef!(pb0, GPIOB, 0);
-pindef!(pb1, GPIOB, 1);
-pindef!(pb2, GPIOB, 2);
-pindef!(pb3, GPIOB, 3);
-pindef!(pb4, GPIOB, 4);
-pindef!(pb5, GPIOB, 5);
-pindef!(pb6, GPIOB, 6);
-pindef!(pb7, GPIOB, 7);
-pindef!(pb8, GPIOB, 8);
-pindef!(pb9, GPIOB, 9);
-pindef!(pb10, GPIOB, 10);
-pindef!(pb11, GPIOB, 11);
-pindef!(pb12, GPIOB, 12);
-pindef!(pb13, GPIOB, 13);
-pindef!(pb14, GPIOB, 14);
-pindef!(pb15, GPIOB, 15);
-
-pindef!(pc0, GPIOC, 0);
-pindef!(ph0, GPIOH, 0);
-pindef!(ph1, GPIOH, 1);
+pub fn d0() -> gpio::PinUnknown { pa10() }
+pub fn d1() -> gpio::PinUnknown { pa9() }
+pub fn d2() -> gpio::PinUnknown { pa12() }
+pub fn d3() -> gpio::PinUnknown { pb0() }
+pub fn d4() -> gpio::PinUnknown { pb7() }
+pub fn d5() -> gpio::PinUnknown { pb6() }
+pub fn d6() -> gpio::PinUnknown { pb1() }
+pub fn d7() -> gpio::PinUnknown { pc14() }
+pub fn d8() -> gpio::PinUnknown { pc15() }
+pub fn d9() -> gpio::PinUnknown { pa8() }
+pub fn d10() -> gpio::PinUnknown { pa11() }
+pub fn d11() -> gpio::PinUnknown { pb5() }
+pub fn d12() -> gpio::PinUnknown { pb4() }
+pub fn d13() -> gpio::PinUnknown { pb3() }
+pub fn a0() -> gpio::PinUnknown { pa0() }
+pub fn a1() -> gpio::PinUnknown { pa1() }
+pub fn a2() -> gpio::PinUnknown { pa3() }
+pub fn a3() -> gpio::PinUnknown { pa4() }
+pub fn a4() -> gpio::PinUnknown { pa5() }
+pub fn a5() -> gpio::PinUnknown { pa6() }
+pub fn a6() -> gpio::PinUnknown { pa7() }
+pub fn a7() -> gpio::PinUnknown { pa2() }
