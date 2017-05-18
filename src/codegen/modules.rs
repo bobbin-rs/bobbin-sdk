@@ -2,6 +2,7 @@ use std::io::{Write, Result};
 use std::path::{Path, PathBuf};
 use clap::{ArgMatches};
 use std::fs::File;
+use std::collections::HashSet;
 
 use {Access, Device, PeripheralGroup, Peripheral, Register, Cluster, Field, Interrupt, Exception, Pin};
 
@@ -74,15 +75,6 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         let mut f_mod = try!(File::create(p_mod));
         try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
     }
-
-    // // Generate Pins
-    // {
-    //     let p_name = "pins";
-    //     try!(writeln!(out, "pub mod {};", p_name));
-    //     let p_mod = path.join(format!("{}.rs", p_name));
-    //     let mut f_mod = try!(File::create(p_mod));
-    //     try!(gen_pins(cfg, &mut f_mod, &d));
-    // }
 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().expect("Expected group name").to_lowercase();
@@ -240,24 +232,6 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     Ok(())
 }
 
-pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, p_type: &str, p_name: &str, pins: &[Pin]) -> Result<()> {
-
-    for pin in pins.iter() {
-        try!(writeln!(out, "pub const {}: Pin = ({}, {});", 
-            pin.name, p_name, pin.index.unwrap()));
-
-        for af in pin.altfns.iter() {
-            let name = format!("{}_{}", pin.name, af.signal);
-            try!(writeln!(out, "pub const {}: PinFn = ({}, {}, {});", 
-                name, p_name, pin.index.unwrap(), af.index));
-        }
-        try!(writeln!(out,""));
-    }
-
-    Ok(())
-}
-
-
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -310,30 +284,61 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
 
     if p0.pins.len() > 0 {
-        let mut pin_count: usize = 0;
+        let mut traits = HashSet::new();
 
-        try!(writeln!(out, "pub type Pin = ({}, usize);", p_type));
-        try!(writeln!(out, "pub type PinFn = ({}, usize, usize);", p_type));
+        // Generate Pin Trait
+
+        try!(writeln!(out, "pub trait Pin {{"));
+        try!(writeln!(out, "   fn port(&self) -> Gpio;"));
+        try!(writeln!(out, "   fn index(&self) -> usize;"));
+        try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
         
+        // Generate AltFn Traits
+
         for p in pg.peripherals.iter() {
             let p_name = p.name.to_uppercase();
-
-            if p.pins.len() > 0 {
-                try!(gen_pins(cfg, out, &p_type, &p_name, &p.pins[..]));
-                pin_count += p.pins.len();
-            }
-        }    
-
-        try!(writeln!(out, "pub const PIN: [(&'static str, Pin); {}] = [", pin_count));
-
-        for p in pg.peripherals.iter() {
             for pin in p.pins.iter() {
-                try!(writeln!(out,"  (\"{}\", {}),", pin.name, pin.name));          
+                for af in pin.altfns.iter() {
+                    let af_trait = format!("Af{}", to_camel(&af.signal));
+                    let af_fn = format!("af_{}", af.signal.to_lowercase());
+
+                    if !traits.contains(&af_trait) {
+                        try!(writeln!(out, "pub trait {} {{", af_trait));
+                        try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
+                        try!(writeln!(out, "}}"));
+                        try!(writeln!(out, ""));   
+                        traits.insert(af_trait);
+                    }           
+                }
             }
         }
-        try!(writeln!(out, "];"));
-        try!(writeln!(out,""));          
+
+        for p in pg.peripherals.iter() {
+            let p_name = p.name.to_uppercase();
+            for pin in p.pins.iter() {
+                let pin_name = pin.name.to_uppercase();
+                let pin_type = to_camel(&pin.name);
+                try!(writeln!(out, "pub const {}: {} = {} {{}}; ", pin_name, pin_type, pin_type));
+                try!(writeln!(out, ""));
+                try!(writeln!(out, "pub struct {} {{}}", pin_type));
+                try!(writeln!(out, ""));
+                try!(writeln!(out, "impl Pin for {} {{", pin_type));
+                try!(writeln!(out, "   fn port(&self) -> {} {{ {} }}", p_type, p_name));
+                try!(writeln!(out, "   fn index(&self) -> usize {{ {} }}", pin.index.unwrap()));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+                for af in pin.altfns.iter() {
+                    let af_trait = format!("Af{}", to_camel(&af.signal));
+                    let af_fn = format!("af_{}", af.signal.to_lowercase());
+                    try!(writeln!(out, "impl {} for {} {{", af_trait, pin_type));
+                    try!(writeln!(out, "   fn {}(&self) -> usize {{ {} }}", af_fn, af.index));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+                }
+            }
+        
+        }    
     }
 
 
@@ -631,6 +636,22 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
     Ok(())
 }
 
+pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, p_type: &str, p_name: &str, pins: &[Pin]) -> Result<()> {
+
+    for pin in pins.iter() {
+        try!(writeln!(out, "pub const {}: Pin = ({}, {});", 
+            pin.name, p_name, pin.index.unwrap()));
+
+        for af in pin.altfns.iter() {
+            let name = format!("{}_{}", pin.name, af.signal);
+            try!(writeln!(out, "pub const {}: PinFn = ({}, {}, {});", 
+                name, p_name, pin.index.unwrap(), af.index));
+        }
+        try!(writeln!(out,""));
+    }
+
+    Ok(())
+}
 #[cfg(xtest)]
 mod tests {
     extern crate core;
