@@ -106,6 +106,14 @@ pub struct Device {
     pub regions: Vec<Region>,
     pub signals: Vec<Signal>,
     pub clocks: Vec<Clock>,
+    pub variants: Vec<Variant>,
+}
+
+#[derive(Debug, Clone, Default)] 
+pub struct Variant {
+    pub name: String,
+    pub link: Option<String>,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Default)] 
@@ -135,7 +143,7 @@ pub struct Crate {
 }
 
 
-#[derive(Debug, Default)] 
+#[derive(Debug, Clone, Default)] 
 pub struct Module {
     pub name: String,
     pub _as: Option<String>,
@@ -160,6 +168,7 @@ pub struct Peripheral {
     pub reset_value: Option<u64>,
     pub reset_mask: Option<u64>,    
     pub description: Option<String>,
+    pub modules: Vec<Module>,
 
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,

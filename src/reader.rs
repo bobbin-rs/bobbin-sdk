@@ -8,7 +8,7 @@ use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, EnumeratedValue};
 use {PathElement};
-use {Pin, AltFn, Clock};
+use {Pin, AltFn, Clock, Variant};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -278,6 +278,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("exceptions") => d.exceptions.extend(try!(read_exceptions(ctx, &arr[1..]))),
                     Some("crate") => d.crates.push(try!(read_crate(ctx, &arr[1..]))),
                     Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
+                    Some("variants") => d.variants.extend(try!(read_variants(ctx, &arr[1..]))),
                     Some("signal") => d.signals.push(try!(read_signal(ctx, &arr[1..]))),
                     Some("clock") => d.clocks.push(try!(read_clock(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
@@ -339,6 +340,39 @@ fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
     }
 
     Ok(c)
+}
+
+fn read_variants(ctx: &Context, s: &[Sexp]) -> Result<Vec<Variant>, ReadError> {
+    let path = ctx.path();
+    let mut variants: Vec<Variant> = Vec::new();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("variant") => variants.push(try!(read_variant(ctx, &arr[1..]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(variants)
+}
+
+fn read_variant(ctx: &Context, s: &[Sexp]) -> Result<Variant, ReadError> {
+    let mut v = Variant::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => v.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("link") => v.link = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                Some("description") => v.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(v)
 }
 
 
@@ -459,7 +493,8 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                     } else {
                         return Err(ReadError::Error(format!("{}: Expected list, got {:?}", ctx_new.location_of(&s_include), &s_include)))
                     };
-                },                                    
+                },        
+                Some("module") => p.modules.push(try!(read_module(ctx, &arr[1..]))),                            
                 Some("derived-from") => p.derived_from = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("group-name") => p.group_name = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),

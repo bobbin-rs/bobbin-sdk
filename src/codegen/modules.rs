@@ -77,7 +77,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
     }
 
     for p in d.peripherals.iter() {
-        let p_name = p.group_name.as_ref().expect("Expected group name").to_lowercase();
+        let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
@@ -244,27 +244,29 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, ""));
     }
 
-    let mut count: usize = 0;
+    // let mut count: usize = 0;
 
     let p_type = to_camel(&pg.name);
 
     for p in pg.peripherals.iter() {
         let p_name = p.name.to_uppercase();
         try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p_name, p_type, p_type, p.address));            
-        count += 1;
+        // count += 1;
     }    
     try!(write!(out, "\n"));
 
-    if pg.peripherals.len() > 0 {
-        try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
-        for p in pg.peripherals.iter() {
-            let p_name = p.name.to_uppercase();
-            try!(writeln!(out, "   {},", p_name));
-            count += 1;
-        }    
-        try!(writeln!(out, "];"));
-        try!(writeln!(out, ""));
-    }
+    // Generate peripheral list
+
+    // if pg.peripherals.len() > 0 {
+    //     try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
+    //     for p in pg.peripherals.iter() {
+    //         let p_name = p.name.to_uppercase();
+    //         try!(writeln!(out, "   {},", p_name));
+    //         count += 1;
+    //     }    
+    //     try!(writeln!(out, "];"));
+    //     try!(writeln!(out, ""));
+    // }
     
     if pg.modules.len() == 0 {
         try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
@@ -321,6 +323,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let pin_type = to_camel(&pin.name);
                 try!(writeln!(out, "pub const {}: {} = {} {{}}; ", pin_name, pin_type, pin_type));
                 try!(writeln!(out, ""));
+                try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
                 try!(writeln!(out, "pub struct {} {{}}", pin_type));
                 try!(writeln!(out, ""));
                 try!(writeln!(out, "impl Pin for {} {{", pin_type));
