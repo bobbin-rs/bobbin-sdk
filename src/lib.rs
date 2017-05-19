@@ -169,6 +169,7 @@ pub struct Peripheral {
     pub reset_mask: Option<u64>,    
     pub description: Option<String>,
     pub modules: Vec<Module>,
+    pub features: Vec<String>,
 
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,

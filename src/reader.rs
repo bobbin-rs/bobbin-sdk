@@ -428,6 +428,15 @@ fn read_module(ctx: &Context, s: &[Sexp]) -> Result<Module, ReadError> {
     Ok(m)
 }
 
+fn read_feature(ctx: &Context, s: &[Sexp]) -> Result<Vec<String>, ReadError> {
+    let mut features: Vec<String> = Vec::new();
+    for s in s.iter() {
+        // println!("{:?}", s);
+        features.push(String::from(try!(expect_symbol(ctx, s))));
+    }
+    Ok(features)
+}
+
 fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, ReadError> {
     let path = ctx.path();
     let mut pg = PeripheralGroup::default();
@@ -494,7 +503,8 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                         return Err(ReadError::Error(format!("{}: Expected list, got {:?}", ctx_new.location_of(&s_include), &s_include)))
                     };
                 },        
-                Some("module") => p.modules.push(try!(read_module(ctx, &arr[1..]))),                            
+                Some("module") => p.modules.push(try!(read_module(ctx, &arr[1..]))),
+                Some("feature") => p.features.extend(try!(read_feature(ctx, &arr[1..]))),
                 Some("derived-from") => p.derived_from = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("group-name") => p.group_name = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),

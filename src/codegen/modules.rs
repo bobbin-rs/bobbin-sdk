@@ -17,7 +17,7 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
     fn from(matches: &'a ArgMatches) -> Config {
         Config {
             path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
-            is_root: matches.is_present("root")
+            is_root: matches.is_present("root"),
         }
     }
 }
@@ -249,6 +249,13 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     let p_type = to_camel(&pg.name);
 
     for p in pg.peripherals.iter() {
+        if p.features.len() > 0 {
+            try!(write!(out, "#[cfg(any("));
+            for f in p.features.iter() {
+                try!(write!(out, "feature=\"{}\",", f));
+            }
+            try!(writeln!(out, "))]"));
+        }
         let p_name = p.name.to_uppercase();
         try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p_name, p_type, p_type, p.address));            
         // count += 1;
