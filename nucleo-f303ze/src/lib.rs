@@ -14,8 +14,8 @@ pub mod console;
 #[macro_use]
 pub mod logger;
 
-extern crate stm32f3;
-pub use stm32f3::{chip, hal};
+extern crate stm32f303x;
+pub use stm32f303x::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
