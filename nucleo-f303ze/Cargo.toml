@@ -2,7 +2,7 @@
 name = "nucleo-f303ze"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
-build = "build.rs"
+#build = "build.rs"
 
 [dependencies]
 #stm32f3 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
@@ -13,6 +13,9 @@ log = { version="0.3", default-features = false }
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
+
+[features]
+default = ["stm32f3/stm32f303rex"]
 
 [profile.dev]
 panic = "abort"

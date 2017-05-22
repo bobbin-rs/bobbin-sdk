@@ -22,7 +22,7 @@ pub mod lang_items;
 
 pub mod led;
 pub mod btn;
-pub mod pin;
+//pub mod pin;
 pub mod tim;
 pub mod usart;
 
@@ -30,5 +30,8 @@ pub use tim::delay;
 
 pub fn init() {
     hal::clock::enable_pll_external_mode();
-    console::CONSOLE.init(115_200);
+    led::init();
+    btn::init();
+    usart::init();
+    console::CONSOLE.init();
 }

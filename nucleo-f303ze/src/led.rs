@@ -1,9 +1,13 @@
-use chip::gpio::GPIOA;
-use hal::rcc;
+use chip::gpio::*;
 use hal::gpio;
 
+pub type Led = gpio::PinOutput;
+
+pub fn init() {
+    gpio::pin(PA5).into_output();
+}
+
 // LED @ D13 = PA5
-pub fn led0() -> gpio::PinOutput {
-    rcc::set_gpio_enabled(GPIOA, true);
-    gpio::pin(GPIOA, 5).into_output()
+pub fn led0() -> Led {
+    gpio::pin_output(PA5)
 }
