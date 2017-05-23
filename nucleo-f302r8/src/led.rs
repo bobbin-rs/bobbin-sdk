@@ -1,9 +1,13 @@
-use chip::gpio::GPIOB;
-use hal::rcc;
+use chip::gpio::*;
 use hal::gpio;
 
+pub type Led = gpio::PinOutput;
+
+pub fn init() {
+    gpio::pin(PB13).into_output();
+}
+
 // LED @ D13 = PB13
-pub fn led0() -> gpio::PinOutput {
-    rcc::set_gpio_enabled(GPIOB, true);
-    gpio::pin(GPIOB, 13).into_output()
+pub fn led0() -> Led {
+    gpio::pin_output(PB13)
 }

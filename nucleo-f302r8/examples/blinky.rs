@@ -7,8 +7,13 @@ extern crate nucleo_f302r8 as board;
 pub extern "C" fn main() -> ! {
     board::init();
     let led0 = board::led::led0();
+    let btn0 = board::btn::btn0();
     loop {
         led0.toggle();
-        board::delay(500);
+        if btn0.get() {            
+            board::delay(500);
+        } else {
+            board::delay(250);            
+        }        
     }
 }
