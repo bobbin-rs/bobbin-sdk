@@ -11,6 +11,7 @@ use std::hash::{Hasher};
 pub mod reader;
 pub mod writer;
 pub mod codegen;
+pub mod builder;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Access {
