@@ -13,7 +13,7 @@ pub extern "C" fn main() -> ! {
         if btn0.get() {            
             board::delay(500);
         } else {
-            board::delay(250);            
+            board::delay(100);            
         }        
     }
 }

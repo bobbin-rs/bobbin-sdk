@@ -1,9 +1,11 @@
-use chip::gpio::GPIOC;
-use hal::rcc;
+use chip::gpio::*;
 use hal::gpio;
 
+pub fn init() {
+    gpio::pin(PC13).into_input(gpio::Pull::PullUp);
+}
+
 // BTN0 = PC13
-pub fn btn0() -> gpio::PinInput { 
-    rcc::set_gpio_enabled(GPIOC, true);
-    gpio::pin(GPIOC, 13).into_input(gpio::Pull::PullUp)
+pub fn btn0() -> gpio::PinInput {     
+    gpio::pin_input(PC13)
 }

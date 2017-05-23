@@ -14,8 +14,8 @@ pub mod console;
 #[macro_use]
 pub mod logger;
 
-extern crate stm32f4;
-pub use stm32f4::{chip, hal};
+extern crate stm32f42x;
+pub use stm32f42x::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
@@ -35,5 +35,8 @@ pub use tim::delay;
 
 pub fn init() {
     hal::clock::enable_pll_external_mode();
+    led::init();
+    btn::init();
+    usart::init();
     console::CONSOLE.init(115_200);
 }
