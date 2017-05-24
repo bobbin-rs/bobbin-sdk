@@ -9,8 +9,8 @@ extern crate compiler_builtins;
 #[macro_use]
 pub mod console;
 
-extern crate samd;
-pub use samd::{chip, hal};
+extern crate samd21;
+pub use samd21::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
