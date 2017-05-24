@@ -12,7 +12,7 @@ use core::fmt::Write;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let mut u = board::usart::usart3(board::pin::pb6(), board::pin::pb7());
+    let mut u = board::usart::usart1();
     
     let mut i = 0;
     loop {
