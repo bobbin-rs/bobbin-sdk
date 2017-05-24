@@ -1,9 +1,22 @@
-use chip::gpio::GPIOA;
-use hal::rcc;
+use chip::gpio::*;
 use hal::gpio;
 
-// BTN0 = PA0
-pub fn btn0() -> gpio::PinInput { 
-    rcc::set_gpio_enabled(GPIOA, true);
-    gpio::pin(GPIOA, 0).into_input(gpio::Pull::PullUp)
+pub fn init() {
+    gpio::pin(PC13).into_input(gpio::Pull::PullUp);
 }
+
+// BTN0 = PA0
+pub fn btn0() -> gpio::PinInput {     
+    gpio::pin_input(PA0)
+}
+
+
+// use chip::gpio::GPIOA;
+// use hal::rcc;
+// use hal::gpio;
+
+// // BTN0 = PA0
+// pub fn btn0() -> gpio::PinInput { 
+//     rcc::set_gpio_enabled(GPIOA, true);
+//     gpio::pin(GPIOA, 0).into_input(gpio::Pull::PullUp)
+// }
