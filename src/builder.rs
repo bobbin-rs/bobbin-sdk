@@ -45,6 +45,8 @@ pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result
             //println!("cargo:warning=link_script {}", link_script);
             let src = PathBuf::from("link").join(link_script);
             copy_link_script(&src);
+        } else {
+            println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
         }
     } else {
         println!("cargo:warning=No link script found, please check that you have selected a known device variant from the following:");
