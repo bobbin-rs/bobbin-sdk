@@ -1,9 +1,12 @@
-use chip::gpio::GPIOC;
-use hal::sysctl;
 use hal::gpio;
+use pin;
 
-// BTN0 = PC13
+pub fn init() {    
+}
+
 pub fn btn0() -> gpio::PinInput { 
-    sysctl::set_gpio_enabled(GPIOC, true);
-    gpio::pin(GPIOC, 13).into_input().with_pullup(true)
+    pin::pj0().into_input().with_pullup(true)
+}
+pub fn btn1() -> gpio::PinInput { 
+    pin::pj1().into_input().with_pullup(true)
 }

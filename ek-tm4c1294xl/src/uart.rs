@@ -1,20 +1,20 @@
 use chip::uart::UART0;
 use hal::sysctl;
 use hal::uart;
-use hal::gpio;
+use pin;
 
-pub fn uart0(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> uart::UartDevice {
+// PA0 and PA1
+pub fn init() -> uart::UartDevice {
     sysctl::set_uart_enabled(UART0, true);
 
-    let tx = tx.into_altfn(1);
-    let rx = rx.into_altfn(1);
-    let u = uart::device(UART0, tx, rx);
+    pin::pa0().into_altfn(1);
+    pin::pa1().into_altfn(1);
+
+    let u = uart::device(UART0);
     u.enable(115_200);
     u
 }
 
-pub unsafe fn uart0_unchecked(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> uart::UartDevice {
-    let tx = tx.into_altfn_unchecked();
-    let rx = rx.into_altfn_unchecked();
-    uart::device(UART0, tx, rx) 
+pub fn uart0() -> uart::UartDevice {
+    uart::device(UART0) 
 }

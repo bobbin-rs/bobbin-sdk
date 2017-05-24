@@ -39,5 +39,8 @@ pub fn delay(n: u32) {
 
 pub fn init() {
     clock::init();
+    led::init();
+    btn::init();
+    uart::init();
     console::CONSOLE.init(115_200);
 }

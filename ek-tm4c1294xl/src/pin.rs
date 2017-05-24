@@ -1,121 +1,117 @@
-use chip::gpio::{GPIOA, GPIOB, GPIOC, GPIOD, GPIOE};
+use chip::gpio::*;
 use hal::sysctl;
 use hal::gpio;
 
 macro_rules! pindef {
-    ($id:ident, $port:expr, $pin:expr) => {
+    ($id:ident, $pin:expr) => {
         pub fn $id() -> gpio::PinUnknown { 
-            sysctl::set_gpio_enabled($port, true);
-            gpio::pin($port, $pin)
+            sysctl::set_gpio_enabled($pin.port(), true);
+            gpio::pin($pin.port(), $pin.index())
         }
     }
 }
+pindef!(pa0, PA0);
+pindef!(pa1, PA1);
+pindef!(pa2, PA2);
+pindef!(pa3, PA3);
+pindef!(pa4, PA4);
+pindef!(pa5, PA5);
+pindef!(pa6, PA6);
+pindef!(pa7, PA7);
 
-pindef!(d0, GPIOA, 3);
-pindef!(d1, GPIOA, 2);
-pindef!(d2, GPIOA, 10);
-pindef!(d3, GPIOB, 3);
-pindef!(d4, GPIOB, 5);
-pindef!(d5, GPIOB, 4);
-pindef!(d6, GPIOB, 10);
-pindef!(d7, GPIOA, 8);
-pindef!(d8, GPIOA, 9);
-pindef!(d9, GPIOC, 7);
-pindef!(d10, GPIOB, 6);
-pindef!(d11, GPIOA, 7);
-pindef!(d12, GPIOA, 6);
-pindef!(d13, GPIOA, 5);
-pindef!(d14, GPIOB, 9);
-pindef!(d15, GPIOB, 8);
+pindef!(pb0, PB0);
+pindef!(pb1, PB1);
+pindef!(pb2, PB2);
+pindef!(pb3, PB3);
+pindef!(pb4, PB4);
+pindef!(pb5, PB5);
 
-pindef!(a0, GPIOA, 0);
-pindef!(a1, GPIOA, 1);
-pindef!(a2, GPIOA, 4);
-pindef!(a3, GPIOB, 0);
-pindef!(a4, GPIOC, 1);
-pindef!(a5, GPIOC, 0);
 
-pindef!(pa0, GPIOA, 0);
-pindef!(pa1, GPIOA, 1);
-pindef!(pa2, GPIOA, 2);
-pindef!(pa3, GPIOA, 3);
-pindef!(pa4, GPIOA, 4);
-pindef!(pa5, GPIOA, 5);
-pindef!(pa6, GPIOA, 6);
-pindef!(pa7, GPIOA, 7);
-pindef!(pa8, GPIOA, 8);
-pindef!(pa9, GPIOA, 9);
-pindef!(pa10, GPIOA, 10);
-pindef!(pa11, GPIOA, 11);
-pindef!(pa12, GPIOA, 12);
-pindef!(pa13, GPIOA, 13);
-pindef!(pa14, GPIOA, 14);
-pindef!(pa15, GPIOA, 15);
+pindef!(pc0, PC0);
+pindef!(pc1, PC1);
+pindef!(pc2, PC2);
+pindef!(pc3, PC3);
+pindef!(pc4, PC4);
+pindef!(pc5, PC5);
+pindef!(pc6, PC6);
+pindef!(pc7, PC7);
 
-pindef!(pb0, GPIOB, 0);
-pindef!(pb1, GPIOB, 1);
-pindef!(pb2, GPIOB, 2);
-pindef!(pb3, GPIOB, 3);
-pindef!(pb4, GPIOB, 4);
-pindef!(pb5, GPIOB, 5);
-pindef!(pb6, GPIOB, 6);
-pindef!(pb7, GPIOB, 7);
-pindef!(pb8, GPIOB, 8);
-pindef!(pb9, GPIOB, 9);
-pindef!(pb10, GPIOB, 10);
-pindef!(pb11, GPIOB, 11);
-pindef!(pb12, GPIOB, 12);
-pindef!(pb13, GPIOB, 13);
-pindef!(pb14, GPIOB, 14);
-pindef!(pb15, GPIOB, 15);
+pindef!(pd0, PD0);
+pindef!(pd1, PD1);
+pindef!(pd2, PD2);
+pindef!(pd3, PD3);
+pindef!(pd4, PD4);
+pindef!(pd5, PD5);
+pindef!(pd6, PD6);
+pindef!(pd7, PD7);
 
-pindef!(pc0, GPIOC, 0);
-pindef!(pc1, GPIOC, 1);
-pindef!(pc2, GPIOC, 2);
-pindef!(pc3, GPIOC, 3);
-pindef!(pc4, GPIOC, 4);
-pindef!(pc5, GPIOC, 5);
-pindef!(pc6, GPIOC, 6);
-pindef!(pc7, GPIOC, 7);
-pindef!(pc8, GPIOC, 8);
-pindef!(pc9, GPIOC, 9);
-pindef!(pc10, GPIOC, 10);
-pindef!(pc11, GPIOC, 11);
-pindef!(pc12, GPIOC, 12);
-pindef!(pc13, GPIOC, 13);
-pindef!(pc14, GPIOC, 14);
-pindef!(pc15, GPIOC, 15);
+pindef!(pe0, PE0);
+pindef!(pe1, PE1);
+pindef!(pe2, PE2);
+pindef!(pe3, PE3);
+pindef!(pe4, PE4);
+pindef!(pe5, PE5);
 
-pindef!(pd0, GPIOD, 0);
-pindef!(pd1, GPIOD, 1);
-pindef!(pd2, GPIOD, 2);
-pindef!(pd3, GPIOD, 3);
-pindef!(pd4, GPIOD, 4);
-pindef!(pd5, GPIOD, 5);
-pindef!(pd6, GPIOD, 6);
-pindef!(pd7, GPIOD, 7);
-pindef!(pd8, GPIOD, 8);
-pindef!(pd9, GPIOD, 9);
-pindef!(pd10, GPIOD, 10);
-pindef!(pd11, GPIOD, 11);
-pindef!(pd12, GPIOD, 12);
-pindef!(pd13, GPIOD, 13);
-pindef!(pd14, GPIOD, 14);
-pindef!(pd15, GPIOD, 15);
+pindef!(pf0, PF0);
+pindef!(pf1, PF1);
+pindef!(pf2, PF2);
+pindef!(pf3, PF3);
+pindef!(pf4, PF4);
 
-pindef!(pe0, GPIOE, 0);
-pindef!(pe1, GPIOE, 1);
-pindef!(pe2, GPIOE, 2);
-pindef!(pe3, GPIOE, 3);
-pindef!(pe4, GPIOE, 4);
-pindef!(pe5, GPIOE, 5);
-pindef!(pe6, GPIOE, 6);
-pindef!(pe7, GPIOE, 7);
-pindef!(pe8, GPIOE, 8);
-pindef!(pe9, GPIOE, 9);
-pindef!(pe10, GPIOE, 10);
-pindef!(pe11, GPIOE, 11);
-pindef!(pe12, GPIOE, 12);
-pindef!(pe13, GPIOE, 13);
-pindef!(pe14, GPIOE, 14);
-pindef!(pe15, GPIOE, 15);
+pindef!(pg0, PG0);
+pindef!(pg1, PG1);
+
+pindef!(ph0, PH0);
+pindef!(ph1, PH1);
+pindef!(ph2, PH2);
+pindef!(ph3, PH3);
+
+pindef!(pj0, PJ0);
+pindef!(pj1, PJ1);
+
+pindef!(pk0, PK0);
+pindef!(pk1, PK1);
+pindef!(pk2, PK2);
+pindef!(pk3, PK3);
+pindef!(pk4, PK4);
+pindef!(pk5, PK5);
+pindef!(pk6, PK6);
+pindef!(pk7, PK7);
+
+pindef!(pl0, PL0);
+pindef!(pl1, PL1);
+pindef!(pl2, PL2);
+pindef!(pl3, PL3);
+pindef!(pl4, PL4);
+pindef!(pl5, PL5);
+pindef!(pl6, PL6);
+pindef!(pl7, PL7);
+
+pindef!(pm0, PM0);
+pindef!(pm1, PM1);
+pindef!(pm2, PM2);
+pindef!(pm3, PM3);
+pindef!(pm4, PM4);
+pindef!(pm5, PM5);
+pindef!(pm6, PM6);
+pindef!(pm7, PM7);
+
+pindef!(pn0, PN0);
+pindef!(pn1, PN1);
+pindef!(pn2, PN2);
+pindef!(pn3, PN3);
+pindef!(pn4, PN4);
+pindef!(pn5, PN5);
+
+pindef!(pp0, PP0);
+pindef!(pp1, PP1);
+pindef!(pp2, PP2);
+pindef!(pp3, PP3);
+pindef!(pp4, PP4);
+pindef!(pp5, PP5);
+
+pindef!(pq0, PQ0);
+pindef!(pq1, PQ1);
+pindef!(pq2, PQ2);
+pindef!(pq3, PQ3);
+pindef!(pq4, PQ4);
