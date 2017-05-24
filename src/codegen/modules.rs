@@ -292,7 +292,14 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(gen_clusters(cfg, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
 
-    if p0.pins.len() > 0 {
+    let mut has_pins = false;
+    for p in pg.peripherals.iter() {
+        if p.pins.len() > 0 {
+            has_pins = true;
+        }
+    }
+
+    if has_pins {
         let mut traits = HashSet::new();
 
         // Generate Pin Trait
