@@ -2,7 +2,6 @@
 name = "arduino-zero"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
-build = "build.rs"
 
 [dependencies]
 #samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
@@ -12,6 +11,9 @@ r0 = "0.1.0"
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
+
+[features]
+default = ["samd/SAMD21G18"]
 
 [profile.dev]
 panic = "abort"
