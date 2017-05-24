@@ -1,0 +1,21 @@
+(board (name NUCLEO-L031)
+    (device (name CONSOLE) (module (name console))
+        (signal (name RX) (pinfn PA2_USART2_TX))
+        (signal (name TX) (pinfn PA15_USART2_RX))
+    )
+
+    (device (name LED0) (module (name console))
+        (signal (name IN) (pinfn PB3_OUT))
+    )
+
+    (device (name BTN0) (type btn)
+        (signal (name OUT) (pinfn PA12_IN))
+    )
+
+    (device (name ARDUINO)
+        (signal (name D0) (pin PA10))
+        (signal (name D1) (pin PA9))
+        (signal (name D2) (pin PA12))
+        (signal (name PA0) (pin PA0))
+    )
+)

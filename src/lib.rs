@@ -11,6 +11,7 @@ use std::hash::{Hasher};
 pub mod reader;
 pub mod writer;
 pub mod codegen;
+pub mod builder;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Access {
@@ -73,6 +74,22 @@ impl From<String> for Access {
         Access::from(other.as_ref())
     }
 }
+#[derive(Debug)]
+pub enum TopLevel {
+    Board(Board),
+    Device(Device),
+    Peripheral(Peripheral),
+}
+
+#[derive(Debug, Default)]
+pub struct Board {
+    pub name: String,
+    pub description: Option<String>,
+    pub devices: Vec<Device>,
+    pub connections: Vec<Connection>,
+    pub paths: Vec<Path>,
+    pub clocks: Vec<Clock>,
+}
 
 #[derive(Debug, Default)]
 pub struct Device {
@@ -87,7 +104,38 @@ pub struct Device {
     pub peripheral_groups: Vec<PeripheralGroup>,
     pub peripherals: Vec<Peripheral>,
     pub crates: Vec<Crate>,
+    pub regions: Vec<Region>,
+    pub signals: Vec<Signal>,
+    pub clocks: Vec<Clock>,
+    pub variants: Vec<Variant>,
 }
+
+#[derive(Debug, Clone, Default)] 
+pub struct Variant {
+    pub name: String,
+    pub link: Option<String>,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Default)] 
+pub struct Connection {
+    pub device_a: String,
+    pub signal_a: String,
+    pub device_b: String,
+    pub signal_b: String,
+}
+
+#[derive(Debug, Default)] 
+pub struct Path {
+    pub path_elements: Vec<PathElement>,
+}
+
+#[derive(Debug, Default)] 
+pub struct PathElement {
+    pub device: String,
+    pub signal: String,
+}
+
 
 #[derive(Debug, Default)] 
 pub struct Crate {
@@ -96,7 +144,7 @@ pub struct Crate {
 }
 
 
-#[derive(Debug, Default)] 
+#[derive(Debug, Clone, Default)] 
 pub struct Module {
     pub name: String,
     pub _as: Option<String>,
@@ -121,10 +169,14 @@ pub struct Peripheral {
     pub reset_value: Option<u64>,
     pub reset_mask: Option<u64>,    
     pub description: Option<String>,
+    pub modules: Vec<Module>,
+    pub features: Vec<String>,
 
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,
     pub registers: Vec<Register>,
+    pub signals: Vec<Signal>,
+    pub pins: Vec<Pin>,
 
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
@@ -135,6 +187,12 @@ pub struct Peripheral {
 pub struct Interrupt {
     pub name: String,
     pub value: u64,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Signal {
+    pub name: String,
     pub description: Option<String>,
 }
 
@@ -199,6 +257,38 @@ pub struct EnumeratedValue {
     pub name: Option<String>,
     pub description: Option<String>,
 }
+
+#[derive(Debug, Clone, Default)]
+pub struct Region {
+    pub name: String,
+    pub rtype: String,
+    pub offset: u64,
+    pub size: u64,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Pin {
+    pub name: String,
+    pub index: Option<u64>,
+    pub description: Option<String>,
+    pub altfns: Vec<AltFn>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct AltFn {
+    pub index: u64,
+    pub signal: String,
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Clock {
+    pub name: String,
+    pub speed: Option<u64>,
+    pub description: Option<String>,
+}
+
 
 impl Device {
     pub fn get_peripheral(&self, name: &str) -> Option<&Peripheral> {

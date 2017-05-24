@@ -6,7 +6,7 @@ use std::fs::File;
 use std::path::Path;
 use std::io::{self, Write};
 
-use chip::Device;
+use chip::{TopLevel, Device};
 use chip::reader;
 
 pub struct AppError(i32, String);
@@ -122,5 +122,9 @@ fn cmd_registers(matches: &ArgMatches, device: &Device) -> Result<(), AppError> 
 
 fn load_device<P: AsRef<Path>>(p: P) -> Result<Device, AppError> {
     let mut input = try!(File::open(&p));
-    Ok(try!(reader::read(&mut input, p.as_ref())))
+    match try!(reader::read(&mut input, p.as_ref())) {
+        TopLevel::Device(device) => Ok(device),
+        TopLevel::Board(_) => Err(AppError(1, format!("Expected Device, got Board"))),
+        TopLevel::Peripheral(_) => Err(AppError(1, format!("Expected Device, got Peripheral"))),
+    }
 }
