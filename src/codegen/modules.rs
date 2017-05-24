@@ -298,7 +298,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         // Generate Pin Trait
 
         try!(writeln!(out, "pub trait Pin {{"));
-        try!(writeln!(out, "   fn port(&self) -> Gpio;"));
+        try!(writeln!(out, "   fn port(&self) -> {};", p_type));
         try!(writeln!(out, "   fn index(&self) -> usize;"));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
