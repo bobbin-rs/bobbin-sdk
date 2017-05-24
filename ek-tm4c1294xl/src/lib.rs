@@ -14,8 +14,8 @@ pub mod console;
 #[macro_use]
 pub mod logger;
 
-extern crate tm4c12x;
-pub use tm4c12x::{chip, hal};
+extern crate tm4c129x;
+pub use tm4c129x::{chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
