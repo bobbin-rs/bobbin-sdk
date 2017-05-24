@@ -8,8 +8,8 @@ extern crate compiler_builtins;
 
 extern crate log;
 
-extern crate s32k144;
-pub use s32k144::{chip, hal};
+extern crate s32;
+pub use s32::{chip, hal};
 
 #[macro_use]
 pub mod console;
