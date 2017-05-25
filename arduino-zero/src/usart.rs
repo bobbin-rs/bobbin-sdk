@@ -5,7 +5,7 @@ use pin;
 use hal::pm;
 use chip::gclk;
 
-pub fn usart2(_baud: u32) -> usart::UsartDevice {
+pub fn init(_baud: u32) {
     pm::set_sercom_enabled(SERCOM5, true);
 
     // Set GCLK_GEN0 as source for SERCOM
@@ -24,9 +24,8 @@ pub fn usart2(_baud: u32) -> usart::UsartDevice {
     let _rx = pin::pb23().into_pmux(PMux::PMuxD);
     let u = usart::device(SERCOM5);
     u.configure(63018, 1, 3);    
-    u
 }
 
-pub unsafe fn usart2_unchecked() -> usart::UsartDevice {
+pub unsafe fn usart5() -> usart::UsartDevice {
     usart::device(SERCOM5)
 }

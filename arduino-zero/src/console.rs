@@ -26,11 +26,11 @@ macro_rules! println {
 }
 
 pub fn init() {
-    let _ = usart::usart2(115_200);
+    //let _ = usart::usart2(115_200);
 }
 
 fn console() -> ::hal::usart::UsartDevice {
-    unsafe { usart::usart2_unchecked() }
+    unsafe { usart::usart5() }
 }
 
 #[doc(hidden)]

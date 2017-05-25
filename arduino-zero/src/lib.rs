@@ -25,5 +25,6 @@ pub use tim::delay;
 
 pub fn init() {
     hal::clock::run_48mhz();
+    usart::init(115_200);
     console::init();
 }
