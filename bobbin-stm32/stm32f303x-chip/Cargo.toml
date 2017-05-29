@@ -8,7 +8,7 @@ build = "build.rs"
 path = "src/lib.rs"
 
 [build-dependencies]
-bobbin-chip = { path = "../../bobbin-chip/" }
+bobbin-chip = { path = "../../../bobbin-chip/" }
 
 [dependencies]
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
