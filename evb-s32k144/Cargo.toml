@@ -1,21 +1,23 @@
 [package]
-name = "feather-m0"
+name = "evb-s32k144"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
-build = "build.rs"
 
 [dependencies]
-#samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
-samd21 = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
+#s32 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
+s32 = { path = "../../bobbin-mcu/bobbin-kinetis/s32"}
 r0 = "0.1.0"
+log = { version="0.3", default-features = false }
 
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
 
+[dev-dependencies]
+simple-semaphore = { path = "../../simple-semaphore"}
+
 [features]
-default = ["samd21/SAMD21G18"]
-no_bootloader = []
+default = ["s32/K144"]
 
 [profile.dev]
 panic = "abort"

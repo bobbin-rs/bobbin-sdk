@@ -1,21 +1,20 @@
 [package]
-name = "feather-m0"
+name = "discovery-stm32f4"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
-build = "build.rs"
 
 [dependencies]
-#samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
-samd21 = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
+#stm32f4 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
+stm32f40x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f40x"}
 r0 = "0.1.0"
+log = { version="0.3", default-features = false }
 
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
 
 [features]
-default = ["samd21/SAMD21G18"]
-no_bootloader = []
+default = ["stm32f40x/STM32F407VG"]
 
 [profile.dev]
 panic = "abort"
