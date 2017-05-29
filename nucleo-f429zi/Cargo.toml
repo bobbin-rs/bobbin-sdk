@@ -1,0 +1,26 @@
+[package]
+name = "nucleo-f429zi"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+stm32f42x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f42x"}
+r0 = "0.1.0"
+log = { version="0.3", default-features = false }
+
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
+
+[features]
+default = ["stm32f42x/STM32F429ZI"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
