@@ -1,0 +1,11 @@
+[package]
+name = "k64"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+k64-chip = { path = "../k64-chip" }
+k64-hal = { path = "../k64-hal" }
+
+[features]
+K64FN1M0 = ["k64-chip/K64FN1M0"]

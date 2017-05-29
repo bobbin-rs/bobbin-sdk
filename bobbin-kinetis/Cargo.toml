@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "kinetis-common", 
+    "k64", "k64-chip", "k64-hal", 
+    "kl26", "kl26-chip", "kl26-hal", 
+    "s32", "s32-chip","s32-hal",
+    ]

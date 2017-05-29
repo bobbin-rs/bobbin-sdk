@@ -1,0 +1,11 @@
+[package]
+name = "s32"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+s32-chip = { path = "../s32-chip" }
+s32-hal = { path = "../s32-hal" }
+
+[features]
+K144 = ["s32-chip/K144"]

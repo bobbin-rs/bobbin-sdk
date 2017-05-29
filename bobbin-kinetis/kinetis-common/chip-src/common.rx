@@ -1,0 +1,10 @@
+(device
+    (peripheral-group
+        (name GPIO)
+        (prototype "periph/gpio.rx")
+    )
+    (peripheral-group
+        (name PORT)
+        (prototype "periph/port.rx")
+    )    
+)

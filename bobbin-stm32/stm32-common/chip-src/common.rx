@@ -1,0 +1,23 @@
+(device
+    (peripheral-group
+        (name GPIO)
+        (prototype "periph/gpio.rx")
+    )
+    (peripheral-group
+        (name USART)
+        (prototype "periph/usart.rx")
+    )    
+    (peripheral-group
+        (name TIM_BAS)
+        (prototype "periph/tim_bas.rx")
+    )
+    (peripheral-group
+        (name TIM_GEN)
+        (prototype "periph/tim_gen.rx")
+    )
+    (peripheral-group
+        (name TIM_ADV)
+        (prototype "periph/tim_adv.rx")
+    )
+
+)

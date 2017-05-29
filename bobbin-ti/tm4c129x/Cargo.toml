@@ -1,0 +1,11 @@
+[package]
+name = "tm4c129x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+tm4c129x-chip = { path = "../tm4c129x-chip" }
+tm4c129x-hal = { path = "../tm4c129x-hal" }
+
+[features]
+TM4C1294NC = ["tm4c129x-chip/TM4C1294NC"]

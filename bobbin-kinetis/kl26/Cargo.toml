@@ -1,0 +1,11 @@
+[package]
+name = "kl26"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+kl26-chip = { path = "../kl26-chip" }
+kl26-hal = { path = "../kl26-hal" }
+
+[features]
+Z128 = ["kl26-chip/Z128"]

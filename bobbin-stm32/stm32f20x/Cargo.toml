@@ -1,0 +1,38 @@
+[package]
+name = "stm32f20x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+stm32f20x-chip = { path = "../stm32f20x-chip" }
+stm32f20x-hal = { path = "../stm32f20x-hal" }
+
+[features]
+default = []
+
+STM32F205RB = ["stm32f20x-chip/STM32F205RB"]
+STM32F205RC = ["stm32f20x-chip/STM32F205RC"]
+STM32F205RE = ["stm32f20x-chip/STM32F205RE"]
+STM32F205RF = ["stm32f20x-chip/STM32F205RF"]
+STM32F205RG = ["stm32f20x-chip/STM32F205RG"]
+STM32F205VB = ["stm32f20x-chip/STM32F205VB"]
+STM32F205VC = ["stm32f20x-chip/STM32F205VC"]
+STM32F205VE = ["stm32f20x-chip/STM32F205VE"]
+STM32F205VF = ["stm32f20x-chip/STM32F205VF"]
+STM32F205VG = ["stm32f20x-chip/STM32F205VG"]
+STM32F205ZC = ["stm32f20x-chip/STM32F205ZC"]
+STM32F205ZE = ["stm32f20x-chip/STM32F205ZE"]
+STM32F205ZF = ["stm32f20x-chip/STM32F205ZF"]
+STM32F205ZG = ["stm32f20x-chip/STM32F205ZG"]
+STM32F207VC = ["stm32f20x-chip/STM32F207VC"]
+STM32F207VE = ["stm32f20x-chip/STM32F207VE"]
+STM32F207VF = ["stm32f20x-chip/STM32F207VF"]
+STM32F207VG = ["stm32f20x-chip/STM32F207VG"]
+STM32F207ZC = ["stm32f20x-chip/STM32F207ZC"]
+STM32F207ZE = ["stm32f20x-chip/STM32F207ZE"]
+STM32F207ZF = ["stm32f20x-chip/STM32F207ZF"]
+STM32F207ZG = ["stm32f20x-chip/STM32F207ZG"]
+STM32F207IC = ["stm32f20x-chip/STM32F207IC"]
+STM32F207IE = ["stm32f20x-chip/STM32F207IE"]
+STM32F207IF = ["stm32f20x-chip/STM32F207IF"]
+STM32F207IG = ["stm32f20x-chip/STM32F207IG"]

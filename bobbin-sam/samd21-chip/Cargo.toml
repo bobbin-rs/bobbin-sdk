@@ -1,0 +1,17 @@
+[package]
+name = "samd21-chip"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[lib]
+path = "src/lib.rs"
+
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
+[dependencies]
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+
+[features]
+SAMD21G18 = []

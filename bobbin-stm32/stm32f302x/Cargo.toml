@@ -1,0 +1,18 @@
+[package]
+name = "stm32f302x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+stm32f302x-chip = { path = "../stm32f302x-chip" }
+stm32f302x-hal = { path = "../stm32f302x-hal" }
+
+[features]
+default = []
+
+STM32F302K6 = ["stm32f302x-chip/STM32F302K6"]
+STM32F302K8 = ["stm32f302x-chip/STM32F302K8"]
+STM32F302C6 = ["stm32f302x-chip/STM32F302C6"]
+STM32F302C8 = ["stm32f302x-chip/STM32F302C8"]
+STM32F302R6 = ["stm32f302x-chip/STM32F302R6"]
+STM32F302R8 = ["stm32f302x-chip/STM32F302R8"]

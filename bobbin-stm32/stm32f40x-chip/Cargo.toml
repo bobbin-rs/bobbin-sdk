@@ -1,0 +1,28 @@
+[package]
+name = "stm32f40x-chip"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[lib]
+path = "src/lib.rs"
+
+[build-dependencies]
+bobbin-chip = { path = "../../bobbin-chip/" }
+
+[dependencies]
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
+
+[features]
+STM32F405RG = []
+STM32F405OG = []
+STM32F405VG = []
+STM32F405ZG = []
+STM32F405OE = []
+STM32F407VE = []
+STM32F407VG = []
+STM32F407ZE = []
+STM32F407ZG = []
+STM32F407IE = []
+STM32F407IG = []

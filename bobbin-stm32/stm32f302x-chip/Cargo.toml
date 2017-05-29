@@ -1,0 +1,25 @@
+[package]
+name = "stm32f302x-chip"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
+
+[lib]
+path = "src/lib.rs"
+
+[build-dependencies]
+bobbin-chip = { path = "../../bobbin-chip/" }
+
+[dependencies]
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
+
+[features]
+default = []
+
+STM32F302K6 = []
+STM32F302K8 = []
+STM32F302C6 = []
+STM32F302C8 = []
+STM32F302R6 = []
+STM32F302R8 = []

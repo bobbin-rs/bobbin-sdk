@@ -1,0 +1,22 @@
+[package]
+name = "stm32f40x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+stm32f40x-chip = { path = "../stm32f40x-chip" }
+stm32f40x-hal = { path = "../stm32f40x-hal" }
+
+[features]
+STM32F405RG = ["stm32f40x-chip/STM32F405RG"]
+STM32F405OG = ["stm32f40x-chip/STM32F405OG"]
+STM32F405VG = ["stm32f40x-chip/STM32F405VG"]
+STM32F405ZG = ["stm32f40x-chip/STM32F405ZG"]
+STM32F405OE = ["stm32f40x-chip/STM32F405OE"]
+STM32F407VE = ["stm32f40x-chip/STM32F407VE"]
+STM32F407VG = ["stm32f40x-chip/STM32F407VG"]
+STM32F407ZE = ["stm32f40x-chip/STM32F407ZE"]
+STM32F407ZG = ["stm32f40x-chip/STM32F407ZG"]
+STM32F407IE = ["stm32f40x-chip/STM32F407IE"]
+STM32F407IG = ["stm32f40x-chip/STM32F407IG"]
+

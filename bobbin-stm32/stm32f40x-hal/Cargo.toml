@@ -1,0 +1,9 @@
+[package]
+name = "stm32f40x-hal"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
+stm32f40x-chip = { path = "../stm32f40x-chip" }
