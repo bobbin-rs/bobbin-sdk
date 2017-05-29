@@ -9,7 +9,7 @@ no_bootloader = []
 
 [dependencies]
 #samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
-samd = { path = "../../bobbin-sam/samd"}
+samd = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
 r0 = "0.1.0"
 
 [dependencies.compiler_builtins]

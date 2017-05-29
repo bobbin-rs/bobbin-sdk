@@ -5,7 +5,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 #tm4c129x = { git = "https://github.com/bobbin-rs/bobbin-ti"}
-tm4c129x = { path = "../../bobbin-ti/tm4c129x/"}
+tm4c129x = { path = "../../bobbin-mcu/bobbin-ti/tm4c129x/"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

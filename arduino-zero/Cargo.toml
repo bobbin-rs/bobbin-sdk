@@ -5,7 +5,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 #samd21 = { git = "https://github.com/bobbin-rs/bobbin-sam"}
-samd21 = { path = "../../bobbin-sam/samd21"}
+samd21 = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
 r0 = "0.1.0"
 
 [dependencies.compiler_builtins]

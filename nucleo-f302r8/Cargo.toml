@@ -6,7 +6,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 #stm32f3 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
-stm32f302x = { path = "../../bobbin-stm32/stm32f302x"}
+stm32f302x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f302x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

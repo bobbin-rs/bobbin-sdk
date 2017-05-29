@@ -6,7 +6,7 @@ build = "build.rs"
 
 [dependencies]
 #kl26 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
-kl26 = { path = "../../bobbin-kinetis/kl26"}
+kl26 = { path = "../../bobbin-mcu/bobbin-kinetis/kl26"}
 r0 = "0.1.0"
 
 [dependencies.compiler_builtins]
