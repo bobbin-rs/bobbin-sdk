@@ -246,7 +246,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     // let mut count: usize = 0;
 
-    let p_type = to_camel(&pg.name);
+
+    let p_impl_type = format!("{}Impl", to_camel(&pg.name));
 
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
@@ -257,7 +258,17 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             try!(writeln!(out, "))]"));
         }
         let p_name = p.name.to_uppercase();
-        try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p_name, p_type, p_type, p.address));            
+        let p_type = to_camel(&p.name);
+        try!(write!(out, "pub const {}: {} = {} {{}};\n", p_name, p_type, p_type));
+        try!(write!(out, "pub const {}_IMPL: {} = {}(0x{:08x});\n", p_name, p_impl_type, p_impl_type, p.address));
+        try!(write!(out, "pub const {}_IMPL_REF: &{} = &{}_IMPL;\n", p_name, p_impl_type, p_name));
+        try!(writeln!(out, ""));
+        try!(writeln!(out, "pub struct {} {{}}\n", p_type));
+        try!(writeln!(out, "impl ::core::ops::Deref for {} {{", p_type));
+        try!(writeln!(out, "   type Target = {};", p_impl_type));
+        try!(writeln!(out, "   fn deref(&self) -> &{} {{ {}_IMPL_REF }}", p_impl_type, p_name));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
         // count += 1;
     }    
     try!(write!(out, "\n"));
@@ -277,7 +288,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     
     if pg.modules.len() == 0 {
         try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-        try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
+        try!(write!(out, "pub struct {}(pub u32);\n\n", p_impl_type));    
     }
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
@@ -286,10 +297,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     };
 
     if p0.registers.len() > 0 {
-        try!(gen_registers(cfg, out, &p_type, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_registers(cfg, out, &p_impl_type, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
     if p0.clusters.len() > 0 {
-        try!(gen_clusters(cfg, out, &p_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_clusters(cfg, out, &p_impl_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
 
     let mut has_pins = false;
@@ -304,8 +315,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         // Generate Pin Trait
 
-        try!(writeln!(out, "pub trait Pin {{"));
-        try!(writeln!(out, "   fn port(&self) -> {};", p_type));
+        try!(writeln!(out, "pub trait Pin<T> {{"));
+        try!(writeln!(out, "   fn port(&self) -> T;"));
         try!(writeln!(out, "   fn index(&self) -> usize;"));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
@@ -332,6 +343,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         for p in pg.peripherals.iter() {
             let p_name = p.name.to_uppercase();
+            let p_type = to_camel(&p.name);
             for pin in p.pins.iter() {
                 let pin_name = pin.name.to_uppercase();
                 let pin_type = to_camel(&pin.name);
@@ -340,7 +352,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
                 try!(writeln!(out, "pub struct {} {{}}", pin_type));
                 try!(writeln!(out, ""));
-                try!(writeln!(out, "impl Pin for {} {{", pin_type));
+                try!(writeln!(out, "impl Pin<{}> for {} {{", p_type, pin_type));
                 try!(writeln!(out, "   fn port(&self) -> {} {{ {} }}", p_type, p_name));
                 try!(writeln!(out, "   fn index(&self) -> usize {{ {} }}", pin.index.unwrap()));
                 try!(writeln!(out, "}}"));
@@ -472,13 +484,13 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}(&mut self, index: usize, value: {}) {{\n", r_setter, r_type));
+                try!(write!(out, "  pub unsafe fn {}(&self, index: usize, value: {}) {{\n", r_setter, r_type));
                 try!(write!(out, "     assert!(index < {});\n", dim));
                 try!(write!(out, "     ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);\n", r_offset, r_shift, r_size)); 
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&mut self, index: usize, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(write!(out, "     let tmp = self.{}(index);\n", r_getter));
                 try!(write!(out, "     self.{}(index, f(tmp))\n", r_setter));
                 try!(write!(out, "  }}\n"));            
@@ -490,12 +502,12 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}(&mut self, value: {}) {{\n", r_setter, r_type));
+                try!(write!(out, "  pub unsafe fn {}(&self, value: {}) {{\n", r_setter, r_type));
                 try!(write!(out, "     ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);\n", r_offset, r_size));                    
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(write!(out, "     let tmp = self.{}();\n", r_getter));
                 try!(write!(out, "     self.{}(f(tmp))\n", r_setter));
                 try!(write!(out, "  }}\n"));            
