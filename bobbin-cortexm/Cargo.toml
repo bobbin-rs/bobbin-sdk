@@ -2,5 +2,7 @@
 name = "bobbin-cortexm"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
 
-[dependencies]
+[build-dependencies]
+bobbin-chip = { path = "../../bobbin-chip/" }

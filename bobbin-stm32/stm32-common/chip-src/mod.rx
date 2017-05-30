@@ -19,5 +19,4 @@
         (name TIM_ADV)
         (prototype "periph/tim_adv.rx")
     )
-
 )
