@@ -114,6 +114,7 @@ impl PinExt for PinImpl {
             self.port.afrh().afrh(self.index) as usize
         }
     }
+    
     fn set_altfn(&self, value: usize) -> &Self {
         if self.index < 8 {
             self.port.with_afrl(|r| r.set_afrl(self.index, value as u32))

@@ -1,6 +1,6 @@
 (peripheral
     (group-name GPIO)
-    (description "General-purpose I/Os")            
+    (description "General-purpose I/Os")
     (register
         (name MODER)
         (offset 0x0)

@@ -41,16 +41,6 @@ impl ::core::ops::Deref for Gpioh {
 }
 
 
-pub struct PinImpl {
-  pub port: GpioImpl,
-  pub index: usize,
-}
-
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
-
 pub const PA0: Pa0 = Pa0 {}; 
 pub const PA0_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 0 };
 pub const PA0_IMPL_REF: &PinImpl = &PA0_IMPL;

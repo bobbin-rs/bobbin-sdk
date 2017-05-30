@@ -683,3 +683,13 @@ impl ::core::fmt::Debug for Brr {
       Ok(())
    }
 }
+pub struct PinImpl {
+  pub port: GpioImpl,
+  pub index: usize,
+}
+
+pub trait Pin<T> {
+   fn port(&self) -> T;
+   fn index(&self) -> usize;
+}
+
