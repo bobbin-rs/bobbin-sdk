@@ -3,49 +3,82 @@ pub const WWDG: Wwdg = Wwdg(0x40002c00);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wwdg(pub u32);
 impl Wwdg {
+  #[inline]
+  pub fn cr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
+  }
+  #[inline]
+  pub fn cr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
+  }
+  #[inline]
   pub fn cr(&self) -> Cr { 
      unsafe {
        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+  #[inline]
   pub fn set_cr(&self, value: Cr) -> &Wwdg {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+  #[inline]
   pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Wwdg {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
+  #[inline]
+  pub fn cfr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+  #[inline]
+  pub fn cfr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+  #[inline]
   pub fn cfr(&self) -> Cfr { 
      unsafe {
        Cfr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+  #[inline]
   pub fn set_cfr(&self, value: Cfr) -> &Wwdg {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+  #[inline]
   pub fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Wwdg {
      let tmp = self.cfr();
      self.set_cfr(f(tmp))
   }
 
+  #[inline]
+  pub fn sr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
+  }
+  #[inline]
+  pub fn sr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
+  }
+  #[inline]
   pub fn sr(&self) -> Sr { 
      unsafe {
        Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+  #[inline]
   pub fn set_sr(&self, value: Sr) -> &Wwdg {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+  #[inline]
   pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Wwdg {
      let tmp = self.sr();
      self.set_sr(f(tmp))
@@ -56,9 +89,11 @@ impl Wwdg {
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+  #[inline]
   pub fn wdga(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_wdga(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -66,9 +101,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn t(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_t(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -94,9 +131,11 @@ impl ::core::fmt::Debug for Cr {
 #[derive(PartialEq, Eq)]
 pub struct Cfr(pub u32);
 impl Cfr {
+  #[inline]
   pub fn ewi(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_ewi(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -104,9 +143,11 @@ impl Cfr {
      self
   }
 
+  #[inline]
   pub fn wdgtb(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x3 // [9:8]
   }
+  #[inline]
   pub fn set_wdgtb(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
@@ -114,9 +155,11 @@ impl Cfr {
      self
   }
 
+  #[inline]
   pub fn w(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_w(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -143,9 +186,11 @@ impl ::core::fmt::Debug for Cfr {
 #[derive(PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
+  #[inline]
   pub fn ewif(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ewif(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);

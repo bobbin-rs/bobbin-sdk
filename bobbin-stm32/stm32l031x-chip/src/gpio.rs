@@ -54,7 +54,9 @@ impl ::core::ops::Deref for Pa0 {
 pub struct Pa0 {}
 
 impl Pin<Gpioa> for Pa0 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
@@ -71,7 +73,9 @@ impl ::core::ops::Deref for Pa1 {
 pub struct Pa1 {}
 
 impl Pin<Gpioa> for Pa1 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 1 }
 }
 
@@ -88,7 +92,9 @@ impl ::core::ops::Deref for Pa2 {
 pub struct Pa2 {}
 
 impl Pin<Gpioa> for Pa2 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 2 }
 }
 
@@ -105,7 +111,9 @@ impl ::core::ops::Deref for Pa3 {
 pub struct Pa3 {}
 
 impl Pin<Gpioa> for Pa3 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 3 }
 }
 
@@ -122,7 +130,9 @@ impl ::core::ops::Deref for Pa4 {
 pub struct Pa4 {}
 
 impl Pin<Gpioa> for Pa4 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 4 }
 }
 
@@ -139,7 +149,9 @@ impl ::core::ops::Deref for Pa5 {
 pub struct Pa5 {}
 
 impl Pin<Gpioa> for Pa5 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 5 }
 }
 
@@ -156,7 +168,9 @@ impl ::core::ops::Deref for Pa6 {
 pub struct Pa6 {}
 
 impl Pin<Gpioa> for Pa6 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 6 }
 }
 
@@ -173,7 +187,9 @@ impl ::core::ops::Deref for Pa7 {
 pub struct Pa7 {}
 
 impl Pin<Gpioa> for Pa7 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 7 }
 }
 
@@ -190,7 +206,9 @@ impl ::core::ops::Deref for Pa8 {
 pub struct Pa8 {}
 
 impl Pin<Gpioa> for Pa8 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 8 }
 }
 
@@ -207,7 +225,9 @@ impl ::core::ops::Deref for Pa9 {
 pub struct Pa9 {}
 
 impl Pin<Gpioa> for Pa9 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 9 }
 }
 
@@ -224,7 +244,9 @@ impl ::core::ops::Deref for Pa10 {
 pub struct Pa10 {}
 
 impl Pin<Gpioa> for Pa10 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 10 }
 }
 
@@ -241,7 +263,9 @@ impl ::core::ops::Deref for Pa11 {
 pub struct Pa11 {}
 
 impl Pin<Gpioa> for Pa11 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 11 }
 }
 
@@ -258,7 +282,9 @@ impl ::core::ops::Deref for Pa12 {
 pub struct Pa12 {}
 
 impl Pin<Gpioa> for Pa12 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 12 }
 }
 
@@ -275,7 +301,9 @@ impl ::core::ops::Deref for Pa13 {
 pub struct Pa13 {}
 
 impl Pin<Gpioa> for Pa13 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 13 }
 }
 
@@ -292,7 +320,9 @@ impl ::core::ops::Deref for Pa14 {
 pub struct Pa14 {}
 
 impl Pin<Gpioa> for Pa14 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 14 }
 }
 
@@ -309,7 +339,9 @@ impl ::core::ops::Deref for Pa15 {
 pub struct Pa15 {}
 
 impl Pin<Gpioa> for Pa15 {
+   #[inline]
    fn port(&self) -> Gpioa { GPIOA }
+   #[inline]
    fn index(&self) -> usize { 15 }
 }
 
@@ -326,7 +358,9 @@ impl ::core::ops::Deref for Pb0 {
 pub struct Pb0 {}
 
 impl Pin<Gpiob> for Pb0 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
@@ -343,7 +377,9 @@ impl ::core::ops::Deref for Pb1 {
 pub struct Pb1 {}
 
 impl Pin<Gpiob> for Pb1 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 1 }
 }
 
@@ -360,7 +396,9 @@ impl ::core::ops::Deref for Pb2 {
 pub struct Pb2 {}
 
 impl Pin<Gpiob> for Pb2 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 2 }
 }
 
@@ -377,7 +415,9 @@ impl ::core::ops::Deref for Pb3 {
 pub struct Pb3 {}
 
 impl Pin<Gpiob> for Pb3 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 3 }
 }
 
@@ -394,7 +434,9 @@ impl ::core::ops::Deref for Pb4 {
 pub struct Pb4 {}
 
 impl Pin<Gpiob> for Pb4 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 4 }
 }
 
@@ -411,7 +453,9 @@ impl ::core::ops::Deref for Pb5 {
 pub struct Pb5 {}
 
 impl Pin<Gpiob> for Pb5 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 5 }
 }
 
@@ -428,7 +472,9 @@ impl ::core::ops::Deref for Pb6 {
 pub struct Pb6 {}
 
 impl Pin<Gpiob> for Pb6 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 6 }
 }
 
@@ -445,7 +491,9 @@ impl ::core::ops::Deref for Pb7 {
 pub struct Pb7 {}
 
 impl Pin<Gpiob> for Pb7 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 7 }
 }
 
@@ -462,7 +510,9 @@ impl ::core::ops::Deref for Pb8 {
 pub struct Pb8 {}
 
 impl Pin<Gpiob> for Pb8 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 8 }
 }
 
@@ -479,7 +529,9 @@ impl ::core::ops::Deref for Pb9 {
 pub struct Pb9 {}
 
 impl Pin<Gpiob> for Pb9 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 9 }
 }
 
@@ -496,7 +548,9 @@ impl ::core::ops::Deref for Pb10 {
 pub struct Pb10 {}
 
 impl Pin<Gpiob> for Pb10 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 10 }
 }
 
@@ -513,7 +567,9 @@ impl ::core::ops::Deref for Pb11 {
 pub struct Pb11 {}
 
 impl Pin<Gpiob> for Pb11 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 11 }
 }
 
@@ -530,7 +586,9 @@ impl ::core::ops::Deref for Pb12 {
 pub struct Pb12 {}
 
 impl Pin<Gpiob> for Pb12 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 12 }
 }
 
@@ -547,7 +605,9 @@ impl ::core::ops::Deref for Pb13 {
 pub struct Pb13 {}
 
 impl Pin<Gpiob> for Pb13 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 13 }
 }
 
@@ -564,7 +624,9 @@ impl ::core::ops::Deref for Pb14 {
 pub struct Pb14 {}
 
 impl Pin<Gpiob> for Pb14 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 14 }
 }
 
@@ -581,7 +643,9 @@ impl ::core::ops::Deref for Pb15 {
 pub struct Pb15 {}
 
 impl Pin<Gpiob> for Pb15 {
+   #[inline]
    fn port(&self) -> Gpiob { GPIOB }
+   #[inline]
    fn index(&self) -> usize { 15 }
 }
 
@@ -598,7 +662,9 @@ impl ::core::ops::Deref for Pc0 {
 pub struct Pc0 {}
 
 impl Pin<Gpioc> for Pc0 {
+   #[inline]
    fn port(&self) -> Gpioc { GPIOC }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
@@ -615,7 +681,9 @@ impl ::core::ops::Deref for Pc14 {
 pub struct Pc14 {}
 
 impl Pin<Gpioc> for Pc14 {
+   #[inline]
    fn port(&self) -> Gpioc { GPIOC }
+   #[inline]
    fn index(&self) -> usize { 14 }
 }
 
@@ -632,7 +700,9 @@ impl ::core::ops::Deref for Pc15 {
 pub struct Pc15 {}
 
 impl Pin<Gpioc> for Pc15 {
+   #[inline]
    fn port(&self) -> Gpioc { GPIOC }
+   #[inline]
    fn index(&self) -> usize { 15 }
 }
 
@@ -649,7 +719,9 @@ impl ::core::ops::Deref for Ph0 {
 pub struct Ph0 {}
 
 impl Pin<Gpioh> for Ph0 {
+   #[inline]
    fn port(&self) -> Gpioh { GPIOH }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
@@ -666,7 +738,9 @@ impl ::core::ops::Deref for Ph1 {
 pub struct Ph1 {}
 
 impl Pin<Gpioh> for Ph1 {
+   #[inline]
    fn port(&self) -> Gpioh { GPIOH }
+   #[inline]
    fn index(&self) -> usize { 1 }
 }
 
@@ -843,494 +917,617 @@ pub trait AfRtcRefin {
 }
 
 impl AfLptim1In1 for Pa0 {
+   #[inline]
    fn af_lptim1_in1(&self) -> usize { 1 }
 }
 
 impl AfTim2Ch1 for Pa0 {
+   #[inline]
    fn af_tim2_ch1(&self) -> usize { 2 }
 }
 
 impl AfUsart2Cts for Pa0 {
+   #[inline]
    fn af_usart2_cts(&self) -> usize { 4 }
 }
 
 impl AfTim2Etr for Pa0 {
+   #[inline]
    fn af_tim2_etr(&self) -> usize { 5 }
 }
 
 impl AfComp1Out for Pa0 {
+   #[inline]
    fn af_comp1_out(&self) -> usize { 7 }
 }
 
 impl AfEventout for Pa1 {
+   #[inline]
    fn af_eventout(&self) -> usize { 0 }
 }
 
 impl AfLptim1In2 for Pa1 {
+   #[inline]
    fn af_lptim1_in2(&self) -> usize { 1 }
 }
 
 impl AfTim2Ch2 for Pa1 {
+   #[inline]
    fn af_tim2_ch2(&self) -> usize { 2 }
 }
 
 impl AfI2c1Smba for Pa1 {
+   #[inline]
    fn af_i2c1_smba(&self) -> usize { 3 }
 }
 
 impl AfUsart2Rts for Pa1 {
+   #[inline]
    fn af_usart2_rts(&self) -> usize { 4 }
 }
 
 impl AfTim21Etr for Pa1 {
+   #[inline]
    fn af_tim21_etr(&self) -> usize { 5 }
 }
 
 impl AfTim21Ch1 for Pa2 {
+   #[inline]
    fn af_tim21_ch1(&self) -> usize { 0 }
 }
 
 impl AfTim2Ch3 for Pa2 {
+   #[inline]
    fn af_tim2_ch3(&self) -> usize { 2 }
 }
 
 impl AfUsart2Tx for Pa2 {
+   #[inline]
    fn af_usart2_tx(&self) -> usize { 4 }
 }
 
 impl AfLpuart1Tx for Pa2 {
+   #[inline]
    fn af_lpuart1_tx(&self) -> usize { 6 }
 }
 
 impl AfComp2Out for Pa2 {
+   #[inline]
    fn af_comp2_out(&self) -> usize { 7 }
 }
 
 impl AfTim21Ch2 for Pa3 {
+   #[inline]
    fn af_tim21_ch2(&self) -> usize { 0 }
 }
 
 impl AfTim2Ch4 for Pa3 {
+   #[inline]
    fn af_tim2_ch4(&self) -> usize { 2 }
 }
 
 impl AfUsart2Rx for Pa3 {
+   #[inline]
    fn af_usart2_rx(&self) -> usize { 4 }
 }
 
 impl AfLpuart1Rx for Pa3 {
+   #[inline]
    fn af_lpuart1_rx(&self) -> usize { 6 }
 }
 
 impl AfSpi1Nss for Pa4 {
+   #[inline]
    fn af_spi1_nss(&self) -> usize { 0 }
 }
 
 impl AfLptim1In1 for Pa4 {
+   #[inline]
    fn af_lptim1_in1(&self) -> usize { 1 }
 }
 
 impl AfUart2Ck for Pa4 {
+   #[inline]
    fn af_uart2_ck(&self) -> usize { 4 }
 }
 
 impl AfTim22Etr for Pa4 {
+   #[inline]
    fn af_tim22_etr(&self) -> usize { 5 }
 }
 
 impl AfSpi1Sck for Pa5 {
+   #[inline]
    fn af_spi1_sck(&self) -> usize { 0 }
 }
 
 impl AfLptim1In2 for Pa5 {
+   #[inline]
    fn af_lptim1_in2(&self) -> usize { 1 }
 }
 
 impl AfTim2Etr for Pa5 {
+   #[inline]
    fn af_tim2_etr(&self) -> usize { 3 }
 }
 
 impl AfTim2Ch1 for Pa5 {
+   #[inline]
    fn af_tim2_ch1(&self) -> usize { 5 }
 }
 
 impl AfSpiMiso for Pa6 {
+   #[inline]
    fn af_spi_miso(&self) -> usize { 0 }
 }
 
 impl AfLptim1Etr for Pa6 {
+   #[inline]
    fn af_lptim1_etr(&self) -> usize { 1 }
 }
 
 impl AfLpuart1Cts for Pa6 {
+   #[inline]
    fn af_lpuart1_cts(&self) -> usize { 4 }
 }
 
 impl AfTim22Ch1 for Pa6 {
+   #[inline]
    fn af_tim22_ch1(&self) -> usize { 5 }
 }
 
 impl AfEventout for Pa6 {
+   #[inline]
    fn af_eventout(&self) -> usize { 6 }
 }
 
 impl AfComp1Out for Pa6 {
+   #[inline]
    fn af_comp1_out(&self) -> usize { 7 }
 }
 
 impl AfSpi1Mosi for Pa7 {
+   #[inline]
    fn af_spi1_mosi(&self) -> usize { 0 }
 }
 
 impl AfLptim1Out for Pa7 {
+   #[inline]
    fn af_lptim1_out(&self) -> usize { 1 }
 }
 
 impl AfUsart2Cts for Pa7 {
+   #[inline]
    fn af_usart2_cts(&self) -> usize { 4 }
 }
 
 impl AfTim22Ch2 for Pa7 {
+   #[inline]
    fn af_tim22_ch2(&self) -> usize { 5 }
 }
 
 impl AfEventout for Pa7 {
+   #[inline]
    fn af_eventout(&self) -> usize { 6 }
 }
 
 impl AfComp2Out for Pa7 {
+   #[inline]
    fn af_comp2_out(&self) -> usize { 7 }
 }
 
 impl AfMco for Pa8 {
+   #[inline]
    fn af_mco(&self) -> usize { 0 }
 }
 
 impl AfLptim1In1 for Pa8 {
+   #[inline]
    fn af_lptim1_in1(&self) -> usize { 2 }
 }
 
 impl AfEventout for Pa8 {
+   #[inline]
    fn af_eventout(&self) -> usize { 3 }
 }
 
 impl AfUsart2Ck for Pa8 {
+   #[inline]
    fn af_usart2_ck(&self) -> usize { 4 }
 }
 
 impl AfTim2Ch1 for Pa8 {
+   #[inline]
    fn af_tim2_ch1(&self) -> usize { 5 }
 }
 
 impl AfMco for Pa9 {
+   #[inline]
    fn af_mco(&self) -> usize { 0 }
 }
 
 impl AfI2c1Scl for Pa9 {
+   #[inline]
    fn af_i2c1_scl(&self) -> usize { 1 }
 }
 
 impl AfUsart2Tx for Pa9 {
+   #[inline]
    fn af_usart2_tx(&self) -> usize { 4 }
 }
 
 impl AfTim22Ch1 for Pa9 {
+   #[inline]
    fn af_tim22_ch1(&self) -> usize { 5 }
 }
 
 impl AfI2c1Sda for Pa10 {
+   #[inline]
    fn af_i2c1_sda(&self) -> usize { 1 }
 }
 
 impl AfUsart2Rx for Pa10 {
+   #[inline]
    fn af_usart2_rx(&self) -> usize { 4 }
 }
 
 impl AfTim22Ch2 for Pa10 {
+   #[inline]
    fn af_tim22_ch2(&self) -> usize { 5 }
 }
 
 impl AfSpi1Mio for Pa11 {
+   #[inline]
    fn af_spi1_mio(&self) -> usize { 0 }
 }
 
 impl AfEventout for Pa11 {
+   #[inline]
    fn af_eventout(&self) -> usize { 2 }
 }
 
 impl AfUsart2Cts for Pa11 {
+   #[inline]
    fn af_usart2_cts(&self) -> usize { 4 }
 }
 
 impl AfTim21Ch2 for Pa11 {
+   #[inline]
    fn af_tim21_ch2(&self) -> usize { 5 }
 }
 
 impl AfComp1Out for Pa11 {
+   #[inline]
    fn af_comp1_out(&self) -> usize { 7 }
 }
 
 impl AfSpi1Mosi for Pa12 {
+   #[inline]
    fn af_spi1_mosi(&self) -> usize { 0 }
 }
 
 impl AfEventout for Pa12 {
+   #[inline]
    fn af_eventout(&self) -> usize { 2 }
 }
 
 impl AfUsart2Rts for Pa12 {
+   #[inline]
    fn af_usart2_rts(&self) -> usize { 4 }
 }
 
 impl AfComp2Out for Pa12 {
+   #[inline]
    fn af_comp2_out(&self) -> usize { 7 }
 }
 
 impl AfSwdio for Pa13 {
+   #[inline]
    fn af_swdio(&self) -> usize { 0 }
 }
 
 impl AfLptim1Etr for Pa13 {
+   #[inline]
    fn af_lptim1_etr(&self) -> usize { 1 }
 }
 
 impl AfLpuart1Rx for Pa13 {
+   #[inline]
    fn af_lpuart1_rx(&self) -> usize { 6 }
 }
 
 impl AfSwclk for Pa14 {
+   #[inline]
    fn af_swclk(&self) -> usize { 0 }
 }
 
 impl AfLptim1Out for Pa14 {
+   #[inline]
    fn af_lptim1_out(&self) -> usize { 1 }
 }
 
 impl AfI2c1Smba for Pa14 {
+   #[inline]
    fn af_i2c1_smba(&self) -> usize { 3 }
 }
 
 impl AfUsart2Tx for Pa14 {
+   #[inline]
    fn af_usart2_tx(&self) -> usize { 4 }
 }
 
 impl AfLpuart1Tx for Pa14 {
+   #[inline]
    fn af_lpuart1_tx(&self) -> usize { 6 }
 }
 
 impl AfSpi1Nss for Pa15 {
+   #[inline]
    fn af_spi1_nss(&self) -> usize { 0 }
 }
 
 impl AfTim2Etr for Pa15 {
+   #[inline]
    fn af_tim2_etr(&self) -> usize { 2 }
 }
 
 impl AfEventout for Pa15 {
+   #[inline]
    fn af_eventout(&self) -> usize { 3 }
 }
 
 impl AfUsart2Rx for Pa15 {
+   #[inline]
    fn af_usart2_rx(&self) -> usize { 4 }
 }
 
 impl AfTim2Ch1 for Pa15 {
+   #[inline]
    fn af_tim2_ch1(&self) -> usize { 5 }
 }
 
 impl AfEventout for Pb0 {
+   #[inline]
    fn af_eventout(&self) -> usize { 0 }
 }
 
 impl AfSpi1Miso for Pb0 {
+   #[inline]
    fn af_spi1_miso(&self) -> usize { 1 }
 }
 
 impl AfUsart2Rts for Pb0 {
+   #[inline]
    fn af_usart2_rts(&self) -> usize { 4 }
 }
 
 impl AfTim2Ch3 for Pb0 {
+   #[inline]
    fn af_tim2_ch3(&self) -> usize { 5 }
 }
 
 impl AfUsart2Ck for Pb1 {
+   #[inline]
    fn af_usart2_ck(&self) -> usize { 0 }
 }
 
 impl AfSpi1Mosi for Pb1 {
+   #[inline]
    fn af_spi1_mosi(&self) -> usize { 1 }
 }
 
 impl AfLpuart1Rts for Pb1 {
+   #[inline]
    fn af_lpuart1_rts(&self) -> usize { 4 }
 }
 
 impl AfTim2Ch4 for Pb1 {
+   #[inline]
    fn af_tim2_ch4(&self) -> usize { 5 }
 }
 
 impl AfLptim1Out for Pb2 {
+   #[inline]
    fn af_lptim1_out(&self) -> usize { 2 }
 }
 
 impl AfSpi1Sck for Pb3 {
+   #[inline]
    fn af_spi1_sck(&self) -> usize { 0 }
 }
 
 impl AfTim2Ch2 for Pb3 {
+   #[inline]
    fn af_tim2_ch2(&self) -> usize { 2 }
 }
 
 impl AfEventout for Pb3 {
+   #[inline]
    fn af_eventout(&self) -> usize { 4 }
 }
 
 impl AfSpi1Miso for Pb4 {
+   #[inline]
    fn af_spi1_miso(&self) -> usize { 0 }
 }
 
 impl AfEventout for Pb4 {
+   #[inline]
    fn af_eventout(&self) -> usize { 2 }
 }
 
 impl AfTim22Ch1 for Pb4 {
+   #[inline]
    fn af_tim22_ch1(&self) -> usize { 4 }
 }
 
 impl AfSpi1Mosi for Pb5 {
+   #[inline]
    fn af_spi1_mosi(&self) -> usize { 0 }
 }
 
 impl AfLptim1In1 for Pb5 {
+   #[inline]
    fn af_lptim1_in1(&self) -> usize { 2 }
 }
 
 impl AfI2c1Smba for Pb5 {
+   #[inline]
    fn af_i2c1_smba(&self) -> usize { 3 }
 }
 
 impl AfTim22Ch2 for Pb5 {
+   #[inline]
    fn af_tim22_ch2(&self) -> usize { 4 }
 }
 
 impl AfUsart2Tx for Pb6 {
+   #[inline]
    fn af_usart2_tx(&self) -> usize { 0 }
 }
 
 impl AfI2c1Scl for Pb6 {
+   #[inline]
    fn af_i2c1_scl(&self) -> usize { 1 }
 }
 
 impl AfLptim1Etr for Pb6 {
+   #[inline]
    fn af_lptim1_etr(&self) -> usize { 2 }
 }
 
 impl AfTim21Ch1 for Pb6 {
+   #[inline]
    fn af_tim21_ch1(&self) -> usize { 5 }
 }
 
 impl AfUsart2Rx for Pb7 {
+   #[inline]
    fn af_usart2_rx(&self) -> usize { 0 }
 }
 
 impl AfI2c1Sda for Pb7 {
+   #[inline]
    fn af_i2c1_sda(&self) -> usize { 1 }
 }
 
 impl AfLptim1In2 for Pb7 {
+   #[inline]
    fn af_lptim1_in2(&self) -> usize { 2 }
 }
 
 impl AfI2c1Scl for Pb8 {
+   #[inline]
    fn af_i2c1_scl(&self) -> usize { 4 }
 }
 
 impl AfEventout for Pb9 {
+   #[inline]
    fn af_eventout(&self) -> usize { 2 }
 }
 
 impl AfI2c1Sda for Pb9 {
+   #[inline]
    fn af_i2c1_sda(&self) -> usize { 4 }
 }
 
 impl AfTim2Ch3 for Pb10 {
+   #[inline]
    fn af_tim2_ch3(&self) -> usize { 2 }
 }
 
 impl AfLpuart1Tx for Pb10 {
+   #[inline]
    fn af_lpuart1_tx(&self) -> usize { 6 }
 }
 
 impl AfEventout for Pb11 {
+   #[inline]
    fn af_eventout(&self) -> usize { 0 }
 }
 
 impl AfTim2Ch4 for Pb11 {
+   #[inline]
    fn af_tim2_ch4(&self) -> usize { 2 }
 }
 
 impl AfLpuart1Rx for Pb11 {
+   #[inline]
    fn af_lpuart1_rx(&self) -> usize { 6 }
 }
 
 impl AfSpi1Nss for Pb12 {
+   #[inline]
    fn af_spi1_nss(&self) -> usize { 0 }
 }
 
 impl AfEventout for Pb12 {
+   #[inline]
    fn af_eventout(&self) -> usize { 6 }
 }
 
 impl AfSpiSck for Pb13 {
+   #[inline]
    fn af_spi_sck(&self) -> usize { 0 }
 }
 
 impl AfMco for Pb13 {
+   #[inline]
    fn af_mco(&self) -> usize { 1 }
 }
 
 impl AfTim21Ch1 for Pb13 {
+   #[inline]
    fn af_tim21_ch1(&self) -> usize { 5 }
 }
 
 impl AfLpuart1Cts for Pb13 {
+   #[inline]
    fn af_lpuart1_cts(&self) -> usize { 6 }
 }
 
 impl AfSpi1Miso for Pb14 {
+   #[inline]
    fn af_spi1_miso(&self) -> usize { 0 }
 }
 
 impl AfRtcOut for Pb14 {
+   #[inline]
    fn af_rtc_out(&self) -> usize { 2 }
 }
 
 impl AfTim21Ch2 for Pb14 {
+   #[inline]
    fn af_tim21_ch2(&self) -> usize { 5 }
 }
 
 impl AfLpuart1Rts for Pb14 {
+   #[inline]
    fn af_lpuart1_rts(&self) -> usize { 6 }
 }
 
 impl AfSpi1Mosi for Pb15 {
+   #[inline]
    fn af_spi1_mosi(&self) -> usize { 0 }
 }
 
 impl AfRtcRefin for Pb15 {
+   #[inline]
    fn af_rtc_refin(&self) -> usize { 2 }
 }
 
 impl AfLptim1In1 for Pc0 {
+   #[inline]
    fn af_lptim1_in1(&self) -> usize { 0 }
 }
 
 impl AfEventout for Pc0 {
+   #[inline]
    fn af_eventout(&self) -> usize { 2 }
 }
 
 impl AfLpuart1Rx for Pc0 {
+   #[inline]
    fn af_lpuart1_rx(&self) -> usize { 6 }
 }
 
