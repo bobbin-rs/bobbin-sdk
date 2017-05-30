@@ -437,6 +437,29 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(gen_clusters(cfg, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
 
+    let p_size = size_type(p.size.or(Some(32)).unwrap());
+    for link in p.links.iter() {
+        try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
+        try!(writeln!(out, "   fn {}(&self) -> {};", field_getter(&link.name), p_size));
+        try!(writeln!(out, "   fn {}(&self, value: {});", field_setter(&link.name), p_size));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+    }
+
+    for r in p.registers.iter() {
+        for f in r.fields.iter() {
+            for link in f.links.iter() {
+                let l_type = format!("super::{}::{}", link.peripheral_group.to_lowercase(), to_camel(&link.peripheral));
+                try!(writeln!(out, "// {} {} {}", link.name, link.peripheral_group, link.peripheral));
+                try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
+                try!(writeln!(out, "   fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));
+                try!(writeln!(out, "   fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+            }
+        }
+    }
+
     Ok(())
 }
 
@@ -701,6 +724,8 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         try!(writeln!(out, ""));
             
     }
+
+
     Ok(())
 }
 

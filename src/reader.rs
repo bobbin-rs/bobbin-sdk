@@ -6,7 +6,7 @@ use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
-use {Exception, Cluster, Register, Field, EnumeratedValue};
+use {Exception, Cluster, Register, Field, Link, EnumeratedValue};
 use {PathElement};
 use {Pin, AltFn, Clock, Variant};
 
@@ -520,6 +520,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("pin") => p.pins.push(try!(read_pin(ctx, &arr[1..]))),
                 Some("cluster") => p.clusters.push(try!(read_cluster(ctx, &arr[1..]))),
                 Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),
+                Some("link") => p.links.push(try!(read_link(ctx, &arr[1..]))),
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-increment") => p.dim_increment = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-index") => p.dim_index = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
@@ -674,6 +675,7 @@ fn read_field(ctx: &Context, s: &[Sexp]) -> Result<Field, ReadError> {
                 Some("bit-width") => f.bit_width = try!(expect_u64(ctx, &arr[1])),
                 Some("access") => f.access = Some(try!(expect_access(ctx, &arr[1]))),
                 Some("value") => f.enumerated_values.push(try!(read_enumerated_value(ctx, &arr[1..]))),
+                Some("link") => f.links.push(try!(read_link(ctx, &arr[1..]))),
                 Some("dim") => f.dim = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-increment") => f.dim_increment = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-index") => f.dim_index = Some(String::from(try!(expect_string(ctx, &arr[1])))),                     
@@ -683,6 +685,22 @@ fn read_field(ctx: &Context, s: &[Sexp]) -> Result<Field, ReadError> {
         }        
     }
     Ok(f)
+}
+
+fn read_link(ctx: &Context, s: &[Sexp]) -> Result<Link, ReadError> {
+    let mut l = Link::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => l.name = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("peripheral-group") => l.peripheral_group = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("peripheral") => l.peripheral = String::from(try!(read_name(ctx, &arr[1]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+    Ok(l)
 }
 
 fn read_enumerated_value(ctx: &Context, s: &[Sexp]) -> Result<EnumeratedValue, ReadError> {

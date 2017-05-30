@@ -172,6 +172,7 @@ pub struct Peripheral {
     pub description: Option<String>,
     pub modules: Vec<Module>,
     pub features: Vec<String>,
+    pub links: Vec<Link>,
 
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,
@@ -246,10 +247,18 @@ pub struct Field {
     pub access: Option<Access>,
     pub description: Option<String>,
     pub enumerated_values: Vec<EnumeratedValue>,
+    pub links: Vec<Link>,
 
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
     pub dim_index: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Link {
+    pub name: String,
+    pub peripheral_group: String,
+    pub peripheral: String,
 }
 
 #[derive(Debug, Clone, Default)]
