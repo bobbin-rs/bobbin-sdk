@@ -36,22 +36,23 @@ pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result
 
     if rebuild {
         let mut f_mod = try!(File::create(dst_path));
-        let cfg = codegen::modules::Config { path: PathBuf::from(dst_path), is_root: true };
+        let cfg = codegen::modules::Config { path: PathBuf::from(dst_path), is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")) };
         codegen::modules::gen_mod(&cfg, &mut f_mod, &device, dst_path.parent().expect("Destination file name must be lib.rs or mod.rs"))?;
     }
-
-    if let Some(v) = get_selected_variant(&device) {
-        if let Some(ref link_script) = v.link {
-            //println!("cargo:warning=link_script {}", link_script);
-            let src = PathBuf::from("link").join(link_script);
-            copy_link_script(&src);
+    if device.variants.len() > 0 {
+        if let Some(v) = get_selected_variant(&device) {
+            if let Some(ref link_script) = v.link {
+                //println!("cargo:warning=link_script {}", link_script);
+                let src = PathBuf::from("link").join(link_script);
+                copy_link_script(&src);
+            } else {
+                println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
+            }
         } else {
-            println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
-        }
-    } else {
-        println!("cargo:warning=No link script found, please check that you have selected a known device variant from the following:");
-        for v in device.variants.iter() {
-            println!("cargo:warning=   {}", v.name);
+            println!("cargo:warning=No link script found, please check that you have selected a known device variant from the following:");
+            for v in device.variants.iter() {
+                println!("cargo:warning=   {}", v.name);
+            }
         }
     }
     Ok(())
