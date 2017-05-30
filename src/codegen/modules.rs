@@ -444,13 +444,21 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(writeln!(out, "   fn {}(&self, value: {});", field_setter(&link.name), p_size));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
+        try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
+        try!(writeln!(out, "   pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "      p.{}()", field_getter(&link.name)));
+        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "   pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "      p.{}(value)", field_setter(&link.name)));
+        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
     }
 
     for r in p.registers.iter() {
         for f in r.fields.iter() {
             for link in f.links.iter() {
                 let l_type = format!("super::{}::{}", link.peripheral_group.to_lowercase(), to_camel(&link.peripheral));
-                try!(writeln!(out, "// {} {} {}", link.name, link.peripheral_group, link.peripheral));
                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
                 try!(writeln!(out, "   fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));
                 try!(writeln!(out, "   fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
