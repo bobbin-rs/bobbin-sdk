@@ -6,7 +6,7 @@ use std::collections::HashSet;
 
 use {Access, Device, PeripheralGroup, Peripheral, Register, Cluster, Field, Interrupt, Exception, Pin};
 
-use super::{size_type, field_getter, field_setter, field_with, field_name, to_camel};
+use super::{size_type, field_getter, field_setter, field_with, field_ptr, field_mut, field_name, to_camel};
 
 pub struct Config {
     pub path: PathBuf,
@@ -514,6 +514,8 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
     
     for r in regs.iter() {  
         let r_type = format!("{}", to_camel(&r.name));
+        let r_ptr = field_ptr(&r.name);
+        let r_mut = field_mut(&r.name);
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
@@ -536,7 +538,18 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 8 => format!("(index << 3)"),
                 16 => format!("(index << 4)"),
                 _ => format!("(index * {})", r_incr),
-            };        
+            };  
+            try!(writeln!(out, "  pub fn {}(&self, index: usize) -> *const {} {{ ", r_ptr, r_size));
+            try!(writeln!(out, "     assert!(index < {});", dim));
+            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "  }}"));
+
+            try!(writeln!(out, "  pub fn {}(&self, index: usize) -> *mut {} {{ ", r_mut, r_size));
+            try!(writeln!(out, "     assert!(index < {});", dim));
+            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "  }}"));
+
+
             if r_access.is_readable() {
                 try!(writeln!(out, "  pub fn {}(&self, index: usize) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "     assert!(index < {});", dim));
@@ -561,6 +574,13 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 try!(writeln!(out, "  }}"));            
             }            
         } else {
+            try!(writeln!(out, "  pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
+            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *const {}", r_offset, r_size));
+            try!(writeln!(out, "  }}"));
+            try!(writeln!(out, "  pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
+            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *mut {}", r_offset, r_size));
+            try!(writeln!(out, "  }}"));
+            
             if r_access.is_readable() {
                 try!(writeln!(out, "  pub fn {}(&self) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "     unsafe {{"));
