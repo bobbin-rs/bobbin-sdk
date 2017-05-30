@@ -440,7 +440,7 @@ fn read_feature(ctx: &Context, s: &[Sexp]) -> Result<Vec<String>, ReadError> {
 fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, ReadError> {
     let path = ctx.path();
     let mut pg = PeripheralGroup::default();
-
+    pg.has_pins = false;
     for s in s.iter() {
         // println!("{:?}", s);
         match s {
@@ -448,6 +448,7 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
                 Some("name") => pg.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral") => pg.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
                 Some("module") => pg.modules.push(try!(read_module(ctx, &arr[1..]))),
+                Some("has-pins") => pg.has_pins = true,
                 Some("prototype") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    

@@ -156,6 +156,7 @@ pub struct PeripheralGroup {
     pub peripherals: Vec<Peripheral>,
     pub prototype: Option<Peripheral>,
     pub modules: Vec<Module>,
+    pub has_pins: bool,    
 }
 
 #[derive(Debug, Clone, Default)]
@@ -176,7 +177,7 @@ pub struct Peripheral {
     pub clusters: Vec<Cluster>,
     pub registers: Vec<Register>,
     pub signals: Vec<Signal>,
-    pub pins: Vec<Pin>,
+    pub pins: Vec<Pin>,    
 
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
