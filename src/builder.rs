@@ -29,21 +29,30 @@ pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result
 
     let device = load_device(&src_path)?;    
 
-    let rebuild = match fs::metadata(&dst_path) {        
-        Ok(dst_meta) => compare_modification_times(&fs::metadata(&src_path)?, &dst_meta),
-        Err(_) => true,
-    };
 
-    if rebuild {
+    // let rebuild = match fs::metadata(&dst_path) {        
+    //     Ok(dst_meta) => compare_modification_times(&fs::metadata(&src_path)?, &dst_meta),
+    //     Err(_) => true,
+    // };
+
+    //if rebuild {
+    let src_dir = src_path.parent().expect("Source file name must be lib.rx or mod.rx");
+    {
         let mut f_mod = try!(File::create(dst_path));
         let cfg = codegen::modules::Config { path: PathBuf::from(dst_path), is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")) };
         codegen::modules::gen_mod(&cfg, &mut f_mod, &device, dst_path.parent().expect("Destination file name must be lib.rs or mod.rs"))?;
+        println!("cargo:rerun-if-changed={}", src_path.display());
+        for f in fs::read_dir(src_dir.join("periph"))? {
+            let f = f?;
+            println!("cargo:rerun-if-changed={}", f.path().display());
+        }
     }
-    if device.variants.len() > 0 {
+    if device.variants.len() > 0 {        
         if let Some(v) = get_selected_variant(&device) {
             if let Some(ref link_script) = v.link {
-                //println!("cargo:warning=link_script {}", link_script);
+                //println!("cargo:warning=link_script {}", link_script);                
                 let src = PathBuf::from("link").join(link_script);
+                println!("cargo:rerun-if-changed={}", src.display());
                 copy_link_script(&src);
             } else {
                 println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
@@ -87,6 +96,7 @@ fn load_device<P: AsRef<Path>>(p: P) -> Result<Device, BuildError> {
     }
 }
 
+#[allow(dead_code)]
 fn compare_modification_times(src_metadata: &fs::Metadata,
                                 dst_metadata: &fs::Metadata)
                                 -> bool {
