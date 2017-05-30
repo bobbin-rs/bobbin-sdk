@@ -1494,6 +1494,46 @@ impl Iopenr {
      self
   }
 
+  pub fn iopaen(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+  pub fn set_iopaen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+  pub fn iopben(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+  pub fn set_iopben(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+  pub fn iopcen(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+  pub fn set_iopcen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+  pub fn iophen(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+  pub fn set_iophen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Iopenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1510,6 +1550,10 @@ impl ::core::fmt::Debug for Iopenr {
       if self.iopen(4) != 0 { try!(write!(f, " iopen[4]"))}
       if self.iopen(5) != 0 { try!(write!(f, " iopen[5]"))}
       if self.iopen(6) != 0 { try!(write!(f, " iopen[6]"))}
+      if self.iopaen() != 0 { try!(write!(f, " iopaen"))}
+      if self.iopben() != 0 { try!(write!(f, " iopben"))}
+      if self.iopcen() != 0 { try!(write!(f, " iopcen"))}
+      if self.iophen() != 0 { try!(write!(f, " iophen"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2582,3 +2626,37 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
+pub trait En {
+   fn en(&self) -> u32;
+   fn set_en(&self, value: u32);
+}
+
+impl Rcc {
+   pub fn en<P: En>(&self, p: &P) -> u32 {
+      p.en()
+   }
+   pub fn set_en<P: En>(&self, p: &P, value: u32) {
+      p.set_en(value)
+   }
+}
+
+impl En for super::gpio::Gpioa {
+   fn en(&self) -> u32 { RCC.iopenr().iopaen() }
+   fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iopaen(value)); }
+}
+
+impl En for super::gpio::Gpiob {
+   fn en(&self) -> u32 { RCC.iopenr().iopben() }
+   fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iopben(value)); }
+}
+
+impl En for super::gpio::Gpioc {
+   fn en(&self) -> u32 { RCC.iopenr().iopcen() }
+   fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iopcen(value)); }
+}
+
+impl En for super::gpio::Gpioh {
+   fn en(&self) -> u32 { RCC.iopenr().iophen() }
+   fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iophen(value)); }
+}
+

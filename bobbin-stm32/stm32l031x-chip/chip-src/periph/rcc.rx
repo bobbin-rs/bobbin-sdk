@@ -8,6 +8,7 @@
         (value 4)
         (description "RCC global interrupt")
     )
+    (link (name EN))
     (register
         (name CR)
         (offset 0x0)
@@ -680,6 +681,30 @@
             (bit-width 1)
             (description "I/O port n clock enable bit")
         )
+        (field
+            (name IOPAEN)
+            (bit-offset 0)
+            (bit-width 1)
+            (link (name EN) (peripheral-group GPIO) (peripheral GPIOA))
+        )
+        (field
+            (name IOPBEN)
+            (bit-offset 1)
+            (bit-width 1)
+            (link (name EN) (peripheral-group GPIO) (peripheral GPIOB))
+        )        
+        (field
+            (name IOPCEN)
+            (bit-offset 2)
+            (bit-width 1)
+            (link (name EN) (peripheral-group GPIO) (peripheral GPIOC))
+        )
+        (field
+            (name IOPHEN)
+            (bit-offset 7)
+            (bit-width 1)
+            (link (name EN) (peripheral-group GPIO) (peripheral GPIOH))
+        )        
     )
     (register
         (name AHBENR)
