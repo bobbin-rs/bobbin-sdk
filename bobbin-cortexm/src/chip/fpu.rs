@@ -4,46 +4,46 @@ pub const FPU: Fpu = Fpu(0xe000e000);
 pub struct Fpu(pub u32);
 
 impl Fpu {
-  pub unsafe fn cpacr(&self) -> Cpacr { 
-     Cpacr(::core::ptr::read_volatile(((self.0 as usize) + 0xd88) as *const u32))
-  }
-  pub unsafe fn set_cpacr(&self, value: Cpacr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd88) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) {
+  pub fn cpacr(&self) -> Cpacr { 
+     unsafe {       Cpacr(::core::ptr::read_volatile(((self.0 as usize) + 0xd88) as *const u32))
+     }  }
+  pub fn set_cpacr(&self, value: Cpacr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd88) as *mut u32, value.0);
+     }  }
+  pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) {
      let tmp = self.cpacr();
      self.set_cpacr(f(tmp))
   }
 
-  pub unsafe fn fpccr(&self) -> Fpccr { 
-     Fpccr(::core::ptr::read_volatile(((self.0 as usize) + 0xf34) as *const u32))
-  }
-  pub unsafe fn set_fpccr(&self, value: Fpccr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf34) as *mut u32, value.0);
-  }
-  pub unsafe fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) {
+  pub fn fpccr(&self) -> Fpccr { 
+     unsafe {       Fpccr(::core::ptr::read_volatile(((self.0 as usize) + 0xf34) as *const u32))
+     }  }
+  pub fn set_fpccr(&self, value: Fpccr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xf34) as *mut u32, value.0);
+     }  }
+  pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) {
      let tmp = self.fpccr();
      self.set_fpccr(f(tmp))
   }
 
-  pub unsafe fn fpcar(&self) -> Fpcar { 
-     Fpcar(::core::ptr::read_volatile(((self.0 as usize) + 0xf38) as *const u32))
-  }
-  pub unsafe fn set_fpcar(&self, value: Fpcar) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf38) as *mut u32, value.0);
-  }
-  pub unsafe fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) {
+  pub fn fpcar(&self) -> Fpcar { 
+     unsafe {       Fpcar(::core::ptr::read_volatile(((self.0 as usize) + 0xf38) as *const u32))
+     }  }
+  pub fn set_fpcar(&self, value: Fpcar) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xf38) as *mut u32, value.0);
+     }  }
+  pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) {
      let tmp = self.fpcar();
      self.set_fpcar(f(tmp))
   }
 
-  pub unsafe fn fpdscr(&self) -> Fpdscr { 
-     Fpdscr(::core::ptr::read_volatile(((self.0 as usize) + 0xf3c) as *const u32))
-  }
-  pub unsafe fn set_fpdscr(&self, value: Fpdscr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf3c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) {
+  pub fn fpdscr(&self) -> Fpdscr { 
+     unsafe {       Fpdscr(::core::ptr::read_volatile(((self.0 as usize) + 0xf3c) as *const u32))
+     }  }
+  pub fn set_fpdscr(&self, value: Fpdscr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xf3c) as *mut u32, value.0);
+     }  }
+  pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) {
      let tmp = self.fpdscr();
      self.set_fpdscr(f(tmp))
   }

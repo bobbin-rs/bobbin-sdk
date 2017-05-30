@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(unused_unsafe)]
 
 extern crate bobbin_cortexm;
 extern crate stm32_common;

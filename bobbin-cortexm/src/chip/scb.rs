@@ -4,211 +4,211 @@ pub const SCB: Scb = Scb(0xe000e000);
 pub struct Scb(pub u32);
 
 impl Scb {
-  pub unsafe fn actlr(&self) -> Actlr { 
-     Actlr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-  }
-  pub unsafe fn set_actlr(&self, value: Actlr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-  }
-  pub unsafe fn with_actlr<F: FnOnce(Actlr) -> Actlr>(&self, f: F) {
+  pub fn actlr(&self) -> Actlr { 
+     unsafe {       Actlr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }  }
+  pub fn set_actlr(&self, value: Actlr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }  }
+  pub fn with_actlr<F: FnOnce(Actlr) -> Actlr>(&self, f: F) {
      let tmp = self.actlr();
      self.set_actlr(f(tmp))
   }
 
-  pub unsafe fn cpuid(&self) -> Cpuid { 
-     Cpuid(::core::ptr::read_volatile(((self.0 as usize) + 0xd00) as *const u32))
-  }
-  pub unsafe fn set_cpuid(&self, value: Cpuid) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd00) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cpuid<F: FnOnce(Cpuid) -> Cpuid>(&self, f: F) {
+  pub fn cpuid(&self) -> Cpuid { 
+     unsafe {       Cpuid(::core::ptr::read_volatile(((self.0 as usize) + 0xd00) as *const u32))
+     }  }
+  pub fn set_cpuid(&self, value: Cpuid) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd00) as *mut u32, value.0);
+     }  }
+  pub fn with_cpuid<F: FnOnce(Cpuid) -> Cpuid>(&self, f: F) {
      let tmp = self.cpuid();
      self.set_cpuid(f(tmp))
   }
 
-  pub unsafe fn icsr(&self) -> Icsr { 
-     Icsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd04) as *const u32))
-  }
-  pub unsafe fn set_icsr(&self, value: Icsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd04) as *mut u32, value.0);
-  }
-  pub unsafe fn with_icsr<F: FnOnce(Icsr) -> Icsr>(&self, f: F) {
+  pub fn icsr(&self) -> Icsr { 
+     unsafe {       Icsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd04) as *const u32))
+     }  }
+  pub fn set_icsr(&self, value: Icsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd04) as *mut u32, value.0);
+     }  }
+  pub fn with_icsr<F: FnOnce(Icsr) -> Icsr>(&self, f: F) {
      let tmp = self.icsr();
      self.set_icsr(f(tmp))
   }
 
-  pub unsafe fn vtor(&self) -> Vtor { 
-     Vtor(::core::ptr::read_volatile(((self.0 as usize) + 0xd08) as *const u32))
-  }
-  pub unsafe fn set_vtor(&self, value: Vtor) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd08) as *mut u32, value.0);
-  }
-  pub unsafe fn with_vtor<F: FnOnce(Vtor) -> Vtor>(&self, f: F) {
+  pub fn vtor(&self) -> Vtor { 
+     unsafe {       Vtor(::core::ptr::read_volatile(((self.0 as usize) + 0xd08) as *const u32))
+     }  }
+  pub fn set_vtor(&self, value: Vtor) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd08) as *mut u32, value.0);
+     }  }
+  pub fn with_vtor<F: FnOnce(Vtor) -> Vtor>(&self, f: F) {
      let tmp = self.vtor();
      self.set_vtor(f(tmp))
   }
 
-  pub unsafe fn aircr(&self) -> Aircr { 
-     Aircr(::core::ptr::read_volatile(((self.0 as usize) + 0xd0c) as *const u32))
-  }
-  pub unsafe fn set_aircr(&self, value: Aircr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_aircr<F: FnOnce(Aircr) -> Aircr>(&self, f: F) {
+  pub fn aircr(&self) -> Aircr { 
+     unsafe {       Aircr(::core::ptr::read_volatile(((self.0 as usize) + 0xd0c) as *const u32))
+     }  }
+  pub fn set_aircr(&self, value: Aircr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
+     }  }
+  pub fn with_aircr<F: FnOnce(Aircr) -> Aircr>(&self, f: F) {
      let tmp = self.aircr();
      self.set_aircr(f(tmp))
   }
 
-  pub unsafe fn scr(&self) -> Scr { 
-     Scr(::core::ptr::read_volatile(((self.0 as usize) + 0xd0c) as *const u32))
-  }
-  pub unsafe fn set_scr(&self, value: Scr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) {
+  pub fn scr(&self) -> Scr { 
+     unsafe {       Scr(::core::ptr::read_volatile(((self.0 as usize) + 0xd0c) as *const u32))
+     }  }
+  pub fn set_scr(&self, value: Scr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
+     }  }
+  pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) {
      let tmp = self.scr();
      self.set_scr(f(tmp))
   }
 
-  pub unsafe fn ccr(&self) -> Ccr { 
-     Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0xd14) as *const u32))
-  }
-  pub unsafe fn set_ccr(&self, value: Ccr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd14) as *mut u32, value.0);
-  }
-  pub unsafe fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) {
+  pub fn ccr(&self) -> Ccr { 
+     unsafe {       Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0xd14) as *const u32))
+     }  }
+  pub fn set_ccr(&self, value: Ccr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd14) as *mut u32, value.0);
+     }  }
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
 
-  pub unsafe fn shpr1(&self) -> Shpr1 { 
-     Shpr1(::core::ptr::read_volatile(((self.0 as usize) + 0xd18) as *const u32))
-  }
-  pub unsafe fn set_shpr1(&self, value: Shpr1) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd18) as *mut u32, value.0);
-  }
-  pub unsafe fn with_shpr1<F: FnOnce(Shpr1) -> Shpr1>(&self, f: F) {
+  pub fn shpr1(&self) -> Shpr1 { 
+     unsafe {       Shpr1(::core::ptr::read_volatile(((self.0 as usize) + 0xd18) as *const u32))
+     }  }
+  pub fn set_shpr1(&self, value: Shpr1) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd18) as *mut u32, value.0);
+     }  }
+  pub fn with_shpr1<F: FnOnce(Shpr1) -> Shpr1>(&self, f: F) {
      let tmp = self.shpr1();
      self.set_shpr1(f(tmp))
   }
 
-  pub unsafe fn shpr2(&self) -> Shpr2 { 
-     Shpr2(::core::ptr::read_volatile(((self.0 as usize) + 0xd1c) as *const u32))
-  }
-  pub unsafe fn set_shpr2(&self, value: Shpr2) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd1c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_shpr2<F: FnOnce(Shpr2) -> Shpr2>(&self, f: F) {
+  pub fn shpr2(&self) -> Shpr2 { 
+     unsafe {       Shpr2(::core::ptr::read_volatile(((self.0 as usize) + 0xd1c) as *const u32))
+     }  }
+  pub fn set_shpr2(&self, value: Shpr2) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd1c) as *mut u32, value.0);
+     }  }
+  pub fn with_shpr2<F: FnOnce(Shpr2) -> Shpr2>(&self, f: F) {
      let tmp = self.shpr2();
      self.set_shpr2(f(tmp))
   }
 
-  pub unsafe fn shpr3(&self) -> Shpr3 { 
-     Shpr3(::core::ptr::read_volatile(((self.0 as usize) + 0xd20) as *const u32))
-  }
-  pub unsafe fn set_shpr3(&self, value: Shpr3) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd20) as *mut u32, value.0);
-  }
-  pub unsafe fn with_shpr3<F: FnOnce(Shpr3) -> Shpr3>(&self, f: F) {
+  pub fn shpr3(&self) -> Shpr3 { 
+     unsafe {       Shpr3(::core::ptr::read_volatile(((self.0 as usize) + 0xd20) as *const u32))
+     }  }
+  pub fn set_shpr3(&self, value: Shpr3) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd20) as *mut u32, value.0);
+     }  }
+  pub fn with_shpr3<F: FnOnce(Shpr3) -> Shpr3>(&self, f: F) {
      let tmp = self.shpr3();
      self.set_shpr3(f(tmp))
   }
 
-  pub unsafe fn shcsr(&self) -> Shcsr { 
-     Shcsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd24) as *const u32))
-  }
-  pub unsafe fn set_shcsr(&self, value: Shcsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd24) as *mut u32, value.0);
-  }
-  pub unsafe fn with_shcsr<F: FnOnce(Shcsr) -> Shcsr>(&self, f: F) {
+  pub fn shcsr(&self) -> Shcsr { 
+     unsafe {       Shcsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd24) as *const u32))
+     }  }
+  pub fn set_shcsr(&self, value: Shcsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd24) as *mut u32, value.0);
+     }  }
+  pub fn with_shcsr<F: FnOnce(Shcsr) -> Shcsr>(&self, f: F) {
      let tmp = self.shcsr();
      self.set_shcsr(f(tmp))
   }
 
-  pub unsafe fn cfsr(&self) -> Cfsr { 
-     Cfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd28) as *const u32))
-  }
-  pub unsafe fn set_cfsr(&self, value: Cfsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cfsr<F: FnOnce(Cfsr) -> Cfsr>(&self, f: F) {
+  pub fn cfsr(&self) -> Cfsr { 
+     unsafe {       Cfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd28) as *const u32))
+     }  }
+  pub fn set_cfsr(&self, value: Cfsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u32, value.0);
+     }  }
+  pub fn with_cfsr<F: FnOnce(Cfsr) -> Cfsr>(&self, f: F) {
      let tmp = self.cfsr();
      self.set_cfsr(f(tmp))
   }
 
-  pub unsafe fn mmfsr(&self) -> Mmfsr { 
-     Mmfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd28) as *const u8))
-  }
-  pub unsafe fn set_mmfsr(&self, value: Mmfsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u8, value.0);
-  }
-  pub unsafe fn with_mmfsr<F: FnOnce(Mmfsr) -> Mmfsr>(&self, f: F) {
+  pub fn mmfsr(&self) -> Mmfsr { 
+     unsafe {       Mmfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd28) as *const u8))
+     }  }
+  pub fn set_mmfsr(&self, value: Mmfsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u8, value.0);
+     }  }
+  pub fn with_mmfsr<F: FnOnce(Mmfsr) -> Mmfsr>(&self, f: F) {
      let tmp = self.mmfsr();
      self.set_mmfsr(f(tmp))
   }
 
-  pub unsafe fn bfsr(&self) -> Bfsr { 
-     Bfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd29) as *const u8))
-  }
-  pub unsafe fn set_bfsr(&self, value: Bfsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd29) as *mut u8, value.0);
-  }
-  pub unsafe fn with_bfsr<F: FnOnce(Bfsr) -> Bfsr>(&self, f: F) {
+  pub fn bfsr(&self) -> Bfsr { 
+     unsafe {       Bfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd29) as *const u8))
+     }  }
+  pub fn set_bfsr(&self, value: Bfsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd29) as *mut u8, value.0);
+     }  }
+  pub fn with_bfsr<F: FnOnce(Bfsr) -> Bfsr>(&self, f: F) {
      let tmp = self.bfsr();
      self.set_bfsr(f(tmp))
   }
 
-  pub unsafe fn ufsr(&self) -> Ufsr { 
-     Ufsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd2a) as *const u16))
-  }
-  pub unsafe fn set_ufsr(&self, value: Ufsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd2a) as *mut u16, value.0);
-  }
-  pub unsafe fn with_ufsr<F: FnOnce(Ufsr) -> Ufsr>(&self, f: F) {
+  pub fn ufsr(&self) -> Ufsr { 
+     unsafe {       Ufsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd2a) as *const u16))
+     }  }
+  pub fn set_ufsr(&self, value: Ufsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd2a) as *mut u16, value.0);
+     }  }
+  pub fn with_ufsr<F: FnOnce(Ufsr) -> Ufsr>(&self, f: F) {
      let tmp = self.ufsr();
      self.set_ufsr(f(tmp))
   }
 
-  pub unsafe fn hfsr(&self) -> Hfsr { 
-     Hfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd2c) as *const u32))
-  }
-  pub unsafe fn set_hfsr(&self, value: Hfsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd2c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_hfsr<F: FnOnce(Hfsr) -> Hfsr>(&self, f: F) {
+  pub fn hfsr(&self) -> Hfsr { 
+     unsafe {       Hfsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd2c) as *const u32))
+     }  }
+  pub fn set_hfsr(&self, value: Hfsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd2c) as *mut u32, value.0);
+     }  }
+  pub fn with_hfsr<F: FnOnce(Hfsr) -> Hfsr>(&self, f: F) {
      let tmp = self.hfsr();
      self.set_hfsr(f(tmp))
   }
 
-  pub unsafe fn mmfar(&self) -> Mmfar { 
-     Mmfar(::core::ptr::read_volatile(((self.0 as usize) + 0xd34) as *const u32))
-  }
-  pub unsafe fn set_mmfar(&self, value: Mmfar) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd34) as *mut u32, value.0);
-  }
-  pub unsafe fn with_mmfar<F: FnOnce(Mmfar) -> Mmfar>(&self, f: F) {
+  pub fn mmfar(&self) -> Mmfar { 
+     unsafe {       Mmfar(::core::ptr::read_volatile(((self.0 as usize) + 0xd34) as *const u32))
+     }  }
+  pub fn set_mmfar(&self, value: Mmfar) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd34) as *mut u32, value.0);
+     }  }
+  pub fn with_mmfar<F: FnOnce(Mmfar) -> Mmfar>(&self, f: F) {
      let tmp = self.mmfar();
      self.set_mmfar(f(tmp))
   }
 
-  pub unsafe fn bfar(&self) -> Bfar { 
-     Bfar(::core::ptr::read_volatile(((self.0 as usize) + 0xd38) as *const u32))
-  }
-  pub unsafe fn set_bfar(&self, value: Bfar) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd38) as *mut u32, value.0);
-  }
-  pub unsafe fn with_bfar<F: FnOnce(Bfar) -> Bfar>(&self, f: F) {
+  pub fn bfar(&self) -> Bfar { 
+     unsafe {       Bfar(::core::ptr::read_volatile(((self.0 as usize) + 0xd38) as *const u32))
+     }  }
+  pub fn set_bfar(&self, value: Bfar) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd38) as *mut u32, value.0);
+     }  }
+  pub fn with_bfar<F: FnOnce(Bfar) -> Bfar>(&self, f: F) {
      let tmp = self.bfar();
      self.set_bfar(f(tmp))
   }
 
-  pub unsafe fn afsr(&self) -> Afsr { 
-     Afsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd3c) as *const u32))
-  }
-  pub unsafe fn set_afsr(&self, value: Afsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xd3c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_afsr<F: FnOnce(Afsr) -> Afsr>(&self, f: F) {
+  pub fn afsr(&self) -> Afsr { 
+     unsafe {       Afsr(::core::ptr::read_volatile(((self.0 as usize) + 0xd3c) as *const u32))
+     }  }
+  pub fn set_afsr(&self, value: Afsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xd3c) as *mut u32, value.0);
+     }  }
+  pub fn with_afsr<F: FnOnce(Afsr) -> Afsr>(&self, f: F) {
      let tmp = self.afsr();
      self.set_afsr(f(tmp))
   }

@@ -4,68 +4,68 @@ pub const EXTI: Exti = Exti(0x40010400);
 pub struct Exti(pub u32);
 
 impl Exti {
-  pub unsafe fn imr(&self) -> Imr { 
-     Imr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-  }
-  pub unsafe fn set_imr(&self, value: Imr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-  }
-  pub unsafe fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) {
+  pub fn imr(&self) -> Imr { 
+     unsafe {       Imr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }  }
+  pub fn set_imr(&self, value: Imr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }  }
+  pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) {
      let tmp = self.imr();
      self.set_imr(f(tmp))
   }
 
-  pub unsafe fn emr(&self) -> Emr { 
-     Emr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-  }
-  pub unsafe fn set_emr(&self, value: Emr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-  }
-  pub unsafe fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) {
+  pub fn emr(&self) -> Emr { 
+     unsafe {       Emr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }  }
+  pub fn set_emr(&self, value: Emr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }  }
+  pub fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) {
      let tmp = self.emr();
      self.set_emr(f(tmp))
   }
 
-  pub unsafe fn rtsr(&self) -> Rtsr { 
-     Rtsr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-  }
-  pub unsafe fn set_rtsr(&self, value: Rtsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-  }
-  pub unsafe fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) {
+  pub fn rtsr(&self) -> Rtsr { 
+     unsafe {       Rtsr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }  }
+  pub fn set_rtsr(&self, value: Rtsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }  }
+  pub fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) {
      let tmp = self.rtsr();
      self.set_rtsr(f(tmp))
   }
 
-  pub unsafe fn ftsr(&self) -> Ftsr { 
-     Ftsr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-  }
-  pub unsafe fn set_ftsr(&self, value: Ftsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-  }
-  pub unsafe fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) {
+  pub fn ftsr(&self) -> Ftsr { 
+     unsafe {       Ftsr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }  }
+  pub fn set_ftsr(&self, value: Ftsr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }  }
+  pub fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) {
      let tmp = self.ftsr();
      self.set_ftsr(f(tmp))
   }
 
-  pub unsafe fn swier(&self) -> Swier { 
-     Swier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-  }
-  pub unsafe fn set_swier(&self, value: Swier) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-  }
-  pub unsafe fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) {
+  pub fn swier(&self) -> Swier { 
+     unsafe {       Swier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }  }
+  pub fn set_swier(&self, value: Swier) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }  }
+  pub fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) {
      let tmp = self.swier();
      self.set_swier(f(tmp))
   }
 
-  pub unsafe fn pr(&self) -> Pr { 
-     Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-  }
-  pub unsafe fn set_pr(&self, value: Pr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-  }
-  pub unsafe fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) {
+  pub fn pr(&self) -> Pr { 
+     unsafe {       Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }  }
+  pub fn set_pr(&self, value: Pr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }  }
+  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) {
      let tmp = self.pr();
      self.set_pr(f(tmp))
   }

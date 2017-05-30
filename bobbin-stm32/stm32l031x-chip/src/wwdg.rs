@@ -4,35 +4,35 @@ pub const WWDG: Wwdg = Wwdg(0x40002c00);
 pub struct Wwdg(pub u32);
 
 impl Wwdg {
-  pub unsafe fn cr(&self) -> Cr { 
-     Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-  }
-  pub unsafe fn set_cr(&self, value: Cr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) {
+  pub fn cr(&self) -> Cr { 
+     unsafe {       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }  }
+  pub fn set_cr(&self, value: Cr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }  }
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
-  pub unsafe fn cfr(&self) -> Cfr { 
-     Cfr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-  }
-  pub unsafe fn set_cfr(&self, value: Cfr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) {
+  pub fn cfr(&self) -> Cfr { 
+     unsafe {       Cfr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }  }
+  pub fn set_cfr(&self, value: Cfr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }  }
+  pub fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) {
      let tmp = self.cfr();
      self.set_cfr(f(tmp))
   }
 
-  pub unsafe fn sr(&self) -> Sr { 
-     Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-  }
-  pub unsafe fn set_sr(&self, value: Sr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-  }
-  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
+  pub fn sr(&self) -> Sr { 
+     unsafe {       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }  }
+  pub fn set_sr(&self, value: Sr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }  }
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }

@@ -4,46 +4,46 @@ pub const SYSTICK: Systick = Systick(0xe000e000);
 pub struct Systick(pub u32);
 
 impl Systick {
-  pub unsafe fn csr(&self) -> Csr { 
-     Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-  }
-  pub unsafe fn set_csr(&self, value: Csr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-  }
-  pub unsafe fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) {
+  pub fn csr(&self) -> Csr { 
+     unsafe {       Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }  }
+  pub fn set_csr(&self, value: Csr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }  }
+  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) {
      let tmp = self.csr();
      self.set_csr(f(tmp))
   }
 
-  pub unsafe fn rvr(&self) -> Rvr { 
-     Rvr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-  }
-  pub unsafe fn set_rvr(&self, value: Rvr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-  }
-  pub unsafe fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) {
+  pub fn rvr(&self) -> Rvr { 
+     unsafe {       Rvr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }  }
+  pub fn set_rvr(&self, value: Rvr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }  }
+  pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) {
      let tmp = self.rvr();
      self.set_rvr(f(tmp))
   }
 
-  pub unsafe fn cvr(&self) -> Cvr { 
-     Cvr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-  }
-  pub unsafe fn set_cvr(&self, value: Cvr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-  }
-  pub unsafe fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) {
+  pub fn cvr(&self) -> Cvr { 
+     unsafe {       Cvr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }  }
+  pub fn set_cvr(&self, value: Cvr) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }  }
+  pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) {
      let tmp = self.cvr();
      self.set_cvr(f(tmp))
   }
 
-  pub unsafe fn calib(&self) -> Calib { 
-     Calib(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-  }
-  pub unsafe fn set_calib(&self, value: Calib) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-  }
-  pub unsafe fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) {
+  pub fn calib(&self) -> Calib { 
+     unsafe {       Calib(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }  }
+  pub fn set_calib(&self, value: Calib) {
+     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }  }
+  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) {
      let tmp = self.calib();
      self.set_calib(f(tmp))
   }
