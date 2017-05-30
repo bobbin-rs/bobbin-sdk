@@ -100,7 +100,7 @@ pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exce
 
     for (i, e) in exceptions.iter().enumerate() {
         if e.name != "" {
-            try!(write!(out, "{:40} // {}\n", format!("pub const EXC_{}: Exception = Exception({});", e.name.to_uppercase(), i), e.description.as_ref().unwrap()));
+            try!(writeln!(out, "{:40} // {}", format!("pub const EXC_{}: Exception = Exception({});", e.name.to_uppercase(), i), e.description.as_ref().unwrap()));
         }
     }
     try!(writeln!(out, ""));
@@ -251,20 +251,20 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
-            try!(write!(out, "#[cfg(any("));
+            try!(writeln!(out, "#[cfg(any("));
             for f in p.features.iter() {
-                try!(write!(out, "feature=\"{}\",", f));
+                try!(writeln!(out, "feature=\"{}\",", f));
             }
             try!(writeln!(out, "))]"));
         }
         let p_name = p.name.to_uppercase();
         let p_type = to_camel(&p.name);
-        try!(write!(out, "pub const {}: {} = {} {{}};\n", p_name, p_type, p_type));
-        try!(write!(out, "pub const {}_IMPL: {} = {}(0x{:08x});\n", p_name, p_impl_type, p_impl_type, p.address));
-        try!(write!(out, "pub const {}_IMPL_REF: &{} = &{}_IMPL;\n", p_name, p_impl_type, p_name));
+        try!(writeln!(out, "pub const {}: {} = {} {{}};", p_name, p_type, p_type));
+        try!(writeln!(out, "pub const {}_IMPL: {} = {}(0x{:08x});", p_name, p_impl_type, p_impl_type, p.address));
+        try!(writeln!(out, "pub const {}_IMPL_REF: &{} = &{}_IMPL;", p_name, p_impl_type, p_name));
         try!(writeln!(out, ""));
         
-        try!(writeln!(out, "pub struct {} {{}}\n", p_type));
+        try!(writeln!(out, "pub struct {} {{}}", p_type));
         try!(writeln!(out, "impl ::core::ops::Deref for {} {{", p_type));
         try!(writeln!(out, "   type Target = {};", p_impl_type));
         try!(writeln!(out, "   fn deref(&self) -> &{} {{ {}_IMPL_REF }}", p_impl_type, p_name));
@@ -272,7 +272,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, ""));
         // count += 1;
     }    
-    try!(write!(out, "\n"));
+    try!(writeln!(out, ""));
 
     // Generate peripheral list
 
@@ -288,8 +288,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     // }
     
     if pg.modules.len() == 0 {
-        try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-        try!(write!(out, "pub struct {}(pub u32);\n\n", p_impl_type));    
+        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
+        try!(writeln!(out, "pub struct {}(pub u32);", p_impl_type));    
     }
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
@@ -407,25 +407,25 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     if let Some(dim) = p.dim {
         for (offset, name) in p.iter_dim() {
             let p_name = name.replace("[","").replace("]","");            
-            try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p_name, p_type, p_type, offset));    
+            try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p_name, p_type, p_type, offset));    
         }
-        try!(write!(out, "\n"));
+        try!(writeln!(out, ""));
 
         // let p_arr = p.group_name.as_ref().unwrap().to_uppercase();
-        // try!(write!(out, "pub const {}: [{}; {}] = [\n", p_arr, p_type, dim));
+        // try!(writeln!(out, "pub const {}: [{}; {}] = [", p_arr, p_type, dim));
         // for (offset, name) in p.iter_dim() {
         //     let p_name = name.replace("[","").replace("]","");            
-        //     try!(write!(out, "   {},\n", p_name));
+        //     try!(writeln!(out, "   {},", p_name));
         // }
-        // try!(write!(out, "];\n\n"));
+        // try!(writeln!(out, "];"));
 
     } else {
-        try!(write!(out, "pub const {}: {} = {}(0x{:08x});\n", p.name, p_type, p_type, p.address));    
+        try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p.name, p_type, p_type, p.address));    
     }
-    try!(write!(out, "\n"));
+    try!(writeln!(out, ""));
 
-    try!(write!(out, "#[derive(Clone, Copy, PartialEq, Eq)]\n"));
-    try!(write!(out, "pub struct {}(pub u32);\n\n", p_type));    
+    try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
+    try!(writeln!(out, "pub struct {}(pub u32);", p_type));    
 
     if p.registers.len() > 0 {
         try!(gen_registers(cfg, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
@@ -440,10 +440,10 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
 
 pub fn gen_peripheral_enum<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_name = to_camel(&p.name);
-    try!(write!(out, "pub enum {} {{\n", p_name));
-    try!(write!(out, "  {} = 0x{:08x}, \n", p_name, p.address));
-    try!(write!(out, "}}\n"));
-    try!(write!(out, "\n"));
+    try!(writeln!(out, "pub enum {} {{", p_name));
+    try!(writeln!(out, "  {} = 0x{:08x}, ", p_name, p.address));
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
 
     try!(gen_registers(cfg, out, &p_name, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
 
@@ -451,33 +451,33 @@ pub fn gen_peripheral_enum<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
 }
 
 pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters: &[Cluster], size: Option<u64>, access: Option<Access>) -> Result<()> {
-    try!(write!(out, "impl {} {{\n", p_type));
+    try!(writeln!(out, "impl {} {{", p_type));
 
     for c in clusters.iter() {
         let c_type = format!("{}", to_camel(&c.name));
         let mod_name = c.name.to_lowercase();
-        try!(write!(out, "   pub fn {}(&self) -> {}::{} {{\n", mod_name, mod_name, c_type));
-        try!(write!(out, "      {}::{}(self.0 + 0x{:x})\n", mod_name, c_type, c.offset));
-        try!(write!(out, "   }}\n\n"));
+        try!(writeln!(out, "   pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
+        try!(writeln!(out, "      {}::{}(self.0 + 0x{:x})", mod_name, c_type, c.offset));
+        try!(writeln!(out, "   }}"));
     }
-    try!(write!(out, "}}\n\n"));
+    try!(writeln!(out, "}}"));
 
     for c in clusters.iter() {        
         let c_type = format!("{}", to_camel(&c.name));
         let mod_name = c.name.to_lowercase();        
-        try!(write!(out, "pub mod {} {{\n", mod_name));
-        try!(write!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]\n"));
-        try!(write!(out, "   pub struct {}(pub u32);\n\n", c_type));
+        try!(writeln!(out, "pub mod {} {{", mod_name));
+        try!(writeln!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]"));
+        try!(writeln!(out, "   pub struct {}(pub u32);", c_type));
         try!(gen_registers(cfg, out, &c_type, &c.registers[..], c.size.or(size), c.access.or(access)));
-        try!(write!(out, "}}\n"));
-        try!(write!(out, "// End of {}\n\n", mod_name));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, "// End of {}", mod_name));
     }
 
     Ok(())
 }
 
 pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
-    try!(write!(out, "impl {} {{\n", p_type));
+    try!(writeln!(out, "impl {} {{", p_type));
     
     for r in regs.iter() {  
         let r_type = format!("{}", to_camel(&r.name));
@@ -505,74 +505,76 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 _ => format!("(index * {})", r_incr),
             };        
             if r_access.is_readable() {
-                try!(write!(out, "  pub fn {}(&self, index: usize) -> {} {{ \n", r_getter, r_type));
-                try!(write!(out, "     assert!(index < {});\n", dim));
-                try!(write!(out, "     unsafe {{"));
-                try!(write!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))\n", r_type, r_offset, r_shift, r_size));
-                try!(write!(out, "     }}"));
-                try!(write!(out, "  }}\n"));
+                try!(writeln!(out, "  pub fn {}(&self, index: usize) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "     assert!(index < {});", dim));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub fn {}(&self, index: usize, value: {}) {{\n", r_setter, r_type));
-                try!(write!(out, "     assert!(index < {});\n", dim));
-                try!(write!(out, "     unsafe {{"));
-                try!(write!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);\n", r_offset, r_shift, r_size)); 
-                try!(write!(out, "     }}"));
-                try!(write!(out, "  }}\n"));
+                try!(writeln!(out, "  pub fn {}(&self, index: usize, value: {}) -> &{} {{", r_setter, r_type, p_type));
+                try!(writeln!(out, "     assert!(index < {});", dim));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "     self"));
+                try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
-                try!(write!(out, "     let tmp = self.{}(index);\n", r_getter));
-                try!(write!(out, "     self.{}(index, f(tmp))\n", r_setter));
-                try!(write!(out, "  }}\n"));            
+                try!(writeln!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) -> &{} {{", r_with, r_typevar, r_type, r_type, r_typevar, p_type));
+                try!(writeln!(out, "     let tmp = self.{}(index);", r_getter));
+                try!(writeln!(out, "     self.{}(index, f(tmp))", r_setter));
+                try!(writeln!(out, "  }}"));            
             }            
         } else {
             if r_access.is_readable() {
-                try!(write!(out, "  pub fn {}(&self) -> {} {{ \n", r_getter, r_type));
-                try!(write!(out, "     unsafe {{"));
-                try!(write!(out, "       {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))\n", r_type, r_offset, r_size));
-                try!(write!(out, "     }}"));
-                try!(write!(out, "  }}\n"));
+                try!(writeln!(out, "  pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "       {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub fn {}(&self, value: {}) {{\n", r_setter, r_type));
-                try!(write!(out, "     unsafe {{"));
-                try!(write!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);\n", r_offset, r_size));                    
-                try!(write!(out, "     }}"));
-                try!(write!(out, "  }}\n"));
+                try!(writeln!(out, "  pub fn {}(&self, value: {}) -> &{} {{", r_setter, r_type, p_type));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "     self"));
+                try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
-                try!(write!(out, "     let tmp = self.{}();\n", r_getter));
-                try!(write!(out, "     self.{}(f(tmp))\n", r_setter));
-                try!(write!(out, "  }}\n"));            
+                try!(writeln!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &{} {{", r_with, r_typevar, r_type, r_type, r_typevar, p_type));
+                try!(writeln!(out, "     let tmp = self.{}();", r_getter));
+                try!(writeln!(out, "     self.{}(f(tmp))", r_setter));
+                try!(writeln!(out, "  }}"));            
             }
         }
-        try!(write!(out, "\n"));
+        try!(writeln!(out, ""));
     }    
-    try!(write!(out, "}}\n"));
-    try!(write!(out, "\n"));
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
 
     for r in regs.iter() {  
         let r_type = format!("{}", to_camel(&r.name));
         let r_size = size_type(r.size.or(size).unwrap());
-        try!(write!(out, "#[derive(PartialEq, Eq)]\n"));
-        try!(write!(out, "pub struct {}(pub {});\n\n", r_type, r_size));
-        try!(write!(out, "impl {} {{\n", r_type));        
+        try!(writeln!(out, "#[derive(PartialEq, Eq)]"));
+        try!(writeln!(out, "pub struct {}(pub {});", r_type, r_size));
+        try!(writeln!(out, "impl {} {{", r_type));        
         for f in r.fields.iter() {
             try!(gen_field(cfg, out, &f, &r_size, f.access.or(access)))
         }
-        try!(write!(out, "}}\n\n"));
+        try!(writeln!(out, "}}"));
 
-        try!(write!(out, "impl ::core::fmt::Display for {} {{\n", r_type));
-        try!(write!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{\n"));
-        try!(write!(out, "       self.0.fmt(f)\n"));
-        try!(write!(out, "   }}\n"));
-        try!(write!(out, "}}\n\n"));        
+        try!(writeln!(out, "impl ::core::fmt::Display for {} {{", r_type));
+        try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
+        try!(writeln!(out, "       self.0.fmt(f)"));
+        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "}}"));        
 
-        try!(write!(out, "impl ::core::fmt::Debug for {} {{\n", r_type));
-        try!(write!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{\n"));        
-        try!(write!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));\n"));
+        try!(writeln!(out, "impl ::core::fmt::Debug for {} {{", r_type));
+        try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));        
+        try!(writeln!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));"));
         for f in r.fields.iter() {
             let f_name = field_name(&f.name);
             let f_getter = field_getter(&f.name);
@@ -581,31 +583,31 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 for i in 0..dim {
                     match f.bit_width {
                         1 => {
-                            try!(write!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]\"))}}\n", f_getter, i, f_getter, i));
+                            try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]\"))}}", f_getter, i, f_getter, i));
                         },
                         32 => {},
                         _ => {
-                            try!(write!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})))}}\n", f_getter, i, f_name, i, f_getter, i));
+                            try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})))}}", f_getter, i, f_name, i, f_getter, i));
                         }
                     }                    
                 }
             } else {
                 match f.bit_width {
                     1 => {
-                        try!(write!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}\"))}}\n", f_getter, f_getter));
+                        try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}\"))}}", f_getter, f_getter));
                     },
                     32 => {},
                     _ => {
-                        try!(write!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}=0x{{:x}}\", self.{}()))}}\n", f_getter, f_name, f_getter));
+                        try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}=0x{{:x}}\", self.{}()))}}", f_getter, f_name, f_getter));
                     }
                 }
             }
             
         }
-        try!(write!(out, "      try!(write!(f, \"]\"));\n"));
-        try!(write!(out, "      Ok(())\n"));
-        try!(write!(out, "   }}\n"));
-        try!(write!(out, "}}\n\n"));        
+        try!(writeln!(out, "      try!(write!(f, \"]\"));"));
+        try!(writeln!(out, "      Ok(())"));
+        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "}}"));        
     }
     Ok(())
 }
@@ -635,66 +637,66 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
 
-        try!(write!(out, "  pub fn {}(&self, index: usize) -> {} {{\n", f_getter, size));
-        try!(write!(out, "     assert!(index < {});\n", dim));
+        try!(writeln!(out, "  pub fn {}(&self, index: usize) -> {} {{", f_getter, size));
+        try!(writeln!(out, "     assert!(index < {});", dim));
         match f_incr {
             1 => {
-                try!(write!(out, "     let shift: usize = {} + index;\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + index;", f_offset));
             },
             2 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 1);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 1);", f_offset));
             },
             4 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 2);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 2);", f_offset));
             },
             8 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 3);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 3);", f_offset));
             },
             _ => {
-                try!(write!(out, "     let shift: usize = {} + (index * {});\n", f_offset, f_incr));                
+                try!(writeln!(out, "     let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }
-        try!(write!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}\n", size, f_mask, f_bits));
-        try!(write!(out, "  }}\n"));    
+        try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));
+        try!(writeln!(out, "  }}"));    
 
-        try!(write!(out, "  pub fn {}(mut self, index: usize, value: {}) -> Self {{\n", f_setter, size));
-        try!(write!(out, "     assert!(index < {});\n", dim));
-        try!(write!(out, "     assert!((value & !0x{:x}) == 0);\n", f_mask));
+        try!(writeln!(out, "  pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, size));
+        try!(writeln!(out, "     assert!(index < {});", dim));
+        try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         match f_incr {
             1 => {
-                try!(write!(out, "     let shift: usize = {} + index;\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + index;", f_offset));
             },
             2 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 1);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 1);", f_offset));
             },
             4 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 2);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 2);", f_offset));
             },
             8 => {
-                try!(write!(out, "     let shift: usize = {} + (index << 3);\n", f_offset));
+                try!(writeln!(out, "     let shift: usize = {} + (index << 3);", f_offset));
             },
             _ => {
-                try!(write!(out, "     let shift: usize = {} + (index * {});\n", f_offset, f_incr));                
+                try!(writeln!(out, "     let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }        
-        try!(write!(out, "     self.0 &= !(0x{:x} << shift);\n", f_mask));
-        try!(write!(out, "     self.0 |= value << shift;\n"));
-        try!(write!(out, "     self\n"));
-        try!(write!(out, "  }}\n"));    
-        try!(write!(out, "\n"));
+        try!(writeln!(out, "     self.0 &= !(0x{:x} << shift);", f_mask));
+        try!(writeln!(out, "     self.0 |= value << shift;"));
+        try!(writeln!(out, "     self"));
+        try!(writeln!(out, "  }}"));    
+        try!(writeln!(out, ""));
     } else {
 
-        try!(write!(out, "  pub fn {}(&self) -> {} {{\n", f_getter, size));
-        try!(write!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}\n", size, f_offset, f_mask, f_bits));
-        try!(write!(out, "  }}\n"));    
+        try!(writeln!(out, "  pub fn {}(&self) -> {} {{", f_getter, size));
+        try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
+        try!(writeln!(out, "  }}"));    
 
-        try!(write!(out, "  pub fn {}(mut self, value: {}) -> Self {{\n", f_setter, size));
-        try!(write!(out, "     assert!((value & !0x{:x}) == 0);\n", f_mask));
-        try!(write!(out, "     self.0 &= !(0x{:x} << {});\n", f_mask, f_offset));
-        try!(write!(out, "     self.0 |= value << {};\n", f_offset));
-        try!(write!(out, "     self\n"));
-        try!(write!(out, "  }}\n"));    
-        try!(write!(out, "\n"));
+        try!(writeln!(out, "  pub fn {}(mut self, value: {}) -> Self {{", f_setter, size));
+        try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
+        try!(writeln!(out, "     self.0 &= !(0x{:x} << {});", f_mask, f_offset));
+        try!(writeln!(out, "     self.0 |= value << {};", f_offset));
+        try!(writeln!(out, "     self"));
+        try!(writeln!(out, "  }}"));    
+        try!(writeln!(out, ""));
             
     }
     Ok(())
