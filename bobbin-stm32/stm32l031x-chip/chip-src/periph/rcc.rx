@@ -9,6 +9,7 @@
         (description "RCC global interrupt")
     )
     (link (name EN))
+    (link (name RST))
     (register
         (name CR)
         (offset 0x0)
@@ -460,30 +461,28 @@
             (bit-offset 7)
             (bit-width 1)
             (description "I/O port H reset")
-        )
-        (field
-            (name IOPDRST)
-            (bit-offset 3)
-            (bit-width 1)
-            (description "I/O port D reset")
+            (link (name RST) (peripheral-group GPIO) (peripheral GPIOH))
         )
         (field
             (name IOPCRST)
             (bit-offset 2)
             (bit-width 1)
-            (description "I/O port A reset")
+            (description "I/O port C reset")
+            (link (name RST) (peripheral-group GPIO) (peripheral GPIOC))
         )
         (field
             (name IOPBRST)
             (bit-offset 1)
             (bit-width 1)
             (description "I/O port B reset")
+            (link (name RST) (peripheral-group GPIO) (peripheral GPIOB))
         )
         (field
             (name IOPARST)
             (bit-offset 0)
             (bit-width 1)
             (description "I/O port A reset")
+            (link (name RST) (peripheral-group GPIO) (peripheral GPIOA))
         )
     )
     (register
@@ -504,6 +503,7 @@
             (bit-offset 20)
             (bit-width 1)
             (description "Random Number Generator module reset")
+            (link (name RST) (peripheral-group RNG) (peripheral RNG))
         )
         (field
             (name TOUCHRST)
@@ -516,6 +516,7 @@
             (bit-offset 12)
             (bit-width 1)
             (description "Test integration module reset")
+            (link (name RST) (peripheral-group CRC) (peripheral CRC))
         )
         (field
             (name MIFRST)
@@ -528,6 +529,7 @@
             (bit-offset 0)
             (bit-width 1)
             (description "DMA reset")
+            (link (name RST) (peripheral-group DMA) (peripheral DMA))
         )
     )
     (register
@@ -548,12 +550,14 @@
             (bit-offset 14)
             (bit-width 1)
             (description "USART1 reset")
+            (link (name RST) (peripheral-group USART) (peripheral USART1))
         )
         (field
             (name SPI1RST)
             (bit-offset 12)
             (bit-width 1)
             (description "SPI 1 reset")
+            (link (name RST) (peripheral-group SPI) (peripheral SPI1))
         )
         (field
             (name ADCRST)
@@ -566,18 +570,21 @@
             (bit-offset 5)
             (bit-width 1)
             (description "TIM22 timer reset")
+            (link (name RST) (peripheral-group TIM_GEN) (peripheral TIM22))
         )
         (field
             (name TIM21RST)
             (bit-offset 2)
             (bit-width 1)
             (description "TIM21 timer reset")
+            (link (name RST) (peripheral-group TIM_GEN) (peripheral TIM21))
         )
         (field
             (name SYSCFGRST)
             (bit-offset 0)
             (bit-width 1)
             (description "System configuration controller reset")
+            (link (name RST) (peripheral-group SYSCFG) (peripheral SYSCFG))
         )
     )
     (register
@@ -592,6 +599,7 @@
             (bit-offset 31)
             (bit-width 1)
             (description "Low power timer reset")
+            (link (name RST) (peripheral-group LPTIM) (peripheral LPTIM))
         )
         (field
             (name DACRST)
@@ -604,6 +612,7 @@
             (bit-offset 28)
             (bit-width 1)
             (description "Power interface reset")
+            (link (name RST) (peripheral-group PWR) (peripheral PWR))
         )
         (field
             (name CRSRST)
@@ -622,12 +631,14 @@
             (bit-offset 22)
             (bit-width 1)
             (description "I2C2 reset")
+            (link (name RST) (peripheral-group I2C) (peripheral I2C2))
         )
         (field
             (name I2C1RST)
             (bit-offset 21)
             (bit-width 1)
             (description "I2C1 reset")
+            (link (name RST) (peripheral-group I2C) (peripheral I2C1))
         )
         (field
             (name LPUART1RST)
@@ -636,22 +647,25 @@
             (description "LPUART1 reset")
         )
         (field
-            (name LPUART12RST)
+            (name USART2RST)
             (bit-offset 17)
             (bit-width 1)
-            (description "UART2 reset")
+            (description "USART2 reset")
+            (link (name RST) (peripheral-group USART) (peripheral USART2))
         )
         (field
             (name SPI2RST)
             (bit-offset 14)
             (bit-width 1)
             (description "SPI2 reset")
+            (link (name RST) (peripheral-group SPI) (peripheral SPI2))
         )
         (field
             (name WWDRST)
             (bit-offset 11)
             (bit-width 1)
             (description "Window watchdog reset")
+            (link (name RST) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
             (name TIM6RST)
@@ -716,6 +730,7 @@
             (bit-offset 20)
             (bit-width 1)
             (description "Random Number Generator clock enable bit")
+            (link (name EN) (peripheral-group RNG) (peripheral RNG))
         )
         (field
             (name TOUCHEN)
@@ -728,6 +743,7 @@
             (bit-offset 12)
             (bit-width 1)
             (description "CRC clock enable bit")
+            (link (name EN) (peripheral-group CRC) (peripheral CRC))
         )
         (field
             (name MIFEN)
@@ -740,6 +756,7 @@
             (bit-offset 0)
             (bit-width 1)
             (description "DMA clock enable bit")
+            (link (name EN) (peripheral-group DMA) (peripheral DMA))
         )
     )
     (register
@@ -760,12 +777,14 @@
             (bit-offset 14)
             (bit-width 1)
             (description "USART1 clock enable bit")
+            (link (name EN) (peripheral-group USART) (peripheral USART1))
         )
         (field
             (name SPI1EN)
             (bit-offset 12)
             (bit-width 1)
             (description "SPI1 clock enable bit")
+            (link (name EN) (peripheral-group SPI) (peripheral SPI1))
         )
         (field
             (name ADCEN)
@@ -784,18 +803,21 @@
             (bit-offset 5)
             (bit-width 1)
             (description "TIM22 timer clock enable bit")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM22))
         )
         (field
             (name TIM21EN)
             (bit-offset 2)
             (bit-width 1)
             (description "TIM21 timer clock enable bit")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM21))
         )
         (field
             (name SYSCFGEN)
             (bit-offset 0)
             (bit-width 1)
             (description "System configuration controller clock enable bit")
+            (link (name EN) (peripheral-group SYSCFG) (peripheral SYSCFG))
         )
     )
     (register
@@ -810,6 +832,7 @@
             (bit-offset 31)
             (bit-width 1)
             (description "Low power timer clock enable bit")
+            (link (name EN) (peripheral-group LPTIM) (peripheral LPTIM))
         )
         (field
             (name DACEN)
@@ -822,6 +845,7 @@
             (bit-offset 28)
             (bit-width 1)
             (description "Power interface clock enable bit")
+            (link (name EN) (peripheral-group PWR) (peripheral PWR))
         )
         (field
             (name CRSEN)
@@ -840,36 +864,41 @@
             (bit-offset 22)
             (bit-width 1)
             (description "I2C2 clock enable bit")
+            (link (name EN) (peripheral-group I2C) (peripheral I2C2))
         )
         (field
             (name I2C1EN)
             (bit-offset 21)
             (bit-width 1)
             (description "I2C1 clock enable bit")
+            (link (name EN) (peripheral-group I2C) (peripheral I2C1))
         )
         (field
             (name LPUART1EN)
             (bit-offset 18)
             (bit-width 1)
-            (description "LPUART1 clock enable bit")
+            (description "LPUART1 clock enable bit")            
         )
         (field
             (name USART2EN)
             (bit-offset 17)
             (bit-width 1)
             (description "UART2 clock enable bit")
+            (link (name EN) (peripheral-group USART) (peripheral USART2))
         )
         (field
             (name SPI2EN)
             (bit-offset 14)
             (bit-width 1)
             (description "SPI2 clock enable bit")
+            (link (name EN) (peripheral-group SPI) (peripheral SPI2))
         )
         (field
             (name WWDGEN)
             (bit-offset 11)
             (bit-width 1)
             (description "Window watchdog clock enable bit")
+            (link (name EN) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
             (name TIM6EN)

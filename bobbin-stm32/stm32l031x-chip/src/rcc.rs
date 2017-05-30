@@ -1085,16 +1085,6 @@ impl Ioprstr {
      self
   }
 
-  pub fn iopdrst(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  pub fn set_iopdrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
   pub fn iopcrst(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
@@ -1135,7 +1125,6 @@ impl ::core::fmt::Debug for Ioprstr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.iophrst() != 0 { try!(write!(f, " iophrst"))}
-      if self.iopdrst() != 0 { try!(write!(f, " iopdrst"))}
       if self.iopcrst() != 0 { try!(write!(f, " iopcrst"))}
       if self.iopbrst() != 0 { try!(write!(f, " iopbrst"))}
       if self.ioparst() != 0 { try!(write!(f, " ioparst"))}
@@ -1401,10 +1390,10 @@ impl Apb1rstr {
      self
   }
 
-  pub fn lpuart12rst(&self) -> u32 {
+  pub fn usart2rst(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
-  pub fn set_lpuart12rst(mut self, value: u32) -> Self {
+  pub fn set_usart2rst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -1468,7 +1457,7 @@ impl ::core::fmt::Debug for Apb1rstr {
       if self.i2c2rst() != 0 { try!(write!(f, " i2c2rst"))}
       if self.i2c1rst() != 0 { try!(write!(f, " i2c1rst"))}
       if self.lpuart1rst() != 0 { try!(write!(f, " lpuart1rst"))}
-      if self.lpuart12rst() != 0 { try!(write!(f, " lpuart12rst"))}
+      if self.usart2rst() != 0 { try!(write!(f, " usart2rst"))}
       if self.spi2rst() != 0 { try!(write!(f, " spi2rst"))}
       if self.wwdrst() != 0 { try!(write!(f, " wwdrst"))}
       if self.tim6rst() != 0 { try!(write!(f, " tim6rst"))}
@@ -2619,6 +2608,115 @@ impl Rcc {
    }
 }
 
+pub trait Rst {
+   fn rst(&self) -> u32;
+   fn set_rst(&self, value: u32);
+}
+
+impl Rcc {
+   pub fn rst<P: Rst>(&self, p: &P) -> u32 {
+      p.rst()
+   }
+   pub fn set_rst<P: Rst>(&self, p: &P, value: u32) {
+      p.set_rst(value)
+   }
+}
+
+impl Rst for super::gpio::Gpioh {
+   fn rst(&self) -> u32 { RCC.ioprstr().iophrst() }
+   fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_iophrst(value)); }
+}
+
+impl Rst for super::gpio::Gpioc {
+   fn rst(&self) -> u32 { RCC.ioprstr().iopcrst() }
+   fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_iopcrst(value)); }
+}
+
+impl Rst for super::gpio::Gpiob {
+   fn rst(&self) -> u32 { RCC.ioprstr().iopbrst() }
+   fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_iopbrst(value)); }
+}
+
+impl Rst for super::gpio::Gpioa {
+   fn rst(&self) -> u32 { RCC.ioprstr().ioparst() }
+   fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_ioparst(value)); }
+}
+
+impl Rst for super::rng::Rng {
+   fn rst(&self) -> u32 { RCC.ahbrstr().rngrst() }
+   fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_rngrst(value)); }
+}
+
+impl Rst for super::crc::Crc {
+   fn rst(&self) -> u32 { RCC.ahbrstr().crcrst() }
+   fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_crcrst(value)); }
+}
+
+impl Rst for super::dma::Dma {
+   fn rst(&self) -> u32 { RCC.ahbrstr().dmarst() }
+   fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_dmarst(value)); }
+}
+
+impl Rst for super::usart::Usart1 {
+   fn rst(&self) -> u32 { RCC.apb2rstr().usart1rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_usart1rst(value)); }
+}
+
+impl Rst for super::spi::Spi1 {
+   fn rst(&self) -> u32 { RCC.apb2rstr().spi1rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_spi1rst(value)); }
+}
+
+impl Rst for super::tim_gen::Tim22 {
+   fn rst(&self) -> u32 { RCC.apb2rstr().tm12rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_tm12rst(value)); }
+}
+
+impl Rst for super::tim_gen::Tim21 {
+   fn rst(&self) -> u32 { RCC.apb2rstr().tim21rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_tim21rst(value)); }
+}
+
+impl Rst for super::syscfg::Syscfg {
+   fn rst(&self) -> u32 { RCC.apb2rstr().syscfgrst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_syscfgrst(value)); }
+}
+
+impl Rst for super::lptim::Lptim {
+   fn rst(&self) -> u32 { RCC.apb1rstr().lptim1rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_lptim1rst(value)); }
+}
+
+impl Rst for super::pwr::Pwr {
+   fn rst(&self) -> u32 { RCC.apb1rstr().pwrrst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_pwrrst(value)); }
+}
+
+impl Rst for super::i2c::I2c2 {
+   fn rst(&self) -> u32 { RCC.apb1rstr().i2c2rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_i2c2rst(value)); }
+}
+
+impl Rst for super::i2c::I2c1 {
+   fn rst(&self) -> u32 { RCC.apb1rstr().i2c1rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_i2c1rst(value)); }
+}
+
+impl Rst for super::usart::Usart2 {
+   fn rst(&self) -> u32 { RCC.apb1rstr().usart2rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_usart2rst(value)); }
+}
+
+impl Rst for super::spi::Spi2 {
+   fn rst(&self) -> u32 { RCC.apb1rstr().spi2rst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_spi2rst(value)); }
+}
+
+impl Rst for super::wwdg::Wwdg {
+   fn rst(&self) -> u32 { RCC.apb1rstr().wwdrst() }
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_wwdrst(value)); }
+}
+
 impl En for super::gpio::Gpioa {
    fn en(&self) -> u32 { RCC.iopenr().iopaen() }
    fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iopaen(value)); }
@@ -2637,5 +2735,80 @@ impl En for super::gpio::Gpioc {
 impl En for super::gpio::Gpioh {
    fn en(&self) -> u32 { RCC.iopenr().iophen() }
    fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iophen(value)); }
+}
+
+impl En for super::rng::Rng {
+   fn en(&self) -> u32 { RCC.ahbenr().rngen() }
+   fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_rngen(value)); }
+}
+
+impl En for super::crc::Crc {
+   fn en(&self) -> u32 { RCC.ahbenr().crcen() }
+   fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_crcen(value)); }
+}
+
+impl En for super::dma::Dma {
+   fn en(&self) -> u32 { RCC.ahbenr().dmaen() }
+   fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_dmaen(value)); }
+}
+
+impl En for super::usart::Usart1 {
+   fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
+   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
+}
+
+impl En for super::spi::Spi1 {
+   fn en(&self) -> u32 { RCC.apb2enr().spi1en() }
+   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+}
+
+impl En for super::tim_gen::Tim22 {
+   fn en(&self) -> u32 { RCC.apb2enr().tim22en() }
+   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim22en(value)); }
+}
+
+impl En for super::tim_gen::Tim21 {
+   fn en(&self) -> u32 { RCC.apb2enr().tim21en() }
+   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim21en(value)); }
+}
+
+impl En for super::syscfg::Syscfg {
+   fn en(&self) -> u32 { RCC.apb2enr().syscfgen() }
+   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
+}
+
+impl En for super::lptim::Lptim {
+   fn en(&self) -> u32 { RCC.apb1enr().lptim1en() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_lptim1en(value)); }
+}
+
+impl En for super::pwr::Pwr {
+   fn en(&self) -> u32 { RCC.apb1enr().pwren() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_pwren(value)); }
+}
+
+impl En for super::i2c::I2c2 {
+   fn en(&self) -> u32 { RCC.apb1enr().i2c2en() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c2en(value)); }
+}
+
+impl En for super::i2c::I2c1 {
+   fn en(&self) -> u32 { RCC.apb1enr().i2c1en() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
+}
+
+impl En for super::usart::Usart2 {
+   fn en(&self) -> u32 { RCC.apb1enr().usart2en() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
+}
+
+impl En for super::spi::Spi2 {
+   fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
+}
+
+impl En for super::wwdg::Wwdg {
+   fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
 }
 
