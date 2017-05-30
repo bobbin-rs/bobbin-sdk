@@ -1480,20 +1480,6 @@ impl ::core::fmt::Debug for Apb1rstr {
 #[derive(PartialEq, Eq)]
 pub struct Iopenr(pub u32);
 impl Iopenr {
-  pub fn iopen(&self, index: usize) -> u32 {
-     assert!(index < 7);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  pub fn set_iopen(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 7);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
-
   pub fn iopaen(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
@@ -1543,13 +1529,6 @@ impl ::core::fmt::Display for Iopenr {
 impl ::core::fmt::Debug for Iopenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.iopen(0) != 0 { try!(write!(f, " iopen[0]"))}
-      if self.iopen(1) != 0 { try!(write!(f, " iopen[1]"))}
-      if self.iopen(2) != 0 { try!(write!(f, " iopen[2]"))}
-      if self.iopen(3) != 0 { try!(write!(f, " iopen[3]"))}
-      if self.iopen(4) != 0 { try!(write!(f, " iopen[4]"))}
-      if self.iopen(5) != 0 { try!(write!(f, " iopen[5]"))}
-      if self.iopen(6) != 0 { try!(write!(f, " iopen[6]"))}
       if self.iopaen() != 0 { try!(write!(f, " iopaen"))}
       if self.iopben() != 0 { try!(write!(f, " iopben"))}
       if self.iopcen() != 0 { try!(write!(f, " iopcen"))}
