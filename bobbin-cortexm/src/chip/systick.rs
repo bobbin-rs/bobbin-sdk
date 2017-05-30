@@ -2,48 +2,67 @@ pub const SYSTICK: Systick = Systick(0xe000e000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Systick(pub u32);
-
 impl Systick {
   pub fn csr(&self) -> Csr { 
-     unsafe {       Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }  }
-  pub fn set_csr(&self, value: Csr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }  }
-  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) {
+     unsafe {
+       Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  pub fn set_csr(&self, value: Csr) -> &Systick {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Systick {
      let tmp = self.csr();
      self.set_csr(f(tmp))
   }
 
   pub fn rvr(&self) -> Rvr { 
-     unsafe {       Rvr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }  }
-  pub fn set_rvr(&self, value: Rvr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }  }
-  pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) {
+     unsafe {
+       Rvr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  pub fn set_rvr(&self, value: Rvr) -> &Systick {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Systick {
      let tmp = self.rvr();
      self.set_rvr(f(tmp))
   }
 
   pub fn cvr(&self) -> Cvr { 
-     unsafe {       Cvr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }  }
-  pub fn set_cvr(&self, value: Cvr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }  }
-  pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) {
+     unsafe {
+       Cvr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  pub fn set_cvr(&self, value: Cvr) -> &Systick {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Systick {
      let tmp = self.cvr();
      self.set_cvr(f(tmp))
   }
 
   pub fn calib(&self) -> Calib { 
-     unsafe {       Calib(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }  }
-  pub fn set_calib(&self, value: Calib) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }  }
-  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) {
+     unsafe {
+       Calib(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
+  pub fn set_calib(&self, value: Calib) -> &Systick {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Systick {
      let tmp = self.calib();
      self.set_calib(f(tmp))
   }
@@ -52,7 +71,6 @@ impl Systick {
 
 #[derive(PartialEq, Eq)]
 pub struct Csr(pub u32);
-
 impl Csr {
   pub fn countflag(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
@@ -95,13 +113,11 @@ impl Csr {
   }
 
 }
-
 impl ::core::fmt::Display for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -113,10 +129,8 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Rvr(pub u32);
-
 impl Rvr {
   pub fn reload(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffff // [23:0]
@@ -129,13 +143,11 @@ impl Rvr {
   }
 
 }
-
 impl ::core::fmt::Display for Rvr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Rvr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -144,10 +156,8 @@ impl ::core::fmt::Debug for Rvr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cvr(pub u32);
-
 impl Cvr {
   pub fn current(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffff // [23:0]
@@ -160,13 +170,11 @@ impl Cvr {
   }
 
 }
-
 impl ::core::fmt::Display for Cvr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cvr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -175,10 +183,8 @@ impl ::core::fmt::Debug for Cvr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Calib(pub u32);
-
 impl Calib {
   pub fn noref(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
@@ -211,13 +217,11 @@ impl Calib {
   }
 
 }
-
 impl ::core::fmt::Display for Calib {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Calib {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -228,4 +232,3 @@ impl ::core::fmt::Debug for Calib {
       Ok(())
    }
 }
-

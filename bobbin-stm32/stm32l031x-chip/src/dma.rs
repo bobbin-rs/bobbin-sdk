@@ -2,75 +2,104 @@ pub const DMA1: Dma = Dma(0x40020000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dma(pub u32);
-
 impl Dma {
   pub fn isr(&self) -> Isr { 
-     unsafe {       Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }  }
+     unsafe {
+       Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
 
-  pub fn set_ifcr(&self, value: Ifcr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }  }
+  pub fn set_ifcr(&self, value: Ifcr) -> &Dma {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
 
   pub fn ccr(&self, index: usize) -> Ccr { 
      assert!(index < 7);
-     unsafe {        Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *const u32))
-     }  }
-  pub fn set_ccr(&self, index: usize, value: Ccr) {
+     unsafe {
+        Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *const u32))
+     }
+  }
+  pub fn set_ccr(&self, index: usize, value: Ccr) -> &Dma {
      assert!(index < 7);
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *mut u32, value.0);
-     }  }
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Dma {
      let tmp = self.ccr(index);
      self.set_ccr(index, f(tmp))
   }
 
   pub fn cndtr(&self, index: usize) -> Cndtr { 
      assert!(index < 7);
-     unsafe {        Cndtr(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index * 20)) as *const u32))
-     }  }
-  pub fn set_cndtr(&self, index: usize, value: Cndtr) {
+     unsafe {
+        Cndtr(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index * 20)) as *const u32))
+     }
+  }
+  pub fn set_cndtr(&self, index: usize, value: Cndtr) -> &Dma {
      assert!(index < 7);
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index * 20)) as *mut u32, value.0);
-     }  }
-  pub fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index * 20)) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) -> &Dma {
      let tmp = self.cndtr(index);
      self.set_cndtr(index, f(tmp))
   }
 
   pub fn cpar(&self, index: usize) -> Cpar { 
      assert!(index < 7);
-     unsafe {        Cpar(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *const u32))
-     }  }
-  pub fn set_cpar(&self, index: usize, value: Cpar) {
+     unsafe {
+        Cpar(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *const u32))
+     }
+  }
+  pub fn set_cpar(&self, index: usize, value: Cpar) -> &Dma {
      assert!(index < 7);
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *mut u32, value.0);
-     }  }
-  pub fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) -> &Dma {
      let tmp = self.cpar(index);
      self.set_cpar(index, f(tmp))
   }
 
   pub fn cmar(&self, index: usize) -> Cmar { 
      assert!(index < 7);
-     unsafe {        Cmar(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *const u32))
-     }  }
-  pub fn set_cmar(&self, index: usize, value: Cmar) {
+     unsafe {
+        Cmar(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *const u32))
+     }
+  }
+  pub fn set_cmar(&self, index: usize, value: Cmar) -> &Dma {
      assert!(index < 7);
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *mut u32, value.0);
-     }  }
-  pub fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) -> &Dma {
      let tmp = self.cmar(index);
      self.set_cmar(index, f(tmp))
   }
 
   pub fn cselr(&self) -> Cselr { 
-     unsafe {       Cselr(::core::ptr::read_volatile(((self.0 as usize) + 0xa8) as *const u32))
-     }  }
-  pub fn set_cselr(&self, value: Cselr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
-     }  }
-  pub fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) {
+     unsafe {
+       Cselr(::core::ptr::read_volatile(((self.0 as usize) + 0xa8) as *const u32))
+     }
+  }
+  pub fn set_cselr(&self, value: Cselr) -> &Dma {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) -> &Dma {
      let tmp = self.cselr();
      self.set_cselr(f(tmp))
   }
@@ -79,7 +108,6 @@ impl Dma {
 
 #[derive(PartialEq, Eq)]
 pub struct Isr(pub u32);
-
 impl Isr {
   pub fn teif(&self, index: usize) -> u32 {
      assert!(index < 7);
@@ -138,13 +166,11 @@ impl Isr {
   }
 
 }
-
 impl ::core::fmt::Display for Isr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Isr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -180,10 +206,8 @@ impl ::core::fmt::Debug for Isr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ifcr(pub u32);
-
 impl Ifcr {
   pub fn cteif(&self, index: usize) -> u32 {
      assert!(index < 7);
@@ -242,13 +266,11 @@ impl Ifcr {
   }
 
 }
-
 impl ::core::fmt::Display for Ifcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ifcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -284,10 +306,8 @@ impl ::core::fmt::Debug for Ifcr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ccr(pub u32);
-
 impl Ccr {
   pub fn mem2mem(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
@@ -410,13 +430,11 @@ impl Ccr {
   }
 
 }
-
 impl ::core::fmt::Display for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -436,10 +454,8 @@ impl ::core::fmt::Debug for Ccr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cndtr(pub u32);
-
 impl Cndtr {
   pub fn ndt(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
@@ -452,13 +468,11 @@ impl Cndtr {
   }
 
 }
-
 impl ::core::fmt::Display for Cndtr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cndtr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -467,10 +481,8 @@ impl ::core::fmt::Debug for Cndtr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cpar(pub u32);
-
 impl Cpar {
   pub fn pa(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -483,13 +495,11 @@ impl Cpar {
   }
 
 }
-
 impl ::core::fmt::Display for Cpar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cpar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -497,10 +507,8 @@ impl ::core::fmt::Debug for Cpar {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cmar(pub u32);
-
 impl Cmar {
   pub fn ma(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -513,13 +521,11 @@ impl Cmar {
   }
 
 }
-
 impl ::core::fmt::Display for Cmar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cmar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -527,10 +533,8 @@ impl ::core::fmt::Debug for Cmar {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cselr(pub u32);
-
 impl Cselr {
   pub fn cs(&self, index: usize) -> u32 {
      assert!(index < 7);
@@ -547,13 +551,11 @@ impl Cselr {
   }
 
 }
-
 impl ::core::fmt::Display for Cselr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cselr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -568,4 +570,3 @@ impl ::core::fmt::Debug for Cselr {
       Ok(())
    }
 }
-

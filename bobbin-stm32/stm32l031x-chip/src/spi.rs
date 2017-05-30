@@ -3,7 +3,6 @@ pub const SPI1_IMPL: SpiImpl = SpiImpl(0x40013000);
 pub const SPI1_IMPL_REF: &SpiImpl = &SPI1_IMPL;
 
 pub struct Spi1 {}
-
 impl ::core::ops::Deref for Spi1 {
    type Target = SpiImpl;
    fn deref(&self) -> &SpiImpl { SPI1_IMPL_REF }
@@ -14,7 +13,6 @@ pub const SPI2_IMPL: SpiImpl = SpiImpl(0x40003800);
 pub const SPI2_IMPL_REF: &SpiImpl = &SPI2_IMPL;
 
 pub struct Spi2 {}
-
 impl ::core::ops::Deref for Spi2 {
    type Target = SpiImpl;
    fn deref(&self) -> &SpiImpl { SPI2_IMPL_REF }
@@ -23,89 +21,127 @@ impl ::core::ops::Deref for Spi2 {
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct SpiImpl(pub u32);
-
 impl SpiImpl {
   pub fn cr1(&self) -> Cr1 { 
-     unsafe {       Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
-     }  }
-  pub fn set_cr1(&self, value: Cr1) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
-     }  }
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) {
+     unsafe {
+       Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+     }
+  }
+  pub fn set_cr1(&self, value: Cr1) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &SpiImpl {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
 
   pub fn cr2(&self) -> Cr2 { 
-     unsafe {       Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
-     }  }
-  pub fn set_cr2(&self, value: Cr2) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
-     }  }
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) {
+     unsafe {
+       Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+     }
+  }
+  pub fn set_cr2(&self, value: Cr2) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &SpiImpl {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
 
   pub fn sr(&self) -> Sr { 
-     unsafe {       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u16))
-     }  }
-  pub fn set_sr(&self, value: Sr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u16, value.0);
-     }  }
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
+     unsafe {
+       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u16))
+     }
+  }
+  pub fn set_sr(&self, value: Sr) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &SpiImpl {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
 
   pub fn dr(&self) -> Dr { 
-     unsafe {       Dr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u16))
-     }  }
-  pub fn set_dr(&self, value: Dr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
-     }  }
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) {
+     unsafe {
+       Dr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u16))
+     }
+  }
+  pub fn set_dr(&self, value: Dr) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &SpiImpl {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
 
   pub fn crcpr(&self) -> Crcpr { 
-     unsafe {       Crcpr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }  }
-  pub fn set_crcpr(&self, value: Crcpr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }  }
-  pub fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) {
+     unsafe {
+       Crcpr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  pub fn set_crcpr(&self, value: Crcpr) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &SpiImpl {
      let tmp = self.crcpr();
      self.set_crcpr(f(tmp))
   }
 
   pub fn rxcrcr(&self) -> Rxcrcr { 
-     unsafe {       Rxcrcr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u16))
-     }  }
+     unsafe {
+       Rxcrcr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u16))
+     }
+  }
 
   pub fn txcrcr(&self) -> Txcrcr { 
-     unsafe {       Txcrcr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u16))
-     }  }
+     unsafe {
+       Txcrcr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u16))
+     }
+  }
 
   pub fn i2scfgr(&self) -> I2scfgr { 
-     unsafe {       I2scfgr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u16))
-     }  }
-  pub fn set_i2scfgr(&self, value: I2scfgr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u16, value.0);
-     }  }
-  pub fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) {
+     unsafe {
+       I2scfgr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u16))
+     }
+  }
+  pub fn set_i2scfgr(&self, value: I2scfgr) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &SpiImpl {
      let tmp = self.i2scfgr();
      self.set_i2scfgr(f(tmp))
   }
 
   pub fn i2spr(&self) -> I2spr { 
-     unsafe {       I2spr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u16))
-     }  }
-  pub fn set_i2spr(&self, value: I2spr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u16, value.0);
-     }  }
-  pub fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) {
+     unsafe {
+       I2spr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u16))
+     }
+  }
+  pub fn set_i2spr(&self, value: I2spr) -> &SpiImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u16, value.0);
+     }
+     self
+  }
+  pub fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &SpiImpl {
      let tmp = self.i2spr();
      self.set_i2spr(f(tmp))
   }
@@ -114,7 +150,6 @@ impl SpiImpl {
 
 #[derive(PartialEq, Eq)]
 pub struct Cr1(pub u16);
-
 impl Cr1 {
   pub fn bidimode(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
@@ -257,13 +292,11 @@ impl Cr1 {
   }
 
 }
-
 impl ::core::fmt::Display for Cr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -285,10 +318,8 @@ impl ::core::fmt::Debug for Cr1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cr2(pub u16);
-
 impl Cr2 {
   pub fn rxdmaen(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
@@ -361,13 +392,11 @@ impl Cr2 {
   }
 
 }
-
 impl ::core::fmt::Display for Cr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -382,10 +411,8 @@ impl ::core::fmt::Debug for Cr2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sr(pub u16);
-
 impl Sr {
   pub fn rxne(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
@@ -478,13 +505,11 @@ impl Sr {
   }
 
 }
-
 impl ::core::fmt::Display for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -501,10 +526,8 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dr(pub u16);
-
 impl Dr {
   pub fn dr(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
@@ -517,13 +540,11 @@ impl Dr {
   }
 
 }
-
 impl ::core::fmt::Display for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -532,10 +553,8 @@ impl ::core::fmt::Debug for Dr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Crcpr(pub u32);
-
 impl Crcpr {
   pub fn crcpoly(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
@@ -548,13 +567,11 @@ impl Crcpr {
   }
 
 }
-
 impl ::core::fmt::Display for Crcpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Crcpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -563,10 +580,8 @@ impl ::core::fmt::Debug for Crcpr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Rxcrcr(pub u16);
-
 impl Rxcrcr {
   pub fn rxcrc(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
@@ -579,13 +594,11 @@ impl Rxcrcr {
   }
 
 }
-
 impl ::core::fmt::Display for Rxcrcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Rxcrcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -594,10 +607,8 @@ impl ::core::fmt::Debug for Rxcrcr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Txcrcr(pub u16);
-
 impl Txcrcr {
   pub fn txcrc(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
@@ -610,13 +621,11 @@ impl Txcrcr {
   }
 
 }
-
 impl ::core::fmt::Display for Txcrcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Txcrcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -625,10 +634,8 @@ impl ::core::fmt::Debug for Txcrcr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct I2scfgr(pub u16);
-
 impl I2scfgr {
   pub fn i2smod(&self) -> u16 {
      ((self.0 as u16) >> 11) & 0x1 // [11]
@@ -711,13 +718,11 @@ impl I2scfgr {
   }
 
 }
-
 impl ::core::fmt::Display for I2scfgr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for I2scfgr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -733,10 +738,8 @@ impl ::core::fmt::Debug for I2scfgr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct I2spr(pub u16);
-
 impl I2spr {
   pub fn mckoe(&self) -> u16 {
      ((self.0 as u16) >> 9) & 0x1 // [9]
@@ -769,13 +772,11 @@ impl I2spr {
   }
 
 }
-
 impl ::core::fmt::Display for I2spr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for I2spr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -786,4 +787,3 @@ impl ::core::fmt::Debug for I2spr {
       Ok(())
    }
 }
-

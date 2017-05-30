@@ -2,125 +2,179 @@ pub const MPU: Mpu = Mpu(0xe000ed90);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mpu(pub u32);
-
 impl Mpu {
   pub fn mpu_type(&self) -> MpuType { 
-     unsafe {       MpuType(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }  }
-  pub fn set_mpu_type(&self, value: MpuType) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_type<F: FnOnce(MpuType) -> MpuType>(&self, f: F) {
+     unsafe {
+       MpuType(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  pub fn set_mpu_type(&self, value: MpuType) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_type<F: FnOnce(MpuType) -> MpuType>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_type();
      self.set_mpu_type(f(tmp))
   }
 
   pub fn mpu_ctrl(&self) -> MpuCtrl { 
-     unsafe {       MpuCtrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }  }
-  pub fn set_mpu_ctrl(&self, value: MpuCtrl) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_ctrl<F: FnOnce(MpuCtrl) -> MpuCtrl>(&self, f: F) {
+     unsafe {
+       MpuCtrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  pub fn set_mpu_ctrl(&self, value: MpuCtrl) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_ctrl<F: FnOnce(MpuCtrl) -> MpuCtrl>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_ctrl();
      self.set_mpu_ctrl(f(tmp))
   }
 
   pub fn mpu_rnr(&self) -> MpuRnr { 
-     unsafe {       MpuRnr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }  }
-  pub fn set_mpu_rnr(&self, value: MpuRnr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rnr<F: FnOnce(MpuRnr) -> MpuRnr>(&self, f: F) {
+     unsafe {
+       MpuRnr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  pub fn set_mpu_rnr(&self, value: MpuRnr) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rnr<F: FnOnce(MpuRnr) -> MpuRnr>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rnr();
      self.set_mpu_rnr(f(tmp))
   }
 
   pub fn mpu_rbar(&self) -> MpuRbar { 
-     unsafe {       MpuRbar(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }  }
-  pub fn set_mpu_rbar(&self, value: MpuRbar) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rbar<F: FnOnce(MpuRbar) -> MpuRbar>(&self, f: F) {
+     unsafe {
+       MpuRbar(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  pub fn set_mpu_rbar(&self, value: MpuRbar) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rbar<F: FnOnce(MpuRbar) -> MpuRbar>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rbar();
      self.set_mpu_rbar(f(tmp))
   }
 
   pub fn mpu_rasr(&self) -> MpuRasr { 
-     unsafe {       MpuRasr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }  }
-  pub fn set_mpu_rasr(&self, value: MpuRasr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rasr<F: FnOnce(MpuRasr) -> MpuRasr>(&self, f: F) {
+     unsafe {
+       MpuRasr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  pub fn set_mpu_rasr(&self, value: MpuRasr) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rasr<F: FnOnce(MpuRasr) -> MpuRasr>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rasr();
      self.set_mpu_rasr(f(tmp))
   }
 
   pub fn mpu_rbar_a1(&self) -> MpuRbarA1 { 
-     unsafe {       MpuRbarA1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }  }
-  pub fn set_mpu_rbar_a1(&self, value: MpuRbarA1) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rbar_a1<F: FnOnce(MpuRbarA1) -> MpuRbarA1>(&self, f: F) {
+     unsafe {
+       MpuRbarA1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  pub fn set_mpu_rbar_a1(&self, value: MpuRbarA1) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rbar_a1<F: FnOnce(MpuRbarA1) -> MpuRbarA1>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rbar_a1();
      self.set_mpu_rbar_a1(f(tmp))
   }
 
   pub fn mpu_rasr_a1(&self) -> MpuRasrA1 { 
-     unsafe {       MpuRasrA1(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }  }
-  pub fn set_mpu_rasr_a1(&self, value: MpuRasrA1) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rasr_a1<F: FnOnce(MpuRasrA1) -> MpuRasrA1>(&self, f: F) {
+     unsafe {
+       MpuRasrA1(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  pub fn set_mpu_rasr_a1(&self, value: MpuRasrA1) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rasr_a1<F: FnOnce(MpuRasrA1) -> MpuRasrA1>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rasr_a1();
      self.set_mpu_rasr_a1(f(tmp))
   }
 
   pub fn mpu_rbar_a2(&self) -> MpuRbarA2 { 
-     unsafe {       MpuRbarA2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }  }
-  pub fn set_mpu_rbar_a2(&self, value: MpuRbarA2) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rbar_a2<F: FnOnce(MpuRbarA2) -> MpuRbarA2>(&self, f: F) {
+     unsafe {
+       MpuRbarA2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
+  pub fn set_mpu_rbar_a2(&self, value: MpuRbarA2) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rbar_a2<F: FnOnce(MpuRbarA2) -> MpuRbarA2>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rbar_a2();
      self.set_mpu_rbar_a2(f(tmp))
   }
 
   pub fn mpu_rasr_a2(&self) -> MpuRasrA2 { 
-     unsafe {       MpuRasrA2(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }  }
-  pub fn set_mpu_rasr_a2(&self, value: MpuRasrA2) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rasr_a2<F: FnOnce(MpuRasrA2) -> MpuRasrA2>(&self, f: F) {
+     unsafe {
+       MpuRasrA2(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
+  pub fn set_mpu_rasr_a2(&self, value: MpuRasrA2) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rasr_a2<F: FnOnce(MpuRasrA2) -> MpuRasrA2>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rasr_a2();
      self.set_mpu_rasr_a2(f(tmp))
   }
 
   pub fn mpu_rbar_a3(&self) -> MpuRbarA3 { 
-     unsafe {       MpuRbarA3(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
-     }  }
-  pub fn set_mpu_rbar_a3(&self, value: MpuRbarA3) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rbar_a3<F: FnOnce(MpuRbarA3) -> MpuRbarA3>(&self, f: F) {
+     unsafe {
+       MpuRbarA3(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
+  pub fn set_mpu_rbar_a3(&self, value: MpuRbarA3) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rbar_a3<F: FnOnce(MpuRbarA3) -> MpuRbarA3>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rbar_a3();
      self.set_mpu_rbar_a3(f(tmp))
   }
 
   pub fn mpu_rasr_a3(&self) -> MpuRasrA3 { 
-     unsafe {       MpuRasrA3(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
-     }  }
-  pub fn set_mpu_rasr_a3(&self, value: MpuRasrA3) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }  }
-  pub fn with_mpu_rasr_a3<F: FnOnce(MpuRasrA3) -> MpuRasrA3>(&self, f: F) {
+     unsafe {
+       MpuRasrA3(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+     }
+  }
+  pub fn set_mpu_rasr_a3(&self, value: MpuRasrA3) -> &Mpu {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_mpu_rasr_a3<F: FnOnce(MpuRasrA3) -> MpuRasrA3>(&self, f: F) -> &Mpu {
      let tmp = self.mpu_rasr_a3();
      self.set_mpu_rasr_a3(f(tmp))
   }
@@ -129,7 +183,6 @@ impl Mpu {
 
 #[derive(PartialEq, Eq)]
 pub struct MpuType(pub u32);
-
 impl MpuType {
   pub fn iregion(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
@@ -162,13 +215,11 @@ impl MpuType {
   }
 
 }
-
 impl ::core::fmt::Display for MpuType {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuType {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -179,10 +230,8 @@ impl ::core::fmt::Debug for MpuType {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuCtrl(pub u32);
-
 impl MpuCtrl {
   pub fn privdefena(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
@@ -215,13 +264,11 @@ impl MpuCtrl {
   }
 
 }
-
 impl ::core::fmt::Display for MpuCtrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuCtrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -232,10 +279,8 @@ impl ::core::fmt::Debug for MpuCtrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRnr(pub u32);
-
 impl MpuRnr {
   pub fn region(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -248,13 +293,11 @@ impl MpuRnr {
   }
 
 }
-
 impl ::core::fmt::Display for MpuRnr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRnr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -263,10 +306,8 @@ impl ::core::fmt::Debug for MpuRnr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRbar(pub u32);
-
 impl MpuRbar {
   pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x7ffffff // [31:5]
@@ -299,13 +340,11 @@ impl MpuRbar {
   }
 
 }
-
 impl ::core::fmt::Display for MpuRbar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRbar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -316,10 +355,8 @@ impl ::core::fmt::Debug for MpuRbar {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRasr(pub u32);
-
 impl MpuRasr {
   pub fn xn(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
@@ -412,13 +449,11 @@ impl MpuRasr {
   }
 
 }
-
 impl ::core::fmt::Display for MpuRasr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRasr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -435,19 +470,15 @@ impl ::core::fmt::Debug for MpuRasr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRbarA1(pub u32);
-
 impl MpuRbarA1 {
 }
-
 impl ::core::fmt::Display for MpuRbarA1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRbarA1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -455,19 +486,15 @@ impl ::core::fmt::Debug for MpuRbarA1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRasrA1(pub u32);
-
 impl MpuRasrA1 {
 }
-
 impl ::core::fmt::Display for MpuRasrA1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRasrA1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -475,19 +502,15 @@ impl ::core::fmt::Debug for MpuRasrA1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRbarA2(pub u32);
-
 impl MpuRbarA2 {
 }
-
 impl ::core::fmt::Display for MpuRbarA2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRbarA2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -495,19 +518,15 @@ impl ::core::fmt::Debug for MpuRbarA2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRasrA2(pub u32);
-
 impl MpuRasrA2 {
 }
-
 impl ::core::fmt::Display for MpuRasrA2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRasrA2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -515,19 +534,15 @@ impl ::core::fmt::Debug for MpuRasrA2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRbarA3(pub u32);
-
 impl MpuRbarA3 {
 }
-
 impl ::core::fmt::Display for MpuRbarA3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRbarA3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -535,19 +550,15 @@ impl ::core::fmt::Debug for MpuRbarA3 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct MpuRasrA3(pub u32);
-
 impl MpuRasrA3 {
 }
-
 impl ::core::fmt::Display for MpuRasrA3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for MpuRasrA3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -555,4 +566,3 @@ impl ::core::fmt::Debug for MpuRasrA3 {
       Ok(())
    }
 }
-

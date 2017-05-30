@@ -3,7 +3,6 @@ pub const I2C1_IMPL: I2cImpl = I2cImpl(0x40005400);
 pub const I2C1_IMPL_REF: &I2cImpl = &I2C1_IMPL;
 
 pub struct I2c1 {}
-
 impl ::core::ops::Deref for I2c1 {
    type Target = I2cImpl;
    fn deref(&self) -> &I2cImpl { I2C1_IMPL_REF }
@@ -14,7 +13,6 @@ pub const I2C2_IMPL: I2cImpl = I2cImpl(0x40005800);
 pub const I2C2_IMPL_REF: &I2cImpl = &I2C2_IMPL;
 
 pub struct I2c2 {}
-
 impl ::core::ops::Deref for I2c2 {
    type Target = I2cImpl;
    fn deref(&self) -> &I2cImpl { I2C2_IMPL_REF }
@@ -23,104 +21,150 @@ impl ::core::ops::Deref for I2c2 {
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct I2cImpl(pub u32);
-
 impl I2cImpl {
   pub fn cr1(&self) -> Cr1 { 
-     unsafe {       Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }  }
-  pub fn set_cr1(&self, value: Cr1) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }  }
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) {
+     unsafe {
+       Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  pub fn set_cr1(&self, value: Cr1) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &I2cImpl {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
 
   pub fn cr2(&self) -> Cr2 { 
-     unsafe {       Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }  }
-  pub fn set_cr2(&self, value: Cr2) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }  }
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) {
+     unsafe {
+       Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  pub fn set_cr2(&self, value: Cr2) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &I2cImpl {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
 
   pub fn oar1(&self) -> Oar1 { 
-     unsafe {       Oar1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }  }
-  pub fn set_oar1(&self, value: Oar1) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }  }
-  pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) {
+     unsafe {
+       Oar1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  pub fn set_oar1(&self, value: Oar1) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &I2cImpl {
      let tmp = self.oar1();
      self.set_oar1(f(tmp))
   }
 
   pub fn oar2(&self) -> Oar2 { 
-     unsafe {       Oar2(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }  }
-  pub fn set_oar2(&self, value: Oar2) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }  }
-  pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) {
+     unsafe {
+       Oar2(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  pub fn set_oar2(&self, value: Oar2) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &I2cImpl {
      let tmp = self.oar2();
      self.set_oar2(f(tmp))
   }
 
   pub fn timingr(&self) -> Timingr { 
-     unsafe {       Timingr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }  }
-  pub fn set_timingr(&self, value: Timingr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }  }
-  pub fn with_timingr<F: FnOnce(Timingr) -> Timingr>(&self, f: F) {
+     unsafe {
+       Timingr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  pub fn set_timingr(&self, value: Timingr) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_timingr<F: FnOnce(Timingr) -> Timingr>(&self, f: F) -> &I2cImpl {
      let tmp = self.timingr();
      self.set_timingr(f(tmp))
   }
 
   pub fn timeoutr(&self) -> Timeoutr { 
-     unsafe {       Timeoutr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }  }
-  pub fn set_timeoutr(&self, value: Timeoutr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }  }
-  pub fn with_timeoutr<F: FnOnce(Timeoutr) -> Timeoutr>(&self, f: F) {
+     unsafe {
+       Timeoutr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  pub fn set_timeoutr(&self, value: Timeoutr) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_timeoutr<F: FnOnce(Timeoutr) -> Timeoutr>(&self, f: F) -> &I2cImpl {
      let tmp = self.timeoutr();
      self.set_timeoutr(f(tmp))
   }
 
   pub fn isr(&self) -> Isr { 
-     unsafe {       Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }  }
-  pub fn set_isr(&self, value: Isr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }  }
-  pub fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) {
+     unsafe {
+       Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  pub fn set_isr(&self, value: Isr) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) -> &I2cImpl {
      let tmp = self.isr();
      self.set_isr(f(tmp))
   }
 
-  pub fn set_icr(&self, value: Icr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }  }
+  pub fn set_icr(&self, value: Icr) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
 
   pub fn pecr(&self) -> Pecr { 
-     unsafe {       Pecr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }  }
+     unsafe {
+       Pecr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
 
   pub fn rxdr(&self) -> Rxdr { 
-     unsafe {       Rxdr(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
-     }  }
+     unsafe {
+       Rxdr(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
 
   pub fn txdr(&self) -> Txdr { 
-     unsafe {       Txdr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
-     }  }
-  pub fn set_txdr(&self, value: Txdr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }  }
-  pub fn with_txdr<F: FnOnce(Txdr) -> Txdr>(&self, f: F) {
+     unsafe {
+       Txdr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+     }
+  }
+  pub fn set_txdr(&self, value: Txdr) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_txdr<F: FnOnce(Txdr) -> Txdr>(&self, f: F) -> &I2cImpl {
      let tmp = self.txdr();
      self.set_txdr(f(tmp))
   }
@@ -129,7 +173,6 @@ impl I2cImpl {
 
 #[derive(PartialEq, Eq)]
 pub struct Cr1(pub u32);
-
 impl Cr1 {
   pub fn pe(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
@@ -332,13 +375,11 @@ impl Cr1 {
   }
 
 }
-
 impl ::core::fmt::Display for Cr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -366,10 +407,8 @@ impl ::core::fmt::Debug for Cr1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cr2(pub u32);
-
 impl Cr2 {
   pub fn pecbyte(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
@@ -482,13 +521,11 @@ impl Cr2 {
   }
 
 }
-
 impl ::core::fmt::Display for Cr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -507,10 +544,8 @@ impl ::core::fmt::Debug for Cr2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Oar1(pub u32);
-
 impl Oar1 {
   pub fn oa1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3ff // [9:0]
@@ -543,13 +578,11 @@ impl Oar1 {
   }
 
 }
-
 impl ::core::fmt::Display for Oar1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Oar1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -560,10 +593,8 @@ impl ::core::fmt::Debug for Oar1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Oar2(pub u32);
-
 impl Oar2 {
   pub fn oa2(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x7f // [7:1]
@@ -596,13 +627,11 @@ impl Oar2 {
   }
 
 }
-
 impl ::core::fmt::Display for Oar2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Oar2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -613,10 +642,8 @@ impl ::core::fmt::Debug for Oar2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Timingr(pub u32);
-
 impl Timingr {
   pub fn scll(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -669,13 +696,11 @@ impl Timingr {
   }
 
 }
-
 impl ::core::fmt::Display for Timingr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Timingr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -688,10 +713,8 @@ impl ::core::fmt::Debug for Timingr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Timeoutr(pub u32);
-
 impl Timeoutr {
   pub fn timeouta(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
@@ -744,13 +767,11 @@ impl Timeoutr {
   }
 
 }
-
 impl ::core::fmt::Display for Timeoutr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Timeoutr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -763,10 +784,8 @@ impl ::core::fmt::Debug for Timeoutr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Isr(pub u32);
-
 impl Isr {
   pub fn addcode(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x7f // [23:17]
@@ -939,13 +958,11 @@ impl Isr {
   }
 
 }
-
 impl ::core::fmt::Display for Isr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Isr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -970,10 +987,8 @@ impl ::core::fmt::Debug for Isr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Icr(pub u32);
-
 impl Icr {
   pub fn alertcf(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
@@ -1066,13 +1081,11 @@ impl Icr {
   }
 
 }
-
 impl ::core::fmt::Display for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1089,10 +1102,8 @@ impl ::core::fmt::Debug for Icr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pecr(pub u32);
-
 impl Pecr {
   pub fn pec(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -1105,13 +1116,11 @@ impl Pecr {
   }
 
 }
-
 impl ::core::fmt::Display for Pecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1120,10 +1129,8 @@ impl ::core::fmt::Debug for Pecr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Rxdr(pub u32);
-
 impl Rxdr {
   pub fn rxdata(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -1136,13 +1143,11 @@ impl Rxdr {
   }
 
 }
-
 impl ::core::fmt::Display for Rxdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Rxdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1151,10 +1156,8 @@ impl ::core::fmt::Debug for Rxdr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Txdr(pub u32);
-
 impl Txdr {
   pub fn txdata(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -1167,13 +1170,11 @@ impl Txdr {
   }
 
 }
-
 impl ::core::fmt::Display for Txdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Txdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1182,4 +1183,3 @@ impl ::core::fmt::Debug for Txdr {
       Ok(())
    }
 }
-

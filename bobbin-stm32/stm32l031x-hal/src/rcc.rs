@@ -30,171 +30,139 @@ pub fn gpio_index(gpio: &GpioImpl) -> usize {
         &GPIOC_IMPL => 2,
         &GPIOH_IMPL => 7,
         _ => unimplemented!(),
-    }   
+    }
 }
 
 pub fn gpio_enabled(gpio: &GpioImpl) -> bool {
-    unsafe { RCC.iopenr().iopen(gpio_index(gpio)) != 0 }
-    
+    RCC.iopenr().iopen(gpio_index(gpio)) != 0    
 }
 
 pub fn set_gpio_enabled(gpio: &GpioImpl, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(gpio), value)) }
+    RCC.with_iopenr(|r| r.set_iopen(gpio_index(gpio), value));
 }
 
 pub fn set_pin_enabled(pin: (&GpioImpl, usize), value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(pin.0), value)) }
+    RCC.with_iopenr(|r| r.set_iopen(gpio_index(pin.0), value));
 }
 
 pub fn set_pinfn_enabled(pinfn: (&GpioImpl, usize, usize), value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(pinfn.0), value)) }
+    RCC.with_iopenr(|r| r.set_iopen(gpio_index(pinfn.0), value));
 }
 
 pub fn set_usart_enabled(usart: &UsartImpl, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match usart {
-            &USART1_IMPL => RCC.with_apb2enr(|r| r.set_usart1en(value)),
-            &USART2_IMPL => RCC.with_apb1enr(|r| r.set_usart2en(value)),
-            _ => unimplemented!()
-        }        
-    }
+    match usart {
+        &USART1_IMPL => { RCC.with_apb2enr(|r| r.set_usart1en(value)); },
+        &USART2_IMPL => { RCC.with_apb1enr(|r| r.set_usart2en(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_tim_gen_enabled(tim: &TimGenImpl, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match tim {
-            &TIM2_IMPL => RCC.with_apb1enr(|r| r.set_tim2en(value)),
-            &TIM21_IMPL => RCC.with_apb2enr(|r| r.set_tim21en(value)),
-            &TIM22_IMPL => RCC.with_apb2enr(|r| r.set_tim22en(value)),
-            _ => unimplemented!()
-        }
-    }
+    match tim {
+        &TIM2_IMPL => { RCC.with_apb1enr(|r| r.set_tim2en(value)); },
+        &TIM21_IMPL => { RCC.with_apb2enr(|r| r.set_tim21en(value)); },
+        &TIM22_IMPL => { RCC.with_apb2enr(|r| r.set_tim22en(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_lptim_enabled(lptim: Lptim, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match lptim {
-            LPTIM => RCC.with_apb1enr(|r| r.set_lptim1en(value)),
-            _ => unimplemented!()
-        }
-    }
+    match lptim {
+        LPTIM => { RCC.with_apb1enr(|r| r.set_lptim1en(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_lptim_clock(lptim: Lptim, clksel: LPTimClock) {
-    unsafe {
-        match lptim {            
-            LPTIM => RCC.with_ccipr(|r| r.set_lptim1sel(clksel as u32)),
-            _ => unimplemented!()
-        }
-    }
+    match lptim {            
+        LPTIM => { RCC.with_ccipr(|r| r.set_lptim1sel(clksel as u32)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_pwr_enabled(value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        RCC.with_apb1enr(|r| r.set_pwren(value));
-    }
+    RCC.with_apb1enr(|r| r.set_pwren(value));
 }
 
 pub fn set_lse_enabled(value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        RCC.with_csr(|r| r.set_lseon(value));
-        if value != 0 {
-            while RCC.csr().lserdy() == 0 {}
-        }
+    RCC.with_csr(|r| r.set_lseon(value));
+    if value != 0 {
+        while RCC.csr().lserdy() == 0 {}
     }
 }
 
 pub fn lse_ready() -> bool {
-    unsafe {
-        RCC.csr().lserdy() != 0
-    }
+    RCC.csr().lserdy() != 0
 }
 
 pub fn reset_rtc() {
-    unsafe {
-        RCC.with_csr(|r| r.set_rtcrst(1));
-        RCC.with_csr(|r| r.set_rtcrst(0));
-    }
+    RCC.with_csr(|r| r.set_rtcrst(1));
+    RCC.with_csr(|r| r.set_rtcrst(0));
 }
 
 pub fn set_rtc_enabled(value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        RCC.with_csr(|r| r.set_rtcen(value));
-    }    
+    RCC.with_csr(|r| r.set_rtcen(value));
 }
 
 pub fn set_rtc_clock(clocksel: RtcClock) {
-    unsafe {
-        RCC.with_csr(|r| r.set_rtcsel(clocksel as u32))
-    }
-
+    RCC.with_csr(|r| r.set_rtcsel(clocksel as u32));
 }
 
 pub fn set_dma_enabled(dma: Dma, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match dma {
-            DMA1 => RCC.with_ahbenr(|r| r.set_dmaen(value)),
-            _ => unimplemented!()
-        }
-    }        
+    match dma {
+        DMA1 => { RCC.with_ahbenr(|r| r.set_dmaen(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_crc_enabled(crc: Crc, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match crc {
-            CRC => RCC.with_ahbenr(|r| r.set_crcen(value)),
-            _ => unimplemented!()
-        }
-    }
+    match crc {
+        CRC => { RCC.with_ahbenr(|r| r.set_crcen(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_wwdg_enabled(wwdg: Wwdg, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match wwdg {
-            WWDG => RCC.with_apb1enr(|r| r.set_wwdgen(value)),
-            _ => unimplemented!()
-        }
-    }
+    match wwdg {
+        WWDG => { RCC.with_apb1enr(|r| r.set_wwdgen(value)); },
+        _ => unimplemented!()
+    };
 }
 
 
 pub fn set_spi_enabled(spi: SpiImpl, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match spi {
-            SPI1_IMPL => RCC.with_apb2enr(|r| r.set_spi1en(value)),
-            _ => unimplemented!()
-        }
-    }
+    match spi {
+        SPI1_IMPL => { RCC.with_apb2enr(|r| r.set_spi1en(value)); },
+        _ => unimplemented!()
+    };
 }
 
 pub fn set_i2c_enabled(i2c: I2cImpl, value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe {
-        match i2c {
-            I2C1_IMPL => RCC.with_apb1enr(|r| r.set_i2c1en(value)),
-            I2C2_IMPL => RCC.with_apb1enr(|r| r.set_i2c2en(value)),
-            _ => unimplemented!()
-        }
-    }
+    match i2c {
+        I2C1_IMPL => { RCC.with_apb1enr(|r| r.set_i2c1en(value)); },
+        I2C2_IMPL => { RCC.with_apb1enr(|r| r.set_i2c2en(value)); },
+        _ => unimplemented!()
+    };
 }
 
 
 pub fn set_syscfg_enabled(value: bool) {
     let value = if value { 1 } else { 0 };
-    unsafe { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
+    RCC.with_apb2enr(|r| r.set_syscfgen(value));
 }
 
 // pub fn set_dma1_enabled(value: bool) {

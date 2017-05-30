@@ -2,68 +2,101 @@ pub const FLASH: Flash = Flash(0x40022000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flash(pub u32);
-
 impl Flash {
   pub fn acr(&self) -> Acr { 
-     unsafe {       Acr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }  }
-  pub fn set_acr(&self, value: Acr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }  }
-  pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) {
+     unsafe {
+       Acr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  pub fn set_acr(&self, value: Acr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Flash {
      let tmp = self.acr();
      self.set_acr(f(tmp))
   }
 
   pub fn pecr(&self) -> Pecr { 
-     unsafe {       Pecr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }  }
-  pub fn set_pecr(&self, value: Pecr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }  }
-  pub fn with_pecr<F: FnOnce(Pecr) -> Pecr>(&self, f: F) {
+     unsafe {
+       Pecr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  pub fn set_pecr(&self, value: Pecr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_pecr<F: FnOnce(Pecr) -> Pecr>(&self, f: F) -> &Flash {
      let tmp = self.pecr();
      self.set_pecr(f(tmp))
   }
 
-  pub fn set_pdkeyr(&self, value: Pdkeyr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }  }
+  pub fn set_pdkeyr(&self, value: Pdkeyr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
 
-  pub fn set_pekeyr(&self, value: Pekeyr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }  }
+  pub fn set_pekeyr(&self, value: Pekeyr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
 
-  pub fn set_prgkeyr(&self, value: Prgkeyr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }  }
+  pub fn set_prgkeyr(&self, value: Prgkeyr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
 
-  pub fn set_optkeyr(&self, value: Optkeyr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }  }
+  pub fn set_optkeyr(&self, value: Optkeyr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
 
   pub fn sr(&self) -> Sr { 
-     unsafe {       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }  }
-  pub fn set_sr(&self, value: Sr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }  }
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
+     unsafe {
+       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  pub fn set_sr(&self, value: Sr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Flash {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
 
   pub fn obr(&self) -> Obr { 
-     unsafe {       Obr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }  }
+     unsafe {
+       Obr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
 
   pub fn wrpr(&self) -> Wrpr { 
-     unsafe {       Wrpr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }  }
-  pub fn set_wrpr(&self, value: Wrpr) {
-     unsafe {       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }  }
-  pub fn with_wrpr<F: FnOnce(Wrpr) -> Wrpr>(&self, f: F) {
+     unsafe {
+       Wrpr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
+  pub fn set_wrpr(&self, value: Wrpr) -> &Flash {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
+  }
+  pub fn with_wrpr<F: FnOnce(Wrpr) -> Wrpr>(&self, f: F) -> &Flash {
      let tmp = self.wrpr();
      self.set_wrpr(f(tmp))
   }
@@ -72,7 +105,6 @@ impl Flash {
 
 #[derive(PartialEq, Eq)]
 pub struct Acr(pub u32);
-
 impl Acr {
   pub fn latency(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
@@ -135,13 +167,11 @@ impl Acr {
   }
 
 }
-
 impl ::core::fmt::Display for Acr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Acr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -155,10 +185,8 @@ impl ::core::fmt::Debug for Acr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pecr(pub u32);
-
 impl Pecr {
   pub fn pelock(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
@@ -281,13 +309,11 @@ impl Pecr {
   }
 
 }
-
 impl ::core::fmt::Display for Pecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -307,10 +333,8 @@ impl ::core::fmt::Debug for Pecr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pdkeyr(pub u32);
-
 impl Pdkeyr {
   pub fn pdkeyr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -323,13 +347,11 @@ impl Pdkeyr {
   }
 
 }
-
 impl ::core::fmt::Display for Pdkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pdkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -337,10 +359,8 @@ impl ::core::fmt::Debug for Pdkeyr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pekeyr(pub u32);
-
 impl Pekeyr {
   pub fn pekeyr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -353,13 +373,11 @@ impl Pekeyr {
   }
 
 }
-
 impl ::core::fmt::Display for Pekeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pekeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -367,10 +385,8 @@ impl ::core::fmt::Debug for Pekeyr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Prgkeyr(pub u32);
-
 impl Prgkeyr {
   pub fn prgkeyr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -383,13 +399,11 @@ impl Prgkeyr {
   }
 
 }
-
 impl ::core::fmt::Display for Prgkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Prgkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -397,10 +411,8 @@ impl ::core::fmt::Debug for Prgkeyr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Optkeyr(pub u32);
-
 impl Optkeyr {
   pub fn optkeyr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
@@ -413,13 +425,11 @@ impl Optkeyr {
   }
 
 }
-
 impl ::core::fmt::Display for Optkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Optkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -427,10 +437,8 @@ impl ::core::fmt::Debug for Optkeyr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sr(pub u32);
-
 impl Sr {
   pub fn bsy(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
@@ -543,13 +551,11 @@ impl Sr {
   }
 
 }
-
 impl ::core::fmt::Display for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -568,10 +574,8 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Obr(pub u32);
-
 impl Obr {
   pub fn rdprt(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
@@ -604,13 +608,11 @@ impl Obr {
   }
 
 }
-
 impl ::core::fmt::Display for Obr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Obr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -621,10 +623,8 @@ impl ::core::fmt::Debug for Obr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Wrpr(pub u32);
-
 impl Wrpr {
   pub fn wrp(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
@@ -637,13 +637,11 @@ impl Wrpr {
   }
 
 }
-
 impl ::core::fmt::Display for Wrpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Wrpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -652,4 +650,3 @@ impl ::core::fmt::Debug for Wrpr {
       Ok(())
    }
 }
-

@@ -5,7 +5,6 @@ pub const GPIOA_IMPL: GpioImpl = GpioImpl(0x50000000);
 pub const GPIOA_IMPL_REF: &GpioImpl = &GPIOA_IMPL;
 
 pub struct Gpioa {}
-
 impl ::core::ops::Deref for Gpioa {
    type Target = GpioImpl;
    fn deref(&self) -> &GpioImpl { GPIOA_IMPL_REF }
@@ -16,7 +15,6 @@ pub const GPIOB_IMPL: GpioImpl = GpioImpl(0x50000400);
 pub const GPIOB_IMPL_REF: &GpioImpl = &GPIOB_IMPL;
 
 pub struct Gpiob {}
-
 impl ::core::ops::Deref for Gpiob {
    type Target = GpioImpl;
    fn deref(&self) -> &GpioImpl { GPIOB_IMPL_REF }
@@ -27,7 +25,6 @@ pub const GPIOC_IMPL: GpioImpl = GpioImpl(0x50000800);
 pub const GPIOC_IMPL_REF: &GpioImpl = &GPIOC_IMPL;
 
 pub struct Gpioc {}
-
 impl ::core::ops::Deref for Gpioc {
    type Target = GpioImpl;
    fn deref(&self) -> &GpioImpl { GPIOC_IMPL_REF }
@@ -38,7 +35,6 @@ pub const GPIOH_IMPL: GpioImpl = GpioImpl(0x50001c00);
 pub const GPIOH_IMPL_REF: &GpioImpl = &GPIOH_IMPL;
 
 pub struct Gpioh {}
-
 impl ::core::ops::Deref for Gpioh {
    type Target = GpioImpl;
    fn deref(&self) -> &GpioImpl { GPIOH_IMPL_REF }
