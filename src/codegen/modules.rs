@@ -505,36 +505,44 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 _ => format!("(index * {})", r_incr),
             };        
             if r_access.is_readable() {
-                try!(write!(out, "  pub unsafe fn {}(&self, index: usize) -> {} {{ \n", r_getter, r_type));
+                try!(write!(out, "  pub fn {}(&self, index: usize) -> {} {{ \n", r_getter, r_type));
                 try!(write!(out, "     assert!(index < {});\n", dim));
-                try!(write!(out, "     {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))\n", r_type, r_offset, r_shift, r_size));
+                try!(write!(out, "     unsafe {{"));
+                try!(write!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))\n", r_type, r_offset, r_shift, r_size));
+                try!(write!(out, "     }}"));
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}(&self, index: usize, value: {}) {{\n", r_setter, r_type));
+                try!(write!(out, "  pub fn {}(&self, index: usize, value: {}) {{\n", r_setter, r_type));
                 try!(write!(out, "     assert!(index < {});\n", dim));
-                try!(write!(out, "     ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);\n", r_offset, r_shift, r_size)); 
+                try!(write!(out, "     unsafe {{"));
+                try!(write!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);\n", r_offset, r_shift, r_size)); 
+                try!(write!(out, "     }}"));
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(write!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(write!(out, "     let tmp = self.{}(index);\n", r_getter));
                 try!(write!(out, "     self.{}(index, f(tmp))\n", r_setter));
                 try!(write!(out, "  }}\n"));            
             }            
         } else {
             if r_access.is_readable() {
-                try!(write!(out, "  pub unsafe fn {}(&self) -> {} {{ \n", r_getter, r_type));
-                try!(write!(out, "     {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))\n", r_type, r_offset, r_size));
+                try!(write!(out, "  pub fn {}(&self) -> {} {{ \n", r_getter, r_type));
+                try!(write!(out, "     unsafe {{"));
+                try!(write!(out, "       {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))\n", r_type, r_offset, r_size));
+                try!(write!(out, "     }}"));
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}(&self, value: {}) {{\n", r_setter, r_type));
-                try!(write!(out, "     ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);\n", r_offset, r_size));                    
+                try!(write!(out, "  pub fn {}(&self, value: {}) {{\n", r_setter, r_type));
+                try!(write!(out, "     unsafe {{"));
+                try!(write!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);\n", r_offset, r_size));                    
+                try!(write!(out, "     }}"));
                 try!(write!(out, "  }}\n"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(write!(out, "  pub unsafe fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(write!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) {{\n", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(write!(out, "     let tmp = self.{}();\n", r_getter));
                 try!(write!(out, "     self.{}(f(tmp))\n", r_setter));
                 try!(write!(out, "  }}\n"));            
