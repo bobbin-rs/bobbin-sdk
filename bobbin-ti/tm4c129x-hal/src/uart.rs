@@ -1,7 +1,6 @@
 use core::fmt::{self, Write};
 
 pub use ::chip::uart::*;
-use gpio::{PinAltFn};
 use sysctl;
 use clock;
 
