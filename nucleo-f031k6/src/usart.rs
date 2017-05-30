@@ -27,13 +27,13 @@ pub fn init() {
     let tx = PA2;
     let rx = PA15;
 
-    rcc::set_usart_enabled(USART2, true);    
+    rcc::set_usart_enabled(&USART2, true);    
     gpio::pin(tx).into_altfn(tx.af_usart2_tx());
     gpio::pin(rx).into_altfn(rx.af_usart2_rx());
-    let u = usart::device(USART2);
+    let u = usart::device(&USART2);
     u.enable(32_000_000 / 115_200);    
 }
 
 pub fn usart2() -> usart::UsartDevice {
-    usart::device(USART2) 
+    usart::device(&USART2) 
 }

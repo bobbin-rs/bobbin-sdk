@@ -3,8 +3,8 @@ use hal::rcc;
 use hal::tim_gen;
 
 pub fn tim2() -> tim_gen::TimGenDevice {
-    rcc::set_tim_gen_enabled(TIM2, true);    
-    tim_gen::device(TIM2)
+    rcc::set_tim_gen_enabled(&TIM2, true);    
+    tim_gen::device(&TIM2)
 }
 
 pub fn tim2_unchecked() -> tim_gen::TimGenDevice {

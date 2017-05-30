@@ -3,17 +3,21 @@
 
 extern crate nucleo_f031k6 as board;
 
+use board::hal::gpio::*;
+use board::led::LED0;
+use board::btn::BTN0;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let led0 = board::led::led0();
-    let btn0 = board::btn::btn0();
+    
     loop {
-        led0.toggle();
-        if btn0.get() {
-            board::delay(1000);
-        } else {
+        LED0.toggle_output();
+        if BTN0.input() {            
             board::delay(500);
-        }        
+        } else {
+            board::delay(100);
+        }
     }
 }
+
