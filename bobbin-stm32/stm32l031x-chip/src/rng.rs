@@ -7,10 +7,10 @@ impl Rng {
   pub unsafe fn cr(&self) -> Cr { 
      Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
-  pub unsafe fn set_cr(&mut self, value: Cr) {
+  pub unsafe fn set_cr(&self, value: Cr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&mut self, f: F) {
+  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -18,10 +18,10 @@ impl Rng {
   pub unsafe fn sr(&self) -> Sr { 
      Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
   }
-  pub unsafe fn set_sr(&mut self, value: Sr) {
+  pub unsafe fn set_sr(&self, value: Sr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
-  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&mut self, f: F) {
+  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }

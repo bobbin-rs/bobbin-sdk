@@ -8,11 +8,11 @@ impl Nvic {
      assert!(index < 8);
      Iser(::core::ptr::read_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_iser(&mut self, index: usize, value: Iser) {
+  pub unsafe fn set_iser(&self, index: usize, value: Iser) {
      assert!(index < 8);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_iser<F: FnOnce(Iser) -> Iser>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_iser<F: FnOnce(Iser) -> Iser>(&self, index: usize, f: F) {
      let tmp = self.iser(index);
      self.set_iser(index, f(tmp))
   }
@@ -21,11 +21,11 @@ impl Nvic {
      assert!(index < 8);
      Icer(::core::ptr::read_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_icer(&mut self, index: usize, value: Icer) {
+  pub unsafe fn set_icer(&self, index: usize, value: Icer) {
      assert!(index < 8);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_icer<F: FnOnce(Icer) -> Icer>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_icer<F: FnOnce(Icer) -> Icer>(&self, index: usize, f: F) {
      let tmp = self.icer(index);
      self.set_icer(index, f(tmp))
   }
@@ -34,11 +34,11 @@ impl Nvic {
      assert!(index < 8);
      Ispr(::core::ptr::read_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_ispr(&mut self, index: usize, value: Ispr) {
+  pub unsafe fn set_ispr(&self, index: usize, value: Ispr) {
      assert!(index < 8);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_ispr<F: FnOnce(Ispr) -> Ispr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_ispr<F: FnOnce(Ispr) -> Ispr>(&self, index: usize, f: F) {
      let tmp = self.ispr(index);
      self.set_ispr(index, f(tmp))
   }
@@ -47,11 +47,11 @@ impl Nvic {
      assert!(index < 8);
      Icpr(::core::ptr::read_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_icpr(&mut self, index: usize, value: Icpr) {
+  pub unsafe fn set_icpr(&self, index: usize, value: Icpr) {
      assert!(index < 8);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_icpr<F: FnOnce(Icpr) -> Icpr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_icpr<F: FnOnce(Icpr) -> Icpr>(&self, index: usize, f: F) {
      let tmp = self.icpr(index);
      self.set_icpr(index, f(tmp))
   }
@@ -60,11 +60,11 @@ impl Nvic {
      assert!(index < 8);
      Iabr(::core::ptr::read_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_iabr(&mut self, index: usize, value: Iabr) {
+  pub unsafe fn set_iabr(&self, index: usize, value: Iabr) {
      assert!(index < 8);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_iabr<F: FnOnce(Iabr) -> Iabr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_iabr<F: FnOnce(Iabr) -> Iabr>(&self, index: usize, f: F) {
      let tmp = self.iabr(index);
      self.set_iabr(index, f(tmp))
   }
@@ -73,11 +73,11 @@ impl Nvic {
      assert!(index < 60);
      Ipr(::core::ptr::read_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *const u32))
   }
-  pub unsafe fn set_ipr(&mut self, index: usize, value: Ipr) {
+  pub unsafe fn set_ipr(&self, index: usize, value: Ipr) {
      assert!(index < 60);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *mut u32, value.0);
   }
-  pub unsafe fn with_ipr<F: FnOnce(Ipr) -> Ipr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_ipr<F: FnOnce(Ipr) -> Ipr>(&self, index: usize, f: F) {
      let tmp = self.ipr(index);
      self.set_ipr(index, f(tmp))
   }
@@ -85,10 +85,10 @@ impl Nvic {
   pub unsafe fn stir(&self) -> Stir { 
      Stir(::core::ptr::read_volatile(((self.0 as usize) + 0xf00) as *const u32))
   }
-  pub unsafe fn set_stir(&mut self, value: Stir) {
+  pub unsafe fn set_stir(&self, value: Stir) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
   }
-  pub unsafe fn with_stir<F: FnOnce(Stir) -> Stir>(&mut self, f: F) {
+  pub unsafe fn with_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) {
      let tmp = self.stir();
      self.set_stir(f(tmp))
   }

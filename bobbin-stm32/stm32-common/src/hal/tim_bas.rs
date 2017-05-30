@@ -2,10 +2,10 @@ pub use ::chip::tim_bas::*;
 // use ::hal::rcc;
 
 pub struct TimBasDevice {
-    tim: TimBas,
+    tim: TimBasImpl,
 }
 
-pub fn device(tim: TimBas) -> TimBasDevice {    
+pub fn device(tim: TimBasImpl) -> TimBasDevice {    
     TimBasDevice { tim: tim }
 }
 
@@ -14,7 +14,7 @@ impl TimBasDevice {
         // rcc::set_tim_bas_enabled(self.tim, true);
     }
 
-    pub fn tim(&self) -> TimBas {
+    pub fn tim(&self) -> TimBasImpl {
         self.tim
     }
 
@@ -27,7 +27,7 @@ impl TimBasDevice {
 
     pub fn set_enabled(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_cr1(|r| r.set_cen(value))
         }
@@ -42,7 +42,7 @@ impl TimBasDevice {
 
     pub fn set_one_pulse_mode(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_cr1(|r| r.set_opm(value))
         }
@@ -57,7 +57,7 @@ impl TimBasDevice {
 
     pub fn set_update_interrupt_enabled(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_dier(|r| r.set_uie(value))
         }
@@ -71,7 +71,7 @@ impl TimBasDevice {
     }
 
     pub fn clr_update_interrupt_flag(&self) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_sr(|r| r.set_uif(0))
         }        
@@ -85,7 +85,7 @@ impl TimBasDevice {
     }
 
     pub fn set_counter(&self, value: u16) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_cnt(Cnt(0).set_cnt(value as u32))
         }
@@ -99,7 +99,7 @@ impl TimBasDevice {
     }
 
     pub fn set_prescaler(&self, value: u16) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_psc(Psc(0).set_psc(value as u32))
         }
@@ -114,7 +114,7 @@ impl TimBasDevice {
     }
 
     pub fn set_auto_reload(&self, value: u16) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_arr(Arr(0).set_arr(value as u32))
         }

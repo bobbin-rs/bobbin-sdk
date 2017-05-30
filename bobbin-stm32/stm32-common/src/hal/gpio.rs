@@ -1,5 +1,5 @@
 use core::marker::PhantomData;
-use chip::gpio::{self, Gpio};
+use chip::gpio::{self, GpioImpl};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
@@ -38,7 +38,7 @@ pub struct ModeAltFn;
 pub struct ModeAnalog;
 
 pub struct Pin<M> {
-    port: Gpio,
+    port: GpioImpl,
     index: usize,
     phantom: PhantomData<M>,
 }
@@ -49,32 +49,32 @@ pub type PinInput = Pin<ModeInput>;
 pub type PinAltFn = Pin<ModeAltFn>;
 pub type PinAnalog = Pin<ModeAnalog>;
 
-pub fn pinfn(pinfn: (Gpio, usize, usize)) -> Pin<ModeAltFn> {
+pub fn pinfn(pinfn: (GpioImpl, usize, usize)) -> Pin<ModeAltFn> {
     pin((pinfn.0, pinfn.1)).into_altfn(pinfn.2)
 }
 
-pub fn pin(pin: (Gpio, usize)) -> Pin<ModeUnknown> {
+pub fn pin(pin: (GpioImpl, usize)) -> Pin<ModeUnknown> {
     Pin { port: pin.0, index: pin.1, phantom: PhantomData }
 }
 
-pub fn pin_output(pin: (Gpio, usize)) -> Pin<ModeOutput> {
+pub fn pin_output(pin: (GpioImpl, usize)) -> Pin<ModeOutput> {
     Pin { port: pin.0, index: pin.1, phantom: PhantomData }
 }
 
-pub fn pin_input(pin: (Gpio, usize)) -> Pin<ModeInput> {
+pub fn pin_input(pin: (GpioImpl, usize)) -> Pin<ModeInput> {
     Pin { port: pin.0, index: pin.1, phantom: PhantomData }
 }
 
-pub fn pin_altfn(pin: (Gpio, usize)) -> Pin<ModeAltFn> {
+pub fn pin_altfn(pin: (GpioImpl, usize)) -> Pin<ModeAltFn> {
     Pin { port: pin.0, index: pin.1, phantom: PhantomData }
 }
 
-pub fn pin_analog(pin: (Gpio, usize)) -> Pin<ModeAnalog> {
+pub fn pin_analog(pin: (GpioImpl, usize)) -> Pin<ModeAnalog> {
     Pin { port: pin.0, index: pin.1, phantom: PhantomData }
 }
 
 impl<T> Pin<T> {
-    pub fn gpio(&self) -> Gpio {
+    pub fn gpio(&self) -> GpioImpl {
         self.port
     }
 
@@ -83,35 +83,35 @@ impl<T> Pin<T> {
     }
 
     pub fn set_mode(&self, value: Mode) {
-        let mut port = self.port;
+        let port = self.port;
         unsafe {
             port.with_moder(|r| r.set_moder(self.index, value as u32))
         }
     }
 
     pub fn set_output_type(&self, value: OutputType) {
-        let mut port = self.port;
+        let port = self.port;
         unsafe {
             port.with_otyper(|r| r.set_ot(self.index, value as u32))
         }
     }
 
     pub fn set_output_speed(&self, value: OutputSpeed) {
-        let mut port = self.port;
+        let port = self.port;
         unsafe {
             port.with_ospeedr(|r| r.set_ospeedr(self.index, value as u32))
         }
     }
 
     pub fn set_pull(&self, value: Pull) {
-        let mut port = self.port;
+        let port = self.port;
         unsafe {
             port.with_pupdr(|r| r.set_pupdr(self.index, value as u32))
         }        
     }
 
     pub fn set_altfn(&self, value: usize) {
-        let mut port = self.port;
+        let port = self.port;
         let pin = self.index;
         unsafe {
             if pin < 8 {
@@ -171,7 +171,7 @@ impl Pin<ModeOutput> {
     }    
 
     pub fn set(&self, value: bool) {
-        let mut port = self.port;        
+        let port = self.port;        
         unsafe {
             port.set_bsrr(
                 if value {

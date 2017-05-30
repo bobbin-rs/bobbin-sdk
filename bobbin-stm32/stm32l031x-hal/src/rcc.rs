@@ -23,54 +23,54 @@ pub enum RtcClock {
     HSE = 0b11,
 }
 
-pub fn gpio_index(gpio: Gpio) -> usize {
+pub fn gpio_index(gpio: &GpioImpl) -> usize {
     match gpio {
-        GPIOA => 0,
-        GPIOB => 1,
-        GPIOC => 2,
-        GPIOH => 7,
+        &GPIOA_IMPL => 0,
+        &GPIOB_IMPL => 1,
+        &GPIOC_IMPL => 2,
+        &GPIOH_IMPL => 7,
         _ => unimplemented!(),
     }   
 }
 
-pub fn gpio_enabled(gpio: Gpio) -> bool {
+pub fn gpio_enabled(gpio: &GpioImpl) -> bool {
     unsafe { RCC.iopenr().iopen(gpio_index(gpio)) != 0 }
     
 }
 
-pub fn set_gpio_enabled(gpio: Gpio, value: bool) {
+pub fn set_gpio_enabled(gpio: &GpioImpl, value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(gpio), value)) }
 }
 
-pub fn set_pin_enabled(pin: (Gpio, usize), value: bool) {
+pub fn set_pin_enabled(pin: (&GpioImpl, usize), value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(pin.0), value)) }
 }
 
-pub fn set_pinfn_enabled(pinfn: (Gpio, usize, usize), value: bool) {
+pub fn set_pinfn_enabled(pinfn: (&GpioImpl, usize, usize), value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe { RCC.with_iopenr(|r| r.set_iopen(gpio_index(pinfn.0), value)) }
 }
 
-pub fn set_usart_enabled(usart: Usart, value: bool) {
+pub fn set_usart_enabled(usart: &UsartImpl, value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe {
         match usart {
-            USART1 => RCC.with_apb2enr(|r| r.set_usart1en(value)),
-            USART2 => RCC.with_apb1enr(|r| r.set_usart2en(value)),
+            &USART1_IMPL => RCC.with_apb2enr(|r| r.set_usart1en(value)),
+            &USART2_IMPL => RCC.with_apb1enr(|r| r.set_usart2en(value)),
             _ => unimplemented!()
         }        
     }
 }
 
-pub fn set_tim_gen_enabled(tim: TimGen, value: bool) {
+pub fn set_tim_gen_enabled(tim: &TimGenImpl, value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe {
         match tim {
-            TIM2 => RCC.with_apb1enr(|r| r.set_tim2en(value)),
-            TIM21 => RCC.with_apb2enr(|r| r.set_tim21en(value)),
-            TIM22 => RCC.with_apb2enr(|r| r.set_tim22en(value)),
+            &TIM2_IMPL => RCC.with_apb1enr(|r| r.set_tim2en(value)),
+            &TIM21_IMPL => RCC.with_apb2enr(|r| r.set_tim21en(value)),
+            &TIM22_IMPL => RCC.with_apb2enr(|r| r.set_tim22en(value)),
             _ => unimplemented!()
         }
     }
@@ -170,22 +170,22 @@ pub fn set_wwdg_enabled(wwdg: Wwdg, value: bool) {
 }
 
 
-pub fn set_spi_enabled(spi: Spi, value: bool) {
+pub fn set_spi_enabled(spi: SpiImpl, value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe {
         match spi {
-            SPI1 => RCC.with_apb2enr(|r| r.set_spi1en(value)),
+            SPI1_IMPL => RCC.with_apb2enr(|r| r.set_spi1en(value)),
             _ => unimplemented!()
         }
     }
 }
 
-pub fn set_i2c_enabled(i2c: I2c, value: bool) {
+pub fn set_i2c_enabled(i2c: I2cImpl, value: bool) {
     let value = if value { 1 } else { 0 };
     unsafe {
         match i2c {
-            I2C1 => RCC.with_apb1enr(|r| r.set_i2c1en(value)),
-            I2C2 => RCC.with_apb1enr(|r| r.set_i2c2en(value)),
+            I2C1_IMPL => RCC.with_apb1enr(|r| r.set_i2c1en(value)),
+            I2C2_IMPL => RCC.with_apb1enr(|r| r.set_i2c2en(value)),
             _ => unimplemented!()
         }
     }

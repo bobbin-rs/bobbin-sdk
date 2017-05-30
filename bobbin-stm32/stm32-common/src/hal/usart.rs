@@ -2,15 +2,15 @@ use core::fmt::{self, Write};
 
 use ::chip::usart::*;
 
-pub struct UsartDevice {
-    usart: Usart,
+pub struct UsartDevice<'a> {
+    usart: &'a UsartImpl,
 }
 
-pub fn device(usart: Usart) -> UsartDevice {
+pub fn device(usart: &UsartImpl) -> UsartDevice {
     UsartDevice { usart: usart }
 }
 
-impl UsartDevice {
+impl<'a> UsartDevice<'a> {
     pub fn enable(&self, brr: u32) {
         // rcc::set_usart_enabled(self.usart, true);
         // rcc::set_usart_clock(self.usart, rcc::UsartClock::Pclk);
@@ -30,7 +30,7 @@ impl UsartDevice {
 
         
 
-        let mut u = self.usart;
+        let u = self.usart;
         unsafe {
             // Disable USART, TX and RX
             //usart.with_cr1(|r| r.set_re(0).set_te(0).set_ue(0));
@@ -54,7 +54,7 @@ impl UsartDevice {
     }
 
     pub fn putc(&self, c: u8) {
-        let mut u = self.usart;
+        let u = self.usart;
         unsafe {
             while u.isr().txe() == 0 {}
             u.set_tdr(Tdr(0).set_tdr(c as u32));
@@ -73,7 +73,7 @@ impl UsartDevice {
     }
 
     pub fn try_putc(&self, c: u8) -> Option<usize> {
-        let mut u = self.usart;
+        let u = self.usart;
         unsafe {       
             if u.isr().txe() != 0 {
                 u.set_tdr(Tdr(0).set_tdr(c as u32));
@@ -100,7 +100,7 @@ impl UsartDevice {
     }
 }
 
-impl Write for UsartDevice {
+impl<'a> Write for UsartDevice<'a> {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
             self.putc(byte);

@@ -1,17 +1,37 @@
-pub const SPI1: Spi = Spi(0x40013000);
-pub const SPI2: Spi = Spi(0x40003800);
+pub const SPI1: Spi1 = Spi1 {};
+pub const SPI1_IMPL: SpiImpl = SpiImpl(0x40013000);
+pub const SPI1_IMPL_REF: &SpiImpl = &SPI1_IMPL;
+
+pub struct Spi1 {}
+
+impl ::core::ops::Deref for Spi1 {
+   type Target = SpiImpl;
+   fn deref(&self) -> &SpiImpl { SPI1_IMPL_REF }
+}
+
+pub const SPI2: Spi2 = Spi2 {};
+pub const SPI2_IMPL: SpiImpl = SpiImpl(0x40003800);
+pub const SPI2_IMPL_REF: &SpiImpl = &SPI2_IMPL;
+
+pub struct Spi2 {}
+
+impl ::core::ops::Deref for Spi2 {
+   type Target = SpiImpl;
+   fn deref(&self) -> &SpiImpl { SPI2_IMPL_REF }
+}
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Spi(pub u32);
+pub struct SpiImpl(pub u32);
 
-impl Spi {
+impl SpiImpl {
   pub unsafe fn cr1(&self) -> Cr1 { 
      Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
   }
-  pub unsafe fn set_cr1(&mut self, value: Cr1) {
+  pub unsafe fn set_cr1(&self, value: Cr1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
   }
-  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&mut self, f: F) {
+  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -19,10 +39,10 @@ impl Spi {
   pub unsafe fn cr2(&self) -> Cr2 { 
      Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
   }
-  pub unsafe fn set_cr2(&mut self, value: Cr2) {
+  pub unsafe fn set_cr2(&self, value: Cr2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
   }
-  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&mut self, f: F) {
+  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -30,10 +50,10 @@ impl Spi {
   pub unsafe fn sr(&self) -> Sr { 
      Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u16))
   }
-  pub unsafe fn set_sr(&mut self, value: Sr) {
+  pub unsafe fn set_sr(&self, value: Sr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u16, value.0);
   }
-  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&mut self, f: F) {
+  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -41,10 +61,10 @@ impl Spi {
   pub unsafe fn dr(&self) -> Dr { 
      Dr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u16))
   }
-  pub unsafe fn set_dr(&mut self, value: Dr) {
+  pub unsafe fn set_dr(&self, value: Dr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
   }
-  pub unsafe fn with_dr<F: FnOnce(Dr) -> Dr>(&mut self, f: F) {
+  pub unsafe fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -52,10 +72,10 @@ impl Spi {
   pub unsafe fn crcpr(&self) -> Crcpr { 
      Crcpr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
   }
-  pub unsafe fn set_crcpr(&mut self, value: Crcpr) {
+  pub unsafe fn set_crcpr(&self, value: Crcpr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
   }
-  pub unsafe fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&mut self, f: F) {
+  pub unsafe fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) {
      let tmp = self.crcpr();
      self.set_crcpr(f(tmp))
   }
@@ -71,10 +91,10 @@ impl Spi {
   pub unsafe fn i2scfgr(&self) -> I2scfgr { 
      I2scfgr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u16))
   }
-  pub unsafe fn set_i2scfgr(&mut self, value: I2scfgr) {
+  pub unsafe fn set_i2scfgr(&self, value: I2scfgr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u16, value.0);
   }
-  pub unsafe fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&mut self, f: F) {
+  pub unsafe fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) {
      let tmp = self.i2scfgr();
      self.set_i2scfgr(f(tmp))
   }
@@ -82,10 +102,10 @@ impl Spi {
   pub unsafe fn i2spr(&self) -> I2spr { 
      I2spr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u16))
   }
-  pub unsafe fn set_i2spr(&mut self, value: I2spr) {
+  pub unsafe fn set_i2spr(&self, value: I2spr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u16, value.0);
   }
-  pub unsafe fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&mut self, f: F) {
+  pub unsafe fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) {
      let tmp = self.i2spr();
      self.set_i2spr(f(tmp))
   }

@@ -1,16 +1,26 @@
-pub const LPUSART1: Lpusart = Lpusart(0x40004800);
+pub const LPUSART1: Lpusart1 = Lpusart1 {};
+pub const LPUSART1_IMPL: LpusartImpl = LpusartImpl(0x40004800);
+pub const LPUSART1_IMPL_REF: &LpusartImpl = &LPUSART1_IMPL;
+
+pub struct Lpusart1 {}
+
+impl ::core::ops::Deref for Lpusart1 {
+   type Target = LpusartImpl;
+   fn deref(&self) -> &LpusartImpl { LPUSART1_IMPL_REF }
+}
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Lpusart(pub u32);
+pub struct LpusartImpl(pub u32);
 
-impl Lpusart {
+impl LpusartImpl {
   pub unsafe fn cr1(&self) -> Cr1 { 
      Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
-  pub unsafe fn set_cr1(&mut self, value: Cr1) {
+  pub unsafe fn set_cr1(&self, value: Cr1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&mut self, f: F) {
+  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -18,10 +28,10 @@ impl Lpusart {
   pub unsafe fn cr2(&self) -> Cr2 { 
      Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
   }
-  pub unsafe fn set_cr2(&mut self, value: Cr2) {
+  pub unsafe fn set_cr2(&self, value: Cr2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&mut self, f: F) {
+  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -29,10 +39,10 @@ impl Lpusart {
   pub unsafe fn cr3(&self) -> Cr3 { 
      Cr3(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
   }
-  pub unsafe fn set_cr3(&mut self, value: Cr3) {
+  pub unsafe fn set_cr3(&self, value: Cr3) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&mut self, f: F) {
+  pub unsafe fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) {
      let tmp = self.cr3();
      self.set_cr3(f(tmp))
   }
@@ -40,15 +50,15 @@ impl Lpusart {
   pub unsafe fn brr(&self) -> Brr { 
      Brr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
   }
-  pub unsafe fn set_brr(&mut self, value: Brr) {
+  pub unsafe fn set_brr(&self, value: Brr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
   }
-  pub unsafe fn with_brr<F: FnOnce(Brr) -> Brr>(&mut self, f: F) {
+  pub unsafe fn with_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) {
      let tmp = self.brr();
      self.set_brr(f(tmp))
   }
 
-  pub unsafe fn set_rqr(&mut self, value: Rqr) {
+  pub unsafe fn set_rqr(&self, value: Rqr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
   }
 
@@ -56,7 +66,7 @@ impl Lpusart {
      Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
   }
 
-  pub unsafe fn set_icr(&mut self, value: Icr) {
+  pub unsafe fn set_icr(&self, value: Icr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
   }
 
@@ -67,10 +77,10 @@ impl Lpusart {
   pub unsafe fn tdr(&self) -> Tdr { 
      Tdr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
   }
-  pub unsafe fn set_tdr(&mut self, value: Tdr) {
+  pub unsafe fn set_tdr(&self, value: Tdr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
   }
-  pub unsafe fn with_tdr<F: FnOnce(Tdr) -> Tdr>(&mut self, f: F) {
+  pub unsafe fn with_tdr<F: FnOnce(Tdr) -> Tdr>(&self, f: F) {
      let tmp = self.tdr();
      self.set_tdr(f(tmp))
   }

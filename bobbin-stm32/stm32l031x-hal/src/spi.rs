@@ -2,7 +2,7 @@ pub use ::chip::spi::*;
 
 
 
-pub fn configure(mut spi: Spi) {
+pub fn configure(spi: SpiImpl) {
     let br: u16 = 0b000; // clk / 2
     let cpol: u16 = 0;
     let cpha: u16 = 0;    
@@ -23,19 +23,19 @@ pub fn configure(mut spi: Spi) {
     }
 }
 
-pub fn enable(mut spi: Spi) {
+pub fn enable(spi: SpiImpl) {
     unsafe {
         spi.with_cr1(|r| r.set_spe(1));
     }
 }
 
-pub fn wait_busy(spi: Spi) {
+pub fn wait_busy(spi: SpiImpl) {
     unsafe {
         while spi.sr().bsy() != 0 {}
     }
 }
 
-pub fn write(mut spi: Spi, data: u8) {
+pub fn write(spi: SpiImpl, data: u8) {
     unsafe {        
         while spi.sr().txe() == 0 {}
         spi.set_dr(Dr(0).set_dr(data as u16));
@@ -43,7 +43,7 @@ pub fn write(mut spi: Spi, data: u8) {
     }
 }
 
-pub fn read(spi: Spi) -> u8 {
+pub fn read(spi: SpiImpl) -> u8 {
     unsafe {
         while spi.sr().rxne() == 0 {}
         let v = spi.dr().dr() as u8;
@@ -51,7 +51,7 @@ pub fn read(spi: Spi) -> u8 {
     }
 }
 
-pub fn transfer(mut spi: Spi, data: u8) -> u8 {
+pub fn transfer(spi: SpiImpl, data: u8) -> u8 {
     unsafe {
         while spi.sr().txe() == 0 {}
         spi.set_dr(Dr(0).set_dr(data as u16));

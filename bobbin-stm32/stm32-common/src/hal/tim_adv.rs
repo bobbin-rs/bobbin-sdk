@@ -37,10 +37,10 @@ pub const CH6: usize = 5;
 
 
 pub struct TimAdvDevice {
-    tim: TimAdv,
+    tim: TimAdvImpl,
 }
 
-pub fn device(tim: TimAdv) -> TimAdvDevice {    
+pub fn device(tim: TimAdvImpl) -> TimAdvDevice {    
     TimAdvDevice { tim: tim }
 }
 
@@ -49,7 +49,7 @@ impl TimAdvDevice {
         // rcc::set_tim_adv_enabled(self.tim, true);
     }
 
-    pub fn tim(&self) -> TimAdv {
+    pub fn tim(&self) -> TimAdvImpl {
         self.tim
     }
 
@@ -62,7 +62,7 @@ impl TimAdvDevice {
 
     pub fn set_enabled(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_cr1(|r| r.set_cen(value))
         }
@@ -80,7 +80,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_direction(&self, value: Direction) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_cr1(|r| r.set_dir(value as u32))
         }    }
@@ -94,7 +94,7 @@ impl TimAdvDevice {
 
     pub fn set_one_pulse_mode(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_cr1(|r| r.set_opm(value))
         }
@@ -111,7 +111,7 @@ impl TimAdvDevice {
 
     pub fn set_update_interrupt_enabled(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_dier(|r| r.set_uie(value))
         }
@@ -133,7 +133,7 @@ impl TimAdvDevice {
 
     pub fn set_cc_interrupt_enabled(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_dier(|r| r.set_cc1ie(value)),
@@ -154,7 +154,7 @@ impl TimAdvDevice {
 
     pub fn set_trigger_interrupt_enabled(&self, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_dier(|r| r.set_tie(value))
         }
@@ -170,7 +170,7 @@ impl TimAdvDevice {
     }
 
     pub fn clr_update_interrupt_flag(&self) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.with_sr(|r| r.set_uif(0))
         }        
@@ -192,7 +192,7 @@ impl TimAdvDevice {
     }
 
     pub fn clr_cc_interrupt_flag(&self, index: usize) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_sr(|r| r.set_cc1if(0)),
@@ -207,7 +207,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_trigger_event(&self) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_egr(Egr(0).set_tg(1))
         }
@@ -216,7 +216,7 @@ impl TimAdvDevice {
     // Event Generation
 
     pub fn set_ccg_event(&self, index: usize) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.set_egr(Egr(0).set_cc1g(1)),
@@ -229,7 +229,7 @@ impl TimAdvDevice {
     }    
 
     pub fn set_update_event(&self) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_egr(Egr(0).set_ug(1))
         }
@@ -238,7 +238,7 @@ impl TimAdvDevice {
     // Capture / Compare Mode
 
     pub fn set_ccs(&self, index: usize, value: CcSelect) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccmr1_output(|r| r.set_cc1s(value as u32)),
@@ -251,7 +251,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_ocm(&self, index: usize, value: OcMode) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             let value = value as u32;
             let v012 = value & 0b111;
@@ -268,7 +268,7 @@ impl TimAdvDevice {
 
     pub fn set_ocfe(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccmr1_output(|r| r.set_oc1fe(value as u32)),
@@ -284,7 +284,7 @@ impl TimAdvDevice {
 
     pub fn set_ocpe(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccmr1_output(|r| r.set_oc1pe(value as u32)),
@@ -300,7 +300,7 @@ impl TimAdvDevice {
 
     pub fn set_occe(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccmr1_output(|r| r.set_oc1ce(value as u32)),
@@ -318,7 +318,7 @@ impl TimAdvDevice {
 
     pub fn set_cce(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccer(|r| r.set_cc1e(value)),
@@ -335,7 +335,7 @@ impl TimAdvDevice {
 
     pub fn set_ccp(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccer(|r| r.set_cc1p(value)),
@@ -351,7 +351,7 @@ impl TimAdvDevice {
 
     pub fn set_ccnp(&self, index: usize, value: bool) {
         let value = if value { 1 } else { 0 };
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.with_ccer(|r| r.set_cc1np(value)),
@@ -372,7 +372,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_prescaler(&self, value: u16) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_psc(Psc(0).set_psc(value as u32))
         }
@@ -388,7 +388,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_counter(&self, value: u32) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_cnt(Cnt(value))
         }
@@ -402,7 +402,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_auto_reload(&self, value: u32) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             tim.set_arr(Arr(value))
         }
@@ -425,7 +425,7 @@ impl TimAdvDevice {
     }
 
     pub fn set_capture_compare(&self, index: usize, value: u16) {
-        let mut tim = self.tim;
+        let tim = self.tim;
         unsafe {
             match index {
                 0 => tim.set_ccr1(Ccr1(0).set_ccr1(value as u32)),

@@ -147,7 +147,7 @@ impl InterruptLine {
         }
     }
 
-    pub fn external_source(&self) -> gpio::Gpio {
+    pub fn external_source(&self) -> gpio::GpioImpl {
         rcc::set_syscfg_enabled(true);
         let s = syscfg::SYSCFG;
         unsafe {
@@ -173,7 +173,7 @@ impl InterruptLine {
         }
     }
 
-    pub fn set_external_source(&self, value: gpio::Gpio) {
+    pub fn set_external_source(&self, value: gpio::GpioImpl) {
         rcc::set_syscfg_enabled(true);
         let mut s = syscfg::SYSCFG;
         let value = p2i(value);
@@ -201,7 +201,7 @@ impl InterruptLine {
     }
 }
 
-fn i2p(i: u32) -> gpio:: Gpio {
+fn i2p(i: u32) -> gpio:: GpioImpl {
     match i {
         0 => gpio::GPIOA,
         1 => gpio::GPIOB,
@@ -210,7 +210,7 @@ fn i2p(i: u32) -> gpio:: Gpio {
     }
 }
 
-fn p2i(p: gpio::Gpio) -> u32 {
+fn p2i(p: gpio::GpioImpl) -> u32 {
     match p {
         gpio::GPIOA => 0,
         gpio::GPIOB => 1,

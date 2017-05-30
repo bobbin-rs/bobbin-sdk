@@ -8,17 +8,17 @@ impl Lptim {
      Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
 
-  pub unsafe fn set_icr(&mut self, value: Icr) {
+  pub unsafe fn set_icr(&self, value: Icr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
 
   pub unsafe fn ier(&self) -> Ier { 
      Ier(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
   }
-  pub unsafe fn set_ier(&mut self, value: Ier) {
+  pub unsafe fn set_ier(&self, value: Ier) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
   }
-  pub unsafe fn with_ier<F: FnOnce(Ier) -> Ier>(&mut self, f: F) {
+  pub unsafe fn with_ier<F: FnOnce(Ier) -> Ier>(&self, f: F) {
      let tmp = self.ier();
      self.set_ier(f(tmp))
   }
@@ -26,10 +26,10 @@ impl Lptim {
   pub unsafe fn cfgr(&self) -> Cfgr { 
      Cfgr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
   }
-  pub unsafe fn set_cfgr(&mut self, value: Cfgr) {
+  pub unsafe fn set_cfgr(&self, value: Cfgr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
   }
-  pub unsafe fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&mut self, f: F) {
+  pub unsafe fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) {
      let tmp = self.cfgr();
      self.set_cfgr(f(tmp))
   }
@@ -37,10 +37,10 @@ impl Lptim {
   pub unsafe fn cr(&self) -> Cr { 
      Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
   }
-  pub unsafe fn set_cr(&mut self, value: Cr) {
+  pub unsafe fn set_cr(&self, value: Cr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&mut self, f: F) {
+  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -48,10 +48,10 @@ impl Lptim {
   pub unsafe fn cmp(&self) -> Cmp { 
      Cmp(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
   }
-  pub unsafe fn set_cmp(&mut self, value: Cmp) {
+  pub unsafe fn set_cmp(&self, value: Cmp) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
   }
-  pub unsafe fn with_cmp<F: FnOnce(Cmp) -> Cmp>(&mut self, f: F) {
+  pub unsafe fn with_cmp<F: FnOnce(Cmp) -> Cmp>(&self, f: F) {
      let tmp = self.cmp();
      self.set_cmp(f(tmp))
   }
@@ -59,10 +59,10 @@ impl Lptim {
   pub unsafe fn arr(&self) -> Arr { 
      Arr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
   }
-  pub unsafe fn set_arr(&mut self, value: Arr) {
+  pub unsafe fn set_arr(&self, value: Arr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
   }
-  pub unsafe fn with_arr<F: FnOnce(Arr) -> Arr>(&mut self, f: F) {
+  pub unsafe fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) {
      let tmp = self.arr();
      self.set_arr(f(tmp))
   }

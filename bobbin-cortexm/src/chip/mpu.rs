@@ -7,10 +7,10 @@ impl Mpu {
   pub unsafe fn mpu_type(&self) -> MpuType { 
      MpuType(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
-  pub unsafe fn set_mpu_type(&mut self, value: MpuType) {
+  pub unsafe fn set_mpu_type(&self, value: MpuType) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_type<F: FnOnce(MpuType) -> MpuType>(&mut self, f: F) {
+  pub unsafe fn with_mpu_type<F: FnOnce(MpuType) -> MpuType>(&self, f: F) {
      let tmp = self.mpu_type();
      self.set_mpu_type(f(tmp))
   }
@@ -18,10 +18,10 @@ impl Mpu {
   pub unsafe fn mpu_ctrl(&self) -> MpuCtrl { 
      MpuCtrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
   }
-  pub unsafe fn set_mpu_ctrl(&mut self, value: MpuCtrl) {
+  pub unsafe fn set_mpu_ctrl(&self, value: MpuCtrl) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_ctrl<F: FnOnce(MpuCtrl) -> MpuCtrl>(&mut self, f: F) {
+  pub unsafe fn with_mpu_ctrl<F: FnOnce(MpuCtrl) -> MpuCtrl>(&self, f: F) {
      let tmp = self.mpu_ctrl();
      self.set_mpu_ctrl(f(tmp))
   }
@@ -29,10 +29,10 @@ impl Mpu {
   pub unsafe fn mpu_rnr(&self) -> MpuRnr { 
      MpuRnr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
   }
-  pub unsafe fn set_mpu_rnr(&mut self, value: MpuRnr) {
+  pub unsafe fn set_mpu_rnr(&self, value: MpuRnr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rnr<F: FnOnce(MpuRnr) -> MpuRnr>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rnr<F: FnOnce(MpuRnr) -> MpuRnr>(&self, f: F) {
      let tmp = self.mpu_rnr();
      self.set_mpu_rnr(f(tmp))
   }
@@ -40,10 +40,10 @@ impl Mpu {
   pub unsafe fn mpu_rbar(&self) -> MpuRbar { 
      MpuRbar(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
   }
-  pub unsafe fn set_mpu_rbar(&mut self, value: MpuRbar) {
+  pub unsafe fn set_mpu_rbar(&self, value: MpuRbar) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rbar<F: FnOnce(MpuRbar) -> MpuRbar>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rbar<F: FnOnce(MpuRbar) -> MpuRbar>(&self, f: F) {
      let tmp = self.mpu_rbar();
      self.set_mpu_rbar(f(tmp))
   }
@@ -51,10 +51,10 @@ impl Mpu {
   pub unsafe fn mpu_rasr(&self) -> MpuRasr { 
      MpuRasr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
   }
-  pub unsafe fn set_mpu_rasr(&mut self, value: MpuRasr) {
+  pub unsafe fn set_mpu_rasr(&self, value: MpuRasr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rasr<F: FnOnce(MpuRasr) -> MpuRasr>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rasr<F: FnOnce(MpuRasr) -> MpuRasr>(&self, f: F) {
      let tmp = self.mpu_rasr();
      self.set_mpu_rasr(f(tmp))
   }
@@ -62,10 +62,10 @@ impl Mpu {
   pub unsafe fn mpu_rbar_a1(&self) -> MpuRbarA1 { 
      MpuRbarA1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
   }
-  pub unsafe fn set_mpu_rbar_a1(&mut self, value: MpuRbarA1) {
+  pub unsafe fn set_mpu_rbar_a1(&self, value: MpuRbarA1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rbar_a1<F: FnOnce(MpuRbarA1) -> MpuRbarA1>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rbar_a1<F: FnOnce(MpuRbarA1) -> MpuRbarA1>(&self, f: F) {
      let tmp = self.mpu_rbar_a1();
      self.set_mpu_rbar_a1(f(tmp))
   }
@@ -73,10 +73,10 @@ impl Mpu {
   pub unsafe fn mpu_rasr_a1(&self) -> MpuRasrA1 { 
      MpuRasrA1(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
   }
-  pub unsafe fn set_mpu_rasr_a1(&mut self, value: MpuRasrA1) {
+  pub unsafe fn set_mpu_rasr_a1(&self, value: MpuRasrA1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rasr_a1<F: FnOnce(MpuRasrA1) -> MpuRasrA1>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rasr_a1<F: FnOnce(MpuRasrA1) -> MpuRasrA1>(&self, f: F) {
      let tmp = self.mpu_rasr_a1();
      self.set_mpu_rasr_a1(f(tmp))
   }
@@ -84,10 +84,10 @@ impl Mpu {
   pub unsafe fn mpu_rbar_a2(&self) -> MpuRbarA2 { 
      MpuRbarA2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
   }
-  pub unsafe fn set_mpu_rbar_a2(&mut self, value: MpuRbarA2) {
+  pub unsafe fn set_mpu_rbar_a2(&self, value: MpuRbarA2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rbar_a2<F: FnOnce(MpuRbarA2) -> MpuRbarA2>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rbar_a2<F: FnOnce(MpuRbarA2) -> MpuRbarA2>(&self, f: F) {
      let tmp = self.mpu_rbar_a2();
      self.set_mpu_rbar_a2(f(tmp))
   }
@@ -95,10 +95,10 @@ impl Mpu {
   pub unsafe fn mpu_rasr_a2(&self) -> MpuRasrA2 { 
      MpuRasrA2(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
   }
-  pub unsafe fn set_mpu_rasr_a2(&mut self, value: MpuRasrA2) {
+  pub unsafe fn set_mpu_rasr_a2(&self, value: MpuRasrA2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rasr_a2<F: FnOnce(MpuRasrA2) -> MpuRasrA2>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rasr_a2<F: FnOnce(MpuRasrA2) -> MpuRasrA2>(&self, f: F) {
      let tmp = self.mpu_rasr_a2();
      self.set_mpu_rasr_a2(f(tmp))
   }
@@ -106,10 +106,10 @@ impl Mpu {
   pub unsafe fn mpu_rbar_a3(&self) -> MpuRbarA3 { 
      MpuRbarA3(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
   }
-  pub unsafe fn set_mpu_rbar_a3(&mut self, value: MpuRbarA3) {
+  pub unsafe fn set_mpu_rbar_a3(&self, value: MpuRbarA3) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rbar_a3<F: FnOnce(MpuRbarA3) -> MpuRbarA3>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rbar_a3<F: FnOnce(MpuRbarA3) -> MpuRbarA3>(&self, f: F) {
      let tmp = self.mpu_rbar_a3();
      self.set_mpu_rbar_a3(f(tmp))
   }
@@ -117,10 +117,10 @@ impl Mpu {
   pub unsafe fn mpu_rasr_a3(&self) -> MpuRasrA3 { 
      MpuRasrA3(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
   }
-  pub unsafe fn set_mpu_rasr_a3(&mut self, value: MpuRasrA3) {
+  pub unsafe fn set_mpu_rasr_a3(&self, value: MpuRasrA3) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
   }
-  pub unsafe fn with_mpu_rasr_a3<F: FnOnce(MpuRasrA3) -> MpuRasrA3>(&mut self, f: F) {
+  pub unsafe fn with_mpu_rasr_a3<F: FnOnce(MpuRasrA3) -> MpuRasrA3>(&self, f: F) {
      let tmp = self.mpu_rasr_a3();
      self.set_mpu_rasr_a3(f(tmp))
   }

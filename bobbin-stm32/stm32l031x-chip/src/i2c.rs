@@ -1,17 +1,37 @@
-pub const I2C1: I2c = I2c(0x40005400);
-pub const I2C2: I2c = I2c(0x40005800);
+pub const I2C1: I2c1 = I2c1 {};
+pub const I2C1_IMPL: I2cImpl = I2cImpl(0x40005400);
+pub const I2C1_IMPL_REF: &I2cImpl = &I2C1_IMPL;
+
+pub struct I2c1 {}
+
+impl ::core::ops::Deref for I2c1 {
+   type Target = I2cImpl;
+   fn deref(&self) -> &I2cImpl { I2C1_IMPL_REF }
+}
+
+pub const I2C2: I2c2 = I2c2 {};
+pub const I2C2_IMPL: I2cImpl = I2cImpl(0x40005800);
+pub const I2C2_IMPL_REF: &I2cImpl = &I2C2_IMPL;
+
+pub struct I2c2 {}
+
+impl ::core::ops::Deref for I2c2 {
+   type Target = I2cImpl;
+   fn deref(&self) -> &I2cImpl { I2C2_IMPL_REF }
+}
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct I2c(pub u32);
+pub struct I2cImpl(pub u32);
 
-impl I2c {
+impl I2cImpl {
   pub unsafe fn cr1(&self) -> Cr1 { 
      Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
-  pub unsafe fn set_cr1(&mut self, value: Cr1) {
+  pub unsafe fn set_cr1(&self, value: Cr1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&mut self, f: F) {
+  pub unsafe fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -19,10 +39,10 @@ impl I2c {
   pub unsafe fn cr2(&self) -> Cr2 { 
      Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
   }
-  pub unsafe fn set_cr2(&mut self, value: Cr2) {
+  pub unsafe fn set_cr2(&self, value: Cr2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&mut self, f: F) {
+  pub unsafe fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -30,10 +50,10 @@ impl I2c {
   pub unsafe fn oar1(&self) -> Oar1 { 
      Oar1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
   }
-  pub unsafe fn set_oar1(&mut self, value: Oar1) {
+  pub unsafe fn set_oar1(&self, value: Oar1) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
   }
-  pub unsafe fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&mut self, f: F) {
+  pub unsafe fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) {
      let tmp = self.oar1();
      self.set_oar1(f(tmp))
   }
@@ -41,10 +61,10 @@ impl I2c {
   pub unsafe fn oar2(&self) -> Oar2 { 
      Oar2(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
   }
-  pub unsafe fn set_oar2(&mut self, value: Oar2) {
+  pub unsafe fn set_oar2(&self, value: Oar2) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
   }
-  pub unsafe fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&mut self, f: F) {
+  pub unsafe fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) {
      let tmp = self.oar2();
      self.set_oar2(f(tmp))
   }
@@ -52,10 +72,10 @@ impl I2c {
   pub unsafe fn timingr(&self) -> Timingr { 
      Timingr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
   }
-  pub unsafe fn set_timingr(&mut self, value: Timingr) {
+  pub unsafe fn set_timingr(&self, value: Timingr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
   }
-  pub unsafe fn with_timingr<F: FnOnce(Timingr) -> Timingr>(&mut self, f: F) {
+  pub unsafe fn with_timingr<F: FnOnce(Timingr) -> Timingr>(&self, f: F) {
      let tmp = self.timingr();
      self.set_timingr(f(tmp))
   }
@@ -63,10 +83,10 @@ impl I2c {
   pub unsafe fn timeoutr(&self) -> Timeoutr { 
      Timeoutr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
   }
-  pub unsafe fn set_timeoutr(&mut self, value: Timeoutr) {
+  pub unsafe fn set_timeoutr(&self, value: Timeoutr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
   }
-  pub unsafe fn with_timeoutr<F: FnOnce(Timeoutr) -> Timeoutr>(&mut self, f: F) {
+  pub unsafe fn with_timeoutr<F: FnOnce(Timeoutr) -> Timeoutr>(&self, f: F) {
      let tmp = self.timeoutr();
      self.set_timeoutr(f(tmp))
   }
@@ -74,15 +94,15 @@ impl I2c {
   pub unsafe fn isr(&self) -> Isr { 
      Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
   }
-  pub unsafe fn set_isr(&mut self, value: Isr) {
+  pub unsafe fn set_isr(&self, value: Isr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
   }
-  pub unsafe fn with_isr<F: FnOnce(Isr) -> Isr>(&mut self, f: F) {
+  pub unsafe fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) {
      let tmp = self.isr();
      self.set_isr(f(tmp))
   }
 
-  pub unsafe fn set_icr(&mut self, value: Icr) {
+  pub unsafe fn set_icr(&self, value: Icr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
   }
 
@@ -97,10 +117,10 @@ impl I2c {
   pub unsafe fn txdr(&self) -> Txdr { 
      Txdr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
   }
-  pub unsafe fn set_txdr(&mut self, value: Txdr) {
+  pub unsafe fn set_txdr(&self, value: Txdr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
   }
-  pub unsafe fn with_txdr<F: FnOnce(Txdr) -> Txdr>(&mut self, f: F) {
+  pub unsafe fn with_txdr<F: FnOnce(Txdr) -> Txdr>(&self, f: F) {
      let tmp = self.txdr();
      self.set_txdr(f(tmp))
   }

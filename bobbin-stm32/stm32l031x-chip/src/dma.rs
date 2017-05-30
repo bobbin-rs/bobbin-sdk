@@ -8,7 +8,7 @@ impl Dma {
      Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
 
-  pub unsafe fn set_ifcr(&mut self, value: Ifcr) {
+  pub unsafe fn set_ifcr(&self, value: Ifcr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
 
@@ -16,11 +16,11 @@ impl Dma {
      assert!(index < 7);
      Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *const u32))
   }
-  pub unsafe fn set_ccr(&mut self, index: usize, value: Ccr) {
+  pub unsafe fn set_ccr(&self, index: usize, value: Ccr) {
      assert!(index < 7);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *mut u32, value.0);
   }
-  pub unsafe fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) {
      let tmp = self.ccr(index);
      self.set_ccr(index, f(tmp))
   }
@@ -29,11 +29,11 @@ impl Dma {
      assert!(index < 7);
      Cndtr(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index * 20)) as *const u32))
   }
-  pub unsafe fn set_cndtr(&mut self, index: usize, value: Cndtr) {
+  pub unsafe fn set_cndtr(&self, index: usize, value: Cndtr) {
      assert!(index < 7);
      ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index * 20)) as *mut u32, value.0);
   }
-  pub unsafe fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) {
      let tmp = self.cndtr(index);
      self.set_cndtr(index, f(tmp))
   }
@@ -42,11 +42,11 @@ impl Dma {
      assert!(index < 7);
      Cpar(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *const u32))
   }
-  pub unsafe fn set_cpar(&mut self, index: usize, value: Cpar) {
+  pub unsafe fn set_cpar(&self, index: usize, value: Cpar) {
      assert!(index < 7);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *mut u32, value.0);
   }
-  pub unsafe fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) {
      let tmp = self.cpar(index);
      self.set_cpar(index, f(tmp))
   }
@@ -55,11 +55,11 @@ impl Dma {
      assert!(index < 7);
      Cmar(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *const u32))
   }
-  pub unsafe fn set_cmar(&mut self, index: usize, value: Cmar) {
+  pub unsafe fn set_cmar(&self, index: usize, value: Cmar) {
      assert!(index < 7);
      ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *mut u32, value.0);
   }
-  pub unsafe fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&mut self, index: usize, f: F) {
+  pub unsafe fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) {
      let tmp = self.cmar(index);
      self.set_cmar(index, f(tmp))
   }
@@ -67,10 +67,10 @@ impl Dma {
   pub unsafe fn cselr(&self) -> Cselr { 
      Cselr(::core::ptr::read_volatile(((self.0 as usize) + 0xa8) as *const u32))
   }
-  pub unsafe fn set_cselr(&mut self, value: Cselr) {
+  pub unsafe fn set_cselr(&self, value: Cselr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
   }
-  pub unsafe fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&mut self, f: F) {
+  pub unsafe fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) {
      let tmp = self.cselr();
      self.set_cselr(f(tmp))
   }

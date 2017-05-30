@@ -16,7 +16,7 @@ pub struct Config {
     pub window: u32,
 }
 
-pub fn configure(mut wwdg: Wwdg, cfg: Config) {
+pub fn configure(wwdg: Wwdg, cfg: Config) {
     unsafe {
         wwdg.set_cfr(Cfr(0)
             .set_ewi(if cfg.early_wake_interrupt { 1 } else { 0 })
@@ -26,13 +26,13 @@ pub fn configure(mut wwdg: Wwdg, cfg: Config) {
     }
 }
 
-pub fn activate(mut wwdg: Wwdg, t: u32) {
+pub fn activate(wwdg: Wwdg, t: u32) {
     unsafe {
         wwdg.set_cr(Cr(0).set_wdga(1).set_t(t))
     }
 }
 
-pub fn refresh(mut wwdg: Wwdg, t: u32) {
+pub fn refresh(wwdg: Wwdg, t: u32) {
     unsafe {
         wwdg.set_cr(Cr(0).set_t(t))
     }
@@ -44,7 +44,7 @@ pub fn ewif(wwdg: Wwdg) -> bool {
     }
 }
 
-pub fn clr_ewif(mut wwdg: Wwdg) {
+pub fn clr_ewif(wwdg: Wwdg) {
     unsafe {
         wwdg.set_sr(Sr(0).set_ewif(1))
     }

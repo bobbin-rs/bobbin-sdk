@@ -56,7 +56,7 @@ fn b2u32(v: bool) -> u32 {
 }
 
 pub fn set_config(channel: Channel, cfg: &Config) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.with_ccr(channel.1, |r| r
             .set_mem2mem(b2u32(cfg.mem2mem))
@@ -77,7 +77,7 @@ pub fn set_config(channel: Channel, cfg: &Config) {
 
 pub fn set_enabled(channel: Channel, value: bool) {
     let value = if value { 1 } else { 0 };
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.with_ccr(channel.1, |r| r.set_en(value))
     }
@@ -91,7 +91,7 @@ pub fn periph_addr(channel: Channel) -> u32 {
 }
 
 pub fn set_periph_addr(channel: Channel, addr: u32) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_cpar(channel.1, Cpar(0).set_pa(addr))
     }
@@ -105,7 +105,7 @@ pub fn memory_addr(channel: Channel) -> u32 {
 }
 
 pub fn set_memory_addr(channel: Channel, addr: u32) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_cmar(channel.1, Cmar(0).set_ma(addr))
     }
@@ -119,21 +119,21 @@ pub fn transfer_count(channel: Channel) -> usize {
 }
 
 pub fn set_transfer_count(channel: Channel, count: usize) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_cndtr(channel.1, Cndtr(0).set_ndt(count as u32))
     }
 }
 
 pub fn set_channel_selection(channel: Channel, sel: u8) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.with_cselr(|r| r.set_cs(channel.1, sel as u32))
     }
 }
 
 pub fn clear_flags(channel: Channel) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_ifcr(Ifcr(0)
             .set_cgif(channel.1, 1)
@@ -152,7 +152,7 @@ pub fn gif(channel: Channel) -> bool {
 }
 
 pub fn clear_gif(channel: Channel) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_ifcr(Ifcr(0).set_cgif(channel.1, 1))
     }
@@ -166,7 +166,7 @@ pub fn tcif(channel: Channel) -> bool {
 }
 
 pub fn clear_tcif(channel: Channel) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_ifcr(Ifcr(0).set_ctcif(channel.1, 1))
     }
@@ -180,7 +180,7 @@ pub fn htif(channel: Channel) -> bool {
 }
 
 pub fn clear_htif(channel: Channel) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_ifcr(Ifcr(0).set_chtif(channel.1, 1))
     }
@@ -194,7 +194,7 @@ pub fn teif(channel: Channel) -> bool {
 }
 
 pub fn clear_teif(channel: Channel) {
-    let mut dma = channel.0;
+    let dma = channel.0;
     unsafe {
         dma.set_ifcr(Ifcr(0).set_cteif(channel.1, 1))
     }

@@ -16,7 +16,7 @@ pub struct Config {
     pub window: u32,
 }
 
-pub fn configure(mut iwdg: Iwdg, cfg: Config) {
+pub fn configure(iwdg: Iwdg, cfg: Config) {
     start(iwdg);
     unlock(iwdg);
     unsafe {
@@ -28,25 +28,25 @@ pub fn configure(mut iwdg: Iwdg, cfg: Config) {
     refresh(iwdg)
 }
 
-pub fn unlock(mut iwdg: Iwdg) {
+pub fn unlock(iwdg: Iwdg) {
     unsafe {
         iwdg.set_kr(Kr(0).set_key(0x5555))
     }
 }
 
-pub fn lock(mut iwdg: Iwdg) {
+pub fn lock(iwdg: Iwdg) {
     unsafe {
         iwdg.set_kr(Kr(0).set_key(0xABCD))
     }    
 }
 
-pub fn refresh(mut iwdg: Iwdg) {
+pub fn refresh(iwdg: Iwdg) {
     unsafe {
         iwdg.set_kr(Kr(0).set_key(0xAAAA))
     }
 }
 
-pub fn start(mut iwdg: Iwdg) {
+pub fn start(iwdg: Iwdg) {
     unsafe {
         iwdg.set_kr(Kr(0).set_key(0xCCCC))
     }

@@ -7,10 +7,10 @@ impl Crc {
   pub unsafe fn dr(&self) -> Dr { 
      Dr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
   }
-  pub unsafe fn set_dr(&mut self, value: Dr) {
+  pub unsafe fn set_dr(&self, value: Dr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
   }
-  pub unsafe fn with_dr<F: FnOnce(Dr) -> Dr>(&mut self, f: F) {
+  pub unsafe fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -18,10 +18,10 @@ impl Crc {
   pub unsafe fn idr(&self) -> Idr { 
      Idr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
   }
-  pub unsafe fn set_idr(&mut self, value: Idr) {
+  pub unsafe fn set_idr(&self, value: Idr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
   }
-  pub unsafe fn with_idr<F: FnOnce(Idr) -> Idr>(&mut self, f: F) {
+  pub unsafe fn with_idr<F: FnOnce(Idr) -> Idr>(&self, f: F) {
      let tmp = self.idr();
      self.set_idr(f(tmp))
   }
@@ -29,10 +29,10 @@ impl Crc {
   pub unsafe fn cr(&self) -> Cr { 
      Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
   }
-  pub unsafe fn set_cr(&mut self, value: Cr) {
+  pub unsafe fn set_cr(&self, value: Cr) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
   }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&mut self, f: F) {
+  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -40,10 +40,10 @@ impl Crc {
   pub unsafe fn init(&self) -> Init { 
      Init(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
   }
-  pub unsafe fn set_init(&mut self, value: Init) {
+  pub unsafe fn set_init(&self, value: Init) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
   }
-  pub unsafe fn with_init<F: FnOnce(Init) -> Init>(&mut self, f: F) {
+  pub unsafe fn with_init<F: FnOnce(Init) -> Init>(&self, f: F) {
      let tmp = self.init();
      self.set_init(f(tmp))
   }
@@ -51,10 +51,10 @@ impl Crc {
   pub unsafe fn pol(&self) -> Pol { 
      Pol(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
   }
-  pub unsafe fn set_pol(&mut self, value: Pol) {
+  pub unsafe fn set_pol(&self, value: Pol) {
      ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
   }
-  pub unsafe fn with_pol<F: FnOnce(Pol) -> Pol>(&mut self, f: F) {
+  pub unsafe fn with_pol<F: FnOnce(Pol) -> Pol>(&self, f: F) {
      let tmp = self.pol();
      self.set_pol(f(tmp))
   }

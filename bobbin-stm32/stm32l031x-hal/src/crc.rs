@@ -43,7 +43,7 @@ impl Config {
     }
 }
 
-pub fn configure(mut crc: Crc, cfg: &Config) {
+pub fn configure(crc: Crc, cfg: &Config) {
     unsafe {
         crc.with_cr(|r| r
             .set_rev_out(if cfg.rev_out { 1 } else { 0 })
@@ -54,14 +54,14 @@ pub fn configure(mut crc: Crc, cfg: &Config) {
     }
 }
 
-pub fn initialize(mut crc: Crc, value: u32) {
+pub fn initialize(crc: Crc, value: u32) {
     unsafe {
         crc.set_init(Init(0).set_init(value));
         crc.with_cr(|r| r.set_reset(1));
     }
 }
 
-pub fn write(mut crc: Crc, value: u32) {
+pub fn write(crc: Crc, value: u32) {
     unsafe {
         crc.set_dr(Dr(0).set_dr(value))
     }
