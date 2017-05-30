@@ -330,26 +330,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
         
-        // Generate AltFn Traits
-
-        for p in pg.peripherals.iter() {
-            let p_name = p.name.to_uppercase();
-            for pin in p.pins.iter() {
-                for af in pin.altfns.iter() {
-                    let af_trait = format!("Af{}", to_camel(&af.signal));
-                    let af_fn = format!("af_{}", af.signal.to_lowercase());
-
-                    if !traits.contains(&af_trait) {
-                        try!(writeln!(out, "pub trait {} {{", af_trait));
-                        try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
-                        try!(writeln!(out, "}}"));
-                        try!(writeln!(out, ""));   
-                        traits.insert(af_trait);
-                    }           
-                }
-            }
-        }
-
         for p in pg.peripherals.iter() {
             let p_name = p.name.to_uppercase();
             let p_type = to_camel(&p.name);
@@ -374,7 +354,35 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, "   fn port(&self) -> {} {{ {} }}", p_type, p_name));
                 try!(writeln!(out, "   fn index(&self) -> usize {{ {} }}", pin.index.unwrap()));
                 try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
+                try!(writeln!(out, ""));                
+            }        
+        }    
+
+        // Generate AltFn Traits
+
+        for p in pg.peripherals.iter() {
+            let p_name = p.name.to_uppercase();
+            for pin in p.pins.iter() {
+                for af in pin.altfns.iter() {
+                    let af_trait = format!("Af{}", to_camel(&af.signal));
+                    let af_fn = format!("af_{}", af.signal.to_lowercase());
+
+                    if !traits.contains(&af_trait) {
+                        try!(writeln!(out, "pub trait {} {{", af_trait));
+                        try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
+                        try!(writeln!(out, "}}"));
+                        try!(writeln!(out, ""));   
+                        traits.insert(af_trait);
+                    }           
+                }
+            }
+        }
+
+        
+        for p in pg.peripherals.iter() {
+            for pin in p.pins.iter() {
+                let pin_type = to_camel(&pin.name);
+                
                 for af in pin.altfns.iter() {
                     let af_trait = format!("Af{}", to_camel(&af.signal));
                     let af_fn = format!("af_{}", af.signal.to_lowercase());
@@ -383,9 +391,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     try!(writeln!(out, "}}"));
                     try!(writeln!(out, ""));
                 }
-            }
-        
+            }        
         }    
+        
+        
     }
 
 
