@@ -5,6 +5,7 @@ pub const LPUSART1_IMPL_REF: &LpusartImpl = &LPUSART1_IMPL;
 pub struct Lpusart1 {}
 impl ::core::ops::Deref for Lpusart1 {
    type Target = LpusartImpl;
+   #[inline]
    fn deref(&self) -> &LpusartImpl { LPUSART1_IMPL_REF }
 }
 

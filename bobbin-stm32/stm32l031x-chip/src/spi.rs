@@ -5,6 +5,7 @@ pub const SPI1_IMPL_REF: &SpiImpl = &SPI1_IMPL;
 pub struct Spi1 {}
 impl ::core::ops::Deref for Spi1 {
    type Target = SpiImpl;
+   #[inline]
    fn deref(&self) -> &SpiImpl { SPI1_IMPL_REF }
 }
 
@@ -15,6 +16,7 @@ pub const SPI2_IMPL_REF: &SpiImpl = &SPI2_IMPL;
 pub struct Spi2 {}
 impl ::core::ops::Deref for Spi2 {
    type Target = SpiImpl;
+   #[inline]
    fn deref(&self) -> &SpiImpl { SPI2_IMPL_REF }
 }
 

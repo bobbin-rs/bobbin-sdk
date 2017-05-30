@@ -7,6 +7,7 @@ pub const TIM2_IMPL_REF: &TimGenImpl = &TIM2_IMPL;
 pub struct Tim2 {}
 impl ::core::ops::Deref for Tim2 {
    type Target = TimGenImpl;
+   #[inline]
    fn deref(&self) -> &TimGenImpl { TIM2_IMPL_REF }
 }
 
@@ -17,6 +18,7 @@ pub const TIM21_IMPL_REF: &TimGenImpl = &TIM21_IMPL;
 pub struct Tim21 {}
 impl ::core::ops::Deref for Tim21 {
    type Target = TimGenImpl;
+   #[inline]
    fn deref(&self) -> &TimGenImpl { TIM21_IMPL_REF }
 }
 
@@ -27,6 +29,7 @@ pub const TIM22_IMPL_REF: &TimGenImpl = &TIM22_IMPL;
 pub struct Tim22 {}
 impl ::core::ops::Deref for Tim22 {
    type Target = TimGenImpl;
+   #[inline]
    fn deref(&self) -> &TimGenImpl { TIM22_IMPL_REF }
 }
 

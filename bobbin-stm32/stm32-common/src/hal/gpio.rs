@@ -49,6 +49,7 @@ pub trait PinExt {
 }
 
 impl PinExt for PinImpl {
+    #[inline]
     fn mode(&self) -> Mode {
         match self.port.moder().moder(self.index) {
             0b00 => Mode::Input,
@@ -59,11 +60,13 @@ impl PinExt for PinImpl {
         }
     }
 
+    #[inline]
     fn set_mode(&self, value: Mode) -> &Self {
         self.port.with_moder(|r| r.set_moder(self.index, value as u32));
         self
     }
 
+    #[inline]
     fn output_type(&self) -> OutputType {
         match self.port.otyper().ot(self.index) {
             0b0 => OutputType::PushPull,
@@ -72,11 +75,13 @@ impl PinExt for PinImpl {
         }
     }
 
+    #[inline]
     fn set_output_type(&self, value: OutputType) -> &Self {
         self.port.with_otyper(|r| r.set_ot(self.index, value as u32));
         self
     }
 
+    #[inline]
     fn output_speed(&self) -> OutputSpeed {
         match self.port.ospeedr().ospeedr(self.index) {
             0b00 => OutputSpeed::LowSpeed,
@@ -87,11 +92,13 @@ impl PinExt for PinImpl {
         }
     }
 
+    #[inline]
     fn set_output_speed(&self, value: OutputSpeed) -> &Self {
         self.port.with_ospeedr(|r| r.set_ospeedr(self.index, value as u32));
         self
     }
 
+    #[inline]
     fn pull(&self) -> Pull {
         match self.port.pupdr().pupdr(self.index) {
             0b00 => Pull::None,
@@ -102,11 +109,13 @@ impl PinExt for PinImpl {
         }
     }
 
+    #[inline]
     fn set_pull(&self, value: Pull) -> &Self {
         self.port.with_pupdr(|r| r.set_pupdr(self.index, value as u32));
         self
     }
 
+    #[inline]
     fn altfn(&self) -> usize {
         if self.index < 8 {
             self.port.afrl().afrl(self.index) as usize
@@ -115,6 +124,7 @@ impl PinExt for PinImpl {
         }
     }
     
+    #[inline]
     fn set_altfn(&self, value: usize) -> &Self {
         if self.index < 8 {
             self.port.with_afrl(|r| r.set_afrl(self.index, value as u32))
@@ -124,14 +134,17 @@ impl PinExt for PinImpl {
         self
     }
 
+    #[inline]
     fn input(&self) -> bool {
         self.port.idr().idr(self.index) != 0
     }
 
+    #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0
     }
 
+    #[inline]
     fn set_output(&self, value: bool) -> &Self {
         self.port.set_bsrr(
             if value {
@@ -143,6 +156,7 @@ impl PinExt for PinImpl {
         self
     }
 
+    #[inline]
     fn toggle_output(&self) -> &Self {
         self.port.set_bsrr(
             if self.port.idr().idr(self.index) == 0 {
@@ -153,5 +167,4 @@ impl PinExt for PinImpl {
         );
         self
     }
-
 }

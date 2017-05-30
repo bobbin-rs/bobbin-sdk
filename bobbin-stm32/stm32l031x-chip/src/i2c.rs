@@ -5,6 +5,7 @@ pub const I2C1_IMPL_REF: &I2cImpl = &I2C1_IMPL;
 pub struct I2c1 {}
 impl ::core::ops::Deref for I2c1 {
    type Target = I2cImpl;
+   #[inline]
    fn deref(&self) -> &I2cImpl { I2C1_IMPL_REF }
 }
 
@@ -15,6 +16,7 @@ pub const I2C2_IMPL_REF: &I2cImpl = &I2C2_IMPL;
 pub struct I2c2 {}
 impl ::core::ops::Deref for I2c2 {
    type Target = I2cImpl;
+   #[inline]
    fn deref(&self) -> &I2cImpl { I2C2_IMPL_REF }
 }
 

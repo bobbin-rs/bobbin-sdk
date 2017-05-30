@@ -7,6 +7,7 @@ pub const GPIOA_IMPL_REF: &GpioImpl = &GPIOA_IMPL;
 pub struct Gpioa {}
 impl ::core::ops::Deref for Gpioa {
    type Target = GpioImpl;
+   #[inline]
    fn deref(&self) -> &GpioImpl { GPIOA_IMPL_REF }
 }
 
@@ -17,6 +18,7 @@ pub const GPIOB_IMPL_REF: &GpioImpl = &GPIOB_IMPL;
 pub struct Gpiob {}
 impl ::core::ops::Deref for Gpiob {
    type Target = GpioImpl;
+   #[inline]
    fn deref(&self) -> &GpioImpl { GPIOB_IMPL_REF }
 }
 
@@ -27,6 +29,7 @@ pub const GPIOC_IMPL_REF: &GpioImpl = &GPIOC_IMPL;
 pub struct Gpioc {}
 impl ::core::ops::Deref for Gpioc {
    type Target = GpioImpl;
+   #[inline]
    fn deref(&self) -> &GpioImpl { GPIOC_IMPL_REF }
 }
 
@@ -37,6 +40,7 @@ pub const GPIOH_IMPL_REF: &GpioImpl = &GPIOH_IMPL;
 pub struct Gpioh {}
 impl ::core::ops::Deref for Gpioh {
    type Target = GpioImpl;
+   #[inline]
    fn deref(&self) -> &GpioImpl { GPIOH_IMPL_REF }
 }
 
@@ -47,6 +51,7 @@ pub const PA0_IMPL_REF: &PinImpl = &PA0_IMPL;
 
 impl ::core::ops::Deref for Pa0 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA0_IMPL_REF }
 }
 
@@ -66,6 +71,7 @@ pub const PA1_IMPL_REF: &PinImpl = &PA1_IMPL;
 
 impl ::core::ops::Deref for Pa1 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA1_IMPL_REF }
 }
 
@@ -85,6 +91,7 @@ pub const PA2_IMPL_REF: &PinImpl = &PA2_IMPL;
 
 impl ::core::ops::Deref for Pa2 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA2_IMPL_REF }
 }
 
@@ -104,6 +111,7 @@ pub const PA3_IMPL_REF: &PinImpl = &PA3_IMPL;
 
 impl ::core::ops::Deref for Pa3 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA3_IMPL_REF }
 }
 
@@ -123,6 +131,7 @@ pub const PA4_IMPL_REF: &PinImpl = &PA4_IMPL;
 
 impl ::core::ops::Deref for Pa4 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA4_IMPL_REF }
 }
 
@@ -142,6 +151,7 @@ pub const PA5_IMPL_REF: &PinImpl = &PA5_IMPL;
 
 impl ::core::ops::Deref for Pa5 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA5_IMPL_REF }
 }
 
@@ -161,6 +171,7 @@ pub const PA6_IMPL_REF: &PinImpl = &PA6_IMPL;
 
 impl ::core::ops::Deref for Pa6 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA6_IMPL_REF }
 }
 
@@ -180,6 +191,7 @@ pub const PA7_IMPL_REF: &PinImpl = &PA7_IMPL;
 
 impl ::core::ops::Deref for Pa7 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA7_IMPL_REF }
 }
 
@@ -199,6 +211,7 @@ pub const PA8_IMPL_REF: &PinImpl = &PA8_IMPL;
 
 impl ::core::ops::Deref for Pa8 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA8_IMPL_REF }
 }
 
@@ -218,6 +231,7 @@ pub const PA9_IMPL_REF: &PinImpl = &PA9_IMPL;
 
 impl ::core::ops::Deref for Pa9 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA9_IMPL_REF }
 }
 
@@ -237,6 +251,7 @@ pub const PA10_IMPL_REF: &PinImpl = &PA10_IMPL;
 
 impl ::core::ops::Deref for Pa10 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA10_IMPL_REF }
 }
 
@@ -256,6 +271,7 @@ pub const PA11_IMPL_REF: &PinImpl = &PA11_IMPL;
 
 impl ::core::ops::Deref for Pa11 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA11_IMPL_REF }
 }
 
@@ -275,6 +291,7 @@ pub const PA12_IMPL_REF: &PinImpl = &PA12_IMPL;
 
 impl ::core::ops::Deref for Pa12 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA12_IMPL_REF }
 }
 
@@ -294,6 +311,7 @@ pub const PA13_IMPL_REF: &PinImpl = &PA13_IMPL;
 
 impl ::core::ops::Deref for Pa13 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA13_IMPL_REF }
 }
 
@@ -313,6 +331,7 @@ pub const PA14_IMPL_REF: &PinImpl = &PA14_IMPL;
 
 impl ::core::ops::Deref for Pa14 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA14_IMPL_REF }
 }
 
@@ -332,6 +351,7 @@ pub const PA15_IMPL_REF: &PinImpl = &PA15_IMPL;
 
 impl ::core::ops::Deref for Pa15 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PA15_IMPL_REF }
 }
 
@@ -351,6 +371,7 @@ pub const PB0_IMPL_REF: &PinImpl = &PB0_IMPL;
 
 impl ::core::ops::Deref for Pb0 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB0_IMPL_REF }
 }
 
@@ -370,6 +391,7 @@ pub const PB1_IMPL_REF: &PinImpl = &PB1_IMPL;
 
 impl ::core::ops::Deref for Pb1 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB1_IMPL_REF }
 }
 
@@ -389,6 +411,7 @@ pub const PB2_IMPL_REF: &PinImpl = &PB2_IMPL;
 
 impl ::core::ops::Deref for Pb2 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB2_IMPL_REF }
 }
 
@@ -408,6 +431,7 @@ pub const PB3_IMPL_REF: &PinImpl = &PB3_IMPL;
 
 impl ::core::ops::Deref for Pb3 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB3_IMPL_REF }
 }
 
@@ -427,6 +451,7 @@ pub const PB4_IMPL_REF: &PinImpl = &PB4_IMPL;
 
 impl ::core::ops::Deref for Pb4 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB4_IMPL_REF }
 }
 
@@ -446,6 +471,7 @@ pub const PB5_IMPL_REF: &PinImpl = &PB5_IMPL;
 
 impl ::core::ops::Deref for Pb5 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB5_IMPL_REF }
 }
 
@@ -465,6 +491,7 @@ pub const PB6_IMPL_REF: &PinImpl = &PB6_IMPL;
 
 impl ::core::ops::Deref for Pb6 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB6_IMPL_REF }
 }
 
@@ -484,6 +511,7 @@ pub const PB7_IMPL_REF: &PinImpl = &PB7_IMPL;
 
 impl ::core::ops::Deref for Pb7 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB7_IMPL_REF }
 }
 
@@ -503,6 +531,7 @@ pub const PB8_IMPL_REF: &PinImpl = &PB8_IMPL;
 
 impl ::core::ops::Deref for Pb8 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB8_IMPL_REF }
 }
 
@@ -522,6 +551,7 @@ pub const PB9_IMPL_REF: &PinImpl = &PB9_IMPL;
 
 impl ::core::ops::Deref for Pb9 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB9_IMPL_REF }
 }
 
@@ -541,6 +571,7 @@ pub const PB10_IMPL_REF: &PinImpl = &PB10_IMPL;
 
 impl ::core::ops::Deref for Pb10 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB10_IMPL_REF }
 }
 
@@ -560,6 +591,7 @@ pub const PB11_IMPL_REF: &PinImpl = &PB11_IMPL;
 
 impl ::core::ops::Deref for Pb11 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB11_IMPL_REF }
 }
 
@@ -579,6 +611,7 @@ pub const PB12_IMPL_REF: &PinImpl = &PB12_IMPL;
 
 impl ::core::ops::Deref for Pb12 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB12_IMPL_REF }
 }
 
@@ -598,6 +631,7 @@ pub const PB13_IMPL_REF: &PinImpl = &PB13_IMPL;
 
 impl ::core::ops::Deref for Pb13 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB13_IMPL_REF }
 }
 
@@ -617,6 +651,7 @@ pub const PB14_IMPL_REF: &PinImpl = &PB14_IMPL;
 
 impl ::core::ops::Deref for Pb14 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB14_IMPL_REF }
 }
 
@@ -636,6 +671,7 @@ pub const PB15_IMPL_REF: &PinImpl = &PB15_IMPL;
 
 impl ::core::ops::Deref for Pb15 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PB15_IMPL_REF }
 }
 
@@ -655,6 +691,7 @@ pub const PC0_IMPL_REF: &PinImpl = &PC0_IMPL;
 
 impl ::core::ops::Deref for Pc0 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PC0_IMPL_REF }
 }
 
@@ -674,6 +711,7 @@ pub const PC14_IMPL_REF: &PinImpl = &PC14_IMPL;
 
 impl ::core::ops::Deref for Pc14 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PC14_IMPL_REF }
 }
 
@@ -693,6 +731,7 @@ pub const PC15_IMPL_REF: &PinImpl = &PC15_IMPL;
 
 impl ::core::ops::Deref for Pc15 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PC15_IMPL_REF }
 }
 
@@ -712,6 +751,7 @@ pub const PH0_IMPL_REF: &PinImpl = &PH0_IMPL;
 
 impl ::core::ops::Deref for Ph0 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PH0_IMPL_REF }
 }
 
@@ -731,6 +771,7 @@ pub const PH1_IMPL_REF: &PinImpl = &PH1_IMPL;
 
 impl ::core::ops::Deref for Ph1 {
    type Target = PinImpl;
+   #[inline]
    fn deref(&self) -> &PinImpl { PH1_IMPL_REF }
 }
 
