@@ -263,6 +263,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(write!(out, "pub const {}_IMPL: {} = {}(0x{:08x});\n", p_name, p_impl_type, p_impl_type, p.address));
         try!(write!(out, "pub const {}_IMPL_REF: &{} = &{}_IMPL;\n", p_name, p_impl_type, p_name));
         try!(writeln!(out, ""));
+        
         try!(writeln!(out, "pub struct {} {{}}\n", p_type));
         try!(writeln!(out, "impl ::core::ops::Deref for {} {{", p_type));
         try!(writeln!(out, "   type Target = {};", p_impl_type));
@@ -313,6 +314,14 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     if has_pins {
         let mut traits = HashSet::new();
 
+        // Generate Pin Impl
+
+        try!(writeln!(out, "pub struct PinImpl {{"));
+        try!(writeln!(out, "  pub port: {},", p_impl_type));
+        try!(writeln!(out, "  pub index: usize,"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+
         // Generate Pin Trait
 
         try!(writeln!(out, "pub trait Pin<T> {{"));
@@ -348,7 +357,16 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let pin_name = pin.name.to_uppercase();
                 let pin_type = to_camel(&pin.name);
                 try!(writeln!(out, "pub const {}: {} = {} {{}}; ", pin_name, pin_type, pin_type));
+                try!(writeln!(out, "pub const {}_IMPL: PinImpl = PinImpl {{ port: {}_IMPL, index: {} }};", pin_name, p_name, pin.index.unwrap()));
+                try!(writeln!(out, "pub const {}_IMPL_REF: &PinImpl = &{}_IMPL;", pin_name, pin_name));
                 try!(writeln!(out, ""));
+
+                try!(writeln!(out, "impl ::core::ops::Deref for {} {{", pin_type));
+                try!(writeln!(out, "   type Target = PinImpl;"));
+                try!(writeln!(out, "   fn deref(&self) -> &PinImpl {{ {}_IMPL_REF }}", pin_name));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+
                 try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
                 try!(writeln!(out, "pub struct {} {{}}", pin_type));
                 try!(writeln!(out, ""));
