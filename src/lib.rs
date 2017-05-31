@@ -195,6 +195,7 @@ pub struct Interrupt {
 #[derive(Debug, Clone, Default)]
 pub struct Signal {
     pub name: String,
+    pub types: Vec<String>,
     pub description: Option<String>,
 }
 

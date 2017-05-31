@@ -76,6 +76,17 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
     }
 
+    // Generate Signals
+
+    {    
+        let p_name = "sig";
+        try!(writeln!(out, "pub mod {};", p_name));
+        let p_mod = path.join(format!("{}.rs", p_name));
+        let mut f_mod = try!(File::create(p_mod));
+        try!(gen_signals(cfg, &mut f_mod, &d));
+    }
+
+
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
@@ -232,6 +243,64 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     Ok(())
 }
 
+pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+    let mut signals = HashSet::new();
+    let mut signal_types = HashSet::new();
+
+    try!(writeln!(out, "pub trait Signal<T> {{}}"));
+    try!(writeln!(out, ""));
+
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for s in p.signals.iter() {                
+                for st in s.types.iter() {
+                    let st_type = to_camel(&st);
+                    if !signal_types.contains(&st_type) {
+                        try!(writeln!(out, "pub trait {} {{}}", st_type));
+                    }
+                    signal_types.insert(st_type);                    
+                }                
+            }
+        }
+    }
+    try!(writeln!(out, ""));
+
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for s in p.signals.iter() {
+                let s_const = s.name.to_uppercase();
+                let s_type = to_camel(&s.name);
+                try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                try!(writeln!(out, "pub struct {} {{}}", s_type));
+                for st in s.types.iter() {
+                    let st_type = to_camel(&st);
+                    try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
+                }                
+                try!(writeln!(out, ""));
+                signals.insert(s_type);
+            }
+        }
+    }
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for pin in p.pins.iter() {
+                for af in pin.altfns.iter() {
+                    let s_const = af.signal.to_uppercase();
+                    let s_type = to_camel(&af.signal);
+                    if !signals.contains(&s_type) {
+                        try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                        try!(writeln!(out, "pub struct {} {{}}", s_type));
+                        try!(writeln!(out, ""));
+                        signals.insert(s_type);
+                    }
+                }
+            }
+        }
+    }    
+
+    Ok(())
+}
+
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -270,6 +339,12 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, "   #[inline]")); 
         try!(writeln!(out, "   fn deref(&self) -> &{} {{ {}_IMPL_REF }}", p_impl_type, p_name));
         try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+
+        for s in p.signals.iter() {
+            let s_type = to_camel(&s.name);
+            try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
+        }
         try!(writeln!(out, ""));
         // count += 1;
     }    
@@ -321,6 +396,13 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, "   fn index(&self) -> usize;"));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
+
+        // Generate AltFn Trait
+
+        try!(writeln!(out, "pub trait AltFn<T> {{"));
+        try!(writeln!(out, "   fn alt_fn(&self) -> usize;"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
     }
 
     let mut has_pins = false;
@@ -330,9 +412,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }
 
-    if has_pins {
-        let mut traits = HashSet::new();
-        
+    if has_pins {       
         for p in pg.peripherals.iter() {
             let p_name = p.name.to_uppercase();
             let p_type = to_camel(&p.name);
@@ -361,46 +441,36 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, "   fn index(&self) -> usize {{ {} }}", pin.index.unwrap()));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));                
-            }        
-        }    
-
-        // Generate AltFn Traits
-
-        for p in pg.peripherals.iter() {
-            let p_name = p.name.to_uppercase();
-            for pin in p.pins.iter() {
                 for af in pin.altfns.iter() {
-                    let af_trait = format!("Af{}", to_camel(&af.signal));
-                    let af_fn = format!("af_{}", af.signal.to_lowercase());
-
-                    if !traits.contains(&af_trait) {
-                        try!(writeln!(out, "pub trait {} {{", af_trait));
-                        try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
-                        try!(writeln!(out, "}}"));
-                        try!(writeln!(out, ""));   
-                        traits.insert(af_trait);
-                    }           
-                }
-            }
-        }
-
-        
-        for p in pg.peripherals.iter() {
-            for pin in p.pins.iter() {
-                let pin_type = to_camel(&pin.name);
-                
-                for af in pin.altfns.iter() {
-                    let af_trait = format!("Af{}", to_camel(&af.signal));
-                    let af_fn = format!("af_{}", af.signal.to_lowercase());
-                    try!(writeln!(out, "impl {} for {} {{", af_trait, pin_type));
-                    try!(writeln!(out, "   #[inline]")); 
-                    try!(writeln!(out, "   fn {}(&self) -> usize {{ {} }}", af_fn, af.index));
+                    let s_type = to_camel(&af.signal);
+                    try!(writeln!(out, "impl AltFn<super::sig::{}> for {} {{", s_type, pin_type));
+                    try!(writeln!(out, "   #[inline] fn alt_fn(&self) -> usize {{ {} }}", af.index));
                     try!(writeln!(out, "}}"));
                     try!(writeln!(out, ""));
                 }
             }        
         }    
-        
+
+        // // Generate AltFn Traits
+
+        // for p in pg.peripherals.iter() {
+        //     let p_name = p.name.to_uppercase();
+        //     for pin in p.pins.iter() {
+        //         for af in pin.altfns.iter() {
+        //             let af_trait = format!("Af{}", to_camel(&af.signal));
+        //             let af_fn = format!("af_{}", af.signal.to_lowercase());
+
+        //             if !traits.contains(&af_trait) {
+        //                 try!(writeln!(out, "pub trait {} {{", af_trait));
+        //                 try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
+        //                 try!(writeln!(out, "}}"));
+        //                 try!(writeln!(out, ""));   
+        //                 traits.insert(af_trait);
+        //             }           
+        //         }
+        //     }
+        // }
+
         
     }
 
@@ -442,6 +512,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(gen_clusters(cfg, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
 
+    // Generate Links
+
     let p_size = size_type(p.size.or(Some(32)).unwrap());
     for link in p.links.iter() {
         try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
@@ -461,6 +533,9 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
     }
+
+
+    // Generate Signals
 
     for r in p.registers.iter() {
         for f in r.fields.iter() {
