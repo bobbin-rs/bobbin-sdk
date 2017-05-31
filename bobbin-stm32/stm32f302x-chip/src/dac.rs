@@ -1,138 +1,358 @@
-pub const DAC: Dac = Dac(0x40007400);
+pub const DAC: Dac = Dac {};
+pub const DAC_IMPL: DacImpl = DacImpl(0x40007400);
+pub const DAC_IMPL_REF: &DacImpl = &DAC_IMPL;
+
+pub struct Dac {}
+impl ::core::ops::Deref for Dac {
+   type Target = DacImpl;
+   #[inline]
+   fn deref(&self) -> &DacImpl { DAC_IMPL_REF }
+}
+
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Dac(pub u32);
-
-impl Dac {
-  pub unsafe fn cr(&self) -> Cr { 
-     Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+pub struct DacImpl(pub u32);
+impl DacImpl {
+  #[inline]
+  pub fn cr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
   }
-  pub unsafe fn set_cr(&mut self, value: Cr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+  #[inline]
+  pub fn cr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
   }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&mut self, f: F) {
+  #[inline]
+  pub fn cr(&self) -> Cr { 
+     unsafe {
+       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_cr(&self, value: Cr) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &DacImpl {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
-  pub unsafe fn set_swtrigr(&mut self, value: Swtrigr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn swtrigr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+  #[inline]
+  pub fn swtrigr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+  #[inline]
+  pub fn set_swtrigr(&self, value: Swtrigr) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn dhr12r1(&self) -> Dhr12r1 { 
-     Dhr12r1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn dhr12r1_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_dhr12r1(&mut self, value: Dhr12r1) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12r1_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12r1(&self) -> Dhr12r1 { 
+     unsafe {
+       Dhr12r1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12r1(&self, value: Dhr12r1) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12r1();
      self.set_dhr12r1(f(tmp))
   }
 
-  pub unsafe fn dhr12l1(&self) -> Dhr12l1 { 
-     Dhr12l1(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn dhr12l1_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_dhr12l1(&mut self, value: Dhr12l1) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12l1_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12l1(&self) -> Dhr12l1 { 
+     unsafe {
+       Dhr12l1(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12l1(&self, value: Dhr12l1) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12l1();
      self.set_dhr12l1(f(tmp))
   }
 
-  pub unsafe fn dhr8r1(&self) -> Dhr8r1 { 
-     Dhr8r1(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn dhr8r1_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_dhr8r1(&mut self, value: Dhr8r1) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr8r1_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr8r1(&self) -> Dhr8r1 { 
+     unsafe {
+       Dhr8r1(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr8r1(&self, value: Dhr8r1) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr8r1();
      self.set_dhr8r1(f(tmp))
   }
 
-  pub unsafe fn dhr12r2(&self) -> Dhr12r2 { 
-     Dhr12r2(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+  #[inline]
+  pub fn dhr12r2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
   }
-  pub unsafe fn set_dhr12r2(&mut self, value: Dhr12r2) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12r2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
   }
-  pub unsafe fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12r2(&self) -> Dhr12r2 { 
+     unsafe {
+       Dhr12r2(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12r2(&self, value: Dhr12r2) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12r2();
      self.set_dhr12r2(f(tmp))
   }
 
-  pub unsafe fn dhr12l2(&self) -> Dhr12l2 { 
-     Dhr12l2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+  #[inline]
+  pub fn dhr12l2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x18) as *const u32
   }
-  pub unsafe fn set_dhr12l2(&mut self, value: Dhr12l2) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12l2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x18) as *mut u32
   }
-  pub unsafe fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12l2(&self) -> Dhr12l2 { 
+     unsafe {
+       Dhr12l2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12l2(&self, value: Dhr12l2) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12l2();
      self.set_dhr12l2(f(tmp))
   }
 
-  pub unsafe fn dhr8r2(&self) -> Dhr8r2 { 
-     Dhr8r2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+  #[inline]
+  pub fn dhr8r2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x1c) as *const u32
   }
-  pub unsafe fn set_dhr8r2(&mut self, value: Dhr8r2) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr8r2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x1c) as *mut u32
   }
-  pub unsafe fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr8r2(&self) -> Dhr8r2 { 
+     unsafe {
+       Dhr8r2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr8r2(&self, value: Dhr8r2) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr8r2();
      self.set_dhr8r2(f(tmp))
   }
 
-  pub unsafe fn dhr12rd(&self) -> Dhr12rd { 
-     Dhr12rd(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+  #[inline]
+  pub fn dhr12rd_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x20) as *const u32
   }
-  pub unsafe fn set_dhr12rd(&mut self, value: Dhr12rd) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12rd_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x20) as *mut u32
   }
-  pub unsafe fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12rd(&self) -> Dhr12rd { 
+     unsafe {
+       Dhr12rd(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12rd(&self, value: Dhr12rd) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12rd();
      self.set_dhr12rd(f(tmp))
   }
 
-  pub unsafe fn dhr12ld(&self) -> Dhr12ld { 
-     Dhr12ld(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+  #[inline]
+  pub fn dhr12ld_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x24) as *const u32
   }
-  pub unsafe fn set_dhr12ld(&mut self, value: Dhr12ld) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr12ld_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x24) as *mut u32
   }
-  pub unsafe fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr12ld(&self) -> Dhr12ld { 
+     unsafe {
+       Dhr12ld(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr12ld(&self, value: Dhr12ld) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr12ld();
      self.set_dhr12ld(f(tmp))
   }
 
-  pub unsafe fn dhr8rd(&self) -> Dhr8rd { 
-     Dhr8rd(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+  #[inline]
+  pub fn dhr8rd_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x28) as *const u32
   }
-  pub unsafe fn set_dhr8rd(&mut self, value: Dhr8rd) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+  #[inline]
+  pub fn dhr8rd_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x28) as *mut u32
   }
-  pub unsafe fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&mut self, f: F) {
+  #[inline]
+  pub fn dhr8rd(&self) -> Dhr8rd { 
+     unsafe {
+       Dhr8rd(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dhr8rd(&self, value: Dhr8rd) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &DacImpl {
      let tmp = self.dhr8rd();
      self.set_dhr8rd(f(tmp))
   }
 
-  pub unsafe fn dor1(&self) -> Dor1 { 
-     Dor1(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+  #[inline]
+  pub fn dor1_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x2c) as *const u32
+  }
+  #[inline]
+  pub fn dor1_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x2c) as *mut u32
+  }
+  #[inline]
+  pub fn dor1(&self) -> Dor1 { 
+     unsafe {
+       Dor1(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+     }
   }
 
-  pub unsafe fn dor2(&self) -> Dor2 { 
-     Dor2(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+  #[inline]
+  pub fn dor2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x30) as *const u32
+  }
+  #[inline]
+  pub fn dor2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x30) as *mut u32
+  }
+  #[inline]
+  pub fn dor2(&self) -> Dor2 { 
+     unsafe {
+       Dor2(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+     }
   }
 
-  pub unsafe fn sr(&self) -> Sr { 
-     Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+  #[inline]
+  pub fn sr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x34) as *const u32
   }
-  pub unsafe fn set_sr(&mut self, value: Sr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+  #[inline]
+  pub fn sr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x34) as *mut u32
   }
-  pub unsafe fn with_sr<F: FnOnce(Sr) -> Sr>(&mut self, f: F) {
+  #[inline]
+  pub fn sr(&self) -> Sr { 
+     unsafe {
+       Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_sr(&self, value: Sr) -> &DacImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &DacImpl {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -141,11 +361,12 @@ impl Dac {
 
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
-
 impl Cr {
+  #[inline]
   pub fn dmaudrie2(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+  #[inline]
   pub fn set_dmaudrie2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -153,9 +374,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn dmaen2(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+  #[inline]
   pub fn set_dmaen2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -163,9 +386,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn mamp2(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+  #[inline]
   pub fn set_mamp2(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
@@ -173,9 +398,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn wave2(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x3 // [23:22]
   }
+  #[inline]
   pub fn set_wave2(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 22);
@@ -183,9 +410,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tsel2(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x7 // [21:19]
   }
+  #[inline]
   pub fn set_tsel2(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 19);
@@ -193,9 +422,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn ten2(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_ten2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -203,9 +434,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn boff2(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_boff2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -213,9 +446,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn en2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_en2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -223,9 +458,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn dmaudrie1(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+  #[inline]
   pub fn set_dmaudrie1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -233,9 +470,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn dmaen1(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+  #[inline]
   pub fn set_dmaen1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -243,9 +482,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn mamp1(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
+  #[inline]
   pub fn set_mamp1(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -253,9 +494,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn wave1(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+  #[inline]
   pub fn set_wave1(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -263,9 +506,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tsel1(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x7 // [5:3]
   }
+  #[inline]
   pub fn set_tsel1(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
@@ -273,9 +518,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn ten1(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_ten1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -283,9 +530,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn boff1(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_boff1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -293,9 +542,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn en1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_en1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -304,13 +555,11 @@ impl Cr {
   }
 
 }
-
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -334,14 +583,14 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Swtrigr(pub u32);
-
 impl Swtrigr {
+  #[inline]
   pub fn swtrig2(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_swtrig2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -349,9 +598,11 @@ impl Swtrigr {
      self
   }
 
+  #[inline]
   pub fn swtrig1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_swtrig1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -360,13 +611,11 @@ impl Swtrigr {
   }
 
 }
-
 impl ::core::fmt::Display for Swtrigr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Swtrigr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -376,14 +625,14 @@ impl ::core::fmt::Debug for Swtrigr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12r1(pub u32);
-
 impl Dhr12r1 {
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -392,13 +641,11 @@ impl Dhr12r1 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12r1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12r1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -407,14 +654,14 @@ impl ::core::fmt::Debug for Dhr12r1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12l1(pub u32);
-
 impl Dhr12l1 {
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0xfff // [15:4]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
@@ -423,13 +670,11 @@ impl Dhr12l1 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12l1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12l1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -438,14 +683,14 @@ impl ::core::fmt::Debug for Dhr12l1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr8r1(pub u32);
-
 impl Dhr8r1 {
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -454,13 +699,11 @@ impl Dhr8r1 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr8r1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr8r1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -469,14 +712,14 @@ impl ::core::fmt::Debug for Dhr8r1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12r2(pub u32);
-
 impl Dhr12r2 {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -485,13 +728,11 @@ impl Dhr12r2 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12r2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12r2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -500,14 +741,14 @@ impl ::core::fmt::Debug for Dhr12r2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12l2(pub u32);
-
 impl Dhr12l2 {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0xfff // [15:4]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
@@ -516,13 +757,11 @@ impl Dhr12l2 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12l2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12l2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -531,14 +770,14 @@ impl ::core::fmt::Debug for Dhr12l2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr8r2(pub u32);
-
 impl Dhr8r2 {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -547,13 +786,11 @@ impl Dhr8r2 {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr8r2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr8r2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -562,14 +799,14 @@ impl ::core::fmt::Debug for Dhr8r2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12rd(pub u32);
-
 impl Dhr12rd {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xfff // [27:16]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 16);
@@ -577,9 +814,11 @@ impl Dhr12rd {
      self
   }
 
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -588,13 +827,11 @@ impl Dhr12rd {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12rd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12rd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -604,14 +841,14 @@ impl ::core::fmt::Debug for Dhr12rd {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr12ld(pub u32);
-
 impl Dhr12ld {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0xfff // [31:20]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 20);
@@ -619,9 +856,11 @@ impl Dhr12ld {
      self
   }
 
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0xfff // [15:4]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
@@ -630,13 +869,11 @@ impl Dhr12ld {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr12ld {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr12ld {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -646,14 +883,14 @@ impl ::core::fmt::Debug for Dhr12ld {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dhr8rd(pub u32);
-
 impl Dhr8rd {
+  #[inline]
   pub fn dacc2dhr(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+  #[inline]
   pub fn set_dacc2dhr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -661,9 +898,11 @@ impl Dhr8rd {
      self
   }
 
+  #[inline]
   pub fn dacc1dhr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_dacc1dhr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -672,13 +911,11 @@ impl Dhr8rd {
   }
 
 }
-
 impl ::core::fmt::Display for Dhr8rd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dhr8rd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -688,14 +925,14 @@ impl ::core::fmt::Debug for Dhr8rd {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dor1(pub u32);
-
 impl Dor1 {
+  #[inline]
   pub fn dacc1dor(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dacc1dor(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -704,13 +941,11 @@ impl Dor1 {
   }
 
 }
-
 impl ::core::fmt::Display for Dor1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dor1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -719,14 +954,14 @@ impl ::core::fmt::Debug for Dor1 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dor2(pub u32);
-
 impl Dor2 {
+  #[inline]
   pub fn dacc2dor(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dacc2dor(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -735,13 +970,11 @@ impl Dor2 {
   }
 
 }
-
 impl ::core::fmt::Display for Dor2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dor2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -750,14 +983,14 @@ impl ::core::fmt::Debug for Dor2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sr(pub u32);
-
 impl Sr {
+  #[inline]
   pub fn dmaudr2(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+  #[inline]
   pub fn set_dmaudr2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -765,9 +998,11 @@ impl Sr {
      self
   }
 
+  #[inline]
   pub fn dmaudr1(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+  #[inline]
   pub fn set_dmaudr1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -776,13 +1011,11 @@ impl Sr {
   }
 
 }
-
 impl ::core::fmt::Display for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -792,4 +1025,3 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
-
