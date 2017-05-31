@@ -5,21 +5,6 @@ use hal::rcc::{RCC, RccExt};
 use hal::usart::UsartExt;
 use hal::gpio::PinExt;
 
-// pub fn usart1(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> usart::UsartDevice {
-//     rcc::set_usart_enabled(USART1, true);
-//     let tx = tx.into_altfn(4);
-//     let rx = rx.into_altfn(4);
-//     let u = usart::device(USART1);
-//     u.enable(32_000_000 / 115_200);    
-//     u
-// }
-
-// pub unsafe fn usart1_unchecked(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> usart::UsartDevice {
-//     let tx = tx.into_altfn_unchecked();
-//     let rx = rx.into_altfn_unchecked();
-//     usart::device(USART1, tx, rx) 
-// }
-
 
 // USART2
 // TX = PA2[4] 
