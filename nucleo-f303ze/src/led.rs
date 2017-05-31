@@ -1,13 +1,11 @@
 use chip::gpio::*;
-use hal::gpio;
+use chip::gpio::{Pb3, PB3};
+use hal::rcc::{RCC, RccExt};
+use hal::gpio::{PinExt};
 
-pub type Led = gpio::PinOutput;
+pub const LED0: Pa5 = PA5;
 
 pub fn init() {
-    gpio::pin(PA5).into_output();
-}
-
-// LED @ D13 = PA5
-pub fn led0() -> Led {
-    gpio::pin_output(PA5)
+    RCC.set_enabled(&LED0.port(), true);
+    LED0.mode_output();
 }

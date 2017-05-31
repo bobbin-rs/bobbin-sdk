@@ -1,4 +1,5 @@
 use core::fmt::{self, Write, Arguments};
+use hal::usart::UsartExt;
 use usart;
 
 /// Macro for sending `print!`-formatted messages over the Console
@@ -32,7 +33,7 @@ impl Console {
     pub fn init(&self) {
     }
 
-    pub fn usart(&self) -> ::hal::usart::UsartDevice {
+    pub fn usart(&self) -> ::chip::usart::Usart2 {
         usart::usart2()
     }
 }
