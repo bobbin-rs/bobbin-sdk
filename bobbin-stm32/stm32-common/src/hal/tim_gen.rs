@@ -40,6 +40,7 @@ pub trait TimGenExt {
     fn update_interrupt_flag(&self) -> bool;
     fn clr_update_interrupt_flag(&self) -> &Self;
     fn set_auto_reload(&self, value: u32) -> &Self;
+    fn delay(&self, reload: u32, prescaler: u16);
 }
 
 impl TimGenExt for TimGenImpl {
@@ -71,5 +72,17 @@ impl TimGenExt for TimGenImpl {
     fn set_auto_reload(&self, value: u32) -> &Self {
         self.set_arr(Arr(value))
     }
-    
+
+    fn delay(&self, reload: u32, prescaler: u16) {
+        self
+            .set_prescaler(prescaler)
+            .set_update_event()
+            .clr_update_interrupt_flag()
+            .set_auto_reload(reload)
+            .set_enabled(true);
+        while self.update_interrupt_flag() == false {}
+        self
+            .clr_update_interrupt_flag()
+            .set_enabled(false);
+    }    
 }
