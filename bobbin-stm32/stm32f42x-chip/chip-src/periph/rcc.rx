@@ -1283,6 +1283,7 @@
             (bit-offset 14)
             (bit-width 1)
             (description "System configuration controller clock enable")
+            (link (name EN) (peripheral-group SYSCFG) (peripheral SYSCFG))
         )
         (field
             (name TIM9EN)

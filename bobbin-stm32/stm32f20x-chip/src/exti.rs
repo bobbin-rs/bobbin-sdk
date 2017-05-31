@@ -2,70 +2,165 @@ pub const EXTI: Exti = Exti(0x40013c00);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exti(pub u32);
-
 impl Exti {
-  pub unsafe fn imr(&self) -> Imr { 
-     Imr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn imr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
   }
-  pub unsafe fn set_imr(&mut self, value: Imr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+  #[inline]
+  pub fn imr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
   }
-  pub unsafe fn with_imr<F: FnOnce(Imr) -> Imr>(&mut self, f: F) {
+  #[inline]
+  pub fn imr(&self) -> Imr { 
+     unsafe {
+       Imr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_imr(&self, value: Imr) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Exti {
      let tmp = self.imr();
      self.set_imr(f(tmp))
   }
 
-  pub unsafe fn emr(&self) -> Emr { 
-     Emr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn emr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
   }
-  pub unsafe fn set_emr(&mut self, value: Emr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn emr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
   }
-  pub unsafe fn with_emr<F: FnOnce(Emr) -> Emr>(&mut self, f: F) {
+  #[inline]
+  pub fn emr(&self) -> Emr { 
+     unsafe {
+       Emr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_emr(&self, value: Emr) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) -> &Exti {
      let tmp = self.emr();
      self.set_emr(f(tmp))
   }
 
-  pub unsafe fn rtsr(&self) -> Rtsr { 
-     Rtsr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn rtsr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_rtsr(&mut self, value: Rtsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn rtsr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&mut self, f: F) {
+  #[inline]
+  pub fn rtsr(&self) -> Rtsr { 
+     unsafe {
+       Rtsr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_rtsr(&self, value: Rtsr) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) -> &Exti {
      let tmp = self.rtsr();
      self.set_rtsr(f(tmp))
   }
 
-  pub unsafe fn ftsr(&self) -> Ftsr { 
-     Ftsr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn ftsr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_ftsr(&mut self, value: Ftsr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn ftsr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&mut self, f: F) {
+  #[inline]
+  pub fn ftsr(&self) -> Ftsr { 
+     unsafe {
+       Ftsr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_ftsr(&self, value: Ftsr) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) -> &Exti {
      let tmp = self.ftsr();
      self.set_ftsr(f(tmp))
   }
 
-  pub unsafe fn swier(&self) -> Swier { 
-     Swier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn swier_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_swier(&mut self, value: Swier) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn swier_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_swier<F: FnOnce(Swier) -> Swier>(&mut self, f: F) {
+  #[inline]
+  pub fn swier(&self) -> Swier { 
+     unsafe {
+       Swier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_swier(&self, value: Swier) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) -> &Exti {
      let tmp = self.swier();
      self.set_swier(f(tmp))
   }
 
-  pub unsafe fn pr(&self) -> Pr { 
-     Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+  #[inline]
+  pub fn pr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
   }
-  pub unsafe fn set_pr(&mut self, value: Pr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+  #[inline]
+  pub fn pr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
   }
-  pub unsafe fn with_pr<F: FnOnce(Pr) -> Pr>(&mut self, f: F) {
+  #[inline]
+  pub fn pr(&self) -> Pr { 
+     unsafe {
+       Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_pr(&self, value: Pr) -> &Exti {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Exti {
      let tmp = self.pr();
      self.set_pr(f(tmp))
   }
@@ -74,13 +169,14 @@ impl Exti {
 
 #[derive(PartialEq, Eq)]
 pub struct Imr(pub u32);
-
 impl Imr {
+  #[inline]
   pub fn mr(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_mr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -91,13 +187,11 @@ impl Imr {
   }
 
 }
-
 impl ::core::fmt::Display for Imr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Imr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -128,16 +222,16 @@ impl ::core::fmt::Debug for Imr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Emr(pub u32);
-
 impl Emr {
+  #[inline]
   pub fn mr(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_mr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -148,13 +242,11 @@ impl Emr {
   }
 
 }
-
 impl ::core::fmt::Display for Emr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Emr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -185,16 +277,16 @@ impl ::core::fmt::Debug for Emr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Rtsr(pub u32);
-
 impl Rtsr {
+  #[inline]
   pub fn tr(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_tr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -205,13 +297,11 @@ impl Rtsr {
   }
 
 }
-
 impl ::core::fmt::Display for Rtsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Rtsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -242,16 +332,16 @@ impl ::core::fmt::Debug for Rtsr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ftsr(pub u32);
-
 impl Ftsr {
+  #[inline]
   pub fn tr(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_tr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -262,13 +352,11 @@ impl Ftsr {
   }
 
 }
-
 impl ::core::fmt::Display for Ftsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ftsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -299,16 +387,16 @@ impl ::core::fmt::Debug for Ftsr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Swier(pub u32);
-
 impl Swier {
+  #[inline]
   pub fn swier(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_swier(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -319,13 +407,11 @@ impl Swier {
   }
 
 }
-
 impl ::core::fmt::Display for Swier {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Swier {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -356,16 +442,16 @@ impl ::core::fmt::Debug for Swier {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pr(pub u32);
-
 impl Pr {
+  #[inline]
   pub fn pr(&self, index: usize) -> u32 {
      assert!(index < 23);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 23);
      assert!((value & !0x1) == 0);
@@ -376,13 +462,11 @@ impl Pr {
   }
 
 }
-
 impl ::core::fmt::Display for Pr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -413,4 +497,3 @@ impl ::core::fmt::Debug for Pr {
       Ok(())
    }
 }
-
