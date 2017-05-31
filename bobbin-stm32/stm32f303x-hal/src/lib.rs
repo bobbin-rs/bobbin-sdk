@@ -5,7 +5,7 @@ extern crate stm32_common;
 extern crate stm32f303x_chip as chip;
 
 pub use bobbin_cortexm::hal::{nvic, scb};
-pub use stm32_common::hal::gpio;
+//pub use stm32_common::hal::gpio;
 pub use stm32_common::hal::usart;
 //pub use stm32_common::hal::tim_bas;
 pub use stm32_common::hal::tim_gen;
@@ -21,3 +21,8 @@ pub mod clock;
 // pub mod pwr;
 //pub mod pin;
 //pub mod gpio;
+
+pub mod gpio {
+    pub use chip::gpio::*;
+    pub use stm32_common::hal::gpio::*;
+}
