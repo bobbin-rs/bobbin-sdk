@@ -22,21 +22,15 @@ pub mod lang_items;
 
 pub mod led;
 pub mod btn;
-pub mod pin;
+//pub mod pin;
 pub mod tim;
-pub mod usart;
+
 
 pub use tim::delay;
-// pub fn delay(n: u32) {
-//     for _ in 0..100_000 * n {
-//         unsafe { asm!("nop") }
-//     }
-// }
 
 pub fn init() {
     hal::clock::enable_pll_external_mode();
     led::init();
     btn::init();
-    usart::init();
-    console::CONSOLE.init(115_200);
+    console::CONSOLE.init();
 }

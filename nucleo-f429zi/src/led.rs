@@ -1,35 +1,17 @@
-use chip::gpio::*;
-use hal::gpio;
+use hal::gpio::*;
+use hal::rcc;
 
-pub type Led = gpio::PinOutput;
+pub const LED0: Pb0 = PB0;
+pub const LED1: Pb7 = PB7;
+pub const LED2: Pb14 = PB14;
 
 pub fn init() {
-    gpio::pin(PB0).into_output();
-    gpio::pin(PB7).into_output();
-    gpio::pin(PB14).into_output();
+    rcc::enable(&LED0.port());
+    LED0.mode_output();
+
+    rcc::enable(&LED1.port());
+    LED1.mode_output();
+
+    rcc::enable(&LED2.port());
+    LED2.mode_output();
 }
-
-pub fn led0() -> Led {
-    gpio::pin_output(PB0)
-}
-
-pub fn led1() -> Led {
-    gpio::pin_output(PB7)
-}
-
-pub fn led2() -> Led {
-    gpio::pin_output(PB14)
-}
-
-// use chip::gpio::GPIOB;
-// use hal::rcc;
-// use hal::gpio;
-
-// // LED GREEN = PB0
-// // LED BLUE = PB7
-// // LED GREEN = PB14
-
-// pub fn led0() -> gpio::PinOutput {
-//     rcc::set_gpio_enabled(GPIOB, true);
-//     gpio::pin(GPIOB, 0).into_output()
-// }
