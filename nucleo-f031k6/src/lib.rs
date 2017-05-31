@@ -19,14 +19,6 @@ pub mod led;
 pub mod btn;
 //pub mod pin;
 pub mod tim;
-pub mod usart;
-
-
-// pub fn delay(n: u32) {
-//     for _ in 0..n * 5_000 {
-//         unsafe { asm!("nop") }
-//     }
-// }
 
 pub use tim::delay;
 
@@ -34,6 +26,5 @@ pub fn init() {
     hal::clock::init_pll();    
     led::init();
     btn::init();
-    usart::init();
     console::CONSOLE.init();
 }

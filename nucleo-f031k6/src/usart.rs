@@ -1,9 +1,7 @@
 use chip::sig::*;
-use chip::gpio::*;
-use chip::usart::{USART2, Usart2};
-use hal::rcc::{RCC, RccExt};
-use hal::usart::UsartExt;
-use hal::gpio::PinExt;
+use hal::gpio::*;
+use hal::usart::*;
+use hal::rcc;
 
 
 // USART2
@@ -13,14 +11,11 @@ pub fn init() {
     let tx = PA2;
     let rx = PA15;
 
-    RCC.set_enabled(&USART2, true);
-    RCC.set_enabled(&tx.port(), true);
-    RCC.set_enabled(&rx.port(), true);
+    rcc::enable(&USART2);
+    rcc::enable(&tx.port());
+    rcc::enable(&rx.port());
     tx.mode_altfn(AltFn::<Usart2Tx>::alt_fn(&tx));
     rx.mode_altfn(AltFn::<Usart2Rx>::alt_fn(&rx));
-    USART2.enable(32_000_000 / 115_200);
-}
 
-pub fn usart2() -> Usart2 {
-     USART2
+    USART2.enable(32_000_000 / 115_200);
 }
