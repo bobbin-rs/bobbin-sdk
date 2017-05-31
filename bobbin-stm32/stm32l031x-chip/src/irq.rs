@@ -16,10 +16,7 @@ pub const IRQ_TIM2: Irq = Irq(15);       // IRQ 15: TIM2 global interrupt
 pub const IRQ_TIM21: Irq = Irq(20);      // IRQ 20: TIMER21 global interrupt
 pub const IRQ_TIM22: Irq = Irq(22);      // IRQ 22: TIMER22 global interrupt
 pub const IRQ_I2C1: Irq = Irq(23);       // IRQ 23: I2C1 global interrupt
-pub const IRQ_I2C2: Irq = Irq(24);       // IRQ 24: I2C2 global interrupt
 pub const IRQ_SPI1: Irq = Irq(25);       // IRQ 25: SPI1_global_interrupt
-pub const IRQ_SPI2: Irq = Irq(26);       // IRQ 26: SPI2 global interrupt
-pub const IRQ_USART1: Irq = Irq(27);     // IRQ 27: USART1 global interrupt
 pub const IRQ_USART2: Irq = Irq(28);     // IRQ 28: USART2 global interrupt
 pub const IRQ_RNG_LPUART1: Irq = Irq(29); // IRQ 29: RNG global interrupt and LPUART1 global interrupt through
 
@@ -63,10 +60,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 30] = [
    None,
    None,                          // IRQ 22: TIMER22 global interrupt
    None,                          // IRQ 23: I2C1 global interrupt
-   None,                          // IRQ 24: I2C2 global interrupt
+   None,
    None,                          // IRQ 25: SPI1_global_interrupt
-   None,                          // IRQ 26: SPI2 global interrupt
-   None,                          // IRQ 27: USART1 global interrupt
+   None,
+   None,
    None,                          // IRQ 28: USART2 global interrupt
    None,                          // IRQ 29: RNG global interrupt and LPUART1 global interrupt through
 ];

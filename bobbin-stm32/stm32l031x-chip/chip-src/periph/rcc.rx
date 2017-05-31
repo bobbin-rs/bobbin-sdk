@@ -546,13 +546,6 @@
             (description "DBG reset")
         )
         (field
-            (name USART1RST)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "USART1 reset")
-            (link (name RST) (peripheral-group USART) (peripheral USART1))
-        )
-        (field
             (name SPI1RST)
             (bit-offset 12)
             (bit-width 1)
@@ -627,13 +620,6 @@
             (description "USB reset")
         )
         (field
-            (name I2C2RST)
-            (bit-offset 22)
-            (bit-width 1)
-            (description "I2C2 reset")
-            (link (name RST) (peripheral-group I2C) (peripheral I2C2))
-        )
-        (field
             (name I2C1RST)
             (bit-offset 21)
             (bit-width 1)
@@ -652,13 +638,6 @@
             (bit-width 1)
             (description "USART2 reset")
             (link (name RST) (peripheral-group USART) (peripheral USART2))
-        )
-        (field
-            (name SPI2RST)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "SPI2 reset")
-            (link (name RST) (peripheral-group SPI) (peripheral SPI2))
         )
         (field
             (name WWDRST)
@@ -773,13 +752,6 @@
             (description "DBG clock enable bit")
         )
         (field
-            (name USART1EN)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "USART1 clock enable bit")
-            (link (name EN) (peripheral-group USART) (peripheral USART1))
-        )
-        (field
             (name SPI1EN)
             (bit-offset 12)
             (bit-width 1)
@@ -860,13 +832,6 @@
             (description "USB clock enable bit")
         )
         (field
-            (name I2C2EN)
-            (bit-offset 22)
-            (bit-width 1)
-            (description "I2C2 clock enable bit")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C2))
-        )
-        (field
             (name I2C1EN)
             (bit-offset 21)
             (bit-width 1)
@@ -885,13 +850,6 @@
             (bit-width 1)
             (description "UART2 clock enable bit")
             (link (name EN) (peripheral-group USART) (peripheral USART2))
-        )
-        (field
-            (name SPI2EN)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "SPI2 clock enable bit")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI2))
         )
         (field
             (name WWDGEN)
@@ -1015,12 +973,6 @@
             (description "DBG clock enable during sleep mode bit")
         )
         (field
-            (name USART1SMEN)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "USART1 clock enable during sleep mode bit")
-        )
-        (field
             (name SPI1SMEN)
             (bit-offset 12)
             (bit-width 1)
@@ -1089,12 +1041,6 @@
             (description "USB clock enable during sleep mode bit")
         )
         (field
-            (name I2C2SMEN)
-            (bit-offset 22)
-            (bit-width 1)
-            (description "I2C2 clock enable during sleep mode bit")
-        )
-        (field
             (name I2C1SMEN)
             (bit-offset 21)
             (bit-width 1)
@@ -1111,12 +1057,6 @@
             (bit-offset 17)
             (bit-width 1)
             (description "UART2 clock enable during sleep mode bit")
-        )
-        (field
-            (name SPI2SMEN)
-            (bit-offset 14)
-            (bit-width 1)
-            (description "SPI2 clock enable during sleep mode bit")
         )
         (field
             (name WWDGSMEN)
@@ -1173,12 +1113,6 @@
             (bit-offset 2)
             (bit-width 2)
             (description "USART2 clock source selection bits")
-        )
-        (field
-            (name USART1SEL)
-            (bit-offset 0)
-            (bit-width 2)
-            (description "USART1 clock source selection bits")
         )
     )
     (register

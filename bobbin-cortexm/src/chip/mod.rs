@@ -1,4 +1,5 @@
 pub mod exc;
+pub mod sig;
 pub mod nvic;
 pub mod scb;
 pub mod systick;

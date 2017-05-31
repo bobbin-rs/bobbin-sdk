@@ -10,6 +10,7 @@ pub use bobbin_cortexm::chip::fpu;
 extern crate stm32_common;
 
 pub mod irq;
+pub mod sig;
 pub mod flash;
 pub mod pwr;
 pub mod rcc;

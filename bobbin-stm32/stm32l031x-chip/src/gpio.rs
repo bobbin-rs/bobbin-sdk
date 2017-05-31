@@ -11,6 +11,7 @@ impl ::core::ops::Deref for Gpioa {
    fn deref(&self) -> &GpioImpl { GPIOA_IMPL_REF }
 }
 
+
 pub const GPIOB: Gpiob = Gpiob {};
 pub const GPIOB_IMPL: GpioImpl = GpioImpl(0x50000400);
 pub const GPIOB_IMPL_REF: &GpioImpl = &GPIOB_IMPL;
@@ -21,6 +22,7 @@ impl ::core::ops::Deref for Gpiob {
    #[inline]
    fn deref(&self) -> &GpioImpl { GPIOB_IMPL_REF }
 }
+
 
 pub const GPIOC: Gpioc = Gpioc {};
 pub const GPIOC_IMPL: GpioImpl = GpioImpl(0x50000800);
@@ -33,6 +35,7 @@ impl ::core::ops::Deref for Gpioc {
    fn deref(&self) -> &GpioImpl { GPIOC_IMPL_REF }
 }
 
+
 pub const GPIOH: Gpioh = Gpioh {};
 pub const GPIOH_IMPL: GpioImpl = GpioImpl(0x50001c00);
 pub const GPIOH_IMPL_REF: &GpioImpl = &GPIOH_IMPL;
@@ -43,6 +46,7 @@ impl ::core::ops::Deref for Gpioh {
    #[inline]
    fn deref(&self) -> &GpioImpl { GPIOH_IMPL_REF }
 }
+
 
 
 pub const PA0: Pa0 = Pa0 {}; 
@@ -65,6 +69,26 @@ impl Pin<Gpioa> for Pa0 {
    fn index(&self) -> usize { 0 }
 }
 
+impl AltFn<super::sig::Lptim1In1> for Pa0 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Tim2Ch1> for Pa0 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Usart2Cts> for Pa0 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim2Etr> for Pa0 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Comp1Out> for Pa0 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
 pub const PA1: Pa1 = Pa1 {}; 
 pub const PA1_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 1 };
 pub const PA1_IMPL_REF: &PinImpl = &PA1_IMPL;
@@ -83,6 +107,30 @@ impl Pin<Gpioa> for Pa1 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In2> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Tim2Ch2> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::I2c1Smba> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Usart2Rts> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim21Etr> for Pa1 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PA2: Pa2 = Pa2 {}; 
@@ -105,6 +153,26 @@ impl Pin<Gpioa> for Pa2 {
    fn index(&self) -> usize { 2 }
 }
 
+impl AltFn<super::sig::Tim21Ch1> for Pa2 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Tim2Ch3> for Pa2 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Usart2Tx> for Pa2 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Lpuart1Tx> for Pa2 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Comp2Out> for Pa2 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
 pub const PA3: Pa3 = Pa3 {}; 
 pub const PA3_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 3 };
 pub const PA3_IMPL_REF: &PinImpl = &PA3_IMPL;
@@ -123,6 +191,22 @@ impl Pin<Gpioa> for Pa3 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Tim21Ch2> for Pa3 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Tim2Ch4> for Pa3 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Usart2Rx> for Pa3 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Lpuart1Rx> for Pa3 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA4: Pa4 = Pa4 {}; 
@@ -145,6 +229,22 @@ impl Pin<Gpioa> for Pa4 {
    fn index(&self) -> usize { 4 }
 }
 
+impl AltFn<super::sig::Spi1Nss> for Pa4 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In1> for Pa4 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Uart2Ck> for Pa4 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim22Etr> for Pa4 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
 pub const PA5: Pa5 = Pa5 {}; 
 pub const PA5_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 5 };
 pub const PA5_IMPL_REF: &PinImpl = &PA5_IMPL;
@@ -163,6 +263,22 @@ impl Pin<Gpioa> for Pa5 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Spi1Sck> for Pa5 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In2> for Pa5 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Tim2Etr> for Pa5 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Tim2Ch1> for Pa5 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PA6: Pa6 = Pa6 {}; 
@@ -185,6 +301,30 @@ impl Pin<Gpioa> for Pa6 {
    fn index(&self) -> usize { 6 }
 }
 
+impl AltFn<super::sig::SpiMiso> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1Etr> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Lpuart1Cts> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim22Ch1> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Comp1Out> for Pa6 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
 pub const PA7: Pa7 = Pa7 {}; 
 pub const PA7_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 7 };
 pub const PA7_IMPL_REF: &PinImpl = &PA7_IMPL;
@@ -203,6 +343,30 @@ impl Pin<Gpioa> for Pa7 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Spi1Mosi> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1Out> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Usart2Cts> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim22Ch2> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Comp2Out> for Pa7 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA8: Pa8 = Pa8 {}; 
@@ -225,6 +389,26 @@ impl Pin<Gpioa> for Pa8 {
    fn index(&self) -> usize { 8 }
 }
 
+impl AltFn<super::sig::Mco> for Pa8 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In1> for Pa8 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa8 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Usart2Ck> for Pa8 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim2Ch1> for Pa8 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
 pub const PA9: Pa9 = Pa9 {}; 
 pub const PA9_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 9 };
 pub const PA9_IMPL_REF: &PinImpl = &PA9_IMPL;
@@ -243,6 +427,22 @@ impl Pin<Gpioa> for Pa9 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 9 }
+}
+
+impl AltFn<super::sig::Mco> for Pa9 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::I2c1Scl> for Pa9 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Usart2Tx> for Pa9 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim22Ch1> for Pa9 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PA10: Pa10 = Pa10 {}; 
@@ -265,6 +465,18 @@ impl Pin<Gpioa> for Pa10 {
    fn index(&self) -> usize { 10 }
 }
 
+impl AltFn<super::sig::I2c1Sda> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Usart2Rx> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim22Ch2> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
 pub const PA11: Pa11 = Pa11 {}; 
 pub const PA11_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 11 };
 pub const PA11_IMPL_REF: &PinImpl = &PA11_IMPL;
@@ -283,6 +495,26 @@ impl Pin<Gpioa> for Pa11 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 11 }
+}
+
+impl AltFn<super::sig::Spi1Mio> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Usart2Cts> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim21Ch2> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Comp1Out> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA12: Pa12 = Pa12 {}; 
@@ -305,6 +537,22 @@ impl Pin<Gpioa> for Pa12 {
    fn index(&self) -> usize { 12 }
 }
 
+impl AltFn<super::sig::Spi1Mosi> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Usart2Rts> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Comp2Out> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
 pub const PA13: Pa13 = Pa13 {}; 
 pub const PA13_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 13 };
 pub const PA13_IMPL_REF: &PinImpl = &PA13_IMPL;
@@ -323,6 +571,18 @@ impl Pin<Gpioa> for Pa13 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 13 }
+}
+
+impl AltFn<super::sig::Swdio> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1Etr> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Lpuart1Rx> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA14: Pa14 = Pa14 {}; 
@@ -345,6 +605,26 @@ impl Pin<Gpioa> for Pa14 {
    fn index(&self) -> usize { 14 }
 }
 
+impl AltFn<super::sig::Swclk> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1Out> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::I2c1Smba> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Usart2Tx> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Lpuart1Tx> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
 pub const PA15: Pa15 = Pa15 {}; 
 pub const PA15_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 15 };
 pub const PA15_IMPL_REF: &PinImpl = &PA15_IMPL;
@@ -363,6 +643,26 @@ impl Pin<Gpioa> for Pa15 {
    fn port(&self) -> Gpioa { GPIOA }
    #[inline]
    fn index(&self) -> usize { 15 }
+}
+
+impl AltFn<super::sig::Spi1Nss> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Tim2Etr> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Eventout> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Usart2Rx> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim2Ch1> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PB0: Pb0 = Pb0 {}; 
@@ -385,6 +685,22 @@ impl Pin<Gpiob> for Pb0 {
    fn index(&self) -> usize { 0 }
 }
 
+impl AltFn<super::sig::Eventout> for Pb0 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Spi1Miso> for Pb0 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Usart2Rts> for Pb0 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim2Ch3> for Pb0 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
 pub const PB1: Pb1 = Pb1 {}; 
 pub const PB1_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 1 };
 pub const PB1_IMPL_REF: &PinImpl = &PB1_IMPL;
@@ -403,6 +719,22 @@ impl Pin<Gpiob> for Pb1 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Usart2Ck> for Pb1 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Spi1Mosi> for Pb1 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Lpuart1Rts> for Pb1 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tim2Ch4> for Pb1 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PB2: Pb2 = Pb2 {}; 
@@ -425,6 +757,10 @@ impl Pin<Gpiob> for Pb2 {
    fn index(&self) -> usize { 2 }
 }
 
+impl AltFn<super::sig::Lptim1Out> for Pb2 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
 pub const PB3: Pb3 = Pb3 {}; 
 pub const PB3_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 3 };
 pub const PB3_IMPL_REF: &PinImpl = &PB3_IMPL;
@@ -443,6 +779,18 @@ impl Pin<Gpiob> for Pb3 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Spi1Sck> for Pb3 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Tim2Ch2> for Pb3 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Eventout> for Pb3 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB4: Pb4 = Pb4 {}; 
@@ -465,6 +813,18 @@ impl Pin<Gpiob> for Pb4 {
    fn index(&self) -> usize { 4 }
 }
 
+impl AltFn<super::sig::Spi1Miso> for Pb4 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Eventout> for Pb4 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Tim22Ch1> for Pb4 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
 pub const PB5: Pb5 = Pb5 {}; 
 pub const PB5_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 5 };
 pub const PB5_IMPL_REF: &PinImpl = &PB5_IMPL;
@@ -483,6 +843,22 @@ impl Pin<Gpiob> for Pb5 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Spi1Mosi> for Pb5 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In1> for Pb5 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::I2c1Smba> for Pb5 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Tim22Ch2> for Pb5 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB6: Pb6 = Pb6 {}; 
@@ -505,6 +881,22 @@ impl Pin<Gpiob> for Pb6 {
    fn index(&self) -> usize { 6 }
 }
 
+impl AltFn<super::sig::Usart2Tx> for Pb6 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::I2c1Scl> for Pb6 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Lptim1Etr> for Pb6 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Tim21Ch1> for Pb6 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
 pub const PB7: Pb7 = Pb7 {}; 
 pub const PB7_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 7 };
 pub const PB7_IMPL_REF: &PinImpl = &PB7_IMPL;
@@ -523,6 +915,18 @@ impl Pin<Gpiob> for Pb7 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Usart2Rx> for Pb7 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::I2c1Sda> for Pb7 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Lptim1In2> for Pb7 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
 pub const PB8: Pb8 = Pb8 {}; 
@@ -545,6 +949,10 @@ impl Pin<Gpiob> for Pb8 {
    fn index(&self) -> usize { 8 }
 }
 
+impl AltFn<super::sig::I2c1Scl> for Pb8 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
 pub const PB9: Pb9 = Pb9 {}; 
 pub const PB9_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 9 };
 pub const PB9_IMPL_REF: &PinImpl = &PB9_IMPL;
@@ -563,6 +971,14 @@ impl Pin<Gpiob> for Pb9 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 9 }
+}
+
+impl AltFn<super::sig::Eventout> for Pb9 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::I2c1Sda> for Pb9 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB10: Pb10 = Pb10 {}; 
@@ -585,6 +1001,14 @@ impl Pin<Gpiob> for Pb10 {
    fn index(&self) -> usize { 10 }
 }
 
+impl AltFn<super::sig::Tim2Ch3> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Lpuart1Tx> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
 pub const PB11: Pb11 = Pb11 {}; 
 pub const PB11_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 11 };
 pub const PB11_IMPL_REF: &PinImpl = &PB11_IMPL;
@@ -603,6 +1027,18 @@ impl Pin<Gpiob> for Pb11 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 11 }
+}
+
+impl AltFn<super::sig::Eventout> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Tim2Ch4> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Lpuart1Rx> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PB12: Pb12 = Pb12 {}; 
@@ -625,6 +1061,14 @@ impl Pin<Gpiob> for Pb12 {
    fn index(&self) -> usize { 12 }
 }
 
+impl AltFn<super::sig::Spi1Nss> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Eventout> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
 pub const PB13: Pb13 = Pb13 {}; 
 pub const PB13_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 13 };
 pub const PB13_IMPL_REF: &PinImpl = &PB13_IMPL;
@@ -643,6 +1087,22 @@ impl Pin<Gpiob> for Pb13 {
    fn port(&self) -> Gpiob { GPIOB }
    #[inline]
    fn index(&self) -> usize { 13 }
+}
+
+impl AltFn<super::sig::SpiSck> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Mco> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Tim21Ch1> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Lpuart1Cts> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PB14: Pb14 = Pb14 {}; 
@@ -665,6 +1125,22 @@ impl Pin<Gpiob> for Pb14 {
    fn index(&self) -> usize { 14 }
 }
 
+impl AltFn<super::sig::Spi1Miso> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::RtcOut> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Tim21Ch2> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Lpuart1Rts> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
 pub const PB15: Pb15 = Pb15 {}; 
 pub const PB15_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 15 };
 pub const PB15_IMPL_REF: &PinImpl = &PB15_IMPL;
@@ -685,6 +1161,14 @@ impl Pin<Gpiob> for Pb15 {
    fn index(&self) -> usize { 15 }
 }
 
+impl AltFn<super::sig::Spi1Mosi> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::RtcRefin> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
 pub const PC0: Pc0 = Pc0 {}; 
 pub const PC0_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 0 };
 pub const PC0_IMPL_REF: &PinImpl = &PC0_IMPL;
@@ -703,6 +1187,18 @@ impl Pin<Gpioc> for Pc0 {
    fn port(&self) -> Gpioc { GPIOC }
    #[inline]
    fn index(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Lptim1In1> for Pc0 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
+impl AltFn<super::sig::Eventout> for Pc0 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
+}
+
+impl AltFn<super::sig::Lpuart1Rx> for Pc0 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PC14: Pc14 = Pc14 {}; 
@@ -783,792 +1279,5 @@ impl Pin<Gpioh> for Ph1 {
    fn port(&self) -> Gpioh { GPIOH }
    #[inline]
    fn index(&self) -> usize { 1 }
-}
-
-pub trait AfLptim1In1 {
-   fn af_lptim1_in1(&self) -> usize;
-}
-
-pub trait AfTim2Ch1 {
-   fn af_tim2_ch1(&self) -> usize;
-}
-
-pub trait AfUsart2Cts {
-   fn af_usart2_cts(&self) -> usize;
-}
-
-pub trait AfTim2Etr {
-   fn af_tim2_etr(&self) -> usize;
-}
-
-pub trait AfComp1Out {
-   fn af_comp1_out(&self) -> usize;
-}
-
-pub trait AfEventout {
-   fn af_eventout(&self) -> usize;
-}
-
-pub trait AfLptim1In2 {
-   fn af_lptim1_in2(&self) -> usize;
-}
-
-pub trait AfTim2Ch2 {
-   fn af_tim2_ch2(&self) -> usize;
-}
-
-pub trait AfI2c1Smba {
-   fn af_i2c1_smba(&self) -> usize;
-}
-
-pub trait AfUsart2Rts {
-   fn af_usart2_rts(&self) -> usize;
-}
-
-pub trait AfTim21Etr {
-   fn af_tim21_etr(&self) -> usize;
-}
-
-pub trait AfTim21Ch1 {
-   fn af_tim21_ch1(&self) -> usize;
-}
-
-pub trait AfTim2Ch3 {
-   fn af_tim2_ch3(&self) -> usize;
-}
-
-pub trait AfUsart2Tx {
-   fn af_usart2_tx(&self) -> usize;
-}
-
-pub trait AfLpuart1Tx {
-   fn af_lpuart1_tx(&self) -> usize;
-}
-
-pub trait AfComp2Out {
-   fn af_comp2_out(&self) -> usize;
-}
-
-pub trait AfTim21Ch2 {
-   fn af_tim21_ch2(&self) -> usize;
-}
-
-pub trait AfTim2Ch4 {
-   fn af_tim2_ch4(&self) -> usize;
-}
-
-pub trait AfUsart2Rx {
-   fn af_usart2_rx(&self) -> usize;
-}
-
-pub trait AfLpuart1Rx {
-   fn af_lpuart1_rx(&self) -> usize;
-}
-
-pub trait AfSpi1Nss {
-   fn af_spi1_nss(&self) -> usize;
-}
-
-pub trait AfUart2Ck {
-   fn af_uart2_ck(&self) -> usize;
-}
-
-pub trait AfTim22Etr {
-   fn af_tim22_etr(&self) -> usize;
-}
-
-pub trait AfSpi1Sck {
-   fn af_spi1_sck(&self) -> usize;
-}
-
-pub trait AfSpiMiso {
-   fn af_spi_miso(&self) -> usize;
-}
-
-pub trait AfLptim1Etr {
-   fn af_lptim1_etr(&self) -> usize;
-}
-
-pub trait AfLpuart1Cts {
-   fn af_lpuart1_cts(&self) -> usize;
-}
-
-pub trait AfTim22Ch1 {
-   fn af_tim22_ch1(&self) -> usize;
-}
-
-pub trait AfSpi1Mosi {
-   fn af_spi1_mosi(&self) -> usize;
-}
-
-pub trait AfLptim1Out {
-   fn af_lptim1_out(&self) -> usize;
-}
-
-pub trait AfTim22Ch2 {
-   fn af_tim22_ch2(&self) -> usize;
-}
-
-pub trait AfMco {
-   fn af_mco(&self) -> usize;
-}
-
-pub trait AfUsart2Ck {
-   fn af_usart2_ck(&self) -> usize;
-}
-
-pub trait AfI2c1Scl {
-   fn af_i2c1_scl(&self) -> usize;
-}
-
-pub trait AfI2c1Sda {
-   fn af_i2c1_sda(&self) -> usize;
-}
-
-pub trait AfSpi1Mio {
-   fn af_spi1_mio(&self) -> usize;
-}
-
-pub trait AfSwdio {
-   fn af_swdio(&self) -> usize;
-}
-
-pub trait AfSwclk {
-   fn af_swclk(&self) -> usize;
-}
-
-pub trait AfSpi1Miso {
-   fn af_spi1_miso(&self) -> usize;
-}
-
-pub trait AfLpuart1Rts {
-   fn af_lpuart1_rts(&self) -> usize;
-}
-
-pub trait AfSpiSck {
-   fn af_spi_sck(&self) -> usize;
-}
-
-pub trait AfRtcOut {
-   fn af_rtc_out(&self) -> usize;
-}
-
-pub trait AfRtcRefin {
-   fn af_rtc_refin(&self) -> usize;
-}
-
-impl AfLptim1In1 for Pa0 {
-   #[inline]
-   fn af_lptim1_in1(&self) -> usize { 1 }
-}
-
-impl AfTim2Ch1 for Pa0 {
-   #[inline]
-   fn af_tim2_ch1(&self) -> usize { 2 }
-}
-
-impl AfUsart2Cts for Pa0 {
-   #[inline]
-   fn af_usart2_cts(&self) -> usize { 4 }
-}
-
-impl AfTim2Etr for Pa0 {
-   #[inline]
-   fn af_tim2_etr(&self) -> usize { 5 }
-}
-
-impl AfComp1Out for Pa0 {
-   #[inline]
-   fn af_comp1_out(&self) -> usize { 7 }
-}
-
-impl AfEventout for Pa1 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 0 }
-}
-
-impl AfLptim1In2 for Pa1 {
-   #[inline]
-   fn af_lptim1_in2(&self) -> usize { 1 }
-}
-
-impl AfTim2Ch2 for Pa1 {
-   #[inline]
-   fn af_tim2_ch2(&self) -> usize { 2 }
-}
-
-impl AfI2c1Smba for Pa1 {
-   #[inline]
-   fn af_i2c1_smba(&self) -> usize { 3 }
-}
-
-impl AfUsart2Rts for Pa1 {
-   #[inline]
-   fn af_usart2_rts(&self) -> usize { 4 }
-}
-
-impl AfTim21Etr for Pa1 {
-   #[inline]
-   fn af_tim21_etr(&self) -> usize { 5 }
-}
-
-impl AfTim21Ch1 for Pa2 {
-   #[inline]
-   fn af_tim21_ch1(&self) -> usize { 0 }
-}
-
-impl AfTim2Ch3 for Pa2 {
-   #[inline]
-   fn af_tim2_ch3(&self) -> usize { 2 }
-}
-
-impl AfUsart2Tx for Pa2 {
-   #[inline]
-   fn af_usart2_tx(&self) -> usize { 4 }
-}
-
-impl AfLpuart1Tx for Pa2 {
-   #[inline]
-   fn af_lpuart1_tx(&self) -> usize { 6 }
-}
-
-impl AfComp2Out for Pa2 {
-   #[inline]
-   fn af_comp2_out(&self) -> usize { 7 }
-}
-
-impl AfTim21Ch2 for Pa3 {
-   #[inline]
-   fn af_tim21_ch2(&self) -> usize { 0 }
-}
-
-impl AfTim2Ch4 for Pa3 {
-   #[inline]
-   fn af_tim2_ch4(&self) -> usize { 2 }
-}
-
-impl AfUsart2Rx for Pa3 {
-   #[inline]
-   fn af_usart2_rx(&self) -> usize { 4 }
-}
-
-impl AfLpuart1Rx for Pa3 {
-   #[inline]
-   fn af_lpuart1_rx(&self) -> usize { 6 }
-}
-
-impl AfSpi1Nss for Pa4 {
-   #[inline]
-   fn af_spi1_nss(&self) -> usize { 0 }
-}
-
-impl AfLptim1In1 for Pa4 {
-   #[inline]
-   fn af_lptim1_in1(&self) -> usize { 1 }
-}
-
-impl AfUart2Ck for Pa4 {
-   #[inline]
-   fn af_uart2_ck(&self) -> usize { 4 }
-}
-
-impl AfTim22Etr for Pa4 {
-   #[inline]
-   fn af_tim22_etr(&self) -> usize { 5 }
-}
-
-impl AfSpi1Sck for Pa5 {
-   #[inline]
-   fn af_spi1_sck(&self) -> usize { 0 }
-}
-
-impl AfLptim1In2 for Pa5 {
-   #[inline]
-   fn af_lptim1_in2(&self) -> usize { 1 }
-}
-
-impl AfTim2Etr for Pa5 {
-   #[inline]
-   fn af_tim2_etr(&self) -> usize { 3 }
-}
-
-impl AfTim2Ch1 for Pa5 {
-   #[inline]
-   fn af_tim2_ch1(&self) -> usize { 5 }
-}
-
-impl AfSpiMiso for Pa6 {
-   #[inline]
-   fn af_spi_miso(&self) -> usize { 0 }
-}
-
-impl AfLptim1Etr for Pa6 {
-   #[inline]
-   fn af_lptim1_etr(&self) -> usize { 1 }
-}
-
-impl AfLpuart1Cts for Pa6 {
-   #[inline]
-   fn af_lpuart1_cts(&self) -> usize { 4 }
-}
-
-impl AfTim22Ch1 for Pa6 {
-   #[inline]
-   fn af_tim22_ch1(&self) -> usize { 5 }
-}
-
-impl AfEventout for Pa6 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 6 }
-}
-
-impl AfComp1Out for Pa6 {
-   #[inline]
-   fn af_comp1_out(&self) -> usize { 7 }
-}
-
-impl AfSpi1Mosi for Pa7 {
-   #[inline]
-   fn af_spi1_mosi(&self) -> usize { 0 }
-}
-
-impl AfLptim1Out for Pa7 {
-   #[inline]
-   fn af_lptim1_out(&self) -> usize { 1 }
-}
-
-impl AfUsart2Cts for Pa7 {
-   #[inline]
-   fn af_usart2_cts(&self) -> usize { 4 }
-}
-
-impl AfTim22Ch2 for Pa7 {
-   #[inline]
-   fn af_tim22_ch2(&self) -> usize { 5 }
-}
-
-impl AfEventout for Pa7 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 6 }
-}
-
-impl AfComp2Out for Pa7 {
-   #[inline]
-   fn af_comp2_out(&self) -> usize { 7 }
-}
-
-impl AfMco for Pa8 {
-   #[inline]
-   fn af_mco(&self) -> usize { 0 }
-}
-
-impl AfLptim1In1 for Pa8 {
-   #[inline]
-   fn af_lptim1_in1(&self) -> usize { 2 }
-}
-
-impl AfEventout for Pa8 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 3 }
-}
-
-impl AfUsart2Ck for Pa8 {
-   #[inline]
-   fn af_usart2_ck(&self) -> usize { 4 }
-}
-
-impl AfTim2Ch1 for Pa8 {
-   #[inline]
-   fn af_tim2_ch1(&self) -> usize { 5 }
-}
-
-impl AfMco for Pa9 {
-   #[inline]
-   fn af_mco(&self) -> usize { 0 }
-}
-
-impl AfI2c1Scl for Pa9 {
-   #[inline]
-   fn af_i2c1_scl(&self) -> usize { 1 }
-}
-
-impl AfUsart2Tx for Pa9 {
-   #[inline]
-   fn af_usart2_tx(&self) -> usize { 4 }
-}
-
-impl AfTim22Ch1 for Pa9 {
-   #[inline]
-   fn af_tim22_ch1(&self) -> usize { 5 }
-}
-
-impl AfI2c1Sda for Pa10 {
-   #[inline]
-   fn af_i2c1_sda(&self) -> usize { 1 }
-}
-
-impl AfUsart2Rx for Pa10 {
-   #[inline]
-   fn af_usart2_rx(&self) -> usize { 4 }
-}
-
-impl AfTim22Ch2 for Pa10 {
-   #[inline]
-   fn af_tim22_ch2(&self) -> usize { 5 }
-}
-
-impl AfSpi1Mio for Pa11 {
-   #[inline]
-   fn af_spi1_mio(&self) -> usize { 0 }
-}
-
-impl AfEventout for Pa11 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 2 }
-}
-
-impl AfUsart2Cts for Pa11 {
-   #[inline]
-   fn af_usart2_cts(&self) -> usize { 4 }
-}
-
-impl AfTim21Ch2 for Pa11 {
-   #[inline]
-   fn af_tim21_ch2(&self) -> usize { 5 }
-}
-
-impl AfComp1Out for Pa11 {
-   #[inline]
-   fn af_comp1_out(&self) -> usize { 7 }
-}
-
-impl AfSpi1Mosi for Pa12 {
-   #[inline]
-   fn af_spi1_mosi(&self) -> usize { 0 }
-}
-
-impl AfEventout for Pa12 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 2 }
-}
-
-impl AfUsart2Rts for Pa12 {
-   #[inline]
-   fn af_usart2_rts(&self) -> usize { 4 }
-}
-
-impl AfComp2Out for Pa12 {
-   #[inline]
-   fn af_comp2_out(&self) -> usize { 7 }
-}
-
-impl AfSwdio for Pa13 {
-   #[inline]
-   fn af_swdio(&self) -> usize { 0 }
-}
-
-impl AfLptim1Etr for Pa13 {
-   #[inline]
-   fn af_lptim1_etr(&self) -> usize { 1 }
-}
-
-impl AfLpuart1Rx for Pa13 {
-   #[inline]
-   fn af_lpuart1_rx(&self) -> usize { 6 }
-}
-
-impl AfSwclk for Pa14 {
-   #[inline]
-   fn af_swclk(&self) -> usize { 0 }
-}
-
-impl AfLptim1Out for Pa14 {
-   #[inline]
-   fn af_lptim1_out(&self) -> usize { 1 }
-}
-
-impl AfI2c1Smba for Pa14 {
-   #[inline]
-   fn af_i2c1_smba(&self) -> usize { 3 }
-}
-
-impl AfUsart2Tx for Pa14 {
-   #[inline]
-   fn af_usart2_tx(&self) -> usize { 4 }
-}
-
-impl AfLpuart1Tx for Pa14 {
-   #[inline]
-   fn af_lpuart1_tx(&self) -> usize { 6 }
-}
-
-impl AfSpi1Nss for Pa15 {
-   #[inline]
-   fn af_spi1_nss(&self) -> usize { 0 }
-}
-
-impl AfTim2Etr for Pa15 {
-   #[inline]
-   fn af_tim2_etr(&self) -> usize { 2 }
-}
-
-impl AfEventout for Pa15 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 3 }
-}
-
-impl AfUsart2Rx for Pa15 {
-   #[inline]
-   fn af_usart2_rx(&self) -> usize { 4 }
-}
-
-impl AfTim2Ch1 for Pa15 {
-   #[inline]
-   fn af_tim2_ch1(&self) -> usize { 5 }
-}
-
-impl AfEventout for Pb0 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 0 }
-}
-
-impl AfSpi1Miso for Pb0 {
-   #[inline]
-   fn af_spi1_miso(&self) -> usize { 1 }
-}
-
-impl AfUsart2Rts for Pb0 {
-   #[inline]
-   fn af_usart2_rts(&self) -> usize { 4 }
-}
-
-impl AfTim2Ch3 for Pb0 {
-   #[inline]
-   fn af_tim2_ch3(&self) -> usize { 5 }
-}
-
-impl AfUsart2Ck for Pb1 {
-   #[inline]
-   fn af_usart2_ck(&self) -> usize { 0 }
-}
-
-impl AfSpi1Mosi for Pb1 {
-   #[inline]
-   fn af_spi1_mosi(&self) -> usize { 1 }
-}
-
-impl AfLpuart1Rts for Pb1 {
-   #[inline]
-   fn af_lpuart1_rts(&self) -> usize { 4 }
-}
-
-impl AfTim2Ch4 for Pb1 {
-   #[inline]
-   fn af_tim2_ch4(&self) -> usize { 5 }
-}
-
-impl AfLptim1Out for Pb2 {
-   #[inline]
-   fn af_lptim1_out(&self) -> usize { 2 }
-}
-
-impl AfSpi1Sck for Pb3 {
-   #[inline]
-   fn af_spi1_sck(&self) -> usize { 0 }
-}
-
-impl AfTim2Ch2 for Pb3 {
-   #[inline]
-   fn af_tim2_ch2(&self) -> usize { 2 }
-}
-
-impl AfEventout for Pb3 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 4 }
-}
-
-impl AfSpi1Miso for Pb4 {
-   #[inline]
-   fn af_spi1_miso(&self) -> usize { 0 }
-}
-
-impl AfEventout for Pb4 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 2 }
-}
-
-impl AfTim22Ch1 for Pb4 {
-   #[inline]
-   fn af_tim22_ch1(&self) -> usize { 4 }
-}
-
-impl AfSpi1Mosi for Pb5 {
-   #[inline]
-   fn af_spi1_mosi(&self) -> usize { 0 }
-}
-
-impl AfLptim1In1 for Pb5 {
-   #[inline]
-   fn af_lptim1_in1(&self) -> usize { 2 }
-}
-
-impl AfI2c1Smba for Pb5 {
-   #[inline]
-   fn af_i2c1_smba(&self) -> usize { 3 }
-}
-
-impl AfTim22Ch2 for Pb5 {
-   #[inline]
-   fn af_tim22_ch2(&self) -> usize { 4 }
-}
-
-impl AfUsart2Tx for Pb6 {
-   #[inline]
-   fn af_usart2_tx(&self) -> usize { 0 }
-}
-
-impl AfI2c1Scl for Pb6 {
-   #[inline]
-   fn af_i2c1_scl(&self) -> usize { 1 }
-}
-
-impl AfLptim1Etr for Pb6 {
-   #[inline]
-   fn af_lptim1_etr(&self) -> usize { 2 }
-}
-
-impl AfTim21Ch1 for Pb6 {
-   #[inline]
-   fn af_tim21_ch1(&self) -> usize { 5 }
-}
-
-impl AfUsart2Rx for Pb7 {
-   #[inline]
-   fn af_usart2_rx(&self) -> usize { 0 }
-}
-
-impl AfI2c1Sda for Pb7 {
-   #[inline]
-   fn af_i2c1_sda(&self) -> usize { 1 }
-}
-
-impl AfLptim1In2 for Pb7 {
-   #[inline]
-   fn af_lptim1_in2(&self) -> usize { 2 }
-}
-
-impl AfI2c1Scl for Pb8 {
-   #[inline]
-   fn af_i2c1_scl(&self) -> usize { 4 }
-}
-
-impl AfEventout for Pb9 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 2 }
-}
-
-impl AfI2c1Sda for Pb9 {
-   #[inline]
-   fn af_i2c1_sda(&self) -> usize { 4 }
-}
-
-impl AfTim2Ch3 for Pb10 {
-   #[inline]
-   fn af_tim2_ch3(&self) -> usize { 2 }
-}
-
-impl AfLpuart1Tx for Pb10 {
-   #[inline]
-   fn af_lpuart1_tx(&self) -> usize { 6 }
-}
-
-impl AfEventout for Pb11 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 0 }
-}
-
-impl AfTim2Ch4 for Pb11 {
-   #[inline]
-   fn af_tim2_ch4(&self) -> usize { 2 }
-}
-
-impl AfLpuart1Rx for Pb11 {
-   #[inline]
-   fn af_lpuart1_rx(&self) -> usize { 6 }
-}
-
-impl AfSpi1Nss for Pb12 {
-   #[inline]
-   fn af_spi1_nss(&self) -> usize { 0 }
-}
-
-impl AfEventout for Pb12 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 6 }
-}
-
-impl AfSpiSck for Pb13 {
-   #[inline]
-   fn af_spi_sck(&self) -> usize { 0 }
-}
-
-impl AfMco for Pb13 {
-   #[inline]
-   fn af_mco(&self) -> usize { 1 }
-}
-
-impl AfTim21Ch1 for Pb13 {
-   #[inline]
-   fn af_tim21_ch1(&self) -> usize { 5 }
-}
-
-impl AfLpuart1Cts for Pb13 {
-   #[inline]
-   fn af_lpuart1_cts(&self) -> usize { 6 }
-}
-
-impl AfSpi1Miso for Pb14 {
-   #[inline]
-   fn af_spi1_miso(&self) -> usize { 0 }
-}
-
-impl AfRtcOut for Pb14 {
-   #[inline]
-   fn af_rtc_out(&self) -> usize { 2 }
-}
-
-impl AfTim21Ch2 for Pb14 {
-   #[inline]
-   fn af_tim21_ch2(&self) -> usize { 5 }
-}
-
-impl AfLpuart1Rts for Pb14 {
-   #[inline]
-   fn af_lpuart1_rts(&self) -> usize { 6 }
-}
-
-impl AfSpi1Mosi for Pb15 {
-   #[inline]
-   fn af_spi1_mosi(&self) -> usize { 0 }
-}
-
-impl AfRtcRefin for Pb15 {
-   #[inline]
-   fn af_rtc_refin(&self) -> usize { 2 }
-}
-
-impl AfLptim1In1 for Pc0 {
-   #[inline]
-   fn af_lptim1_in1(&self) -> usize { 0 }
-}
-
-impl AfEventout for Pc0 {
-   #[inline]
-   fn af_eventout(&self) -> usize { 2 }
-}
-
-impl AfLpuart1Rx for Pc0 {
-   #[inline]
-   fn af_lpuart1_rx(&self) -> usize { 6 }
 }
 

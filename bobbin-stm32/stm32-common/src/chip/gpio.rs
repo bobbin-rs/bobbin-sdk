@@ -834,3 +834,7 @@ pub trait Pin<T> {
    fn index(&self) -> usize;
 }
 
+pub trait AltFn<T> {
+   fn alt_fn(&self) -> usize;
+}
+

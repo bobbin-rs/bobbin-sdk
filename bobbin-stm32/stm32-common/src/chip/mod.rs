@@ -1,3 +1,4 @@
+pub mod sig;
 pub mod gpio;
 pub mod usart;
 pub mod tim_bas;

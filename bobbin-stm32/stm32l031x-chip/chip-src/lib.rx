@@ -46,21 +46,15 @@
         (peripheral 
             (name I2C1)
             (address 0x40005400)
+            (signal (name I2C1_SMBA) (type SMBA))
+            (signal (name I2C1_SCL) (type SCL))
+            (signal (name I2C1_SDA) (type SDA))
             (interrupt
                 (name I2C1)
                 (value 23)
                 (description "I2C1 global interrupt")
             )
-        )        
-        (peripheral
-            (name I2C2)
-            (address 0x40005800)
-            (interrupt
-                (name I2C2)
-                (value 24)
-                (description "I2C2 global interrupt")
-            )
-        )        
+        )         
     )
 
     (peripheral-group
@@ -70,6 +64,11 @@
             (name TIM2)
             (address 0x40000000)
             (description "General purpose timer")
+            (signal (name TIM2_CH1) (type CH1))
+            (signal (name TIM2_CH2) (type CH2))
+            (signal (name TIM2_CH3) (type CH3))
+            (signal (name TIM2_CH4) (type CH4))
+            (signal (name TIM2_ETR) (type ETR))
             (interrupt
                 (name TIM2)
                 (value 15)
@@ -80,6 +79,9 @@
             (name TIM21)
             (address 0x40010800)
             (description "General-purpose-timers")
+            (signal (name TIM21_CH1) (type CH1))
+            (signal (name TIM21_CH2) (type CH2))
+            (signal (name TIM21_ETR) (type ETR))
             (interrupt
                 (name TIM21)
                 (value 20)
@@ -90,6 +92,9 @@
             (name TIM22)
             (address 0x40011400)
             (description "General-purpose-timers")
+            (signal (name TIM22_CH1) (type CH1))
+            (signal (name TIM22_CH2) (type CH2))
+            (signal (name TIM22_ETR) (type ETR))
             (interrupt
                 (name TIM22)
                 (value 22)
@@ -316,18 +321,14 @@
     (peripheral-group
         (name USART)
         (module (name stm32_common::chip::usart::*))
-        (peripheral 
-            (name USART1)
-            (address 0x40013800)
-            (interrupt
-                (name USART1)
-                (value 27)
-                (description "USART1 global interrupt")
-            )            
-        )
         (peripheral
             (name USART2)
             (address 0x40004400)
+            (signal (name USART2_TX) (type TX))
+            (signal (name USART2_RX) (type RX))
+            (signal (name USART2_CTS) (type CTS))
+            (signal (name USART2_RTS) (type RTS))
+            (signal (name USART2_CK) (type CK))            
             (interrupt
                 (name USART2)
                 (value 28)
@@ -342,6 +343,10 @@
         (peripheral 
             (name LPUSART1)
             (address 0x40004800)   
+            (signal (name LPUART1_TX) (type TX))
+            (signal (name LPUART1_RX) (type RX))
+            (signal (name LPUART1_CTS) (type CTS))
+            (signal (name LPUART1_RTS) (type RTS))
         )        
     )    
 
@@ -351,19 +356,14 @@
         (peripheral 
             (name SPI1)
             (address 0x40013000)
+            (signal (name SPI1_NSS) (type NSS))
+            (signal (name SPI1_MISO) (type MISO))
+            (signal (name SPI1_MOSI) (type MOSI))
+            (signal (name SPI1_SCK) (type SCK))
             (interrupt
                 (name SPI1)
                 (value 25)
                 (description "SPI1_global_interrupt")
-            )
-        )
-        (peripheral
-            (name SPI2)
-            (address 0x40003800)
-            (interrupt
-                (name SPI2)
-                (value 26)
-                (description "SPI2 global interrupt")
             )
         )
     )    

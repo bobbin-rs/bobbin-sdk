@@ -9,16 +9,10 @@ impl ::core::ops::Deref for Spi1 {
    fn deref(&self) -> &SpiImpl { SPI1_IMPL_REF }
 }
 
-pub const SPI2: Spi2 = Spi2 {};
-pub const SPI2_IMPL: SpiImpl = SpiImpl(0x40003800);
-pub const SPI2_IMPL_REF: &SpiImpl = &SPI2_IMPL;
-
-pub struct Spi2 {}
-impl ::core::ops::Deref for Spi2 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI2_IMPL_REF }
-}
+impl super::sig::Signal<super::sig::Spi1Nss> for Spi1 {}
+impl super::sig::Signal<super::sig::Spi1Miso> for Spi1 {}
+impl super::sig::Signal<super::sig::Spi1Mosi> for Spi1 {}
+impl super::sig::Signal<super::sig::Spi1Sck> for Spi1 {}
 
 
 #[derive(Clone, Copy, PartialEq, Eq)]

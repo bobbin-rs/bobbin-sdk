@@ -1593,18 +1593,6 @@ impl Apb2rstr {
   }
 
   #[inline]
-  pub fn usart1rst(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_usart1rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline]
   pub fn spi1rst(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
@@ -1674,7 +1662,6 @@ impl ::core::fmt::Debug for Apb2rstr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.dbgrst() != 0 { try!(write!(f, " dbgrst"))}
-      if self.usart1rst() != 0 { try!(write!(f, " usart1rst"))}
       if self.spi1rst() != 0 { try!(write!(f, " spi1rst"))}
       if self.adcrst() != 0 { try!(write!(f, " adcrst"))}
       if self.tm12rst() != 0 { try!(write!(f, " tm12rst"))}
@@ -1748,18 +1735,6 @@ impl Apb1rstr {
   }
 
   #[inline]
-  pub fn i2c2rst(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-  #[inline]
-  pub fn set_i2c2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-  #[inline]
   pub fn i2c1rst(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
@@ -1792,18 +1767,6 @@ impl Apb1rstr {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
-     self
-  }
-
-  #[inline]
-  pub fn spi2rst(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_spi2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
      self
   }
 
@@ -1857,11 +1820,9 @@ impl ::core::fmt::Debug for Apb1rstr {
       if self.pwrrst() != 0 { try!(write!(f, " pwrrst"))}
       if self.crsrst() != 0 { try!(write!(f, " crsrst"))}
       if self.usbrst() != 0 { try!(write!(f, " usbrst"))}
-      if self.i2c2rst() != 0 { try!(write!(f, " i2c2rst"))}
       if self.i2c1rst() != 0 { try!(write!(f, " i2c1rst"))}
       if self.lpuart1rst() != 0 { try!(write!(f, " lpuart1rst"))}
       if self.usart2rst() != 0 { try!(write!(f, " usart2rst"))}
-      if self.spi2rst() != 0 { try!(write!(f, " spi2rst"))}
       if self.wwdrst() != 0 { try!(write!(f, " wwdrst"))}
       if self.tim6rst() != 0 { try!(write!(f, " tim6rst"))}
       if self.tim2rst() != 0 { try!(write!(f, " tim2rst"))}
@@ -2047,18 +2008,6 @@ impl Apb2enr {
   }
 
   #[inline]
-  pub fn usart1en(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_usart1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline]
   pub fn spi1en(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
@@ -2140,7 +2089,6 @@ impl ::core::fmt::Debug for Apb2enr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.dbgen() != 0 { try!(write!(f, " dbgen"))}
-      if self.usart1en() != 0 { try!(write!(f, " usart1en"))}
       if self.spi1en() != 0 { try!(write!(f, " spi1en"))}
       if self.adcen() != 0 { try!(write!(f, " adcen"))}
       if self.mifien() != 0 { try!(write!(f, " mifien"))}
@@ -2215,18 +2163,6 @@ impl Apb1enr {
   }
 
   #[inline]
-  pub fn i2c2en(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-  #[inline]
-  pub fn set_i2c2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-  #[inline]
   pub fn i2c1en(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
@@ -2259,18 +2195,6 @@ impl Apb1enr {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
-     self
-  }
-
-  #[inline]
-  pub fn spi2en(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_spi2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
      self
   }
 
@@ -2324,11 +2248,9 @@ impl ::core::fmt::Debug for Apb1enr {
       if self.pwren() != 0 { try!(write!(f, " pwren"))}
       if self.crsen() != 0 { try!(write!(f, " crsen"))}
       if self.usben() != 0 { try!(write!(f, " usben"))}
-      if self.i2c2en() != 0 { try!(write!(f, " i2c2en"))}
       if self.i2c1en() != 0 { try!(write!(f, " i2c1en"))}
       if self.lpuart1en() != 0 { try!(write!(f, " lpuart1en"))}
       if self.usart2en() != 0 { try!(write!(f, " usart2en"))}
-      if self.spi2en() != 0 { try!(write!(f, " spi2en"))}
       if self.wwdgen() != 0 { try!(write!(f, " wwdgen"))}
       if self.tim6en() != 0 { try!(write!(f, " tim6en"))}
       if self.tim2en() != 0 { try!(write!(f, " tim2en"))}
@@ -2540,18 +2462,6 @@ impl Apb2smenr {
   }
 
   #[inline]
-  pub fn usart1smen(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_usart1smen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline]
   pub fn spi1smen(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
@@ -2621,7 +2531,6 @@ impl ::core::fmt::Debug for Apb2smenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.dbgsmen() != 0 { try!(write!(f, " dbgsmen"))}
-      if self.usart1smen() != 0 { try!(write!(f, " usart1smen"))}
       if self.spi1smen() != 0 { try!(write!(f, " spi1smen"))}
       if self.adcsmen() != 0 { try!(write!(f, " adcsmen"))}
       if self.tim22smen() != 0 { try!(write!(f, " tim22smen"))}
@@ -2695,18 +2604,6 @@ impl Apb1smenr {
   }
 
   #[inline]
-  pub fn i2c2smen(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-  #[inline]
-  pub fn set_i2c2smen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-  #[inline]
   pub fn i2c1smen(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
@@ -2739,18 +2636,6 @@ impl Apb1smenr {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
-     self
-  }
-
-  #[inline]
-  pub fn spi2smen(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline]
-  pub fn set_spi2smen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
      self
   }
 
@@ -2804,11 +2689,9 @@ impl ::core::fmt::Debug for Apb1smenr {
       if self.pwrsmen() != 0 { try!(write!(f, " pwrsmen"))}
       if self.crssmen() != 0 { try!(write!(f, " crssmen"))}
       if self.usbsmen() != 0 { try!(write!(f, " usbsmen"))}
-      if self.i2c2smen() != 0 { try!(write!(f, " i2c2smen"))}
       if self.i2c1smen() != 0 { try!(write!(f, " i2c1smen"))}
       if self.lpuart1smen() != 0 { try!(write!(f, " lpuart1smen"))}
       if self.usart2smen() != 0 { try!(write!(f, " usart2smen"))}
-      if self.spi2smen() != 0 { try!(write!(f, " spi2smen"))}
       if self.wwdgsmen() != 0 { try!(write!(f, " wwdgsmen"))}
       if self.tim6smen() != 0 { try!(write!(f, " tim6smen"))}
       if self.tim2smen() != 0 { try!(write!(f, " tim2smen"))}
@@ -2879,18 +2762,6 @@ impl Ccipr {
      self
   }
 
-  #[inline]
-  pub fn usart1sel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline]
-  pub fn set_usart1sel(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
 }
 impl ::core::fmt::Display for Ccipr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -2905,7 +2776,6 @@ impl ::core::fmt::Debug for Ccipr {
       if self.i2c1sel() != 0 { try!(write!(f, " i2c1sel=0x{:x}", self.i2c1sel()))}
       if self.lpuart1sel() != 0 { try!(write!(f, " lpuart1sel=0x{:x}", self.lpuart1sel()))}
       if self.usart2sel() != 0 { try!(write!(f, " usart2sel=0x{:x}", self.usart2sel()))}
-      if self.usart1sel() != 0 { try!(write!(f, " usart1sel=0x{:x}", self.usart1sel()))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3254,13 +3124,6 @@ impl Rst for super::dma::Dma {
    fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_dmarst(value)); }
 }
 
-impl Rst for super::usart::Usart1 {
-   #[inline]
-   fn rst(&self) -> u32 { RCC.apb2rstr().usart1rst() }
-   #[inline]
-   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_usart1rst(value)); }
-}
-
 impl Rst for super::spi::Spi1 {
    #[inline]
    fn rst(&self) -> u32 { RCC.apb2rstr().spi1rst() }
@@ -3303,13 +3166,6 @@ impl Rst for super::pwr::Pwr {
    fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_pwrrst(value)); }
 }
 
-impl Rst for super::i2c::I2c2 {
-   #[inline]
-   fn rst(&self) -> u32 { RCC.apb1rstr().i2c2rst() }
-   #[inline]
-   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_i2c2rst(value)); }
-}
-
 impl Rst for super::i2c::I2c1 {
    #[inline]
    fn rst(&self) -> u32 { RCC.apb1rstr().i2c1rst() }
@@ -3322,13 +3178,6 @@ impl Rst for super::usart::Usart2 {
    fn rst(&self) -> u32 { RCC.apb1rstr().usart2rst() }
    #[inline]
    fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_usart2rst(value)); }
-}
-
-impl Rst for super::spi::Spi2 {
-   #[inline]
-   fn rst(&self) -> u32 { RCC.apb1rstr().spi2rst() }
-   #[inline]
-   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_spi2rst(value)); }
 }
 
 impl Rst for super::wwdg::Wwdg {
@@ -3387,13 +3236,6 @@ impl En for super::dma::Dma {
    fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_dmaen(value)); }
 }
 
-impl En for super::usart::Usart1 {
-   #[inline]
-   fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
-   #[inline]
-   fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
-}
-
 impl En for super::spi::Spi1 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb2enr().spi1en() }
@@ -3436,13 +3278,6 @@ impl En for super::pwr::Pwr {
    fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_pwren(value)); }
 }
 
-impl En for super::i2c::I2c2 {
-   #[inline]
-   fn en(&self) -> u32 { RCC.apb1enr().i2c2en() }
-   #[inline]
-   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c2en(value)); }
-}
-
 impl En for super::i2c::I2c1 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb1enr().i2c1en() }
@@ -3455,13 +3290,6 @@ impl En for super::usart::Usart2 {
    fn en(&self) -> u32 { RCC.apb1enr().usart2en() }
    #[inline]
    fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
-}
-
-impl En for super::spi::Spi2 {
-   #[inline]
-   fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
-   #[inline]
-   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
 }
 
 impl En for super::wwdg::Wwdg {

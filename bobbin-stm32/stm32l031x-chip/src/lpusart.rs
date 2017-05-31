@@ -9,6 +9,11 @@ impl ::core::ops::Deref for Lpusart1 {
    fn deref(&self) -> &LpusartImpl { LPUSART1_IMPL_REF }
 }
 
+impl super::sig::Signal<super::sig::Lpuart1Tx> for Lpusart1 {}
+impl super::sig::Signal<super::sig::Lpuart1Rx> for Lpusart1 {}
+impl super::sig::Signal<super::sig::Lpuart1Cts> for Lpusart1 {}
+impl super::sig::Signal<super::sig::Lpuart1Rts> for Lpusart1 {}
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct LpusartImpl(pub u32);
