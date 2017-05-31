@@ -2,41 +2,99 @@ pub const DBG: Dbg = Dbg(0xe0042000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub u32);
-
 impl Dbg {
-  pub unsafe fn idcode(&self) -> Idcode { 
-     Idcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn idcode_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
+  }
+  #[inline]
+  pub fn idcode_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
+  }
+  #[inline]
+  pub fn idcode(&self) -> Idcode { 
+     unsafe {
+       Idcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
   }
 
-  pub unsafe fn cr(&self) -> Cr { 
-     Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn cr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
   }
-  pub unsafe fn set_cr(&mut self, value: Cr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn cr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
   }
-  pub unsafe fn with_cr<F: FnOnce(Cr) -> Cr>(&mut self, f: F) {
+  #[inline]
+  pub fn cr(&self) -> Cr { 
+     unsafe {
+       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_cr(&self, value: Cr) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Dbg {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
-  pub unsafe fn apb1_fz(&self) -> Apb1Fz { 
-     Apb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn apb1_fz_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_apb1_fz(&mut self, value: Apb1Fz) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn apb1_fz_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&mut self, f: F) {
+  #[inline]
+  pub fn apb1_fz(&self) -> Apb1Fz { 
+     unsafe {
+       Apb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Dbg {
      let tmp = self.apb1_fz();
      self.set_apb1_fz(f(tmp))
   }
 
-  pub unsafe fn apb2_fz(&self) -> Apb2Fz { 
-     Apb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn apb2_fz_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_apb2_fz(&mut self, value: Apb2Fz) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn apb2_fz_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&mut self, f: F) {
+  #[inline]
+  pub fn apb2_fz(&self) -> Apb2Fz { 
+     unsafe {
+       Apb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Dbg {
      let tmp = self.apb2_fz();
      self.set_apb2_fz(f(tmp))
   }
@@ -45,11 +103,12 @@ impl Dbg {
 
 #[derive(PartialEq, Eq)]
 pub struct Idcode(pub u32);
-
 impl Idcode {
+  #[inline]
   pub fn dev_id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dev_id(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -57,9 +116,11 @@ impl Idcode {
      self
   }
 
+  #[inline]
   pub fn rev_id(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+  #[inline]
   pub fn set_rev_id(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -68,13 +129,11 @@ impl Idcode {
   }
 
 }
-
 impl ::core::fmt::Display for Idcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Idcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -84,14 +143,14 @@ impl ::core::fmt::Debug for Idcode {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
-
 impl Cr {
+  #[inline]
   pub fn sleep(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_sleep(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -99,9 +158,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -109,9 +170,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn standby(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_standby(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -119,9 +182,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn trace_ioen(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_trace_ioen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -129,9 +194,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn trace_mode(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+  #[inline]
   pub fn set_trace_mode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -139,9 +206,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn i2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_i2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -149,9 +218,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -159,9 +230,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -169,9 +242,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+  #[inline]
   pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -179,9 +254,11 @@ impl Cr {
      self
   }
 
+  #[inline]
   pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+  #[inline]
   pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -190,13 +267,11 @@ impl Cr {
   }
 
 }
-
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -214,14 +289,14 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Apb1Fz(pub u32);
-
 impl Apb1Fz {
+  #[inline]
   pub fn tim2_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_tim2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -229,9 +304,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim3_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_tim3_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -239,9 +316,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim4_stop(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_tim4_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -249,9 +328,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -259,9 +340,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -269,9 +352,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -279,9 +364,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim12_stop(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_tim12_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -289,9 +376,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim13_stop(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_tim13_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -299,9 +388,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn tim14_stop(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_tim14_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -309,9 +400,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn wwdg_stop(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_wwdg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -319,9 +412,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn iwdeg_stop(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+  #[inline]
   pub fn set_iwdeg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -329,9 +424,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn j2c1_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+  #[inline]
   pub fn set_j2c1_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -339,9 +436,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn j2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+  #[inline]
   pub fn set_j2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -349,9 +448,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn j2c3smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+  #[inline]
   pub fn set_j2c3smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -359,9 +460,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn can1_stop(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+  #[inline]
   pub fn set_can1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -369,9 +472,11 @@ impl Apb1Fz {
      self
   }
 
+  #[inline]
   pub fn can2_stop(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+  #[inline]
   pub fn set_can2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -380,13 +485,11 @@ impl Apb1Fz {
   }
 
 }
-
 impl ::core::fmt::Display for Apb1Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Apb1Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -410,14 +513,14 @@ impl ::core::fmt::Debug for Apb1Fz {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Apb2Fz(pub u32);
-
 impl Apb2Fz {
+  #[inline]
   pub fn tim1_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_tim1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -425,9 +528,11 @@ impl Apb2Fz {
      self
   }
 
+  #[inline]
   pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -435,9 +540,11 @@ impl Apb2Fz {
      self
   }
 
+  #[inline]
   pub fn tim9_stop(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_tim9_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -445,9 +552,11 @@ impl Apb2Fz {
      self
   }
 
+  #[inline]
   pub fn tim10_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_tim10_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -455,9 +564,11 @@ impl Apb2Fz {
      self
   }
 
+  #[inline]
   pub fn tim11_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_tim11_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -466,13 +577,11 @@ impl Apb2Fz {
   }
 
 }
-
 impl ::core::fmt::Display for Apb2Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Apb2Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -485,4 +594,3 @@ impl ::core::fmt::Debug for Apb2Fz {
       Ok(())
    }
 }
-

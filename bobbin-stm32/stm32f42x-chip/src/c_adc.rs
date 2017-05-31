@@ -2,36 +2,74 @@ pub const C_ADC: CAdc = CAdc(0x40012300);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct CAdc(pub u32);
-
 impl CAdc {
-  pub unsafe fn csr(&self) -> Csr { 
-     Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn csr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
+  }
+  #[inline]
+  pub fn csr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
+  }
+  #[inline]
+  pub fn csr(&self) -> Csr { 
+     unsafe {
+       Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
   }
 
-  pub unsafe fn ccr(&self) -> Ccr { 
-     Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn ccr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
   }
-  pub unsafe fn set_ccr(&mut self, value: Ccr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn ccr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
   }
-  pub unsafe fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&mut self, f: F) {
+  #[inline]
+  pub fn ccr(&self) -> Ccr { 
+     unsafe {
+       Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_ccr(&self, value: Ccr) -> &CAdc {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &CAdc {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
 
-  pub unsafe fn cdr(&self) -> Cdr { 
-     Cdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn cdr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
+  }
+  #[inline]
+  pub fn cdr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
+  }
+  #[inline]
+  pub fn cdr(&self) -> Cdr { 
+     unsafe {
+       Cdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
   }
 
 }
 
 #[derive(PartialEq, Eq)]
 pub struct Csr(pub u32);
-
 impl Csr {
+  #[inline]
   pub fn ovr3(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+  #[inline]
   pub fn set_ovr3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -39,9 +77,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn strt3(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+  #[inline]
   pub fn set_strt3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -49,9 +89,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jstrt3(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+  #[inline]
   pub fn set_jstrt3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -59,9 +101,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jeoc3(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_jeoc3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -69,9 +113,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn eoc3(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_eoc3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -79,9 +125,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn awd3(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_awd3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -89,9 +137,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn ovr2(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+  #[inline]
   pub fn set_ovr2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -99,9 +149,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn strt2(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+  #[inline]
   pub fn set_strt2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -109,9 +161,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jstrt2(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_jstrt2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -119,9 +173,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jeoc2(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+  #[inline]
   pub fn set_jeoc2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -129,9 +185,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn eoc2(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_eoc2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -139,9 +197,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn awd2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_awd2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -149,9 +209,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn ovr1(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_ovr1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -159,9 +221,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn strt1(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_strt1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -169,9 +233,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jstrt1(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_jstrt1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -179,9 +245,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn jeoc1(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_jeoc1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -189,9 +257,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn eoc1(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_eoc1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -199,9 +269,11 @@ impl Csr {
      self
   }
 
+  #[inline]
   pub fn awd1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_awd1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -210,13 +282,11 @@ impl Csr {
   }
 
 }
-
 impl ::core::fmt::Display for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -242,14 +312,14 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ccr(pub u32);
-
 impl Ccr {
+  #[inline]
   pub fn tsvrefe(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+  #[inline]
   pub fn set_tsvrefe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -257,9 +327,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn vbate(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+  #[inline]
   pub fn set_vbate(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -267,9 +339,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn adcpre(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x3 // [17:16]
   }
+  #[inline]
   pub fn set_adcpre(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
@@ -277,9 +351,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn dma(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x3 // [15:14]
   }
+  #[inline]
   pub fn set_dma(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 14);
@@ -287,9 +363,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn dds(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+  #[inline]
   pub fn set_dds(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -297,9 +375,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn delay(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
+  #[inline]
   pub fn set_delay(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -307,9 +387,11 @@ impl Ccr {
      self
   }
 
+  #[inline]
   pub fn mult(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+  #[inline]
   pub fn set_mult(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -318,13 +400,11 @@ impl Ccr {
   }
 
 }
-
 impl ::core::fmt::Display for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -339,14 +419,14 @@ impl ::core::fmt::Debug for Ccr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Cdr(pub u32);
-
 impl Cdr {
+  #[inline]
   pub fn data2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+  #[inline]
   pub fn set_data2(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -354,9 +434,11 @@ impl Cdr {
      self
   }
 
+  #[inline]
   pub fn data1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+  #[inline]
   pub fn set_data1(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -365,13 +447,11 @@ impl Cdr {
   }
 
 }
-
 impl ::core::fmt::Display for Cdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Cdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -381,4 +461,3 @@ impl ::core::fmt::Debug for Cdr {
       Ok(())
    }
 }
-
