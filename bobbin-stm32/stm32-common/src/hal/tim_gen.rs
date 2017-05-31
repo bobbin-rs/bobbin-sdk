@@ -1,5 +1,4 @@
 pub use ::chip::tim_gen::*;
-// use ::hal::rcc;
 
 pub enum Direction {
     Up = 0,
@@ -33,316 +32,44 @@ pub const CH2: usize = 1;
 pub const CH3: usize = 2;
 pub const CH4: usize = 3;
 
-
-pub struct TimGenDevice {
-    tim: TimGenImpl,
+pub trait TimGenExt {
+    fn set_enabled(&self, value: bool) -> &Self;
+    fn set_direction(&self, value: Direction) -> &Self;
+    fn set_prescaler(&self, value: u16) -> &Self;
+    fn set_update_event(&self) -> &Self;
+    fn update_interrupt_flag(&self) -> bool;
+    fn clr_update_interrupt_flag(&self) -> &Self;
+    fn set_auto_reload(&self, value: u32) -> &Self;
 }
 
-pub fn device(tim: TimGenImpl) -> TimGenDevice {    
-    TimGenDevice { tim: tim }
-}
-
-impl TimGenDevice {
-    pub fn init(&self) {
-        // rcc::set_tim_gen_enabled(self.tim, true);
-    }
-
-    pub fn tim(&self) -> TimGenImpl {
-        self.tim
-    }
-
-    pub fn enabled(&self) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.cr1().cen() != 0
-        }
-    }
-
-    pub fn set_enabled(&self, value: bool) {
+impl TimGenExt for TimGenImpl {
+    fn set_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_cr1(|r| r.set_cen(value))
-        }
+        self.with_cr1(|r| r.set_cen(value))
     }
 
-    pub fn direction(&self) -> Direction {
-        let tim = self.tim;
-        unsafe {
-            match tim.cr1().dir() {
-                0 => Direction::Down,
-                1 => Direction::Up,
-                _ => panic!("Unexpected Direction"),
-            }
-        }
+    fn set_direction(&self, value: Direction) -> &Self {
+        self.with_cr1(|r| r.set_dir(value as u32))
     }
 
-    pub fn set_direction(&self, value: Direction) {
-        let tim = self.tim;
-        unsafe {
-            tim.with_cr1(|r| r.set_dir(value as u32))
-        }
+    fn set_prescaler(&self, value: u16) -> &Self {
+        self.set_psc(Psc(0).set_psc(value as u32))
     }
 
-    pub fn one_pulse_mode(&self) -> bool {
-        let tim = self.tim;
-        unsafe {
-            tim.cr1().opm() != 0
-        }
+    fn set_update_event(&self) -> &Self {
+        self.set_egr(Egr(0).set_ug(1))
     }
 
-    pub fn set_one_pulse_mode(&self, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_cr1(|r| r.set_opm(value))
-        }
+    fn update_interrupt_flag(&self) -> bool {
+        self.sr().uif() != 0
     }
 
-    pub fn update_interrupt_enabled(&self) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.dier().uie() != 0
-        }
-    }
-
-    pub fn set_update_interrupt_enabled(&self, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_dier(|r| r.set_uie(value))
-        }
-    }
-
-    pub fn cc_interrupt_enabled(&self, index: usize) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.dier().ccie(index) != 0
-        }
-    }
-
-    pub fn set_cc_interrupt_enabled(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_dier(|r| r.set_ccie(index, value))
-        }
-    }            
-
-    pub fn trigger_interrupt_enabled(&self) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.dier().tie() != 0
-        }
-    }
-
-    pub fn set_trigger_interrupt_enabled(&self, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_dier(|r| r.set_tie(value))
-        }
+    fn clr_update_interrupt_flag(&self) -> &Self {
+        self.with_sr(|r| r.set_uif(0))
     }    
 
-    pub fn update_interrupt_flag(&self) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.sr().uif() != 0
-        }
+    fn set_auto_reload(&self, value: u32) -> &Self {
+        self.set_arr(Arr(value))
     }
-
-    pub fn clr_update_interrupt_flag(&self) {
-        let tim = self.tim;
-        unsafe {
-            tim.with_sr(|r| r.set_uif(0))
-        }        
-    }
-
-    pub fn cc_interrupt_flag(&self, index: usize) -> bool {
-        let tim = self.tim;
-        unsafe { 
-            tim.sr().ccif(index) != 0
-        }
-    }
-
-    pub fn clr_cc_interrupt_flag(&self, index: usize) {
-        let tim = self.tim;
-        unsafe {
-            tim.with_sr(|r| r.set_ccif(index, 0))
-        }        
-    }
-
-    pub fn set_trigger_event(&self) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_egr(Egr(0).set_tg(1))
-        }
-    }
-
-    // Event Generation
-
-    pub fn set_ccg_event(&self, index: usize) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_egr(Egr(0).set_ccg(index, 1))
-        }
-    }    
-
-    pub fn set_update_event(&self) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_egr(Egr(0).set_ug(1))
-        }
-    }    
-
-    // Capture / Compare Mode
-
-    pub fn set_ccs(&self, index: usize, value: CcSelect) {
-        let tim = self.tim;
-        unsafe {
-            match index {
-                0...1 => tim.with_ccmr_output(0, |r| r.set_ccs(index, value as u32)),
-                2...3 => tim.with_ccmr_output(1, |r| r.set_ccs(index - 2, value as u32)),
-                _ => panic!("Invalid channel index"),
-            }
-        }
-    }
-
-    pub fn set_ocm(&self, index: usize, value: OcMode) {
-        let tim = self.tim;
-        unsafe {
-            let value = value as u32;
-            let v012 = value & 0b111;
-            let v3 = value >> 3;
-            match index {
-                0...1 => tim.with_ccmr_output(0, |r| r.set_ocm(index, v012).set_ocm_3(index, v3)),
-                2...3 => tim.with_ccmr_output(1, |r| r.set_ocm(index - 2, v012).set_ocm_3(index - 2, v3)),
-                _ => panic!("Invalid channel index"),
-            }
-        }
-    }
-
-    pub fn set_ocfe(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            match index {
-                0...1 => tim.with_ccmr_output(0, |r| r.set_ocfe(index, value as u32)),
-                2...3 => tim.with_ccmr_output(1, |r| r.set_ocfe(index - 2, value as u32)),
-                _ => panic!("Invalid channel index"),
-            }
-        }
-    }
-
-    pub fn set_ocpe(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            match index {
-                0...1 => tim.with_ccmr_output(0, |r| r.set_ocpe(index, value as u32)),
-                2...3 => tim.with_ccmr_output(1, |r| r.set_ocpe(index - 2, value as u32)),
-                _ => panic!("Invalid channel index"),
-            }
-        }
-    }
-
-    pub fn set_occe(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            match index {
-                0...1 => tim.with_ccmr_output(0, |r| r.set_occe(index, value as u32)),
-                2...3 => tim.with_ccmr_output(1, |r| r.set_occe(index - 2, value as u32)),
-                _ => panic!("Invalid channel index"),
-            }
-        }
-    }    
-
-    // CC Enable
-
-    pub fn set_cce(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_ccer(|r| r.set_cce(index, value))
-        }
-    }
-
-
-    pub fn set_ccp(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_ccer(|r| r.set_ccp(index, value))
-        }
-    }
-
-    pub fn set_ccnp(&self, index: usize, value: bool) {
-        let value = if value { 1 } else { 0 };
-        let tim = self.tim;
-        unsafe {
-            tim.with_ccer(|r| r.set_ccnp(index, value))
-        }
-    }
-
-
-    pub fn prescaler(&self) -> u16 {
-        let tim = self.tim;
-        unsafe {
-            tim.psc().psc() as u16
-        }
-    }
-
-    pub fn set_prescaler(&self, value: u16) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_psc(Psc(0).set_psc(value as u32))
-        }
-    }
-
-    // TODO: 16 bit devices should use 16 bit values
-
-    pub fn counter(&self) -> u32 {
-        let tim = self.tim;
-        unsafe {
-            tim.cnt().0 as u32
-        }
-    }
-
-    pub fn set_counter(&self, value: u32) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_cnt(Cnt(value))
-        }
-    }
-
-    pub fn auto_reload(&self) -> u32 {
-        let tim = self.tim;
-        unsafe {
-            tim.arr().0 as u32
-        }
-    }
-
-    pub fn set_auto_reload(&self, value: u32) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_arr(Arr(value))
-        }
-    }
-
-
-    pub fn capture_compare(&self, index: usize) -> u32 {
-        let tim = self.tim;
-        unsafe {
-            tim.ccr(index).0
-        }
-    }
-
-    pub fn set_capture_compare(&self, index: usize, value: u32) {
-        let tim = self.tim;
-        unsafe {
-            tim.set_ccr(index, Ccr(value))
-        }
-    }
-
+    
 }

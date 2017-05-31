@@ -1617,11 +1617,11 @@ impl Apb2rstr {
   }
 
   #[inline]
-  pub fn tm12rst(&self) -> u32 {
+  pub fn tim22rst(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
   #[inline]
-  pub fn set_tm12rst(mut self, value: u32) -> Self {
+  pub fn set_tim22rst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1664,7 +1664,7 @@ impl ::core::fmt::Debug for Apb2rstr {
       if self.dbgrst() != 0 { try!(write!(f, " dbgrst"))}
       if self.spi1rst() != 0 { try!(write!(f, " spi1rst"))}
       if self.adcrst() != 0 { try!(write!(f, " adcrst"))}
-      if self.tm12rst() != 0 { try!(write!(f, " tm12rst"))}
+      if self.tim22rst() != 0 { try!(write!(f, " tim22rst"))}
       if self.tim21rst() != 0 { try!(write!(f, " tim21rst"))}
       if self.syscfgrst() != 0 { try!(write!(f, " syscfgrst"))}
       try!(write!(f, "]"));
@@ -1783,18 +1783,6 @@ impl Apb1rstr {
   }
 
   #[inline]
-  pub fn tim6rst(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline]
-  pub fn set_tim6rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline]
   pub fn tim2rst(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
@@ -1824,7 +1812,6 @@ impl ::core::fmt::Debug for Apb1rstr {
       if self.lpuart1rst() != 0 { try!(write!(f, " lpuart1rst"))}
       if self.usart2rst() != 0 { try!(write!(f, " usart2rst"))}
       if self.wwdrst() != 0 { try!(write!(f, " wwdrst"))}
-      if self.tim6rst() != 0 { try!(write!(f, " tim6rst"))}
       if self.tim2rst() != 0 { try!(write!(f, " tim2rst"))}
       try!(write!(f, "]"));
       Ok(())
@@ -2211,18 +2198,6 @@ impl Apb1enr {
   }
 
   #[inline]
-  pub fn tim6en(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline]
-  pub fn set_tim6en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline]
   pub fn tim2en(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
@@ -2252,7 +2227,6 @@ impl ::core::fmt::Debug for Apb1enr {
       if self.lpuart1en() != 0 { try!(write!(f, " lpuart1en"))}
       if self.usart2en() != 0 { try!(write!(f, " usart2en"))}
       if self.wwdgen() != 0 { try!(write!(f, " wwdgen"))}
-      if self.tim6en() != 0 { try!(write!(f, " tim6en"))}
       if self.tim2en() != 0 { try!(write!(f, " tim2en"))}
       try!(write!(f, "]"));
       Ok(())
@@ -3133,9 +3107,9 @@ impl Rst for super::spi::Spi1 {
 
 impl Rst for super::tim_gen::Tim22 {
    #[inline]
-   fn rst(&self) -> u32 { RCC.apb2rstr().tm12rst() }
+   fn rst(&self) -> u32 { RCC.apb2rstr().tim22rst() }
    #[inline]
-   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_tm12rst(value)); }
+   fn set_rst(&self, value: u32) { RCC.with_apb2rstr(|r| r.set_tim22rst(value)); }
 }
 
 impl Rst for super::tim_gen::Tim21 {
@@ -3185,6 +3159,13 @@ impl Rst for super::wwdg::Wwdg {
    fn rst(&self) -> u32 { RCC.apb1rstr().wwdrst() }
    #[inline]
    fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_wwdrst(value)); }
+}
+
+impl Rst for super::tim_gen::Tim2 {
+   #[inline]
+   fn rst(&self) -> u32 { RCC.apb1rstr().tim2rst() }
+   #[inline]
+   fn set_rst(&self, value: u32) { RCC.with_apb1rstr(|r| r.set_tim2rst(value)); }
 }
 
 impl En for super::gpio::Gpioa {
@@ -3297,5 +3278,12 @@ impl En for super::wwdg::Wwdg {
    fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
    #[inline]
    fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
+}
+
+impl En for super::tim_gen::Tim2 {
+   #[inline]
+   fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
+   #[inline]
+   fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
 }
 

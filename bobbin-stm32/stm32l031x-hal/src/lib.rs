@@ -8,7 +8,7 @@ extern crate stm32l031x_chip as chip;
 pub use bobbin_cortexm::hal::{nvic, scb};
 
 pub use stm32_common::hal::usart;
-// pub use stm32_common::hal::tim_gen;
+pub use stm32_common::hal::tim_gen;
 pub use stm32_common::hal::gpio;
 
 pub mod pwr;

@@ -559,7 +559,7 @@
             (description "ADC interface reset")
         )
         (field
-            (name TM12RST)
+            (name TIM22RST)
             (bit-offset 5)
             (bit-width 1)
             (description "TIM22 timer reset")
@@ -647,16 +647,11 @@
             (link (name RST) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
-            (name TIM6RST)
-            (bit-offset 4)
-            (bit-width 1)
-            (description "Timer 6 reset")
-        )
-        (field
             (name TIM2RST)
             (bit-offset 0)
             (bit-width 1)
             (description "Timer2 reset")
+            (link (name RST) (peripheral-group TIM_GEN) (peripheral TIM2))
         )
     )
     (register
@@ -859,16 +854,11 @@
             (link (name EN) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
-            (name TIM6EN)
-            (bit-offset 4)
-            (bit-width 1)
-            (description "Timer 6 clock enable bit")
-        )
-        (field
             (name TIM2EN)
             (bit-offset 0)
             (bit-width 1)
             (description "Timer2 clock enable bit")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM2))
         )
     )
     (register

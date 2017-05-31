@@ -40,6 +40,18 @@ impl RccExt for Rcc {
     
 }
 
+pub fn set_enabled<P: En>(p: &P, value: bool) {
+    RCC.set_enabled(p, value);
+}
+
+pub fn enable<P: En>(p: &P) {
+    RCC.set_enabled(p, true);
+}
+
+pub fn disable<P: En>(p: &P) {
+    RCC.set_enabled(p, false);
+}
+
 
 // pub fn gpio_index(gpio: &GpioImpl) -> usize {
 //     match gpio {
