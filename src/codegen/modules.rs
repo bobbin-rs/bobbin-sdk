@@ -267,6 +267,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, "pub struct {} {{}}", p_type));
         try!(writeln!(out, "impl ::core::ops::Deref for {} {{", p_type));
         try!(writeln!(out, "   type Target = {};", p_impl_type));
+        try!(writeln!(out, "   #[inline]")); 
         try!(writeln!(out, "   fn deref(&self) -> &{} {{ {}_IMPL_REF }}", p_impl_type, p_name));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
@@ -345,6 +346,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
                 try!(writeln!(out, "impl ::core::ops::Deref for {} {{", pin_type));
                 try!(writeln!(out, "   type Target = PinImpl;"));
+                try!(writeln!(out, "   #[inline]")); 
                 try!(writeln!(out, "   fn deref(&self) -> &PinImpl {{ {}_IMPL_REF }}", pin_name));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
