@@ -3,17 +3,19 @@
 
 extern crate nucleo_f207zg as board;
 
+use board::hal::gpio::PinExt;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let led0 = board::led::led0();
-    let btn0 = board::btn::btn0();
+    let led0 = board::led::LED0;
+    let btn0 = board::btn::BTN0;
     loop {
-        led0.toggle();
-        if btn0.get() {            
+        led0.toggle_output();
+        if btn0.input() {            
             board::delay(100);
         } else {
-            board::delay(500);
+            board::delay(500);            
         }        
     }
 }

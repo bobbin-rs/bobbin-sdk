@@ -1,5 +1,8 @@
 use core::fmt::{self, Write, Arguments};
-use usart;
+use chip::sig::*;
+use hal::gpio::*;
+use hal::usart::*;
+use hal::rcc;
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -29,11 +32,21 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Console {
-    pub fn init(&self, _baud: u32) {        
+    pub fn init(&self) {
+        let tx = PD8;
+        let rx = PD9;
+
+        rcc::enable(&USART3);
+        rcc::enable(&tx.port());
+        rcc::enable(&rx.port());
+        tx.mode_altfn(AltFn::<Usart3Tx>::alt_fn(&tx));
+        rx.mode_altfn(AltFn::<Usart3Rx>::alt_fn(&rx));
+
+        USART3.enable(30_000_000 / 115_200);
     }
 
-    pub fn usart(&self) -> ::hal::usart::UsartDevice {
-        usart::usart3()
+    pub fn usart(&self) -> Usart3 {
+        USART3
     }
 }
 
@@ -59,3 +72,4 @@ pub fn write_fmt(args: Arguments) {
 pub fn write_str(s: &str) {
     CONSOLE.write_str(s).ok();
 }
+
