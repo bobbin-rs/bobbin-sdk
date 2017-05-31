@@ -7,7 +7,7 @@ extern crate stm32l031x_chip as chip;
 
 pub use bobbin_cortexm::hal::{nvic, scb};
 
-// pub use stm32_common::hal::usart;
+pub use stm32_common::hal::usart;
 // pub use stm32_common::hal::tim_gen;
 pub use stm32_common::hal::gpio;
 
@@ -25,3 +25,13 @@ pub mod clock;
 // pub mod wwdg;
 // pub mod spi;
 //pub mod pin;
+
+// use chip::sig::Signal;
+// use chip::gpio::{Pin, AltFn, GpioImpl, PinImpl};
+// use gpio::PinExt;
+// //use stm32_common::hal::gpio::PinExt;
+// use core::ops::Deref;
+
+// pub fn connect<T, S: Signal<T>, P: Deref<Target=PinImpl> + Pin<GpioImpl> + AltFn<T>>(_: T, _: S, pin: &P) {
+//     pin.mode_altfn(AltFn::<T>::alt_fn(pin));
+// }

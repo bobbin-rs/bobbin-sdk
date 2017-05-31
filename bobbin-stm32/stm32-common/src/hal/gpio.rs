@@ -42,6 +42,17 @@ pub trait PinExt {
     fn altfn(&self) -> usize;
     fn set_altfn(&self, value: usize) -> &Self;
 
+    fn mode_input(&self) -> &Self;
+    fn mode_output(&self) -> &Self;
+    fn mode_altfn(&self, usize) -> &Self;
+    fn mode_analog(&self) -> &Self;
+
+    fn pull_up(&self) -> &Self;
+    fn pull_down(&self) -> &Self;
+
+    fn push_pull(&self) -> &Self;
+    fn open_drain(&self) -> &Self;
+
     fn input(&self) -> bool;
     fn output(&self) -> bool;
     fn set_output(&self, value: bool) -> &Self;
@@ -133,6 +144,47 @@ impl PinExt for PinImpl {
         };
         self
     }
+
+    #[inline]
+    fn mode_output(&self) -> &Self {
+        self.set_mode(Mode::Output)
+    }
+
+    #[inline]
+    fn mode_input(&self) -> &Self {
+        self.set_mode(Mode::Input)
+    }
+
+    #[inline]
+    fn mode_altfn(&self, af: usize) -> &Self {
+        self.set_mode(Mode::AltFn).set_altfn(af)
+    }
+
+    #[inline]
+    fn mode_analog(&self) -> &Self {
+        self.set_mode(Mode::Analog)
+    }
+
+    #[inline]
+    fn pull_up(&self) -> &Self {
+        self.set_pull(Pull::PullUp)
+    }
+
+    #[inline]
+    fn pull_down(&self) -> &Self {
+        self.set_pull(Pull::PullDown)
+    }
+
+    #[inline]
+    fn push_pull(&self) -> &Self {
+        self.set_output_type(OutputType::PushPull)
+    }
+
+    #[inline]
+    fn open_drain(&self) -> &Self {
+        self.set_output_type(OutputType::OpenDrain)
+    }
+
 
     #[inline]
     fn input(&self) -> bool {
