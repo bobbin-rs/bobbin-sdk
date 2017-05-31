@@ -1,8 +1,9 @@
+use chip::sig::*;
 use chip::gpio::*;
-use chip::usart::{USART2};
-use hal::rcc;
-use hal::usart;
-use hal::gpio;
+use chip::usart::{USART2, Usart2};
+use hal::rcc::{RCC, RccExt};
+use hal::usart::UsartExt;
+use hal::gpio::PinExt;
 
 // pub fn usart1(rx: gpio::PinUnknown, tx: gpio::PinUnknown) -> usart::UsartDevice {
 //     rcc::set_usart_enabled(USART1, true);
@@ -27,13 +28,14 @@ pub fn init() {
     let tx = PA2;
     let rx = PA15;
 
-    rcc::set_usart_enabled(&USART2, true);    
-    gpio::pin(tx).into_altfn(tx.af_usart2_tx());
-    gpio::pin(rx).into_altfn(rx.af_usart2_rx());
-    let u = usart::device(&USART2);
-    u.enable(32_000_000 / 115_200);    
+    RCC.set_enabled(&USART2, true);
+    RCC.set_enabled(&tx.port(), true);
+    RCC.set_enabled(&rx.port(), true);
+    tx.mode_altfn(AltFn::<Usart2Tx>::alt_fn(&tx));
+    rx.mode_altfn(AltFn::<Usart2Rx>::alt_fn(&rx));
+    USART2.enable(32_000_000 / 115_200);
 }
 
-pub fn usart2() -> usart::UsartDevice {
-    usart::device(&USART2) 
+pub fn usart2() -> Usart2 {
+     USART2
 }

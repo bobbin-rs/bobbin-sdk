@@ -6,8 +6,8 @@
 extern crate r0;
 extern crate compiler_builtins;
 
-//#[macro_use]
-//pub mod console;
+#[macro_use]
+pub mod console;
 
 extern crate stm32l031x;
 pub use stm32l031x::{chip, hal};
@@ -19,7 +19,7 @@ pub mod led;
 pub mod btn;
 //pub mod pin;
 //pub mod tim;
-//pub mod usart;
+pub mod usart;
 
 
 pub fn delay(n: u32) {
@@ -34,6 +34,6 @@ pub fn init() {
     hal::clock::init_pll();    
     led::init();
     btn::init();
-    // usart::init();
-    //console::CONSOLE.init();
+    usart::init();
+    console::CONSOLE.init();
 }
