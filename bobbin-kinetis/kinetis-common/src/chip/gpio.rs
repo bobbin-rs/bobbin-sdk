@@ -1,42 +1,120 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Gpio(pub u32);
-
-impl Gpio {
-  pub unsafe fn pdor(&self) -> Pdor { 
-     Pdor(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+pub struct GpioImpl(pub u32);
+impl GpioImpl {
+  #[inline]
+  pub fn pdor_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
   }
-  pub unsafe fn set_pdor(&mut self, value: Pdor) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+  #[inline]
+  pub fn pdor_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
   }
-  pub unsafe fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&mut self, f: F) {
+  #[inline]
+  pub fn pdor(&self) -> Pdor { 
+     unsafe {
+       Pdor(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_pdor(&self, value: Pdor) -> &GpioImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &GpioImpl {
      let tmp = self.pdor();
      self.set_pdor(f(tmp))
   }
 
-  pub unsafe fn set_psor(&mut self, value: Psor) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn psor_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+  #[inline]
+  pub fn psor_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+  #[inline]
+  pub fn set_psor(&self, value: Psor) -> &GpioImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn set_pcor(&mut self, value: Pcor) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn pcor_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
+  }
+  #[inline]
+  pub fn pcor_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
+  }
+  #[inline]
+  pub fn set_pcor(&self, value: Pcor) -> &GpioImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn set_ptor(&mut self, value: Ptor) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn ptor_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
+  }
+  #[inline]
+  pub fn ptor_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
+  }
+  #[inline]
+  pub fn set_ptor(&self, value: Ptor) -> &GpioImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn pdir(&self) -> Pdir { 
-     Pdir(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn pdir_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
+  }
+  #[inline]
+  pub fn pdir_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
+  }
+  #[inline]
+  pub fn pdir(&self) -> Pdir { 
+     unsafe {
+       Pdir(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
   }
 
-  pub unsafe fn pddr(&self) -> Pddr { 
-     Pddr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+  #[inline]
+  pub fn pddr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
   }
-  pub unsafe fn set_pddr(&mut self, value: Pddr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+  #[inline]
+  pub fn pddr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
   }
-  pub unsafe fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&mut self, f: F) {
+  #[inline]
+  pub fn pddr(&self) -> Pddr { 
+     unsafe {
+       Pddr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_pddr(&self, value: Pddr) -> &GpioImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &GpioImpl {
      let tmp = self.pddr();
      self.set_pddr(f(tmp))
   }
@@ -45,13 +123,14 @@ impl Gpio {
 
 #[derive(PartialEq, Eq)]
 pub struct Pdor(pub u32);
-
 impl Pdor {
+  #[inline]
   pub fn pdo(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pdo(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -62,13 +141,11 @@ impl Pdor {
   }
 
 }
-
 impl ::core::fmt::Display for Pdor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pdor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -108,16 +185,16 @@ impl ::core::fmt::Debug for Pdor {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Psor(pub u32);
-
 impl Psor {
+  #[inline]
   pub fn ptso(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ptso(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -128,13 +205,11 @@ impl Psor {
   }
 
 }
-
 impl ::core::fmt::Display for Psor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Psor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -174,16 +249,16 @@ impl ::core::fmt::Debug for Psor {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pcor(pub u32);
-
 impl Pcor {
+  #[inline]
   pub fn ptco(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ptco(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -194,13 +269,11 @@ impl Pcor {
   }
 
 }
-
 impl ::core::fmt::Display for Pcor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pcor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -240,16 +313,16 @@ impl ::core::fmt::Debug for Pcor {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ptor(pub u32);
-
 impl Ptor {
+  #[inline]
   pub fn ptto(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ptto(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -260,13 +333,11 @@ impl Ptor {
   }
 
 }
-
 impl ::core::fmt::Display for Ptor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ptor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -306,16 +377,16 @@ impl ::core::fmt::Debug for Ptor {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pdir(pub u32);
-
 impl Pdir {
+  #[inline]
   pub fn pdi(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pdi(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -326,13 +397,11 @@ impl Pdir {
   }
 
 }
-
 impl ::core::fmt::Display for Pdir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pdir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -372,16 +441,16 @@ impl ::core::fmt::Debug for Pdir {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pddr(pub u32);
-
 impl Pddr {
+  #[inline]
   pub fn pdd(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pdd(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -392,13 +461,11 @@ impl Pddr {
   }
 
 }
-
 impl ::core::fmt::Display for Pddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -437,5 +504,18 @@ impl ::core::fmt::Debug for Pddr {
       try!(write!(f, "]"));
       Ok(())
    }
+}
+pub struct PinImpl {
+  pub port: GpioImpl,
+  pub index: usize,
+}
+
+pub trait Pin<T> {
+   fn port(&self) -> T;
+   fn index(&self) -> usize;
+}
+
+pub trait AltFn<T> {
+   fn alt_fn(&self) -> usize;
 }
 

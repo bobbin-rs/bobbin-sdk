@@ -1,0 +1,20 @@
+(device
+    (peripheral-group
+        (name GPIO)
+        (has-pins)
+        (prototype "periph/gpio.rx")
+    )
+    (peripheral-group
+        (name PORT)
+        (has-pins)
+        (prototype "periph/port.rx")
+    )    
+    (peripheral-group
+        (name UART)
+        (prototype "periph/uart.rx")
+    )    
+    (peripheral-group
+        (name PIT)
+        (prototype "periph/pit.rx")
+    )        
+)

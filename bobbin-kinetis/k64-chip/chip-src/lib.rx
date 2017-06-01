@@ -22,7 +22,33 @@
     (peripheral (include "periph/mcg.rx"))
     (peripheral (include "periph/osc.rx"))
     (peripheral (include "periph/enet.rx"))
-    (peripheral (include "periph/pit.rx"))
+    
+    (peripheral-group
+        (name PIT)
+        (module (name kinetis_common::chip::pit::*))
+        (peripheral
+            (name PIT)
+            (address 0x40037000)
+            (description "Periodic Interrupt Timer")
+            (interrupt
+                (name PIT0)
+                (value 48)
+            )
+            (interrupt
+                (name PIT1)
+                (value 49)
+            )
+            (interrupt
+                (name PIT2)
+                (value 50)
+            )
+            (interrupt
+                (name PIT3)
+                (value 51)
+            )
+        )
+
+    )
 
     (peripheral-group
         (name SPI)  
@@ -82,11 +108,14 @@
 
     (peripheral-group
         (name UART)
-        (prototype "periph/uart.rx")
+        ;(prototype "periph/uart.rx")
+        (module (name kinetis_common::chip::uart::*))
         (peripheral 
             (name UART0)
             (address 0x4006a000)
             (description "Serial Communication Interface")
+            (signal (name UART0_TX) (type TX))
+            (signal (name UART0_RX) (type RX))
             (interrupt
                 (name UART0_LON)
                 (value 30)
@@ -104,6 +133,8 @@
             (name UART1)
             (address 0x4006b000)
             (description "Serial Communication Interface")
+            (signal (name UART1_TX) (type TX))
+            (signal (name UART1_RX) (type RX))            
             (interrupt
                 (name UART1_RX_TX)
                 (value 33)
@@ -117,6 +148,8 @@
             (name UART2)
             (address 0x4006c000)
             (description "Serial Communication Interface")
+            (signal (name UART2_TX) (type TX))
+            (signal (name UART2_RX) (type RX))
             (interrupt
                 (name UART2_RX_TX)
                 (value 35)
@@ -130,6 +163,8 @@
             (name UART3)
             (address 0x4006d000)
             (description "Serial Communication Interface")
+            (signal (name UART3_TX) (type TX))
+            (signal (name UART3_RX) (type RX))
             (interrupt
                 (name UART3_RX_TX)
                 (value 37)
@@ -143,6 +178,8 @@
             (name UART4)
             (address 0x400ea000)
             (description "Serial Communication Interface")
+            (signal (name UART4_TX) (type TX))
+            (signal (name UART4_RX) (type RX))
             (interrupt
                 (name UART4_RX_TX)
                 (value 66)
@@ -156,6 +193,8 @@
             (name UART5)
             (address 0x400eb000)
             (description "Serial Communication Interface")
+            (signal (name UART5_TX) (type TX))
+            (signal (name UART5_RX) (type RX))
             (interrupt
                 (name UART5_RX_TX)
                 (value 68)
@@ -174,6 +213,7 @@
             (name GPIOA)
             (address 0x400ff000)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTA))
             (interrupt
                 (name PORTA)
                 (value 59)
@@ -183,6 +223,7 @@
             (name GPIOB)
             (address 0x400ff040)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTB))
             (interrupt
                 (name PORTB)
                 (value 60)
@@ -192,6 +233,7 @@
             (name GPIOC)
             (address 0x400ff080)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTC))
             (interrupt
                 (name PORTC)
                 (value 61)
@@ -201,6 +243,7 @@
             (name GPIOD)
             (address 0x400ff0c0)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTD))
             (interrupt
                 (name PORTD)
                 (value 62)
@@ -210,6 +253,7 @@
             (name GPIOE)
             (address 0x400ff100)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTE))
             (interrupt
                 (name PORTE)
                 (value 63)
@@ -223,6 +267,7 @@
             (name PORTA)
             (address 0x40049000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOA))
             (interrupt
                 (name PORTA)
                 (value 59)
@@ -417,6 +462,7 @@
             (name PORTB)
             (address 0x4004a000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOB))
             (interrupt
                 (name PORTB)
                 (value 60)
@@ -582,6 +628,7 @@
             (name PORTC)
             (address 0x4004b000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOC))
             (interrupt
                 (name PORTC)
                 (value 61)
@@ -748,6 +795,7 @@
             (name PORTD)
             (address 0x4004c000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOD))
             (interrupt
                 (name PORTD)
                 (value 62)
@@ -877,6 +925,7 @@
             (name PORTE)
             (address 0x4004d000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOE))
             (interrupt
                 (name PORTE)
                 (value 63)

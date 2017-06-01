@@ -10,6 +10,7 @@ pub use bobbin_cortexm::chip::fpu;
 extern crate kinetis_common;
 
 pub mod irq;
+pub mod sig;
 pub mod sim;
 pub mod mcg;
 pub mod osc;

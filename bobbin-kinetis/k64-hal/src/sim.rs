@@ -1,81 +1,48 @@
-use ::chip::sim::*;
-use ::chip::port::*;
-use ::chip::uart::*;
-use ::chip::i2c::*;
-use ::chip::spi::*;
-use ::chip::enet::*;
+pub use ::chip::sim::*;
 
-pub fn set_port_enabled(port: Port, value: bool) {    
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        match port {
-            PORTA => SIM.with_scgc5(|r| r.set_porta(value)),
-            PORTB => SIM.with_scgc5(|r| r.set_portb(value)),
-            PORTC => SIM.with_scgc5(|r| r.set_portc(value)),
-            PORTD => SIM.with_scgc5(|r| r.set_portd(value)),
-            PORTE => SIM.with_scgc5(|r| r.set_porte(value)),
-            _ => unimplemented!()
-        }
-
-    }
+pub trait SimExt {
+    fn enabled<P: En>(&self, p: &P) -> bool;
+    fn set_enabled<P: En>(&self, p: &P, value: bool) -> &Self;
 }
 
-
-pub fn set_uart_enabled(uart: Uart, value: bool) {    
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        match uart {
-            UART0 => SIM.with_scgc4(|r| r.set_uart0(value)),
-            UART1 => SIM.with_scgc4(|r| r.set_uart1(value)),
-            UART2 => SIM.with_scgc4(|r| r.set_uart2(value)),
-            UART3 => SIM.with_scgc4(|r| r.set_uart3(value)),
-            UART4 => SIM.with_scgc1(|r| r.set_uart4(value)),
-            UART5 => SIM.with_scgc1(|r| r.set_uart5(value)),
-            _ => unimplemented!()
-        }
-
+impl SimExt for Sim {
+    fn enabled<P: En>(&self, p: &P) -> bool {
+        self.en(p) != 0
     }
+    fn set_enabled<P: En>(&self, p: &P, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.set_en(p, value);
+        self
+    }
+    
 }
 
-pub fn set_i2c_enabled(i2c: I2c, value: bool) {    
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        match i2c {
-            I2C0 => SIM.with_scgc4(|r| r.set_i2c0(value)),
-            I2C1 => SIM.with_scgc4(|r| r.set_i2c1(value)),
-            _ => unimplemented!()
-        }
-
-    }
+pub fn set_enabled<P: En>(p: &P, value: bool) {
+    SIM.set_enabled(p, value);
 }
 
-pub fn set_spi_enabled(spi: Spi, value: bool) {    
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        match spi {
-            SPI0 => SIM.with_scgc6(|r| r.set_spi0(value)),
-            SPI1 => SIM.with_scgc6(|r| r.set_spi1(value)),
-            SPI2 => SIM.with_scgc3(|r| r.set_spi2(value)),
-            _ => unimplemented!()
-        }
-
-    }
+pub fn enable<P: En>(p: &P) {
+    SIM.set_enabled(p, true);
 }
 
-
-pub fn set_enet_enabled(enet: Enet, value: bool) {    
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        match enet {
-            ENET => SIM.with_scgc2(|r| r.set_enet(value)),
-            _ => unimplemented!()
-        }
-    }
+pub fn disable<P: En>(p: &P) {
+    SIM.set_enabled(p, false);
 }
 
-pub fn set_pit_enabled(value: bool) {
-    let value = if value { 1 } else { 0 };
-    unsafe {
-        SIM.with_scgc6(|r| r.set_pit(value))
+pub trait SimEnabled {
+    fn sim_enabled(&self) -> bool;
+    fn sim_set_enabled(&self, value: bool) -> &Self;
+    fn sim_enable(&self) -> &Self { self.sim_set_enabled(true); self }
+    fn sim_disable(&self) -> &Self { self.sim_set_enabled(false); self }
+}
+
+impl<P> SimEnabled for P where P: En {
+    fn sim_enabled(&self) -> bool {
+        self.en() != 0
+    }
+    fn sim_set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.set_en(value);
+        self
     }
 }
