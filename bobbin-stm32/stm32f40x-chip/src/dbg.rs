@@ -2,41 +2,99 @@ pub const DBG: Dbg = Dbg(0xe0042000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub u32);
-
 impl Dbg {
-  pub unsafe fn dbgmcu_idcode(&self) -> DbgmcuIdcode { 
-     DbgmcuIdcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn dbgmcu_idcode_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
+  }
+  #[inline]
+  pub fn dbgmcu_idcode_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
+  }
+  #[inline]
+  pub fn dbgmcu_idcode(&self) -> DbgmcuIdcode { 
+     unsafe {
+       DbgmcuIdcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
   }
 
-  pub unsafe fn dbgmcu_cr(&self) -> DbgmcuCr { 
-     DbgmcuCr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn dbgmcu_cr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
   }
-  pub unsafe fn set_dbgmcu_cr(&mut self, value: DbgmcuCr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn dbgmcu_cr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
   }
-  pub unsafe fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgmcu_cr(&self) -> DbgmcuCr { 
+     unsafe {
+       DbgmcuCr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dbgmcu_cr(&self, value: DbgmcuCr) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Dbg {
      let tmp = self.dbgmcu_cr();
      self.set_dbgmcu_cr(f(tmp))
   }
 
-  pub unsafe fn dbgmcu_apb1_fz(&self) -> DbgmcuApb1Fz { 
-     DbgmcuApb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn dbgmcu_apb1_fz_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_dbgmcu_apb1_fz(&mut self, value: DbgmcuApb1Fz) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn dbgmcu_apb1_fz_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgmcu_apb1_fz(&self) -> DbgmcuApb1Fz { 
+     unsafe {
+       DbgmcuApb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dbgmcu_apb1_fz(&self, value: DbgmcuApb1Fz) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Dbg {
      let tmp = self.dbgmcu_apb1_fz();
      self.set_dbgmcu_apb1_fz(f(tmp))
   }
 
-  pub unsafe fn dbgmcu_apb2_fz(&self) -> DbgmcuApb2Fz { 
-     DbgmcuApb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn dbgmcu_apb2_fz_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_dbgmcu_apb2_fz(&mut self, value: DbgmcuApb2Fz) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn dbgmcu_apb2_fz_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgmcu_apb2_fz(&self) -> DbgmcuApb2Fz { 
+     unsafe {
+       DbgmcuApb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dbgmcu_apb2_fz(&self, value: DbgmcuApb2Fz) -> &Dbg {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Dbg {
      let tmp = self.dbgmcu_apb2_fz();
      self.set_dbgmcu_apb2_fz(f(tmp))
   }
@@ -45,11 +103,12 @@ impl Dbg {
 
 #[derive(PartialEq, Eq)]
 pub struct DbgmcuIdcode(pub u32);
-
 impl DbgmcuIdcode {
+  #[inline]
   pub fn dev_id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+  #[inline]
   pub fn set_dev_id(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -57,9 +116,11 @@ impl DbgmcuIdcode {
      self
   }
 
+  #[inline]
   pub fn rev_id(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+  #[inline]
   pub fn set_rev_id(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -68,13 +129,11 @@ impl DbgmcuIdcode {
   }
 
 }
-
 impl ::core::fmt::Display for DbgmcuIdcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for DbgmcuIdcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -84,14 +143,14 @@ impl ::core::fmt::Debug for DbgmcuIdcode {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct DbgmcuCr(pub u32);
-
 impl DbgmcuCr {
+  #[inline]
   pub fn dbg_sleep(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbg_sleep(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -99,9 +158,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_dbg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -109,9 +170,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_standby(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dbg_standby(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -119,9 +182,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn trace_ioen(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_trace_ioen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -129,9 +194,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn trace_mode(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+  #[inline]
   pub fn set_trace_mode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -139,9 +206,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_i2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_dbg_i2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -149,9 +218,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_dbg_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -159,9 +230,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_dbg_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -169,9 +242,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+  #[inline]
   pub fn set_dbg_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -179,9 +254,11 @@ impl DbgmcuCr {
      self
   }
 
+  #[inline]
   pub fn dbg_tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+  #[inline]
   pub fn set_dbg_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -190,13 +267,11 @@ impl DbgmcuCr {
   }
 
 }
-
 impl ::core::fmt::Display for DbgmcuCr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for DbgmcuCr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -214,14 +289,14 @@ impl ::core::fmt::Debug for DbgmcuCr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct DbgmcuApb1Fz(pub u32);
-
 impl DbgmcuApb1Fz {
+  #[inline]
   pub fn dbg_tim2_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbg_tim2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -229,9 +304,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim3_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_dbg_tim3_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -239,9 +316,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim4_stop(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dbg_tim4_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -249,9 +328,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dbg_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -259,9 +340,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_dbg_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -269,9 +352,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_dbg_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -279,9 +364,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim12_stop(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_dbg_tim12_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -289,9 +376,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim13_stop(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_dbg_tim13_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -299,9 +388,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim14_stop(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_dbg_tim14_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -309,9 +400,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_wwdg_stop(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_dbg_wwdg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -319,9 +412,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_iwdeg_stop(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+  #[inline]
   pub fn set_dbg_iwdeg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -329,9 +424,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_j2c1_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+  #[inline]
   pub fn set_dbg_j2c1_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -339,9 +436,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_j2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+  #[inline]
   pub fn set_dbg_j2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -349,9 +448,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_j2c3smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+  #[inline]
   pub fn set_dbg_j2c3smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -359,9 +460,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_can1_stop(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+  #[inline]
   pub fn set_dbg_can1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -369,9 +472,11 @@ impl DbgmcuApb1Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_can2_stop(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+  #[inline]
   pub fn set_dbg_can2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -380,13 +485,11 @@ impl DbgmcuApb1Fz {
   }
 
 }
-
 impl ::core::fmt::Display for DbgmcuApb1Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for DbgmcuApb1Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -410,14 +513,14 @@ impl ::core::fmt::Debug for DbgmcuApb1Fz {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct DbgmcuApb2Fz(pub u32);
-
 impl DbgmcuApb2Fz {
+  #[inline]
   pub fn dbg_tim1_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbg_tim1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -425,9 +528,11 @@ impl DbgmcuApb2Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_dbg_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -435,9 +540,11 @@ impl DbgmcuApb2Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim9_stop(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_dbg_tim9_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -445,9 +552,11 @@ impl DbgmcuApb2Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim10_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_dbg_tim10_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -455,9 +564,11 @@ impl DbgmcuApb2Fz {
      self
   }
 
+  #[inline]
   pub fn dbg_tim11_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_dbg_tim11_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -466,13 +577,11 @@ impl DbgmcuApb2Fz {
   }
 
 }
-
 impl ::core::fmt::Display for DbgmcuApb2Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for DbgmcuApb2Fz {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -485,4 +594,3 @@ impl ::core::fmt::Debug for DbgmcuApb2Fz {
       Ok(())
    }
 }
-

@@ -5,36 +5,50 @@ extern crate stm32_common;
 extern crate stm32f40x_chip as chip;
 
 pub use bobbin_cortexm::hal::{nvic, scb};
-//pub use stm32_common::hal::gpio;
-//pub use stm32_common::hal::usart;
-pub use stm32_common::hal::tim_bas;
-pub use stm32_common::hal::tim_gen;
-pub use stm32_common::hal::tim_adv;
 
+//pub mod pwr;
 pub mod rcc;
 pub mod clock;
-pub mod usart;
-pub mod dma;
-pub mod gpio;
-//pub mod iwdg;
-//pub mod wwdg;
-//pub mod crc;
-//pub mod dma;
-//pub mod rtc;
-//pub mod pwr;
 
+pub mod gpio {
+    pub use chip::gpio::*;
+    pub use stm32_common::hal::gpio::*;
+    pub use rcc::RccEnabled;
+    use chip::sig::{SignalTx, SignalRx};
+    use core::ops::Deref;
 
-// pub mod rcc;
-// pub mod gpio;
-// pub mod clock;
-// // pub mod nvic;
-// pub mod fpu;
-// // pub mod itm;
-// pub mod ethernet;
-// pub mod i2c;
-// pub mod spi;
-// pub mod usart;
-// pub mod adc;
-// pub mod dac;
-// pub mod tim;
-// //pub mod systick;
+    pub trait ModeTx<T, S> {
+        fn mode_tx(&self, _: &S) -> &Self;
+    }
+
+    pub trait ModeRx<T, S> {
+        fn mode_rx(&self, _: &S) -> &Self;
+    }
+
+    impl<P, S, T> ModeTx<T, S> for P where S: SignalTx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+        fn mode_tx(&self, _: &S) -> &Self {
+            self.mode_altfn(self.alt_fn());
+            self
+        }
+    }
+
+    impl<P, S, T> ModeRx<T, S> for P where S: SignalRx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+        fn mode_rx(&self, _: &S) -> &Self {
+            self.mode_altfn(self.alt_fn());
+            self
+        }
+    }
+
+}
+
+pub mod usart {
+    pub use chip::usart_f24::*;
+    pub use stm32_common::hal::usart_f24::*;
+    pub use rcc::RccEnabled;
+}
+
+pub mod tim {
+    pub use chip::tim_gen::*;
+    pub use stm32_common::hal::tim_gen::*;
+    pub use rcc::RccEnabled;
+}
