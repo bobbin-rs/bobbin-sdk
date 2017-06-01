@@ -1,8 +1,13 @@
 use core::fmt::{self, Write, Arguments};
-use chip::sig::*;
 use hal::gpio::*;
 use hal::usart::*;
 use hal::rcc;
+
+pub const USART: Usart2 = USART2;
+pub const USART_TX: Pa2 = PA2;
+pub const USART_RX: Pa15 = PA15;
+pub const USART_CLOCK: u32 = 32_000_000;
+pub const USART_BAUD: u32 = 115_200;
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -33,26 +38,18 @@ pub struct Console {}
 
 impl Console {
     pub fn init(&self) {
-        let tx = PA2;
-        let rx = PA15;
-
-        rcc::enable(&USART2);
-        rcc::enable(&tx.port());
-        rcc::enable(&rx.port());
-        tx.mode_altfn(AltFn::<Usart2Tx>::alt_fn(&tx));
-        rx.mode_altfn(AltFn::<Usart2Rx>::alt_fn(&rx));
-
-        USART2.enable(32_000_000 / 115_200);
-    }
-
-    pub fn usart(&self) -> Usart2 {
-        USART2
+        rcc::enable(&USART);
+        rcc::enable(&USART_TX.port());
+        rcc::enable(&USART_RX.port());
+        USART_TX.mode_tx(&USART);
+        USART_RX.mode_rx(&USART);
+        USART.enable(USART_CLOCK / USART_BAUD);
     }
 }
 
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let usart = self.usart();
+        let usart = USART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
                 usart.putc(b'\r')
