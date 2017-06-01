@@ -304,6 +304,8 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 }
 
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+    let mut link_traits = HashSet::new();
+
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
             if let Some(ref use_as) = m._as {
@@ -317,6 +319,23 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     // let mut count: usize = 0;
 
+    // Generate Link Traits
+    for p in pg.peripherals.iter() {
+        for l in p.links.iter() {
+            let l_trait = format!("{}Link", to_camel(&l.name));
+            let l_getter = field_getter(&l.name);
+            let pg_mod = l.peripheral_group.to_lowercase();
+            let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
+
+            if !link_traits.contains(&l_trait) {
+                try!(writeln!(out, "pub trait {} {{", l_trait));
+                try!(writeln!(out, "   fn {}(&self) -> &{};", l_getter, l_type));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+                link_traits.insert(l_trait);
+            }
+        }
+    }
 
     let p_impl_type = format!("{}Impl", to_camel(&pg.name));
 
@@ -331,6 +350,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let p_name = p.name.to_uppercase();
         let p_type = to_camel(&p.name);
         try!(writeln!(out, "pub const {}: {} = {} {{}};", p_name, p_type, p_type));
+        try!(writeln!(out, "pub const {}_REF: &{} = &{};", p_name, p_type, p_name));
         try!(writeln!(out, "pub const {}_IMPL: {} = {}(0x{:08x});", p_name, p_impl_type, p_impl_type, p.address));
         try!(writeln!(out, "pub const {}_IMPL_REF: &{} = &{}_IMPL;", p_name, p_impl_type, p_name));
         try!(writeln!(out, ""));
@@ -342,6 +362,25 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, "   fn deref(&self) -> &{} {{ {}_IMPL_REF }}", p_impl_type, p_name));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
+
+
+        // Generate Links
+
+        for l in p.links.iter() {
+            let l_trait = format!("{}Link", to_camel(&l.name));
+            let l_getter = field_getter(&l.name);
+            let pg_mod = l.peripheral_group.to_lowercase();
+            let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
+            let p_const = l.peripheral.to_uppercase();            
+                  
+            try!(writeln!(out, "impl {} for {} {{", l_trait, p_type));
+            try!(writeln!(out, "   fn {}(&self) -> &{} {{ super::{}::{}_REF }}", l_getter, l_type, pg_mod, p_const));
+            try!(writeln!(out, "}}"));
+            try!(writeln!(out, ""));
+        }
+
+
+        // Generate Signals
 
         for s in p.signals.iter() {
             let s_type = to_camel(&s.name);
