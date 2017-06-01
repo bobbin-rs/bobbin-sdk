@@ -20,24 +20,18 @@ pub use stm32f40x::{chip, hal};
 pub mod exceptions;
 pub mod lang_items;
 
+pub mod pin;
+pub mod clock;
 pub mod led;
 pub mod btn;
-pub mod pin;
 pub mod tim;
-pub mod usart;
 
 pub use tim::delay;
 
-// pub fn delay(n: u32) {
-//     for _ in 0..10_000 * n {
-//         unsafe { asm!("nop") }
-//     }
-// }
-
 pub fn init() {
-    hal::clock::enable_pll_external_mode();
+    clock::init();
     led::init();
     btn::init();
-    usart::init();
-    console::CONSOLE.init(115_200);
+    tim::init();
+    console::init();
 }

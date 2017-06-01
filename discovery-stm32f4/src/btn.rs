@@ -1,11 +1,9 @@
-use chip::gpio::*;
-use hal::gpio;
+use hal::gpio::*;
+use hal::rcc;
+
+pub const BTN0: Pa0 = PA0;
 
 pub fn init() {
-    gpio::pin(PA0).into_input(gpio::Pull::PullDown);
-}
-
-// BTN0 = PA0
-pub fn btn0() -> gpio::PinInput {     
-    gpio::pin_input(PA0)
+    rcc::enable(&BTN0.port());
+    BTN0.mode_input().pull_down();
 }
