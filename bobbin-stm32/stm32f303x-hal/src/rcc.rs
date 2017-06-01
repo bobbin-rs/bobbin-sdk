@@ -36,12 +36,30 @@ pub fn disable<P: En>(p: &P) {
     RCC.set_enabled(p, false);
 }
 
-pub enum UsartClock {
-    Pclk = 0b00,
-    SysClk = 0b01,
-    LSE = 0b10,
-    HSI = 0b11,
+pub trait RccEnabled {
+    fn rcc_enabled(&self) -> bool;
+    fn rcc_set_enabled(&self, value: bool) -> &Self;
+    fn rcc_enable(&self) -> &Self { self.rcc_set_enabled(true); self }
+    fn rcc_disable(&self) -> &Self { self.rcc_set_enabled(false); self }
 }
+
+impl<P> RccEnabled for P where P: En {
+    fn rcc_enabled(&self) -> bool {
+        self.en() != 0
+    }
+    fn rcc_set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.set_en(value);
+        self
+    }
+}
+
+// pub enum UsartClock {
+//     Pclk = 0b00,
+//     SysClk = 0b01,
+//     LSE = 0b10,
+//     HSI = 0b11,
+// }
 
 // pub fn set_usart_clock(usart: Usart, value: UsartClock) {
 //     unsafe {

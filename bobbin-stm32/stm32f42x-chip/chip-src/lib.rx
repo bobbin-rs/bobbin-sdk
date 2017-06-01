@@ -1541,12 +1541,16 @@
     )
 
     (peripheral-group 
-        (name USART)
-        ;(module (name stm32_common::chip::usart::*))
-        (prototype "./periph/usart.rx")
+        (name USART_F24)
+        (module (name stm32_common::chip::usart_f24::*))
         (peripheral 
             (name USART1)
             (address 0x40011000)
+            (signal (name USART1_TX) (type TX))
+            (signal (name USART1_RX) (type RX))
+            (signal (name USART1_CTS) (type CTS))
+            (signal (name USART1_RTS) (type RTS))
+            (signal (name USART1_CK) (type CK))               
             (interrupt
                 (name USART1)
                 (value 37)
@@ -1556,6 +1560,11 @@
         (peripheral
             (name USART2)
             (address 0x40004400)
+            (signal (name USART2_TX) (type TX))
+            (signal (name USART2_RX) (type RX))
+            (signal (name USART2_CTS) (type CTS))
+            (signal (name USART2_RTS) (type RTS))
+            (signal (name USART2_CK) (type CK))    
             (interrupt
                 (name USART2)
                 (value 38)
@@ -1565,6 +1574,11 @@
         (peripheral
             (name USART3)
             (address 0x40004800)
+            (signal (name USART3_TX) (type TX))
+            (signal (name USART3_RX) (type RX))
+            (signal (name USART3_CTS) (type CTS))
+            (signal (name USART3_RTS) (type RTS))
+            (signal (name USART3_CK) (type CK))      
             (interrupt
                 (name USART3)
                 (value 39)
@@ -1574,6 +1588,11 @@
         (peripheral
             (name USART6)
             (address 0x40011400)
+            (signal (name USART6_TX) (type TX))
+            (signal (name USART6_RX) (type RX))
+            (signal (name USART6_CTS) (type CTS))
+            (signal (name USART6_RTS) (type RTS))
+            (signal (name USART6_CK) (type CK))      
             (interrupt
                (name USART6)
                 (value 71)
@@ -1583,6 +1602,11 @@
         (peripheral
             (name UART7)
             (address 0x40007800)
+            (signal (name UART7_TX) (type TX))
+            (signal (name UART7_RX) (type RX))
+            (signal (name UART7_CTS) (type CTS))
+            (signal (name UART7_RTS) (type RTS))
+            (signal (name UART7_CK) (type CK))                  
             (interrupt
                 (name UART7)
                 (value 82)
@@ -1592,6 +1616,11 @@
         (peripheral
             (name UART8)
             (address 0x40007c00)
+            (signal (name UART8_TX) (type TX))
+            (signal (name UART8_RX) (type RX))
+            (signal (name UART8_CTS) (type CTS))
+            (signal (name UART8_RTS) (type RTS))
+            (signal (name UART8_CK) (type CK))       
             (interrupt
                 (name UART8)
                 (value 83)

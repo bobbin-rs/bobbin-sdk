@@ -31,5 +31,5 @@ pub mod adc;
 pub mod spi;
 pub mod i2c;
 pub mod gpio;
-pub mod usart;
+pub mod usart_f24;
 pub mod dma;

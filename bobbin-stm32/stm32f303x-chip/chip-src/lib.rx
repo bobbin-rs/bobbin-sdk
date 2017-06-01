@@ -856,6 +856,11 @@
             (name USART1)
             (address 0x40013800)
             (description "Universal synchronous asynchronous receiver transmitter")
+            (signal (name USART1_TX) (type TX))
+            (signal (name USART1_RX) (type RX))
+            (signal (name USART1_CTS) (type CTS))
+            (signal (name USART1_RTS) (type RTS))
+            (signal (name USART1_CK) (type CK))            
             (interrupt
                 (name USART1_EXTI25)
                 (value 37)
@@ -865,6 +870,11 @@
         (peripheral 
             (name USART2)
             (address 0x40004400)
+            (signal (name USART2_TX) (type TX))
+            (signal (name USART2_RX) (type RX))
+            (signal (name USART2_CTS) (type CTS))
+            (signal (name USART2_RTS) (type RTS))
+            (signal (name USART2_CK) (type CK))            
             (interrupt
                 (name USART2_EXTI26)
                 (value 38)
@@ -874,6 +884,11 @@
         (peripheral 
             (name USART3)
             (address 0x40004800)
+            (signal (name USART3_TX) (type TX))
+            (signal (name USART3_RX) (type RX))
+            (signal (name USART3_CTS) (type CTS))
+            (signal (name USART3_RTS) (type RTS))
+            (signal (name USART3_CK) (type CK))            
             (interrupt
                 (name USART3_EXTI28)
                 (value 39)
@@ -883,6 +898,11 @@
         (peripheral 
             (name UART4)
             (address 0x40004c00)
+            (signal (name UART4_TX) (type TX))
+            (signal (name UART4_RX) (type RX))
+            (signal (name UART4_CTS) (type CTS))
+            (signal (name UART4_RTS) (type RTS))
+            (signal (name UART4_CK) (type CK))            
             (interrupt
                 (name UART4_EXTI34)
                 (value 52)
@@ -892,6 +912,11 @@
         (peripheral 
             (name UART5)
             (address 0x40005000)
+            (signal (name UART5_TX) (type TX))
+            (signal (name UART5_RX) (type RX))
+            (signal (name UART5_CTS) (type CTS))
+            (signal (name UART5_RTS) (type RTS))
+            (signal (name UART5_CK) (type CK))            
             (interrupt
                 (name UART5_EXTI35)
                 (value 53)

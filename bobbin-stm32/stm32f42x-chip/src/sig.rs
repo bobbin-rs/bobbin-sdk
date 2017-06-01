@@ -1,5 +1,135 @@
 pub trait Signal<T> {}
 
+pub trait Tx {}
+pub trait SignalTx<T> {}
+pub trait Rx {}
+pub trait SignalRx<T> {}
+pub trait Cts {}
+pub trait SignalCts<T> {}
+pub trait Rts {}
+pub trait SignalRts<T> {}
+pub trait Ck {}
+pub trait SignalCk<T> {}
+
+pub const USART1_TX: Usart1Tx = Usart1Tx {};
+pub struct Usart1Tx {}
+impl Tx for Usart1Tx {}
+
+pub const USART1_RX: Usart1Rx = Usart1Rx {};
+pub struct Usart1Rx {}
+impl Rx for Usart1Rx {}
+
+pub const USART1_CTS: Usart1Cts = Usart1Cts {};
+pub struct Usart1Cts {}
+impl Cts for Usart1Cts {}
+
+pub const USART1_RTS: Usart1Rts = Usart1Rts {};
+pub struct Usart1Rts {}
+impl Rts for Usart1Rts {}
+
+pub const USART1_CK: Usart1Ck = Usart1Ck {};
+pub struct Usart1Ck {}
+impl Ck for Usart1Ck {}
+
+pub const USART2_TX: Usart2Tx = Usart2Tx {};
+pub struct Usart2Tx {}
+impl Tx for Usart2Tx {}
+
+pub const USART2_RX: Usart2Rx = Usart2Rx {};
+pub struct Usart2Rx {}
+impl Rx for Usart2Rx {}
+
+pub const USART2_CTS: Usart2Cts = Usart2Cts {};
+pub struct Usart2Cts {}
+impl Cts for Usart2Cts {}
+
+pub const USART2_RTS: Usart2Rts = Usart2Rts {};
+pub struct Usart2Rts {}
+impl Rts for Usart2Rts {}
+
+pub const USART2_CK: Usart2Ck = Usart2Ck {};
+pub struct Usart2Ck {}
+impl Ck for Usart2Ck {}
+
+pub const USART3_TX: Usart3Tx = Usart3Tx {};
+pub struct Usart3Tx {}
+impl Tx for Usart3Tx {}
+
+pub const USART3_RX: Usart3Rx = Usart3Rx {};
+pub struct Usart3Rx {}
+impl Rx for Usart3Rx {}
+
+pub const USART3_CTS: Usart3Cts = Usart3Cts {};
+pub struct Usart3Cts {}
+impl Cts for Usart3Cts {}
+
+pub const USART3_RTS: Usart3Rts = Usart3Rts {};
+pub struct Usart3Rts {}
+impl Rts for Usart3Rts {}
+
+pub const USART3_CK: Usart3Ck = Usart3Ck {};
+pub struct Usart3Ck {}
+impl Ck for Usart3Ck {}
+
+pub const USART6_TX: Usart6Tx = Usart6Tx {};
+pub struct Usart6Tx {}
+impl Tx for Usart6Tx {}
+
+pub const USART6_RX: Usart6Rx = Usart6Rx {};
+pub struct Usart6Rx {}
+impl Rx for Usart6Rx {}
+
+pub const USART6_CTS: Usart6Cts = Usart6Cts {};
+pub struct Usart6Cts {}
+impl Cts for Usart6Cts {}
+
+pub const USART6_RTS: Usart6Rts = Usart6Rts {};
+pub struct Usart6Rts {}
+impl Rts for Usart6Rts {}
+
+pub const USART6_CK: Usart6Ck = Usart6Ck {};
+pub struct Usart6Ck {}
+impl Ck for Usart6Ck {}
+
+pub const UART7_TX: Uart7Tx = Uart7Tx {};
+pub struct Uart7Tx {}
+impl Tx for Uart7Tx {}
+
+pub const UART7_RX: Uart7Rx = Uart7Rx {};
+pub struct Uart7Rx {}
+impl Rx for Uart7Rx {}
+
+pub const UART7_CTS: Uart7Cts = Uart7Cts {};
+pub struct Uart7Cts {}
+impl Cts for Uart7Cts {}
+
+pub const UART7_RTS: Uart7Rts = Uart7Rts {};
+pub struct Uart7Rts {}
+impl Rts for Uart7Rts {}
+
+pub const UART7_CK: Uart7Ck = Uart7Ck {};
+pub struct Uart7Ck {}
+impl Ck for Uart7Ck {}
+
+pub const UART8_TX: Uart8Tx = Uart8Tx {};
+pub struct Uart8Tx {}
+impl Tx for Uart8Tx {}
+
+pub const UART8_RX: Uart8Rx = Uart8Rx {};
+pub struct Uart8Rx {}
+impl Rx for Uart8Rx {}
+
+pub const UART8_CTS: Uart8Cts = Uart8Cts {};
+pub struct Uart8Cts {}
+impl Cts for Uart8Cts {}
+
+pub const UART8_RTS: Uart8Rts = Uart8Rts {};
+pub struct Uart8Rts {}
+impl Rts for Uart8Rts {}
+
+pub const UART8_CK: Uart8Ck = Uart8Ck {};
+pub struct Uart8Ck {}
+impl Ck for Uart8Ck {}
 
 pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
 pub struct Tim2Ch1 {}
@@ -12,9 +142,6 @@ pub struct Tim5Ch1 {}
 
 pub const TIM8_ETR: Tim8Etr = Tim8Etr {};
 pub struct Tim8Etr {}
-
-pub const USART2_CTS: Usart2Cts = Usart2Cts {};
-pub struct Usart2Cts {}
 
 pub const UART4_TX: Uart4Tx = Uart4Tx {};
 pub struct Uart4Tx {}
@@ -30,9 +157,6 @@ pub struct Tim2Ch2 {}
 
 pub const TIM5_CH2: Tim5Ch2 = Tim5Ch2 {};
 pub struct Tim5Ch2 {}
-
-pub const USART2_RTS: Usart2Rts = Usart2Rts {};
-pub struct Usart2Rts {}
 
 pub const UART4_RX: Uart4Rx = Uart4Rx {};
 pub struct Uart4Rx {}
@@ -52,9 +176,6 @@ pub struct Tim5Ch3 {}
 pub const TIM9_CH1: Tim9Ch1 = Tim9Ch1 {};
 pub struct Tim9Ch1 {}
 
-pub const USART2_TX: Usart2Tx = Usart2Tx {};
-pub struct Usart2Tx {}
-
 pub const ETH_MDIO: EthMdio = EthMdio {};
 pub struct EthMdio {}
 
@@ -66,9 +187,6 @@ pub struct Tim5Ch4 {}
 
 pub const TIM9_CH2: Tim9Ch2 = Tim9Ch2 {};
 pub struct Tim9Ch2 {}
-
-pub const USART2_RX: Usart2Rx = Usart2Rx {};
-pub struct Usart2Rx {}
 
 pub const OTG_HS_ULPI_D0: OtgHsUlpiD0 = OtgHsUlpiD0 {};
 pub struct OtgHsUlpiD0 {}
@@ -87,9 +205,6 @@ pub struct Spi3Nss {}
 
 pub const I2S3_WS: I2s3Ws = I2s3Ws {};
 pub struct I2s3Ws {}
-
-pub const USART2_CK: Usart2Ck = Usart2Ck {};
-pub struct Usart2Ck {}
 
 pub const OTG_HS_SOF: OtgHsSof = OtgHsSof {};
 pub struct OtgHsSof {}
@@ -157,9 +272,6 @@ pub struct Tim1Ch1 {}
 pub const I2C3_SCL: I2c3Scl = I2c3Scl {};
 pub struct I2c3Scl {}
 
-pub const USART1_CK: Usart1Ck = Usart1Ck {};
-pub struct Usart1Ck {}
-
 pub const OTG_FS_SOF: OtgFsSof = OtgFsSof {};
 pub struct OtgFsSof {}
 
@@ -181,9 +293,6 @@ pub struct DcmiD0 {}
 pub const TIM1_CH3: Tim1Ch3 = Tim1Ch3 {};
 pub struct Tim1Ch3 {}
 
-pub const USART1_RX: Usart1Rx = Usart1Rx {};
-pub struct Usart1Rx {}
-
 pub const OTG_FS_ID: OtgFsId = OtgFsId {};
 pub struct OtgFsId {}
 
@@ -192,9 +301,6 @@ pub struct DcmiD1 {}
 
 pub const TIM1_CH4: Tim1Ch4 = Tim1Ch4 {};
 pub struct Tim1Ch4 {}
-
-pub const USART1_CTS: Usart1Cts = Usart1Cts {};
-pub struct Usart1Cts {}
 
 pub const CAN1_RX: Can1Rx = Can1Rx {};
 pub struct Can1Rx {}
@@ -207,9 +313,6 @@ pub struct LcdR4 {}
 
 pub const TIM1_ETR: Tim1Etr = Tim1Etr {};
 pub struct Tim1Etr {}
-
-pub const USART1_RTS: Usart1Rts = Usart1Rts {};
-pub struct Usart1Rts {}
 
 pub const CAN1_TX: Can1Tx = Can1Tx {};
 pub struct Can1Tx {}
@@ -319,9 +422,6 @@ pub struct Tim4Ch1 {}
 pub const I2C1_SCL: I2c1Scl = I2c1Scl {};
 pub struct I2c1Scl {}
 
-pub const USART1_TX: Usart1Tx = Usart1Tx {};
-pub struct Usart1Tx {}
-
 pub const CAN2_TX: Can2Tx = Can2Tx {};
 pub struct Can2Tx {}
 
@@ -391,9 +491,6 @@ pub struct Spi2Sck {}
 pub const I2S2_CK: I2s2Ck = I2s2Ck {};
 pub struct I2s2Ck {}
 
-pub const USART3_TX: Usart3Tx = Usart3Tx {};
-pub struct Usart3Tx {}
-
 pub const OTG_HS_ULPI_D3: OtgHsUlpiD3 = OtgHsUlpiD3 {};
 pub struct OtgHsUlpiD3 {}
 
@@ -408,9 +505,6 @@ pub struct Sim2Ch4 {}
 
 pub const I2C2_SDA: I2c2Sda = I2c2Sda {};
 pub struct I2c2Sda {}
-
-pub const USART3_RX: Usart3Rx = Usart3Rx {};
-pub struct Usart3Rx {}
 
 pub const OTG_HS_ULPI_D4: OtgHsUlpiD4 = OtgHsUlpiD4 {};
 pub struct OtgHsUlpiD4 {}
@@ -427,9 +521,6 @@ pub struct LcdG5 {}
 pub const I2C2_SMBA: I2c2Smba = I2c2Smba {};
 pub struct I2c2Smba {}
 
-pub const USART3_CK: Usart3Ck = Usart3Ck {};
-pub struct Usart3Ck {}
-
 pub const OTG_HS_ULPI_D5: OtgHsUlpiD5 = OtgHsUlpiD5 {};
 pub struct OtgHsUlpiD5 {}
 
@@ -441,9 +532,6 @@ pub struct EthRmiiTxd0 {}
 
 pub const OTG_HS_ID: OtgHsId = OtgHsId {};
 pub struct OtgHsId {}
-
-pub const USART3_CTS: Usart3Cts = Usart3Cts {};
-pub struct Usart3Cts {}
 
 pub const OTG_HS_ULPI_D6: OtgHsUlpiD6 = OtgHsUlpiD6 {};
 pub struct OtgHsUlpiD6 {}
@@ -462,9 +550,6 @@ pub struct Spi2Miso {}
 
 pub const I2S2EXT_SD: I2s2extSd = I2s2extSd {};
 pub struct I2s2extSd {}
-
-pub const USART3_RTS: Usart3Rts = Usart3Rts {};
-pub struct Usart3Rts {}
 
 pub const TIM12_CH1: Tim12Ch1 = Tim12Ch1 {};
 pub struct Tim12Ch1 {}
@@ -532,9 +617,6 @@ pub struct Tim8Ch1 {}
 pub const I2S2_MCK: I2s2Mck = I2s2Mck {};
 pub struct I2s2Mck {}
 
-pub const USART6_TX: Usart6Tx = Usart6Tx {};
-pub struct Usart6Tx {}
-
 pub const SDIO_D6: SdioD6 = SdioD6 {};
 pub struct SdioD6 {}
 
@@ -547,9 +629,6 @@ pub struct Tim8Ch2 {}
 pub const I2S3_MCK: I2s3Mck = I2s3Mck {};
 pub struct I2s3Mck {}
 
-pub const USART6_RX: Usart6Rx = Usart6Rx {};
-pub struct Usart6Rx {}
-
 pub const SDIO_D7: SdioD7 = SdioD7 {};
 pub struct SdioD7 {}
 
@@ -558,9 +637,6 @@ pub struct LcdG6 {}
 
 pub const TIM8_CH3: Tim8Ch3 = Tim8Ch3 {};
 pub struct Tim8Ch3 {}
-
-pub const USART6_CK: Usart6Ck = Usart6Ck {};
-pub struct Usart6Ck {}
 
 pub const SDIO_D0: SdioD0 = SdioD0 {};
 pub struct SdioD0 {}
@@ -682,14 +758,8 @@ pub struct FmcD1 {}
 pub const TIM4_ETR: Tim4Etr = Tim4Etr {};
 pub struct Tim4Etr {}
 
-pub const UART8_RX: Uart8Rx = Uart8Rx {};
-pub struct Uart8Rx {}
-
 pub const FMC_NBL0: FmcNbl0 = FmcNbl0 {};
 pub struct FmcNbl0 {}
-
-pub const UART8_TX: Uart8Tx = Uart8Tx {};
-pub struct Uart8Tx {}
 
 pub const FMC_NBL1: FmcNbl1 = FmcNbl1 {};
 pub struct FmcNbl1 {}
@@ -811,9 +881,6 @@ pub struct FmcA5 {}
 pub const SPI5_NSS: Spi5Nss = Spi5Nss {};
 pub struct Spi5Nss {}
 
-pub const UART7_RX: Uart7Rx = Uart7Rx {};
-pub struct Uart7Rx {}
-
 pub const FMC_NIORD: FmcNiord = FmcNiord {};
 pub struct FmcNiord {}
 
@@ -822,9 +889,6 @@ pub struct Spi5Sck {}
 
 pub const SAI1_MCLK_B: Sai1MclkB = Sai1MclkB {};
 pub struct Sai1MclkB {}
-
-pub const UART7_TX: Uart7Tx = Uart7Tx {};
-pub struct Uart7Tx {}
 
 pub const FMC_NREG: FmcNreg = FmcNreg {};
 pub struct FmcNreg {}
@@ -904,9 +968,6 @@ pub struct DcmiD13 {}
 pub const SPI6_NSS: Spi6Nss = Spi6Nss {};
 pub struct Spi6Nss {}
 
-pub const USART6_RTS: Usart6Rts = Usart6Rts {};
-pub struct Usart6Rts {}
-
 pub const ETH_PS_OUT: EthPsOut = EthPsOut {};
 pub struct EthPsOut {}
 
@@ -936,9 +997,6 @@ pub struct LcdB3 {}
 
 pub const SPI6_SCK: Spi6Sck = Spi6Sck {};
 pub struct Spi6Sck {}
-
-pub const USART6_CTS: Usart6Cts = Usart6Cts {};
-pub struct Usart6Cts {}
 
 pub const FMC_NE4: FmcNe4 = FmcNe4 {};
 pub struct FmcNe4 {}
