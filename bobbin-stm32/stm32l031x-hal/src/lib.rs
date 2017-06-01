@@ -10,21 +10,11 @@ pub use bobbin_cortexm::hal::{nvic, scb};
 pub mod pwr;
 pub mod rcc;
 pub mod clock;
-//pub mod exti;
-//pub mod gpio;
-//pub mod usart;
-// pub mod lptim;
-// pub mod rtc;
-// pub mod dma;
-// pub mod crc;
-// pub mod iwdg;
-// pub mod wwdg;
-// pub mod spi;
-//pub mod pin;
 
 pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
+    pub use rcc::RccEnabled;
     use chip::sig::{SignalTx, SignalRx};
     use core::ops::Deref;
 
@@ -55,9 +45,11 @@ pub mod gpio {
 pub mod usart {
     pub use chip::usart::*;
     pub use stm32_common::hal::usart::*;
+    pub use rcc::RccEnabled;
 }
 
 pub mod tim {
     pub use chip::tim_gen::*;
     pub use stm32_common::hal::tim_gen::*;
+    pub use rcc::RccEnabled;
 }

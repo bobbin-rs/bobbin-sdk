@@ -52,6 +52,25 @@ pub fn disable<P: En>(p: &P) {
     RCC.set_enabled(p, false);
 }
 
+pub trait RccEnabled {
+    fn rcc_enabled(&self) -> bool;
+    fn rcc_set_enabled(&self, value: bool) -> &Self;
+    fn rcc_enable(&self) -> &Self { self.rcc_set_enabled(true); self }
+    fn rcc_disable(&self) -> &Self { self.rcc_set_enabled(false); self }
+}
+
+impl<P> RccEnabled for P where P: En {
+    fn rcc_enabled(&self) -> bool {
+        self.en() != 0
+    }
+    fn rcc_set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.set_en(value);
+        self
+    }
+}
+
+
 
 // pub fn gpio_index(gpio: &GpioImpl) -> usize {
 //     match gpio {
