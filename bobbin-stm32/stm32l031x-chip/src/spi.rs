@@ -10,9 +10,13 @@ impl ::core::ops::Deref for Spi1 {
 }
 
 impl super::sig::Signal<super::sig::Spi1Nss> for Spi1 {}
+impl super::sig::SignalNss<super::sig::Spi1Nss> for Spi1 {}
 impl super::sig::Signal<super::sig::Spi1Miso> for Spi1 {}
+impl super::sig::SignalMiso<super::sig::Spi1Miso> for Spi1 {}
 impl super::sig::Signal<super::sig::Spi1Mosi> for Spi1 {}
+impl super::sig::SignalMosi<super::sig::Spi1Mosi> for Spi1 {}
 impl super::sig::Signal<super::sig::Spi1Sck> for Spi1 {}
+impl super::sig::SignalSck<super::sig::Spi1Sck> for Spi1 {}
 
 
 #[derive(Clone, Copy, PartialEq, Eq)]

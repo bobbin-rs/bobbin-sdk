@@ -10,8 +10,11 @@ impl ::core::ops::Deref for I2c1 {
 }
 
 impl super::sig::Signal<super::sig::I2c1Smba> for I2c1 {}
+impl super::sig::SignalSmba<super::sig::I2c1Smba> for I2c1 {}
 impl super::sig::Signal<super::sig::I2c1Scl> for I2c1 {}
+impl super::sig::SignalScl<super::sig::I2c1Scl> for I2c1 {}
 impl super::sig::Signal<super::sig::I2c1Sda> for I2c1 {}
+impl super::sig::SignalSda<super::sig::I2c1Sda> for I2c1 {}
 
 
 #[derive(Clone, Copy, PartialEq, Eq)]

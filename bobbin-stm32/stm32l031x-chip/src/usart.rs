@@ -12,9 +12,14 @@ impl ::core::ops::Deref for Usart2 {
 }
 
 impl super::sig::Signal<super::sig::Usart2Tx> for Usart2 {}
+impl super::sig::SignalTx<super::sig::Usart2Tx> for Usart2 {}
 impl super::sig::Signal<super::sig::Usart2Rx> for Usart2 {}
+impl super::sig::SignalRx<super::sig::Usart2Rx> for Usart2 {}
 impl super::sig::Signal<super::sig::Usart2Cts> for Usart2 {}
+impl super::sig::SignalCts<super::sig::Usart2Cts> for Usart2 {}
 impl super::sig::Signal<super::sig::Usart2Rts> for Usart2 {}
+impl super::sig::SignalRts<super::sig::Usart2Rts> for Usart2 {}
 impl super::sig::Signal<super::sig::Usart2Ck> for Usart2 {}
+impl super::sig::SignalCk<super::sig::Usart2Ck> for Usart2 {}
 
 
