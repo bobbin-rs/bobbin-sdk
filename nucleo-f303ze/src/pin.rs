@@ -1,6 +1,5 @@
 use hal::gpio::*;
 
-
 pub const D0: Pa3 = PA3;
 pub const D1: Pa2 = PA2;
 pub const D2: Pa10 = PA10;

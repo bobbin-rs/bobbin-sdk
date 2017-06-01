@@ -1,5 +1,7 @@
 use hal::tim::*;
-use hal::rcc;
+
+pub const TIM: Tim15 = TIM15;
+pub const TIM_PRESCALE: u16 = 35999;
 
 // PLL Mode with 8Mhz External Oscillator
 //   72Mhz System Clock
@@ -12,9 +14,11 @@ use hal::rcc;
 // Clock at 72MHz
 // Divide by 36,000 => 2khz
 // Set auto_reload to ms x 2
+
+pub fn init() {
+    TIM.rcc_enable();
+}
+
 pub fn delay(ms: u32) {    
-    let t = TIM15;
-    rcc::enable(&t);
-    t.delay(ms << 1, 35999);
-    rcc::disable(&t);
+    TIM.delay(ms << 1, TIM_PRESCALE);    
 }
