@@ -257,6 +257,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     let st_type = to_camel(&st);
                     if !signal_types.contains(&st_type) {
                         try!(writeln!(out, "pub trait {} {{}}", st_type));
+                        try!(writeln!(out, "pub trait Signal{}<T> {{}}", st_type));
                     }
                     signal_types.insert(st_type);                    
                 }                
@@ -267,6 +268,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 
     for pg in d.peripheral_groups.iter() {
         for p in pg.peripherals.iter() {
+            let p_type = to_camel(&p.name);
             for s in p.signals.iter() {
                 let s_const = s.name.to_uppercase();
                 let s_type = to_camel(&s.name);
@@ -344,6 +346,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         for s in p.signals.iter() {
             let s_type = to_camel(&s.name);
             try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
+            for st in s.types.iter() {
+                let st_type = to_camel(&st);
+                try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, p_type));
+            }
         }
         try!(writeln!(out, ""));
         // count += 1;
