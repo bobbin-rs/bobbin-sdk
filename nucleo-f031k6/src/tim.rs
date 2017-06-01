@@ -1,12 +1,16 @@
 use hal::tim::*;
-use hal::rcc;
+
+pub const TIM: Tim21 = TIM21;
+pub const TIM_PRESCALE: u16 = 15999;
 
 // Clock at 32MHz
 // Divide by 16,000 => 2khz
 // Set auto_reload to ms x 2
+
+pub fn init() {
+    TIM.rcc_enable();
+}
+
 pub fn delay(ms: u32) {    
-    let t = TIM21;
-    rcc::enable(&t);
-    t.delay(ms << 1, 15999);
-    rcc::disable(&t);
+    TIM.delay(ms << 1, TIM_PRESCALE);    
 }

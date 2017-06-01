@@ -15,10 +15,10 @@ pub use stm32l031x::{chip, hal};
 pub mod exceptions;
 pub mod lang_items;
 
+pub mod pin;
 pub mod clock;
 pub mod led;
 pub mod btn;
-pub mod pin;
 pub mod tim;
 
 pub use tim::delay;
@@ -27,5 +27,6 @@ pub fn init() {
     clock::init();
     led::init();
     btn::init();
+    tim::init();
     console::init();
 }

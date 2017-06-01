@@ -1,7 +1,6 @@
 use core::fmt::{self, Write, Arguments};
 use hal::gpio::*;
 use hal::usart::*;
-use hal::rcc;
 
 pub const USART: Usart2 = USART2;
 pub const USART_TX: Pa2 = PA2;
@@ -10,11 +9,16 @@ pub const USART_CLOCK: u32 = 32_000_000;
 pub const USART_BAUD: u32 = 115_200;
 
 pub fn init() {
-    rcc::enable(&USART);
-    rcc::enable(&USART_TX.port());
-    rcc::enable(&USART_RX.port());
+    // Enable Clocks
+    USART.rcc_enable();
+    USART_TX.port().rcc_enable();
+    USART_RX.port().rcc_enable();
+
+    // Set Pin Configuration
     USART_TX.mode_tx(&USART);
     USART_RX.mode_rx(&USART);
+
+    // Set Baud and Enable USART
     USART.enable(USART_CLOCK / USART_BAUD);
 }
 
