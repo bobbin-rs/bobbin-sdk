@@ -9,6 +9,10 @@
         (prototype "periph/usart.rx")
     )    
     (peripheral-group
+        (name USART_F24)
+        (prototype "periph/usart_24.rx")
+    )        
+    (peripheral-group
         (name TIM_BAS)
         (prototype "periph/tim_bas.rx")
     )

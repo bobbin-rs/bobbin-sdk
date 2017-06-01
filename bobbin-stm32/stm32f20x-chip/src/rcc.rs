@@ -4813,14 +4813,14 @@ impl En for super::spi::Spi3 {
    fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi3en(value)); }
 }
 
-impl En for super::usart::Usart2 {
+impl En for super::usart_f24::Usart2 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb1enr().usart2en() }
    #[inline]
    fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
 }
 
-impl En for super::usart::Usart3 {
+impl En for super::usart_f24::Usart3 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb1enr().usart3en() }
    #[inline]
@@ -4862,14 +4862,14 @@ impl En for super::tim_adv::Tim8 {
    fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim8en(value)); }
 }
 
-impl En for super::usart::Usart1 {
+impl En for super::usart_f24::Usart1 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
    #[inline]
    fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
 }
 
-impl En for super::usart::Usart6 {
+impl En for super::usart_f24::Usart6 {
    #[inline]
    fn en(&self) -> u32 { RCC.apb2enr().usart6en() }
    #[inline]

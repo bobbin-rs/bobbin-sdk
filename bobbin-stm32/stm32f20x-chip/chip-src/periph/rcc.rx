@@ -1099,14 +1099,14 @@
             (bit-offset 17)
             (bit-width 1)
             (description "USART 2 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART2))
+            (link (name EN) (peripheral-group USART_F24) (peripheral USART2))
         )
         (field
             (name USART3EN)
             (bit-offset 18)
             (bit-width 1)
             (description "USART3 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART3))
+            (link (name EN) (peripheral-group USART_F24) (peripheral USART3))
         )
         (field
             (name UART4EN)
@@ -1204,14 +1204,14 @@
             (bit-offset 4)
             (bit-width 1)
             (description "USART1 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART1))
+            (link (name EN) (peripheral-group USART_F24) (peripheral USART1))
         )
         (field
             (name USART6EN)
             (bit-offset 5)
             (bit-width 1)
             (description "USART6 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART6))
+            (link (name EN) (peripheral-group USART_F24) (peripheral USART6))
         )
         (field
             (name ADC1EN)

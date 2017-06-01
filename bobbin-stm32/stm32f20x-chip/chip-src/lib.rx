@@ -1542,8 +1542,9 @@
     )
 
     (peripheral-group 
-        (name USART)
-        (prototype "periph/usart.rx")
+        (name USART_F24)
+        ;(prototype "periph/usart.rx")
+        (module (name stm32_common::chip::usart_f24::*))
         (peripheral 
             (name USART1)
             (address 0x40011000)
