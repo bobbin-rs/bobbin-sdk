@@ -10,13 +10,14 @@ pub use bobbin_cortexm::chip::fpu;
 extern crate kinetis_common;
 
 pub mod irq;
+pub mod sig;
 pub mod wdog;
 pub mod sim;
 pub mod scg;
 pub mod pcc;
 pub mod crc;
 pub mod lpit;
-pub mod can;
+pub mod flexcan;
 pub mod port;
 pub mod gpio;
 pub mod lpuart;

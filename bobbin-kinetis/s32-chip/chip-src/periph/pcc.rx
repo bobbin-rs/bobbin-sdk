@@ -3,6 +3,9 @@
     (name PCC)
     (address 0x40065000)
     (description "PCC")
+    (link (name CGC))
+    (link (name PR))
+    (link (name PCS))
     (register
         (name PCCDummy0)
         (offset 0x0)
@@ -409,6 +412,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FLEXCAN) (peripheral CAN0))
             (value
                 (value "#0")
                 (name "0")
@@ -452,6 +456,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FLEXCAN) (peripheral CAN1))
             (value
                 (value "#0")
                 (name "0")
@@ -702,6 +707,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FLEXCAN) (peripheral CAN2))
             (value
                 (value "#0")
                 (name "0")
@@ -745,6 +751,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPSPI) (peripheral LPSPI0))
             (value
                 (value "#000")
                 (name "000")
@@ -792,6 +799,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPSPI) (peripheral LPSPI0))
             (value
                 (value "#0")
                 (name "0")
@@ -835,6 +843,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPSPI) (peripheral LPSPI1))
             (value
                 (value "#000")
                 (name "000")
@@ -882,6 +891,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPSPI) (peripheral LPSPI1))
             (value
                 (value "#0")
                 (name "0")
@@ -925,6 +935,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPSPI) (peripheral LPSPI2))
             (value
                 (value "#000")
                 (name "000")
@@ -972,6 +983,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPSPI) (peripheral LPSPI2))
             (value
                 (value "#0")
                 (name "0")
@@ -1076,6 +1088,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group CRC) (peripheral CRC))
             (value
                 (value "#0")
                 (name "0")
@@ -1189,6 +1202,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPIT) (peripheral LPIT0))
             (value
                 (value "#000")
                 (name "000")
@@ -1236,6 +1250,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPIT) (peripheral LPIT0))
             (value
                 (value "#0")
                 (name "0")
@@ -1935,6 +1950,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group PORT) (peripheral PORTA))
             (value
                 (value "#0")
                 (name "0")
@@ -1978,6 +1994,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group PORT) (peripheral PORTB))
             (value
                 (value "#0")
                 (name "0")
@@ -2021,6 +2038,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group PORT) (peripheral PORTC))
             (value
                 (value "#0")
                 (name "0")
@@ -2064,6 +2082,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group PORT) (peripheral PORTD))
             (value
                 (value "#0")
                 (name "0")
@@ -2107,6 +2126,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group PORT) (peripheral PORTE))
             (value
                 (value "#0")
                 (name "0")
@@ -2598,6 +2618,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPUART) (peripheral LPUART0))
             (value
                 (value "#000")
                 (name "000")
@@ -2645,6 +2666,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPUART) (peripheral LPUART0))
             (value
                 (value "#0")
                 (name "0")
@@ -2688,6 +2710,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPUART) (peripheral LPUART1))
             (value
                 (value "#000")
                 (name "000")
@@ -2735,6 +2758,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPUART) (peripheral LPUART1))
             (value
                 (value "#0")
                 (name "0")
@@ -2778,6 +2802,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPUART) (peripheral LPUART2))
             (value
                 (value "#000")
                 (name "000")
@@ -2825,6 +2850,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPUART) (peripheral LPUART2))
             (value
                 (value "#0")
                 (name "0")

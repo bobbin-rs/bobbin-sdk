@@ -27,11 +27,37 @@
     (peripheral (include "periph/scg.rx"))
     (peripheral (include "periph/pcc.rx"))
     (peripheral (include "periph/crc.rx"))
-    (peripheral (include "periph/lpit.rx"))
     
     (peripheral-group
-        (name CAN)
-        (prototype "periph/can.rx")
+        (name LPIT)
+        (module (name kinetis_common::chip::lpit::*))
+        (peripheral
+            (name LPIT0)
+            (address 0x40037000)
+            (description "Low Power Periodic Interrupt Timer (LPIT)")
+            (interrupt
+                (name LPIT0_Ch0)
+                (value 48)
+            )
+            (interrupt
+                (name LPIT0_Ch1)
+                (value 49)
+            )
+            (interrupt
+                (name LPIT0_Ch2)
+                (value 50)
+            )
+            (interrupt
+                (name LPIT0_Ch3)
+                (value 51)
+            )        
+        )
+    )
+
+    (peripheral-group
+        (name FLEXCAN)
+        (module (name kinetis_common::chip::flexcan::*))
+
         (peripheral
             (name CAN0)
             (address 0x40024000)
@@ -100,6 +126,7 @@
             (name PORTA)
             (address 0x40049000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOA))
             (interrupt
                 (name PORTA)
                 (value 59)
@@ -241,6 +268,7 @@
             (name PORTB)
             (address 0x4004a000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOB))
             (interrupt
                 (name PORTB)
                 (value 60)
@@ -366,6 +394,7 @@
             (name PORTC)
             (address 0x4004b000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOC))
             (interrupt
                 (name PORTC)
                 (value 61)
@@ -498,6 +527,7 @@
             (name PORTD)
             (address 0x4004c000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOD))
             (interrupt
                 (name PORTD)
                 (value 62)
@@ -623,6 +653,7 @@
             (name PORTE)
             (address 0x4004d000)
             (description "Pin Control and Interrupts")
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOE))
             (interrupt
                 (name PORTE)
                 (value 63)
@@ -753,37 +784,47 @@
             (name GPIOA)
             (address 0x400ff000)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTA))
         )
         (peripheral
             (name GPIOB)
             (address 0x400ff040)
             (description "General Purpose Input/Output")        
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTB))
         )
         (peripheral
             (name GPIOC)
             (address 0x400ff080)
             (description "General Purpose Input/Output")        
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTC))
         )
         (peripheral
             (name GPIOD)
             (address 0x400ff0c0)
             (description "General Purpose Input/Output")
-        )
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTD))
+        )        
         (peripheral
             (name GPIOE)
             (address 0x400ff100)
             (description "General Purpose Input/Output")
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTE))
         )
     )    
 
     (peripheral-group
         (name LPUART)
-        (prototype "periph/lpuart.rx")
+        (module (name kinetis_common::chip::lpuart::*))
 
         (peripheral
             (name LPUART0)
             (address 0x4006a000)
             (description "Universal Asynchronous Receiver/Transmitter")
+            (signal (name LPUART0_TX) (type TX))
+            (signal (name LPUART0_RX) (type RX))
+            (signal (name LPUART0_CTS) (type CTS))
+            (signal (name LPUART0_RTS) (type RTS))
+
             (interrupt
                 (name LPUART0_RxTx)
                 (value 31)
@@ -794,6 +835,10 @@
             (name LPUART1)
             (address 0x4006b000)
             (description "Universal Asynchronous Receiver/Transmitter")
+            (signal (name LPUART1_TX) (type TX))
+            (signal (name LPUART1_RX) (type RX))
+            (signal (name LPUART1_CTS) (type CTS))
+            (signal (name LPUART1_RTS) (type RTS))            
             (interrupt
                 (name LPUART1_RxTx)
                 (value 33)
@@ -803,6 +848,10 @@
             (name LPUART2)
             (address 0x4006c000)
             (description "Universal Asynchronous Receiver/Transmitter")
+            (signal (name LPUART2_TX) (type TX))
+            (signal (name LPUART2_RX) (type RX))
+            (signal (name LPUART2_CTS) (type CTS))
+            (signal (name LPUART2_RTS) (type RTS))
             (interrupt
                 (name LPUART2_RxTx)
                 (value 35)
@@ -812,7 +861,7 @@
 
     (peripheral-group
         (name LPSPI)
-        (prototype "periph/lpspi.rx")
+        (module (name kinetis_common::chip::lpspi::*))
         (peripheral
             (name LPSPI0)
             (address 0x4002c000)

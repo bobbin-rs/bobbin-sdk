@@ -16,7 +16,23 @@
     (peripheral-group
         (name UART0)
         (prototype "periph/uart0.rx")
-    )        
+    )
+    (peripheral-group
+        (name FLEXCAN)
+        (prototype "periph/flexcan.rx")
+    )          
+    (peripheral-group
+        (name LPIT)
+        (prototype "periph/lpit.rx")
+    )       
+    (peripheral-group
+        (name LPSPI)
+        (prototype "periph/lpspi.rx")
+    )       
+    (peripheral-group
+        (name LPUART)
+        (prototype "periph/lpuart.rx")
+    )       
     (peripheral-group
         (name PIT)
         (prototype "periph/pit.rx")

@@ -1,46 +1,7 @@
-pub const CAN0: Can0 = Can0 {};
-pub const CAN0_REF: &Can0 = &CAN0;
-pub const CAN0_IMPL: CanImpl = CanImpl(0x40024000);
-pub const CAN0_IMPL_REF: &CanImpl = &CAN0_IMPL;
-
-pub struct Can0 {}
-impl ::core::ops::Deref for Can0 {
-   type Target = CanImpl;
-   #[inline]
-   fn deref(&self) -> &CanImpl { CAN0_IMPL_REF }
-}
-
-
-pub const CAN1: Can1 = Can1 {};
-pub const CAN1_REF: &Can1 = &CAN1;
-pub const CAN1_IMPL: CanImpl = CanImpl(0x40025000);
-pub const CAN1_IMPL_REF: &CanImpl = &CAN1_IMPL;
-
-pub struct Can1 {}
-impl ::core::ops::Deref for Can1 {
-   type Target = CanImpl;
-   #[inline]
-   fn deref(&self) -> &CanImpl { CAN1_IMPL_REF }
-}
-
-
-pub const CAN2: Can2 = Can2 {};
-pub const CAN2_REF: &Can2 = &CAN2;
-pub const CAN2_IMPL: CanImpl = CanImpl(0x4002b000);
-pub const CAN2_IMPL_REF: &CanImpl = &CAN2_IMPL;
-
-pub struct Can2 {}
-impl ::core::ops::Deref for Can2 {
-   type Target = CanImpl;
-   #[inline]
-   fn deref(&self) -> &CanImpl { CAN2_IMPL_REF }
-}
-
-
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct CanImpl(pub u32);
-impl CanImpl {
+pub struct FlexcanImpl(pub u32);
+impl FlexcanImpl {
   #[inline]
   pub fn mcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -56,14 +17,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_mcr(&self, value: Mcr) -> &CanImpl {
+  pub fn set_mcr(&self, value: Mcr) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &CanImpl {
+  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
@@ -83,14 +44,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ctrl1(&self, value: Ctrl1) -> &CanImpl {
+  pub fn set_ctrl1(&self, value: Ctrl1) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl1<F: FnOnce(Ctrl1) -> Ctrl1>(&self, f: F) -> &CanImpl {
+  pub fn with_ctrl1<F: FnOnce(Ctrl1) -> Ctrl1>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.ctrl1();
      self.set_ctrl1(f(tmp))
   }
@@ -110,14 +71,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_timer(&self, value: Timer) -> &CanImpl {
+  pub fn set_timer(&self, value: Timer) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timer<F: FnOnce(Timer) -> Timer>(&self, f: F) -> &CanImpl {
+  pub fn with_timer<F: FnOnce(Timer) -> Timer>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.timer();
      self.set_timer(f(tmp))
   }
@@ -137,14 +98,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_rxmgmask(&self, value: Rxmgmask) -> &CanImpl {
+  pub fn set_rxmgmask(&self, value: Rxmgmask) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxmgmask<F: FnOnce(Rxmgmask) -> Rxmgmask>(&self, f: F) -> &CanImpl {
+  pub fn with_rxmgmask<F: FnOnce(Rxmgmask) -> Rxmgmask>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.rxmgmask();
      self.set_rxmgmask(f(tmp))
   }
@@ -164,14 +125,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_rx14mask(&self, value: Rx14mask) -> &CanImpl {
+  pub fn set_rx14mask(&self, value: Rx14mask) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rx14mask<F: FnOnce(Rx14mask) -> Rx14mask>(&self, f: F) -> &CanImpl {
+  pub fn with_rx14mask<F: FnOnce(Rx14mask) -> Rx14mask>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.rx14mask();
      self.set_rx14mask(f(tmp))
   }
@@ -191,14 +152,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_rx15mask(&self, value: Rx15mask) -> &CanImpl {
+  pub fn set_rx15mask(&self, value: Rx15mask) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rx15mask<F: FnOnce(Rx15mask) -> Rx15mask>(&self, f: F) -> &CanImpl {
+  pub fn with_rx15mask<F: FnOnce(Rx15mask) -> Rx15mask>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.rx15mask();
      self.set_rx15mask(f(tmp))
   }
@@ -218,14 +179,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ecr(&self, value: Ecr) -> &CanImpl {
+  pub fn set_ecr(&self, value: Ecr) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &CanImpl {
+  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.ecr();
      self.set_ecr(f(tmp))
   }
@@ -245,14 +206,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_esr1(&self, value: Esr1) -> &CanImpl {
+  pub fn set_esr1(&self, value: Esr1) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_esr1<F: FnOnce(Esr1) -> Esr1>(&self, f: F) -> &CanImpl {
+  pub fn with_esr1<F: FnOnce(Esr1) -> Esr1>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.esr1();
      self.set_esr1(f(tmp))
   }
@@ -272,14 +233,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_imask1(&self, value: Imask1) -> &CanImpl {
+  pub fn set_imask1(&self, value: Imask1) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_imask1<F: FnOnce(Imask1) -> Imask1>(&self, f: F) -> &CanImpl {
+  pub fn with_imask1<F: FnOnce(Imask1) -> Imask1>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.imask1();
      self.set_imask1(f(tmp))
   }
@@ -299,14 +260,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_iflag1(&self, value: Iflag1) -> &CanImpl {
+  pub fn set_iflag1(&self, value: Iflag1) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_iflag1<F: FnOnce(Iflag1) -> Iflag1>(&self, f: F) -> &CanImpl {
+  pub fn with_iflag1<F: FnOnce(Iflag1) -> Iflag1>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.iflag1();
      self.set_iflag1(f(tmp))
   }
@@ -326,14 +287,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ctrl2(&self, value: Ctrl2) -> &CanImpl {
+  pub fn set_ctrl2(&self, value: Ctrl2) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl2<F: FnOnce(Ctrl2) -> Ctrl2>(&self, f: F) -> &CanImpl {
+  pub fn with_ctrl2<F: FnOnce(Ctrl2) -> Ctrl2>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.ctrl2();
      self.set_ctrl2(f(tmp))
   }
@@ -383,14 +344,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_rxfgmask(&self, value: Rxfgmask) -> &CanImpl {
+  pub fn set_rxfgmask(&self, value: Rxfgmask) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxfgmask<F: FnOnce(Rxfgmask) -> Rxfgmask>(&self, f: F) -> &CanImpl {
+  pub fn with_rxfgmask<F: FnOnce(Rxfgmask) -> Rxfgmask>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.rxfgmask();
      self.set_rxfgmask(f(tmp))
   }
@@ -425,14 +386,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_cbt(&self, value: Cbt) -> &CanImpl {
+  pub fn set_cbt(&self, value: Cbt) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cbt<F: FnOnce(Cbt) -> Cbt>(&self, f: F) -> &CanImpl {
+  pub fn with_cbt<F: FnOnce(Cbt) -> Cbt>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.cbt();
      self.set_cbt(f(tmp))
   }
@@ -455,7 +416,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ram(&self, index: usize, value: Ram) -> &CanImpl {
+  pub fn set_ram(&self, index: usize, value: Ram) -> &FlexcanImpl {
      assert!(index < 128);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80 + (index << 2)) as *mut u32, value.0);
@@ -463,7 +424,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_ram<F: FnOnce(Ram) -> Ram>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_ram<F: FnOnce(Ram) -> Ram>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.ram(index);
      self.set_ram(index, f(tmp))
   }
@@ -486,7 +447,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_mb8h0(&self, index: usize, value: Mb8h0) -> &CanImpl {
+  pub fn set_mb8h0(&self, index: usize, value: Mb8h0) -> &FlexcanImpl {
      assert!(index < 16);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80 + (index << 4)) as *mut u32, value.0);
@@ -494,7 +455,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_mb8h0<F: FnOnce(Mb8h0) -> Mb8h0>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_mb8h0<F: FnOnce(Mb8h0) -> Mb8h0>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.mb8h0(index);
      self.set_mb8h0(index, f(tmp))
   }
@@ -517,7 +478,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_mb8h1(&self, index: usize, value: Mb8h1) -> &CanImpl {
+  pub fn set_mb8h1(&self, index: usize, value: Mb8h1) -> &FlexcanImpl {
      assert!(index < 16);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x84 + (index << 4)) as *mut u32, value.0);
@@ -525,7 +486,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_mb8h1<F: FnOnce(Mb8h1) -> Mb8h1>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_mb8h1<F: FnOnce(Mb8h1) -> Mb8h1>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.mb8h1(index);
      self.set_mb8h1(index, f(tmp))
   }
@@ -548,7 +509,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_mb8d0(&self, index: usize, value: Mb8d0) -> &CanImpl {
+  pub fn set_mb8d0(&self, index: usize, value: Mb8d0) -> &FlexcanImpl {
      assert!(index < 16);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x88 + (index << 4)) as *mut u32, value.0);
@@ -556,7 +517,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_mb8d0<F: FnOnce(Mb8d0) -> Mb8d0>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_mb8d0<F: FnOnce(Mb8d0) -> Mb8d0>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.mb8d0(index);
      self.set_mb8d0(index, f(tmp))
   }
@@ -579,7 +540,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_mb8d1(&self, index: usize, value: Mb8d1) -> &CanImpl {
+  pub fn set_mb8d1(&self, index: usize, value: Mb8d1) -> &FlexcanImpl {
      assert!(index < 16);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8c + (index << 4)) as *mut u32, value.0);
@@ -587,7 +548,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_mb8d1<F: FnOnce(Mb8d1) -> Mb8d1>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_mb8d1<F: FnOnce(Mb8d1) -> Mb8d1>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.mb8d1(index);
      self.set_mb8d1(index, f(tmp))
   }
@@ -610,7 +571,7 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_rximr(&self, index: usize, value: Rximr) -> &CanImpl {
+  pub fn set_rximr(&self, index: usize, value: Rximr) -> &FlexcanImpl {
      assert!(index < 16);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x880 + (index << 2)) as *mut u32, value.0);
@@ -618,7 +579,7 @@ impl CanImpl {
      self
   }
   #[inline]
-  pub fn with_rximr<F: FnOnce(Rximr) -> Rximr>(&self, index: usize, f: F) -> &CanImpl {
+  pub fn with_rximr<F: FnOnce(Rximr) -> Rximr>(&self, index: usize, f: F) -> &FlexcanImpl {
      let tmp = self.rximr(index);
      self.set_rximr(index, f(tmp))
   }
@@ -638,14 +599,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ctrl1_pn(&self, value: Ctrl1Pn) -> &CanImpl {
+  pub fn set_ctrl1_pn(&self, value: Ctrl1Pn) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb00) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl1_pn<F: FnOnce(Ctrl1Pn) -> Ctrl1Pn>(&self, f: F) -> &CanImpl {
+  pub fn with_ctrl1_pn<F: FnOnce(Ctrl1Pn) -> Ctrl1Pn>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.ctrl1_pn();
      self.set_ctrl1_pn(f(tmp))
   }
@@ -665,14 +626,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_ctrl2_pn(&self, value: Ctrl2Pn) -> &CanImpl {
+  pub fn set_ctrl2_pn(&self, value: Ctrl2Pn) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb04) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl2_pn<F: FnOnce(Ctrl2Pn) -> Ctrl2Pn>(&self, f: F) -> &CanImpl {
+  pub fn with_ctrl2_pn<F: FnOnce(Ctrl2Pn) -> Ctrl2Pn>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.ctrl2_pn();
      self.set_ctrl2_pn(f(tmp))
   }
@@ -692,14 +653,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_wu_mtc(&self, value: WuMtc) -> &CanImpl {
+  pub fn set_wu_mtc(&self, value: WuMtc) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb08) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_wu_mtc<F: FnOnce(WuMtc) -> WuMtc>(&self, f: F) -> &CanImpl {
+  pub fn with_wu_mtc<F: FnOnce(WuMtc) -> WuMtc>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.wu_mtc();
      self.set_wu_mtc(f(tmp))
   }
@@ -719,14 +680,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_flt_id1(&self, value: FltId1) -> &CanImpl {
+  pub fn set_flt_id1(&self, value: FltId1) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flt_id1<F: FnOnce(FltId1) -> FltId1>(&self, f: F) -> &CanImpl {
+  pub fn with_flt_id1<F: FnOnce(FltId1) -> FltId1>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.flt_id1();
      self.set_flt_id1(f(tmp))
   }
@@ -746,14 +707,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_flt_dlc(&self, value: FltDlc) -> &CanImpl {
+  pub fn set_flt_dlc(&self, value: FltDlc) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flt_dlc<F: FnOnce(FltDlc) -> FltDlc>(&self, f: F) -> &CanImpl {
+  pub fn with_flt_dlc<F: FnOnce(FltDlc) -> FltDlc>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.flt_dlc();
      self.set_flt_dlc(f(tmp))
   }
@@ -773,14 +734,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_pl1_lo(&self, value: Pl1Lo) -> &CanImpl {
+  pub fn set_pl1_lo(&self, value: Pl1Lo) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pl1_lo<F: FnOnce(Pl1Lo) -> Pl1Lo>(&self, f: F) -> &CanImpl {
+  pub fn with_pl1_lo<F: FnOnce(Pl1Lo) -> Pl1Lo>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.pl1_lo();
      self.set_pl1_lo(f(tmp))
   }
@@ -800,14 +761,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_pl1_hi(&self, value: Pl1Hi) -> &CanImpl {
+  pub fn set_pl1_hi(&self, value: Pl1Hi) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pl1_hi<F: FnOnce(Pl1Hi) -> Pl1Hi>(&self, f: F) -> &CanImpl {
+  pub fn with_pl1_hi<F: FnOnce(Pl1Hi) -> Pl1Hi>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.pl1_hi();
      self.set_pl1_hi(f(tmp))
   }
@@ -827,14 +788,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_flt_id2_idmask(&self, value: FltId2Idmask) -> &CanImpl {
+  pub fn set_flt_id2_idmask(&self, value: FltId2Idmask) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flt_id2_idmask<F: FnOnce(FltId2Idmask) -> FltId2Idmask>(&self, f: F) -> &CanImpl {
+  pub fn with_flt_id2_idmask<F: FnOnce(FltId2Idmask) -> FltId2Idmask>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.flt_id2_idmask();
      self.set_flt_id2_idmask(f(tmp))
   }
@@ -854,14 +815,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_pl2_plmask_lo(&self, value: Pl2PlmaskLo) -> &CanImpl {
+  pub fn set_pl2_plmask_lo(&self, value: Pl2PlmaskLo) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pl2_plmask_lo<F: FnOnce(Pl2PlmaskLo) -> Pl2PlmaskLo>(&self, f: F) -> &CanImpl {
+  pub fn with_pl2_plmask_lo<F: FnOnce(Pl2PlmaskLo) -> Pl2PlmaskLo>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.pl2_plmask_lo();
      self.set_pl2_plmask_lo(f(tmp))
   }
@@ -881,14 +842,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_pl2_plmask_hi(&self, value: Pl2PlmaskHi) -> &CanImpl {
+  pub fn set_pl2_plmask_hi(&self, value: Pl2PlmaskHi) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pl2_plmask_hi<F: FnOnce(Pl2PlmaskHi) -> Pl2PlmaskHi>(&self, f: F) -> &CanImpl {
+  pub fn with_pl2_plmask_hi<F: FnOnce(Pl2PlmaskHi) -> Pl2PlmaskHi>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.pl2_plmask_hi();
      self.set_pl2_plmask_hi(f(tmp))
   }
@@ -1148,14 +1109,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_fdctrl(&self, value: Fdctrl) -> &CanImpl {
+  pub fn set_fdctrl(&self, value: Fdctrl) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc00) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fdctrl<F: FnOnce(Fdctrl) -> Fdctrl>(&self, f: F) -> &CanImpl {
+  pub fn with_fdctrl<F: FnOnce(Fdctrl) -> Fdctrl>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.fdctrl();
      self.set_fdctrl(f(tmp))
   }
@@ -1175,14 +1136,14 @@ impl CanImpl {
      }
   }
   #[inline]
-  pub fn set_fdcbt(&self, value: Fdcbt) -> &CanImpl {
+  pub fn set_fdcbt(&self, value: Fdcbt) -> &FlexcanImpl {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc04) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fdcbt<F: FnOnce(Fdcbt) -> Fdcbt>(&self, f: F) -> &CanImpl {
+  pub fn with_fdcbt<F: FnOnce(Fdcbt) -> Fdcbt>(&self, f: F) -> &FlexcanImpl {
      let tmp = self.fdcbt();
      self.set_fdcbt(f(tmp))
   }
