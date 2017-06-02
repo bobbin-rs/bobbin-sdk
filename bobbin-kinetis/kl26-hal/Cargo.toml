@@ -5,4 +5,5 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
+kinetis-common = { path = "../kinetis-common" }
 kl26-chip = { path = "../kl26-chip" }

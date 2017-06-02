@@ -14,6 +14,10 @@
         (prototype "periph/uart.rx")
     )    
     (peripheral-group
+        (name UART0)
+        (prototype "periph/uart0.rx")
+    )        
+    (peripheral-group
         (name PIT)
         (prototype "periph/pit.rx")
     )        

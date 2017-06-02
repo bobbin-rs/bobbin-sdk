@@ -1,4 +1,4 @@
-use chip::uart::*;
+use chip::uart0::*;
 
 pub trait UartExt {
     fn enable(&self, bd: u16) -> &Self;
@@ -12,7 +12,7 @@ pub trait UartExt {
     fn write(&self, data: &[u8]);
 }
 
-impl UartExt for UartImpl {
+impl UartExt for Uart0Impl {
     fn enable(&self, baud_divider: u16) -> &Self {
         let u = self;
         u.set_c1(C1(0));
@@ -21,9 +21,10 @@ impl UartExt for UartImpl {
         // Set baud divider
         u.set_bdh(Bdh(0).set_sbr((baud_divider >> 8) as u8));
         u.set_bdl(Bdl(0).set_sbr(baud_divider as u8));
-        
-        u.set_c3(C3(0));                       
-        u.set_c4(C4(0));
+
+        u.set_c3(C3(0));                               
+        // Oversampling 4x
+        u.set_c4(C4(0).set_osr(0x3));        
         u.set_c5(C5(0));
         // Enable Transmit and Receive
         u.set_c2(C2(0).set_te(1).set_re(1));    

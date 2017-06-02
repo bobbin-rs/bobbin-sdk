@@ -18,13 +18,18 @@
     (peripheral (include "periph/osc.rx"))
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/mcg.rx"))
-    (peripheral (include "periph/pit.rx")
+
+    (peripheral-group
         (name PIT)
-        (address 0x40037000)
-        (description "Periodic Interrupt Timer")
-        (interrupt
+        (module (name kinetis_common::chip::pit::*))
+        (peripheral            
             (name PIT)
-            (value 22)
+            (address 0x40037000)
+            (description "Periodic Interrupt Timer")
+            (interrupt
+                (name PIT)
+                (value 22)
+            )
         )
     )
     (peripheral-group    
@@ -33,6 +38,7 @@
         (peripheral 
             (name PORTA)
             (address 0x40049000)
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOA))
             (interrupt
                 (name PORTA)
                 (value 30)
@@ -106,6 +112,7 @@
         (peripheral
             (name PORTB)
             (address 0x4004a000)
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOB))
             (pin (name PTB0) (index 0)
                 (altfn 0 ADC0_SE8)
                 (altfn 0 TSI0_CH0)
@@ -166,6 +173,7 @@
         (peripheral
             (name PORTC)
             (address 0x4004b000)
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOC))
             (interrupt
                 (name PORTC_PORTD)
                 (value 31)
@@ -261,6 +269,7 @@
         (peripheral
             (name PORTD)
             (address 0x4004c000)
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOD))
             (interrupt
                 (name PORTC_PORTD)
                 (value 31)
@@ -320,6 +329,7 @@
         (peripheral
             (name PORTE)
             (address 0x4004d000)
+            (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOE))
             (pin (name PTE0) (index 0)
                 (altfn 1 PTE0)
                 (altfn 2 SPI1_MISO)
@@ -400,6 +410,7 @@
         (peripheral
             (name GPIOA)
             (address 0x400ff000)
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTA))
             (interrupt
                 (name PORTA)
                 (value 30)
@@ -408,10 +419,12 @@
         (peripheral
             (name GPIOB)
             (address 0x400ff040)
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTB))
         )
         (peripheral
             (name GPIOC)
             (address 0x400ff080)
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTC))
             (interrupt
                 (name PORTC_PORTD)
                 (value 31)
@@ -420,6 +433,7 @@
         (peripheral
             (name GPIOD)
             (address 0x400ff0c0)
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTD))
             (interrupt
                 (name PORTC_PORTD)
                 (value 31)
@@ -428,16 +442,33 @@
         (peripheral
             (name GPIOE)
             (address 0x400ff100)
+            (link (name PORT) (peripheral-group PORT) (peripheral PORTE))
         )
     )    
-    (peripheral (include "periph/uart0.rx"))
+    (peripheral-group
+        (name UART0)
+        (module (name kinetis_common::chip::uart0::*))
+        (peripheral
+            (name UART0)
+            (address 0x4006a000)
+            (description "Universal Asynchronous Receiver/Transmitter")
+            (signal (name UART0_TX) (type TX))
+            (signal (name UART0_RX) (type RX))    
+            (interrupt
+                (name UART0)
+                (value 12)
+            )
+        
+        )
+    )    
     (peripheral-group
         (name UART)
-        (prototype "periph/uart.rx")
-
+        (module (name kinetis_common::chip::uart::*))
         (peripheral 
             (name UART1)
             (address 0x4006b000)
+            (signal (name UART1_TX) (type TX))
+            (signal (name UART1_RX) (type RX))               
             (interrupt
                 (name UART1)
                 (value 13)
@@ -446,6 +477,8 @@
         (peripheral
             (name UART2)
             (address 0x4006c000)
+            (signal (name UART2_TX) (type TX))
+            (signal (name UART2_RX) (type RX))            
             (interrupt
                 (name UART2)
                 (value 14)

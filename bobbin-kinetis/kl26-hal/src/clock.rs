@@ -13,11 +13,9 @@ pub fn init() {
 }
 
 pub fn run_48mhz() {
-    unsafe {
-        OSC0.with_cr(|r| r.set_erclken(1));
-        SIM.with_clkdiv1(|r| r.set_outdiv1(0x1).set_outdiv4(0x1));
-        SIM.with_sopt2(|r| r.set_pllfllsel(1));
-    }
+    OSC0.with_cr(|r| r.set_erclken(1));
+    SIM.with_clkdiv1(|r| r.set_outdiv1(0x1).set_outdiv4(0x1));
+    SIM.with_sopt2(|r| r.set_pllfllsel(1));
     set_mode_fbe();
     set_mode_pbe();
     set_mode_pee();
@@ -43,8 +41,7 @@ pub fn set_sysclk_hz(value: u32) {
 
 
 pub fn set_mode_fbe() {        
-    unsafe {
-    let mut m = MCG;
+    let m = MCG;
     // Switch to FBE (FLL Bypassed External) Mode
 
     // CLKS=2: Encoding 2 — External reference clock is selected.
@@ -96,12 +93,10 @@ pub fn set_mode_fbe() {
     //while((MCG_S & 0x0CU) != 0x08U) {}
 
     while m.s().clkst() != 0x2 {}
-    }
 }
 pub fn set_mode_pbe() {
-    unsafe {
-    let mut o = OSC0;
-    let mut m = MCG;
+    let o = OSC0;
+    let m = MCG;
     
     // Switch to PBE (PLL Bypassed External) Mode  
     /* OSC0_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
@@ -140,12 +135,10 @@ pub fn set_mode_pbe() {
     //while((MCG_S & MCG_S_LOCK0_MASK) == 0x00U) {}
 
     while m.s().lock0() == 0x00 {}
-    }
 }
 pub fn set_mode_pee() {
-    unsafe {
-    let mut o = OSC0;
-    let mut m = MCG;
+    let o = OSC0;
+    let m = MCG;
 
     // Switch to PBE (PLL Engaged External) Mode
     
@@ -175,5 +168,4 @@ pub fn set_mode_pee() {
     /* Wait until output of the PLL is selected */
     //while((MCG_S & 0x0CU) != 0x0CU) {}
     while m.s().clkst() != 0x3 {}
-    }
 }

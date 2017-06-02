@@ -8,12 +8,13 @@ pub use bobbin_cortexm::chip::systick;
 extern crate kinetis_common;
 
 pub mod irq;
+pub mod sig;
 pub mod ftfa;
 pub mod osc;
 pub mod sim;
 pub mod mcg;
 pub mod pit;
-pub mod uart0;
 pub mod port;
 pub mod gpio;
+pub mod uart0;
 pub mod uart;
