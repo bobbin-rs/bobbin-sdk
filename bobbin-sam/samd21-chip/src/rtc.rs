@@ -2,146 +2,321 @@ pub const RTC: Rtc = Rtc(0x40001400);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtc(pub u32);
-
 impl Rtc {
+   #[inline]
    pub fn mode0(&self) -> mode0::Mode0 {
       mode0::Mode0(self.0 + 0x0)
    }
-
+   #[inline]
    pub fn mode1(&self) -> mode1::Mode1 {
       mode1::Mode1(self.0 + 0x0)
    }
-
+   #[inline]
    pub fn mode2(&self) -> mode2::Mode2 {
       mode2::Mode2(self.0 + 0x0)
    }
-
 }
-
 pub mod mode0 {
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Mode0(pub u32);
-
 impl Mode0 {
-  pub unsafe fn dbgctrl(&self) -> Dbgctrl { 
-     Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+  #[inline]
+  pub fn dbgctrl_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xb) as *const u8
   }
-  pub unsafe fn set_dbgctrl(&mut self, value: Dbgctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+  #[inline]
+  pub fn dbgctrl_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xb) as *mut u8
   }
-  pub unsafe fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgctrl(&self) -> Dbgctrl { 
+     unsafe {
+       Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Mode0 {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
 
-  pub unsafe fn freqcorr(&self) -> Freqcorr { 
-     Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+  #[inline]
+  pub fn freqcorr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xc) as *const u8
   }
-  pub unsafe fn set_freqcorr(&mut self, value: Freqcorr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+  #[inline]
+  pub fn freqcorr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xc) as *mut u8
   }
-  pub unsafe fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&mut self, f: F) {
+  #[inline]
+  pub fn freqcorr(&self) -> Freqcorr { 
+     unsafe {
+       Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_freqcorr(&self, value: Freqcorr) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Mode0 {
      let tmp = self.freqcorr();
      self.set_freqcorr(f(tmp))
   }
 
-  pub unsafe fn comp(&self, index: usize) -> Comp { 
+  #[inline]
+  pub fn comp_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 1);
-     Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
+     ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
-  pub unsafe fn set_comp(&mut self, index: usize, value: Comp) {
+  #[inline]
+  pub fn comp_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 1);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
+     ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
-  pub unsafe fn with_comp<F: FnOnce(Comp) -> Comp>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn comp(&self, index: usize) -> Comp { 
+     assert!(index < 1);
+     unsafe {
+        Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_comp(&self, index: usize, value: Comp) -> &Mode0 {
+     assert!(index < 1);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_comp<F: FnOnce(Comp) -> Comp>(&self, index: usize, f: F) -> &Mode0 {
      let tmp = self.comp(index);
      self.set_comp(index, f(tmp))
   }
 
-  pub unsafe fn count(&self) -> Count { 
-     Count(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn count_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_count(&mut self, value: Count) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn count_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_count<F: FnOnce(Count) -> Count>(&mut self, f: F) {
+  #[inline]
+  pub fn count(&self) -> Count { 
+     unsafe {
+       Count(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_count(&self, value: Count) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Mode0 {
      let tmp = self.count();
      self.set_count(f(tmp))
   }
 
-  pub unsafe fn ctrl(&self) -> Ctrl { 
-     Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+  #[inline]
+  pub fn ctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x0) as *const u16
   }
-  pub unsafe fn set_ctrl(&mut self, value: Ctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+  #[inline]
+  pub fn ctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x0) as *mut u16
   }
-  pub unsafe fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn ctrl(&self) -> Ctrl { 
+     unsafe {
+       Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_ctrl(&self, value: Ctrl) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Mode0 {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
-  pub unsafe fn evctrl(&self) -> Evctrl { 
-     Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+  #[inline]
+  pub fn evctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x4) as *const u16
   }
-  pub unsafe fn set_evctrl(&mut self, value: Evctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+  #[inline]
+  pub fn evctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x4) as *mut u16
   }
-  pub unsafe fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn evctrl(&self) -> Evctrl { 
+     unsafe {
+       Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_evctrl(&self, value: Evctrl) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Mode0 {
      let tmp = self.evctrl();
      self.set_evctrl(f(tmp))
   }
 
-  pub unsafe fn intenclr(&self) -> Intenclr { 
-     Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+  #[inline]
+  pub fn intenclr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x6) as *const u8
   }
-  pub unsafe fn set_intenclr(&mut self, value: Intenclr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+  #[inline]
+  pub fn intenclr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x6) as *mut u8
   }
-  pub unsafe fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&mut self, f: F) {
+  #[inline]
+  pub fn intenclr(&self) -> Intenclr { 
+     unsafe {
+       Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenclr(&self, value: Intenclr) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Mode0 {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
 
-  pub unsafe fn intenset(&self) -> Intenset { 
-     Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+  #[inline]
+  pub fn intenset_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x7) as *const u8
   }
-  pub unsafe fn set_intenset(&mut self, value: Intenset) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+  #[inline]
+  pub fn intenset_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x7) as *mut u8
   }
-  pub unsafe fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&mut self, f: F) {
+  #[inline]
+  pub fn intenset(&self) -> Intenset { 
+     unsafe {
+       Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenset(&self, value: Intenset) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Mode0 {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
 
-  pub unsafe fn intflag(&self) -> Intflag { 
-     Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+  #[inline]
+  pub fn intflag_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x8) as *const u8
   }
-  pub unsafe fn set_intflag(&mut self, value: Intflag) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+  #[inline]
+  pub fn intflag_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x8) as *mut u8
   }
-  pub unsafe fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&mut self, f: F) {
+  #[inline]
+  pub fn intflag(&self) -> Intflag { 
+     unsafe {
+       Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intflag(&self, value: Intflag) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Mode0 {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
 
-  pub unsafe fn readreq(&self) -> Readreq { 
-     Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+  #[inline]
+  pub fn readreq_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x2) as *const u16
   }
-  pub unsafe fn set_readreq(&mut self, value: Readreq) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+  #[inline]
+  pub fn readreq_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x2) as *mut u16
   }
-  pub unsafe fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&mut self, f: F) {
+  #[inline]
+  pub fn readreq(&self) -> Readreq { 
+     unsafe {
+       Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_readreq(&self, value: Readreq) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Mode0 {
      let tmp = self.readreq();
      self.set_readreq(f(tmp))
   }
 
-  pub unsafe fn status(&self) -> Status { 
-     Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+  #[inline]
+  pub fn status_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xa) as *const u8
   }
-  pub unsafe fn set_status(&mut self, value: Status) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+  #[inline]
+  pub fn status_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xa) as *mut u8
   }
-  pub unsafe fn with_status<F: FnOnce(Status) -> Status>(&mut self, f: F) {
+  #[inline]
+  pub fn status(&self) -> Status { 
+     unsafe {
+       Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_status(&self, value: Status) -> &Mode0 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Mode0 {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -150,11 +325,12 @@ impl Mode0 {
 
 #[derive(PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
-
 impl Dbgctrl {
+  #[inline]
   pub fn dbgrun(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbgrun(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -163,13 +339,11 @@ impl Dbgctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -178,14 +352,14 @@ impl ::core::fmt::Debug for Dbgctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
-
 impl Freqcorr {
+  #[inline]
   pub fn value(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_value(mut self, value: u8) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -193,9 +367,11 @@ impl Freqcorr {
      self
   }
 
+  #[inline]
   pub fn sign(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_sign(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -204,13 +380,11 @@ impl Freqcorr {
   }
 
 }
-
 impl ::core::fmt::Display for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -220,14 +394,14 @@ impl ::core::fmt::Debug for Freqcorr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Comp(pub u32);
-
 impl Comp {
+  #[inline]
   pub fn comp(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+  #[inline]
   pub fn set_comp(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -236,13 +410,11 @@ impl Comp {
   }
 
 }
-
 impl ::core::fmt::Display for Comp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Comp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -250,14 +422,14 @@ impl ::core::fmt::Debug for Comp {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Count(pub u32);
-
 impl Count {
+  #[inline]
   pub fn count(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+  #[inline]
   pub fn set_count(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -266,13 +438,11 @@ impl Count {
   }
 
 }
-
 impl ::core::fmt::Display for Count {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Count {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -280,14 +450,14 @@ impl ::core::fmt::Debug for Count {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u16);
-
 impl Ctrl {
+  #[inline]
   pub fn swrst(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_swrst(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -295,9 +465,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn enable(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_enable(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -305,9 +477,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn mode(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x3 // [3:2]
   }
+  #[inline]
   pub fn set_mode(mut self, value: u16) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -315,9 +489,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn matchclr(&self) -> u16 {
      ((self.0 as u16) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_matchclr(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -325,9 +501,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn prescaler(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0xf // [11:8]
   }
+  #[inline]
   pub fn set_prescaler(mut self, value: u16) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -336,13 +514,11 @@ impl Ctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -355,14 +531,14 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Evctrl(pub u16);
-
 impl Evctrl {
+  #[inline]
   pub fn pereo0(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pereo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -370,9 +546,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo1(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_pereo1(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -380,9 +558,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo2(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_pereo2(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -390,9 +570,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo3(&self) -> u16 {
      ((self.0 as u16) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_pereo3(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -400,9 +582,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo4(&self) -> u16 {
      ((self.0 as u16) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_pereo4(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -410,9 +594,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo5(&self) -> u16 {
      ((self.0 as u16) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_pereo5(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -420,9 +606,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo6(&self) -> u16 {
      ((self.0 as u16) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_pereo6(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -430,9 +618,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo7(&self) -> u16 {
      ((self.0 as u16) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_pereo7(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -440,9 +630,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn cmpeo0(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_cmpeo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -450,9 +642,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn ovfeo(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_ovfeo(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -461,13 +655,11 @@ impl Evctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -485,14 +677,14 @@ impl ::core::fmt::Debug for Evctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenclr(pub u8);
-
 impl Intenclr {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -500,9 +692,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -510,9 +704,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -521,13 +717,11 @@ impl Intenclr {
   }
 
 }
-
 impl ::core::fmt::Display for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -538,14 +732,14 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenset(pub u8);
-
 impl Intenset {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -553,9 +747,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -563,9 +759,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -574,13 +772,11 @@ impl Intenset {
   }
 
 }
-
 impl ::core::fmt::Display for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -591,14 +787,14 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intflag(pub u8);
-
 impl Intflag {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -606,9 +802,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -616,9 +814,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -627,13 +827,11 @@ impl Intflag {
   }
 
 }
-
 impl ::core::fmt::Display for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -644,14 +842,14 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Readreq(pub u16);
-
 impl Readreq {
+  #[inline]
   pub fn addr(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x3f // [5:0]
   }
+  #[inline]
   pub fn set_addr(mut self, value: u16) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -659,9 +857,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rcont(&self) -> u16 {
      ((self.0 as u16) >> 14) & 0x1 // [14]
   }
+  #[inline]
   pub fn set_rcont(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -669,9 +869,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rreq(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_rreq(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -680,13 +882,11 @@ impl Readreq {
   }
 
 }
-
 impl ::core::fmt::Display for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -697,14 +897,14 @@ impl ::core::fmt::Debug for Readreq {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Status(pub u8);
-
 impl Status {
+  #[inline]
   pub fn syncbusy(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_syncbusy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -713,13 +913,11 @@ impl Status {
   }
 
 }
-
 impl ::core::fmt::Display for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -728,145 +926,336 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
-
 }
 // End of mode0
-
 pub mod mode1 {
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Mode1(pub u32);
-
 impl Mode1 {
-  pub unsafe fn dbgctrl(&self) -> Dbgctrl { 
-     Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+  #[inline]
+  pub fn dbgctrl_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xb) as *const u8
   }
-  pub unsafe fn set_dbgctrl(&mut self, value: Dbgctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+  #[inline]
+  pub fn dbgctrl_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xb) as *mut u8
   }
-  pub unsafe fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgctrl(&self) -> Dbgctrl { 
+     unsafe {
+       Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Mode1 {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
 
-  pub unsafe fn freqcorr(&self) -> Freqcorr { 
-     Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+  #[inline]
+  pub fn freqcorr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xc) as *const u8
   }
-  pub unsafe fn set_freqcorr(&mut self, value: Freqcorr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+  #[inline]
+  pub fn freqcorr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xc) as *mut u8
   }
-  pub unsafe fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&mut self, f: F) {
+  #[inline]
+  pub fn freqcorr(&self) -> Freqcorr { 
+     unsafe {
+       Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_freqcorr(&self, value: Freqcorr) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Mode1 {
      let tmp = self.freqcorr();
      self.set_freqcorr(f(tmp))
   }
 
-  pub unsafe fn comp(&self, index: usize) -> Comp { 
+  #[inline]
+  pub fn comp_ptr(&self, index: usize) -> *const u16 { 
      assert!(index < 2);
-     Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *const u16))
+     ((self.0 as usize) + 0x18 + (index << 1)) as *const u16
   }
-  pub unsafe fn set_comp(&mut self, index: usize, value: Comp) {
+  #[inline]
+  pub fn comp_mut(&self, index: usize) -> *mut u16 { 
      assert!(index < 2);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
+     ((self.0 as usize) + 0x18 + (index << 1)) as *mut u16
   }
-  pub unsafe fn with_comp<F: FnOnce(Comp) -> Comp>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn comp(&self, index: usize) -> Comp { 
+     assert!(index < 2);
+     unsafe {
+        Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_comp(&self, index: usize, value: Comp) -> &Mode1 {
+     assert!(index < 2);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_comp<F: FnOnce(Comp) -> Comp>(&self, index: usize, f: F) -> &Mode1 {
      let tmp = self.comp(index);
      self.set_comp(index, f(tmp))
   }
 
-  pub unsafe fn count(&self) -> Count { 
-     Count(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u16))
+  #[inline]
+  pub fn count_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x10) as *const u16
   }
-  pub unsafe fn set_count(&mut self, value: Count) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u16, value.0);
+  #[inline]
+  pub fn count_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x10) as *mut u16
   }
-  pub unsafe fn with_count<F: FnOnce(Count) -> Count>(&mut self, f: F) {
+  #[inline]
+  pub fn count(&self) -> Count { 
+     unsafe {
+       Count(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_count(&self, value: Count) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Mode1 {
      let tmp = self.count();
      self.set_count(f(tmp))
   }
 
-  pub unsafe fn ctrl(&self) -> Ctrl { 
-     Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+  #[inline]
+  pub fn ctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x0) as *const u16
   }
-  pub unsafe fn set_ctrl(&mut self, value: Ctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+  #[inline]
+  pub fn ctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x0) as *mut u16
   }
-  pub unsafe fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn ctrl(&self) -> Ctrl { 
+     unsafe {
+       Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_ctrl(&self, value: Ctrl) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Mode1 {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
-  pub unsafe fn evctrl(&self) -> Evctrl { 
-     Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+  #[inline]
+  pub fn evctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x4) as *const u16
   }
-  pub unsafe fn set_evctrl(&mut self, value: Evctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+  #[inline]
+  pub fn evctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x4) as *mut u16
   }
-  pub unsafe fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn evctrl(&self) -> Evctrl { 
+     unsafe {
+       Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_evctrl(&self, value: Evctrl) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Mode1 {
      let tmp = self.evctrl();
      self.set_evctrl(f(tmp))
   }
 
-  pub unsafe fn intenclr(&self) -> Intenclr { 
-     Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+  #[inline]
+  pub fn intenclr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x6) as *const u8
   }
-  pub unsafe fn set_intenclr(&mut self, value: Intenclr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+  #[inline]
+  pub fn intenclr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x6) as *mut u8
   }
-  pub unsafe fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&mut self, f: F) {
+  #[inline]
+  pub fn intenclr(&self) -> Intenclr { 
+     unsafe {
+       Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenclr(&self, value: Intenclr) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Mode1 {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
 
-  pub unsafe fn intenset(&self) -> Intenset { 
-     Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+  #[inline]
+  pub fn intenset_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x7) as *const u8
   }
-  pub unsafe fn set_intenset(&mut self, value: Intenset) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+  #[inline]
+  pub fn intenset_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x7) as *mut u8
   }
-  pub unsafe fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&mut self, f: F) {
+  #[inline]
+  pub fn intenset(&self) -> Intenset { 
+     unsafe {
+       Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenset(&self, value: Intenset) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Mode1 {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
 
-  pub unsafe fn intflag(&self) -> Intflag { 
-     Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+  #[inline]
+  pub fn intflag_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x8) as *const u8
   }
-  pub unsafe fn set_intflag(&mut self, value: Intflag) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+  #[inline]
+  pub fn intflag_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x8) as *mut u8
   }
-  pub unsafe fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&mut self, f: F) {
+  #[inline]
+  pub fn intflag(&self) -> Intflag { 
+     unsafe {
+       Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intflag(&self, value: Intflag) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Mode1 {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
 
-  pub unsafe fn per(&self) -> Per { 
-     Per(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u16))
+  #[inline]
+  pub fn per_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x14) as *const u16
   }
-  pub unsafe fn set_per(&mut self, value: Per) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u16, value.0);
+  #[inline]
+  pub fn per_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x14) as *mut u16
   }
-  pub unsafe fn with_per<F: FnOnce(Per) -> Per>(&mut self, f: F) {
+  #[inline]
+  pub fn per(&self) -> Per { 
+     unsafe {
+       Per(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_per(&self, value: Per) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_per<F: FnOnce(Per) -> Per>(&self, f: F) -> &Mode1 {
      let tmp = self.per();
      self.set_per(f(tmp))
   }
 
-  pub unsafe fn readreq(&self) -> Readreq { 
-     Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+  #[inline]
+  pub fn readreq_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x2) as *const u16
   }
-  pub unsafe fn set_readreq(&mut self, value: Readreq) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+  #[inline]
+  pub fn readreq_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x2) as *mut u16
   }
-  pub unsafe fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&mut self, f: F) {
+  #[inline]
+  pub fn readreq(&self) -> Readreq { 
+     unsafe {
+       Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_readreq(&self, value: Readreq) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Mode1 {
      let tmp = self.readreq();
      self.set_readreq(f(tmp))
   }
 
-  pub unsafe fn status(&self) -> Status { 
-     Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+  #[inline]
+  pub fn status_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xa) as *const u8
   }
-  pub unsafe fn set_status(&mut self, value: Status) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+  #[inline]
+  pub fn status_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xa) as *mut u8
   }
-  pub unsafe fn with_status<F: FnOnce(Status) -> Status>(&mut self, f: F) {
+  #[inline]
+  pub fn status(&self) -> Status { 
+     unsafe {
+       Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_status(&self, value: Status) -> &Mode1 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Mode1 {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -875,11 +1264,12 @@ impl Mode1 {
 
 #[derive(PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
-
 impl Dbgctrl {
+  #[inline]
   pub fn dbgrun(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbgrun(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -888,13 +1278,11 @@ impl Dbgctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -903,14 +1291,14 @@ impl ::core::fmt::Debug for Dbgctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
-
 impl Freqcorr {
+  #[inline]
   pub fn value(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_value(mut self, value: u8) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -918,9 +1306,11 @@ impl Freqcorr {
      self
   }
 
+  #[inline]
   pub fn sign(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_sign(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -929,13 +1319,11 @@ impl Freqcorr {
   }
 
 }
-
 impl ::core::fmt::Display for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -945,14 +1333,14 @@ impl ::core::fmt::Debug for Freqcorr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Comp(pub u16);
-
 impl Comp {
+  #[inline]
   pub fn comp(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
   }
+  #[inline]
   pub fn set_comp(mut self, value: u16) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -961,13 +1349,11 @@ impl Comp {
   }
 
 }
-
 impl ::core::fmt::Display for Comp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Comp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -976,14 +1362,14 @@ impl ::core::fmt::Debug for Comp {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Count(pub u16);
-
 impl Count {
+  #[inline]
   pub fn count(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
   }
+  #[inline]
   pub fn set_count(mut self, value: u16) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -992,13 +1378,11 @@ impl Count {
   }
 
 }
-
 impl ::core::fmt::Display for Count {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Count {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1007,14 +1391,14 @@ impl ::core::fmt::Debug for Count {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u16);
-
 impl Ctrl {
+  #[inline]
   pub fn swrst(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_swrst(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1022,9 +1406,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn enable(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_enable(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1032,9 +1418,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn mode(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x3 // [3:2]
   }
+  #[inline]
   pub fn set_mode(mut self, value: u16) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -1042,9 +1430,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn prescaler(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0xf // [11:8]
   }
+  #[inline]
   pub fn set_prescaler(mut self, value: u16) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -1053,13 +1443,11 @@ impl Ctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1071,14 +1459,14 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Evctrl(pub u16);
-
 impl Evctrl {
+  #[inline]
   pub fn pereo0(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pereo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1086,9 +1474,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo1(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_pereo1(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1096,9 +1486,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo2(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_pereo2(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1106,9 +1498,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo3(&self) -> u16 {
      ((self.0 as u16) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_pereo3(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1116,9 +1510,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo4(&self) -> u16 {
      ((self.0 as u16) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_pereo4(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1126,9 +1522,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo5(&self) -> u16 {
      ((self.0 as u16) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_pereo5(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1136,9 +1534,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo6(&self) -> u16 {
      ((self.0 as u16) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_pereo6(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1146,9 +1546,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo7(&self) -> u16 {
      ((self.0 as u16) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_pereo7(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1156,9 +1558,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn cmpeo0(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_cmpeo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1166,9 +1570,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn cmpeo1(&self) -> u16 {
      ((self.0 as u16) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_cmpeo1(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1176,9 +1582,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn ovfeo(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_ovfeo(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1187,13 +1595,11 @@ impl Evctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1212,14 +1618,14 @@ impl ::core::fmt::Debug for Evctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenclr(pub u8);
-
 impl Intenclr {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1227,9 +1633,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn cmp1(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_cmp1(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1237,9 +1645,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1247,9 +1657,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1258,13 +1670,11 @@ impl Intenclr {
   }
 
 }
-
 impl ::core::fmt::Display for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1276,14 +1686,14 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenset(pub u8);
-
 impl Intenset {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1291,9 +1701,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn cmp1(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_cmp1(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1301,9 +1713,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1311,9 +1725,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1322,13 +1738,11 @@ impl Intenset {
   }
 
 }
-
 impl ::core::fmt::Display for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1340,14 +1754,14 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intflag(pub u8);
-
 impl Intflag {
+  #[inline]
   pub fn cmp0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_cmp0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1355,9 +1769,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn cmp1(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_cmp1(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1365,9 +1781,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1375,9 +1793,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1386,13 +1806,11 @@ impl Intflag {
   }
 
 }
-
 impl ::core::fmt::Display for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1404,14 +1822,14 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Per(pub u16);
-
 impl Per {
+  #[inline]
   pub fn per(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0xffff // [15:0]
   }
+  #[inline]
   pub fn set_per(mut self, value: u16) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -1420,13 +1838,11 @@ impl Per {
   }
 
 }
-
 impl ::core::fmt::Display for Per {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Per {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1435,14 +1851,14 @@ impl ::core::fmt::Debug for Per {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Readreq(pub u16);
-
 impl Readreq {
+  #[inline]
   pub fn addr(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x3f // [5:0]
   }
+  #[inline]
   pub fn set_addr(mut self, value: u16) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -1450,9 +1866,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rcont(&self) -> u16 {
      ((self.0 as u16) >> 14) & 0x1 // [14]
   }
+  #[inline]
   pub fn set_rcont(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1460,9 +1878,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rreq(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_rreq(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1471,13 +1891,11 @@ impl Readreq {
   }
 
 }
-
 impl ::core::fmt::Display for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1488,14 +1906,14 @@ impl ::core::fmt::Debug for Readreq {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Status(pub u8);
-
 impl Status {
+  #[inline]
   pub fn syncbusy(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_syncbusy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1504,13 +1922,11 @@ impl Status {
   }
 
 }
-
 impl ::core::fmt::Display for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1519,147 +1935,340 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
-
 }
 // End of mode1
-
 pub mod mode2 {
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Mode2(pub u32);
-
 impl Mode2 {
-  pub unsafe fn dbgctrl(&self) -> Dbgctrl { 
-     Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+  #[inline]
+  pub fn dbgctrl_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xb) as *const u8
   }
-  pub unsafe fn set_dbgctrl(&mut self, value: Dbgctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+  #[inline]
+  pub fn dbgctrl_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xb) as *mut u8
   }
-  pub unsafe fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn dbgctrl(&self) -> Dbgctrl { 
+     unsafe {
+       Dbgctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Mode2 {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
 
-  pub unsafe fn freqcorr(&self) -> Freqcorr { 
-     Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+  #[inline]
+  pub fn freqcorr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xc) as *const u8
   }
-  pub unsafe fn set_freqcorr(&mut self, value: Freqcorr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+  #[inline]
+  pub fn freqcorr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xc) as *mut u8
   }
-  pub unsafe fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&mut self, f: F) {
+  #[inline]
+  pub fn freqcorr(&self) -> Freqcorr { 
+     unsafe {
+       Freqcorr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_freqcorr(&self, value: Freqcorr) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Mode2 {
      let tmp = self.freqcorr();
      self.set_freqcorr(f(tmp))
   }
 
-  pub unsafe fn clock(&self) -> Clock { 
-     Clock(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn clock_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_clock(&mut self, value: Clock) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn clock_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_clock<F: FnOnce(Clock) -> Clock>(&mut self, f: F) {
+  #[inline]
+  pub fn clock(&self) -> Clock { 
+     unsafe {
+       Clock(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_clock(&self, value: Clock) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_clock<F: FnOnce(Clock) -> Clock>(&self, f: F) -> &Mode2 {
      let tmp = self.clock();
      self.set_clock(f(tmp))
   }
 
-  pub unsafe fn ctrl(&self) -> Ctrl { 
-     Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+  #[inline]
+  pub fn ctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x0) as *const u16
   }
-  pub unsafe fn set_ctrl(&mut self, value: Ctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+  #[inline]
+  pub fn ctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x0) as *mut u16
   }
-  pub unsafe fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn ctrl(&self) -> Ctrl { 
+     unsafe {
+       Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_ctrl(&self, value: Ctrl) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Mode2 {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
-  pub unsafe fn evctrl(&self) -> Evctrl { 
-     Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+  #[inline]
+  pub fn evctrl_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x4) as *const u16
   }
-  pub unsafe fn set_evctrl(&mut self, value: Evctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+  #[inline]
+  pub fn evctrl_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x4) as *mut u16
   }
-  pub unsafe fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn evctrl(&self) -> Evctrl { 
+     unsafe {
+       Evctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_evctrl(&self, value: Evctrl) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Mode2 {
      let tmp = self.evctrl();
      self.set_evctrl(f(tmp))
   }
 
-  pub unsafe fn intenclr(&self) -> Intenclr { 
-     Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+  #[inline]
+  pub fn intenclr_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x6) as *const u8
   }
-  pub unsafe fn set_intenclr(&mut self, value: Intenclr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+  #[inline]
+  pub fn intenclr_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x6) as *mut u8
   }
-  pub unsafe fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&mut self, f: F) {
+  #[inline]
+  pub fn intenclr(&self) -> Intenclr { 
+     unsafe {
+       Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenclr(&self, value: Intenclr) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Mode2 {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
 
-  pub unsafe fn intenset(&self) -> Intenset { 
-     Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+  #[inline]
+  pub fn intenset_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x7) as *const u8
   }
-  pub unsafe fn set_intenset(&mut self, value: Intenset) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+  #[inline]
+  pub fn intenset_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x7) as *mut u8
   }
-  pub unsafe fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&mut self, f: F) {
+  #[inline]
+  pub fn intenset(&self) -> Intenset { 
+     unsafe {
+       Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intenset(&self, value: Intenset) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Mode2 {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
 
-  pub unsafe fn intflag(&self) -> Intflag { 
-     Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+  #[inline]
+  pub fn intflag_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x8) as *const u8
   }
-  pub unsafe fn set_intflag(&mut self, value: Intflag) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+  #[inline]
+  pub fn intflag_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x8) as *mut u8
   }
-  pub unsafe fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&mut self, f: F) {
+  #[inline]
+  pub fn intflag(&self) -> Intflag { 
+     unsafe {
+       Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_intflag(&self, value: Intflag) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Mode2 {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
 
-  pub unsafe fn alarm(&self, index: usize) -> Alarm { 
+  #[inline]
+  pub fn alarm_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 1);
-     Alarm(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *const u32))
+     ((self.0 as usize) + 0x18 + (index << 3)) as *const u32
   }
-  pub unsafe fn set_alarm(&mut self, index: usize, value: Alarm) {
+  #[inline]
+  pub fn alarm_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 1);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *mut u32, value.0);
+     ((self.0 as usize) + 0x18 + (index << 3)) as *mut u32
   }
-  pub unsafe fn with_alarm<F: FnOnce(Alarm) -> Alarm>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn alarm(&self, index: usize) -> Alarm { 
+     assert!(index < 1);
+     unsafe {
+        Alarm(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_alarm(&self, index: usize, value: Alarm) -> &Mode2 {
+     assert!(index < 1);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_alarm<F: FnOnce(Alarm) -> Alarm>(&self, index: usize, f: F) -> &Mode2 {
      let tmp = self.alarm(index);
      self.set_alarm(index, f(tmp))
   }
 
-  pub unsafe fn mask(&self, index: usize) -> Mask { 
+  #[inline]
+  pub fn mask_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 1);
-     Mask(::core::ptr::read_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *const u8))
+     ((self.0 as usize) + 0x1c + (index << 3)) as *const u8
   }
-  pub unsafe fn set_mask(&mut self, index: usize, value: Mask) {
+  #[inline]
+  pub fn mask_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 1);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *mut u8, value.0);
+     ((self.0 as usize) + 0x1c + (index << 3)) as *mut u8
   }
-  pub unsafe fn with_mask<F: FnOnce(Mask) -> Mask>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn mask(&self, index: usize) -> Mask { 
+     assert!(index < 1);
+     unsafe {
+        Mask(::core::ptr::read_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_mask(&self, index: usize, value: Mask) -> &Mode2 {
+     assert!(index < 1);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mask<F: FnOnce(Mask) -> Mask>(&self, index: usize, f: F) -> &Mode2 {
      let tmp = self.mask(index);
      self.set_mask(index, f(tmp))
   }
 
-  pub unsafe fn readreq(&self) -> Readreq { 
-     Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+  #[inline]
+  pub fn readreq_ptr(&self) -> *const u16 { 
+     ((self.0 as usize) + 0x2) as *const u16
   }
-  pub unsafe fn set_readreq(&mut self, value: Readreq) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+  #[inline]
+  pub fn readreq_mut(&self) -> *mut u16 { 
+     ((self.0 as usize) + 0x2) as *mut u16
   }
-  pub unsafe fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&mut self, f: F) {
+  #[inline]
+  pub fn readreq(&self) -> Readreq { 
+     unsafe {
+       Readreq(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u16))
+     }
+  }
+  #[inline]
+  pub fn set_readreq(&self, value: Readreq) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Mode2 {
      let tmp = self.readreq();
      self.set_readreq(f(tmp))
   }
 
-  pub unsafe fn status(&self) -> Status { 
-     Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+  #[inline]
+  pub fn status_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0xa) as *const u8
   }
-  pub unsafe fn set_status(&mut self, value: Status) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+  #[inline]
+  pub fn status_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0xa) as *mut u8
   }
-  pub unsafe fn with_status<F: FnOnce(Status) -> Status>(&mut self, f: F) {
+  #[inline]
+  pub fn status(&self) -> Status { 
+     unsafe {
+       Status(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_status(&self, value: Status) -> &Mode2 {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Mode2 {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -1668,11 +2277,12 @@ impl Mode2 {
 
 #[derive(PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
-
 impl Dbgctrl {
+  #[inline]
   pub fn dbgrun(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dbgrun(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1681,13 +2291,11 @@ impl Dbgctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dbgctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1696,14 +2304,14 @@ impl ::core::fmt::Debug for Dbgctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
-
 impl Freqcorr {
+  #[inline]
   pub fn value(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_value(mut self, value: u8) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -1711,9 +2319,11 @@ impl Freqcorr {
      self
   }
 
+  #[inline]
   pub fn sign(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_sign(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1722,13 +2332,11 @@ impl Freqcorr {
   }
 
 }
-
 impl ::core::fmt::Display for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Freqcorr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1738,14 +2346,14 @@ impl ::core::fmt::Debug for Freqcorr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Clock(pub u32);
-
 impl Clock {
+  #[inline]
   pub fn second(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+  #[inline]
   pub fn set_second(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -1753,9 +2361,11 @@ impl Clock {
      self
   }
 
+  #[inline]
   pub fn minute(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3f // [11:6]
   }
+  #[inline]
   pub fn set_minute(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 6);
@@ -1763,9 +2373,11 @@ impl Clock {
      self
   }
 
+  #[inline]
   pub fn hour(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1f // [16:12]
   }
+  #[inline]
   pub fn set_hour(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 12);
@@ -1773,9 +2385,11 @@ impl Clock {
      self
   }
 
+  #[inline]
   pub fn day(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1f // [21:17]
   }
+  #[inline]
   pub fn set_day(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 17);
@@ -1783,9 +2397,11 @@ impl Clock {
      self
   }
 
+  #[inline]
   pub fn month(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0xf // [25:22]
   }
+  #[inline]
   pub fn set_month(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 22);
@@ -1793,9 +2409,11 @@ impl Clock {
      self
   }
 
+  #[inline]
   pub fn year(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x3f // [31:26]
   }
+  #[inline]
   pub fn set_year(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 26);
@@ -1804,13 +2422,11 @@ impl Clock {
   }
 
 }
-
 impl ::core::fmt::Display for Clock {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Clock {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1824,14 +2440,14 @@ impl ::core::fmt::Debug for Clock {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u16);
-
 impl Ctrl {
+  #[inline]
   pub fn swrst(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_swrst(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1839,9 +2455,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn enable(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_enable(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1849,9 +2467,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn mode(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x3 // [3:2]
   }
+  #[inline]
   pub fn set_mode(mut self, value: u16) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -1859,9 +2479,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn clkrep(&self) -> u16 {
      ((self.0 as u16) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_clkrep(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1869,9 +2491,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn matchclr(&self) -> u16 {
      ((self.0 as u16) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_matchclr(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1879,9 +2503,11 @@ impl Ctrl {
      self
   }
 
+  #[inline]
   pub fn prescaler(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0xf // [11:8]
   }
+  #[inline]
   pub fn set_prescaler(mut self, value: u16) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -1890,13 +2516,11 @@ impl Ctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1910,14 +2534,14 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Evctrl(pub u16);
-
 impl Evctrl {
+  #[inline]
   pub fn pereo0(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pereo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1925,9 +2549,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo1(&self) -> u16 {
      ((self.0 as u16) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_pereo1(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1935,9 +2561,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo2(&self) -> u16 {
      ((self.0 as u16) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_pereo2(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1945,9 +2573,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo3(&self) -> u16 {
      ((self.0 as u16) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_pereo3(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1955,9 +2585,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo4(&self) -> u16 {
      ((self.0 as u16) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_pereo4(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1965,9 +2597,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo5(&self) -> u16 {
      ((self.0 as u16) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_pereo5(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1975,9 +2609,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo6(&self) -> u16 {
      ((self.0 as u16) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_pereo6(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1985,9 +2621,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn pereo7(&self) -> u16 {
      ((self.0 as u16) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_pereo7(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1995,9 +2633,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn alarmeo0(&self) -> u16 {
      ((self.0 as u16) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_alarmeo0(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -2005,9 +2645,11 @@ impl Evctrl {
      self
   }
 
+  #[inline]
   pub fn ovfeo(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_ovfeo(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -2016,13 +2658,11 @@ impl Evctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Evctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2040,14 +2680,14 @@ impl ::core::fmt::Debug for Evctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenclr(pub u8);
-
 impl Intenclr {
+  #[inline]
   pub fn alarm0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_alarm0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2055,9 +2695,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2065,9 +2707,11 @@ impl Intenclr {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2076,13 +2720,11 @@ impl Intenclr {
   }
 
 }
-
 impl ::core::fmt::Display for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2093,14 +2735,14 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intenset(pub u8);
-
 impl Intenset {
+  #[inline]
   pub fn alarm0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_alarm0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2108,9 +2750,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2118,9 +2762,11 @@ impl Intenset {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2129,13 +2775,11 @@ impl Intenset {
   }
 
 }
-
 impl ::core::fmt::Display for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2146,14 +2790,14 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Intflag(pub u8);
-
 impl Intflag {
+  #[inline]
   pub fn alarm0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_alarm0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2161,9 +2805,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn syncrdy(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_syncrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2171,9 +2817,11 @@ impl Intflag {
      self
   }
 
+  #[inline]
   pub fn ovf(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_ovf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2182,13 +2830,11 @@ impl Intflag {
   }
 
 }
-
 impl ::core::fmt::Display for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2199,14 +2845,14 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Alarm(pub u32);
-
 impl Alarm {
+  #[inline]
   pub fn second(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+  #[inline]
   pub fn set_second(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -2214,9 +2860,11 @@ impl Alarm {
      self
   }
 
+  #[inline]
   pub fn minute(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3f // [11:6]
   }
+  #[inline]
   pub fn set_minute(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 6);
@@ -2224,9 +2872,11 @@ impl Alarm {
      self
   }
 
+  #[inline]
   pub fn hour(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1f // [16:12]
   }
+  #[inline]
   pub fn set_hour(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 12);
@@ -2234,9 +2884,11 @@ impl Alarm {
      self
   }
 
+  #[inline]
   pub fn day(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1f // [21:17]
   }
+  #[inline]
   pub fn set_day(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 17);
@@ -2244,9 +2896,11 @@ impl Alarm {
      self
   }
 
+  #[inline]
   pub fn month(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0xf // [25:22]
   }
+  #[inline]
   pub fn set_month(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 22);
@@ -2254,9 +2908,11 @@ impl Alarm {
      self
   }
 
+  #[inline]
   pub fn year(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x3f // [31:26]
   }
+  #[inline]
   pub fn set_year(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 26);
@@ -2265,13 +2921,11 @@ impl Alarm {
   }
 
 }
-
 impl ::core::fmt::Display for Alarm {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Alarm {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2285,14 +2939,14 @@ impl ::core::fmt::Debug for Alarm {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mask(pub u8);
-
 impl Mask {
+  #[inline]
   pub fn sel(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7 // [2:0]
   }
+  #[inline]
   pub fn set_sel(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -2301,13 +2955,11 @@ impl Mask {
   }
 
 }
-
 impl ::core::fmt::Display for Mask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2316,14 +2968,14 @@ impl ::core::fmt::Debug for Mask {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Readreq(pub u16);
-
 impl Readreq {
+  #[inline]
   pub fn addr(&self) -> u16 {
      ((self.0 as u16) >> 0) & 0x3f // [5:0]
   }
+  #[inline]
   pub fn set_addr(mut self, value: u16) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -2331,9 +2983,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rcont(&self) -> u16 {
      ((self.0 as u16) >> 14) & 0x1 // [14]
   }
+  #[inline]
   pub fn set_rcont(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -2341,9 +2995,11 @@ impl Readreq {
      self
   }
 
+  #[inline]
   pub fn rreq(&self) -> u16 {
      ((self.0 as u16) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_rreq(mut self, value: u16) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -2352,13 +3008,11 @@ impl Readreq {
   }
 
 }
-
 impl ::core::fmt::Display for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Readreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2369,14 +3023,14 @@ impl ::core::fmt::Debug for Readreq {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Status(pub u8);
-
 impl Status {
+  #[inline]
   pub fn syncbusy(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_syncbusy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2385,13 +3039,11 @@ impl Status {
   }
 
 }
-
 impl ::core::fmt::Display for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2400,7 +3052,5 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
-
 }
 // End of mode2
-

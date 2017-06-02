@@ -1,6 +1,6 @@
 #![allow(non_camel_case_types)]
 
-use ::chip::gclk::*;
+pub use ::chip::gclk::*;
 
 #[derive(Debug, Clone, Copy)]
 pub enum ClockSource {
@@ -92,61 +92,51 @@ pub enum DivideSelection {
 }
 
 pub fn reset() {
-    unsafe {
-        GCLK.set_ctrl(Ctrl(0).set_swrst(1));
-        while GCLK.ctrl().swrst() != 0 {}
-    }
+    GCLK.set_ctrl(Ctrl(0).set_swrst(1));
+    while GCLK.ctrl().swrst() != 0 {}
 }
 
 pub fn configure_clk(clk: GenericClock, cfg: ClockConfig) {    
-    unsafe {
-        GCLK.set_clkctrl(Clkctrl(0)
-            .set_id(clk as u16)
-            .set_wrtlock(bool2u16(cfg.write_lock))
-            .set_gen(cfg.clk_gen as u16)
-            .set_clken(bool2u16(cfg.enabled)));
-        while GCLK.status().syncbusy() != 0 {}
-    }    
+    GCLK.set_clkctrl(Clkctrl(0)
+        .set_id(clk as u16)
+        .set_wrtlock(bool2u16(cfg.write_lock))
+        .set_gen(cfg.clk_gen as u16)
+        .set_clken(bool2u16(cfg.enabled)));
+    while GCLK.status().syncbusy() != 0 {}
 }
 
 /// Configure and enable a Generic Clock
 pub fn set_clk(clk: GenericClock, clk_gen: GenericClockGen) {
-    unsafe {
-        GCLK.set_clkctrl(Clkctrl(0)
-            .set_id(clk as u16)
-            .set_gen(clk_gen as u16)
-            .set_clken(1));
-        while GCLK.status().syncbusy() != 0 {}            
-    }
+    GCLK.set_clkctrl(Clkctrl(0)
+        .set_id(clk as u16)
+        .set_gen(clk_gen as u16)
+        .set_clken(1));
+    while GCLK.status().syncbusy() != 0 {}            
 }
 
 pub fn configure_clkgen(clk_gen: GenericClockGen, cfg: ClockGenConfig) {
-    unsafe {
-        GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(cfg.division_factor as u32));
-        GCLK.set_genctrl(Genctrl(0)
-            .set_id(clk_gen as u32)
-            .set_runstdby(bool2u32(cfg.run_in_standby))
-            .set_divsel(cfg.divide_selection as u32)
-            .set_oe(bool2u32(cfg.output_enable))
-            .set_oov(bool2u32(cfg.output_off_value))
-            .set_idc(bool2u32(cfg.improve_duty_cycle))
-            .set_genen(bool2u32(cfg.enabled))
-            .set_src(cfg.src as u32)
-        );        
-        while GCLK.status().syncbusy() != 0 {}
-    }
+    GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(cfg.division_factor as u32));
+    GCLK.set_genctrl(Genctrl(0)
+        .set_id(clk_gen as u32)
+        .set_runstdby(bool2u32(cfg.run_in_standby))
+        .set_divsel(cfg.divide_selection as u32)
+        .set_oe(bool2u32(cfg.output_enable))
+        .set_oov(bool2u32(cfg.output_off_value))
+        .set_idc(bool2u32(cfg.improve_duty_cycle))
+        .set_genen(bool2u32(cfg.enabled))
+        .set_src(cfg.src as u32)
+    );        
+    while GCLK.status().syncbusy() != 0 {}
 }
 
 /// Configure and enable a Generic Clock using defaults
 pub fn set_clockgen(clk_gen: GenericClockGen, clk_src: ClockSource, div_selection: DivideSelection, div_factor: u32) {
-    unsafe {                
-        GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(div_factor as u32));
-        GCLK.set_genctrl(Genctrl(0)
-            .set_id(clk_gen as u32)
-            .set_divsel(div_selection as u32)
-            .set_src(clk_src as u32)
-        );
-    }
+    GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(div_factor as u32));
+    GCLK.set_genctrl(Genctrl(0)
+        .set_id(clk_gen as u32)
+        .set_divsel(div_selection as u32)
+        .set_src(clk_src as u32)
+    );
 }
 
 fn bool2u16(value: bool) -> u16 {

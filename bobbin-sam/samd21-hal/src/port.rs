@@ -1,153 +1,127 @@
-use core::marker::PhantomData;
+pub use chip::port::*;
+use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
+use core::ops::Deref;
+pub use pm::PmEnabled;
 
-use ::chip::port::{self, Port};
+use chip::port::PinImpl;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum PMux {
-    PMuxA = 0,
-    PMuxB = 1,
-    PMuxC = 2,
-    PMuxD = 3,
-    PMuxE = 4,
-    PMuxF = 5,
-    PMuxG = 6,
-    PMuxH = 7,
-    PMuxI = 8,    
+pub trait PinExt {
+    fn set_pull_enabled(&self, value: bool) -> &Self;
+    fn set_pmux_enabled(&self, value: bool) -> &Self;
+    fn set_dir_output(&self) -> &Self;
+    fn set_dir_input(&self) -> &Self;
+    fn set_pmux(&self, value: usize) -> &Self;
+    fn set_mode_input(&self) -> &Self;
+    fn set_mode_output(&self) -> &Self;
+    fn set_mode_pmux(&self, value: usize) -> &Self;
+    fn output(&self) -> bool;
+    fn set_output(&self, bool) -> &Self;
+    fn toggle_output(&self) -> &Self;
+    fn input(&self) -> bool;
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum Direction {
-    Input = 0,
-    Output = 1,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum DriveStrength {
-    Normal = 0,
-    Stronger = 1,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum PullEnable {
-    Disabled = 0,
-    Enabled = 1,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum InputEnable {
-    Disabled = 0,
-    Enabled = 1,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum PMuxEnable {
-    Disabled,
-    Enabled(u8),
-}
-
-pub struct ModeUnknown;
-pub struct ModeOutput;
-pub struct ModeInput;
-pub struct ModePMux;
-
-pub type PinUnknown = Pin<ModeUnknown>;
-pub type PinOutput = Pin<ModeOutput>;
-pub type PinInput = Pin<ModeInput>;
-pub type PinPMux = Pin<ModePMux>;
-
-
-pub struct Pin<M> {
-    port: Port,
-    index: usize,
-    phantom: PhantomData<M>,
-}
-
-pub fn pin(port: Port, index: usize) -> Pin<ModeUnknown> {
-    Pin { port: port, index: index, phantom: PhantomData }
-}
-
-impl<M> Pin<M> {
-    pub fn set_pull(&self, value: bool) {
+impl PinExt for PinImpl {
+    fn set_pull_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
-        let mut port = self.port;
-        unsafe {
-            port.with_pincfg(self.index, |r| r.set_pullen(value));
-        }        
+        self.port.with_pincfg(self.index, |r| r.set_pullen(value));
+        self
     }
 
-    pub fn into_digital_output(self) -> Pin<ModeOutput> {
-        let mut port = self.port;
-        unsafe {
-            port.set_dirset(port::Dirset(0).set_dirset(self.index, 1));
-            port.with_pincfg(self.index, |r| r.set_pmuxen(0));
-        }
-        Pin { port: self.port, index: self.index, phantom: PhantomData }
+    fn set_pmux_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_pincfg(self.index, |r| r.set_pmuxen(value));
+        self
     }
 
-    pub fn into_digital_input(self) -> Pin<ModeInput> {
-        let mut port = self.port;
-        unsafe {
-            port.set_dirclr(port::Dirclr(0).set_dirclr(self.index, 1));
-            port.with_pincfg(self.index, |r| r.set_pmuxen(0));
-        }
-        Pin { port: self.port, index: self.index, phantom: PhantomData }
+    fn set_dir_output(&self) -> &Self {
+        self.port.set_dirset(Dirset(0).set_dirset(self.index, 1));
+        self
     }
 
-    pub fn into_pmux(self, pmux: PMux) -> Pin<PMux> {
-        let mut port = self.port;
+    fn set_dir_input(&self) -> &Self {
+        self.port.set_dirclr(Dirclr(0).set_dirclr(self.index, 1));
+        self
+    }
+
+    fn set_pmux(&self, value: usize) -> &Self {
         let pin = self.index;
         let pin_row = pin >> 1;
-        let pin_col = pin & 1;
-        unsafe {
-            port.with_pincfg(self.index, |r| r.set_pmuxen(1));
-            port.with_pmux(pin_row, |r| r.set_pmux(pin_col, pmux as u8));
-        }
-        Pin { port: self.port, index: self.index, phantom: PhantomData }
+        let pin_col = pin & 1;        
+        self.port.with_pmux(pin_row, |r| r.set_pmux(pin_col, value as u8));
+        self
+    }
+
+    fn set_mode_input(&self) -> &Self {
+        self.set_dir_input().set_pmux(0)
+    }
+
+    fn set_mode_output(&self) -> &Self {
+        self.set_dir_output().set_pmux(0)
+    }
+
+    fn set_mode_pmux(&self, value: usize) -> &Self {
+        self.set_pmux_enabled(true).set_pmux(value)
+    }
+
+    fn output(&self) -> bool {
+        self.port.out().out(self.index) != 0
+    }
+    
+    fn set_output(&self, value: bool) -> &Self {
+        if value {
+            self.port.set_outset(Outset(0).set_outset(self.index, 1))
+        } else {
+            self.port.set_outclr(Outclr(0).set_outclr(self.index, 1))
+        };
+        self
+    }
+    fn toggle_output(&self) -> &Self {
+        self.set_output(!self.output())
+    }
+
+    fn input(&self) -> bool {
+        self.port._in()._in(self.index) != 0
+    }
+
+}
+
+pub trait ModePad0<T, S> {
+    fn mode_pad_0(&self, _: &S) -> &Self;
+}
+
+pub trait ModePad1<T, S> {
+    fn mode_pad_1(&self, _: &S) -> &Self;
+}
+
+pub trait ModePad2<T, S> {
+    fn mode_pad_2(&self, _: &S) -> &Self;
+}
+pub trait ModePad3<T, S> {
+    fn mode_pad_3(&self, _: &S) -> &Self;
+}
+
+impl<P, S, T> ModePad0<T, S> for P where S: SignalPad0<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_pad_0(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
+        self
     }
 }
 
-
-impl Pin<ModeOutput> {
-    pub fn get(&self) -> bool {
-        let port = self.port;
-        unsafe {
-            port.out().out(self.index) != 0
-        }        
+impl<P, S, T> ModePad1<T, S> for P where S: SignalPad1<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_pad_1(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
+        self
     }
-
-    pub fn set(&self, value: bool) {
-        let mut port = self.port;
-        unsafe {
-            if value {
-                port.set_outset(port::Outset(0).set_outset(self.index, 1))
-            } else {
-                port.set_outclr(port::Outclr(0).set_outclr(self.index, 1))
-            }
-        }
-    }    
 }
-
-impl Pin<ModeInput> {
-    pub fn get(&self) -> bool {
-        let port =self.port;
-        unsafe {
-            port._in()._in(self.index) != 0
-        }
-    }    
+impl<P, S, T> ModePad2<T, S> for P where S: SignalPad2<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_pad_2(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
+        self
+    }
 }
-
-// impl DigitalOut for Pin<ModeOutput> {
-//     fn digital_out(&self) -> bool {
-//         port::out(self.port, self.index)
-//     }
-
-//     fn set_digital_out(&self, value: bool) {
-//         port::set_out(self.port, self.index, value);        
-//     }    
-// }
-
-// impl DigitalIn for Pin<ModeInput> {
-//     fn digital_in(&self) -> bool {
-//        port::data_in(self.port, self.index)
-//     }    
-// }
+impl<P, S, T> ModePad3<T, S> for P where S: SignalPad3<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_pad_3(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
+        self
+    }
+}

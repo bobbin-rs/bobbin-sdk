@@ -1,152 +1,379 @@
-pub const PORTA: Port = Port(0x41004400);
-pub const PORTB: Port = Port(0x41004480);
+pub const PORTA: Porta = Porta {};
+pub const PORTA_REF: &Porta = &PORTA;
+pub const PORTA_IMPL: PortImpl = PortImpl(0x41004400);
+pub const PORTA_IMPL_REF: &PortImpl = &PORTA_IMPL;
+
+pub struct Porta {}
+impl ::core::ops::Deref for Porta {
+   type Target = PortImpl;
+   #[inline]
+   fn deref(&self) -> &PortImpl { PORTA_IMPL_REF }
+}
+
+
+pub const PORTB: Portb = Portb {};
+pub const PORTB_REF: &Portb = &PORTB;
+pub const PORTB_IMPL: PortImpl = PortImpl(0x41004480);
+pub const PORTB_IMPL_REF: &PortImpl = &PORTB_IMPL;
+
+pub struct Portb {}
+impl ::core::ops::Deref for Portb {
+   type Target = PortImpl;
+   #[inline]
+   fn deref(&self) -> &PortImpl { PORTB_IMPL_REF }
+}
+
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Port(pub u32);
-
-impl Port {
-  pub unsafe fn ctrl(&self) -> Ctrl { 
-     Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+pub struct PortImpl(pub u32);
+impl PortImpl {
+  #[inline]
+  pub fn ctrl_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x24) as *const u32
   }
-  pub unsafe fn set_ctrl(&mut self, value: Ctrl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+  #[inline]
+  pub fn ctrl_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x24) as *mut u32
   }
-  pub unsafe fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&mut self, f: F) {
+  #[inline]
+  pub fn ctrl(&self) -> Ctrl { 
+     unsafe {
+       Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_ctrl(&self, value: Ctrl) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &PortImpl {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
-  pub unsafe fn dir(&self) -> Dir { 
-     Dir(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn dir_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
   }
-  pub unsafe fn set_dir(&mut self, value: Dir) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+  #[inline]
+  pub fn dir_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
   }
-  pub unsafe fn with_dir<F: FnOnce(Dir) -> Dir>(&mut self, f: F) {
+  #[inline]
+  pub fn dir(&self) -> Dir { 
+     unsafe {
+       Dir(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dir(&self, value: Dir) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &PortImpl {
      let tmp = self.dir();
      self.set_dir(f(tmp))
   }
 
-  pub unsafe fn dirclr(&self) -> Dirclr { 
-     Dirclr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn dirclr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
   }
-  pub unsafe fn set_dirclr(&mut self, value: Dirclr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn dirclr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
   }
-  pub unsafe fn with_dirclr<F: FnOnce(Dirclr) -> Dirclr>(&mut self, f: F) {
+  #[inline]
+  pub fn dirclr(&self) -> Dirclr { 
+     unsafe {
+       Dirclr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dirclr(&self, value: Dirclr) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dirclr<F: FnOnce(Dirclr) -> Dirclr>(&self, f: F) -> &PortImpl {
      let tmp = self.dirclr();
      self.set_dirclr(f(tmp))
   }
 
-  pub unsafe fn dirset(&self) -> Dirset { 
-     Dirset(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn dirset_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_dirset(&mut self, value: Dirset) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn dirset_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_dirset<F: FnOnce(Dirset) -> Dirset>(&mut self, f: F) {
+  #[inline]
+  pub fn dirset(&self) -> Dirset { 
+     unsafe {
+       Dirset(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dirset(&self, value: Dirset) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dirset<F: FnOnce(Dirset) -> Dirset>(&self, f: F) -> &PortImpl {
      let tmp = self.dirset();
      self.set_dirset(f(tmp))
   }
 
-  pub unsafe fn dirtgl(&self) -> Dirtgl { 
-     Dirtgl(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn dirtgl_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_dirtgl(&mut self, value: Dirtgl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn dirtgl_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_dirtgl<F: FnOnce(Dirtgl) -> Dirtgl>(&mut self, f: F) {
+  #[inline]
+  pub fn dirtgl(&self) -> Dirtgl { 
+     unsafe {
+       Dirtgl(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_dirtgl(&self, value: Dirtgl) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_dirtgl<F: FnOnce(Dirtgl) -> Dirtgl>(&self, f: F) -> &PortImpl {
      let tmp = self.dirtgl();
      self.set_dirtgl(f(tmp))
   }
 
-  pub unsafe fn _in(&self) -> In { 
-     In(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+  #[inline]
+  pub fn in_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x20) as *const u32
+  }
+  #[inline]
+  pub fn in_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x20) as *mut u32
+  }
+  #[inline]
+  pub fn _in(&self) -> In { 
+     unsafe {
+       In(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
   }
 
-  pub unsafe fn out(&self) -> Out { 
-     Out(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn out_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_out(&mut self, value: Out) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn out_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_out<F: FnOnce(Out) -> Out>(&mut self, f: F) {
+  #[inline]
+  pub fn out(&self) -> Out { 
+     unsafe {
+       Out(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_out(&self, value: Out) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_out<F: FnOnce(Out) -> Out>(&self, f: F) -> &PortImpl {
      let tmp = self.out();
      self.set_out(f(tmp))
   }
 
-  pub unsafe fn outclr(&self) -> Outclr { 
-     Outclr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+  #[inline]
+  pub fn outclr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
   }
-  pub unsafe fn set_outclr(&mut self, value: Outclr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+  #[inline]
+  pub fn outclr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
   }
-  pub unsafe fn with_outclr<F: FnOnce(Outclr) -> Outclr>(&mut self, f: F) {
+  #[inline]
+  pub fn outclr(&self) -> Outclr { 
+     unsafe {
+       Outclr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_outclr(&self, value: Outclr) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_outclr<F: FnOnce(Outclr) -> Outclr>(&self, f: F) -> &PortImpl {
      let tmp = self.outclr();
      self.set_outclr(f(tmp))
   }
 
-  pub unsafe fn outset(&self) -> Outset { 
-     Outset(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+  #[inline]
+  pub fn outset_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x18) as *const u32
   }
-  pub unsafe fn set_outset(&mut self, value: Outset) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+  #[inline]
+  pub fn outset_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x18) as *mut u32
   }
-  pub unsafe fn with_outset<F: FnOnce(Outset) -> Outset>(&mut self, f: F) {
+  #[inline]
+  pub fn outset(&self) -> Outset { 
+     unsafe {
+       Outset(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_outset(&self, value: Outset) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_outset<F: FnOnce(Outset) -> Outset>(&self, f: F) -> &PortImpl {
      let tmp = self.outset();
      self.set_outset(f(tmp))
   }
 
-  pub unsafe fn outtgl(&self) -> Outtgl { 
-     Outtgl(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+  #[inline]
+  pub fn outtgl_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x1c) as *const u32
   }
-  pub unsafe fn set_outtgl(&mut self, value: Outtgl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+  #[inline]
+  pub fn outtgl_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x1c) as *mut u32
   }
-  pub unsafe fn with_outtgl<F: FnOnce(Outtgl) -> Outtgl>(&mut self, f: F) {
+  #[inline]
+  pub fn outtgl(&self) -> Outtgl { 
+     unsafe {
+       Outtgl(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_outtgl(&self, value: Outtgl) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_outtgl<F: FnOnce(Outtgl) -> Outtgl>(&self, f: F) -> &PortImpl {
      let tmp = self.outtgl();
      self.set_outtgl(f(tmp))
   }
 
-  pub unsafe fn pincfg(&self, index: usize) -> Pincfg { 
+  #[inline]
+  pub fn pincfg_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 32);
-     Pincfg(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index)) as *const u8))
+     ((self.0 as usize) + 0x40 + (index)) as *const u8
   }
-  pub unsafe fn set_pincfg(&mut self, index: usize, value: Pincfg) {
+  #[inline]
+  pub fn pincfg_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 32);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index)) as *mut u8, value.0);
+     ((self.0 as usize) + 0x40 + (index)) as *mut u8
   }
-  pub unsafe fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn pincfg(&self, index: usize) -> Pincfg { 
+     assert!(index < 32);
+     unsafe {
+        Pincfg(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index)) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_pincfg(&self, index: usize, value: Pincfg) -> &PortImpl {
+     assert!(index < 32);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index)) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, index: usize, f: F) -> &PortImpl {
      let tmp = self.pincfg(index);
      self.set_pincfg(index, f(tmp))
   }
 
-  pub unsafe fn pmux(&self, index: usize) -> Pmux { 
+  #[inline]
+  pub fn pmux_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 16);
-     Pmux(::core::ptr::read_volatile(((self.0 as usize) + 0x30 + (index)) as *const u8))
+     ((self.0 as usize) + 0x30 + (index)) as *const u8
   }
-  pub unsafe fn set_pmux(&mut self, index: usize, value: Pmux) {
+  #[inline]
+  pub fn pmux_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 16);
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x30 + (index)) as *mut u8, value.0);
+     ((self.0 as usize) + 0x30 + (index)) as *mut u8
   }
-  pub unsafe fn with_pmux<F: FnOnce(Pmux) -> Pmux>(&mut self, index: usize, f: F) {
+  #[inline]
+  pub fn pmux(&self, index: usize) -> Pmux { 
+     assert!(index < 16);
+     unsafe {
+        Pmux(::core::ptr::read_volatile(((self.0 as usize) + 0x30 + (index)) as *const u8))
+     }
+  }
+  #[inline]
+  pub fn set_pmux(&self, index: usize, value: Pmux) -> &PortImpl {
+     assert!(index < 16);
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x30 + (index)) as *mut u8, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pmux<F: FnOnce(Pmux) -> Pmux>(&self, index: usize, f: F) -> &PortImpl {
      let tmp = self.pmux(index);
      self.set_pmux(index, f(tmp))
   }
 
-  pub unsafe fn set_wrconfig(&mut self, value: Wrconfig) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+  #[inline]
+  pub fn wrconfig_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x28) as *const u32
+  }
+  #[inline]
+  pub fn wrconfig_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x28) as *mut u32
+  }
+  #[inline]
+  pub fn set_wrconfig(&self, value: Wrconfig) -> &PortImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
   }
 
 }
 
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u32);
-
 impl Ctrl {
+  #[inline]
   pub fn sampling(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+  #[inline]
   pub fn set_sampling(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -155,13 +382,11 @@ impl Ctrl {
   }
 
 }
-
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -169,16 +394,16 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dir(pub u32);
-
 impl Dir {
+  #[inline]
   pub fn dir(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dir(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -189,13 +414,11 @@ impl Dir {
   }
 
 }
-
 impl ::core::fmt::Display for Dir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -235,16 +458,16 @@ impl ::core::fmt::Debug for Dir {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dirclr(pub u32);
-
 impl Dirclr {
+  #[inline]
   pub fn dirclr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dirclr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -255,13 +478,11 @@ impl Dirclr {
   }
 
 }
-
 impl ::core::fmt::Display for Dirclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dirclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -301,16 +522,16 @@ impl ::core::fmt::Debug for Dirclr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dirset(pub u32);
-
 impl Dirset {
+  #[inline]
   pub fn dirset(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dirset(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -321,13 +542,11 @@ impl Dirset {
   }
 
 }
-
 impl ::core::fmt::Display for Dirset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dirset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -367,16 +586,16 @@ impl ::core::fmt::Debug for Dirset {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Dirtgl(pub u32);
-
 impl Dirtgl {
+  #[inline]
   pub fn dirtgl(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dirtgl(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -387,13 +606,11 @@ impl Dirtgl {
   }
 
 }
-
 impl ::core::fmt::Display for Dirtgl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Dirtgl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -433,16 +650,16 @@ impl ::core::fmt::Debug for Dirtgl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct In(pub u32);
-
 impl In {
+  #[inline]
   pub fn _in(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_in(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -453,13 +670,11 @@ impl In {
   }
 
 }
-
 impl ::core::fmt::Display for In {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for In {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -499,16 +714,16 @@ impl ::core::fmt::Debug for In {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Out(pub u32);
-
 impl Out {
+  #[inline]
   pub fn out(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_out(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -519,13 +734,11 @@ impl Out {
   }
 
 }
-
 impl ::core::fmt::Display for Out {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Out {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -565,16 +778,16 @@ impl ::core::fmt::Debug for Out {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Outclr(pub u32);
-
 impl Outclr {
+  #[inline]
   pub fn outclr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_outclr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -585,13 +798,11 @@ impl Outclr {
   }
 
 }
-
 impl ::core::fmt::Display for Outclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Outclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -631,16 +842,16 @@ impl ::core::fmt::Debug for Outclr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Outset(pub u32);
-
 impl Outset {
+  #[inline]
   pub fn outset(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_outset(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -651,13 +862,11 @@ impl Outset {
   }
 
 }
-
 impl ::core::fmt::Display for Outset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Outset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -697,16 +906,16 @@ impl ::core::fmt::Debug for Outset {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Outtgl(pub u32);
-
 impl Outtgl {
+  #[inline]
   pub fn outtgl(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_outtgl(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -717,13 +926,11 @@ impl Outtgl {
   }
 
 }
-
 impl ::core::fmt::Display for Outtgl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Outtgl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -763,14 +970,14 @@ impl ::core::fmt::Debug for Outtgl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pincfg(pub u8);
-
 impl Pincfg {
+  #[inline]
   pub fn pmuxen(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_pmuxen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -778,9 +985,11 @@ impl Pincfg {
      self
   }
 
+  #[inline]
   pub fn inen(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_inen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -788,9 +997,11 @@ impl Pincfg {
      self
   }
 
+  #[inline]
   pub fn pullen(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_pullen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -798,9 +1009,11 @@ impl Pincfg {
      self
   }
 
+  #[inline]
   pub fn drvstr(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_drvstr(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -809,13 +1022,11 @@ impl Pincfg {
   }
 
 }
-
 impl ::core::fmt::Display for Pincfg {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pincfg {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -827,16 +1038,16 @@ impl ::core::fmt::Debug for Pincfg {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pmux(pub u8);
-
 impl Pmux {
+  #[inline]
   pub fn pmux(&self, index: usize) -> u8 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u8) >> shift) & 0xf // [3:0]
   }
+  #[inline]
   pub fn set_pmux(mut self, index: usize, value: u8) -> Self {
      assert!(index < 2);
      assert!((value & !0xf) == 0);
@@ -847,13 +1058,11 @@ impl Pmux {
   }
 
 }
-
 impl ::core::fmt::Display for Pmux {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pmux {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -863,14 +1072,14 @@ impl ::core::fmt::Debug for Pmux {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Wrconfig(pub u32);
-
 impl Wrconfig {
+  #[inline]
   pub fn pinmask(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+  #[inline]
   pub fn set_pinmask(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -878,9 +1087,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn pmuxen(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_pmuxen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -888,9 +1099,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn inen(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_inen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -898,9 +1111,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn pullen(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_pullen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -908,9 +1123,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn drvstr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+  #[inline]
   pub fn set_drvstr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -918,9 +1135,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn pmux(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+  #[inline]
   pub fn set_pmux(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
@@ -928,9 +1147,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn wrpmux(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+  #[inline]
   pub fn set_wrpmux(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -938,9 +1159,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn wrpincfg(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+  #[inline]
   pub fn set_wrpincfg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -948,9 +1171,11 @@ impl Wrconfig {
      self
   }
 
+  #[inline]
   pub fn hwsel(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+  #[inline]
   pub fn set_hwsel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -959,13 +1184,11 @@ impl Wrconfig {
   }
 
 }
-
 impl ::core::fmt::Display for Wrconfig {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Wrconfig {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -982,2253 +1205,2581 @@ impl ::core::fmt::Debug for Wrconfig {
       Ok(())
    }
 }
+pub struct PinImpl {
+  pub port: PortImpl,
+  pub index: usize,
+}
 
-pub trait Pin {
-   fn port(&self) -> Port;
+pub trait Pin<T> {
+   fn port(&self) -> T;
    fn index(&self) -> usize;
 }
 
-pub trait AfExtint0 {
-   fn af_extint_0(&self) -> usize;
-}
-
-pub trait AfSercom1Pad0 {
-   fn af_sercom1_pad_0(&self) -> usize;
-}
-
-pub trait AfTcc2Wo0 {
-   fn af_tcc2_wo_0(&self) -> usize;
-}
-
-pub trait AfExtint1 {
-   fn af_extint_1(&self) -> usize;
-}
-
-pub trait AfSercom1Pad1 {
-   fn af_sercom1_pad_1(&self) -> usize;
-}
-
-pub trait AfTcc2Wo1 {
-   fn af_tcc2_wo_1(&self) -> usize;
-}
-
-pub trait AfExtint2 {
-   fn af_extint_2(&self) -> usize;
-}
-
-pub trait AfAin0 {
-   fn af_ain_0(&self) -> usize;
-}
-
-pub trait AfY0 {
-   fn af_y_0(&self) -> usize;
-}
-
-pub trait AfVout {
-   fn af_vout(&self) -> usize;
-}
-
-pub trait AfExtint3 {
-   fn af_extint_3(&self) -> usize;
-}
-
-pub trait AfAdcVrefadacVrefa {
-   fn af_adc_vrefadac_vrefa(&self) -> usize;
-}
-
-pub trait AfAin1 {
-   fn af_ain_1(&self) -> usize;
-}
-
-pub trait AfY1 {
-   fn af_y_1(&self) -> usize;
-}
-
-pub trait AfExtint4 {
-   fn af_extint_4(&self) -> usize;
-}
-
-pub trait AfAdcVrefb {
-   fn af_adc_vrefb(&self) -> usize;
-}
-
-pub trait AfAin4 {
-   fn af_ain_4(&self) -> usize;
-}
-
-pub trait AfY2 {
-   fn af_y_2(&self) -> usize;
-}
-
-pub trait AfSercom0Pad0 {
-   fn af_sercom0_pad_0(&self) -> usize;
-}
-
-pub trait AfTcc0Wo0 {
-   fn af_tcc0_wo_0(&self) -> usize;
-}
-
-pub trait AfExtint5 {
-   fn af_extint_5(&self) -> usize;
-}
-
-pub trait AfAin5 {
-   fn af_ain_5(&self) -> usize;
-}
-
-pub trait AfY3 {
-   fn af_y_3(&self) -> usize;
-}
-
-pub trait AfSercom0Pad1 {
-   fn af_sercom0_pad_1(&self) -> usize;
-}
-
-pub trait AfTcc0Wo1 {
-   fn af_tcc0_wo_1(&self) -> usize;
-}
-
-pub trait AfExtint6 {
-   fn af_extint_6(&self) -> usize;
-}
-
-pub trait AfAin6 {
-   fn af_ain_6(&self) -> usize;
-}
-
-pub trait AfAin2 {
-   fn af_ain_2(&self) -> usize;
-}
-
-pub trait AfY4 {
-   fn af_y_4(&self) -> usize;
-}
-
-pub trait AfSercom0Pad2 {
-   fn af_sercom0_pad_2(&self) -> usize;
-}
-
-pub trait AfTcc1Wo0 {
-   fn af_tcc1_wo_0(&self) -> usize;
-}
-
-pub trait AfExtint7 {
-   fn af_extint_7(&self) -> usize;
-}
-
-pub trait AfAin7 {
-   fn af_ain_7(&self) -> usize;
-}
-
-pub trait AfAin3 {
-   fn af_ain_3(&self) -> usize;
-}
-
-pub trait AfY5 {
-   fn af_y_5(&self) -> usize;
-}
-
-pub trait AfSercom0Pad3 {
-   fn af_sercom0_pad_3(&self) -> usize;
-}
-
-pub trait AfTcc1Wo1 {
-   fn af_tcc1_wo_1(&self) -> usize;
-}
-
-pub trait AfI2sSd0 {
-   fn af_i2s_sd_0(&self) -> usize;
-}
-
-pub trait AfNmi {
-   fn af_nmi(&self) -> usize;
-}
-
-pub trait AfAin16 {
-   fn af_ain_16(&self) -> usize;
-}
-
-pub trait AfX0 {
-   fn af_x_0(&self) -> usize;
-}
-
-pub trait AfSercom2Pad0 {
-   fn af_sercom2_pad_0(&self) -> usize;
-}
-
-pub trait AfTcc1Wo2 {
-   fn af_tcc1_wo_2(&self) -> usize;
-}
-
-pub trait AfI2sSd1 {
-   fn af_i2s_sd_1(&self) -> usize;
-}
-
-pub trait AfExtint9 {
-   fn af_extint_9(&self) -> usize;
-}
-
-pub trait AfAin17 {
-   fn af_ain_17(&self) -> usize;
-}
-
-pub trait AfX1 {
-   fn af_x_1(&self) -> usize;
-}
-
-pub trait AfSercom2Pad1 {
-   fn af_sercom2_pad_1(&self) -> usize;
-}
-
-pub trait AfTcc1Wo3 {
-   fn af_tcc1_wo_3(&self) -> usize;
-}
-
-pub trait AfI2sMck0 {
-   fn af_i2s_mck_0(&self) -> usize;
-}
-
-pub trait AfExtint10 {
-   fn af_extint_10(&self) -> usize;
-}
-
-pub trait AfAin18 {
-   fn af_ain_18(&self) -> usize;
-}
-
-pub trait AfX2 {
-   fn af_x_2(&self) -> usize;
-}
-
-pub trait AfSercom2Pad2 {
-   fn af_sercom2_pad_2(&self) -> usize;
-}
-
-pub trait AfTcc0Wo2 {
-   fn af_tcc0_wo_2(&self) -> usize;
-}
-
-pub trait AfI2sSck0 {
-   fn af_i2s_sck_0(&self) -> usize;
-}
-
-pub trait AfGclkIo4 {
-   fn af_gclk_io_4(&self) -> usize;
-}
-
-pub trait AfExtint11 {
-   fn af_extint_11(&self) -> usize;
-}
-
-pub trait AfAin19 {
-   fn af_ain_19(&self) -> usize;
-}
-
-pub trait AfX3 {
-   fn af_x_3(&self) -> usize;
-}
-
-pub trait AfSercom2Pad3 {
-   fn af_sercom2_pad_3(&self) -> usize;
-}
-
-pub trait AfTcc0Wo3 {
-   fn af_tcc0_wo_3(&self) -> usize;
-}
-
-pub trait AfI2sFs0 {
-   fn af_i2s_fs_0(&self) -> usize;
-}
-
-pub trait AfGclkIo5 {
-   fn af_gclk_io_5(&self) -> usize;
-}
-
-pub trait AfExtint12 {
-   fn af_extint_12(&self) -> usize;
-}
-
-pub trait AfSercom4Pad0 {
-   fn af_sercom4_pad_0(&self) -> usize;
-}
-
-pub trait AfTcc0Wo6 {
-   fn af_tcc0_wo_6(&self) -> usize;
-}
-
-pub trait AfAcCmp0 {
-   fn af_ac_cmp_0(&self) -> usize;
-}
-
-pub trait AfExtint13 {
-   fn af_extint_13(&self) -> usize;
-}
-
-pub trait AfSercom4Pad1 {
-   fn af_sercom4_pad_1(&self) -> usize;
-}
-
-pub trait AfTcc0Wo7 {
-   fn af_tcc0_wo_7(&self) -> usize;
-}
-
-pub trait AfAcCmp1 {
-   fn af_ac_cmp_1(&self) -> usize;
-}
-
-pub trait AfExtint14 {
-   fn af_extint_14(&self) -> usize;
-}
-
-pub trait AfSercom4Pad2 {
-   fn af_sercom4_pad_2(&self) -> usize;
-}
-
-pub trait AfTc3Wo0 {
-   fn af_tc3_wo_0(&self) -> usize;
-}
-
-pub trait AfTcc0Wo4 {
-   fn af_tcc0_wo_4(&self) -> usize;
-}
-
-pub trait AfGclkIo0 {
-   fn af_gclk_io_0(&self) -> usize;
-}
-
-pub trait AfExtint15 {
-   fn af_extint_15(&self) -> usize;
-}
-
-pub trait AfSercom4Pad3 {
-   fn af_sercom4_pad_3(&self) -> usize;
-}
-
-pub trait AfTc3Wo1 {
-   fn af_tc3_wo_1(&self) -> usize;
-}
-
-pub trait AfTcc0Wo5 {
-   fn af_tcc0_wo_5(&self) -> usize;
-}
-
-pub trait AfGclkIo1 {
-   fn af_gclk_io_1(&self) -> usize;
-}
-
-pub trait AfX4 {
-   fn af_x_4(&self) -> usize;
-}
-
-pub trait AfSercom3Pad0 {
-   fn af_sercom3_pad_0(&self) -> usize;
-}
-
-pub trait AfGclkIo2 {
-   fn af_gclk_io_2(&self) -> usize;
-}
-
-pub trait AfX5 {
-   fn af_x_5(&self) -> usize;
-}
-
-pub trait AfSercom3Pad1 {
-   fn af_sercom3_pad_1(&self) -> usize;
-}
-
-pub trait AfGclkIo3 {
-   fn af_gclk_io_3(&self) -> usize;
-}
-
-pub trait AfX6 {
-   fn af_x_6(&self) -> usize;
-}
-
-pub trait AfSercom1Pad2 {
-   fn af_sercom1_pad_2(&self) -> usize;
-}
-
-pub trait AfSercom3Pad2 {
-   fn af_sercom3_pad_2(&self) -> usize;
-}
-
-pub trait AfX7 {
-   fn af_x_7(&self) -> usize;
-}
-
-pub trait AfSercom1Pad3 {
-   fn af_sercom1_pad_3(&self) -> usize;
-}
-
-pub trait AfSercom3Pad3 {
-   fn af_sercom3_pad_3(&self) -> usize;
-}
-
-pub trait AfX8 {
-   fn af_x_8(&self) -> usize;
-}
-
-pub trait AfSercom5Pad2 {
-   fn af_sercom5_pad_2(&self) -> usize;
-}
-
-pub trait AfTc7Wo0 {
-   fn af_tc7_wo_0(&self) -> usize;
-}
-
-pub trait AfX9 {
-   fn af_x_9(&self) -> usize;
-}
-
-pub trait AfSercom5Pad3 {
-   fn af_sercom5_pad_3(&self) -> usize;
-}
-
-pub trait AfTc7Wo1 {
-   fn af_tc7_wo_1(&self) -> usize;
-}
-
-pub trait AfX10 {
-   fn af_x_10(&self) -> usize;
-}
-
-pub trait AfSercom5Pad0 {
-   fn af_sercom5_pad_0(&self) -> usize;
-}
-
-pub trait AfTc4Wo0 {
-   fn af_tc4_wo_0(&self) -> usize;
-}
-
-pub trait AfGclkIo6 {
-   fn af_gclk_io_6(&self) -> usize;
-}
-
-pub trait AfX11 {
-   fn af_x_11(&self) -> usize;
-}
-
-pub trait AfSercom5Pad1 {
-   fn af_sercom5_pad_1(&self) -> usize;
-}
-
-pub trait AfTc4Wo1 {
-   fn af_tc4_wo_1(&self) -> usize;
-}
-
-pub trait AfUsbSof1khz {
-   fn af_usb_sof1khz(&self) -> usize;
-}
-
-pub trait AfGclkIo7 {
-   fn af_gclk_io_7(&self) -> usize;
-}
-
-pub trait AfTc5Wo0 {
-   fn af_tc5_wo_0(&self) -> usize;
-}
-
-pub trait AfUsbDm {
-   fn af_usb_dm(&self) -> usize;
-}
-
-pub trait AfTc5Wo1 {
-   fn af_tc5_wo_1(&self) -> usize;
-}
-
-pub trait AfUsbDp {
-   fn af_usb_dp(&self) -> usize;
-}
-
-pub trait AfExtint8 {
-   fn af_extint_8(&self) -> usize;
-}
-
-pub trait AfSwclk {
-   fn af_swclk(&self) -> usize;
-}
-
-pub trait AfSwdio {
-   fn af_swdio(&self) -> usize;
-}
-
-pub trait AfAin8 {
-   fn af_ain_8(&self) -> usize;
-}
-
-pub trait AfY6 {
-   fn af_y_6(&self) -> usize;
-}
-
-pub trait AfAin9 {
-   fn af_ain_9(&self) -> usize;
-}
-
-pub trait AfY7 {
-   fn af_y_7(&self) -> usize;
-}
-
-pub trait AfAin10 {
-   fn af_ain_10(&self) -> usize;
-}
-
-pub trait AfY8 {
-   fn af_y_8(&self) -> usize;
-}
-
-pub trait AfTc6Wo0 {
-   fn af_tc6_wo_0(&self) -> usize;
-}
-
-pub trait AfAin11 {
-   fn af_ain_11(&self) -> usize;
-}
-
-pub trait AfY9 {
-   fn af_y_9(&self) -> usize;
-}
-
-pub trait AfTc6Wo1 {
-   fn af_tc6_wo_1(&self) -> usize;
-}
-
-pub trait AfAin12 {
-   fn af_ain_12(&self) -> usize;
-}
-
-pub trait AfY10 {
-   fn af_y_10(&self) -> usize;
-}
-
-pub trait AfAin13 {
-   fn af_ain_13(&self) -> usize;
-}
-
-pub trait AfY11 {
-   fn af_y_11(&self) -> usize;
-}
-
-pub trait AfAin14 {
-   fn af_ain_14(&self) -> usize;
-}
-
-pub trait AfY12 {
-   fn af_y_12(&self) -> usize;
-}
-
-pub trait AfAin15 {
-   fn af_ain_15(&self) -> usize;
-}
-
-pub trait AfY13 {
-   fn af_y_13(&self) -> usize;
-}
-
-pub trait AfY14 {
-   fn af_y_14(&self) -> usize;
-}
-
-pub trait AfY15 {
-   fn af_y_15(&self) -> usize;
-}
-
-pub trait AfI2sMck1 {
-   fn af_i2s_mck_1(&self) -> usize;
-}
-
-pub trait AfI2sSck1 {
-   fn af_i2s_sck_1(&self) -> usize;
-}
-
-pub trait AfX12 {
-   fn af_x_12(&self) -> usize;
-}
-
-pub trait AfI2sFs1 {
-   fn af_i2s_fs_1(&self) -> usize;
-}
-
-pub trait AfX13 {
-   fn af_x_13(&self) -> usize;
-}
-
-pub trait AfX14 {
-   fn af_x_14(&self) -> usize;
-}
-
-pub trait AfX15 {
-   fn af_x_15(&self) -> usize;
+pub trait AltFn<T> {
+   fn alt_fn(&self) -> usize;
 }
 
 pub const PA00: Pa00 = Pa00 {}; 
+pub const PA00_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 0 };
+pub const PA00_IMPL_REF: &PinImpl = &PA00_IMPL;
+
+impl ::core::ops::Deref for Pa00 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA00_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa00 {}
 
-impl Pin for Pa00 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa00 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
-impl AfExtint0 for Pa00 {
-   fn af_extint_0(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint0> for Pa00 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom1Pad0 for Pa00 {
-   fn af_sercom1_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom1Pad0> for Pa00 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo0 for Pa00 {
-   fn af_tcc2_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa00 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pa00 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PA01: Pa01 = Pa01 {}; 
+pub const PA01_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 1 };
+pub const PA01_IMPL_REF: &PinImpl = &PA01_IMPL;
+
+impl ::core::ops::Deref for Pa01 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA01_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa01 {}
 
-impl Pin for Pa01 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa01 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 1 }
 }
 
-impl AfExtint1 for Pa01 {
-   fn af_extint_1(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint1> for Pa01 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom1Pad1 for Pa01 {
-   fn af_sercom1_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom1Pad1> for Pa01 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo1 for Pa01 {
-   fn af_tcc2_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa01 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo1> for Pa01 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PA02: Pa02 = Pa02 {}; 
+pub const PA02_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 2 };
+pub const PA02_IMPL_REF: &PinImpl = &PA02_IMPL;
+
+impl ::core::ops::Deref for Pa02 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA02_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa02 {}
 
-impl Pin for Pa02 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa02 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 2 }
 }
 
-impl AfExtint2 for Pa02 {
-   fn af_extint_2(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint2> for Pa02 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin0 for Pa02 {
-   fn af_ain_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain0> for Pa02 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY0 for Pa02 {
-   fn af_y_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Y0> for Pa02 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfVout for Pa02 {
-   fn af_vout(&self) -> usize { 1 }
+impl AltFn<super::sig::Vout> for Pa02 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PA03: Pa03 = Pa03 {}; 
+pub const PA03_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 3 };
+pub const PA03_IMPL_REF: &PinImpl = &PA03_IMPL;
+
+impl ::core::ops::Deref for Pa03 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA03_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa03 {}
 
-impl Pin for Pa03 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa03 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 3 }
 }
 
-impl AfExtint3 for Pa03 {
-   fn af_extint_3(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint3> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAdcVrefadacVrefa for Pa03 {
-   fn af_adc_vrefadac_vrefa(&self) -> usize { 1 }
+impl AltFn<super::sig::Adc> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin1 for Pa03 {
-   fn af_ain_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Vrefadac> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY1 for Pa03 {
-   fn af_y_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Vrefa> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Ain1> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
+}
+
+impl AltFn<super::sig::Y1> for Pa03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PA04: Pa04 = Pa04 {}; 
+pub const PA04_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 4 };
+pub const PA04_IMPL_REF: &PinImpl = &PA04_IMPL;
+
+impl ::core::ops::Deref for Pa04 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA04_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa04 {}
 
-impl Pin for Pa04 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa04 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 4 }
 }
 
-impl AfExtint4 for Pa04 {
-   fn af_extint_4(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint4> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAdcVrefb for Pa04 {
-   fn af_adc_vrefb(&self) -> usize { 1 }
+impl AltFn<super::sig::Adc> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin4 for Pa04 {
-   fn af_ain_4(&self) -> usize { 1 }
+impl AltFn<super::sig::Vrefb> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin0 for Pa04 {
-   fn af_ain_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain4> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY2 for Pa04 {
-   fn af_y_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain0> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad0 for Pa04 {
-   fn af_sercom0_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Y2> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfTcc0Wo0 for Pa04 {
-   fn af_tcc0_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Sercom0Pad0> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
+}
+
+impl AltFn<super::sig::Tcc0> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pa04 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PA05: Pa05 = Pa05 {}; 
+pub const PA05_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 5 };
+pub const PA05_IMPL_REF: &PinImpl = &PA05_IMPL;
+
+impl ::core::ops::Deref for Pa05 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA05_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa05 {}
 
-impl Pin for Pa05 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa05 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 5 }
 }
 
-impl AfExtint5 for Pa05 {
-   fn af_extint_5(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint5> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin5 for Pa05 {
-   fn af_ain_5(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain5> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin1 for Pa05 {
-   fn af_ain_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain1> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY3 for Pa05 {
-   fn af_y_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Y3> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad1 for Pa05 {
-   fn af_sercom0_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom0Pad1> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc0Wo1 for Pa05 {
-   fn af_tcc0_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc0> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo1> for Pa05 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PA06: Pa06 = Pa06 {}; 
+pub const PA06_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 6 };
+pub const PA06_IMPL_REF: &PinImpl = &PA06_IMPL;
+
+impl ::core::ops::Deref for Pa06 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA06_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa06 {}
 
-impl Pin for Pa06 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa06 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 6 }
 }
 
-impl AfExtint6 for Pa06 {
-   fn af_extint_6(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint6> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin6 for Pa06 {
-   fn af_ain_6(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain6> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin2 for Pa06 {
-   fn af_ain_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain2> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY4 for Pa06 {
-   fn af_y_4(&self) -> usize { 1 }
+impl AltFn<super::sig::Y4> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad2 for Pa06 {
-   fn af_sercom0_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom0Pad2> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo0 for Pa06 {
-   fn af_tcc1_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pa06 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PA07: Pa07 = Pa07 {}; 
+pub const PA07_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 7 };
+pub const PA07_IMPL_REF: &PinImpl = &PA07_IMPL;
+
+impl ::core::ops::Deref for Pa07 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA07_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa07 {}
 
-impl Pin for Pa07 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa07 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 7 }
 }
 
-impl AfExtint7 for Pa07 {
-   fn af_extint_7(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint7> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin7 for Pa07 {
-   fn af_ain_7(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain7> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfAin3 for Pa07 {
-   fn af_ain_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain3> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY5 for Pa07 {
-   fn af_y_5(&self) -> usize { 1 }
+impl AltFn<super::sig::Y5> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad3 for Pa07 {
-   fn af_sercom0_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom0Pad3> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo1 for Pa07 {
-   fn af_tcc1_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSd0 for Pa07 {
-   fn af_i2s_sd_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Wo1> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::I2s> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sd0> for Pa07 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA08: Pa08 = Pa08 {}; 
+pub const PA08_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 8 };
+pub const PA08_IMPL_REF: &PinImpl = &PA08_IMPL;
+
+impl ::core::ops::Deref for Pa08 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA08_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa08 {}
 
-impl Pin for Pa08 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa08 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 8 }
 }
 
-impl AfNmi for Pa08 {
-   fn af_nmi(&self) -> usize { 0 }
+impl AltFn<super::sig::Nmi> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin16 for Pa08 {
-   fn af_ain_16(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain16> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfX0 for Pa08 {
-   fn af_x_0(&self) -> usize { 1 }
+impl AltFn<super::sig::X0> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad0 for Pa08 {
-   fn af_sercom0_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom0Pad0> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom2Pad0 for Pa08 {
-   fn af_sercom2_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom2Pad0> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc0Wo0 for Pa08 {
-   fn af_tcc0_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc0> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo2 for Pa08 {
-   fn af_tcc1_wo_2(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSd1 for Pa08 {
-   fn af_i2s_sd_1(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc1> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo2> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sd1> for Pa08 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA09: Pa09 = Pa09 {}; 
+pub const PA09_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 9 };
+pub const PA09_IMPL_REF: &PinImpl = &PA09_IMPL;
+
+impl ::core::ops::Deref for Pa09 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA09_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa09 {}
 
-impl Pin for Pa09 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa09 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 9 }
 }
 
-impl AfExtint9 for Pa09 {
-   fn af_extint_9(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint9> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin17 for Pa09 {
-   fn af_ain_17(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain17> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfX1 for Pa09 {
-   fn af_x_1(&self) -> usize { 1 }
+impl AltFn<super::sig::X1> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad1 for Pa09 {
-   fn af_sercom0_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom0Pad1> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom2Pad1 for Pa09 {
-   fn af_sercom2_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom2Pad1> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc0Wo1 for Pa09 {
-   fn af_tcc0_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc0> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo3 for Pa09 {
-   fn af_tcc1_wo_3(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sMck0 for Pa09 {
-   fn af_i2s_mck_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc1> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo3> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Mck0> for Pa09 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA10: Pa10 = Pa10 {}; 
+pub const PA10_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 10 };
+pub const PA10_IMPL_REF: &PinImpl = &PA10_IMPL;
+
+impl ::core::ops::Deref for Pa10 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA10_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa10 {}
 
-impl Pin for Pa10 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa10 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 10 }
 }
 
-impl AfExtint10 for Pa10 {
-   fn af_extint_10(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint10> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin18 for Pa10 {
-   fn af_ain_18(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain18> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfX2 for Pa10 {
-   fn af_x_2(&self) -> usize { 1 }
+impl AltFn<super::sig::X2> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad2 for Pa10 {
-   fn af_sercom0_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom0Pad2> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom2Pad2 for Pa10 {
-   fn af_sercom2_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom2Pad2> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo0 for Pa10 {
-   fn af_tcc1_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo2 for Pa10 {
-   fn af_tcc0_wo_2(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSck0 for Pa10 {
-   fn af_i2s_sck_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo4 for Pa10 {
-   fn af_gclk_io_4(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo2> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sck0> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo4> for Pa10 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA11: Pa11 = Pa11 {}; 
+pub const PA11_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 11 };
+pub const PA11_IMPL_REF: &PinImpl = &PA11_IMPL;
+
+impl ::core::ops::Deref for Pa11 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA11_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa11 {}
 
-impl Pin for Pa11 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa11 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 11 }
 }
 
-impl AfExtint11 for Pa11 {
-   fn af_extint_11(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint11> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin19 for Pa11 {
-   fn af_ain_19(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain19> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfX3 for Pa11 {
-   fn af_x_3(&self) -> usize { 1 }
+impl AltFn<super::sig::X3> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom0Pad3 for Pa11 {
-   fn af_sercom0_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom0Pad3> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom2Pad3 for Pa11 {
-   fn af_sercom2_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom2Pad3> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo1 for Pa11 {
-   fn af_tcc1_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo3 for Pa11 {
-   fn af_tcc0_wo_3(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sFs0 for Pa11 {
-   fn af_i2s_fs_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo5 for Pa11 {
-   fn af_gclk_io_5(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo3> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Fs0> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo5> for Pa11 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA12: Pa12 = Pa12 {}; 
+pub const PA12_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 12 };
+pub const PA12_IMPL_REF: &PinImpl = &PA12_IMPL;
+
+impl ::core::ops::Deref for Pa12 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA12_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa12 {}
 
-impl Pin for Pa12 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa12 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 12 }
 }
 
-impl AfExtint12 for Pa12 {
-   fn af_extint_12(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint12> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom2Pad0 for Pa12 {
-   fn af_sercom2_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom2Pad0> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom4Pad0 for Pa12 {
-   fn af_sercom4_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad0> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo0 for Pa12 {
-   fn af_tcc2_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo6 for Pa12 {
-   fn af_tcc0_wo_6(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfAcCmp0 for Pa12 {
-   fn af_ac_cmp_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo6> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Ac> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Cmp0> for Pa12 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA13: Pa13 = Pa13 {}; 
+pub const PA13_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 13 };
+pub const PA13_IMPL_REF: &PinImpl = &PA13_IMPL;
+
+impl ::core::ops::Deref for Pa13 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA13_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa13 {}
 
-impl Pin for Pa13 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa13 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 13 }
 }
 
-impl AfExtint13 for Pa13 {
-   fn af_extint_13(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint13> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom2Pad1 for Pa13 {
-   fn af_sercom2_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom2Pad1> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom4Pad1 for Pa13 {
-   fn af_sercom4_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad1> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo1 for Pa13 {
-   fn af_tcc2_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo7 for Pa13 {
-   fn af_tcc0_wo_7(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfAcCmp1 for Pa13 {
-   fn af_ac_cmp_1(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo7> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Ac> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Cmp1> for Pa13 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA14: Pa14 = Pa14 {}; 
+pub const PA14_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 14 };
+pub const PA14_IMPL_REF: &PinImpl = &PA14_IMPL;
+
+impl ::core::ops::Deref for Pa14 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA14_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa14 {}
 
-impl Pin for Pa14 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa14 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 14 }
 }
 
-impl AfExtint14 for Pa14 {
-   fn af_extint_14(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint14> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom2Pad2 for Pa14 {
-   fn af_sercom2_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom2Pad2> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom4Pad2 for Pa14 {
-   fn af_sercom4_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad2> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc3Wo0 for Pa14 {
-   fn af_tc3_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc3> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo4 for Pa14 {
-   fn af_tcc0_wo_4(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo0 for Pa14 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo4> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo0> for Pa14 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA15: Pa15 = Pa15 {}; 
+pub const PA15_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 15 };
+pub const PA15_IMPL_REF: &PinImpl = &PA15_IMPL;
+
+impl ::core::ops::Deref for Pa15 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA15_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa15 {}
 
-impl Pin for Pa15 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa15 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 15 }
 }
 
-impl AfExtint15 for Pa15 {
-   fn af_extint_15(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint15> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom2Pad3 for Pa15 {
-   fn af_sercom2_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom2Pad3> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom4Pad3 for Pa15 {
-   fn af_sercom4_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad3> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc3Wo1 for Pa15 {
-   fn af_tc3_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc3> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo5 for Pa15 {
-   fn af_tcc0_wo_5(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo1 for Pa15 {
-   fn af_gclk_io_1(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo5> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo1> for Pa15 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA16: Pa16 = Pa16 {}; 
+pub const PA16_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 16 };
+pub const PA16_IMPL_REF: &PinImpl = &PA16_IMPL;
+
+impl ::core::ops::Deref for Pa16 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA16_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa16 {}
 
-impl Pin for Pa16 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa16 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 16 }
 }
 
-impl AfExtint0 for Pa16 {
-   fn af_extint_0(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint0> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX4 for Pa16 {
-   fn af_x_4(&self) -> usize { 1 }
+impl AltFn<super::sig::X4> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom1Pad0 for Pa16 {
-   fn af_sercom1_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom1Pad0> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad0 for Pa16 {
-   fn af_sercom3_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad0> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo0 for Pa16 {
-   fn af_tcc2_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo6 for Pa16 {
-   fn af_tcc0_wo_6(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo2 for Pa16 {
-   fn af_gclk_io_2(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo6> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo2> for Pa16 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA17: Pa17 = Pa17 {}; 
+pub const PA17_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 17 };
+pub const PA17_IMPL_REF: &PinImpl = &PA17_IMPL;
+
+impl ::core::ops::Deref for Pa17 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA17_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa17 {}
 
-impl Pin for Pa17 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa17 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 17 }
 }
 
-impl AfExtint1 for Pa17 {
-   fn af_extint_1(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint1> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX5 for Pa17 {
-   fn af_x_5(&self) -> usize { 1 }
+impl AltFn<super::sig::X5> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom1Pad1 for Pa17 {
-   fn af_sercom1_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom1Pad1> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad1 for Pa17 {
-   fn af_sercom3_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad1> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc2Wo1 for Pa17 {
-   fn af_tcc2_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc2> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo7 for Pa17 {
-   fn af_tcc0_wo_7(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo3 for Pa17 {
-   fn af_gclk_io_3(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo7> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo3> for Pa17 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA18: Pa18 = Pa18 {}; 
+pub const PA18_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 18 };
+pub const PA18_IMPL_REF: &PinImpl = &PA18_IMPL;
+
+impl ::core::ops::Deref for Pa18 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA18_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa18 {}
 
-impl Pin for Pa18 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa18 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 18 }
 }
 
-impl AfExtint2 for Pa18 {
-   fn af_extint_2(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint2> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX6 for Pa18 {
-   fn af_x_6(&self) -> usize { 1 }
+impl AltFn<super::sig::X6> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom1Pad2 for Pa18 {
-   fn af_sercom1_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom1Pad2> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad2 for Pa18 {
-   fn af_sercom3_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad2> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc3Wo0 for Pa18 {
-   fn af_tc3_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc3> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo2 for Pa18 {
-   fn af_tcc0_wo_2(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfAcCmp0 for Pa18 {
-   fn af_ac_cmp_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo2> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Ac> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Cmp0> for Pa18 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA19: Pa19 = Pa19 {}; 
+pub const PA19_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 19 };
+pub const PA19_IMPL_REF: &PinImpl = &PA19_IMPL;
+
+impl ::core::ops::Deref for Pa19 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA19_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa19 {}
 
-impl Pin for Pa19 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa19 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 19 }
 }
 
-impl AfExtint3 for Pa19 {
-   fn af_extint_3(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint3> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX7 for Pa19 {
-   fn af_x_7(&self) -> usize { 1 }
+impl AltFn<super::sig::X7> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom1Pad3 for Pa19 {
-   fn af_sercom1_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom1Pad3> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad3 for Pa19 {
-   fn af_sercom3_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad3> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc3Wo1 for Pa19 {
-   fn af_tc3_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc3> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo3 for Pa19 {
-   fn af_tcc0_wo_3(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSd0 for Pa19 {
-   fn af_i2s_sd_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfAcCmp1 for Pa19 {
-   fn af_ac_cmp_1(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo3> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sd0> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Ac> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
+}
+
+impl AltFn<super::sig::Cmp1> for Pa19 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA20: Pa20 = Pa20 {}; 
+pub const PA20_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 20 };
+pub const PA20_IMPL_REF: &PinImpl = &PA20_IMPL;
+
+impl ::core::ops::Deref for Pa20 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA20_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa20 {}
 
-impl Pin for Pa20 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa20 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 20 }
 }
 
-impl AfExtint4 for Pa20 {
-   fn af_extint_4(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint4> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX8 for Pa20 {
-   fn af_x_8(&self) -> usize { 1 }
+impl AltFn<super::sig::X8> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad2 for Pa20 {
-   fn af_sercom5_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom5Pad2> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad2 for Pa20 {
-   fn af_sercom3_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad2> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo0 for Pa20 {
-   fn af_tc7_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo6 for Pa20 {
-   fn af_tcc0_wo_6(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSck0 for Pa20 {
-   fn af_i2s_sck_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo4 for Pa20 {
-   fn af_gclk_io_4(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo6> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sck0> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo4> for Pa20 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA21: Pa21 = Pa21 {}; 
+pub const PA21_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 21 };
+pub const PA21_IMPL_REF: &PinImpl = &PA21_IMPL;
+
+impl ::core::ops::Deref for Pa21 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA21_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa21 {}
 
-impl Pin for Pa21 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa21 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 21 }
 }
 
-impl AfExtint5 for Pa21 {
-   fn af_extint_5(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint5> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX9 for Pa21 {
-   fn af_x_9(&self) -> usize { 1 }
+impl AltFn<super::sig::X9> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad3 for Pa21 {
-   fn af_sercom5_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom5Pad3> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom3Pad3 for Pa21 {
-   fn af_sercom3_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom3Pad3> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo1 for Pa21 {
-   fn af_tc7_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo7 for Pa21 {
-   fn af_tcc0_wo_7(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sFs0 for Pa21 {
-   fn af_i2s_fs_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo5 for Pa21 {
-   fn af_gclk_io_5(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo7> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Fs0> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo5> for Pa21 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA22: Pa22 = Pa22 {}; 
+pub const PA22_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 22 };
+pub const PA22_IMPL_REF: &PinImpl = &PA22_IMPL;
+
+impl ::core::ops::Deref for Pa22 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA22_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa22 {}
 
-impl Pin for Pa22 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa22 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 22 }
 }
 
-impl AfExtint6 for Pa22 {
-   fn af_extint_6(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint6> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX10 for Pa22 {
-   fn af_x_10(&self) -> usize { 1 }
+impl AltFn<super::sig::X10> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom3Pad0 for Pa22 {
-   fn af_sercom3_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom3Pad0> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom5Pad0 for Pa22 {
-   fn af_sercom5_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad0> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc4Wo0 for Pa22 {
-   fn af_tc4_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo4 for Pa22 {
-   fn af_tcc0_wo_4(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo6 for Pa22 {
-   fn af_gclk_io_6(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo4> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo6> for Pa22 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA23: Pa23 = Pa23 {}; 
+pub const PA23_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 23 };
+pub const PA23_IMPL_REF: &PinImpl = &PA23_IMPL;
+
+impl ::core::ops::Deref for Pa23 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA23_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa23 {}
 
-impl Pin for Pa23 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa23 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 23 }
 }
 
-impl AfExtint7 for Pa23 {
-   fn af_extint_7(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint7> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX11 for Pa23 {
-   fn af_x_11(&self) -> usize { 1 }
+impl AltFn<super::sig::X11> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom3Pad1 for Pa23 {
-   fn af_sercom3_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom3Pad1> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom5Pad1 for Pa23 {
-   fn af_sercom5_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad1> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc4Wo1 for Pa23 {
-   fn af_tc4_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo5 for Pa23 {
-   fn af_tcc0_wo_5(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfUsbSof1khz for Pa23 {
-   fn af_usb_sof1khz(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo7 for Pa23 {
-   fn af_gclk_io_7(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo5> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Usb> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sof1khz> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo7> for Pa23 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA24: Pa24 = Pa24 {}; 
+pub const PA24_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 24 };
+pub const PA24_IMPL_REF: &PinImpl = &PA24_IMPL;
+
+impl ::core::ops::Deref for Pa24 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA24_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa24 {}
 
-impl Pin for Pa24 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa24 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 24 }
 }
 
-impl AfExtint12 for Pa24 {
-   fn af_extint_12(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint12> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom3Pad2 for Pa24 {
-   fn af_sercom3_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom3Pad2> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom5Pad2 for Pa24 {
-   fn af_sercom5_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad2> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc5Wo0 for Pa24 {
-   fn af_tc5_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo2 for Pa24 {
-   fn af_tcc1_wo_2(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfUsbDm for Pa24 {
-   fn af_usb_dm(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc1> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo2> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Usb> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Dm> for Pa24 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA25: Pa25 = Pa25 {}; 
+pub const PA25_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 25 };
+pub const PA25_IMPL_REF: &PinImpl = &PA25_IMPL;
+
+impl ::core::ops::Deref for Pa25 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA25_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa25 {}
 
-impl Pin for Pa25 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa25 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 25 }
 }
 
-impl AfExtint13 for Pa25 {
-   fn af_extint_13(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint13> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom3Pad3 for Pa25 {
-   fn af_sercom3_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom3Pad3> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfSercom5Pad3 for Pa25 {
-   fn af_sercom5_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad3> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc5Wo1 for Pa25 {
-   fn af_tc5_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo3 for Pa25 {
-   fn af_tcc1_wo_3(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfUsbDp for Pa25 {
-   fn af_usb_dp(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc1> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo3> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Usb> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Dp> for Pa25 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PA27: Pa27 = Pa27 {}; 
+pub const PA27_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 27 };
+pub const PA27_IMPL_REF: &PinImpl = &PA27_IMPL;
+
+impl ::core::ops::Deref for Pa27 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA27_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa27 {}
 
-impl Pin for Pa27 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa27 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 27 }
 }
 
-impl AfExtint15 for Pa27 {
-   fn af_extint_15(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint15> for Pa27 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfGclkIo0 for Pa27 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::GclkIo0> for Pa27 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA28: Pa28 = Pa28 {}; 
+pub const PA28_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 28 };
+pub const PA28_IMPL_REF: &PinImpl = &PA28_IMPL;
+
+impl ::core::ops::Deref for Pa28 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA28_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa28 {}
 
-impl Pin for Pa28 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa28 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 28 }
 }
 
-impl AfExtint8 for Pa28 {
-   fn af_extint_8(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint8> for Pa28 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfGclkIo0 for Pa28 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::GclkIo0> for Pa28 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA30: Pa30 = Pa30 {}; 
+pub const PA30_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 30 };
+pub const PA30_IMPL_REF: &PinImpl = &PA30_IMPL;
+
+impl ::core::ops::Deref for Pa30 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA30_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa30 {}
 
-impl Pin for Pa30 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa30 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 30 }
 }
 
-impl AfExtint10 for Pa30 {
-   fn af_extint_10(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint10> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom1Pad2 for Pa30 {
-   fn af_sercom1_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom1Pad2> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo0 for Pa30 {
-   fn af_tcc1_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfSwclk for Pa30 {
-   fn af_swclk(&self) -> usize { 5 }
+impl AltFn<super::sig::Wo0> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo0 for Pa30 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Swclk> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo0> for Pa30 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PA31: Pa31 = Pa31 {}; 
+pub const PA31_IMPL: PinImpl = PinImpl { port: PORTA_IMPL, index: 31 };
+pub const PA31_IMPL_REF: &PinImpl = &PA31_IMPL;
+
+impl ::core::ops::Deref for Pa31 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PA31_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pa31 {}
 
-impl Pin for Pa31 {
-   fn port(&self) -> Port { PORTA }
+impl Pin<Porta> for Pa31 {
+   #[inline]
+   fn port(&self) -> Porta { PORTA }
+   #[inline]
    fn index(&self) -> usize { 31 }
 }
 
-impl AfExtint11 for Pa31 {
-   fn af_extint_11(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint11> for Pa31 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom1Pad3 for Pa31 {
-   fn af_sercom1_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom1Pad3> for Pa31 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc1Wo1 for Pa31 {
-   fn af_tcc1_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc1> for Pa31 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfSwdio for Pa31 {
-   fn af_swdio(&self) -> usize { 5 }
+impl AltFn<super::sig::Wo1> for Pa31 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Swdio> for Pa31 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
 pub const PB00: Pb00 = Pb00 {}; 
+pub const PB00_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 0 };
+pub const PB00_IMPL_REF: &PinImpl = &PB00_IMPL;
+
+impl ::core::ops::Deref for Pb00 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB00_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb00 {}
 
-impl Pin for Pb00 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb00 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 0 }
 }
 
-impl AfExtint0 for Pb00 {
-   fn af_extint_0(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint0> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin8 for Pb00 {
-   fn af_ain_8(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain8> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY6 for Pb00 {
-   fn af_y_6(&self) -> usize { 1 }
+impl AltFn<super::sig::Y6> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad2 for Pb00 {
-   fn af_sercom5_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad2> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo0 for Pb00 {
-   fn af_tc7_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pb00 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB01: Pb01 = Pb01 {}; 
+pub const PB01_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 1 };
+pub const PB01_IMPL_REF: &PinImpl = &PB01_IMPL;
+
+impl ::core::ops::Deref for Pb01 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB01_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb01 {}
 
-impl Pin for Pb01 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb01 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 1 }
 }
 
-impl AfExtint1 for Pb01 {
-   fn af_extint_1(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint1> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin9 for Pb01 {
-   fn af_ain_9(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain9> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY7 for Pb01 {
-   fn af_y_7(&self) -> usize { 1 }
+impl AltFn<super::sig::Y7> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad3 for Pb01 {
-   fn af_sercom5_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad3> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo1 for Pb01 {
-   fn af_tc7_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo1> for Pb01 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB02: Pb02 = Pb02 {}; 
+pub const PB02_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 2 };
+pub const PB02_IMPL_REF: &PinImpl = &PB02_IMPL;
+
+impl ::core::ops::Deref for Pb02 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB02_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb02 {}
 
-impl Pin for Pb02 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb02 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 2 }
 }
 
-impl AfExtint2 for Pb02 {
-   fn af_extint_2(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint2> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin10 for Pb02 {
-   fn af_ain_10(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain10> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY8 for Pb02 {
-   fn af_y_8(&self) -> usize { 1 }
+impl AltFn<super::sig::Y8> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad0 for Pb02 {
-   fn af_sercom5_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad0> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc6Wo0 for Pb02 {
-   fn af_tc6_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc6> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pb02 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB03: Pb03 = Pb03 {}; 
+pub const PB03_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 3 };
+pub const PB03_IMPL_REF: &PinImpl = &PB03_IMPL;
+
+impl ::core::ops::Deref for Pb03 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB03_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb03 {}
 
-impl Pin for Pb03 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb03 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 3 }
 }
 
-impl AfExtint3 for Pb03 {
-   fn af_extint_3(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint3> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin11 for Pb03 {
-   fn af_ain_11(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain11> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY9 for Pb03 {
-   fn af_y_9(&self) -> usize { 1 }
+impl AltFn<super::sig::Y9> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom5Pad1 for Pb03 {
-   fn af_sercom5_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad1> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc6Wo1 for Pb03 {
-   fn af_tc6_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc6> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo1> for Pb03 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB04: Pb04 = Pb04 {}; 
+pub const PB04_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 4 };
+pub const PB04_IMPL_REF: &PinImpl = &PB04_IMPL;
+
+impl ::core::ops::Deref for Pb04 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB04_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb04 {}
 
-impl Pin for Pb04 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb04 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 4 }
 }
 
-impl AfExtint4 for Pb04 {
-   fn af_extint_4(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint4> for Pb04 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin12 for Pb04 {
-   fn af_ain_12(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain12> for Pb04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY10 for Pb04 {
-   fn af_y_10(&self) -> usize { 1 }
+impl AltFn<super::sig::Y10> for Pb04 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PB05: Pb05 = Pb05 {}; 
+pub const PB05_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 5 };
+pub const PB05_IMPL_REF: &PinImpl = &PB05_IMPL;
+
+impl ::core::ops::Deref for Pb05 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB05_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb05 {}
 
-impl Pin for Pb05 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb05 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 5 }
 }
 
-impl AfExtint5 for Pb05 {
-   fn af_extint_5(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint5> for Pb05 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin13 for Pb05 {
-   fn af_ain_13(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain13> for Pb05 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY11 for Pb05 {
-   fn af_y_11(&self) -> usize { 1 }
+impl AltFn<super::sig::Y11> for Pb05 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PB06: Pb06 = Pb06 {}; 
+pub const PB06_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 6 };
+pub const PB06_IMPL_REF: &PinImpl = &PB06_IMPL;
+
+impl ::core::ops::Deref for Pb06 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB06_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb06 {}
 
-impl Pin for Pb06 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb06 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 6 }
 }
 
-impl AfExtint6 for Pb06 {
-   fn af_extint_6(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint6> for Pb06 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin14 for Pb06 {
-   fn af_ain_14(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain14> for Pb06 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY12 for Pb06 {
-   fn af_y_12(&self) -> usize { 1 }
+impl AltFn<super::sig::Y12> for Pb06 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PB07: Pb07 = Pb07 {}; 
+pub const PB07_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 7 };
+pub const PB07_IMPL_REF: &PinImpl = &PB07_IMPL;
+
+impl ::core::ops::Deref for Pb07 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB07_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb07 {}
 
-impl Pin for Pb07 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb07 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 7 }
 }
 
-impl AfExtint7 for Pb07 {
-   fn af_extint_7(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint7> for Pb07 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin15 for Pb07 {
-   fn af_ain_15(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain15> for Pb07 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY13 for Pb07 {
-   fn af_y_13(&self) -> usize { 1 }
+impl AltFn<super::sig::Y13> for Pb07 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
 pub const PB08: Pb08 = Pb08 {}; 
+pub const PB08_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 8 };
+pub const PB08_IMPL_REF: &PinImpl = &PB08_IMPL;
+
+impl ::core::ops::Deref for Pb08 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB08_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb08 {}
 
-impl Pin for Pb08 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb08 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 8 }
 }
 
-impl AfExtint8 for Pb08 {
-   fn af_extint_8(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint8> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin2 for Pb08 {
-   fn af_ain_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain2> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY14 for Pb08 {
-   fn af_y_14(&self) -> usize { 1 }
+impl AltFn<super::sig::Y14> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad0 for Pb08 {
-   fn af_sercom4_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad0> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc4Wo0 for Pb08 {
-   fn af_tc4_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo0> for Pb08 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB09: Pb09 = Pb09 {}; 
+pub const PB09_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 9 };
+pub const PB09_IMPL_REF: &PinImpl = &PB09_IMPL;
+
+impl ::core::ops::Deref for Pb09 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB09_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb09 {}
 
-impl Pin for Pb09 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb09 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 9 }
 }
 
-impl AfExtint9 for Pb09 {
-   fn af_extint_9(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint9> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfAin3 for Pb09 {
-   fn af_ain_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Ain3> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfY15 for Pb09 {
-   fn af_y_15(&self) -> usize { 1 }
+impl AltFn<super::sig::Y15> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad1 for Pb09 {
-   fn af_sercom4_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad1> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc4Wo1 for Pb09 {
-   fn af_tc4_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Wo1> for Pb09 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
 pub const PB10: Pb10 = Pb10 {}; 
+pub const PB10_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 10 };
+pub const PB10_IMPL_REF: &PinImpl = &PB10_IMPL;
+
+impl ::core::ops::Deref for Pb10 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB10_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb10 {}
 
-impl Pin for Pb10 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb10 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 10 }
 }
 
-impl AfExtint10 for Pb10 {
-   fn af_extint_10(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint10> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom4Pad2 for Pb10 {
-   fn af_sercom4_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad2> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc5Wo0 for Pb10 {
-   fn af_tc5_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo4 for Pb10 {
-   fn af_tcc0_wo_4(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sMck1 for Pb10 {
-   fn af_i2s_mck_1(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo4 for Pb10 {
-   fn af_gclk_io_4(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo4> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Mck1> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo4> for Pb10 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB11: Pb11 = Pb11 {}; 
+pub const PB11_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 11 };
+pub const PB11_IMPL_REF: &PinImpl = &PB11_IMPL;
+
+impl ::core::ops::Deref for Pb11 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB11_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb11 {}
 
-impl Pin for Pb11 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb11 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 11 }
 }
 
-impl AfExtint11 for Pb11 {
-   fn af_extint_11(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint11> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom4Pad3 for Pb11 {
-   fn af_sercom4_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom4Pad3> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc5Wo1 for Pb11 {
-   fn af_tc5_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo5 for Pb11 {
-   fn af_tcc0_wo_5(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSck1 for Pb11 {
-   fn af_i2s_sck_1(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo5 for Pb11 {
-   fn af_gclk_io_5(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo5> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sck1> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo5> for Pb11 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB12: Pb12 = Pb12 {}; 
+pub const PB12_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 12 };
+pub const PB12_IMPL_REF: &PinImpl = &PB12_IMPL;
+
+impl ::core::ops::Deref for Pb12 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB12_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb12 {}
 
-impl Pin for Pb12 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb12 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 12 }
 }
 
-impl AfExtint12 for Pb12 {
-   fn af_extint_12(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint12> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX12 for Pb12 {
-   fn af_x_12(&self) -> usize { 1 }
+impl AltFn<super::sig::X12> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad0 for Pb12 {
-   fn af_sercom4_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom4Pad0> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc4Wo0 for Pb12 {
-   fn af_tc4_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo6 for Pb12 {
-   fn af_tcc0_wo_6(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sFs1 for Pb12 {
-   fn af_i2s_fs_1(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo6 for Pb12 {
-   fn af_gclk_io_6(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo6> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Fs1> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo6> for Pb12 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB13: Pb13 = Pb13 {}; 
+pub const PB13_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 13 };
+pub const PB13_IMPL_REF: &PinImpl = &PB13_IMPL;
+
+impl ::core::ops::Deref for Pb13 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB13_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb13 {}
 
-impl Pin for Pb13 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb13 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 13 }
 }
 
-impl AfExtint13 for Pb13 {
-   fn af_extint_13(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint13> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX13 for Pb13 {
-   fn af_x_13(&self) -> usize { 1 }
+impl AltFn<super::sig::X13> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad1 for Pb13 {
-   fn af_sercom4_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom4Pad1> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc4Wo1 for Pb13 {
-   fn af_tc4_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc4> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo7 for Pb13 {
-   fn af_tcc0_wo_7(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo7 for Pb13 {
-   fn af_gclk_io_7(&self) -> usize { 6 }
+impl AltFn<super::sig::Tcc0> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo7> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::GclkIo7> for Pb13 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB14: Pb14 = Pb14 {}; 
+pub const PB14_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 14 };
+pub const PB14_IMPL_REF: &PinImpl = &PB14_IMPL;
+
+impl ::core::ops::Deref for Pb14 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB14_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb14 {}
 
-impl Pin for Pb14 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb14 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 14 }
 }
 
-impl AfExtint14 for Pb14 {
-   fn af_extint_14(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint14> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX14 for Pb14 {
-   fn af_x_14(&self) -> usize { 1 }
+impl AltFn<super::sig::X14> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad2 for Pb14 {
-   fn af_sercom4_pad_2(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom4Pad2> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc5Wo0 for Pb14 {
-   fn af_tc5_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo0 for Pb14 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo0> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::GclkIo0> for Pb14 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB15: Pb15 = Pb15 {}; 
+pub const PB15_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 15 };
+pub const PB15_IMPL_REF: &PinImpl = &PB15_IMPL;
+
+impl ::core::ops::Deref for Pb15 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB15_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb15 {}
 
-impl Pin for Pb15 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb15 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 15 }
 }
 
-impl AfExtint15 for Pb15 {
-   fn af_extint_15(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint15> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfX15 for Pb15 {
-   fn af_x_15(&self) -> usize { 1 }
+impl AltFn<super::sig::X15> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AfSercom4Pad3 for Pb15 {
-   fn af_sercom4_pad_3(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom4Pad3> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc5Wo1 for Pb15 {
-   fn af_tc5_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc5> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo1 for Pb15 {
-   fn af_gclk_io_1(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo1> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::GclkIo1> for Pb15 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB16: Pb16 = Pb16 {}; 
+pub const PB16_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 16 };
+pub const PB16_IMPL_REF: &PinImpl = &PB16_IMPL;
+
+impl ::core::ops::Deref for Pb16 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB16_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb16 {}
 
-impl Pin for Pb16 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb16 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 16 }
 }
 
-impl AfExtint0 for Pb16 {
-   fn af_extint_0(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint0> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad0 for Pb16 {
-   fn af_sercom5_pad_0(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom5Pad0> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc6Wo0 for Pb16 {
-   fn af_tc6_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc6> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo4 for Pb16 {
-   fn af_tcc0_wo_4(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sSd1 for Pb16 {
-   fn af_i2s_sd_1(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo2 for Pb16 {
-   fn af_gclk_io_2(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo4> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Sd1> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo2> for Pb16 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB17: Pb17 = Pb17 {}; 
+pub const PB17_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 17 };
+pub const PB17_IMPL_REF: &PinImpl = &PB17_IMPL;
+
+impl ::core::ops::Deref for Pb17 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB17_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb17 {}
 
-impl Pin for Pb17 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb17 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 17 }
 }
 
-impl AfExtint1 for Pb17 {
-   fn af_extint_1(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint1> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad1 for Pb17 {
-   fn af_sercom5_pad_1(&self) -> usize { 1 }
+impl AltFn<super::sig::Sercom5Pad1> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AfTc6Wo1 for Pb17 {
-   fn af_tc6_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc6> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc0Wo5 for Pb17 {
-   fn af_tcc0_wo_5(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfI2sMck0 for Pb17 {
-   fn af_i2s_mck_0(&self) -> usize { 5 }
+impl AltFn<super::sig::Tcc0> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AfGclkIo3 for Pb17 {
-   fn af_gclk_io_3(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo5> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::I2s> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::Mck0> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 6 }
+}
+
+impl AltFn<super::sig::GclkIo3> for Pb17 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB22: Pb22 = Pb22 {}; 
+pub const PB22_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 22 };
+pub const PB22_IMPL_REF: &PinImpl = &PB22_IMPL;
+
+impl ::core::ops::Deref for Pb22 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB22_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb22 {}
 
-impl Pin for Pb22 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb22 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 22 }
 }
 
-impl AfExtint6 for Pb22 {
-   fn af_extint_6(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint6> for Pb22 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad2 for Pb22 {
-   fn af_sercom5_pad_2(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad2> for Pb22 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo0 for Pb22 {
-   fn af_tc7_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pb22 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo0 for Pb22 {
-   fn af_gclk_io_0(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo0> for Pb22 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::GclkIo0> for Pb22 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB23: Pb23 = Pb23 {}; 
+pub const PB23_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 23 };
+pub const PB23_IMPL_REF: &PinImpl = &PB23_IMPL;
+
+impl ::core::ops::Deref for Pb23 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB23_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb23 {}
 
-impl Pin for Pb23 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb23 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 23 }
 }
 
-impl AfExtint7 for Pb23 {
-   fn af_extint_7(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint7> for Pb23 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad3 for Pb23 {
-   fn af_sercom5_pad_3(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad3> for Pb23 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTc7Wo1 for Pb23 {
-   fn af_tc7_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tc7> for Pb23 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfGclkIo1 for Pb23 {
-   fn af_gclk_io_1(&self) -> usize { 6 }
+impl AltFn<super::sig::Wo1> for Pb23 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::GclkIo1> for Pb23 {
+   #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
 pub const PB30: Pb30 = Pb30 {}; 
+pub const PB30_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 30 };
+pub const PB30_IMPL_REF: &PinImpl = &PB30_IMPL;
+
+impl ::core::ops::Deref for Pb30 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB30_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb30 {}
 
-impl Pin for Pb30 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb30 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 30 }
 }
 
-impl AfExtint14 for Pb30 {
-   fn af_extint_14(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint14> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad0 for Pb30 {
-   fn af_sercom5_pad_0(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad0> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc0Wo0 for Pb30 {
-   fn af_tcc0_wo_0(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc0> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo2 for Pb30 {
-   fn af_tcc1_wo_2(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo0> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tcc1> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo2> for Pb30 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
 pub const PB31: Pb31 = Pb31 {}; 
+pub const PB31_IMPL: PinImpl = PinImpl { port: PORTB_IMPL, index: 31 };
+pub const PB31_IMPL_REF: &PinImpl = &PB31_IMPL;
+
+impl ::core::ops::Deref for Pb31 {
+   type Target = PinImpl;
+   #[inline]
+   fn deref(&self) -> &PinImpl { PB31_IMPL_REF }
+}
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Pb31 {}
 
-impl Pin for Pb31 {
-   fn port(&self) -> Port { PORTB }
+impl Pin<Portb> for Pb31 {
+   #[inline]
+   fn port(&self) -> Portb { PORTB }
+   #[inline]
    fn index(&self) -> usize { 31 }
 }
 
-impl AfExtint15 for Pb31 {
-   fn af_extint_15(&self) -> usize { 0 }
+impl AltFn<super::sig::Extint15> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AfSercom5Pad1 for Pb31 {
-   fn af_sercom5_pad_1(&self) -> usize { 2 }
+impl AltFn<super::sig::Sercom5Pad1> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AfTcc0Wo1 for Pb31 {
-   fn af_tcc0_wo_1(&self) -> usize { 3 }
+impl AltFn<super::sig::Tcc0> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AfTcc1Wo3 for Pb31 {
-   fn af_tcc1_wo_3(&self) -> usize { 4 }
+impl AltFn<super::sig::Wo1> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 4 }
+}
+
+impl AltFn<super::sig::Tcc1> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
+}
+
+impl AltFn<super::sig::Wo3> for Pb31 {
+   #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
