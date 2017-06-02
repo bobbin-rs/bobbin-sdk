@@ -15,16 +15,23 @@ pub use samd21::{chip, hal};
 pub mod exceptions;
 pub mod lang_items;
 
+pub mod clock;
 pub mod led;
-// pub mod btn;
-pub mod pin;
+// // pub mod btn;
+// pub mod pin;
 pub mod tim;
-pub mod usart;
+// pub mod usart;
 
-pub use tim::delay;
+// pub use tim::delay;
+
+pub fn delay(ms: u32) {
+    for _ in 0..ms * 10000 {
+        unsafe { asm!("nop") }
+    }
+}
 
 pub fn init() {
-    hal::clock::run_48mhz();
-    usart::init(115_200);
+    clock::init();
+    led::init();
     console::init();
 }
