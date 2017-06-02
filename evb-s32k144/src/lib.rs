@@ -21,16 +21,16 @@ pub mod exceptions;
 pub mod lang_items;
 
 pub mod clock;
-pub mod pin;
+//pub mod pin;
 pub mod led;
-pub mod sw;
-pub mod timer;
-pub mod serial;
-pub mod can;
-pub mod spi;
-pub mod uja1169;
+pub mod btn;
+pub mod tim;
+//pub mod serial;
+//pub mod can;
+//pub mod spi;
+//pub mod uja1169;
 
-pub use timer::delay;
+pub use tim::delay;
 
 // pub fn delay(n: u32) {
 //     for _ in 0..10_000*n {
@@ -40,5 +40,8 @@ pub use timer::delay;
 
 pub fn init() {
     clock::init();
+    led::init();
+    btn::init();
+    tim::init();
     console::init();
 }

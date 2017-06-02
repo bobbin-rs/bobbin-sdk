@@ -1,7 +1,6 @@
 use hal::port::*;
 use hal::gpio::GpioExt;
 
-
 pub const BTN0: Ptc6 = PTC6;
 pub const BTN1: Pta4 = PTA4;
 
@@ -13,7 +12,6 @@ pub fn init() {
     BTN1.port().sim_enable();
     BTN0.set_mux_gpio();
     BTN1.gpio_pin().set_dir_input();
-
 }
 
 // use chip::port::{PORTA, PORTC};

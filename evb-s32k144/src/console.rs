@@ -1,5 +1,39 @@
 use core::fmt::{self, Write, Arguments};
-use serial;
+use hal::port::*;
+use hal::lpuart::*;
+use hal::pcc::ClockSource;
+
+pub const UART: Lpuart1 = LPUART1;
+pub const UART_CLK: ClockSource = ClockSource::SPLLDIV2;
+pub const UART_RX: Ptc6 = PTC6;
+pub const UART_TX: Ptc7 = PTC7;
+//pub const UART_BD: u16 = 22;
+
+pub fn init() {
+    // Clock source must be set before enabling clock
+    UART.pcc_set_enabled(false);
+    UART.pcc_set_clock_source(UART_CLK);
+    UART.pcc_set_enabled(true);
+
+    UART.with_global(|r| r.set_rst(1));
+    UART.with_global(|r| r.set_rst(0));
+
+    UART_TX.port().pcc_enable();
+    UART_RX.port().pcc_enable();
+
+    // Set Pin Configuration
+    UART_TX.mode_tx(&UART);
+    UART_RX.mode_rx(&UART);
+
+    // Set Baud and Enable USART
+    UART
+        .set_osr(0b1111)
+        .set_sbr(22)
+        .set_te(true)
+        .set_re(true)
+        .set_txfe(true)
+        .set_rxfe(true);
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -24,28 +58,18 @@ macro_rules! println {
     };
 }
 
-pub fn init() {
-    serial::serial1();
-}
-
 pub const CONSOLE: Console = Console {};
 
 pub struct Console {}
 
-impl Console {
-    pub fn uart(&self) -> ::hal::lpuart::LpuartDevice {
-        serial::serial1_unchecked()
-    }
-}
-
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = self.uart();
+        let uart = UART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                uart.putc(b'\r')
+                uart.putc(b'\r');
             }
-            uart.putc(byte)
+            uart.putc(byte);
         }
         Ok(())
     }
