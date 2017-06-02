@@ -1,6 +1,35 @@
+// PA1 / PA2
+// sim::set_uart0_enabled(true);  
+// sim::set_uart0_src(0x1);  
+
+// let tx = tx.into_altfn(2);
+// let rx = rx.into_altfn(2);
+// let u = uart0::device(UART0, tx, rx, 104);    
+
 use core::fmt::{self, Write, Arguments};
-use pin;
-use uart;
+use hal::port::*;
+use hal::uart0::*;
+
+pub const UART: Uart0 = UART0;
+pub const UART_RX: Pta1 = PTA1;
+pub const UART_TX: Pta2 = PTA2;
+pub const UART_BD: u16 = 104;
+
+pub fn init() {
+    // Enable Clocks
+    UART.sim_enable();
+    UART.sim_set_src(0x1);
+    // sim_src(0x1);
+    UART_TX.port().sim_enable();
+    UART_RX.port().sim_enable();
+
+    // Set Pin Configuration
+    UART_TX.mode_tx(&UART);
+    UART_RX.mode_rx(&UART);
+
+    // Set Baud and Enable USART
+    UART.enable(UART_BD);
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -29,19 +58,9 @@ pub const CONSOLE: Console = Console {};
 
 pub struct Console {}
 
-impl Console {
-    pub fn init(&self, _baud: u32) {
-        uart::uart0(pin::pa1(), pin::pa2());
-    }
-
-    pub fn uart(&self) -> ::hal::uart0::Uart0Device {
-        unsafe { uart::uart0_unchecked(pin::pa1(), pin::pa2()) }
-    }
-}
-
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = self.uart();
+        let uart = UART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
                 uart.putc(b'\r')

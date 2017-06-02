@@ -18,11 +18,12 @@ pub mod console;
 pub mod exceptions;
 pub mod lang_items;
 
+pub mod clock;
 pub mod led;
-pub mod sw;
-pub mod pin;
+pub mod btn;
+//pub mod pin;
 pub mod tim;
-pub mod uart;
+//pub mod uart;
 
 pub use tim::delay;
 
@@ -33,6 +34,9 @@ pub use tim::delay;
 // }
 
 pub fn init() {
-    hal::clock::init();
-    console::CONSOLE.init(115_200);
+    clock::init();
+    led::init();
+    btn::init();
+    tim::init();
+    console::init();
 }
