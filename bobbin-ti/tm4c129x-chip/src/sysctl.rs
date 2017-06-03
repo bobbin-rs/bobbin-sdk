@@ -14597,6 +14597,62 @@ impl Sysctl {
    }
 }
 
+impl Rcgc for super::timer::Timer0 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r0() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r0(value)); }
+}
+
+impl Rcgc for super::timer::Timer1 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r1() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r1(value)); }
+}
+
+impl Rcgc for super::timer::Timer2 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r2() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r2(value)); }
+}
+
+impl Rcgc for super::timer::Timer3 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r3() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r3(value)); }
+}
+
+impl Rcgc for super::timer::Timer4 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r4() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r4(value)); }
+}
+
+impl Rcgc for super::timer::Timer5 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r5() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r5(value)); }
+}
+
+impl Rcgc for super::timer::Timer6 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r6() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r6(value)); }
+}
+
+impl Rcgc for super::timer::Timer7 {
+   #[inline]
+   fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r7() }
+   #[inline]
+   fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r7(value)); }
+}
+
 impl Rcgc for super::gpio::Gpioa {
    #[inline]
    fn rcgc(&self) -> u32 { SYSCTL.rcgcgpio().r0() }

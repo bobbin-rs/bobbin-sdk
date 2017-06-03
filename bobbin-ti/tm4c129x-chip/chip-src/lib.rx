@@ -19,6 +19,108 @@
     (peripheral (include "periph/emac.rx"))
     
     (peripheral-group
+        (name TIMER)
+        (prototype "periph/timer.rx")
+        (peripheral
+            (name TIMER0)
+            (address 0x40030000)
+            (description "Register map for TIMER0 peripheral")
+            (interrupt
+                (name TIMER0A)
+                (value 19)
+            )
+            (interrupt
+                (name TIMER0B)
+                (value 20)
+            )
+        )
+        (peripheral
+            (name TIMER1)
+            (address 0x40031000)
+            (interrupt
+                (name TIMER1A)
+                (value 21)
+            )
+            (interrupt
+                (name TIMER1B)
+                (value 22)
+            )
+        )
+        (peripheral
+            (name TIMER2)
+            (address 0x40032000)
+            (interrupt
+                (name TIMER2A)
+                (value 23)
+            )
+            (interrupt
+                (name TIMER2B)
+                (value 24)
+            )
+        )
+        (peripheral
+            (name TIMER3)
+            (address 0x40033000)
+            (interrupt
+                (name TIMER3A)
+                (value 35)
+            )
+            (interrupt
+                (name TIMER3B)
+                (value 36)
+            )
+        )
+        (peripheral
+            (name TIMER4)
+            (address 0x40034000)
+            (interrupt
+                (name TIMER4A)
+                (value 63)
+            )
+            (interrupt
+                (name TIMER4B)
+                (value 64)
+            )
+        )
+        (peripheral
+            (name TIMER5)
+            (address 0x40035000)
+            (interrupt
+                (name TIMER5A)
+                (value 65)
+            )
+            (interrupt
+                (name TIMER5B)
+                (value 66)
+            )
+        )
+        (peripheral
+            (name TIMER6)
+            (address 0x400e0000)
+            (interrupt
+                (name TIMER6A)
+                (value 98)
+            )
+            (interrupt
+                (name TIMER6B)
+                (value 99)
+            )
+        )
+        (peripheral
+            (name TIMER7)
+            (address 0x400e1000)
+            (interrupt
+                (name TIMER7A)
+                (value 100)
+            )
+            (interrupt
+                (name TIMER7B)
+                (value 101)
+            )
+        )
+    )
+
+    (peripheral-group
         (name UART)
         (prototype "periph/uart.rx")
         (peripheral 
