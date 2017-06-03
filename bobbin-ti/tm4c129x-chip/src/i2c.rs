@@ -1,63 +1,190 @@
-pub const I2C0: I2c = I2c(0x40020000);
-pub const I2C1: I2c = I2c(0x40021000);
-pub const I2C2: I2c = I2c(0x40022000);
-pub const I2C3: I2c = I2c(0x40023000);
+pub const I2C0: I2c0 = I2c0 {};
+pub const I2C0_REF: &I2c0 = &I2C0;
+pub const I2C0_IMPL: I2cImpl = I2cImpl(0x40020000);
+pub const I2C0_IMPL_REF: &I2cImpl = &I2C0_IMPL;
+
+pub struct I2c0 {}
+impl ::core::ops::Deref for I2c0 {
+   type Target = I2cImpl;
+   #[inline]
+   fn deref(&self) -> &I2cImpl { I2C0_IMPL_REF }
+}
+
+
+pub const I2C1: I2c1 = I2c1 {};
+pub const I2C1_REF: &I2c1 = &I2C1;
+pub const I2C1_IMPL: I2cImpl = I2cImpl(0x40021000);
+pub const I2C1_IMPL_REF: &I2cImpl = &I2C1_IMPL;
+
+pub struct I2c1 {}
+impl ::core::ops::Deref for I2c1 {
+   type Target = I2cImpl;
+   #[inline]
+   fn deref(&self) -> &I2cImpl { I2C1_IMPL_REF }
+}
+
+
+pub const I2C2: I2c2 = I2c2 {};
+pub const I2C2_REF: &I2c2 = &I2C2;
+pub const I2C2_IMPL: I2cImpl = I2cImpl(0x40022000);
+pub const I2C2_IMPL_REF: &I2cImpl = &I2C2_IMPL;
+
+pub struct I2c2 {}
+impl ::core::ops::Deref for I2c2 {
+   type Target = I2cImpl;
+   #[inline]
+   fn deref(&self) -> &I2cImpl { I2C2_IMPL_REF }
+}
+
+
+pub const I2C3: I2c3 = I2c3 {};
+pub const I2C3_REF: &I2c3 = &I2C3;
+pub const I2C3_IMPL: I2cImpl = I2cImpl(0x40023000);
+pub const I2C3_IMPL_REF: &I2cImpl = &I2C3_IMPL;
+
+pub struct I2c3 {}
+impl ::core::ops::Deref for I2c3 {
+   type Target = I2cImpl;
+   #[inline]
+   fn deref(&self) -> &I2cImpl { I2C3_IMPL_REF }
+}
+
+
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct I2c(pub u32);
-
-impl I2c {
-  pub unsafe fn fifodata(&self) -> Fifodata { 
-     Fifodata(::core::ptr::read_volatile(((self.0 as usize) + 0xf00) as *const u32))
+pub struct I2cImpl(pub u32);
+impl I2cImpl {
+  #[inline]
+  pub fn fifodata_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xf00) as *const u32
   }
-  pub unsafe fn set_fifodata(&mut self, value: Fifodata) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
+  #[inline]
+  pub fn fifodata_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xf00) as *mut u32
   }
-  pub unsafe fn with_fifodata<F: FnOnce(Fifodata) -> Fifodata>(&mut self, f: F) {
+  #[inline]
+  pub fn fifodata(&self) -> Fifodata { 
+     unsafe {
+       Fifodata(::core::ptr::read_volatile(((self.0 as usize) + 0xf00) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_fifodata(&self, value: Fifodata) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_fifodata<F: FnOnce(Fifodata) -> Fifodata>(&self, f: F) -> &I2cImpl {
      let tmp = self.fifodata();
      self.set_fifodata(f(tmp))
   }
 
-  pub unsafe fn fifoctl(&self) -> Fifoctl { 
-     Fifoctl(::core::ptr::read_volatile(((self.0 as usize) + 0xf04) as *const u32))
+  #[inline]
+  pub fn fifoctl_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xf04) as *const u32
   }
-  pub unsafe fn set_fifoctl(&mut self, value: Fifoctl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf04) as *mut u32, value.0);
+  #[inline]
+  pub fn fifoctl_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xf04) as *mut u32
   }
-  pub unsafe fn with_fifoctl<F: FnOnce(Fifoctl) -> Fifoctl>(&mut self, f: F) {
+  #[inline]
+  pub fn fifoctl(&self) -> Fifoctl { 
+     unsafe {
+       Fifoctl(::core::ptr::read_volatile(((self.0 as usize) + 0xf04) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_fifoctl(&self, value: Fifoctl) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xf04) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_fifoctl<F: FnOnce(Fifoctl) -> Fifoctl>(&self, f: F) -> &I2cImpl {
      let tmp = self.fifoctl();
      self.set_fifoctl(f(tmp))
   }
 
-  pub unsafe fn fifostatus(&self) -> Fifostatus { 
-     Fifostatus(::core::ptr::read_volatile(((self.0 as usize) + 0xf08) as *const u32))
+  #[inline]
+  pub fn fifostatus_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xf08) as *const u32
   }
-  pub unsafe fn set_fifostatus(&mut self, value: Fifostatus) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xf08) as *mut u32, value.0);
+  #[inline]
+  pub fn fifostatus_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xf08) as *mut u32
   }
-  pub unsafe fn with_fifostatus<F: FnOnce(Fifostatus) -> Fifostatus>(&mut self, f: F) {
+  #[inline]
+  pub fn fifostatus(&self) -> Fifostatus { 
+     unsafe {
+       Fifostatus(::core::ptr::read_volatile(((self.0 as usize) + 0xf08) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_fifostatus(&self, value: Fifostatus) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xf08) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_fifostatus<F: FnOnce(Fifostatus) -> Fifostatus>(&self, f: F) -> &I2cImpl {
      let tmp = self.fifostatus();
      self.set_fifostatus(f(tmp))
   }
 
-  pub unsafe fn pp(&self) -> Pp { 
-     Pp(::core::ptr::read_volatile(((self.0 as usize) + 0xfc0) as *const u32))
+  #[inline]
+  pub fn pp_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xfc0) as *const u32
   }
-  pub unsafe fn set_pp(&mut self, value: Pp) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
+  #[inline]
+  pub fn pp_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xfc0) as *mut u32
   }
-  pub unsafe fn with_pp<F: FnOnce(Pp) -> Pp>(&mut self, f: F) {
+  #[inline]
+  pub fn pp(&self) -> Pp { 
+     unsafe {
+       Pp(::core::ptr::read_volatile(((self.0 as usize) + 0xfc0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_pp(&self, value: Pp) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &I2cImpl {
      let tmp = self.pp();
      self.set_pp(f(tmp))
   }
 
-  pub unsafe fn pc(&self) -> Pc { 
-     Pc(::core::ptr::read_volatile(((self.0 as usize) + 0xfc4) as *const u32))
+  #[inline]
+  pub fn pc_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xfc4) as *const u32
   }
-  pub unsafe fn set_pc(&mut self, value: Pc) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xfc4) as *mut u32, value.0);
+  #[inline]
+  pub fn pc_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xfc4) as *mut u32
   }
-  pub unsafe fn with_pc<F: FnOnce(Pc) -> Pc>(&mut self, f: F) {
+  #[inline]
+  pub fn pc(&self) -> Pc { 
+     unsafe {
+       Pc(::core::ptr::read_volatile(((self.0 as usize) + 0xfc4) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_pc(&self, value: Pc) -> &I2cImpl {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xfc4) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &I2cImpl {
      let tmp = self.pc();
      self.set_pc(f(tmp))
   }
@@ -66,11 +193,12 @@ impl I2c {
 
 #[derive(PartialEq, Eq)]
 pub struct Fifodata(pub u32);
-
 impl Fifodata {
+  #[inline]
   pub fn data(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_data(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -79,13 +207,11 @@ impl Fifodata {
   }
 
 }
-
 impl ::core::fmt::Display for Fifodata {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Fifodata {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -94,14 +220,14 @@ impl ::core::fmt::Debug for Fifodata {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Fifoctl(pub u32);
-
 impl Fifoctl {
+  #[inline]
   pub fn txtrig(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+  #[inline]
   pub fn set_txtrig(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -109,9 +235,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn dmatxena(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+  #[inline]
   pub fn set_dmatxena(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -119,9 +247,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn txflush(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+  #[inline]
   pub fn set_txflush(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -129,9 +259,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn txasgnmt(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+  #[inline]
   pub fn set_txasgnmt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -139,9 +271,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn rxtrig(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7 // [18:16]
   }
+  #[inline]
   pub fn set_rxtrig(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
@@ -149,9 +283,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn dmarxena(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+  #[inline]
   pub fn set_dmarxena(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -159,9 +295,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn rxflush(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+  #[inline]
   pub fn set_rxflush(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -169,9 +307,11 @@ impl Fifoctl {
      self
   }
 
+  #[inline]
   pub fn rxasgnmt(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+  #[inline]
   pub fn set_rxasgnmt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -180,13 +320,11 @@ impl Fifoctl {
   }
 
 }
-
 impl ::core::fmt::Display for Fifoctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Fifoctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -202,14 +340,14 @@ impl ::core::fmt::Debug for Fifoctl {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Fifostatus(pub u32);
-
 impl Fifostatus {
+  #[inline]
   pub fn txfe(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_txfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -217,9 +355,11 @@ impl Fifostatus {
      self
   }
 
+  #[inline]
   pub fn txff(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_txff(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -227,9 +367,11 @@ impl Fifostatus {
      self
   }
 
+  #[inline]
   pub fn txblwtrig(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_txblwtrig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -237,9 +379,11 @@ impl Fifostatus {
      self
   }
 
+  #[inline]
   pub fn rxfe(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+  #[inline]
   pub fn set_rxfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -247,9 +391,11 @@ impl Fifostatus {
      self
   }
 
+  #[inline]
   pub fn rxff(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+  #[inline]
   pub fn set_rxff(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -257,9 +403,11 @@ impl Fifostatus {
      self
   }
 
+  #[inline]
   pub fn rxabvtrig(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+  #[inline]
   pub fn set_rxabvtrig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -268,13 +416,11 @@ impl Fifostatus {
   }
 
 }
-
 impl ::core::fmt::Display for Fifostatus {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Fifostatus {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -288,14 +434,14 @@ impl ::core::fmt::Debug for Fifostatus {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pp(pub u32);
-
 impl Pp {
+  #[inline]
   pub fn hs(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_hs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -304,13 +450,11 @@ impl Pp {
   }
 
 }
-
 impl ::core::fmt::Display for Pp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -319,14 +463,14 @@ impl ::core::fmt::Debug for Pp {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Pc(pub u32);
-
 impl Pc {
+  #[inline]
   pub fn hs(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_hs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -335,13 +479,11 @@ impl Pc {
   }
 
 }
-
 impl ::core::fmt::Display for Pc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Pc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -350,152 +492,360 @@ impl ::core::fmt::Debug for Pc {
       Ok(())
    }
 }
-
-impl I2c {
+impl I2cImpl {
+   #[inline]
    pub fn master(&self) -> master::Master {
       master::Master(self.0 + 0x0)
    }
-
+   #[inline]
    pub fn slave(&self) -> slave::Slave {
       slave::Slave(self.0 + 0x0)
    }
-
 }
-
 pub mod master {
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Master(pub u32);
-
 impl Master {
-  pub unsafe fn msa(&self) -> Msa { 
-     Msa(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+  #[inline]
+  pub fn msa_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
   }
-  pub unsafe fn set_msa(&mut self, value: Msa) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+  #[inline]
+  pub fn msa_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
   }
-  pub unsafe fn with_msa<F: FnOnce(Msa) -> Msa>(&mut self, f: F) {
+  #[inline]
+  pub fn msa(&self) -> Msa { 
+     unsafe {
+       Msa(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_msa(&self, value: Msa) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_msa<F: FnOnce(Msa) -> Msa>(&self, f: F) -> &Master {
      let tmp = self.msa();
      self.set_msa(f(tmp))
   }
 
-  pub unsafe fn set_mcs_write(&mut self, value: McsWrite) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+  #[inline]
+  pub fn mcs_write_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+  #[inline]
+  pub fn mcs_write_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+  #[inline]
+  pub fn set_mcs_write(&self, value: McsWrite) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn mcs_read(&self) -> McsRead { 
-     McsRead(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+  #[inline]
+  pub fn mcs_read_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+  #[inline]
+  pub fn mcs_read_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+  #[inline]
+  pub fn mcs_read(&self) -> McsRead { 
+     unsafe {
+       McsRead(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
   }
 
-  pub unsafe fn mdr(&self) -> Mdr { 
-     Mdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+  #[inline]
+  pub fn mdr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
   }
-  pub unsafe fn set_mdr(&mut self, value: Mdr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+  #[inline]
+  pub fn mdr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
   }
-  pub unsafe fn with_mdr<F: FnOnce(Mdr) -> Mdr>(&mut self, f: F) {
+  #[inline]
+  pub fn mdr(&self) -> Mdr { 
+     unsafe {
+       Mdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mdr(&self, value: Mdr) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mdr<F: FnOnce(Mdr) -> Mdr>(&self, f: F) -> &Master {
      let tmp = self.mdr();
      self.set_mdr(f(tmp))
   }
 
-  pub unsafe fn mtpr(&self) -> Mtpr { 
-     Mtpr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+  #[inline]
+  pub fn mtpr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
   }
-  pub unsafe fn set_mtpr(&mut self, value: Mtpr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+  #[inline]
+  pub fn mtpr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
   }
-  pub unsafe fn with_mtpr<F: FnOnce(Mtpr) -> Mtpr>(&mut self, f: F) {
+  #[inline]
+  pub fn mtpr(&self) -> Mtpr { 
+     unsafe {
+       Mtpr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mtpr(&self, value: Mtpr) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mtpr<F: FnOnce(Mtpr) -> Mtpr>(&self, f: F) -> &Master {
      let tmp = self.mtpr();
      self.set_mtpr(f(tmp))
   }
 
-  pub unsafe fn mimr(&self) -> Mimr { 
-     Mimr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+  #[inline]
+  pub fn mimr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
   }
-  pub unsafe fn set_mimr(&mut self, value: Mimr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+  #[inline]
+  pub fn mimr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
   }
-  pub unsafe fn with_mimr<F: FnOnce(Mimr) -> Mimr>(&mut self, f: F) {
+  #[inline]
+  pub fn mimr(&self) -> Mimr { 
+     unsafe {
+       Mimr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mimr(&self, value: Mimr) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mimr<F: FnOnce(Mimr) -> Mimr>(&self, f: F) -> &Master {
      let tmp = self.mimr();
      self.set_mimr(f(tmp))
   }
 
-  pub unsafe fn mris(&self) -> Mris { 
-     Mris(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+  #[inline]
+  pub fn mris_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
   }
-  pub unsafe fn set_mris(&mut self, value: Mris) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+  #[inline]
+  pub fn mris_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
   }
-  pub unsafe fn with_mris<F: FnOnce(Mris) -> Mris>(&mut self, f: F) {
+  #[inline]
+  pub fn mris(&self) -> Mris { 
+     unsafe {
+       Mris(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mris(&self, value: Mris) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mris<F: FnOnce(Mris) -> Mris>(&self, f: F) -> &Master {
      let tmp = self.mris();
      self.set_mris(f(tmp))
   }
 
-  pub unsafe fn mmis(&self) -> Mmis { 
-     Mmis(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+  #[inline]
+  pub fn mmis_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x18) as *const u32
   }
-  pub unsafe fn set_mmis(&mut self, value: Mmis) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+  #[inline]
+  pub fn mmis_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x18) as *mut u32
   }
-  pub unsafe fn with_mmis<F: FnOnce(Mmis) -> Mmis>(&mut self, f: F) {
+  #[inline]
+  pub fn mmis(&self) -> Mmis { 
+     unsafe {
+       Mmis(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mmis(&self, value: Mmis) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mmis<F: FnOnce(Mmis) -> Mmis>(&self, f: F) -> &Master {
      let tmp = self.mmis();
      self.set_mmis(f(tmp))
   }
 
-  pub unsafe fn set_micr(&mut self, value: Micr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+  #[inline]
+  pub fn micr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x1c) as *const u32
+  }
+  #[inline]
+  pub fn micr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x1c) as *mut u32
+  }
+  #[inline]
+  pub fn set_micr(&self, value: Micr) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn mcr(&self) -> Mcr { 
-     Mcr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+  #[inline]
+  pub fn mcr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x20) as *const u32
   }
-  pub unsafe fn set_mcr(&mut self, value: Mcr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+  #[inline]
+  pub fn mcr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x20) as *mut u32
   }
-  pub unsafe fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&mut self, f: F) {
+  #[inline]
+  pub fn mcr(&self) -> Mcr { 
+     unsafe {
+       Mcr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mcr(&self, value: Mcr) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Master {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
 
-  pub unsafe fn mclkocnt(&self) -> Mclkocnt { 
-     Mclkocnt(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+  #[inline]
+  pub fn mclkocnt_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x24) as *const u32
   }
-  pub unsafe fn set_mclkocnt(&mut self, value: Mclkocnt) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+  #[inline]
+  pub fn mclkocnt_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x24) as *mut u32
   }
-  pub unsafe fn with_mclkocnt<F: FnOnce(Mclkocnt) -> Mclkocnt>(&mut self, f: F) {
+  #[inline]
+  pub fn mclkocnt(&self) -> Mclkocnt { 
+     unsafe {
+       Mclkocnt(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mclkocnt(&self, value: Mclkocnt) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mclkocnt<F: FnOnce(Mclkocnt) -> Mclkocnt>(&self, f: F) -> &Master {
      let tmp = self.mclkocnt();
      self.set_mclkocnt(f(tmp))
   }
 
-  pub unsafe fn mbmon(&self) -> Mbmon { 
-     Mbmon(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+  #[inline]
+  pub fn mbmon_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x2c) as *const u32
   }
-  pub unsafe fn set_mbmon(&mut self, value: Mbmon) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+  #[inline]
+  pub fn mbmon_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x2c) as *mut u32
   }
-  pub unsafe fn with_mbmon<F: FnOnce(Mbmon) -> Mbmon>(&mut self, f: F) {
+  #[inline]
+  pub fn mbmon(&self) -> Mbmon { 
+     unsafe {
+       Mbmon(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mbmon(&self, value: Mbmon) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mbmon<F: FnOnce(Mbmon) -> Mbmon>(&self, f: F) -> &Master {
      let tmp = self.mbmon();
      self.set_mbmon(f(tmp))
   }
 
-  pub unsafe fn mblen(&self) -> Mblen { 
-     Mblen(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+  #[inline]
+  pub fn mblen_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x30) as *const u32
   }
-  pub unsafe fn set_mblen(&mut self, value: Mblen) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+  #[inline]
+  pub fn mblen_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x30) as *mut u32
   }
-  pub unsafe fn with_mblen<F: FnOnce(Mblen) -> Mblen>(&mut self, f: F) {
+  #[inline]
+  pub fn mblen(&self) -> Mblen { 
+     unsafe {
+       Mblen(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mblen(&self, value: Mblen) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mblen<F: FnOnce(Mblen) -> Mblen>(&self, f: F) -> &Master {
      let tmp = self.mblen();
      self.set_mblen(f(tmp))
   }
 
-  pub unsafe fn mbcnt(&self) -> Mbcnt { 
-     Mbcnt(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+  #[inline]
+  pub fn mbcnt_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x34) as *const u32
   }
-  pub unsafe fn set_mbcnt(&mut self, value: Mbcnt) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+  #[inline]
+  pub fn mbcnt_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x34) as *mut u32
   }
-  pub unsafe fn with_mbcnt<F: FnOnce(Mbcnt) -> Mbcnt>(&mut self, f: F) {
+  #[inline]
+  pub fn mbcnt(&self) -> Mbcnt { 
+     unsafe {
+       Mbcnt(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_mbcnt(&self, value: Mbcnt) -> &Master {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_mbcnt<F: FnOnce(Mbcnt) -> Mbcnt>(&self, f: F) -> &Master {
      let tmp = self.mbcnt();
      self.set_mbcnt(f(tmp))
   }
@@ -504,11 +854,12 @@ impl Master {
 
 #[derive(PartialEq, Eq)]
 pub struct Msa(pub u32);
-
 impl Msa {
+  #[inline]
   pub fn rs(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_rs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -516,9 +867,11 @@ impl Msa {
      self
   }
 
+  #[inline]
   pub fn sa(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x7f // [7:1]
   }
+  #[inline]
   pub fn set_sa(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
@@ -527,13 +880,11 @@ impl Msa {
   }
 
 }
-
 impl ::core::fmt::Display for Msa {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Msa {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -543,14 +894,14 @@ impl ::core::fmt::Debug for Msa {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct McsWrite(pub u32);
-
 impl McsWrite {
+  #[inline]
   pub fn run(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_run(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -558,9 +909,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn start(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_start(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -568,9 +921,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -578,9 +933,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn ack(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_ack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -588,9 +945,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn hs(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_hs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -598,9 +957,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn qcmd(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_qcmd(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -608,9 +969,11 @@ impl McsWrite {
      self
   }
 
+  #[inline]
   pub fn burst(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_burst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -619,13 +982,11 @@ impl McsWrite {
   }
 
 }
-
 impl ::core::fmt::Display for McsWrite {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for McsWrite {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -640,14 +1001,14 @@ impl ::core::fmt::Debug for McsWrite {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct McsRead(pub u32);
-
 impl McsRead {
+  #[inline]
   pub fn busy(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_busy(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -655,9 +1016,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn error(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_error(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -665,9 +1028,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn adrack(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_adrack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -675,9 +1040,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn datack(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_datack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -685,9 +1052,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn arblst(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_arblst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -695,9 +1064,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn idle(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_idle(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -705,9 +1076,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn busbsy(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_busbsy(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -715,9 +1088,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn clkto(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_clkto(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -725,9 +1100,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn actdmatx(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+  #[inline]
   pub fn set_actdmatx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -735,9 +1112,11 @@ impl McsRead {
      self
   }
 
+  #[inline]
   pub fn actdmarx(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+  #[inline]
   pub fn set_actdmarx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -746,13 +1125,11 @@ impl McsRead {
   }
 
 }
-
 impl ::core::fmt::Display for McsRead {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for McsRead {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -770,14 +1147,14 @@ impl ::core::fmt::Debug for McsRead {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mdr(pub u32);
-
 impl Mdr {
+  #[inline]
   pub fn data(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_data(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -786,13 +1163,11 @@ impl Mdr {
   }
 
 }
-
 impl ::core::fmt::Display for Mdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -801,14 +1176,14 @@ impl ::core::fmt::Debug for Mdr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mtpr(pub u32);
-
 impl Mtpr {
+  #[inline]
   pub fn tpr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_tpr(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -816,9 +1191,11 @@ impl Mtpr {
      self
   }
 
+  #[inline]
   pub fn hs(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_hs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -826,9 +1203,11 @@ impl Mtpr {
      self
   }
 
+  #[inline]
   pub fn pulsel(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7 // [18:16]
   }
+  #[inline]
   pub fn set_pulsel(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
@@ -837,13 +1216,11 @@ impl Mtpr {
   }
 
 }
-
 impl ::core::fmt::Display for Mtpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mtpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -854,14 +1231,14 @@ impl ::core::fmt::Debug for Mtpr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mimr(pub u32);
-
 impl Mimr {
+  #[inline]
   pub fn im(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_im(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -869,9 +1246,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn clkim(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_clkim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -879,9 +1258,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn dmarxim(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dmarxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -889,9 +1270,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn dmatxim(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmatxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -899,9 +1282,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn nackim(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_nackim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -909,9 +1294,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn startim(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_startim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -919,9 +1306,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn stopim(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_stopim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -929,9 +1318,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn arblostim(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_arblostim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -939,9 +1330,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn txim(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_txim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -949,9 +1342,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn rxim(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_rxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -959,9 +1354,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn txfeim(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+  #[inline]
   pub fn set_txfeim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -969,9 +1366,11 @@ impl Mimr {
      self
   }
 
+  #[inline]
   pub fn rxffim(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_rxffim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -980,13 +1379,11 @@ impl Mimr {
   }
 
 }
-
 impl ::core::fmt::Display for Mimr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mimr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1006,14 +1403,14 @@ impl ::core::fmt::Debug for Mimr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mris(pub u32);
-
 impl Mris {
+  #[inline]
   pub fn ris(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1021,9 +1418,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn clkris(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_clkris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1031,9 +1430,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn dmarxris(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dmarxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1041,9 +1442,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn dmatxris(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmatxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1051,9 +1454,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn nackris(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_nackris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1061,9 +1466,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn startris(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_startris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1071,9 +1478,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn stopris(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_stopris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1081,9 +1490,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn arblostris(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_arblostris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1091,9 +1502,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn txris(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_txris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1101,9 +1514,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn rxris(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_rxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1111,9 +1526,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn txferis(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+  #[inline]
   pub fn set_txferis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1121,9 +1538,11 @@ impl Mris {
      self
   }
 
+  #[inline]
   pub fn rxffris(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_rxffris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1132,13 +1551,11 @@ impl Mris {
   }
 
 }
-
 impl ::core::fmt::Display for Mris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1158,14 +1575,14 @@ impl ::core::fmt::Debug for Mris {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mmis(pub u32);
-
 impl Mmis {
+  #[inline]
   pub fn mis(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_mis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1173,9 +1590,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn clkmis(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_clkmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1183,9 +1602,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn dmarxmis(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dmarxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1193,9 +1614,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn dmatxmis(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmatxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1203,9 +1626,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn nackmis(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_nackmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1213,9 +1638,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn startmis(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_startmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1223,9 +1650,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn stopmis(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_stopmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1233,9 +1662,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn arblostmis(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_arblostmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1243,9 +1674,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn txmis(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_txmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1253,9 +1686,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn rxmis(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_rxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1263,9 +1698,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn txfemis(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+  #[inline]
   pub fn set_txfemis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1273,9 +1710,11 @@ impl Mmis {
      self
   }
 
+  #[inline]
   pub fn rxffmis(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_rxffmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1284,13 +1723,11 @@ impl Mmis {
   }
 
 }
-
 impl ::core::fmt::Display for Mmis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mmis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1310,14 +1747,14 @@ impl ::core::fmt::Debug for Mmis {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Micr(pub u32);
-
 impl Micr {
+  #[inline]
   pub fn ic(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1325,9 +1762,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn clkic(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_clkic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1335,9 +1774,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn dmarxic(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_dmarxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1345,9 +1786,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn dmatxic(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmatxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1355,9 +1798,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn nackic(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_nackic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1365,9 +1810,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn startic(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_startic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1375,9 +1822,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn stopic(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_stopic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1385,9 +1834,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn arblostic(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_arblostic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1395,9 +1846,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn txic(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_txic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1405,9 +1858,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn rxic(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+  #[inline]
   pub fn set_rxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1415,9 +1870,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn txfeic(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+  #[inline]
   pub fn set_txfeic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1425,9 +1882,11 @@ impl Micr {
      self
   }
 
+  #[inline]
   pub fn rxffic(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+  #[inline]
   pub fn set_rxffic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1436,13 +1895,11 @@ impl Micr {
   }
 
 }
-
 impl ::core::fmt::Display for Micr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Micr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1462,14 +1919,14 @@ impl ::core::fmt::Debug for Micr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mcr(pub u32);
-
 impl Mcr {
+  #[inline]
   pub fn lpbk(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_lpbk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1477,9 +1934,11 @@ impl Mcr {
      self
   }
 
+  #[inline]
   pub fn mfe(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_mfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1487,9 +1946,11 @@ impl Mcr {
      self
   }
 
+  #[inline]
   pub fn sfe(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_sfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1498,13 +1959,11 @@ impl Mcr {
   }
 
 }
-
 impl ::core::fmt::Display for Mcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1515,14 +1974,14 @@ impl ::core::fmt::Debug for Mcr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mclkocnt(pub u32);
-
 impl Mclkocnt {
+  #[inline]
   pub fn cntl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_cntl(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1531,13 +1990,11 @@ impl Mclkocnt {
   }
 
 }
-
 impl ::core::fmt::Display for Mclkocnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mclkocnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1546,14 +2003,14 @@ impl ::core::fmt::Debug for Mclkocnt {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mbmon(pub u32);
-
 impl Mbmon {
+  #[inline]
   pub fn scl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_scl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1561,9 +2018,11 @@ impl Mbmon {
      self
   }
 
+  #[inline]
   pub fn sda(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_sda(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1572,13 +2031,11 @@ impl Mbmon {
   }
 
 }
-
 impl ::core::fmt::Display for Mbmon {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mbmon {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1588,14 +2045,14 @@ impl ::core::fmt::Debug for Mbmon {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mblen(pub u32);
-
 impl Mblen {
+  #[inline]
   pub fn cntl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_cntl(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1604,13 +2061,11 @@ impl Mblen {
   }
 
 }
-
 impl ::core::fmt::Display for Mblen {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mblen {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1619,14 +2074,14 @@ impl ::core::fmt::Debug for Mblen {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Mbcnt(pub u32);
-
 impl Mbcnt {
+  #[inline]
   pub fn cntl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_cntl(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1635,13 +2090,11 @@ impl Mbcnt {
   }
 
 }
-
 impl ::core::fmt::Display for Mbcnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Mbcnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1650,114 +2103,267 @@ impl ::core::fmt::Debug for Mbcnt {
       Ok(())
    }
 }
-
 }
 // End of master
-
 pub mod slave {
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Slave(pub u32);
-
 impl Slave {
-  pub unsafe fn soar(&self) -> Soar { 
-     Soar(::core::ptr::read_volatile(((self.0 as usize) + 0x800) as *const u32))
+  #[inline]
+  pub fn soar_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x800) as *const u32
   }
-  pub unsafe fn set_soar(&mut self, value: Soar) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x800) as *mut u32, value.0);
+  #[inline]
+  pub fn soar_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x800) as *mut u32
   }
-  pub unsafe fn with_soar<F: FnOnce(Soar) -> Soar>(&mut self, f: F) {
+  #[inline]
+  pub fn soar(&self) -> Soar { 
+     unsafe {
+       Soar(::core::ptr::read_volatile(((self.0 as usize) + 0x800) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_soar(&self, value: Soar) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x800) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_soar<F: FnOnce(Soar) -> Soar>(&self, f: F) -> &Slave {
      let tmp = self.soar();
      self.set_soar(f(tmp))
   }
 
-  pub unsafe fn scsr_read(&self) -> ScsrRead { 
-     ScsrRead(::core::ptr::read_volatile(((self.0 as usize) + 0x804) as *const u32))
+  #[inline]
+  pub fn scsr_read_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x804) as *const u32
   }
-  pub unsafe fn set_scsr_read(&mut self, value: ScsrRead) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x804) as *mut u32, value.0);
+  #[inline]
+  pub fn scsr_read_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x804) as *mut u32
   }
-  pub unsafe fn with_scsr_read<F: FnOnce(ScsrRead) -> ScsrRead>(&mut self, f: F) {
+  #[inline]
+  pub fn scsr_read(&self) -> ScsrRead { 
+     unsafe {
+       ScsrRead(::core::ptr::read_volatile(((self.0 as usize) + 0x804) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_scsr_read(&self, value: ScsrRead) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x804) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_scsr_read<F: FnOnce(ScsrRead) -> ScsrRead>(&self, f: F) -> &Slave {
      let tmp = self.scsr_read();
      self.set_scsr_read(f(tmp))
   }
 
-  pub unsafe fn scsr_write(&self) -> ScsrWrite { 
-     ScsrWrite(::core::ptr::read_volatile(((self.0 as usize) + 0x804) as *const u32))
+  #[inline]
+  pub fn scsr_write_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x804) as *const u32
   }
-  pub unsafe fn set_scsr_write(&mut self, value: ScsrWrite) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x804) as *mut u32, value.0);
+  #[inline]
+  pub fn scsr_write_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x804) as *mut u32
   }
-  pub unsafe fn with_scsr_write<F: FnOnce(ScsrWrite) -> ScsrWrite>(&mut self, f: F) {
+  #[inline]
+  pub fn scsr_write(&self) -> ScsrWrite { 
+     unsafe {
+       ScsrWrite(::core::ptr::read_volatile(((self.0 as usize) + 0x804) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_scsr_write(&self, value: ScsrWrite) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x804) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_scsr_write<F: FnOnce(ScsrWrite) -> ScsrWrite>(&self, f: F) -> &Slave {
      let tmp = self.scsr_write();
      self.set_scsr_write(f(tmp))
   }
 
-  pub unsafe fn sdr(&self) -> Sdr { 
-     Sdr(::core::ptr::read_volatile(((self.0 as usize) + 0x808) as *const u32))
+  #[inline]
+  pub fn sdr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x808) as *const u32
   }
-  pub unsafe fn set_sdr(&mut self, value: Sdr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x808) as *mut u32, value.0);
+  #[inline]
+  pub fn sdr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x808) as *mut u32
   }
-  pub unsafe fn with_sdr<F: FnOnce(Sdr) -> Sdr>(&mut self, f: F) {
+  #[inline]
+  pub fn sdr(&self) -> Sdr { 
+     unsafe {
+       Sdr(::core::ptr::read_volatile(((self.0 as usize) + 0x808) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_sdr(&self, value: Sdr) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x808) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_sdr<F: FnOnce(Sdr) -> Sdr>(&self, f: F) -> &Slave {
      let tmp = self.sdr();
      self.set_sdr(f(tmp))
   }
 
-  pub unsafe fn simr(&self) -> Simr { 
-     Simr(::core::ptr::read_volatile(((self.0 as usize) + 0x80c) as *const u32))
+  #[inline]
+  pub fn simr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x80c) as *const u32
   }
-  pub unsafe fn set_simr(&mut self, value: Simr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x80c) as *mut u32, value.0);
+  #[inline]
+  pub fn simr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x80c) as *mut u32
   }
-  pub unsafe fn with_simr<F: FnOnce(Simr) -> Simr>(&mut self, f: F) {
+  #[inline]
+  pub fn simr(&self) -> Simr { 
+     unsafe {
+       Simr(::core::ptr::read_volatile(((self.0 as usize) + 0x80c) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_simr(&self, value: Simr) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x80c) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_simr<F: FnOnce(Simr) -> Simr>(&self, f: F) -> &Slave {
      let tmp = self.simr();
      self.set_simr(f(tmp))
   }
 
-  pub unsafe fn sris(&self) -> Sris { 
-     Sris(::core::ptr::read_volatile(((self.0 as usize) + 0x810) as *const u32))
+  #[inline]
+  pub fn sris_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x810) as *const u32
   }
-  pub unsafe fn set_sris(&mut self, value: Sris) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x810) as *mut u32, value.0);
+  #[inline]
+  pub fn sris_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x810) as *mut u32
   }
-  pub unsafe fn with_sris<F: FnOnce(Sris) -> Sris>(&mut self, f: F) {
+  #[inline]
+  pub fn sris(&self) -> Sris { 
+     unsafe {
+       Sris(::core::ptr::read_volatile(((self.0 as usize) + 0x810) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_sris(&self, value: Sris) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x810) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_sris<F: FnOnce(Sris) -> Sris>(&self, f: F) -> &Slave {
      let tmp = self.sris();
      self.set_sris(f(tmp))
   }
 
-  pub unsafe fn smis(&self) -> Smis { 
-     Smis(::core::ptr::read_volatile(((self.0 as usize) + 0x814) as *const u32))
+  #[inline]
+  pub fn smis_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x814) as *const u32
   }
-  pub unsafe fn set_smis(&mut self, value: Smis) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x814) as *mut u32, value.0);
+  #[inline]
+  pub fn smis_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x814) as *mut u32
   }
-  pub unsafe fn with_smis<F: FnOnce(Smis) -> Smis>(&mut self, f: F) {
+  #[inline]
+  pub fn smis(&self) -> Smis { 
+     unsafe {
+       Smis(::core::ptr::read_volatile(((self.0 as usize) + 0x814) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_smis(&self, value: Smis) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x814) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_smis<F: FnOnce(Smis) -> Smis>(&self, f: F) -> &Slave {
      let tmp = self.smis();
      self.set_smis(f(tmp))
   }
 
-  pub unsafe fn set_sicr(&mut self, value: Sicr) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x818) as *mut u32, value.0);
+  #[inline]
+  pub fn sicr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x818) as *const u32
+  }
+  #[inline]
+  pub fn sicr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x818) as *mut u32
+  }
+  #[inline]
+  pub fn set_sicr(&self, value: Sicr) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x818) as *mut u32, value.0);
+     }
+     self
   }
 
-  pub unsafe fn soar2(&self) -> Soar2 { 
-     Soar2(::core::ptr::read_volatile(((self.0 as usize) + 0x81c) as *const u32))
+  #[inline]
+  pub fn soar2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x81c) as *const u32
   }
-  pub unsafe fn set_soar2(&mut self, value: Soar2) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x81c) as *mut u32, value.0);
+  #[inline]
+  pub fn soar2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x81c) as *mut u32
   }
-  pub unsafe fn with_soar2<F: FnOnce(Soar2) -> Soar2>(&mut self, f: F) {
+  #[inline]
+  pub fn soar2(&self) -> Soar2 { 
+     unsafe {
+       Soar2(::core::ptr::read_volatile(((self.0 as usize) + 0x81c) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_soar2(&self, value: Soar2) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x81c) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_soar2<F: FnOnce(Soar2) -> Soar2>(&self, f: F) -> &Slave {
      let tmp = self.soar2();
      self.set_soar2(f(tmp))
   }
 
-  pub unsafe fn sackctl(&self) -> Sackctl { 
-     Sackctl(::core::ptr::read_volatile(((self.0 as usize) + 0x820) as *const u32))
+  #[inline]
+  pub fn sackctl_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x820) as *const u32
   }
-  pub unsafe fn set_sackctl(&mut self, value: Sackctl) {
-     ::core::ptr::write_volatile(((self.0 as usize) + 0x820) as *mut u32, value.0);
+  #[inline]
+  pub fn sackctl_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x820) as *mut u32
   }
-  pub unsafe fn with_sackctl<F: FnOnce(Sackctl) -> Sackctl>(&mut self, f: F) {
+  #[inline]
+  pub fn sackctl(&self) -> Sackctl { 
+     unsafe {
+       Sackctl(::core::ptr::read_volatile(((self.0 as usize) + 0x820) as *const u32))
+     }
+  }
+  #[inline]
+  pub fn set_sackctl(&self, value: Sackctl) -> &Slave {
+     unsafe {
+       ::core::ptr::write_volatile(((self.0 as usize) + 0x820) as *mut u32, value.0);
+     }
+     self
+  }
+  #[inline]
+  pub fn with_sackctl<F: FnOnce(Sackctl) -> Sackctl>(&self, f: F) -> &Slave {
      let tmp = self.sackctl();
      self.set_sackctl(f(tmp))
   }
@@ -1766,11 +2372,12 @@ impl Slave {
 
 #[derive(PartialEq, Eq)]
 pub struct Soar(pub u32);
-
 impl Soar {
+  #[inline]
   pub fn oar(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_oar(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -1779,13 +2386,11 @@ impl Soar {
   }
 
 }
-
 impl ::core::fmt::Display for Soar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Soar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1794,14 +2399,14 @@ impl ::core::fmt::Debug for Soar {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct ScsrRead(pub u32);
-
 impl ScsrRead {
+  #[inline]
   pub fn rreq(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_rreq(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1809,9 +2414,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn txfifo(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_txfifo(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1819,9 +2426,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn fbr(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_fbr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1829,9 +2438,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn oar2sel(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_oar2sel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1839,9 +2450,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn qcmdst(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_qcmdst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1849,9 +2462,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn qcmdrw(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_qcmdrw(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1859,9 +2474,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn actdmatx(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+  #[inline]
   pub fn set_actdmatx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -1869,9 +2486,11 @@ impl ScsrRead {
      self
   }
 
+  #[inline]
   pub fn actdmarx(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+  #[inline]
   pub fn set_actdmarx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1880,13 +2499,11 @@ impl ScsrRead {
   }
 
 }
-
 impl ::core::fmt::Display for ScsrRead {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for ScsrRead {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1902,14 +2519,14 @@ impl ::core::fmt::Debug for ScsrRead {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct ScsrWrite(pub u32);
-
 impl ScsrWrite {
+  #[inline]
   pub fn da(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_da(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1917,9 +2534,11 @@ impl ScsrWrite {
      self
   }
 
+  #[inline]
   pub fn treq(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_treq(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1927,9 +2546,11 @@ impl ScsrWrite {
      self
   }
 
+  #[inline]
   pub fn rxfifo(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_rxfifo(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1938,13 +2559,11 @@ impl ScsrWrite {
   }
 
 }
-
 impl ::core::fmt::Display for ScsrWrite {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for ScsrWrite {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1955,14 +2574,14 @@ impl ::core::fmt::Debug for ScsrWrite {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sdr(pub u32);
-
 impl Sdr {
+  #[inline]
   pub fn data(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+  #[inline]
   pub fn set_data(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1971,13 +2590,11 @@ impl Sdr {
   }
 
 }
-
 impl ::core::fmt::Display for Sdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1986,14 +2603,14 @@ impl ::core::fmt::Debug for Sdr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Simr(pub u32);
-
 impl Simr {
+  #[inline]
   pub fn dataim(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dataim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2001,9 +2618,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn startim(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_startim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -2011,9 +2630,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn stopim(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_stopim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -2021,9 +2642,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn dmarxim(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmarxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -2031,9 +2654,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn dmatxim(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_dmatxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -2041,9 +2666,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn txim(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_txim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -2051,9 +2678,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn rxim(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_rxim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2061,9 +2690,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn txfeim(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_txfeim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2071,9 +2702,11 @@ impl Simr {
      self
   }
 
+  #[inline]
   pub fn rxffim(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_rxffim(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -2082,13 +2715,11 @@ impl Simr {
   }
 
 }
-
 impl ::core::fmt::Display for Simr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Simr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2105,14 +2736,14 @@ impl ::core::fmt::Debug for Simr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sris(pub u32);
-
 impl Sris {
+  #[inline]
   pub fn dataris(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dataris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2120,9 +2751,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn startris(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_startris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -2130,9 +2763,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn stopris(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_stopris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -2140,9 +2775,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn dmarxris(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmarxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -2150,9 +2787,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn dmatxris(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_dmatxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -2160,9 +2799,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn txris(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_txris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -2170,9 +2811,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn rxris(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_rxris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2180,9 +2823,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn txferis(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_txferis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2190,9 +2835,11 @@ impl Sris {
      self
   }
 
+  #[inline]
   pub fn rxffris(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_rxffris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -2201,13 +2848,11 @@ impl Sris {
   }
 
 }
-
 impl ::core::fmt::Display for Sris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2224,14 +2869,14 @@ impl ::core::fmt::Debug for Sris {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Smis(pub u32);
-
 impl Smis {
+  #[inline]
   pub fn datamis(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_datamis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2239,9 +2884,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn startmis(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_startmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -2249,9 +2896,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn stopmis(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_stopmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -2259,9 +2908,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn dmarxmis(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmarxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -2269,9 +2920,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn dmatxmis(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_dmatxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -2279,9 +2932,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn txmis(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_txmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -2289,9 +2944,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn rxmis(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_rxmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2299,9 +2956,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn txfemis(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_txfemis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2309,9 +2968,11 @@ impl Smis {
      self
   }
 
+  #[inline]
   pub fn rxffmis(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_rxffmis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -2320,13 +2981,11 @@ impl Smis {
   }
 
 }
-
 impl ::core::fmt::Display for Smis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Smis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2343,14 +3002,14 @@ impl ::core::fmt::Debug for Smis {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sicr(pub u32);
-
 impl Sicr {
+  #[inline]
   pub fn dataic(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_dataic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2358,9 +3017,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn startic(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_startic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -2368,9 +3029,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn stopic(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+  #[inline]
   pub fn set_stopic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -2378,9 +3041,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn dmarxic(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+  #[inline]
   pub fn set_dmarxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -2388,9 +3053,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn dmatxic(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+  #[inline]
   pub fn set_dmatxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -2398,9 +3065,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn txic(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+  #[inline]
   pub fn set_txic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -2408,9 +3077,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn rxic(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+  #[inline]
   pub fn set_rxic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -2418,9 +3089,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn txfeic(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_txfeic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2428,9 +3101,11 @@ impl Sicr {
      self
   }
 
+  #[inline]
   pub fn rxffic(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+  #[inline]
   pub fn set_rxffic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -2439,13 +3114,11 @@ impl Sicr {
   }
 
 }
-
 impl ::core::fmt::Display for Sicr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sicr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2462,14 +3135,14 @@ impl ::core::fmt::Debug for Sicr {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Soar2(pub u32);
-
 impl Soar2 {
+  #[inline]
   pub fn oar2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+  #[inline]
   pub fn set_oar2(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -2477,9 +3150,11 @@ impl Soar2 {
      self
   }
 
+  #[inline]
   pub fn oar2en(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+  #[inline]
   pub fn set_oar2en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -2488,13 +3163,11 @@ impl Soar2 {
   }
 
 }
-
 impl ::core::fmt::Display for Soar2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Soar2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2504,14 +3177,14 @@ impl ::core::fmt::Debug for Soar2 {
       Ok(())
    }
 }
-
 #[derive(PartialEq, Eq)]
 pub struct Sackctl(pub u32);
-
 impl Sackctl {
+  #[inline]
   pub fn ackoen(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+  #[inline]
   pub fn set_ackoen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -2519,9 +3192,11 @@ impl Sackctl {
      self
   }
 
+  #[inline]
   pub fn ackoval(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+  #[inline]
   pub fn set_ackoval(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -2530,13 +3205,11 @@ impl Sackctl {
   }
 
 }
-
 impl ::core::fmt::Display for Sackctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-
 impl ::core::fmt::Debug for Sackctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2546,7 +3219,5 @@ impl ::core::fmt::Debug for Sackctl {
       Ok(())
    }
 }
-
 }
 // End of slave
-

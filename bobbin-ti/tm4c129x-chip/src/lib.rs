@@ -8,6 +8,7 @@ pub use bobbin_cortexm::chip::mpu;
 pub use bobbin_cortexm::chip::fpu;
 
 pub mod irq;
+pub mod sig;
 pub mod sysctl;
 pub mod emac;
 pub mod uart;

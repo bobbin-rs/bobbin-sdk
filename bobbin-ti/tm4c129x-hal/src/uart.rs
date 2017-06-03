@@ -1,36 +1,33 @@
-use core::fmt::{self, Write};
+pub use chip::uart::*;
+pub use sysctl::SysctlEnabled;
 
-pub use ::chip::uart::*;
-use sysctl;
-use clock;
-
-pub struct UartDevice {
-    uart: Uart,
+pub trait UartExt {
+    fn enable(&self, baud_hz: u32, sysclk_hz: u32) -> &Self;
+    fn try_getc(&self) -> Option<u8>;
+    fn putc(&self, c: u8);
+    fn write(&self, buf: &[u8]);
+    fn data(&self) -> u8;
+    fn set_data(&self, value: u8) -> &Self;
+    fn rxfe(&self) -> bool;
+    fn txff(&self) -> bool;
 }
 
-pub fn device(uart: Uart) -> UartDevice {    
-    UartDevice { uart: uart}
-}
-
-impl UartDevice {
-    pub fn enable(&self, baud_hz: u32) {
-        let baud_div = ((8 * clock::sysclk_hz()) / baud_hz) + 1;
+impl UartExt for UartImpl {
+    fn enable(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
+        let baud_div = ((8 * sysclk_hz) / baud_hz) + 1;
         let baud_int = baud_div / 64;
         let baud_frac = baud_div % 64;
 
-        let mut uart = self.uart;
-        sysctl::set_uart_enabled(self.uart, true);
-        unsafe {
-            uart.with_ctl(|r| r.set_uarten(0));
-            uart.with_ibrd(|r| r.set_divint(baud_int));
-            uart.with_fbrd(|r| r.set_divfrac(baud_frac));
-            uart.with_lcrh(|r| r.set_wlen(0x3).set_fen(1));
-            uart.with_ctl(|r| r.set_hse(1).set_rxe(1).set_txe(1));
-            uart.with_ctl(|r| r.set_uarten(1));
-        }
+        self.with_ctl(|r| r.set_uarten(0));
+        self.with_ibrd(|r| r.set_divint(baud_int));
+        self.with_fbrd(|r| r.set_divfrac(baud_frac));
+        self.with_lcrh(|r| r.set_wlen(0x3).set_fen(1));
+        self.with_ctl(|r| r.set_hse(1).set_rxe(1).set_txe(1));
+        self.with_ctl(|r| r.set_uarten(1));
+        self
     }
 
-    pub fn try_getc(&self) -> Option<u8> {
+    fn try_getc(&self) -> Option<u8> {
         if !self.rxfe() {
             Some(self.data())
         } else {
@@ -38,41 +35,30 @@ impl UartDevice {
         }        
     }
 
-    pub fn putc(&self, c: u8) {
+    fn putc(&self, c: u8) {
         while self.txff() {}
-        self.set_data(c)
+        self.set_data(c);
     }
 
-    pub fn write(&self, buf: &[u8]) {
+    fn write(&self, buf: &[u8]) {
         for b in buf.iter() {
-            self.putc(*b);
+            self.putc(*b)
         }
     }
 
-    pub fn data(&self) -> u8 {
-        let uart = self.uart;      
-        unsafe { uart.dr().data() as u8 }
+    fn data(&self) -> u8 {
+        self.dr().data() as u8
     }
 
-    pub fn set_data(&self, value: u8) {  
-        let mut uart = self.uart;      
-        unsafe { uart.set_dr(Dr(0).set_data(value as u32)); }
+    fn set_data(&self, value: u8) -> &Self {  
+        self.set_dr(Dr(0).set_data(value as u32))
     }
     
-    pub fn rxfe(&self) -> bool {
-        unsafe { self.uart.fr().rxfe() != 0 }
+    fn rxfe(&self) -> bool {
+        self.fr().rxfe() != 0
     }
 
-    pub fn txff(&self) -> bool {
-        unsafe { self.uart.fr().txff() != 0 }
-    }    
-}
-
-impl Write for UartDevice {
-    fn write_str(&mut self, s: &str) -> fmt::Result {
-        for byte in s.bytes() {
-            self.putc(byte);
-        }
-        Ok(())
-    }
+    fn txff(&self) -> bool {
+        self.fr().txff() != 0
+    }        
 }

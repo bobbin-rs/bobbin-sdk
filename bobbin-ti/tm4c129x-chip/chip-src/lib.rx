@@ -25,6 +25,8 @@
             (name UART0)
             (address 0x4000c000)
             (description "Register map for UART0 peripheral")
+            (signal (name U0Rx) (type RX))
+            (signal (name U0Tx) (type TX))
             (interrupt
                 (name UART0)
                 (value 5)
@@ -33,6 +35,8 @@
         (peripheral
             (name UART1)
             (address 0x4000d000)
+            (signal (name U1Rx) (type RX))
+            (signal (name U1Tx) (type TX))            
             (interrupt
                 (name UART1)
                 (value 6)
@@ -41,6 +45,8 @@
         (peripheral
             (name UART2)
             (address 0x4000e000)
+            (signal (name U2Rx) (type RX))
+            (signal (name U2Tx) (type TX))
             (interrupt
                 (name UART2)
                 (value 33)
@@ -49,6 +55,8 @@
         (peripheral
             (name UART3)
             (address 0x4000f000)
+            (signal (name U3Rx) (type RX))
+            (signal (name U3Tx) (type TX))
             (interrupt
                 (name UART3)
                 (value 56)
@@ -57,6 +65,8 @@
         (peripheral
             (name UART4)
             (address 0x40010000)
+            (signal (name U4Rx) (type RX))
+            (signal (name U4Tx) (type TX))
             (interrupt
                 (name UART4)
                 (value 57)
@@ -65,6 +75,8 @@
         (peripheral
             (name UART5)
             (address 0x40011000)
+            (signal (name U5Rx) (type RX))
+            (signal (name U5Tx) (type TX))
             (interrupt
                 (name UART5)
                 (value 58)
@@ -73,6 +85,8 @@
         (peripheral
             (name UART6)
             (address 0x40012000)
+            (signal (name U6Rx) (type RX))
+            (signal (name U6Tx) (type TX))
             (interrupt
                 (name UART6)
                 (value 59)
@@ -81,6 +95,8 @@
         (peripheral
             (name UART7)
             (address 0x40013000)
+            (signal (name U7Rx) (type RX))
+            (signal (name U7Tx) (type TX))
             (interrupt
                 (name UART7)
                 (value 60)
@@ -166,6 +182,7 @@
     (peripheral-group
         (name GPIO)
         (prototype "periph/gpio.rx")
+        (has-pins)
         (peripheral
             (name GPIOA)
             (address 0x40004000)

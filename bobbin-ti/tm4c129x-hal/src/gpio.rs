@@ -1,179 +1,149 @@
-pub use ::chip::gpio::*;
-pub use sysctl;
+pub use chip::gpio::*;
+pub use sysctl::SysctlEnabled;
+use chip::sig::{SignalTx, SignalRx};
+use core::ops::Deref;
 
-use core::marker::PhantomData;
-// use embed_common::io::{DigitalIn, DigitalOut};
-
-pub struct ModeUnknown;
-pub struct ModeDisabled;
-pub struct ModeInput;
-pub struct ModeOutput;
-pub struct ModeAltFn;
-
-pub type PinUnknown = Pin<ModeUnknown>;
-pub type PinDisabled = Pin<ModeDisabled>;
-pub type PinInput = Pin<ModeInput>;
-pub type PinOutput = Pin<ModeOutput>;
-pub type PinAltFn = Pin<ModeAltFn>;
-
-pub struct Pin<M> {
-    gpio: Gpio,
-    pin: usize,
-    _phantom: PhantomData<M>,
+pub enum Dir {
+    In = 0,
+    Out = 1,    
 }
 
-pub fn pin(gpio: Gpio, index: usize) -> Pin<ModeUnknown> {
-    Pin {
-        gpio: gpio,
-        pin: index,
-        _phantom: PhantomData,
-    }
+pub trait GpioExt {
+    fn set_dir(&self, value: Dir) -> &Self;
+    fn set_afsel(&self, value: bool) -> &Self;
+    fn set_pullup_select(&self, value: bool) -> &Self;
+    fn set_pulldown_select(&self, value: bool) -> &Self;
+    fn set_open_drain_select(&self, value: bool) -> &Self;
+    fn set_digital_enable(&self, value: bool) -> &Self;
+    fn set_analog_select(&self, value: bool) -> &Self;
+    fn set_port_control(&self, value: usize) -> &Self;
+    fn mode_input(&self) -> &Self;
+    fn mode_output(&self) -> &Self;
+    fn mode_altfn(&self, value: usize) -> &Self;
+    fn pull_up(&self) -> &Self;
+    fn pull_down(&self) -> &Self;
+    fn input(&self) -> bool;
+    fn output(&self) -> bool;
+    fn set_output(&self, value: bool) -> &Self;
+    fn toggle_output(&self) -> &Self;
 }
 
-impl<M> Pin<M> {
-    pub fn into_disabled(self) -> Pin<ModeDisabled> {
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_dir(|r| r.set_dir(self.pin, 0));
-            gpio.with_afsel(|r| r.set_afsel(self.pin, 0));
-            gpio.with_den(|r| r.set_den(self.pin, 0));  
-            gpio.with_pctl(|r| r.set_pmc(self.pin, 0));          
-        }        
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+impl GpioExt for PinImpl {
+    fn set_dir(&self, value: Dir) -> &Self {
+        self.port.with_dir(|r| r.set_dir(self.index, value as u32));
+        self
     }
 
-    pub fn into_disabled_unchecked(self) -> Pin<ModeDisabled> {
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+    fn set_afsel(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_afsel(|r| r.set_afsel(self.index, value));
+        self
     }
 
-    pub fn into_output(self) -> Pin<ModeOutput> {
-        sysctl::set_gpio_enabled(self.gpio, true);
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_dir(|r| r.set_dir(self.pin, 1));
-            gpio.with_afsel(|r| r.set_afsel(self.pin, 0));
-            gpio.with_den(|r| r.set_den(self.pin, 1));            
-            gpio.with_pctl(|r| r.set_pmc(self.pin, 0));
-        }
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+    fn set_pullup_select(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_pur(|r| r.set_pue(self.index, value));
+        self
     }
 
-    pub fn into_output_unchecked(self) -> Pin<ModeOutput> {
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+    fn set_pulldown_select(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_pdr(|r| r.set_pde(self.index, value));
+        self
     }
 
-    pub fn into_input(self) -> Pin<ModeInput> {
-        sysctl::set_gpio_enabled(self.gpio, true);
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_dir(|r| r.set_dir(self.pin, 0));
-            gpio.with_afsel(|r| r.set_afsel(self.pin, 0));
-            gpio.with_den(|r| r.set_den(self.pin, 1));            
-            gpio.with_pctl(|r| r.set_pmc(self.pin, 0));
-        }
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+    fn set_open_drain_select(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_odr(|r| r.set_ode(self.index, value));
+        self
+    }
+
+    fn set_digital_enable(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_den(|r| r.set_den(self.index, value));
+        self
+    }
+
+    fn set_analog_select(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.port.with_amsel(|r| r.set_gpioamsel(self.index, value));
+        self
+    }
+
+    fn set_port_control(&self, value: usize) -> &Self {
+        self.port.with_pctl(|r| r.set_pmc(self.index, value as u32));
+        self
+    }
+
+    fn mode_input(&self) -> &Self {
+        self.set_dir(Dir::In);
+        self.set_afsel(false);
+        self.set_digital_enable(true);
+        self.set_port_control(0);
+        self
+    }
+
+    fn mode_output(&self) -> &Self {
+        self.set_dir(Dir::Out);
+        self.set_afsel(false);
+        self.set_digital_enable(true);
+        self.set_port_control(0);
+        self
     }    
 
-    pub fn into_input_unchecked(self) -> Pin<ModeInput> {
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
+    fn mode_altfn(&self, value: usize) -> &Self {
+        self.set_dir(Dir::In);
+        self.set_afsel(true);
+        self.set_digital_enable(true);
+        self.set_port_control(value);
+        self
+    }
+
+    fn pull_up(&self) -> &Self {
+        self.set_pullup_select(true)
+    }
+
+    fn pull_down(&self) -> &Self {
+        self.set_pulldown_select(true)
     }
     
+    fn input(&self) -> bool {            
+        self.port.data().data(self.index) != 0
+    }           
 
-    pub fn into_altfn(self, value: u8) -> Pin<ModeAltFn> {
-        sysctl::set_gpio_enabled(self.gpio, true);
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_dir(|r| r.set_dir(self.pin, 0));            
-            gpio.with_afsel(|r| r.set_afsel(self.pin, 1));
-            gpio.with_den(|r| r.set_den(self.pin, 1));
-            gpio.with_pctl(|r| r.set_pmc(self.pin, value as u32));
-        }
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
-    }     
-
-    pub fn into_altfn_unchecked(self) -> Pin<ModeAltFn> {
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
-    }
-
-    pub fn with_open_drain(self, value: bool) -> Pin<M> {
-        let value = if value { 1 } else { 0 };
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_odr(|r| r.set_ode(self.pin, value));
-        }        
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }        
-    }
-
-    pub fn with_pullup(self, value: bool) -> Pin<M> {
-        let value = if value { 1 } else { 0 };
-        let mut gpio = self.gpio;
-        unsafe {            
-            gpio.with_pur(|r| r.set_pue(self.pin, value));
-        }        
-        Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
-    }
-}
-
-impl Pin<ModeOutput> {
-    pub fn get(&self) -> bool {
-        let gpio = self.gpio;
-        unsafe {
-            gpio.data().data(self.pin) != 0
-        }
+    fn output(&self) -> bool {
+        self.port.data().data(self.index) != 0
     }   
 
-    pub fn set(&self, value: bool) {
+    fn set_output(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
-        let mut gpio = self.gpio;
-        unsafe {
-            gpio.with_data(|r| r.set_data(self.pin, value));
-        }
+        self.port.with_data(|r| r.set_data(self.index, value));
+        self
     }    
-    pub fn toggle(&self) {
-        self.set(!self.get())
+
+    fn toggle_output(&self) -> &Self {
+        self.set_output(!self.output())
     }
 }
 
-impl Pin<ModeInput> {
-    pub fn get(&self) -> bool {
-        let gpio = self.gpio;
-        unsafe {
-            gpio.data().data(self.pin) != 0
-        }
-    }    
+pub trait ModeTx<T, S> {
+    fn mode_tx(&self, _: &S) -> &Self;
 }
 
-// impl DigitalOut for Pin<DigitalOutput> {
+pub trait ModeRx<T, S> {
+    fn mode_rx(&self, _: &S) -> &Self;
+}
 
-//     fn digital_out(&self) -> bool {
-//         let gpio = self.gpio;
-//         unsafe {
-//             gpio.data().data(self.pin) != 0
-//         }
-//     }    
-//     fn set_digital_out(&self, value: bool) {
-//         let value = if value { 1 } else { 0 };
-//         let mut gpio = self.gpio;
-//         unsafe {
-//             gpio.with_data(|r| r.set_data(self.pin, value));
-//         }
-//     }    
-// }
+impl<P, S, T> ModeTx<T, S> for P where S: SignalTx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_tx(&self, _: &S) -> &Self {
+        self.mode_altfn(self.alt_fn());
+        self
+    }
+}
 
-// impl DigitalIn for Pin<DigitalInput> {
-//     fn digital_in(&self) -> bool {
-//         let gpio = self.gpio;
-//         unsafe {
-//             gpio.data().data(self.pin) != 0
-//         }
-//     }    
-// }
-
-impl Pin<ModeAltFn> {
-    pub fn af(&self) -> u8 {
-        let gpio = self.gpio;
-        unsafe {
-            gpio.pctl().pmc(self.pin) as u8
-        }
+impl<P, S, T> ModeRx<T, S> for P where S: SignalRx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    fn mode_rx(&self, _: &S) -> &Self {
+        self.mode_altfn(self.alt_fn());
+        self
     }
 }
