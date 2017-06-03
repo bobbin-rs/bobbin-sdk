@@ -34,11 +34,22 @@ pub fn field_with(name: &str) -> String {
 }
 
 pub fn field_ptr(name: &str) -> String {
-    format!("{}_ptr", field_name(name))
+    let name = field_name(name);
+    if name.chars().next().unwrap().is_digit(10) {
+        format!("_{}_ptr", name)
+    } else {
+        format!("{}_ptr", name)
+    }
+    
 }
 
 pub fn field_mut(name: &str) -> String {
-    format!("{}_mut", field_name(name))
+    let name = field_name(name);
+    if name.chars().next().unwrap().is_digit(10) {
+        format!("_{}_mut", name)
+    } else {
+        format!("{}_mut", name)
+    }
 }
 
 pub fn field_name(name: &str) -> String {
