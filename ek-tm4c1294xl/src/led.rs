@@ -19,6 +19,17 @@ pub fn init() {
     LED3.mode_output();
 }
 
+pub fn led0_on() {
+    LED0.set_output(true);
+}
+
+pub fn led0_off() {
+    LED0.set_output(false);
+}
+
+pub fn led0_toggle() {
+    LED0.toggle_output();
+}
 
 // use hal::gpio;
 // use pin;
