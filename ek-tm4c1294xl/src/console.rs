@@ -1,5 +1,26 @@
 use core::fmt::{self, Write, Arguments};
-use uart;
+use hal::gpio::*;
+use hal::uart::*;
+use clock;
+
+pub const UART: Uart0 = UART0;
+pub const UART_RX: Pa0 = PA0;
+pub const UART_TX: Pa1 = PA1;
+pub const UART_BAUD: u32 = 115_200;
+
+pub fn init() {
+    // Enable Clocks
+    UART.sysctl_enable();
+    UART_TX.port().sysctl_enable();
+    UART_RX.port().sysctl_enable();
+
+    // Set Pin Configuration
+    UART_TX.mode_tx(&UART);
+    UART_RX.mode_rx(&UART);
+
+    // Set Baud and Enable uart
+    UART.enable(UART_BAUD, clock::sysclk_hz());
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -25,21 +46,11 @@ macro_rules! println {
 }
 
 pub const CONSOLE: Console = Console {};
-
 pub struct Console {}
-
-impl Console {
-    pub fn init(&self, _baud: u32) {
-    }
-
-    pub fn uart(&self) -> ::hal::uart::UartDevice {
-        uart::uart0()
-    }
-}
 
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = self.uart();
+        let uart = UART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
                 uart.putc(b'\r')
@@ -59,3 +70,4 @@ pub fn write_fmt(args: Arguments) {
 pub fn write_str(s: &str) {
     CONSOLE.write_str(s).ok();
 }
+

@@ -4,12 +4,16 @@
 #[macro_use]
 extern crate ek_tm4c1294xl as board;
 
+use board::hal::gpio::GpioExt;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("Running Console");
+    
+    println!("Running Console");    
     let mut i = 0u32;
     loop {
+        board::led::LED0.toggle_output();
         println!("Hello, World! {}", i);
         i = i.wrapping_add(1);
         board::delay(1000);
