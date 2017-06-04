@@ -6,15 +6,15 @@ pub const LED1: Pte31 = PTE31;
 pub const LED2: Ptd5 = PTD5;
 
 pub fn init() {
-    LED0.port.sim_enable();
+    LED0.port().sim_enable();
     LED0.gpio_pin().set_dir_output().set_output(true);
     LED0.set_mux_gpio();
 
-    LED1.port.sim_enable();
+    LED1.port().sim_enable();
     LED1.gpio_pin().set_dir_output().set_output(true);
     LED1.set_mux_gpio();
 
-    LED2.port.sim_enable();
+    LED2.port().sim_enable();
     LED2.gpio_pin().set_dir_output().set_output(true);
     LED2.set_mux_gpio();
     
