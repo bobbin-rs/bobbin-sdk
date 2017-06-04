@@ -1,4 +1,4 @@
-use chip::port::PinImpl;
+use chip::port::*;
 
 pub enum Pull {
     None,
@@ -15,7 +15,7 @@ pub trait PinExt {
     fn set_pull_up(&self) -> &Self;
 }
 
-impl PinExt for PinImpl {
+impl<P, T> PinExt for Pin<P, T> {
     fn mux(&self) -> usize {
         self.port.pcr(self.index).mux() as usize
     }

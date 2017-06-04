@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Uart0Impl(pub u32);
-impl Uart0Impl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn bdh_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
@@ -17,14 +20,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_bdh(&self, value: Bdh) -> &Uart0Impl {
+  pub fn set_bdh(&self, value: Bdh) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bdh<F: FnOnce(Bdh) -> Bdh>(&self, f: F) -> &Uart0Impl {
+  pub fn with_bdh<F: FnOnce(Bdh) -> Bdh>(&self, f: F) -> &Self {
      let tmp = self.bdh();
      self.set_bdh(f(tmp))
   }
@@ -44,14 +47,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_bdl(&self, value: Bdl) -> &Uart0Impl {
+  pub fn set_bdl(&self, value: Bdl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bdl<F: FnOnce(Bdl) -> Bdl>(&self, f: F) -> &Uart0Impl {
+  pub fn with_bdl<F: FnOnce(Bdl) -> Bdl>(&self, f: F) -> &Self {
      let tmp = self.bdl();
      self.set_bdl(f(tmp))
   }
@@ -71,14 +74,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_c1(&self, value: C1) -> &Uart0Impl {
+  pub fn set_c1(&self, value: C1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Uart0Impl {
+  pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
      let tmp = self.c1();
      self.set_c1(f(tmp))
   }
@@ -98,14 +101,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_c2(&self, value: C2) -> &Uart0Impl {
+  pub fn set_c2(&self, value: C2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Uart0Impl {
+  pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
      let tmp = self.c2();
      self.set_c2(f(tmp))
   }
@@ -125,14 +128,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_s1(&self, value: S1) -> &Uart0Impl {
+  pub fn set_s1(&self, value: S1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_s1<F: FnOnce(S1) -> S1>(&self, f: F) -> &Uart0Impl {
+  pub fn with_s1<F: FnOnce(S1) -> S1>(&self, f: F) -> &Self {
      let tmp = self.s1();
      self.set_s1(f(tmp))
   }
@@ -152,14 +155,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_s2(&self, value: S2) -> &Uart0Impl {
+  pub fn set_s2(&self, value: S2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_s2<F: FnOnce(S2) -> S2>(&self, f: F) -> &Uart0Impl {
+  pub fn with_s2<F: FnOnce(S2) -> S2>(&self, f: F) -> &Self {
      let tmp = self.s2();
      self.set_s2(f(tmp))
   }
@@ -179,14 +182,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_c3(&self, value: C3) -> &Uart0Impl {
+  pub fn set_c3(&self, value: C3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Uart0Impl {
+  pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
      let tmp = self.c3();
      self.set_c3(f(tmp))
   }
@@ -206,14 +209,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_d(&self, value: D) -> &Uart0Impl {
+  pub fn set_d(&self, value: D) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_d<F: FnOnce(D) -> D>(&self, f: F) -> &Uart0Impl {
+  pub fn with_d<F: FnOnce(D) -> D>(&self, f: F) -> &Self {
      let tmp = self.d();
      self.set_d(f(tmp))
   }
@@ -233,14 +236,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_ma1(&self, value: Ma1) -> &Uart0Impl {
+  pub fn set_ma1(&self, value: Ma1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ma1<F: FnOnce(Ma1) -> Ma1>(&self, f: F) -> &Uart0Impl {
+  pub fn with_ma1<F: FnOnce(Ma1) -> Ma1>(&self, f: F) -> &Self {
      let tmp = self.ma1();
      self.set_ma1(f(tmp))
   }
@@ -260,14 +263,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_ma2(&self, value: Ma2) -> &Uart0Impl {
+  pub fn set_ma2(&self, value: Ma2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ma2<F: FnOnce(Ma2) -> Ma2>(&self, f: F) -> &Uart0Impl {
+  pub fn with_ma2<F: FnOnce(Ma2) -> Ma2>(&self, f: F) -> &Self {
      let tmp = self.ma2();
      self.set_ma2(f(tmp))
   }
@@ -287,14 +290,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_c4(&self, value: C4) -> &Uart0Impl {
+  pub fn set_c4(&self, value: C4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Uart0Impl {
+  pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
      let tmp = self.c4();
      self.set_c4(f(tmp))
   }
@@ -314,14 +317,14 @@ impl Uart0Impl {
      }
   }
   #[inline]
-  pub fn set_c5(&self, value: C5) -> &Uart0Impl {
+  pub fn set_c5(&self, value: C5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Uart0Impl {
+  pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
      let tmp = self.c5();
      self.set_c5(f(tmp))
   }

@@ -18,14 +18,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_actlr(&self, value: Actlr) -> &Scb {
+  pub fn set_actlr(&self, value: Actlr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_actlr<F: FnOnce(Actlr) -> Actlr>(&self, f: F) -> &Scb {
+  pub fn with_actlr<F: FnOnce(Actlr) -> Actlr>(&self, f: F) -> &Self {
      let tmp = self.actlr();
      self.set_actlr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_cpuid(&self, value: Cpuid) -> &Scb {
+  pub fn set_cpuid(&self, value: Cpuid) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd00) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cpuid<F: FnOnce(Cpuid) -> Cpuid>(&self, f: F) -> &Scb {
+  pub fn with_cpuid<F: FnOnce(Cpuid) -> Cpuid>(&self, f: F) -> &Self {
      let tmp = self.cpuid();
      self.set_cpuid(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_icsr(&self, value: Icsr) -> &Scb {
+  pub fn set_icsr(&self, value: Icsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd04) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_icsr<F: FnOnce(Icsr) -> Icsr>(&self, f: F) -> &Scb {
+  pub fn with_icsr<F: FnOnce(Icsr) -> Icsr>(&self, f: F) -> &Self {
      let tmp = self.icsr();
      self.set_icsr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_vtor(&self, value: Vtor) -> &Scb {
+  pub fn set_vtor(&self, value: Vtor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd08) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_vtor<F: FnOnce(Vtor) -> Vtor>(&self, f: F) -> &Scb {
+  pub fn with_vtor<F: FnOnce(Vtor) -> Vtor>(&self, f: F) -> &Self {
      let tmp = self.vtor();
      self.set_vtor(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_aircr(&self, value: Aircr) -> &Scb {
+  pub fn set_aircr(&self, value: Aircr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_aircr<F: FnOnce(Aircr) -> Aircr>(&self, f: F) -> &Scb {
+  pub fn with_aircr<F: FnOnce(Aircr) -> Aircr>(&self, f: F) -> &Self {
      let tmp = self.aircr();
      self.set_aircr(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_scr(&self, value: Scr) -> &Scb {
+  pub fn set_scr(&self, value: Scr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Scb {
+  pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Self {
      let tmp = self.scr();
      self.set_scr(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, value: Ccr) -> &Scb {
+  pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Scb {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_shpr1(&self, value: Shpr1) -> &Scb {
+  pub fn set_shpr1(&self, value: Shpr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_shpr1<F: FnOnce(Shpr1) -> Shpr1>(&self, f: F) -> &Scb {
+  pub fn with_shpr1<F: FnOnce(Shpr1) -> Shpr1>(&self, f: F) -> &Self {
      let tmp = self.shpr1();
      self.set_shpr1(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_shpr2(&self, value: Shpr2) -> &Scb {
+  pub fn set_shpr2(&self, value: Shpr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_shpr2<F: FnOnce(Shpr2) -> Shpr2>(&self, f: F) -> &Scb {
+  pub fn with_shpr2<F: FnOnce(Shpr2) -> Shpr2>(&self, f: F) -> &Self {
      let tmp = self.shpr2();
      self.set_shpr2(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_shpr3(&self, value: Shpr3) -> &Scb {
+  pub fn set_shpr3(&self, value: Shpr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_shpr3<F: FnOnce(Shpr3) -> Shpr3>(&self, f: F) -> &Scb {
+  pub fn with_shpr3<F: FnOnce(Shpr3) -> Shpr3>(&self, f: F) -> &Self {
      let tmp = self.shpr3();
      self.set_shpr3(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_shcsr(&self, value: Shcsr) -> &Scb {
+  pub fn set_shcsr(&self, value: Shcsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_shcsr<F: FnOnce(Shcsr) -> Shcsr>(&self, f: F) -> &Scb {
+  pub fn with_shcsr<F: FnOnce(Shcsr) -> Shcsr>(&self, f: F) -> &Self {
      let tmp = self.shcsr();
      self.set_shcsr(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_cfsr(&self, value: Cfsr) -> &Scb {
+  pub fn set_cfsr(&self, value: Cfsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfsr<F: FnOnce(Cfsr) -> Cfsr>(&self, f: F) -> &Scb {
+  pub fn with_cfsr<F: FnOnce(Cfsr) -> Cfsr>(&self, f: F) -> &Self {
      let tmp = self.cfsr();
      self.set_cfsr(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_mmfsr(&self, value: Mmfsr) -> &Scb {
+  pub fn set_mmfsr(&self, value: Mmfsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd28) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmfsr<F: FnOnce(Mmfsr) -> Mmfsr>(&self, f: F) -> &Scb {
+  pub fn with_mmfsr<F: FnOnce(Mmfsr) -> Mmfsr>(&self, f: F) -> &Self {
      let tmp = self.mmfsr();
      self.set_mmfsr(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_bfsr(&self, value: Bfsr) -> &Scb {
+  pub fn set_bfsr(&self, value: Bfsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd29) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bfsr<F: FnOnce(Bfsr) -> Bfsr>(&self, f: F) -> &Scb {
+  pub fn with_bfsr<F: FnOnce(Bfsr) -> Bfsr>(&self, f: F) -> &Self {
      let tmp = self.bfsr();
      self.set_bfsr(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_ufsr(&self, value: Ufsr) -> &Scb {
+  pub fn set_ufsr(&self, value: Ufsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd2a) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ufsr<F: FnOnce(Ufsr) -> Ufsr>(&self, f: F) -> &Scb {
+  pub fn with_ufsr<F: FnOnce(Ufsr) -> Ufsr>(&self, f: F) -> &Self {
      let tmp = self.ufsr();
      self.set_ufsr(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_hfsr(&self, value: Hfsr) -> &Scb {
+  pub fn set_hfsr(&self, value: Hfsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hfsr<F: FnOnce(Hfsr) -> Hfsr>(&self, f: F) -> &Scb {
+  pub fn with_hfsr<F: FnOnce(Hfsr) -> Hfsr>(&self, f: F) -> &Self {
      let tmp = self.hfsr();
      self.set_hfsr(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_mmfar(&self, value: Mmfar) -> &Scb {
+  pub fn set_mmfar(&self, value: Mmfar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmfar<F: FnOnce(Mmfar) -> Mmfar>(&self, f: F) -> &Scb {
+  pub fn with_mmfar<F: FnOnce(Mmfar) -> Mmfar>(&self, f: F) -> &Self {
      let tmp = self.mmfar();
      self.set_mmfar(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_bfar(&self, value: Bfar) -> &Scb {
+  pub fn set_bfar(&self, value: Bfar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bfar<F: FnOnce(Bfar) -> Bfar>(&self, f: F) -> &Scb {
+  pub fn with_bfar<F: FnOnce(Bfar) -> Bfar>(&self, f: F) -> &Self {
      let tmp = self.bfar();
      self.set_bfar(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Scb {
      }
   }
   #[inline]
-  pub fn set_afsr(&self, value: Afsr) -> &Scb {
+  pub fn set_afsr(&self, value: Afsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_afsr<F: FnOnce(Afsr) -> Afsr>(&self, f: F) -> &Scb {
+  pub fn with_afsr<F: FnOnce(Afsr) -> Afsr>(&self, f: F) -> &Self {
      let tmp = self.afsr();
      self.set_afsr(f(tmp))
   }
@@ -1807,3 +1807,4 @@ impl ::core::fmt::Debug for Afsr {
       Ok(())
    }
 }
+

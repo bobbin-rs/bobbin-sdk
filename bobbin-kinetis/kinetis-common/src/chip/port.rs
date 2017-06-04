@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct PortImpl(pub u32);
-impl PortImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn pcr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 32);
@@ -20,7 +23,7 @@ impl PortImpl {
      }
   }
   #[inline]
-  pub fn set_pcr(&self, index: usize, value: Pcr) -> &PortImpl {
+  pub fn set_pcr(&self, index: usize, value: Pcr) -> &Self {
      assert!(index < 32);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
@@ -28,7 +31,7 @@ impl PortImpl {
      self
   }
   #[inline]
-  pub fn with_pcr<F: FnOnce(Pcr) -> Pcr>(&self, index: usize, f: F) -> &PortImpl {
+  pub fn with_pcr<F: FnOnce(Pcr) -> Pcr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.pcr(index);
      self.set_pcr(index, f(tmp))
   }
@@ -42,7 +45,7 @@ impl PortImpl {
      ((self.0 as usize) + 0x80) as *mut u32
   }
   #[inline]
-  pub fn set_gpclr(&self, value: Gpclr) -> &PortImpl {
+  pub fn set_gpclr(&self, value: Gpclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
@@ -58,7 +61,7 @@ impl PortImpl {
      ((self.0 as usize) + 0x84) as *mut u32
   }
   #[inline]
-  pub fn set_gpchr(&self, value: Gpchr) -> &PortImpl {
+  pub fn set_gpchr(&self, value: Gpchr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
@@ -80,14 +83,14 @@ impl PortImpl {
      }
   }
   #[inline]
-  pub fn set_isfr(&self, value: Isfr) -> &PortImpl {
+  pub fn set_isfr(&self, value: Isfr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &PortImpl {
+  pub fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
      let tmp = self.isfr();
      self.set_isfr(f(tmp))
   }
@@ -388,15 +391,7 @@ impl ::core::fmt::Debug for Isfr {
       Ok(())
    }
 }
-pub struct PinImpl {
-  pub port: PortImpl,
-  pub index: usize,
-}
-
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
+pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
 pub trait AltFn<T> {
    fn alt_fn(&self) -> usize;

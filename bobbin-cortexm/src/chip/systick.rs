@@ -18,14 +18,14 @@ impl Systick {
      }
   }
   #[inline]
-  pub fn set_csr(&self, value: Csr) -> &Systick {
+  pub fn set_csr(&self, value: Csr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Systick {
+  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
      self.set_csr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Systick {
      }
   }
   #[inline]
-  pub fn set_rvr(&self, value: Rvr) -> &Systick {
+  pub fn set_rvr(&self, value: Rvr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Systick {
+  pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
      let tmp = self.rvr();
      self.set_rvr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Systick {
      }
   }
   #[inline]
-  pub fn set_cvr(&self, value: Cvr) -> &Systick {
+  pub fn set_cvr(&self, value: Cvr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Systick {
+  pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
      let tmp = self.cvr();
      self.set_cvr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Systick {
      }
   }
   #[inline]
-  pub fn set_calib(&self, value: Calib) -> &Systick {
+  pub fn set_calib(&self, value: Calib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Systick {
+  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
      let tmp = self.calib();
      self.set_calib(f(tmp))
   }
@@ -294,3 +294,4 @@ impl ::core::fmt::Debug for Calib {
       Ok(())
    }
 }
+

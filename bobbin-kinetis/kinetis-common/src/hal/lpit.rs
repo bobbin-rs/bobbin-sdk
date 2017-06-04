@@ -20,7 +20,7 @@ pub trait LpitExt {
     fn clr_ch_tif(&self, index: usize) -> &Self;    
 }
 
-impl LpitExt for LpitImpl {
+impl<T> LpitExt for Periph<T> {
     fn enabled(&self) -> bool {
         self.mcr().m_cen() != 0
     }

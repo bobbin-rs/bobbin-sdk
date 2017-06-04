@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct LpitImpl(pub u32);
-impl LpitImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn verid_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -47,14 +50,14 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_mcr(&self, value: Mcr) -> &LpitImpl {
+  pub fn set_mcr(&self, value: Mcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &LpitImpl {
+  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
@@ -74,14 +77,14 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_msr(&self, value: Msr) -> &LpitImpl {
+  pub fn set_msr(&self, value: Msr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_msr<F: FnOnce(Msr) -> Msr>(&self, f: F) -> &LpitImpl {
+  pub fn with_msr<F: FnOnce(Msr) -> Msr>(&self, f: F) -> &Self {
      let tmp = self.msr();
      self.set_msr(f(tmp))
   }
@@ -101,14 +104,14 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_mier(&self, value: Mier) -> &LpitImpl {
+  pub fn set_mier(&self, value: Mier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mier<F: FnOnce(Mier) -> Mier>(&self, f: F) -> &LpitImpl {
+  pub fn with_mier<F: FnOnce(Mier) -> Mier>(&self, f: F) -> &Self {
      let tmp = self.mier();
      self.set_mier(f(tmp))
   }
@@ -128,14 +131,14 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_setten(&self, value: Setten) -> &LpitImpl {
+  pub fn set_setten(&self, value: Setten) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_setten<F: FnOnce(Setten) -> Setten>(&self, f: F) -> &LpitImpl {
+  pub fn with_setten<F: FnOnce(Setten) -> Setten>(&self, f: F) -> &Self {
      let tmp = self.setten();
      self.set_setten(f(tmp))
   }
@@ -155,14 +158,14 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_clrten(&self, value: Clrten) -> &LpitImpl {
+  pub fn set_clrten(&self, value: Clrten) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_clrten<F: FnOnce(Clrten) -> Clrten>(&self, f: F) -> &LpitImpl {
+  pub fn with_clrten<F: FnOnce(Clrten) -> Clrten>(&self, f: F) -> &Self {
      let tmp = self.clrten();
      self.set_clrten(f(tmp))
   }
@@ -185,7 +188,7 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_tval(&self, index: usize, value: Tval) -> &LpitImpl {
+  pub fn set_tval(&self, index: usize, value: Tval) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20 + (index << 4)) as *mut u32, value.0);
@@ -193,7 +196,7 @@ impl LpitImpl {
      self
   }
   #[inline]
-  pub fn with_tval<F: FnOnce(Tval) -> Tval>(&self, index: usize, f: F) -> &LpitImpl {
+  pub fn with_tval<F: FnOnce(Tval) -> Tval>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tval(index);
      self.set_tval(index, f(tmp))
   }
@@ -234,7 +237,7 @@ impl LpitImpl {
      }
   }
   #[inline]
-  pub fn set_tctrl(&self, index: usize, value: Tctrl) -> &LpitImpl {
+  pub fn set_tctrl(&self, index: usize, value: Tctrl) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28 + (index << 4)) as *mut u32, value.0);
@@ -242,7 +245,7 @@ impl LpitImpl {
      self
   }
   #[inline]
-  pub fn with_tctrl<F: FnOnce(Tctrl) -> Tctrl>(&self, index: usize, f: F) -> &LpitImpl {
+  pub fn with_tctrl<F: FnOnce(Tctrl) -> Tctrl>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tctrl(index);
      self.set_tctrl(index, f(tmp))
   }

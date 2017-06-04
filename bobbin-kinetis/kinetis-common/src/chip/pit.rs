@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct PitImpl(pub u32);
-impl PitImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn mcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl PitImpl {
      }
   }
   #[inline]
-  pub fn set_mcr(&self, value: Mcr) -> &PitImpl {
+  pub fn set_mcr(&self, value: Mcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &PitImpl {
+  pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
@@ -47,7 +50,7 @@ impl PitImpl {
      }
   }
   #[inline]
-  pub fn set_ldval(&self, index: usize, value: Ldval) -> &PitImpl {
+  pub fn set_ldval(&self, index: usize, value: Ldval) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 4)) as *mut u32, value.0);
@@ -55,7 +58,7 @@ impl PitImpl {
      self
   }
   #[inline]
-  pub fn with_ldval<F: FnOnce(Ldval) -> Ldval>(&self, index: usize, f: F) -> &PitImpl {
+  pub fn with_ldval<F: FnOnce(Ldval) -> Ldval>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ldval(index);
      self.set_ldval(index, f(tmp))
   }
@@ -96,7 +99,7 @@ impl PitImpl {
      }
   }
   #[inline]
-  pub fn set_tctrl(&self, index: usize, value: Tctrl) -> &PitImpl {
+  pub fn set_tctrl(&self, index: usize, value: Tctrl) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x108 + (index << 4)) as *mut u32, value.0);
@@ -104,7 +107,7 @@ impl PitImpl {
      self
   }
   #[inline]
-  pub fn with_tctrl<F: FnOnce(Tctrl) -> Tctrl>(&self, index: usize, f: F) -> &PitImpl {
+  pub fn with_tctrl<F: FnOnce(Tctrl) -> Tctrl>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tctrl(index);
      self.set_tctrl(index, f(tmp))
   }
@@ -127,7 +130,7 @@ impl PitImpl {
      }
   }
   #[inline]
-  pub fn set_tflg(&self, index: usize, value: Tflg) -> &PitImpl {
+  pub fn set_tflg(&self, index: usize, value: Tflg) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10c + (index << 4)) as *mut u32, value.0);
@@ -135,7 +138,7 @@ impl PitImpl {
      self
   }
   #[inline]
-  pub fn with_tflg<F: FnOnce(Tflg) -> Tflg>(&self, index: usize, f: F) -> &PitImpl {
+  pub fn with_tflg<F: FnOnce(Tflg) -> Tflg>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tflg(index);
      self.set_tflg(index, f(tmp))
   }
