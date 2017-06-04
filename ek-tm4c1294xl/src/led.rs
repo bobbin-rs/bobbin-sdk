@@ -6,16 +6,14 @@ pub const LED2: Pn0 = PN0;
 pub const LED3: Pn1 = PN1;
 
 pub fn init() {
-    LED0.port().sysctl_enable();
+    // Hangs if LED2 and LED have power enabled in sequence
+
+    GPIOF.sysctl_enable();
+    GPION.sysctl_enable();
+
     LED0.mode_output();
-
-    LED1.port().sysctl_enable();
     LED1.mode_output();
-
-    LED2.port().sysctl_enable();
-    LED2.mode_output();
-
-    LED3.port().sysctl_enable();
+    LED2.mode_output();   
     LED3.mode_output();
 }
 
