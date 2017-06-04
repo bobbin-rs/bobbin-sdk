@@ -1,31 +1,20 @@
-pub const DMA1: Dma1 = Dma1 {};
-pub const DMA1_IMPL: DmaImpl = DmaImpl(0x40026000);
-pub const DMA1_IMPL_REF: &DmaImpl = &DMA1_IMPL;
-
-pub struct Dma1 {}
-impl ::core::ops::Deref for Dma1 {
-   type Target = DmaImpl;
-   #[inline]
-   fn deref(&self) -> &DmaImpl { DMA1_IMPL_REF }
-}
-
-
-pub const DMA2: Dma2 = Dma2 {};
-pub const DMA2_IMPL: DmaImpl = DmaImpl(0x40026400);
-pub const DMA2_IMPL_REF: &DmaImpl = &DMA2_IMPL;
-
-pub struct Dma2 {}
-impl ::core::ops::Deref for Dma2 {
-   type Target = DmaImpl;
-   #[inline]
-   fn deref(&self) -> &DmaImpl { DMA2_IMPL_REF }
-}
-
-
+pub const DMA1: Dma1 = Periph(0x40026000, Dma1Id {});
+pub const DMA2: Dma2 = Periph(0x40026400, Dma2Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct DmaImpl(pub u32);
-impl DmaImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Dma1Id {}
+pub type Dma1 = Periph<Dma1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Dma2Id {}
+pub type Dma2 = Periph<Dma2Id>;
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn lisr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -71,14 +60,14 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_lifcr(&self, value: Lifcr) -> &DmaImpl {
+  pub fn set_lifcr(&self, value: Lifcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lifcr<F: FnOnce(Lifcr) -> Lifcr>(&self, f: F) -> &DmaImpl {
+  pub fn with_lifcr<F: FnOnce(Lifcr) -> Lifcr>(&self, f: F) -> &Self {
      let tmp = self.lifcr();
      self.set_lifcr(f(tmp))
   }
@@ -98,14 +87,14 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_hifcr(&self, value: Hifcr) -> &DmaImpl {
+  pub fn set_hifcr(&self, value: Hifcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hifcr<F: FnOnce(Hifcr) -> Hifcr>(&self, f: F) -> &DmaImpl {
+  pub fn with_hifcr<F: FnOnce(Hifcr) -> Hifcr>(&self, f: F) -> &Self {
      let tmp = self.hifcr();
      self.set_hifcr(f(tmp))
   }
@@ -128,7 +117,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_scr(&self, index: usize, value: Scr) -> &DmaImpl {
+  pub fn set_scr(&self, index: usize, value: Scr) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 24)) as *mut u32, value.0);
@@ -136,7 +125,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.scr(index);
      self.set_scr(index, f(tmp))
   }
@@ -159,7 +148,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_sndtr(&self, index: usize, value: Sndtr) -> &DmaImpl {
+  pub fn set_sndtr(&self, index: usize, value: Sndtr) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 24)) as *mut u32, value.0);
@@ -167,7 +156,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_sndtr<F: FnOnce(Sndtr) -> Sndtr>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_sndtr<F: FnOnce(Sndtr) -> Sndtr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sndtr(index);
      self.set_sndtr(index, f(tmp))
   }
@@ -190,7 +179,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_spar(&self, index: usize, value: Spar) -> &DmaImpl {
+  pub fn set_spar(&self, index: usize, value: Spar) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index * 24)) as *mut u32, value.0);
@@ -198,7 +187,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_spar<F: FnOnce(Spar) -> Spar>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_spar<F: FnOnce(Spar) -> Spar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.spar(index);
      self.set_spar(index, f(tmp))
   }
@@ -221,7 +210,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_sm0ar(&self, index: usize, value: Sm0ar) -> &DmaImpl {
+  pub fn set_sm0ar(&self, index: usize, value: Sm0ar) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c + (index * 24)) as *mut u32, value.0);
@@ -229,7 +218,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_sm0ar<F: FnOnce(Sm0ar) -> Sm0ar>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_sm0ar<F: FnOnce(Sm0ar) -> Sm0ar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sm0ar(index);
      self.set_sm0ar(index, f(tmp))
   }
@@ -252,7 +241,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_sm1ar(&self, index: usize, value: Sm1ar) -> &DmaImpl {
+  pub fn set_sm1ar(&self, index: usize, value: Sm1ar) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20 + (index * 24)) as *mut u32, value.0);
@@ -260,7 +249,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_sm1ar<F: FnOnce(Sm1ar) -> Sm1ar>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_sm1ar<F: FnOnce(Sm1ar) -> Sm1ar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sm1ar(index);
      self.set_sm1ar(index, f(tmp))
   }
@@ -283,7 +272,7 @@ impl DmaImpl {
      }
   }
   #[inline]
-  pub fn set_sfcr(&self, index: usize, value: Sfcr) -> &DmaImpl {
+  pub fn set_sfcr(&self, index: usize, value: Sfcr) -> &Self {
      assert!(index < 8);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24 + (index * 24)) as *mut u32, value.0);
@@ -291,7 +280,7 @@ impl DmaImpl {
      self
   }
   #[inline]
-  pub fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, index: usize, f: F) -> &DmaImpl {
+  pub fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sfcr(index);
      self.set_sfcr(index, f(tmp))
   }

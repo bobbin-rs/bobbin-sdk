@@ -18,14 +18,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_cfg(&self, value: Cfg) -> &Emac {
+  pub fn set_cfg(&self, value: Cfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Emac {
+  pub fn with_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Self {
      let tmp = self.cfg();
      self.set_cfg(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_framefltr(&self, value: Framefltr) -> &Emac {
+  pub fn set_framefltr(&self, value: Framefltr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_framefltr<F: FnOnce(Framefltr) -> Framefltr>(&self, f: F) -> &Emac {
+  pub fn with_framefltr<F: FnOnce(Framefltr) -> Framefltr>(&self, f: F) -> &Self {
      let tmp = self.framefltr();
      self.set_framefltr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hashtblh(&self, value: Hashtblh) -> &Emac {
+  pub fn set_hashtblh(&self, value: Hashtblh) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hashtblh<F: FnOnce(Hashtblh) -> Hashtblh>(&self, f: F) -> &Emac {
+  pub fn with_hashtblh<F: FnOnce(Hashtblh) -> Hashtblh>(&self, f: F) -> &Self {
      let tmp = self.hashtblh();
      self.set_hashtblh(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hashtbll(&self, value: Hashtbll) -> &Emac {
+  pub fn set_hashtbll(&self, value: Hashtbll) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hashtbll<F: FnOnce(Hashtbll) -> Hashtbll>(&self, f: F) -> &Emac {
+  pub fn with_hashtbll<F: FnOnce(Hashtbll) -> Hashtbll>(&self, f: F) -> &Self {
      let tmp = self.hashtbll();
      self.set_hashtbll(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_miiaddr(&self, value: Miiaddr) -> &Emac {
+  pub fn set_miiaddr(&self, value: Miiaddr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_miiaddr<F: FnOnce(Miiaddr) -> Miiaddr>(&self, f: F) -> &Emac {
+  pub fn with_miiaddr<F: FnOnce(Miiaddr) -> Miiaddr>(&self, f: F) -> &Self {
      let tmp = self.miiaddr();
      self.set_miiaddr(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_miidata(&self, value: Miidata) -> &Emac {
+  pub fn set_miidata(&self, value: Miidata) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_miidata<F: FnOnce(Miidata) -> Miidata>(&self, f: F) -> &Emac {
+  pub fn with_miidata<F: FnOnce(Miidata) -> Miidata>(&self, f: F) -> &Self {
      let tmp = self.miidata();
      self.set_miidata(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_flowctl(&self, value: Flowctl) -> &Emac {
+  pub fn set_flowctl(&self, value: Flowctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flowctl<F: FnOnce(Flowctl) -> Flowctl>(&self, f: F) -> &Emac {
+  pub fn with_flowctl<F: FnOnce(Flowctl) -> Flowctl>(&self, f: F) -> &Self {
      let tmp = self.flowctl();
      self.set_flowctl(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_vlantg(&self, value: Vlantg) -> &Emac {
+  pub fn set_vlantg(&self, value: Vlantg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_vlantg<F: FnOnce(Vlantg) -> Vlantg>(&self, f: F) -> &Emac {
+  pub fn with_vlantg<F: FnOnce(Vlantg) -> Vlantg>(&self, f: F) -> &Self {
      let tmp = self.vlantg();
      self.set_vlantg(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &Emac {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Emac {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rwuff(&self, value: Rwuff) -> &Emac {
+  pub fn set_rwuff(&self, value: Rwuff) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rwuff<F: FnOnce(Rwuff) -> Rwuff>(&self, f: F) -> &Emac {
+  pub fn with_rwuff<F: FnOnce(Rwuff) -> Rwuff>(&self, f: F) -> &Self {
      let tmp = self.rwuff();
      self.set_rwuff(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_pmtctlstat(&self, value: Pmtctlstat) -> &Emac {
+  pub fn set_pmtctlstat(&self, value: Pmtctlstat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pmtctlstat<F: FnOnce(Pmtctlstat) -> Pmtctlstat>(&self, f: F) -> &Emac {
+  pub fn with_pmtctlstat<F: FnOnce(Pmtctlstat) -> Pmtctlstat>(&self, f: F) -> &Self {
      let tmp = self.pmtctlstat();
      self.set_pmtctlstat(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_ris(&self, value: Ris) -> &Emac {
+  pub fn set_ris(&self, value: Ris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Emac {
+  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
      let tmp = self.ris();
      self.set_ris(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_im(&self, value: Im) -> &Emac {
+  pub fn set_im(&self, value: Im) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Emac {
+  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
      let tmp = self.im();
      self.set_im(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr0h(&self, value: Addr0h) -> &Emac {
+  pub fn set_addr0h(&self, value: Addr0h) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr0h<F: FnOnce(Addr0h) -> Addr0h>(&self, f: F) -> &Emac {
+  pub fn with_addr0h<F: FnOnce(Addr0h) -> Addr0h>(&self, f: F) -> &Self {
      let tmp = self.addr0h();
      self.set_addr0h(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr0l(&self, value: Addr0l) -> &Emac {
+  pub fn set_addr0l(&self, value: Addr0l) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr0l<F: FnOnce(Addr0l) -> Addr0l>(&self, f: F) -> &Emac {
+  pub fn with_addr0l<F: FnOnce(Addr0l) -> Addr0l>(&self, f: F) -> &Self {
      let tmp = self.addr0l();
      self.set_addr0l(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr1h(&self, value: Addr1h) -> &Emac {
+  pub fn set_addr1h(&self, value: Addr1h) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr1h<F: FnOnce(Addr1h) -> Addr1h>(&self, f: F) -> &Emac {
+  pub fn with_addr1h<F: FnOnce(Addr1h) -> Addr1h>(&self, f: F) -> &Self {
      let tmp = self.addr1h();
      self.set_addr1h(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr1l(&self, value: Addr1l) -> &Emac {
+  pub fn set_addr1l(&self, value: Addr1l) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr1l<F: FnOnce(Addr1l) -> Addr1l>(&self, f: F) -> &Emac {
+  pub fn with_addr1l<F: FnOnce(Addr1l) -> Addr1l>(&self, f: F) -> &Self {
      let tmp = self.addr1l();
      self.set_addr1l(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr2h(&self, value: Addr2h) -> &Emac {
+  pub fn set_addr2h(&self, value: Addr2h) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr2h<F: FnOnce(Addr2h) -> Addr2h>(&self, f: F) -> &Emac {
+  pub fn with_addr2h<F: FnOnce(Addr2h) -> Addr2h>(&self, f: F) -> &Self {
      let tmp = self.addr2h();
      self.set_addr2h(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr2l(&self, value: Addr2l) -> &Emac {
+  pub fn set_addr2l(&self, value: Addr2l) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr2l<F: FnOnce(Addr2l) -> Addr2l>(&self, f: F) -> &Emac {
+  pub fn with_addr2l<F: FnOnce(Addr2l) -> Addr2l>(&self, f: F) -> &Self {
      let tmp = self.addr2l();
      self.set_addr2l(f(tmp))
   }
@@ -531,14 +531,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr3h(&self, value: Addr3h) -> &Emac {
+  pub fn set_addr3h(&self, value: Addr3h) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr3h<F: FnOnce(Addr3h) -> Addr3h>(&self, f: F) -> &Emac {
+  pub fn with_addr3h<F: FnOnce(Addr3h) -> Addr3h>(&self, f: F) -> &Self {
      let tmp = self.addr3h();
      self.set_addr3h(f(tmp))
   }
@@ -558,14 +558,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_addr3l(&self, value: Addr3l) -> &Emac {
+  pub fn set_addr3l(&self, value: Addr3l) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr3l<F: FnOnce(Addr3l) -> Addr3l>(&self, f: F) -> &Emac {
+  pub fn with_addr3l<F: FnOnce(Addr3l) -> Addr3l>(&self, f: F) -> &Self {
      let tmp = self.addr3l();
      self.set_addr3l(f(tmp))
   }
@@ -585,14 +585,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_wdogto(&self, value: Wdogto) -> &Emac {
+  pub fn set_wdogto(&self, value: Wdogto) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xdc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_wdogto<F: FnOnce(Wdogto) -> Wdogto>(&self, f: F) -> &Emac {
+  pub fn with_wdogto<F: FnOnce(Wdogto) -> Wdogto>(&self, f: F) -> &Self {
      let tmp = self.wdogto();
      self.set_wdogto(f(tmp))
   }
@@ -612,14 +612,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mmcctrl(&self, value: Mmcctrl) -> &Emac {
+  pub fn set_mmcctrl(&self, value: Mmcctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmcctrl<F: FnOnce(Mmcctrl) -> Mmcctrl>(&self, f: F) -> &Emac {
+  pub fn with_mmcctrl<F: FnOnce(Mmcctrl) -> Mmcctrl>(&self, f: F) -> &Self {
      let tmp = self.mmcctrl();
      self.set_mmcctrl(f(tmp))
   }
@@ -639,14 +639,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mmcrxris(&self, value: Mmcrxris) -> &Emac {
+  pub fn set_mmcrxris(&self, value: Mmcrxris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmcrxris<F: FnOnce(Mmcrxris) -> Mmcrxris>(&self, f: F) -> &Emac {
+  pub fn with_mmcrxris<F: FnOnce(Mmcrxris) -> Mmcrxris>(&self, f: F) -> &Self {
      let tmp = self.mmcrxris();
      self.set_mmcrxris(f(tmp))
   }
@@ -666,14 +666,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mmctxris(&self, value: Mmctxris) -> &Emac {
+  pub fn set_mmctxris(&self, value: Mmctxris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmctxris<F: FnOnce(Mmctxris) -> Mmctxris>(&self, f: F) -> &Emac {
+  pub fn with_mmctxris<F: FnOnce(Mmctxris) -> Mmctxris>(&self, f: F) -> &Self {
      let tmp = self.mmctxris();
      self.set_mmctxris(f(tmp))
   }
@@ -693,14 +693,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mmcrxim(&self, value: Mmcrxim) -> &Emac {
+  pub fn set_mmcrxim(&self, value: Mmcrxim) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmcrxim<F: FnOnce(Mmcrxim) -> Mmcrxim>(&self, f: F) -> &Emac {
+  pub fn with_mmcrxim<F: FnOnce(Mmcrxim) -> Mmcrxim>(&self, f: F) -> &Self {
      let tmp = self.mmcrxim();
      self.set_mmcrxim(f(tmp))
   }
@@ -720,14 +720,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mmctxim(&self, value: Mmctxim) -> &Emac {
+  pub fn set_mmctxim(&self, value: Mmctxim) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x110) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmctxim<F: FnOnce(Mmctxim) -> Mmctxim>(&self, f: F) -> &Emac {
+  pub fn with_mmctxim<F: FnOnce(Mmctxim) -> Mmctxim>(&self, f: F) -> &Self {
      let tmp = self.mmctxim();
      self.set_mmctxim(f(tmp))
   }
@@ -747,14 +747,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_txcntgb(&self, value: Txcntgb) -> &Emac {
+  pub fn set_txcntgb(&self, value: Txcntgb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x118) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_txcntgb<F: FnOnce(Txcntgb) -> Txcntgb>(&self, f: F) -> &Emac {
+  pub fn with_txcntgb<F: FnOnce(Txcntgb) -> Txcntgb>(&self, f: F) -> &Self {
      let tmp = self.txcntgb();
      self.set_txcntgb(f(tmp))
   }
@@ -774,14 +774,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_txcntscol(&self, value: Txcntscol) -> &Emac {
+  pub fn set_txcntscol(&self, value: Txcntscol) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_txcntscol<F: FnOnce(Txcntscol) -> Txcntscol>(&self, f: F) -> &Emac {
+  pub fn with_txcntscol<F: FnOnce(Txcntscol) -> Txcntscol>(&self, f: F) -> &Self {
      let tmp = self.txcntscol();
      self.set_txcntscol(f(tmp))
   }
@@ -801,14 +801,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_txcntmcol(&self, value: Txcntmcol) -> &Emac {
+  pub fn set_txcntmcol(&self, value: Txcntmcol) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x150) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_txcntmcol<F: FnOnce(Txcntmcol) -> Txcntmcol>(&self, f: F) -> &Emac {
+  pub fn with_txcntmcol<F: FnOnce(Txcntmcol) -> Txcntmcol>(&self, f: F) -> &Self {
      let tmp = self.txcntmcol();
      self.set_txcntmcol(f(tmp))
   }
@@ -828,14 +828,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_txoctcntg(&self, value: Txoctcntg) -> &Emac {
+  pub fn set_txoctcntg(&self, value: Txoctcntg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x164) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_txoctcntg<F: FnOnce(Txoctcntg) -> Txoctcntg>(&self, f: F) -> &Emac {
+  pub fn with_txoctcntg<F: FnOnce(Txoctcntg) -> Txoctcntg>(&self, f: F) -> &Self {
      let tmp = self.txoctcntg();
      self.set_txoctcntg(f(tmp))
   }
@@ -855,14 +855,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxcntgb(&self, value: Rxcntgb) -> &Emac {
+  pub fn set_rxcntgb(&self, value: Rxcntgb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxcntgb<F: FnOnce(Rxcntgb) -> Rxcntgb>(&self, f: F) -> &Emac {
+  pub fn with_rxcntgb<F: FnOnce(Rxcntgb) -> Rxcntgb>(&self, f: F) -> &Self {
      let tmp = self.rxcntgb();
      self.set_rxcntgb(f(tmp))
   }
@@ -882,14 +882,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxcntcrcerr(&self, value: Rxcntcrcerr) -> &Emac {
+  pub fn set_rxcntcrcerr(&self, value: Rxcntcrcerr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x194) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxcntcrcerr<F: FnOnce(Rxcntcrcerr) -> Rxcntcrcerr>(&self, f: F) -> &Emac {
+  pub fn with_rxcntcrcerr<F: FnOnce(Rxcntcrcerr) -> Rxcntcrcerr>(&self, f: F) -> &Self {
      let tmp = self.rxcntcrcerr();
      self.set_rxcntcrcerr(f(tmp))
   }
@@ -909,14 +909,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxcntalgnerr(&self, value: Rxcntalgnerr) -> &Emac {
+  pub fn set_rxcntalgnerr(&self, value: Rxcntalgnerr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x198) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxcntalgnerr<F: FnOnce(Rxcntalgnerr) -> Rxcntalgnerr>(&self, f: F) -> &Emac {
+  pub fn with_rxcntalgnerr<F: FnOnce(Rxcntalgnerr) -> Rxcntalgnerr>(&self, f: F) -> &Self {
      let tmp = self.rxcntalgnerr();
      self.set_rxcntalgnerr(f(tmp))
   }
@@ -936,14 +936,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxcntguni(&self, value: Rxcntguni) -> &Emac {
+  pub fn set_rxcntguni(&self, value: Rxcntguni) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxcntguni<F: FnOnce(Rxcntguni) -> Rxcntguni>(&self, f: F) -> &Emac {
+  pub fn with_rxcntguni<F: FnOnce(Rxcntguni) -> Rxcntguni>(&self, f: F) -> &Self {
      let tmp = self.rxcntguni();
      self.set_rxcntguni(f(tmp))
   }
@@ -963,14 +963,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_vlnincrep(&self, value: Vlnincrep) -> &Emac {
+  pub fn set_vlnincrep(&self, value: Vlnincrep) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x584) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_vlnincrep<F: FnOnce(Vlnincrep) -> Vlnincrep>(&self, f: F) -> &Emac {
+  pub fn with_vlnincrep<F: FnOnce(Vlnincrep) -> Vlnincrep>(&self, f: F) -> &Self {
      let tmp = self.vlnincrep();
      self.set_vlnincrep(f(tmp))
   }
@@ -990,14 +990,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_vlanhash(&self, value: Vlanhash) -> &Emac {
+  pub fn set_vlanhash(&self, value: Vlanhash) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x588) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_vlanhash<F: FnOnce(Vlanhash) -> Vlanhash>(&self, f: F) -> &Emac {
+  pub fn with_vlanhash<F: FnOnce(Vlanhash) -> Vlanhash>(&self, f: F) -> &Self {
      let tmp = self.vlanhash();
      self.set_vlanhash(f(tmp))
   }
@@ -1017,14 +1017,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timstctrl(&self, value: Timstctrl) -> &Emac {
+  pub fn set_timstctrl(&self, value: Timstctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x700) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timstctrl<F: FnOnce(Timstctrl) -> Timstctrl>(&self, f: F) -> &Emac {
+  pub fn with_timstctrl<F: FnOnce(Timstctrl) -> Timstctrl>(&self, f: F) -> &Self {
      let tmp = self.timstctrl();
      self.set_timstctrl(f(tmp))
   }
@@ -1044,14 +1044,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_subsecinc(&self, value: Subsecinc) -> &Emac {
+  pub fn set_subsecinc(&self, value: Subsecinc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x704) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_subsecinc<F: FnOnce(Subsecinc) -> Subsecinc>(&self, f: F) -> &Emac {
+  pub fn with_subsecinc<F: FnOnce(Subsecinc) -> Subsecinc>(&self, f: F) -> &Self {
      let tmp = self.subsecinc();
      self.set_subsecinc(f(tmp))
   }
@@ -1071,14 +1071,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timsec(&self, value: Timsec) -> &Emac {
+  pub fn set_timsec(&self, value: Timsec) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x708) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timsec<F: FnOnce(Timsec) -> Timsec>(&self, f: F) -> &Emac {
+  pub fn with_timsec<F: FnOnce(Timsec) -> Timsec>(&self, f: F) -> &Self {
      let tmp = self.timsec();
      self.set_timsec(f(tmp))
   }
@@ -1098,14 +1098,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timnano(&self, value: Timnano) -> &Emac {
+  pub fn set_timnano(&self, value: Timnano) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x70c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timnano<F: FnOnce(Timnano) -> Timnano>(&self, f: F) -> &Emac {
+  pub fn with_timnano<F: FnOnce(Timnano) -> Timnano>(&self, f: F) -> &Self {
      let tmp = self.timnano();
      self.set_timnano(f(tmp))
   }
@@ -1125,14 +1125,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timsecu(&self, value: Timsecu) -> &Emac {
+  pub fn set_timsecu(&self, value: Timsecu) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x710) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timsecu<F: FnOnce(Timsecu) -> Timsecu>(&self, f: F) -> &Emac {
+  pub fn with_timsecu<F: FnOnce(Timsecu) -> Timsecu>(&self, f: F) -> &Self {
      let tmp = self.timsecu();
      self.set_timsecu(f(tmp))
   }
@@ -1152,14 +1152,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timnanou(&self, value: Timnanou) -> &Emac {
+  pub fn set_timnanou(&self, value: Timnanou) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x714) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timnanou<F: FnOnce(Timnanou) -> Timnanou>(&self, f: F) -> &Emac {
+  pub fn with_timnanou<F: FnOnce(Timnanou) -> Timnanou>(&self, f: F) -> &Self {
      let tmp = self.timnanou();
      self.set_timnanou(f(tmp))
   }
@@ -1179,14 +1179,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timadd(&self, value: Timadd) -> &Emac {
+  pub fn set_timadd(&self, value: Timadd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x718) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timadd<F: FnOnce(Timadd) -> Timadd>(&self, f: F) -> &Emac {
+  pub fn with_timadd<F: FnOnce(Timadd) -> Timadd>(&self, f: F) -> &Self {
      let tmp = self.timadd();
      self.set_timadd(f(tmp))
   }
@@ -1206,14 +1206,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_targsec(&self, value: Targsec) -> &Emac {
+  pub fn set_targsec(&self, value: Targsec) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x71c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_targsec<F: FnOnce(Targsec) -> Targsec>(&self, f: F) -> &Emac {
+  pub fn with_targsec<F: FnOnce(Targsec) -> Targsec>(&self, f: F) -> &Self {
      let tmp = self.targsec();
      self.set_targsec(f(tmp))
   }
@@ -1233,14 +1233,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_targnano(&self, value: Targnano) -> &Emac {
+  pub fn set_targnano(&self, value: Targnano) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x720) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_targnano<F: FnOnce(Targnano) -> Targnano>(&self, f: F) -> &Emac {
+  pub fn with_targnano<F: FnOnce(Targnano) -> Targnano>(&self, f: F) -> &Self {
      let tmp = self.targnano();
      self.set_targnano(f(tmp))
   }
@@ -1260,14 +1260,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hwordsec(&self, value: Hwordsec) -> &Emac {
+  pub fn set_hwordsec(&self, value: Hwordsec) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x724) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hwordsec<F: FnOnce(Hwordsec) -> Hwordsec>(&self, f: F) -> &Emac {
+  pub fn with_hwordsec<F: FnOnce(Hwordsec) -> Hwordsec>(&self, f: F) -> &Self {
      let tmp = self.hwordsec();
      self.set_hwordsec(f(tmp))
   }
@@ -1287,14 +1287,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_timstat(&self, value: Timstat) -> &Emac {
+  pub fn set_timstat(&self, value: Timstat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x728) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_timstat<F: FnOnce(Timstat) -> Timstat>(&self, f: F) -> &Emac {
+  pub fn with_timstat<F: FnOnce(Timstat) -> Timstat>(&self, f: F) -> &Self {
      let tmp = self.timstat();
      self.set_timstat(f(tmp))
   }
@@ -1314,14 +1314,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_ppsctrl(&self, value: Ppsctrl) -> &Emac {
+  pub fn set_ppsctrl(&self, value: Ppsctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x72c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppsctrl<F: FnOnce(Ppsctrl) -> Ppsctrl>(&self, f: F) -> &Emac {
+  pub fn with_ppsctrl<F: FnOnce(Ppsctrl) -> Ppsctrl>(&self, f: F) -> &Self {
      let tmp = self.ppsctrl();
      self.set_ppsctrl(f(tmp))
   }
@@ -1341,14 +1341,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_pps0intvl(&self, value: Pps0intvl) -> &Emac {
+  pub fn set_pps0intvl(&self, value: Pps0intvl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x760) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pps0intvl<F: FnOnce(Pps0intvl) -> Pps0intvl>(&self, f: F) -> &Emac {
+  pub fn with_pps0intvl<F: FnOnce(Pps0intvl) -> Pps0intvl>(&self, f: F) -> &Self {
      let tmp = self.pps0intvl();
      self.set_pps0intvl(f(tmp))
   }
@@ -1368,14 +1368,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_pps0width(&self, value: Pps0width) -> &Emac {
+  pub fn set_pps0width(&self, value: Pps0width) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x764) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pps0width<F: FnOnce(Pps0width) -> Pps0width>(&self, f: F) -> &Emac {
+  pub fn with_pps0width<F: FnOnce(Pps0width) -> Pps0width>(&self, f: F) -> &Self {
      let tmp = self.pps0width();
      self.set_pps0width(f(tmp))
   }
@@ -1395,14 +1395,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_dmabusmod(&self, value: Dmabusmod) -> &Emac {
+  pub fn set_dmabusmod(&self, value: Dmabusmod) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc00) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmabusmod<F: FnOnce(Dmabusmod) -> Dmabusmod>(&self, f: F) -> &Emac {
+  pub fn with_dmabusmod<F: FnOnce(Dmabusmod) -> Dmabusmod>(&self, f: F) -> &Self {
      let tmp = self.dmabusmod();
      self.set_dmabusmod(f(tmp))
   }
@@ -1416,7 +1416,7 @@ impl Emac {
      ((self.0 as usize) + 0xc04) as *mut u32
   }
   #[inline]
-  pub fn set_txpolld(&self, value: Txpolld) -> &Emac {
+  pub fn set_txpolld(&self, value: Txpolld) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc04) as *mut u32, value.0);
      }
@@ -1432,7 +1432,7 @@ impl Emac {
      ((self.0 as usize) + 0xc08) as *mut u32
   }
   #[inline]
-  pub fn set_rxpolld(&self, value: Rxpolld) -> &Emac {
+  pub fn set_rxpolld(&self, value: Rxpolld) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc08) as *mut u32, value.0);
      }
@@ -1454,14 +1454,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxdladdr(&self, value: Rxdladdr) -> &Emac {
+  pub fn set_rxdladdr(&self, value: Rxdladdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc0c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxdladdr<F: FnOnce(Rxdladdr) -> Rxdladdr>(&self, f: F) -> &Emac {
+  pub fn with_rxdladdr<F: FnOnce(Rxdladdr) -> Rxdladdr>(&self, f: F) -> &Self {
      let tmp = self.rxdladdr();
      self.set_rxdladdr(f(tmp))
   }
@@ -1481,14 +1481,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_txdladdr(&self, value: Txdladdr) -> &Emac {
+  pub fn set_txdladdr(&self, value: Txdladdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_txdladdr<F: FnOnce(Txdladdr) -> Txdladdr>(&self, f: F) -> &Emac {
+  pub fn with_txdladdr<F: FnOnce(Txdladdr) -> Txdladdr>(&self, f: F) -> &Self {
      let tmp = self.txdladdr();
      self.set_txdladdr(f(tmp))
   }
@@ -1508,14 +1508,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_dmaris(&self, value: Dmaris) -> &Emac {
+  pub fn set_dmaris(&self, value: Dmaris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmaris<F: FnOnce(Dmaris) -> Dmaris>(&self, f: F) -> &Emac {
+  pub fn with_dmaris<F: FnOnce(Dmaris) -> Dmaris>(&self, f: F) -> &Self {
      let tmp = self.dmaris();
      self.set_dmaris(f(tmp))
   }
@@ -1535,14 +1535,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_dmaopmode(&self, value: Dmaopmode) -> &Emac {
+  pub fn set_dmaopmode(&self, value: Dmaopmode) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmaopmode<F: FnOnce(Dmaopmode) -> Dmaopmode>(&self, f: F) -> &Emac {
+  pub fn with_dmaopmode<F: FnOnce(Dmaopmode) -> Dmaopmode>(&self, f: F) -> &Self {
      let tmp = self.dmaopmode();
      self.set_dmaopmode(f(tmp))
   }
@@ -1562,14 +1562,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_dmaim(&self, value: Dmaim) -> &Emac {
+  pub fn set_dmaim(&self, value: Dmaim) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmaim<F: FnOnce(Dmaim) -> Dmaim>(&self, f: F) -> &Emac {
+  pub fn with_dmaim<F: FnOnce(Dmaim) -> Dmaim>(&self, f: F) -> &Self {
      let tmp = self.dmaim();
      self.set_dmaim(f(tmp))
   }
@@ -1589,14 +1589,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_mfboc(&self, value: Mfboc) -> &Emac {
+  pub fn set_mfboc(&self, value: Mfboc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mfboc<F: FnOnce(Mfboc) -> Mfboc>(&self, f: F) -> &Emac {
+  pub fn with_mfboc<F: FnOnce(Mfboc) -> Mfboc>(&self, f: F) -> &Self {
      let tmp = self.mfboc();
      self.set_mfboc(f(tmp))
   }
@@ -1616,14 +1616,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_rxintwdt(&self, value: Rxintwdt) -> &Emac {
+  pub fn set_rxintwdt(&self, value: Rxintwdt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxintwdt<F: FnOnce(Rxintwdt) -> Rxintwdt>(&self, f: F) -> &Emac {
+  pub fn with_rxintwdt<F: FnOnce(Rxintwdt) -> Rxintwdt>(&self, f: F) -> &Self {
      let tmp = self.rxintwdt();
      self.set_rxintwdt(f(tmp))
   }
@@ -1643,14 +1643,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hostxdesc(&self, value: Hostxdesc) -> &Emac {
+  pub fn set_hostxdesc(&self, value: Hostxdesc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hostxdesc<F: FnOnce(Hostxdesc) -> Hostxdesc>(&self, f: F) -> &Emac {
+  pub fn with_hostxdesc<F: FnOnce(Hostxdesc) -> Hostxdesc>(&self, f: F) -> &Self {
      let tmp = self.hostxdesc();
      self.set_hostxdesc(f(tmp))
   }
@@ -1670,14 +1670,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hosrxdesc(&self, value: Hosrxdesc) -> &Emac {
+  pub fn set_hosrxdesc(&self, value: Hosrxdesc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc4c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hosrxdesc<F: FnOnce(Hosrxdesc) -> Hosrxdesc>(&self, f: F) -> &Emac {
+  pub fn with_hosrxdesc<F: FnOnce(Hosrxdesc) -> Hosrxdesc>(&self, f: F) -> &Self {
      let tmp = self.hosrxdesc();
      self.set_hosrxdesc(f(tmp))
   }
@@ -1697,14 +1697,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hostxba(&self, value: Hostxba) -> &Emac {
+  pub fn set_hostxba(&self, value: Hostxba) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hostxba<F: FnOnce(Hostxba) -> Hostxba>(&self, f: F) -> &Emac {
+  pub fn with_hostxba<F: FnOnce(Hostxba) -> Hostxba>(&self, f: F) -> &Self {
      let tmp = self.hostxba();
      self.set_hostxba(f(tmp))
   }
@@ -1724,14 +1724,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_hosrxba(&self, value: Hosrxba) -> &Emac {
+  pub fn set_hosrxba(&self, value: Hosrxba) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hosrxba<F: FnOnce(Hosrxba) -> Hosrxba>(&self, f: F) -> &Emac {
+  pub fn with_hosrxba<F: FnOnce(Hosrxba) -> Hosrxba>(&self, f: F) -> &Self {
      let tmp = self.hosrxba();
      self.set_hosrxba(f(tmp))
   }
@@ -1751,14 +1751,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_pp(&self, value: Pp) -> &Emac {
+  pub fn set_pp(&self, value: Pp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Emac {
+  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
      let tmp = self.pp();
      self.set_pp(f(tmp))
   }
@@ -1778,14 +1778,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_pc(&self, value: Pc) -> &Emac {
+  pub fn set_pc(&self, value: Pc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Emac {
+  pub fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
      let tmp = self.pc();
      self.set_pc(f(tmp))
   }
@@ -1805,14 +1805,14 @@ impl Emac {
      }
   }
   #[inline]
-  pub fn set_cc(&self, value: Cc) -> &Emac {
+  pub fn set_cc(&self, value: Cc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Emac {
+  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
      let tmp = self.cc();
      self.set_cc(f(tmp))
   }
@@ -6416,3 +6416,4 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+

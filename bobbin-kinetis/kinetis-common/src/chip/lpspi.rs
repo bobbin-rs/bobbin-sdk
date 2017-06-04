@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct LpspiImpl(pub u32);
-impl LpspiImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn verid_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -47,14 +50,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &LpspiImpl {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &LpspiImpl {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -74,14 +77,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &LpspiImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &LpspiImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -101,14 +104,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_ier(&self, value: Ier) -> &LpspiImpl {
+  pub fn set_ier(&self, value: Ier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ier<F: FnOnce(Ier) -> Ier>(&self, f: F) -> &LpspiImpl {
+  pub fn with_ier<F: FnOnce(Ier) -> Ier>(&self, f: F) -> &Self {
      let tmp = self.ier();
      self.set_ier(f(tmp))
   }
@@ -128,14 +131,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_der(&self, value: Der) -> &LpspiImpl {
+  pub fn set_der(&self, value: Der) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_der<F: FnOnce(Der) -> Der>(&self, f: F) -> &LpspiImpl {
+  pub fn with_der<F: FnOnce(Der) -> Der>(&self, f: F) -> &Self {
      let tmp = self.der();
      self.set_der(f(tmp))
   }
@@ -155,14 +158,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_cfgr0(&self, value: Cfgr0) -> &LpspiImpl {
+  pub fn set_cfgr0(&self, value: Cfgr0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr0<F: FnOnce(Cfgr0) -> Cfgr0>(&self, f: F) -> &LpspiImpl {
+  pub fn with_cfgr0<F: FnOnce(Cfgr0) -> Cfgr0>(&self, f: F) -> &Self {
      let tmp = self.cfgr0();
      self.set_cfgr0(f(tmp))
   }
@@ -182,14 +185,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_cfgr1(&self, value: Cfgr1) -> &LpspiImpl {
+  pub fn set_cfgr1(&self, value: Cfgr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &LpspiImpl {
+  pub fn with_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &Self {
      let tmp = self.cfgr1();
      self.set_cfgr1(f(tmp))
   }
@@ -209,14 +212,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_dmr0(&self, value: Dmr0) -> &LpspiImpl {
+  pub fn set_dmr0(&self, value: Dmr0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmr0<F: FnOnce(Dmr0) -> Dmr0>(&self, f: F) -> &LpspiImpl {
+  pub fn with_dmr0<F: FnOnce(Dmr0) -> Dmr0>(&self, f: F) -> &Self {
      let tmp = self.dmr0();
      self.set_dmr0(f(tmp))
   }
@@ -236,14 +239,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_dmr1(&self, value: Dmr1) -> &LpspiImpl {
+  pub fn set_dmr1(&self, value: Dmr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmr1<F: FnOnce(Dmr1) -> Dmr1>(&self, f: F) -> &LpspiImpl {
+  pub fn with_dmr1<F: FnOnce(Dmr1) -> Dmr1>(&self, f: F) -> &Self {
      let tmp = self.dmr1();
      self.set_dmr1(f(tmp))
   }
@@ -263,14 +266,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, value: Ccr) -> &LpspiImpl {
+  pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &LpspiImpl {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
@@ -290,14 +293,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_fcr(&self, value: Fcr) -> &LpspiImpl {
+  pub fn set_fcr(&self, value: Fcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fcr<F: FnOnce(Fcr) -> Fcr>(&self, f: F) -> &LpspiImpl {
+  pub fn with_fcr<F: FnOnce(Fcr) -> Fcr>(&self, f: F) -> &Self {
      let tmp = self.fcr();
      self.set_fcr(f(tmp))
   }
@@ -332,14 +335,14 @@ impl LpspiImpl {
      }
   }
   #[inline]
-  pub fn set_tcr(&self, value: Tcr) -> &LpspiImpl {
+  pub fn set_tcr(&self, value: Tcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &LpspiImpl {
+  pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
      let tmp = self.tcr();
      self.set_tcr(f(tmp))
   }
@@ -353,7 +356,7 @@ impl LpspiImpl {
      ((self.0 as usize) + 0x64) as *mut u32
   }
   #[inline]
-  pub fn set_tdr(&self, value: Tdr) -> &LpspiImpl {
+  pub fn set_tdr(&self, value: Tdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }

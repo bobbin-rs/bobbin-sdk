@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsartF24Impl(pub u32);
-impl UsartF24Impl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn sr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &UsartF24Impl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -44,14 +47,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &UsartF24Impl {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -71,14 +74,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_brr(&self, value: Brr) -> &UsartF24Impl {
+  pub fn set_brr(&self, value: Brr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
      let tmp = self.brr();
      self.set_brr(f(tmp))
   }
@@ -98,14 +101,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &UsartF24Impl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -125,14 +128,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &UsartF24Impl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -152,14 +155,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_cr3(&self, value: Cr3) -> &UsartF24Impl {
+  pub fn set_cr3(&self, value: Cr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) -> &Self {
      let tmp = self.cr3();
      self.set_cr3(f(tmp))
   }
@@ -179,14 +182,14 @@ impl UsartF24Impl {
      }
   }
   #[inline]
-  pub fn set_gtpr(&self, value: Gtpr) -> &UsartF24Impl {
+  pub fn set_gtpr(&self, value: Gtpr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gtpr<F: FnOnce(Gtpr) -> Gtpr>(&self, f: F) -> &UsartF24Impl {
+  pub fn with_gtpr<F: FnOnce(Gtpr) -> Gtpr>(&self, f: F) -> &Self {
      let tmp = self.gtpr();
      self.set_gtpr(f(tmp))
   }

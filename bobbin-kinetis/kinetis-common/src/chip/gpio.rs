@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct GpioImpl(pub u32);
-impl GpioImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn pdor_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_pdor(&self, value: Pdor) -> &GpioImpl {
+  pub fn set_pdor(&self, value: Pdor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &GpioImpl {
+  pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
      let tmp = self.pdor();
      self.set_pdor(f(tmp))
   }
@@ -38,7 +41,7 @@ impl GpioImpl {
      ((self.0 as usize) + 0x4) as *mut u32
   }
   #[inline]
-  pub fn set_psor(&self, value: Psor) -> &GpioImpl {
+  pub fn set_psor(&self, value: Psor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -54,7 +57,7 @@ impl GpioImpl {
      ((self.0 as usize) + 0x8) as *mut u32
   }
   #[inline]
-  pub fn set_pcor(&self, value: Pcor) -> &GpioImpl {
+  pub fn set_pcor(&self, value: Pcor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -70,7 +73,7 @@ impl GpioImpl {
      ((self.0 as usize) + 0xc) as *mut u32
   }
   #[inline]
-  pub fn set_ptor(&self, value: Ptor) -> &GpioImpl {
+  pub fn set_ptor(&self, value: Ptor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -107,14 +110,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_pddr(&self, value: Pddr) -> &GpioImpl {
+  pub fn set_pddr(&self, value: Pddr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &GpioImpl {
+  pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
      let tmp = self.pddr();
      self.set_pddr(f(tmp))
   }
@@ -505,17 +508,13 @@ impl ::core::fmt::Debug for Pddr {
       Ok(())
    }
 }
-pub struct PinImpl {
-  pub port: GpioImpl,
-  pub index: usize,
-}
+pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
+impl<P,T> Pin<P,T> {
+   #[inline] pub fn port(&self) -> &Periph<T> { &self.port }
+   #[inline] pub fn index(&self) -> usize { self.index }
 }
-
 pub trait AltFn<T> {
-   fn alt_fn(&self) -> usize;
+   #[inline] fn alt_fn(&self) -> usize;
 }
 

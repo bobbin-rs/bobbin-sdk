@@ -33,14 +33,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_dbgmcu_cr(&self, value: DbgmcuCr) -> &Dbg {
+  pub fn set_dbgmcu_cr(&self, value: DbgmcuCr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Dbg {
+  pub fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
      let tmp = self.dbgmcu_cr();
      self.set_dbgmcu_cr(f(tmp))
   }
@@ -60,14 +60,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_dbgmcu_apb1_fz(&self, value: DbgmcuApb1Fz) -> &Dbg {
+  pub fn set_dbgmcu_apb1_fz(&self, value: DbgmcuApb1Fz) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Dbg {
+  pub fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
      let tmp = self.dbgmcu_apb1_fz();
      self.set_dbgmcu_apb1_fz(f(tmp))
   }
@@ -87,14 +87,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_dbgmcu_apb2_fz(&self, value: DbgmcuApb2Fz) -> &Dbg {
+  pub fn set_dbgmcu_apb2_fz(&self, value: DbgmcuApb2Fz) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Dbg {
+  pub fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
      let tmp = self.dbgmcu_apb2_fz();
      self.set_dbgmcu_apb2_fz(f(tmp))
   }
@@ -594,3 +594,4 @@ impl ::core::fmt::Debug for DbgmcuApb2Fz {
       Ok(())
    }
 }
+

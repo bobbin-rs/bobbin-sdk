@@ -18,14 +18,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt1(&self, value: Sopt1) -> &Sim {
+  pub fn set_sopt1(&self, value: Sopt1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt1<F: FnOnce(Sopt1) -> Sopt1>(&self, f: F) -> &Sim {
+  pub fn with_sopt1<F: FnOnce(Sopt1) -> Sopt1>(&self, f: F) -> &Self {
      let tmp = self.sopt1();
      self.set_sopt1(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt1cfg(&self, value: Sopt1cfg) -> &Sim {
+  pub fn set_sopt1cfg(&self, value: Sopt1cfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt1cfg<F: FnOnce(Sopt1cfg) -> Sopt1cfg>(&self, f: F) -> &Sim {
+  pub fn with_sopt1cfg<F: FnOnce(Sopt1cfg) -> Sopt1cfg>(&self, f: F) -> &Self {
      let tmp = self.sopt1cfg();
      self.set_sopt1cfg(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt2(&self, value: Sopt2) -> &Sim {
+  pub fn set_sopt2(&self, value: Sopt2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1004) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt2<F: FnOnce(Sopt2) -> Sopt2>(&self, f: F) -> &Sim {
+  pub fn with_sopt2<F: FnOnce(Sopt2) -> Sopt2>(&self, f: F) -> &Self {
      let tmp = self.sopt2();
      self.set_sopt2(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt4(&self, value: Sopt4) -> &Sim {
+  pub fn set_sopt4(&self, value: Sopt4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x100c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt4<F: FnOnce(Sopt4) -> Sopt4>(&self, f: F) -> &Sim {
+  pub fn with_sopt4<F: FnOnce(Sopt4) -> Sopt4>(&self, f: F) -> &Self {
      let tmp = self.sopt4();
      self.set_sopt4(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt5(&self, value: Sopt5) -> &Sim {
+  pub fn set_sopt5(&self, value: Sopt5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1010) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt5<F: FnOnce(Sopt5) -> Sopt5>(&self, f: F) -> &Sim {
+  pub fn with_sopt5<F: FnOnce(Sopt5) -> Sopt5>(&self, f: F) -> &Self {
      let tmp = self.sopt5();
      self.set_sopt5(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_sopt7(&self, value: Sopt7) -> &Sim {
+  pub fn set_sopt7(&self, value: Sopt7) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1018) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sopt7<F: FnOnce(Sopt7) -> Sopt7>(&self, f: F) -> &Sim {
+  pub fn with_sopt7<F: FnOnce(Sopt7) -> Sopt7>(&self, f: F) -> &Self {
      let tmp = self.sopt7();
      self.set_sopt7(f(tmp))
   }
@@ -195,14 +195,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_scgc4(&self, value: Scgc4) -> &Sim {
+  pub fn set_scgc4(&self, value: Scgc4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1034) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgc4<F: FnOnce(Scgc4) -> Scgc4>(&self, f: F) -> &Sim {
+  pub fn with_scgc4<F: FnOnce(Scgc4) -> Scgc4>(&self, f: F) -> &Self {
      let tmp = self.scgc4();
      self.set_scgc4(f(tmp))
   }
@@ -222,14 +222,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_scgc5(&self, value: Scgc5) -> &Sim {
+  pub fn set_scgc5(&self, value: Scgc5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1038) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgc5<F: FnOnce(Scgc5) -> Scgc5>(&self, f: F) -> &Sim {
+  pub fn with_scgc5<F: FnOnce(Scgc5) -> Scgc5>(&self, f: F) -> &Self {
      let tmp = self.scgc5();
      self.set_scgc5(f(tmp))
   }
@@ -249,14 +249,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_scgc6(&self, value: Scgc6) -> &Sim {
+  pub fn set_scgc6(&self, value: Scgc6) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x103c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgc6<F: FnOnce(Scgc6) -> Scgc6>(&self, f: F) -> &Sim {
+  pub fn with_scgc6<F: FnOnce(Scgc6) -> Scgc6>(&self, f: F) -> &Self {
      let tmp = self.scgc6();
      self.set_scgc6(f(tmp))
   }
@@ -276,14 +276,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_scgc7(&self, value: Scgc7) -> &Sim {
+  pub fn set_scgc7(&self, value: Scgc7) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1040) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgc7<F: FnOnce(Scgc7) -> Scgc7>(&self, f: F) -> &Sim {
+  pub fn with_scgc7<F: FnOnce(Scgc7) -> Scgc7>(&self, f: F) -> &Self {
      let tmp = self.scgc7();
      self.set_scgc7(f(tmp))
   }
@@ -303,14 +303,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_clkdiv1(&self, value: Clkdiv1) -> &Sim {
+  pub fn set_clkdiv1(&self, value: Clkdiv1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1044) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_clkdiv1<F: FnOnce(Clkdiv1) -> Clkdiv1>(&self, f: F) -> &Sim {
+  pub fn with_clkdiv1<F: FnOnce(Clkdiv1) -> Clkdiv1>(&self, f: F) -> &Self {
      let tmp = self.clkdiv1();
      self.set_clkdiv1(f(tmp))
   }
@@ -330,14 +330,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_fcfg1(&self, value: Fcfg1) -> &Sim {
+  pub fn set_fcfg1(&self, value: Fcfg1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x104c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fcfg1<F: FnOnce(Fcfg1) -> Fcfg1>(&self, f: F) -> &Sim {
+  pub fn with_fcfg1<F: FnOnce(Fcfg1) -> Fcfg1>(&self, f: F) -> &Self {
      let tmp = self.fcfg1();
      self.set_fcfg1(f(tmp))
   }
@@ -417,14 +417,14 @@ impl Sim {
      }
   }
   #[inline]
-  pub fn set_copc(&self, value: Copc) -> &Sim {
+  pub fn set_copc(&self, value: Copc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1100) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_copc<F: FnOnce(Copc) -> Copc>(&self, f: F) -> &Sim {
+  pub fn with_copc<F: FnOnce(Copc) -> Copc>(&self, f: F) -> &Self {
      let tmp = self.copc();
      self.set_copc(f(tmp))
   }
@@ -438,7 +438,7 @@ impl Sim {
      ((self.0 as usize) + 0x1104) as *mut u32
   }
   #[inline]
-  pub fn set_srvcop(&self, value: Srvcop) -> &Sim {
+  pub fn set_srvcop(&self, value: Srvcop) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1104) as *mut u32, value.0);
      }
@@ -1854,4 +1854,5 @@ impl En for super::pit::Pit {
    #[inline]
    fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_pit(value)); }
 }
+
 

@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct LpuartImpl(pub u32);
-impl LpuartImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn verid_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -47,14 +50,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_global(&self, value: Global) -> &LpuartImpl {
+  pub fn set_global(&self, value: Global) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_global<F: FnOnce(Global) -> Global>(&self, f: F) -> &LpuartImpl {
+  pub fn with_global<F: FnOnce(Global) -> Global>(&self, f: F) -> &Self {
      let tmp = self.global();
      self.set_global(f(tmp))
   }
@@ -74,14 +77,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_pincfg(&self, value: Pincfg) -> &LpuartImpl {
+  pub fn set_pincfg(&self, value: Pincfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, f: F) -> &LpuartImpl {
+  pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, f: F) -> &Self {
      let tmp = self.pincfg();
      self.set_pincfg(f(tmp))
   }
@@ -101,14 +104,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_baud(&self, value: Baud) -> &LpuartImpl {
+  pub fn set_baud(&self, value: Baud) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &LpuartImpl {
+  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
      let tmp = self.baud();
      self.set_baud(f(tmp))
   }
@@ -128,14 +131,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_stat(&self, value: Stat) -> &LpuartImpl {
+  pub fn set_stat(&self, value: Stat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &LpuartImpl {
+  pub fn with_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
      let tmp = self.stat();
      self.set_stat(f(tmp))
   }
@@ -155,14 +158,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_ctrl(&self, value: Ctrl) -> &LpuartImpl {
+  pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &LpuartImpl {
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
@@ -182,14 +185,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &LpuartImpl {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &LpuartImpl {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -209,14 +212,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_match(&self, value: Match) -> &LpuartImpl {
+  pub fn set_match(&self, value: Match) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_match<F: FnOnce(Match) -> Match>(&self, f: F) -> &LpuartImpl {
+  pub fn with_match<F: FnOnce(Match) -> Match>(&self, f: F) -> &Self {
      let tmp = self._match();
      self.set_match(f(tmp))
   }
@@ -236,14 +239,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_modir(&self, value: Modir) -> &LpuartImpl {
+  pub fn set_modir(&self, value: Modir) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_modir<F: FnOnce(Modir) -> Modir>(&self, f: F) -> &LpuartImpl {
+  pub fn with_modir<F: FnOnce(Modir) -> Modir>(&self, f: F) -> &Self {
      let tmp = self.modir();
      self.set_modir(f(tmp))
   }
@@ -263,14 +266,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_fifo(&self, value: Fifo) -> &LpuartImpl {
+  pub fn set_fifo(&self, value: Fifo) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> &LpuartImpl {
+  pub fn with_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> &Self {
      let tmp = self.fifo();
      self.set_fifo(f(tmp))
   }
@@ -290,14 +293,14 @@ impl LpuartImpl {
      }
   }
   #[inline]
-  pub fn set_water(&self, value: Water) -> &LpuartImpl {
+  pub fn set_water(&self, value: Water) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_water<F: FnOnce(Water) -> Water>(&self, f: F) -> &LpuartImpl {
+  pub fn with_water<F: FnOnce(Water) -> Water>(&self, f: F) -> &Self {
      let tmp = self.water();
      self.set_water(f(tmp))
   }

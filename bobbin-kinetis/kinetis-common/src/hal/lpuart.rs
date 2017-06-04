@@ -19,7 +19,7 @@ pub trait LpuartExt {
     fn write(&self, buf: &[u8]) -> &Self;
 }
 
-impl LpuartExt for LpuartImpl {
+impl<T> LpuartExt for Periph<T> {
     fn set_osr(&self, value: u16) -> &Self {
         self.with_baud(|r| r.set_osr(value as u32))
     }
@@ -85,7 +85,7 @@ impl LpuartExt for LpuartImpl {
     }
 }
 
-impl Write for LpuartImpl {
+impl<T> Write for Periph<T> {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
             self.putc(byte);

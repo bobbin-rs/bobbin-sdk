@@ -18,14 +18,14 @@ impl Osc {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Osc {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Osc {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -126,3 +126,4 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+

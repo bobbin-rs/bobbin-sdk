@@ -1,14 +1,31 @@
-pub const SERCOM0: Sercom0 = Sercom0 {};
-pub const SERCOM0_REF: &Sercom0 = &SERCOM0;
-pub const SERCOM0_IMPL: SercomImpl = SercomImpl(0x42000800);
-pub const SERCOM0_IMPL_REF: &SercomImpl = &SERCOM0_IMPL;
+pub const SERCOM0: Sercom0 = Periph(0x42000800, Sercom0Id {});
+pub const SERCOM1: Sercom1 = Periph(0x42000c00, Sercom1Id {});
+pub const SERCOM2: Sercom2 = Periph(0x42001000, Sercom2Id {});
+pub const SERCOM3: Sercom3 = Periph(0x42001400, Sercom3Id {});
+pub const SERCOM4: Sercom4 = Periph(0x42001800, Sercom4Id {});
+pub const SERCOM5: Sercom5 = Periph(0x42001c00, Sercom5Id {});
 
-pub struct Sercom0 {}
-impl ::core::ops::Deref for Sercom0 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM0_IMPL_REF }
-}
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom0Id {}
+pub type Sercom0 = Periph<Sercom0Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom1Id {}
+pub type Sercom1 = Periph<Sercom1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom2Id {}
+pub type Sercom2 = Periph<Sercom2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom3Id {}
+pub type Sercom3 = Periph<Sercom3Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom4Id {}
+pub type Sercom4 = Periph<Sercom4Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Sercom5Id {}
+pub type Sercom5 = Periph<Sercom5Id>;
 
 impl super::sig::Signal<super::sig::Sercom0Pad0> for Sercom0 {}
 impl super::sig::SignalPad0<super::sig::Sercom0Pad0> for Sercom0 {}
@@ -19,18 +36,6 @@ impl super::sig::SignalPad2<super::sig::Sercom0Pad2> for Sercom0 {}
 impl super::sig::Signal<super::sig::Sercom0Pad3> for Sercom0 {}
 impl super::sig::SignalPad3<super::sig::Sercom0Pad3> for Sercom0 {}
 
-pub const SERCOM1: Sercom1 = Sercom1 {};
-pub const SERCOM1_REF: &Sercom1 = &SERCOM1;
-pub const SERCOM1_IMPL: SercomImpl = SercomImpl(0x42000c00);
-pub const SERCOM1_IMPL_REF: &SercomImpl = &SERCOM1_IMPL;
-
-pub struct Sercom1 {}
-impl ::core::ops::Deref for Sercom1 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM1_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::Sercom1Pad0> for Sercom1 {}
 impl super::sig::SignalPad0<super::sig::Sercom1Pad0> for Sercom1 {}
 impl super::sig::Signal<super::sig::Sercom1Pad1> for Sercom1 {}
@@ -39,18 +44,6 @@ impl super::sig::Signal<super::sig::Sercom1Pad2> for Sercom1 {}
 impl super::sig::SignalPad2<super::sig::Sercom1Pad2> for Sercom1 {}
 impl super::sig::Signal<super::sig::Sercom1Pad3> for Sercom1 {}
 impl super::sig::SignalPad3<super::sig::Sercom1Pad3> for Sercom1 {}
-
-pub const SERCOM2: Sercom2 = Sercom2 {};
-pub const SERCOM2_REF: &Sercom2 = &SERCOM2;
-pub const SERCOM2_IMPL: SercomImpl = SercomImpl(0x42001000);
-pub const SERCOM2_IMPL_REF: &SercomImpl = &SERCOM2_IMPL;
-
-pub struct Sercom2 {}
-impl ::core::ops::Deref for Sercom2 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM2_IMPL_REF }
-}
 
 impl super::sig::Signal<super::sig::Sercom2Pad0> for Sercom2 {}
 impl super::sig::SignalPad0<super::sig::Sercom2Pad0> for Sercom2 {}
@@ -61,18 +54,6 @@ impl super::sig::SignalPad2<super::sig::Sercom2Pad2> for Sercom2 {}
 impl super::sig::Signal<super::sig::Sercom2Pad3> for Sercom2 {}
 impl super::sig::SignalPad3<super::sig::Sercom2Pad3> for Sercom2 {}
 
-pub const SERCOM3: Sercom3 = Sercom3 {};
-pub const SERCOM3_REF: &Sercom3 = &SERCOM3;
-pub const SERCOM3_IMPL: SercomImpl = SercomImpl(0x42001400);
-pub const SERCOM3_IMPL_REF: &SercomImpl = &SERCOM3_IMPL;
-
-pub struct Sercom3 {}
-impl ::core::ops::Deref for Sercom3 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM3_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::Sercom3Pad0> for Sercom3 {}
 impl super::sig::SignalPad0<super::sig::Sercom3Pad0> for Sercom3 {}
 impl super::sig::Signal<super::sig::Sercom3Pad1> for Sercom3 {}
@@ -82,18 +63,6 @@ impl super::sig::SignalPad2<super::sig::Sercom3Pad2> for Sercom3 {}
 impl super::sig::Signal<super::sig::Sercom3Pad3> for Sercom3 {}
 impl super::sig::SignalPad3<super::sig::Sercom3Pad3> for Sercom3 {}
 
-pub const SERCOM4: Sercom4 = Sercom4 {};
-pub const SERCOM4_REF: &Sercom4 = &SERCOM4;
-pub const SERCOM4_IMPL: SercomImpl = SercomImpl(0x42001800);
-pub const SERCOM4_IMPL_REF: &SercomImpl = &SERCOM4_IMPL;
-
-pub struct Sercom4 {}
-impl ::core::ops::Deref for Sercom4 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM4_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::Sercom4Pad0> for Sercom4 {}
 impl super::sig::SignalPad0<super::sig::Sercom4Pad0> for Sercom4 {}
 impl super::sig::Signal<super::sig::Sercom4Pad1> for Sercom4 {}
@@ -102,18 +71,6 @@ impl super::sig::Signal<super::sig::Sercom4Pad2> for Sercom4 {}
 impl super::sig::SignalPad2<super::sig::Sercom4Pad2> for Sercom4 {}
 impl super::sig::Signal<super::sig::Sercom4Pad3> for Sercom4 {}
 impl super::sig::SignalPad3<super::sig::Sercom4Pad3> for Sercom4 {}
-
-pub const SERCOM5: Sercom5 = Sercom5 {};
-pub const SERCOM5_REF: &Sercom5 = &SERCOM5;
-pub const SERCOM5_IMPL: SercomImpl = SercomImpl(0x42001c00);
-pub const SERCOM5_IMPL_REF: &SercomImpl = &SERCOM5_IMPL;
-
-pub struct Sercom5 {}
-impl ::core::ops::Deref for Sercom5 {
-   type Target = SercomImpl;
-   #[inline]
-   fn deref(&self) -> &SercomImpl { SERCOM5_IMPL_REF }
-}
 
 impl super::sig::Signal<super::sig::Sercom5Pad0> for Sercom5 {}
 impl super::sig::SignalPad0<super::sig::Sercom5Pad0> for Sercom5 {}
@@ -125,9 +82,7 @@ impl super::sig::Signal<super::sig::Sercom5Pad3> for Sercom5 {}
 impl super::sig::SignalPad3<super::sig::Sercom5Pad3> for Sercom5 {}
 
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct SercomImpl(pub u32);
-impl SercomImpl {
+impl<T> Periph<T> {
    #[inline]
    pub fn i2cm(&self) -> i2cm::I2cm {
       i2cm::I2cm(self.0 + 0x0)
@@ -164,14 +119,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_addr(&self, value: Addr) -> &I2cm {
+  pub fn set_addr(&self, value: Addr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &I2cm {
+  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Self {
      let tmp = self.addr();
      self.set_addr(f(tmp))
   }
@@ -191,14 +146,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_baud(&self, value: Baud) -> &I2cm {
+  pub fn set_baud(&self, value: Baud) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &I2cm {
+  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
      let tmp = self.baud();
      self.set_baud(f(tmp))
   }
@@ -218,14 +173,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &I2cm {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &I2cm {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -245,14 +200,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &I2cm {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &I2cm {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -272,14 +227,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &I2cm {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &I2cm {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -299,14 +254,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &I2cm {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &I2cm {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -326,14 +281,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &I2cm {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &I2cm {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -353,14 +308,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &I2cm {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &I2cm {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -380,14 +335,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &I2cm {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &I2cm {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -407,14 +362,14 @@ impl I2cm {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &I2cm {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &I2cm {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -1257,14 +1212,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_addr(&self, value: Addr) -> &I2cs {
+  pub fn set_addr(&self, value: Addr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &I2cs {
+  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Self {
      let tmp = self.addr();
      self.set_addr(f(tmp))
   }
@@ -1284,14 +1239,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &I2cs {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &I2cs {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -1311,14 +1266,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &I2cs {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &I2cs {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -1338,14 +1293,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &I2cs {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &I2cs {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -1365,14 +1320,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &I2cs {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &I2cs {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -1392,14 +1347,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &I2cs {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &I2cs {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -1419,14 +1374,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &I2cs {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &I2cs {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -1446,14 +1401,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &I2cs {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &I2cs {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -1473,14 +1428,14 @@ impl I2cs {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &I2cs {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &I2cs {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -2268,14 +2223,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_addr(&self, value: Addr) -> &Spi {
+  pub fn set_addr(&self, value: Addr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Spi {
+  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Self {
      let tmp = self.addr();
      self.set_addr(f(tmp))
   }
@@ -2295,14 +2250,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_baud(&self, value: Baud) -> &Spi {
+  pub fn set_baud(&self, value: Baud) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Spi {
+  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
      let tmp = self.baud();
      self.set_baud(f(tmp))
   }
@@ -2322,14 +2277,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &Spi {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Spi {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -2349,14 +2304,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &Spi {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Spi {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -2376,14 +2331,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &Spi {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Spi {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -2403,14 +2358,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Spi {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Spi {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -2430,14 +2385,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &Spi {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Spi {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -2457,14 +2412,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &Spi {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Spi {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -2484,14 +2439,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &Spi {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Spi {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -2511,14 +2466,14 @@ impl Spi {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &Spi {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Spi {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -3270,14 +3225,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_baud(&self, value: Baud) -> &Usart {
+  pub fn set_baud(&self, value: Baud) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Usart {
+  pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
      let tmp = self.baud();
      self.set_baud(f(tmp))
   }
@@ -3297,14 +3252,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &Usart {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Usart {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -3324,14 +3279,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &Usart {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Usart {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -3351,14 +3306,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &Usart {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Usart {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -3378,14 +3333,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Usart {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Usart {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -3405,14 +3360,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &Usart {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Usart {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -3432,14 +3387,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &Usart {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Usart {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -3459,14 +3414,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &Usart {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Usart {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -3486,14 +3441,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_rxpl(&self, value: Rxpl) -> &Usart {
+  pub fn set_rxpl(&self, value: Rxpl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rxpl<F: FnOnce(Rxpl) -> Rxpl>(&self, f: F) -> &Usart {
+  pub fn with_rxpl<F: FnOnce(Rxpl) -> Rxpl>(&self, f: F) -> &Self {
      let tmp = self.rxpl();
      self.set_rxpl(f(tmp))
   }
@@ -3513,14 +3468,14 @@ impl Usart {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &Usart {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Usart {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }

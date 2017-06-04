@@ -12,7 +12,7 @@ pub trait UartExt {
     fn txff(&self) -> bool;
 }
 
-impl UartExt for UartImpl {
+impl<T> UartExt for Periph<T> {
     fn enable(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
         let baud_div = ((8 * sysclk_hz) / baud_hz) + 1;
         let baud_int = baud_div / 64;

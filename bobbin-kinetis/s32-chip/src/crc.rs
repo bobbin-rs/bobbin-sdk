@@ -18,14 +18,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_data(&self, value: Data) -> &Crc {
+  pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Crc {
+  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datal(&self, value: Datal) -> &Crc {
+  pub fn set_datal(&self, value: Datal) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Crc {
+  pub fn with_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Self {
      let tmp = self.datal();
      self.set_datal(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datall(&self, value: Datall) -> &Crc {
+  pub fn set_datall(&self, value: Datall) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Crc {
+  pub fn with_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Self {
      let tmp = self.datall();
      self.set_datall(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datalu(&self, value: Datalu) -> &Crc {
+  pub fn set_datalu(&self, value: Datalu) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Crc {
+  pub fn with_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Self {
      let tmp = self.datalu();
      self.set_datalu(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datah(&self, value: Datah) -> &Crc {
+  pub fn set_datah(&self, value: Datah) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Crc {
+  pub fn with_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Self {
      let tmp = self.datah();
      self.set_datah(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datahl(&self, value: Datahl) -> &Crc {
+  pub fn set_datahl(&self, value: Datahl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Crc {
+  pub fn with_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Self {
      let tmp = self.datahl();
      self.set_datahl(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_datahu(&self, value: Datahu) -> &Crc {
+  pub fn set_datahu(&self, value: Datahu) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Crc {
+  pub fn with_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Self {
      let tmp = self.datahu();
      self.set_datahu(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_gpoly(&self, value: Gpoly) -> &Crc {
+  pub fn set_gpoly(&self, value: Gpoly) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Crc {
+  pub fn with_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Self {
      let tmp = self.gpoly();
      self.set_gpoly(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_ctrl(&self, value: Ctrl) -> &Crc {
+  pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Crc {
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
@@ -613,3 +613,4 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+

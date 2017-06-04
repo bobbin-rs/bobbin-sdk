@@ -1,103 +1,50 @@
-pub const SPI1: Spi1 = Spi1 {};
-pub const SPI1_IMPL: SpiImpl = SpiImpl(0x40013000);
-pub const SPI1_IMPL_REF: &SpiImpl = &SPI1_IMPL;
-
-pub struct Spi1 {}
-impl ::core::ops::Deref for Spi1 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI1_IMPL_REF }
-}
-
-
-pub const SPI2: Spi2 = Spi2 {};
-pub const SPI2_IMPL: SpiImpl = SpiImpl(0x40003800);
-pub const SPI2_IMPL_REF: &SpiImpl = &SPI2_IMPL;
-
-pub struct Spi2 {}
-impl ::core::ops::Deref for Spi2 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI2_IMPL_REF }
-}
-
-
-pub const SPI3: Spi3 = Spi3 {};
-pub const SPI3_IMPL: SpiImpl = SpiImpl(0x40003c00);
-pub const SPI3_IMPL_REF: &SpiImpl = &SPI3_IMPL;
-
-pub struct Spi3 {}
-impl ::core::ops::Deref for Spi3 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI3_IMPL_REF }
-}
-
-
-pub const I2S2EXT: I2s2ext = I2s2ext {};
-pub const I2S2EXT_IMPL: SpiImpl = SpiImpl(0x40003400);
-pub const I2S2EXT_IMPL_REF: &SpiImpl = &I2S2EXT_IMPL;
-
-pub struct I2s2ext {}
-impl ::core::ops::Deref for I2s2ext {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { I2S2EXT_IMPL_REF }
-}
-
-
-pub const I2S3EXT: I2s3ext = I2s3ext {};
-pub const I2S3EXT_IMPL: SpiImpl = SpiImpl(0x40004000);
-pub const I2S3EXT_IMPL_REF: &SpiImpl = &I2S3EXT_IMPL;
-
-pub struct I2s3ext {}
-impl ::core::ops::Deref for I2s3ext {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { I2S3EXT_IMPL_REF }
-}
-
-
-pub const SPI4: Spi4 = Spi4 {};
-pub const SPI4_IMPL: SpiImpl = SpiImpl(0x40013400);
-pub const SPI4_IMPL_REF: &SpiImpl = &SPI4_IMPL;
-
-pub struct Spi4 {}
-impl ::core::ops::Deref for Spi4 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI4_IMPL_REF }
-}
-
-
-pub const SPI5: Spi5 = Spi5 {};
-pub const SPI5_IMPL: SpiImpl = SpiImpl(0x40015000);
-pub const SPI5_IMPL_REF: &SpiImpl = &SPI5_IMPL;
-
-pub struct Spi5 {}
-impl ::core::ops::Deref for Spi5 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI5_IMPL_REF }
-}
-
-
-pub const SPI6: Spi6 = Spi6 {};
-pub const SPI6_IMPL: SpiImpl = SpiImpl(0x40015400);
-pub const SPI6_IMPL_REF: &SpiImpl = &SPI6_IMPL;
-
-pub struct Spi6 {}
-impl ::core::ops::Deref for Spi6 {
-   type Target = SpiImpl;
-   #[inline]
-   fn deref(&self) -> &SpiImpl { SPI6_IMPL_REF }
-}
-
-
+pub const SPI1: Spi1 = Periph(0x40013000, Spi1Id {});
+pub const SPI2: Spi2 = Periph(0x40003800, Spi2Id {});
+pub const SPI3: Spi3 = Periph(0x40003c00, Spi3Id {});
+pub const I2S2EXT: I2s2ext = Periph(0x40003400, I2s2extId {});
+pub const I2S3EXT: I2s3ext = Periph(0x40004000, I2s3extId {});
+pub const SPI4: Spi4 = Periph(0x40013400, Spi4Id {});
+pub const SPI5: Spi5 = Periph(0x40015000, Spi5Id {});
+pub const SPI6: Spi6 = Periph(0x40015400, Spi6Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct SpiImpl(pub u32);
-impl SpiImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi1Id {}
+pub type Spi1 = Periph<Spi1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi2Id {}
+pub type Spi2 = Periph<Spi2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi3Id {}
+pub type Spi3 = Periph<Spi3Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I2s2extId {}
+pub type I2s2ext = Periph<I2s2extId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I2s3extId {}
+pub type I2s3ext = Periph<I2s3extId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi4Id {}
+pub type Spi4 = Periph<Spi4Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi5Id {}
+pub type Spi5 = Periph<Spi5Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Spi6Id {}
+pub type Spi6 = Periph<Spi6Id>;
+
+
+
+
+
+
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -113,14 +60,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &SpiImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &SpiImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -140,14 +87,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &SpiImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &SpiImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -167,14 +114,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &SpiImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &SpiImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -194,14 +141,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &SpiImpl {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &SpiImpl {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -221,14 +168,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_crcpr(&self, value: Crcpr) -> &SpiImpl {
+  pub fn set_crcpr(&self, value: Crcpr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &SpiImpl {
+  pub fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &Self {
      let tmp = self.crcpr();
      self.set_crcpr(f(tmp))
   }
@@ -278,14 +225,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_i2scfgr(&self, value: I2scfgr) -> &SpiImpl {
+  pub fn set_i2scfgr(&self, value: I2scfgr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &SpiImpl {
+  pub fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &Self {
      let tmp = self.i2scfgr();
      self.set_i2scfgr(f(tmp))
   }
@@ -305,14 +252,14 @@ impl SpiImpl {
      }
   }
   #[inline]
-  pub fn set_i2spr(&self, value: I2spr) -> &SpiImpl {
+  pub fn set_i2spr(&self, value: I2spr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &SpiImpl {
+  pub fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &Self {
      let tmp = self.i2spr();
      self.set_i2spr(f(tmp))
   }

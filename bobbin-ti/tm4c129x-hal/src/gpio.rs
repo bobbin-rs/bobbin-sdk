@@ -1,7 +1,6 @@
 pub use chip::gpio::*;
 pub use sysctl::SysctlEnabled;
 use chip::sig::{SignalTx, SignalRx};
-use core::ops::Deref;
 
 pub enum Dir {
     In = 0,
@@ -28,7 +27,7 @@ pub trait GpioExt {
     fn toggle_output(&self) -> &Self;
 }
 
-impl GpioExt for PinImpl {
+impl<P, T> GpioExt for Pin<P, T> {
     fn set_dir(&self, value: Dir) -> &Self {
         self.port.with_dir(|r| r.set_dir(self.index, value as u32));
         self
@@ -134,16 +133,17 @@ pub trait ModeRx<T, S> {
     fn mode_rx(&self, _: &S) -> &Self;
 }
 
-impl<P, S, T> ModeTx<T, S> for P where S: SignalTx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
     fn mode_tx(&self, _: &S) -> &Self {
-        self.mode_altfn(self.alt_fn());
+        self.mode_altfn(self.id.alt_fn());
         self
     }
 }
 
-impl<P, S, T> ModeRx<T, S> for P where S: SignalRx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
     fn mode_rx(&self, _: &S) -> &Self {
-        self.mode_altfn(self.alt_fn());
+        self.mode_altfn(self.id.alt_fn());
         self
     }
 }
+

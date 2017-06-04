@@ -12,7 +12,7 @@ impl Iwdg {
      ((self.0 as usize) + 0x0) as *mut u32
   }
   #[inline]
-  pub fn set_kr(&self, value: Kr) -> &Iwdg {
+  pub fn set_kr(&self, value: Kr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -34,14 +34,14 @@ impl Iwdg {
      }
   }
   #[inline]
-  pub fn set_pr(&self, value: Pr) -> &Iwdg {
+  pub fn set_pr(&self, value: Pr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Iwdg {
+  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
      let tmp = self.pr();
      self.set_pr(f(tmp))
   }
@@ -61,14 +61,14 @@ impl Iwdg {
      }
   }
   #[inline]
-  pub fn set_rlr(&self, value: Rlr) -> &Iwdg {
+  pub fn set_rlr(&self, value: Rlr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Iwdg {
+  pub fn with_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Self {
      let tmp = self.rlr();
      self.set_rlr(f(tmp))
   }
@@ -103,14 +103,14 @@ impl Iwdg {
      }
   }
   #[inline]
-  pub fn set_winr(&self, value: Winr) -> &Iwdg {
+  pub fn set_winr(&self, value: Winr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Iwdg {
+  pub fn with_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Self {
      let tmp = self.winr();
      self.set_winr(f(tmp))
   }
@@ -288,3 +288,4 @@ impl ::core::fmt::Debug for Winr {
       Ok(())
    }
 }
+

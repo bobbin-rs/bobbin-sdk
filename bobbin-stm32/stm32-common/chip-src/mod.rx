@@ -5,6 +5,10 @@
         (prototype "periph/gpio.rx")
     )
     (peripheral-group
+        (name LPUSART)
+        (prototype "periph/lpusart.rx")
+    )        
+    (peripheral-group
         (name USART)
         (prototype "periph/usart.rx")
     )    

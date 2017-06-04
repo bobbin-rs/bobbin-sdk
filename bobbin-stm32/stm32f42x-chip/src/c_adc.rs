@@ -33,14 +33,14 @@ impl CAdc {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, value: Ccr) -> &CAdc {
+  pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &CAdc {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
@@ -461,3 +461,4 @@ impl ::core::fmt::Debug for Cdr {
       Ok(())
    }
 }
+

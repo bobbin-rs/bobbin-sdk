@@ -18,14 +18,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_imr(&self, value: Imr) -> &Exti {
+  pub fn set_imr(&self, value: Imr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Exti {
+  pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Self {
      let tmp = self.imr();
      self.set_imr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_emr(&self, value: Emr) -> &Exti {
+  pub fn set_emr(&self, value: Emr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) -> &Exti {
+  pub fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) -> &Self {
      let tmp = self.emr();
      self.set_emr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_rtsr(&self, value: Rtsr) -> &Exti {
+  pub fn set_rtsr(&self, value: Rtsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) -> &Exti {
+  pub fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) -> &Self {
      let tmp = self.rtsr();
      self.set_rtsr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_ftsr(&self, value: Ftsr) -> &Exti {
+  pub fn set_ftsr(&self, value: Ftsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) -> &Exti {
+  pub fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) -> &Self {
      let tmp = self.ftsr();
      self.set_ftsr(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_swier(&self, value: Swier) -> &Exti {
+  pub fn set_swier(&self, value: Swier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) -> &Exti {
+  pub fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) -> &Self {
      let tmp = self.swier();
      self.set_swier(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Exti {
      }
   }
   #[inline]
-  pub fn set_pr(&self, value: Pr) -> &Exti {
+  pub fn set_pr(&self, value: Pr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Exti {
+  pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
      let tmp = self.pr();
      self.set_pr(f(tmp))
   }
@@ -497,3 +497,4 @@ impl ::core::fmt::Debug for Pr {
       Ok(())
    }
 }
+

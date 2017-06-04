@@ -9,7 +9,7 @@ pub trait PitExt {
     fn clr_interrupt_flag(&self, index: usize) -> &Self;
 }
 
-impl PitExt for PitImpl {
+impl<T> PitExt for Periph<T> {
     fn enabled(&self) -> bool {
         // MDIS = 1 to disable module
         self.mcr().mdis() == 0

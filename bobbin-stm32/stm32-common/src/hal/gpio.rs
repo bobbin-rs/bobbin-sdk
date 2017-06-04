@@ -1,4 +1,4 @@
-use chip::gpio::{self, PinImpl};
+use chip::gpio::{self, Pin};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
@@ -59,7 +59,7 @@ pub trait PinExt {
     fn toggle_output(&self) -> &Self;
 }
 
-impl PinExt for PinImpl {
+impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn mode(&self) -> Mode {
         match self.port.moder().moder(self.index) {

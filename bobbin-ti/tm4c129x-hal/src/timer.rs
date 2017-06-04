@@ -5,7 +5,7 @@ pub trait TimerExt {
     fn delay(&self, value: u32) -> &Self;
 }
 
-impl TimerExt for TimerImpl {    
+impl<T> TimerExt for Periph<T> {    
     fn delay(&self, value: u32) -> &Self {
         // disable timer a        
         self.with_ctl(|r| r.set_taen(0));

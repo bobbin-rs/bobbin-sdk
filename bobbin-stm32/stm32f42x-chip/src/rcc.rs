@@ -18,14 +18,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Rcc {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Rcc {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_pllcfgr(&self, value: Pllcfgr) -> &Rcc {
+  pub fn set_pllcfgr(&self, value: Pllcfgr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pllcfgr<F: FnOnce(Pllcfgr) -> Pllcfgr>(&self, f: F) -> &Rcc {
+  pub fn with_pllcfgr<F: FnOnce(Pllcfgr) -> Pllcfgr>(&self, f: F) -> &Self {
      let tmp = self.pllcfgr();
      self.set_pllcfgr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_cfgr(&self, value: Cfgr) -> &Rcc {
+  pub fn set_cfgr(&self, value: Cfgr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Rcc {
+  pub fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
      let tmp = self.cfgr();
      self.set_cfgr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_cir(&self, value: Cir) -> &Rcc {
+  pub fn set_cir(&self, value: Cir) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cir<F: FnOnce(Cir) -> Cir>(&self, f: F) -> &Rcc {
+  pub fn with_cir<F: FnOnce(Cir) -> Cir>(&self, f: F) -> &Self {
      let tmp = self.cir();
      self.set_cir(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb1rstr(&self, value: Ahb1rstr) -> &Rcc {
+  pub fn set_ahb1rstr(&self, value: Ahb1rstr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb1rstr<F: FnOnce(Ahb1rstr) -> Ahb1rstr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb1rstr<F: FnOnce(Ahb1rstr) -> Ahb1rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb1rstr();
      self.set_ahb1rstr(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb2rstr(&self, value: Ahb2rstr) -> &Rcc {
+  pub fn set_ahb2rstr(&self, value: Ahb2rstr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb2rstr<F: FnOnce(Ahb2rstr) -> Ahb2rstr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb2rstr<F: FnOnce(Ahb2rstr) -> Ahb2rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb2rstr();
      self.set_ahb2rstr(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb3rstr(&self, value: Ahb3rstr) -> &Rcc {
+  pub fn set_ahb3rstr(&self, value: Ahb3rstr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb3rstr<F: FnOnce(Ahb3rstr) -> Ahb3rstr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb3rstr<F: FnOnce(Ahb3rstr) -> Ahb3rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb3rstr();
      self.set_ahb3rstr(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb1rstr(&self, value: Apb1rstr) -> &Rcc {
+  pub fn set_apb1rstr(&self, value: Apb1rstr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb1rstr<F: FnOnce(Apb1rstr) -> Apb1rstr>(&self, f: F) -> &Rcc {
+  pub fn with_apb1rstr<F: FnOnce(Apb1rstr) -> Apb1rstr>(&self, f: F) -> &Self {
      let tmp = self.apb1rstr();
      self.set_apb1rstr(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb2rstr(&self, value: Apb2rstr) -> &Rcc {
+  pub fn set_apb2rstr(&self, value: Apb2rstr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb2rstr<F: FnOnce(Apb2rstr) -> Apb2rstr>(&self, f: F) -> &Rcc {
+  pub fn with_apb2rstr<F: FnOnce(Apb2rstr) -> Apb2rstr>(&self, f: F) -> &Self {
      let tmp = self.apb2rstr();
      self.set_apb2rstr(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb1enr(&self, value: Ahb1enr) -> &Rcc {
+  pub fn set_ahb1enr(&self, value: Ahb1enr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb1enr<F: FnOnce(Ahb1enr) -> Ahb1enr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb1enr<F: FnOnce(Ahb1enr) -> Ahb1enr>(&self, f: F) -> &Self {
      let tmp = self.ahb1enr();
      self.set_ahb1enr(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb2enr(&self, value: Ahb2enr) -> &Rcc {
+  pub fn set_ahb2enr(&self, value: Ahb2enr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb2enr<F: FnOnce(Ahb2enr) -> Ahb2enr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb2enr<F: FnOnce(Ahb2enr) -> Ahb2enr>(&self, f: F) -> &Self {
      let tmp = self.ahb2enr();
      self.set_ahb2enr(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb3enr(&self, value: Ahb3enr) -> &Rcc {
+  pub fn set_ahb3enr(&self, value: Ahb3enr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb3enr<F: FnOnce(Ahb3enr) -> Ahb3enr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb3enr<F: FnOnce(Ahb3enr) -> Ahb3enr>(&self, f: F) -> &Self {
      let tmp = self.ahb3enr();
      self.set_ahb3enr(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb1enr(&self, value: Apb1enr) -> &Rcc {
+  pub fn set_apb1enr(&self, value: Apb1enr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb1enr<F: FnOnce(Apb1enr) -> Apb1enr>(&self, f: F) -> &Rcc {
+  pub fn with_apb1enr<F: FnOnce(Apb1enr) -> Apb1enr>(&self, f: F) -> &Self {
      let tmp = self.apb1enr();
      self.set_apb1enr(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb2enr(&self, value: Apb2enr) -> &Rcc {
+  pub fn set_apb2enr(&self, value: Apb2enr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb2enr<F: FnOnce(Apb2enr) -> Apb2enr>(&self, f: F) -> &Rcc {
+  pub fn with_apb2enr<F: FnOnce(Apb2enr) -> Apb2enr>(&self, f: F) -> &Self {
      let tmp = self.apb2enr();
      self.set_apb2enr(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb1lpenr(&self, value: Ahb1lpenr) -> &Rcc {
+  pub fn set_ahb1lpenr(&self, value: Ahb1lpenr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb1lpenr<F: FnOnce(Ahb1lpenr) -> Ahb1lpenr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb1lpenr<F: FnOnce(Ahb1lpenr) -> Ahb1lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb1lpenr();
      self.set_ahb1lpenr(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb2lpenr(&self, value: Ahb2lpenr) -> &Rcc {
+  pub fn set_ahb2lpenr(&self, value: Ahb2lpenr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb2lpenr<F: FnOnce(Ahb2lpenr) -> Ahb2lpenr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb2lpenr<F: FnOnce(Ahb2lpenr) -> Ahb2lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb2lpenr();
      self.set_ahb2lpenr(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_ahb3lpenr(&self, value: Ahb3lpenr) -> &Rcc {
+  pub fn set_ahb3lpenr(&self, value: Ahb3lpenr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahb3lpenr<F: FnOnce(Ahb3lpenr) -> Ahb3lpenr>(&self, f: F) -> &Rcc {
+  pub fn with_ahb3lpenr<F: FnOnce(Ahb3lpenr) -> Ahb3lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb3lpenr();
      self.set_ahb3lpenr(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb1lpenr(&self, value: Apb1lpenr) -> &Rcc {
+  pub fn set_apb1lpenr(&self, value: Apb1lpenr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb1lpenr<F: FnOnce(Apb1lpenr) -> Apb1lpenr>(&self, f: F) -> &Rcc {
+  pub fn with_apb1lpenr<F: FnOnce(Apb1lpenr) -> Apb1lpenr>(&self, f: F) -> &Self {
      let tmp = self.apb1lpenr();
      self.set_apb1lpenr(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_apb2lpenr(&self, value: Apb2lpenr) -> &Rcc {
+  pub fn set_apb2lpenr(&self, value: Apb2lpenr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb2lpenr<F: FnOnce(Apb2lpenr) -> Apb2lpenr>(&self, f: F) -> &Rcc {
+  pub fn with_apb2lpenr<F: FnOnce(Apb2lpenr) -> Apb2lpenr>(&self, f: F) -> &Self {
      let tmp = self.apb2lpenr();
      self.set_apb2lpenr(f(tmp))
   }
@@ -531,14 +531,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_bdcr(&self, value: Bdcr) -> &Rcc {
+  pub fn set_bdcr(&self, value: Bdcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bdcr<F: FnOnce(Bdcr) -> Bdcr>(&self, f: F) -> &Rcc {
+  pub fn with_bdcr<F: FnOnce(Bdcr) -> Bdcr>(&self, f: F) -> &Self {
      let tmp = self.bdcr();
      self.set_bdcr(f(tmp))
   }
@@ -558,14 +558,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_csr(&self, value: Csr) -> &Rcc {
+  pub fn set_csr(&self, value: Csr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Rcc {
+  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
      self.set_csr(f(tmp))
   }
@@ -585,14 +585,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_sscgr(&self, value: Sscgr) -> &Rcc {
+  pub fn set_sscgr(&self, value: Sscgr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sscgr<F: FnOnce(Sscgr) -> Sscgr>(&self, f: F) -> &Rcc {
+  pub fn with_sscgr<F: FnOnce(Sscgr) -> Sscgr>(&self, f: F) -> &Self {
      let tmp = self.sscgr();
      self.set_sscgr(f(tmp))
   }
@@ -612,14 +612,14 @@ impl Rcc {
      }
   }
   #[inline]
-  pub fn set_plli2scfgr(&self, value: Plli2scfgr) -> &Rcc {
+  pub fn set_plli2scfgr(&self, value: Plli2scfgr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_plli2scfgr<F: FnOnce(Plli2scfgr) -> Plli2scfgr>(&self, f: F) -> &Rcc {
+  pub fn with_plli2scfgr<F: FnOnce(Plli2scfgr) -> Plli2scfgr>(&self, f: F) -> &Self {
      let tmp = self.plli2scfgr();
      self.set_plli2scfgr(f(tmp))
   }
@@ -5026,4 +5026,5 @@ impl En for super::spi::Spi6 {
    #[inline]
    fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi6enr(value)); }
 }
+
 

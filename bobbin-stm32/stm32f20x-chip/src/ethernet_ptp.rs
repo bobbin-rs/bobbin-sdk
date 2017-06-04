@@ -18,14 +18,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptptscr(&self, value: Ptptscr) -> &EthernetPtp {
+  pub fn set_ptptscr(&self, value: Ptptscr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
      let tmp = self.ptptscr();
      self.set_ptptscr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptpssir(&self, value: Ptpssir) -> &EthernetPtp {
+  pub fn set_ptpssir(&self, value: Ptpssir) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
      let tmp = self.ptpssir();
      self.set_ptpssir(f(tmp))
   }
@@ -102,14 +102,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptptshur(&self, value: Ptptshur) -> &EthernetPtp {
+  pub fn set_ptptshur(&self, value: Ptptshur) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
      let tmp = self.ptptshur();
      self.set_ptptshur(f(tmp))
   }
@@ -129,14 +129,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptptslur(&self, value: Ptptslur) -> &EthernetPtp {
+  pub fn set_ptptslur(&self, value: Ptptslur) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
      let tmp = self.ptptslur();
      self.set_ptptslur(f(tmp))
   }
@@ -156,14 +156,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptptsar(&self, value: Ptptsar) -> &EthernetPtp {
+  pub fn set_ptptsar(&self, value: Ptptsar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
      let tmp = self.ptptsar();
      self.set_ptptsar(f(tmp))
   }
@@ -183,14 +183,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptptthr(&self, value: Ptptthr) -> &EthernetPtp {
+  pub fn set_ptptthr(&self, value: Ptptthr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
      let tmp = self.ptptthr();
      self.set_ptptthr(f(tmp))
   }
@@ -210,14 +210,14 @@ impl EthernetPtp {
      }
   }
   #[inline]
-  pub fn set_ptpttlr(&self, value: Ptpttlr) -> &EthernetPtp {
+  pub fn set_ptpttlr(&self, value: Ptpttlr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &EthernetPtp {
+  pub fn with_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
      let tmp = self.ptpttlr();
      self.set_ptpttlr(f(tmp))
   }
@@ -815,3 +815,4 @@ impl ::core::fmt::Debug for Ptpppscr {
       Ok(())
    }
 }
+

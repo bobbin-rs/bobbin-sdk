@@ -18,14 +18,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_did0(&self, value: Did0) -> &Sysctl {
+  pub fn set_did0(&self, value: Did0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_did0<F: FnOnce(Did0) -> Did0>(&self, f: F) -> &Sysctl {
+  pub fn with_did0<F: FnOnce(Did0) -> Did0>(&self, f: F) -> &Self {
      let tmp = self.did0();
      self.set_did0(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_did1(&self, value: Did1) -> &Sysctl {
+  pub fn set_did1(&self, value: Did1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_did1<F: FnOnce(Did1) -> Did1>(&self, f: F) -> &Sysctl {
+  pub fn with_did1<F: FnOnce(Did1) -> Did1>(&self, f: F) -> &Self {
      let tmp = self.did1();
      self.set_did1(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ptboctl(&self, value: Ptboctl) -> &Sysctl {
+  pub fn set_ptboctl(&self, value: Ptboctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ptboctl<F: FnOnce(Ptboctl) -> Ptboctl>(&self, f: F) -> &Sysctl {
+  pub fn with_ptboctl<F: FnOnce(Ptboctl) -> Ptboctl>(&self, f: F) -> &Self {
      let tmp = self.ptboctl();
      self.set_ptboctl(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ris(&self, value: Ris) -> &Sysctl {
+  pub fn set_ris(&self, value: Ris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Sysctl {
+  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
      let tmp = self.ris();
      self.set_ris(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_imc(&self, value: Imc) -> &Sysctl {
+  pub fn set_imc(&self, value: Imc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_imc<F: FnOnce(Imc) -> Imc>(&self, f: F) -> &Sysctl {
+  pub fn with_imc<F: FnOnce(Imc) -> Imc>(&self, f: F) -> &Self {
      let tmp = self.imc();
      self.set_imc(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_misc(&self, value: Misc) -> &Sysctl {
+  pub fn set_misc(&self, value: Misc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_misc<F: FnOnce(Misc) -> Misc>(&self, f: F) -> &Sysctl {
+  pub fn with_misc<F: FnOnce(Misc) -> Misc>(&self, f: F) -> &Self {
      let tmp = self.misc();
      self.set_misc(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_resc(&self, value: Resc) -> &Sysctl {
+  pub fn set_resc(&self, value: Resc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_resc<F: FnOnce(Resc) -> Resc>(&self, f: F) -> &Sysctl {
+  pub fn with_resc<F: FnOnce(Resc) -> Resc>(&self, f: F) -> &Self {
      let tmp = self.resc();
      self.set_resc(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pwrtc(&self, value: Pwrtc) -> &Sysctl {
+  pub fn set_pwrtc(&self, value: Pwrtc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pwrtc<F: FnOnce(Pwrtc) -> Pwrtc>(&self, f: F) -> &Sysctl {
+  pub fn with_pwrtc<F: FnOnce(Pwrtc) -> Pwrtc>(&self, f: F) -> &Self {
      let tmp = self.pwrtc();
      self.set_pwrtc(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_nmic(&self, value: Nmic) -> &Sysctl {
+  pub fn set_nmic(&self, value: Nmic) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_nmic<F: FnOnce(Nmic) -> Nmic>(&self, f: F) -> &Sysctl {
+  pub fn with_nmic<F: FnOnce(Nmic) -> Nmic>(&self, f: F) -> &Self {
      let tmp = self.nmic();
      self.set_nmic(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_moscctl(&self, value: Moscctl) -> &Sysctl {
+  pub fn set_moscctl(&self, value: Moscctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_moscctl<F: FnOnce(Moscctl) -> Moscctl>(&self, f: F) -> &Sysctl {
+  pub fn with_moscctl<F: FnOnce(Moscctl) -> Moscctl>(&self, f: F) -> &Self {
      let tmp = self.moscctl();
      self.set_moscctl(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rsclkcfg(&self, value: Rsclkcfg) -> &Sysctl {
+  pub fn set_rsclkcfg(&self, value: Rsclkcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rsclkcfg<F: FnOnce(Rsclkcfg) -> Rsclkcfg>(&self, f: F) -> &Sysctl {
+  pub fn with_rsclkcfg<F: FnOnce(Rsclkcfg) -> Rsclkcfg>(&self, f: F) -> &Self {
      let tmp = self.rsclkcfg();
      self.set_rsclkcfg(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_memtim0(&self, value: Memtim0) -> &Sysctl {
+  pub fn set_memtim0(&self, value: Memtim0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_memtim0<F: FnOnce(Memtim0) -> Memtim0>(&self, f: F) -> &Sysctl {
+  pub fn with_memtim0<F: FnOnce(Memtim0) -> Memtim0>(&self, f: F) -> &Self {
      let tmp = self.memtim0();
      self.set_memtim0(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_altclkcfg(&self, value: Altclkcfg) -> &Sysctl {
+  pub fn set_altclkcfg(&self, value: Altclkcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x138) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_altclkcfg<F: FnOnce(Altclkcfg) -> Altclkcfg>(&self, f: F) -> &Sysctl {
+  pub fn with_altclkcfg<F: FnOnce(Altclkcfg) -> Altclkcfg>(&self, f: F) -> &Self {
      let tmp = self.altclkcfg();
      self.set_altclkcfg(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dsclkcfg(&self, value: Dsclkcfg) -> &Sysctl {
+  pub fn set_dsclkcfg(&self, value: Dsclkcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x144) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dsclkcfg<F: FnOnce(Dsclkcfg) -> Dsclkcfg>(&self, f: F) -> &Sysctl {
+  pub fn with_dsclkcfg<F: FnOnce(Dsclkcfg) -> Dsclkcfg>(&self, f: F) -> &Self {
      let tmp = self.dsclkcfg();
      self.set_dsclkcfg(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_divsclk(&self, value: Divsclk) -> &Sysctl {
+  pub fn set_divsclk(&self, value: Divsclk) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x148) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_divsclk<F: FnOnce(Divsclk) -> Divsclk>(&self, f: F) -> &Sysctl {
+  pub fn with_divsclk<F: FnOnce(Divsclk) -> Divsclk>(&self, f: F) -> &Self {
      let tmp = self.divsclk();
      self.set_divsclk(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sysprop(&self, value: Sysprop) -> &Sysctl {
+  pub fn set_sysprop(&self, value: Sysprop) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sysprop<F: FnOnce(Sysprop) -> Sysprop>(&self, f: F) -> &Sysctl {
+  pub fn with_sysprop<F: FnOnce(Sysprop) -> Sysprop>(&self, f: F) -> &Self {
      let tmp = self.sysprop();
      self.set_sysprop(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_piosccal(&self, value: Piosccal) -> &Sysctl {
+  pub fn set_piosccal(&self, value: Piosccal) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x150) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_piosccal<F: FnOnce(Piosccal) -> Piosccal>(&self, f: F) -> &Sysctl {
+  pub fn with_piosccal<F: FnOnce(Piosccal) -> Piosccal>(&self, f: F) -> &Self {
      let tmp = self.piosccal();
      self.set_piosccal(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pioscstat(&self, value: Pioscstat) -> &Sysctl {
+  pub fn set_pioscstat(&self, value: Pioscstat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x154) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pioscstat<F: FnOnce(Pioscstat) -> Pioscstat>(&self, f: F) -> &Sysctl {
+  pub fn with_pioscstat<F: FnOnce(Pioscstat) -> Pioscstat>(&self, f: F) -> &Self {
      let tmp = self.pioscstat();
      self.set_pioscstat(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pllfreq0(&self, value: Pllfreq0) -> &Sysctl {
+  pub fn set_pllfreq0(&self, value: Pllfreq0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x160) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pllfreq0<F: FnOnce(Pllfreq0) -> Pllfreq0>(&self, f: F) -> &Sysctl {
+  pub fn with_pllfreq0<F: FnOnce(Pllfreq0) -> Pllfreq0>(&self, f: F) -> &Self {
      let tmp = self.pllfreq0();
      self.set_pllfreq0(f(tmp))
   }
@@ -531,14 +531,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pllfreq1(&self, value: Pllfreq1) -> &Sysctl {
+  pub fn set_pllfreq1(&self, value: Pllfreq1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x164) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pllfreq1<F: FnOnce(Pllfreq1) -> Pllfreq1>(&self, f: F) -> &Sysctl {
+  pub fn with_pllfreq1<F: FnOnce(Pllfreq1) -> Pllfreq1>(&self, f: F) -> &Self {
      let tmp = self.pllfreq1();
      self.set_pllfreq1(f(tmp))
   }
@@ -558,14 +558,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pllstat(&self, value: Pllstat) -> &Sysctl {
+  pub fn set_pllstat(&self, value: Pllstat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x168) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pllstat<F: FnOnce(Pllstat) -> Pllstat>(&self, f: F) -> &Sysctl {
+  pub fn with_pllstat<F: FnOnce(Pllstat) -> Pllstat>(&self, f: F) -> &Self {
      let tmp = self.pllstat();
      self.set_pllstat(f(tmp))
   }
@@ -585,14 +585,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_slppwrcfg(&self, value: Slppwrcfg) -> &Sysctl {
+  pub fn set_slppwrcfg(&self, value: Slppwrcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x188) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_slppwrcfg<F: FnOnce(Slppwrcfg) -> Slppwrcfg>(&self, f: F) -> &Sysctl {
+  pub fn with_slppwrcfg<F: FnOnce(Slppwrcfg) -> Slppwrcfg>(&self, f: F) -> &Self {
      let tmp = self.slppwrcfg();
      self.set_slppwrcfg(f(tmp))
   }
@@ -612,14 +612,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dslppwrcfg(&self, value: Dslppwrcfg) -> &Sysctl {
+  pub fn set_dslppwrcfg(&self, value: Dslppwrcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dslppwrcfg<F: FnOnce(Dslppwrcfg) -> Dslppwrcfg>(&self, f: F) -> &Sysctl {
+  pub fn with_dslppwrcfg<F: FnOnce(Dslppwrcfg) -> Dslppwrcfg>(&self, f: F) -> &Self {
      let tmp = self.dslppwrcfg();
      self.set_dslppwrcfg(f(tmp))
   }
@@ -639,14 +639,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_nvmstat(&self, value: Nvmstat) -> &Sysctl {
+  pub fn set_nvmstat(&self, value: Nvmstat) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_nvmstat<F: FnOnce(Nvmstat) -> Nvmstat>(&self, f: F) -> &Sysctl {
+  pub fn with_nvmstat<F: FnOnce(Nvmstat) -> Nvmstat>(&self, f: F) -> &Self {
      let tmp = self.nvmstat();
      self.set_nvmstat(f(tmp))
   }
@@ -666,14 +666,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ldospctl(&self, value: Ldospctl) -> &Sysctl {
+  pub fn set_ldospctl(&self, value: Ldospctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ldospctl<F: FnOnce(Ldospctl) -> Ldospctl>(&self, f: F) -> &Sysctl {
+  pub fn with_ldospctl<F: FnOnce(Ldospctl) -> Ldospctl>(&self, f: F) -> &Self {
      let tmp = self.ldospctl();
      self.set_ldospctl(f(tmp))
   }
@@ -693,14 +693,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ldodpctl(&self, value: Ldodpctl) -> &Sysctl {
+  pub fn set_ldodpctl(&self, value: Ldodpctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1bc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ldodpctl<F: FnOnce(Ldodpctl) -> Ldodpctl>(&self, f: F) -> &Sysctl {
+  pub fn with_ldodpctl<F: FnOnce(Ldodpctl) -> Ldodpctl>(&self, f: F) -> &Self {
      let tmp = self.ldodpctl();
      self.set_ldodpctl(f(tmp))
   }
@@ -720,14 +720,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_resbehavctl(&self, value: Resbehavctl) -> &Sysctl {
+  pub fn set_resbehavctl(&self, value: Resbehavctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1d8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_resbehavctl<F: FnOnce(Resbehavctl) -> Resbehavctl>(&self, f: F) -> &Sysctl {
+  pub fn with_resbehavctl<F: FnOnce(Resbehavctl) -> Resbehavctl>(&self, f: F) -> &Self {
      let tmp = self.resbehavctl();
      self.set_resbehavctl(f(tmp))
   }
@@ -747,14 +747,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_hssr(&self, value: Hssr) -> &Sysctl {
+  pub fn set_hssr(&self, value: Hssr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1f4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hssr<F: FnOnce(Hssr) -> Hssr>(&self, f: F) -> &Sysctl {
+  pub fn with_hssr<F: FnOnce(Hssr) -> Hssr>(&self, f: F) -> &Self {
      let tmp = self.hssr();
      self.set_hssr(f(tmp))
   }
@@ -774,14 +774,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_usbpds(&self, value: Usbpds) -> &Sysctl {
+  pub fn set_usbpds(&self, value: Usbpds) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x280) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_usbpds<F: FnOnce(Usbpds) -> Usbpds>(&self, f: F) -> &Sysctl {
+  pub fn with_usbpds<F: FnOnce(Usbpds) -> Usbpds>(&self, f: F) -> &Self {
      let tmp = self.usbpds();
      self.set_usbpds(f(tmp))
   }
@@ -801,14 +801,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_usbmpc(&self, value: Usbmpc) -> &Sysctl {
+  pub fn set_usbmpc(&self, value: Usbmpc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x284) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_usbmpc<F: FnOnce(Usbmpc) -> Usbmpc>(&self, f: F) -> &Sysctl {
+  pub fn with_usbmpc<F: FnOnce(Usbmpc) -> Usbmpc>(&self, f: F) -> &Self {
      let tmp = self.usbmpc();
      self.set_usbmpc(f(tmp))
   }
@@ -828,14 +828,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_emacpds(&self, value: Emacpds) -> &Sysctl {
+  pub fn set_emacpds(&self, value: Emacpds) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x288) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_emacpds<F: FnOnce(Emacpds) -> Emacpds>(&self, f: F) -> &Sysctl {
+  pub fn with_emacpds<F: FnOnce(Emacpds) -> Emacpds>(&self, f: F) -> &Self {
      let tmp = self.emacpds();
      self.set_emacpds(f(tmp))
   }
@@ -855,14 +855,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_emacmpc(&self, value: Emacmpc) -> &Sysctl {
+  pub fn set_emacmpc(&self, value: Emacmpc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_emacmpc<F: FnOnce(Emacmpc) -> Emacmpc>(&self, f: F) -> &Sysctl {
+  pub fn with_emacmpc<F: FnOnce(Emacmpc) -> Emacmpc>(&self, f: F) -> &Self {
      let tmp = self.emacmpc();
      self.set_emacmpc(f(tmp))
   }
@@ -882,14 +882,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppwd(&self, value: Ppwd) -> &Sysctl {
+  pub fn set_ppwd(&self, value: Ppwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x300) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppwd<F: FnOnce(Ppwd) -> Ppwd>(&self, f: F) -> &Sysctl {
+  pub fn with_ppwd<F: FnOnce(Ppwd) -> Ppwd>(&self, f: F) -> &Self {
      let tmp = self.ppwd();
      self.set_ppwd(f(tmp))
   }
@@ -909,14 +909,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pptimer(&self, value: Pptimer) -> &Sysctl {
+  pub fn set_pptimer(&self, value: Pptimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x304) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pptimer<F: FnOnce(Pptimer) -> Pptimer>(&self, f: F) -> &Sysctl {
+  pub fn with_pptimer<F: FnOnce(Pptimer) -> Pptimer>(&self, f: F) -> &Self {
      let tmp = self.pptimer();
      self.set_pptimer(f(tmp))
   }
@@ -936,14 +936,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppgpio(&self, value: Ppgpio) -> &Sysctl {
+  pub fn set_ppgpio(&self, value: Ppgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x308) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppgpio<F: FnOnce(Ppgpio) -> Ppgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_ppgpio<F: FnOnce(Ppgpio) -> Ppgpio>(&self, f: F) -> &Self {
      let tmp = self.ppgpio();
      self.set_ppgpio(f(tmp))
   }
@@ -963,14 +963,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppdma(&self, value: Ppdma) -> &Sysctl {
+  pub fn set_ppdma(&self, value: Ppdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppdma<F: FnOnce(Ppdma) -> Ppdma>(&self, f: F) -> &Sysctl {
+  pub fn with_ppdma<F: FnOnce(Ppdma) -> Ppdma>(&self, f: F) -> &Self {
      let tmp = self.ppdma();
      self.set_ppdma(f(tmp))
   }
@@ -990,14 +990,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppepi(&self, value: Ppepi) -> &Sysctl {
+  pub fn set_ppepi(&self, value: Ppepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x310) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppepi<F: FnOnce(Ppepi) -> Ppepi>(&self, f: F) -> &Sysctl {
+  pub fn with_ppepi<F: FnOnce(Ppepi) -> Ppepi>(&self, f: F) -> &Self {
      let tmp = self.ppepi();
      self.set_ppepi(f(tmp))
   }
@@ -1017,14 +1017,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pphib(&self, value: Pphib) -> &Sysctl {
+  pub fn set_pphib(&self, value: Pphib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x314) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pphib<F: FnOnce(Pphib) -> Pphib>(&self, f: F) -> &Sysctl {
+  pub fn with_pphib<F: FnOnce(Pphib) -> Pphib>(&self, f: F) -> &Self {
      let tmp = self.pphib();
      self.set_pphib(f(tmp))
   }
@@ -1044,14 +1044,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppuart(&self, value: Ppuart) -> &Sysctl {
+  pub fn set_ppuart(&self, value: Ppuart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x318) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppuart<F: FnOnce(Ppuart) -> Ppuart>(&self, f: F) -> &Sysctl {
+  pub fn with_ppuart<F: FnOnce(Ppuart) -> Ppuart>(&self, f: F) -> &Self {
      let tmp = self.ppuart();
      self.set_ppuart(f(tmp))
   }
@@ -1071,14 +1071,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppssi(&self, value: Ppssi) -> &Sysctl {
+  pub fn set_ppssi(&self, value: Ppssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x31c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppssi<F: FnOnce(Ppssi) -> Ppssi>(&self, f: F) -> &Sysctl {
+  pub fn with_ppssi<F: FnOnce(Ppssi) -> Ppssi>(&self, f: F) -> &Self {
      let tmp = self.ppssi();
      self.set_ppssi(f(tmp))
   }
@@ -1098,14 +1098,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppi2c(&self, value: Ppi2c) -> &Sysctl {
+  pub fn set_ppi2c(&self, value: Ppi2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x320) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppi2c<F: FnOnce(Ppi2c) -> Ppi2c>(&self, f: F) -> &Sysctl {
+  pub fn with_ppi2c<F: FnOnce(Ppi2c) -> Ppi2c>(&self, f: F) -> &Self {
      let tmp = self.ppi2c();
      self.set_ppi2c(f(tmp))
   }
@@ -1125,14 +1125,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppusb(&self, value: Ppusb) -> &Sysctl {
+  pub fn set_ppusb(&self, value: Ppusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x328) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppusb<F: FnOnce(Ppusb) -> Ppusb>(&self, f: F) -> &Sysctl {
+  pub fn with_ppusb<F: FnOnce(Ppusb) -> Ppusb>(&self, f: F) -> &Self {
      let tmp = self.ppusb();
      self.set_ppusb(f(tmp))
   }
@@ -1152,14 +1152,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppephy(&self, value: Ppephy) -> &Sysctl {
+  pub fn set_ppephy(&self, value: Ppephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x330) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppephy<F: FnOnce(Ppephy) -> Ppephy>(&self, f: F) -> &Sysctl {
+  pub fn with_ppephy<F: FnOnce(Ppephy) -> Ppephy>(&self, f: F) -> &Self {
      let tmp = self.ppephy();
      self.set_ppephy(f(tmp))
   }
@@ -1179,14 +1179,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppcan(&self, value: Ppcan) -> &Sysctl {
+  pub fn set_ppcan(&self, value: Ppcan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x334) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppcan<F: FnOnce(Ppcan) -> Ppcan>(&self, f: F) -> &Sysctl {
+  pub fn with_ppcan<F: FnOnce(Ppcan) -> Ppcan>(&self, f: F) -> &Self {
      let tmp = self.ppcan();
      self.set_ppcan(f(tmp))
   }
@@ -1206,14 +1206,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppadc(&self, value: Ppadc) -> &Sysctl {
+  pub fn set_ppadc(&self, value: Ppadc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x338) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppadc<F: FnOnce(Ppadc) -> Ppadc>(&self, f: F) -> &Sysctl {
+  pub fn with_ppadc<F: FnOnce(Ppadc) -> Ppadc>(&self, f: F) -> &Self {
      let tmp = self.ppadc();
      self.set_ppadc(f(tmp))
   }
@@ -1233,14 +1233,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppacmp(&self, value: Ppacmp) -> &Sysctl {
+  pub fn set_ppacmp(&self, value: Ppacmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x33c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppacmp<F: FnOnce(Ppacmp) -> Ppacmp>(&self, f: F) -> &Sysctl {
+  pub fn with_ppacmp<F: FnOnce(Ppacmp) -> Ppacmp>(&self, f: F) -> &Self {
      let tmp = self.ppacmp();
      self.set_ppacmp(f(tmp))
   }
@@ -1260,14 +1260,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pppwm(&self, value: Pppwm) -> &Sysctl {
+  pub fn set_pppwm(&self, value: Pppwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x340) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pppwm<F: FnOnce(Pppwm) -> Pppwm>(&self, f: F) -> &Sysctl {
+  pub fn with_pppwm<F: FnOnce(Pppwm) -> Pppwm>(&self, f: F) -> &Self {
      let tmp = self.pppwm();
      self.set_pppwm(f(tmp))
   }
@@ -1287,14 +1287,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppqei(&self, value: Ppqei) -> &Sysctl {
+  pub fn set_ppqei(&self, value: Ppqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x344) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppqei<F: FnOnce(Ppqei) -> Ppqei>(&self, f: F) -> &Sysctl {
+  pub fn with_ppqei<F: FnOnce(Ppqei) -> Ppqei>(&self, f: F) -> &Self {
      let tmp = self.ppqei();
      self.set_ppqei(f(tmp))
   }
@@ -1314,14 +1314,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pplpc(&self, value: Pplpc) -> &Sysctl {
+  pub fn set_pplpc(&self, value: Pplpc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x348) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pplpc<F: FnOnce(Pplpc) -> Pplpc>(&self, f: F) -> &Sysctl {
+  pub fn with_pplpc<F: FnOnce(Pplpc) -> Pplpc>(&self, f: F) -> &Self {
      let tmp = self.pplpc();
      self.set_pplpc(f(tmp))
   }
@@ -1341,14 +1341,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pppeci(&self, value: Pppeci) -> &Sysctl {
+  pub fn set_pppeci(&self, value: Pppeci) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x350) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pppeci<F: FnOnce(Pppeci) -> Pppeci>(&self, f: F) -> &Sysctl {
+  pub fn with_pppeci<F: FnOnce(Pppeci) -> Pppeci>(&self, f: F) -> &Self {
      let tmp = self.pppeci();
      self.set_pppeci(f(tmp))
   }
@@ -1368,14 +1368,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppfan(&self, value: Ppfan) -> &Sysctl {
+  pub fn set_ppfan(&self, value: Ppfan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x354) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppfan<F: FnOnce(Ppfan) -> Ppfan>(&self, f: F) -> &Sysctl {
+  pub fn with_ppfan<F: FnOnce(Ppfan) -> Ppfan>(&self, f: F) -> &Self {
      let tmp = self.ppfan();
      self.set_ppfan(f(tmp))
   }
@@ -1395,14 +1395,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppeeprom(&self, value: Ppeeprom) -> &Sysctl {
+  pub fn set_ppeeprom(&self, value: Ppeeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x358) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppeeprom<F: FnOnce(Ppeeprom) -> Ppeeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_ppeeprom<F: FnOnce(Ppeeprom) -> Ppeeprom>(&self, f: F) -> &Self {
      let tmp = self.ppeeprom();
      self.set_ppeeprom(f(tmp))
   }
@@ -1422,14 +1422,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppwtimer(&self, value: Ppwtimer) -> &Sysctl {
+  pub fn set_ppwtimer(&self, value: Ppwtimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x35c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppwtimer<F: FnOnce(Ppwtimer) -> Ppwtimer>(&self, f: F) -> &Sysctl {
+  pub fn with_ppwtimer<F: FnOnce(Ppwtimer) -> Ppwtimer>(&self, f: F) -> &Self {
      let tmp = self.ppwtimer();
      self.set_ppwtimer(f(tmp))
   }
@@ -1449,14 +1449,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pprts(&self, value: Pprts) -> &Sysctl {
+  pub fn set_pprts(&self, value: Pprts) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x370) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pprts<F: FnOnce(Pprts) -> Pprts>(&self, f: F) -> &Sysctl {
+  pub fn with_pprts<F: FnOnce(Pprts) -> Pprts>(&self, f: F) -> &Self {
      let tmp = self.pprts();
      self.set_pprts(f(tmp))
   }
@@ -1476,14 +1476,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppccm(&self, value: Ppccm) -> &Sysctl {
+  pub fn set_ppccm(&self, value: Ppccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x374) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppccm<F: FnOnce(Ppccm) -> Ppccm>(&self, f: F) -> &Sysctl {
+  pub fn with_ppccm<F: FnOnce(Ppccm) -> Ppccm>(&self, f: F) -> &Self {
      let tmp = self.ppccm();
      self.set_ppccm(f(tmp))
   }
@@ -1503,14 +1503,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pplcd(&self, value: Pplcd) -> &Sysctl {
+  pub fn set_pplcd(&self, value: Pplcd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x390) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pplcd<F: FnOnce(Pplcd) -> Pplcd>(&self, f: F) -> &Sysctl {
+  pub fn with_pplcd<F: FnOnce(Pplcd) -> Pplcd>(&self, f: F) -> &Self {
      let tmp = self.pplcd();
      self.set_pplcd(f(tmp))
   }
@@ -1530,14 +1530,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppowire(&self, value: Ppowire) -> &Sysctl {
+  pub fn set_ppowire(&self, value: Ppowire) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x398) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppowire<F: FnOnce(Ppowire) -> Ppowire>(&self, f: F) -> &Sysctl {
+  pub fn with_ppowire<F: FnOnce(Ppowire) -> Ppowire>(&self, f: F) -> &Self {
      let tmp = self.ppowire();
      self.set_ppowire(f(tmp))
   }
@@ -1557,14 +1557,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_ppemac(&self, value: Ppemac) -> &Sysctl {
+  pub fn set_ppemac(&self, value: Ppemac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x39c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ppemac<F: FnOnce(Ppemac) -> Ppemac>(&self, f: F) -> &Sysctl {
+  pub fn with_ppemac<F: FnOnce(Ppemac) -> Ppemac>(&self, f: F) -> &Self {
      let tmp = self.ppemac();
      self.set_ppemac(f(tmp))
   }
@@ -1584,14 +1584,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pphim(&self, value: Pphim) -> &Sysctl {
+  pub fn set_pphim(&self, value: Pphim) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3a4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pphim<F: FnOnce(Pphim) -> Pphim>(&self, f: F) -> &Sysctl {
+  pub fn with_pphim<F: FnOnce(Pphim) -> Pphim>(&self, f: F) -> &Self {
      let tmp = self.pphim();
      self.set_pphim(f(tmp))
   }
@@ -1611,14 +1611,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srwd(&self, value: Srwd) -> &Sysctl {
+  pub fn set_srwd(&self, value: Srwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x500) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srwd<F: FnOnce(Srwd) -> Srwd>(&self, f: F) -> &Sysctl {
+  pub fn with_srwd<F: FnOnce(Srwd) -> Srwd>(&self, f: F) -> &Self {
      let tmp = self.srwd();
      self.set_srwd(f(tmp))
   }
@@ -1638,14 +1638,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srtimer(&self, value: Srtimer) -> &Sysctl {
+  pub fn set_srtimer(&self, value: Srtimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x504) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srtimer<F: FnOnce(Srtimer) -> Srtimer>(&self, f: F) -> &Sysctl {
+  pub fn with_srtimer<F: FnOnce(Srtimer) -> Srtimer>(&self, f: F) -> &Self {
      let tmp = self.srtimer();
      self.set_srtimer(f(tmp))
   }
@@ -1665,14 +1665,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srgpio(&self, value: Srgpio) -> &Sysctl {
+  pub fn set_srgpio(&self, value: Srgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x508) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srgpio<F: FnOnce(Srgpio) -> Srgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_srgpio<F: FnOnce(Srgpio) -> Srgpio>(&self, f: F) -> &Self {
      let tmp = self.srgpio();
      self.set_srgpio(f(tmp))
   }
@@ -1692,14 +1692,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srdma(&self, value: Srdma) -> &Sysctl {
+  pub fn set_srdma(&self, value: Srdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srdma<F: FnOnce(Srdma) -> Srdma>(&self, f: F) -> &Sysctl {
+  pub fn with_srdma<F: FnOnce(Srdma) -> Srdma>(&self, f: F) -> &Self {
      let tmp = self.srdma();
      self.set_srdma(f(tmp))
   }
@@ -1719,14 +1719,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srepi(&self, value: Srepi) -> &Sysctl {
+  pub fn set_srepi(&self, value: Srepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x510) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srepi<F: FnOnce(Srepi) -> Srepi>(&self, f: F) -> &Sysctl {
+  pub fn with_srepi<F: FnOnce(Srepi) -> Srepi>(&self, f: F) -> &Self {
      let tmp = self.srepi();
      self.set_srepi(f(tmp))
   }
@@ -1746,14 +1746,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srhib(&self, value: Srhib) -> &Sysctl {
+  pub fn set_srhib(&self, value: Srhib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x514) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srhib<F: FnOnce(Srhib) -> Srhib>(&self, f: F) -> &Sysctl {
+  pub fn with_srhib<F: FnOnce(Srhib) -> Srhib>(&self, f: F) -> &Self {
      let tmp = self.srhib();
      self.set_srhib(f(tmp))
   }
@@ -1773,14 +1773,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sruart(&self, value: Sruart) -> &Sysctl {
+  pub fn set_sruart(&self, value: Sruart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x518) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sruart<F: FnOnce(Sruart) -> Sruart>(&self, f: F) -> &Sysctl {
+  pub fn with_sruart<F: FnOnce(Sruart) -> Sruart>(&self, f: F) -> &Self {
      let tmp = self.sruart();
      self.set_sruart(f(tmp))
   }
@@ -1800,14 +1800,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srssi(&self, value: Srssi) -> &Sysctl {
+  pub fn set_srssi(&self, value: Srssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x51c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srssi<F: FnOnce(Srssi) -> Srssi>(&self, f: F) -> &Sysctl {
+  pub fn with_srssi<F: FnOnce(Srssi) -> Srssi>(&self, f: F) -> &Self {
      let tmp = self.srssi();
      self.set_srssi(f(tmp))
   }
@@ -1827,14 +1827,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sri2c(&self, value: Sri2c) -> &Sysctl {
+  pub fn set_sri2c(&self, value: Sri2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x520) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sri2c<F: FnOnce(Sri2c) -> Sri2c>(&self, f: F) -> &Sysctl {
+  pub fn with_sri2c<F: FnOnce(Sri2c) -> Sri2c>(&self, f: F) -> &Self {
      let tmp = self.sri2c();
      self.set_sri2c(f(tmp))
   }
@@ -1854,14 +1854,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srusb(&self, value: Srusb) -> &Sysctl {
+  pub fn set_srusb(&self, value: Srusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x528) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srusb<F: FnOnce(Srusb) -> Srusb>(&self, f: F) -> &Sysctl {
+  pub fn with_srusb<F: FnOnce(Srusb) -> Srusb>(&self, f: F) -> &Self {
      let tmp = self.srusb();
      self.set_srusb(f(tmp))
   }
@@ -1881,14 +1881,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srephy(&self, value: Srephy) -> &Sysctl {
+  pub fn set_srephy(&self, value: Srephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x530) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srephy<F: FnOnce(Srephy) -> Srephy>(&self, f: F) -> &Sysctl {
+  pub fn with_srephy<F: FnOnce(Srephy) -> Srephy>(&self, f: F) -> &Self {
      let tmp = self.srephy();
      self.set_srephy(f(tmp))
   }
@@ -1908,14 +1908,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srcan(&self, value: Srcan) -> &Sysctl {
+  pub fn set_srcan(&self, value: Srcan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x534) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srcan<F: FnOnce(Srcan) -> Srcan>(&self, f: F) -> &Sysctl {
+  pub fn with_srcan<F: FnOnce(Srcan) -> Srcan>(&self, f: F) -> &Self {
      let tmp = self.srcan();
      self.set_srcan(f(tmp))
   }
@@ -1935,14 +1935,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sradc(&self, value: Sradc) -> &Sysctl {
+  pub fn set_sradc(&self, value: Sradc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x538) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sradc<F: FnOnce(Sradc) -> Sradc>(&self, f: F) -> &Sysctl {
+  pub fn with_sradc<F: FnOnce(Sradc) -> Sradc>(&self, f: F) -> &Self {
      let tmp = self.sradc();
      self.set_sradc(f(tmp))
   }
@@ -1962,14 +1962,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sracmp(&self, value: Sracmp) -> &Sysctl {
+  pub fn set_sracmp(&self, value: Sracmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x53c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sracmp<F: FnOnce(Sracmp) -> Sracmp>(&self, f: F) -> &Sysctl {
+  pub fn with_sracmp<F: FnOnce(Sracmp) -> Sracmp>(&self, f: F) -> &Self {
      let tmp = self.sracmp();
      self.set_sracmp(f(tmp))
   }
@@ -1989,14 +1989,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srpwm(&self, value: Srpwm) -> &Sysctl {
+  pub fn set_srpwm(&self, value: Srpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x540) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srpwm<F: FnOnce(Srpwm) -> Srpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_srpwm<F: FnOnce(Srpwm) -> Srpwm>(&self, f: F) -> &Self {
      let tmp = self.srpwm();
      self.set_srpwm(f(tmp))
   }
@@ -2016,14 +2016,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srqei(&self, value: Srqei) -> &Sysctl {
+  pub fn set_srqei(&self, value: Srqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x544) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srqei<F: FnOnce(Srqei) -> Srqei>(&self, f: F) -> &Sysctl {
+  pub fn with_srqei<F: FnOnce(Srqei) -> Srqei>(&self, f: F) -> &Self {
      let tmp = self.srqei();
      self.set_srqei(f(tmp))
   }
@@ -2043,14 +2043,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sreeprom(&self, value: Sreeprom) -> &Sysctl {
+  pub fn set_sreeprom(&self, value: Sreeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x558) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sreeprom<F: FnOnce(Sreeprom) -> Sreeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_sreeprom<F: FnOnce(Sreeprom) -> Sreeprom>(&self, f: F) -> &Self {
      let tmp = self.sreeprom();
      self.set_sreeprom(f(tmp))
   }
@@ -2070,14 +2070,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_srccm(&self, value: Srccm) -> &Sysctl {
+  pub fn set_srccm(&self, value: Srccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x574) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_srccm<F: FnOnce(Srccm) -> Srccm>(&self, f: F) -> &Sysctl {
+  pub fn with_srccm<F: FnOnce(Srccm) -> Srccm>(&self, f: F) -> &Self {
      let tmp = self.srccm();
      self.set_srccm(f(tmp))
   }
@@ -2097,14 +2097,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_sremac(&self, value: Sremac) -> &Sysctl {
+  pub fn set_sremac(&self, value: Sremac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x59c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sremac<F: FnOnce(Sremac) -> Sremac>(&self, f: F) -> &Sysctl {
+  pub fn with_sremac<F: FnOnce(Sremac) -> Sremac>(&self, f: F) -> &Self {
      let tmp = self.sremac();
      self.set_sremac(f(tmp))
   }
@@ -2124,14 +2124,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcwd(&self, value: Rcgcwd) -> &Sysctl {
+  pub fn set_rcgcwd(&self, value: Rcgcwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x600) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcwd<F: FnOnce(Rcgcwd) -> Rcgcwd>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcwd<F: FnOnce(Rcgcwd) -> Rcgcwd>(&self, f: F) -> &Self {
      let tmp = self.rcgcwd();
      self.set_rcgcwd(f(tmp))
   }
@@ -2151,14 +2151,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgctimer(&self, value: Rcgctimer) -> &Sysctl {
+  pub fn set_rcgctimer(&self, value: Rcgctimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgctimer<F: FnOnce(Rcgctimer) -> Rcgctimer>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgctimer<F: FnOnce(Rcgctimer) -> Rcgctimer>(&self, f: F) -> &Self {
      let tmp = self.rcgctimer();
      self.set_rcgctimer(f(tmp))
   }
@@ -2178,14 +2178,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcgpio(&self, value: Rcgcgpio) -> &Sysctl {
+  pub fn set_rcgcgpio(&self, value: Rcgcgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcgpio<F: FnOnce(Rcgcgpio) -> Rcgcgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcgpio<F: FnOnce(Rcgcgpio) -> Rcgcgpio>(&self, f: F) -> &Self {
      let tmp = self.rcgcgpio();
      self.set_rcgcgpio(f(tmp))
   }
@@ -2205,14 +2205,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcdma(&self, value: Rcgcdma) -> &Sysctl {
+  pub fn set_rcgcdma(&self, value: Rcgcdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcdma<F: FnOnce(Rcgcdma) -> Rcgcdma>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcdma<F: FnOnce(Rcgcdma) -> Rcgcdma>(&self, f: F) -> &Self {
      let tmp = self.rcgcdma();
      self.set_rcgcdma(f(tmp))
   }
@@ -2232,14 +2232,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcepi(&self, value: Rcgcepi) -> &Sysctl {
+  pub fn set_rcgcepi(&self, value: Rcgcepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x610) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcepi<F: FnOnce(Rcgcepi) -> Rcgcepi>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcepi<F: FnOnce(Rcgcepi) -> Rcgcepi>(&self, f: F) -> &Self {
      let tmp = self.rcgcepi();
      self.set_rcgcepi(f(tmp))
   }
@@ -2259,14 +2259,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgchib(&self, value: Rcgchib) -> &Sysctl {
+  pub fn set_rcgchib(&self, value: Rcgchib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x614) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgchib<F: FnOnce(Rcgchib) -> Rcgchib>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgchib<F: FnOnce(Rcgchib) -> Rcgchib>(&self, f: F) -> &Self {
      let tmp = self.rcgchib();
      self.set_rcgchib(f(tmp))
   }
@@ -2286,14 +2286,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcuart(&self, value: Rcgcuart) -> &Sysctl {
+  pub fn set_rcgcuart(&self, value: Rcgcuart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x618) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcuart<F: FnOnce(Rcgcuart) -> Rcgcuart>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcuart<F: FnOnce(Rcgcuart) -> Rcgcuart>(&self, f: F) -> &Self {
      let tmp = self.rcgcuart();
      self.set_rcgcuart(f(tmp))
   }
@@ -2313,14 +2313,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcssi(&self, value: Rcgcssi) -> &Sysctl {
+  pub fn set_rcgcssi(&self, value: Rcgcssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x61c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcssi<F: FnOnce(Rcgcssi) -> Rcgcssi>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcssi<F: FnOnce(Rcgcssi) -> Rcgcssi>(&self, f: F) -> &Self {
      let tmp = self.rcgcssi();
      self.set_rcgcssi(f(tmp))
   }
@@ -2340,14 +2340,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgci2c(&self, value: Rcgci2c) -> &Sysctl {
+  pub fn set_rcgci2c(&self, value: Rcgci2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x620) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgci2c<F: FnOnce(Rcgci2c) -> Rcgci2c>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgci2c<F: FnOnce(Rcgci2c) -> Rcgci2c>(&self, f: F) -> &Self {
      let tmp = self.rcgci2c();
      self.set_rcgci2c(f(tmp))
   }
@@ -2367,14 +2367,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcusb(&self, value: Rcgcusb) -> &Sysctl {
+  pub fn set_rcgcusb(&self, value: Rcgcusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x628) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcusb<F: FnOnce(Rcgcusb) -> Rcgcusb>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcusb<F: FnOnce(Rcgcusb) -> Rcgcusb>(&self, f: F) -> &Self {
      let tmp = self.rcgcusb();
      self.set_rcgcusb(f(tmp))
   }
@@ -2394,14 +2394,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcephy(&self, value: Rcgcephy) -> &Sysctl {
+  pub fn set_rcgcephy(&self, value: Rcgcephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x630) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcephy<F: FnOnce(Rcgcephy) -> Rcgcephy>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcephy<F: FnOnce(Rcgcephy) -> Rcgcephy>(&self, f: F) -> &Self {
      let tmp = self.rcgcephy();
      self.set_rcgcephy(f(tmp))
   }
@@ -2421,14 +2421,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgccan(&self, value: Rcgccan) -> &Sysctl {
+  pub fn set_rcgccan(&self, value: Rcgccan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x634) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgccan<F: FnOnce(Rcgccan) -> Rcgccan>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgccan<F: FnOnce(Rcgccan) -> Rcgccan>(&self, f: F) -> &Self {
      let tmp = self.rcgccan();
      self.set_rcgccan(f(tmp))
   }
@@ -2448,14 +2448,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcadc(&self, value: Rcgcadc) -> &Sysctl {
+  pub fn set_rcgcadc(&self, value: Rcgcadc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x638) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcadc<F: FnOnce(Rcgcadc) -> Rcgcadc>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcadc<F: FnOnce(Rcgcadc) -> Rcgcadc>(&self, f: F) -> &Self {
      let tmp = self.rcgcadc();
      self.set_rcgcadc(f(tmp))
   }
@@ -2475,14 +2475,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcacmp(&self, value: Rcgcacmp) -> &Sysctl {
+  pub fn set_rcgcacmp(&self, value: Rcgcacmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x63c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcacmp<F: FnOnce(Rcgcacmp) -> Rcgcacmp>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcacmp<F: FnOnce(Rcgcacmp) -> Rcgcacmp>(&self, f: F) -> &Self {
      let tmp = self.rcgcacmp();
      self.set_rcgcacmp(f(tmp))
   }
@@ -2502,14 +2502,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcpwm(&self, value: Rcgcpwm) -> &Sysctl {
+  pub fn set_rcgcpwm(&self, value: Rcgcpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x640) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcpwm<F: FnOnce(Rcgcpwm) -> Rcgcpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcpwm<F: FnOnce(Rcgcpwm) -> Rcgcpwm>(&self, f: F) -> &Self {
      let tmp = self.rcgcpwm();
      self.set_rcgcpwm(f(tmp))
   }
@@ -2529,14 +2529,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcqei(&self, value: Rcgcqei) -> &Sysctl {
+  pub fn set_rcgcqei(&self, value: Rcgcqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x644) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcqei<F: FnOnce(Rcgcqei) -> Rcgcqei>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcqei<F: FnOnce(Rcgcqei) -> Rcgcqei>(&self, f: F) -> &Self {
      let tmp = self.rcgcqei();
      self.set_rcgcqei(f(tmp))
   }
@@ -2556,14 +2556,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgceeprom(&self, value: Rcgceeprom) -> &Sysctl {
+  pub fn set_rcgceeprom(&self, value: Rcgceeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x658) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgceeprom<F: FnOnce(Rcgceeprom) -> Rcgceeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgceeprom<F: FnOnce(Rcgceeprom) -> Rcgceeprom>(&self, f: F) -> &Self {
      let tmp = self.rcgceeprom();
      self.set_rcgceeprom(f(tmp))
   }
@@ -2583,14 +2583,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcccm(&self, value: Rcgcccm) -> &Sysctl {
+  pub fn set_rcgcccm(&self, value: Rcgcccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x674) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcccm<F: FnOnce(Rcgcccm) -> Rcgcccm>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcccm<F: FnOnce(Rcgcccm) -> Rcgcccm>(&self, f: F) -> &Self {
      let tmp = self.rcgcccm();
      self.set_rcgcccm(f(tmp))
   }
@@ -2610,14 +2610,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_rcgcemac(&self, value: Rcgcemac) -> &Sysctl {
+  pub fn set_rcgcemac(&self, value: Rcgcemac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x69c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcgcemac<F: FnOnce(Rcgcemac) -> Rcgcemac>(&self, f: F) -> &Sysctl {
+  pub fn with_rcgcemac<F: FnOnce(Rcgcemac) -> Rcgcemac>(&self, f: F) -> &Self {
      let tmp = self.rcgcemac();
      self.set_rcgcemac(f(tmp))
   }
@@ -2637,14 +2637,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcwd(&self, value: Scgcwd) -> &Sysctl {
+  pub fn set_scgcwd(&self, value: Scgcwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x700) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcwd<F: FnOnce(Scgcwd) -> Scgcwd>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcwd<F: FnOnce(Scgcwd) -> Scgcwd>(&self, f: F) -> &Self {
      let tmp = self.scgcwd();
      self.set_scgcwd(f(tmp))
   }
@@ -2664,14 +2664,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgctimer(&self, value: Scgctimer) -> &Sysctl {
+  pub fn set_scgctimer(&self, value: Scgctimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x704) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgctimer<F: FnOnce(Scgctimer) -> Scgctimer>(&self, f: F) -> &Sysctl {
+  pub fn with_scgctimer<F: FnOnce(Scgctimer) -> Scgctimer>(&self, f: F) -> &Self {
      let tmp = self.scgctimer();
      self.set_scgctimer(f(tmp))
   }
@@ -2691,14 +2691,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcgpio(&self, value: Scgcgpio) -> &Sysctl {
+  pub fn set_scgcgpio(&self, value: Scgcgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x708) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcgpio<F: FnOnce(Scgcgpio) -> Scgcgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcgpio<F: FnOnce(Scgcgpio) -> Scgcgpio>(&self, f: F) -> &Self {
      let tmp = self.scgcgpio();
      self.set_scgcgpio(f(tmp))
   }
@@ -2718,14 +2718,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcdma(&self, value: Scgcdma) -> &Sysctl {
+  pub fn set_scgcdma(&self, value: Scgcdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x70c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcdma<F: FnOnce(Scgcdma) -> Scgcdma>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcdma<F: FnOnce(Scgcdma) -> Scgcdma>(&self, f: F) -> &Self {
      let tmp = self.scgcdma();
      self.set_scgcdma(f(tmp))
   }
@@ -2745,14 +2745,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcepi(&self, value: Scgcepi) -> &Sysctl {
+  pub fn set_scgcepi(&self, value: Scgcepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x710) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcepi<F: FnOnce(Scgcepi) -> Scgcepi>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcepi<F: FnOnce(Scgcepi) -> Scgcepi>(&self, f: F) -> &Self {
      let tmp = self.scgcepi();
      self.set_scgcepi(f(tmp))
   }
@@ -2772,14 +2772,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgchib(&self, value: Scgchib) -> &Sysctl {
+  pub fn set_scgchib(&self, value: Scgchib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x714) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgchib<F: FnOnce(Scgchib) -> Scgchib>(&self, f: F) -> &Sysctl {
+  pub fn with_scgchib<F: FnOnce(Scgchib) -> Scgchib>(&self, f: F) -> &Self {
      let tmp = self.scgchib();
      self.set_scgchib(f(tmp))
   }
@@ -2799,14 +2799,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcuart(&self, value: Scgcuart) -> &Sysctl {
+  pub fn set_scgcuart(&self, value: Scgcuart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x718) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcuart<F: FnOnce(Scgcuart) -> Scgcuart>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcuart<F: FnOnce(Scgcuart) -> Scgcuart>(&self, f: F) -> &Self {
      let tmp = self.scgcuart();
      self.set_scgcuart(f(tmp))
   }
@@ -2826,14 +2826,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcssi(&self, value: Scgcssi) -> &Sysctl {
+  pub fn set_scgcssi(&self, value: Scgcssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x71c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcssi<F: FnOnce(Scgcssi) -> Scgcssi>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcssi<F: FnOnce(Scgcssi) -> Scgcssi>(&self, f: F) -> &Self {
      let tmp = self.scgcssi();
      self.set_scgcssi(f(tmp))
   }
@@ -2853,14 +2853,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgci2c(&self, value: Scgci2c) -> &Sysctl {
+  pub fn set_scgci2c(&self, value: Scgci2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x720) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgci2c<F: FnOnce(Scgci2c) -> Scgci2c>(&self, f: F) -> &Sysctl {
+  pub fn with_scgci2c<F: FnOnce(Scgci2c) -> Scgci2c>(&self, f: F) -> &Self {
      let tmp = self.scgci2c();
      self.set_scgci2c(f(tmp))
   }
@@ -2880,14 +2880,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcusb(&self, value: Scgcusb) -> &Sysctl {
+  pub fn set_scgcusb(&self, value: Scgcusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x728) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcusb<F: FnOnce(Scgcusb) -> Scgcusb>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcusb<F: FnOnce(Scgcusb) -> Scgcusb>(&self, f: F) -> &Self {
      let tmp = self.scgcusb();
      self.set_scgcusb(f(tmp))
   }
@@ -2907,14 +2907,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcephy(&self, value: Scgcephy) -> &Sysctl {
+  pub fn set_scgcephy(&self, value: Scgcephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x730) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcephy<F: FnOnce(Scgcephy) -> Scgcephy>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcephy<F: FnOnce(Scgcephy) -> Scgcephy>(&self, f: F) -> &Self {
      let tmp = self.scgcephy();
      self.set_scgcephy(f(tmp))
   }
@@ -2934,14 +2934,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgccan(&self, value: Scgccan) -> &Sysctl {
+  pub fn set_scgccan(&self, value: Scgccan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x734) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgccan<F: FnOnce(Scgccan) -> Scgccan>(&self, f: F) -> &Sysctl {
+  pub fn with_scgccan<F: FnOnce(Scgccan) -> Scgccan>(&self, f: F) -> &Self {
      let tmp = self.scgccan();
      self.set_scgccan(f(tmp))
   }
@@ -2961,14 +2961,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcadc(&self, value: Scgcadc) -> &Sysctl {
+  pub fn set_scgcadc(&self, value: Scgcadc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x738) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcadc<F: FnOnce(Scgcadc) -> Scgcadc>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcadc<F: FnOnce(Scgcadc) -> Scgcadc>(&self, f: F) -> &Self {
      let tmp = self.scgcadc();
      self.set_scgcadc(f(tmp))
   }
@@ -2988,14 +2988,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcacmp(&self, value: Scgcacmp) -> &Sysctl {
+  pub fn set_scgcacmp(&self, value: Scgcacmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x73c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcacmp<F: FnOnce(Scgcacmp) -> Scgcacmp>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcacmp<F: FnOnce(Scgcacmp) -> Scgcacmp>(&self, f: F) -> &Self {
      let tmp = self.scgcacmp();
      self.set_scgcacmp(f(tmp))
   }
@@ -3015,14 +3015,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcpwm(&self, value: Scgcpwm) -> &Sysctl {
+  pub fn set_scgcpwm(&self, value: Scgcpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x740) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcpwm<F: FnOnce(Scgcpwm) -> Scgcpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcpwm<F: FnOnce(Scgcpwm) -> Scgcpwm>(&self, f: F) -> &Self {
      let tmp = self.scgcpwm();
      self.set_scgcpwm(f(tmp))
   }
@@ -3042,14 +3042,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcqei(&self, value: Scgcqei) -> &Sysctl {
+  pub fn set_scgcqei(&self, value: Scgcqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x744) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcqei<F: FnOnce(Scgcqei) -> Scgcqei>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcqei<F: FnOnce(Scgcqei) -> Scgcqei>(&self, f: F) -> &Self {
      let tmp = self.scgcqei();
      self.set_scgcqei(f(tmp))
   }
@@ -3069,14 +3069,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgceeprom(&self, value: Scgceeprom) -> &Sysctl {
+  pub fn set_scgceeprom(&self, value: Scgceeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x758) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgceeprom<F: FnOnce(Scgceeprom) -> Scgceeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_scgceeprom<F: FnOnce(Scgceeprom) -> Scgceeprom>(&self, f: F) -> &Self {
      let tmp = self.scgceeprom();
      self.set_scgceeprom(f(tmp))
   }
@@ -3096,14 +3096,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcccm(&self, value: Scgcccm) -> &Sysctl {
+  pub fn set_scgcccm(&self, value: Scgcccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x774) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcccm<F: FnOnce(Scgcccm) -> Scgcccm>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcccm<F: FnOnce(Scgcccm) -> Scgcccm>(&self, f: F) -> &Self {
      let tmp = self.scgcccm();
      self.set_scgcccm(f(tmp))
   }
@@ -3123,14 +3123,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_scgcemac(&self, value: Scgcemac) -> &Sysctl {
+  pub fn set_scgcemac(&self, value: Scgcemac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x79c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_scgcemac<F: FnOnce(Scgcemac) -> Scgcemac>(&self, f: F) -> &Sysctl {
+  pub fn with_scgcemac<F: FnOnce(Scgcemac) -> Scgcemac>(&self, f: F) -> &Self {
      let tmp = self.scgcemac();
      self.set_scgcemac(f(tmp))
   }
@@ -3150,14 +3150,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcwd(&self, value: Dcgcwd) -> &Sysctl {
+  pub fn set_dcgcwd(&self, value: Dcgcwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x800) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcwd<F: FnOnce(Dcgcwd) -> Dcgcwd>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcwd<F: FnOnce(Dcgcwd) -> Dcgcwd>(&self, f: F) -> &Self {
      let tmp = self.dcgcwd();
      self.set_dcgcwd(f(tmp))
   }
@@ -3177,14 +3177,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgctimer(&self, value: Dcgctimer) -> &Sysctl {
+  pub fn set_dcgctimer(&self, value: Dcgctimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x804) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgctimer<F: FnOnce(Dcgctimer) -> Dcgctimer>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgctimer<F: FnOnce(Dcgctimer) -> Dcgctimer>(&self, f: F) -> &Self {
      let tmp = self.dcgctimer();
      self.set_dcgctimer(f(tmp))
   }
@@ -3204,14 +3204,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcgpio(&self, value: Dcgcgpio) -> &Sysctl {
+  pub fn set_dcgcgpio(&self, value: Dcgcgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x808) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcgpio<F: FnOnce(Dcgcgpio) -> Dcgcgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcgpio<F: FnOnce(Dcgcgpio) -> Dcgcgpio>(&self, f: F) -> &Self {
      let tmp = self.dcgcgpio();
      self.set_dcgcgpio(f(tmp))
   }
@@ -3231,14 +3231,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcdma(&self, value: Dcgcdma) -> &Sysctl {
+  pub fn set_dcgcdma(&self, value: Dcgcdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcdma<F: FnOnce(Dcgcdma) -> Dcgcdma>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcdma<F: FnOnce(Dcgcdma) -> Dcgcdma>(&self, f: F) -> &Self {
      let tmp = self.dcgcdma();
      self.set_dcgcdma(f(tmp))
   }
@@ -3258,14 +3258,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcepi(&self, value: Dcgcepi) -> &Sysctl {
+  pub fn set_dcgcepi(&self, value: Dcgcepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x810) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcepi<F: FnOnce(Dcgcepi) -> Dcgcepi>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcepi<F: FnOnce(Dcgcepi) -> Dcgcepi>(&self, f: F) -> &Self {
      let tmp = self.dcgcepi();
      self.set_dcgcepi(f(tmp))
   }
@@ -3285,14 +3285,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgchib(&self, value: Dcgchib) -> &Sysctl {
+  pub fn set_dcgchib(&self, value: Dcgchib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x814) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgchib<F: FnOnce(Dcgchib) -> Dcgchib>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgchib<F: FnOnce(Dcgchib) -> Dcgchib>(&self, f: F) -> &Self {
      let tmp = self.dcgchib();
      self.set_dcgchib(f(tmp))
   }
@@ -3312,14 +3312,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcuart(&self, value: Dcgcuart) -> &Sysctl {
+  pub fn set_dcgcuart(&self, value: Dcgcuart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x818) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcuart<F: FnOnce(Dcgcuart) -> Dcgcuart>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcuart<F: FnOnce(Dcgcuart) -> Dcgcuart>(&self, f: F) -> &Self {
      let tmp = self.dcgcuart();
      self.set_dcgcuart(f(tmp))
   }
@@ -3339,14 +3339,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcssi(&self, value: Dcgcssi) -> &Sysctl {
+  pub fn set_dcgcssi(&self, value: Dcgcssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x81c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcssi<F: FnOnce(Dcgcssi) -> Dcgcssi>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcssi<F: FnOnce(Dcgcssi) -> Dcgcssi>(&self, f: F) -> &Self {
      let tmp = self.dcgcssi();
      self.set_dcgcssi(f(tmp))
   }
@@ -3366,14 +3366,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgci2c(&self, value: Dcgci2c) -> &Sysctl {
+  pub fn set_dcgci2c(&self, value: Dcgci2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x820) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgci2c<F: FnOnce(Dcgci2c) -> Dcgci2c>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgci2c<F: FnOnce(Dcgci2c) -> Dcgci2c>(&self, f: F) -> &Self {
      let tmp = self.dcgci2c();
      self.set_dcgci2c(f(tmp))
   }
@@ -3393,14 +3393,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcusb(&self, value: Dcgcusb) -> &Sysctl {
+  pub fn set_dcgcusb(&self, value: Dcgcusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x828) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcusb<F: FnOnce(Dcgcusb) -> Dcgcusb>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcusb<F: FnOnce(Dcgcusb) -> Dcgcusb>(&self, f: F) -> &Self {
      let tmp = self.dcgcusb();
      self.set_dcgcusb(f(tmp))
   }
@@ -3420,14 +3420,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcephy(&self, value: Dcgcephy) -> &Sysctl {
+  pub fn set_dcgcephy(&self, value: Dcgcephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x830) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcephy<F: FnOnce(Dcgcephy) -> Dcgcephy>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcephy<F: FnOnce(Dcgcephy) -> Dcgcephy>(&self, f: F) -> &Self {
      let tmp = self.dcgcephy();
      self.set_dcgcephy(f(tmp))
   }
@@ -3447,14 +3447,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgccan(&self, value: Dcgccan) -> &Sysctl {
+  pub fn set_dcgccan(&self, value: Dcgccan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x834) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgccan<F: FnOnce(Dcgccan) -> Dcgccan>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgccan<F: FnOnce(Dcgccan) -> Dcgccan>(&self, f: F) -> &Self {
      let tmp = self.dcgccan();
      self.set_dcgccan(f(tmp))
   }
@@ -3474,14 +3474,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcadc(&self, value: Dcgcadc) -> &Sysctl {
+  pub fn set_dcgcadc(&self, value: Dcgcadc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x838) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcadc<F: FnOnce(Dcgcadc) -> Dcgcadc>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcadc<F: FnOnce(Dcgcadc) -> Dcgcadc>(&self, f: F) -> &Self {
      let tmp = self.dcgcadc();
      self.set_dcgcadc(f(tmp))
   }
@@ -3501,14 +3501,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcacmp(&self, value: Dcgcacmp) -> &Sysctl {
+  pub fn set_dcgcacmp(&self, value: Dcgcacmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x83c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcacmp<F: FnOnce(Dcgcacmp) -> Dcgcacmp>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcacmp<F: FnOnce(Dcgcacmp) -> Dcgcacmp>(&self, f: F) -> &Self {
      let tmp = self.dcgcacmp();
      self.set_dcgcacmp(f(tmp))
   }
@@ -3528,14 +3528,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcpwm(&self, value: Dcgcpwm) -> &Sysctl {
+  pub fn set_dcgcpwm(&self, value: Dcgcpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x840) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcpwm<F: FnOnce(Dcgcpwm) -> Dcgcpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcpwm<F: FnOnce(Dcgcpwm) -> Dcgcpwm>(&self, f: F) -> &Self {
      let tmp = self.dcgcpwm();
      self.set_dcgcpwm(f(tmp))
   }
@@ -3555,14 +3555,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcqei(&self, value: Dcgcqei) -> &Sysctl {
+  pub fn set_dcgcqei(&self, value: Dcgcqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x844) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcqei<F: FnOnce(Dcgcqei) -> Dcgcqei>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcqei<F: FnOnce(Dcgcqei) -> Dcgcqei>(&self, f: F) -> &Self {
      let tmp = self.dcgcqei();
      self.set_dcgcqei(f(tmp))
   }
@@ -3582,14 +3582,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgceeprom(&self, value: Dcgceeprom) -> &Sysctl {
+  pub fn set_dcgceeprom(&self, value: Dcgceeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x858) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgceeprom<F: FnOnce(Dcgceeprom) -> Dcgceeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgceeprom<F: FnOnce(Dcgceeprom) -> Dcgceeprom>(&self, f: F) -> &Self {
      let tmp = self.dcgceeprom();
      self.set_dcgceeprom(f(tmp))
   }
@@ -3609,14 +3609,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcccm(&self, value: Dcgcccm) -> &Sysctl {
+  pub fn set_dcgcccm(&self, value: Dcgcccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x874) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcccm<F: FnOnce(Dcgcccm) -> Dcgcccm>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcccm<F: FnOnce(Dcgcccm) -> Dcgcccm>(&self, f: F) -> &Self {
      let tmp = self.dcgcccm();
      self.set_dcgcccm(f(tmp))
   }
@@ -3636,14 +3636,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_dcgcemac(&self, value: Dcgcemac) -> &Sysctl {
+  pub fn set_dcgcemac(&self, value: Dcgcemac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x89c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcgcemac<F: FnOnce(Dcgcemac) -> Dcgcemac>(&self, f: F) -> &Sysctl {
+  pub fn with_dcgcemac<F: FnOnce(Dcgcemac) -> Dcgcemac>(&self, f: F) -> &Self {
      let tmp = self.dcgcemac();
      self.set_dcgcemac(f(tmp))
   }
@@ -3663,14 +3663,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcwd(&self, value: Pcwd) -> &Sysctl {
+  pub fn set_pcwd(&self, value: Pcwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x900) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcwd<F: FnOnce(Pcwd) -> Pcwd>(&self, f: F) -> &Sysctl {
+  pub fn with_pcwd<F: FnOnce(Pcwd) -> Pcwd>(&self, f: F) -> &Self {
      let tmp = self.pcwd();
      self.set_pcwd(f(tmp))
   }
@@ -3690,14 +3690,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pctimer(&self, value: Pctimer) -> &Sysctl {
+  pub fn set_pctimer(&self, value: Pctimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x904) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pctimer<F: FnOnce(Pctimer) -> Pctimer>(&self, f: F) -> &Sysctl {
+  pub fn with_pctimer<F: FnOnce(Pctimer) -> Pctimer>(&self, f: F) -> &Self {
      let tmp = self.pctimer();
      self.set_pctimer(f(tmp))
   }
@@ -3717,14 +3717,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcgpio(&self, value: Pcgpio) -> &Sysctl {
+  pub fn set_pcgpio(&self, value: Pcgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x908) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcgpio<F: FnOnce(Pcgpio) -> Pcgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_pcgpio<F: FnOnce(Pcgpio) -> Pcgpio>(&self, f: F) -> &Self {
      let tmp = self.pcgpio();
      self.set_pcgpio(f(tmp))
   }
@@ -3744,14 +3744,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcdma(&self, value: Pcdma) -> &Sysctl {
+  pub fn set_pcdma(&self, value: Pcdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x90c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcdma<F: FnOnce(Pcdma) -> Pcdma>(&self, f: F) -> &Sysctl {
+  pub fn with_pcdma<F: FnOnce(Pcdma) -> Pcdma>(&self, f: F) -> &Self {
      let tmp = self.pcdma();
      self.set_pcdma(f(tmp))
   }
@@ -3771,14 +3771,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcepi(&self, value: Pcepi) -> &Sysctl {
+  pub fn set_pcepi(&self, value: Pcepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x910) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcepi<F: FnOnce(Pcepi) -> Pcepi>(&self, f: F) -> &Sysctl {
+  pub fn with_pcepi<F: FnOnce(Pcepi) -> Pcepi>(&self, f: F) -> &Self {
      let tmp = self.pcepi();
      self.set_pcepi(f(tmp))
   }
@@ -3798,14 +3798,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pchib(&self, value: Pchib) -> &Sysctl {
+  pub fn set_pchib(&self, value: Pchib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x914) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pchib<F: FnOnce(Pchib) -> Pchib>(&self, f: F) -> &Sysctl {
+  pub fn with_pchib<F: FnOnce(Pchib) -> Pchib>(&self, f: F) -> &Self {
      let tmp = self.pchib();
      self.set_pchib(f(tmp))
   }
@@ -3825,14 +3825,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcuart(&self, value: Pcuart) -> &Sysctl {
+  pub fn set_pcuart(&self, value: Pcuart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x918) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcuart<F: FnOnce(Pcuart) -> Pcuart>(&self, f: F) -> &Sysctl {
+  pub fn with_pcuart<F: FnOnce(Pcuart) -> Pcuart>(&self, f: F) -> &Self {
      let tmp = self.pcuart();
      self.set_pcuart(f(tmp))
   }
@@ -3852,14 +3852,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcssi(&self, value: Pcssi) -> &Sysctl {
+  pub fn set_pcssi(&self, value: Pcssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x91c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcssi<F: FnOnce(Pcssi) -> Pcssi>(&self, f: F) -> &Sysctl {
+  pub fn with_pcssi<F: FnOnce(Pcssi) -> Pcssi>(&self, f: F) -> &Self {
      let tmp = self.pcssi();
      self.set_pcssi(f(tmp))
   }
@@ -3879,14 +3879,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pci2c(&self, value: Pci2c) -> &Sysctl {
+  pub fn set_pci2c(&self, value: Pci2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x920) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pci2c<F: FnOnce(Pci2c) -> Pci2c>(&self, f: F) -> &Sysctl {
+  pub fn with_pci2c<F: FnOnce(Pci2c) -> Pci2c>(&self, f: F) -> &Self {
      let tmp = self.pci2c();
      self.set_pci2c(f(tmp))
   }
@@ -3906,14 +3906,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcusb(&self, value: Pcusb) -> &Sysctl {
+  pub fn set_pcusb(&self, value: Pcusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x928) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcusb<F: FnOnce(Pcusb) -> Pcusb>(&self, f: F) -> &Sysctl {
+  pub fn with_pcusb<F: FnOnce(Pcusb) -> Pcusb>(&self, f: F) -> &Self {
      let tmp = self.pcusb();
      self.set_pcusb(f(tmp))
   }
@@ -3933,14 +3933,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcephy(&self, value: Pcephy) -> &Sysctl {
+  pub fn set_pcephy(&self, value: Pcephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x930) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcephy<F: FnOnce(Pcephy) -> Pcephy>(&self, f: F) -> &Sysctl {
+  pub fn with_pcephy<F: FnOnce(Pcephy) -> Pcephy>(&self, f: F) -> &Self {
      let tmp = self.pcephy();
      self.set_pcephy(f(tmp))
   }
@@ -3960,14 +3960,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pccan(&self, value: Pccan) -> &Sysctl {
+  pub fn set_pccan(&self, value: Pccan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x934) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccan<F: FnOnce(Pccan) -> Pccan>(&self, f: F) -> &Sysctl {
+  pub fn with_pccan<F: FnOnce(Pccan) -> Pccan>(&self, f: F) -> &Self {
      let tmp = self.pccan();
      self.set_pccan(f(tmp))
   }
@@ -3987,14 +3987,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcadc(&self, value: Pcadc) -> &Sysctl {
+  pub fn set_pcadc(&self, value: Pcadc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x938) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcadc<F: FnOnce(Pcadc) -> Pcadc>(&self, f: F) -> &Sysctl {
+  pub fn with_pcadc<F: FnOnce(Pcadc) -> Pcadc>(&self, f: F) -> &Self {
      let tmp = self.pcadc();
      self.set_pcadc(f(tmp))
   }
@@ -4014,14 +4014,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcacmp(&self, value: Pcacmp) -> &Sysctl {
+  pub fn set_pcacmp(&self, value: Pcacmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x93c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcacmp<F: FnOnce(Pcacmp) -> Pcacmp>(&self, f: F) -> &Sysctl {
+  pub fn with_pcacmp<F: FnOnce(Pcacmp) -> Pcacmp>(&self, f: F) -> &Self {
      let tmp = self.pcacmp();
      self.set_pcacmp(f(tmp))
   }
@@ -4041,14 +4041,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcpwm(&self, value: Pcpwm) -> &Sysctl {
+  pub fn set_pcpwm(&self, value: Pcpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x940) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcpwm<F: FnOnce(Pcpwm) -> Pcpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_pcpwm<F: FnOnce(Pcpwm) -> Pcpwm>(&self, f: F) -> &Self {
      let tmp = self.pcpwm();
      self.set_pcpwm(f(tmp))
   }
@@ -4068,14 +4068,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcqei(&self, value: Pcqei) -> &Sysctl {
+  pub fn set_pcqei(&self, value: Pcqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x944) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcqei<F: FnOnce(Pcqei) -> Pcqei>(&self, f: F) -> &Sysctl {
+  pub fn with_pcqei<F: FnOnce(Pcqei) -> Pcqei>(&self, f: F) -> &Self {
      let tmp = self.pcqei();
      self.set_pcqei(f(tmp))
   }
@@ -4095,14 +4095,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pceeprom(&self, value: Pceeprom) -> &Sysctl {
+  pub fn set_pceeprom(&self, value: Pceeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x958) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pceeprom<F: FnOnce(Pceeprom) -> Pceeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_pceeprom<F: FnOnce(Pceeprom) -> Pceeprom>(&self, f: F) -> &Self {
      let tmp = self.pceeprom();
      self.set_pceeprom(f(tmp))
   }
@@ -4122,14 +4122,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcccm(&self, value: Pcccm) -> &Sysctl {
+  pub fn set_pcccm(&self, value: Pcccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x974) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcccm<F: FnOnce(Pcccm) -> Pcccm>(&self, f: F) -> &Sysctl {
+  pub fn with_pcccm<F: FnOnce(Pcccm) -> Pcccm>(&self, f: F) -> &Self {
      let tmp = self.pcccm();
      self.set_pcccm(f(tmp))
   }
@@ -4149,14 +4149,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pcemac(&self, value: Pcemac) -> &Sysctl {
+  pub fn set_pcemac(&self, value: Pcemac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x99c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pcemac<F: FnOnce(Pcemac) -> Pcemac>(&self, f: F) -> &Sysctl {
+  pub fn with_pcemac<F: FnOnce(Pcemac) -> Pcemac>(&self, f: F) -> &Self {
      let tmp = self.pcemac();
      self.set_pcemac(f(tmp))
   }
@@ -4176,14 +4176,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prwd(&self, value: Prwd) -> &Sysctl {
+  pub fn set_prwd(&self, value: Prwd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa00) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prwd<F: FnOnce(Prwd) -> Prwd>(&self, f: F) -> &Sysctl {
+  pub fn with_prwd<F: FnOnce(Prwd) -> Prwd>(&self, f: F) -> &Self {
      let tmp = self.prwd();
      self.set_prwd(f(tmp))
   }
@@ -4203,14 +4203,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prtimer(&self, value: Prtimer) -> &Sysctl {
+  pub fn set_prtimer(&self, value: Prtimer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa04) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prtimer<F: FnOnce(Prtimer) -> Prtimer>(&self, f: F) -> &Sysctl {
+  pub fn with_prtimer<F: FnOnce(Prtimer) -> Prtimer>(&self, f: F) -> &Self {
      let tmp = self.prtimer();
      self.set_prtimer(f(tmp))
   }
@@ -4230,14 +4230,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prgpio(&self, value: Prgpio) -> &Sysctl {
+  pub fn set_prgpio(&self, value: Prgpio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa08) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prgpio<F: FnOnce(Prgpio) -> Prgpio>(&self, f: F) -> &Sysctl {
+  pub fn with_prgpio<F: FnOnce(Prgpio) -> Prgpio>(&self, f: F) -> &Self {
      let tmp = self.prgpio();
      self.set_prgpio(f(tmp))
   }
@@ -4257,14 +4257,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prdma(&self, value: Prdma) -> &Sysctl {
+  pub fn set_prdma(&self, value: Prdma) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prdma<F: FnOnce(Prdma) -> Prdma>(&self, f: F) -> &Sysctl {
+  pub fn with_prdma<F: FnOnce(Prdma) -> Prdma>(&self, f: F) -> &Self {
      let tmp = self.prdma();
      self.set_prdma(f(tmp))
   }
@@ -4284,14 +4284,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prepi(&self, value: Prepi) -> &Sysctl {
+  pub fn set_prepi(&self, value: Prepi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prepi<F: FnOnce(Prepi) -> Prepi>(&self, f: F) -> &Sysctl {
+  pub fn with_prepi<F: FnOnce(Prepi) -> Prepi>(&self, f: F) -> &Self {
      let tmp = self.prepi();
      self.set_prepi(f(tmp))
   }
@@ -4311,14 +4311,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prhib(&self, value: Prhib) -> &Sysctl {
+  pub fn set_prhib(&self, value: Prhib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prhib<F: FnOnce(Prhib) -> Prhib>(&self, f: F) -> &Sysctl {
+  pub fn with_prhib<F: FnOnce(Prhib) -> Prhib>(&self, f: F) -> &Self {
      let tmp = self.prhib();
      self.set_prhib(f(tmp))
   }
@@ -4338,14 +4338,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pruart(&self, value: Pruart) -> &Sysctl {
+  pub fn set_pruart(&self, value: Pruart) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pruart<F: FnOnce(Pruart) -> Pruart>(&self, f: F) -> &Sysctl {
+  pub fn with_pruart<F: FnOnce(Pruart) -> Pruart>(&self, f: F) -> &Self {
      let tmp = self.pruart();
      self.set_pruart(f(tmp))
   }
@@ -4365,14 +4365,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prssi(&self, value: Prssi) -> &Sysctl {
+  pub fn set_prssi(&self, value: Prssi) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prssi<F: FnOnce(Prssi) -> Prssi>(&self, f: F) -> &Sysctl {
+  pub fn with_prssi<F: FnOnce(Prssi) -> Prssi>(&self, f: F) -> &Self {
      let tmp = self.prssi();
      self.set_prssi(f(tmp))
   }
@@ -4392,14 +4392,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pri2c(&self, value: Pri2c) -> &Sysctl {
+  pub fn set_pri2c(&self, value: Pri2c) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pri2c<F: FnOnce(Pri2c) -> Pri2c>(&self, f: F) -> &Sysctl {
+  pub fn with_pri2c<F: FnOnce(Pri2c) -> Pri2c>(&self, f: F) -> &Self {
      let tmp = self.pri2c();
      self.set_pri2c(f(tmp))
   }
@@ -4419,14 +4419,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prusb(&self, value: Prusb) -> &Sysctl {
+  pub fn set_prusb(&self, value: Prusb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prusb<F: FnOnce(Prusb) -> Prusb>(&self, f: F) -> &Sysctl {
+  pub fn with_prusb<F: FnOnce(Prusb) -> Prusb>(&self, f: F) -> &Self {
      let tmp = self.prusb();
      self.set_prusb(f(tmp))
   }
@@ -4446,14 +4446,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prephy(&self, value: Prephy) -> &Sysctl {
+  pub fn set_prephy(&self, value: Prephy) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prephy<F: FnOnce(Prephy) -> Prephy>(&self, f: F) -> &Sysctl {
+  pub fn with_prephy<F: FnOnce(Prephy) -> Prephy>(&self, f: F) -> &Self {
      let tmp = self.prephy();
      self.set_prephy(f(tmp))
   }
@@ -4473,14 +4473,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prcan(&self, value: Prcan) -> &Sysctl {
+  pub fn set_prcan(&self, value: Prcan) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prcan<F: FnOnce(Prcan) -> Prcan>(&self, f: F) -> &Sysctl {
+  pub fn with_prcan<F: FnOnce(Prcan) -> Prcan>(&self, f: F) -> &Self {
      let tmp = self.prcan();
      self.set_prcan(f(tmp))
   }
@@ -4500,14 +4500,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pradc(&self, value: Pradc) -> &Sysctl {
+  pub fn set_pradc(&self, value: Pradc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pradc<F: FnOnce(Pradc) -> Pradc>(&self, f: F) -> &Sysctl {
+  pub fn with_pradc<F: FnOnce(Pradc) -> Pradc>(&self, f: F) -> &Self {
      let tmp = self.pradc();
      self.set_pradc(f(tmp))
   }
@@ -4527,14 +4527,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_pracmp(&self, value: Pracmp) -> &Sysctl {
+  pub fn set_pracmp(&self, value: Pracmp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pracmp<F: FnOnce(Pracmp) -> Pracmp>(&self, f: F) -> &Sysctl {
+  pub fn with_pracmp<F: FnOnce(Pracmp) -> Pracmp>(&self, f: F) -> &Self {
      let tmp = self.pracmp();
      self.set_pracmp(f(tmp))
   }
@@ -4554,14 +4554,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prpwm(&self, value: Prpwm) -> &Sysctl {
+  pub fn set_prpwm(&self, value: Prpwm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prpwm<F: FnOnce(Prpwm) -> Prpwm>(&self, f: F) -> &Sysctl {
+  pub fn with_prpwm<F: FnOnce(Prpwm) -> Prpwm>(&self, f: F) -> &Self {
      let tmp = self.prpwm();
      self.set_prpwm(f(tmp))
   }
@@ -4581,14 +4581,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prqei(&self, value: Prqei) -> &Sysctl {
+  pub fn set_prqei(&self, value: Prqei) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prqei<F: FnOnce(Prqei) -> Prqei>(&self, f: F) -> &Sysctl {
+  pub fn with_prqei<F: FnOnce(Prqei) -> Prqei>(&self, f: F) -> &Self {
      let tmp = self.prqei();
      self.set_prqei(f(tmp))
   }
@@ -4608,14 +4608,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_preeprom(&self, value: Preeprom) -> &Sysctl {
+  pub fn set_preeprom(&self, value: Preeprom) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_preeprom<F: FnOnce(Preeprom) -> Preeprom>(&self, f: F) -> &Sysctl {
+  pub fn with_preeprom<F: FnOnce(Preeprom) -> Preeprom>(&self, f: F) -> &Self {
      let tmp = self.preeprom();
      self.set_preeprom(f(tmp))
   }
@@ -4635,14 +4635,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_prccm(&self, value: Prccm) -> &Sysctl {
+  pub fn set_prccm(&self, value: Prccm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa74) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_prccm<F: FnOnce(Prccm) -> Prccm>(&self, f: F) -> &Sysctl {
+  pub fn with_prccm<F: FnOnce(Prccm) -> Prccm>(&self, f: F) -> &Self {
      let tmp = self.prccm();
      self.set_prccm(f(tmp))
   }
@@ -4662,14 +4662,14 @@ impl Sysctl {
      }
   }
   #[inline]
-  pub fn set_premac(&self, value: Premac) -> &Sysctl {
+  pub fn set_premac(&self, value: Premac) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa9c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_premac<F: FnOnce(Premac) -> Premac>(&self, f: F) -> &Sysctl {
+  pub fn with_premac<F: FnOnce(Premac) -> Premac>(&self, f: F) -> &Self {
      let tmp = self.premac();
      self.set_premac(f(tmp))
   }
@@ -14813,4 +14813,5 @@ impl Rcgc for super::uart::Uart7 {
    #[inline]
    fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcuart(|r| r.set_r7(value)); }
 }
+
 

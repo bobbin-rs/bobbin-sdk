@@ -12,7 +12,7 @@ pub trait UartExt {
     fn write(&self, data: &[u8]);
 }
 
-impl UartExt for UartImpl {
+impl<T> UartExt for Periph<T> {
     fn enable(&self, baud_divider: u16) -> &Self {
         let u = self;
         u.set_c1(C1(0));

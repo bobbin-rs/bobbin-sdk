@@ -16,7 +16,7 @@ pub trait GpioExt {
     fn input(&self) -> bool;
 }
 
-impl GpioExt for PinImpl {
+impl<P, T> GpioExt for Pin<P, T> {
     fn set_dir(&self, value: Dir) -> &Self {
         self.port.with_pddr(|r| r.set_pdd(self.index, value as u32));
         self

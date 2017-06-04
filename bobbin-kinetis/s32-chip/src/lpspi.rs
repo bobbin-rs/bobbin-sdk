@@ -1,42 +1,20 @@
 pub use kinetis_common::chip::lpspi::*;
 
-pub const LPSPI0: Lpspi0 = Lpspi0 {};
-pub const LPSPI0_REF: &Lpspi0 = &LPSPI0;
-pub const LPSPI0_IMPL: LpspiImpl = LpspiImpl(0x4002c000);
-pub const LPSPI0_IMPL_REF: &LpspiImpl = &LPSPI0_IMPL;
+pub const LPSPI0: Lpspi0 = Periph(0x4002c000, Lpspi0Id {});
+pub const LPSPI1: Lpspi1 = Periph(0x4002d000, Lpspi1Id {});
+pub const LPSPI2: Lpspi2 = Periph(0x4002e000, Lpspi2Id {});
 
-pub struct Lpspi0 {}
-impl ::core::ops::Deref for Lpspi0 {
-   type Target = LpspiImpl;
-   #[inline]
-   fn deref(&self) -> &LpspiImpl { LPSPI0_IMPL_REF }
-}
-
-
-pub const LPSPI1: Lpspi1 = Lpspi1 {};
-pub const LPSPI1_REF: &Lpspi1 = &LPSPI1;
-pub const LPSPI1_IMPL: LpspiImpl = LpspiImpl(0x4002d000);
-pub const LPSPI1_IMPL_REF: &LpspiImpl = &LPSPI1_IMPL;
-
-pub struct Lpspi1 {}
-impl ::core::ops::Deref for Lpspi1 {
-   type Target = LpspiImpl;
-   #[inline]
-   fn deref(&self) -> &LpspiImpl { LPSPI1_IMPL_REF }
-}
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Lpspi0Id {}
+pub type Lpspi0 = Periph<Lpspi0Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Lpspi1Id {}
+pub type Lpspi1 = Periph<Lpspi1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Lpspi2Id {}
+pub type Lpspi2 = Periph<Lpspi2Id>;
 
 
-pub const LPSPI2: Lpspi2 = Lpspi2 {};
-pub const LPSPI2_REF: &Lpspi2 = &LPSPI2;
-pub const LPSPI2_IMPL: LpspiImpl = LpspiImpl(0x4002e000);
-pub const LPSPI2_IMPL_REF: &LpspiImpl = &LPSPI2_IMPL;
-
-pub struct Lpspi2 {}
-impl ::core::ops::Deref for Lpspi2 {
-   type Target = LpspiImpl;
-   #[inline]
-   fn deref(&self) -> &LpspiImpl { LPSPI2_IMPL_REF }
-}
 
 
 

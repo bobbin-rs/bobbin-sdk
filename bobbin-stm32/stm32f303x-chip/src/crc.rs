@@ -18,14 +18,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &Crc {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Crc {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_idr(&self, value: Idr) -> &Crc {
+  pub fn set_idr(&self, value: Idr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_idr<F: FnOnce(Idr) -> Idr>(&self, f: F) -> &Crc {
+  pub fn with_idr<F: FnOnce(Idr) -> Idr>(&self, f: F) -> &Self {
      let tmp = self.idr();
      self.set_idr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Crc {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Crc {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_init(&self, value: Init) -> &Crc {
+  pub fn set_init(&self, value: Init) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_init<F: FnOnce(Init) -> Init>(&self, f: F) -> &Crc {
+  pub fn with_init<F: FnOnce(Init) -> Init>(&self, f: F) -> &Self {
      let tmp = self.init();
      self.set_init(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Crc {
      }
   }
   #[inline]
-  pub fn set_pol(&self, value: Pol) -> &Crc {
+  pub fn set_pol(&self, value: Pol) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pol<F: FnOnce(Pol) -> Pol>(&self, f: F) -> &Crc {
+  pub fn with_pol<F: FnOnce(Pol) -> Pol>(&self, f: F) -> &Self {
      let tmp = self.pol();
      self.set_pol(f(tmp))
   }
@@ -321,3 +321,4 @@ impl ::core::fmt::Debug for Pol {
       Ok(())
    }
 }
+

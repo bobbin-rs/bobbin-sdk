@@ -339,7 +339,7 @@
 
     (peripheral-group    
         (name LPUSART)
-        (prototype "periph/lpusart.rx")
+        (module (name stm32_common::chip::lpusart::*))
         (peripheral 
             (name LPUSART1)
             (address 0x40004800)   

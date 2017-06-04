@@ -18,14 +18,14 @@ impl Wdog {
      }
   }
   #[inline]
-  pub fn set_cs(&self, value: Cs) -> &Wdog {
+  pub fn set_cs(&self, value: Cs) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Wdog {
+  pub fn with_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
      let tmp = self.cs();
      self.set_cs(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Wdog {
      }
   }
   #[inline]
-  pub fn set_cnt(&self, value: Cnt) -> &Wdog {
+  pub fn set_cnt(&self, value: Cnt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Wdog {
+  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
      self.set_cnt(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Wdog {
      }
   }
   #[inline]
-  pub fn set_toval(&self, value: Toval) -> &Wdog {
+  pub fn set_toval(&self, value: Toval) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Wdog {
+  pub fn with_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
      let tmp = self.toval();
      self.set_toval(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Wdog {
      }
   }
   #[inline]
-  pub fn set_win(&self, value: Win) -> &Wdog {
+  pub fn set_win(&self, value: Win) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Wdog {
+  pub fn with_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
      let tmp = self.win();
      self.set_win(f(tmp))
   }
@@ -437,3 +437,4 @@ impl ::core::fmt::Debug for Win {
       Ok(())
    }
 }
+

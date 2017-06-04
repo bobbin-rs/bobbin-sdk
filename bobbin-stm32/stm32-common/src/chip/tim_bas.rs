@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct TimBasImpl(pub u32);
-impl TimBasImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &TimBasImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &TimBasImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -44,14 +47,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &TimBasImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &TimBasImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -71,14 +74,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_dier(&self, value: Dier) -> &TimBasImpl {
+  pub fn set_dier(&self, value: Dier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &TimBasImpl {
+  pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
      let tmp = self.dier();
      self.set_dier(f(tmp))
   }
@@ -98,14 +101,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &TimBasImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &TimBasImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -119,7 +122,7 @@ impl TimBasImpl {
      ((self.0 as usize) + 0x14) as *mut u32
   }
   #[inline]
-  pub fn set_egr(&self, value: Egr) -> &TimBasImpl {
+  pub fn set_egr(&self, value: Egr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -141,14 +144,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_cnt(&self, value: Cnt) -> &TimBasImpl {
+  pub fn set_cnt(&self, value: Cnt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &TimBasImpl {
+  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
      self.set_cnt(f(tmp))
   }
@@ -168,14 +171,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_psc(&self, value: Psc) -> &TimBasImpl {
+  pub fn set_psc(&self, value: Psc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &TimBasImpl {
+  pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
      let tmp = self.psc();
      self.set_psc(f(tmp))
   }
@@ -195,14 +198,14 @@ impl TimBasImpl {
      }
   }
   #[inline]
-  pub fn set_arr(&self, value: Arr) -> &TimBasImpl {
+  pub fn set_arr(&self, value: Arr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &TimBasImpl {
+  pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
      let tmp = self.arr();
      self.set_arr(f(tmp))
   }

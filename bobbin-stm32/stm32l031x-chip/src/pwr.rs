@@ -18,14 +18,14 @@ impl Pwr {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Pwr {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Pwr {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Pwr {
      }
   }
   #[inline]
-  pub fn set_csr(&self, value: Csr) -> &Pwr {
+  pub fn set_csr(&self, value: Csr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Pwr {
+  pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
      self.set_csr(f(tmp))
   }
@@ -351,3 +351,4 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
+

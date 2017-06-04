@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct GpioImpl(pub u32);
-impl GpioImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn moder_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_moder(&self, value: Moder) -> &GpioImpl {
+  pub fn set_moder(&self, value: Moder) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_moder<F: FnOnce(Moder) -> Moder>(&self, f: F) -> &GpioImpl {
+  pub fn with_moder<F: FnOnce(Moder) -> Moder>(&self, f: F) -> &Self {
      let tmp = self.moder();
      self.set_moder(f(tmp))
   }
@@ -44,14 +47,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_otyper(&self, value: Otyper) -> &GpioImpl {
+  pub fn set_otyper(&self, value: Otyper) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_otyper<F: FnOnce(Otyper) -> Otyper>(&self, f: F) -> &GpioImpl {
+  pub fn with_otyper<F: FnOnce(Otyper) -> Otyper>(&self, f: F) -> &Self {
      let tmp = self.otyper();
      self.set_otyper(f(tmp))
   }
@@ -71,14 +74,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_ospeedr(&self, value: Ospeedr) -> &GpioImpl {
+  pub fn set_ospeedr(&self, value: Ospeedr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ospeedr<F: FnOnce(Ospeedr) -> Ospeedr>(&self, f: F) -> &GpioImpl {
+  pub fn with_ospeedr<F: FnOnce(Ospeedr) -> Ospeedr>(&self, f: F) -> &Self {
      let tmp = self.ospeedr();
      self.set_ospeedr(f(tmp))
   }
@@ -98,14 +101,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_pupdr(&self, value: Pupdr) -> &GpioImpl {
+  pub fn set_pupdr(&self, value: Pupdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pupdr<F: FnOnce(Pupdr) -> Pupdr>(&self, f: F) -> &GpioImpl {
+  pub fn with_pupdr<F: FnOnce(Pupdr) -> Pupdr>(&self, f: F) -> &Self {
      let tmp = self.pupdr();
      self.set_pupdr(f(tmp))
   }
@@ -140,14 +143,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_odr(&self, value: Odr) -> &GpioImpl {
+  pub fn set_odr(&self, value: Odr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &GpioImpl {
+  pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
      let tmp = self.odr();
      self.set_odr(f(tmp))
   }
@@ -161,7 +164,7 @@ impl GpioImpl {
      ((self.0 as usize) + 0x18) as *mut u32
   }
   #[inline]
-  pub fn set_bsrr(&self, value: Bsrr) -> &GpioImpl {
+  pub fn set_bsrr(&self, value: Bsrr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -183,14 +186,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_lckr(&self, value: Lckr) -> &GpioImpl {
+  pub fn set_lckr(&self, value: Lckr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &GpioImpl {
+  pub fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
      let tmp = self.lckr();
      self.set_lckr(f(tmp))
   }
@@ -210,14 +213,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_afrl(&self, value: Afrl) -> &GpioImpl {
+  pub fn set_afrl(&self, value: Afrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_afrl<F: FnOnce(Afrl) -> Afrl>(&self, f: F) -> &GpioImpl {
+  pub fn with_afrl<F: FnOnce(Afrl) -> Afrl>(&self, f: F) -> &Self {
      let tmp = self.afrl();
      self.set_afrl(f(tmp))
   }
@@ -237,14 +240,14 @@ impl GpioImpl {
      }
   }
   #[inline]
-  pub fn set_afrh(&self, value: Afrh) -> &GpioImpl {
+  pub fn set_afrh(&self, value: Afrh) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_afrh<F: FnOnce(Afrh) -> Afrh>(&self, f: F) -> &GpioImpl {
+  pub fn with_afrh<F: FnOnce(Afrh) -> Afrh>(&self, f: F) -> &Self {
      let tmp = self.afrh();
      self.set_afrh(f(tmp))
   }
@@ -258,7 +261,7 @@ impl GpioImpl {
      ((self.0 as usize) + 0x28) as *mut u32
   }
   #[inline]
-  pub fn set_brr(&self, value: Brr) -> &GpioImpl {
+  pub fn set_brr(&self, value: Brr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
@@ -824,17 +827,13 @@ impl ::core::fmt::Debug for Brr {
       Ok(())
    }
 }
-pub struct PinImpl {
-  pub port: GpioImpl,
-  pub index: usize,
-}
+pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
+impl<P,T> Pin<P,T> {
+   #[inline] pub fn port(&self) -> &Periph<T> { &self.port }
+   #[inline] pub fn index(&self) -> usize { self.index }
 }
-
 pub trait AltFn<T> {
-   fn alt_fn(&self) -> usize;
+   #[inline] fn alt_fn(&self) -> usize;
 }
 

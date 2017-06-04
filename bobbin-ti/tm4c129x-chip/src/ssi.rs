@@ -1,59 +1,30 @@
-pub const SSI0: Ssi0 = Ssi0 {};
-pub const SSI0_REF: &Ssi0 = &SSI0;
-pub const SSI0_IMPL: SsiImpl = SsiImpl(0x40008000);
-pub const SSI0_IMPL_REF: &SsiImpl = &SSI0_IMPL;
-
-pub struct Ssi0 {}
-impl ::core::ops::Deref for Ssi0 {
-   type Target = SsiImpl;
-   #[inline]
-   fn deref(&self) -> &SsiImpl { SSI0_IMPL_REF }
-}
-
-
-pub const SSI1: Ssi1 = Ssi1 {};
-pub const SSI1_REF: &Ssi1 = &SSI1;
-pub const SSI1_IMPL: SsiImpl = SsiImpl(0x40009000);
-pub const SSI1_IMPL_REF: &SsiImpl = &SSI1_IMPL;
-
-pub struct Ssi1 {}
-impl ::core::ops::Deref for Ssi1 {
-   type Target = SsiImpl;
-   #[inline]
-   fn deref(&self) -> &SsiImpl { SSI1_IMPL_REF }
-}
-
-
-pub const SSI2: Ssi2 = Ssi2 {};
-pub const SSI2_REF: &Ssi2 = &SSI2;
-pub const SSI2_IMPL: SsiImpl = SsiImpl(0x4000a000);
-pub const SSI2_IMPL_REF: &SsiImpl = &SSI2_IMPL;
-
-pub struct Ssi2 {}
-impl ::core::ops::Deref for Ssi2 {
-   type Target = SsiImpl;
-   #[inline]
-   fn deref(&self) -> &SsiImpl { SSI2_IMPL_REF }
-}
-
-
-pub const SSI3: Ssi3 = Ssi3 {};
-pub const SSI3_REF: &Ssi3 = &SSI3;
-pub const SSI3_IMPL: SsiImpl = SsiImpl(0x4000b000);
-pub const SSI3_IMPL_REF: &SsiImpl = &SSI3_IMPL;
-
-pub struct Ssi3 {}
-impl ::core::ops::Deref for Ssi3 {
-   type Target = SsiImpl;
-   #[inline]
-   fn deref(&self) -> &SsiImpl { SSI3_IMPL_REF }
-}
-
-
+pub const SSI0: Ssi0 = Periph(0x40008000, Ssi0Id {});
+pub const SSI1: Ssi1 = Periph(0x40009000, Ssi1Id {});
+pub const SSI2: Ssi2 = Periph(0x4000a000, Ssi2Id {});
+pub const SSI3: Ssi3 = Periph(0x4000b000, Ssi3Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct SsiImpl(pub u32);
-impl SsiImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Ssi0Id {}
+pub type Ssi0 = Periph<Ssi0Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Ssi1Id {}
+pub type Ssi1 = Periph<Ssi1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Ssi2Id {}
+pub type Ssi2 = Periph<Ssi2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Ssi3Id {}
+pub type Ssi3 = Periph<Ssi3Id>;
+
+
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr0_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -69,14 +40,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_cr0(&self, value: Cr0) -> &SsiImpl {
+  pub fn set_cr0(&self, value: Cr0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr0<F: FnOnce(Cr0) -> Cr0>(&self, f: F) -> &SsiImpl {
+  pub fn with_cr0<F: FnOnce(Cr0) -> Cr0>(&self, f: F) -> &Self {
      let tmp = self.cr0();
      self.set_cr0(f(tmp))
   }
@@ -96,14 +67,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &SsiImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &SsiImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -123,14 +94,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &SsiImpl {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &SsiImpl {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -150,14 +121,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &SsiImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &SsiImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -177,14 +148,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_cpsr(&self, value: Cpsr) -> &SsiImpl {
+  pub fn set_cpsr(&self, value: Cpsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cpsr<F: FnOnce(Cpsr) -> Cpsr>(&self, f: F) -> &SsiImpl {
+  pub fn with_cpsr<F: FnOnce(Cpsr) -> Cpsr>(&self, f: F) -> &Self {
      let tmp = self.cpsr();
      self.set_cpsr(f(tmp))
   }
@@ -204,14 +175,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_im(&self, value: Im) -> &SsiImpl {
+  pub fn set_im(&self, value: Im) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &SsiImpl {
+  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
      let tmp = self.im();
      self.set_im(f(tmp))
   }
@@ -231,14 +202,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_ris(&self, value: Ris) -> &SsiImpl {
+  pub fn set_ris(&self, value: Ris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &SsiImpl {
+  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
      let tmp = self.ris();
      self.set_ris(f(tmp))
   }
@@ -258,14 +229,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_mis(&self, value: Mis) -> &SsiImpl {
+  pub fn set_mis(&self, value: Mis) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &SsiImpl {
+  pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
      let tmp = self.mis();
      self.set_mis(f(tmp))
   }
@@ -279,7 +250,7 @@ impl SsiImpl {
      ((self.0 as usize) + 0x20) as *mut u32
   }
   #[inline]
-  pub fn set_icr(&self, value: Icr) -> &SsiImpl {
+  pub fn set_icr(&self, value: Icr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -301,14 +272,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_dmactl(&self, value: Dmactl) -> &SsiImpl {
+  pub fn set_dmactl(&self, value: Dmactl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &SsiImpl {
+  pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
      let tmp = self.dmactl();
      self.set_dmactl(f(tmp))
   }
@@ -328,14 +299,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_pp(&self, value: Pp) -> &SsiImpl {
+  pub fn set_pp(&self, value: Pp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &SsiImpl {
+  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
      let tmp = self.pp();
      self.set_pp(f(tmp))
   }
@@ -355,14 +326,14 @@ impl SsiImpl {
      }
   }
   #[inline]
-  pub fn set_cc(&self, value: Cc) -> &SsiImpl {
+  pub fn set_cc(&self, value: Cc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &SsiImpl {
+  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
      let tmp = self.cc();
      self.set_cc(f(tmp))
   }

@@ -18,14 +18,14 @@ impl Fpu {
      }
   }
   #[inline]
-  pub fn set_cpacr(&self, value: Cpacr) -> &Fpu {
+  pub fn set_cpacr(&self, value: Cpacr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd88) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Fpu {
+  pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
      let tmp = self.cpacr();
      self.set_cpacr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Fpu {
      }
   }
   #[inline]
-  pub fn set_fpccr(&self, value: Fpccr) -> &Fpu {
+  pub fn set_fpccr(&self, value: Fpccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Fpu {
+  pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
      let tmp = self.fpccr();
      self.set_fpccr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Fpu {
      }
   }
   #[inline]
-  pub fn set_fpcar(&self, value: Fpcar) -> &Fpu {
+  pub fn set_fpcar(&self, value: Fpcar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Fpu {
+  pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
      let tmp = self.fpcar();
      self.set_fpcar(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Fpu {
      }
   }
   #[inline]
-  pub fn set_fpdscr(&self, value: Fpdscr) -> &Fpu {
+  pub fn set_fpdscr(&self, value: Fpdscr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Fpu {
+  pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
      let tmp = self.fpdscr();
      self.set_fpdscr(f(tmp))
   }
@@ -385,3 +385,4 @@ impl ::core::fmt::Debug for Fpdscr {
       Ok(())
    }
 }
+

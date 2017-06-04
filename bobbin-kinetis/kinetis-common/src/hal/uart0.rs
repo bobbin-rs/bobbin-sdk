@@ -1,6 +1,6 @@
 use chip::uart0::*;
 
-pub trait UartExt {
+pub trait Uart0Ext {
     fn enable(&self, bd: u16) -> &Self;
     fn tx_empty(&self) -> bool;
     fn tx_complete(&self) -> bool;
@@ -12,7 +12,7 @@ pub trait UartExt {
     fn write(&self, data: &[u8]);
 }
 
-impl UartExt for Uart0Impl {
+impl<T> Uart0Ext for Periph<T> {
     fn enable(&self, baud_divider: u16) -> &Self {
         let u = self;
         u.set_c1(C1(0));

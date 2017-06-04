@@ -1,31 +1,20 @@
-pub const C_ADC12: CAdc12 = CAdc12 {};
-pub const C_ADC12_IMPL: CAdcImpl = CAdcImpl(0x50000300);
-pub const C_ADC12_IMPL_REF: &CAdcImpl = &C_ADC12_IMPL;
-
-pub struct CAdc12 {}
-impl ::core::ops::Deref for CAdc12 {
-   type Target = CAdcImpl;
-   #[inline]
-   fn deref(&self) -> &CAdcImpl { C_ADC12_IMPL_REF }
-}
-
-
-pub const C_ADC34: CAdc34 = CAdc34 {};
-pub const C_ADC34_IMPL: CAdcImpl = CAdcImpl(0x50000700);
-pub const C_ADC34_IMPL_REF: &CAdcImpl = &C_ADC34_IMPL;
-
-pub struct CAdc34 {}
-impl ::core::ops::Deref for CAdc34 {
-   type Target = CAdcImpl;
-   #[inline]
-   fn deref(&self) -> &CAdcImpl { C_ADC34_IMPL_REF }
-}
-
-
+pub const C_ADC12: CAdc12 = Periph(0x50000300, CAdc12Id {});
+pub const C_ADC34: CAdc34 = Periph(0x50000700, CAdc34Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct CAdcImpl(pub u32);
-impl CAdcImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct CAdc12Id {}
+pub type CAdc12 = Periph<CAdc12Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct CAdc34Id {}
+pub type CAdc34 = Periph<CAdc34Id>;
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn csr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -56,14 +45,14 @@ impl CAdcImpl {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, value: Ccr) -> &CAdcImpl {
+  pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &CAdcImpl {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
