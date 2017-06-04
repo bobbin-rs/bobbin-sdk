@@ -1,5 +1,6 @@
 pub mod sig;
 pub mod gpio;
+pub mod lpusart;
 pub mod usart;
 pub mod usart_f24;
 pub mod tim_bas;

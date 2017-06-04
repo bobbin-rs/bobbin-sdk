@@ -46,7 +46,7 @@ pub trait TcExt {
     fn set_mc0_enabled(&self, value: bool) -> &Self;
 }
 
-impl TcExt for TcImpl {
+impl<T> TcExt for Periph<T> {
     fn configure_16bit(&self, cfg: Config) -> &Self {
         let tc16 = self.count16();
         tc16.set_ctrla(count16::Ctrla(0).set_enable(0));

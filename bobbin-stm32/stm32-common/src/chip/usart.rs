@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsartImpl(pub u32);
-impl UsartImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &UsartImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &UsartImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -44,14 +47,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &UsartImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &UsartImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -71,14 +74,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_cr3(&self, value: Cr3) -> &UsartImpl {
+  pub fn set_cr3(&self, value: Cr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) -> &UsartImpl {
+  pub fn with_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) -> &Self {
      let tmp = self.cr3();
      self.set_cr3(f(tmp))
   }
@@ -98,14 +101,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_brr(&self, value: Brr) -> &UsartImpl {
+  pub fn set_brr(&self, value: Brr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &UsartImpl {
+  pub fn with_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
      let tmp = self.brr();
      self.set_brr(f(tmp))
   }
@@ -125,14 +128,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_gtpr(&self, value: Gtpr) -> &UsartImpl {
+  pub fn set_gtpr(&self, value: Gtpr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gtpr<F: FnOnce(Gtpr) -> Gtpr>(&self, f: F) -> &UsartImpl {
+  pub fn with_gtpr<F: FnOnce(Gtpr) -> Gtpr>(&self, f: F) -> &Self {
      let tmp = self.gtpr();
      self.set_gtpr(f(tmp))
   }
@@ -152,14 +155,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_rtor(&self, value: Rtor) -> &UsartImpl {
+  pub fn set_rtor(&self, value: Rtor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rtor<F: FnOnce(Rtor) -> Rtor>(&self, f: F) -> &UsartImpl {
+  pub fn with_rtor<F: FnOnce(Rtor) -> Rtor>(&self, f: F) -> &Self {
      let tmp = self.rtor();
      self.set_rtor(f(tmp))
   }
@@ -179,14 +182,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_rqr(&self, value: Rqr) -> &UsartImpl {
+  pub fn set_rqr(&self, value: Rqr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rqr<F: FnOnce(Rqr) -> Rqr>(&self, f: F) -> &UsartImpl {
+  pub fn with_rqr<F: FnOnce(Rqr) -> Rqr>(&self, f: F) -> &Self {
      let tmp = self.rqr();
      self.set_rqr(f(tmp))
   }
@@ -221,14 +224,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_icr(&self, value: Icr) -> &UsartImpl {
+  pub fn set_icr(&self, value: Icr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &UsartImpl {
+  pub fn with_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &Self {
      let tmp = self.icr();
      self.set_icr(f(tmp))
   }
@@ -263,14 +266,14 @@ impl UsartImpl {
      }
   }
   #[inline]
-  pub fn set_tdr(&self, value: Tdr) -> &UsartImpl {
+  pub fn set_tdr(&self, value: Tdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tdr<F: FnOnce(Tdr) -> Tdr>(&self, f: F) -> &UsartImpl {
+  pub fn with_tdr<F: FnOnce(Tdr) -> Tdr>(&self, f: F) -> &Self {
      let tmp = self.tdr();
      self.set_tdr(f(tmp))
   }

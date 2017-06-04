@@ -18,14 +18,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maccr(&self, value: Maccr) -> &Ethernet {
+  pub fn set_maccr(&self, value: Maccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Ethernet {
+  pub fn with_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
      let tmp = self.maccr();
      self.set_maccr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macffr(&self, value: Macffr) -> &Ethernet {
+  pub fn set_macffr(&self, value: Macffr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Ethernet {
+  pub fn with_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
      let tmp = self.macffr();
      self.set_macffr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_machthr(&self, value: Machthr) -> &Ethernet {
+  pub fn set_machthr(&self, value: Machthr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Ethernet {
+  pub fn with_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
      let tmp = self.machthr();
      self.set_machthr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_machtlr(&self, value: Machtlr) -> &Ethernet {
+  pub fn set_machtlr(&self, value: Machtlr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Ethernet {
+  pub fn with_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
      let tmp = self.machtlr();
      self.set_machtlr(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macmiiar(&self, value: Macmiiar) -> &Ethernet {
+  pub fn set_macmiiar(&self, value: Macmiiar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Ethernet {
+  pub fn with_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
      let tmp = self.macmiiar();
      self.set_macmiiar(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macmiidr(&self, value: Macmiidr) -> &Ethernet {
+  pub fn set_macmiidr(&self, value: Macmiidr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Ethernet {
+  pub fn with_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
      let tmp = self.macmiidr();
      self.set_macmiidr(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macfcr(&self, value: Macfcr) -> &Ethernet {
+  pub fn set_macfcr(&self, value: Macfcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Ethernet {
+  pub fn with_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
      let tmp = self.macfcr();
      self.set_macfcr(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macvlantr(&self, value: Macvlantr) -> &Ethernet {
+  pub fn set_macvlantr(&self, value: Macvlantr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Ethernet {
+  pub fn with_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
      let tmp = self.macvlantr();
      self.set_macvlantr(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macpmtcsr(&self, value: Macpmtcsr) -> &Ethernet {
+  pub fn set_macpmtcsr(&self, value: Macpmtcsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Ethernet {
+  pub fn with_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
      let tmp = self.macpmtcsr();
      self.set_macpmtcsr(f(tmp))
   }
@@ -276,14 +276,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macsr(&self, value: Macsr) -> &Ethernet {
+  pub fn set_macsr(&self, value: Macsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Ethernet {
+  pub fn with_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
      let tmp = self.macsr();
      self.set_macsr(f(tmp))
   }
@@ -303,14 +303,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_macimr(&self, value: Macimr) -> &Ethernet {
+  pub fn set_macimr(&self, value: Macimr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Ethernet {
+  pub fn with_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
      let tmp = self.macimr();
      self.set_macimr(f(tmp))
   }
@@ -330,14 +330,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca0hr(&self, value: Maca0hr) -> &Ethernet {
+  pub fn set_maca0hr(&self, value: Maca0hr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
      let tmp = self.maca0hr();
      self.set_maca0hr(f(tmp))
   }
@@ -357,14 +357,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca0lr(&self, value: Maca0lr) -> &Ethernet {
+  pub fn set_maca0lr(&self, value: Maca0lr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
      let tmp = self.maca0lr();
      self.set_maca0lr(f(tmp))
   }
@@ -384,14 +384,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca1hr(&self, value: Maca1hr) -> &Ethernet {
+  pub fn set_maca1hr(&self, value: Maca1hr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
      let tmp = self.maca1hr();
      self.set_maca1hr(f(tmp))
   }
@@ -411,14 +411,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca1lr(&self, value: Maca1lr) -> &Ethernet {
+  pub fn set_maca1lr(&self, value: Maca1lr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
      let tmp = self.maca1lr();
      self.set_maca1lr(f(tmp))
   }
@@ -438,14 +438,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca2hr(&self, value: Maca2hr) -> &Ethernet {
+  pub fn set_maca2hr(&self, value: Maca2hr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
      let tmp = self.maca2hr();
      self.set_maca2hr(f(tmp))
   }
@@ -465,14 +465,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca2lr(&self, value: Maca2lr) -> &Ethernet {
+  pub fn set_maca2lr(&self, value: Maca2lr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
      let tmp = self.maca2lr();
      self.set_maca2lr(f(tmp))
   }
@@ -492,14 +492,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca3hr(&self, value: Maca3hr) -> &Ethernet {
+  pub fn set_maca3hr(&self, value: Maca3hr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
      let tmp = self.maca3hr();
      self.set_maca3hr(f(tmp))
   }
@@ -519,14 +519,14 @@ impl Ethernet {
      }
   }
   #[inline]
-  pub fn set_maca3lr(&self, value: Maca3lr) -> &Ethernet {
+  pub fn set_maca3lr(&self, value: Maca3lr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Ethernet {
+  pub fn with_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
      let tmp = self.maca3lr();
      self.set_maca3lr(f(tmp))
   }
@@ -1914,3 +1914,4 @@ impl ::core::fmt::Debug for Maca3lr {
       Ok(())
    }
 }
+

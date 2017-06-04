@@ -18,14 +18,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmabmr(&self, value: Dmabmr) -> &EthernetDma {
+  pub fn set_dmabmr(&self, value: Dmabmr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmabmr<F: FnOnce(Dmabmr) -> Dmabmr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmabmr<F: FnOnce(Dmabmr) -> Dmabmr>(&self, f: F) -> &Self {
      let tmp = self.dmabmr();
      self.set_dmabmr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmatpdr(&self, value: Dmatpdr) -> &EthernetDma {
+  pub fn set_dmatpdr(&self, value: Dmatpdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmatpdr<F: FnOnce(Dmatpdr) -> Dmatpdr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmatpdr<F: FnOnce(Dmatpdr) -> Dmatpdr>(&self, f: F) -> &Self {
      let tmp = self.dmatpdr();
      self.set_dmatpdr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmarpdr(&self, value: Dmarpdr) -> &EthernetDma {
+  pub fn set_dmarpdr(&self, value: Dmarpdr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmarpdr<F: FnOnce(Dmarpdr) -> Dmarpdr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmarpdr<F: FnOnce(Dmarpdr) -> Dmarpdr>(&self, f: F) -> &Self {
      let tmp = self.dmarpdr();
      self.set_dmarpdr(f(tmp))
   }
@@ -99,14 +99,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmardlar(&self, value: Dmardlar) -> &EthernetDma {
+  pub fn set_dmardlar(&self, value: Dmardlar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmardlar<F: FnOnce(Dmardlar) -> Dmardlar>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmardlar<F: FnOnce(Dmardlar) -> Dmardlar>(&self, f: F) -> &Self {
      let tmp = self.dmardlar();
      self.set_dmardlar(f(tmp))
   }
@@ -126,14 +126,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmatdlar(&self, value: Dmatdlar) -> &EthernetDma {
+  pub fn set_dmatdlar(&self, value: Dmatdlar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmatdlar<F: FnOnce(Dmatdlar) -> Dmatdlar>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmatdlar<F: FnOnce(Dmatdlar) -> Dmatdlar>(&self, f: F) -> &Self {
      let tmp = self.dmatdlar();
      self.set_dmatdlar(f(tmp))
   }
@@ -153,14 +153,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmasr(&self, value: Dmasr) -> &EthernetDma {
+  pub fn set_dmasr(&self, value: Dmasr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmasr<F: FnOnce(Dmasr) -> Dmasr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmasr<F: FnOnce(Dmasr) -> Dmasr>(&self, f: F) -> &Self {
      let tmp = self.dmasr();
      self.set_dmasr(f(tmp))
   }
@@ -180,14 +180,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmaomr(&self, value: Dmaomr) -> &EthernetDma {
+  pub fn set_dmaomr(&self, value: Dmaomr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmaomr<F: FnOnce(Dmaomr) -> Dmaomr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmaomr<F: FnOnce(Dmaomr) -> Dmaomr>(&self, f: F) -> &Self {
      let tmp = self.dmaomr();
      self.set_dmaomr(f(tmp))
   }
@@ -207,14 +207,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmaier(&self, value: Dmaier) -> &EthernetDma {
+  pub fn set_dmaier(&self, value: Dmaier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmaier<F: FnOnce(Dmaier) -> Dmaier>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmaier<F: FnOnce(Dmaier) -> Dmaier>(&self, f: F) -> &Self {
      let tmp = self.dmaier();
      self.set_dmaier(f(tmp))
   }
@@ -234,14 +234,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmamfbocr(&self, value: Dmamfbocr) -> &EthernetDma {
+  pub fn set_dmamfbocr(&self, value: Dmamfbocr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmamfbocr<F: FnOnce(Dmamfbocr) -> Dmamfbocr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmamfbocr<F: FnOnce(Dmamfbocr) -> Dmamfbocr>(&self, f: F) -> &Self {
      let tmp = self.dmamfbocr();
      self.set_dmamfbocr(f(tmp))
   }
@@ -261,14 +261,14 @@ impl EthernetDma {
      }
   }
   #[inline]
-  pub fn set_dmarswtr(&self, value: Dmarswtr) -> &EthernetDma {
+  pub fn set_dmarswtr(&self, value: Dmarswtr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmarswtr<F: FnOnce(Dmarswtr) -> Dmarswtr>(&self, f: F) -> &EthernetDma {
+  pub fn with_dmarswtr<F: FnOnce(Dmarswtr) -> Dmarswtr>(&self, f: F) -> &Self {
      let tmp = self.dmarswtr();
      self.set_dmarswtr(f(tmp))
   }
@@ -1500,3 +1500,4 @@ impl ::core::fmt::Debug for Dmachrbar {
       Ok(())
    }
 }
+

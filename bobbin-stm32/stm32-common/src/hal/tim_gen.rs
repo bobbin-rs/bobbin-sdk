@@ -43,7 +43,7 @@ pub trait TimGenExt {
     fn delay(&self, reload: u32, prescaler: u16);
 }
 
-impl TimGenExt for TimGenImpl {
+impl<T> TimGenExt for Periph<T> {
     fn set_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.with_cr1(|r| r.set_cen(value))

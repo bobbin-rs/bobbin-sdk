@@ -18,14 +18,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_addr(&self, value: Addr) -> &Nvmctrl {
+  pub fn set_addr(&self, value: Addr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Nvmctrl {
+  pub fn with_addr<F: FnOnce(Addr) -> Addr>(&self, f: F) -> &Self {
      let tmp = self.addr();
      self.set_addr(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &Nvmctrl {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Nvmctrl {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &Nvmctrl {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Nvmctrl {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &Nvmctrl {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Nvmctrl {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &Nvmctrl {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Nvmctrl {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &Nvmctrl {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Nvmctrl {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_lock(&self, value: Lock) -> &Nvmctrl {
+  pub fn set_lock(&self, value: Lock) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Nvmctrl {
+  pub fn with_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Self {
      let tmp = self.lock();
      self.set_lock(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_param(&self, value: Param) -> &Nvmctrl {
+  pub fn set_param(&self, value: Param) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_param<F: FnOnce(Param) -> Param>(&self, f: F) -> &Nvmctrl {
+  pub fn with_param<F: FnOnce(Param) -> Param>(&self, f: F) -> &Self {
      let tmp = self.param();
      self.set_param(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Nvmctrl {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &Nvmctrl {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Nvmctrl {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -691,3 +691,4 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
+

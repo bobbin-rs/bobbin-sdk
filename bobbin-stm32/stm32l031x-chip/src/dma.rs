@@ -27,7 +27,7 @@ impl Dma {
      ((self.0 as usize) + 0x4) as *mut u32
   }
   #[inline]
-  pub fn set_ifcr(&self, value: Ifcr) -> &Dma {
+  pub fn set_ifcr(&self, value: Ifcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -52,7 +52,7 @@ impl Dma {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, index: usize, value: Ccr) -> &Dma {
+  pub fn set_ccr(&self, index: usize, value: Ccr) -> &Self {
      assert!(index < 7);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *mut u32, value.0);
@@ -60,7 +60,7 @@ impl Dma {
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Dma {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ccr(index);
      self.set_ccr(index, f(tmp))
   }
@@ -83,7 +83,7 @@ impl Dma {
      }
   }
   #[inline]
-  pub fn set_cndtr(&self, index: usize, value: Cndtr) -> &Dma {
+  pub fn set_cndtr(&self, index: usize, value: Cndtr) -> &Self {
      assert!(index < 7);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index * 20)) as *mut u32, value.0);
@@ -91,7 +91,7 @@ impl Dma {
      self
   }
   #[inline]
-  pub fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) -> &Dma {
+  pub fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.cndtr(index);
      self.set_cndtr(index, f(tmp))
   }
@@ -114,7 +114,7 @@ impl Dma {
      }
   }
   #[inline]
-  pub fn set_cpar(&self, index: usize, value: Cpar) -> &Dma {
+  pub fn set_cpar(&self, index: usize, value: Cpar) -> &Self {
      assert!(index < 7);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *mut u32, value.0);
@@ -122,7 +122,7 @@ impl Dma {
      self
   }
   #[inline]
-  pub fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) -> &Dma {
+  pub fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.cpar(index);
      self.set_cpar(index, f(tmp))
   }
@@ -145,7 +145,7 @@ impl Dma {
      }
   }
   #[inline]
-  pub fn set_cmar(&self, index: usize, value: Cmar) -> &Dma {
+  pub fn set_cmar(&self, index: usize, value: Cmar) -> &Self {
      assert!(index < 7);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *mut u32, value.0);
@@ -153,7 +153,7 @@ impl Dma {
      self
   }
   #[inline]
-  pub fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) -> &Dma {
+  pub fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.cmar(index);
      self.set_cmar(index, f(tmp))
   }
@@ -173,14 +173,14 @@ impl Dma {
      }
   }
   #[inline]
-  pub fn set_cselr(&self, value: Cselr) -> &Dma {
+  pub fn set_cselr(&self, value: Cselr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) -> &Dma {
+  pub fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) -> &Self {
      let tmp = self.cselr();
      self.set_cselr(f(tmp))
   }
@@ -699,3 +699,4 @@ impl ::core::fmt::Debug for Cselr {
       Ok(())
    }
 }
+

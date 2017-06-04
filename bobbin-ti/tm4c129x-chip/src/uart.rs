@@ -1,133 +1,74 @@
-pub const UART0: Uart0 = Uart0 {};
-pub const UART0_REF: &Uart0 = &UART0;
-pub const UART0_IMPL: UartImpl = UartImpl(0x4000c000);
-pub const UART0_IMPL_REF: &UartImpl = &UART0_IMPL;
+pub const UART0: Uart0 = Periph(0x4000c000, Uart0Id {});
+pub const UART1: Uart1 = Periph(0x4000d000, Uart1Id {});
+pub const UART2: Uart2 = Periph(0x4000e000, Uart2Id {});
+pub const UART3: Uart3 = Periph(0x4000f000, Uart3Id {});
+pub const UART4: Uart4 = Periph(0x40010000, Uart4Id {});
+pub const UART5: Uart5 = Periph(0x40011000, Uart5Id {});
+pub const UART6: Uart6 = Periph(0x40012000, Uart6Id {});
+pub const UART7: Uart7 = Periph(0x40013000, Uart7Id {});
 
-pub struct Uart0 {}
-impl ::core::ops::Deref for Uart0 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART0_IMPL_REF }
-}
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart0Id {}
+pub type Uart0 = Periph<Uart0Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart1Id {}
+pub type Uart1 = Periph<Uart1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart2Id {}
+pub type Uart2 = Periph<Uart2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart3Id {}
+pub type Uart3 = Periph<Uart3Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart4Id {}
+pub type Uart4 = Periph<Uart4Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart5Id {}
+pub type Uart5 = Periph<Uart5Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart6Id {}
+pub type Uart6 = Periph<Uart6Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Uart7Id {}
+pub type Uart7 = Periph<Uart7Id>;
 
 impl super::sig::Signal<super::sig::U0rx> for Uart0 {}
 impl super::sig::SignalRx<super::sig::U0rx> for Uart0 {}
 impl super::sig::Signal<super::sig::U0tx> for Uart0 {}
 impl super::sig::SignalTx<super::sig::U0tx> for Uart0 {}
 
-pub const UART1: Uart1 = Uart1 {};
-pub const UART1_REF: &Uart1 = &UART1;
-pub const UART1_IMPL: UartImpl = UartImpl(0x4000d000);
-pub const UART1_IMPL_REF: &UartImpl = &UART1_IMPL;
-
-pub struct Uart1 {}
-impl ::core::ops::Deref for Uart1 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART1_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::U1rx> for Uart1 {}
 impl super::sig::SignalRx<super::sig::U1rx> for Uart1 {}
 impl super::sig::Signal<super::sig::U1tx> for Uart1 {}
 impl super::sig::SignalTx<super::sig::U1tx> for Uart1 {}
-
-pub const UART2: Uart2 = Uart2 {};
-pub const UART2_REF: &Uart2 = &UART2;
-pub const UART2_IMPL: UartImpl = UartImpl(0x4000e000);
-pub const UART2_IMPL_REF: &UartImpl = &UART2_IMPL;
-
-pub struct Uart2 {}
-impl ::core::ops::Deref for Uart2 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART2_IMPL_REF }
-}
 
 impl super::sig::Signal<super::sig::U2rx> for Uart2 {}
 impl super::sig::SignalRx<super::sig::U2rx> for Uart2 {}
 impl super::sig::Signal<super::sig::U2tx> for Uart2 {}
 impl super::sig::SignalTx<super::sig::U2tx> for Uart2 {}
 
-pub const UART3: Uart3 = Uart3 {};
-pub const UART3_REF: &Uart3 = &UART3;
-pub const UART3_IMPL: UartImpl = UartImpl(0x4000f000);
-pub const UART3_IMPL_REF: &UartImpl = &UART3_IMPL;
-
-pub struct Uart3 {}
-impl ::core::ops::Deref for Uart3 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART3_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::U3rx> for Uart3 {}
 impl super::sig::SignalRx<super::sig::U3rx> for Uart3 {}
 impl super::sig::Signal<super::sig::U3tx> for Uart3 {}
 impl super::sig::SignalTx<super::sig::U3tx> for Uart3 {}
-
-pub const UART4: Uart4 = Uart4 {};
-pub const UART4_REF: &Uart4 = &UART4;
-pub const UART4_IMPL: UartImpl = UartImpl(0x40010000);
-pub const UART4_IMPL_REF: &UartImpl = &UART4_IMPL;
-
-pub struct Uart4 {}
-impl ::core::ops::Deref for Uart4 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART4_IMPL_REF }
-}
 
 impl super::sig::Signal<super::sig::U4rx> for Uart4 {}
 impl super::sig::SignalRx<super::sig::U4rx> for Uart4 {}
 impl super::sig::Signal<super::sig::U4tx> for Uart4 {}
 impl super::sig::SignalTx<super::sig::U4tx> for Uart4 {}
 
-pub const UART5: Uart5 = Uart5 {};
-pub const UART5_REF: &Uart5 = &UART5;
-pub const UART5_IMPL: UartImpl = UartImpl(0x40011000);
-pub const UART5_IMPL_REF: &UartImpl = &UART5_IMPL;
-
-pub struct Uart5 {}
-impl ::core::ops::Deref for Uart5 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART5_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::U5rx> for Uart5 {}
 impl super::sig::SignalRx<super::sig::U5rx> for Uart5 {}
 impl super::sig::Signal<super::sig::U5tx> for Uart5 {}
 impl super::sig::SignalTx<super::sig::U5tx> for Uart5 {}
 
-pub const UART6: Uart6 = Uart6 {};
-pub const UART6_REF: &Uart6 = &UART6;
-pub const UART6_IMPL: UartImpl = UartImpl(0x40012000);
-pub const UART6_IMPL_REF: &UartImpl = &UART6_IMPL;
-
-pub struct Uart6 {}
-impl ::core::ops::Deref for Uart6 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART6_IMPL_REF }
-}
-
 impl super::sig::Signal<super::sig::U6rx> for Uart6 {}
 impl super::sig::SignalRx<super::sig::U6rx> for Uart6 {}
 impl super::sig::Signal<super::sig::U6tx> for Uart6 {}
 impl super::sig::SignalTx<super::sig::U6tx> for Uart6 {}
-
-pub const UART7: Uart7 = Uart7 {};
-pub const UART7_REF: &Uart7 = &UART7;
-pub const UART7_IMPL: UartImpl = UartImpl(0x40013000);
-pub const UART7_IMPL_REF: &UartImpl = &UART7_IMPL;
-
-pub struct Uart7 {}
-impl ::core::ops::Deref for Uart7 {
-   type Target = UartImpl;
-   #[inline]
-   fn deref(&self) -> &UartImpl { UART7_IMPL_REF }
-}
 
 impl super::sig::Signal<super::sig::U7rx> for Uart7 {}
 impl super::sig::SignalRx<super::sig::U7rx> for Uart7 {}
@@ -135,9 +76,7 @@ impl super::sig::Signal<super::sig::U7tx> for Uart7 {}
 impl super::sig::SignalTx<super::sig::U7tx> for Uart7 {}
 
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UartImpl(pub u32);
-impl UartImpl {
+impl<T> Periph<T> {
   #[inline]
   pub fn dr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -153,14 +92,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &UartImpl {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &UartImpl {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -180,14 +119,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_rsr(&self, value: Rsr) -> &UartImpl {
+  pub fn set_rsr(&self, value: Rsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rsr<F: FnOnce(Rsr) -> Rsr>(&self, f: F) -> &UartImpl {
+  pub fn with_rsr<F: FnOnce(Rsr) -> Rsr>(&self, f: F) -> &Self {
      let tmp = self.rsr();
      self.set_rsr(f(tmp))
   }
@@ -207,14 +146,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ecr(&self, value: Ecr) -> &UartImpl {
+  pub fn set_ecr(&self, value: Ecr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &UartImpl {
+  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
      let tmp = self.ecr();
      self.set_ecr(f(tmp))
   }
@@ -234,14 +173,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_fr(&self, value: Fr) -> &UartImpl {
+  pub fn set_fr(&self, value: Fr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &UartImpl {
+  pub fn with_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &Self {
      let tmp = self.fr();
      self.set_fr(f(tmp))
   }
@@ -261,14 +200,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ilpr(&self, value: Ilpr) -> &UartImpl {
+  pub fn set_ilpr(&self, value: Ilpr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ilpr<F: FnOnce(Ilpr) -> Ilpr>(&self, f: F) -> &UartImpl {
+  pub fn with_ilpr<F: FnOnce(Ilpr) -> Ilpr>(&self, f: F) -> &Self {
      let tmp = self.ilpr();
      self.set_ilpr(f(tmp))
   }
@@ -288,14 +227,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ibrd(&self, value: Ibrd) -> &UartImpl {
+  pub fn set_ibrd(&self, value: Ibrd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ibrd<F: FnOnce(Ibrd) -> Ibrd>(&self, f: F) -> &UartImpl {
+  pub fn with_ibrd<F: FnOnce(Ibrd) -> Ibrd>(&self, f: F) -> &Self {
      let tmp = self.ibrd();
      self.set_ibrd(f(tmp))
   }
@@ -315,14 +254,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_fbrd(&self, value: Fbrd) -> &UartImpl {
+  pub fn set_fbrd(&self, value: Fbrd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fbrd<F: FnOnce(Fbrd) -> Fbrd>(&self, f: F) -> &UartImpl {
+  pub fn with_fbrd<F: FnOnce(Fbrd) -> Fbrd>(&self, f: F) -> &Self {
      let tmp = self.fbrd();
      self.set_fbrd(f(tmp))
   }
@@ -342,14 +281,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_lcrh(&self, value: Lcrh) -> &UartImpl {
+  pub fn set_lcrh(&self, value: Lcrh) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lcrh<F: FnOnce(Lcrh) -> Lcrh>(&self, f: F) -> &UartImpl {
+  pub fn with_lcrh<F: FnOnce(Lcrh) -> Lcrh>(&self, f: F) -> &Self {
      let tmp = self.lcrh();
      self.set_lcrh(f(tmp))
   }
@@ -369,14 +308,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ctl(&self, value: Ctl) -> &UartImpl {
+  pub fn set_ctl(&self, value: Ctl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &UartImpl {
+  pub fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
      let tmp = self.ctl();
      self.set_ctl(f(tmp))
   }
@@ -396,14 +335,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ifls(&self, value: Ifls) -> &UartImpl {
+  pub fn set_ifls(&self, value: Ifls) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ifls<F: FnOnce(Ifls) -> Ifls>(&self, f: F) -> &UartImpl {
+  pub fn with_ifls<F: FnOnce(Ifls) -> Ifls>(&self, f: F) -> &Self {
      let tmp = self.ifls();
      self.set_ifls(f(tmp))
   }
@@ -423,14 +362,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_im(&self, value: Im) -> &UartImpl {
+  pub fn set_im(&self, value: Im) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &UartImpl {
+  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
      let tmp = self.im();
      self.set_im(f(tmp))
   }
@@ -450,14 +389,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_ris(&self, value: Ris) -> &UartImpl {
+  pub fn set_ris(&self, value: Ris) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &UartImpl {
+  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
      let tmp = self.ris();
      self.set_ris(f(tmp))
   }
@@ -477,14 +416,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_mis(&self, value: Mis) -> &UartImpl {
+  pub fn set_mis(&self, value: Mis) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &UartImpl {
+  pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
      let tmp = self.mis();
      self.set_mis(f(tmp))
   }
@@ -498,7 +437,7 @@ impl UartImpl {
      ((self.0 as usize) + 0x44) as *mut u32
   }
   #[inline]
-  pub fn set_icr(&self, value: Icr) -> &UartImpl {
+  pub fn set_icr(&self, value: Icr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
@@ -520,14 +459,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_dmactl(&self, value: Dmactl) -> &UartImpl {
+  pub fn set_dmactl(&self, value: Dmactl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &UartImpl {
+  pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
      let tmp = self.dmactl();
      self.set_dmactl(f(tmp))
   }
@@ -547,14 +486,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_9bitaddr(&self, value: _9bitaddr) -> &UartImpl {
+  pub fn set_9bitaddr(&self, value: _9bitaddr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_9bitaddr<F: FnOnce(_9bitaddr) -> _9bitaddr>(&self, f: F) -> &UartImpl {
+  pub fn with_9bitaddr<F: FnOnce(_9bitaddr) -> _9bitaddr>(&self, f: F) -> &Self {
      let tmp = self._9bitaddr();
      self.set_9bitaddr(f(tmp))
   }
@@ -574,14 +513,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_9bitamask(&self, value: _9bitamask) -> &UartImpl {
+  pub fn set_9bitamask(&self, value: _9bitamask) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_9bitamask<F: FnOnce(_9bitamask) -> _9bitamask>(&self, f: F) -> &UartImpl {
+  pub fn with_9bitamask<F: FnOnce(_9bitamask) -> _9bitamask>(&self, f: F) -> &Self {
      let tmp = self._9bitamask();
      self.set_9bitamask(f(tmp))
   }
@@ -601,14 +540,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_pp(&self, value: Pp) -> &UartImpl {
+  pub fn set_pp(&self, value: Pp) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &UartImpl {
+  pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
      let tmp = self.pp();
      self.set_pp(f(tmp))
   }
@@ -628,14 +567,14 @@ impl UartImpl {
      }
   }
   #[inline]
-  pub fn set_cc(&self, value: Cc) -> &UartImpl {
+  pub fn set_cc(&self, value: Cc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &UartImpl {
+  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
      let tmp = self.cc();
      self.set_cc(f(tmp))
   }

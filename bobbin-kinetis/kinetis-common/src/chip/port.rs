@@ -393,7 +393,11 @@ impl ::core::fmt::Debug for Isfr {
 }
 pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
+impl<P,T> Pin<P,T> {
+   #[inline] pub fn port(&self) -> &Periph<T> { &self.port }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
 pub trait AltFn<T> {
-   fn alt_fn(&self) -> usize;
+   #[inline] fn alt_fn(&self) -> usize;
 }
 

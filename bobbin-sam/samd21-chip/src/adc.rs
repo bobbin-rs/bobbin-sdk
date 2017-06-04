@@ -1,20 +1,15 @@
-pub const ADC: Adc = Adc {};
-pub const ADC_REF: &Adc = &ADC;
-pub const ADC_IMPL: AdcImpl = AdcImpl(0x42004000);
-pub const ADC_IMPL_REF: &AdcImpl = &ADC_IMPL;
-
-pub struct Adc {}
-impl ::core::ops::Deref for Adc {
-   type Target = AdcImpl;
-   #[inline]
-   fn deref(&self) -> &AdcImpl { ADC_IMPL_REF }
-}
-
-
+pub const ADC: Adc = Periph(0x42004000, AdcId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct AdcImpl(pub u32);
-impl AdcImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct AdcId {}
+pub type Adc = Periph<AdcId>;
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn avgctrl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x2) as *const u8
@@ -30,14 +25,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_avgctrl(&self, value: Avgctrl) -> &AdcImpl {
+  pub fn set_avgctrl(&self, value: Avgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_avgctrl<F: FnOnce(Avgctrl) -> Avgctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_avgctrl<F: FnOnce(Avgctrl) -> Avgctrl>(&self, f: F) -> &Self {
      let tmp = self.avgctrl();
      self.set_avgctrl(f(tmp))
   }
@@ -57,14 +52,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_calib(&self, value: Calib) -> &AdcImpl {
+  pub fn set_calib(&self, value: Calib) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &AdcImpl {
+  pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
      let tmp = self.calib();
      self.set_calib(f(tmp))
   }
@@ -84,14 +79,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &AdcImpl {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &AdcImpl {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -111,14 +106,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_ctrlb(&self, value: Ctrlb) -> &AdcImpl {
+  pub fn set_ctrlb(&self, value: Ctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &AdcImpl {
+  pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
      let tmp = self.ctrlb();
      self.set_ctrlb(f(tmp))
   }
@@ -138,14 +133,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &AdcImpl {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2a) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -165,14 +160,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_evctrl(&self, value: Evctrl) -> &AdcImpl {
+  pub fn set_evctrl(&self, value: Evctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
      let tmp = self.evctrl();
      self.set_evctrl(f(tmp))
   }
@@ -192,14 +187,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_gaincorr(&self, value: Gaincorr) -> &AdcImpl {
+  pub fn set_gaincorr(&self, value: Gaincorr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gaincorr<F: FnOnce(Gaincorr) -> Gaincorr>(&self, f: F) -> &AdcImpl {
+  pub fn with_gaincorr<F: FnOnce(Gaincorr) -> Gaincorr>(&self, f: F) -> &Self {
      let tmp = self.gaincorr();
      self.set_gaincorr(f(tmp))
   }
@@ -219,14 +214,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_inputctrl(&self, value: Inputctrl) -> &AdcImpl {
+  pub fn set_inputctrl(&self, value: Inputctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_inputctrl<F: FnOnce(Inputctrl) -> Inputctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_inputctrl<F: FnOnce(Inputctrl) -> Inputctrl>(&self, f: F) -> &Self {
      let tmp = self.inputctrl();
      self.set_inputctrl(f(tmp))
   }
@@ -246,14 +241,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &AdcImpl {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &AdcImpl {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -273,14 +268,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &AdcImpl {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x17) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &AdcImpl {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -300,14 +295,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &AdcImpl {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &AdcImpl {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -327,14 +322,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_offsetcorr(&self, value: Offsetcorr) -> &AdcImpl {
+  pub fn set_offsetcorr(&self, value: Offsetcorr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x26) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_offsetcorr<F: FnOnce(Offsetcorr) -> Offsetcorr>(&self, f: F) -> &AdcImpl {
+  pub fn with_offsetcorr<F: FnOnce(Offsetcorr) -> Offsetcorr>(&self, f: F) -> &Self {
      let tmp = self.offsetcorr();
      self.set_offsetcorr(f(tmp))
   }
@@ -354,14 +349,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_refctrl(&self, value: Refctrl) -> &AdcImpl {
+  pub fn set_refctrl(&self, value: Refctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_refctrl<F: FnOnce(Refctrl) -> Refctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_refctrl<F: FnOnce(Refctrl) -> Refctrl>(&self, f: F) -> &Self {
      let tmp = self.refctrl();
      self.set_refctrl(f(tmp))
   }
@@ -396,14 +391,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_sampctrl(&self, value: Sampctrl) -> &AdcImpl {
+  pub fn set_sampctrl(&self, value: Sampctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sampctrl<F: FnOnce(Sampctrl) -> Sampctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_sampctrl<F: FnOnce(Sampctrl) -> Sampctrl>(&self, f: F) -> &Self {
      let tmp = self.sampctrl();
      self.set_sampctrl(f(tmp))
   }
@@ -438,14 +433,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_swtrig(&self, value: Swtrig) -> &AdcImpl {
+  pub fn set_swtrig(&self, value: Swtrig) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_swtrig<F: FnOnce(Swtrig) -> Swtrig>(&self, f: F) -> &AdcImpl {
+  pub fn with_swtrig<F: FnOnce(Swtrig) -> Swtrig>(&self, f: F) -> &Self {
      let tmp = self.swtrig();
      self.set_swtrig(f(tmp))
   }
@@ -465,14 +460,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_winctrl(&self, value: Winctrl) -> &AdcImpl {
+  pub fn set_winctrl(&self, value: Winctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_winctrl<F: FnOnce(Winctrl) -> Winctrl>(&self, f: F) -> &AdcImpl {
+  pub fn with_winctrl<F: FnOnce(Winctrl) -> Winctrl>(&self, f: F) -> &Self {
      let tmp = self.winctrl();
      self.set_winctrl(f(tmp))
   }
@@ -492,14 +487,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_winlt(&self, value: Winlt) -> &AdcImpl {
+  pub fn set_winlt(&self, value: Winlt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_winlt<F: FnOnce(Winlt) -> Winlt>(&self, f: F) -> &AdcImpl {
+  pub fn with_winlt<F: FnOnce(Winlt) -> Winlt>(&self, f: F) -> &Self {
      let tmp = self.winlt();
      self.set_winlt(f(tmp))
   }
@@ -519,14 +514,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_winut(&self, value: Winut) -> &AdcImpl {
+  pub fn set_winut(&self, value: Winut) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_winut<F: FnOnce(Winut) -> Winut>(&self, f: F) -> &AdcImpl {
+  pub fn with_winut<F: FnOnce(Winut) -> Winut>(&self, f: F) -> &Self {
      let tmp = self.winut();
      self.set_winut(f(tmp))
   }

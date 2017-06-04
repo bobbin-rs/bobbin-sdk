@@ -1,7 +1,10 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct TimAdvImpl(pub u32);
-impl TimAdvImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -17,14 +20,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &TimAdvImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -44,14 +47,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &TimAdvImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -71,14 +74,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_smcr(&self, value: Smcr) -> &TimAdvImpl {
+  pub fn set_smcr(&self, value: Smcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
      let tmp = self.smcr();
      self.set_smcr(f(tmp))
   }
@@ -98,14 +101,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_dier(&self, value: Dier) -> &TimAdvImpl {
+  pub fn set_dier(&self, value: Dier) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
      let tmp = self.dier();
      self.set_dier(f(tmp))
   }
@@ -125,14 +128,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &TimAdvImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -146,7 +149,7 @@ impl TimAdvImpl {
      ((self.0 as usize) + 0x14) as *mut u32
   }
   #[inline]
-  pub fn set_egr(&self, value: Egr) -> &TimAdvImpl {
+  pub fn set_egr(&self, value: Egr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -168,14 +171,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccmr1_output(&self, value: Ccmr1Output) -> &TimAdvImpl {
+  pub fn set_ccmr1_output(&self, value: Ccmr1Output) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccmr1_output<F: FnOnce(Ccmr1Output) -> Ccmr1Output>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccmr1_output<F: FnOnce(Ccmr1Output) -> Ccmr1Output>(&self, f: F) -> &Self {
      let tmp = self.ccmr1_output();
      self.set_ccmr1_output(f(tmp))
   }
@@ -195,14 +198,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccmr1_input(&self, value: Ccmr1Input) -> &TimAdvImpl {
+  pub fn set_ccmr1_input(&self, value: Ccmr1Input) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccmr1_input<F: FnOnce(Ccmr1Input) -> Ccmr1Input>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccmr1_input<F: FnOnce(Ccmr1Input) -> Ccmr1Input>(&self, f: F) -> &Self {
      let tmp = self.ccmr1_input();
      self.set_ccmr1_input(f(tmp))
   }
@@ -222,14 +225,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccmr2_output(&self, value: Ccmr2Output) -> &TimAdvImpl {
+  pub fn set_ccmr2_output(&self, value: Ccmr2Output) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccmr2_output<F: FnOnce(Ccmr2Output) -> Ccmr2Output>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccmr2_output<F: FnOnce(Ccmr2Output) -> Ccmr2Output>(&self, f: F) -> &Self {
      let tmp = self.ccmr2_output();
      self.set_ccmr2_output(f(tmp))
   }
@@ -249,14 +252,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccmr2_input(&self, value: Ccmr2Input) -> &TimAdvImpl {
+  pub fn set_ccmr2_input(&self, value: Ccmr2Input) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccmr2_input<F: FnOnce(Ccmr2Input) -> Ccmr2Input>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccmr2_input<F: FnOnce(Ccmr2Input) -> Ccmr2Input>(&self, f: F) -> &Self {
      let tmp = self.ccmr2_input();
      self.set_ccmr2_input(f(tmp))
   }
@@ -276,14 +279,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccer(&self, value: Ccer) -> &TimAdvImpl {
+  pub fn set_ccer(&self, value: Ccer) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
      let tmp = self.ccer();
      self.set_ccer(f(tmp))
   }
@@ -303,14 +306,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_cnt(&self, value: Cnt) -> &TimAdvImpl {
+  pub fn set_cnt(&self, value: Cnt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
      self.set_cnt(f(tmp))
   }
@@ -330,14 +333,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_psc(&self, value: Psc) -> &TimAdvImpl {
+  pub fn set_psc(&self, value: Psc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
      let tmp = self.psc();
      self.set_psc(f(tmp))
   }
@@ -357,14 +360,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_arr(&self, value: Arr) -> &TimAdvImpl {
+  pub fn set_arr(&self, value: Arr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
      let tmp = self.arr();
      self.set_arr(f(tmp))
   }
@@ -384,14 +387,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_rcr(&self, value: Rcr) -> &TimAdvImpl {
+  pub fn set_rcr(&self, value: Rcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
      let tmp = self.rcr();
      self.set_rcr(f(tmp))
   }
@@ -411,14 +414,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr1(&self, value: Ccr1) -> &TimAdvImpl {
+  pub fn set_ccr1(&self, value: Ccr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr1<F: FnOnce(Ccr1) -> Ccr1>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr1<F: FnOnce(Ccr1) -> Ccr1>(&self, f: F) -> &Self {
      let tmp = self.ccr1();
      self.set_ccr1(f(tmp))
   }
@@ -438,14 +441,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr2(&self, value: Ccr2) -> &TimAdvImpl {
+  pub fn set_ccr2(&self, value: Ccr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr2<F: FnOnce(Ccr2) -> Ccr2>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr2<F: FnOnce(Ccr2) -> Ccr2>(&self, f: F) -> &Self {
      let tmp = self.ccr2();
      self.set_ccr2(f(tmp))
   }
@@ -465,14 +468,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr3(&self, value: Ccr3) -> &TimAdvImpl {
+  pub fn set_ccr3(&self, value: Ccr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr3<F: FnOnce(Ccr3) -> Ccr3>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr3<F: FnOnce(Ccr3) -> Ccr3>(&self, f: F) -> &Self {
      let tmp = self.ccr3();
      self.set_ccr3(f(tmp))
   }
@@ -492,14 +495,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr4(&self, value: Ccr4) -> &TimAdvImpl {
+  pub fn set_ccr4(&self, value: Ccr4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr4<F: FnOnce(Ccr4) -> Ccr4>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr4<F: FnOnce(Ccr4) -> Ccr4>(&self, f: F) -> &Self {
      let tmp = self.ccr4();
      self.set_ccr4(f(tmp))
   }
@@ -519,14 +522,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_bdtr(&self, value: Bdtr) -> &TimAdvImpl {
+  pub fn set_bdtr(&self, value: Bdtr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
      let tmp = self.bdtr();
      self.set_bdtr(f(tmp))
   }
@@ -546,14 +549,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_dcr(&self, value: Dcr) -> &TimAdvImpl {
+  pub fn set_dcr(&self, value: Dcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
      let tmp = self.dcr();
      self.set_dcr(f(tmp))
   }
@@ -573,14 +576,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_dmar(&self, value: Dmar) -> &TimAdvImpl {
+  pub fn set_dmar(&self, value: Dmar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
      let tmp = self.dmar();
      self.set_dmar(f(tmp))
   }
@@ -600,14 +603,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccmr3_output(&self, value: Ccmr3Output) -> &TimAdvImpl {
+  pub fn set_ccmr3_output(&self, value: Ccmr3Output) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
      let tmp = self.ccmr3_output();
      self.set_ccmr3_output(f(tmp))
   }
@@ -627,14 +630,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr5(&self, value: Ccr5) -> &TimAdvImpl {
+  pub fn set_ccr5(&self, value: Ccr5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
      let tmp = self.ccr5();
      self.set_ccr5(f(tmp))
   }
@@ -654,14 +657,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_ccr6(&self, value: Ccr6) -> &TimAdvImpl {
+  pub fn set_ccr6(&self, value: Ccr6) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
      let tmp = self.ccr6();
      self.set_ccr6(f(tmp))
   }
@@ -681,14 +684,14 @@ impl TimAdvImpl {
      }
   }
   #[inline]
-  pub fn set_or(&self, value: Or) -> &TimAdvImpl {
+  pub fn set_or(&self, value: Or) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &TimAdvImpl {
+  pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
      let tmp = self.or();
      self.set_or(f(tmp))
   }

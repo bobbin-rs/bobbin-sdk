@@ -18,14 +18,14 @@ impl Gclk {
      }
   }
   #[inline]
-  pub fn set_clkctrl(&self, value: Clkctrl) -> &Gclk {
+  pub fn set_clkctrl(&self, value: Clkctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_clkctrl<F: FnOnce(Clkctrl) -> Clkctrl>(&self, f: F) -> &Gclk {
+  pub fn with_clkctrl<F: FnOnce(Clkctrl) -> Clkctrl>(&self, f: F) -> &Self {
      let tmp = self.clkctrl();
      self.set_clkctrl(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Gclk {
      }
   }
   #[inline]
-  pub fn set_ctrl(&self, value: Ctrl) -> &Gclk {
+  pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Gclk {
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Gclk {
      }
   }
   #[inline]
-  pub fn set_genctrl(&self, value: Genctrl) -> &Gclk {
+  pub fn set_genctrl(&self, value: Genctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_genctrl<F: FnOnce(Genctrl) -> Genctrl>(&self, f: F) -> &Gclk {
+  pub fn with_genctrl<F: FnOnce(Genctrl) -> Genctrl>(&self, f: F) -> &Self {
      let tmp = self.genctrl();
      self.set_genctrl(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Gclk {
      }
   }
   #[inline]
-  pub fn set_gendiv(&self, value: Gendiv) -> &Gclk {
+  pub fn set_gendiv(&self, value: Gendiv) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Gclk {
+  pub fn with_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Self {
      let tmp = self.gendiv();
      self.set_gendiv(f(tmp))
   }
@@ -416,3 +416,4 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
+

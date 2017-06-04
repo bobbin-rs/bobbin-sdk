@@ -10,7 +10,7 @@ pub trait UsartExt {
     fn write(&self, buf: &[u8]) -> usize;
 }
 
-impl UsartExt for UsartImpl {
+impl<T> UsartExt for Periph<T> {
     fn enable(&self, brr: u32) -> &Self {
         // 29.5.4 - USART baud rate generation
         // In case of oversampling by 16, the equation is: Baud = Fck / USARTDIV
@@ -77,7 +77,7 @@ impl UsartExt for UsartImpl {
     }    
 }
 
-impl Write for UsartImpl {
+impl<T> Write for Periph<T> {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
             self.putc(byte);

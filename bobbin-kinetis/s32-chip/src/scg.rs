@@ -63,14 +63,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_rccr(&self, value: Rccr) -> &Scg {
+  pub fn set_rccr(&self, value: Rccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rccr<F: FnOnce(Rccr) -> Rccr>(&self, f: F) -> &Scg {
+  pub fn with_rccr<F: FnOnce(Rccr) -> Rccr>(&self, f: F) -> &Self {
      let tmp = self.rccr();
      self.set_rccr(f(tmp))
   }
@@ -90,14 +90,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_vccr(&self, value: Vccr) -> &Scg {
+  pub fn set_vccr(&self, value: Vccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_vccr<F: FnOnce(Vccr) -> Vccr>(&self, f: F) -> &Scg {
+  pub fn with_vccr<F: FnOnce(Vccr) -> Vccr>(&self, f: F) -> &Self {
      let tmp = self.vccr();
      self.set_vccr(f(tmp))
   }
@@ -117,14 +117,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_hccr(&self, value: Hccr) -> &Scg {
+  pub fn set_hccr(&self, value: Hccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_hccr<F: FnOnce(Hccr) -> Hccr>(&self, f: F) -> &Scg {
+  pub fn with_hccr<F: FnOnce(Hccr) -> Hccr>(&self, f: F) -> &Self {
      let tmp = self.hccr();
      self.set_hccr(f(tmp))
   }
@@ -144,14 +144,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_clkoutcnfg(&self, value: Clkoutcnfg) -> &Scg {
+  pub fn set_clkoutcnfg(&self, value: Clkoutcnfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_clkoutcnfg<F: FnOnce(Clkoutcnfg) -> Clkoutcnfg>(&self, f: F) -> &Scg {
+  pub fn with_clkoutcnfg<F: FnOnce(Clkoutcnfg) -> Clkoutcnfg>(&self, f: F) -> &Self {
      let tmp = self.clkoutcnfg();
      self.set_clkoutcnfg(f(tmp))
   }
@@ -171,14 +171,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_sosccsr(&self, value: Sosccsr) -> &Scg {
+  pub fn set_sosccsr(&self, value: Sosccsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sosccsr<F: FnOnce(Sosccsr) -> Sosccsr>(&self, f: F) -> &Scg {
+  pub fn with_sosccsr<F: FnOnce(Sosccsr) -> Sosccsr>(&self, f: F) -> &Self {
      let tmp = self.sosccsr();
      self.set_sosccsr(f(tmp))
   }
@@ -198,14 +198,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_soscdiv(&self, value: Soscdiv) -> &Scg {
+  pub fn set_soscdiv(&self, value: Soscdiv) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_soscdiv<F: FnOnce(Soscdiv) -> Soscdiv>(&self, f: F) -> &Scg {
+  pub fn with_soscdiv<F: FnOnce(Soscdiv) -> Soscdiv>(&self, f: F) -> &Self {
      let tmp = self.soscdiv();
      self.set_soscdiv(f(tmp))
   }
@@ -225,14 +225,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_sosccfg(&self, value: Sosccfg) -> &Scg {
+  pub fn set_sosccfg(&self, value: Sosccfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sosccfg<F: FnOnce(Sosccfg) -> Sosccfg>(&self, f: F) -> &Scg {
+  pub fn with_sosccfg<F: FnOnce(Sosccfg) -> Sosccfg>(&self, f: F) -> &Self {
      let tmp = self.sosccfg();
      self.set_sosccfg(f(tmp))
   }
@@ -252,14 +252,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_sirccsr(&self, value: Sirccsr) -> &Scg {
+  pub fn set_sirccsr(&self, value: Sirccsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x200) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sirccsr<F: FnOnce(Sirccsr) -> Sirccsr>(&self, f: F) -> &Scg {
+  pub fn with_sirccsr<F: FnOnce(Sirccsr) -> Sirccsr>(&self, f: F) -> &Self {
      let tmp = self.sirccsr();
      self.set_sirccsr(f(tmp))
   }
@@ -279,14 +279,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_sircdiv(&self, value: Sircdiv) -> &Scg {
+  pub fn set_sircdiv(&self, value: Sircdiv) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x204) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sircdiv<F: FnOnce(Sircdiv) -> Sircdiv>(&self, f: F) -> &Scg {
+  pub fn with_sircdiv<F: FnOnce(Sircdiv) -> Sircdiv>(&self, f: F) -> &Self {
      let tmp = self.sircdiv();
      self.set_sircdiv(f(tmp))
   }
@@ -306,14 +306,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_sirccfg(&self, value: Sirccfg) -> &Scg {
+  pub fn set_sirccfg(&self, value: Sirccfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x208) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sirccfg<F: FnOnce(Sirccfg) -> Sirccfg>(&self, f: F) -> &Scg {
+  pub fn with_sirccfg<F: FnOnce(Sirccfg) -> Sirccfg>(&self, f: F) -> &Self {
      let tmp = self.sirccfg();
      self.set_sirccfg(f(tmp))
   }
@@ -333,14 +333,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_firccsr(&self, value: Firccsr) -> &Scg {
+  pub fn set_firccsr(&self, value: Firccsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x300) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_firccsr<F: FnOnce(Firccsr) -> Firccsr>(&self, f: F) -> &Scg {
+  pub fn with_firccsr<F: FnOnce(Firccsr) -> Firccsr>(&self, f: F) -> &Self {
      let tmp = self.firccsr();
      self.set_firccsr(f(tmp))
   }
@@ -360,14 +360,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_fircdiv(&self, value: Fircdiv) -> &Scg {
+  pub fn set_fircdiv(&self, value: Fircdiv) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x304) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fircdiv<F: FnOnce(Fircdiv) -> Fircdiv>(&self, f: F) -> &Scg {
+  pub fn with_fircdiv<F: FnOnce(Fircdiv) -> Fircdiv>(&self, f: F) -> &Self {
      let tmp = self.fircdiv();
      self.set_fircdiv(f(tmp))
   }
@@ -387,14 +387,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_firccfg(&self, value: Firccfg) -> &Scg {
+  pub fn set_firccfg(&self, value: Firccfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x308) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_firccfg<F: FnOnce(Firccfg) -> Firccfg>(&self, f: F) -> &Scg {
+  pub fn with_firccfg<F: FnOnce(Firccfg) -> Firccfg>(&self, f: F) -> &Self {
      let tmp = self.firccfg();
      self.set_firccfg(f(tmp))
   }
@@ -414,14 +414,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_spllcsr(&self, value: Spllcsr) -> &Scg {
+  pub fn set_spllcsr(&self, value: Spllcsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x600) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_spllcsr<F: FnOnce(Spllcsr) -> Spllcsr>(&self, f: F) -> &Scg {
+  pub fn with_spllcsr<F: FnOnce(Spllcsr) -> Spllcsr>(&self, f: F) -> &Self {
      let tmp = self.spllcsr();
      self.set_spllcsr(f(tmp))
   }
@@ -441,14 +441,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_splldiv(&self, value: Splldiv) -> &Scg {
+  pub fn set_splldiv(&self, value: Splldiv) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_splldiv<F: FnOnce(Splldiv) -> Splldiv>(&self, f: F) -> &Scg {
+  pub fn with_splldiv<F: FnOnce(Splldiv) -> Splldiv>(&self, f: F) -> &Self {
      let tmp = self.splldiv();
      self.set_splldiv(f(tmp))
   }
@@ -468,14 +468,14 @@ impl Scg {
      }
   }
   #[inline]
-  pub fn set_spllcfg(&self, value: Spllcfg) -> &Scg {
+  pub fn set_spllcfg(&self, value: Spllcfg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_spllcfg<F: FnOnce(Spllcfg) -> Spllcfg>(&self, f: F) -> &Scg {
+  pub fn with_spllcfg<F: FnOnce(Spllcfg) -> Spllcfg>(&self, f: F) -> &Self {
      let tmp = self.spllcfg();
      self.set_spllcfg(f(tmp))
   }
@@ -1578,3 +1578,4 @@ impl ::core::fmt::Debug for Spllcfg {
       Ok(())
    }
 }
+

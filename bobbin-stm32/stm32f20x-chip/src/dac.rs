@@ -18,14 +18,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Dac {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Dac {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -39,7 +39,7 @@ impl Dac {
      ((self.0 as usize) + 0x4) as *mut u32
   }
   #[inline]
-  pub fn set_swtrigr(&self, value: Swtrigr) -> &Dac {
+  pub fn set_swtrigr(&self, value: Swtrigr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -61,14 +61,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12r1(&self, value: Dhr12r1) -> &Dac {
+  pub fn set_dhr12r1(&self, value: Dhr12r1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Dac {
+  pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
      let tmp = self.dhr12r1();
      self.set_dhr12r1(f(tmp))
   }
@@ -88,14 +88,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12l1(&self, value: Dhr12l1) -> &Dac {
+  pub fn set_dhr12l1(&self, value: Dhr12l1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Dac {
+  pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
      let tmp = self.dhr12l1();
      self.set_dhr12l1(f(tmp))
   }
@@ -115,14 +115,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr8r1(&self, value: Dhr8r1) -> &Dac {
+  pub fn set_dhr8r1(&self, value: Dhr8r1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Dac {
+  pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
      let tmp = self.dhr8r1();
      self.set_dhr8r1(f(tmp))
   }
@@ -142,14 +142,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12r2(&self, value: Dhr12r2) -> &Dac {
+  pub fn set_dhr12r2(&self, value: Dhr12r2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Dac {
+  pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
      let tmp = self.dhr12r2();
      self.set_dhr12r2(f(tmp))
   }
@@ -169,14 +169,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12l2(&self, value: Dhr12l2) -> &Dac {
+  pub fn set_dhr12l2(&self, value: Dhr12l2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Dac {
+  pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
      let tmp = self.dhr12l2();
      self.set_dhr12l2(f(tmp))
   }
@@ -196,14 +196,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr8r2(&self, value: Dhr8r2) -> &Dac {
+  pub fn set_dhr8r2(&self, value: Dhr8r2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Dac {
+  pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
      let tmp = self.dhr8r2();
      self.set_dhr8r2(f(tmp))
   }
@@ -223,14 +223,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12rd(&self, value: Dhr12rd) -> &Dac {
+  pub fn set_dhr12rd(&self, value: Dhr12rd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Dac {
+  pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
      let tmp = self.dhr12rd();
      self.set_dhr12rd(f(tmp))
   }
@@ -250,14 +250,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr12ld(&self, value: Dhr12ld) -> &Dac {
+  pub fn set_dhr12ld(&self, value: Dhr12ld) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Dac {
+  pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
      let tmp = self.dhr12ld();
      self.set_dhr12ld(f(tmp))
   }
@@ -277,14 +277,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_dhr8rd(&self, value: Dhr8rd) -> &Dac {
+  pub fn set_dhr8rd(&self, value: Dhr8rd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Dac {
+  pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
      let tmp = self.dhr8rd();
      self.set_dhr8rd(f(tmp))
   }
@@ -334,14 +334,14 @@ impl Dac {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &Dac {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Dac {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -1014,3 +1014,4 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
+

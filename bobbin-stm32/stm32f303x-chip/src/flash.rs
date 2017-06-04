@@ -18,14 +18,14 @@ impl Flash {
      }
   }
   #[inline]
-  pub fn set_acr(&self, value: Acr) -> &Flash {
+  pub fn set_acr(&self, value: Acr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Flash {
+  pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
      let tmp = self.acr();
      self.set_acr(f(tmp))
   }
@@ -39,7 +39,7 @@ impl Flash {
      ((self.0 as usize) + 0x4) as *mut u32
   }
   #[inline]
-  pub fn set_keyr(&self, value: Keyr) -> &Flash {
+  pub fn set_keyr(&self, value: Keyr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -55,7 +55,7 @@ impl Flash {
      ((self.0 as usize) + 0x8) as *mut u32
   }
   #[inline]
-  pub fn set_optkeyr(&self, value: Optkeyr) -> &Flash {
+  pub fn set_optkeyr(&self, value: Optkeyr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -77,14 +77,14 @@ impl Flash {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &Flash {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Flash {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -104,14 +104,14 @@ impl Flash {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Flash {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Flash {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -125,7 +125,7 @@ impl Flash {
      ((self.0 as usize) + 0x14) as *mut u32
   }
   #[inline]
-  pub fn set_ar(&self, value: Ar) -> &Flash {
+  pub fn set_ar(&self, value: Ar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -717,3 +717,4 @@ impl ::core::fmt::Debug for Wrpr {
       Ok(())
    }
 }
+

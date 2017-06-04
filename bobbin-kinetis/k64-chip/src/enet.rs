@@ -18,14 +18,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_eir(&self, value: Eir) -> &Enet {
+  pub fn set_eir(&self, value: Eir) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_eir<F: FnOnce(Eir) -> Eir>(&self, f: F) -> &Enet {
+  pub fn with_eir<F: FnOnce(Eir) -> Eir>(&self, f: F) -> &Self {
      let tmp = self.eir();
      self.set_eir(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_eimr(&self, value: Eimr) -> &Enet {
+  pub fn set_eimr(&self, value: Eimr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_eimr<F: FnOnce(Eimr) -> Eimr>(&self, f: F) -> &Enet {
+  pub fn with_eimr<F: FnOnce(Eimr) -> Eimr>(&self, f: F) -> &Self {
      let tmp = self.eimr();
      self.set_eimr(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rdar(&self, value: Rdar) -> &Enet {
+  pub fn set_rdar(&self, value: Rdar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rdar<F: FnOnce(Rdar) -> Rdar>(&self, f: F) -> &Enet {
+  pub fn with_rdar<F: FnOnce(Rdar) -> Rdar>(&self, f: F) -> &Self {
      let tmp = self.rdar();
      self.set_rdar(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tdar(&self, value: Tdar) -> &Enet {
+  pub fn set_tdar(&self, value: Tdar) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tdar<F: FnOnce(Tdar) -> Tdar>(&self, f: F) -> &Enet {
+  pub fn with_tdar<F: FnOnce(Tdar) -> Tdar>(&self, f: F) -> &Self {
      let tmp = self.tdar();
      self.set_tdar(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_ecr(&self, value: Ecr) -> &Enet {
+  pub fn set_ecr(&self, value: Ecr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Enet {
+  pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
      let tmp = self.ecr();
      self.set_ecr(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_mmfr(&self, value: Mmfr) -> &Enet {
+  pub fn set_mmfr(&self, value: Mmfr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mmfr<F: FnOnce(Mmfr) -> Mmfr>(&self, f: F) -> &Enet {
+  pub fn with_mmfr<F: FnOnce(Mmfr) -> Mmfr>(&self, f: F) -> &Self {
      let tmp = self.mmfr();
      self.set_mmfr(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_mscr(&self, value: Mscr) -> &Enet {
+  pub fn set_mscr(&self, value: Mscr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mscr<F: FnOnce(Mscr) -> Mscr>(&self, f: F) -> &Enet {
+  pub fn with_mscr<F: FnOnce(Mscr) -> Mscr>(&self, f: F) -> &Self {
      let tmp = self.mscr();
      self.set_mscr(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_mibc(&self, value: Mibc) -> &Enet {
+  pub fn set_mibc(&self, value: Mibc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mibc<F: FnOnce(Mibc) -> Mibc>(&self, f: F) -> &Enet {
+  pub fn with_mibc<F: FnOnce(Mibc) -> Mibc>(&self, f: F) -> &Self {
      let tmp = self.mibc();
      self.set_mibc(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rcr(&self, value: Rcr) -> &Enet {
+  pub fn set_rcr(&self, value: Rcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Enet {
+  pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
      let tmp = self.rcr();
      self.set_rcr(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tcr(&self, value: Tcr) -> &Enet {
+  pub fn set_tcr(&self, value: Tcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Enet {
+  pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
      let tmp = self.tcr();
      self.set_tcr(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_palr(&self, value: Palr) -> &Enet {
+  pub fn set_palr(&self, value: Palr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_palr<F: FnOnce(Palr) -> Palr>(&self, f: F) -> &Enet {
+  pub fn with_palr<F: FnOnce(Palr) -> Palr>(&self, f: F) -> &Self {
      let tmp = self.palr();
      self.set_palr(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_paur(&self, value: Paur) -> &Enet {
+  pub fn set_paur(&self, value: Paur) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_paur<F: FnOnce(Paur) -> Paur>(&self, f: F) -> &Enet {
+  pub fn with_paur<F: FnOnce(Paur) -> Paur>(&self, f: F) -> &Self {
      let tmp = self.paur();
      self.set_paur(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_opd(&self, value: Opd) -> &Enet {
+  pub fn set_opd(&self, value: Opd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xec) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_opd<F: FnOnce(Opd) -> Opd>(&self, f: F) -> &Enet {
+  pub fn with_opd<F: FnOnce(Opd) -> Opd>(&self, f: F) -> &Self {
      let tmp = self.opd();
      self.set_opd(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_iaur(&self, value: Iaur) -> &Enet {
+  pub fn set_iaur(&self, value: Iaur) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x118) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_iaur<F: FnOnce(Iaur) -> Iaur>(&self, f: F) -> &Enet {
+  pub fn with_iaur<F: FnOnce(Iaur) -> Iaur>(&self, f: F) -> &Self {
      let tmp = self.iaur();
      self.set_iaur(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_ialr(&self, value: Ialr) -> &Enet {
+  pub fn set_ialr(&self, value: Ialr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ialr<F: FnOnce(Ialr) -> Ialr>(&self, f: F) -> &Enet {
+  pub fn with_ialr<F: FnOnce(Ialr) -> Ialr>(&self, f: F) -> &Self {
      let tmp = self.ialr();
      self.set_ialr(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_gaur(&self, value: Gaur) -> &Enet {
+  pub fn set_gaur(&self, value: Gaur) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x120) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_gaur<F: FnOnce(Gaur) -> Gaur>(&self, f: F) -> &Enet {
+  pub fn with_gaur<F: FnOnce(Gaur) -> Gaur>(&self, f: F) -> &Self {
      let tmp = self.gaur();
      self.set_gaur(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_galr(&self, value: Galr) -> &Enet {
+  pub fn set_galr(&self, value: Galr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x124) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_galr<F: FnOnce(Galr) -> Galr>(&self, f: F) -> &Enet {
+  pub fn with_galr<F: FnOnce(Galr) -> Galr>(&self, f: F) -> &Self {
      let tmp = self.galr();
      self.set_galr(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tfwr(&self, value: Tfwr) -> &Enet {
+  pub fn set_tfwr(&self, value: Tfwr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x144) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tfwr<F: FnOnce(Tfwr) -> Tfwr>(&self, f: F) -> &Enet {
+  pub fn with_tfwr<F: FnOnce(Tfwr) -> Tfwr>(&self, f: F) -> &Self {
      let tmp = self.tfwr();
      self.set_tfwr(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rdsr(&self, value: Rdsr) -> &Enet {
+  pub fn set_rdsr(&self, value: Rdsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rdsr<F: FnOnce(Rdsr) -> Rdsr>(&self, f: F) -> &Enet {
+  pub fn with_rdsr<F: FnOnce(Rdsr) -> Rdsr>(&self, f: F) -> &Self {
      let tmp = self.rdsr();
      self.set_rdsr(f(tmp))
   }
@@ -531,14 +531,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tdsr(&self, value: Tdsr) -> &Enet {
+  pub fn set_tdsr(&self, value: Tdsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x184) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tdsr<F: FnOnce(Tdsr) -> Tdsr>(&self, f: F) -> &Enet {
+  pub fn with_tdsr<F: FnOnce(Tdsr) -> Tdsr>(&self, f: F) -> &Self {
      let tmp = self.tdsr();
      self.set_tdsr(f(tmp))
   }
@@ -558,14 +558,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_mrbr(&self, value: Mrbr) -> &Enet {
+  pub fn set_mrbr(&self, value: Mrbr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x188) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_mrbr<F: FnOnce(Mrbr) -> Mrbr>(&self, f: F) -> &Enet {
+  pub fn with_mrbr<F: FnOnce(Mrbr) -> Mrbr>(&self, f: F) -> &Self {
      let tmp = self.mrbr();
      self.set_mrbr(f(tmp))
   }
@@ -585,14 +585,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rsfl(&self, value: Rsfl) -> &Enet {
+  pub fn set_rsfl(&self, value: Rsfl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x190) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rsfl<F: FnOnce(Rsfl) -> Rsfl>(&self, f: F) -> &Enet {
+  pub fn with_rsfl<F: FnOnce(Rsfl) -> Rsfl>(&self, f: F) -> &Self {
      let tmp = self.rsfl();
      self.set_rsfl(f(tmp))
   }
@@ -612,14 +612,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rsem(&self, value: Rsem) -> &Enet {
+  pub fn set_rsem(&self, value: Rsem) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x194) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rsem<F: FnOnce(Rsem) -> Rsem>(&self, f: F) -> &Enet {
+  pub fn with_rsem<F: FnOnce(Rsem) -> Rsem>(&self, f: F) -> &Self {
      let tmp = self.rsem();
      self.set_rsem(f(tmp))
   }
@@ -639,14 +639,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_raem(&self, value: Raem) -> &Enet {
+  pub fn set_raem(&self, value: Raem) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x198) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_raem<F: FnOnce(Raem) -> Raem>(&self, f: F) -> &Enet {
+  pub fn with_raem<F: FnOnce(Raem) -> Raem>(&self, f: F) -> &Self {
      let tmp = self.raem();
      self.set_raem(f(tmp))
   }
@@ -666,14 +666,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_rafl(&self, value: Rafl) -> &Enet {
+  pub fn set_rafl(&self, value: Rafl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x19c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rafl<F: FnOnce(Rafl) -> Rafl>(&self, f: F) -> &Enet {
+  pub fn with_rafl<F: FnOnce(Rafl) -> Rafl>(&self, f: F) -> &Self {
      let tmp = self.rafl();
      self.set_rafl(f(tmp))
   }
@@ -693,14 +693,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tsem(&self, value: Tsem) -> &Enet {
+  pub fn set_tsem(&self, value: Tsem) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tsem<F: FnOnce(Tsem) -> Tsem>(&self, f: F) -> &Enet {
+  pub fn with_tsem<F: FnOnce(Tsem) -> Tsem>(&self, f: F) -> &Self {
      let tmp = self.tsem();
      self.set_tsem(f(tmp))
   }
@@ -720,14 +720,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_taem(&self, value: Taem) -> &Enet {
+  pub fn set_taem(&self, value: Taem) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_taem<F: FnOnce(Taem) -> Taem>(&self, f: F) -> &Enet {
+  pub fn with_taem<F: FnOnce(Taem) -> Taem>(&self, f: F) -> &Self {
      let tmp = self.taem();
      self.set_taem(f(tmp))
   }
@@ -747,14 +747,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tafl(&self, value: Tafl) -> &Enet {
+  pub fn set_tafl(&self, value: Tafl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tafl<F: FnOnce(Tafl) -> Tafl>(&self, f: F) -> &Enet {
+  pub fn with_tafl<F: FnOnce(Tafl) -> Tafl>(&self, f: F) -> &Self {
      let tmp = self.tafl();
      self.set_tafl(f(tmp))
   }
@@ -774,14 +774,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tipg(&self, value: Tipg) -> &Enet {
+  pub fn set_tipg(&self, value: Tipg) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1ac) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tipg<F: FnOnce(Tipg) -> Tipg>(&self, f: F) -> &Enet {
+  pub fn with_tipg<F: FnOnce(Tipg) -> Tipg>(&self, f: F) -> &Self {
      let tmp = self.tipg();
      self.set_tipg(f(tmp))
   }
@@ -801,14 +801,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_ftrl(&self, value: Ftrl) -> &Enet {
+  pub fn set_ftrl(&self, value: Ftrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftrl<F: FnOnce(Ftrl) -> Ftrl>(&self, f: F) -> &Enet {
+  pub fn with_ftrl<F: FnOnce(Ftrl) -> Ftrl>(&self, f: F) -> &Self {
      let tmp = self.ftrl();
      self.set_ftrl(f(tmp))
   }
@@ -828,14 +828,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tacc(&self, value: Tacc) -> &Enet {
+  pub fn set_tacc(&self, value: Tacc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tacc<F: FnOnce(Tacc) -> Tacc>(&self, f: F) -> &Enet {
+  pub fn with_tacc<F: FnOnce(Tacc) -> Tacc>(&self, f: F) -> &Self {
      let tmp = self.tacc();
      self.set_tacc(f(tmp))
   }
@@ -855,14 +855,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_racc(&self, value: Racc) -> &Enet {
+  pub fn set_racc(&self, value: Racc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_racc<F: FnOnce(Racc) -> Racc>(&self, f: F) -> &Enet {
+  pub fn with_racc<F: FnOnce(Racc) -> Racc>(&self, f: F) -> &Self {
      let tmp = self.racc();
      self.set_racc(f(tmp))
   }
@@ -1632,14 +1632,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atcr(&self, value: Atcr) -> &Enet {
+  pub fn set_atcr(&self, value: Atcr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atcr<F: FnOnce(Atcr) -> Atcr>(&self, f: F) -> &Enet {
+  pub fn with_atcr<F: FnOnce(Atcr) -> Atcr>(&self, f: F) -> &Self {
      let tmp = self.atcr();
      self.set_atcr(f(tmp))
   }
@@ -1659,14 +1659,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atvr(&self, value: Atvr) -> &Enet {
+  pub fn set_atvr(&self, value: Atvr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x404) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atvr<F: FnOnce(Atvr) -> Atvr>(&self, f: F) -> &Enet {
+  pub fn with_atvr<F: FnOnce(Atvr) -> Atvr>(&self, f: F) -> &Self {
      let tmp = self.atvr();
      self.set_atvr(f(tmp))
   }
@@ -1686,14 +1686,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atoff(&self, value: Atoff) -> &Enet {
+  pub fn set_atoff(&self, value: Atoff) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x408) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atoff<F: FnOnce(Atoff) -> Atoff>(&self, f: F) -> &Enet {
+  pub fn with_atoff<F: FnOnce(Atoff) -> Atoff>(&self, f: F) -> &Self {
      let tmp = self.atoff();
      self.set_atoff(f(tmp))
   }
@@ -1713,14 +1713,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atper(&self, value: Atper) -> &Enet {
+  pub fn set_atper(&self, value: Atper) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atper<F: FnOnce(Atper) -> Atper>(&self, f: F) -> &Enet {
+  pub fn with_atper<F: FnOnce(Atper) -> Atper>(&self, f: F) -> &Self {
      let tmp = self.atper();
      self.set_atper(f(tmp))
   }
@@ -1740,14 +1740,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atcor(&self, value: Atcor) -> &Enet {
+  pub fn set_atcor(&self, value: Atcor) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x410) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atcor<F: FnOnce(Atcor) -> Atcor>(&self, f: F) -> &Enet {
+  pub fn with_atcor<F: FnOnce(Atcor) -> Atcor>(&self, f: F) -> &Self {
      let tmp = self.atcor();
      self.set_atcor(f(tmp))
   }
@@ -1767,14 +1767,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_atinc(&self, value: Atinc) -> &Enet {
+  pub fn set_atinc(&self, value: Atinc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x414) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atinc<F: FnOnce(Atinc) -> Atinc>(&self, f: F) -> &Enet {
+  pub fn with_atinc<F: FnOnce(Atinc) -> Atinc>(&self, f: F) -> &Self {
      let tmp = self.atinc();
      self.set_atinc(f(tmp))
   }
@@ -1809,14 +1809,14 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tgsr(&self, value: Tgsr) -> &Enet {
+  pub fn set_tgsr(&self, value: Tgsr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_tgsr<F: FnOnce(Tgsr) -> Tgsr>(&self, f: F) -> &Enet {
+  pub fn with_tgsr<F: FnOnce(Tgsr) -> Tgsr>(&self, f: F) -> &Self {
      let tmp = self.tgsr();
      self.set_tgsr(f(tmp))
   }
@@ -1839,7 +1839,7 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tcsr(&self, index: usize, value: Tcsr) -> &Enet {
+  pub fn set_tcsr(&self, index: usize, value: Tcsr) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *mut u32, value.0);
@@ -1847,7 +1847,7 @@ impl Enet {
      self
   }
   #[inline]
-  pub fn with_tcsr<F: FnOnce(Tcsr) -> Tcsr>(&self, index: usize, f: F) -> &Enet {
+  pub fn with_tcsr<F: FnOnce(Tcsr) -> Tcsr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tcsr(index);
      self.set_tcsr(index, f(tmp))
   }
@@ -1870,7 +1870,7 @@ impl Enet {
      }
   }
   #[inline]
-  pub fn set_tccr(&self, index: usize, value: Tccr) -> &Enet {
+  pub fn set_tccr(&self, index: usize, value: Tccr) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *mut u32, value.0);
@@ -1878,7 +1878,7 @@ impl Enet {
      self
   }
   #[inline]
-  pub fn with_tccr<F: FnOnce(Tccr) -> Tccr>(&self, index: usize, f: F) -> &Enet {
+  pub fn with_tccr<F: FnOnce(Tccr) -> Tccr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tccr(index);
      self.set_tccr(index, f(tmp))
   }
@@ -5709,3 +5709,4 @@ impl ::core::fmt::Debug for Tccr {
       Ok(())
    }
 }
+

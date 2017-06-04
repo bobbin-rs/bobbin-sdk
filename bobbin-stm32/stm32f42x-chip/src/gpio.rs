@@ -1,6431 +1,3668 @@
 pub use stm32_common::chip::gpio::*;
 
-pub const GPIOA: Gpioa = Gpioa {};
-pub const GPIOA_IMPL: GpioImpl = GpioImpl(0x40020000);
-pub const GPIOA_IMPL_REF: &GpioImpl = &GPIOA_IMPL;
+pub const GPIOA: Gpioa = Periph(0x40020000, GpioaId {});
+pub const GPIOB: Gpiob = Periph(0x40020400, GpiobId {});
+pub const GPIOC: Gpioc = Periph(0x40020800, GpiocId {});
+pub const GPIOD: Gpiod = Periph(0x40020c00, GpiodId {});
+pub const GPIOE: Gpioe = Periph(0x40021000, GpioeId {});
+pub const GPIOF: Gpiof = Periph(0x40021400, GpiofId {});
+pub const GPIOG: Gpiog = Periph(0x40021800, GpiogId {});
+pub const GPIOH: Gpioh = Periph(0x40021c00, GpiohId {});
+pub const GPIOI: Gpioi = Periph(0x40022000, GpioiId {});
+pub const GPIOJ: Gpioj = Periph(0x40022400, GpiojId {});
+pub const GPIOK: Gpiok = Periph(0x40022800, GpiokId {});
 
-pub struct Gpioa {}
-impl ::core::ops::Deref for Gpioa {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOA_IMPL_REF }
-}
-
-
-pub const GPIOB: Gpiob = Gpiob {};
-pub const GPIOB_IMPL: GpioImpl = GpioImpl(0x40020400);
-pub const GPIOB_IMPL_REF: &GpioImpl = &GPIOB_IMPL;
-
-pub struct Gpiob {}
-impl ::core::ops::Deref for Gpiob {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOB_IMPL_REF }
-}
-
-
-pub const GPIOC: Gpioc = Gpioc {};
-pub const GPIOC_IMPL: GpioImpl = GpioImpl(0x40020800);
-pub const GPIOC_IMPL_REF: &GpioImpl = &GPIOC_IMPL;
-
-pub struct Gpioc {}
-impl ::core::ops::Deref for Gpioc {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOC_IMPL_REF }
-}
-
-
-pub const GPIOD: Gpiod = Gpiod {};
-pub const GPIOD_IMPL: GpioImpl = GpioImpl(0x40020c00);
-pub const GPIOD_IMPL_REF: &GpioImpl = &GPIOD_IMPL;
-
-pub struct Gpiod {}
-impl ::core::ops::Deref for Gpiod {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOD_IMPL_REF }
-}
-
-
-pub const GPIOE: Gpioe = Gpioe {};
-pub const GPIOE_IMPL: GpioImpl = GpioImpl(0x40021000);
-pub const GPIOE_IMPL_REF: &GpioImpl = &GPIOE_IMPL;
-
-pub struct Gpioe {}
-impl ::core::ops::Deref for Gpioe {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOE_IMPL_REF }
-}
-
-
-pub const GPIOF: Gpiof = Gpiof {};
-pub const GPIOF_IMPL: GpioImpl = GpioImpl(0x40021400);
-pub const GPIOF_IMPL_REF: &GpioImpl = &GPIOF_IMPL;
-
-pub struct Gpiof {}
-impl ::core::ops::Deref for Gpiof {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOF_IMPL_REF }
-}
-
-
-pub const GPIOG: Gpiog = Gpiog {};
-pub const GPIOG_IMPL: GpioImpl = GpioImpl(0x40021800);
-pub const GPIOG_IMPL_REF: &GpioImpl = &GPIOG_IMPL;
-
-pub struct Gpiog {}
-impl ::core::ops::Deref for Gpiog {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOG_IMPL_REF }
-}
-
-
-pub const GPIOH: Gpioh = Gpioh {};
-pub const GPIOH_IMPL: GpioImpl = GpioImpl(0x40021c00);
-pub const GPIOH_IMPL_REF: &GpioImpl = &GPIOH_IMPL;
-
-pub struct Gpioh {}
-impl ::core::ops::Deref for Gpioh {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOH_IMPL_REF }
-}
-
-
-pub const GPIOI: Gpioi = Gpioi {};
-pub const GPIOI_IMPL: GpioImpl = GpioImpl(0x40022000);
-pub const GPIOI_IMPL_REF: &GpioImpl = &GPIOI_IMPL;
-
-pub struct Gpioi {}
-impl ::core::ops::Deref for Gpioi {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOI_IMPL_REF }
-}
-
-
-pub const GPIOJ: Gpioj = Gpioj {};
-pub const GPIOJ_IMPL: GpioImpl = GpioImpl(0x40022400);
-pub const GPIOJ_IMPL_REF: &GpioImpl = &GPIOJ_IMPL;
-
-pub struct Gpioj {}
-impl ::core::ops::Deref for Gpioj {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOJ_IMPL_REF }
-}
-
-
-pub const GPIOK: Gpiok = Gpiok {};
-pub const GPIOK_IMPL: GpioImpl = GpioImpl(0x40022800);
-pub const GPIOK_IMPL_REF: &GpioImpl = &GPIOK_IMPL;
-
-pub struct Gpiok {}
-impl ::core::ops::Deref for Gpiok {
-   type Target = GpioImpl;
-   #[inline]
-   fn deref(&self) -> &GpioImpl { GPIOK_IMPL_REF }
-}
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpioaId {}
+pub type Gpioa = Periph<GpioaId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiobId {}
+pub type Gpiob = Periph<GpiobId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiocId {}
+pub type Gpioc = Periph<GpiocId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiodId {}
+pub type Gpiod = Periph<GpiodId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpioeId {}
+pub type Gpioe = Periph<GpioeId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiofId {}
+pub type Gpiof = Periph<GpiofId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiogId {}
+pub type Gpiog = Periph<GpiogId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiohId {}
+pub type Gpioh = Periph<GpiohId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpioiId {}
+pub type Gpioi = Periph<GpioiId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiojId {}
+pub type Gpioj = Periph<GpiojId>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct GpiokId {}
+pub type Gpiok = Periph<GpiokId>;
 
 
 
-pub const PA0: Pa0 = Pa0 {}; 
-pub const PA0_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 0 };
-pub const PA0_IMPL_REF: &PinImpl = &PA0_IMPL;
 
-impl ::core::ops::Deref for Pa0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA0_IMPL_REF }
-}
 
+
+
+
+
+
+
+
+
+pub const PA0: Pin<Pa0Id, GpioaId> = Pin { port: GPIOA, index: 0, id: Pa0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa0 {}
-
-impl Pin<Gpioa> for Pa0 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Tim2Ch1> for Pa0 {
+pub struct Pa0Id {}
+pub type Pa0 = Pin<Pa0Id, GpioaId>;
+impl AltFn<super::sig::Tim2Ch1> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim2Etr> for Pa0 {
+impl AltFn<super::sig::Tim2Etr> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim5Ch1> for Pa0 {
+impl AltFn<super::sig::Tim5Ch1> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Etr> for Pa0 {
+impl AltFn<super::sig::Tim8Etr> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Usart2Cts> for Pa0 {
+impl AltFn<super::sig::Usart2Cts> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Uart4Tx> for Pa0 {
+impl AltFn<super::sig::Uart4Tx> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthMiiCrs> for Pa0 {
+impl AltFn<super::sig::EthMiiCrs> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa0 {
+impl AltFn<super::sig::Eventout> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA1: Pa1 = Pa1 {}; 
-pub const PA1_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 1 };
-pub const PA1_IMPL_REF: &PinImpl = &PA1_IMPL;
-
-impl ::core::ops::Deref for Pa1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA1_IMPL_REF }
-}
-
+pub const PA1: Pin<Pa1Id, GpioaId> = Pin { port: GPIOA, index: 1, id: Pa1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa1 {}
-
-impl Pin<Gpioa> for Pa1 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Tim2Ch2> for Pa1 {
+pub struct Pa1Id {}
+pub type Pa1 = Pin<Pa1Id, GpioaId>;
+impl AltFn<super::sig::Tim2Ch2> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim5Ch2> for Pa1 {
+impl AltFn<super::sig::Tim5Ch2> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Usart2Rts> for Pa1 {
+impl AltFn<super::sig::Usart2Rts> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Uart4Rx> for Pa1 {
+impl AltFn<super::sig::Uart4Rx> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthMiiRxClk> for Pa1 {
+impl AltFn<super::sig::EthMiiRxClk> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiRefClk> for Pa1 {
+impl AltFn<super::sig::EthRmiiRefClk> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa1 {
+impl AltFn<super::sig::Eventout> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA2: Pa2 = Pa2 {}; 
-pub const PA2_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 2 };
-pub const PA2_IMPL_REF: &PinImpl = &PA2_IMPL;
-
-impl ::core::ops::Deref for Pa2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA2_IMPL_REF }
-}
-
+pub const PA2: Pin<Pa2Id, GpioaId> = Pin { port: GPIOA, index: 2, id: Pa2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa2 {}
-
-impl Pin<Gpioa> for Pa2 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Tim2Ch3> for Pa2 {
+pub struct Pa2Id {}
+pub type Pa2 = Pin<Pa2Id, GpioaId>;
+impl AltFn<super::sig::Tim2Ch3> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim5Ch3> for Pa2 {
+impl AltFn<super::sig::Tim5Ch3> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim9Ch1> for Pa2 {
+impl AltFn<super::sig::Tim9Ch1> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Usart2Tx> for Pa2 {
+impl AltFn<super::sig::Usart2Tx> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::EthMdio> for Pa2 {
+impl AltFn<super::sig::EthMdio> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa2 {
+impl AltFn<super::sig::Eventout> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA3: Pa3 = Pa3 {}; 
-pub const PA3_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 3 };
-pub const PA3_IMPL_REF: &PinImpl = &PA3_IMPL;
-
-impl ::core::ops::Deref for Pa3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA3_IMPL_REF }
-}
-
+pub const PA3: Pin<Pa3Id, GpioaId> = Pin { port: GPIOA, index: 3, id: Pa3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa3 {}
-
-impl Pin<Gpioa> for Pa3 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Tim2Ch4> for Pa3 {
+pub struct Pa3Id {}
+pub type Pa3 = Pin<Pa3Id, GpioaId>;
+impl AltFn<super::sig::Tim2Ch4> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim5Ch4> for Pa3 {
+impl AltFn<super::sig::Tim5Ch4> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim9Ch2> for Pa3 {
+impl AltFn<super::sig::Tim9Ch2> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Usart2Rx> for Pa3 {
+impl AltFn<super::sig::Usart2Rx> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD0> for Pa3 {
+impl AltFn<super::sig::OtgHsUlpiD0> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiCol> for Pa3 {
+impl AltFn<super::sig::EthMiiCol> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::LcdB5> for Pa3 {
+impl AltFn<super::sig::LcdB5> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa3 {
+impl AltFn<super::sig::Eventout> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA4: Pa4 = Pa4 {}; 
-pub const PA4_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 4 };
-pub const PA4_IMPL_REF: &PinImpl = &PA4_IMPL;
-
-impl ::core::ops::Deref for Pa4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA4_IMPL_REF }
-}
-
+pub const PA4: Pin<Pa4Id, GpioaId> = Pin { port: GPIOA, index: 4, id: Pa4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa4 {}
-
-impl Pin<Gpioa> for Pa4 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Spi1Nss> for Pa4 {
+pub struct Pa4Id {}
+pub type Pa4 = Pin<Pa4Id, GpioaId>;
+impl AltFn<super::sig::Spi1Nss> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Spi3Nss> for Pa4 {
+impl AltFn<super::sig::Spi3Nss> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3Ws> for Pa4 {
+impl AltFn<super::sig::I2s3Ws> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart2Ck> for Pa4 {
+impl AltFn<super::sig::Usart2Ck> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgHsSof> for Pa4 {
+impl AltFn<super::sig::OtgHsSof> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiHsync> for Pa4 {
+impl AltFn<super::sig::DcmiHsync> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdVsync> for Pa4 {
+impl AltFn<super::sig::LcdVsync> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa4 {
+impl AltFn<super::sig::Eventout> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA5: Pa5 = Pa5 {}; 
-pub const PA5_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 5 };
-pub const PA5_IMPL_REF: &PinImpl = &PA5_IMPL;
-
-impl ::core::ops::Deref for Pa5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA5_IMPL_REF }
-}
-
+pub const PA5: Pin<Pa5Id, GpioaId> = Pin { port: GPIOA, index: 5, id: Pa5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa5 {}
-
-impl Pin<Gpioa> for Pa5 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Tim2Ch1> for Pa5 {
+pub struct Pa5Id {}
+pub type Pa5 = Pin<Pa5Id, GpioaId>;
+impl AltFn<super::sig::Tim2Ch1> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim2Etr> for Pa5 {
+impl AltFn<super::sig::Tim2Etr> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim8Ch1n> for Pa5 {
+impl AltFn<super::sig::Tim8Ch1n> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi1Sck> for Pa5 {
+impl AltFn<super::sig::Spi1Sck> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiCk> for Pa5 {
+impl AltFn<super::sig::OtgHsUlpiCk> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa5 {
+impl AltFn<super::sig::Eventout> for Pa5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA6: Pa6 = Pa6 {}; 
-pub const PA6_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 6 };
-pub const PA6_IMPL_REF: &PinImpl = &PA6_IMPL;
-
-impl ::core::ops::Deref for Pa6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA6_IMPL_REF }
-}
-
+pub const PA6: Pin<Pa6Id, GpioaId> = Pin { port: GPIOA, index: 6, id: Pa6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa6 {}
-
-impl Pin<Gpioa> for Pa6 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Tim1Bkin> for Pa6 {
+pub struct Pa6Id {}
+pub type Pa6 = Pin<Pa6Id, GpioaId>;
+impl AltFn<super::sig::Tim1Bkin> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim3Ch1> for Pa6 {
+impl AltFn<super::sig::Tim3Ch1> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Bkin> for Pa6 {
+impl AltFn<super::sig::Tim8Bkin> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi1Miso> for Pa6 {
+impl AltFn<super::sig::Spi1Miso> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Tim13Ch1> for Pa6 {
+impl AltFn<super::sig::Tim13Ch1> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::DcmiPxclk> for Pa6 {
+impl AltFn<super::sig::DcmiPxclk> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG2> for Pa6 {
+impl AltFn<super::sig::LcdG2> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa6 {
+impl AltFn<super::sig::Eventout> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA7: Pa7 = Pa7 {}; 
-pub const PA7_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 7 };
-pub const PA7_IMPL_REF: &PinImpl = &PA7_IMPL;
-
-impl ::core::ops::Deref for Pa7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA7_IMPL_REF }
-}
-
+pub const PA7: Pin<Pa7Id, GpioaId> = Pin { port: GPIOA, index: 7, id: Pa7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa7 {}
-
-impl Pin<Gpioa> for Pa7 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim1Ch1n> for Pa7 {
+pub struct Pa7Id {}
+pub type Pa7 = Pin<Pa7Id, GpioaId>;
+impl AltFn<super::sig::Tim1Ch1n> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim3Ch2> for Pa7 {
+impl AltFn<super::sig::Tim3Ch2> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch1n> for Pa7 {
+impl AltFn<super::sig::Tim8Ch1n> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi1Mosi> for Pa7 {
+impl AltFn<super::sig::Spi1Mosi> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Tim14Ch1> for Pa7 {
+impl AltFn<super::sig::Tim14Ch1> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::EthMiiRxDv> for Pa7 {
+impl AltFn<super::sig::EthMiiRxDv> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiCrsDv> for Pa7 {
+impl AltFn<super::sig::EthRmiiCrsDv> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa7 {
+impl AltFn<super::sig::Eventout> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA8: Pa8 = Pa8 {}; 
-pub const PA8_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 8 };
-pub const PA8_IMPL_REF: &PinImpl = &PA8_IMPL;
-
-impl ::core::ops::Deref for Pa8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA8_IMPL_REF }
-}
-
+pub const PA8: Pin<Pa8Id, GpioaId> = Pin { port: GPIOA, index: 8, id: Pa8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa8 {}
-
-impl Pin<Gpioa> for Pa8 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Mco1> for Pa8 {
+pub struct Pa8Id {}
+pub type Pa8 = Pin<Pa8Id, GpioaId>;
+impl AltFn<super::sig::Mco1> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim1Ch1> for Pa8 {
+impl AltFn<super::sig::Tim1Ch1> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::I2c3Scl> for Pa8 {
+impl AltFn<super::sig::I2c3Scl> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Usart1Ck> for Pa8 {
+impl AltFn<super::sig::Usart1Ck> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgFsSof> for Pa8 {
+impl AltFn<super::sig::OtgFsSof> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::LcdR6> for Pa8 {
+impl AltFn<super::sig::LcdR6> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa8 {
+impl AltFn<super::sig::Eventout> for Pa8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA9: Pa9 = Pa9 {}; 
-pub const PA9_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 9 };
-pub const PA9_IMPL_REF: &PinImpl = &PA9_IMPL;
-
-impl ::core::ops::Deref for Pa9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA9_IMPL_REF }
-}
-
+pub const PA9: Pin<Pa9Id, GpioaId> = Pin { port: GPIOA, index: 9, id: Pa9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa9 {}
-
-impl Pin<Gpioa> for Pa9 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Tim1Ch2> for Pa9 {
+pub struct Pa9Id {}
+pub type Pa9 = Pin<Pa9Id, GpioaId>;
+impl AltFn<super::sig::Tim1Ch2> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::I2c3Smba> for Pa9 {
+impl AltFn<super::sig::I2c3Smba> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Uasrt1Tx> for Pa9 {
+impl AltFn<super::sig::Uasrt1Tx> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::DcmiD0> for Pa9 {
+impl AltFn<super::sig::DcmiD0> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa9 {
+impl AltFn<super::sig::Eventout> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA10: Pa10 = Pa10 {}; 
-pub const PA10_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 10 };
-pub const PA10_IMPL_REF: &PinImpl = &PA10_IMPL;
-
-impl ::core::ops::Deref for Pa10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA10_IMPL_REF }
-}
-
+pub const PA10: Pin<Pa10Id, GpioaId> = Pin { port: GPIOA, index: 10, id: Pa10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa10 {}
-
-impl Pin<Gpioa> for Pa10 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Tim1Ch3> for Pa10 {
+pub struct Pa10Id {}
+pub type Pa10 = Pin<Pa10Id, GpioaId>;
+impl AltFn<super::sig::Tim1Ch3> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Usart1Rx> for Pa10 {
+impl AltFn<super::sig::Usart1Rx> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgFsId> for Pa10 {
+impl AltFn<super::sig::OtgFsId> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::DcmiD1> for Pa10 {
+impl AltFn<super::sig::DcmiD1> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa10 {
+impl AltFn<super::sig::Eventout> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA11: Pa11 = Pa11 {}; 
-pub const PA11_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 11 };
-pub const PA11_IMPL_REF: &PinImpl = &PA11_IMPL;
-
-impl ::core::ops::Deref for Pa11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA11_IMPL_REF }
-}
-
+pub const PA11: Pin<Pa11Id, GpioaId> = Pin { port: GPIOA, index: 11, id: Pa11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa11 {}
-
-impl Pin<Gpioa> for Pa11 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Tim1Ch4> for Pa11 {
+pub struct Pa11Id {}
+pub type Pa11 = Pin<Pa11Id, GpioaId>;
+impl AltFn<super::sig::Tim1Ch4> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Usart1Cts> for Pa11 {
+impl AltFn<super::sig::Usart1Cts> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Can1Rx> for Pa11 {
+impl AltFn<super::sig::Can1Rx> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgFsDm> for Pa11 {
+impl AltFn<super::sig::OtgFsDm> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::LcdR4> for Pa11 {
+impl AltFn<super::sig::LcdR4> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa11 {
+impl AltFn<super::sig::Eventout> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA12: Pa12 = Pa12 {}; 
-pub const PA12_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 12 };
-pub const PA12_IMPL_REF: &PinImpl = &PA12_IMPL;
-
-impl ::core::ops::Deref for Pa12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA12_IMPL_REF }
-}
-
+pub const PA12: Pin<Pa12Id, GpioaId> = Pin { port: GPIOA, index: 12, id: Pa12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa12 {}
-
-impl Pin<Gpioa> for Pa12 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Tim1Etr> for Pa12 {
+pub struct Pa12Id {}
+pub type Pa12 = Pin<Pa12Id, GpioaId>;
+impl AltFn<super::sig::Tim1Etr> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Usart1Rts> for Pa12 {
+impl AltFn<super::sig::Usart1Rts> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Can1Tx> for Pa12 {
+impl AltFn<super::sig::Can1Tx> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgFsDp> for Pa12 {
+impl AltFn<super::sig::OtgFsDp> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::LcdR5> for Pa12 {
+impl AltFn<super::sig::LcdR5> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa12 {
+impl AltFn<super::sig::Eventout> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA13: Pa13 = Pa13 {}; 
-pub const PA13_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 13 };
-pub const PA13_IMPL_REF: &PinImpl = &PA13_IMPL;
-
-impl ::core::ops::Deref for Pa13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA13_IMPL_REF }
-}
-
+pub const PA13: Pin<Pa13Id, GpioaId> = Pin { port: GPIOA, index: 13, id: Pa13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa13 {}
-
-impl Pin<Gpioa> for Pa13 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Jtms> for Pa13 {
+pub struct Pa13Id {}
+pub type Pa13 = Pin<Pa13Id, GpioaId>;
+impl AltFn<super::sig::Jtms> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Swdio> for Pa13 {
+impl AltFn<super::sig::Swdio> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa13 {
+impl AltFn<super::sig::Eventout> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA14: Pa14 = Pa14 {}; 
-pub const PA14_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 14 };
-pub const PA14_IMPL_REF: &PinImpl = &PA14_IMPL;
-
-impl ::core::ops::Deref for Pa14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA14_IMPL_REF }
-}
-
+pub const PA14: Pin<Pa14Id, GpioaId> = Pin { port: GPIOA, index: 14, id: Pa14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa14 {}
-
-impl Pin<Gpioa> for Pa14 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Jtck> for Pa14 {
+pub struct Pa14Id {}
+pub type Pa14 = Pin<Pa14Id, GpioaId>;
+impl AltFn<super::sig::Jtck> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Swclk> for Pa14 {
+impl AltFn<super::sig::Swclk> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa14 {
+impl AltFn<super::sig::Eventout> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PA15: Pa15 = Pa15 {}; 
-pub const PA15_IMPL: PinImpl = PinImpl { port: GPIOA_IMPL, index: 15 };
-pub const PA15_IMPL_REF: &PinImpl = &PA15_IMPL;
-
-impl ::core::ops::Deref for Pa15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PA15_IMPL_REF }
-}
-
+pub const PA15: Pin<Pa15Id, GpioaId> = Pin { port: GPIOA, index: 15, id: Pa15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pa15 {}
-
-impl Pin<Gpioa> for Pa15 {
-   #[inline]
-   fn port(&self) -> Gpioa { GPIOA }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::Jtdi> for Pa15 {
+pub struct Pa15Id {}
+pub type Pa15 = Pin<Pa15Id, GpioaId>;
+impl AltFn<super::sig::Jtdi> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim2Ch1> for Pa15 {
+impl AltFn<super::sig::Tim2Ch1> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim2Etr> for Pa15 {
+impl AltFn<super::sig::Tim2Etr> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi1Nss> for Pa15 {
+impl AltFn<super::sig::Spi1Nss> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Spi3Nss> for Pa15 {
+impl AltFn<super::sig::Spi3Nss> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3Ws> for Pa15 {
+impl AltFn<super::sig::I2s3Ws> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Eventout> for Pa15 {
+impl AltFn<super::sig::Eventout> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB0: Pb0 = Pb0 {}; 
-pub const PB0_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 0 };
-pub const PB0_IMPL_REF: &PinImpl = &PB0_IMPL;
-
-impl ::core::ops::Deref for Pb0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB0_IMPL_REF }
-}
-
+pub const PB0: Pin<Pb0Id, GpiobId> = Pin { port: GPIOB, index: 0, id: Pb0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb0 {}
-
-impl Pin<Gpiob> for Pb0 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Tim1Ch2n> for Pb0 {
+pub struct Pb0Id {}
+pub type Pb0 = Pin<Pb0Id, GpiobId>;
+impl AltFn<super::sig::Tim1Ch2n> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim3Ch3> for Pb0 {
+impl AltFn<super::sig::Tim3Ch3> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch2n> for Pb0 {
+impl AltFn<super::sig::Tim8Ch2n> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::LcdR3> for Pb0 {
+impl AltFn<super::sig::LcdR3> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD1> for Pb0 {
+impl AltFn<super::sig::OtgHsUlpiD1> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiRxd2> for Pb0 {
+impl AltFn<super::sig::EthMiiRxd2> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb0 {
+impl AltFn<super::sig::Eventout> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB1: Pb1 = Pb1 {}; 
-pub const PB1_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 1 };
-pub const PB1_IMPL_REF: &PinImpl = &PB1_IMPL;
-
-impl ::core::ops::Deref for Pb1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB1_IMPL_REF }
-}
-
+pub const PB1: Pin<Pb1Id, GpiobId> = Pin { port: GPIOB, index: 1, id: Pb1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb1 {}
-
-impl Pin<Gpiob> for Pb1 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Tim1Ch3n> for Pb1 {
+pub struct Pb1Id {}
+pub type Pb1 = Pin<Pb1Id, GpiobId>;
+impl AltFn<super::sig::Tim1Ch3n> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim3Ch4> for Pb1 {
+impl AltFn<super::sig::Tim3Ch4> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch3n> for Pb1 {
+impl AltFn<super::sig::Tim8Ch3n> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::LcdR6> for Pb1 {
+impl AltFn<super::sig::LcdR6> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD2> for Pb1 {
+impl AltFn<super::sig::OtgHsUlpiD2> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiRxd3> for Pb1 {
+impl AltFn<super::sig::EthMiiRxd3> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb1 {
+impl AltFn<super::sig::Eventout> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB2: Pb2 = Pb2 {}; 
-pub const PB2_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 2 };
-pub const PB2_IMPL_REF: &PinImpl = &PB2_IMPL;
-
-impl ::core::ops::Deref for Pb2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB2_IMPL_REF }
-}
-
+pub const PB2: Pin<Pb2Id, GpiobId> = Pin { port: GPIOB, index: 2, id: Pb2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb2 {}
-
-impl Pin<Gpiob> for Pb2 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Eventout> for Pb2 {
+pub struct Pb2Id {}
+pub type Pb2 = Pin<Pb2Id, GpiobId>;
+impl AltFn<super::sig::Eventout> for Pb2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB3: Pb3 = Pb3 {}; 
-pub const PB3_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 3 };
-pub const PB3_IMPL_REF: &PinImpl = &PB3_IMPL;
-
-impl ::core::ops::Deref for Pb3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB3_IMPL_REF }
-}
-
+pub const PB3: Pin<Pb3Id, GpiobId> = Pin { port: GPIOB, index: 3, id: Pb3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb3 {}
-
-impl Pin<Gpiob> for Pb3 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Jtdo> for Pb3 {
+pub struct Pb3Id {}
+pub type Pb3 = Pin<Pb3Id, GpiobId>;
+impl AltFn<super::sig::Jtdo> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Traceswo> for Pb3 {
+impl AltFn<super::sig::Traceswo> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim2Ch2> for Pb3 {
+impl AltFn<super::sig::Tim2Ch2> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi1Sck> for Pb3 {
+impl AltFn<super::sig::Spi1Sck> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Spi3Sck> for Pb3 {
+impl AltFn<super::sig::Spi3Sck> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Is2cCk> for Pb3 {
+impl AltFn<super::sig::Is2cCk> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb3 {
+impl AltFn<super::sig::Eventout> for Pb3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB4: Pb4 = Pb4 {}; 
-pub const PB4_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 4 };
-pub const PB4_IMPL_REF: &PinImpl = &PB4_IMPL;
-
-impl ::core::ops::Deref for Pb4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB4_IMPL_REF }
-}
-
+pub const PB4: Pin<Pb4Id, GpiobId> = Pin { port: GPIOB, index: 4, id: Pb4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb4 {}
-
-impl Pin<Gpiob> for Pb4 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Njtrst> for Pb4 {
+pub struct Pb4Id {}
+pub type Pb4 = Pin<Pb4Id, GpiobId>;
+impl AltFn<super::sig::Njtrst> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim3Ch1> for Pb4 {
+impl AltFn<super::sig::Tim3Ch1> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Spi1Miso> for Pb4 {
+impl AltFn<super::sig::Spi1Miso> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Spi3Miso> for Pb4 {
+impl AltFn<super::sig::Spi3Miso> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3extSd> for Pb4 {
+impl AltFn<super::sig::I2s3extSd> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb4 {
+impl AltFn<super::sig::Eventout> for Pb4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB5: Pb5 = Pb5 {}; 
-pub const PB5_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 5 };
-pub const PB5_IMPL_REF: &PinImpl = &PB5_IMPL;
-
-impl ::core::ops::Deref for Pb5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB5_IMPL_REF }
-}
-
+pub const PB5: Pin<Pb5Id, GpiobId> = Pin { port: GPIOB, index: 5, id: Pb5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb5 {}
-
-impl Pin<Gpiob> for Pb5 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Tim3Ch2> for Pb5 {
+pub struct Pb5Id {}
+pub type Pb5 = Pin<Pb5Id, GpiobId>;
+impl AltFn<super::sig::Tim3Ch2> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::I2c1Smba> for Pb5 {
+impl AltFn<super::sig::I2c1Smba> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi1Mosi> for Pb5 {
+impl AltFn<super::sig::Spi1Mosi> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Spi3Mosi> for Pb5 {
+impl AltFn<super::sig::Spi3Mosi> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3Sd> for Pb5 {
+impl AltFn<super::sig::I2s3Sd> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Can2Rx> for Pb5 {
+impl AltFn<super::sig::Can2Rx> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD7> for Pb5 {
+impl AltFn<super::sig::OtgHsUlpiD7> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthPpsOut> for Pb5 {
+impl AltFn<super::sig::EthPpsOut> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdcke1> for Pb5 {
+impl AltFn<super::sig::FmcSdcke1> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD10> for Pb5 {
+impl AltFn<super::sig::DcmiD10> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb5 {
+impl AltFn<super::sig::Eventout> for Pb5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB6: Pb6 = Pb6 {}; 
-pub const PB6_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 6 };
-pub const PB6_IMPL_REF: &PinImpl = &PB6_IMPL;
-
-impl ::core::ops::Deref for Pb6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB6_IMPL_REF }
-}
-
+pub const PB6: Pin<Pb6Id, GpiobId> = Pin { port: GPIOB, index: 6, id: Pb6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb6 {}
-
-impl Pin<Gpiob> for Pb6 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Tim4Ch1> for Pb6 {
+pub struct Pb6Id {}
+pub type Pb6 = Pin<Pb6Id, GpiobId>;
+impl AltFn<super::sig::Tim4Ch1> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::I2c1Scl> for Pb6 {
+impl AltFn<super::sig::I2c1Scl> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Usart1Tx> for Pb6 {
+impl AltFn<super::sig::Usart1Tx> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Can2Tx> for Pb6 {
+impl AltFn<super::sig::Can2Tx> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcSdne1> for Pb6 {
+impl AltFn<super::sig::FmcSdne1> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD5> for Pb6 {
+impl AltFn<super::sig::DcmiD5> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb6 {
+impl AltFn<super::sig::Eventout> for Pb6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB7: Pb7 = Pb7 {}; 
-pub const PB7_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 7 };
-pub const PB7_IMPL_REF: &PinImpl = &PB7_IMPL;
-
-impl ::core::ops::Deref for Pb7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB7_IMPL_REF }
-}
-
+pub const PB7: Pin<Pb7Id, GpiobId> = Pin { port: GPIOB, index: 7, id: Pb7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb7 {}
-
-impl Pin<Gpiob> for Pb7 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim4Ch2> for Pb7 {
+pub struct Pb7Id {}
+pub type Pb7 = Pin<Pb7Id, GpiobId>;
+impl AltFn<super::sig::Tim4Ch2> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::I2c1Sda> for Pb7 {
+impl AltFn<super::sig::I2c1Sda> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Usart1Rx> for Pb7 {
+impl AltFn<super::sig::Usart1Rx> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcNl> for Pb7 {
+impl AltFn<super::sig::FmcNl> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiVsync> for Pb7 {
+impl AltFn<super::sig::DcmiVsync> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb7 {
+impl AltFn<super::sig::Eventout> for Pb7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB8: Pb8 = Pb8 {}; 
-pub const PB8_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 8 };
-pub const PB8_IMPL_REF: &PinImpl = &PB8_IMPL;
-
-impl ::core::ops::Deref for Pb8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB8_IMPL_REF }
-}
-
+pub const PB8: Pin<Pb8Id, GpiobId> = Pin { port: GPIOB, index: 8, id: Pb8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb8 {}
-
-impl Pin<Gpiob> for Pb8 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Tim4Ch3> for Pb8 {
+pub struct Pb8Id {}
+pub type Pb8 = Pin<Pb8Id, GpiobId>;
+impl AltFn<super::sig::Tim4Ch3> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim10Ch1> for Pb8 {
+impl AltFn<super::sig::Tim10Ch1> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::I2c1Scl> for Pb8 {
+impl AltFn<super::sig::I2c1Scl> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Can1Rx> for Pb8 {
+impl AltFn<super::sig::Can1Rx> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::EthMiiTxd3> for Pb8 {
+impl AltFn<super::sig::EthMiiTxd3> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::SdioD4> for Pb8 {
+impl AltFn<super::sig::SdioD4> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD6> for Pb8 {
+impl AltFn<super::sig::DcmiD6> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB6> for Pb8 {
+impl AltFn<super::sig::LcdB6> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb8 {
+impl AltFn<super::sig::Eventout> for Pb8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB9: Pb9 = Pb9 {}; 
-pub const PB9_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 9 };
-pub const PB9_IMPL_REF: &PinImpl = &PB9_IMPL;
-
-impl ::core::ops::Deref for Pb9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB9_IMPL_REF }
-}
-
+pub const PB9: Pin<Pb9Id, GpiobId> = Pin { port: GPIOB, index: 9, id: Pb9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb9 {}
-
-impl Pin<Gpiob> for Pb9 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Tim4Ch4> for Pb9 {
+pub struct Pb9Id {}
+pub type Pb9 = Pin<Pb9Id, GpiobId>;
+impl AltFn<super::sig::Tim4Ch4> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim11Ch1> for Pb9 {
+impl AltFn<super::sig::Tim11Ch1> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::I2c1Sda> for Pb9 {
+impl AltFn<super::sig::I2c1Sda> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi2Nss> for Pb9 {
+impl AltFn<super::sig::Spi2Nss> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ws> for Pb9 {
+impl AltFn<super::sig::I2s2Ws> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Can1Tx> for Pb9 {
+impl AltFn<super::sig::Can1Tx> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::SdioD5> for Pb9 {
+impl AltFn<super::sig::SdioD5> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD7> for Pb9 {
+impl AltFn<super::sig::DcmiD7> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB7> for Pb9 {
+impl AltFn<super::sig::LcdB7> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb9 {
+impl AltFn<super::sig::Eventout> for Pb9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB10: Pb10 = Pb10 {}; 
-pub const PB10_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 10 };
-pub const PB10_IMPL_REF: &PinImpl = &PB10_IMPL;
-
-impl ::core::ops::Deref for Pb10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB10_IMPL_REF }
-}
-
+pub const PB10: Pin<Pb10Id, GpiobId> = Pin { port: GPIOB, index: 10, id: Pb10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb10 {}
-
-impl Pin<Gpiob> for Pb10 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Tim2Ch3> for Pb10 {
+pub struct Pb10Id {}
+pub type Pb10 = Pin<Pb10Id, GpiobId>;
+impl AltFn<super::sig::Tim2Ch3> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::I2c2Scl> for Pb10 {
+impl AltFn<super::sig::I2c2Scl> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi2Sck> for Pb10 {
+impl AltFn<super::sig::Spi2Sck> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ck> for Pb10 {
+impl AltFn<super::sig::I2s2Ck> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart3Tx> for Pb10 {
+impl AltFn<super::sig::Usart3Tx> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD3> for Pb10 {
+impl AltFn<super::sig::OtgHsUlpiD3> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiRxEr> for Pb10 {
+impl AltFn<super::sig::EthMiiRxEr> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::LcdG4> for Pb10 {
+impl AltFn<super::sig::LcdG4> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb10 {
+impl AltFn<super::sig::Eventout> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB11: Pb11 = Pb11 {}; 
-pub const PB11_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 11 };
-pub const PB11_IMPL_REF: &PinImpl = &PB11_IMPL;
-
-impl ::core::ops::Deref for Pb11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB11_IMPL_REF }
-}
-
+pub const PB11: Pin<Pb11Id, GpiobId> = Pin { port: GPIOB, index: 11, id: Pb11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb11 {}
-
-impl Pin<Gpiob> for Pb11 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Sim2Ch4> for Pb11 {
+pub struct Pb11Id {}
+pub type Pb11 = Pin<Pb11Id, GpiobId>;
+impl AltFn<super::sig::Sim2Ch4> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::I2c2Sda> for Pb11 {
+impl AltFn<super::sig::I2c2Sda> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Usart3Rx> for Pb11 {
+impl AltFn<super::sig::Usart3Rx> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD4> for Pb11 {
+impl AltFn<super::sig::OtgHsUlpiD4> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiTxEn> for Pb11 {
+impl AltFn<super::sig::EthMiiTxEn> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxEn> for Pb11 {
+impl AltFn<super::sig::EthRmiiTxEn> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::LcdG5> for Pb11 {
+impl AltFn<super::sig::LcdG5> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb11 {
+impl AltFn<super::sig::Eventout> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB12: Pb12 = Pb12 {}; 
-pub const PB12_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 12 };
-pub const PB12_IMPL_REF: &PinImpl = &PB12_IMPL;
-
-impl ::core::ops::Deref for Pb12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB12_IMPL_REF }
-}
-
+pub const PB12: Pin<Pb12Id, GpiobId> = Pin { port: GPIOB, index: 12, id: Pb12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb12 {}
-
-impl Pin<Gpiob> for Pb12 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Tim1Bkin> for Pb12 {
+pub struct Pb12Id {}
+pub type Pb12 = Pin<Pb12Id, GpiobId>;
+impl AltFn<super::sig::Tim1Bkin> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::I2c2Smba> for Pb12 {
+impl AltFn<super::sig::I2c2Smba> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi2Nss> for Pb12 {
+impl AltFn<super::sig::Spi2Nss> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ws> for Pb12 {
+impl AltFn<super::sig::I2s2Ws> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart3Ck> for Pb12 {
+impl AltFn<super::sig::Usart3Ck> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Can2Rx> for Pb12 {
+impl AltFn<super::sig::Can2Rx> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD5> for Pb12 {
+impl AltFn<super::sig::OtgHsUlpiD5> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiTxd0> for Pb12 {
+impl AltFn<super::sig::EthMiiTxd0> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxd0> for Pb12 {
+impl AltFn<super::sig::EthRmiiTxd0> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::OtgHsId> for Pb12 {
+impl AltFn<super::sig::OtgHsId> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb12 {
+impl AltFn<super::sig::Eventout> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB13: Pb13 = Pb13 {}; 
-pub const PB13_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 13 };
-pub const PB13_IMPL_REF: &PinImpl = &PB13_IMPL;
-
-impl ::core::ops::Deref for Pb13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB13_IMPL_REF }
-}
-
+pub const PB13: Pin<Pb13Id, GpiobId> = Pin { port: GPIOB, index: 13, id: Pb13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb13 {}
-
-impl Pin<Gpiob> for Pb13 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Tim1Ch1n> for Pb13 {
+pub struct Pb13Id {}
+pub type Pb13 = Pin<Pb13Id, GpiobId>;
+impl AltFn<super::sig::Tim1Ch1n> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi2Sck> for Pb13 {
+impl AltFn<super::sig::Spi2Sck> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ck> for Pb13 {
+impl AltFn<super::sig::I2s2Ck> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart3Cts> for Pb13 {
+impl AltFn<super::sig::Usart3Cts> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Can2Tx> for Pb13 {
+impl AltFn<super::sig::Can2Tx> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiD6> for Pb13 {
+impl AltFn<super::sig::OtgHsUlpiD6> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiTxd1> for Pb13 {
+impl AltFn<super::sig::EthMiiTxd1> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxd1> for Pb13 {
+impl AltFn<super::sig::EthRmiiTxd1> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb13 {
+impl AltFn<super::sig::Eventout> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB14: Pb14 = Pb14 {}; 
-pub const PB14_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 14 };
-pub const PB14_IMPL_REF: &PinImpl = &PB14_IMPL;
-
-impl ::core::ops::Deref for Pb14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB14_IMPL_REF }
-}
-
+pub const PB14: Pin<Pb14Id, GpiobId> = Pin { port: GPIOB, index: 14, id: Pb14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb14 {}
-
-impl Pin<Gpiob> for Pb14 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Tim2Ch2n> for Pb14 {
+pub struct Pb14Id {}
+pub type Pb14 = Pin<Pb14Id, GpiobId>;
+impl AltFn<super::sig::Tim2Ch2n> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim8Ch2n> for Pb14 {
+impl AltFn<super::sig::Tim8Ch2n> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi2Miso> for Pb14 {
+impl AltFn<super::sig::Spi2Miso> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2extSd> for Pb14 {
+impl AltFn<super::sig::I2s2extSd> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart3Rts> for Pb14 {
+impl AltFn<super::sig::Usart3Rts> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::Tim12Ch1> for Pb14 {
+impl AltFn<super::sig::Tim12Ch1> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsDm> for Pb14 {
+impl AltFn<super::sig::OtgHsDm> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb14 {
+impl AltFn<super::sig::Eventout> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PB15: Pb15 = Pb15 {}; 
-pub const PB15_IMPL: PinImpl = PinImpl { port: GPIOB_IMPL, index: 15 };
-pub const PB15_IMPL_REF: &PinImpl = &PB15_IMPL;
-
-impl ::core::ops::Deref for Pb15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PB15_IMPL_REF }
-}
-
+pub const PB15: Pin<Pb15Id, GpiobId> = Pin { port: GPIOB, index: 15, id: Pb15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pb15 {}
-
-impl Pin<Gpiob> for Pb15 {
-   #[inline]
-   fn port(&self) -> Gpiob { GPIOB }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::RtcRefin> for Pb15 {
+pub struct Pb15Id {}
+pub type Pb15 = Pin<Pb15Id, GpiobId>;
+impl AltFn<super::sig::RtcRefin> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim1Ch3n> for Pb15 {
+impl AltFn<super::sig::Tim1Ch3n> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Tim8Ch3n> for Pb15 {
+impl AltFn<super::sig::Tim8Ch3n> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi2Mosi> for Pb15 {
+impl AltFn<super::sig::Spi2Mosi> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Sd> for Pb15 {
+impl AltFn<super::sig::I2s2Sd> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Tim12Ch2> for Pb15 {
+impl AltFn<super::sig::Tim12Ch2> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::OtgHsDp> for Pb15 {
+impl AltFn<super::sig::OtgHsDp> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pb15 {
+impl AltFn<super::sig::Eventout> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC0: Pc0 = Pc0 {}; 
-pub const PC0_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 0 };
-pub const PC0_IMPL_REF: &PinImpl = &PC0_IMPL;
-
-impl ::core::ops::Deref for Pc0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC0_IMPL_REF }
-}
-
+pub const PC0: Pin<Pc0Id, GpiocId> = Pin { port: GPIOC, index: 0, id: Pc0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc0 {}
-
-impl Pin<Gpioc> for Pc0 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::OtgHsUlpiStp> for Pc0 {
+pub struct Pc0Id {}
+pub type Pc0 = Pin<Pc0Id, GpiocId>;
+impl AltFn<super::sig::OtgHsUlpiStp> for Pc0Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::FmcSdnwe> for Pc0 {
+impl AltFn<super::sig::FmcSdnwe> for Pc0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc0 {
+impl AltFn<super::sig::Eventout> for Pc0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC1: Pc1 = Pc1 {}; 
-pub const PC1_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 1 };
-pub const PC1_IMPL_REF: &PinImpl = &PC1_IMPL;
-
-impl ::core::ops::Deref for Pc1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC1_IMPL_REF }
-}
-
+pub const PC1: Pin<Pc1Id, GpiocId> = Pin { port: GPIOC, index: 1, id: Pc1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc1 {}
-
-impl Pin<Gpioc> for Pc1 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::EthMdc> for Pc1 {
+pub struct Pc1Id {}
+pub type Pc1 = Pin<Pc1Id, GpiocId>;
+impl AltFn<super::sig::EthMdc> for Pc1Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc1 {
+impl AltFn<super::sig::Eventout> for Pc1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC2: Pc2 = Pc2 {}; 
-pub const PC2_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 2 };
-pub const PC2_IMPL_REF: &PinImpl = &PC2_IMPL;
-
-impl ::core::ops::Deref for Pc2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC2_IMPL_REF }
-}
-
+pub const PC2: Pin<Pc2Id, GpiocId> = Pin { port: GPIOC, index: 2, id: Pc2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc2 {}
-
-impl Pin<Gpioc> for Pc2 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::OtgHsUlpiDir> for Pc2 {
+pub struct Pc2Id {}
+pub type Pc2 = Pin<Pc2Id, GpiocId>;
+impl AltFn<super::sig::OtgHsUlpiDir> for Pc2Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiTxd2> for Pc2 {
+impl AltFn<super::sig::EthMiiTxd2> for Pc2Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdne0> for Pc2 {
+impl AltFn<super::sig::FmcSdne0> for Pc2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc2 {
+impl AltFn<super::sig::Eventout> for Pc2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC3: Pc3 = Pc3 {}; 
-pub const PC3_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 3 };
-pub const PC3_IMPL_REF: &PinImpl = &PC3_IMPL;
-
-impl ::core::ops::Deref for Pc3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC3_IMPL_REF }
-}
-
+pub const PC3: Pin<Pc3Id, GpiocId> = Pin { port: GPIOC, index: 3, id: Pc3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc3 {}
-
-impl Pin<Gpioc> for Pc3 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::OtgHsUlpiNxt> for Pc3 {
+pub struct Pc3Id {}
+pub type Pc3 = Pin<Pc3Id, GpiocId>;
+impl AltFn<super::sig::OtgHsUlpiNxt> for Pc3Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::EthMiiTxClk> for Pc3 {
+impl AltFn<super::sig::EthMiiTxClk> for Pc3Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdcke0> for Pc3 {
+impl AltFn<super::sig::FmcSdcke0> for Pc3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc3 {
+impl AltFn<super::sig::Eventout> for Pc3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC4: Pc4 = Pc4 {}; 
-pub const PC4_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 4 };
-pub const PC4_IMPL_REF: &PinImpl = &PC4_IMPL;
-
-impl ::core::ops::Deref for Pc4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC4_IMPL_REF }
-}
-
+pub const PC4: Pin<Pc4Id, GpiocId> = Pin { port: GPIOC, index: 4, id: Pc4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc4 {}
-
-impl Pin<Gpioc> for Pc4 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::EthMiiRxd0> for Pc4 {
+pub struct Pc4Id {}
+pub type Pc4 = Pin<Pc4Id, GpiocId>;
+impl AltFn<super::sig::EthMiiRxd0> for Pc4Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiRxd0> for Pc4 {
+impl AltFn<super::sig::EthRmiiRxd0> for Pc4Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc4 {
+impl AltFn<super::sig::Eventout> for Pc4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC5: Pc5 = Pc5 {}; 
-pub const PC5_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 5 };
-pub const PC5_IMPL_REF: &PinImpl = &PC5_IMPL;
-
-impl ::core::ops::Deref for Pc5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC5_IMPL_REF }
-}
-
+pub const PC5: Pin<Pc5Id, GpiocId> = Pin { port: GPIOC, index: 5, id: Pc5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc5 {}
-
-impl Pin<Gpioc> for Pc5 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EthMiiRxd1> for Pc5 {
+pub struct Pc5Id {}
+pub type Pc5 = Pin<Pc5Id, GpiocId>;
+impl AltFn<super::sig::EthMiiRxd1> for Pc5Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiRxd1> for Pc5 {
+impl AltFn<super::sig::EthRmiiRxd1> for Pc5Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc5 {
+impl AltFn<super::sig::Eventout> for Pc5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC6: Pc6 = Pc6 {}; 
-pub const PC6_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 6 };
-pub const PC6_IMPL_REF: &PinImpl = &PC6_IMPL;
-
-impl ::core::ops::Deref for Pc6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC6_IMPL_REF }
-}
-
+pub const PC6: Pin<Pc6Id, GpiocId> = Pin { port: GPIOC, index: 6, id: Pc6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc6 {}
-
-impl Pin<Gpioc> for Pc6 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Tim3Ch1> for Pc6 {
+pub struct Pc6Id {}
+pub type Pc6 = Pin<Pc6Id, GpiocId>;
+impl AltFn<super::sig::Tim3Ch1> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch1> for Pc6 {
+impl AltFn<super::sig::Tim8Ch1> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::I2s2Mck> for Pc6 {
+impl AltFn<super::sig::I2s2Mck> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart6Tx> for Pc6 {
+impl AltFn<super::sig::Usart6Tx> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::SdioD6> for Pc6 {
+impl AltFn<super::sig::SdioD6> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD0> for Pc6 {
+impl AltFn<super::sig::DcmiD0> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdHsync> for Pc6 {
+impl AltFn<super::sig::LcdHsync> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc6 {
+impl AltFn<super::sig::Eventout> for Pc6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC7: Pc7 = Pc7 {}; 
-pub const PC7_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 7 };
-pub const PC7_IMPL_REF: &PinImpl = &PC7_IMPL;
-
-impl ::core::ops::Deref for Pc7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC7_IMPL_REF }
-}
-
+pub const PC7: Pin<Pc7Id, GpiocId> = Pin { port: GPIOC, index: 7, id: Pc7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc7 {}
-
-impl Pin<Gpioc> for Pc7 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim3Ch2> for Pc7 {
+pub struct Pc7Id {}
+pub type Pc7 = Pin<Pc7Id, GpiocId>;
+impl AltFn<super::sig::Tim3Ch2> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch2> for Pc7 {
+impl AltFn<super::sig::Tim8Ch2> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::I2s3Mck> for Pc7 {
+impl AltFn<super::sig::I2s3Mck> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart6Rx> for Pc7 {
+impl AltFn<super::sig::Usart6Rx> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::SdioD7> for Pc7 {
+impl AltFn<super::sig::SdioD7> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD1> for Pc7 {
+impl AltFn<super::sig::DcmiD1> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG6> for Pc7 {
+impl AltFn<super::sig::LcdG6> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc7 {
+impl AltFn<super::sig::Eventout> for Pc7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC8: Pc8 = Pc8 {}; 
-pub const PC8_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 8 };
-pub const PC8_IMPL_REF: &PinImpl = &PC8_IMPL;
-
-impl ::core::ops::Deref for Pc8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC8_IMPL_REF }
-}
-
+pub const PC8: Pin<Pc8Id, GpiocId> = Pin { port: GPIOC, index: 8, id: Pc8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc8 {}
-
-impl Pin<Gpioc> for Pc8 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Tim3Ch3> for Pc8 {
+pub struct Pc8Id {}
+pub type Pc8 = Pin<Pc8Id, GpiocId>;
+impl AltFn<super::sig::Tim3Ch3> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch3> for Pc8 {
+impl AltFn<super::sig::Tim8Ch3> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Usart6Ck> for Pc8 {
+impl AltFn<super::sig::Usart6Ck> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::SdioD0> for Pc8 {
+impl AltFn<super::sig::SdioD0> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD2> for Pc8 {
+impl AltFn<super::sig::DcmiD2> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc8 {
+impl AltFn<super::sig::Eventout> for Pc8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC9: Pc9 = Pc9 {}; 
-pub const PC9_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 9 };
-pub const PC9_IMPL_REF: &PinImpl = &PC9_IMPL;
-
-impl ::core::ops::Deref for Pc9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC9_IMPL_REF }
-}
-
+pub const PC9: Pin<Pc9Id, GpiocId> = Pin { port: GPIOC, index: 9, id: Pc9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc9 {}
-
-impl Pin<Gpioc> for Pc9 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Mco2> for Pc9 {
+pub struct Pc9Id {}
+pub type Pc9 = Pin<Pc9Id, GpiocId>;
+impl AltFn<super::sig::Mco2> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim3Ch4> for Pc9 {
+impl AltFn<super::sig::Tim3Ch4> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tim8Ch4> for Pc9 {
+impl AltFn<super::sig::Tim8Ch4> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::I2c3Sda> for Pc9 {
+impl AltFn<super::sig::I2c3Sda> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::I2sCkin> for Pc9 {
+impl AltFn<super::sig::I2sCkin> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::SdioD1> for Pc9 {
+impl AltFn<super::sig::SdioD1> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD3> for Pc9 {
+impl AltFn<super::sig::DcmiD3> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc9 {
+impl AltFn<super::sig::Eventout> for Pc9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC10: Pc10 = Pc10 {}; 
-pub const PC10_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 10 };
-pub const PC10_IMPL_REF: &PinImpl = &PC10_IMPL;
-
-impl ::core::ops::Deref for Pc10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC10_IMPL_REF }
-}
-
+pub const PC10: Pin<Pc10Id, GpiocId> = Pin { port: GPIOC, index: 10, id: Pc10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc10 {}
-
-impl Pin<Gpioc> for Pc10 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Spi3Sck> for Pc10 {
+pub struct Pc10Id {}
+pub type Pc10 = Pin<Pc10Id, GpiocId>;
+impl AltFn<super::sig::Spi3Sck> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3Ck> for Pc10 {
+impl AltFn<super::sig::I2s3Ck> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart3Tx> for Pc10 {
+impl AltFn<super::sig::Usart3Tx> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::SdioD2> for Pc10 {
+impl AltFn<super::sig::SdioD2> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD8> for Pc10 {
+impl AltFn<super::sig::DcmiD8> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR2> for Pc10 {
+impl AltFn<super::sig::LcdR2> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc10 {
+impl AltFn<super::sig::Eventout> for Pc10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC11: Pc11 = Pc11 {}; 
-pub const PC11_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 11 };
-pub const PC11_IMPL_REF: &PinImpl = &PC11_IMPL;
-
-impl ::core::ops::Deref for Pc11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC11_IMPL_REF }
-}
-
+pub const PC11: Pin<Pc11Id, GpiocId> = Pin { port: GPIOC, index: 11, id: Pc11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc11 {}
-
-impl Pin<Gpioc> for Pc11 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Spi3Miso> for Pc11 {
+pub struct Pc11Id {}
+pub type Pc11 = Pin<Pc11Id, GpiocId>;
+impl AltFn<super::sig::Spi3Miso> for Pc11Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart3Rx> for Pc11 {
+impl AltFn<super::sig::Usart3Rx> for Pc11Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::SdioD3> for Pc11 {
+impl AltFn<super::sig::SdioD3> for Pc11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD4> for Pc11 {
+impl AltFn<super::sig::DcmiD4> for Pc11Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc11 {
+impl AltFn<super::sig::Eventout> for Pc11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC12: Pc12 = Pc12 {}; 
-pub const PC12_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 12 };
-pub const PC12_IMPL_REF: &PinImpl = &PC12_IMPL;
-
-impl ::core::ops::Deref for Pc12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC12_IMPL_REF }
-}
-
+pub const PC12: Pin<Pc12Id, GpiocId> = Pin { port: GPIOC, index: 12, id: Pc12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc12 {}
-
-impl Pin<Gpioc> for Pc12 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Spi3Mosi> for Pc12 {
+pub struct Pc12Id {}
+pub type Pc12 = Pin<Pc12Id, GpiocId>;
+impl AltFn<super::sig::Spi3Mosi> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::I2s3Sd> for Pc12 {
+impl AltFn<super::sig::I2s3Sd> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart3Ck> for Pc12 {
+impl AltFn<super::sig::Usart3Ck> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::SdioCk> for Pc12 {
+impl AltFn<super::sig::SdioCk> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD9> for Pc12 {
+impl AltFn<super::sig::DcmiD9> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pc12 {
+impl AltFn<super::sig::Eventout> for Pc12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC13: Pc13 = Pc13 {}; 
-pub const PC13_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 13 };
-pub const PC13_IMPL_REF: &PinImpl = &PC13_IMPL;
-
-impl ::core::ops::Deref for Pc13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC13_IMPL_REF }
-}
-
+pub const PC13: Pin<Pc13Id, GpiocId> = Pin { port: GPIOC, index: 13, id: Pc13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc13 {}
-
-impl Pin<Gpioc> for Pc13 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Eventout> for Pc13 {
+pub struct Pc13Id {}
+pub type Pc13 = Pin<Pc13Id, GpiocId>;
+impl AltFn<super::sig::Eventout> for Pc13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC14: Pc14 = Pc14 {}; 
-pub const PC14_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 14 };
-pub const PC14_IMPL_REF: &PinImpl = &PC14_IMPL;
-
-impl ::core::ops::Deref for Pc14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC14_IMPL_REF }
-}
-
+pub const PC14: Pin<Pc14Id, GpiocId> = Pin { port: GPIOC, index: 14, id: Pc14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc14 {}
-
-impl Pin<Gpioc> for Pc14 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Eventout> for Pc14 {
+pub struct Pc14Id {}
+pub type Pc14 = Pin<Pc14Id, GpiocId>;
+impl AltFn<super::sig::Eventout> for Pc14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PC15: Pc15 = Pc15 {}; 
-pub const PC15_IMPL: PinImpl = PinImpl { port: GPIOC_IMPL, index: 15 };
-pub const PC15_IMPL_REF: &PinImpl = &PC15_IMPL;
-
-impl ::core::ops::Deref for Pc15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PC15_IMPL_REF }
-}
-
+pub const PC15: Pin<Pc15Id, GpiocId> = Pin { port: GPIOC, index: 15, id: Pc15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pc15 {}
-
-impl Pin<Gpioc> for Pc15 {
-   #[inline]
-   fn port(&self) -> Gpioc { GPIOC }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::Eventout> for Pc15 {
+pub struct Pc15Id {}
+pub type Pc15 = Pin<Pc15Id, GpiocId>;
+impl AltFn<super::sig::Eventout> for Pc15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD0: Pd0 = Pd0 {}; 
-pub const PD0_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 0 };
-pub const PD0_IMPL_REF: &PinImpl = &PD0_IMPL;
-
-impl ::core::ops::Deref for Pd0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD0_IMPL_REF }
-}
-
+pub const PD0: Pin<Pd0Id, GpiodId> = Pin { port: GPIOD, index: 0, id: Pd0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd0 {}
-
-impl Pin<Gpiod> for Pd0 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Can1Rx> for Pd0 {
+pub struct Pd0Id {}
+pub type Pd0 = Pin<Pd0Id, GpiodId>;
+impl AltFn<super::sig::Can1Rx> for Pd0Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcD2> for Pd0 {
+impl AltFn<super::sig::FmcD2> for Pd0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd0 {
+impl AltFn<super::sig::Eventout> for Pd0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD1: Pd1 = Pd1 {}; 
-pub const PD1_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 1 };
-pub const PD1_IMPL_REF: &PinImpl = &PD1_IMPL;
-
-impl ::core::ops::Deref for Pd1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD1_IMPL_REF }
-}
-
+pub const PD1: Pin<Pd1Id, GpiodId> = Pin { port: GPIOD, index: 1, id: Pd1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd1 {}
-
-impl Pin<Gpiod> for Pd1 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Can1Tx> for Pd1 {
+pub struct Pd1Id {}
+pub type Pd1 = Pin<Pd1Id, GpiodId>;
+impl AltFn<super::sig::Can1Tx> for Pd1Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcD3> for Pd1 {
+impl AltFn<super::sig::FmcD3> for Pd1Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd1 {
+impl AltFn<super::sig::Eventout> for Pd1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD2: Pd2 = Pd2 {}; 
-pub const PD2_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 2 };
-pub const PD2_IMPL_REF: &PinImpl = &PD2_IMPL;
-
-impl ::core::ops::Deref for Pd2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD2_IMPL_REF }
-}
-
+pub const PD2: Pin<Pd2Id, GpiodId> = Pin { port: GPIOD, index: 2, id: Pd2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd2 {}
-
-impl Pin<Gpiod> for Pd2 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Tim3Etr> for Pd2 {
+pub struct Pd2Id {}
+pub type Pd2 = Pin<Pd2Id, GpiodId>;
+impl AltFn<super::sig::Tim3Etr> for Pd2Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Uart5Rx> for Pd2 {
+impl AltFn<super::sig::Uart5Rx> for Pd2Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::SdioCmd> for Pd2 {
+impl AltFn<super::sig::SdioCmd> for Pd2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD11> for Pd2 {
+impl AltFn<super::sig::DcmiD11> for Pd2Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd2 {
+impl AltFn<super::sig::Eventout> for Pd2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD3: Pd3 = Pd3 {}; 
-pub const PD3_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 3 };
-pub const PD3_IMPL_REF: &PinImpl = &PD3_IMPL;
-
-impl ::core::ops::Deref for Pd3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD3_IMPL_REF }
-}
-
+pub const PD3: Pin<Pd3Id, GpiodId> = Pin { port: GPIOD, index: 3, id: Pd3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd3 {}
-
-impl Pin<Gpiod> for Pd3 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Spi2Sck> for Pd3 {
+pub struct Pd3Id {}
+pub type Pd3 = Pin<Pd3Id, GpiodId>;
+impl AltFn<super::sig::Spi2Sck> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ck> for Pd3 {
+impl AltFn<super::sig::I2s2Ck> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart2Cts> for Pd3 {
+impl AltFn<super::sig::Usart2Cts> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcClk> for Pd3 {
+impl AltFn<super::sig::FmcClk> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD5> for Pd3 {
+impl AltFn<super::sig::DcmiD5> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG7> for Pd3 {
+impl AltFn<super::sig::LcdG7> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd3 {
+impl AltFn<super::sig::Eventout> for Pd3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD4: Pd4 = Pd4 {}; 
-pub const PD4_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 4 };
-pub const PD4_IMPL_REF: &PinImpl = &PD4_IMPL;
-
-impl ::core::ops::Deref for Pd4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD4_IMPL_REF }
-}
-
+pub const PD4: Pin<Pd4Id, GpiodId> = Pin { port: GPIOD, index: 4, id: Pd4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd4 {}
-
-impl Pin<Gpiod> for Pd4 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Usart2Rts> for Pd4 {
+pub struct Pd4Id {}
+pub type Pd4 = Pin<Pd4Id, GpiodId>;
+impl AltFn<super::sig::Usart2Rts> for Pd4Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcNoe> for Pd4 {
+impl AltFn<super::sig::FmcNoe> for Pd4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd4 {
+impl AltFn<super::sig::Eventout> for Pd4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD5: Pd5 = Pd5 {}; 
-pub const PD5_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 5 };
-pub const PD5_IMPL_REF: &PinImpl = &PD5_IMPL;
-
-impl ::core::ops::Deref for Pd5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD5_IMPL_REF }
-}
-
+pub const PD5: Pin<Pd5Id, GpiodId> = Pin { port: GPIOD, index: 5, id: Pd5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd5 {}
-
-impl Pin<Gpiod> for Pd5 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Usart2Tx> for Pd5 {
+pub struct Pd5Id {}
+pub type Pd5 = Pin<Pd5Id, GpiodId>;
+impl AltFn<super::sig::Usart2Tx> for Pd5Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcNwe> for Pd5 {
+impl AltFn<super::sig::FmcNwe> for Pd5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd5 {
+impl AltFn<super::sig::Eventout> for Pd5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD6: Pd6 = Pd6 {}; 
-pub const PD6_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 6 };
-pub const PD6_IMPL_REF: &PinImpl = &PD6_IMPL;
-
-impl ::core::ops::Deref for Pd6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD6_IMPL_REF }
-}
-
+pub const PD6: Pin<Pd6Id, GpiodId> = Pin { port: GPIOD, index: 6, id: Pd6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd6 {}
-
-impl Pin<Gpiod> for Pd6 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi3Mosi> for Pd6 {
+pub struct Pd6Id {}
+pub type Pd6 = Pin<Pd6Id, GpiodId>;
+impl AltFn<super::sig::Spi3Mosi> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s3Sd> for Pd6 {
+impl AltFn<super::sig::I2s3Sd> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1SdA> for Pd6 {
+impl AltFn<super::sig::Sai1SdA> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Usart2Rx> for Pd6 {
+impl AltFn<super::sig::Usart2Rx> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcNwait> for Pd6 {
+impl AltFn<super::sig::FmcNwait> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD10> for Pd6 {
+impl AltFn<super::sig::DcmiD10> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB2> for Pd6 {
+impl AltFn<super::sig::LcdB2> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd6 {
+impl AltFn<super::sig::Eventout> for Pd6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD7: Pd7 = Pd7 {}; 
-pub const PD7_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 7 };
-pub const PD7_IMPL_REF: &PinImpl = &PD7_IMPL;
-
-impl ::core::ops::Deref for Pd7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD7_IMPL_REF }
-}
-
+pub const PD7: Pin<Pd7Id, GpiodId> = Pin { port: GPIOD, index: 7, id: Pd7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd7 {}
-
-impl Pin<Gpiod> for Pd7 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Usart2Ck> for Pd7 {
+pub struct Pd7Id {}
+pub type Pd7 = Pin<Pd7Id, GpiodId>;
+impl AltFn<super::sig::Usart2Ck> for Pd7Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcNe1> for Pd7 {
+impl AltFn<super::sig::FmcNe1> for Pd7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::FmcNce2> for Pd7 {
+impl AltFn<super::sig::FmcNce2> for Pd7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd7 {
+impl AltFn<super::sig::Eventout> for Pd7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD8: Pd8 = Pd8 {}; 
-pub const PD8_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 8 };
-pub const PD8_IMPL_REF: &PinImpl = &PD8_IMPL;
-
-impl ::core::ops::Deref for Pd8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD8_IMPL_REF }
-}
-
+pub const PD8: Pin<Pd8Id, GpiodId> = Pin { port: GPIOD, index: 8, id: Pd8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd8 {}
-
-impl Pin<Gpiod> for Pd8 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Usart3Tx> for Pd8 {
+pub struct Pd8Id {}
+pub type Pd8 = Pin<Pd8Id, GpiodId>;
+impl AltFn<super::sig::Usart3Tx> for Pd8Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcD13> for Pd8 {
+impl AltFn<super::sig::FmcD13> for Pd8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd8 {
+impl AltFn<super::sig::Eventout> for Pd8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD9: Pd9 = Pd9 {}; 
-pub const PD9_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 9 };
-pub const PD9_IMPL_REF: &PinImpl = &PD9_IMPL;
-
-impl ::core::ops::Deref for Pd9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD9_IMPL_REF }
-}
-
+pub const PD9: Pin<Pd9Id, GpiodId> = Pin { port: GPIOD, index: 9, id: Pd9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd9 {}
-
-impl Pin<Gpiod> for Pd9 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Usart3Rx> for Pd9 {
+pub struct Pd9Id {}
+pub type Pd9 = Pin<Pd9Id, GpiodId>;
+impl AltFn<super::sig::Usart3Rx> for Pd9Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcD14> for Pd9 {
+impl AltFn<super::sig::FmcD14> for Pd9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd9 {
+impl AltFn<super::sig::Eventout> for Pd9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD10: Pd10 = Pd10 {}; 
-pub const PD10_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 10 };
-pub const PD10_IMPL_REF: &PinImpl = &PD10_IMPL;
-
-impl ::core::ops::Deref for Pd10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD10_IMPL_REF }
-}
-
+pub const PD10: Pin<Pd10Id, GpiodId> = Pin { port: GPIOD, index: 10, id: Pd10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd10 {}
-
-impl Pin<Gpiod> for Pd10 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Usart3Ck> for Pd10 {
+pub struct Pd10Id {}
+pub type Pd10 = Pin<Pd10Id, GpiodId>;
+impl AltFn<super::sig::Usart3Ck> for Pd10Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcD15> for Pd10 {
+impl AltFn<super::sig::FmcD15> for Pd10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd10 {
+impl AltFn<super::sig::Eventout> for Pd10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD11: Pd11 = Pd11 {}; 
-pub const PD11_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 11 };
-pub const PD11_IMPL_REF: &PinImpl = &PD11_IMPL;
-
-impl ::core::ops::Deref for Pd11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD11_IMPL_REF }
-}
-
+pub const PD11: Pin<Pd11Id, GpiodId> = Pin { port: GPIOD, index: 11, id: Pd11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd11 {}
-
-impl Pin<Gpiod> for Pd11 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Usart3Cts> for Pd11 {
+pub struct Pd11Id {}
+pub type Pd11 = Pin<Pd11Id, GpiodId>;
+impl AltFn<super::sig::Usart3Cts> for Pd11Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcA16> for Pd11 {
+impl AltFn<super::sig::FmcA16> for Pd11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd11 {
+impl AltFn<super::sig::Eventout> for Pd11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD12: Pd12 = Pd12 {}; 
-pub const PD12_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 12 };
-pub const PD12_IMPL_REF: &PinImpl = &PD12_IMPL;
-
-impl ::core::ops::Deref for Pd12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD12_IMPL_REF }
-}
-
+pub const PD12: Pin<Pd12Id, GpiodId> = Pin { port: GPIOD, index: 12, id: Pd12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd12 {}
-
-impl Pin<Gpiod> for Pd12 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Tim4Ch1> for Pd12 {
+pub struct Pd12Id {}
+pub type Pd12 = Pin<Pd12Id, GpiodId>;
+impl AltFn<super::sig::Tim4Ch1> for Pd12Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Usart3Rts> for Pd12 {
+impl AltFn<super::sig::Usart3Rts> for Pd12Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
-impl AltFn<super::sig::FmcA17> for Pd12 {
+impl AltFn<super::sig::FmcA17> for Pd12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd12 {
+impl AltFn<super::sig::Eventout> for Pd12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD13: Pd13 = Pd13 {}; 
-pub const PD13_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 13 };
-pub const PD13_IMPL_REF: &PinImpl = &PD13_IMPL;
-
-impl ::core::ops::Deref for Pd13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD13_IMPL_REF }
-}
-
+pub const PD13: Pin<Pd13Id, GpiodId> = Pin { port: GPIOD, index: 13, id: Pd13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd13 {}
-
-impl Pin<Gpiod> for Pd13 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Tim4Ch2> for Pd13 {
+pub struct Pd13Id {}
+pub type Pd13 = Pin<Pd13Id, GpiodId>;
+impl AltFn<super::sig::Tim4Ch2> for Pd13Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcA18> for Pd13 {
+impl AltFn<super::sig::FmcA18> for Pd13Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd13 {
+impl AltFn<super::sig::Eventout> for Pd13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD14: Pd14 = Pd14 {}; 
-pub const PD14_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 14 };
-pub const PD14_IMPL_REF: &PinImpl = &PD14_IMPL;
-
-impl ::core::ops::Deref for Pd14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD14_IMPL_REF }
-}
-
+pub const PD14: Pin<Pd14Id, GpiodId> = Pin { port: GPIOD, index: 14, id: Pd14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd14 {}
-
-impl Pin<Gpiod> for Pd14 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Tim4Ch3> for Pd14 {
+pub struct Pd14Id {}
+pub type Pd14 = Pin<Pd14Id, GpiodId>;
+impl AltFn<super::sig::Tim4Ch3> for Pd14Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcD0> for Pd14 {
+impl AltFn<super::sig::FmcD0> for Pd14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd14 {
+impl AltFn<super::sig::Eventout> for Pd14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PD15: Pd15 = Pd15 {}; 
-pub const PD15_IMPL: PinImpl = PinImpl { port: GPIOD_IMPL, index: 15 };
-pub const PD15_IMPL_REF: &PinImpl = &PD15_IMPL;
-
-impl ::core::ops::Deref for Pd15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PD15_IMPL_REF }
-}
-
+pub const PD15: Pin<Pd15Id, GpiodId> = Pin { port: GPIOD, index: 15, id: Pd15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pd15 {}
-
-impl Pin<Gpiod> for Pd15 {
-   #[inline]
-   fn port(&self) -> Gpiod { GPIOD }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::Tim4Ch4> for Pd15 {
+pub struct Pd15Id {}
+pub type Pd15 = Pin<Pd15Id, GpiodId>;
+impl AltFn<super::sig::Tim4Ch4> for Pd15Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcD1> for Pd15 {
+impl AltFn<super::sig::FmcD1> for Pd15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pd15 {
+impl AltFn<super::sig::Eventout> for Pd15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE0: Pe0 = Pe0 {}; 
-pub const PE0_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 0 };
-pub const PE0_IMPL_REF: &PinImpl = &PE0_IMPL;
-
-impl ::core::ops::Deref for Pe0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE0_IMPL_REF }
-}
-
+pub const PE0: Pin<Pe0Id, GpioeId> = Pin { port: GPIOE, index: 0, id: Pe0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe0 {}
-
-impl Pin<Gpioe> for Pe0 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Tim4Etr> for Pe0 {
+pub struct Pe0Id {}
+pub type Pe0 = Pin<Pe0Id, GpioeId>;
+impl AltFn<super::sig::Tim4Etr> for Pe0Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Uart8Rx> for Pe0 {
+impl AltFn<super::sig::Uart8Rx> for Pe0Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcNbl0> for Pe0 {
+impl AltFn<super::sig::FmcNbl0> for Pe0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe0 {
+impl AltFn<super::sig::Eventout> for Pe0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE1: Pe1 = Pe1 {}; 
-pub const PE1_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 1 };
-pub const PE1_IMPL_REF: &PinImpl = &PE1_IMPL;
-
-impl ::core::ops::Deref for Pe1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE1_IMPL_REF }
-}
-
+pub const PE1: Pin<Pe1Id, GpioeId> = Pin { port: GPIOE, index: 1, id: Pe1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe1 {}
-
-impl Pin<Gpioe> for Pe1 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart8Tx> for Pe1 {
+pub struct Pe1Id {}
+pub type Pe1 = Pin<Pe1Id, GpioeId>;
+impl AltFn<super::sig::Uart8Tx> for Pe1Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcNbl1> for Pe1 {
+impl AltFn<super::sig::FmcNbl1> for Pe1Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe1 {
+impl AltFn<super::sig::Eventout> for Pe1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE2: Pe2 = Pe2 {}; 
-pub const PE2_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 2 };
-pub const PE2_IMPL_REF: &PinImpl = &PE2_IMPL;
-
-impl ::core::ops::Deref for Pe2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE2_IMPL_REF }
-}
-
+pub const PE2: Pin<Pe2Id, GpioeId> = Pin { port: GPIOE, index: 2, id: Pe2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe2 {}
-
-impl Pin<Gpioe> for Pe2 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Traceclk> for Pe2 {
+pub struct Pe2Id {}
+pub type Pe2 = Pin<Pe2Id, GpioeId>;
+impl AltFn<super::sig::Traceclk> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Spi4Sck> for Pe2 {
+impl AltFn<super::sig::Spi4Sck> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1MclkA> for Pe2 {
+impl AltFn<super::sig::Sai1MclkA> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::EthMiiTxd3> for Pe2 {
+impl AltFn<super::sig::EthMiiTxd3> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcA23> for Pe2 {
+impl AltFn<super::sig::FmcA23> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD2> for Pe2 {
+impl AltFn<super::sig::DcmiD2> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe2 {
+impl AltFn<super::sig::Eventout> for Pe2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE3: Pe3 = Pe3 {}; 
-pub const PE3_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 3 };
-pub const PE3_IMPL_REF: &PinImpl = &PE3_IMPL;
-
-impl ::core::ops::Deref for Pe3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE3_IMPL_REF }
-}
-
+pub const PE3: Pin<Pe3Id, GpioeId> = Pin { port: GPIOE, index: 3, id: Pe3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe3 {}
-
-impl Pin<Gpioe> for Pe3 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Traced0> for Pe3 {
+pub struct Pe3Id {}
+pub type Pe3 = Pin<Pe3Id, GpioeId>;
+impl AltFn<super::sig::Traced0> for Pe3Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Sai1SdB> for Pe3 {
+impl AltFn<super::sig::Sai1SdB> for Pe3Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::FmcA19> for Pe3 {
+impl AltFn<super::sig::FmcA19> for Pe3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD3> for Pe3 {
+impl AltFn<super::sig::DcmiD3> for Pe3Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe3 {
+impl AltFn<super::sig::Eventout> for Pe3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE4: Pe4 = Pe4 {}; 
-pub const PE4_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 4 };
-pub const PE4_IMPL_REF: &PinImpl = &PE4_IMPL;
-
-impl ::core::ops::Deref for Pe4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE4_IMPL_REF }
-}
-
+pub const PE4: Pin<Pe4Id, GpioeId> = Pin { port: GPIOE, index: 4, id: Pe4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe4 {}
-
-impl Pin<Gpioe> for Pe4 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Traced1> for Pe4 {
+pub struct Pe4Id {}
+pub type Pe4 = Pin<Pe4Id, GpioeId>;
+impl AltFn<super::sig::Traced1> for Pe4Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Spi4Nss> for Pe4 {
+impl AltFn<super::sig::Spi4Nss> for Pe4Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1FsA> for Pe4 {
+impl AltFn<super::sig::Sai1FsA> for Pe4Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::FmcA20> for Pe4 {
+impl AltFn<super::sig::FmcA20> for Pe4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe4 {
+impl AltFn<super::sig::Eventout> for Pe4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE5: Pe5 = Pe5 {}; 
-pub const PE5_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 5 };
-pub const PE5_IMPL_REF: &PinImpl = &PE5_IMPL;
-
-impl ::core::ops::Deref for Pe5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE5_IMPL_REF }
-}
-
+pub const PE5: Pin<Pe5Id, GpioeId> = Pin { port: GPIOE, index: 5, id: Pe5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe5 {}
-
-impl Pin<Gpioe> for Pe5 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Traced2> for Pe5 {
+pub struct Pe5Id {}
+pub type Pe5 = Pin<Pe5Id, GpioeId>;
+impl AltFn<super::sig::Traced2> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim9Ch1> for Pe5 {
+impl AltFn<super::sig::Tim9Ch1> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi4Miso> for Pe5 {
+impl AltFn<super::sig::Spi4Miso> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1SckA> for Pe5 {
+impl AltFn<super::sig::Sai1SckA> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::FmcA21> for Pe5 {
+impl AltFn<super::sig::FmcA21> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe5 {
+impl AltFn<super::sig::Eventout> for Pe5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE6: Pe6 = Pe6 {}; 
-pub const PE6_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 6 };
-pub const PE6_IMPL_REF: &PinImpl = &PE6_IMPL;
-
-impl ::core::ops::Deref for Pe6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE6_IMPL_REF }
-}
-
+pub const PE6: Pin<Pe6Id, GpioeId> = Pin { port: GPIOE, index: 6, id: Pe6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe6 {}
-
-impl Pin<Gpioe> for Pe6 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Traced3> for Pe6 {
+pub struct Pe6Id {}
+pub type Pe6 = Pin<Pe6Id, GpioeId>;
+impl AltFn<super::sig::Traced3> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
 
-impl AltFn<super::sig::Tim9Ch2> for Pe6 {
+impl AltFn<super::sig::Tim9Ch2> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi4Mosi> for Pe6 {
+impl AltFn<super::sig::Spi4Mosi> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1SdA> for Pe6 {
+impl AltFn<super::sig::Sai1SdA> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::FmcA22> for Pe6 {
+impl AltFn<super::sig::FmcA22> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD4> for Pe6 {
+impl AltFn<super::sig::DcmiD4> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe6 {
+impl AltFn<super::sig::Eventout> for Pe6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE7: Pe7 = Pe7 {}; 
-pub const PE7_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 7 };
-pub const PE7_IMPL_REF: &PinImpl = &PE7_IMPL;
-
-impl ::core::ops::Deref for Pe7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE7_IMPL_REF }
-}
-
+pub const PE7: Pin<Pe7Id, GpioeId> = Pin { port: GPIOE, index: 7, id: Pe7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe7 {}
-
-impl Pin<Gpioe> for Pe7 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim1Etr> for Pe7 {
+pub struct Pe7Id {}
+pub type Pe7 = Pin<Pe7Id, GpioeId>;
+impl AltFn<super::sig::Tim1Etr> for Pe7Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::FmcD4> for Pe7 {
+impl AltFn<super::sig::FmcD4> for Pe7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD6> for Pe7 {
+impl AltFn<super::sig::DcmiD6> for Pe7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe7 {
+impl AltFn<super::sig::Eventout> for Pe7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE8: Pe8 = Pe8 {}; 
-pub const PE8_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 8 };
-pub const PE8_IMPL_REF: &PinImpl = &PE8_IMPL;
-
-impl ::core::ops::Deref for Pe8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE8_IMPL_REF }
-}
-
+pub const PE8: Pin<Pe8Id, GpioeId> = Pin { port: GPIOE, index: 8, id: Pe8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe8 {}
-
-impl Pin<Gpioe> for Pe8 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Tim1Ch1n> for Pe8 {
+pub struct Pe8Id {}
+pub type Pe8 = Pin<Pe8Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch1n> for Pe8Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::FmcD5> for Pe8 {
+impl AltFn<super::sig::FmcD5> for Pe8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD7> for Pe8 {
+impl AltFn<super::sig::DcmiD7> for Pe8Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe8 {
+impl AltFn<super::sig::Eventout> for Pe8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE9: Pe9 = Pe9 {}; 
-pub const PE9_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 9 };
-pub const PE9_IMPL_REF: &PinImpl = &PE9_IMPL;
-
-impl ::core::ops::Deref for Pe9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE9_IMPL_REF }
-}
-
+pub const PE9: Pin<Pe9Id, GpioeId> = Pin { port: GPIOE, index: 9, id: Pe9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe9 {}
-
-impl Pin<Gpioe> for Pe9 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Tim1Ch1> for Pe9 {
+pub struct Pe9Id {}
+pub type Pe9 = Pin<Pe9Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch1> for Pe9Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::FmcD6> for Pe9 {
+impl AltFn<super::sig::FmcD6> for Pe9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe9 {
+impl AltFn<super::sig::Eventout> for Pe9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE10: Pe10 = Pe10 {}; 
-pub const PE10_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 10 };
-pub const PE10_IMPL_REF: &PinImpl = &PE10_IMPL;
-
-impl ::core::ops::Deref for Pe10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE10_IMPL_REF }
-}
-
+pub const PE10: Pin<Pe10Id, GpioeId> = Pin { port: GPIOE, index: 10, id: Pe10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe10 {}
-
-impl Pin<Gpioe> for Pe10 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Tim1Ch2n> for Pe10 {
+pub struct Pe10Id {}
+pub type Pe10 = Pin<Pe10Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch2n> for Pe10Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::FmcD7> for Pe10 {
+impl AltFn<super::sig::FmcD7> for Pe10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe10 {
+impl AltFn<super::sig::Eventout> for Pe10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE11: Pe11 = Pe11 {}; 
-pub const PE11_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 11 };
-pub const PE11_IMPL_REF: &PinImpl = &PE11_IMPL;
-
-impl ::core::ops::Deref for Pe11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE11_IMPL_REF }
-}
-
+pub const PE11: Pin<Pe11Id, GpioeId> = Pin { port: GPIOE, index: 11, id: Pe11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe11 {}
-
-impl Pin<Gpioe> for Pe11 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Tim1Ch2> for Pe11 {
+pub struct Pe11Id {}
+pub type Pe11 = Pin<Pe11Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch2> for Pe11Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi4Nss> for Pe11 {
+impl AltFn<super::sig::Spi4Nss> for Pe11Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD8> for Pe11 {
+impl AltFn<super::sig::FmcD8> for Pe11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdG3> for Pe11 {
+impl AltFn<super::sig::LcdG3> for Pe11Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe11 {
+impl AltFn<super::sig::Eventout> for Pe11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE12: Pe12 = Pe12 {}; 
-pub const PE12_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 12 };
-pub const PE12_IMPL_REF: &PinImpl = &PE12_IMPL;
-
-impl ::core::ops::Deref for Pe12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE12_IMPL_REF }
-}
-
+pub const PE12: Pin<Pe12Id, GpioeId> = Pin { port: GPIOE, index: 12, id: Pe12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe12 {}
-
-impl Pin<Gpioe> for Pe12 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Tim1Ch3n> for Pe12 {
+pub struct Pe12Id {}
+pub type Pe12 = Pin<Pe12Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch3n> for Pe12Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi4Sck> for Pe12 {
+impl AltFn<super::sig::Spi4Sck> for Pe12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD9> for Pe12 {
+impl AltFn<super::sig::FmcD9> for Pe12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdB4> for Pe12 {
+impl AltFn<super::sig::LcdB4> for Pe12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe12 {
+impl AltFn<super::sig::Eventout> for Pe12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE13: Pe13 = Pe13 {}; 
-pub const PE13_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 13 };
-pub const PE13_IMPL_REF: &PinImpl = &PE13_IMPL;
-
-impl ::core::ops::Deref for Pe13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE13_IMPL_REF }
-}
-
+pub const PE13: Pin<Pe13Id, GpioeId> = Pin { port: GPIOE, index: 13, id: Pe13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe13 {}
-
-impl Pin<Gpioe> for Pe13 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Tim1Ch3> for Pe13 {
+pub struct Pe13Id {}
+pub type Pe13 = Pin<Pe13Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch3> for Pe13Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi4Miso> for Pe13 {
+impl AltFn<super::sig::Spi4Miso> for Pe13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD10> for Pe13 {
+impl AltFn<super::sig::FmcD10> for Pe13Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdDe> for Pe13 {
+impl AltFn<super::sig::LcdDe> for Pe13Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe13 {
+impl AltFn<super::sig::Eventout> for Pe13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE14: Pe14 = Pe14 {}; 
-pub const PE14_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 14 };
-pub const PE14_IMPL_REF: &PinImpl = &PE14_IMPL;
-
-impl ::core::ops::Deref for Pe14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE14_IMPL_REF }
-}
-
+pub const PE14: Pin<Pe14Id, GpioeId> = Pin { port: GPIOE, index: 14, id: Pe14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe14 {}
-
-impl Pin<Gpioe> for Pe14 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Tim1Ch4> for Pe14 {
+pub struct Pe14Id {}
+pub type Pe14 = Pin<Pe14Id, GpioeId>;
+impl AltFn<super::sig::Tim1Ch4> for Pe14Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::Spi4Mosi> for Pe14 {
+impl AltFn<super::sig::Spi4Mosi> for Pe14Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD11> for Pe14 {
+impl AltFn<super::sig::FmcD11> for Pe14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdClk> for Pe14 {
+impl AltFn<super::sig::LcdClk> for Pe14Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe14 {
+impl AltFn<super::sig::Eventout> for Pe14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PE15: Pe15 = Pe15 {}; 
-pub const PE15_IMPL: PinImpl = PinImpl { port: GPIOE_IMPL, index: 15 };
-pub const PE15_IMPL_REF: &PinImpl = &PE15_IMPL;
-
-impl ::core::ops::Deref for Pe15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PE15_IMPL_REF }
-}
-
+pub const PE15: Pin<Pe15Id, GpioeId> = Pin { port: GPIOE, index: 15, id: Pe15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pe15 {}
-
-impl Pin<Gpioe> for Pe15 {
-   #[inline]
-   fn port(&self) -> Gpioe { GPIOE }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::Tim1Bkin> for Pe15 {
+pub struct Pe15Id {}
+pub type Pe15 = Pin<Pe15Id, GpioeId>;
+impl AltFn<super::sig::Tim1Bkin> for Pe15Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
 
-impl AltFn<super::sig::FmcD12> for Pe15 {
+impl AltFn<super::sig::FmcD12> for Pe15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdR7> for Pe15 {
+impl AltFn<super::sig::LcdR7> for Pe15Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pe15 {
+impl AltFn<super::sig::Eventout> for Pe15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF0: Pf0 = Pf0 {}; 
-pub const PF0_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 0 };
-pub const PF0_IMPL_REF: &PinImpl = &PF0_IMPL;
-
-impl ::core::ops::Deref for Pf0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF0_IMPL_REF }
-}
-
+pub const PF0: Pin<Pf0Id, GpiofId> = Pin { port: GPIOF, index: 0, id: Pf0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf0 {}
-
-impl Pin<Gpiof> for Pf0 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::I2c2Sda> for Pf0 {
+pub struct Pf0Id {}
+pub type Pf0 = Pin<Pf0Id, GpiofId>;
+impl AltFn<super::sig::I2c2Sda> for Pf0Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::FmcA0> for Pf0 {
+impl AltFn<super::sig::FmcA0> for Pf0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf0 {
+impl AltFn<super::sig::Eventout> for Pf0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF1: Pf1 = Pf1 {}; 
-pub const PF1_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 1 };
-pub const PF1_IMPL_REF: &PinImpl = &PF1_IMPL;
-
-impl ::core::ops::Deref for Pf1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF1_IMPL_REF }
-}
-
+pub const PF1: Pin<Pf1Id, GpiofId> = Pin { port: GPIOF, index: 1, id: Pf1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf1 {}
-
-impl Pin<Gpiof> for Pf1 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c2Scl> for Pf1 {
+pub struct Pf1Id {}
+pub type Pf1 = Pin<Pf1Id, GpiofId>;
+impl AltFn<super::sig::I2c2Scl> for Pf1Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::FmcA1> for Pf1 {
+impl AltFn<super::sig::FmcA1> for Pf1Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf1 {
+impl AltFn<super::sig::Eventout> for Pf1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF2: Pf2 = Pf2 {}; 
-pub const PF2_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 2 };
-pub const PF2_IMPL_REF: &PinImpl = &PF2_IMPL;
-
-impl ::core::ops::Deref for Pf2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF2_IMPL_REF }
-}
-
+pub const PF2: Pin<Pf2Id, GpiofId> = Pin { port: GPIOF, index: 2, id: Pf2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf2 {}
-
-impl Pin<Gpiof> for Pf2 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::I2c2Smba> for Pf2 {
+pub struct Pf2Id {}
+pub type Pf2 = Pin<Pf2Id, GpiofId>;
+impl AltFn<super::sig::I2c2Smba> for Pf2Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::FmcA2> for Pf2 {
+impl AltFn<super::sig::FmcA2> for Pf2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf2 {
+impl AltFn<super::sig::Eventout> for Pf2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF3: Pf3 = Pf3 {}; 
-pub const PF3_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 3 };
-pub const PF3_IMPL_REF: &PinImpl = &PF3_IMPL;
-
-impl ::core::ops::Deref for Pf3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF3_IMPL_REF }
-}
-
+pub const PF3: Pin<Pf3Id, GpiofId> = Pin { port: GPIOF, index: 3, id: Pf3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf3 {}
-
-impl Pin<Gpiof> for Pf3 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FmcA3> for Pf3 {
+pub struct Pf3Id {}
+pub type Pf3 = Pin<Pf3Id, GpiofId>;
+impl AltFn<super::sig::FmcA3> for Pf3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf3 {
+impl AltFn<super::sig::Eventout> for Pf3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF4: Pf4 = Pf4 {}; 
-pub const PF4_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 4 };
-pub const PF4_IMPL_REF: &PinImpl = &PF4_IMPL;
-
-impl ::core::ops::Deref for Pf4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF4_IMPL_REF }
-}
-
+pub const PF4: Pin<Pf4Id, GpiofId> = Pin { port: GPIOF, index: 4, id: Pf4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf4 {}
-
-impl Pin<Gpiof> for Pf4 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FmcA4> for Pf4 {
+pub struct Pf4Id {}
+pub type Pf4 = Pin<Pf4Id, GpiofId>;
+impl AltFn<super::sig::FmcA4> for Pf4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf4 {
+impl AltFn<super::sig::Eventout> for Pf4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF5: Pf5 = Pf5 {}; 
-pub const PF5_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 5 };
-pub const PF5_IMPL_REF: &PinImpl = &PF5_IMPL;
-
-impl ::core::ops::Deref for Pf5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF5_IMPL_REF }
-}
-
+pub const PF5: Pin<Pf5Id, GpiofId> = Pin { port: GPIOF, index: 5, id: Pf5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf5 {}
-
-impl Pin<Gpiof> for Pf5 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FmcA5> for Pf5 {
+pub struct Pf5Id {}
+pub type Pf5 = Pin<Pf5Id, GpiofId>;
+impl AltFn<super::sig::FmcA5> for Pf5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf5 {
+impl AltFn<super::sig::Eventout> for Pf5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF6: Pf6 = Pf6 {}; 
-pub const PF6_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 6 };
-pub const PF6_IMPL_REF: &PinImpl = &PF6_IMPL;
-
-impl ::core::ops::Deref for Pf6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF6_IMPL_REF }
-}
-
+pub const PF6: Pin<Pf6Id, GpiofId> = Pin { port: GPIOF, index: 6, id: Pf6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf6 {}
-
-impl Pin<Gpiof> for Pf6 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Tim10Ch1> for Pf6 {
+pub struct Pf6Id {}
+pub type Pf6 = Pin<Pf6Id, GpiofId>;
+impl AltFn<super::sig::Tim10Ch1> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi5Nss> for Pf6 {
+impl AltFn<super::sig::Spi5Nss> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1SdB> for Pf6 {
+impl AltFn<super::sig::Sai1SdB> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Uart7Rx> for Pf6 {
+impl AltFn<super::sig::Uart7Rx> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcNiord> for Pf6 {
+impl AltFn<super::sig::FmcNiord> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf6 {
+impl AltFn<super::sig::Eventout> for Pf6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF7: Pf7 = Pf7 {}; 
-pub const PF7_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 7 };
-pub const PF7_IMPL_REF: &PinImpl = &PF7_IMPL;
-
-impl ::core::ops::Deref for Pf7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF7_IMPL_REF }
-}
-
+pub const PF7: Pin<Pf7Id, GpiofId> = Pin { port: GPIOF, index: 7, id: Pf7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf7 {}
-
-impl Pin<Gpiof> for Pf7 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim11Ch1> for Pf7 {
+pub struct Pf7Id {}
+pub type Pf7 = Pin<Pf7Id, GpiofId>;
+impl AltFn<super::sig::Tim11Ch1> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi5Sck> for Pf7 {
+impl AltFn<super::sig::Spi5Sck> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Sai1MclkB> for Pf7 {
+impl AltFn<super::sig::Sai1MclkB> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Uart7Tx> for Pf7 {
+impl AltFn<super::sig::Uart7Tx> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcNreg> for Pf7 {
+impl AltFn<super::sig::FmcNreg> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf7 {
+impl AltFn<super::sig::Eventout> for Pf7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF8: Pf8 = Pf8 {}; 
-pub const PF8_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 8 };
-pub const PF8_IMPL_REF: &PinImpl = &PF8_IMPL;
-
-impl ::core::ops::Deref for Pf8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF8_IMPL_REF }
-}
-
+pub const PF8: Pin<Pf8Id, GpiofId> = Pin { port: GPIOF, index: 8, id: Pf8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf8 {}
-
-impl Pin<Gpiof> for Pf8 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Spi5Miso> for Pf8 {
+pub struct Pf8Id {}
+pub type Pf8 = Pin<Pf8Id, GpiofId>;
+impl AltFn<super::sig::Spi5Miso> for Pf8Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::SaiSckB> for Pf8 {
+impl AltFn<super::sig::SaiSckB> for Pf8Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Tim13Ch1> for Pf8 {
+impl AltFn<super::sig::Tim13Ch1> for Pf8Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcNiowr> for Pf8 {
+impl AltFn<super::sig::FmcNiowr> for Pf8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf8 {
+impl AltFn<super::sig::Eventout> for Pf8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF9: Pf9 = Pf9 {}; 
-pub const PF9_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 9 };
-pub const PF9_IMPL_REF: &PinImpl = &PF9_IMPL;
-
-impl ::core::ops::Deref for Pf9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF9_IMPL_REF }
-}
-
+pub const PF9: Pin<Pf9Id, GpiofId> = Pin { port: GPIOF, index: 9, id: Pf9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf9 {}
-
-impl Pin<Gpiof> for Pf9 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Spi5Mosi> for Pf9 {
+pub struct Pf9Id {}
+pub type Pf9 = Pin<Pf9Id, GpiofId>;
+impl AltFn<super::sig::Spi5Mosi> for Pf9Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::SaiFsB> for Pf9 {
+impl AltFn<super::sig::SaiFsB> for Pf9Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Tim14Ch1> for Pf9 {
+impl AltFn<super::sig::Tim14Ch1> for Pf9Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcCd> for Pf9 {
+impl AltFn<super::sig::FmcCd> for Pf9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf9 {
+impl AltFn<super::sig::Eventout> for Pf9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF10: Pf10 = Pf10 {}; 
-pub const PF10_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 10 };
-pub const PF10_IMPL_REF: &PinImpl = &PF10_IMPL;
-
-impl ::core::ops::Deref for Pf10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF10_IMPL_REF }
-}
-
+pub const PF10: Pin<Pf10Id, GpiofId> = Pin { port: GPIOF, index: 10, id: Pf10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf10 {}
-
-impl Pin<Gpiof> for Pf10 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::FmcIntr> for Pf10 {
+pub struct Pf10Id {}
+pub type Pf10 = Pin<Pf10Id, GpiofId>;
+impl AltFn<super::sig::FmcIntr> for Pf10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD11> for Pf10 {
+impl AltFn<super::sig::DcmiD11> for Pf10Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdDe> for Pf10 {
+impl AltFn<super::sig::LcdDe> for Pf10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf10 {
+impl AltFn<super::sig::Eventout> for Pf10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF11: Pf11 = Pf11 {}; 
-pub const PF11_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 11 };
-pub const PF11_IMPL_REF: &PinImpl = &PF11_IMPL;
-
-impl ::core::ops::Deref for Pf11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF11_IMPL_REF }
-}
-
+pub const PF11: Pin<Pf11Id, GpiofId> = Pin { port: GPIOF, index: 11, id: Pf11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf11 {}
-
-impl Pin<Gpiof> for Pf11 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Spi5Mosi> for Pf11 {
+pub struct Pf11Id {}
+pub type Pf11 = Pin<Pf11Id, GpiofId>;
+impl AltFn<super::sig::Spi5Mosi> for Pf11Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcSdnras> for Pf11 {
+impl AltFn<super::sig::FmcSdnras> for Pf11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD12> for Pf11 {
+impl AltFn<super::sig::DcmiD12> for Pf11Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf11 {
+impl AltFn<super::sig::Eventout> for Pf11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF12: Pf12 = Pf12 {}; 
-pub const PF12_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 12 };
-pub const PF12_IMPL_REF: &PinImpl = &PF12_IMPL;
-
-impl ::core::ops::Deref for Pf12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF12_IMPL_REF }
-}
-
+pub const PF12: Pin<Pf12Id, GpiofId> = Pin { port: GPIOF, index: 12, id: Pf12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf12 {}
-
-impl Pin<Gpiof> for Pf12 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::FmcA6> for Pf12 {
+pub struct Pf12Id {}
+pub type Pf12 = Pin<Pf12Id, GpiofId>;
+impl AltFn<super::sig::FmcA6> for Pf12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf12 {
+impl AltFn<super::sig::Eventout> for Pf12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF13: Pf13 = Pf13 {}; 
-pub const PF13_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 13 };
-pub const PF13_IMPL_REF: &PinImpl = &PF13_IMPL;
-
-impl ::core::ops::Deref for Pf13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF13_IMPL_REF }
-}
-
+pub const PF13: Pin<Pf13Id, GpiofId> = Pin { port: GPIOF, index: 13, id: Pf13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf13 {}
-
-impl Pin<Gpiof> for Pf13 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::FmcA7> for Pf13 {
+pub struct Pf13Id {}
+pub type Pf13 = Pin<Pf13Id, GpiofId>;
+impl AltFn<super::sig::FmcA7> for Pf13Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf13 {
+impl AltFn<super::sig::Eventout> for Pf13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF14: Pf14 = Pf14 {}; 
-pub const PF14_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 14 };
-pub const PF14_IMPL_REF: &PinImpl = &PF14_IMPL;
-
-impl ::core::ops::Deref for Pf14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF14_IMPL_REF }
-}
-
+pub const PF14: Pin<Pf14Id, GpiofId> = Pin { port: GPIOF, index: 14, id: Pf14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf14 {}
-
-impl Pin<Gpiof> for Pf14 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::FmcA8> for Pf14 {
+pub struct Pf14Id {}
+pub type Pf14 = Pin<Pf14Id, GpiofId>;
+impl AltFn<super::sig::FmcA8> for Pf14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf14 {
+impl AltFn<super::sig::Eventout> for Pf14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PF15: Pf15 = Pf15 {}; 
-pub const PF15_IMPL: PinImpl = PinImpl { port: GPIOF_IMPL, index: 15 };
-pub const PF15_IMPL_REF: &PinImpl = &PF15_IMPL;
-
-impl ::core::ops::Deref for Pf15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PF15_IMPL_REF }
-}
-
+pub const PF15: Pin<Pf15Id, GpiofId> = Pin { port: GPIOF, index: 15, id: Pf15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pf15 {}
-
-impl Pin<Gpiof> for Pf15 {
-   #[inline]
-   fn port(&self) -> Gpiof { GPIOF }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::FmcA9> for Pf15 {
+pub struct Pf15Id {}
+pub type Pf15 = Pin<Pf15Id, GpiofId>;
+impl AltFn<super::sig::FmcA9> for Pf15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pf15 {
+impl AltFn<super::sig::Eventout> for Pf15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG0: Pg0 = Pg0 {}; 
-pub const PG0_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 0 };
-pub const PG0_IMPL_REF: &PinImpl = &PG0_IMPL;
-
-impl ::core::ops::Deref for Pg0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG0_IMPL_REF }
-}
-
+pub const PG0: Pin<Pg0Id, GpiogId> = Pin { port: GPIOG, index: 0, id: Pg0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg0 {}
-
-impl Pin<Gpiog> for Pg0 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::FmcA10> for Pg0 {
+pub struct Pg0Id {}
+pub type Pg0 = Pin<Pg0Id, GpiogId>;
+impl AltFn<super::sig::FmcA10> for Pg0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg0 {
+impl AltFn<super::sig::Eventout> for Pg0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG1: Pg1 = Pg1 {}; 
-pub const PG1_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 1 };
-pub const PG1_IMPL_REF: &PinImpl = &PG1_IMPL;
-
-impl ::core::ops::Deref for Pg1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG1_IMPL_REF }
-}
-
+pub const PG1: Pin<Pg1Id, GpiogId> = Pin { port: GPIOG, index: 1, id: Pg1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg1 {}
-
-impl Pin<Gpiog> for Pg1 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::FmcA11> for Pg1 {
+pub struct Pg1Id {}
+pub type Pg1 = Pin<Pg1Id, GpiogId>;
+impl AltFn<super::sig::FmcA11> for Pg1Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg1 {
+impl AltFn<super::sig::Eventout> for Pg1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG2: Pg2 = Pg2 {}; 
-pub const PG2_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 2 };
-pub const PG2_IMPL_REF: &PinImpl = &PG2_IMPL;
-
-impl ::core::ops::Deref for Pg2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG2_IMPL_REF }
-}
-
+pub const PG2: Pin<Pg2Id, GpiogId> = Pin { port: GPIOG, index: 2, id: Pg2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg2 {}
-
-impl Pin<Gpiog> for Pg2 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::FmcA12> for Pg2 {
+pub struct Pg2Id {}
+pub type Pg2 = Pin<Pg2Id, GpiogId>;
+impl AltFn<super::sig::FmcA12> for Pg2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg2 {
+impl AltFn<super::sig::Eventout> for Pg2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG3: Pg3 = Pg3 {}; 
-pub const PG3_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 3 };
-pub const PG3_IMPL_REF: &PinImpl = &PG3_IMPL;
-
-impl ::core::ops::Deref for Pg3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG3_IMPL_REF }
-}
-
+pub const PG3: Pin<Pg3Id, GpiogId> = Pin { port: GPIOG, index: 3, id: Pg3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg3 {}
-
-impl Pin<Gpiog> for Pg3 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FmcA13> for Pg3 {
+pub struct Pg3Id {}
+pub type Pg3 = Pin<Pg3Id, GpiogId>;
+impl AltFn<super::sig::FmcA13> for Pg3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg3 {
+impl AltFn<super::sig::Eventout> for Pg3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG4: Pg4 = Pg4 {}; 
-pub const PG4_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 4 };
-pub const PG4_IMPL_REF: &PinImpl = &PG4_IMPL;
-
-impl ::core::ops::Deref for Pg4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG4_IMPL_REF }
-}
-
+pub const PG4: Pin<Pg4Id, GpiogId> = Pin { port: GPIOG, index: 4, id: Pg4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg4 {}
-
-impl Pin<Gpiog> for Pg4 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FmcA14> for Pg4 {
+pub struct Pg4Id {}
+pub type Pg4 = Pin<Pg4Id, GpiogId>;
+impl AltFn<super::sig::FmcA14> for Pg4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::FmcBa0> for Pg4 {
+impl AltFn<super::sig::FmcBa0> for Pg4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg4 {
+impl AltFn<super::sig::Eventout> for Pg4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG5: Pg5 = Pg5 {}; 
-pub const PG5_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 5 };
-pub const PG5_IMPL_REF: &PinImpl = &PG5_IMPL;
-
-impl ::core::ops::Deref for Pg5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG5_IMPL_REF }
-}
-
+pub const PG5: Pin<Pg5Id, GpiogId> = Pin { port: GPIOG, index: 5, id: Pg5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg5 {}
-
-impl Pin<Gpiog> for Pg5 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FmcA15> for Pg5 {
+pub struct Pg5Id {}
+pub type Pg5 = Pin<Pg5Id, GpiogId>;
+impl AltFn<super::sig::FmcA15> for Pg5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::FmcBa1> for Pg5 {
+impl AltFn<super::sig::FmcBa1> for Pg5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg5 {
+impl AltFn<super::sig::Eventout> for Pg5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG6: Pg6 = Pg6 {}; 
-pub const PG6_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 6 };
-pub const PG6_IMPL_REF: &PinImpl = &PG6_IMPL;
-
-impl ::core::ops::Deref for Pg6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG6_IMPL_REF }
-}
-
+pub const PG6: Pin<Pg6Id, GpiogId> = Pin { port: GPIOG, index: 6, id: Pg6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg6 {}
-
-impl Pin<Gpiog> for Pg6 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::FmcInt2> for Pg6 {
+pub struct Pg6Id {}
+pub type Pg6 = Pin<Pg6Id, GpiogId>;
+impl AltFn<super::sig::FmcInt2> for Pg6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD12> for Pg6 {
+impl AltFn<super::sig::DcmiD12> for Pg6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR7> for Pg6 {
+impl AltFn<super::sig::LcdR7> for Pg6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg6 {
+impl AltFn<super::sig::Eventout> for Pg6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG7: Pg7 = Pg7 {}; 
-pub const PG7_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 7 };
-pub const PG7_IMPL_REF: &PinImpl = &PG7_IMPL;
-
-impl ::core::ops::Deref for Pg7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG7_IMPL_REF }
-}
-
+pub const PG7: Pin<Pg7Id, GpiogId> = Pin { port: GPIOG, index: 7, id: Pg7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg7 {}
-
-impl Pin<Gpiog> for Pg7 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Usart6Ck> for Pg7 {
+pub struct Pg7Id {}
+pub type Pg7 = Pin<Pg7Id, GpiogId>;
+impl AltFn<super::sig::Usart6Ck> for Pg7Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcInt3> for Pg7 {
+impl AltFn<super::sig::FmcInt3> for Pg7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD13> for Pg7 {
+impl AltFn<super::sig::DcmiD13> for Pg7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdClk> for Pg7 {
+impl AltFn<super::sig::LcdClk> for Pg7Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg7 {
+impl AltFn<super::sig::Eventout> for Pg7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG8: Pg8 = Pg8 {}; 
-pub const PG8_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 8 };
-pub const PG8_IMPL_REF: &PinImpl = &PG8_IMPL;
-
-impl ::core::ops::Deref for Pg8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG8_IMPL_REF }
-}
-
+pub const PG8: Pin<Pg8Id, GpiogId> = Pin { port: GPIOG, index: 8, id: Pg8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg8 {}
-
-impl Pin<Gpiog> for Pg8 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Spi6Nss> for Pg8 {
+pub struct Pg8Id {}
+pub type Pg8 = Pin<Pg8Id, GpiogId>;
+impl AltFn<super::sig::Spi6Nss> for Pg8Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart6Rts> for Pg8 {
+impl AltFn<super::sig::Usart6Rts> for Pg8Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthPsOut> for Pg8 {
+impl AltFn<super::sig::EthPsOut> for Pg8Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdclk> for Pg8 {
+impl AltFn<super::sig::FmcSdclk> for Pg8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg8 {
+impl AltFn<super::sig::Eventout> for Pg8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG9: Pg9 = Pg9 {}; 
-pub const PG9_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 9 };
-pub const PG9_IMPL_REF: &PinImpl = &PG9_IMPL;
-
-impl ::core::ops::Deref for Pg9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG9_IMPL_REF }
-}
-
+pub const PG9: Pin<Pg9Id, GpiogId> = Pin { port: GPIOG, index: 9, id: Pg9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg9 {}
-
-impl Pin<Gpiog> for Pg9 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Usart6Rx> for Pg9 {
+pub struct Pg9Id {}
+pub type Pg9 = Pin<Pg9Id, GpiogId>;
+impl AltFn<super::sig::Usart6Rx> for Pg9Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::FmcNe2> for Pg9 {
+impl AltFn<super::sig::FmcNe2> for Pg9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::FmcNce3> for Pg9 {
+impl AltFn<super::sig::FmcNce3> for Pg9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiVsync> for Pg9 {
+impl AltFn<super::sig::DcmiVsync> for Pg9Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg9 {
+impl AltFn<super::sig::Eventout> for Pg9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG10: Pg10 = Pg10 {}; 
-pub const PG10_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 10 };
-pub const PG10_IMPL_REF: &PinImpl = &PG10_IMPL;
-
-impl ::core::ops::Deref for Pg10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG10_IMPL_REF }
-}
-
+pub const PG10: Pin<Pg10Id, GpiogId> = Pin { port: GPIOG, index: 10, id: Pg10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg10 {}
-
-impl Pin<Gpiog> for Pg10 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::LcdG3> for Pg10 {
+pub struct Pg10Id {}
+pub type Pg10 = Pin<Pg10Id, GpiogId>;
+impl AltFn<super::sig::LcdG3> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcNce41> for Pg10 {
+impl AltFn<super::sig::FmcNce41> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::FmcNe3> for Pg10 {
+impl AltFn<super::sig::FmcNe3> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD2> for Pg10 {
+impl AltFn<super::sig::DcmiD2> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB2> for Pg10 {
+impl AltFn<super::sig::LcdB2> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg10 {
+impl AltFn<super::sig::Eventout> for Pg10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG11: Pg11 = Pg11 {}; 
-pub const PG11_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 11 };
-pub const PG11_IMPL_REF: &PinImpl = &PG11_IMPL;
-
-impl ::core::ops::Deref for Pg11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG11_IMPL_REF }
-}
-
+pub const PG11: Pin<Pg11Id, GpiogId> = Pin { port: GPIOG, index: 11, id: Pg11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg11 {}
-
-impl Pin<Gpiog> for Pg11 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Spi6Miso> for Pg11 {
+pub struct Pg11Id {}
+pub type Pg11 = Pin<Pg11Id, GpiogId>;
+impl AltFn<super::sig::Spi6Miso> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart6Rts> for Pg11 {
+impl AltFn<super::sig::Usart6Rts> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthMiiTxEn> for Pg11 {
+impl AltFn<super::sig::EthMiiTxEn> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxEn> for Pg11 {
+impl AltFn<super::sig::EthRmiiTxEn> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcNce42> for Pg11 {
+impl AltFn<super::sig::FmcNce42> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD3> for Pg11 {
+impl AltFn<super::sig::DcmiD3> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB3> for Pg11 {
+impl AltFn<super::sig::LcdB3> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg11 {
+impl AltFn<super::sig::Eventout> for Pg11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG12: Pg12 = Pg12 {}; 
-pub const PG12_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 12 };
-pub const PG12_IMPL_REF: &PinImpl = &PG12_IMPL;
-
-impl ::core::ops::Deref for Pg12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG12_IMPL_REF }
-}
-
+pub const PG12: Pin<Pg12Id, GpiogId> = Pin { port: GPIOG, index: 12, id: Pg12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg12 {}
-
-impl Pin<Gpiog> for Pg12 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Spi6Sck> for Pg12 {
+pub struct Pg12Id {}
+pub type Pg12 = Pin<Pg12Id, GpiogId>;
+impl AltFn<super::sig::Spi6Sck> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart6Cts> for Pg12 {
+impl AltFn<super::sig::Usart6Cts> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::LcdB4> for Pg12 {
+impl AltFn<super::sig::LcdB4> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcNe4> for Pg12 {
+impl AltFn<super::sig::FmcNe4> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdB1> for Pg12 {
+impl AltFn<super::sig::LcdB1> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg12 {
+impl AltFn<super::sig::Eventout> for Pg12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG13: Pg13 = Pg13 {}; 
-pub const PG13_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 13 };
-pub const PG13_IMPL_REF: &PinImpl = &PG13_IMPL;
-
-impl ::core::ops::Deref for Pg13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG13_IMPL_REF }
-}
-
+pub const PG13: Pin<Pg13Id, GpiogId> = Pin { port: GPIOG, index: 13, id: Pg13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg13 {}
-
-impl Pin<Gpiog> for Pg13 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Spi6Mosi> for Pg13 {
+pub struct Pg13Id {}
+pub type Pg13 = Pin<Pg13Id, GpiogId>;
+impl AltFn<super::sig::Spi6Mosi> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Usart6Tx> for Pg13 {
+impl AltFn<super::sig::Usart6Tx> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthMiiTxd0> for Pg13 {
+impl AltFn<super::sig::EthMiiTxd0> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxd0> for Pg13 {
+impl AltFn<super::sig::EthRmiiTxd0> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcA24> for Pg13 {
+impl AltFn<super::sig::FmcA24> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg13 {
+impl AltFn<super::sig::Eventout> for Pg13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG14: Pg14 = Pg14 {}; 
-pub const PG14_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 14 };
-pub const PG14_IMPL_REF: &PinImpl = &PG14_IMPL;
-
-impl ::core::ops::Deref for Pg14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG14_IMPL_REF }
-}
-
+pub const PG14: Pin<Pg14Id, GpiogId> = Pin { port: GPIOG, index: 14, id: Pg14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg14 {}
-
-impl Pin<Gpiog> for Pg14 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Usart6Cts> for Pg14 {
+pub struct Pg14Id {}
+pub type Pg14 = Pin<Pg14Id, GpiogId>;
+impl AltFn<super::sig::Usart6Cts> for Pg14Id {
    #[inline] fn alt_fn(&self) -> usize { 8 }
 }
 
-impl AltFn<super::sig::EthMiiTxd1> for Pg14 {
+impl AltFn<super::sig::EthMiiTxd1> for Pg14Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::EthRmiiTxd1> for Pg14 {
+impl AltFn<super::sig::EthRmiiTxd1> for Pg14Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcA25> for Pg14 {
+impl AltFn<super::sig::FmcA25> for Pg14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg14 {
+impl AltFn<super::sig::Eventout> for Pg14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PG15: Pg15 = Pg15 {}; 
-pub const PG15_IMPL: PinImpl = PinImpl { port: GPIOG_IMPL, index: 15 };
-pub const PG15_IMPL_REF: &PinImpl = &PG15_IMPL;
-
-impl ::core::ops::Deref for Pg15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PG15_IMPL_REF }
-}
-
+pub const PG15: Pin<Pg15Id, GpiogId> = Pin { port: GPIOG, index: 15, id: Pg15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pg15 {}
-
-impl Pin<Gpiog> for Pg15 {
-   #[inline]
-   fn port(&self) -> Gpiog { GPIOG }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::FmcSndcas> for Pg15 {
+pub struct Pg15Id {}
+pub type Pg15 = Pin<Pg15Id, GpiogId>;
+impl AltFn<super::sig::FmcSndcas> for Pg15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD13> for Pg15 {
+impl AltFn<super::sig::DcmiD13> for Pg15Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pg15 {
+impl AltFn<super::sig::Eventout> for Pg15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH0: Ph0 = Ph0 {}; 
-pub const PH0_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 0 };
-pub const PH0_IMPL_REF: &PinImpl = &PH0_IMPL;
-
-impl ::core::ops::Deref for Ph0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH0_IMPL_REF }
-}
-
+pub const PH0: Pin<Ph0Id, GpiohId> = Pin { port: GPIOH, index: 0, id: Ph0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph0 {}
-
-impl Pin<Gpioh> for Ph0 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Eventout> for Ph0 {
+pub struct Ph0Id {}
+pub type Ph0 = Pin<Ph0Id, GpiohId>;
+impl AltFn<super::sig::Eventout> for Ph0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH1: Ph1 = Ph1 {}; 
-pub const PH1_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 1 };
-pub const PH1_IMPL_REF: &PinImpl = &PH1_IMPL;
-
-impl ::core::ops::Deref for Ph1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH1_IMPL_REF }
-}
-
+pub const PH1: Pin<Ph1Id, GpiohId> = Pin { port: GPIOH, index: 1, id: Ph1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph1 {}
-
-impl Pin<Gpioh> for Ph1 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Eventout> for Ph1 {
+pub struct Ph1Id {}
+pub type Ph1 = Pin<Ph1Id, GpiohId>;
+impl AltFn<super::sig::Eventout> for Ph1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH2: Ph2 = Ph2 {}; 
-pub const PH2_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 2 };
-pub const PH2_IMPL_REF: &PinImpl = &PH2_IMPL;
-
-impl ::core::ops::Deref for Ph2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH2_IMPL_REF }
-}
-
+pub const PH2: Pin<Ph2Id, GpiohId> = Pin { port: GPIOH, index: 2, id: Ph2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph2 {}
-
-impl Pin<Gpioh> for Ph2 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::EthMiiCrs> for Ph2 {
+pub struct Ph2Id {}
+pub type Ph2 = Pin<Ph2Id, GpiohId>;
+impl AltFn<super::sig::EthMiiCrs> for Ph2Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdcke0> for Ph2 {
+impl AltFn<super::sig::FmcSdcke0> for Ph2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdR0> for Ph2 {
+impl AltFn<super::sig::LcdR0> for Ph2Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph2 {
+impl AltFn<super::sig::Eventout> for Ph2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH3: Ph3 = Ph3 {}; 
-pub const PH3_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 3 };
-pub const PH3_IMPL_REF: &PinImpl = &PH3_IMPL;
-
-impl ::core::ops::Deref for Ph3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH3_IMPL_REF }
-}
-
+pub const PH3: Pin<Ph3Id, GpiohId> = Pin { port: GPIOH, index: 3, id: Ph3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph3 {}
-
-impl Pin<Gpioh> for Ph3 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::EthMiiCol> for Ph3 {
+pub struct Ph3Id {}
+pub type Ph3 = Pin<Ph3Id, GpiohId>;
+impl AltFn<super::sig::EthMiiCol> for Ph3Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdne0> for Ph3 {
+impl AltFn<super::sig::FmcSdne0> for Ph3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdR1> for Ph3 {
+impl AltFn<super::sig::LcdR1> for Ph3Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph3 {
+impl AltFn<super::sig::Eventout> for Ph3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH4: Ph4 = Ph4 {}; 
-pub const PH4_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 4 };
-pub const PH4_IMPL_REF: &PinImpl = &PH4_IMPL;
-
-impl ::core::ops::Deref for Ph4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH4_IMPL_REF }
-}
-
+pub const PH4: Pin<Ph4Id, GpiohId> = Pin { port: GPIOH, index: 4, id: Ph4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph4 {}
-
-impl Pin<Gpioh> for Ph4 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2c2Scl> for Ph4 {
+pub struct Ph4Id {}
+pub type Ph4 = Pin<Ph4Id, GpiohId>;
+impl AltFn<super::sig::I2c2Scl> for Ph4Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::OtgHsUlpiNxt> for Ph4 {
+impl AltFn<super::sig::OtgHsUlpiNxt> for Ph4Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph4 {
+impl AltFn<super::sig::Eventout> for Ph4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH5: Ph5 = Ph5 {}; 
-pub const PH5_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 5 };
-pub const PH5_IMPL_REF: &PinImpl = &PH5_IMPL;
-
-impl ::core::ops::Deref for Ph5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH5_IMPL_REF }
-}
-
+pub const PH5: Pin<Ph5Id, GpiohId> = Pin { port: GPIOH, index: 5, id: Ph5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph5 {}
-
-impl Pin<Gpioh> for Ph5 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2c2Sda> for Ph5 {
+pub struct Ph5Id {}
+pub type Ph5 = Pin<Ph5Id, GpiohId>;
+impl AltFn<super::sig::I2c2Sda> for Ph5Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi5Nss> for Ph5 {
+impl AltFn<super::sig::Spi5Nss> for Ph5Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcSdnwe> for Ph5 {
+impl AltFn<super::sig::FmcSdnwe> for Ph5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph5 {
+impl AltFn<super::sig::Eventout> for Ph5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH6: Ph6 = Ph6 {}; 
-pub const PH6_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 6 };
-pub const PH6_IMPL_REF: &PinImpl = &PH6_IMPL;
-
-impl ::core::ops::Deref for Ph6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH6_IMPL_REF }
-}
-
+pub const PH6: Pin<Ph6Id, GpiohId> = Pin { port: GPIOH, index: 6, id: Ph6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph6 {}
-
-impl Pin<Gpioh> for Ph6 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::I2c2Smba> for Ph6 {
+pub struct Ph6Id {}
+pub type Ph6 = Pin<Ph6Id, GpiohId>;
+impl AltFn<super::sig::I2c2Smba> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi5Sck> for Ph6 {
+impl AltFn<super::sig::Spi5Sck> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Tim12Ch1> for Ph6 {
+impl AltFn<super::sig::Tim12Ch1> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcSdne1> for Ph6 {
+impl AltFn<super::sig::FmcSdne1> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD8> for Ph6 {
+impl AltFn<super::sig::DcmiD8> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph6 {
+impl AltFn<super::sig::Eventout> for Ph6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH7: Ph7 = Ph7 {}; 
-pub const PH7_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 7 };
-pub const PH7_IMPL_REF: &PinImpl = &PH7_IMPL;
-
-impl ::core::ops::Deref for Ph7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH7_IMPL_REF }
-}
-
+pub const PH7: Pin<Ph7Id, GpiohId> = Pin { port: GPIOH, index: 7, id: Ph7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph7 {}
-
-impl Pin<Gpioh> for Ph7 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::I2c3Scl> for Ph7 {
+pub struct Ph7Id {}
+pub type Ph7 = Pin<Ph7Id, GpiohId>;
+impl AltFn<super::sig::I2c3Scl> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Spi5Miso> for Ph7 {
+impl AltFn<super::sig::Spi5Miso> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::EthMiiRxd3> for Ph7 {
+impl AltFn<super::sig::EthMiiRxd3> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcSdcke1> for Ph7 {
+impl AltFn<super::sig::FmcSdcke1> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD9> for Ph7 {
+impl AltFn<super::sig::DcmiD9> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph7 {
+impl AltFn<super::sig::Eventout> for Ph7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH8: Ph8 = Ph8 {}; 
-pub const PH8_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 8 };
-pub const PH8_IMPL_REF: &PinImpl = &PH8_IMPL;
-
-impl ::core::ops::Deref for Ph8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH8_IMPL_REF }
-}
-
+pub const PH8: Pin<Ph8Id, GpiohId> = Pin { port: GPIOH, index: 8, id: Ph8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph8 {}
-
-impl Pin<Gpioh> for Ph8 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::I2c3Sda> for Ph8 {
+pub struct Ph8Id {}
+pub type Ph8 = Pin<Ph8Id, GpiohId>;
+impl AltFn<super::sig::I2c3Sda> for Ph8Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::FmcD16> for Ph8 {
+impl AltFn<super::sig::FmcD16> for Ph8Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiHsync> for Ph8 {
+impl AltFn<super::sig::DcmiHsync> for Ph8Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR2> for Ph8 {
+impl AltFn<super::sig::LcdR2> for Ph8Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph8 {
+impl AltFn<super::sig::Eventout> for Ph8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH9: Ph9 = Ph9 {}; 
-pub const PH9_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 9 };
-pub const PH9_IMPL_REF: &PinImpl = &PH9_IMPL;
-
-impl ::core::ops::Deref for Ph9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH9_IMPL_REF }
-}
-
+pub const PH9: Pin<Ph9Id, GpiohId> = Pin { port: GPIOH, index: 9, id: Ph9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph9 {}
-
-impl Pin<Gpioh> for Ph9 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::I2c3Smba> for Ph9 {
+pub struct Ph9Id {}
+pub type Ph9 = Pin<Ph9Id, GpiohId>;
+impl AltFn<super::sig::I2c3Smba> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Tim2Ch2> for Ph9 {
+impl AltFn<super::sig::Tim2Ch2> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcD17> for Ph9 {
+impl AltFn<super::sig::FmcD17> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD0> for Ph9 {
+impl AltFn<super::sig::DcmiD0> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR3> for Ph9 {
+impl AltFn<super::sig::LcdR3> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph9 {
+impl AltFn<super::sig::Eventout> for Ph9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH10: Ph10 = Ph10 {}; 
-pub const PH10_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 10 };
-pub const PH10_IMPL_REF: &PinImpl = &PH10_IMPL;
-
-impl ::core::ops::Deref for Ph10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH10_IMPL_REF }
-}
-
+pub const PH10: Pin<Ph10Id, GpiohId> = Pin { port: GPIOH, index: 10, id: Ph10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph10 {}
-
-impl Pin<Gpioh> for Ph10 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::Tim5Ch1> for Ph10 {
+pub struct Ph10Id {}
+pub type Ph10 = Pin<Ph10Id, GpiohId>;
+impl AltFn<super::sig::Tim5Ch1> for Ph10Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcD18> for Ph10 {
+impl AltFn<super::sig::FmcD18> for Ph10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD1> for Ph10 {
+impl AltFn<super::sig::DcmiD1> for Ph10Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR4> for Ph10 {
+impl AltFn<super::sig::LcdR4> for Ph10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph10 {
+impl AltFn<super::sig::Eventout> for Ph10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH11: Ph11 = Ph11 {}; 
-pub const PH11_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 11 };
-pub const PH11_IMPL_REF: &PinImpl = &PH11_IMPL;
-
-impl ::core::ops::Deref for Ph11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH11_IMPL_REF }
-}
-
+pub const PH11: Pin<Ph11Id, GpiohId> = Pin { port: GPIOH, index: 11, id: Ph11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph11 {}
-
-impl Pin<Gpioh> for Ph11 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::Tim5Ch2> for Ph11 {
+pub struct Ph11Id {}
+pub type Ph11 = Pin<Ph11Id, GpiohId>;
+impl AltFn<super::sig::Tim5Ch2> for Ph11Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcD19> for Ph11 {
+impl AltFn<super::sig::FmcD19> for Ph11Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD2> for Ph11 {
+impl AltFn<super::sig::DcmiD2> for Ph11Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR5> for Ph11 {
+impl AltFn<super::sig::LcdR5> for Ph11Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph11 {
+impl AltFn<super::sig::Eventout> for Ph11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH12: Ph12 = Ph12 {}; 
-pub const PH12_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 12 };
-pub const PH12_IMPL_REF: &PinImpl = &PH12_IMPL;
-
-impl ::core::ops::Deref for Ph12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH12_IMPL_REF }
-}
-
+pub const PH12: Pin<Ph12Id, GpiohId> = Pin { port: GPIOH, index: 12, id: Ph12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph12 {}
-
-impl Pin<Gpioh> for Ph12 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::Tim5Ch3> for Ph12 {
+pub struct Ph12Id {}
+pub type Ph12 = Pin<Ph12Id, GpiohId>;
+impl AltFn<super::sig::Tim5Ch3> for Ph12Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::FmcD20> for Ph12 {
+impl AltFn<super::sig::FmcD20> for Ph12Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD3> for Ph12 {
+impl AltFn<super::sig::DcmiD3> for Ph12Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdR6> for Ph12 {
+impl AltFn<super::sig::LcdR6> for Ph12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph12 {
+impl AltFn<super::sig::Eventout> for Ph12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH13: Ph13 = Ph13 {}; 
-pub const PH13_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 13 };
-pub const PH13_IMPL_REF: &PinImpl = &PH13_IMPL;
-
-impl ::core::ops::Deref for Ph13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH13_IMPL_REF }
-}
-
+pub const PH13: Pin<Ph13Id, GpiohId> = Pin { port: GPIOH, index: 13, id: Ph13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph13 {}
-
-impl Pin<Gpioh> for Ph13 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::Tim8Ch1n> for Ph13 {
+pub struct Ph13Id {}
+pub type Ph13 = Pin<Ph13Id, GpiohId>;
+impl AltFn<super::sig::Tim8Ch1n> for Ph13Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Can1Tx> for Ph13 {
+impl AltFn<super::sig::Can1Tx> for Ph13Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcD21> for Ph13 {
+impl AltFn<super::sig::FmcD21> for Ph13Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdG2> for Ph13 {
+impl AltFn<super::sig::LcdG2> for Ph13Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph13 {
+impl AltFn<super::sig::Eventout> for Ph13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH14: Ph14 = Ph14 {}; 
-pub const PH14_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 14 };
-pub const PH14_IMPL_REF: &PinImpl = &PH14_IMPL;
-
-impl ::core::ops::Deref for Ph14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH14_IMPL_REF }
-}
-
+pub const PH14: Pin<Ph14Id, GpiohId> = Pin { port: GPIOH, index: 14, id: Ph14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph14 {}
-
-impl Pin<Gpioh> for Ph14 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::Tim8Ch2n> for Ph14 {
+pub struct Ph14Id {}
+pub type Ph14 = Pin<Ph14Id, GpiohId>;
+impl AltFn<super::sig::Tim8Ch2n> for Ph14Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcD22> for Ph14 {
+impl AltFn<super::sig::FmcD22> for Ph14Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD4> for Ph14 {
+impl AltFn<super::sig::DcmiD4> for Ph14Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG3> for Ph14 {
+impl AltFn<super::sig::LcdG3> for Ph14Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph14 {
+impl AltFn<super::sig::Eventout> for Ph14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PH15: Ph15 = Ph15 {}; 
-pub const PH15_IMPL: PinImpl = PinImpl { port: GPIOH_IMPL, index: 15 };
-pub const PH15_IMPL_REF: &PinImpl = &PH15_IMPL;
-
-impl ::core::ops::Deref for Ph15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PH15_IMPL_REF }
-}
-
+pub const PH15: Pin<Ph15Id, GpiohId> = Pin { port: GPIOH, index: 15, id: Ph15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Ph15 {}
-
-impl Pin<Gpioh> for Ph15 {
-   #[inline]
-   fn port(&self) -> Gpioh { GPIOH }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::Tim8Ch3n> for Ph15 {
+pub struct Ph15Id {}
+pub type Ph15 = Pin<Ph15Id, GpiohId>;
+impl AltFn<super::sig::Tim8Ch3n> for Ph15Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcD23> for Ph15 {
+impl AltFn<super::sig::FmcD23> for Ph15Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD11> for Ph15 {
+impl AltFn<super::sig::DcmiD11> for Ph15Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG4> for Ph15 {
+impl AltFn<super::sig::LcdG4> for Ph15Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Ph15 {
+impl AltFn<super::sig::Eventout> for Ph15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI0: Pi0 = Pi0 {}; 
-pub const PI0_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 0 };
-pub const PI0_IMPL_REF: &PinImpl = &PI0_IMPL;
-
-impl ::core::ops::Deref for Pi0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI0_IMPL_REF }
-}
-
+pub const PI0: Pin<Pi0Id, GpioiId> = Pin { port: GPIOI, index: 0, id: Pi0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi0 {}
-
-impl Pin<Gpioi> for Pi0 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Tim5Ch4> for Pi0 {
+pub struct Pi0Id {}
+pub type Pi0 = Pin<Pi0Id, GpioiId>;
+impl AltFn<super::sig::Tim5Ch4> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Spi2Nss> for Pi0 {
+impl AltFn<super::sig::Spi2Nss> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ws> for Pi0 {
+impl AltFn<super::sig::I2s2Ws> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD24> for Pi0 {
+impl AltFn<super::sig::FmcD24> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD13> for Pi0 {
+impl AltFn<super::sig::DcmiD13> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG5> for Pi0 {
+impl AltFn<super::sig::LcdG5> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi0 {
+impl AltFn<super::sig::Eventout> for Pi0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI1: Pi1 = Pi1 {}; 
-pub const PI1_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 1 };
-pub const PI1_IMPL_REF: &PinImpl = &PI1_IMPL;
-
-impl ::core::ops::Deref for Pi1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI1_IMPL_REF }
-}
-
+pub const PI1: Pin<Pi1Id, GpioiId> = Pin { port: GPIOI, index: 1, id: Pi1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi1 {}
-
-impl Pin<Gpioi> for Pi1 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sck> for Pi1 {
+pub struct Pi1Id {}
+pub type Pi1 = Pin<Pi1Id, GpioiId>;
+impl AltFn<super::sig::Spi2Sck> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Ck> for Pi1 {
+impl AltFn<super::sig::I2s2Ck> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD25> for Pi1 {
+impl AltFn<super::sig::FmcD25> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD8> for Pi1 {
+impl AltFn<super::sig::DcmiD8> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG6> for Pi1 {
+impl AltFn<super::sig::LcdG6> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi1 {
+impl AltFn<super::sig::Eventout> for Pi1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI2: Pi2 = Pi2 {}; 
-pub const PI2_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 2 };
-pub const PI2_IMPL_REF: &PinImpl = &PI2_IMPL;
-
-impl ::core::ops::Deref for Pi2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI2_IMPL_REF }
-}
-
+pub const PI2: Pin<Pi2Id, GpioiId> = Pin { port: GPIOI, index: 2, id: Pi2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi2 {}
-
-impl Pin<Gpioi> for Pi2 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Tim8Ch4> for Pi2 {
+pub struct Pi2Id {}
+pub type Pi2 = Pin<Pi2Id, GpioiId>;
+impl AltFn<super::sig::Tim8Ch4> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi2Miso> for Pi2 {
+impl AltFn<super::sig::Spi2Miso> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2extSd> for Pi2 {
+impl AltFn<super::sig::I2s2extSd> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::FmcD26> for Pi2 {
+impl AltFn<super::sig::FmcD26> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD9> for Pi2 {
+impl AltFn<super::sig::DcmiD9> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdG7> for Pi2 {
+impl AltFn<super::sig::LcdG7> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi2 {
+impl AltFn<super::sig::Eventout> for Pi2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI3: Pi3 = Pi3 {}; 
-pub const PI3_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 3 };
-pub const PI3_IMPL_REF: &PinImpl = &PI3_IMPL;
-
-impl ::core::ops::Deref for Pi3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI3_IMPL_REF }
-}
-
+pub const PI3: Pin<Pi3Id, GpioiId> = Pin { port: GPIOI, index: 3, id: Pi3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi3 {}
-
-impl Pin<Gpioi> for Pi3 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Tim8Etr> for Pi3 {
+pub struct Pi3Id {}
+pub type Pi3 = Pin<Pi3Id, GpioiId>;
+impl AltFn<super::sig::Tim8Etr> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Spi2Mosi> for Pi3 {
+impl AltFn<super::sig::Spi2Mosi> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::I2s2Sd> for Pi3 {
+impl AltFn<super::sig::I2s2Sd> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::FmcD27> for Pi3 {
+impl AltFn<super::sig::FmcD27> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD10> for Pi3 {
+impl AltFn<super::sig::DcmiD10> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi3 {
+impl AltFn<super::sig::Eventout> for Pi3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI4: Pi4 = Pi4 {}; 
-pub const PI4_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 4 };
-pub const PI4_IMPL_REF: &PinImpl = &PI4_IMPL;
-
-impl ::core::ops::Deref for Pi4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI4_IMPL_REF }
-}
-
+pub const PI4: Pin<Pi4Id, GpioiId> = Pin { port: GPIOI, index: 4, id: Pi4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi4 {}
-
-impl Pin<Gpioi> for Pi4 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tim8Bkin> for Pi4 {
+pub struct Pi4Id {}
+pub type Pi4 = Pin<Pi4Id, GpioiId>;
+impl AltFn<super::sig::Tim8Bkin> for Pi4Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcNbl2> for Pi4 {
+impl AltFn<super::sig::FmcNbl2> for Pi4Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD5> for Pi4 {
+impl AltFn<super::sig::DcmiD5> for Pi4Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB4> for Pi4 {
+impl AltFn<super::sig::LcdB4> for Pi4Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi4 {
+impl AltFn<super::sig::Eventout> for Pi4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI5: Pi5 = Pi5 {}; 
-pub const PI5_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 5 };
-pub const PI5_IMPL_REF: &PinImpl = &PI5_IMPL;
-
-impl ::core::ops::Deref for Pi5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI5_IMPL_REF }
-}
-
+pub const PI5: Pin<Pi5Id, GpioiId> = Pin { port: GPIOI, index: 5, id: Pi5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi5 {}
-
-impl Pin<Gpioi> for Pi5 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Tim8Ch1> for Pi5 {
+pub struct Pi5Id {}
+pub type Pi5 = Pin<Pi5Id, GpioiId>;
+impl AltFn<super::sig::Tim8Ch1> for Pi5Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcNbl3> for Pi5 {
+impl AltFn<super::sig::FmcNbl3> for Pi5Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmVsync> for Pi5 {
+impl AltFn<super::sig::DcmVsync> for Pi5Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB5> for Pi5 {
+impl AltFn<super::sig::LcdB5> for Pi5Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi5 {
+impl AltFn<super::sig::Eventout> for Pi5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI6: Pi6 = Pi6 {}; 
-pub const PI6_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 6 };
-pub const PI6_IMPL_REF: &PinImpl = &PI6_IMPL;
-
-impl ::core::ops::Deref for Pi6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI6_IMPL_REF }
-}
-
+pub const PI6: Pin<Pi6Id, GpioiId> = Pin { port: GPIOI, index: 6, id: Pi6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi6 {}
-
-impl Pin<Gpioi> for Pi6 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Tim8Ch2> for Pi6 {
+pub struct Pi6Id {}
+pub type Pi6 = Pin<Pi6Id, GpioiId>;
+impl AltFn<super::sig::Tim8Ch2> for Pi6Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcD28> for Pi6 {
+impl AltFn<super::sig::FmcD28> for Pi6Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD6> for Pi6 {
+impl AltFn<super::sig::DcmiD6> for Pi6Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB6> for Pi6 {
+impl AltFn<super::sig::LcdB6> for Pi6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi6 {
+impl AltFn<super::sig::Eventout> for Pi6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI7: Pi7 = Pi7 {}; 
-pub const PI7_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 7 };
-pub const PI7_IMPL_REF: &PinImpl = &PI7_IMPL;
-
-impl ::core::ops::Deref for Pi7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI7_IMPL_REF }
-}
-
+pub const PI7: Pin<Pi7Id, GpioiId> = Pin { port: GPIOI, index: 7, id: Pi7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi7 {}
-
-impl Pin<Gpioi> for Pi7 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Tim8Ch3> for Pi7 {
+pub struct Pi7Id {}
+pub type Pi7 = Pin<Pi7Id, GpioiId>;
+impl AltFn<super::sig::Tim8Ch3> for Pi7Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::FmcD29> for Pi7 {
+impl AltFn<super::sig::FmcD29> for Pi7Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::DcmiD7> for Pi7 {
+impl AltFn<super::sig::DcmiD7> for Pi7Id {
    #[inline] fn alt_fn(&self) -> usize { 13 }
 }
 
-impl AltFn<super::sig::LcdB7> for Pi7 {
+impl AltFn<super::sig::LcdB7> for Pi7Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi7 {
+impl AltFn<super::sig::Eventout> for Pi7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI8: Pi8 = Pi8 {}; 
-pub const PI8_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 8 };
-pub const PI8_IMPL_REF: &PinImpl = &PI8_IMPL;
-
-impl ::core::ops::Deref for Pi8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI8_IMPL_REF }
-}
-
+pub const PI8: Pin<Pi8Id, GpioiId> = Pin { port: GPIOI, index: 8, id: Pi8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi8 {}
-
-impl Pin<Gpioi> for Pi8 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::Eventout> for Pi8 {
+pub struct Pi8Id {}
+pub type Pi8 = Pin<Pi8Id, GpioiId>;
+impl AltFn<super::sig::Eventout> for Pi8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI9: Pi9 = Pi9 {}; 
-pub const PI9_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 9 };
-pub const PI9_IMPL_REF: &PinImpl = &PI9_IMPL;
-
-impl ::core::ops::Deref for Pi9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI9_IMPL_REF }
-}
-
+pub const PI9: Pin<Pi9Id, GpioiId> = Pin { port: GPIOI, index: 9, id: Pi9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi9 {}
-
-impl Pin<Gpioi> for Pi9 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::Can1Rx> for Pi9 {
+pub struct Pi9Id {}
+pub type Pi9 = Pin<Pi9Id, GpioiId>;
+impl AltFn<super::sig::Can1Rx> for Pi9Id {
    #[inline] fn alt_fn(&self) -> usize { 9 }
 }
 
-impl AltFn<super::sig::FmcD30> for Pi9 {
+impl AltFn<super::sig::FmcD30> for Pi9Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdVsync> for Pi9 {
+impl AltFn<super::sig::LcdVsync> for Pi9Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi9 {
+impl AltFn<super::sig::Eventout> for Pi9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI10: Pi10 = Pi10 {}; 
-pub const PI10_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 10 };
-pub const PI10_IMPL_REF: &PinImpl = &PI10_IMPL;
-
-impl ::core::ops::Deref for Pi10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI10_IMPL_REF }
-}
-
+pub const PI10: Pin<Pi10Id, GpioiId> = Pin { port: GPIOI, index: 10, id: Pi10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi10 {}
-
-impl Pin<Gpioi> for Pi10 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::EthMiiRxEr> for Pi10 {
+pub struct Pi10Id {}
+pub type Pi10 = Pin<Pi10Id, GpioiId>;
+impl AltFn<super::sig::EthMiiRxEr> for Pi10Id {
    #[inline] fn alt_fn(&self) -> usize { 11 }
 }
 
-impl AltFn<super::sig::FmcD31> for Pi10 {
+impl AltFn<super::sig::FmcD31> for Pi10Id {
    #[inline] fn alt_fn(&self) -> usize { 12 }
 }
 
-impl AltFn<super::sig::LcdHsync> for Pi10 {
+impl AltFn<super::sig::LcdHsync> for Pi10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi10 {
+impl AltFn<super::sig::Eventout> for Pi10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI11: Pi11 = Pi11 {}; 
-pub const PI11_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 11 };
-pub const PI11_IMPL_REF: &PinImpl = &PI11_IMPL;
-
-impl ::core::ops::Deref for Pi11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI11_IMPL_REF }
-}
-
+pub const PI11: Pin<Pi11Id, GpioiId> = Pin { port: GPIOI, index: 11, id: Pi11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi11 {}
-
-impl Pin<Gpioi> for Pi11 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::OtgHsUlpiDir> for Pi11 {
+pub struct Pi11Id {}
+pub type Pi11 = Pin<Pi11Id, GpioiId>;
+impl AltFn<super::sig::OtgHsUlpiDir> for Pi11Id {
    #[inline] fn alt_fn(&self) -> usize { 10 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi11 {
+impl AltFn<super::sig::Eventout> for Pi11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI12: Pi12 = Pi12 {}; 
-pub const PI12_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 12 };
-pub const PI12_IMPL_REF: &PinImpl = &PI12_IMPL;
-
-impl ::core::ops::Deref for Pi12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI12_IMPL_REF }
-}
-
+pub const PI12: Pin<Pi12Id, GpioiId> = Pin { port: GPIOI, index: 12, id: Pi12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi12 {}
-
-impl Pin<Gpioi> for Pi12 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::LcdHsync> for Pi12 {
+pub struct Pi12Id {}
+pub type Pi12 = Pin<Pi12Id, GpioiId>;
+impl AltFn<super::sig::LcdHsync> for Pi12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi12 {
+impl AltFn<super::sig::Eventout> for Pi12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI13: Pi13 = Pi13 {}; 
-pub const PI13_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 13 };
-pub const PI13_IMPL_REF: &PinImpl = &PI13_IMPL;
-
-impl ::core::ops::Deref for Pi13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI13_IMPL_REF }
-}
-
+pub const PI13: Pin<Pi13Id, GpioiId> = Pin { port: GPIOI, index: 13, id: Pi13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi13 {}
-
-impl Pin<Gpioi> for Pi13 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::LcdVsync> for Pi13 {
+pub struct Pi13Id {}
+pub type Pi13 = Pin<Pi13Id, GpioiId>;
+impl AltFn<super::sig::LcdVsync> for Pi13Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi13 {
+impl AltFn<super::sig::Eventout> for Pi13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI14: Pi14 = Pi14 {}; 
-pub const PI14_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 14 };
-pub const PI14_IMPL_REF: &PinImpl = &PI14_IMPL;
-
-impl ::core::ops::Deref for Pi14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI14_IMPL_REF }
-}
-
+pub const PI14: Pin<Pi14Id, GpioiId> = Pin { port: GPIOI, index: 14, id: Pi14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi14 {}
-
-impl Pin<Gpioi> for Pi14 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::LcdClk> for Pi14 {
+pub struct Pi14Id {}
+pub type Pi14 = Pin<Pi14Id, GpioiId>;
+impl AltFn<super::sig::LcdClk> for Pi14Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi14 {
+impl AltFn<super::sig::Eventout> for Pi14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PI15: Pi15 = Pi15 {}; 
-pub const PI15_IMPL: PinImpl = PinImpl { port: GPIOI_IMPL, index: 15 };
-pub const PI15_IMPL_REF: &PinImpl = &PI15_IMPL;
-
-impl ::core::ops::Deref for Pi15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PI15_IMPL_REF }
-}
-
+pub const PI15: Pin<Pi15Id, GpioiId> = Pin { port: GPIOI, index: 15, id: Pi15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pi15 {}
-
-impl Pin<Gpioi> for Pi15 {
-   #[inline]
-   fn port(&self) -> Gpioi { GPIOI }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::LcdR0> for Pi15 {
+pub struct Pi15Id {}
+pub type Pi15 = Pin<Pi15Id, GpioiId>;
+impl AltFn<super::sig::LcdR0> for Pi15Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pi15 {
+impl AltFn<super::sig::Eventout> for Pi15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ0: Pj0 = Pj0 {}; 
-pub const PJ0_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 0 };
-pub const PJ0_IMPL_REF: &PinImpl = &PJ0_IMPL;
-
-impl ::core::ops::Deref for Pj0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ0_IMPL_REF }
-}
-
+pub const PJ0: Pin<Pj0Id, GpiojId> = Pin { port: GPIOJ, index: 0, id: Pj0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj0 {}
-
-impl Pin<Gpioj> for Pj0 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::LcdR1> for Pj0 {
+pub struct Pj0Id {}
+pub type Pj0 = Pin<Pj0Id, GpiojId>;
+impl AltFn<super::sig::LcdR1> for Pj0Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj0 {
+impl AltFn<super::sig::Eventout> for Pj0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ1: Pj1 = Pj1 {}; 
-pub const PJ1_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 1 };
-pub const PJ1_IMPL_REF: &PinImpl = &PJ1_IMPL;
-
-impl ::core::ops::Deref for Pj1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ1_IMPL_REF }
-}
-
+pub const PJ1: Pin<Pj1Id, GpiojId> = Pin { port: GPIOJ, index: 1, id: Pj1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj1 {}
-
-impl Pin<Gpioj> for Pj1 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::LcdR2> for Pj1 {
+pub struct Pj1Id {}
+pub type Pj1 = Pin<Pj1Id, GpiojId>;
+impl AltFn<super::sig::LcdR2> for Pj1Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj1 {
+impl AltFn<super::sig::Eventout> for Pj1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ2: Pj2 = Pj2 {}; 
-pub const PJ2_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 2 };
-pub const PJ2_IMPL_REF: &PinImpl = &PJ2_IMPL;
-
-impl ::core::ops::Deref for Pj2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ2_IMPL_REF }
-}
-
+pub const PJ2: Pin<Pj2Id, GpiojId> = Pin { port: GPIOJ, index: 2, id: Pj2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj2 {}
-
-impl Pin<Gpioj> for Pj2 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::LcdR3> for Pj2 {
+pub struct Pj2Id {}
+pub type Pj2 = Pin<Pj2Id, GpiojId>;
+impl AltFn<super::sig::LcdR3> for Pj2Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj2 {
+impl AltFn<super::sig::Eventout> for Pj2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ3: Pj3 = Pj3 {}; 
-pub const PJ3_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 3 };
-pub const PJ3_IMPL_REF: &PinImpl = &PJ3_IMPL;
-
-impl ::core::ops::Deref for Pj3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ3_IMPL_REF }
-}
-
+pub const PJ3: Pin<Pj3Id, GpiojId> = Pin { port: GPIOJ, index: 3, id: Pj3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj3 {}
-
-impl Pin<Gpioj> for Pj3 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::LcdR4> for Pj3 {
+pub struct Pj3Id {}
+pub type Pj3 = Pin<Pj3Id, GpiojId>;
+impl AltFn<super::sig::LcdR4> for Pj3Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj3 {
+impl AltFn<super::sig::Eventout> for Pj3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ4: Pj4 = Pj4 {}; 
-pub const PJ4_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 4 };
-pub const PJ4_IMPL_REF: &PinImpl = &PJ4_IMPL;
-
-impl ::core::ops::Deref for Pj4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ4_IMPL_REF }
-}
-
+pub const PJ4: Pin<Pj4Id, GpiojId> = Pin { port: GPIOJ, index: 4, id: Pj4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj4 {}
-
-impl Pin<Gpioj> for Pj4 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::LcdR5> for Pj4 {
+pub struct Pj4Id {}
+pub type Pj4 = Pin<Pj4Id, GpiojId>;
+impl AltFn<super::sig::LcdR5> for Pj4Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj4 {
+impl AltFn<super::sig::Eventout> for Pj4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ5: Pj5 = Pj5 {}; 
-pub const PJ5_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 5 };
-pub const PJ5_IMPL_REF: &PinImpl = &PJ5_IMPL;
-
-impl ::core::ops::Deref for Pj5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ5_IMPL_REF }
-}
-
+pub const PJ5: Pin<Pj5Id, GpiojId> = Pin { port: GPIOJ, index: 5, id: Pj5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj5 {}
-
-impl Pin<Gpioj> for Pj5 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::LcdR6> for Pj5 {
+pub struct Pj5Id {}
+pub type Pj5 = Pin<Pj5Id, GpiojId>;
+impl AltFn<super::sig::LcdR6> for Pj5Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj5 {
+impl AltFn<super::sig::Eventout> for Pj5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ6: Pj6 = Pj6 {}; 
-pub const PJ6_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 6 };
-pub const PJ6_IMPL_REF: &PinImpl = &PJ6_IMPL;
-
-impl ::core::ops::Deref for Pj6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ6_IMPL_REF }
-}
-
+pub const PJ6: Pin<Pj6Id, GpiojId> = Pin { port: GPIOJ, index: 6, id: Pj6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj6 {}
-
-impl Pin<Gpioj> for Pj6 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::LcdR7> for Pj6 {
+pub struct Pj6Id {}
+pub type Pj6 = Pin<Pj6Id, GpiojId>;
+impl AltFn<super::sig::LcdR7> for Pj6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj6 {
+impl AltFn<super::sig::Eventout> for Pj6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ7: Pj7 = Pj7 {}; 
-pub const PJ7_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 7 };
-pub const PJ7_IMPL_REF: &PinImpl = &PJ7_IMPL;
-
-impl ::core::ops::Deref for Pj7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ7_IMPL_REF }
-}
-
+pub const PJ7: Pin<Pj7Id, GpiojId> = Pin { port: GPIOJ, index: 7, id: Pj7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj7 {}
-
-impl Pin<Gpioj> for Pj7 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::LcdG0> for Pj7 {
+pub struct Pj7Id {}
+pub type Pj7 = Pin<Pj7Id, GpiojId>;
+impl AltFn<super::sig::LcdG0> for Pj7Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj7 {
+impl AltFn<super::sig::Eventout> for Pj7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ8: Pj8 = Pj8 {}; 
-pub const PJ8_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 8 };
-pub const PJ8_IMPL_REF: &PinImpl = &PJ8_IMPL;
-
-impl ::core::ops::Deref for Pj8 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ8_IMPL_REF }
-}
-
+pub const PJ8: Pin<Pj8Id, GpiojId> = Pin { port: GPIOJ, index: 8, id: Pj8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj8 {}
-
-impl Pin<Gpioj> for Pj8 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 8 }
-}
-
-impl AltFn<super::sig::LcdG1> for Pj8 {
+pub struct Pj8Id {}
+pub type Pj8 = Pin<Pj8Id, GpiojId>;
+impl AltFn<super::sig::LcdG1> for Pj8Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj8 {
+impl AltFn<super::sig::Eventout> for Pj8Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ9: Pj9 = Pj9 {}; 
-pub const PJ9_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 9 };
-pub const PJ9_IMPL_REF: &PinImpl = &PJ9_IMPL;
-
-impl ::core::ops::Deref for Pj9 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ9_IMPL_REF }
-}
-
+pub const PJ9: Pin<Pj9Id, GpiojId> = Pin { port: GPIOJ, index: 9, id: Pj9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj9 {}
-
-impl Pin<Gpioj> for Pj9 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 9 }
-}
-
-impl AltFn<super::sig::LcdG2> for Pj9 {
+pub struct Pj9Id {}
+pub type Pj9 = Pin<Pj9Id, GpiojId>;
+impl AltFn<super::sig::LcdG2> for Pj9Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj9 {
+impl AltFn<super::sig::Eventout> for Pj9Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ10: Pj10 = Pj10 {}; 
-pub const PJ10_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 10 };
-pub const PJ10_IMPL_REF: &PinImpl = &PJ10_IMPL;
-
-impl ::core::ops::Deref for Pj10 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ10_IMPL_REF }
-}
-
+pub const PJ10: Pin<Pj10Id, GpiojId> = Pin { port: GPIOJ, index: 10, id: Pj10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj10 {}
-
-impl Pin<Gpioj> for Pj10 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 10 }
-}
-
-impl AltFn<super::sig::LcdG3> for Pj10 {
+pub struct Pj10Id {}
+pub type Pj10 = Pin<Pj10Id, GpiojId>;
+impl AltFn<super::sig::LcdG3> for Pj10Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj10 {
+impl AltFn<super::sig::Eventout> for Pj10Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ11: Pj11 = Pj11 {}; 
-pub const PJ11_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 11 };
-pub const PJ11_IMPL_REF: &PinImpl = &PJ11_IMPL;
-
-impl ::core::ops::Deref for Pj11 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ11_IMPL_REF }
-}
-
+pub const PJ11: Pin<Pj11Id, GpiojId> = Pin { port: GPIOJ, index: 11, id: Pj11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj11 {}
-
-impl Pin<Gpioj> for Pj11 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 11 }
-}
-
-impl AltFn<super::sig::LcdG4> for Pj11 {
+pub struct Pj11Id {}
+pub type Pj11 = Pin<Pj11Id, GpiojId>;
+impl AltFn<super::sig::LcdG4> for Pj11Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj11 {
+impl AltFn<super::sig::Eventout> for Pj11Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ12: Pj12 = Pj12 {}; 
-pub const PJ12_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 12 };
-pub const PJ12_IMPL_REF: &PinImpl = &PJ12_IMPL;
-
-impl ::core::ops::Deref for Pj12 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ12_IMPL_REF }
-}
-
+pub const PJ12: Pin<Pj12Id, GpiojId> = Pin { port: GPIOJ, index: 12, id: Pj12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj12 {}
-
-impl Pin<Gpioj> for Pj12 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 12 }
-}
-
-impl AltFn<super::sig::LcdB0> for Pj12 {
+pub struct Pj12Id {}
+pub type Pj12 = Pin<Pj12Id, GpiojId>;
+impl AltFn<super::sig::LcdB0> for Pj12Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj12 {
+impl AltFn<super::sig::Eventout> for Pj12Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ13: Pj13 = Pj13 {}; 
-pub const PJ13_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 13 };
-pub const PJ13_IMPL_REF: &PinImpl = &PJ13_IMPL;
-
-impl ::core::ops::Deref for Pj13 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ13_IMPL_REF }
-}
-
+pub const PJ13: Pin<Pj13Id, GpiojId> = Pin { port: GPIOJ, index: 13, id: Pj13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj13 {}
-
-impl Pin<Gpioj> for Pj13 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 13 }
-}
-
-impl AltFn<super::sig::LcdB1> for Pj13 {
+pub struct Pj13Id {}
+pub type Pj13 = Pin<Pj13Id, GpiojId>;
+impl AltFn<super::sig::LcdB1> for Pj13Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj13 {
+impl AltFn<super::sig::Eventout> for Pj13Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ14: Pj14 = Pj14 {}; 
-pub const PJ14_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 14 };
-pub const PJ14_IMPL_REF: &PinImpl = &PJ14_IMPL;
-
-impl ::core::ops::Deref for Pj14 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ14_IMPL_REF }
-}
-
+pub const PJ14: Pin<Pj14Id, GpiojId> = Pin { port: GPIOJ, index: 14, id: Pj14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj14 {}
-
-impl Pin<Gpioj> for Pj14 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 14 }
-}
-
-impl AltFn<super::sig::LcdB2> for Pj14 {
+pub struct Pj14Id {}
+pub type Pj14 = Pin<Pj14Id, GpiojId>;
+impl AltFn<super::sig::LcdB2> for Pj14Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj14 {
+impl AltFn<super::sig::Eventout> for Pj14Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PJ15: Pj15 = Pj15 {}; 
-pub const PJ15_IMPL: PinImpl = PinImpl { port: GPIOJ_IMPL, index: 15 };
-pub const PJ15_IMPL_REF: &PinImpl = &PJ15_IMPL;
-
-impl ::core::ops::Deref for Pj15 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PJ15_IMPL_REF }
-}
-
+pub const PJ15: Pin<Pj15Id, GpiojId> = Pin { port: GPIOJ, index: 15, id: Pj15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pj15 {}
-
-impl Pin<Gpioj> for Pj15 {
-   #[inline]
-   fn port(&self) -> Gpioj { GPIOJ }
-   #[inline]
-   fn index(&self) -> usize { 15 }
-}
-
-impl AltFn<super::sig::LcdB3> for Pj15 {
+pub struct Pj15Id {}
+pub type Pj15 = Pin<Pj15Id, GpiojId>;
+impl AltFn<super::sig::LcdB3> for Pj15Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pj15 {
+impl AltFn<super::sig::Eventout> for Pj15Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK0: Pk0 = Pk0 {}; 
-pub const PK0_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 0 };
-pub const PK0_IMPL_REF: &PinImpl = &PK0_IMPL;
-
-impl ::core::ops::Deref for Pk0 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK0_IMPL_REF }
-}
-
+pub const PK0: Pin<Pk0Id, GpiokId> = Pin { port: GPIOK, index: 0, id: Pk0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk0 {}
-
-impl Pin<Gpiok> for Pk0 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::LcdG5> for Pk0 {
+pub struct Pk0Id {}
+pub type Pk0 = Pin<Pk0Id, GpiokId>;
+impl AltFn<super::sig::LcdG5> for Pk0Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk0 {
+impl AltFn<super::sig::Eventout> for Pk0Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK1: Pk1 = Pk1 {}; 
-pub const PK1_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 1 };
-pub const PK1_IMPL_REF: &PinImpl = &PK1_IMPL;
-
-impl ::core::ops::Deref for Pk1 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK1_IMPL_REF }
-}
-
+pub const PK1: Pin<Pk1Id, GpiokId> = Pin { port: GPIOK, index: 1, id: Pk1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk1 {}
-
-impl Pin<Gpiok> for Pk1 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::LcdG6> for Pk1 {
+pub struct Pk1Id {}
+pub type Pk1 = Pin<Pk1Id, GpiokId>;
+impl AltFn<super::sig::LcdG6> for Pk1Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk1 {
+impl AltFn<super::sig::Eventout> for Pk1Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK2: Pk2 = Pk2 {}; 
-pub const PK2_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 2 };
-pub const PK2_IMPL_REF: &PinImpl = &PK2_IMPL;
-
-impl ::core::ops::Deref for Pk2 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK2_IMPL_REF }
-}
-
+pub const PK2: Pin<Pk2Id, GpiokId> = Pin { port: GPIOK, index: 2, id: Pk2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk2 {}
-
-impl Pin<Gpiok> for Pk2 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::LcdG7> for Pk2 {
+pub struct Pk2Id {}
+pub type Pk2 = Pin<Pk2Id, GpiokId>;
+impl AltFn<super::sig::LcdG7> for Pk2Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk2 {
+impl AltFn<super::sig::Eventout> for Pk2Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK3: Pk3 = Pk3 {}; 
-pub const PK3_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 3 };
-pub const PK3_IMPL_REF: &PinImpl = &PK3_IMPL;
-
-impl ::core::ops::Deref for Pk3 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK3_IMPL_REF }
-}
-
+pub const PK3: Pin<Pk3Id, GpiokId> = Pin { port: GPIOK, index: 3, id: Pk3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk3 {}
-
-impl Pin<Gpiok> for Pk3 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::LcdB4> for Pk3 {
+pub struct Pk3Id {}
+pub type Pk3 = Pin<Pk3Id, GpiokId>;
+impl AltFn<super::sig::LcdB4> for Pk3Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk3 {
+impl AltFn<super::sig::Eventout> for Pk3Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK4: Pk4 = Pk4 {}; 
-pub const PK4_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 4 };
-pub const PK4_IMPL_REF: &PinImpl = &PK4_IMPL;
-
-impl ::core::ops::Deref for Pk4 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK4_IMPL_REF }
-}
-
+pub const PK4: Pin<Pk4Id, GpiokId> = Pin { port: GPIOK, index: 4, id: Pk4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk4 {}
-
-impl Pin<Gpiok> for Pk4 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::LcdB5> for Pk4 {
+pub struct Pk4Id {}
+pub type Pk4 = Pin<Pk4Id, GpiokId>;
+impl AltFn<super::sig::LcdB5> for Pk4Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk4 {
+impl AltFn<super::sig::Eventout> for Pk4Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK5: Pk5 = Pk5 {}; 
-pub const PK5_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 5 };
-pub const PK5_IMPL_REF: &PinImpl = &PK5_IMPL;
-
-impl ::core::ops::Deref for Pk5 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK5_IMPL_REF }
-}
-
+pub const PK5: Pin<Pk5Id, GpiokId> = Pin { port: GPIOK, index: 5, id: Pk5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk5 {}
-
-impl Pin<Gpiok> for Pk5 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::LcdB6> for Pk5 {
+pub struct Pk5Id {}
+pub type Pk5 = Pin<Pk5Id, GpiokId>;
+impl AltFn<super::sig::LcdB6> for Pk5Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk5 {
+impl AltFn<super::sig::Eventout> for Pk5Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK6: Pk6 = Pk6 {}; 
-pub const PK6_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 6 };
-pub const PK6_IMPL_REF: &PinImpl = &PK6_IMPL;
-
-impl ::core::ops::Deref for Pk6 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK6_IMPL_REF }
-}
-
+pub const PK6: Pin<Pk6Id, GpiokId> = Pin { port: GPIOK, index: 6, id: Pk6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk6 {}
-
-impl Pin<Gpiok> for Pk6 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::LcdB7> for Pk6 {
+pub struct Pk6Id {}
+pub type Pk6 = Pin<Pk6Id, GpiokId>;
+impl AltFn<super::sig::LcdB7> for Pk6Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk6 {
+impl AltFn<super::sig::Eventout> for Pk6Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 
-pub const PK7: Pk7 = Pk7 {}; 
-pub const PK7_IMPL: PinImpl = PinImpl { port: GPIOK_IMPL, index: 7 };
-pub const PK7_IMPL_REF: &PinImpl = &PK7_IMPL;
-
-impl ::core::ops::Deref for Pk7 {
-   type Target = PinImpl;
-   #[inline]
-   fn deref(&self) -> &PinImpl { PK7_IMPL_REF }
-}
-
+pub const PK7: Pin<Pk7Id, GpiokId> = Pin { port: GPIOK, index: 7, id: Pk7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Pk7 {}
-
-impl Pin<Gpiok> for Pk7 {
-   #[inline]
-   fn port(&self) -> Gpiok { GPIOK }
-   #[inline]
-   fn index(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::LcdDe> for Pk7 {
+pub struct Pk7Id {}
+pub type Pk7 = Pin<Pk7Id, GpiokId>;
+impl AltFn<super::sig::LcdDe> for Pk7Id {
    #[inline] fn alt_fn(&self) -> usize { 14 }
 }
 
-impl AltFn<super::sig::Eventout> for Pk7 {
+impl AltFn<super::sig::Eventout> for Pk7Id {
    #[inline] fn alt_fn(&self) -> usize { 15 }
 }
 

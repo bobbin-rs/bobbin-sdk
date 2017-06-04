@@ -1,39 +1,20 @@
 pub use stm32_common::chip::tim_adv::*;
 
-pub const TIM1: Tim1 = Tim1 {};
-pub const TIM1_IMPL: TimAdvImpl = TimAdvImpl(0x40012c00);
-pub const TIM1_IMPL_REF: &TimAdvImpl = &TIM1_IMPL;
+pub const TIM1: Tim1 = Periph(0x40012c00, Tim1Id {});
+pub const TIM8: Tim8 = Periph(0x40013400, Tim8Id {});
+pub const TIM20: Tim20 = Periph(0x40015000, Tim20Id {});
 
-pub struct Tim1 {}
-impl ::core::ops::Deref for Tim1 {
-   type Target = TimAdvImpl;
-   #[inline]
-   fn deref(&self) -> &TimAdvImpl { TIM1_IMPL_REF }
-}
-
-
-pub const TIM8: Tim8 = Tim8 {};
-pub const TIM8_IMPL: TimAdvImpl = TimAdvImpl(0x40013400);
-pub const TIM8_IMPL_REF: &TimAdvImpl = &TIM8_IMPL;
-
-pub struct Tim8 {}
-impl ::core::ops::Deref for Tim8 {
-   type Target = TimAdvImpl;
-   #[inline]
-   fn deref(&self) -> &TimAdvImpl { TIM8_IMPL_REF }
-}
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tim1Id {}
+pub type Tim1 = Periph<Tim1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tim8Id {}
+pub type Tim8 = Periph<Tim8Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tim20Id {}
+pub type Tim20 = Periph<Tim20Id>;
 
 
-pub const TIM20: Tim20 = Tim20 {};
-pub const TIM20_IMPL: TimAdvImpl = TimAdvImpl(0x40015000);
-pub const TIM20_IMPL_REF: &TimAdvImpl = &TIM20_IMPL;
-
-pub struct Tim20 {}
-impl ::core::ops::Deref for Tim20 {
-   type Target = TimAdvImpl;
-   #[inline]
-   fn deref(&self) -> &TimAdvImpl { TIM20_IMPL_REF }
-}
 
 
 

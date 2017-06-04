@@ -18,14 +18,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_ahbmask(&self, value: Ahbmask) -> &Pm {
+  pub fn set_ahbmask(&self, value: Ahbmask) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Pm {
+  pub fn with_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
      let tmp = self.ahbmask();
      self.set_ahbmask(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbamask(&self, value: Apbamask) -> &Pm {
+  pub fn set_apbamask(&self, value: Apbamask) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Pm {
+  pub fn with_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
      let tmp = self.apbamask();
      self.set_apbamask(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbasel(&self, value: Apbasel) -> &Pm {
+  pub fn set_apbasel(&self, value: Apbasel) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Pm {
+  pub fn with_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
      let tmp = self.apbasel();
      self.set_apbasel(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbbmask(&self, value: Apbbmask) -> &Pm {
+  pub fn set_apbbmask(&self, value: Apbbmask) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Pm {
+  pub fn with_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
      let tmp = self.apbbmask();
      self.set_apbbmask(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbbsel(&self, value: Apbbsel) -> &Pm {
+  pub fn set_apbbsel(&self, value: Apbbsel) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Pm {
+  pub fn with_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
      let tmp = self.apbbsel();
      self.set_apbbsel(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbcmask(&self, value: Apbcmask) -> &Pm {
+  pub fn set_apbcmask(&self, value: Apbcmask) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Pm {
+  pub fn with_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
      let tmp = self.apbcmask();
      self.set_apbcmask(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_apbcsel(&self, value: Apbcsel) -> &Pm {
+  pub fn set_apbcsel(&self, value: Apbcsel) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Pm {
+  pub fn with_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
      let tmp = self.apbcsel();
      self.set_apbcsel(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_cpusel(&self, value: Cpusel) -> &Pm {
+  pub fn set_cpusel(&self, value: Cpusel) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Pm {
+  pub fn with_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
      let tmp = self.cpusel();
      self.set_cpusel(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_ctrl(&self, value: Ctrl) -> &Pm {
+  pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Pm {
+  pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &Pm {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Pm {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &Pm {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x35) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Pm {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &Pm {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x36) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Pm {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -357,14 +357,14 @@ impl Pm {
      }
   }
   #[inline]
-  pub fn set_sleep(&self, value: Sleep) -> &Pm {
+  pub fn set_sleep(&self, value: Sleep) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Pm {
+  pub fn with_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
      let tmp = self.sleep();
      self.set_sleep(f(tmp))
   }
@@ -1497,4 +1497,5 @@ impl En for super::adc::Adc {
    #[inline]
    fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_adc(value)); }
 }
+
 

@@ -18,14 +18,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy0(&self, value: Pccdummy0) -> &Pcc {
+  pub fn set_pccdummy0(&self, value: Pccdummy0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy0<F: FnOnce(Pccdummy0) -> Pccdummy0>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy0<F: FnOnce(Pccdummy0) -> Pccdummy0>(&self, f: F) -> &Self {
      let tmp = self.pccdummy0();
      self.set_pccdummy0(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy1(&self, value: Pccdummy1) -> &Pcc {
+  pub fn set_pccdummy1(&self, value: Pccdummy1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy1<F: FnOnce(Pccdummy1) -> Pccdummy1>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy1<F: FnOnce(Pccdummy1) -> Pccdummy1>(&self, f: F) -> &Self {
      let tmp = self.pccdummy1();
      self.set_pccdummy1(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy2(&self, value: Pccdummy2) -> &Pcc {
+  pub fn set_pccdummy2(&self, value: Pccdummy2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy2<F: FnOnce(Pccdummy2) -> Pccdummy2>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy2<F: FnOnce(Pccdummy2) -> Pccdummy2>(&self, f: F) -> &Self {
      let tmp = self.pccdummy2();
      self.set_pccdummy2(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy3(&self, value: Pccdummy3) -> &Pcc {
+  pub fn set_pccdummy3(&self, value: Pccdummy3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy3<F: FnOnce(Pccdummy3) -> Pccdummy3>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy3<F: FnOnce(Pccdummy3) -> Pccdummy3>(&self, f: F) -> &Self {
      let tmp = self.pccdummy3();
      self.set_pccdummy3(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy4(&self, value: Pccdummy4) -> &Pcc {
+  pub fn set_pccdummy4(&self, value: Pccdummy4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy4<F: FnOnce(Pccdummy4) -> Pccdummy4>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy4<F: FnOnce(Pccdummy4) -> Pccdummy4>(&self, f: F) -> &Self {
      let tmp = self.pccdummy4();
      self.set_pccdummy4(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy5(&self, value: Pccdummy5) -> &Pcc {
+  pub fn set_pccdummy5(&self, value: Pccdummy5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy5<F: FnOnce(Pccdummy5) -> Pccdummy5>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy5<F: FnOnce(Pccdummy5) -> Pccdummy5>(&self, f: F) -> &Self {
      let tmp = self.pccdummy5();
      self.set_pccdummy5(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy6(&self, value: Pccdummy6) -> &Pcc {
+  pub fn set_pccdummy6(&self, value: Pccdummy6) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy6<F: FnOnce(Pccdummy6) -> Pccdummy6>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy6<F: FnOnce(Pccdummy6) -> Pccdummy6>(&self, f: F) -> &Self {
      let tmp = self.pccdummy6();
      self.set_pccdummy6(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy7(&self, value: Pccdummy7) -> &Pcc {
+  pub fn set_pccdummy7(&self, value: Pccdummy7) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy7<F: FnOnce(Pccdummy7) -> Pccdummy7>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy7<F: FnOnce(Pccdummy7) -> Pccdummy7>(&self, f: F) -> &Self {
      let tmp = self.pccdummy7();
      self.set_pccdummy7(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy8(&self, value: Pccdummy8) -> &Pcc {
+  pub fn set_pccdummy8(&self, value: Pccdummy8) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy8<F: FnOnce(Pccdummy8) -> Pccdummy8>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy8<F: FnOnce(Pccdummy8) -> Pccdummy8>(&self, f: F) -> &Self {
      let tmp = self.pccdummy8();
      self.set_pccdummy8(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy9(&self, value: Pccdummy9) -> &Pcc {
+  pub fn set_pccdummy9(&self, value: Pccdummy9) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy9<F: FnOnce(Pccdummy9) -> Pccdummy9>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy9<F: FnOnce(Pccdummy9) -> Pccdummy9>(&self, f: F) -> &Self {
      let tmp = self.pccdummy9();
      self.set_pccdummy9(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy10(&self, value: Pccdummy10) -> &Pcc {
+  pub fn set_pccdummy10(&self, value: Pccdummy10) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy10<F: FnOnce(Pccdummy10) -> Pccdummy10>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy10<F: FnOnce(Pccdummy10) -> Pccdummy10>(&self, f: F) -> &Self {
      let tmp = self.pccdummy10();
      self.set_pccdummy10(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy11(&self, value: Pccdummy11) -> &Pcc {
+  pub fn set_pccdummy11(&self, value: Pccdummy11) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy11<F: FnOnce(Pccdummy11) -> Pccdummy11>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy11<F: FnOnce(Pccdummy11) -> Pccdummy11>(&self, f: F) -> &Self {
      let tmp = self.pccdummy11();
      self.set_pccdummy11(f(tmp))
   }
@@ -342,14 +342,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy12(&self, value: Pccdummy12) -> &Pcc {
+  pub fn set_pccdummy12(&self, value: Pccdummy12) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy12<F: FnOnce(Pccdummy12) -> Pccdummy12>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy12<F: FnOnce(Pccdummy12) -> Pccdummy12>(&self, f: F) -> &Self {
      let tmp = self.pccdummy12();
      self.set_pccdummy12(f(tmp))
   }
@@ -369,14 +369,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy13(&self, value: Pccdummy13) -> &Pcc {
+  pub fn set_pccdummy13(&self, value: Pccdummy13) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy13<F: FnOnce(Pccdummy13) -> Pccdummy13>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy13<F: FnOnce(Pccdummy13) -> Pccdummy13>(&self, f: F) -> &Self {
      let tmp = self.pccdummy13();
      self.set_pccdummy13(f(tmp))
   }
@@ -396,14 +396,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy14(&self, value: Pccdummy14) -> &Pcc {
+  pub fn set_pccdummy14(&self, value: Pccdummy14) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy14<F: FnOnce(Pccdummy14) -> Pccdummy14>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy14<F: FnOnce(Pccdummy14) -> Pccdummy14>(&self, f: F) -> &Self {
      let tmp = self.pccdummy14();
      self.set_pccdummy14(f(tmp))
   }
@@ -423,14 +423,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy15(&self, value: Pccdummy15) -> &Pcc {
+  pub fn set_pccdummy15(&self, value: Pccdummy15) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy15<F: FnOnce(Pccdummy15) -> Pccdummy15>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy15<F: FnOnce(Pccdummy15) -> Pccdummy15>(&self, f: F) -> &Self {
      let tmp = self.pccdummy15();
      self.set_pccdummy15(f(tmp))
   }
@@ -450,14 +450,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy16(&self, value: Pccdummy16) -> &Pcc {
+  pub fn set_pccdummy16(&self, value: Pccdummy16) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy16<F: FnOnce(Pccdummy16) -> Pccdummy16>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy16<F: FnOnce(Pccdummy16) -> Pccdummy16>(&self, f: F) -> &Self {
      let tmp = self.pccdummy16();
      self.set_pccdummy16(f(tmp))
   }
@@ -477,14 +477,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy17(&self, value: Pccdummy17) -> &Pcc {
+  pub fn set_pccdummy17(&self, value: Pccdummy17) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy17<F: FnOnce(Pccdummy17) -> Pccdummy17>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy17<F: FnOnce(Pccdummy17) -> Pccdummy17>(&self, f: F) -> &Self {
      let tmp = self.pccdummy17();
      self.set_pccdummy17(f(tmp))
   }
@@ -504,14 +504,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy18(&self, value: Pccdummy18) -> &Pcc {
+  pub fn set_pccdummy18(&self, value: Pccdummy18) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy18<F: FnOnce(Pccdummy18) -> Pccdummy18>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy18<F: FnOnce(Pccdummy18) -> Pccdummy18>(&self, f: F) -> &Self {
      let tmp = self.pccdummy18();
      self.set_pccdummy18(f(tmp))
   }
@@ -531,14 +531,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy19(&self, value: Pccdummy19) -> &Pcc {
+  pub fn set_pccdummy19(&self, value: Pccdummy19) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy19<F: FnOnce(Pccdummy19) -> Pccdummy19>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy19<F: FnOnce(Pccdummy19) -> Pccdummy19>(&self, f: F) -> &Self {
      let tmp = self.pccdummy19();
      self.set_pccdummy19(f(tmp))
   }
@@ -558,14 +558,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy20(&self, value: Pccdummy20) -> &Pcc {
+  pub fn set_pccdummy20(&self, value: Pccdummy20) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy20<F: FnOnce(Pccdummy20) -> Pccdummy20>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy20<F: FnOnce(Pccdummy20) -> Pccdummy20>(&self, f: F) -> &Self {
      let tmp = self.pccdummy20();
      self.set_pccdummy20(f(tmp))
   }
@@ -585,14 +585,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy21(&self, value: Pccdummy21) -> &Pcc {
+  pub fn set_pccdummy21(&self, value: Pccdummy21) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy21<F: FnOnce(Pccdummy21) -> Pccdummy21>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy21<F: FnOnce(Pccdummy21) -> Pccdummy21>(&self, f: F) -> &Self {
      let tmp = self.pccdummy21();
      self.set_pccdummy21(f(tmp))
   }
@@ -612,14 +612,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy22(&self, value: Pccdummy22) -> &Pcc {
+  pub fn set_pccdummy22(&self, value: Pccdummy22) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy22<F: FnOnce(Pccdummy22) -> Pccdummy22>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy22<F: FnOnce(Pccdummy22) -> Pccdummy22>(&self, f: F) -> &Self {
      let tmp = self.pccdummy22();
      self.set_pccdummy22(f(tmp))
   }
@@ -639,14 +639,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy23(&self, value: Pccdummy23) -> &Pcc {
+  pub fn set_pccdummy23(&self, value: Pccdummy23) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy23<F: FnOnce(Pccdummy23) -> Pccdummy23>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy23<F: FnOnce(Pccdummy23) -> Pccdummy23>(&self, f: F) -> &Self {
      let tmp = self.pccdummy23();
      self.set_pccdummy23(f(tmp))
   }
@@ -666,14 +666,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy24(&self, value: Pccdummy24) -> &Pcc {
+  pub fn set_pccdummy24(&self, value: Pccdummy24) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy24<F: FnOnce(Pccdummy24) -> Pccdummy24>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy24<F: FnOnce(Pccdummy24) -> Pccdummy24>(&self, f: F) -> &Self {
      let tmp = self.pccdummy24();
      self.set_pccdummy24(f(tmp))
   }
@@ -693,14 +693,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy25(&self, value: Pccdummy25) -> &Pcc {
+  pub fn set_pccdummy25(&self, value: Pccdummy25) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy25<F: FnOnce(Pccdummy25) -> Pccdummy25>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy25<F: FnOnce(Pccdummy25) -> Pccdummy25>(&self, f: F) -> &Self {
      let tmp = self.pccdummy25();
      self.set_pccdummy25(f(tmp))
   }
@@ -720,14 +720,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy26(&self, value: Pccdummy26) -> &Pcc {
+  pub fn set_pccdummy26(&self, value: Pccdummy26) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy26<F: FnOnce(Pccdummy26) -> Pccdummy26>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy26<F: FnOnce(Pccdummy26) -> Pccdummy26>(&self, f: F) -> &Self {
      let tmp = self.pccdummy26();
      self.set_pccdummy26(f(tmp))
   }
@@ -747,14 +747,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy27(&self, value: Pccdummy27) -> &Pcc {
+  pub fn set_pccdummy27(&self, value: Pccdummy27) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy27<F: FnOnce(Pccdummy27) -> Pccdummy27>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy27<F: FnOnce(Pccdummy27) -> Pccdummy27>(&self, f: F) -> &Self {
      let tmp = self.pccdummy27();
      self.set_pccdummy27(f(tmp))
   }
@@ -774,14 +774,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy28(&self, value: Pccdummy28) -> &Pcc {
+  pub fn set_pccdummy28(&self, value: Pccdummy28) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy28<F: FnOnce(Pccdummy28) -> Pccdummy28>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy28<F: FnOnce(Pccdummy28) -> Pccdummy28>(&self, f: F) -> &Self {
      let tmp = self.pccdummy28();
      self.set_pccdummy28(f(tmp))
   }
@@ -801,14 +801,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy29(&self, value: Pccdummy29) -> &Pcc {
+  pub fn set_pccdummy29(&self, value: Pccdummy29) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy29<F: FnOnce(Pccdummy29) -> Pccdummy29>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy29<F: FnOnce(Pccdummy29) -> Pccdummy29>(&self, f: F) -> &Self {
      let tmp = self.pccdummy29();
      self.set_pccdummy29(f(tmp))
   }
@@ -828,14 +828,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy30(&self, value: Pccdummy30) -> &Pcc {
+  pub fn set_pccdummy30(&self, value: Pccdummy30) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy30<F: FnOnce(Pccdummy30) -> Pccdummy30>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy30<F: FnOnce(Pccdummy30) -> Pccdummy30>(&self, f: F) -> &Self {
      let tmp = self.pccdummy30();
      self.set_pccdummy30(f(tmp))
   }
@@ -855,14 +855,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy31(&self, value: Pccdummy31) -> &Pcc {
+  pub fn set_pccdummy31(&self, value: Pccdummy31) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy31<F: FnOnce(Pccdummy31) -> Pccdummy31>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy31<F: FnOnce(Pccdummy31) -> Pccdummy31>(&self, f: F) -> &Self {
      let tmp = self.pccdummy31();
      self.set_pccdummy31(f(tmp))
   }
@@ -882,14 +882,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ftfc(&self, value: Ftfc) -> &Pcc {
+  pub fn set_ftfc(&self, value: Ftfc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftfc<F: FnOnce(Ftfc) -> Ftfc>(&self, f: F) -> &Pcc {
+  pub fn with_ftfc<F: FnOnce(Ftfc) -> Ftfc>(&self, f: F) -> &Self {
      let tmp = self.ftfc();
      self.set_ftfc(f(tmp))
   }
@@ -909,14 +909,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_dmamux(&self, value: Dmamux) -> &Pcc {
+  pub fn set_dmamux(&self, value: Dmamux) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dmamux<F: FnOnce(Dmamux) -> Dmamux>(&self, f: F) -> &Pcc {
+  pub fn with_dmamux<F: FnOnce(Dmamux) -> Dmamux>(&self, f: F) -> &Self {
      let tmp = self.dmamux();
      self.set_dmamux(f(tmp))
   }
@@ -936,14 +936,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy34(&self, value: Pccdummy34) -> &Pcc {
+  pub fn set_pccdummy34(&self, value: Pccdummy34) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy34<F: FnOnce(Pccdummy34) -> Pccdummy34>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy34<F: FnOnce(Pccdummy34) -> Pccdummy34>(&self, f: F) -> &Self {
      let tmp = self.pccdummy34();
      self.set_pccdummy34(f(tmp))
   }
@@ -963,14 +963,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy35(&self, value: Pccdummy35) -> &Pcc {
+  pub fn set_pccdummy35(&self, value: Pccdummy35) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy35<F: FnOnce(Pccdummy35) -> Pccdummy35>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy35<F: FnOnce(Pccdummy35) -> Pccdummy35>(&self, f: F) -> &Self {
      let tmp = self.pccdummy35();
      self.set_pccdummy35(f(tmp))
   }
@@ -990,14 +990,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_flexcan0(&self, value: Flexcan0) -> &Pcc {
+  pub fn set_flexcan0(&self, value: Flexcan0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x90) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flexcan0<F: FnOnce(Flexcan0) -> Flexcan0>(&self, f: F) -> &Pcc {
+  pub fn with_flexcan0<F: FnOnce(Flexcan0) -> Flexcan0>(&self, f: F) -> &Self {
      let tmp = self.flexcan0();
      self.set_flexcan0(f(tmp))
   }
@@ -1017,14 +1017,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_flexcan1(&self, value: Flexcan1) -> &Pcc {
+  pub fn set_flexcan1(&self, value: Flexcan1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x94) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flexcan1<F: FnOnce(Flexcan1) -> Flexcan1>(&self, f: F) -> &Pcc {
+  pub fn with_flexcan1<F: FnOnce(Flexcan1) -> Flexcan1>(&self, f: F) -> &Self {
      let tmp = self.flexcan1();
      self.set_flexcan1(f(tmp))
   }
@@ -1044,14 +1044,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ftm3(&self, value: Ftm3) -> &Pcc {
+  pub fn set_ftm3(&self, value: Ftm3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x98) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftm3<F: FnOnce(Ftm3) -> Ftm3>(&self, f: F) -> &Pcc {
+  pub fn with_ftm3<F: FnOnce(Ftm3) -> Ftm3>(&self, f: F) -> &Self {
      let tmp = self.ftm3();
      self.set_ftm3(f(tmp))
   }
@@ -1071,14 +1071,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_adc1(&self, value: Adc1) -> &Pcc {
+  pub fn set_adc1(&self, value: Adc1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x9c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_adc1<F: FnOnce(Adc1) -> Adc1>(&self, f: F) -> &Pcc {
+  pub fn with_adc1<F: FnOnce(Adc1) -> Adc1>(&self, f: F) -> &Self {
      let tmp = self.adc1();
      self.set_adc1(f(tmp))
   }
@@ -1098,14 +1098,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy40(&self, value: Pccdummy40) -> &Pcc {
+  pub fn set_pccdummy40(&self, value: Pccdummy40) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy40<F: FnOnce(Pccdummy40) -> Pccdummy40>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy40<F: FnOnce(Pccdummy40) -> Pccdummy40>(&self, f: F) -> &Self {
      let tmp = self.pccdummy40();
      self.set_pccdummy40(f(tmp))
   }
@@ -1125,14 +1125,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy41(&self, value: Pccdummy41) -> &Pcc {
+  pub fn set_pccdummy41(&self, value: Pccdummy41) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy41<F: FnOnce(Pccdummy41) -> Pccdummy41>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy41<F: FnOnce(Pccdummy41) -> Pccdummy41>(&self, f: F) -> &Self {
      let tmp = self.pccdummy41();
      self.set_pccdummy41(f(tmp))
   }
@@ -1152,14 +1152,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy42(&self, value: Pccdummy42) -> &Pcc {
+  pub fn set_pccdummy42(&self, value: Pccdummy42) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy42<F: FnOnce(Pccdummy42) -> Pccdummy42>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy42<F: FnOnce(Pccdummy42) -> Pccdummy42>(&self, f: F) -> &Self {
      let tmp = self.pccdummy42();
      self.set_pccdummy42(f(tmp))
   }
@@ -1179,14 +1179,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_flexcan2(&self, value: Flexcan2) -> &Pcc {
+  pub fn set_flexcan2(&self, value: Flexcan2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flexcan2<F: FnOnce(Flexcan2) -> Flexcan2>(&self, f: F) -> &Pcc {
+  pub fn with_flexcan2<F: FnOnce(Flexcan2) -> Flexcan2>(&self, f: F) -> &Self {
      let tmp = self.flexcan2();
      self.set_flexcan2(f(tmp))
   }
@@ -1206,14 +1206,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpspi0(&self, value: Lpspi0) -> &Pcc {
+  pub fn set_lpspi0(&self, value: Lpspi0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpspi0<F: FnOnce(Lpspi0) -> Lpspi0>(&self, f: F) -> &Pcc {
+  pub fn with_lpspi0<F: FnOnce(Lpspi0) -> Lpspi0>(&self, f: F) -> &Self {
      let tmp = self.lpspi0();
      self.set_lpspi0(f(tmp))
   }
@@ -1233,14 +1233,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpspi1(&self, value: Lpspi1) -> &Pcc {
+  pub fn set_lpspi1(&self, value: Lpspi1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpspi1<F: FnOnce(Lpspi1) -> Lpspi1>(&self, f: F) -> &Pcc {
+  pub fn with_lpspi1<F: FnOnce(Lpspi1) -> Lpspi1>(&self, f: F) -> &Self {
      let tmp = self.lpspi1();
      self.set_lpspi1(f(tmp))
   }
@@ -1260,14 +1260,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpspi2(&self, value: Lpspi2) -> &Pcc {
+  pub fn set_lpspi2(&self, value: Lpspi2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpspi2<F: FnOnce(Lpspi2) -> Lpspi2>(&self, f: F) -> &Pcc {
+  pub fn with_lpspi2<F: FnOnce(Lpspi2) -> Lpspi2>(&self, f: F) -> &Self {
      let tmp = self.lpspi2();
      self.set_lpspi2(f(tmp))
   }
@@ -1287,14 +1287,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy47(&self, value: Pccdummy47) -> &Pcc {
+  pub fn set_pccdummy47(&self, value: Pccdummy47) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xbc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy47<F: FnOnce(Pccdummy47) -> Pccdummy47>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy47<F: FnOnce(Pccdummy47) -> Pccdummy47>(&self, f: F) -> &Self {
      let tmp = self.pccdummy47();
      self.set_pccdummy47(f(tmp))
   }
@@ -1314,14 +1314,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy48(&self, value: Pccdummy48) -> &Pcc {
+  pub fn set_pccdummy48(&self, value: Pccdummy48) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy48<F: FnOnce(Pccdummy48) -> Pccdummy48>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy48<F: FnOnce(Pccdummy48) -> Pccdummy48>(&self, f: F) -> &Self {
      let tmp = self.pccdummy48();
      self.set_pccdummy48(f(tmp))
   }
@@ -1341,14 +1341,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pdb1(&self, value: Pdb1) -> &Pcc {
+  pub fn set_pdb1(&self, value: Pdb1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pdb1<F: FnOnce(Pdb1) -> Pdb1>(&self, f: F) -> &Pcc {
+  pub fn with_pdb1<F: FnOnce(Pdb1) -> Pdb1>(&self, f: F) -> &Self {
      let tmp = self.pdb1();
      self.set_pdb1(f(tmp))
   }
@@ -1368,14 +1368,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_crc(&self, value: Crc) -> &Pcc {
+  pub fn set_crc(&self, value: Crc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_crc<F: FnOnce(Crc) -> Crc>(&self, f: F) -> &Pcc {
+  pub fn with_crc<F: FnOnce(Crc) -> Crc>(&self, f: F) -> &Self {
      let tmp = self.crc();
      self.set_crc(f(tmp))
   }
@@ -1395,14 +1395,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy51(&self, value: Pccdummy51) -> &Pcc {
+  pub fn set_pccdummy51(&self, value: Pccdummy51) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xcc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy51<F: FnOnce(Pccdummy51) -> Pccdummy51>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy51<F: FnOnce(Pccdummy51) -> Pccdummy51>(&self, f: F) -> &Self {
      let tmp = self.pccdummy51();
      self.set_pccdummy51(f(tmp))
   }
@@ -1422,14 +1422,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy52(&self, value: Pccdummy52) -> &Pcc {
+  pub fn set_pccdummy52(&self, value: Pccdummy52) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy52<F: FnOnce(Pccdummy52) -> Pccdummy52>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy52<F: FnOnce(Pccdummy52) -> Pccdummy52>(&self, f: F) -> &Self {
      let tmp = self.pccdummy52();
      self.set_pccdummy52(f(tmp))
   }
@@ -1449,14 +1449,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy53(&self, value: Pccdummy53) -> &Pcc {
+  pub fn set_pccdummy53(&self, value: Pccdummy53) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy53<F: FnOnce(Pccdummy53) -> Pccdummy53>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy53<F: FnOnce(Pccdummy53) -> Pccdummy53>(&self, f: F) -> &Self {
      let tmp = self.pccdummy53();
      self.set_pccdummy53(f(tmp))
   }
@@ -1476,14 +1476,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pdb0(&self, value: Pdb0) -> &Pcc {
+  pub fn set_pdb0(&self, value: Pdb0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pdb0<F: FnOnce(Pdb0) -> Pdb0>(&self, f: F) -> &Pcc {
+  pub fn with_pdb0<F: FnOnce(Pdb0) -> Pdb0>(&self, f: F) -> &Self {
      let tmp = self.pdb0();
      self.set_pdb0(f(tmp))
   }
@@ -1503,14 +1503,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpit(&self, value: Lpit) -> &Pcc {
+  pub fn set_lpit(&self, value: Lpit) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xdc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpit<F: FnOnce(Lpit) -> Lpit>(&self, f: F) -> &Pcc {
+  pub fn with_lpit<F: FnOnce(Lpit) -> Lpit>(&self, f: F) -> &Self {
      let tmp = self.lpit();
      self.set_lpit(f(tmp))
   }
@@ -1530,14 +1530,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ftm0(&self, value: Ftm0) -> &Pcc {
+  pub fn set_ftm0(&self, value: Ftm0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftm0<F: FnOnce(Ftm0) -> Ftm0>(&self, f: F) -> &Pcc {
+  pub fn with_ftm0<F: FnOnce(Ftm0) -> Ftm0>(&self, f: F) -> &Self {
      let tmp = self.ftm0();
      self.set_ftm0(f(tmp))
   }
@@ -1557,14 +1557,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ftm1(&self, value: Ftm1) -> &Pcc {
+  pub fn set_ftm1(&self, value: Ftm1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftm1<F: FnOnce(Ftm1) -> Ftm1>(&self, f: F) -> &Pcc {
+  pub fn with_ftm1<F: FnOnce(Ftm1) -> Ftm1>(&self, f: F) -> &Self {
      let tmp = self.ftm1();
      self.set_ftm1(f(tmp))
   }
@@ -1584,14 +1584,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ftm2(&self, value: Ftm2) -> &Pcc {
+  pub fn set_ftm2(&self, value: Ftm2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xe8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ftm2<F: FnOnce(Ftm2) -> Ftm2>(&self, f: F) -> &Pcc {
+  pub fn with_ftm2<F: FnOnce(Ftm2) -> Ftm2>(&self, f: F) -> &Self {
      let tmp = self.ftm2();
      self.set_ftm2(f(tmp))
   }
@@ -1611,14 +1611,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_adc0(&self, value: Adc0) -> &Pcc {
+  pub fn set_adc0(&self, value: Adc0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xec) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_adc0<F: FnOnce(Adc0) -> Adc0>(&self, f: F) -> &Pcc {
+  pub fn with_adc0<F: FnOnce(Adc0) -> Adc0>(&self, f: F) -> &Self {
      let tmp = self.adc0();
      self.set_adc0(f(tmp))
   }
@@ -1638,14 +1638,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy60(&self, value: Pccdummy60) -> &Pcc {
+  pub fn set_pccdummy60(&self, value: Pccdummy60) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy60<F: FnOnce(Pccdummy60) -> Pccdummy60>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy60<F: FnOnce(Pccdummy60) -> Pccdummy60>(&self, f: F) -> &Self {
      let tmp = self.pccdummy60();
      self.set_pccdummy60(f(tmp))
   }
@@ -1665,14 +1665,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_rtc(&self, value: Rtc) -> &Pcc {
+  pub fn set_rtc(&self, value: Rtc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_rtc<F: FnOnce(Rtc) -> Rtc>(&self, f: F) -> &Pcc {
+  pub fn with_rtc<F: FnOnce(Rtc) -> Rtc>(&self, f: F) -> &Self {
      let tmp = self.rtc();
      self.set_rtc(f(tmp))
   }
@@ -1692,14 +1692,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy62(&self, value: Pccdummy62) -> &Pcc {
+  pub fn set_pccdummy62(&self, value: Pccdummy62) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xf8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy62<F: FnOnce(Pccdummy62) -> Pccdummy62>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy62<F: FnOnce(Pccdummy62) -> Pccdummy62>(&self, f: F) -> &Self {
      let tmp = self.pccdummy62();
      self.set_pccdummy62(f(tmp))
   }
@@ -1719,14 +1719,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy63(&self, value: Pccdummy63) -> &Pcc {
+  pub fn set_pccdummy63(&self, value: Pccdummy63) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy63<F: FnOnce(Pccdummy63) -> Pccdummy63>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy63<F: FnOnce(Pccdummy63) -> Pccdummy63>(&self, f: F) -> &Self {
      let tmp = self.pccdummy63();
      self.set_pccdummy63(f(tmp))
   }
@@ -1746,14 +1746,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lptmr0(&self, value: Lptmr0) -> &Pcc {
+  pub fn set_lptmr0(&self, value: Lptmr0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lptmr0<F: FnOnce(Lptmr0) -> Lptmr0>(&self, f: F) -> &Pcc {
+  pub fn with_lptmr0<F: FnOnce(Lptmr0) -> Lptmr0>(&self, f: F) -> &Self {
      let tmp = self.lptmr0();
      self.set_lptmr0(f(tmp))
   }
@@ -1773,14 +1773,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy65(&self, value: Pccdummy65) -> &Pcc {
+  pub fn set_pccdummy65(&self, value: Pccdummy65) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy65<F: FnOnce(Pccdummy65) -> Pccdummy65>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy65<F: FnOnce(Pccdummy65) -> Pccdummy65>(&self, f: F) -> &Self {
      let tmp = self.pccdummy65();
      self.set_pccdummy65(f(tmp))
   }
@@ -1800,14 +1800,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy66(&self, value: Pccdummy66) -> &Pcc {
+  pub fn set_pccdummy66(&self, value: Pccdummy66) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy66<F: FnOnce(Pccdummy66) -> Pccdummy66>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy66<F: FnOnce(Pccdummy66) -> Pccdummy66>(&self, f: F) -> &Self {
      let tmp = self.pccdummy66();
      self.set_pccdummy66(f(tmp))
   }
@@ -1827,14 +1827,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy67(&self, value: Pccdummy67) -> &Pcc {
+  pub fn set_pccdummy67(&self, value: Pccdummy67) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy67<F: FnOnce(Pccdummy67) -> Pccdummy67>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy67<F: FnOnce(Pccdummy67) -> Pccdummy67>(&self, f: F) -> &Self {
      let tmp = self.pccdummy67();
      self.set_pccdummy67(f(tmp))
   }
@@ -1854,14 +1854,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy68(&self, value: Pccdummy68) -> &Pcc {
+  pub fn set_pccdummy68(&self, value: Pccdummy68) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x110) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy68<F: FnOnce(Pccdummy68) -> Pccdummy68>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy68<F: FnOnce(Pccdummy68) -> Pccdummy68>(&self, f: F) -> &Self {
      let tmp = self.pccdummy68();
      self.set_pccdummy68(f(tmp))
   }
@@ -1881,14 +1881,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy69(&self, value: Pccdummy69) -> &Pcc {
+  pub fn set_pccdummy69(&self, value: Pccdummy69) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x114) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy69<F: FnOnce(Pccdummy69) -> Pccdummy69>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy69<F: FnOnce(Pccdummy69) -> Pccdummy69>(&self, f: F) -> &Self {
      let tmp = self.pccdummy69();
      self.set_pccdummy69(f(tmp))
   }
@@ -1908,14 +1908,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy70(&self, value: Pccdummy70) -> &Pcc {
+  pub fn set_pccdummy70(&self, value: Pccdummy70) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x118) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy70<F: FnOnce(Pccdummy70) -> Pccdummy70>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy70<F: FnOnce(Pccdummy70) -> Pccdummy70>(&self, f: F) -> &Self {
      let tmp = self.pccdummy70();
      self.set_pccdummy70(f(tmp))
   }
@@ -1935,14 +1935,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy71(&self, value: Pccdummy71) -> &Pcc {
+  pub fn set_pccdummy71(&self, value: Pccdummy71) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy71<F: FnOnce(Pccdummy71) -> Pccdummy71>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy71<F: FnOnce(Pccdummy71) -> Pccdummy71>(&self, f: F) -> &Self {
      let tmp = self.pccdummy71();
      self.set_pccdummy71(f(tmp))
   }
@@ -1962,14 +1962,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy72(&self, value: Pccdummy72) -> &Pcc {
+  pub fn set_pccdummy72(&self, value: Pccdummy72) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x120) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy72<F: FnOnce(Pccdummy72) -> Pccdummy72>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy72<F: FnOnce(Pccdummy72) -> Pccdummy72>(&self, f: F) -> &Self {
      let tmp = self.pccdummy72();
      self.set_pccdummy72(f(tmp))
   }
@@ -1989,14 +1989,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_porta(&self, value: Porta) -> &Pcc {
+  pub fn set_porta(&self, value: Porta) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x124) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_porta<F: FnOnce(Porta) -> Porta>(&self, f: F) -> &Pcc {
+  pub fn with_porta<F: FnOnce(Porta) -> Porta>(&self, f: F) -> &Self {
      let tmp = self.porta();
      self.set_porta(f(tmp))
   }
@@ -2016,14 +2016,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_portb(&self, value: Portb) -> &Pcc {
+  pub fn set_portb(&self, value: Portb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x128) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_portb<F: FnOnce(Portb) -> Portb>(&self, f: F) -> &Pcc {
+  pub fn with_portb<F: FnOnce(Portb) -> Portb>(&self, f: F) -> &Self {
      let tmp = self.portb();
      self.set_portb(f(tmp))
   }
@@ -2043,14 +2043,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_portc(&self, value: Portc) -> &Pcc {
+  pub fn set_portc(&self, value: Portc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x12c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_portc<F: FnOnce(Portc) -> Portc>(&self, f: F) -> &Pcc {
+  pub fn with_portc<F: FnOnce(Portc) -> Portc>(&self, f: F) -> &Self {
      let tmp = self.portc();
      self.set_portc(f(tmp))
   }
@@ -2070,14 +2070,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_portd(&self, value: Portd) -> &Pcc {
+  pub fn set_portd(&self, value: Portd) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x130) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_portd<F: FnOnce(Portd) -> Portd>(&self, f: F) -> &Pcc {
+  pub fn with_portd<F: FnOnce(Portd) -> Portd>(&self, f: F) -> &Self {
      let tmp = self.portd();
      self.set_portd(f(tmp))
   }
@@ -2097,14 +2097,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_porte(&self, value: Porte) -> &Pcc {
+  pub fn set_porte(&self, value: Porte) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x134) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_porte<F: FnOnce(Porte) -> Porte>(&self, f: F) -> &Pcc {
+  pub fn with_porte<F: FnOnce(Porte) -> Porte>(&self, f: F) -> &Self {
      let tmp = self.porte();
      self.set_porte(f(tmp))
   }
@@ -2124,14 +2124,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy78(&self, value: Pccdummy78) -> &Pcc {
+  pub fn set_pccdummy78(&self, value: Pccdummy78) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x138) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy78<F: FnOnce(Pccdummy78) -> Pccdummy78>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy78<F: FnOnce(Pccdummy78) -> Pccdummy78>(&self, f: F) -> &Self {
      let tmp = self.pccdummy78();
      self.set_pccdummy78(f(tmp))
   }
@@ -2151,14 +2151,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy79(&self, value: Pccdummy79) -> &Pcc {
+  pub fn set_pccdummy79(&self, value: Pccdummy79) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x13c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy79<F: FnOnce(Pccdummy79) -> Pccdummy79>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy79<F: FnOnce(Pccdummy79) -> Pccdummy79>(&self, f: F) -> &Self {
      let tmp = self.pccdummy79();
      self.set_pccdummy79(f(tmp))
   }
@@ -2178,14 +2178,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy80(&self, value: Pccdummy80) -> &Pcc {
+  pub fn set_pccdummy80(&self, value: Pccdummy80) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x140) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy80<F: FnOnce(Pccdummy80) -> Pccdummy80>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy80<F: FnOnce(Pccdummy80) -> Pccdummy80>(&self, f: F) -> &Self {
      let tmp = self.pccdummy80();
      self.set_pccdummy80(f(tmp))
   }
@@ -2205,14 +2205,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy81(&self, value: Pccdummy81) -> &Pcc {
+  pub fn set_pccdummy81(&self, value: Pccdummy81) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x144) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy81<F: FnOnce(Pccdummy81) -> Pccdummy81>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy81<F: FnOnce(Pccdummy81) -> Pccdummy81>(&self, f: F) -> &Self {
      let tmp = self.pccdummy81();
      self.set_pccdummy81(f(tmp))
   }
@@ -2232,14 +2232,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy82(&self, value: Pccdummy82) -> &Pcc {
+  pub fn set_pccdummy82(&self, value: Pccdummy82) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x148) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy82<F: FnOnce(Pccdummy82) -> Pccdummy82>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy82<F: FnOnce(Pccdummy82) -> Pccdummy82>(&self, f: F) -> &Self {
      let tmp = self.pccdummy82();
      self.set_pccdummy82(f(tmp))
   }
@@ -2259,14 +2259,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy83(&self, value: Pccdummy83) -> &Pcc {
+  pub fn set_pccdummy83(&self, value: Pccdummy83) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy83<F: FnOnce(Pccdummy83) -> Pccdummy83>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy83<F: FnOnce(Pccdummy83) -> Pccdummy83>(&self, f: F) -> &Self {
      let tmp = self.pccdummy83();
      self.set_pccdummy83(f(tmp))
   }
@@ -2286,14 +2286,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy84(&self, value: Pccdummy84) -> &Pcc {
+  pub fn set_pccdummy84(&self, value: Pccdummy84) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x150) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy84<F: FnOnce(Pccdummy84) -> Pccdummy84>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy84<F: FnOnce(Pccdummy84) -> Pccdummy84>(&self, f: F) -> &Self {
      let tmp = self.pccdummy84();
      self.set_pccdummy84(f(tmp))
   }
@@ -2313,14 +2313,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy85(&self, value: Pccdummy85) -> &Pcc {
+  pub fn set_pccdummy85(&self, value: Pccdummy85) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x154) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy85<F: FnOnce(Pccdummy85) -> Pccdummy85>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy85<F: FnOnce(Pccdummy85) -> Pccdummy85>(&self, f: F) -> &Self {
      let tmp = self.pccdummy85();
      self.set_pccdummy85(f(tmp))
   }
@@ -2340,14 +2340,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy86(&self, value: Pccdummy86) -> &Pcc {
+  pub fn set_pccdummy86(&self, value: Pccdummy86) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x158) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy86<F: FnOnce(Pccdummy86) -> Pccdummy86>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy86<F: FnOnce(Pccdummy86) -> Pccdummy86>(&self, f: F) -> &Self {
      let tmp = self.pccdummy86();
      self.set_pccdummy86(f(tmp))
   }
@@ -2367,14 +2367,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy87(&self, value: Pccdummy87) -> &Pcc {
+  pub fn set_pccdummy87(&self, value: Pccdummy87) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x15c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy87<F: FnOnce(Pccdummy87) -> Pccdummy87>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy87<F: FnOnce(Pccdummy87) -> Pccdummy87>(&self, f: F) -> &Self {
      let tmp = self.pccdummy87();
      self.set_pccdummy87(f(tmp))
   }
@@ -2394,14 +2394,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy88(&self, value: Pccdummy88) -> &Pcc {
+  pub fn set_pccdummy88(&self, value: Pccdummy88) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x160) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy88<F: FnOnce(Pccdummy88) -> Pccdummy88>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy88<F: FnOnce(Pccdummy88) -> Pccdummy88>(&self, f: F) -> &Self {
      let tmp = self.pccdummy88();
      self.set_pccdummy88(f(tmp))
   }
@@ -2421,14 +2421,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy89(&self, value: Pccdummy89) -> &Pcc {
+  pub fn set_pccdummy89(&self, value: Pccdummy89) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x164) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy89<F: FnOnce(Pccdummy89) -> Pccdummy89>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy89<F: FnOnce(Pccdummy89) -> Pccdummy89>(&self, f: F) -> &Self {
      let tmp = self.pccdummy89();
      self.set_pccdummy89(f(tmp))
   }
@@ -2448,14 +2448,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_flexio(&self, value: Flexio) -> &Pcc {
+  pub fn set_flexio(&self, value: Flexio) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x168) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_flexio<F: FnOnce(Flexio) -> Flexio>(&self, f: F) -> &Pcc {
+  pub fn with_flexio<F: FnOnce(Flexio) -> Flexio>(&self, f: F) -> &Self {
      let tmp = self.flexio();
      self.set_flexio(f(tmp))
   }
@@ -2475,14 +2475,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy91(&self, value: Pccdummy91) -> &Pcc {
+  pub fn set_pccdummy91(&self, value: Pccdummy91) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x16c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy91<F: FnOnce(Pccdummy91) -> Pccdummy91>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy91<F: FnOnce(Pccdummy91) -> Pccdummy91>(&self, f: F) -> &Self {
      let tmp = self.pccdummy91();
      self.set_pccdummy91(f(tmp))
   }
@@ -2502,14 +2502,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy92(&self, value: Pccdummy92) -> &Pcc {
+  pub fn set_pccdummy92(&self, value: Pccdummy92) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x170) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy92<F: FnOnce(Pccdummy92) -> Pccdummy92>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy92<F: FnOnce(Pccdummy92) -> Pccdummy92>(&self, f: F) -> &Self {
      let tmp = self.pccdummy92();
      self.set_pccdummy92(f(tmp))
   }
@@ -2529,14 +2529,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy93(&self, value: Pccdummy93) -> &Pcc {
+  pub fn set_pccdummy93(&self, value: Pccdummy93) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x174) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy93<F: FnOnce(Pccdummy93) -> Pccdummy93>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy93<F: FnOnce(Pccdummy93) -> Pccdummy93>(&self, f: F) -> &Self {
      let tmp = self.pccdummy93();
      self.set_pccdummy93(f(tmp))
   }
@@ -2556,14 +2556,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy94(&self, value: Pccdummy94) -> &Pcc {
+  pub fn set_pccdummy94(&self, value: Pccdummy94) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x178) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy94<F: FnOnce(Pccdummy94) -> Pccdummy94>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy94<F: FnOnce(Pccdummy94) -> Pccdummy94>(&self, f: F) -> &Self {
      let tmp = self.pccdummy94();
      self.set_pccdummy94(f(tmp))
   }
@@ -2583,14 +2583,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy95(&self, value: Pccdummy95) -> &Pcc {
+  pub fn set_pccdummy95(&self, value: Pccdummy95) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x17c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy95<F: FnOnce(Pccdummy95) -> Pccdummy95>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy95<F: FnOnce(Pccdummy95) -> Pccdummy95>(&self, f: F) -> &Self {
      let tmp = self.pccdummy95();
      self.set_pccdummy95(f(tmp))
   }
@@ -2610,14 +2610,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy96(&self, value: Pccdummy96) -> &Pcc {
+  pub fn set_pccdummy96(&self, value: Pccdummy96) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy96<F: FnOnce(Pccdummy96) -> Pccdummy96>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy96<F: FnOnce(Pccdummy96) -> Pccdummy96>(&self, f: F) -> &Self {
      let tmp = self.pccdummy96();
      self.set_pccdummy96(f(tmp))
   }
@@ -2637,14 +2637,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_ewm(&self, value: Ewm) -> &Pcc {
+  pub fn set_ewm(&self, value: Ewm) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x184) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ewm<F: FnOnce(Ewm) -> Ewm>(&self, f: F) -> &Pcc {
+  pub fn with_ewm<F: FnOnce(Ewm) -> Ewm>(&self, f: F) -> &Self {
      let tmp = self.ewm();
      self.set_ewm(f(tmp))
   }
@@ -2664,14 +2664,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy98(&self, value: Pccdummy98) -> &Pcc {
+  pub fn set_pccdummy98(&self, value: Pccdummy98) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x188) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy98<F: FnOnce(Pccdummy98) -> Pccdummy98>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy98<F: FnOnce(Pccdummy98) -> Pccdummy98>(&self, f: F) -> &Self {
      let tmp = self.pccdummy98();
      self.set_pccdummy98(f(tmp))
   }
@@ -2691,14 +2691,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy99(&self, value: Pccdummy99) -> &Pcc {
+  pub fn set_pccdummy99(&self, value: Pccdummy99) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy99<F: FnOnce(Pccdummy99) -> Pccdummy99>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy99<F: FnOnce(Pccdummy99) -> Pccdummy99>(&self, f: F) -> &Self {
      let tmp = self.pccdummy99();
      self.set_pccdummy99(f(tmp))
   }
@@ -2718,14 +2718,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy100(&self, value: Pccdummy100) -> &Pcc {
+  pub fn set_pccdummy100(&self, value: Pccdummy100) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x190) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy100<F: FnOnce(Pccdummy100) -> Pccdummy100>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy100<F: FnOnce(Pccdummy100) -> Pccdummy100>(&self, f: F) -> &Self {
      let tmp = self.pccdummy100();
      self.set_pccdummy100(f(tmp))
   }
@@ -2745,14 +2745,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy101(&self, value: Pccdummy101) -> &Pcc {
+  pub fn set_pccdummy101(&self, value: Pccdummy101) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x194) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy101<F: FnOnce(Pccdummy101) -> Pccdummy101>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy101<F: FnOnce(Pccdummy101) -> Pccdummy101>(&self, f: F) -> &Self {
      let tmp = self.pccdummy101();
      self.set_pccdummy101(f(tmp))
   }
@@ -2772,14 +2772,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpi2c0(&self, value: Lpi2c0) -> &Pcc {
+  pub fn set_lpi2c0(&self, value: Lpi2c0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x198) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpi2c0<F: FnOnce(Lpi2c0) -> Lpi2c0>(&self, f: F) -> &Pcc {
+  pub fn with_lpi2c0<F: FnOnce(Lpi2c0) -> Lpi2c0>(&self, f: F) -> &Self {
      let tmp = self.lpi2c0();
      self.set_lpi2c0(f(tmp))
   }
@@ -2799,14 +2799,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy103(&self, value: Pccdummy103) -> &Pcc {
+  pub fn set_pccdummy103(&self, value: Pccdummy103) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x19c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy103<F: FnOnce(Pccdummy103) -> Pccdummy103>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy103<F: FnOnce(Pccdummy103) -> Pccdummy103>(&self, f: F) -> &Self {
      let tmp = self.pccdummy103();
      self.set_pccdummy103(f(tmp))
   }
@@ -2826,14 +2826,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy104(&self, value: Pccdummy104) -> &Pcc {
+  pub fn set_pccdummy104(&self, value: Pccdummy104) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy104<F: FnOnce(Pccdummy104) -> Pccdummy104>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy104<F: FnOnce(Pccdummy104) -> Pccdummy104>(&self, f: F) -> &Self {
      let tmp = self.pccdummy104();
      self.set_pccdummy104(f(tmp))
   }
@@ -2853,14 +2853,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy105(&self, value: Pccdummy105) -> &Pcc {
+  pub fn set_pccdummy105(&self, value: Pccdummy105) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy105<F: FnOnce(Pccdummy105) -> Pccdummy105>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy105<F: FnOnce(Pccdummy105) -> Pccdummy105>(&self, f: F) -> &Self {
      let tmp = self.pccdummy105();
      self.set_pccdummy105(f(tmp))
   }
@@ -2880,14 +2880,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpuart0(&self, value: Lpuart0) -> &Pcc {
+  pub fn set_lpuart0(&self, value: Lpuart0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpuart0<F: FnOnce(Lpuart0) -> Lpuart0>(&self, f: F) -> &Pcc {
+  pub fn with_lpuart0<F: FnOnce(Lpuart0) -> Lpuart0>(&self, f: F) -> &Self {
      let tmp = self.lpuart0();
      self.set_lpuart0(f(tmp))
   }
@@ -2907,14 +2907,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpuart1(&self, value: Lpuart1) -> &Pcc {
+  pub fn set_lpuart1(&self, value: Lpuart1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1ac) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpuart1<F: FnOnce(Lpuart1) -> Lpuart1>(&self, f: F) -> &Pcc {
+  pub fn with_lpuart1<F: FnOnce(Lpuart1) -> Lpuart1>(&self, f: F) -> &Self {
      let tmp = self.lpuart1();
      self.set_lpuart1(f(tmp))
   }
@@ -2934,14 +2934,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_lpuart2(&self, value: Lpuart2) -> &Pcc {
+  pub fn set_lpuart2(&self, value: Lpuart2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_lpuart2<F: FnOnce(Lpuart2) -> Lpuart2>(&self, f: F) -> &Pcc {
+  pub fn with_lpuart2<F: FnOnce(Lpuart2) -> Lpuart2>(&self, f: F) -> &Self {
      let tmp = self.lpuart2();
      self.set_lpuart2(f(tmp))
   }
@@ -2961,14 +2961,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy109(&self, value: Pccdummy109) -> &Pcc {
+  pub fn set_pccdummy109(&self, value: Pccdummy109) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy109<F: FnOnce(Pccdummy109) -> Pccdummy109>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy109<F: FnOnce(Pccdummy109) -> Pccdummy109>(&self, f: F) -> &Self {
      let tmp = self.pccdummy109();
      self.set_pccdummy109(f(tmp))
   }
@@ -2988,14 +2988,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy110(&self, value: Pccdummy110) -> &Pcc {
+  pub fn set_pccdummy110(&self, value: Pccdummy110) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy110<F: FnOnce(Pccdummy110) -> Pccdummy110>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy110<F: FnOnce(Pccdummy110) -> Pccdummy110>(&self, f: F) -> &Self {
      let tmp = self.pccdummy110();
      self.set_pccdummy110(f(tmp))
   }
@@ -3015,14 +3015,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy111(&self, value: Pccdummy111) -> &Pcc {
+  pub fn set_pccdummy111(&self, value: Pccdummy111) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1bc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy111<F: FnOnce(Pccdummy111) -> Pccdummy111>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy111<F: FnOnce(Pccdummy111) -> Pccdummy111>(&self, f: F) -> &Self {
      let tmp = self.pccdummy111();
      self.set_pccdummy111(f(tmp))
   }
@@ -3042,14 +3042,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy112(&self, value: Pccdummy112) -> &Pcc {
+  pub fn set_pccdummy112(&self, value: Pccdummy112) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy112<F: FnOnce(Pccdummy112) -> Pccdummy112>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy112<F: FnOnce(Pccdummy112) -> Pccdummy112>(&self, f: F) -> &Self {
      let tmp = self.pccdummy112();
      self.set_pccdummy112(f(tmp))
   }
@@ -3069,14 +3069,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy113(&self, value: Pccdummy113) -> &Pcc {
+  pub fn set_pccdummy113(&self, value: Pccdummy113) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy113<F: FnOnce(Pccdummy113) -> Pccdummy113>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy113<F: FnOnce(Pccdummy113) -> Pccdummy113>(&self, f: F) -> &Self {
      let tmp = self.pccdummy113();
      self.set_pccdummy113(f(tmp))
   }
@@ -3096,14 +3096,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_pccdummy114(&self, value: Pccdummy114) -> &Pcc {
+  pub fn set_pccdummy114(&self, value: Pccdummy114) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pccdummy114<F: FnOnce(Pccdummy114) -> Pccdummy114>(&self, f: F) -> &Pcc {
+  pub fn with_pccdummy114<F: FnOnce(Pccdummy114) -> Pccdummy114>(&self, f: F) -> &Self {
      let tmp = self.pccdummy114();
      self.set_pccdummy114(f(tmp))
   }
@@ -3123,14 +3123,14 @@ impl Pcc {
      }
   }
   #[inline]
-  pub fn set_cmp0(&self, value: Cmp0) -> &Pcc {
+  pub fn set_cmp0(&self, value: Cmp0) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1cc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cmp0<F: FnOnce(Cmp0) -> Cmp0>(&self, f: F) -> &Pcc {
+  pub fn with_cmp0<F: FnOnce(Cmp0) -> Cmp0>(&self, f: F) -> &Self {
      let tmp = self.cmp0();
      self.set_cmp0(f(tmp))
   }
@@ -6267,4 +6267,5 @@ impl Cgc for super::lpuart::Lpuart2 {
    #[inline]
    fn set_cgc(&self, value: u32) { PCC.with_lpuart2(|r| r.set_cgc(value)); }
 }
+
 

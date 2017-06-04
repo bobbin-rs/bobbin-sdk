@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(non_camel_case_types)]
 
 extern crate bobbin_cortexm;
 extern crate kinetis_common;
@@ -21,20 +22,21 @@ pub mod port {
     pub use sim::SimEnabled;
     use chip::gpio;
     use chip::sig::{SignalTx, SignalRx};
-    use core::ops::Deref;
 
-    pub trait GpioPin<T> {
-        fn gpio_pin(&self) -> gpio::PinImpl;
+    pub trait GpioPin<PIN_ID, GPIO_ID> {
+        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
     }
 
-    impl<P, T> GpioPin<T> for P where P: Pin<T>, T: GpioLink {
-        fn gpio_pin(&self) -> gpio::PinImpl {
-            gpio::PinImpl {
-                port: *self.port().gpio().deref(),
-                index: self.index()
+    impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<PIN_ID, GPIO_ID> for Pin<PIN_ID, PORT_ID>
+     where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
+        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
+            gpio::Pin {
+                port: self.port.gpio(),
+                index: self.index,
+                id: self.id,
             }
-        }        
-    }    
+        }
+    }
 
     pub trait ModeTx<T, S> {
         fn mode_tx(&self, _: &S) -> &Self;
@@ -44,20 +46,19 @@ pub mod port {
         fn mode_rx(&self, _: &S) -> &Self;
     }
 
-    impl<P, S, T> ModeTx<T, S> for P where S: SignalTx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
         fn mode_tx(&self, _: &S) -> &Self {
-            self.set_mux(self.alt_fn());
+            self.set_mux(self.id.alt_fn());
             self
         }
     }
 
-    impl<P, S, T> ModeRx<T, S> for P where S: SignalRx<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+    impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
         fn mode_rx(&self, _: &S) -> &Self {
-            self.set_mux(self.alt_fn());
+            self.set_mux(self.id.alt_fn());
             self
         }
-    }
-
+    }    
 }
 
 pub mod gpio {

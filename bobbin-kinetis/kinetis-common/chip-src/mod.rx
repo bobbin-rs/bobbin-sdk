@@ -36,5 +36,13 @@
     (peripheral-group
         (name PIT)
         (prototype "periph/pit.rx")
-    )        
+    )      
+    (peripheral-group
+        (name SPI)
+        (prototype "periph/spi.rx")
+    )  
+    (peripheral-group
+        (name I2C)
+        (prototype "periph/i2c.rx")
+    )          
 )

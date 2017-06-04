@@ -1,43 +1,25 @@
-pub const I2C3: I2c3 = I2c3 {};
-pub const I2C3_IMPL: I2cImpl = I2cImpl(0x40005c00);
-pub const I2C3_IMPL_REF: &I2cImpl = &I2C3_IMPL;
-
-pub struct I2c3 {}
-impl ::core::ops::Deref for I2c3 {
-   type Target = I2cImpl;
-   #[inline]
-   fn deref(&self) -> &I2cImpl { I2C3_IMPL_REF }
-}
-
-
-pub const I2C2: I2c2 = I2c2 {};
-pub const I2C2_IMPL: I2cImpl = I2cImpl(0x40005800);
-pub const I2C2_IMPL_REF: &I2cImpl = &I2C2_IMPL;
-
-pub struct I2c2 {}
-impl ::core::ops::Deref for I2c2 {
-   type Target = I2cImpl;
-   #[inline]
-   fn deref(&self) -> &I2cImpl { I2C2_IMPL_REF }
-}
-
-
-pub const I2C1: I2c1 = I2c1 {};
-pub const I2C1_IMPL: I2cImpl = I2cImpl(0x40005400);
-pub const I2C1_IMPL_REF: &I2cImpl = &I2C1_IMPL;
-
-pub struct I2c1 {}
-impl ::core::ops::Deref for I2c1 {
-   type Target = I2cImpl;
-   #[inline]
-   fn deref(&self) -> &I2cImpl { I2C1_IMPL_REF }
-}
-
-
+pub const I2C3: I2c3 = Periph(0x40005c00, I2c3Id {});
+pub const I2C2: I2c2 = Periph(0x40005800, I2c2Id {});
+pub const I2C1: I2c1 = Periph(0x40005400, I2c1Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct I2cImpl(pub u32);
-impl I2cImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I2c3Id {}
+pub type I2c3 = Periph<I2c3Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I2c2Id {}
+pub type I2c2 = Periph<I2c2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I2c1Id {}
+pub type I2c1 = Periph<I2c1Id>;
+
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -53,14 +35,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &I2cImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &I2cImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -80,14 +62,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &I2cImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &I2cImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -107,14 +89,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_oar1(&self, value: Oar1) -> &I2cImpl {
+  pub fn set_oar1(&self, value: Oar1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &I2cImpl {
+  pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
      let tmp = self.oar1();
      self.set_oar1(f(tmp))
   }
@@ -134,14 +116,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_oar2(&self, value: Oar2) -> &I2cImpl {
+  pub fn set_oar2(&self, value: Oar2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &I2cImpl {
+  pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
      let tmp = self.oar2();
      self.set_oar2(f(tmp))
   }
@@ -161,14 +143,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_dr(&self, value: Dr) -> &I2cImpl {
+  pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &I2cImpl {
+  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
@@ -188,14 +170,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_sr1(&self, value: Sr1) -> &I2cImpl {
+  pub fn set_sr1(&self, value: Sr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &I2cImpl {
+  pub fn with_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &Self {
      let tmp = self.sr1();
      self.set_sr1(f(tmp))
   }
@@ -230,14 +212,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_ccr(&self, value: Ccr) -> &I2cImpl {
+  pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &I2cImpl {
+  pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
@@ -257,14 +239,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_trise(&self, value: Trise) -> &I2cImpl {
+  pub fn set_trise(&self, value: Trise) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &I2cImpl {
+  pub fn with_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &Self {
      let tmp = self.trise();
      self.set_trise(f(tmp))
   }
@@ -284,14 +266,14 @@ impl I2cImpl {
      }
   }
   #[inline]
-  pub fn set_fltr(&self, value: Fltr) -> &I2cImpl {
+  pub fn set_fltr(&self, value: Fltr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &I2cImpl {
+  pub fn with_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &Self {
      let tmp = self.fltr();
      self.set_fltr(f(tmp))
   }

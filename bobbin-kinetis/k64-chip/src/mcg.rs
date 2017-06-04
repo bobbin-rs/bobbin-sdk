@@ -18,14 +18,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c1(&self, value: C1) -> &Mcg {
+  pub fn set_c1(&self, value: C1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Mcg {
+  pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
      let tmp = self.c1();
      self.set_c1(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c2(&self, value: C2) -> &Mcg {
+  pub fn set_c2(&self, value: C2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Mcg {
+  pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
      let tmp = self.c2();
      self.set_c2(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c3(&self, value: C3) -> &Mcg {
+  pub fn set_c3(&self, value: C3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Mcg {
+  pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
      let tmp = self.c3();
      self.set_c3(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c4(&self, value: C4) -> &Mcg {
+  pub fn set_c4(&self, value: C4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Mcg {
+  pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
      let tmp = self.c4();
      self.set_c4(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c5(&self, value: C5) -> &Mcg {
+  pub fn set_c5(&self, value: C5) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Mcg {
+  pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
      let tmp = self.c5();
      self.set_c5(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c6(&self, value: C6) -> &Mcg {
+  pub fn set_c6(&self, value: C6) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c6<F: FnOnce(C6) -> C6>(&self, f: F) -> &Mcg {
+  pub fn with_c6<F: FnOnce(C6) -> C6>(&self, f: F) -> &Self {
      let tmp = self.c6();
      self.set_c6(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_s(&self, value: S) -> &Mcg {
+  pub fn set_s(&self, value: S) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_s<F: FnOnce(S) -> S>(&self, f: F) -> &Mcg {
+  pub fn with_s<F: FnOnce(S) -> S>(&self, f: F) -> &Self {
      let tmp = self.s();
      self.set_s(f(tmp))
   }
@@ -207,14 +207,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_sc(&self, value: Sc) -> &Mcg {
+  pub fn set_sc(&self, value: Sc) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Mcg {
+  pub fn with_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Self {
      let tmp = self.sc();
      self.set_sc(f(tmp))
   }
@@ -234,14 +234,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_atcvh(&self, value: Atcvh) -> &Mcg {
+  pub fn set_atcvh(&self, value: Atcvh) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atcvh<F: FnOnce(Atcvh) -> Atcvh>(&self, f: F) -> &Mcg {
+  pub fn with_atcvh<F: FnOnce(Atcvh) -> Atcvh>(&self, f: F) -> &Self {
      let tmp = self.atcvh();
      self.set_atcvh(f(tmp))
   }
@@ -261,14 +261,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_atcvl(&self, value: Atcvl) -> &Mcg {
+  pub fn set_atcvl(&self, value: Atcvl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_atcvl<F: FnOnce(Atcvl) -> Atcvl>(&self, f: F) -> &Mcg {
+  pub fn with_atcvl<F: FnOnce(Atcvl) -> Atcvl>(&self, f: F) -> &Self {
      let tmp = self.atcvl();
      self.set_atcvl(f(tmp))
   }
@@ -288,14 +288,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c7(&self, value: C7) -> &Mcg {
+  pub fn set_c7(&self, value: C7) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c7<F: FnOnce(C7) -> C7>(&self, f: F) -> &Mcg {
+  pub fn with_c7<F: FnOnce(C7) -> C7>(&self, f: F) -> &Self {
      let tmp = self.c7();
      self.set_c7(f(tmp))
   }
@@ -315,14 +315,14 @@ impl Mcg {
      }
   }
   #[inline]
-  pub fn set_c8(&self, value: C8) -> &Mcg {
+  pub fn set_c8(&self, value: C8) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xd) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_c8<F: FnOnce(C8) -> C8>(&self, f: F) -> &Mcg {
+  pub fn with_c8<F: FnOnce(C8) -> C8>(&self, f: F) -> &Self {
      let tmp = self.c8();
      self.set_c8(f(tmp))
   }
@@ -1093,3 +1093,4 @@ impl ::core::fmt::Debug for C8 {
       Ok(())
    }
 }
+

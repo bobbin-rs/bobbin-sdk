@@ -1,46 +1,25 @@
-pub const TCC0: Tcc0 = Tcc0 {};
-pub const TCC0_REF: &Tcc0 = &TCC0;
-pub const TCC0_IMPL: TccImpl = TccImpl(0x42002000);
-pub const TCC0_IMPL_REF: &TccImpl = &TCC0_IMPL;
-
-pub struct Tcc0 {}
-impl ::core::ops::Deref for Tcc0 {
-   type Target = TccImpl;
-   #[inline]
-   fn deref(&self) -> &TccImpl { TCC0_IMPL_REF }
-}
-
-
-pub const TCC1: Tcc1 = Tcc1 {};
-pub const TCC1_REF: &Tcc1 = &TCC1;
-pub const TCC1_IMPL: TccImpl = TccImpl(0x42002400);
-pub const TCC1_IMPL_REF: &TccImpl = &TCC1_IMPL;
-
-pub struct Tcc1 {}
-impl ::core::ops::Deref for Tcc1 {
-   type Target = TccImpl;
-   #[inline]
-   fn deref(&self) -> &TccImpl { TCC1_IMPL_REF }
-}
-
-
-pub const TCC2: Tcc2 = Tcc2 {};
-pub const TCC2_REF: &Tcc2 = &TCC2;
-pub const TCC2_IMPL: TccImpl = TccImpl(0x42002800);
-pub const TCC2_IMPL_REF: &TccImpl = &TCC2_IMPL;
-
-pub struct Tcc2 {}
-impl ::core::ops::Deref for Tcc2 {
-   type Target = TccImpl;
-   #[inline]
-   fn deref(&self) -> &TccImpl { TCC2_IMPL_REF }
-}
-
-
+pub const TCC0: Tcc0 = Periph(0x42002000, Tcc0Id {});
+pub const TCC1: Tcc1 = Periph(0x42002400, Tcc1Id {});
+pub const TCC2: Tcc2 = Periph(0x42002800, Tcc2Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct TccImpl(pub u32);
-impl TccImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tcc0Id {}
+pub type Tcc0 = Periph<Tcc0Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tcc1Id {}
+pub type Tcc1 = Periph<Tcc1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Tcc2Id {}
+pub type Tcc2 = Periph<Tcc2Id>;
+
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn cc_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 4);
@@ -59,7 +38,7 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_cc(&self, index: usize, value: Cc) -> &TccImpl {
+  pub fn set_cc(&self, index: usize, value: Cc) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index << 2)) as *mut u32, value.0);
@@ -67,7 +46,7 @@ impl TccImpl {
      self
   }
   #[inline]
-  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, index: usize, f: F) -> &TccImpl {
+  pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, index: usize, f: F) -> &Self {
      let tmp = self.cc(index);
      self.set_cc(index, f(tmp))
   }
@@ -90,7 +69,7 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_ccb(&self, index: usize, value: Ccb) -> &TccImpl {
+  pub fn set_ccb(&self, index: usize, value: Ccb) -> &Self {
      assert!(index < 4);
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x70 + (index << 2)) as *mut u32, value.0);
@@ -98,7 +77,7 @@ impl TccImpl {
      self
   }
   #[inline]
-  pub fn with_ccb<F: FnOnce(Ccb) -> Ccb>(&self, index: usize, f: F) -> &TccImpl {
+  pub fn with_ccb<F: FnOnce(Ccb) -> Ccb>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ccb(index);
      self.set_ccb(index, f(tmp))
   }
@@ -118,14 +97,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_count(&self, value: Count) -> &TccImpl {
+  pub fn set_count(&self, value: Count) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &TccImpl {
+  pub fn with_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Self {
      let tmp = self.count();
      self.set_count(f(tmp))
   }
@@ -145,14 +124,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_ctrla(&self, value: Ctrla) -> &TccImpl {
+  pub fn set_ctrla(&self, value: Ctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &TccImpl {
+  pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
      let tmp = self.ctrla();
      self.set_ctrla(f(tmp))
   }
@@ -172,14 +151,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_ctrlbclr(&self, value: Ctrlbclr) -> &TccImpl {
+  pub fn set_ctrlbclr(&self, value: Ctrlbclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlbclr<F: FnOnce(Ctrlbclr) -> Ctrlbclr>(&self, f: F) -> &TccImpl {
+  pub fn with_ctrlbclr<F: FnOnce(Ctrlbclr) -> Ctrlbclr>(&self, f: F) -> &Self {
      let tmp = self.ctrlbclr();
      self.set_ctrlbclr(f(tmp))
   }
@@ -199,14 +178,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_ctrlbset(&self, value: Ctrlbset) -> &TccImpl {
+  pub fn set_ctrlbset(&self, value: Ctrlbset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ctrlbset<F: FnOnce(Ctrlbset) -> Ctrlbset>(&self, f: F) -> &TccImpl {
+  pub fn with_ctrlbset<F: FnOnce(Ctrlbset) -> Ctrlbset>(&self, f: F) -> &Self {
      let tmp = self.ctrlbset();
      self.set_ctrlbset(f(tmp))
   }
@@ -226,14 +205,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &TccImpl {
+  pub fn set_dbgctrl(&self, value: Dbgctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1e) as *mut u8, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &TccImpl {
+  pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
      let tmp = self.dbgctrl();
      self.set_dbgctrl(f(tmp))
   }
@@ -253,14 +232,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_drvctrl(&self, value: Drvctrl) -> &TccImpl {
+  pub fn set_drvctrl(&self, value: Drvctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_drvctrl<F: FnOnce(Drvctrl) -> Drvctrl>(&self, f: F) -> &TccImpl {
+  pub fn with_drvctrl<F: FnOnce(Drvctrl) -> Drvctrl>(&self, f: F) -> &Self {
      let tmp = self.drvctrl();
      self.set_drvctrl(f(tmp))
   }
@@ -280,14 +259,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_evctrl(&self, value: Evctrl) -> &TccImpl {
+  pub fn set_evctrl(&self, value: Evctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &TccImpl {
+  pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
      let tmp = self.evctrl();
      self.set_evctrl(f(tmp))
   }
@@ -307,14 +286,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_fctrla(&self, value: Fctrla) -> &TccImpl {
+  pub fn set_fctrla(&self, value: Fctrla) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fctrla<F: FnOnce(Fctrla) -> Fctrla>(&self, f: F) -> &TccImpl {
+  pub fn with_fctrla<F: FnOnce(Fctrla) -> Fctrla>(&self, f: F) -> &Self {
      let tmp = self.fctrla();
      self.set_fctrla(f(tmp))
   }
@@ -334,14 +313,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_fctrlb(&self, value: Fctrlb) -> &TccImpl {
+  pub fn set_fctrlb(&self, value: Fctrlb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_fctrlb<F: FnOnce(Fctrlb) -> Fctrlb>(&self, f: F) -> &TccImpl {
+  pub fn with_fctrlb<F: FnOnce(Fctrlb) -> Fctrlb>(&self, f: F) -> &Self {
      let tmp = self.fctrlb();
      self.set_fctrlb(f(tmp))
   }
@@ -361,14 +340,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_intenclr(&self, value: Intenclr) -> &TccImpl {
+  pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &TccImpl {
+  pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
@@ -388,14 +367,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_intenset(&self, value: Intenset) -> &TccImpl {
+  pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &TccImpl {
+  pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
@@ -415,14 +394,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_intflag(&self, value: Intflag) -> &TccImpl {
+  pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &TccImpl {
+  pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
@@ -442,14 +421,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_patt(&self, value: Patt) -> &TccImpl {
+  pub fn set_patt(&self, value: Patt) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_patt<F: FnOnce(Patt) -> Patt>(&self, f: F) -> &TccImpl {
+  pub fn with_patt<F: FnOnce(Patt) -> Patt>(&self, f: F) -> &Self {
      let tmp = self.patt();
      self.set_patt(f(tmp))
   }
@@ -469,14 +448,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_pattb(&self, value: Pattb) -> &TccImpl {
+  pub fn set_pattb(&self, value: Pattb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u16, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_pattb<F: FnOnce(Pattb) -> Pattb>(&self, f: F) -> &TccImpl {
+  pub fn with_pattb<F: FnOnce(Pattb) -> Pattb>(&self, f: F) -> &Self {
      let tmp = self.pattb();
      self.set_pattb(f(tmp))
   }
@@ -496,14 +475,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_per(&self, value: Per) -> &TccImpl {
+  pub fn set_per(&self, value: Per) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_per<F: FnOnce(Per) -> Per>(&self, f: F) -> &TccImpl {
+  pub fn with_per<F: FnOnce(Per) -> Per>(&self, f: F) -> &Self {
      let tmp = self.per();
      self.set_per(f(tmp))
   }
@@ -523,14 +502,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_perb(&self, value: Perb) -> &TccImpl {
+  pub fn set_perb(&self, value: Perb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_perb<F: FnOnce(Perb) -> Perb>(&self, f: F) -> &TccImpl {
+  pub fn with_perb<F: FnOnce(Perb) -> Perb>(&self, f: F) -> &Self {
      let tmp = self.perb();
      self.set_perb(f(tmp))
   }
@@ -550,14 +529,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_status(&self, value: Status) -> &TccImpl {
+  pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &TccImpl {
+  pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
@@ -592,14 +571,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_wave(&self, value: Wave) -> &TccImpl {
+  pub fn set_wave(&self, value: Wave) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_wave<F: FnOnce(Wave) -> Wave>(&self, f: F) -> &TccImpl {
+  pub fn with_wave<F: FnOnce(Wave) -> Wave>(&self, f: F) -> &Self {
      let tmp = self.wave();
      self.set_wave(f(tmp))
   }
@@ -619,14 +598,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_waveb(&self, value: Waveb) -> &TccImpl {
+  pub fn set_waveb(&self, value: Waveb) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_waveb<F: FnOnce(Waveb) -> Waveb>(&self, f: F) -> &TccImpl {
+  pub fn with_waveb<F: FnOnce(Waveb) -> Waveb>(&self, f: F) -> &Self {
      let tmp = self.waveb();
      self.set_waveb(f(tmp))
   }
@@ -646,14 +625,14 @@ impl TccImpl {
      }
   }
   #[inline]
-  pub fn set_wexctrl(&self, value: Wexctrl) -> &TccImpl {
+  pub fn set_wexctrl(&self, value: Wexctrl) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_wexctrl<F: FnOnce(Wexctrl) -> Wexctrl>(&self, f: F) -> &TccImpl {
+  pub fn with_wexctrl<F: FnOnce(Wexctrl) -> Wexctrl>(&self, f: F) -> &Self {
      let tmp = self.wexctrl();
      self.set_wexctrl(f(tmp))
   }

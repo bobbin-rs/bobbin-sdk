@@ -1,9 +1,8 @@
 pub use chip::port::*;
 use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
-use core::ops::Deref;
 pub use pm::PmEnabled;
 
-use chip::port::PinImpl;
+use chip::port::Pin;
 
 pub trait PinExt {
     fn set_pull_enabled(&self, value: bool) -> &Self;
@@ -20,7 +19,7 @@ pub trait PinExt {
     fn input(&self) -> bool;
 }
 
-impl PinExt for PinImpl {
+impl<P, T> PinExt for Pin<P, T> {
     fn set_pull_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.port.with_pincfg(self.index, |r| r.set_pullen(value));
@@ -100,28 +99,30 @@ pub trait ModePad3<T, S> {
     fn mode_pad_3(&self, _: &S) -> &Self;
 }
 
-impl<P, S, T> ModePad0<T, S> for P where S: SignalPad0<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+impl<P, O, S, T> ModePad0<T, S> for Pin<P, O> where S: SignalPad0<T>, P: AltFn<T> {
     fn mode_pad_0(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.alt_fn());
+        self.set_mode_pmux(self.id.alt_fn());
         self
     }
 }
 
-impl<P, S, T> ModePad1<T, S> for P where S: SignalPad1<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+impl<P, O, S, T> ModePad1<T, S> for Pin<P, O> where S: SignalPad1<T>, P: AltFn<T> {
     fn mode_pad_1(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.alt_fn());
+        self.set_mode_pmux(self.id.alt_fn());
         self
     }
 }
-impl<P, S, T> ModePad2<T, S> for P where S: SignalPad2<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+
+impl<P, O, S, T> ModePad2<T, S> for Pin<P, O> where S: SignalPad2<T>, P: AltFn<T> {
     fn mode_pad_2(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.alt_fn());
+        self.set_mode_pmux(self.id.alt_fn());
         self
     }
 }
-impl<P, S, T> ModePad3<T, S> for P where S: SignalPad3<T>, P: Deref<Target=PinImpl> + AltFn<T> {
+
+impl<P, O, S, T> ModePad3<T, S> for Pin<P, O> where S: SignalPad3<T>, P: AltFn<T> {
     fn mode_pad_3(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.alt_fn());
+        self.set_mode_pmux(self.id.alt_fn());
         self
     }
 }

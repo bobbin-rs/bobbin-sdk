@@ -1,43 +1,25 @@
-pub const ADC1: Adc1 = Adc1 {};
-pub const ADC1_IMPL: AdcImpl = AdcImpl(0x40012000);
-pub const ADC1_IMPL_REF: &AdcImpl = &ADC1_IMPL;
-
-pub struct Adc1 {}
-impl ::core::ops::Deref for Adc1 {
-   type Target = AdcImpl;
-   #[inline]
-   fn deref(&self) -> &AdcImpl { ADC1_IMPL_REF }
-}
-
-
-pub const ADC2: Adc2 = Adc2 {};
-pub const ADC2_IMPL: AdcImpl = AdcImpl(0x40012100);
-pub const ADC2_IMPL_REF: &AdcImpl = &ADC2_IMPL;
-
-pub struct Adc2 {}
-impl ::core::ops::Deref for Adc2 {
-   type Target = AdcImpl;
-   #[inline]
-   fn deref(&self) -> &AdcImpl { ADC2_IMPL_REF }
-}
-
-
-pub const ADC3: Adc3 = Adc3 {};
-pub const ADC3_IMPL: AdcImpl = AdcImpl(0x40012200);
-pub const ADC3_IMPL_REF: &AdcImpl = &ADC3_IMPL;
-
-pub struct Adc3 {}
-impl ::core::ops::Deref for Adc3 {
-   type Target = AdcImpl;
-   #[inline]
-   fn deref(&self) -> &AdcImpl { ADC3_IMPL_REF }
-}
-
-
+pub const ADC1: Adc1 = Periph(0x40012000, Adc1Id {});
+pub const ADC2: Adc2 = Periph(0x40012100, Adc2Id {});
+pub const ADC3: Adc3 = Periph(0x40012200, Adc3Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct AdcImpl(pub u32);
-impl AdcImpl {
+pub struct Periph<T>(pub u32, pub T); 
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Adc1Id {}
+pub type Adc1 = Periph<Adc1Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Adc2Id {}
+pub type Adc2 = Periph<Adc2Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Adc3Id {}
+pub type Adc3 = Periph<Adc3Id>;
+
+
+
+
+
+impl<T> Periph<T> {
   #[inline]
   pub fn sr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
@@ -53,14 +35,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_sr(&self, value: Sr) -> &AdcImpl {
+  pub fn set_sr(&self, value: Sr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &AdcImpl {
+  pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
      self.set_sr(f(tmp))
   }
@@ -80,14 +62,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_cr1(&self, value: Cr1) -> &AdcImpl {
+  pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &AdcImpl {
+  pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
@@ -107,14 +89,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_cr2(&self, value: Cr2) -> &AdcImpl {
+  pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &AdcImpl {
+  pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
@@ -134,14 +116,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_smpr1(&self, value: Smpr1) -> &AdcImpl {
+  pub fn set_smpr1(&self, value: Smpr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_smpr1<F: FnOnce(Smpr1) -> Smpr1>(&self, f: F) -> &AdcImpl {
+  pub fn with_smpr1<F: FnOnce(Smpr1) -> Smpr1>(&self, f: F) -> &Self {
      let tmp = self.smpr1();
      self.set_smpr1(f(tmp))
   }
@@ -161,14 +143,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_smpr2(&self, value: Smpr2) -> &AdcImpl {
+  pub fn set_smpr2(&self, value: Smpr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_smpr2<F: FnOnce(Smpr2) -> Smpr2>(&self, f: F) -> &AdcImpl {
+  pub fn with_smpr2<F: FnOnce(Smpr2) -> Smpr2>(&self, f: F) -> &Self {
      let tmp = self.smpr2();
      self.set_smpr2(f(tmp))
   }
@@ -188,14 +170,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_jofr1(&self, value: Jofr1) -> &AdcImpl {
+  pub fn set_jofr1(&self, value: Jofr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &AdcImpl {
+  pub fn with_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &Self {
      let tmp = self.jofr1();
      self.set_jofr1(f(tmp))
   }
@@ -215,14 +197,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_jofr2(&self, value: Jofr2) -> &AdcImpl {
+  pub fn set_jofr2(&self, value: Jofr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &AdcImpl {
+  pub fn with_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &Self {
      let tmp = self.jofr2();
      self.set_jofr2(f(tmp))
   }
@@ -242,14 +224,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_jofr3(&self, value: Jofr3) -> &AdcImpl {
+  pub fn set_jofr3(&self, value: Jofr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &AdcImpl {
+  pub fn with_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &Self {
      let tmp = self.jofr3();
      self.set_jofr3(f(tmp))
   }
@@ -269,14 +251,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_jofr4(&self, value: Jofr4) -> &AdcImpl {
+  pub fn set_jofr4(&self, value: Jofr4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &AdcImpl {
+  pub fn with_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &Self {
      let tmp = self.jofr4();
      self.set_jofr4(f(tmp))
   }
@@ -296,14 +278,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_htr(&self, value: Htr) -> &AdcImpl {
+  pub fn set_htr(&self, value: Htr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_htr<F: FnOnce(Htr) -> Htr>(&self, f: F) -> &AdcImpl {
+  pub fn with_htr<F: FnOnce(Htr) -> Htr>(&self, f: F) -> &Self {
      let tmp = self.htr();
      self.set_htr(f(tmp))
   }
@@ -323,14 +305,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_ltr(&self, value: Ltr) -> &AdcImpl {
+  pub fn set_ltr(&self, value: Ltr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_ltr<F: FnOnce(Ltr) -> Ltr>(&self, f: F) -> &AdcImpl {
+  pub fn with_ltr<F: FnOnce(Ltr) -> Ltr>(&self, f: F) -> &Self {
      let tmp = self.ltr();
      self.set_ltr(f(tmp))
   }
@@ -350,14 +332,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_sqr1(&self, value: Sqr1) -> &AdcImpl {
+  pub fn set_sqr1(&self, value: Sqr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sqr1<F: FnOnce(Sqr1) -> Sqr1>(&self, f: F) -> &AdcImpl {
+  pub fn with_sqr1<F: FnOnce(Sqr1) -> Sqr1>(&self, f: F) -> &Self {
      let tmp = self.sqr1();
      self.set_sqr1(f(tmp))
   }
@@ -377,14 +359,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_sqr2(&self, value: Sqr2) -> &AdcImpl {
+  pub fn set_sqr2(&self, value: Sqr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sqr2<F: FnOnce(Sqr2) -> Sqr2>(&self, f: F) -> &AdcImpl {
+  pub fn with_sqr2<F: FnOnce(Sqr2) -> Sqr2>(&self, f: F) -> &Self {
      let tmp = self.sqr2();
      self.set_sqr2(f(tmp))
   }
@@ -404,14 +386,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_sqr3(&self, value: Sqr3) -> &AdcImpl {
+  pub fn set_sqr3(&self, value: Sqr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_sqr3<F: FnOnce(Sqr3) -> Sqr3>(&self, f: F) -> &AdcImpl {
+  pub fn with_sqr3<F: FnOnce(Sqr3) -> Sqr3>(&self, f: F) -> &Self {
      let tmp = self.sqr3();
      self.set_sqr3(f(tmp))
   }
@@ -431,14 +413,14 @@ impl AdcImpl {
      }
   }
   #[inline]
-  pub fn set_jsqr(&self, value: Jsqr) -> &AdcImpl {
+  pub fn set_jsqr(&self, value: Jsqr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_jsqr<F: FnOnce(Jsqr) -> Jsqr>(&self, f: F) -> &AdcImpl {
+  pub fn with_jsqr<F: FnOnce(Jsqr) -> Jsqr>(&self, f: F) -> &Self {
      let tmp = self.jsqr();
      self.set_jsqr(f(tmp))
   }

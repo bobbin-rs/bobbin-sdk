@@ -18,14 +18,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_cfgr1(&self, value: Cfgr1) -> &Syscfg {
+  pub fn set_cfgr1(&self, value: Cfgr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &Syscfg {
+  pub fn with_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &Self {
      let tmp = self.cfgr1();
      self.set_cfgr1(f(tmp))
   }
@@ -45,14 +45,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_cfgr2(&self, value: Cfgr2) -> &Syscfg {
+  pub fn set_cfgr2(&self, value: Cfgr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr2<F: FnOnce(Cfgr2) -> Cfgr2>(&self, f: F) -> &Syscfg {
+  pub fn with_cfgr2<F: FnOnce(Cfgr2) -> Cfgr2>(&self, f: F) -> &Self {
      let tmp = self.cfgr2();
      self.set_cfgr2(f(tmp))
   }
@@ -72,14 +72,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_exticr1(&self, value: Exticr1) -> &Syscfg {
+  pub fn set_exticr1(&self, value: Exticr1) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Syscfg {
+  pub fn with_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
      let tmp = self.exticr1();
      self.set_exticr1(f(tmp))
   }
@@ -99,14 +99,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_exticr2(&self, value: Exticr2) -> &Syscfg {
+  pub fn set_exticr2(&self, value: Exticr2) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Syscfg {
+  pub fn with_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
      let tmp = self.exticr2();
      self.set_exticr2(f(tmp))
   }
@@ -126,14 +126,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_exticr3(&self, value: Exticr3) -> &Syscfg {
+  pub fn set_exticr3(&self, value: Exticr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Syscfg {
+  pub fn with_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
      let tmp = self.exticr3();
      self.set_exticr3(f(tmp))
   }
@@ -153,14 +153,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_exticr4(&self, value: Exticr4) -> &Syscfg {
+  pub fn set_exticr4(&self, value: Exticr4) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Syscfg {
+  pub fn with_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
      let tmp = self.exticr4();
      self.set_exticr4(f(tmp))
   }
@@ -180,14 +180,14 @@ impl Syscfg {
      }
   }
   #[inline]
-  pub fn set_cfgr3(&self, value: Cfgr3) -> &Syscfg {
+  pub fn set_cfgr3(&self, value: Cfgr3) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cfgr3<F: FnOnce(Cfgr3) -> Cfgr3>(&self, f: F) -> &Syscfg {
+  pub fn with_cfgr3<F: FnOnce(Cfgr3) -> Cfgr3>(&self, f: F) -> &Self {
      let tmp = self.cfgr3();
      self.set_cfgr3(f(tmp))
   }
@@ -800,3 +800,4 @@ impl ::core::fmt::Debug for Cfgr3 {
       Ok(())
    }
 }
+

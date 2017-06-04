@@ -52,7 +52,7 @@
 
     (peripheral-group
         (name SPI)  
-        (prototype "periph/spi.rx")
+        (module (name kinetis_common::chip::spi::*))
         (peripheral 
             (name SPI0)
             (address 0x4002c000)
@@ -85,7 +85,7 @@
 
     (peripheral-group
         (name I2C)
-        (prototype "periph/i2c.rx")
+        (module (name kinetis_common::chip::i2c::*))
         (peripheral 
             (name I2C0)
             (address 0x40066000)

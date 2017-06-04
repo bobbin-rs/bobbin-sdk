@@ -23,7 +23,7 @@ pub trait Usart {
     fn try_getc(&self) -> Option<u8>;
 }
 
-impl Usart for SercomImpl {
+impl<T> Usart for Periph<T> {
     fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self {
         let s = self.usart();
 

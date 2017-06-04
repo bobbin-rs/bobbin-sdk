@@ -33,14 +33,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Dbg {
+  pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Dbg {
+  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
@@ -60,14 +60,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Dbg {
+  pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Dbg {
+  pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
      let tmp = self.apb1_fz();
      self.set_apb1_fz(f(tmp))
   }
@@ -87,14 +87,14 @@ impl Dbg {
      }
   }
   #[inline]
-  pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Dbg {
+  pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Self {
      unsafe {
        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
   #[inline]
-  pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Dbg {
+  pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
      let tmp = self.apb2_fz();
      self.set_apb2_fz(f(tmp))
   }
@@ -594,3 +594,4 @@ impl ::core::fmt::Debug for Apb2Fz {
       Ok(())
    }
 }
+
