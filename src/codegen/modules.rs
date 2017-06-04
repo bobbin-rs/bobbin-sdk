@@ -373,10 +373,11 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
     try!(writeln!(out, ""));
 
-    if p_count == 0 {
+    // if p_count == 0 {
+    if pg.modules.len() == 0 {
         try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
         try!(writeln!(out, "pub struct {}<T>(pub u32, pub T); ", pg_type));
-        try!(writeln!(out, ""));
+        try!(writeln!(out, ""));        
     }
 
     for p in pg.peripherals.iter() {
@@ -459,11 +460,17 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         pin_count += p.pins.len();
     }
 
-    if pg.has_pins && pin_count == 0 {
+    //if pg.has_pins && pin_count == 0 {
+    if pg.has_pins && (pg.modules.len() > 0 || pin_count > 0) {
         // Generate Pin Impl
 
         try!(writeln!(out, "pub struct Pin<P, T> {{ pub port: {}<T>, pub index: usize, pub id: P }}",pg_type));
         try!(writeln!(out, ""));
+
+        try!(writeln!(out, "impl<P,T> Pin<P,T> {{"));
+        try!(writeln!(out, "   #[inline] pub fn port(&self) -> &Periph<T> {{ &self.port }}"));
+        try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
+        try!(writeln!(out, "}}"));
 
         // Generate AltFn Trait
 
@@ -631,7 +638,11 @@ pub fn gen_peripheral_enum<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
 }
 
 pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters: &[Cluster], size: Option<u64>, access: Option<Access>) -> Result<()> {
-    try!(writeln!(out, "impl {} {{", p_type));
+    if p_type.contains("<T>") {
+        try!(writeln!(out, "impl<T> {} {{", p_type));
+    } else {
+        try!(writeln!(out, "impl {} {{", p_type));
+    }
 
     for c in clusters.iter() {
         let c_type = format!("{}", to_camel(&c.name));
