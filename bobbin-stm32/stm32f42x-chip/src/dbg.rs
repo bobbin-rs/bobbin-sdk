@@ -3,98 +3,80 @@ pub const DBG: Dbg = Dbg(0xe0042000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub u32);
 impl Dbg {
-  #[inline]
-  pub fn idcode_ptr(&self) -> *const u32 { 
+  #[inline] pub fn idcode_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
-  #[inline]
-  pub fn idcode_mut(&self) -> *mut u32 { 
+  #[inline] pub fn idcode_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
-  #[inline]
-  pub fn idcode(&self) -> Idcode { 
+  #[inline] pub fn idcode(&self) -> Idcode { 
      unsafe {
-       Idcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+        Idcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn cr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
-  #[inline]
-  pub fn cr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
-  #[inline]
-  pub fn cr(&self) -> Cr { 
+  #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
-       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
-  #[inline]
-  pub fn apb1_fz_ptr(&self) -> *const u32 { 
+  #[inline] pub fn apb1_fz_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
-  #[inline]
-  pub fn apb1_fz_mut(&self) -> *mut u32 { 
+  #[inline] pub fn apb1_fz_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
-  #[inline]
-  pub fn apb1_fz(&self) -> Apb1Fz { 
+  #[inline] pub fn apb1_fz(&self) -> Apb1Fz { 
      unsafe {
-       Apb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+        Apb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Self {
+  #[inline] pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
+  #[inline] pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
      let tmp = self.apb1_fz();
      self.set_apb1_fz(f(tmp))
   }
 
-  #[inline]
-  pub fn apb2_fz_ptr(&self) -> *const u32 { 
+  #[inline] pub fn apb2_fz_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
-  #[inline]
-  pub fn apb2_fz_mut(&self) -> *mut u32 { 
+  #[inline] pub fn apb2_fz_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
-  #[inline]
-  pub fn apb2_fz(&self) -> Apb2Fz { 
+  #[inline] pub fn apb2_fz(&self) -> Apb2Fz { 
      unsafe {
-       Apb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+        Apb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Self {
+  #[inline] pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
+  #[inline] pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
      let tmp = self.apb2_fz();
      self.set_apb2_fz(f(tmp))
   }
@@ -104,24 +86,20 @@ impl Dbg {
 #[derive(PartialEq, Eq)]
 pub struct Idcode(pub u32);
 impl Idcode {
-  #[inline]
-  pub fn dev_id(&self) -> u32 {
+  #[inline] pub fn dev_id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
-  #[inline]
-  pub fn set_dev_id(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dev_id(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
   }
 
-  #[inline]
-  pub fn rev_id(&self) -> u32 {
+  #[inline] pub fn rev_id(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
-  #[inline]
-  pub fn set_rev_id(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rev_id(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -146,120 +124,100 @@ impl ::core::fmt::Debug for Idcode {
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-  #[inline]
-  pub fn sleep(&self) -> u32 {
+  #[inline] pub fn sleep(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_sleep(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sleep(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
-  #[inline]
-  pub fn stop(&self) -> u32 {
+  #[inline] pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn standby(&self) -> u32 {
+  #[inline] pub fn standby(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline]
-  pub fn set_standby(mut self, value: u32) -> Self {
+  #[inline] pub fn set_standby(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline]
-  pub fn trace_ioen(&self) -> u32 {
+  #[inline] pub fn trace_ioen(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_trace_ioen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_trace_ioen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn trace_mode(&self) -> u32 {
+  #[inline] pub fn trace_mode(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
-  #[inline]
-  pub fn set_trace_mode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_trace_mode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn i2c2_smbus_timeout(&self) -> u32 {
+  #[inline] pub fn i2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-  #[inline]
-  pub fn set_i2c2_smbus_timeout(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn tim8_stop(&self) -> u32 {
+  #[inline] pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
-  #[inline]
-  pub fn set_tim8_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
-  #[inline]
-  pub fn tim5_stop(&self) -> u32 {
+  #[inline] pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-  #[inline]
-  pub fn set_tim5_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self
   }
 
-  #[inline]
-  pub fn tim6_stop(&self) -> u32 {
+  #[inline] pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-  #[inline]
-  pub fn set_tim6_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
      self
   }
 
-  #[inline]
-  pub fn tim7_stop(&self) -> u32 {
+  #[inline] pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-  #[inline]
-  pub fn set_tim7_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -292,192 +250,160 @@ impl ::core::fmt::Debug for Cr {
 #[derive(PartialEq, Eq)]
 pub struct Apb1Fz(pub u32);
 impl Apb1Fz {
-  #[inline]
-  pub fn tim2_stop(&self) -> u32 {
+  #[inline] pub fn tim2_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_tim2_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
-  #[inline]
-  pub fn tim3_stop(&self) -> u32 {
+  #[inline] pub fn tim3_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_tim3_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim3_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn tim4_stop(&self) -> u32 {
+  #[inline] pub fn tim4_stop(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline]
-  pub fn set_tim4_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim4_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline]
-  pub fn tim5_stop(&self) -> u32 {
+  #[inline] pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline]
-  pub fn set_tim5_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
-  #[inline]
-  pub fn tim6_stop(&self) -> u32 {
+  #[inline] pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_tim6_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn tim7_stop(&self) -> u32 {
+  #[inline] pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_tim7_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn tim12_stop(&self) -> u32 {
+  #[inline] pub fn tim12_stop(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_tim12_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim12_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn tim13_stop(&self) -> u32 {
+  #[inline] pub fn tim13_stop(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_tim13_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim13_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn tim14_stop(&self) -> u32 {
+  #[inline] pub fn tim14_stop(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_tim14_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim14_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn wwdg_stop(&self) -> u32 {
+  #[inline] pub fn wwdg_stop(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-  #[inline]
-  pub fn set_wwdg_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wwdg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
      self
   }
 
-  #[inline]
-  pub fn iwdeg_stop(&self) -> u32 {
+  #[inline] pub fn iwdeg_stop(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline]
-  pub fn set_iwdeg_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_iwdeg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn j2c1_smbus_timeout(&self) -> u32 {
+  #[inline] pub fn j2c1_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-  #[inline]
-  pub fn set_j2c1_smbus_timeout(mut self, value: u32) -> Self {
+  #[inline] pub fn set_j2c1_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
      self
   }
 
-  #[inline]
-  pub fn j2c2_smbus_timeout(&self) -> u32 {
+  #[inline] pub fn j2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-  #[inline]
-  pub fn set_j2c2_smbus_timeout(mut self, value: u32) -> Self {
+  #[inline] pub fn set_j2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
-  #[inline]
-  pub fn j2c3smbus_timeout(&self) -> u32 {
+  #[inline] pub fn j2c3smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
-  #[inline]
-  pub fn set_j2c3smbus_timeout(mut self, value: u32) -> Self {
+  #[inline] pub fn set_j2c3smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
-  #[inline]
-  pub fn can1_stop(&self) -> u32 {
+  #[inline] pub fn can1_stop(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
-  #[inline]
-  pub fn set_can1_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_can1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
      self
   }
 
-  #[inline]
-  pub fn can2_stop(&self) -> u32 {
+  #[inline] pub fn can2_stop(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-  #[inline]
-  pub fn set_can2_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_can2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -516,60 +442,50 @@ impl ::core::fmt::Debug for Apb1Fz {
 #[derive(PartialEq, Eq)]
 pub struct Apb2Fz(pub u32);
 impl Apb2Fz {
-  #[inline]
-  pub fn tim1_stop(&self) -> u32 {
+  #[inline] pub fn tim1_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_tim1_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
-  #[inline]
-  pub fn tim8_stop(&self) -> u32 {
+  #[inline] pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_tim8_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn tim9_stop(&self) -> u32 {
+  #[inline] pub fn tim9_stop(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-  #[inline]
-  pub fn set_tim9_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim9_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn tim10_stop(&self) -> u32 {
+  #[inline] pub fn tim10_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
-  #[inline]
-  pub fn set_tim10_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim10_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
-  #[inline]
-  pub fn tim11_stop(&self) -> u32 {
+  #[inline] pub fn tim11_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-  #[inline]
-  pub fn set_tim11_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tim11_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;

@@ -125,762 +125,621 @@ pub type Gpioq = Periph<GpioqId>;
 
 
 impl<T> Periph<T> {
-  #[inline]
-  pub fn data_ptr(&self) -> *const u32 { 
+  #[inline] pub fn data_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x3fc) as *const u32
   }
-  #[inline]
-  pub fn data_mut(&self) -> *mut u32 { 
+  #[inline] pub fn data_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x3fc) as *mut u32
   }
-  #[inline]
-  pub fn data(&self) -> Data { 
+  #[inline] pub fn data(&self) -> Data { 
      unsafe {
-       Data(::core::ptr::read_volatile(((self.0 as usize) + 0x3fc) as *const u32))
+        Data(::core::ptr::read_volatile(((self.0 as usize) + 0x3fc) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_data(&self, value: Data) -> &Self {
+  #[inline] pub fn set_data(&self, value: Data) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x3fc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3fc) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
+  #[inline] pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
      self.set_data(f(tmp))
   }
 
-  #[inline]
-  pub fn dir_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dir_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x400) as *const u32
   }
-  #[inline]
-  pub fn dir_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dir_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x400) as *mut u32
   }
-  #[inline]
-  pub fn dir(&self) -> Dir { 
+  #[inline] pub fn dir(&self) -> Dir { 
      unsafe {
-       Dir(::core::ptr::read_volatile(((self.0 as usize) + 0x400) as *const u32))
+        Dir(::core::ptr::read_volatile(((self.0 as usize) + 0x400) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dir(&self, value: Dir) -> &Self {
+  #[inline] pub fn set_dir(&self, value: Dir) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
      let tmp = self.dir();
      self.set_dir(f(tmp))
   }
 
-  #[inline]
-  pub fn is_ptr(&self) -> *const u32 { 
+  #[inline] pub fn is_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x404) as *const u32
   }
-  #[inline]
-  pub fn is_mut(&self) -> *mut u32 { 
+  #[inline] pub fn is_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x404) as *mut u32
   }
-  #[inline]
-  pub fn is(&self) -> Is { 
+  #[inline] pub fn is(&self) -> Is { 
      unsafe {
-       Is(::core::ptr::read_volatile(((self.0 as usize) + 0x404) as *const u32))
+        Is(::core::ptr::read_volatile(((self.0 as usize) + 0x404) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_is(&self, value: Is) -> &Self {
+  #[inline] pub fn set_is(&self, value: Is) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x404) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x404) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_is<F: FnOnce(Is) -> Is>(&self, f: F) -> &Self {
+  #[inline] pub fn with_is<F: FnOnce(Is) -> Is>(&self, f: F) -> &Self {
      let tmp = self.is();
      self.set_is(f(tmp))
   }
 
-  #[inline]
-  pub fn ibe_ptr(&self) -> *const u32 { 
+  #[inline] pub fn ibe_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x408) as *const u32
   }
-  #[inline]
-  pub fn ibe_mut(&self) -> *mut u32 { 
+  #[inline] pub fn ibe_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x408) as *mut u32
   }
-  #[inline]
-  pub fn ibe(&self) -> Ibe { 
+  #[inline] pub fn ibe(&self) -> Ibe { 
      unsafe {
-       Ibe(::core::ptr::read_volatile(((self.0 as usize) + 0x408) as *const u32))
+        Ibe(::core::ptr::read_volatile(((self.0 as usize) + 0x408) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_ibe(&self, value: Ibe) -> &Self {
+  #[inline] pub fn set_ibe(&self, value: Ibe) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x408) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x408) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_ibe<F: FnOnce(Ibe) -> Ibe>(&self, f: F) -> &Self {
+  #[inline] pub fn with_ibe<F: FnOnce(Ibe) -> Ibe>(&self, f: F) -> &Self {
      let tmp = self.ibe();
      self.set_ibe(f(tmp))
   }
 
-  #[inline]
-  pub fn iev_ptr(&self) -> *const u32 { 
+  #[inline] pub fn iev_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x40c) as *const u32
   }
-  #[inline]
-  pub fn iev_mut(&self) -> *mut u32 { 
+  #[inline] pub fn iev_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x40c) as *mut u32
   }
-  #[inline]
-  pub fn iev(&self) -> Iev { 
+  #[inline] pub fn iev(&self) -> Iev { 
      unsafe {
-       Iev(::core::ptr::read_volatile(((self.0 as usize) + 0x40c) as *const u32))
+        Iev(::core::ptr::read_volatile(((self.0 as usize) + 0x40c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_iev(&self, value: Iev) -> &Self {
+  #[inline] pub fn set_iev(&self, value: Iev) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x40c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_iev<F: FnOnce(Iev) -> Iev>(&self, f: F) -> &Self {
+  #[inline] pub fn with_iev<F: FnOnce(Iev) -> Iev>(&self, f: F) -> &Self {
      let tmp = self.iev();
      self.set_iev(f(tmp))
   }
 
-  #[inline]
-  pub fn im_ptr(&self) -> *const u32 { 
+  #[inline] pub fn im_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x410) as *const u32
   }
-  #[inline]
-  pub fn im_mut(&self) -> *mut u32 { 
+  #[inline] pub fn im_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x410) as *mut u32
   }
-  #[inline]
-  pub fn im(&self) -> Im { 
+  #[inline] pub fn im(&self) -> Im { 
      unsafe {
-       Im(::core::ptr::read_volatile(((self.0 as usize) + 0x410) as *const u32))
+        Im(::core::ptr::read_volatile(((self.0 as usize) + 0x410) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_im(&self, value: Im) -> &Self {
+  #[inline] pub fn set_im(&self, value: Im) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x410) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x410) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
+  #[inline] pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
      let tmp = self.im();
      self.set_im(f(tmp))
   }
 
-  #[inline]
-  pub fn ris_ptr(&self) -> *const u32 { 
+  #[inline] pub fn ris_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x414) as *const u32
   }
-  #[inline]
-  pub fn ris_mut(&self) -> *mut u32 { 
+  #[inline] pub fn ris_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x414) as *mut u32
   }
-  #[inline]
-  pub fn ris(&self) -> Ris { 
+  #[inline] pub fn ris(&self) -> Ris { 
      unsafe {
-       Ris(::core::ptr::read_volatile(((self.0 as usize) + 0x414) as *const u32))
+        Ris(::core::ptr::read_volatile(((self.0 as usize) + 0x414) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_ris(&self, value: Ris) -> &Self {
+  #[inline] pub fn set_ris(&self, value: Ris) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x414) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x414) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
+  #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
      let tmp = self.ris();
      self.set_ris(f(tmp))
   }
 
-  #[inline]
-  pub fn mis_ptr(&self) -> *const u32 { 
+  #[inline] pub fn mis_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x418) as *const u32
   }
-  #[inline]
-  pub fn mis_mut(&self) -> *mut u32 { 
+  #[inline] pub fn mis_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x418) as *mut u32
   }
-  #[inline]
-  pub fn mis(&self) -> Mis { 
+  #[inline] pub fn mis(&self) -> Mis { 
      unsafe {
-       Mis(::core::ptr::read_volatile(((self.0 as usize) + 0x418) as *const u32))
+        Mis(::core::ptr::read_volatile(((self.0 as usize) + 0x418) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_mis(&self, value: Mis) -> &Self {
+  #[inline] pub fn set_mis(&self, value: Mis) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x418) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x418) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
+  #[inline] pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
      let tmp = self.mis();
      self.set_mis(f(tmp))
   }
 
-  #[inline]
-  pub fn icr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn icr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x41c) as *const u32
   }
-  #[inline]
-  pub fn icr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn icr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x41c) as *mut u32
   }
-  #[inline]
-  pub fn set_icr(&self, value: Icr) -> &Self {
+  #[inline] pub fn set_icr(&self, value: Icr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x41c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x41c) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn afsel_ptr(&self) -> *const u32 { 
+  #[inline] pub fn afsel_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x420) as *const u32
   }
-  #[inline]
-  pub fn afsel_mut(&self) -> *mut u32 { 
+  #[inline] pub fn afsel_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x420) as *mut u32
   }
-  #[inline]
-  pub fn afsel(&self) -> Afsel { 
+  #[inline] pub fn afsel(&self) -> Afsel { 
      unsafe {
-       Afsel(::core::ptr::read_volatile(((self.0 as usize) + 0x420) as *const u32))
+        Afsel(::core::ptr::read_volatile(((self.0 as usize) + 0x420) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_afsel(&self, value: Afsel) -> &Self {
+  #[inline] pub fn set_afsel(&self, value: Afsel) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x420) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x420) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_afsel<F: FnOnce(Afsel) -> Afsel>(&self, f: F) -> &Self {
+  #[inline] pub fn with_afsel<F: FnOnce(Afsel) -> Afsel>(&self, f: F) -> &Self {
      let tmp = self.afsel();
      self.set_afsel(f(tmp))
   }
 
-  #[inline]
-  pub fn dr2r_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dr2r_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x500) as *const u32
   }
-  #[inline]
-  pub fn dr2r_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dr2r_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x500) as *mut u32
   }
-  #[inline]
-  pub fn dr2r(&self) -> Dr2r { 
+  #[inline] pub fn dr2r(&self) -> Dr2r { 
      unsafe {
-       Dr2r(::core::ptr::read_volatile(((self.0 as usize) + 0x500) as *const u32))
+        Dr2r(::core::ptr::read_volatile(((self.0 as usize) + 0x500) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dr2r(&self, value: Dr2r) -> &Self {
+  #[inline] pub fn set_dr2r(&self, value: Dr2r) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x500) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x500) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dr2r<F: FnOnce(Dr2r) -> Dr2r>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dr2r<F: FnOnce(Dr2r) -> Dr2r>(&self, f: F) -> &Self {
      let tmp = self.dr2r();
      self.set_dr2r(f(tmp))
   }
 
-  #[inline]
-  pub fn dr4r_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dr4r_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x504) as *const u32
   }
-  #[inline]
-  pub fn dr4r_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dr4r_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x504) as *mut u32
   }
-  #[inline]
-  pub fn dr4r(&self) -> Dr4r { 
+  #[inline] pub fn dr4r(&self) -> Dr4r { 
      unsafe {
-       Dr4r(::core::ptr::read_volatile(((self.0 as usize) + 0x504) as *const u32))
+        Dr4r(::core::ptr::read_volatile(((self.0 as usize) + 0x504) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dr4r(&self, value: Dr4r) -> &Self {
+  #[inline] pub fn set_dr4r(&self, value: Dr4r) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x504) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x504) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dr4r<F: FnOnce(Dr4r) -> Dr4r>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dr4r<F: FnOnce(Dr4r) -> Dr4r>(&self, f: F) -> &Self {
      let tmp = self.dr4r();
      self.set_dr4r(f(tmp))
   }
 
-  #[inline]
-  pub fn dr8r_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dr8r_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x508) as *const u32
   }
-  #[inline]
-  pub fn dr8r_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dr8r_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x508) as *mut u32
   }
-  #[inline]
-  pub fn dr8r(&self) -> Dr8r { 
+  #[inline] pub fn dr8r(&self) -> Dr8r { 
      unsafe {
-       Dr8r(::core::ptr::read_volatile(((self.0 as usize) + 0x508) as *const u32))
+        Dr8r(::core::ptr::read_volatile(((self.0 as usize) + 0x508) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dr8r(&self, value: Dr8r) -> &Self {
+  #[inline] pub fn set_dr8r(&self, value: Dr8r) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x508) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x508) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dr8r<F: FnOnce(Dr8r) -> Dr8r>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dr8r<F: FnOnce(Dr8r) -> Dr8r>(&self, f: F) -> &Self {
      let tmp = self.dr8r();
      self.set_dr8r(f(tmp))
   }
 
-  #[inline]
-  pub fn odr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn odr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x50c) as *const u32
   }
-  #[inline]
-  pub fn odr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn odr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x50c) as *mut u32
   }
-  #[inline]
-  pub fn odr(&self) -> Odr { 
+  #[inline] pub fn odr(&self) -> Odr { 
      unsafe {
-       Odr(::core::ptr::read_volatile(((self.0 as usize) + 0x50c) as *const u32))
+        Odr(::core::ptr::read_volatile(((self.0 as usize) + 0x50c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_odr(&self, value: Odr) -> &Self {
+  #[inline] pub fn set_odr(&self, value: Odr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x50c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
      let tmp = self.odr();
      self.set_odr(f(tmp))
   }
 
-  #[inline]
-  pub fn pur_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pur_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x510) as *const u32
   }
-  #[inline]
-  pub fn pur_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pur_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x510) as *mut u32
   }
-  #[inline]
-  pub fn pur(&self) -> Pur { 
+  #[inline] pub fn pur(&self) -> Pur { 
      unsafe {
-       Pur(::core::ptr::read_volatile(((self.0 as usize) + 0x510) as *const u32))
+        Pur(::core::ptr::read_volatile(((self.0 as usize) + 0x510) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_pur(&self, value: Pur) -> &Self {
+  #[inline] pub fn set_pur(&self, value: Pur) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x510) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x510) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_pur<F: FnOnce(Pur) -> Pur>(&self, f: F) -> &Self {
+  #[inline] pub fn with_pur<F: FnOnce(Pur) -> Pur>(&self, f: F) -> &Self {
      let tmp = self.pur();
      self.set_pur(f(tmp))
   }
 
-  #[inline]
-  pub fn pdr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x514) as *const u32
   }
-  #[inline]
-  pub fn pdr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x514) as *mut u32
   }
-  #[inline]
-  pub fn pdr(&self) -> Pdr { 
+  #[inline] pub fn pdr(&self) -> Pdr { 
      unsafe {
-       Pdr(::core::ptr::read_volatile(((self.0 as usize) + 0x514) as *const u32))
+        Pdr(::core::ptr::read_volatile(((self.0 as usize) + 0x514) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_pdr(&self, value: Pdr) -> &Self {
+  #[inline] pub fn set_pdr(&self, value: Pdr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x514) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x514) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_pdr<F: FnOnce(Pdr) -> Pdr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_pdr<F: FnOnce(Pdr) -> Pdr>(&self, f: F) -> &Self {
      let tmp = self.pdr();
      self.set_pdr(f(tmp))
   }
 
-  #[inline]
-  pub fn slr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn slr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x518) as *const u32
   }
-  #[inline]
-  pub fn slr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn slr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x518) as *mut u32
   }
-  #[inline]
-  pub fn slr(&self) -> Slr { 
+  #[inline] pub fn slr(&self) -> Slr { 
      unsafe {
-       Slr(::core::ptr::read_volatile(((self.0 as usize) + 0x518) as *const u32))
+        Slr(::core::ptr::read_volatile(((self.0 as usize) + 0x518) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_slr(&self, value: Slr) -> &Self {
+  #[inline] pub fn set_slr(&self, value: Slr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x518) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x518) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_slr<F: FnOnce(Slr) -> Slr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_slr<F: FnOnce(Slr) -> Slr>(&self, f: F) -> &Self {
      let tmp = self.slr();
      self.set_slr(f(tmp))
   }
 
-  #[inline]
-  pub fn den_ptr(&self) -> *const u32 { 
+  #[inline] pub fn den_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x51c) as *const u32
   }
-  #[inline]
-  pub fn den_mut(&self) -> *mut u32 { 
+  #[inline] pub fn den_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x51c) as *mut u32
   }
-  #[inline]
-  pub fn den(&self) -> Den { 
+  #[inline] pub fn den(&self) -> Den { 
      unsafe {
-       Den(::core::ptr::read_volatile(((self.0 as usize) + 0x51c) as *const u32))
+        Den(::core::ptr::read_volatile(((self.0 as usize) + 0x51c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_den(&self, value: Den) -> &Self {
+  #[inline] pub fn set_den(&self, value: Den) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x51c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x51c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_den<F: FnOnce(Den) -> Den>(&self, f: F) -> &Self {
+  #[inline] pub fn with_den<F: FnOnce(Den) -> Den>(&self, f: F) -> &Self {
      let tmp = self.den();
      self.set_den(f(tmp))
   }
 
-  #[inline]
-  pub fn lock_ptr(&self) -> *const u32 { 
+  #[inline] pub fn lock_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x520) as *const u32
   }
-  #[inline]
-  pub fn lock_mut(&self) -> *mut u32 { 
+  #[inline] pub fn lock_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x520) as *mut u32
   }
-  #[inline]
-  pub fn lock(&self) -> Lock { 
+  #[inline] pub fn lock(&self) -> Lock { 
      unsafe {
-       Lock(::core::ptr::read_volatile(((self.0 as usize) + 0x520) as *const u32))
+        Lock(::core::ptr::read_volatile(((self.0 as usize) + 0x520) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_lock(&self, value: Lock) -> &Self {
+  #[inline] pub fn set_lock(&self, value: Lock) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x520) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x520) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Self {
+  #[inline] pub fn with_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Self {
      let tmp = self.lock();
      self.set_lock(f(tmp))
   }
 
-  #[inline]
-  pub fn cr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x524) as *const u32
   }
-  #[inline]
-  pub fn cr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x524) as *mut u32
   }
-  #[inline]
-  pub fn cr(&self) -> Cr { 
+  #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
-       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x524) as *const u32))
+        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x524) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn amsel_ptr(&self) -> *const u32 { 
+  #[inline] pub fn amsel_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x528) as *const u32
   }
-  #[inline]
-  pub fn amsel_mut(&self) -> *mut u32 { 
+  #[inline] pub fn amsel_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x528) as *mut u32
   }
-  #[inline]
-  pub fn amsel(&self) -> Amsel { 
+  #[inline] pub fn amsel(&self) -> Amsel { 
      unsafe {
-       Amsel(::core::ptr::read_volatile(((self.0 as usize) + 0x528) as *const u32))
+        Amsel(::core::ptr::read_volatile(((self.0 as usize) + 0x528) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_amsel(&self, value: Amsel) -> &Self {
+  #[inline] pub fn set_amsel(&self, value: Amsel) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x528) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x528) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_amsel<F: FnOnce(Amsel) -> Amsel>(&self, f: F) -> &Self {
+  #[inline] pub fn with_amsel<F: FnOnce(Amsel) -> Amsel>(&self, f: F) -> &Self {
      let tmp = self.amsel();
      self.set_amsel(f(tmp))
   }
 
-  #[inline]
-  pub fn pctl_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pctl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x52c) as *const u32
   }
-  #[inline]
-  pub fn pctl_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pctl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x52c) as *mut u32
   }
-  #[inline]
-  pub fn pctl(&self) -> Pctl { 
+  #[inline] pub fn pctl(&self) -> Pctl { 
      unsafe {
-       Pctl(::core::ptr::read_volatile(((self.0 as usize) + 0x52c) as *const u32))
+        Pctl(::core::ptr::read_volatile(((self.0 as usize) + 0x52c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_pctl(&self, value: Pctl) -> &Self {
+  #[inline] pub fn set_pctl(&self, value: Pctl) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x52c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x52c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_pctl<F: FnOnce(Pctl) -> Pctl>(&self, f: F) -> &Self {
+  #[inline] pub fn with_pctl<F: FnOnce(Pctl) -> Pctl>(&self, f: F) -> &Self {
      let tmp = self.pctl();
      self.set_pctl(f(tmp))
   }
 
-  #[inline]
-  pub fn adcctl_ptr(&self) -> *const u32 { 
+  #[inline] pub fn adcctl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x530) as *const u32
   }
-  #[inline]
-  pub fn adcctl_mut(&self) -> *mut u32 { 
+  #[inline] pub fn adcctl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x530) as *mut u32
   }
-  #[inline]
-  pub fn adcctl(&self) -> Adcctl { 
+  #[inline] pub fn adcctl(&self) -> Adcctl { 
      unsafe {
-       Adcctl(::core::ptr::read_volatile(((self.0 as usize) + 0x530) as *const u32))
+        Adcctl(::core::ptr::read_volatile(((self.0 as usize) + 0x530) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_adcctl(&self, value: Adcctl) -> &Self {
+  #[inline] pub fn set_adcctl(&self, value: Adcctl) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x530) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x530) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_adcctl<F: FnOnce(Adcctl) -> Adcctl>(&self, f: F) -> &Self {
+  #[inline] pub fn with_adcctl<F: FnOnce(Adcctl) -> Adcctl>(&self, f: F) -> &Self {
      let tmp = self.adcctl();
      self.set_adcctl(f(tmp))
   }
 
-  #[inline]
-  pub fn dmactl_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dmactl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x534) as *const u32
   }
-  #[inline]
-  pub fn dmactl_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dmactl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x534) as *mut u32
   }
-  #[inline]
-  pub fn dmactl(&self) -> Dmactl { 
+  #[inline] pub fn dmactl(&self) -> Dmactl { 
      unsafe {
-       Dmactl(::core::ptr::read_volatile(((self.0 as usize) + 0x534) as *const u32))
+        Dmactl(::core::ptr::read_volatile(((self.0 as usize) + 0x534) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dmactl(&self, value: Dmactl) -> &Self {
+  #[inline] pub fn set_dmactl(&self, value: Dmactl) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x534) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x534) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
      let tmp = self.dmactl();
      self.set_dmactl(f(tmp))
   }
 
-  #[inline]
-  pub fn gpiosi_ptr(&self) -> *const u32 { 
+  #[inline] pub fn gpiosi_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x539) as *const u32
   }
-  #[inline]
-  pub fn gpiosi_mut(&self) -> *mut u32 { 
+  #[inline] pub fn gpiosi_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x539) as *mut u32
   }
-  #[inline]
-  pub fn gpiosi(&self) -> Gpiosi { 
+  #[inline] pub fn gpiosi(&self) -> Gpiosi { 
      unsafe {
-       Gpiosi(::core::ptr::read_volatile(((self.0 as usize) + 0x539) as *const u32))
+        Gpiosi(::core::ptr::read_volatile(((self.0 as usize) + 0x539) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_gpiosi(&self, value: Gpiosi) -> &Self {
+  #[inline] pub fn set_gpiosi(&self, value: Gpiosi) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x539) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x539) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_gpiosi<F: FnOnce(Gpiosi) -> Gpiosi>(&self, f: F) -> &Self {
+  #[inline] pub fn with_gpiosi<F: FnOnce(Gpiosi) -> Gpiosi>(&self, f: F) -> &Self {
      let tmp = self.gpiosi();
      self.set_gpiosi(f(tmp))
   }
 
-  #[inline]
-  pub fn gpiodr12r_ptr(&self) -> *const u32 { 
+  #[inline] pub fn gpiodr12r_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x53c) as *const u32
   }
-  #[inline]
-  pub fn gpiodr12r_mut(&self) -> *mut u32 { 
+  #[inline] pub fn gpiodr12r_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x53c) as *mut u32
   }
-  #[inline]
-  pub fn gpiodr12r(&self) -> Gpiodr12r { 
+  #[inline] pub fn gpiodr12r(&self) -> Gpiodr12r { 
      unsafe {
-       Gpiodr12r(::core::ptr::read_volatile(((self.0 as usize) + 0x53c) as *const u32))
+        Gpiodr12r(::core::ptr::read_volatile(((self.0 as usize) + 0x53c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_gpiodr12r(&self, value: Gpiodr12r) -> &Self {
+  #[inline] pub fn set_gpiodr12r(&self, value: Gpiodr12r) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x53c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x53c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_gpiodr12r<F: FnOnce(Gpiodr12r) -> Gpiodr12r>(&self, f: F) -> &Self {
+  #[inline] pub fn with_gpiodr12r<F: FnOnce(Gpiodr12r) -> Gpiodr12r>(&self, f: F) -> &Self {
      let tmp = self.gpiodr12r();
      self.set_gpiodr12r(f(tmp))
   }
 
-  #[inline]
-  pub fn gpiowakepen_ptr(&self) -> *const u32 { 
+  #[inline] pub fn gpiowakepen_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x540) as *const u32
   }
-  #[inline]
-  pub fn gpiowakepen_mut(&self) -> *mut u32 { 
+  #[inline] pub fn gpiowakepen_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x540) as *mut u32
   }
-  #[inline]
-  pub fn gpiowakepen(&self) -> Gpiowakepen { 
+  #[inline] pub fn gpiowakepen(&self) -> Gpiowakepen { 
      unsafe {
-       Gpiowakepen(::core::ptr::read_volatile(((self.0 as usize) + 0x540) as *const u32))
+        Gpiowakepen(::core::ptr::read_volatile(((self.0 as usize) + 0x540) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_gpiowakepen(&self, value: Gpiowakepen) -> &Self {
+  #[inline] pub fn set_gpiowakepen(&self, value: Gpiowakepen) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x540) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x540) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_gpiowakepen<F: FnOnce(Gpiowakepen) -> Gpiowakepen>(&self, f: F) -> &Self {
+  #[inline] pub fn with_gpiowakepen<F: FnOnce(Gpiowakepen) -> Gpiowakepen>(&self, f: F) -> &Self {
      let tmp = self.gpiowakepen();
      self.set_gpiowakepen(f(tmp))
   }
 
-  #[inline]
-  pub fn gpiowakelvl_ptr(&self) -> *const u32 { 
+  #[inline] pub fn gpiowakelvl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x544) as *const u32
   }
-  #[inline]
-  pub fn gpiowakelvl_mut(&self) -> *mut u32 { 
+  #[inline] pub fn gpiowakelvl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x544) as *mut u32
   }
-  #[inline]
-  pub fn gpiowakelvl(&self) -> Gpiowakelvl { 
+  #[inline] pub fn gpiowakelvl(&self) -> Gpiowakelvl { 
      unsafe {
-       Gpiowakelvl(::core::ptr::read_volatile(((self.0 as usize) + 0x544) as *const u32))
+        Gpiowakelvl(::core::ptr::read_volatile(((self.0 as usize) + 0x544) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_gpiowakelvl(&self, value: Gpiowakelvl) -> &Self {
+  #[inline] pub fn set_gpiowakelvl(&self, value: Gpiowakelvl) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x544) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x544) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_gpiowakelvl<F: FnOnce(Gpiowakelvl) -> Gpiowakelvl>(&self, f: F) -> &Self {
+  #[inline] pub fn with_gpiowakelvl<F: FnOnce(Gpiowakelvl) -> Gpiowakelvl>(&self, f: F) -> &Self {
      let tmp = self.gpiowakelvl();
      self.set_gpiowakelvl(f(tmp))
   }
 
-  #[inline]
-  pub fn gpiowakestat_ptr(&self) -> *const u32 { 
+  #[inline] pub fn gpiowakestat_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x548) as *const u32
   }
-  #[inline]
-  pub fn gpiowakestat_mut(&self) -> *mut u32 { 
+  #[inline] pub fn gpiowakestat_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x548) as *mut u32
   }
-  #[inline]
-  pub fn gpiowakestat(&self) -> Gpiowakestat { 
+  #[inline] pub fn gpiowakestat(&self) -> Gpiowakestat { 
      unsafe {
-       Gpiowakestat(::core::ptr::read_volatile(((self.0 as usize) + 0x548) as *const u32))
+        Gpiowakestat(::core::ptr::read_volatile(((self.0 as usize) + 0x548) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_gpiowakestat(&self, value: Gpiowakestat) -> &Self {
+  #[inline] pub fn set_gpiowakestat(&self, value: Gpiowakestat) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x548) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x548) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_gpiowakestat<F: FnOnce(Gpiowakestat) -> Gpiowakestat>(&self, f: F) -> &Self {
+  #[inline] pub fn with_gpiowakestat<F: FnOnce(Gpiowakestat) -> Gpiowakestat>(&self, f: F) -> &Self {
      let tmp = self.gpiowakestat();
      self.set_gpiowakestat(f(tmp))
   }
@@ -890,14 +749,12 @@ impl<T> Periph<T> {
 #[derive(PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
-  #[inline]
-  pub fn data(&self, index: usize) -> u32 {
+  #[inline] pub fn data(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_data(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_data(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -930,14 +787,12 @@ impl ::core::fmt::Debug for Data {
 #[derive(PartialEq, Eq)]
 pub struct Dir(pub u32);
 impl Dir {
-  #[inline]
-  pub fn dir(&self, index: usize) -> u32 {
+  #[inline] pub fn dir(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_dir(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dir(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -970,14 +825,12 @@ impl ::core::fmt::Debug for Dir {
 #[derive(PartialEq, Eq)]
 pub struct Is(pub u32);
 impl Is {
-  #[inline]
-  pub fn is(&self, index: usize) -> u32 {
+  #[inline] pub fn is(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_is(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_is(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1010,14 +863,12 @@ impl ::core::fmt::Debug for Is {
 #[derive(PartialEq, Eq)]
 pub struct Ibe(pub u32);
 impl Ibe {
-  #[inline]
-  pub fn ibe(&self, index: usize) -> u32 {
+  #[inline] pub fn ibe(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ibe(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ibe(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1050,14 +901,12 @@ impl ::core::fmt::Debug for Ibe {
 #[derive(PartialEq, Eq)]
 pub struct Iev(pub u32);
 impl Iev {
-  #[inline]
-  pub fn iev(&self, index: usize) -> u32 {
+  #[inline] pub fn iev(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_iev(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_iev(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1090,14 +939,12 @@ impl ::core::fmt::Debug for Iev {
 #[derive(PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
-  #[inline]
-  pub fn im(&self, index: usize) -> u32 {
+  #[inline] pub fn im(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_im(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_im(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1106,12 +953,10 @@ impl Im {
      self
   }
 
-  #[inline]
-  pub fn dmaime(&self) -> u32 {
+  #[inline] pub fn dmaime(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_dmaime(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaime(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1143,14 +988,12 @@ impl ::core::fmt::Debug for Im {
 #[derive(PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
-  #[inline]
-  pub fn ris(&self, index: usize) -> u32 {
+  #[inline] pub fn ris(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ris(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1159,12 +1002,10 @@ impl Ris {
      self
   }
 
-  #[inline]
-  pub fn dmaris(&self) -> u32 {
+  #[inline] pub fn dmaris(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_dmaris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1196,14 +1037,12 @@ impl ::core::fmt::Debug for Ris {
 #[derive(PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
-  #[inline]
-  pub fn mis(&self, index: usize) -> u32 {
+  #[inline] pub fn mis(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_mis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_mis(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1212,12 +1051,10 @@ impl Mis {
      self
   }
 
-  #[inline]
-  pub fn dmamis(&self) -> u32 {
+  #[inline] pub fn dmamis(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_dmamis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmamis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1249,14 +1086,12 @@ impl ::core::fmt::Debug for Mis {
 #[derive(PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
-  #[inline]
-  pub fn icr(&self, index: usize) -> u32 {
+  #[inline] pub fn icr(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_icr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_icr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1265,12 +1100,10 @@ impl Icr {
      self
   }
 
-  #[inline]
-  pub fn dmamic(&self) -> u32 {
+  #[inline] pub fn dmamic(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_dmamic(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmamic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1302,14 +1135,12 @@ impl ::core::fmt::Debug for Icr {
 #[derive(PartialEq, Eq)]
 pub struct Afsel(pub u32);
 impl Afsel {
-  #[inline]
-  pub fn afsel(&self, index: usize) -> u32 {
+  #[inline] pub fn afsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_afsel(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_afsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1342,14 +1173,12 @@ impl ::core::fmt::Debug for Afsel {
 #[derive(PartialEq, Eq)]
 pub struct Dr2r(pub u32);
 impl Dr2r {
-  #[inline]
-  pub fn drv2(&self, index: usize) -> u32 {
+  #[inline] pub fn drv2(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_drv2(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv2(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1382,14 +1211,12 @@ impl ::core::fmt::Debug for Dr2r {
 #[derive(PartialEq, Eq)]
 pub struct Dr4r(pub u32);
 impl Dr4r {
-  #[inline]
-  pub fn drv4(&self, index: usize) -> u32 {
+  #[inline] pub fn drv4(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_drv4(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv4(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1422,14 +1249,12 @@ impl ::core::fmt::Debug for Dr4r {
 #[derive(PartialEq, Eq)]
 pub struct Dr8r(pub u32);
 impl Dr8r {
-  #[inline]
-  pub fn drv8(&self, index: usize) -> u32 {
+  #[inline] pub fn drv8(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_drv8(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv8(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1462,14 +1287,12 @@ impl ::core::fmt::Debug for Dr8r {
 #[derive(PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
-  #[inline]
-  pub fn ode(&self, index: usize) -> u32 {
+  #[inline] pub fn ode(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ode(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ode(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1502,14 +1325,12 @@ impl ::core::fmt::Debug for Odr {
 #[derive(PartialEq, Eq)]
 pub struct Pur(pub u32);
 impl Pur {
-  #[inline]
-  pub fn pue(&self, index: usize) -> u32 {
+  #[inline] pub fn pue(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_pue(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pue(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1542,14 +1363,12 @@ impl ::core::fmt::Debug for Pur {
 #[derive(PartialEq, Eq)]
 pub struct Pdr(pub u32);
 impl Pdr {
-  #[inline]
-  pub fn pde(&self, index: usize) -> u32 {
+  #[inline] pub fn pde(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_pde(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pde(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1582,14 +1401,12 @@ impl ::core::fmt::Debug for Pdr {
 #[derive(PartialEq, Eq)]
 pub struct Slr(pub u32);
 impl Slr {
-  #[inline]
-  pub fn slr(&self, index: usize) -> u32 {
+  #[inline] pub fn slr(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_slr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_slr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1622,14 +1439,12 @@ impl ::core::fmt::Debug for Slr {
 #[derive(PartialEq, Eq)]
 pub struct Den(pub u32);
 impl Den {
-  #[inline]
-  pub fn den(&self, index: usize) -> u32 {
+  #[inline] pub fn den(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_den(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_den(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1662,12 +1477,10 @@ impl ::core::fmt::Debug for Den {
 #[derive(PartialEq, Eq)]
 pub struct Lock(pub u32);
 impl Lock {
-  #[inline]
-  pub fn gpio_lock(&self) -> u32 {
+  #[inline] pub fn gpio_lock(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline]
-  pub fn set_gpio_lock(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpio_lock(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1690,14 +1503,12 @@ impl ::core::fmt::Debug for Lock {
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-  #[inline]
-  pub fn cr(&self, index: usize) -> u32 {
+  #[inline] pub fn cr(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_cr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1730,14 +1541,12 @@ impl ::core::fmt::Debug for Cr {
 #[derive(PartialEq, Eq)]
 pub struct Amsel(pub u32);
 impl Amsel {
-  #[inline]
-  pub fn gpioamsel(&self, index: usize) -> u32 {
+  #[inline] pub fn gpioamsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_gpioamsel(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_gpioamsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1770,14 +1579,12 @@ impl ::core::fmt::Debug for Amsel {
 #[derive(PartialEq, Eq)]
 pub struct Pctl(pub u32);
 impl Pctl {
-  #[inline]
-  pub fn pmc(&self, index: usize) -> u32 {
+  #[inline] pub fn pmc(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_pmc(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pmc(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0xf) == 0);
      let shift: usize = 0 + (index << 2);
@@ -1810,14 +1617,12 @@ impl ::core::fmt::Debug for Pctl {
 #[derive(PartialEq, Eq)]
 pub struct Adcctl(pub u32);
 impl Adcctl {
-  #[inline]
-  pub fn adcen(&self, index: usize) -> u32 {
+  #[inline] pub fn adcen(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_adcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_adcen(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1850,14 +1655,12 @@ impl ::core::fmt::Debug for Adcctl {
 #[derive(PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
-  #[inline]
-  pub fn dmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn dmaen(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_dmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmaen(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1890,14 +1693,12 @@ impl ::core::fmt::Debug for Dmactl {
 #[derive(PartialEq, Eq)]
 pub struct Gpiosi(pub u32);
 impl Gpiosi {
-  #[inline]
-  pub fn sum(&self, index: usize) -> u32 {
+  #[inline] pub fn sum(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_sum(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_sum(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1930,14 +1731,12 @@ impl ::core::fmt::Debug for Gpiosi {
 #[derive(PartialEq, Eq)]
 pub struct Gpiodr12r(pub u32);
 impl Gpiodr12r {
-  #[inline]
-  pub fn drv12(&self, index: usize) -> u32 {
+  #[inline] pub fn drv12(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_drv12(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv12(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1970,48 +1769,40 @@ impl ::core::fmt::Debug for Gpiodr12r {
 #[derive(PartialEq, Eq)]
 pub struct Gpiowakepen(pub u32);
 impl Gpiowakepen {
-  #[inline]
-  pub fn wakep7(&self) -> u32 {
+  #[inline] pub fn wakep7(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_wakep7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn wakep6(&self) -> u32 {
+  #[inline] pub fn wakep6(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_wakep6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn wakep5(&self) -> u32 {
+  #[inline] pub fn wakep5(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_wakep5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn wakep4(&self) -> u32 {
+  #[inline] pub fn wakep4(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_wakep4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2038,48 +1829,40 @@ impl ::core::fmt::Debug for Gpiowakepen {
 #[derive(PartialEq, Eq)]
 pub struct Gpiowakelvl(pub u32);
 impl Gpiowakelvl {
-  #[inline]
-  pub fn wakelvl7(&self) -> u32 {
+  #[inline] pub fn wakelvl7(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_wakelvl7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn wakelvl6(&self) -> u32 {
+  #[inline] pub fn wakelvl6(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_wakelvl6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn wakelvl5(&self) -> u32 {
+  #[inline] pub fn wakelvl5(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_wakelvl5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn wakelvl4(&self) -> u32 {
+  #[inline] pub fn wakelvl4(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_wakelvl4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2106,48 +1889,40 @@ impl ::core::fmt::Debug for Gpiowakelvl {
 #[derive(PartialEq, Eq)]
 pub struct Gpiowakestat(pub u32);
 impl Gpiowakestat {
-  #[inline]
-  pub fn wakestat7(&self) -> u32 {
+  #[inline] pub fn wakestat7(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_wakestat7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn wakestat6(&self) -> u32 {
+  #[inline] pub fn wakestat6(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_wakestat6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn wakestat5(&self) -> u32 {
+  #[inline] pub fn wakestat5(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_wakestat5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn wakestat4(&self) -> u32 {
+  #[inline] pub fn wakestat4(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_wakestat4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;

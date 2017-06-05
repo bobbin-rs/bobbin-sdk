@@ -3,476 +3,388 @@ pub const RTC: Rtc = Rtc(0x40002800);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtc(pub u32);
 impl Rtc {
-  #[inline]
-  pub fn tr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn tr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
-  #[inline]
-  pub fn tr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn tr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
-  #[inline]
-  pub fn tr(&self) -> Tr { 
+  #[inline] pub fn tr(&self) -> Tr { 
      unsafe {
-       Tr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+        Tr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_tr(&self, value: Tr) -> &Self {
+  #[inline] pub fn set_tr(&self, value: Tr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_tr<F: FnOnce(Tr) -> Tr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_tr<F: FnOnce(Tr) -> Tr>(&self, f: F) -> &Self {
      let tmp = self.tr();
      self.set_tr(f(tmp))
   }
 
-  #[inline]
-  pub fn dr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn dr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
-  #[inline]
-  pub fn dr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn dr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
-  #[inline]
-  pub fn dr(&self) -> Dr { 
+  #[inline] pub fn dr(&self) -> Dr { 
      unsafe {
-       Dr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+        Dr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_dr(&self, value: Dr) -> &Self {
+  #[inline] pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
 
-  #[inline]
-  pub fn cr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
-  #[inline]
-  pub fn cr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
-  #[inline]
-  pub fn cr(&self) -> Cr { 
+  #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
-       Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
-  #[inline]
-  pub fn isr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn isr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
-  #[inline]
-  pub fn isr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn isr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
-  #[inline]
-  pub fn isr(&self) -> Isr { 
+  #[inline] pub fn isr(&self) -> Isr { 
      unsafe {
-       Isr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+        Isr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_isr(&self, value: Isr) -> &Self {
+  #[inline] pub fn set_isr(&self, value: Isr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) -> &Self {
      let tmp = self.isr();
      self.set_isr(f(tmp))
   }
 
-  #[inline]
-  pub fn prer_ptr(&self) -> *const u32 { 
+  #[inline] pub fn prer_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
-  #[inline]
-  pub fn prer_mut(&self) -> *mut u32 { 
+  #[inline] pub fn prer_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
-  #[inline]
-  pub fn prer(&self) -> Prer { 
+  #[inline] pub fn prer(&self) -> Prer { 
      unsafe {
-       Prer(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+        Prer(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_prer(&self, value: Prer) -> &Self {
+  #[inline] pub fn set_prer(&self, value: Prer) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_prer<F: FnOnce(Prer) -> Prer>(&self, f: F) -> &Self {
+  #[inline] pub fn with_prer<F: FnOnce(Prer) -> Prer>(&self, f: F) -> &Self {
      let tmp = self.prer();
      self.set_prer(f(tmp))
   }
 
-  #[inline]
-  pub fn wutr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn wutr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
-  #[inline]
-  pub fn wutr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn wutr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
-  #[inline]
-  pub fn wutr(&self) -> Wutr { 
+  #[inline] pub fn wutr(&self) -> Wutr { 
      unsafe {
-       Wutr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+        Wutr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_wutr(&self, value: Wutr) -> &Self {
+  #[inline] pub fn set_wutr(&self, value: Wutr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_wutr<F: FnOnce(Wutr) -> Wutr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_wutr<F: FnOnce(Wutr) -> Wutr>(&self, f: F) -> &Self {
      let tmp = self.wutr();
      self.set_wutr(f(tmp))
   }
 
-  #[inline]
-  pub fn alrmar_ptr(&self) -> *const u32 { 
+  #[inline] pub fn alrmar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
-  #[inline]
-  pub fn alrmar_mut(&self) -> *mut u32 { 
+  #[inline] pub fn alrmar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
-  #[inline]
-  pub fn alrmar(&self) -> Alrmar { 
+  #[inline] pub fn alrmar(&self) -> Alrmar { 
      unsafe {
-       Alrmar(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+        Alrmar(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_alrmar(&self, value: Alrmar) -> &Self {
+  #[inline] pub fn set_alrmar(&self, value: Alrmar) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_alrmar<F: FnOnce(Alrmar) -> Alrmar>(&self, f: F) -> &Self {
+  #[inline] pub fn with_alrmar<F: FnOnce(Alrmar) -> Alrmar>(&self, f: F) -> &Self {
      let tmp = self.alrmar();
      self.set_alrmar(f(tmp))
   }
 
-  #[inline]
-  pub fn alrmbr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn alrmbr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
-  #[inline]
-  pub fn alrmbr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn alrmbr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
-  #[inline]
-  pub fn alrmbr(&self) -> Alrmbr { 
+  #[inline] pub fn alrmbr(&self) -> Alrmbr { 
      unsafe {
-       Alrmbr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+        Alrmbr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_alrmbr(&self, value: Alrmbr) -> &Self {
+  #[inline] pub fn set_alrmbr(&self, value: Alrmbr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_alrmbr<F: FnOnce(Alrmbr) -> Alrmbr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_alrmbr<F: FnOnce(Alrmbr) -> Alrmbr>(&self, f: F) -> &Self {
      let tmp = self.alrmbr();
      self.set_alrmbr(f(tmp))
   }
 
-  #[inline]
-  pub fn wpr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn wpr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
-  #[inline]
-  pub fn wpr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn wpr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
-  #[inline]
-  pub fn set_wpr(&self, value: Wpr) -> &Self {
+  #[inline] pub fn set_wpr(&self, value: Wpr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn ssr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn ssr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x28) as *const u32
   }
-  #[inline]
-  pub fn ssr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn ssr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x28) as *mut u32
   }
-  #[inline]
-  pub fn ssr(&self) -> Ssr { 
+  #[inline] pub fn ssr(&self) -> Ssr { 
      unsafe {
-       Ssr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+        Ssr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn shiftr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn shiftr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x2c) as *const u32
   }
-  #[inline]
-  pub fn shiftr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn shiftr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x2c) as *mut u32
   }
-  #[inline]
-  pub fn set_shiftr(&self, value: Shiftr) -> &Self {
+  #[inline] pub fn set_shiftr(&self, value: Shiftr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn tstr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn tstr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x30) as *const u32
   }
-  #[inline]
-  pub fn tstr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn tstr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x30) as *mut u32
   }
-  #[inline]
-  pub fn tstr(&self) -> Tstr { 
+  #[inline] pub fn tstr(&self) -> Tstr { 
      unsafe {
-       Tstr(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+        Tstr(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn tsdr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn tsdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x34) as *const u32
   }
-  #[inline]
-  pub fn tsdr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn tsdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x34) as *mut u32
   }
-  #[inline]
-  pub fn tsdr(&self) -> Tsdr { 
+  #[inline] pub fn tsdr(&self) -> Tsdr { 
      unsafe {
-       Tsdr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+        Tsdr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn tsssr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn tsssr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x38) as *const u32
   }
-  #[inline]
-  pub fn tsssr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn tsssr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x38) as *mut u32
   }
-  #[inline]
-  pub fn tsssr(&self) -> Tsssr { 
+  #[inline] pub fn tsssr(&self) -> Tsssr { 
      unsafe {
-       Tsssr(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
+        Tsssr(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn calr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn calr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x3c) as *const u32
   }
-  #[inline]
-  pub fn calr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn calr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x3c) as *mut u32
   }
-  #[inline]
-  pub fn calr(&self) -> Calr { 
+  #[inline] pub fn calr(&self) -> Calr { 
      unsafe {
-       Calr(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
+        Calr(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_calr(&self, value: Calr) -> &Self {
+  #[inline] pub fn set_calr(&self, value: Calr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_calr<F: FnOnce(Calr) -> Calr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_calr<F: FnOnce(Calr) -> Calr>(&self, f: F) -> &Self {
      let tmp = self.calr();
      self.set_calr(f(tmp))
   }
 
-  #[inline]
-  pub fn tampcr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn tampcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x40) as *const u32
   }
-  #[inline]
-  pub fn tampcr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn tampcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x40) as *mut u32
   }
-  #[inline]
-  pub fn tampcr(&self) -> Tampcr { 
+  #[inline] pub fn tampcr(&self) -> Tampcr { 
      unsafe {
-       Tampcr(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
+        Tampcr(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_tampcr(&self, value: Tampcr) -> &Self {
+  #[inline] pub fn set_tampcr(&self, value: Tampcr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_tampcr<F: FnOnce(Tampcr) -> Tampcr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_tampcr<F: FnOnce(Tampcr) -> Tampcr>(&self, f: F) -> &Self {
      let tmp = self.tampcr();
      self.set_tampcr(f(tmp))
   }
 
-  #[inline]
-  pub fn alrmassr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn alrmassr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x44) as *const u32
   }
-  #[inline]
-  pub fn alrmassr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn alrmassr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x44) as *mut u32
   }
-  #[inline]
-  pub fn alrmassr(&self) -> Alrmassr { 
+  #[inline] pub fn alrmassr(&self) -> Alrmassr { 
      unsafe {
-       Alrmassr(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
+        Alrmassr(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_alrmassr(&self, value: Alrmassr) -> &Self {
+  #[inline] pub fn set_alrmassr(&self, value: Alrmassr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_alrmassr<F: FnOnce(Alrmassr) -> Alrmassr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_alrmassr<F: FnOnce(Alrmassr) -> Alrmassr>(&self, f: F) -> &Self {
      let tmp = self.alrmassr();
      self.set_alrmassr(f(tmp))
   }
 
-  #[inline]
-  pub fn alrmbssr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn alrmbssr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x48) as *const u32
   }
-  #[inline]
-  pub fn alrmbssr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn alrmbssr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x48) as *mut u32
   }
-  #[inline]
-  pub fn alrmbssr(&self) -> Alrmbssr { 
+  #[inline] pub fn alrmbssr(&self) -> Alrmbssr { 
      unsafe {
-       Alrmbssr(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
+        Alrmbssr(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_alrmbssr(&self, value: Alrmbssr) -> &Self {
+  #[inline] pub fn set_alrmbssr(&self, value: Alrmbssr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_alrmbssr<F: FnOnce(Alrmbssr) -> Alrmbssr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_alrmbssr<F: FnOnce(Alrmbssr) -> Alrmbssr>(&self, f: F) -> &Self {
      let tmp = self.alrmbssr();
      self.set_alrmbssr(f(tmp))
   }
 
-  #[inline]
-  pub fn or_ptr(&self) -> *const u32 { 
+  #[inline] pub fn or_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
-  #[inline]
-  pub fn or_mut(&self) -> *mut u32 { 
+  #[inline] pub fn or_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
-  #[inline]
-  pub fn or(&self) -> Or { 
+  #[inline] pub fn or(&self) -> Or { 
      unsafe {
-       Or(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
+        Or(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_or(&self, value: Or) -> &Self {
+  #[inline] pub fn set_or(&self, value: Or) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
+  #[inline] pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
      let tmp = self.or();
      self.set_or(f(tmp))
   }
 
-  #[inline]
-  pub fn bkpr_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn bkpr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 5);
      ((self.0 as usize) + 0x50 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn bkpr_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn bkpr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 5);
      ((self.0 as usize) + 0x50 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn bkpr(&self, index: usize) -> Bkpr { 
+  #[inline] pub fn bkpr(&self, index: usize) -> Bkpr { 
      assert!(index < 5);
      unsafe {
         Bkpr(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_bkpr(&self, index: usize, value: Bkpr) -> &Self {
+  #[inline] pub fn set_bkpr(&self, index: usize, value: Bkpr) -> &Self {
      assert!(index < 5);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_bkpr<F: FnOnce(Bkpr) -> Bkpr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_bkpr<F: FnOnce(Bkpr) -> Bkpr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.bkpr(index);
      self.set_bkpr(index, f(tmp))
   }
@@ -482,84 +394,70 @@ impl Rtc {
 #[derive(PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
-  #[inline]
-  pub fn pm(&self) -> u32 {
+  #[inline] pub fn pm(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-  #[inline]
-  pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
-  #[inline]
-  pub fn ht(&self) -> u32 {
+  #[inline] pub fn ht(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
   }
-  #[inline]
-  pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn hu(&self) -> u32 {
+  #[inline] pub fn hu(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
-  #[inline]
-  pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn mnt(&self) -> u32 {
+  #[inline] pub fn mnt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
-  #[inline]
-  pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mnu(&self) -> u32 {
+  #[inline] pub fn mnu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn st(&self) -> u32 {
+  #[inline] pub fn st(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x7 // [6:4]
   }
-  #[inline]
-  pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn su(&self) -> u32 {
+  #[inline] pub fn su(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -589,84 +487,70 @@ impl ::core::fmt::Debug for Tr {
 #[derive(PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
-  #[inline]
-  pub fn yt(&self) -> u32 {
+  #[inline] pub fn yt(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0xf // [23:20]
   }
-  #[inline]
-  pub fn set_yt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_yt(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn yu(&self) -> u32 {
+  #[inline] pub fn yu(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
-  #[inline]
-  pub fn set_yu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_yu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn wdu(&self) -> u32 {
+  #[inline] pub fn wdu(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x7 // [15:13]
   }
-  #[inline]
-  pub fn set_wdu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdu(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn mt(&self) -> u32 {
+  #[inline] pub fn mt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline]
-  pub fn set_mt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mu(&self) -> u32 {
+  #[inline] pub fn mu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn dt(&self) -> u32 {
+  #[inline] pub fn dt(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x3 // [5:4]
   }
-  #[inline]
-  pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn du(&self) -> u32 {
+  #[inline] pub fn du(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -696,240 +580,200 @@ impl ::core::fmt::Debug for Dr {
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-  #[inline]
-  pub fn coe(&self) -> u32 {
+  #[inline] pub fn coe(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
-  #[inline]
-  pub fn set_coe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_coe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
-  #[inline]
-  pub fn osel(&self) -> u32 {
+  #[inline] pub fn osel(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x3 // [22:21]
   }
-  #[inline]
-  pub fn set_osel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_osel(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 21);
      self.0 |= value << 21;
      self
   }
 
-  #[inline]
-  pub fn pol(&self) -> u32 {
+  #[inline] pub fn pol(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-  #[inline]
-  pub fn set_pol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pol(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn cosel(&self) -> u32 {
+  #[inline] pub fn cosel(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-  #[inline]
-  pub fn set_cosel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cosel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
      self
   }
 
-  #[inline]
-  pub fn bkp(&self) -> u32 {
+  #[inline] pub fn bkp(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-  #[inline]
-  pub fn set_bkp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bkp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self
   }
 
-  #[inline]
-  pub fn sub1h(&self) -> u32 {
+  #[inline] pub fn sub1h(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
-  #[inline]
-  pub fn set_sub1h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sub1h(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
-  #[inline]
-  pub fn add1h(&self) -> u32 {
+  #[inline] pub fn add1h(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-  #[inline]
-  pub fn set_add1h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_add1h(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn tsie(&self) -> u32 {
+  #[inline] pub fn tsie(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-  #[inline]
-  pub fn set_tsie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
      self
   }
 
-  #[inline]
-  pub fn wutie(&self) -> u32 {
+  #[inline] pub fn wutie(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
-  #[inline]
-  pub fn set_wutie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
      self
   }
 
-  #[inline]
-  pub fn alrbie(&self) -> u32 {
+  #[inline] pub fn alrbie(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
-  #[inline]
-  pub fn set_alrbie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn alraie(&self) -> u32 {
+  #[inline] pub fn alraie(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline]
-  pub fn set_alraie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alraie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn tse(&self) -> u32 {
+  #[inline] pub fn tse(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-  #[inline]
-  pub fn set_tse(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tse(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
      self
   }
 
-  #[inline]
-  pub fn wute(&self) -> u32 {
+  #[inline] pub fn wute(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-  #[inline]
-  pub fn set_wute(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wute(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
      self
   }
 
-  #[inline]
-  pub fn alrbe(&self) -> u32 {
+  #[inline] pub fn alrbe(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-  #[inline]
-  pub fn set_alrbe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
      self
   }
 
-  #[inline]
-  pub fn alrae(&self) -> u32 {
+  #[inline] pub fn alrae(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_alrae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrae(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn fmt(&self) -> u32 {
+  #[inline] pub fn fmt(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_fmt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fmt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn bypshad(&self) -> u32 {
+  #[inline] pub fn bypshad(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_bypshad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bypshad(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn refckon(&self) -> u32 {
+  #[inline] pub fn refckon(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_refckon(mut self, value: u32) -> Self {
+  #[inline] pub fn set_refckon(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn tsedge(&self) -> u32 {
+  #[inline] pub fn tsedge(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline]
-  pub fn set_tsedge(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsedge(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
-  #[inline]
-  pub fn wucksel(&self) -> u32 {
+  #[inline] pub fn wucksel(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
-  #[inline]
-  pub fn set_wucksel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wucksel(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -972,180 +816,150 @@ impl ::core::fmt::Debug for Cr {
 #[derive(PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
-  #[inline]
-  pub fn tamp2f(&self) -> u32 {
+  #[inline] pub fn tamp2f(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
-  #[inline]
-  pub fn set_tamp2f(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2f(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
      self
   }
 
-  #[inline]
-  pub fn tamp1f(&self) -> u32 {
+  #[inline] pub fn tamp1f(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
-  #[inline]
-  pub fn set_tamp1f(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1f(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn tsovf(&self) -> u32 {
+  #[inline] pub fn tsovf(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline]
-  pub fn set_tsovf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsovf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn tsf(&self) -> u32 {
+  #[inline] pub fn tsf(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-  #[inline]
-  pub fn set_tsf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
      self
   }
 
-  #[inline]
-  pub fn wutf(&self) -> u32 {
+  #[inline] pub fn wutf(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-  #[inline]
-  pub fn set_wutf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
      self
   }
 
-  #[inline]
-  pub fn alrbf(&self) -> u32 {
+  #[inline] pub fn alrbf(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-  #[inline]
-  pub fn set_alrbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
      self
   }
 
-  #[inline]
-  pub fn alraf(&self) -> u32 {
+  #[inline] pub fn alraf(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline]
-  pub fn set_alraf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alraf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn init(&self) -> u32 {
+  #[inline] pub fn init(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_init(mut self, value: u32) -> Self {
+  #[inline] pub fn set_init(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn initf(&self) -> u32 {
+  #[inline] pub fn initf(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline]
-  pub fn set_initf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_initf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline]
-  pub fn rsf(&self) -> u32 {
+  #[inline] pub fn rsf(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline]
-  pub fn set_rsf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rsf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline]
-  pub fn inits(&self) -> u32 {
+  #[inline] pub fn inits(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_inits(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inits(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn shpf(&self) -> u32 {
+  #[inline] pub fn shpf(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline]
-  pub fn set_shpf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_shpf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
-  #[inline]
-  pub fn wutwf(&self) -> u32 {
+  #[inline] pub fn wutwf(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline]
-  pub fn set_wutwf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutwf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline]
-  pub fn alrbwf(&self) -> u32 {
+  #[inline] pub fn alrbwf(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_alrbwf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbwf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn alrawf(&self) -> u32 {
+  #[inline] pub fn alrawf(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_alrawf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrawf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1183,24 +997,20 @@ impl ::core::fmt::Debug for Isr {
 #[derive(PartialEq, Eq)]
 pub struct Prer(pub u32);
 impl Prer {
-  #[inline]
-  pub fn prediv_a(&self) -> u32 {
+  #[inline] pub fn prediv_a(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7f // [22:16]
   }
-  #[inline]
-  pub fn set_prediv_a(mut self, value: u32) -> Self {
+  #[inline] pub fn set_prediv_a(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn prediv_s(&self) -> u32 {
+  #[inline] pub fn prediv_s(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-  #[inline]
-  pub fn set_prediv_s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_prediv_s(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1225,12 +1035,10 @@ impl ::core::fmt::Debug for Prer {
 #[derive(PartialEq, Eq)]
 pub struct Wutr(pub u32);
 impl Wutr {
-  #[inline]
-  pub fn wut(&self) -> u32 {
+  #[inline] pub fn wut(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-  #[inline]
-  pub fn set_wut(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wut(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1254,168 +1062,140 @@ impl ::core::fmt::Debug for Wutr {
 #[derive(PartialEq, Eq)]
 pub struct Alrmar(pub u32);
 impl Alrmar {
-  #[inline]
-  pub fn msk4(&self) -> u32 {
+  #[inline] pub fn msk4(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-  #[inline]
-  pub fn set_msk4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
   }
 
-  #[inline]
-  pub fn wdsel(&self) -> u32 {
+  #[inline] pub fn wdsel(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
-  #[inline]
-  pub fn set_wdsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdsel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
-  #[inline]
-  pub fn dt(&self) -> u32 {
+  #[inline] pub fn dt(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x3 // [29:28]
   }
-  #[inline]
-  pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
      self
   }
 
-  #[inline]
-  pub fn du(&self) -> u32 {
+  #[inline] pub fn du(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
-  #[inline]
-  pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
      self
   }
 
-  #[inline]
-  pub fn msk3(&self) -> u32 {
+  #[inline] pub fn msk3(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
-  #[inline]
-  pub fn set_msk3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
-  #[inline]
-  pub fn pm(&self) -> u32 {
+  #[inline] pub fn pm(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-  #[inline]
-  pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
-  #[inline]
-  pub fn ht(&self) -> u32 {
+  #[inline] pub fn ht(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
   }
-  #[inline]
-  pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn hu(&self) -> u32 {
+  #[inline] pub fn hu(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
-  #[inline]
-  pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn msk2(&self) -> u32 {
+  #[inline] pub fn msk2(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-  #[inline]
-  pub fn set_msk2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
      self
   }
 
-  #[inline]
-  pub fn mnt(&self) -> u32 {
+  #[inline] pub fn mnt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
-  #[inline]
-  pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mnu(&self) -> u32 {
+  #[inline] pub fn mnu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn msk1(&self) -> u32 {
+  #[inline] pub fn msk1(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_msk1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn st(&self) -> u32 {
+  #[inline] pub fn st(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x7 // [6:4]
   }
-  #[inline]
-  pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn su(&self) -> u32 {
+  #[inline] pub fn su(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1452,168 +1232,140 @@ impl ::core::fmt::Debug for Alrmar {
 #[derive(PartialEq, Eq)]
 pub struct Alrmbr(pub u32);
 impl Alrmbr {
-  #[inline]
-  pub fn msk4(&self) -> u32 {
+  #[inline] pub fn msk4(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-  #[inline]
-  pub fn set_msk4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
   }
 
-  #[inline]
-  pub fn wdsel(&self) -> u32 {
+  #[inline] pub fn wdsel(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
-  #[inline]
-  pub fn set_wdsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdsel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
-  #[inline]
-  pub fn dt(&self) -> u32 {
+  #[inline] pub fn dt(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x3 // [29:28]
   }
-  #[inline]
-  pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
      self
   }
 
-  #[inline]
-  pub fn du(&self) -> u32 {
+  #[inline] pub fn du(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
-  #[inline]
-  pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
      self
   }
 
-  #[inline]
-  pub fn msk3(&self) -> u32 {
+  #[inline] pub fn msk3(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
-  #[inline]
-  pub fn set_msk3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
-  #[inline]
-  pub fn pm(&self) -> u32 {
+  #[inline] pub fn pm(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-  #[inline]
-  pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
-  #[inline]
-  pub fn ht(&self) -> u32 {
+  #[inline] pub fn ht(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
   }
-  #[inline]
-  pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn hu(&self) -> u32 {
+  #[inline] pub fn hu(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
-  #[inline]
-  pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn msk2(&self) -> u32 {
+  #[inline] pub fn msk2(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-  #[inline]
-  pub fn set_msk2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
      self
   }
 
-  #[inline]
-  pub fn mnt(&self) -> u32 {
+  #[inline] pub fn mnt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
-  #[inline]
-  pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mnu(&self) -> u32 {
+  #[inline] pub fn mnu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn msk1(&self) -> u32 {
+  #[inline] pub fn msk1(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_msk1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn st(&self) -> u32 {
+  #[inline] pub fn st(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x7 // [6:4]
   }
-  #[inline]
-  pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn su(&self) -> u32 {
+  #[inline] pub fn su(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1650,12 +1402,10 @@ impl ::core::fmt::Debug for Alrmbr {
 #[derive(PartialEq, Eq)]
 pub struct Wpr(pub u32);
 impl Wpr {
-  #[inline]
-  pub fn key(&self) -> u32 {
+  #[inline] pub fn key(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
-  #[inline]
-  pub fn set_key(mut self, value: u32) -> Self {
+  #[inline] pub fn set_key(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1679,12 +1429,10 @@ impl ::core::fmt::Debug for Wpr {
 #[derive(PartialEq, Eq)]
 pub struct Ssr(pub u32);
 impl Ssr {
-  #[inline]
-  pub fn ss(&self) -> u32 {
+  #[inline] pub fn ss(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-  #[inline]
-  pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1708,24 +1456,20 @@ impl ::core::fmt::Debug for Ssr {
 #[derive(PartialEq, Eq)]
 pub struct Shiftr(pub u32);
 impl Shiftr {
-  #[inline]
-  pub fn add1s(&self) -> u32 {
+  #[inline] pub fn add1s(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-  #[inline]
-  pub fn set_add1s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_add1s(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
   }
 
-  #[inline]
-  pub fn subfs(&self) -> u32 {
+  #[inline] pub fn subfs(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7fff // [14:0]
   }
-  #[inline]
-  pub fn set_subfs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_subfs(mut self, value: u32) -> Self {
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -1750,84 +1494,70 @@ impl ::core::fmt::Debug for Shiftr {
 #[derive(PartialEq, Eq)]
 pub struct Tstr(pub u32);
 impl Tstr {
-  #[inline]
-  pub fn pm(&self) -> u32 {
+  #[inline] pub fn pm(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-  #[inline]
-  pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
-  #[inline]
-  pub fn ht(&self) -> u32 {
+  #[inline] pub fn ht(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
   }
-  #[inline]
-  pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn hu(&self) -> u32 {
+  #[inline] pub fn hu(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
-  #[inline]
-  pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn mnt(&self) -> u32 {
+  #[inline] pub fn mnt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
-  #[inline]
-  pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mnu(&self) -> u32 {
+  #[inline] pub fn mnu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn st(&self) -> u32 {
+  #[inline] pub fn st(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x7 // [6:4]
   }
-  #[inline]
-  pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn su(&self) -> u32 {
+  #[inline] pub fn su(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1857,60 +1587,50 @@ impl ::core::fmt::Debug for Tstr {
 #[derive(PartialEq, Eq)]
 pub struct Tsdr(pub u32);
 impl Tsdr {
-  #[inline]
-  pub fn wdu(&self) -> u32 {
+  #[inline] pub fn wdu(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x7 // [15:13]
   }
-  #[inline]
-  pub fn set_wdu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdu(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn mt(&self) -> u32 {
+  #[inline] pub fn mt(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline]
-  pub fn set_mt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
-  #[inline]
-  pub fn mu(&self) -> u32 {
+  #[inline] pub fn mu(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
-  #[inline]
-  pub fn set_mu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mu(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn dt(&self) -> u32 {
+  #[inline] pub fn dt(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x3 // [5:4]
   }
-  #[inline]
-  pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn du(&self) -> u32 {
+  #[inline] pub fn du(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
-  #[inline]
-  pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1938,12 +1658,10 @@ impl ::core::fmt::Debug for Tsdr {
 #[derive(PartialEq, Eq)]
 pub struct Tsssr(pub u32);
 impl Tsssr {
-  #[inline]
-  pub fn ss(&self) -> u32 {
+  #[inline] pub fn ss(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-  #[inline]
-  pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1967,48 +1685,40 @@ impl ::core::fmt::Debug for Tsssr {
 #[derive(PartialEq, Eq)]
 pub struct Calr(pub u32);
 impl Calr {
-  #[inline]
-  pub fn calp(&self) -> u32 {
+  #[inline] pub fn calp(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-  #[inline]
-  pub fn set_calp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
      self
   }
 
-  #[inline]
-  pub fn calw8(&self) -> u32 {
+  #[inline] pub fn calw8(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
-  #[inline]
-  pub fn set_calw8(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calw8(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
      self
   }
 
-  #[inline]
-  pub fn calw16(&self) -> u32 {
+  #[inline] pub fn calw16(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
-  #[inline]
-  pub fn set_calw16(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calw16(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn calm(&self) -> u32 {
+  #[inline] pub fn calm(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1ff // [8:0]
   }
-  #[inline]
-  pub fn set_calm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calm(mut self, value: u32) -> Self {
      assert!((value & !0x1ff) == 0);
      self.0 &= !(0x1ff << 0);
      self.0 |= value << 0;
@@ -2035,192 +1745,160 @@ impl ::core::fmt::Debug for Calr {
 #[derive(PartialEq, Eq)]
 pub struct Tampcr(pub u32);
 impl Tampcr {
-  #[inline]
-  pub fn tamp2mf(&self) -> u32 {
+  #[inline] pub fn tamp2mf(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-  #[inline]
-  pub fn set_tamp2mf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2mf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
      self
   }
 
-  #[inline]
-  pub fn tamp2noerase(&self) -> u32 {
+  #[inline] pub fn tamp2noerase(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-  #[inline]
-  pub fn set_tamp2noerase(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2noerase(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
      self
   }
 
-  #[inline]
-  pub fn tamp2ie(&self) -> u32 {
+  #[inline] pub fn tamp2ie(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-  #[inline]
-  pub fn set_tamp2ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2ie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
      self
   }
 
-  #[inline]
-  pub fn tamp1mf(&self) -> u32 {
+  #[inline] pub fn tamp1mf(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-  #[inline]
-  pub fn set_tamp1mf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1mf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self
   }
 
-  #[inline]
-  pub fn tamp1noerase(&self) -> u32 {
+  #[inline] pub fn tamp1noerase(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
-  #[inline]
-  pub fn set_tamp1noerase(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1noerase(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
-  #[inline]
-  pub fn tamp1ie(&self) -> u32 {
+  #[inline] pub fn tamp1ie(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-  #[inline]
-  pub fn set_tamp1ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1ie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
-  #[inline]
-  pub fn tamppudis(&self) -> u32 {
+  #[inline] pub fn tamppudis(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-  #[inline]
-  pub fn set_tamppudis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamppudis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
      self
   }
 
-  #[inline]
-  pub fn tampprch(&self) -> u32 {
+  #[inline] pub fn tampprch(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x3 // [14:13]
   }
-  #[inline]
-  pub fn set_tampprch(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampprch(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 13);
      self.0 |= value << 13;
      self
   }
 
-  #[inline]
-  pub fn tampflt(&self) -> u32 {
+  #[inline] pub fn tampflt(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x3 // [12:11]
   }
-  #[inline]
-  pub fn set_tampflt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampflt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 11);
      self.0 |= value << 11;
      self
   }
 
-  #[inline]
-  pub fn tampfreq(&self) -> u32 {
+  #[inline] pub fn tampfreq(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x7 // [10:8]
   }
-  #[inline]
-  pub fn set_tampfreq(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampfreq(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline]
-  pub fn tampts(&self) -> u32 {
+  #[inline] pub fn tampts(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline]
-  pub fn set_tampts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline]
-  pub fn tamp2_trg(&self) -> u32 {
+  #[inline] pub fn tamp2_trg(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline]
-  pub fn set_tamp2_trg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2_trg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline]
-  pub fn tamp2e(&self) -> u32 {
+  #[inline] pub fn tamp2e(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline]
-  pub fn set_tamp2e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2e(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
-  #[inline]
-  pub fn tampie(&self) -> u32 {
+  #[inline] pub fn tampie(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline]
-  pub fn set_tampie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline]
-  pub fn tamp1trg(&self) -> u32 {
+  #[inline] pub fn tamp1trg(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_tamp1trg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1trg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn tamp1e(&self) -> u32 {
+  #[inline] pub fn tamp1e(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_tamp1e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1e(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2259,24 +1937,20 @@ impl ::core::fmt::Debug for Tampcr {
 #[derive(PartialEq, Eq)]
 pub struct Alrmassr(pub u32);
 impl Alrmassr {
-  #[inline]
-  pub fn maskss(&self) -> u32 {
+  #[inline] pub fn maskss(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
-  #[inline]
-  pub fn set_maskss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maskss(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
      self
   }
 
-  #[inline]
-  pub fn ss(&self) -> u32 {
+  #[inline] pub fn ss(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7fff // [14:0]
   }
-  #[inline]
-  pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -2301,24 +1975,20 @@ impl ::core::fmt::Debug for Alrmassr {
 #[derive(PartialEq, Eq)]
 pub struct Alrmbssr(pub u32);
 impl Alrmbssr {
-  #[inline]
-  pub fn maskss(&self) -> u32 {
+  #[inline] pub fn maskss(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
-  #[inline]
-  pub fn set_maskss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maskss(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
      self
   }
 
-  #[inline]
-  pub fn ss(&self) -> u32 {
+  #[inline] pub fn ss(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7fff // [14:0]
   }
-  #[inline]
-  pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -2343,24 +2013,20 @@ impl ::core::fmt::Debug for Alrmbssr {
 #[derive(PartialEq, Eq)]
 pub struct Or(pub u32);
 impl Or {
-  #[inline]
-  pub fn rtc_out_rmp(&self) -> u32 {
+  #[inline] pub fn rtc_out_rmp(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline]
-  pub fn set_rtc_out_rmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtc_out_rmp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline]
-  pub fn rtc_alarm_type(&self) -> u32 {
+  #[inline] pub fn rtc_alarm_type(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_rtc_alarm_type(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtc_alarm_type(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2385,12 +2051,10 @@ impl ::core::fmt::Debug for Or {
 #[derive(PartialEq, Eq)]
 pub struct Bkpr(pub u32);
 impl Bkpr {
-  #[inline]
-  pub fn bkp(&self) -> u32 {
+  #[inline] pub fn bkp(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline]
-  pub fn set_bkp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bkp(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

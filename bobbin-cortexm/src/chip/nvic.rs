@@ -3,215 +3,180 @@ pub const NVIC: Nvic = Nvic(0xe000e000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Nvic(pub u32);
 impl Nvic {
-  #[inline]
-  pub fn iser_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn iser_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x100 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn iser_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn iser_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x100 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn iser(&self, index: usize) -> Iser { 
+  #[inline] pub fn iser(&self, index: usize) -> Iser { 
      assert!(index < 8);
      unsafe {
         Iser(::core::ptr::read_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_iser(&self, index: usize, value: Iser) -> &Self {
+  #[inline] pub fn set_iser(&self, index: usize, value: Iser) -> &Self {
      assert!(index < 8);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_iser<F: FnOnce(Iser) -> Iser>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_iser<F: FnOnce(Iser) -> Iser>(&self, index: usize, f: F) -> &Self {
      let tmp = self.iser(index);
      self.set_iser(index, f(tmp))
   }
 
-  #[inline]
-  pub fn icer_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn icer_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x180 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn icer_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn icer_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x180 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn icer(&self, index: usize) -> Icer { 
+  #[inline] pub fn icer(&self, index: usize) -> Icer { 
      assert!(index < 8);
      unsafe {
         Icer(::core::ptr::read_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_icer(&self, index: usize, value: Icer) -> &Self {
+  #[inline] pub fn set_icer(&self, index: usize, value: Icer) -> &Self {
      assert!(index < 8);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_icer<F: FnOnce(Icer) -> Icer>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_icer<F: FnOnce(Icer) -> Icer>(&self, index: usize, f: F) -> &Self {
      let tmp = self.icer(index);
      self.set_icer(index, f(tmp))
   }
 
-  #[inline]
-  pub fn ispr_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn ispr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x200 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn ispr_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn ispr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x200 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn ispr(&self, index: usize) -> Ispr { 
+  #[inline] pub fn ispr(&self, index: usize) -> Ispr { 
      assert!(index < 8);
      unsafe {
         Ispr(::core::ptr::read_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_ispr(&self, index: usize, value: Ispr) -> &Self {
+  #[inline] pub fn set_ispr(&self, index: usize, value: Ispr) -> &Self {
      assert!(index < 8);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_ispr<F: FnOnce(Ispr) -> Ispr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ispr<F: FnOnce(Ispr) -> Ispr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ispr(index);
      self.set_ispr(index, f(tmp))
   }
 
-  #[inline]
-  pub fn icpr_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn icpr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x280 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn icpr_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn icpr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x280 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn icpr(&self, index: usize) -> Icpr { 
+  #[inline] pub fn icpr(&self, index: usize) -> Icpr { 
      assert!(index < 8);
      unsafe {
         Icpr(::core::ptr::read_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_icpr(&self, index: usize, value: Icpr) -> &Self {
+  #[inline] pub fn set_icpr(&self, index: usize, value: Icpr) -> &Self {
      assert!(index < 8);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_icpr<F: FnOnce(Icpr) -> Icpr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_icpr<F: FnOnce(Icpr) -> Icpr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.icpr(index);
      self.set_icpr(index, f(tmp))
   }
 
-  #[inline]
-  pub fn iabr_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn iabr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x280 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn iabr_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn iabr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x280 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn iabr(&self, index: usize) -> Iabr { 
+  #[inline] pub fn iabr(&self, index: usize) -> Iabr { 
      assert!(index < 8);
      unsafe {
         Iabr(::core::ptr::read_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_iabr(&self, index: usize, value: Iabr) -> &Self {
+  #[inline] pub fn set_iabr(&self, index: usize, value: Iabr) -> &Self {
      assert!(index < 8);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_iabr<F: FnOnce(Iabr) -> Iabr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_iabr<F: FnOnce(Iabr) -> Iabr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.iabr(index);
      self.set_iabr(index, f(tmp))
   }
 
-  #[inline]
-  pub fn ipr_ptr(&self, index: usize) -> *const u32 { 
+  #[inline] pub fn ipr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 60);
      ((self.0 as usize) + 0x400 + (index << 2)) as *const u32
   }
-  #[inline]
-  pub fn ipr_mut(&self, index: usize) -> *mut u32 { 
+  #[inline] pub fn ipr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 60);
      ((self.0 as usize) + 0x400 + (index << 2)) as *mut u32
   }
-  #[inline]
-  pub fn ipr(&self, index: usize) -> Ipr { 
+  #[inline] pub fn ipr(&self, index: usize) -> Ipr { 
      assert!(index < 60);
      unsafe {
         Ipr(::core::ptr::read_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_ipr(&self, index: usize, value: Ipr) -> &Self {
+  #[inline] pub fn set_ipr(&self, index: usize, value: Ipr) -> &Self {
      assert!(index < 60);
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_ipr<F: FnOnce(Ipr) -> Ipr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ipr<F: FnOnce(Ipr) -> Ipr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ipr(index);
      self.set_ipr(index, f(tmp))
   }
 
-  #[inline]
-  pub fn stir_ptr(&self) -> *const u32 { 
+  #[inline] pub fn stir_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xf00) as *const u32
   }
-  #[inline]
-  pub fn stir_mut(&self) -> *mut u32 { 
+  #[inline] pub fn stir_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xf00) as *mut u32
   }
-  #[inline]
-  pub fn stir(&self) -> Stir { 
+  #[inline] pub fn stir(&self) -> Stir { 
      unsafe {
-       Stir(::core::ptr::read_volatile(((self.0 as usize) + 0xf00) as *const u32))
+        Stir(::core::ptr::read_volatile(((self.0 as usize) + 0xf00) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_stir(&self, value: Stir) -> &Self {
+  #[inline] pub fn set_stir(&self, value: Stir) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
+  #[inline] pub fn with_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
      let tmp = self.stir();
      self.set_stir(f(tmp))
   }
@@ -221,14 +186,12 @@ impl Nvic {
 #[derive(PartialEq, Eq)]
 pub struct Iser(pub u32);
 impl Iser {
-  #[inline]
-  pub fn setena(&self, index: usize) -> u32 {
+  #[inline] pub fn setena(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_setena(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_setena(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -285,14 +248,12 @@ impl ::core::fmt::Debug for Iser {
 #[derive(PartialEq, Eq)]
 pub struct Icer(pub u32);
 impl Icer {
-  #[inline]
-  pub fn clrena(&self, index: usize) -> u32 {
+  #[inline] pub fn clrena(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_clrena(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_clrena(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -349,14 +310,12 @@ impl ::core::fmt::Debug for Icer {
 #[derive(PartialEq, Eq)]
 pub struct Ispr(pub u32);
 impl Ispr {
-  #[inline]
-  pub fn setpend(&self, index: usize) -> u32 {
+  #[inline] pub fn setpend(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_setpend(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_setpend(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -413,14 +372,12 @@ impl ::core::fmt::Debug for Ispr {
 #[derive(PartialEq, Eq)]
 pub struct Icpr(pub u32);
 impl Icpr {
-  #[inline]
-  pub fn clrpend(&self, index: usize) -> u32 {
+  #[inline] pub fn clrpend(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_clrpend(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_clrpend(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -477,14 +434,12 @@ impl ::core::fmt::Debug for Icpr {
 #[derive(PartialEq, Eq)]
 pub struct Iabr(pub u32);
 impl Iabr {
-  #[inline]
-  pub fn active(&self, index: usize) -> u32 {
+  #[inline] pub fn active(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_active(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_active(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -541,14 +496,12 @@ impl ::core::fmt::Debug for Iabr {
 #[derive(PartialEq, Eq)]
 pub struct Ipr(pub u32);
 impl Ipr {
-  #[inline]
-  pub fn pri(&self, index: usize) -> u32 {
+  #[inline] pub fn pri(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      ((self.0 as u32) >> shift) & 0xff // [7:0]
   }
-  #[inline]
-  pub fn set_pri(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pri(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0xff) == 0);
      let shift: usize = 0 + (index << 3);
@@ -577,12 +530,10 @@ impl ::core::fmt::Debug for Ipr {
 #[derive(PartialEq, Eq)]
 pub struct Stir(pub u32);
 impl Stir {
-  #[inline]
-  pub fn intid(&self) -> u32 {
+  #[inline] pub fn intid(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
-  #[inline]
-  pub fn set_intid(mut self, value: u32) -> Self {
+  #[inline] pub fn set_intid(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;

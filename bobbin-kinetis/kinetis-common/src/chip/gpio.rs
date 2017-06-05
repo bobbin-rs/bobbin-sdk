@@ -5,119 +5,97 @@ pub struct Periph<T>(pub u32, pub T);
 
 
 impl<T> Periph<T> {
-  #[inline]
-  pub fn pdor_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pdor_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
-  #[inline]
-  pub fn pdor_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pdor_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
-  #[inline]
-  pub fn pdor(&self) -> Pdor { 
+  #[inline] pub fn pdor(&self) -> Pdor { 
      unsafe {
-       Pdor(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+        Pdor(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_pdor(&self, value: Pdor) -> &Self {
+  #[inline] pub fn set_pdor(&self, value: Pdor) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
+  #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
      let tmp = self.pdor();
      self.set_pdor(f(tmp))
   }
 
-  #[inline]
-  pub fn psor_ptr(&self) -> *const u32 { 
+  #[inline] pub fn psor_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
-  #[inline]
-  pub fn psor_mut(&self) -> *mut u32 { 
+  #[inline] pub fn psor_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
-  #[inline]
-  pub fn set_psor(&self, value: Psor) -> &Self {
+  #[inline] pub fn set_psor(&self, value: Psor) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn pcor_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pcor_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
-  #[inline]
-  pub fn pcor_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pcor_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
-  #[inline]
-  pub fn set_pcor(&self, value: Pcor) -> &Self {
+  #[inline] pub fn set_pcor(&self, value: Pcor) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn ptor_ptr(&self) -> *const u32 { 
+  #[inline] pub fn ptor_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
-  #[inline]
-  pub fn ptor_mut(&self) -> *mut u32 { 
+  #[inline] pub fn ptor_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
-  #[inline]
-  pub fn set_ptor(&self, value: Ptor) -> &Self {
+  #[inline] pub fn set_ptor(&self, value: Ptor) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
 
-  #[inline]
-  pub fn pdir_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pdir_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
-  #[inline]
-  pub fn pdir_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pdir_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
-  #[inline]
-  pub fn pdir(&self) -> Pdir { 
+  #[inline] pub fn pdir(&self) -> Pdir { 
      unsafe {
-       Pdir(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+        Pdir(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
 
-  #[inline]
-  pub fn pddr_ptr(&self) -> *const u32 { 
+  #[inline] pub fn pddr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
-  #[inline]
-  pub fn pddr_mut(&self) -> *mut u32 { 
+  #[inline] pub fn pddr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
-  #[inline]
-  pub fn pddr(&self) -> Pddr { 
+  #[inline] pub fn pddr(&self) -> Pddr { 
      unsafe {
-       Pddr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+        Pddr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
-  #[inline]
-  pub fn set_pddr(&self, value: Pddr) -> &Self {
+  #[inline] pub fn set_pddr(&self, value: Pddr) -> &Self {
      unsafe {
-       ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
-  #[inline]
-  pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
+  #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
      let tmp = self.pddr();
      self.set_pddr(f(tmp))
   }
@@ -127,14 +105,12 @@ impl<T> Periph<T> {
 #[derive(PartialEq, Eq)]
 pub struct Pdor(pub u32);
 impl Pdor {
-  #[inline]
-  pub fn pdo(&self, index: usize) -> u32 {
+  #[inline] pub fn pdo(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_pdo(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pdo(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -191,14 +167,12 @@ impl ::core::fmt::Debug for Pdor {
 #[derive(PartialEq, Eq)]
 pub struct Psor(pub u32);
 impl Psor {
-  #[inline]
-  pub fn ptso(&self, index: usize) -> u32 {
+  #[inline] pub fn ptso(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ptso(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ptso(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -255,14 +229,12 @@ impl ::core::fmt::Debug for Psor {
 #[derive(PartialEq, Eq)]
 pub struct Pcor(pub u32);
 impl Pcor {
-  #[inline]
-  pub fn ptco(&self, index: usize) -> u32 {
+  #[inline] pub fn ptco(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ptco(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ptco(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -319,14 +291,12 @@ impl ::core::fmt::Debug for Pcor {
 #[derive(PartialEq, Eq)]
 pub struct Ptor(pub u32);
 impl Ptor {
-  #[inline]
-  pub fn ptto(&self, index: usize) -> u32 {
+  #[inline] pub fn ptto(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_ptto(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ptto(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -383,14 +353,12 @@ impl ::core::fmt::Debug for Ptor {
 #[derive(PartialEq, Eq)]
 pub struct Pdir(pub u32);
 impl Pdir {
-  #[inline]
-  pub fn pdi(&self, index: usize) -> u32 {
+  #[inline] pub fn pdi(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_pdi(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pdi(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -447,14 +415,12 @@ impl ::core::fmt::Debug for Pdir {
 #[derive(PartialEq, Eq)]
 pub struct Pddr(pub u32);
 impl Pddr {
-  #[inline]
-  pub fn pdd(&self, index: usize) -> u32 {
+  #[inline] pub fn pdd(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline]
-  pub fn set_pdd(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pdd(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -515,6 +481,6 @@ impl<P,T> Pin<P,T> {
    #[inline] pub fn index(&self) -> usize { self.index }
 }
 pub trait AltFn<T> {
-   #[inline] fn alt_fn(&self) -> usize;
+   fn alt_fn(&self) -> usize;
 }
 
