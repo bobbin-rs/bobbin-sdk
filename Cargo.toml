@@ -1,2 +1,0 @@
-[workspace]
-members = ["bobbin-cortexm", "bobbin-kinetis", "bobbin-sam", "bobbin-stm32", "bottin-ti"]
