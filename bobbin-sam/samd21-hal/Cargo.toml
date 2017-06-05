@@ -4,5 +4,6 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
+bobbin-common = { path = "../../bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 samd21-chip = { path = "../samd21-chip" }

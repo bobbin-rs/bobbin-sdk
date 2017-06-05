@@ -1,6 +1,7 @@
 #![no_std]
 #![feature(asm)]
 
+extern crate bobbin_common;
 extern crate bobbin_cortexm;
 extern crate tm4c129x_chip as chip;
 

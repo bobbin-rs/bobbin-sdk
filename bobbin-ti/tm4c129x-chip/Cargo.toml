@@ -11,6 +11,7 @@ path = "src/lib.rs"
 bobbin-chip = { path = "../../../bobbin-chip/" }
 
 [dependencies]
+bobbin-common = { path = "../../bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
 [features]

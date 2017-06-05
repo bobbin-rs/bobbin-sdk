@@ -1,6 +1,7 @@
 #![no_std]
 #![allow(non_camel_case_types)]
 
+extern crate bobbin_common;
 extern crate bobbin_cortexm;
 extern crate kinetis_common;
 extern crate kl26_chip as chip;

@@ -1,5 +1,6 @@
 #![no_std]
 
+extern crate bobbin_common;
 extern crate bobbin_cortexm;
 extern crate stm32_common;
 extern crate stm32f42x_chip as chip;

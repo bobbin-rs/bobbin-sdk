@@ -1,6 +1,7 @@
 #![no_std]
 #![allow(unused_unsafe)]
 
+extern crate bobbin_common;
 extern crate bobbin_cortexm;
 extern crate stm32_common;
 extern crate stm32l031x_chip as chip;
