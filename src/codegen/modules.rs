@@ -461,7 +461,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
 
     //if pg.has_pins && pin_count == 0 {
-    if pg.has_pins && (pg.modules.len() > 0 || pin_count > 0) {
+    //if pg.has_pins && (pg.modules.len() > 0 || pin_count > 0) {
+    if pg.has_pins {
         // Generate Pin Impl
 
         try!(writeln!(out, "pub struct Pin<P, T> {{ pub port: {}<T>, pub index: usize, pub id: P }}",pg_type));
