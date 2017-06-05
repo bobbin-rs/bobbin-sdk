@@ -578,12 +578,10 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
         try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
-        try!(writeln!(out, "   #[inline]")); 
-        try!(writeln!(out, "   pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "   #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
         try!(writeln!(out, "      p.{}()", field_getter(&link.name)));
         try!(writeln!(out, "   }}"));
-        try!(writeln!(out, "   #[inline]")); 
-        try!(writeln!(out, "   pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "   #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
         try!(writeln!(out, "      p.{}(value)", field_setter(&link.name)));
         try!(writeln!(out, "   }}"));
         try!(writeln!(out, "}}"));
@@ -600,10 +598,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
                 //let l_type = format!("super::{}::{}<super::{}::{}>", pg_mod, to_camel(&link.peripheral_group), pg_mod, to_camel(&link.peripheral));
                 let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
-                try!(writeln!(out, "   #[inline]")); 
-                try!(writeln!(out, "   fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));
-                try!(writeln!(out, "   #[inline]")); 
-                try!(writeln!(out, "   fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
+                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
+                try!(writeln!(out, "   #[inline] fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }
@@ -648,8 +644,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
     for c in clusters.iter() {
         let c_type = format!("{}", to_camel(&c.name));
         let mod_name = c.name.to_lowercase();
-        try!(writeln!(out, "   #[inline]")); 
-        try!(writeln!(out, "   pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
+        try!(writeln!(out, "   #[inline] pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
         try!(writeln!(out, "      {}::{}(self.0 + 0x{:x})", mod_name, c_type, c.offset));
         try!(writeln!(out, "   }}"));
     }
@@ -703,22 +698,19 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 16 => format!("(index << 4)"),
                 _ => format!("(index * {})", r_incr),
             };  
-            try!(writeln!(out, "  #[inline]"));
-            try!(writeln!(out, "  pub fn {}(&self, index: usize) -> *const {} {{ ", r_ptr, r_size));
+            try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> *const {} {{ ", r_ptr, r_size));
             try!(writeln!(out, "     assert!(index < {});", dim));
             try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
             try!(writeln!(out, "  }}"));
 
-            try!(writeln!(out, "  #[inline]"));
-            try!(writeln!(out, "  pub fn {}(&self, index: usize) -> *mut {} {{ ", r_mut, r_size));
+            try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> *mut {} {{ ", r_mut, r_size));
             try!(writeln!(out, "     assert!(index < {});", dim));
             try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
             try!(writeln!(out, "  }}"));
 
 
             if r_access.is_readable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}(&self, index: usize) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "     assert!(index < {});", dim));
                 try!(writeln!(out, "     unsafe {{"));
                 try!(writeln!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
@@ -726,52 +718,45 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}(&self, index: usize, value: {}) -> &Self {{", r_setter, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize, value: {}) -> &Self {{", r_setter, r_type));
                 try!(writeln!(out, "     assert!(index < {});", dim));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, index: usize, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let tmp = self.{}(index);", r_getter));
                 try!(writeln!(out, "     self.{}(index, f(tmp))", r_setter));
                 try!(writeln!(out, "  }}"));            
             }            
         } else {
-            try!(writeln!(out, "  #[inline]"));
-            try!(writeln!(out, "  pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
+            try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
             try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *const {}", r_offset, r_size));
             try!(writeln!(out, "  }}"));
-            try!(writeln!(out, "  #[inline]"));
-            try!(writeln!(out, "  pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
+            try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
             try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *mut {}", r_offset, r_size));
             try!(writeln!(out, "  }}"));
             
             if r_access.is_readable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "       {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}(&self, value: {}) -> &Self {{", r_setter, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}(&self, value: {}) -> &Self {{", r_setter, r_type));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "       ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(writeln!(out, "  #[inline]"));
-                try!(writeln!(out, "  pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let tmp = self.{}();", r_getter));
                 try!(writeln!(out, "     self.{}(f(tmp))", r_setter));
                 try!(writeln!(out, "  }}"));            
@@ -863,8 +848,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         let f_incr = f.dim_increment.unwrap();
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
-        try!(writeln!(out, "  #[inline]")); 
-        try!(writeln!(out, "  pub fn {}(&self, index: usize) -> {} {{", f_getter, size));
+        try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> {} {{", f_getter, size));
         try!(writeln!(out, "     assert!(index < {});", dim));
         match f_incr {
             1 => {
@@ -886,8 +870,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));
         try!(writeln!(out, "  }}"));    
 
-        try!(writeln!(out, "  #[inline]")); 
-        try!(writeln!(out, "  pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, size));
+        try!(writeln!(out, "  #[inline] pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, size));
         try!(writeln!(out, "     assert!(index < {});", dim));
         try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         match f_incr {
@@ -913,13 +896,11 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         try!(writeln!(out, "  }}"));    
         try!(writeln!(out, ""));
     } else {
-        try!(writeln!(out, "  #[inline]")); 
-        try!(writeln!(out, "  pub fn {}(&self) -> {} {{", f_getter, size));
+        try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{", f_getter, size));
         try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
         try!(writeln!(out, "  }}"));    
 
-        try!(writeln!(out, "  #[inline]")); 
-        try!(writeln!(out, "  pub fn {}(mut self, value: {}) -> Self {{", f_setter, size));
+        try!(writeln!(out, "  #[inline] pub fn {}(mut self, value: {}) -> Self {{", f_setter, size));
         try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         try!(writeln!(out, "     self.0 &= !(0x{:x} << {});", f_mask, f_offset));
         try!(writeln!(out, "     self.0 |= value << {};", f_offset));
