@@ -5,14 +5,11 @@
 
 extern crate r0;
 extern crate compiler_builtins;
-
 extern crate log;
 
-#[macro_use]
-pub mod console;
-
-#[macro_use]
-pub mod logger;
+#[macro_use] pub mod itm;
+#[macro_use] pub mod console;
+#[macro_use] pub mod logger;
 
 extern crate stm32f40x;
 pub use stm32f40x::{chip, hal};

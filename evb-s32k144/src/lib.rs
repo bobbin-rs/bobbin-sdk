@@ -5,17 +5,14 @@
 
 extern crate r0;
 extern crate compiler_builtins;
-
 extern crate log;
 
 extern crate s32;
 pub use s32::{chip, hal};
 
-#[macro_use]
-pub mod console;
-
-#[macro_use]
-pub mod logger;
+#[macro_use] pub mod itm;
+#[macro_use] pub mod console;
+#[macro_use] pub mod logger;
 
 pub mod exceptions;
 pub mod lang_items;

@@ -20,14 +20,17 @@ pub extern "C" fn main() -> ! {
     led1.set_output(true);
     led2.set_output(true);
 
+    let mut n = 0u8;
+
     loop {
-        //led0.toggle_output();
-        //led1.toggle_output();
-        led2.toggle_output();
+        led0.set_output(n & 1 != 0);
+        led1.set_output(n & 2 != 0);
+        led2.set_output(n & 4 != 0);
         if btn0.input() {
             board::delay(100);
         } else {
             board::delay(500);
         }
+        n = n.wrapping_add(1);
     }
 }
