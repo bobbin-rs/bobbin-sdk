@@ -5,7 +5,7 @@ extern crate bobbin_cortexm;
 extern crate stm32_common;
 extern crate stm32f20x_chip as chip;
 
-pub use bobbin_cortexm::hal::{nvic, scb};
+pub use bobbin_cortexm::hal::*;
 
 pub mod rcc;
 pub mod clock;

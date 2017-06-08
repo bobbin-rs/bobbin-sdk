@@ -16,6 +16,8 @@
         (module (name chip::systick))
         (module (name chip::mpu))
         (module (name chip::fpu))
+        (module (name chip::dcb))
+        (module (name chip::itm))        
     )    
     (crate (name kinetis_common))    
     (peripheral (include "periph/sim.rx"))

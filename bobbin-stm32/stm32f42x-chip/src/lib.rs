@@ -6,6 +6,8 @@ pub use bobbin_cortexm::chip::scb;
 pub use bobbin_cortexm::chip::systick;
 pub use bobbin_cortexm::chip::mpu;
 pub use bobbin_cortexm::chip::fpu;
+pub use bobbin_cortexm::chip::dcb;
+pub use bobbin_cortexm::chip::itm;
 
 extern crate stm32_common;
 
