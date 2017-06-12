@@ -182,32 +182,97 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         }
     }
 
-    try!(writeln!(out, "pub type Handler = unsafe extern \"C\" fn();"));
+    try!(writeln!(out, "use ::core::marker::PhantomData;"));
+    try!(writeln!(out, "pub type Handler = extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
+            let irq_id = format!("{}Id", to_camel(&irq.name));
+
             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            try!(writeln!(out, "{:40} // IRQ {}: {}", format!("pub const IRQ_{}: Irq = Irq({});", irq.name.to_uppercase(), irq.value), irq.value, desc));
+            try!(writeln!(out, "pub const IRQ_{}: Irq<{}> = Irq({}, {} {{}});", 
+                irq.name.to_uppercase(), 
+                irq_id,
+                irq.value,
+                irq_id,                
+            ));
         }
     }
     try!(writeln!(out, ""));
 
-    try!(writeln!(out, "pub fn set_handler(irq: Irq, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "  unsafe {{ R_INTERRUPT_HANDLERS[irq.0] = handler }};"));
+    for irq in interrupts.iter() {
+        if let &Some(irq) = irq { 
+            let irq_id = format!("{}Id", to_camel(&irq.name));
+            try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+        }
+    }
+    
+    try!(writeln!(out, ""));    
+
+    try!(writeln!(out, "pub fn set_handler(index: usize, handler: Option<Handler>) {{"));
+    try!(writeln!(out, "  unsafe {{ R_INTERRUPT_HANDLERS[index] = handler }};"));
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));    
 
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-    try!(writeln!(out, "pub struct Irq(pub usize);"));
+    try!(writeln!(out, "pub struct Irq<T>(usize, T);"));
+    try!(writeln!(out, "impl<T> Irq<T> {{"));
+    try!(writeln!(out, "   pub fn index(&self) -> usize {{ self.0 }}"));
+    try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
-    try!(writeln!(out, "impl Irq {{"));
-    try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
+    // try!(writeln!(out, "impl Irq {{"));
+    // try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
+    // try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
+    // try!(writeln!(out, "   }}"));
+    // try!(writeln!(out, "}}"));
+    // try!(writeln!(out, ""));    
+
+    try!(writeln!(out, "pub struct IrqHandle {{}}"));
+    try!(writeln!(out, "pub struct IrqGuard<'a>(usize, PhantomData<&'a IrqHandle>);"));
+    try!(writeln!(out, "impl<'a> IrqGuard<'a> {{"));
+    try!(writeln!(out, "   pub fn new(index: usize) -> Self {{"));
+    try!(writeln!(out, "      IrqGuard(index, PhantomData)"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));    
+    try!(writeln!(out, "impl<'a> Drop for IrqGuard<'a> {{"));
+    try!(writeln!(out, "   fn drop(&mut self) {{"));
+    try!(writeln!(out, "      set_handler(self.0, None)"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
+
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "pub trait RegisterHandler {{"));
+    try!(writeln!(out, "   fn register_handler<'a, F: HandleInterrupt>(&self, f: &F) -> IrqGuard<'a>;"));;
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
+
+    try!(writeln!(out, "pub trait HandleInterrupt {{"));
+    try!(writeln!(out, "   fn handle_interrupt(&self);"));;
+    try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
+
+    for irq in interrupts.iter() {
+        if let &Some(irq) = irq {
+            let irq_const = irq.name.to_uppercase();
+            let irq_id = format!("{}Id", to_camel(&irq.name));
+            try!(writeln!(out, "impl RegisterHandler for Irq<{}> {{", irq_id));
+            try!(writeln!(out, "   fn register_handler<'a, F: HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;
+            
+            try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+            try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+            try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
+            try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
+            try!(writeln!(out, "       }}"));
+            try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
+            try!(writeln!(out, "       IrqGuard::new({})", irq.value));
+            try!(writeln!(out, "   }}"));
+            try!(writeln!(out, "}}"));
+            try!(writeln!(out, ""));
+        }
+    }
 
     try!(writeln!(out,"#[link_section = \".vector.interrupts\"]"));
     try!(writeln!(out,"#[no_mangle]"));
