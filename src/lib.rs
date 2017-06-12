@@ -188,6 +188,7 @@ pub struct Peripheral {
 #[derive(Debug, Clone, Default)]
 pub struct Interrupt {
     pub name: String,
+    pub types: Vec<String>,
     pub value: u64,
     pub description: Option<String>,
 }

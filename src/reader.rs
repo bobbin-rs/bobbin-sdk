@@ -572,6 +572,7 @@ fn read_interrupt(ctx: &Context, s: &[Sexp]) -> Result<Interrupt, ReadError> {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => i.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("type") => i.types.push(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("description") => i.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                 Some("value") => i.value = try!(expect_u64(ctx, &arr[1])),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
