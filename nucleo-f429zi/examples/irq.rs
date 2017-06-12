@@ -20,7 +20,8 @@ pub extern "C" fn main() -> ! {
     let t = Timer::new(TIM14);
     let tim_irq = IRQ_TIM8_TRG_COM_TIM14;
 
-    let _g = tim_irq.register_handler(&t);
+    //let _g = tim_irq.register_handler(&t);
+    let _g = TIM14.register_tim_handler(&t);
     board::hal::nvic::set_enabled(tim_irq.index(), true);
     t.start(1000, TIM_PRESCALE);
     loop {}
@@ -47,8 +48,8 @@ impl<T> Timer<T> {
     }    
 }
 
-impl<T> HandleInterrupt for Timer<T> {
-    fn handle_interrupt(&self) {
+impl<T> HandleTim for Timer<T> {
+    fn handle_tim(&self) {
         self.periph.clr_update_interrupt_flag();                
         println!("tick {}", self.counter.get());
         self.counter.set(self.counter.get() + 1);
