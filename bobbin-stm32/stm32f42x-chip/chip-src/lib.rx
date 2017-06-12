@@ -66,6 +66,7 @@
             (description "Basic timers")
             (interrupt
                 (name TIM6_DAC)
+                (type TIM)
                 (value 54)
                 (description "TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt")
             )
@@ -75,6 +76,7 @@
             (address 0x40001400)
             (interrupt
                 (name TIM7)
+                (type TIM)
                 (value 55)
                 (description "TIM7 global interrupt")
             )
@@ -90,6 +92,7 @@
             (description "General purpose timers")
             (interrupt
                 (name TIM2)
+                (type TIM)
                 (value 28)
                 (description "TIM2 global interrupt")
             )
@@ -100,6 +103,7 @@
             (description "General purpose timers")
             (interrupt
                 (name TIM3)
+                (type TIM)
                 (value 29)
                 (description "TIM3 global interrupt")
             )
@@ -109,6 +113,7 @@
             (address 0x40000800)
             (interrupt
                 (name TIM4)
+                (type TIM)
                 (value 30)
                 (description "TIM4 global interrupt")
             )
@@ -119,6 +124,7 @@
             (description "General-purpose-timers")
             (interrupt
                 (name TIM5)
+                (type TIM)
                 (value 50)
                 (description "TIM5 global interrupt")
             )
@@ -129,6 +135,7 @@
             (description "General purpose timers")
             (interrupt
                 (name TIM1_BRK_TIM9)
+                (type TIM)
                 (value 24)
                 (description "TIM1 Break interrupt and TIM9 global interrupt")
             )
@@ -139,6 +146,7 @@
             (description "General-purpose-timers")
             (interrupt
                 (name TIM1_UP_TIM10)
+                (type TIM)
                 (value 25)
                 (description "TIM1 Update interrupt and TIM10 global interrupt")
             )
@@ -149,6 +157,7 @@
             (description "General-purpose-timers")
             (interrupt
                 (name TIM1_TRG_COM_TIM11)
+                (type TIM)
                 (value 26)
                 (description "TIM1 Trigger and Commutation interrupts and TIM11 global interrupt")
             )
@@ -158,6 +167,7 @@
             (address 0x40001800)
             (interrupt
                 (name TIM8_BRK_TIM12)
+                (type TIM)
                 (value 43)
                 (description "TIM8 Break interrupt and TIM12 global interrupt")
             )
@@ -167,6 +177,7 @@
             (address 0x40001c00)
             (interrupt
                 (name TIM8_UP_TIM13)
+                (type TIM)
                 (value 44)
                 (description "TIM8 Update interrupt and TIM13 global interrupt")
             )
@@ -176,6 +187,7 @@
             (address 0x40002000)
             (interrupt
                 (name TIM8_TRG_COM_TIM14)
+                (type TIM)
                 (value 45)
                 (description "TIM8 Trigger and Commutation interrupts and TIM14 global interrupt")
             )
@@ -191,21 +203,25 @@
             (description "Advanced-timers")
             (interrupt
                 (name TIM1_BRK_TIM9)
+                (type BRK)
                 (value 24)
                 (description "TIM1 Break interrupt and TIM9 global interrupt")
             )
             (interrupt
                 (name TIM1_UP_TIM10)
+                (type UP)
                 (value 25)
                 (description "TIM1 Update interrupt and TIM10 global interrupt")
             )
             (interrupt
                 (name TIM1_TRG_COM_TIM11)
+                (type TRG_COM)
                 (value 26)
                 (description "TIM1 Trigger and Commutation interrupts and TIM11 global interrupt")
             )
             (interrupt
                 (name TIM1_CC)
+                (type CC)
                 (value 27)
                 (description "TIM1 Capture Compare interrupt")
             )
@@ -215,21 +231,25 @@
             (address 0x40010400)
             (interrupt
                 (name TIM8_BRK_TIM12)
+                (type BRK)
                 (value 43)
                 (description "TIM8 Break interrupt and TIM12 global interrupt")
             )
             (interrupt
                 (name TIM8_UP_TIM13)
+                (type UP)
                 (value 44)
                 (description "TIM8 Update interrupt and TIM13 global interrupt")
             )
             (interrupt
                 (name TIM8_TRG_COM_TIM14)
+                (type TRG_COM)
                 (value 45)
                 (description "TIM8 Trigger and Commutation interrupts and TIM14 global interrupt")
             )
             (interrupt
                 (name TIM8_CC)
+                (type CC)
                 (value 46)
                 (description "TIM8 Capture Compare interrupt")
             )        
@@ -244,6 +264,7 @@
             (address 0x40000000)
             (interrupt
                 (name TIM2)
+                (type TIM)
                 (value 28)
                 (description "TIM2 global interrupt")
             )              
@@ -253,6 +274,7 @@
             (address 0x40000400)
             (interrupt
                 (name TIM3)
+                (type TIM)
                 (value 29)
                 (description "TIM3 global interrupt")
             )     
@@ -262,6 +284,7 @@
             (address 0x40000800)
             (interrupt
                 (name TIM4)
+                (type TIM)
                 (value 30)
                 (description "TIM4 global interrupt")
             )
@@ -271,6 +294,7 @@
             (address 0x40000c00)            
             (interrupt
                 (name TIM5)
+                (type TIM)
                 (value 50)
                 (description "TIM5 global interrupt")
             )        
