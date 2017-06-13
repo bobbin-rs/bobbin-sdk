@@ -129,10 +129,53 @@ pub fn set_handler(index: usize, handler: Option<Handler>) {
   unsafe { R_INTERRUPT_HANDLERS[index] = handler };
 }
 
+use super::nvic::{NVIC, Iser, Icer, Ispr, Icpr, Stir};
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Irq<T>(usize, T);
 impl<T> Irq<T> {
    pub fn index(&self) -> usize { self.0 }
+
+   pub fn is_enabled(&self) -> bool { NVIC.iser((self.0 >> 5)).setena((self.0 & 0b11111)) != 0 }
+
+   pub fn set_enabled(&self, value: bool) {
+      if value {
+         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));
+      } else {
+         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));
+      }
+   }
+
+   pub fn is_pending(&self) -> bool {
+       NVIC.ispr((self.0 >> 5)).setpend((self.0 & 0b11111)) != 0
+   }
+
+   pub fn set_pending(&self, value: bool) {
+       if value {
+           NVIC.set_ispr((self.0 >> 5), Ispr(0).set_setpend((self.0 & 0b11111), 1));
+       } else {
+           NVIC.set_icpr((self.0 >> 5), Icpr(0).set_clrpend((self.0 & 0b11111), 1));
+       }
+   }
+
+   pub fn is_active(&self) -> bool {
+       NVIC.iabr((self.0 >> 5)).active((self.0 & 0b11111)) != 0
+   }
+
+   pub fn priority(&self) -> u8 {
+       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8
+   }
+
+   pub fn set_priority(&self, value: u8) {
+       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));
+   }
+
+   pub fn trigger_interrupt(&self) {
+       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));
+   }
+
+   pub fn set_handler(&self, handler: Option<Handler>) {
+      unsafe { R_INTERRUPT_HANDLERS[self.0] = handler };
+   }
 }
 
 pub struct IrqHandle {}
