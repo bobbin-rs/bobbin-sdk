@@ -188,18 +188,29 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
 
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
+            let irq_type = format!("Irq{}", to_camel(&irq.name));
             let irq_id = format!("{}Id", to_camel(&irq.name));
 
             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            try!(writeln!(out, "pub const IRQ_{}: Irq<{}> = Irq({}, {} {{}});", 
+            try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
                 irq.name.to_uppercase(), 
-                irq_id,
+                irq_type,
                 irq.value,
                 irq_id,                
             ));
         }
     }
     try!(writeln!(out, ""));
+
+    for irq in interrupts.iter() {
+        if let &Some(irq) = irq { 
+            let irq_type = format!("Irq{}", to_camel(&irq.name));
+            let irq_id = format!("{}Id", to_camel(&irq.name));
+            try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+        }
+    }
+    
+    try!(writeln!(out, ""));    
 
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
@@ -302,8 +313,8 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     for irq in interrupts.iter() {
         if let &Some(irq) = irq {
             let irq_const = irq.name.to_uppercase();
-            let irq_id = format!("{}Id", to_camel(&irq.name));
-            try!(writeln!(out, "impl RegisterHandler for Irq<{}> {{", irq_id));
+            let irq_id = format!("Irq{}", to_camel(&irq.name));
+            try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
             try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
             try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
             try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
