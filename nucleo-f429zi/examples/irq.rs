@@ -5,9 +5,7 @@
 extern crate nucleo_f429zi as board;
 
 use core::cell::Cell;
-
-//use board::chip::irq::*;
-use board::chip::tim_gen::IrqTim;
+use board::chip::irq::IrqGuard;
 use board::hal::tim::*;
 
 pub const TIM: Tim14 = TIM14;
@@ -20,7 +18,7 @@ pub extern "C" fn main() -> ! {
     println!("Timer IRQ Test");
     let t = Timer::new(TIM14);    
     let _g = t.periph.register_tim_handler(&t);
-    board::hal::nvic::set_enabled(t.periph.irq_tim().index(), true);
+    t.periph.irq_tim().set_enabled(true);
     t.start(1000, TIM_PRESCALE);
     loop {}
 
@@ -35,7 +33,7 @@ impl<T> Timer<T> {
     fn new(periph: Periph<T>) -> Self {
         Timer { periph: periph, counter: Cell::new(0) } 
     }
-    fn start(&self, reload: u32, prescaler: u16) {
+    fn start(&self, reload: u32, prescaler: u16){
         self.periph
             .set_prescaler(prescaler)
             .set_update_event()
@@ -43,6 +41,9 @@ impl<T> Timer<T> {
             .with_dier(|r| r.set_uie(1))
             .set_auto_reload(reload << 1)
             .set_enabled(true);        
+        // let g = self.periph.register_tim_handler(&self);
+        // self.periph.irq_tim().set_enabled(true);
+        //g
     }    
 }
 
