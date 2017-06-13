@@ -4,6 +4,7 @@
 #[macro_use]
 extern crate nucleo_f429zi as board;
 
+use core::marker::{Sync, Send};
 use core::cell::Cell;
 use board::hal::tim::*;
 
@@ -22,6 +23,9 @@ pub extern "C" fn main() -> ! {
     loop {}
 
 }
+
+unsafe impl<T> Sync for Timer<T> {}
+unsafe impl<T> Send for Timer<T> {}
 
 pub struct Timer<T> {
     periph: Periph<T>,
