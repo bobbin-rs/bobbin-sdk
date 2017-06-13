@@ -18,7 +18,7 @@ pub trait IrqBrk<T> {
 }
 
 pub trait RegisterBrkHandler {
-   fn register_brk_handler<'a, F: HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+   fn register_brk_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
 
 pub trait HandleBrk {
@@ -30,7 +30,7 @@ pub trait IrqUp<T> {
 }
 
 pub trait RegisterUpHandler {
-   fn register_up_handler<'a, F: HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+   fn register_up_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
 
 pub trait HandleUp {
@@ -42,7 +42,7 @@ pub trait IrqTrgCom<T> {
 }
 
 pub trait RegisterTrgComHandler {
-   fn register_trg_com_handler<'a, F: HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+   fn register_trg_com_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
 
 pub trait HandleTrgCom {
@@ -54,7 +54,7 @@ pub trait IrqCc<T> {
 }
 
 pub trait RegisterCcHandler {
-   fn register_cc_handler<'a, F: HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+   fn register_cc_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
 
 pub trait HandleCc {
@@ -66,7 +66,7 @@ impl IrqBrk<super::irq::Tim1BrkTim9Id> for Tim1 {
 }
 
 impl RegisterBrkHandler for Tim1 {
-   fn register_brk_handler<'a, F: HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_brk_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleBrk>() {
@@ -82,7 +82,7 @@ impl IrqUp<super::irq::Tim1UpTim10Id> for Tim1 {
 }
 
 impl RegisterUpHandler for Tim1 {
-   fn register_up_handler<'a, F: HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_up_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleUp>() {
@@ -98,7 +98,7 @@ impl IrqTrgCom<super::irq::Tim1TrgComTim11Id> for Tim1 {
 }
 
 impl RegisterTrgComHandler for Tim1 {
-   fn register_trg_com_handler<'a, F: HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_trg_com_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleTrgCom>() {
@@ -114,7 +114,7 @@ impl IrqCc<super::irq::Tim1CcId> for Tim1 {
 }
 
 impl RegisterCcHandler for Tim1 {
-   fn register_cc_handler<'a, F: HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_cc_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleCc>() {
@@ -130,7 +130,7 @@ impl IrqBrk<super::irq::Tim8BrkTim12Id> for Tim8 {
 }
 
 impl RegisterBrkHandler for Tim8 {
-   fn register_brk_handler<'a, F: HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_brk_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleBrk>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleBrk>() {
@@ -146,7 +146,7 @@ impl IrqUp<super::irq::Tim8UpTim13Id> for Tim8 {
 }
 
 impl RegisterUpHandler for Tim8 {
-   fn register_up_handler<'a, F: HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_up_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleUp>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleUp>() {
@@ -162,7 +162,7 @@ impl IrqTrgCom<super::irq::Tim8TrgComTim14Id> for Tim8 {
 }
 
 impl RegisterTrgComHandler for Tim8 {
-   fn register_trg_com_handler<'a, F: HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_trg_com_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTrgCom>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleTrgCom>() {
@@ -178,7 +178,7 @@ impl IrqCc<super::irq::Tim8CcId> for Tim8 {
 }
 
 impl RegisterCcHandler for Tim8 {
-   fn register_cc_handler<'a, F: HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_cc_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleCc>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleCc>() {

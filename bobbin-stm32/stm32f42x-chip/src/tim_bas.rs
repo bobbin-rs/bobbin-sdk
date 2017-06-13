@@ -18,7 +18,7 @@ pub trait IrqTim<T> {
 }
 
 pub trait RegisterTimHandler {
-   fn register_tim_handler<'a, F: HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
 
 pub trait HandleTim {
@@ -30,7 +30,7 @@ impl IrqTim<super::irq::Tim6DacId> for Tim6 {
 }
 
 impl RegisterTimHandler for Tim6 {
-   fn register_tim_handler<'a, F: HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleTim>() {
@@ -46,7 +46,7 @@ impl IrqTim<super::irq::Tim7Id> for Tim7 {
 }
 
 impl RegisterTimHandler for Tim7 {
-   fn register_tim_handler<'a, F: HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
        extern "C" fn wrapper<W: HandleTim>() {
