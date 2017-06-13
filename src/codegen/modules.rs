@@ -200,6 +200,21 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                     irq_id,                
                 ));
             }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    let irq_type = format!("Irq{}", to_camel(&irq.name));
+                    let irq_id = format!("{}Id", to_camel(&irq.name));
+
+                    let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+                    try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
+                        irq.name.to_uppercase(), 
+                        irq_type,
+                        irq.value,
+                        irq_id,                
+                    ));
+                }                
+            }
+
         }
     }
     try!(writeln!(out, ""));
@@ -211,6 +226,13 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                 let irq_id = format!("{}Id", to_camel(&irq.name));
                 try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
             }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    let irq_type = format!("Irq{}", to_camel(&irq.name));
+                    let irq_id = format!("{}Id", to_camel(&irq.name));
+                    try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+                }                
+            }
         }
     }
     
@@ -221,6 +243,12 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
             for irq in p.interrupts.iter() {
                 let irq_id = format!("{}Id", to_camel(&irq.name));
                 try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+            }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    let irq_id = format!("{}Id", to_camel(&irq.name));
+                    try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+                }                
             }
         }
     }
@@ -343,6 +371,24 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                 try!(writeln!(out, "   }}"));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
+            }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    let irq_const = irq.name.to_uppercase();
+                    let irq_id = format!("Irq{}", to_camel(&irq.name));
+                    try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
+                    try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
+                    try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+                    try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+                    try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
+                    try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
+                    try!(writeln!(out, "       }}"));
+                    try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
+                    try!(writeln!(out, "       IrqGuard::new({})", irq.value));
+                    try!(writeln!(out, "   }}"));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+                }                
             }
         }
     }
@@ -717,6 +763,41 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         // }        
     }
 
+    // Generate Peripheral Group Channels
+
+    if pg.has_channels {
+        // Generate Channel Impl
+
+        try!(writeln!(out, "pub struct Channel<P, T> {{ pub periph: Periph<T>, pub index: usize, pub id: P }}"));
+        try!(writeln!(out, ""));
+
+        try!(writeln!(out, "impl<P,T> Channel<P,T> {{"));
+        try!(writeln!(out, "   #[inline] pub fn periph(&self) -> &Periph<T> {{ &self.periph }}"));
+        try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
+        try!(writeln!(out, "}}"));        
+        try!(writeln!(out, ""));
+    }
+
+    for p in pg.peripherals.iter() {
+        let p_name = p.name.to_uppercase();
+        let p_type = to_camel(&p.name);
+        let p_id = format!("{}Id", p_type);
+        for ch in p.channels.iter() {
+            let ch_name = ch.name.to_uppercase();                
+            let ch_type = to_camel(&ch.name);
+            let ch_id = format!("{}Id", ch_type);
+            try!(writeln!(out, "pub const {}: Channel<{}, {}> = Channel {{ periph: {}, index: {}, id: {} {{}} }}; ", 
+                ch_name, ch_id, p_id, p_name, ch.index.unwrap(), ch_id));
+
+            try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
+            try!(writeln!(out, "pub struct {} {{}}", ch_id));
+            try!(writeln!(out, "pub type {} = Channel<{}, {}>;", ch_type, ch_id, p_id));
+            try!(writeln!(out, ""));
+        }        
+    }
+
+
+    // Generate Peripheral Group Interrupts
 
     let mut interrupt_types = HashSet::new();
 

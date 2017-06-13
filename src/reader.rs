@@ -8,7 +8,7 @@ use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
 use {Exception, Cluster, Register, Field, Link, EnumeratedValue};
 use {PathElement};
-use {Pin, AltFn, Clock, Variant};
+use {Pin, AltFn, Channel, Clock, Variant};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -449,6 +449,7 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
                 Some("peripheral") => pg.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
                 Some("module") => pg.modules.push(try!(read_module(ctx, &arr[1..]))),
                 Some("has-pins") => pg.has_pins = true,
+                Some("has-channels") => pg.has_channels = true,
                 Some("prototype") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    
@@ -518,8 +519,9 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("interrupt") => p.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
                 Some("signal") => p.signals.push(try!(read_signal(ctx, &arr[1..]))),
                 Some("pin") => p.pins.push(try!(read_pin(ctx, &arr[1..]))),
+                Some("channel") => p.channels.push(try!(read_channel(ctx, &arr[1..]))),
                 Some("cluster") => p.clusters.push(try!(read_cluster(ctx, &arr[1..]))),
-                Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),
+                Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),                
                 Some("link") => p.links.push(try!(read_link(ctx, &arr[1..]))),
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-increment") => p.dim_increment = Some(try!(expect_u64(ctx, &arr[1]))),
@@ -565,6 +567,27 @@ fn read_altfn(ctx: &Context, s: &[Sexp]) -> Result<AltFn, ReadError> {
 
     Ok(af)
 }
+
+fn read_channel(ctx: &Context, s: &[Sexp]) -> Result<Channel, ReadError> {
+    let path = ctx.path();
+    let mut ch = Channel::default();
+
+    for s in s.iter() {
+        // println!("{:?}", s);
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => ch.name = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("index") => ch.index = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("interrupt") => ch.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }
+    }    
+
+    Ok(ch)
+}
+
 
 fn read_interrupt(ctx: &Context, s: &[Sexp]) -> Result<Interrupt, ReadError> {
     let mut i = Interrupt::default();
