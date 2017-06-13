@@ -1537,6 +1537,7 @@
             (signal (name USART1_CK) (type CK))               
             (interrupt
                 (name USART1)
+                (type USART)
                 (value 37)
                 (description "USART1 global interrupt")
             )        
@@ -1551,6 +1552,7 @@
             (signal (name USART2_CK) (type CK))    
             (interrupt
                 (name USART2)
+                (type USART)
                 (value 38)
                 (description "USART2 global interrupt")
             )
@@ -1565,6 +1567,7 @@
             (signal (name USART3_CK) (type CK))      
             (interrupt
                 (name USART3)
+                (type USART)
                 (value 39)
                 (description "USART3 global interrupt")
             )
@@ -1579,8 +1582,9 @@
             (signal (name USART6_CK) (type CK))      
             (interrupt
                (name USART6)
-                (value 71)
-                (description "USART6 global interrupt")
+               (type USART)
+               (value 71)
+               (description "USART6 global interrupt")
             )
         )
         (peripheral
@@ -1593,6 +1597,7 @@
             (signal (name UART7_CK) (type CK))                  
             (interrupt
                 (name UART7)
+                (type USART)
                 (value 82)
                 (description "UART 7 global interrupt")
             )
@@ -1607,6 +1612,7 @@
             (signal (name UART8_CK) (type CK))       
             (interrupt
                 (name UART8)
+                (type USART)
                 (value 83)
                 (description "UART 8 global interrupt")
             )
