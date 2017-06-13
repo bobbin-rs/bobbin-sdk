@@ -6,7 +6,8 @@ extern crate nucleo_f429zi as board;
 
 use core::cell::Cell;
 
-use board::chip::irq::*;
+//use board::chip::irq::*;
+use board::chip::tim_gen::IrqTim;
 use board::hal::tim::*;
 
 pub const TIM: Tim14 = TIM14;
@@ -17,12 +18,9 @@ pub extern "C" fn main() -> ! {
     board::init();
 
     println!("Timer IRQ Test");
-    let t = Timer::new(TIM14);
-    let tim_irq = IRQ_TIM8_TRG_COM_TIM14;
-
-    //let _g = tim_irq.register_handler(&t);
-    let _g = TIM14.register_tim_handler(&t);
-    board::hal::nvic::set_enabled(tim_irq.index(), true);
+    let t = Timer::new(TIM14);    
+    let _g = t.periph.register_tim_handler(&t);
+    board::hal::nvic::set_enabled(t.periph.irq_tim().index(), true);
     t.start(1000, TIM_PRESCALE);
     loop {}
 
