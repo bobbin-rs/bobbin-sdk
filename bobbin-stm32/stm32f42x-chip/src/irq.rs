@@ -955,13 +955,13 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,                          // IRQ 8: EXTI Line2 interrupt
    None,                          // IRQ 9: EXTI Line3 interrupt
    None,                          // IRQ 10: EXTI Line4 interrupt
-   None,                          // IRQ 11: DMA1 Stream0 global interrupt
-   None,                          // IRQ 12: DMA1 Stream1 global interrupt
-   None,                          // IRQ 13: DMA1 Stream2 global interrupt
-   None,                          // IRQ 14: DMA1 Stream3 global interrupt
-   None,                          // IRQ 15: DMA1 Stream4 global interrupt
-   None,                          // IRQ 16: DMA1 Stream5 global interrupt
-   None,                          // IRQ 17: DMA1 Stream6 global interrupt
+   None,
+   None,
+   None,
+   None,
+   None,
+   None,
+   None,
    None,                          // IRQ 18: ADC3 global interrupts
    None,
    None,
@@ -991,7 +991,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,                          // IRQ 44: TIM8 Update interrupt and TIM13 global interrupt
    None,                          // IRQ 45: TIM8 Trigger and Commutation interrupts and TIM14 global interrupt
    None,                          // IRQ 46: TIM8 Capture Compare interrupt
-   None,                          // IRQ 47: DMA1 Stream7 global interrupt
+   None,
    None,
    None,
    None,                          // IRQ 50: TIM5 global interrupt
@@ -1000,11 +1000,11 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,
    None,                          // IRQ 54: TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt
    None,                          // IRQ 55: TIM7 global interrupt
-   None,                          // IRQ 56: DMA2 Stream0 global interrupt
-   None,                          // IRQ 57: DMA2 Stream1 global interrupt
-   None,                          // IRQ 58: DMA2 Stream2 global interrupt
-   None,                          // IRQ 59: DMA2 Stream3 global interrupt
-   None,                          // IRQ 60: DMA2 Stream4 global interrupt
+   None,
+   None,
+   None,
+   None,
+   None,
    None,                          // IRQ 61: Ethernet global interrupt
    None,                          // IRQ 62: Ethernet Wakeup through EXTI line interrupt
    None,
@@ -1012,9 +1012,9 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,
    None,
    None,
-   None,                          // IRQ 68: DMA2 Stream5 global interrupt
-   None,                          // IRQ 69: DMA2 Stream6 global interrupt
-   None,                          // IRQ 70: DMA2 Stream7 global interrupt
+   None,
+   None,
+   None,
    None,                          // IRQ 71: USART6 global interrupt
    None,                          // IRQ 72: I2C3 event interrupt
    None,                          // IRQ 73: I2C3 error interrupt
