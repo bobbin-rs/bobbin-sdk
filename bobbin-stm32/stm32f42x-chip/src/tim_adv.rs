@@ -62,7 +62,7 @@ pub trait HandleCc {
 }
 
 impl IrqBrk<super::irq::Tim1BrkTim9Id> for Tim1 {
-   fn irq_brk(&self) -> super::irq::Irq<super::irq::Tim1BrkTim9Id> { super::irq::IRQ_TIM1_BRK_TIM9 }
+   fn irq_brk(&self) -> super::irq::IrqTim1BrkTim9 { super::irq::IRQ_TIM1_BRK_TIM9 }
 }
 
 impl RegisterBrkHandler for Tim1 {
@@ -78,7 +78,7 @@ impl RegisterBrkHandler for Tim1 {
 }
 
 impl IrqUp<super::irq::Tim1UpTim10Id> for Tim1 {
-   fn irq_up(&self) -> super::irq::Irq<super::irq::Tim1UpTim10Id> { super::irq::IRQ_TIM1_UP_TIM10 }
+   fn irq_up(&self) -> super::irq::IrqTim1UpTim10 { super::irq::IRQ_TIM1_UP_TIM10 }
 }
 
 impl RegisterUpHandler for Tim1 {
@@ -94,7 +94,7 @@ impl RegisterUpHandler for Tim1 {
 }
 
 impl IrqTrgCom<super::irq::Tim1TrgComTim11Id> for Tim1 {
-   fn irq_trg_com(&self) -> super::irq::Irq<super::irq::Tim1TrgComTim11Id> { super::irq::IRQ_TIM1_TRG_COM_TIM11 }
+   fn irq_trg_com(&self) -> super::irq::IrqTim1TrgComTim11 { super::irq::IRQ_TIM1_TRG_COM_TIM11 }
 }
 
 impl RegisterTrgComHandler for Tim1 {
@@ -110,7 +110,7 @@ impl RegisterTrgComHandler for Tim1 {
 }
 
 impl IrqCc<super::irq::Tim1CcId> for Tim1 {
-   fn irq_cc(&self) -> super::irq::Irq<super::irq::Tim1CcId> { super::irq::IRQ_TIM1_CC }
+   fn irq_cc(&self) -> super::irq::IrqTim1Cc { super::irq::IRQ_TIM1_CC }
 }
 
 impl RegisterCcHandler for Tim1 {
@@ -126,7 +126,7 @@ impl RegisterCcHandler for Tim1 {
 }
 
 impl IrqBrk<super::irq::Tim8BrkTim12Id> for Tim8 {
-   fn irq_brk(&self) -> super::irq::Irq<super::irq::Tim8BrkTim12Id> { super::irq::IRQ_TIM8_BRK_TIM12 }
+   fn irq_brk(&self) -> super::irq::IrqTim8BrkTim12 { super::irq::IRQ_TIM8_BRK_TIM12 }
 }
 
 impl RegisterBrkHandler for Tim8 {
@@ -142,7 +142,7 @@ impl RegisterBrkHandler for Tim8 {
 }
 
 impl IrqUp<super::irq::Tim8UpTim13Id> for Tim8 {
-   fn irq_up(&self) -> super::irq::Irq<super::irq::Tim8UpTim13Id> { super::irq::IRQ_TIM8_UP_TIM13 }
+   fn irq_up(&self) -> super::irq::IrqTim8UpTim13 { super::irq::IRQ_TIM8_UP_TIM13 }
 }
 
 impl RegisterUpHandler for Tim8 {
@@ -158,7 +158,7 @@ impl RegisterUpHandler for Tim8 {
 }
 
 impl IrqTrgCom<super::irq::Tim8TrgComTim14Id> for Tim8 {
-   fn irq_trg_com(&self) -> super::irq::Irq<super::irq::Tim8TrgComTim14Id> { super::irq::IRQ_TIM8_TRG_COM_TIM14 }
+   fn irq_trg_com(&self) -> super::irq::IrqTim8TrgComTim14 { super::irq::IRQ_TIM8_TRG_COM_TIM14 }
 }
 
 impl RegisterTrgComHandler for Tim8 {
@@ -174,7 +174,7 @@ impl RegisterTrgComHandler for Tim8 {
 }
 
 impl IrqCc<super::irq::Tim8CcId> for Tim8 {
-   fn irq_cc(&self) -> super::irq::Irq<super::irq::Tim8CcId> { super::irq::IRQ_TIM8_CC }
+   fn irq_cc(&self) -> super::irq::IrqTim8Cc { super::irq::IRQ_TIM8_CC }
 }
 
 impl RegisterCcHandler for Tim8 {

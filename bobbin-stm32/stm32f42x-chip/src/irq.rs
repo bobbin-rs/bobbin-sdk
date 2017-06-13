@@ -1,67 +1,129 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
-pub const IRQ_PVD_IRQ: Irq<PvdIrqId> = Irq(1, PvdIrqId {});
-pub const IRQ_TAMP_STAMP: Irq<TampStampId> = Irq(2, TampStampId {});
-pub const IRQ_RCC: Irq<RccId> = Irq(5, RccId {});
-pub const IRQ_EXTI0: Irq<Exti0Id> = Irq(6, Exti0Id {});
-pub const IRQ_EXTI1: Irq<Exti1Id> = Irq(7, Exti1Id {});
-pub const IRQ_EXTI2: Irq<Exti2Id> = Irq(8, Exti2Id {});
-pub const IRQ_EXTI3: Irq<Exti3Id> = Irq(9, Exti3Id {});
-pub const IRQ_EXTI4: Irq<Exti4Id> = Irq(10, Exti4Id {});
-pub const IRQ_DMA1_STREAM0: Irq<Dma1Stream0Id> = Irq(11, Dma1Stream0Id {});
-pub const IRQ_DMA1_STREAM1: Irq<Dma1Stream1Id> = Irq(12, Dma1Stream1Id {});
-pub const IRQ_DMA1_STREAM2: Irq<Dma1Stream2Id> = Irq(13, Dma1Stream2Id {});
-pub const IRQ_DMA1_STREAM3: Irq<Dma1Stream3Id> = Irq(14, Dma1Stream3Id {});
-pub const IRQ_DMA1_STREAM4: Irq<Dma1Stream4Id> = Irq(15, Dma1Stream4Id {});
-pub const IRQ_DMA1_STREAM5: Irq<Dma1Stream5Id> = Irq(16, Dma1Stream5Id {});
-pub const IRQ_DMA1_STREAM6: Irq<Dma1Stream6Id> = Irq(17, Dma1Stream6Id {});
-pub const IRQ_ADC: Irq<AdcId> = Irq(18, AdcId {});
-pub const IRQ_EXTI9_5: Irq<Exti95Id> = Irq(23, Exti95Id {});
-pub const IRQ_TIM1_BRK_TIM9: Irq<Tim1BrkTim9Id> = Irq(24, Tim1BrkTim9Id {});
-pub const IRQ_TIM1_UP_TIM10: Irq<Tim1UpTim10Id> = Irq(25, Tim1UpTim10Id {});
-pub const IRQ_TIM1_TRG_COM_TIM11: Irq<Tim1TrgComTim11Id> = Irq(26, Tim1TrgComTim11Id {});
-pub const IRQ_TIM1_CC: Irq<Tim1CcId> = Irq(27, Tim1CcId {});
-pub const IRQ_TIM2: Irq<Tim2Id> = Irq(28, Tim2Id {});
-pub const IRQ_TIM3: Irq<Tim3Id> = Irq(29, Tim3Id {});
-pub const IRQ_TIM4: Irq<Tim4Id> = Irq(30, Tim4Id {});
-pub const IRQ_I2C1_EV: Irq<I2c1EvId> = Irq(31, I2c1EvId {});
-pub const IRQ_I2C1_ER: Irq<I2c1ErId> = Irq(32, I2c1ErId {});
-pub const IRQ_I2C2_EV: Irq<I2c2EvId> = Irq(33, I2c2EvId {});
-pub const IRQ_I2C2_ER: Irq<I2c2ErId> = Irq(34, I2c2ErId {});
-pub const IRQ_SPI1: Irq<Spi1Id> = Irq(35, Spi1Id {});
-pub const IRQ_SPI2: Irq<Spi2Id> = Irq(36, Spi2Id {});
-pub const IRQ_USART1: Irq<Usart1Id> = Irq(37, Usart1Id {});
-pub const IRQ_USART2: Irq<Usart2Id> = Irq(38, Usart2Id {});
-pub const IRQ_USART3: Irq<Usart3Id> = Irq(39, Usart3Id {});
-pub const IRQ_EXTI15_10: Irq<Exti1510Id> = Irq(40, Exti1510Id {});
-pub const IRQ_TIM8_BRK_TIM12: Irq<Tim8BrkTim12Id> = Irq(43, Tim8BrkTim12Id {});
-pub const IRQ_TIM8_UP_TIM13: Irq<Tim8UpTim13Id> = Irq(44, Tim8UpTim13Id {});
-pub const IRQ_TIM8_TRG_COM_TIM14: Irq<Tim8TrgComTim14Id> = Irq(45, Tim8TrgComTim14Id {});
-pub const IRQ_TIM8_CC: Irq<Tim8CcId> = Irq(46, Tim8CcId {});
-pub const IRQ_DMA1_STREAM7: Irq<Dma1Stream7Id> = Irq(47, Dma1Stream7Id {});
-pub const IRQ_TIM5: Irq<Tim5Id> = Irq(50, Tim5Id {});
-pub const IRQ_SPI3: Irq<Spi3Id> = Irq(51, Spi3Id {});
-pub const IRQ_TIM6_DAC: Irq<Tim6DacId> = Irq(54, Tim6DacId {});
-pub const IRQ_TIM7: Irq<Tim7Id> = Irq(55, Tim7Id {});
-pub const IRQ_DMA2_STREAM0: Irq<Dma2Stream0Id> = Irq(56, Dma2Stream0Id {});
-pub const IRQ_DMA2_STREAM1: Irq<Dma2Stream1Id> = Irq(57, Dma2Stream1Id {});
-pub const IRQ_DMA2_STREAM2: Irq<Dma2Stream2Id> = Irq(58, Dma2Stream2Id {});
-pub const IRQ_DMA2_STREAM3: Irq<Dma2Stream3Id> = Irq(59, Dma2Stream3Id {});
-pub const IRQ_DMA2_STREAM4: Irq<Dma2Stream4Id> = Irq(60, Dma2Stream4Id {});
-pub const IRQ_ETH_IRQ: Irq<EthIrqId> = Irq(61, EthIrqId {});
-pub const IRQ_ETH_WKUP_IRQ: Irq<EthWkupIrqId> = Irq(62, EthWkupIrqId {});
-pub const IRQ_DMA2_STREAM5: Irq<Dma2Stream5Id> = Irq(68, Dma2Stream5Id {});
-pub const IRQ_DMA2_STREAM6: Irq<Dma2Stream6Id> = Irq(69, Dma2Stream6Id {});
-pub const IRQ_DMA2_STREAM7: Irq<Dma2Stream7Id> = Irq(70, Dma2Stream7Id {});
-pub const IRQ_USART6: Irq<Usart6Id> = Irq(71, Usart6Id {});
-pub const IRQ_I2C3_EV: Irq<I2c3EvId> = Irq(72, I2c3EvId {});
-pub const IRQ_I2C3_ER: Irq<I2c3ErId> = Irq(73, I2c3ErId {});
-pub const IRQ_UART7: Irq<Uart7Id> = Irq(82, Uart7Id {});
-pub const IRQ_UART8: Irq<Uart8Id> = Irq(83, Uart8Id {});
-pub const IRQ_SPI4: Irq<Spi4Id> = Irq(84, Spi4Id {});
-pub const IRQ_SPI5: Irq<Spi5Id> = Irq(85, Spi5Id {});
-pub const IRQ_SPI6: Irq<Spi6Id> = Irq(86, Spi6Id {});
+pub const IRQ_PVD_IRQ: IrqPvdIrq = Irq(1, PvdIrqId {});
+pub const IRQ_TAMP_STAMP: IrqTampStamp = Irq(2, TampStampId {});
+pub const IRQ_RCC: IrqRcc = Irq(5, RccId {});
+pub const IRQ_EXTI0: IrqExti0 = Irq(6, Exti0Id {});
+pub const IRQ_EXTI1: IrqExti1 = Irq(7, Exti1Id {});
+pub const IRQ_EXTI2: IrqExti2 = Irq(8, Exti2Id {});
+pub const IRQ_EXTI3: IrqExti3 = Irq(9, Exti3Id {});
+pub const IRQ_EXTI4: IrqExti4 = Irq(10, Exti4Id {});
+pub const IRQ_DMA1_STREAM0: IrqDma1Stream0 = Irq(11, Dma1Stream0Id {});
+pub const IRQ_DMA1_STREAM1: IrqDma1Stream1 = Irq(12, Dma1Stream1Id {});
+pub const IRQ_DMA1_STREAM2: IrqDma1Stream2 = Irq(13, Dma1Stream2Id {});
+pub const IRQ_DMA1_STREAM3: IrqDma1Stream3 = Irq(14, Dma1Stream3Id {});
+pub const IRQ_DMA1_STREAM4: IrqDma1Stream4 = Irq(15, Dma1Stream4Id {});
+pub const IRQ_DMA1_STREAM5: IrqDma1Stream5 = Irq(16, Dma1Stream5Id {});
+pub const IRQ_DMA1_STREAM6: IrqDma1Stream6 = Irq(17, Dma1Stream6Id {});
+pub const IRQ_ADC: IrqAdc = Irq(18, AdcId {});
+pub const IRQ_EXTI9_5: IrqExti95 = Irq(23, Exti95Id {});
+pub const IRQ_TIM1_BRK_TIM9: IrqTim1BrkTim9 = Irq(24, Tim1BrkTim9Id {});
+pub const IRQ_TIM1_UP_TIM10: IrqTim1UpTim10 = Irq(25, Tim1UpTim10Id {});
+pub const IRQ_TIM1_TRG_COM_TIM11: IrqTim1TrgComTim11 = Irq(26, Tim1TrgComTim11Id {});
+pub const IRQ_TIM1_CC: IrqTim1Cc = Irq(27, Tim1CcId {});
+pub const IRQ_TIM2: IrqTim2 = Irq(28, Tim2Id {});
+pub const IRQ_TIM3: IrqTim3 = Irq(29, Tim3Id {});
+pub const IRQ_TIM4: IrqTim4 = Irq(30, Tim4Id {});
+pub const IRQ_I2C1_EV: IrqI2c1Ev = Irq(31, I2c1EvId {});
+pub const IRQ_I2C1_ER: IrqI2c1Er = Irq(32, I2c1ErId {});
+pub const IRQ_I2C2_EV: IrqI2c2Ev = Irq(33, I2c2EvId {});
+pub const IRQ_I2C2_ER: IrqI2c2Er = Irq(34, I2c2ErId {});
+pub const IRQ_SPI1: IrqSpi1 = Irq(35, Spi1Id {});
+pub const IRQ_SPI2: IrqSpi2 = Irq(36, Spi2Id {});
+pub const IRQ_USART1: IrqUsart1 = Irq(37, Usart1Id {});
+pub const IRQ_USART2: IrqUsart2 = Irq(38, Usart2Id {});
+pub const IRQ_USART3: IrqUsart3 = Irq(39, Usart3Id {});
+pub const IRQ_EXTI15_10: IrqExti1510 = Irq(40, Exti1510Id {});
+pub const IRQ_TIM8_BRK_TIM12: IrqTim8BrkTim12 = Irq(43, Tim8BrkTim12Id {});
+pub const IRQ_TIM8_UP_TIM13: IrqTim8UpTim13 = Irq(44, Tim8UpTim13Id {});
+pub const IRQ_TIM8_TRG_COM_TIM14: IrqTim8TrgComTim14 = Irq(45, Tim8TrgComTim14Id {});
+pub const IRQ_TIM8_CC: IrqTim8Cc = Irq(46, Tim8CcId {});
+pub const IRQ_DMA1_STREAM7: IrqDma1Stream7 = Irq(47, Dma1Stream7Id {});
+pub const IRQ_TIM5: IrqTim5 = Irq(50, Tim5Id {});
+pub const IRQ_SPI3: IrqSpi3 = Irq(51, Spi3Id {});
+pub const IRQ_TIM6_DAC: IrqTim6Dac = Irq(54, Tim6DacId {});
+pub const IRQ_TIM7: IrqTim7 = Irq(55, Tim7Id {});
+pub const IRQ_DMA2_STREAM0: IrqDma2Stream0 = Irq(56, Dma2Stream0Id {});
+pub const IRQ_DMA2_STREAM1: IrqDma2Stream1 = Irq(57, Dma2Stream1Id {});
+pub const IRQ_DMA2_STREAM2: IrqDma2Stream2 = Irq(58, Dma2Stream2Id {});
+pub const IRQ_DMA2_STREAM3: IrqDma2Stream3 = Irq(59, Dma2Stream3Id {});
+pub const IRQ_DMA2_STREAM4: IrqDma2Stream4 = Irq(60, Dma2Stream4Id {});
+pub const IRQ_ETH_IRQ: IrqEthIrq = Irq(61, EthIrqId {});
+pub const IRQ_ETH_WKUP_IRQ: IrqEthWkupIrq = Irq(62, EthWkupIrqId {});
+pub const IRQ_DMA2_STREAM5: IrqDma2Stream5 = Irq(68, Dma2Stream5Id {});
+pub const IRQ_DMA2_STREAM6: IrqDma2Stream6 = Irq(69, Dma2Stream6Id {});
+pub const IRQ_DMA2_STREAM7: IrqDma2Stream7 = Irq(70, Dma2Stream7Id {});
+pub const IRQ_USART6: IrqUsart6 = Irq(71, Usart6Id {});
+pub const IRQ_I2C3_EV: IrqI2c3Ev = Irq(72, I2c3EvId {});
+pub const IRQ_I2C3_ER: IrqI2c3Er = Irq(73, I2c3ErId {});
+pub const IRQ_UART7: IrqUart7 = Irq(82, Uart7Id {});
+pub const IRQ_UART8: IrqUart8 = Irq(83, Uart8Id {});
+pub const IRQ_SPI4: IrqSpi4 = Irq(84, Spi4Id {});
+pub const IRQ_SPI5: IrqSpi5 = Irq(85, Spi5Id {});
+pub const IRQ_SPI6: IrqSpi6 = Irq(86, Spi6Id {});
+
+pub type IrqPvdIrq = Irq<PvdIrqId>;
+pub type IrqTampStamp = Irq<TampStampId>;
+pub type IrqRcc = Irq<RccId>;
+pub type IrqExti0 = Irq<Exti0Id>;
+pub type IrqExti1 = Irq<Exti1Id>;
+pub type IrqExti2 = Irq<Exti2Id>;
+pub type IrqExti3 = Irq<Exti3Id>;
+pub type IrqExti4 = Irq<Exti4Id>;
+pub type IrqDma1Stream0 = Irq<Dma1Stream0Id>;
+pub type IrqDma1Stream1 = Irq<Dma1Stream1Id>;
+pub type IrqDma1Stream2 = Irq<Dma1Stream2Id>;
+pub type IrqDma1Stream3 = Irq<Dma1Stream3Id>;
+pub type IrqDma1Stream4 = Irq<Dma1Stream4Id>;
+pub type IrqDma1Stream5 = Irq<Dma1Stream5Id>;
+pub type IrqDma1Stream6 = Irq<Dma1Stream6Id>;
+pub type IrqAdc = Irq<AdcId>;
+pub type IrqExti95 = Irq<Exti95Id>;
+pub type IrqTim1BrkTim9 = Irq<Tim1BrkTim9Id>;
+pub type IrqTim1UpTim10 = Irq<Tim1UpTim10Id>;
+pub type IrqTim1TrgComTim11 = Irq<Tim1TrgComTim11Id>;
+pub type IrqTim1Cc = Irq<Tim1CcId>;
+pub type IrqTim2 = Irq<Tim2Id>;
+pub type IrqTim3 = Irq<Tim3Id>;
+pub type IrqTim4 = Irq<Tim4Id>;
+pub type IrqI2c1Ev = Irq<I2c1EvId>;
+pub type IrqI2c1Er = Irq<I2c1ErId>;
+pub type IrqI2c2Ev = Irq<I2c2EvId>;
+pub type IrqI2c2Er = Irq<I2c2ErId>;
+pub type IrqSpi1 = Irq<Spi1Id>;
+pub type IrqSpi2 = Irq<Spi2Id>;
+pub type IrqUsart1 = Irq<Usart1Id>;
+pub type IrqUsart2 = Irq<Usart2Id>;
+pub type IrqUsart3 = Irq<Usart3Id>;
+pub type IrqExti1510 = Irq<Exti1510Id>;
+pub type IrqTim8BrkTim12 = Irq<Tim8BrkTim12Id>;
+pub type IrqTim8UpTim13 = Irq<Tim8UpTim13Id>;
+pub type IrqTim8TrgComTim14 = Irq<Tim8TrgComTim14Id>;
+pub type IrqTim8Cc = Irq<Tim8CcId>;
+pub type IrqDma1Stream7 = Irq<Dma1Stream7Id>;
+pub type IrqTim5 = Irq<Tim5Id>;
+pub type IrqSpi3 = Irq<Spi3Id>;
+pub type IrqTim6Dac = Irq<Tim6DacId>;
+pub type IrqTim7 = Irq<Tim7Id>;
+pub type IrqDma2Stream0 = Irq<Dma2Stream0Id>;
+pub type IrqDma2Stream1 = Irq<Dma2Stream1Id>;
+pub type IrqDma2Stream2 = Irq<Dma2Stream2Id>;
+pub type IrqDma2Stream3 = Irq<Dma2Stream3Id>;
+pub type IrqDma2Stream4 = Irq<Dma2Stream4Id>;
+pub type IrqEthIrq = Irq<EthIrqId>;
+pub type IrqEthWkupIrq = Irq<EthWkupIrqId>;
+pub type IrqDma2Stream5 = Irq<Dma2Stream5Id>;
+pub type IrqDma2Stream6 = Irq<Dma2Stream6Id>;
+pub type IrqDma2Stream7 = Irq<Dma2Stream7Id>;
+pub type IrqUsart6 = Irq<Usart6Id>;
+pub type IrqI2c3Ev = Irq<I2c3EvId>;
+pub type IrqI2c3Er = Irq<I2c3ErId>;
+pub type IrqUart7 = Irq<Uart7Id>;
+pub type IrqUart8 = Irq<Uart8Id>;
+pub type IrqSpi4 = Irq<Spi4Id>;
+pub type IrqSpi5 = Irq<Spi5Id>;
+pub type IrqSpi6 = Irq<Spi6Id>;
 
 pub struct PvdIrqId {} // IRQ 1
 pub struct TampStampId {} // IRQ 2
@@ -126,7 +188,10 @@ pub struct Spi5Id {} // IRQ 85
 pub struct Spi6Id {} // IRQ 86
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { R_INTERRUPT_HANDLERS[index] = handler };
+  unsafe { 
+     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+     R_INTERRUPT_HANDLERS[index] = handler
+  };
 }
 
 use super::nvic::{NVIC, Iser, Icer, Ispr, Icpr, Stir};
@@ -139,6 +204,7 @@ impl<T> Irq<T> {
 
    pub fn set_enabled(&self, value: bool) {
       if value {
+         assert!(self.handler().is_some());
          NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));
       } else {
          NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));
@@ -173,7 +239,10 @@ impl<T> Irq<T> {
        NVIC.set_stir(Stir(0).set_intid(self.0 as u32));
    }
 
+   pub fn handler(&self) -> Option<Handler> { unsafe { R_INTERRUPT_HANDLERS[self.0] } }
+
    pub fn set_handler(&self, handler: Option<Handler>) {
+      unsafe { assert!(R_INTERRUPT_HANDLERS[self.0].is_some() != handler.is_some()); };
       unsafe { R_INTERRUPT_HANDLERS[self.0] = handler };
    }
 }
@@ -200,7 +269,7 @@ pub trait HandleInterrupt {
    fn handle_interrupt(&self);
 }
 
-impl RegisterHandler for Irq<PvdIrqId> {
+impl RegisterHandler for IrqPvdIrq {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -212,7 +281,7 @@ impl RegisterHandler for Irq<PvdIrqId> {
    }
 }
 
-impl RegisterHandler for Irq<TampStampId> {
+impl RegisterHandler for IrqTampStamp {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -224,7 +293,7 @@ impl RegisterHandler for Irq<TampStampId> {
    }
 }
 
-impl RegisterHandler for Irq<RccId> {
+impl RegisterHandler for IrqRcc {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -236,7 +305,7 @@ impl RegisterHandler for Irq<RccId> {
    }
 }
 
-impl RegisterHandler for Irq<Exti0Id> {
+impl RegisterHandler for IrqExti0 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -248,7 +317,7 @@ impl RegisterHandler for Irq<Exti0Id> {
    }
 }
 
-impl RegisterHandler for Irq<Exti1Id> {
+impl RegisterHandler for IrqExti1 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -260,7 +329,7 @@ impl RegisterHandler for Irq<Exti1Id> {
    }
 }
 
-impl RegisterHandler for Irq<Exti2Id> {
+impl RegisterHandler for IrqExti2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -272,7 +341,7 @@ impl RegisterHandler for Irq<Exti2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Exti3Id> {
+impl RegisterHandler for IrqExti3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -284,7 +353,7 @@ impl RegisterHandler for Irq<Exti3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Exti4Id> {
+impl RegisterHandler for IrqExti4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -296,7 +365,7 @@ impl RegisterHandler for Irq<Exti4Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream0Id> {
+impl RegisterHandler for IrqDma1Stream0 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -308,7 +377,7 @@ impl RegisterHandler for Irq<Dma1Stream0Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream1Id> {
+impl RegisterHandler for IrqDma1Stream1 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -320,7 +389,7 @@ impl RegisterHandler for Irq<Dma1Stream1Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream2Id> {
+impl RegisterHandler for IrqDma1Stream2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -332,7 +401,7 @@ impl RegisterHandler for Irq<Dma1Stream2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream3Id> {
+impl RegisterHandler for IrqDma1Stream3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -344,7 +413,7 @@ impl RegisterHandler for Irq<Dma1Stream3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream4Id> {
+impl RegisterHandler for IrqDma1Stream4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -356,7 +425,7 @@ impl RegisterHandler for Irq<Dma1Stream4Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream5Id> {
+impl RegisterHandler for IrqDma1Stream5 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -368,7 +437,7 @@ impl RegisterHandler for Irq<Dma1Stream5Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream6Id> {
+impl RegisterHandler for IrqDma1Stream6 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -380,7 +449,7 @@ impl RegisterHandler for Irq<Dma1Stream6Id> {
    }
 }
 
-impl RegisterHandler for Irq<AdcId> {
+impl RegisterHandler for IrqAdc {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -392,7 +461,7 @@ impl RegisterHandler for Irq<AdcId> {
    }
 }
 
-impl RegisterHandler for Irq<Exti95Id> {
+impl RegisterHandler for IrqExti95 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -404,7 +473,7 @@ impl RegisterHandler for Irq<Exti95Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim1BrkTim9Id> {
+impl RegisterHandler for IrqTim1BrkTim9 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -416,7 +485,7 @@ impl RegisterHandler for Irq<Tim1BrkTim9Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim1UpTim10Id> {
+impl RegisterHandler for IrqTim1UpTim10 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -428,7 +497,7 @@ impl RegisterHandler for Irq<Tim1UpTim10Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim1TrgComTim11Id> {
+impl RegisterHandler for IrqTim1TrgComTim11 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -440,7 +509,7 @@ impl RegisterHandler for Irq<Tim1TrgComTim11Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim1CcId> {
+impl RegisterHandler for IrqTim1Cc {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -452,7 +521,7 @@ impl RegisterHandler for Irq<Tim1CcId> {
    }
 }
 
-impl RegisterHandler for Irq<Tim2Id> {
+impl RegisterHandler for IrqTim2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -464,7 +533,7 @@ impl RegisterHandler for Irq<Tim2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim3Id> {
+impl RegisterHandler for IrqTim3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -476,7 +545,7 @@ impl RegisterHandler for Irq<Tim3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim4Id> {
+impl RegisterHandler for IrqTim4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -488,7 +557,7 @@ impl RegisterHandler for Irq<Tim4Id> {
    }
 }
 
-impl RegisterHandler for Irq<I2c1EvId> {
+impl RegisterHandler for IrqI2c1Ev {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -500,7 +569,7 @@ impl RegisterHandler for Irq<I2c1EvId> {
    }
 }
 
-impl RegisterHandler for Irq<I2c1ErId> {
+impl RegisterHandler for IrqI2c1Er {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -512,7 +581,7 @@ impl RegisterHandler for Irq<I2c1ErId> {
    }
 }
 
-impl RegisterHandler for Irq<I2c2EvId> {
+impl RegisterHandler for IrqI2c2Ev {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -524,7 +593,7 @@ impl RegisterHandler for Irq<I2c2EvId> {
    }
 }
 
-impl RegisterHandler for Irq<I2c2ErId> {
+impl RegisterHandler for IrqI2c2Er {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -536,7 +605,7 @@ impl RegisterHandler for Irq<I2c2ErId> {
    }
 }
 
-impl RegisterHandler for Irq<Spi1Id> {
+impl RegisterHandler for IrqSpi1 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -548,7 +617,7 @@ impl RegisterHandler for Irq<Spi1Id> {
    }
 }
 
-impl RegisterHandler for Irq<Spi2Id> {
+impl RegisterHandler for IrqSpi2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -560,7 +629,7 @@ impl RegisterHandler for Irq<Spi2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Usart1Id> {
+impl RegisterHandler for IrqUsart1 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -572,7 +641,7 @@ impl RegisterHandler for Irq<Usart1Id> {
    }
 }
 
-impl RegisterHandler for Irq<Usart2Id> {
+impl RegisterHandler for IrqUsart2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -584,7 +653,7 @@ impl RegisterHandler for Irq<Usart2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Usart3Id> {
+impl RegisterHandler for IrqUsart3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -596,7 +665,7 @@ impl RegisterHandler for Irq<Usart3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Exti1510Id> {
+impl RegisterHandler for IrqExti1510 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -608,7 +677,7 @@ impl RegisterHandler for Irq<Exti1510Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim8BrkTim12Id> {
+impl RegisterHandler for IrqTim8BrkTim12 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -620,7 +689,7 @@ impl RegisterHandler for Irq<Tim8BrkTim12Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim8UpTim13Id> {
+impl RegisterHandler for IrqTim8UpTim13 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -632,7 +701,7 @@ impl RegisterHandler for Irq<Tim8UpTim13Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim8TrgComTim14Id> {
+impl RegisterHandler for IrqTim8TrgComTim14 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -644,7 +713,7 @@ impl RegisterHandler for Irq<Tim8TrgComTim14Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim8CcId> {
+impl RegisterHandler for IrqTim8Cc {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -656,7 +725,7 @@ impl RegisterHandler for Irq<Tim8CcId> {
    }
 }
 
-impl RegisterHandler for Irq<Dma1Stream7Id> {
+impl RegisterHandler for IrqDma1Stream7 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -668,7 +737,7 @@ impl RegisterHandler for Irq<Dma1Stream7Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim5Id> {
+impl RegisterHandler for IrqTim5 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -680,7 +749,7 @@ impl RegisterHandler for Irq<Tim5Id> {
    }
 }
 
-impl RegisterHandler for Irq<Spi3Id> {
+impl RegisterHandler for IrqSpi3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -692,7 +761,7 @@ impl RegisterHandler for Irq<Spi3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Tim6DacId> {
+impl RegisterHandler for IrqTim6Dac {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -704,7 +773,7 @@ impl RegisterHandler for Irq<Tim6DacId> {
    }
 }
 
-impl RegisterHandler for Irq<Tim7Id> {
+impl RegisterHandler for IrqTim7 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -716,7 +785,7 @@ impl RegisterHandler for Irq<Tim7Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream0Id> {
+impl RegisterHandler for IrqDma2Stream0 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -728,7 +797,7 @@ impl RegisterHandler for Irq<Dma2Stream0Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream1Id> {
+impl RegisterHandler for IrqDma2Stream1 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -740,7 +809,7 @@ impl RegisterHandler for Irq<Dma2Stream1Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream2Id> {
+impl RegisterHandler for IrqDma2Stream2 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -752,7 +821,7 @@ impl RegisterHandler for Irq<Dma2Stream2Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream3Id> {
+impl RegisterHandler for IrqDma2Stream3 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -764,7 +833,7 @@ impl RegisterHandler for Irq<Dma2Stream3Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream4Id> {
+impl RegisterHandler for IrqDma2Stream4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -776,7 +845,7 @@ impl RegisterHandler for Irq<Dma2Stream4Id> {
    }
 }
 
-impl RegisterHandler for Irq<EthIrqId> {
+impl RegisterHandler for IrqEthIrq {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -788,7 +857,7 @@ impl RegisterHandler for Irq<EthIrqId> {
    }
 }
 
-impl RegisterHandler for Irq<EthWkupIrqId> {
+impl RegisterHandler for IrqEthWkupIrq {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -800,7 +869,7 @@ impl RegisterHandler for Irq<EthWkupIrqId> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream5Id> {
+impl RegisterHandler for IrqDma2Stream5 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -812,7 +881,7 @@ impl RegisterHandler for Irq<Dma2Stream5Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream6Id> {
+impl RegisterHandler for IrqDma2Stream6 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -824,7 +893,7 @@ impl RegisterHandler for Irq<Dma2Stream6Id> {
    }
 }
 
-impl RegisterHandler for Irq<Dma2Stream7Id> {
+impl RegisterHandler for IrqDma2Stream7 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -836,7 +905,7 @@ impl RegisterHandler for Irq<Dma2Stream7Id> {
    }
 }
 
-impl RegisterHandler for Irq<Usart6Id> {
+impl RegisterHandler for IrqUsart6 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -848,7 +917,7 @@ impl RegisterHandler for Irq<Usart6Id> {
    }
 }
 
-impl RegisterHandler for Irq<I2c3EvId> {
+impl RegisterHandler for IrqI2c3Ev {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -860,7 +929,7 @@ impl RegisterHandler for Irq<I2c3EvId> {
    }
 }
 
-impl RegisterHandler for Irq<I2c3ErId> {
+impl RegisterHandler for IrqI2c3Er {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -872,7 +941,7 @@ impl RegisterHandler for Irq<I2c3ErId> {
    }
 }
 
-impl RegisterHandler for Irq<Uart7Id> {
+impl RegisterHandler for IrqUart7 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -884,7 +953,7 @@ impl RegisterHandler for Irq<Uart7Id> {
    }
 }
 
-impl RegisterHandler for Irq<Uart8Id> {
+impl RegisterHandler for IrqUart8 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -896,7 +965,7 @@ impl RegisterHandler for Irq<Uart8Id> {
    }
 }
 
-impl RegisterHandler for Irq<Spi4Id> {
+impl RegisterHandler for IrqSpi4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -908,7 +977,7 @@ impl RegisterHandler for Irq<Spi4Id> {
    }
 }
 
-impl RegisterHandler for Irq<Spi5Id> {
+impl RegisterHandler for IrqSpi5 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -920,7 +989,7 @@ impl RegisterHandler for Irq<Spi5Id> {
    }
 }
 
-impl RegisterHandler for Irq<Spi6Id> {
+impl RegisterHandler for IrqSpi6 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }

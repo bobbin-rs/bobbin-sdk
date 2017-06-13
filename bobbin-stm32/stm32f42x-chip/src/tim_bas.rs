@@ -26,7 +26,7 @@ pub trait HandleTim {
 }
 
 impl IrqTim<super::irq::Tim6DacId> for Tim6 {
-   fn irq_tim(&self) -> super::irq::Irq<super::irq::Tim6DacId> { super::irq::IRQ_TIM6_DAC }
+   fn irq_tim(&self) -> super::irq::IrqTim6Dac { super::irq::IRQ_TIM6_DAC }
 }
 
 impl RegisterTimHandler for Tim6 {
@@ -42,7 +42,7 @@ impl RegisterTimHandler for Tim6 {
 }
 
 impl IrqTim<super::irq::Tim7Id> for Tim7 {
-   fn irq_tim(&self) -> super::irq::Irq<super::irq::Tim7Id> { super::irq::IRQ_TIM7 }
+   fn irq_tim(&self) -> super::irq::IrqTim7 { super::irq::IRQ_TIM7 }
 }
 
 impl RegisterTimHandler for Tim7 {
