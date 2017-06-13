@@ -215,10 +215,55 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));    
 
+    try!(writeln!(out, "use super::nvic::{{NVIC, Iser, Icer, Ispr, Icpr, Stir}};"));
+
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
     try!(writeln!(out, "pub struct Irq<T>(usize, T);"));
     try!(writeln!(out, "impl<T> Irq<T> {{"));
     try!(writeln!(out, "   pub fn index(&self) -> usize {{ self.0 }}"));
+    try!(writeln!(out, ""));    
+    try!(writeln!(out, "   pub fn is_enabled(&self) -> bool {{ NVIC.iser((self.0 >> 5)).setena((self.0 & 0b11111)) != 0 }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn set_enabled(&self, value: bool) {{"));
+    try!(writeln!(out, "      if value {{"));
+    try!(writeln!(out, "         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "      }} else {{"));
+    try!(writeln!(out, "         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "      }}"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn is_pending(&self) -> bool {{"));
+    try!(writeln!(out, "       NVIC.ispr((self.0 >> 5)).setpend((self.0 & 0b11111)) != 0"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn set_pending(&self, value: bool) {{"));
+    try!(writeln!(out, "       if value {{"));
+    try!(writeln!(out, "           NVIC.set_ispr((self.0 >> 5), Ispr(0).set_setpend((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "       }} else {{"));
+    try!(writeln!(out, "           NVIC.set_icpr((self.0 >> 5), Icpr(0).set_clrpend((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "       }}"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn is_active(&self) -> bool {{"));
+    try!(writeln!(out, "       NVIC.iabr((self.0 >> 5)).active((self.0 & 0b11111)) != 0"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn priority(&self) -> u8 {{"));
+    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn set_priority(&self, value: u8) {{"));
+    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+    try!(writeln!(out, "   pub fn trigger_interrupt(&self) {{"));
+    try!(writeln!(out, "       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));"));
+    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, ""));
+
+    try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
+    try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
+    try!(writeln!(out, "   }}"));
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
