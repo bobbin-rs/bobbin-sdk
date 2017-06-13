@@ -825,6 +825,31 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 }
             }
         }
+        for ch in p.channels.iter() {
+            for irq in ch.interrupts.iter() {
+                for itype in irq.types.iter() {
+                    if !interrupt_types.contains(&itype) {
+                        let itype_itrait = format!("Irq{}", to_camel(itype));
+                        let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+                        let itype_trait = format!("Handle{}", to_camel(itype));
+                        let itype_meth = format!("handle_{}", itype.to_lowercase());
+                        try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
+                        try!(writeln!(out, "   fn irq_{}(&self) -> super::irq::Irq<T>;", itype.to_lowercase()));
+                        try!(writeln!(out, "}}"));        
+                        try!(writeln!(out, ""));                
+                        try!(writeln!(out, "pub trait {} {{", itype_rtrait));
+                        try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
+                        try!(writeln!(out, "}}"));        
+                        try!(writeln!(out, ""));                
+                        try!(writeln!(out, "pub trait {} {{", itype_trait));    
+                        try!(writeln!(out, "   fn {}(&self);", itype_meth));
+                        try!(writeln!(out, "}}"));
+                        try!(writeln!(out, ""));
+                        interrupt_types.insert(itype);
+                    }
+                }
+            }
+        }
     }
 
     for p in pg.peripherals.iter() {
@@ -832,10 +857,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         for irq in p.interrupts.iter() {
             let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
-            // try!(writeln!(out, "impl {} {{", p_type));
-            // try!(writeln!(out, "   pub fn irq_{}(&self){{ super::irq::{} }}", irq.name.to_lowercase(), irq.name.to_uppercase()));
-            // try!(writeln!(out, "}}"));
-            // try!(writeln!(out, ""));
                         
             for itype in irq.types.iter() {
                 let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
@@ -860,6 +881,36 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }
+        }
+        for ch in p.channels.iter() {
+            let ch_type = to_camel(&ch.name);
+            for irq in ch.interrupts.iter() {
+                let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
+                            
+                for itype in irq.types.iter() {
+                    let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
+                    let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+                    let itype_trait = format!("Handle{}", to_camel(itype));
+                    let itype_meth = format!("handle_{}", itype.to_lowercase());
+                    try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
+                    try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+
+                    try!(writeln!(out, "impl {} for {} {{", itype_rtrait, ch_type));
+                    try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
+                    try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+                    try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+                    try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
+                    try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
+                    try!(writeln!(out, "       }}"));
+                    try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
+                    try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
+                    try!(writeln!(out, "   }}"));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+                }
+            }            
         }
     }
 
