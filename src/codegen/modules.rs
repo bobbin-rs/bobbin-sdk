@@ -220,9 +220,13 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     }
     
     try!(writeln!(out, ""));    
-
+    
+    // TODO: Assert that NVIC is disabled before setting handler to None
     try!(writeln!(out, "pub fn set_handler(index: usize, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "  unsafe {{ R_INTERRUPT_HANDLERS[index] = handler }};"));
+    try!(writeln!(out, "  unsafe {{ "));
+    try!(writeln!(out, "     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());"));
+    try!(writeln!(out, "     R_INTERRUPT_HANDLERS[index] = handler"));
+    try!(writeln!(out, "  }};"));
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));    
 
@@ -237,6 +241,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn set_enabled(&self, value: bool) {{"));
     try!(writeln!(out, "      if value {{"));
+    try!(writeln!(out, "         assert!(self.handler().is_some());"));
     try!(writeln!(out, "         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));"));
     try!(writeln!(out, "      }} else {{"));
     try!(writeln!(out, "         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));"));
@@ -272,7 +277,12 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
 
+    try!(writeln!(out, "   pub fn handler(&self) -> Option<Handler> {{ unsafe {{ R_INTERRUPT_HANDLERS[self.0] }} }}"));
+    try!(writeln!(out, ""));
+
+    // TODO: Assert that NVIC is disabled before setting handler to None
     try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
+    try!(writeln!(out, "      unsafe {{ assert!(R_INTERRUPT_HANDLERS[self.0].is_some() != handler.is_some()); }};"));
     try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, "}}"));
