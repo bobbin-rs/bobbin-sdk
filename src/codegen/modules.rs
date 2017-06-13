@@ -732,7 +732,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let p_type = to_camel(&p.name);            
 
         for irq in p.interrupts.iter() {
-            let irq_type = format!("super::irq::Irq<super::irq::{}Id>", to_camel(&irq.name));
+            let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
             // try!(writeln!(out, "impl {} {{", p_type));
             // try!(writeln!(out, "   pub fn irq_{}(&self){{ super::irq::{} }}", irq.name.to_lowercase(), irq.name.to_uppercase()));
             // try!(writeln!(out, "}}"));
