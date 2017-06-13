@@ -7,6 +7,7 @@ extern crate nucleo_f429zi as board;
 use core::marker::{Sync, Send};
 use core::cell::Cell;
 use board::hal::tim::*;
+use board::chip::irq::IrqGuard;
 
 pub const TIM: Tim14 = TIM14;
 pub const TIM_PRESCALE: u16 = 41999;
@@ -16,13 +17,35 @@ pub extern "C" fn main() -> ! {
     board::init();
 
     println!("Timer IRQ Test");
-    let t = Timer::new(TIM14);    
-    let _g = t.periph.register_tim_handler(&t);
-    t.periph.irq_tim().set_enabled(true);
-    t.start(1000, TIM_PRESCALE);
+    let h = timer(TIM14);
+    h.start(1000, TIM_PRESCALE);
     loop {}
 
 }
+
+pub fn timer<'a, T, I>(t: Periph<T>) -> TimerHandle<'a, T> 
+where Periph<T>: RegisterTimHandler + IrqTim<I>
+{
+    let t = Timer::new(t);
+    let g = t.periph.register_tim_handler(&t);
+    t.periph.irq_tim().set_enabled(true);
+    TimerHandle {
+        inner: t,
+        _guard: g,
+    }
+}
+
+pub struct TimerHandle<'a, T> {
+    inner: Timer<T>,
+    _guard: IrqGuard<'a>,
+}
+
+impl<'a, T> TimerHandle<'a, T> {
+    fn start(&self, reload: u32, prescaler: u16) {
+        self.inner.start(reload, prescaler)
+    }
+}
+
 
 unsafe impl<T> Sync for Timer<T> {}
 unsafe impl<T> Send for Timer<T> {}
