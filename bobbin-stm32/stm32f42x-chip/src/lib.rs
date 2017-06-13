@@ -28,7 +28,6 @@ pub mod c_adc;
 pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
-pub mod tim;
 pub mod adc;
 pub mod spi;
 pub mod i2c;

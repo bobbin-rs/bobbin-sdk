@@ -255,51 +255,6 @@
             )        
         )
     )
-
-    (peripheral-group
-        (name TIM)   
-        (prototype "periph/tim.rx")     
-        (peripheral 
-            (name TIM2)
-            (address 0x40000000)
-            (interrupt
-                (name TIM2)
-                (type TIM)
-                (value 28)
-                (description "TIM2 global interrupt")
-            )              
-        )
-        (peripheral        
-            (name TIM3)
-            (address 0x40000400)
-            (interrupt
-                (name TIM3)
-                (type TIM)
-                (value 29)
-                (description "TIM3 global interrupt")
-            )     
-        )   
-        (peripheral
-            (name TIM4)
-            (address 0x40000800)
-            (interrupt
-                (name TIM4)
-                (type TIM)
-                (value 30)
-                (description "TIM4 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM5)
-            (address 0x40000c00)            
-            (interrupt
-                (name TIM5)
-                (type TIM)
-                (value 50)
-                (description "TIM5 global interrupt")
-            )        
-        )
-    )
     
     (peripheral (include "periph/c_adc.rx"))
     (peripheral-group    
