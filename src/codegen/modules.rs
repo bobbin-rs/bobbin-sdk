@@ -186,36 +186,42 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "pub type Handler = extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
-    for irq in interrupts.iter() {
-        if let &Some(irq) = irq { 
-            let irq_type = format!("Irq{}", to_camel(&irq.name));
-            let irq_id = format!("{}Id", to_camel(&irq.name));
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                let irq_type = format!("Irq{}", to_camel(&irq.name));
+                let irq_id = format!("{}Id", to_camel(&irq.name));
 
-            let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
-                irq.name.to_uppercase(), 
-                irq_type,
-                irq.value,
-                irq_id,                
-            ));
+                let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+                try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
+                    irq.name.to_uppercase(), 
+                    irq_type,
+                    irq.value,
+                    irq_id,                
+                ));
+            }
         }
     }
     try!(writeln!(out, ""));
 
-    for irq in interrupts.iter() {
-        if let &Some(irq) = irq { 
-            let irq_type = format!("Irq{}", to_camel(&irq.name));
-            let irq_id = format!("{}Id", to_camel(&irq.name));
-            try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                let irq_type = format!("Irq{}", to_camel(&irq.name));
+                let irq_id = format!("{}Id", to_camel(&irq.name));
+                try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+            }
         }
     }
     
     try!(writeln!(out, ""));    
 
-    for irq in interrupts.iter() {
-        if let &Some(irq) = irq { 
-            let irq_id = format!("{}Id", to_camel(&irq.name));
-            try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                let irq_id = format!("{}Id", to_camel(&irq.name));
+                try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+            }
         }
     }
     
@@ -320,22 +326,24 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
-    for irq in interrupts.iter() {
-        if let &Some(irq) = irq {
-            let irq_const = irq.name.to_uppercase();
-            let irq_id = format!("Irq{}", to_camel(&irq.name));
-            try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
-            try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
-            try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-            try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-            try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
-            try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
-            try!(writeln!(out, "       }}"));
-            try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
-            try!(writeln!(out, "       IrqGuard::new({})", irq.value));
-            try!(writeln!(out, "   }}"));
-            try!(writeln!(out, "}}"));
-            try!(writeln!(out, ""));
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                let irq_const = irq.name.to_uppercase();
+                let irq_id = format!("Irq{}", to_camel(&irq.name));
+                try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
+                try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
+                try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+                try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+                try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
+                try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
+                try!(writeln!(out, "       }}"));
+                try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
+                try!(writeln!(out, "       IrqGuard::new({})", irq.value));
+                try!(writeln!(out, "   }}"));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+            }
         }
     }
 
