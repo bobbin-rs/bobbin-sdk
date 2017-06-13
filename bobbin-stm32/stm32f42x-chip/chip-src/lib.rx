@@ -65,7 +65,7 @@
             (address 0x40001000)
             (description "Basic timers")
             (interrupt
-                (name TIM6_DAC)
+                (name TIM6)
                 (type TIM)
                 (value 54)
                 (description "TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt")
@@ -134,7 +134,7 @@
             (address 0x40014000)
             (description "General purpose timers")
             (interrupt
-                (name TIM1_BRK_TIM9)
+                (name TIM9)
                 (type TIM)
                 (value 24)
                 (description "TIM1 Break interrupt and TIM9 global interrupt")
@@ -145,7 +145,7 @@
             (address 0x40014400)
             (description "General-purpose-timers")
             (interrupt
-                (name TIM1_UP_TIM10)
+                (name TIM10)
                 (type TIM)
                 (value 25)
                 (description "TIM1 Update interrupt and TIM10 global interrupt")
@@ -156,7 +156,7 @@
             (address 0x40014800)
             (description "General-purpose-timers")
             (interrupt
-                (name TIM1_TRG_COM_TIM11)
+                (name TIM11)
                 (type TIM)
                 (value 26)
                 (description "TIM1 Trigger and Commutation interrupts and TIM11 global interrupt")
@@ -166,7 +166,7 @@
             (name TIM12)
             (address 0x40001800)
             (interrupt
-                (name TIM8_BRK_TIM12)
+                (name TIM12)
                 (type TIM)
                 (value 43)
                 (description "TIM8 Break interrupt and TIM12 global interrupt")
@@ -176,7 +176,7 @@
             (name TIM13)
             (address 0x40001c00)
             (interrupt
-                (name TIM8_UP_TIM13)
+                (name TIM13)
                 (type TIM)
                 (value 44)
                 (description "TIM8 Update interrupt and TIM13 global interrupt")
@@ -186,7 +186,7 @@
             (name TIM14)
             (address 0x40002000)
             (interrupt
-                (name TIM8_TRG_COM_TIM14)
+                (name TIM14)
                 (type TIM)
                 (value 45)
                 (description "TIM8 Trigger and Commutation interrupts and TIM14 global interrupt")
@@ -202,19 +202,19 @@
             (address 0x40010000)
             (description "Advanced-timers")
             (interrupt
-                (name TIM1_BRK_TIM9)
+                (name TIM1_BRK)
                 (type BRK)
                 (value 24)
                 (description "TIM1 Break interrupt and TIM9 global interrupt")
             )
             (interrupt
-                (name TIM1_UP_TIM10)
+                (name TIM1_UP)
                 (type UP)
                 (value 25)
                 (description "TIM1 Update interrupt and TIM10 global interrupt")
             )
             (interrupt
-                (name TIM1_TRG_COM_TIM11)
+                (name TIM1_TRG_COM)
                 (type TRG_COM)
                 (value 26)
                 (description "TIM1 Trigger and Commutation interrupts and TIM11 global interrupt")
@@ -230,19 +230,19 @@
             (name TIM8)
             (address 0x40010400)
             (interrupt
-                (name TIM8_BRK_TIM12)
+                (name TIM8_BRK)
                 (type BRK)
                 (value 43)
                 (description "TIM8 Break interrupt and TIM12 global interrupt")
             )
             (interrupt
-                (name TIM8_UP_TIM13)
+                (name TIM8_UP)
                 (type UP)
                 (value 44)
                 (description "TIM8 Update interrupt and TIM13 global interrupt")
             )
             (interrupt
-                (name TIM8_TRG_COM_TIM14)
+                (name TIM8_TRG_COM)
                 (type TRG_COM)
                 (value 45)
                 (description "TIM8 Trigger and Commutation interrupts and TIM14 global interrupt")
@@ -264,7 +264,8 @@
             (name ADC1)
             (address 0x40012000)
             (interrupt
-                (name ADC)
+                (name ADC1)
+                (type ADC)
                 (value 18)
                 (description "ADC1 global interrupt")
             )
@@ -273,7 +274,8 @@
             (name ADC2)
             (address 0x40012100)
             (interrupt
-                (name ADC)
+                (name ADC2)
+                (type ADC)
                 (value 18)
                 (description "ADC2 global interrupts")
             )
@@ -282,7 +284,8 @@
             (name ADC3)
             (address 0x40012200)
             (interrupt
-                (name ADC)
+                (name ADC3)
+                (type ADC)
                 (value 18)
                 (description "ADC3 global interrupts")
             )

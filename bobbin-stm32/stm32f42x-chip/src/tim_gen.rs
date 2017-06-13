@@ -129,8 +129,8 @@ impl RegisterTimHandler for Tim5 {
    }
 }
 
-impl IrqTim<super::irq::Tim1BrkTim9Id> for Tim9 {
-   fn irq_tim(&self) -> super::irq::IrqTim1BrkTim9 { super::irq::IRQ_TIM1_BRK_TIM9 }
+impl IrqTim<super::irq::Tim9Id> for Tim9 {
+   fn irq_tim(&self) -> super::irq::IrqTim9 { super::irq::IRQ_TIM9 }
 }
 
 impl RegisterTimHandler for Tim9 {
@@ -145,8 +145,8 @@ impl RegisterTimHandler for Tim9 {
    }
 }
 
-impl IrqTim<super::irq::Tim1UpTim10Id> for Tim10 {
-   fn irq_tim(&self) -> super::irq::IrqTim1UpTim10 { super::irq::IRQ_TIM1_UP_TIM10 }
+impl IrqTim<super::irq::Tim10Id> for Tim10 {
+   fn irq_tim(&self) -> super::irq::IrqTim10 { super::irq::IRQ_TIM10 }
 }
 
 impl RegisterTimHandler for Tim10 {
@@ -161,8 +161,8 @@ impl RegisterTimHandler for Tim10 {
    }
 }
 
-impl IrqTim<super::irq::Tim1TrgComTim11Id> for Tim11 {
-   fn irq_tim(&self) -> super::irq::IrqTim1TrgComTim11 { super::irq::IRQ_TIM1_TRG_COM_TIM11 }
+impl IrqTim<super::irq::Tim11Id> for Tim11 {
+   fn irq_tim(&self) -> super::irq::IrqTim11 { super::irq::IRQ_TIM11 }
 }
 
 impl RegisterTimHandler for Tim11 {
@@ -177,8 +177,8 @@ impl RegisterTimHandler for Tim11 {
    }
 }
 
-impl IrqTim<super::irq::Tim8BrkTim12Id> for Tim12 {
-   fn irq_tim(&self) -> super::irq::IrqTim8BrkTim12 { super::irq::IRQ_TIM8_BRK_TIM12 }
+impl IrqTim<super::irq::Tim12Id> for Tim12 {
+   fn irq_tim(&self) -> super::irq::IrqTim12 { super::irq::IRQ_TIM12 }
 }
 
 impl RegisterTimHandler for Tim12 {
@@ -193,8 +193,8 @@ impl RegisterTimHandler for Tim12 {
    }
 }
 
-impl IrqTim<super::irq::Tim8UpTim13Id> for Tim13 {
-   fn irq_tim(&self) -> super::irq::IrqTim8UpTim13 { super::irq::IRQ_TIM8_UP_TIM13 }
+impl IrqTim<super::irq::Tim13Id> for Tim13 {
+   fn irq_tim(&self) -> super::irq::IrqTim13 { super::irq::IRQ_TIM13 }
 }
 
 impl RegisterTimHandler for Tim13 {
@@ -209,8 +209,8 @@ impl RegisterTimHandler for Tim13 {
    }
 }
 
-impl IrqTim<super::irq::Tim8TrgComTim14Id> for Tim14 {
-   fn irq_tim(&self) -> super::irq::IrqTim8TrgComTim14 { super::irq::IRQ_TIM8_TRG_COM_TIM14 }
+impl IrqTim<super::irq::Tim14Id> for Tim14 {
+   fn irq_tim(&self) -> super::irq::IrqTim14 { super::irq::IRQ_TIM14 }
 }
 
 impl RegisterTimHandler for Tim14 {
