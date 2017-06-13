@@ -290,7 +290,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
 
     try!(writeln!(out, ""));
     try!(writeln!(out, "pub trait RegisterHandler {{"));
-    try!(writeln!(out, "   fn register_handler<'a, F: HandleInterrupt>(&self, f: &F) -> IrqGuard<'a>;"));;
+    try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a>;"));;
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
@@ -304,7 +304,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
             let irq_const = irq.name.to_uppercase();
             let irq_id = format!("{}Id", to_camel(&irq.name));
             try!(writeln!(out, "impl RegisterHandler for Irq<{}> {{", irq_id));
-            try!(writeln!(out, "   fn register_handler<'a, F: HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
+            try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
             try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
             try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
             try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
@@ -704,7 +704,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     try!(writeln!(out, "}}"));        
                     try!(writeln!(out, ""));                
                     try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-                    try!(writeln!(out, "   fn register_{}_handler<'a, F: {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
+                    try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
                     try!(writeln!(out, "}}"));        
                     try!(writeln!(out, ""));                
                     try!(writeln!(out, "pub trait {} {{", itype_trait));    
@@ -738,7 +738,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, ""));
 
                 try!(writeln!(out, "impl {} for {} {{", itype_rtrait, p_type));
-                try!(writeln!(out, "   fn register_{}_handler<'a, F: {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
+                try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
                 try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
                 try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
                 try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
