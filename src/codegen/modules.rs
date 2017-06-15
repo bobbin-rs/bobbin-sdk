@@ -806,6 +806,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     if pg.has_channels {
         // Generate Channel Impl
 
+        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
         try!(writeln!(out, "pub struct Channel<P, T> {{ pub periph: Periph<T>, pub index: usize, pub id: P }}"));
         try!(writeln!(out, ""));
 
