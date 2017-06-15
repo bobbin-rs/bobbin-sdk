@@ -2834,6 +2834,7 @@ impl ::core::fmt::Debug for Or {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {
