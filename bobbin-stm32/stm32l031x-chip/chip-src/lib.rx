@@ -23,7 +23,7 @@
     (peripheral (include "periph/wwdg.rx"))
     (peripheral (include "periph/crc.rx"))
     (peripheral (include "periph/rng.rx"))    
-    (peripheral (include "periph/dma.rx"))
+    ;(peripheral (include "periph/dma.rx"))
     (peripheral (include "periph/rtc.rx"))
     (peripheral (include "periph/lptim.rx"))
 
@@ -39,7 +39,78 @@
         (variant (name STM32L031K6) (link "l031x6.ld")) 
         (variant (name STM32L031C6) (link "l031x6.ld"))
     )
-
+    (peripheral-group
+        (name DMA)
+        (module (name stm32_common::chip::dma_f3::*))
+        (peripheral
+            (name DMA1)
+            (address 0x40020000)
+            (description "Direct memory access controller")
+            (channel
+                (name DMA1_CH1)
+                (index 0)
+                (interrupt
+                    (name DMA1_CH1)
+                    (value 9)
+                    (description "DMA1 Channel 1 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH2)
+                (index 1)
+                (interrupt
+                    (name DMA1_CH2)
+                    (value 10)
+                    (description "DMA1 Channel 2 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH3)
+                (index 2)
+                (interrupt
+                    (name DMA1_CH3)
+                    (value 10)
+                    (description "DMA1 Channel 3 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH4)
+                (index 3)
+                (interrupt
+                    (name DMA1_CH4)
+                    (value 11)
+                    (description "DMA1 Channel 4 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH5)
+                (index 4)
+                (interrupt
+                    (name DMA1_CH5)
+                    (value 11)
+                    (description "DMA1 Channel 5 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH6)
+                (index 5)
+                (interrupt
+                    (name DMA1_CH6)
+                    (value 11)
+                    (description "DMA1 Channel 6 global interrupt")
+                )
+            )
+            (channel
+                (name DMA1_CH7)
+                (index 6)
+                (interrupt
+                    (name DMA1_CH7)
+                    (value 11)
+                    (description "DMA1 Channel 6 global interrupt")
+                )
+            )                                
+        )
+    )
     (peripheral-group
         (name I2C)
         (prototype "periph/i2c.rx")
@@ -64,10 +135,26 @@
             (name TIM2)
             (address 0x40000000)
             (description "General purpose timer")
-            (signal (name TIM2_CH1) (type CH1))
-            (signal (name TIM2_CH2) (type CH2))
-            (signal (name TIM2_CH3) (type CH3))
-            (signal (name TIM2_CH4) (type CH4))
+            (channel
+                (name TIM2_CH1)
+                (index 0)
+                (signal (name TIM2_CH1) (type TIM))
+            )
+            (channel
+                (name TIM2_CH2)
+                (index 1)
+                (signal (name TIM2_CH2) (type TIM))
+            )
+            (channel
+                (name TIM2_CH3)
+                (index 2)
+                (signal (name TIM2_CH3) (type TIM))
+            )
+            (channel
+                (name TIM2_CH4)
+                (index 3)
+                (signal (name TIM2_CH4) (type TIM))
+            )
             (signal (name TIM2_ETR) (type ETR))
             (interrupt
                 (name TIM2)
@@ -79,8 +166,16 @@
             (name TIM21)
             (address 0x40010800)
             (description "General-purpose-timers")
-            (signal (name TIM21_CH1) (type CH1))
-            (signal (name TIM21_CH2) (type CH2))
+            (channel
+                (name TIM21_CH1)
+                (index 0)
+                (signal (name TIM21_CH1) (type TIM))
+            )
+            (channel
+                (name TIM21_CH2)
+                (index 1)
+                (signal (name TIM21_CH2) (type TIM))
+            )            
             (signal (name TIM21_ETR) (type ETR))
             (interrupt
                 (name TIM21)
@@ -92,8 +187,16 @@
             (name TIM22)
             (address 0x40011400)
             (description "General-purpose-timers")
-            (signal (name TIM22_CH1) (type CH1))
-            (signal (name TIM22_CH2) (type CH2))
+            (channel
+                (name TIM22_CH1)
+                (index 0)
+                (signal (name TIM22_CH1) (type TIM))
+            )
+            (channel
+                (name TIM22_CH2)
+                (index 1)
+                (signal (name TIM22_CH2) (type TIM))
+            )  
             (signal (name TIM22_ETR) (type ETR))
             (interrupt
                 (name TIM22)

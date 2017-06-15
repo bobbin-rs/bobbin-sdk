@@ -2646,7 +2646,7 @@ impl Rst for super::crc::Crc {
    #[inline] fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_crcrst(value)); }
 }
 
-impl Rst for super::dma::Dma {
+impl Rst for super::dma::Dma1 {
    #[inline] fn rst(&self) -> u32 { RCC.ahbrstr().dmarst() }
    #[inline] fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_dmarst(value)); }
 }
@@ -2731,7 +2731,7 @@ impl En for super::crc::Crc {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_crcen(value)); }
 }
 
-impl En for super::dma::Dma {
+impl En for super::dma::Dma1 {
    #[inline] fn en(&self) -> u32 { RCC.ahbenr().dmaen() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_dmaen(value)); }
 }

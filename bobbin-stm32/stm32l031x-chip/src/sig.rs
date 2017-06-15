@@ -6,16 +6,10 @@ pub trait Scl {}
 pub trait SignalScl<T> {}
 pub trait Sda {}
 pub trait SignalSda<T> {}
-pub trait Ch1 {}
-pub trait SignalCh1<T> {}
-pub trait Ch2 {}
-pub trait SignalCh2<T> {}
-pub trait Ch3 {}
-pub trait SignalCh3<T> {}
-pub trait Ch4 {}
-pub trait SignalCh4<T> {}
 pub trait Etr {}
 pub trait SignalEtr<T> {}
+pub trait Tim {}
+pub trait SignalTim<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -47,49 +41,49 @@ pub const I2C1_SDA: I2c1Sda = I2c1Sda {};
 pub struct I2c1Sda {}
 impl Sda for I2c1Sda {}
 
-pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
-pub struct Tim2Ch1 {}
-impl Ch1 for Tim2Ch1 {}
-
-pub const TIM2_CH2: Tim2Ch2 = Tim2Ch2 {};
-pub struct Tim2Ch2 {}
-impl Ch2 for Tim2Ch2 {}
-
-pub const TIM2_CH3: Tim2Ch3 = Tim2Ch3 {};
-pub struct Tim2Ch3 {}
-impl Ch3 for Tim2Ch3 {}
-
-pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
-pub struct Tim2Ch4 {}
-impl Ch4 for Tim2Ch4 {}
-
 pub const TIM2_ETR: Tim2Etr = Tim2Etr {};
 pub struct Tim2Etr {}
 impl Etr for Tim2Etr {}
 
-pub const TIM21_CH1: Tim21Ch1 = Tim21Ch1 {};
-pub struct Tim21Ch1 {}
-impl Ch1 for Tim21Ch1 {}
+pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
+pub struct Tim2Ch1 {}
+impl Tim for Tim2Ch1 {}
 
-pub const TIM21_CH2: Tim21Ch2 = Tim21Ch2 {};
-pub struct Tim21Ch2 {}
-impl Ch2 for Tim21Ch2 {}
+pub const TIM2_CH2: Tim2Ch2 = Tim2Ch2 {};
+pub struct Tim2Ch2 {}
+impl Tim for Tim2Ch2 {}
+
+pub const TIM2_CH3: Tim2Ch3 = Tim2Ch3 {};
+pub struct Tim2Ch3 {}
+impl Tim for Tim2Ch3 {}
+
+pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
+pub struct Tim2Ch4 {}
+impl Tim for Tim2Ch4 {}
 
 pub const TIM21_ETR: Tim21Etr = Tim21Etr {};
 pub struct Tim21Etr {}
 impl Etr for Tim21Etr {}
 
-pub const TIM22_CH1: Tim22Ch1 = Tim22Ch1 {};
-pub struct Tim22Ch1 {}
-impl Ch1 for Tim22Ch1 {}
+pub const TIM21_CH1: Tim21Ch1 = Tim21Ch1 {};
+pub struct Tim21Ch1 {}
+impl Tim for Tim21Ch1 {}
 
-pub const TIM22_CH2: Tim22Ch2 = Tim22Ch2 {};
-pub struct Tim22Ch2 {}
-impl Ch2 for Tim22Ch2 {}
+pub const TIM21_CH2: Tim21Ch2 = Tim21Ch2 {};
+pub struct Tim21Ch2 {}
+impl Tim for Tim21Ch2 {}
 
 pub const TIM22_ETR: Tim22Etr = Tim22Etr {};
 pub struct Tim22Etr {}
 impl Etr for Tim22Etr {}
+
+pub const TIM22_CH1: Tim22Ch1 = Tim22Ch1 {};
+pub struct Tim22Ch1 {}
+impl Tim for Tim22Ch1 {}
+
+pub const TIM22_CH2: Tim22Ch2 = Tim22Ch2 {};
+pub struct Tim22Ch2 {}
+impl Tim for Tim22Ch2 {}
 
 pub const USART2_TX: Usart2Tx = Usart2Tx {};
 pub struct Usart2Tx {}

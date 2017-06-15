@@ -14,29 +14,69 @@ pub type Tim21 = Periph<Tim21Id>;
 pub struct Tim22Id {}
 pub type Tim22 = Periph<Tim22Id>;
 
-impl super::sig::Signal<super::sig::Tim2Ch1> for Tim2 {}
-impl super::sig::SignalCh1<super::sig::Tim2Ch1> for Tim2 {}
-impl super::sig::Signal<super::sig::Tim2Ch2> for Tim2 {}
-impl super::sig::SignalCh2<super::sig::Tim2Ch2> for Tim2 {}
-impl super::sig::Signal<super::sig::Tim2Ch3> for Tim2 {}
-impl super::sig::SignalCh3<super::sig::Tim2Ch3> for Tim2 {}
-impl super::sig::Signal<super::sig::Tim2Ch4> for Tim2 {}
-impl super::sig::SignalCh4<super::sig::Tim2Ch4> for Tim2 {}
 impl super::sig::Signal<super::sig::Tim2Etr> for Tim2 {}
 impl super::sig::SignalEtr<super::sig::Tim2Etr> for Tim2 {}
+impl super::sig::Signal<super::sig::Tim2Ch1> for Tim2Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch1> for Tim2Ch1 {}
+impl super::sig::Signal<super::sig::Tim2Ch2> for Tim2Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch2> for Tim2Ch2 {}
+impl super::sig::Signal<super::sig::Tim2Ch3> for Tim2Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch3> for Tim2Ch3 {}
+impl super::sig::Signal<super::sig::Tim2Ch4> for Tim2Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch4> for Tim2Ch4 {}
 
-impl super::sig::Signal<super::sig::Tim21Ch1> for Tim21 {}
-impl super::sig::SignalCh1<super::sig::Tim21Ch1> for Tim21 {}
-impl super::sig::Signal<super::sig::Tim21Ch2> for Tim21 {}
-impl super::sig::SignalCh2<super::sig::Tim21Ch2> for Tim21 {}
 impl super::sig::Signal<super::sig::Tim21Etr> for Tim21 {}
 impl super::sig::SignalEtr<super::sig::Tim21Etr> for Tim21 {}
+impl super::sig::Signal<super::sig::Tim21Ch1> for Tim21Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim21Ch1> for Tim21Ch1 {}
+impl super::sig::Signal<super::sig::Tim21Ch2> for Tim21Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim21Ch2> for Tim21Ch2 {}
 
-impl super::sig::Signal<super::sig::Tim22Ch1> for Tim22 {}
-impl super::sig::SignalCh1<super::sig::Tim22Ch1> for Tim22 {}
-impl super::sig::Signal<super::sig::Tim22Ch2> for Tim22 {}
-impl super::sig::SignalCh2<super::sig::Tim22Ch2> for Tim22 {}
 impl super::sig::Signal<super::sig::Tim22Etr> for Tim22 {}
 impl super::sig::SignalEtr<super::sig::Tim22Etr> for Tim22 {}
+impl super::sig::Signal<super::sig::Tim22Ch1> for Tim22Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim22Ch1> for Tim22Ch1 {}
+impl super::sig::Signal<super::sig::Tim22Ch2> for Tim22Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim22Ch2> for Tim22Ch2 {}
 
+
+pub const TIM2_CH1: Channel<Tim2Ch1Id, Tim2Id> = Channel { periph: TIM2, index: 0, id: Tim2Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim2Ch1Id {}
+pub type Tim2Ch1 = Channel<Tim2Ch1Id, Tim2Id>;
+
+pub const TIM2_CH2: Channel<Tim2Ch2Id, Tim2Id> = Channel { periph: TIM2, index: 1, id: Tim2Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim2Ch2Id {}
+pub type Tim2Ch2 = Channel<Tim2Ch2Id, Tim2Id>;
+
+pub const TIM2_CH3: Channel<Tim2Ch3Id, Tim2Id> = Channel { periph: TIM2, index: 2, id: Tim2Ch3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim2Ch3Id {}
+pub type Tim2Ch3 = Channel<Tim2Ch3Id, Tim2Id>;
+
+pub const TIM2_CH4: Channel<Tim2Ch4Id, Tim2Id> = Channel { periph: TIM2, index: 3, id: Tim2Ch4Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim2Ch4Id {}
+pub type Tim2Ch4 = Channel<Tim2Ch4Id, Tim2Id>;
+
+pub const TIM21_CH1: Channel<Tim21Ch1Id, Tim21Id> = Channel { periph: TIM21, index: 0, id: Tim21Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim21Ch1Id {}
+pub type Tim21Ch1 = Channel<Tim21Ch1Id, Tim21Id>;
+
+pub const TIM21_CH2: Channel<Tim21Ch2Id, Tim21Id> = Channel { periph: TIM21, index: 1, id: Tim21Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim21Ch2Id {}
+pub type Tim21Ch2 = Channel<Tim21Ch2Id, Tim21Id>;
+
+pub const TIM22_CH1: Channel<Tim22Ch1Id, Tim22Id> = Channel { periph: TIM22, index: 0, id: Tim22Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim22Ch1Id {}
+pub type Tim22Ch1 = Channel<Tim22Ch1Id, Tim22Id>;
+
+pub const TIM22_CH2: Channel<Tim22Ch2Id, Tim22Id> = Channel { periph: TIM22, index: 1, id: Tim22Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim22Ch2Id {}
+pub type Tim22Ch2 = Channel<Tim22Ch2Id, Tim22Id>;
 

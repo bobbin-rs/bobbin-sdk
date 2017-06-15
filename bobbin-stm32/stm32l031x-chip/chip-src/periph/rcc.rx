@@ -529,7 +529,7 @@
             (bit-offset 0)
             (bit-width 1)
             (description "DMA reset")
-            (link (name RST) (peripheral-group DMA) (peripheral DMA))
+            (link (name RST) (peripheral-group DMA) (peripheral DMA1))
         )
     )
     (register
@@ -730,7 +730,7 @@
             (bit-offset 0)
             (bit-width 1)
             (description "DMA clock enable bit")
-            (link (name EN) (peripheral-group DMA) (peripheral DMA))
+            (link (name EN) (peripheral-group DMA) (peripheral DMA1))
         )
     )
     (register
