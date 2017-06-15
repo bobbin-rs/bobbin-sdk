@@ -1781,7 +1781,7 @@
 
     (peripheral-group
         (name DMA)
-        (prototype "periph/dma.rx")
+        (module (name stm32_common::chip::dma::*))
         (has-channels)
         (peripheral
             (name DMA1)
