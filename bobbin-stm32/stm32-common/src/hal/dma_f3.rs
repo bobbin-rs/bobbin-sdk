@@ -92,6 +92,10 @@ pub trait ChannelExt {
         self.with_ccr(|r| r.set_circ(value))
     }
 
+    fn set_tcie(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_ccr(|r| r.set_tcie(value))
+    }    
 
     fn ndt(&self) -> u16;
     fn set_ndt(&self, value: u16) -> &Self;
