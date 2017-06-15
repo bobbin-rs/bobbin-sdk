@@ -43,62 +43,62 @@ pub struct Tim14Id {}
 pub type Tim14 = Periph<Tim14Id>;
 
 impl super::sig::Signal<super::sig::Tim2Ch1> for Tim2Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim2Ch1> for Tim2Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch1> for Tim2Ch1 {}
 impl super::sig::Signal<super::sig::Tim2Ch2> for Tim2Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim2Ch2> for Tim2Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch2> for Tim2Ch2 {}
 impl super::sig::Signal<super::sig::Tim2Ch3> for Tim2Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim2Ch3> for Tim2Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch3> for Tim2Ch3 {}
 impl super::sig::Signal<super::sig::Tim2Ch4> for Tim2Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim2Ch4> for Tim2Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim2Ch4> for Tim2Ch4 {}
 
 impl super::sig::Signal<super::sig::Tim3Ch1> for Tim3Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim3Ch1> for Tim3Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim3Ch1> for Tim3Ch1 {}
 impl super::sig::Signal<super::sig::Tim3Ch2> for Tim3Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim3Ch2> for Tim3Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim3Ch2> for Tim3Ch2 {}
 impl super::sig::Signal<super::sig::Tim3Ch3> for Tim3Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim3Ch3> for Tim3Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim3Ch3> for Tim3Ch3 {}
 impl super::sig::Signal<super::sig::Tim3Ch4> for Tim3Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim3Ch4> for Tim3Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim3Ch4> for Tim3Ch4 {}
 
 impl super::sig::Signal<super::sig::Tim4Ch1> for Tim4Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim4Ch1> for Tim4Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim4Ch1> for Tim4Ch1 {}
 impl super::sig::Signal<super::sig::Tim4Ch2> for Tim4Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim4Ch2> for Tim4Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim4Ch2> for Tim4Ch2 {}
 impl super::sig::Signal<super::sig::Tim4Ch3> for Tim4Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim4Ch3> for Tim4Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim4Ch3> for Tim4Ch3 {}
 impl super::sig::Signal<super::sig::Tim4Ch4> for Tim4Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim4Ch4> for Tim4Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim4Ch4> for Tim4Ch4 {}
 
 impl super::sig::Signal<super::sig::Tim5Ch1> for Tim5Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim5Ch1> for Tim5Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim5Ch1> for Tim5Ch1 {}
 impl super::sig::Signal<super::sig::Tim5Ch2> for Tim5Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim5Ch2> for Tim5Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim5Ch2> for Tim5Ch2 {}
 impl super::sig::Signal<super::sig::Tim5Ch3> for Tim5Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim5Ch3> for Tim5Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim5Ch3> for Tim5Ch3 {}
 impl super::sig::Signal<super::sig::Tim5Ch4> for Tim5Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim5Ch4> for Tim5Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim5Ch4> for Tim5Ch4 {}
 
 impl super::sig::Signal<super::sig::Tim9Ch1> for Tim9Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim9Ch1> for Tim9Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim9Ch1> for Tim9Ch1 {}
 impl super::sig::Signal<super::sig::Tim9Ch2> for Tim9Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim9Ch2> for Tim9Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim9Ch2> for Tim9Ch2 {}
 
 impl super::sig::Signal<super::sig::Tim10Ch1> for Tim10Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim10Ch1> for Tim10Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim10Ch1> for Tim10Ch1 {}
 
 impl super::sig::Signal<super::sig::Tim11Ch1> for Tim11Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim11Ch1> for Tim11Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim11Ch1> for Tim11Ch1 {}
 
 impl super::sig::Signal<super::sig::Tim12Ch1> for Tim12Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim12Ch1> for Tim12Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim12Ch1> for Tim12Ch1 {}
 impl super::sig::Signal<super::sig::Tim12Ch2> for Tim12Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim12Ch2> for Tim12Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim12Ch2> for Tim12Ch2 {}
 
 impl super::sig::Signal<super::sig::Tim13Ch1> for Tim13Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim13Ch1> for Tim13Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim13Ch1> for Tim13Ch1 {}
 
 impl super::sig::Signal<super::sig::Tim14Ch1> for Tim14Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim14Ch1> for Tim14Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim14Ch1> for Tim14Ch1 {}
 
 
 pub const TIM2_CH1: Channel<Tim2Ch1Id, Tim2Id> = Channel { periph: TIM2, index: 0, id: Tim2Ch1Id {} }; 

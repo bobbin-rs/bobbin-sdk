@@ -11,22 +11,22 @@ pub struct Tim8Id {}
 pub type Tim8 = Periph<Tim8Id>;
 
 impl super::sig::Signal<super::sig::Tim1Ch1> for Tim1Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim1Ch1> for Tim1Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim1Ch1> for Tim1Ch1 {}
 impl super::sig::Signal<super::sig::Tim1Ch2> for Tim1Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim1Ch2> for Tim1Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim1Ch2> for Tim1Ch2 {}
 impl super::sig::Signal<super::sig::Tim1Ch3> for Tim1Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim1Ch3> for Tim1Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim1Ch3> for Tim1Ch3 {}
 impl super::sig::Signal<super::sig::Tim1Ch4> for Tim1Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim1Ch4> for Tim1Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim1Ch4> for Tim1Ch4 {}
 
 impl super::sig::Signal<super::sig::Tim8Ch1> for Tim8Ch1 {}
-impl super::sig::SignalIo<super::sig::Tim8Ch1> for Tim8Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim8Ch1> for Tim8Ch1 {}
 impl super::sig::Signal<super::sig::Tim8Ch2> for Tim8Ch2 {}
-impl super::sig::SignalIo<super::sig::Tim8Ch2> for Tim8Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim8Ch2> for Tim8Ch2 {}
 impl super::sig::Signal<super::sig::Tim8Ch3> for Tim8Ch3 {}
-impl super::sig::SignalIo<super::sig::Tim8Ch3> for Tim8Ch3 {}
+impl super::sig::SignalTim<super::sig::Tim8Ch3> for Tim8Ch3 {}
 impl super::sig::Signal<super::sig::Tim8Ch4> for Tim8Ch4 {}
-impl super::sig::SignalIo<super::sig::Tim8Ch4> for Tim8Ch4 {}
+impl super::sig::SignalTim<super::sig::Tim8Ch4> for Tim8Ch4 {}
 
 
 pub const TIM1_CH1: Channel<Tim1Ch1Id, Tim1Id> = Channel { periph: TIM1, index: 0, id: Tim1Ch1Id {} }; 

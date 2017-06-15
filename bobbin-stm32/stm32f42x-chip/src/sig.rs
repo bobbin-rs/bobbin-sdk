@@ -1,7 +1,7 @@
 pub trait Signal<T> {}
 
-pub trait Io {}
-pub trait SignalIo<T> {}
+pub trait Tim {}
+pub trait SignalTim<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -15,131 +15,131 @@ pub trait SignalCk<T> {}
 
 pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
 pub struct Tim2Ch1 {}
-impl Io for Tim2Ch1 {}
+impl Tim for Tim2Ch1 {}
 
 pub const TIM2_CH2: Tim2Ch2 = Tim2Ch2 {};
 pub struct Tim2Ch2 {}
-impl Io for Tim2Ch2 {}
+impl Tim for Tim2Ch2 {}
 
 pub const TIM2_CH3: Tim2Ch3 = Tim2Ch3 {};
 pub struct Tim2Ch3 {}
-impl Io for Tim2Ch3 {}
+impl Tim for Tim2Ch3 {}
 
 pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
 pub struct Tim2Ch4 {}
-impl Io for Tim2Ch4 {}
+impl Tim for Tim2Ch4 {}
 
 pub const TIM3_CH1: Tim3Ch1 = Tim3Ch1 {};
 pub struct Tim3Ch1 {}
-impl Io for Tim3Ch1 {}
+impl Tim for Tim3Ch1 {}
 
 pub const TIM3_CH2: Tim3Ch2 = Tim3Ch2 {};
 pub struct Tim3Ch2 {}
-impl Io for Tim3Ch2 {}
+impl Tim for Tim3Ch2 {}
 
 pub const TIM3_CH3: Tim3Ch3 = Tim3Ch3 {};
 pub struct Tim3Ch3 {}
-impl Io for Tim3Ch3 {}
+impl Tim for Tim3Ch3 {}
 
 pub const TIM3_CH4: Tim3Ch4 = Tim3Ch4 {};
 pub struct Tim3Ch4 {}
-impl Io for Tim3Ch4 {}
+impl Tim for Tim3Ch4 {}
 
 pub const TIM4_CH1: Tim4Ch1 = Tim4Ch1 {};
 pub struct Tim4Ch1 {}
-impl Io for Tim4Ch1 {}
+impl Tim for Tim4Ch1 {}
 
 pub const TIM4_CH2: Tim4Ch2 = Tim4Ch2 {};
 pub struct Tim4Ch2 {}
-impl Io for Tim4Ch2 {}
+impl Tim for Tim4Ch2 {}
 
 pub const TIM4_CH3: Tim4Ch3 = Tim4Ch3 {};
 pub struct Tim4Ch3 {}
-impl Io for Tim4Ch3 {}
+impl Tim for Tim4Ch3 {}
 
 pub const TIM4_CH4: Tim4Ch4 = Tim4Ch4 {};
 pub struct Tim4Ch4 {}
-impl Io for Tim4Ch4 {}
+impl Tim for Tim4Ch4 {}
 
 pub const TIM5_CH1: Tim5Ch1 = Tim5Ch1 {};
 pub struct Tim5Ch1 {}
-impl Io for Tim5Ch1 {}
+impl Tim for Tim5Ch1 {}
 
 pub const TIM5_CH2: Tim5Ch2 = Tim5Ch2 {};
 pub struct Tim5Ch2 {}
-impl Io for Tim5Ch2 {}
+impl Tim for Tim5Ch2 {}
 
 pub const TIM5_CH3: Tim5Ch3 = Tim5Ch3 {};
 pub struct Tim5Ch3 {}
-impl Io for Tim5Ch3 {}
+impl Tim for Tim5Ch3 {}
 
 pub const TIM5_CH4: Tim5Ch4 = Tim5Ch4 {};
 pub struct Tim5Ch4 {}
-impl Io for Tim5Ch4 {}
+impl Tim for Tim5Ch4 {}
 
 pub const TIM9_CH1: Tim9Ch1 = Tim9Ch1 {};
 pub struct Tim9Ch1 {}
-impl Io for Tim9Ch1 {}
+impl Tim for Tim9Ch1 {}
 
 pub const TIM9_CH2: Tim9Ch2 = Tim9Ch2 {};
 pub struct Tim9Ch2 {}
-impl Io for Tim9Ch2 {}
+impl Tim for Tim9Ch2 {}
 
 pub const TIM10_CH1: Tim10Ch1 = Tim10Ch1 {};
 pub struct Tim10Ch1 {}
-impl Io for Tim10Ch1 {}
+impl Tim for Tim10Ch1 {}
 
 pub const TIM11_CH1: Tim11Ch1 = Tim11Ch1 {};
 pub struct Tim11Ch1 {}
-impl Io for Tim11Ch1 {}
+impl Tim for Tim11Ch1 {}
 
 pub const TIM12_CH1: Tim12Ch1 = Tim12Ch1 {};
 pub struct Tim12Ch1 {}
-impl Io for Tim12Ch1 {}
+impl Tim for Tim12Ch1 {}
 
 pub const TIM12_CH2: Tim12Ch2 = Tim12Ch2 {};
 pub struct Tim12Ch2 {}
-impl Io for Tim12Ch2 {}
+impl Tim for Tim12Ch2 {}
 
 pub const TIM13_CH1: Tim13Ch1 = Tim13Ch1 {};
 pub struct Tim13Ch1 {}
-impl Io for Tim13Ch1 {}
+impl Tim for Tim13Ch1 {}
 
 pub const TIM14_CH1: Tim14Ch1 = Tim14Ch1 {};
 pub struct Tim14Ch1 {}
-impl Io for Tim14Ch1 {}
+impl Tim for Tim14Ch1 {}
 
 pub const TIM1_CH1: Tim1Ch1 = Tim1Ch1 {};
 pub struct Tim1Ch1 {}
-impl Io for Tim1Ch1 {}
+impl Tim for Tim1Ch1 {}
 
 pub const TIM1_CH2: Tim1Ch2 = Tim1Ch2 {};
 pub struct Tim1Ch2 {}
-impl Io for Tim1Ch2 {}
+impl Tim for Tim1Ch2 {}
 
 pub const TIM1_CH3: Tim1Ch3 = Tim1Ch3 {};
 pub struct Tim1Ch3 {}
-impl Io for Tim1Ch3 {}
+impl Tim for Tim1Ch3 {}
 
 pub const TIM1_CH4: Tim1Ch4 = Tim1Ch4 {};
 pub struct Tim1Ch4 {}
-impl Io for Tim1Ch4 {}
+impl Tim for Tim1Ch4 {}
 
 pub const TIM8_CH1: Tim8Ch1 = Tim8Ch1 {};
 pub struct Tim8Ch1 {}
-impl Io for Tim8Ch1 {}
+impl Tim for Tim8Ch1 {}
 
 pub const TIM8_CH2: Tim8Ch2 = Tim8Ch2 {};
 pub struct Tim8Ch2 {}
-impl Io for Tim8Ch2 {}
+impl Tim for Tim8Ch2 {}
 
 pub const TIM8_CH3: Tim8Ch3 = Tim8Ch3 {};
 pub struct Tim8Ch3 {}
-impl Io for Tim8Ch3 {}
+impl Tim for Tim8Ch3 {}
 
 pub const TIM8_CH4: Tim8Ch4 = Tim8Ch4 {};
 pub struct Tim8Ch4 {}
-impl Io for Tim8Ch4 {}
+impl Tim for Tim8Ch4 {}
 
 pub const USART1_TX: Usart1Tx = Usart1Tx {};
 pub struct Usart1Tx {}

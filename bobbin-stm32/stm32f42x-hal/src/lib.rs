@@ -15,7 +15,7 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
     pub use rcc::RccEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalIo};
+    use chip::sig::{SignalTx, SignalRx, SignalTim};
     
     pub trait ModeTx<T, S> {
         fn mode_tx(&self, _: &S) -> &Self;
@@ -25,8 +25,8 @@ pub mod gpio {
         fn mode_rx(&self, _: &S) -> &Self;
     }
 
-    pub trait ModeIo<T, S> {
-        fn mode_io(&self, _: &S) -> &Self;
+    pub trait ModeTim<T, S> {
+        fn mode_tim(&self, _: &S) -> &Self;
     }    
 
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
@@ -43,8 +43,8 @@ pub mod gpio {
         }
     }
 
-    impl<P, O, S, T> ModeIo<T, S> for Pin<P, O> where S: SignalIo<T>, P: AltFn<T> {
-        fn mode_io(&self, _: &S) -> &Self {
+    impl<P, O, S, T> ModeTim<T, S> for Pin<P, O> where S: SignalTim<T>, P: AltFn<T> {
+        fn mode_tim(&self, _: &S) -> &Self {
             self.mode_altfn(self.id.alt_fn());
             self
         }

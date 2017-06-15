@@ -93,22 +93,22 @@
             (channel
                 (name TIM2_CH1)
                 (index 0)
-                (signal (name TIM2_CH1) (type IO))
+                (signal (name TIM2_CH1) (type TIM))
             )
             (channel
                 (name TIM2_CH2)
                 (index 1)
-                (signal (name TIM2_CH2) (type IO))
+                (signal (name TIM2_CH2) (type TIM))
             )
             (channel
                 (name TIM2_CH3)
                 (index 2)
-                (signal (name TIM2_CH3) (type IO))
+                (signal (name TIM2_CH3) (type TIM))
             )
             (channel
                 (name TIM2_CH4)
                 (index 3)
-                (signal (name TIM2_CH4) (type IO))
+                (signal (name TIM2_CH4) (type TIM))
             )                        
             (interrupt
                 (name TIM2)
@@ -124,22 +124,22 @@
             (channel
                 (name TIM3_CH1)
                 (index 0)
-                (signal (name TIM3_CH1) (type IO))
+                (signal (name TIM3_CH1) (type TIM))
             )
             (channel
                 (name TIM3_CH2)
                 (index 1)
-                (signal (name TIM3_CH2) (type IO))
+                (signal (name TIM3_CH2) (type TIM))
             )
             (channel
                 (name TIM3_CH3)
                 (index 2)
-                (signal (name TIM3_CH3) (type IO))
+                (signal (name TIM3_CH3) (type TIM))
             )
             (channel
                 (name TIM3_CH4)
                 (index 3)
-                (signal (name TIM3_CH4) (type IO))
+                (signal (name TIM3_CH4) (type TIM))
             )                        
             (interrupt
                 (name TIM3)
@@ -154,22 +154,22 @@
             (channel
                 (name TIM4_CH1)
                 (index 0)
-                (signal (name TIM4_CH1) (type IO))
+                (signal (name TIM4_CH1) (type TIM))
             )
             (channel
                 (name TIM4_CH2)
                 (index 1)
-                (signal (name TIM4_CH2) (type IO))
+                (signal (name TIM4_CH2) (type TIM))
             )
             (channel
                 (name TIM4_CH3)
                 (index 2)
-                (signal (name TIM4_CH3) (type IO))
+                (signal (name TIM4_CH3) (type TIM))
             )
             (channel
                 (name TIM4_CH4)
                 (index 3)
-                (signal (name TIM4_CH4) (type IO))
+                (signal (name TIM4_CH4) (type TIM))
             )                        
             (interrupt
                 (name TIM4)
@@ -185,22 +185,22 @@
             (channel
                 (name TIM5_CH1)
                 (index 0)
-                (signal (name TIM5_CH1) (type IO))
+                (signal (name TIM5_CH1) (type TIM))
             )
             (channel
                 (name TIM5_CH2)
                 (index 1)
-                (signal (name TIM5_CH2) (type IO))
+                (signal (name TIM5_CH2) (type TIM))
             )
             (channel
                 (name TIM5_CH3)
                 (index 2)
-                (signal (name TIM5_CH3) (type IO))
+                (signal (name TIM5_CH3) (type TIM))
             )
             (channel
                 (name TIM5_CH4)
                 (index 3)
-                (signal (name TIM5_CH4) (type IO))
+                (signal (name TIM5_CH4) (type TIM))
             )            
             (interrupt
                 (name TIM5)
@@ -216,12 +216,12 @@
             (channel
                 (name TIM9_CH1)
                 (index 0)
-                (signal (name TIM9_CH1) (type IO))
+                (signal (name TIM9_CH1) (type TIM))
             )
             (channel
                 (name TIM9_CH2)
                 (index 1)
-                (signal (name TIM9_CH2) (type IO))
+                (signal (name TIM9_CH2) (type TIM))
             )      
             (interrupt
                 (name TIM9)
@@ -237,7 +237,7 @@
             (channel
                 (name TIM10_CH1)
                 (index 0)
-                (signal (name TIM10_CH1) (type IO))
+                (signal (name TIM10_CH1) (type TIM))
             )
             (interrupt
                 (name TIM10)
@@ -253,7 +253,7 @@
             (channel
                 (name TIM11_CH1)
                 (index 0)
-                (signal (name TIM11_CH1) (type IO))
+                (signal (name TIM11_CH1) (type TIM))
             )
             (interrupt
                 (name TIM11)
@@ -268,12 +268,12 @@
             (channel
                 (name TIM12_CH1)
                 (index 0)
-                (signal (name TIM12_CH1) (type IO))
+                (signal (name TIM12_CH1) (type TIM))
             )
             (channel
                 (name TIM12_CH2)
                 (index 1)
-                (signal (name TIM12_CH2) (type IO))
+                (signal (name TIM12_CH2) (type TIM))
             )                  
             (interrupt
                 (name TIM12)
@@ -288,7 +288,7 @@
             (channel
                 (name TIM13_CH1)
                 (index 0)
-                (signal (name TIM13_CH1) (type IO))
+                (signal (name TIM13_CH1) (type TIM))
             )            
             (interrupt
                 (name TIM13)
@@ -303,7 +303,7 @@
             (channel
                 (name TIM14_CH1)
                 (index 0)
-                (signal (name TIM14_CH1) (type IO))
+                (signal (name TIM14_CH1) (type TIM))
             )            
             (interrupt
                 (name TIM14)
@@ -324,22 +324,22 @@
             (channel
                 (name TIM1_CH1)
                 (index 0)
-                (signal (name TIM1_CH1) (type IO))
+                (signal (name TIM1_CH1) (type TIM))
             )
             (channel
                 (name TIM1_CH2)
                 (index 1)
-                (signal (name TIM1_CH2) (type IO))
+                (signal (name TIM1_CH2) (type TIM))
             )
             (channel
                 (name TIM1_CH3)
                 (index 2)
-                (signal (name TIM1_CH3) (type IO))
+                (signal (name TIM1_CH3) (type TIM))
             )
             (channel
                 (name TIM1_CH4)
                 (index 3)
-                (signal (name TIM1_CH4) (type IO))
+                (signal (name TIM1_CH4) (type TIM))
             )                        
             (interrupt
                 (name TIM1_BRK)
@@ -372,22 +372,22 @@
             (channel
                 (name TIM8_CH1)
                 (index 0)
-                (signal (name TIM8_CH1) (type IO))
+                (signal (name TIM8_CH1) (type TIM))
             )
             (channel
                 (name TIM8_CH2)
                 (index 1)
-                (signal (name TIM8_CH2) (type IO))
+                (signal (name TIM8_CH2) (type TIM))
             )
             (channel
                 (name TIM8_CH3)
                 (index 2)
-                (signal (name TIM8_CH3) (type IO))
+                (signal (name TIM8_CH3) (type TIM))
             )
             (channel
                 (name TIM8_CH4)
                 (index 3)
-                (signal (name TIM8_CH4) (type IO))
+                (signal (name TIM8_CH4) (type TIM))
             )                        
             (interrupt
                 (name TIM8_BRK)
