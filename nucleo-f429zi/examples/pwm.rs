@@ -1,0 +1,46 @@
+#![no_std]
+#![no_main]
+
+#[macro_use]
+extern crate nucleo_f429zi as board;
+
+use board::hal::tim::*;
+use board::hal::gpio::{PinExt, ModeIo};
+
+// PWM output on PB0 / TIM3_CH3 = AF_2
+
+#[no_mangle]
+pub extern "C" fn main() -> ! {
+    board::init();
+    let led0 = board::led::LED0;
+
+    let ch = TIM3_CH3;
+    
+    led0.mode_io(&ch).push_pull();
+
+    let t = ch.periph();
+    t.rcc_set_enabled(true);
+    t.set_auto_reload(2000);
+    t.set_output_compare_mode(ch.index(), OcMode::Pwm1);
+    t.set_capture_compare_enabled(ch.index(), true);
+    t.set_capture_compare(ch.index(), 0);
+    t.set_enabled(true);
+
+    println!("PWM Test");
+
+    let max = 2000;
+    let step = 100;
+    let mut i: u32 = step; 
+    let mut dir: bool = true;
+    loop {        
+        t.set_capture_compare(ch.index(), i as u32);
+        
+        if i == max { dir = false } else if i == 0 { dir = true }
+        if dir {
+            i += step 
+        } else {
+            i -= step;
+        }
+        board::delay(100);
+    }
+}
