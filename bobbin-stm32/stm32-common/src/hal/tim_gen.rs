@@ -41,6 +41,10 @@ pub trait TimGenExt {
     fn clr_update_interrupt_flag(&self) -> &Self;
     fn set_auto_reload(&self, value: u32) -> &Self;
     fn delay(&self, reload: u32, prescaler: u16);
+    fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self;
+    fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self;
+    fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self;
+    fn set_capture_compare(&self, index: usize, value: u32) -> &Self;
 }
 
 impl<T> TimGenExt for Periph<T> {
@@ -85,4 +89,54 @@ impl<T> TimGenExt for Periph<T> {
             .clr_update_interrupt_flag()
             .set_enabled(false);
     }    
+
+    fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        match index {
+            0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value as u32)),
+            2...3 => self.with_ccmr_output(1, |r| r.set_ocpe(index - 2, value as u32)),
+            _ => panic!("Invalid channel index"),
+        }
+    }    
+
+    fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self {
+        let value = value as u32;
+        let v012 = value & 0b111;
+        let v3 = value >> 3;
+        match index {
+            0...1 => self.with_ccmr_output(0, |r| r.set_ocm(index, v012).set_ocm_3(index, v3)),
+            2...3 => self.with_ccmr_output(1, |r| r.set_ocm(index - 2, v012).set_ocm_3(index - 2, v3)),
+            _ => panic!("Invalid channel index"),
+        }
+    }    
+
+    fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_ccer(|r| r.set_cce(index, value))
+    }
+
+    fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
+        self.set_ccr(index, Ccr(value))
+    }    
 }
+
+// pub trait TimGenChExt {
+//     fn set_ocm(&self, value: OcMode) -> &Self;
+//     fn set_cce(&self, value: bool) -> &Self;
+//     fn set_ccr(&self, value: u32) -> &Self;
+// }
+
+// impl<P, T> TimGenChExt for Channel<P, T> {
+//     fn set_ocm(&self, value: OcMode) -> &Self {
+//         self.periph().set_ocm(self.index(), value);
+//         self
+//     }
+//     fn set_cce(&self, value: bool) -> &Self {
+//         self.periph().set_cce(self.index(), value);
+//         self
+//     }
+//     fn set_ccr(&self, value: u32) -> &Self {
+//         self.periph().set_ccr(self.index(), Ccr(value));
+//         self
+//     }
+// }
