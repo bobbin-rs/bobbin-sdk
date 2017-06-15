@@ -1,3 +1,4 @@
+pub mod dma;
 pub mod gpio;
 pub mod usart;
 pub mod usart_f24;

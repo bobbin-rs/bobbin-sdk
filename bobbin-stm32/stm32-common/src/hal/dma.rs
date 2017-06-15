@@ -1,5 +1,4 @@
 pub use chip::dma::*;
-pub use rcc::RccEnabled;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Burst {

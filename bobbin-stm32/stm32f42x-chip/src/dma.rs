@@ -13,13 +13,6 @@ pub type Dma2 = Periph<Dma2Id>;
 
 
 
-pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
-
-impl<P,T> Channel<P,T> {
-   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
-   #[inline] pub fn index(&self) -> usize { self.index }
-}
-
 pub const DMA1_STREAM0: Channel<Dma1Stream0Id, Dma1Id> = Channel { periph: DMA1, index: 0, id: Dma1Stream0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Dma1Stream0Id {}

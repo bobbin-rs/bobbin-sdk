@@ -9,7 +9,12 @@ pub use bobbin_cortexm::hal::{nvic, scb, itm};
 
 pub mod rcc;
 pub mod clock;
-pub mod dma;
+
+pub mod dma {
+    pub use chip::dma::*;
+    pub use stm32_common::hal::dma::*;
+    pub use rcc::RccEnabled;
+}
 
 pub mod gpio {
     pub use chip::gpio::*;

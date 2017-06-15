@@ -1782,7 +1782,6 @@
     (peripheral-group
         (name DMA)
         (module (name stm32_common::chip::dma::*))
-        (has-channels)
         (peripheral
             (name DMA1)
             (address 0x40026000)
