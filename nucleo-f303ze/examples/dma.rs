@@ -22,7 +22,7 @@ pub extern "C" fn main() -> ! {
     ch.irq_dma().set_enabled(true);
 
     ch.periph().rcc_set_enabled(true);
-    println!("Enabled? {}", ch.periph().rcc_enabled());
+
     ch    
         .set_pa(&src as *const u8 as u32)
         .set_ma(&dst as *const u8 as u32)

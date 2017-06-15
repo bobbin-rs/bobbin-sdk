@@ -16,7 +16,7 @@ pub extern "C" fn main() -> ! {
     let src = [0xffu8; 1024];
     let dst = [0u8; 1024];
     
-    let ch = DMA2_STREAM0;
+    let ch = DMA1_STREAM0;
 
     let dma_test = DmaTest::new(ch);
     let _g = ch.register_dma_handler(&dma_test);
