@@ -301,6 +301,7 @@ pub struct Channel {
     pub name: String,
     pub index: Option<u64>,
     pub description: Option<String>,
+    pub signals: Vec<Signal>,
     pub interrupts: Vec<Interrupt>,
 }
 

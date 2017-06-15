@@ -578,6 +578,7 @@ fn read_channel(ctx: &Context, s: &[Sexp]) -> Result<Channel, ReadError> {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => ch.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("index") => ch.index = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("signal") => ch.signals.push(try!(read_signal(ctx, &arr[1..]))),
                 Some("interrupt") => ch.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
