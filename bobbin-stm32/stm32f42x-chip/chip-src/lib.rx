@@ -86,10 +86,31 @@
     (peripheral-group
         (name TIM_GEN)
         (module (name stm32_common::chip::tim_gen::*))
+        (has-channels)
         (peripheral
             (name TIM2)
             (address 0x40000000)
             (description "General purpose timers")
+            (channel
+                (name TIM2_CH1)
+                (index 0)
+                (signal (name TIM2_CH1) (type IO))
+            )
+            (channel
+                (name TIM2_CH2)
+                (index 1)
+                (signal (name TIM2_CH2) (type IO))
+            )
+            (channel
+                (name TIM2_CH3)
+                (index 2)
+                (signal (name TIM2_CH3) (type IO))
+            )
+            (channel
+                (name TIM2_CH4)
+                (index 3)
+                (signal (name TIM2_CH4) (type IO))
+            )                        
             (interrupt
                 (name TIM2)
                 (type TIM)
@@ -101,6 +122,26 @@
             (name TIM3)
             (address 0x40000400)
             (description "General purpose timers")
+            (channel
+                (name TIM3_CH1)
+                (index 0)
+                (signal (name TIM3_CH1) (type IO))
+            )
+            (channel
+                (name TIM3_CH2)
+                (index 1)
+                (signal (name TIM3_CH2) (type IO))
+            )
+            (channel
+                (name TIM3_CH3)
+                (index 2)
+                (signal (name TIM3_CH3) (type IO))
+            )
+            (channel
+                (name TIM3_CH4)
+                (index 3)
+                (signal (name TIM3_CH4) (type IO))
+            )                        
             (interrupt
                 (name TIM3)
                 (type TIM)
@@ -111,6 +152,26 @@
         (peripheral
             (name TIM4)
             (address 0x40000800)
+            (channel
+                (name TIM4_CH1)
+                (index 0)
+                (signal (name TIM4_CH1) (type IO))
+            )
+            (channel
+                (name TIM4_CH2)
+                (index 1)
+                (signal (name TIM4_CH2) (type IO))
+            )
+            (channel
+                (name TIM4_CH3)
+                (index 2)
+                (signal (name TIM4_CH3) (type IO))
+            )
+            (channel
+                (name TIM4_CH4)
+                (index 3)
+                (signal (name TIM4_CH4) (type IO))
+            )                        
             (interrupt
                 (name TIM4)
                 (type TIM)
@@ -122,6 +183,26 @@
             (name TIM5)
             (address 0x40000c00)
             (description "General-purpose-timers")
+            (channel
+                (name TIM5_CH1)
+                (index 0)
+                (signal (name TIM5_CH1) (type IO))
+            )
+            (channel
+                (name TIM5_CH2)
+                (index 1)
+                (signal (name TIM5_CH2) (type IO))
+            )
+            (channel
+                (name TIM5_CH3)
+                (index 2)
+                (signal (name TIM5_CH3) (type IO))
+            )
+            (channel
+                (name TIM5_CH4)
+                (index 3)
+                (signal (name TIM5_CH4) (type IO))
+            )            
             (interrupt
                 (name TIM5)
                 (type TIM)
@@ -133,6 +214,16 @@
             (name TIM9)
             (address 0x40014000)
             (description "General purpose timers")
+            (channel
+                (name TIM9_CH1)
+                (index 0)
+                (signal (name TIM9_CH1) (type IO))
+            )
+            (channel
+                (name TIM9_CH2)
+                (index 1)
+                (signal (name TIM9_CH2) (type IO))
+            )      
             (interrupt
                 (name TIM9)
                 (type TIM)
@@ -144,6 +235,11 @@
             (name TIM10)
             (address 0x40014400)
             (description "General-purpose-timers")
+            (channel
+                (name TIM10_CH1)
+                (index 0)
+                (signal (name TIM10_CH1) (type IO))
+            )
             (interrupt
                 (name TIM10)
                 (type TIM)
@@ -155,6 +251,11 @@
             (name TIM11)
             (address 0x40014800)
             (description "General-purpose-timers")
+            (channel
+                (name TIM11_CH1)
+                (index 0)
+                (signal (name TIM11_CH1) (type IO))
+            )
             (interrupt
                 (name TIM11)
                 (type TIM)
@@ -165,6 +266,16 @@
         (peripheral
             (name TIM12)
             (address 0x40001800)
+            (channel
+                (name TIM12_CH1)
+                (index 0)
+                (signal (name TIM12_CH1) (type IO))
+            )
+            (channel
+                (name TIM12_CH2)
+                (index 1)
+                (signal (name TIM12_CH2) (type IO))
+            )                  
             (interrupt
                 (name TIM12)
                 (type TIM)
@@ -175,6 +286,11 @@
         (peripheral
             (name TIM13)
             (address 0x40001c00)
+            (channel
+                (name TIM13_CH1)
+                (index 0)
+                (signal (name TIM13_CH1) (type IO))
+            )            
             (interrupt
                 (name TIM13)
                 (type TIM)
@@ -185,6 +301,11 @@
         (peripheral
             (name TIM14)
             (address 0x40002000)
+            (channel
+                (name TIM14_CH1)
+                (index 0)
+                (signal (name TIM14_CH1) (type IO))
+            )            
             (interrupt
                 (name TIM14)
                 (type TIM)
@@ -201,6 +322,26 @@
             (name TIM1)
             (address 0x40010000)
             (description "Advanced-timers")
+            (channel
+                (name TIM1_CH1)
+                (index 0)
+                (signal (name TIM1_CH1) (type IO))
+            )
+            (channel
+                (name TIM1_CH2)
+                (index 1)
+                (signal (name TIM1_CH2) (type IO))
+            )
+            (channel
+                (name TIM1_CH3)
+                (index 2)
+                (signal (name TIM1_CH3) (type IO))
+            )
+            (channel
+                (name TIM1_CH4)
+                (index 3)
+                (signal (name TIM1_CH4) (type IO))
+            )                        
             (interrupt
                 (name TIM1_BRK)
                 (type BRK)
@@ -229,6 +370,26 @@
         (peripheral
             (name TIM8)
             (address 0x40010400)
+            (channel
+                (name TIM8_CH1)
+                (index 0)
+                (signal (name TIM8_CH1) (type IO))
+            )
+            (channel
+                (name TIM8_CH2)
+                (index 1)
+                (signal (name TIM8_CH2) (type IO))
+            )
+            (channel
+                (name TIM8_CH3)
+                (index 2)
+                (signal (name TIM8_CH3) (type IO))
+            )
+            (channel
+                (name TIM8_CH4)
+                (index 3)
+                (signal (name TIM8_CH4) (type IO))
+            )                        
             (interrupt
                 (name TIM8_BRK)
                 (type BRK)

@@ -18,14 +18,17 @@
     )        
     (peripheral-group
         (name TIM_BAS)
+        (has-channels)
         (prototype "periph/tim_bas.rx")
     )
     (peripheral-group
         (name TIM_GEN)
+        (has-channels)
         (prototype "periph/tim_gen.rx")
     )
     (peripheral-group
         (name TIM_ADV)
+        (has-channels)
         (prototype "periph/tim_adv.rx")
     )
 )
