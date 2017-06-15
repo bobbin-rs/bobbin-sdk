@@ -86,7 +86,6 @@
     (peripheral-group
         (name TIM_GEN)
         (module (name stm32_common::chip::tim_gen::*))
-        (has-channels)
         (peripheral
             (name TIM2)
             (address 0x40000000)

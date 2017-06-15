@@ -101,13 +101,6 @@ impl super::sig::Signal<super::sig::Tim14Ch1> for Tim14Ch1 {}
 impl super::sig::SignalIo<super::sig::Tim14Ch1> for Tim14Ch1 {}
 
 
-pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
-
-impl<P,T> Channel<P,T> {
-   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
-   #[inline] pub fn index(&self) -> usize { self.index }
-}
-
 pub const TIM2_CH1: Channel<Tim2Ch1Id, Tim2Id> = Channel { periph: TIM2, index: 0, id: Tim2Ch1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Tim2Ch1Id {}

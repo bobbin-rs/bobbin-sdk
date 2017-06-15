@@ -120,23 +120,23 @@ impl<T> TimGenExt for Periph<T> {
     }    
 }
 
-// pub trait TimGenChExt {
-//     fn set_ocm(&self, value: OcMode) -> &Self;
-//     fn set_cce(&self, value: bool) -> &Self;
-//     fn set_ccr(&self, value: u32) -> &Self;
-// }
+pub trait TimGenChExt {
+    fn set_output_compare_mode(&self, value: OcMode) -> &Self;
+    fn set_capture_compare_enabled(&self, value: bool) -> &Self;
+    fn set_capture_compare(&self, value: u32) -> &Self;
+}
 
-// impl<P, T> TimGenChExt for Channel<P, T> {
-//     fn set_ocm(&self, value: OcMode) -> &Self {
-//         self.periph().set_ocm(self.index(), value);
-//         self
-//     }
-//     fn set_cce(&self, value: bool) -> &Self {
-//         self.periph().set_cce(self.index(), value);
-//         self
-//     }
-//     fn set_ccr(&self, value: u32) -> &Self {
-//         self.periph().set_ccr(self.index(), Ccr(value));
-//         self
-//     }
-// }
+impl<P, T> TimGenChExt for Channel<P, T> {
+    fn set_output_compare_mode(&self, value: OcMode) -> &Self {
+        self.periph().set_output_compare_mode(self.index(), value);
+        self
+    }
+    fn set_capture_compare_enabled(&self, value: bool) -> &Self {
+        self.periph().set_capture_compare_enabled(self.index(), value);
+        self
+    }
+    fn set_capture_compare(&self, value: u32) -> &Self {
+        self.periph().set_capture_compare(self.index(), value);
+        self
+    }
+}
