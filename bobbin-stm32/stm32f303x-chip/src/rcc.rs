@@ -2251,6 +2251,46 @@ impl En for super::tim_gen::Tim15 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim15en(value)); }
 }
 
+impl En for super::tim_gen::Tim16 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim16en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim16en(value)); }
+}
+
+impl En for super::tim_gen::Tim17 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim17en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim17en(value)); }
+}
+
+impl En for super::tim_adv::Tim20 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim20en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim20en(value)); }
+}
+
+impl En for super::tim_gen::Tim2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
+}
+
+impl En for super::tim_gen::Tim3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim3en(value)); }
+}
+
+impl En for super::tim_gen::Tim4 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim4en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim4en(value)); }
+}
+
+impl En for super::tim_bas::Tim6 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim6en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim6en(value)); }
+}
+
+impl En for super::tim_bas::Tim7 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim7en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim7en(value)); }
+}
+
 impl En for super::spi::Spi2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }

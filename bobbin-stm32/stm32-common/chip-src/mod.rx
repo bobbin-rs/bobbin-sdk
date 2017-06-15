@@ -5,6 +5,11 @@
         (prototype "periph/dma.rx")
     )
     (peripheral-group
+        (name DMA_F3)
+        (has-channels)
+        (prototype "periph/dma_f3.rx")
+    )    
+    (peripheral-group
         (name GPIO)
         (has-pins)
         (prototype "periph/gpio.rx")

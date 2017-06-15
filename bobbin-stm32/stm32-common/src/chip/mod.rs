@@ -1,5 +1,6 @@
 pub mod sig;
 pub mod dma;
+pub mod dma_f3;
 pub mod gpio;
 pub mod lpusart;
 pub mod usart;
