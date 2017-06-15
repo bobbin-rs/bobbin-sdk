@@ -5,7 +5,7 @@
 extern crate nucleo_f429zi as board;
 
 use board::hal::tim::*;
-use board::hal::gpio::{PinExt, ModeIo};
+use board::hal::gpio::{PinExt, ModeTim};
 
 // PWM output on PB0 / TIM3_CH3 = AF_2
 
@@ -16,7 +16,7 @@ pub extern "C" fn main() -> ! {
 
     let ch = TIM3_CH3;
     
-    led0.mode_io(&ch).push_pull();
+    led0.mode_tim(&ch).push_pull();
 
     let t = ch.periph();
     t.rcc_set_enabled(true);
