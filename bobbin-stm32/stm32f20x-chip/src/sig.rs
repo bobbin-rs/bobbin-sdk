@@ -1,5 +1,7 @@
 pub trait Signal<T> {}
 
+pub trait Tim {}
+pub trait SignalTim<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -10,6 +12,54 @@ pub trait Rts {}
 pub trait SignalRts<T> {}
 pub trait Ck {}
 pub trait SignalCk<T> {}
+
+pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
+pub struct Tim2Ch1 {}
+impl Tim for Tim2Ch1 {}
+
+pub const TIM2_CH2: Tim2Ch2 = Tim2Ch2 {};
+pub struct Tim2Ch2 {}
+impl Tim for Tim2Ch2 {}
+
+pub const TIM2_CH3: Tim2Ch3 = Tim2Ch3 {};
+pub struct Tim2Ch3 {}
+impl Tim for Tim2Ch3 {}
+
+pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
+pub struct Tim2Ch4 {}
+impl Tim for Tim2Ch4 {}
+
+pub const TIM3_CH1: Tim3Ch1 = Tim3Ch1 {};
+pub struct Tim3Ch1 {}
+impl Tim for Tim3Ch1 {}
+
+pub const TIM3_CH2: Tim3Ch2 = Tim3Ch2 {};
+pub struct Tim3Ch2 {}
+impl Tim for Tim3Ch2 {}
+
+pub const TIM3_CH3: Tim3Ch3 = Tim3Ch3 {};
+pub struct Tim3Ch3 {}
+impl Tim for Tim3Ch3 {}
+
+pub const TIM3_CH4: Tim3Ch4 = Tim3Ch4 {};
+pub struct Tim3Ch4 {}
+impl Tim for Tim3Ch4 {}
+
+pub const TIM4_CH1: Tim4Ch1 = Tim4Ch1 {};
+pub struct Tim4Ch1 {}
+impl Tim for Tim4Ch1 {}
+
+pub const TIM4_CH2: Tim4Ch2 = Tim4Ch2 {};
+pub struct Tim4Ch2 {}
+impl Tim for Tim4Ch2 {}
+
+pub const TIM4_CH3: Tim4Ch3 = Tim4Ch3 {};
+pub struct Tim4Ch3 {}
+impl Tim for Tim4Ch3 {}
+
+pub const TIM4_CH4: Tim4Ch4 = Tim4Ch4 {};
+pub struct Tim4Ch4 {}
+impl Tim for Tim4Ch4 {}
 
 pub const USART1_TX: Usart1Tx = Usart1Tx {};
 pub struct Usart1Tx {}
@@ -131,9 +181,6 @@ pub const UART8_CK: Uart8Ck = Uart8Ck {};
 pub struct Uart8Ck {}
 impl Ck for Uart8Ck {}
 
-pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
-pub struct Tim2Ch1 {}
-
 pub const TIM2_ETR: Tim2Etr = Tim2Etr {};
 pub struct Tim2Etr {}
 
@@ -152,9 +199,6 @@ pub struct EthMiiCrs {}
 pub const EVENTOUT: Eventout = Eventout {};
 pub struct Eventout {}
 
-pub const TIM2_CH2: Tim2Ch2 = Tim2Ch2 {};
-pub struct Tim2Ch2 {}
-
 pub const TIM5_CH2: Tim5Ch2 = Tim5Ch2 {};
 pub struct Tim5Ch2 {}
 
@@ -167,9 +211,6 @@ pub struct EthMiiRxClk {}
 pub const ETH_RMII_REF_CLK: EthRmiiRefClk = EthRmiiRefClk {};
 pub struct EthRmiiRefClk {}
 
-pub const TIM2_CH3: Tim2Ch3 = Tim2Ch3 {};
-pub struct Tim2Ch3 {}
-
 pub const TIM5_CH3: Tim5Ch3 = Tim5Ch3 {};
 pub struct Tim5Ch3 {}
 
@@ -178,9 +219,6 @@ pub struct Tim9Ch1 {}
 
 pub const ETH_MDIO: EthMdio = EthMdio {};
 pub struct EthMdio {}
-
-pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
-pub struct Tim2Ch4 {}
 
 pub const TIM5_CH4: Tim5Ch4 = Tim5Ch4 {};
 pub struct Tim5Ch4 {}
@@ -227,9 +265,6 @@ pub struct OtgHsUlpiCk {}
 pub const TIM1_BKIN: Tim1Bkin = Tim1Bkin {};
 pub struct Tim1Bkin {}
 
-pub const TIM3_CH1: Tim3Ch1 = Tim3Ch1 {};
-pub struct Tim3Ch1 {}
-
 pub const TIM8_BKIN: Tim8Bkin = Tim8Bkin {};
 pub struct Tim8Bkin {}
 
@@ -247,9 +282,6 @@ pub struct LcdG2 {}
 
 pub const TIM1_CH1N: Tim1Ch1n = Tim1Ch1n {};
 pub struct Tim1Ch1n {}
-
-pub const TIM3_CH2: Tim3Ch2 = Tim3Ch2 {};
-pub struct Tim3Ch2 {}
 
 pub const SPI1_MOSI: Spi1Mosi = Spi1Mosi {};
 pub struct Spi1Mosi {}
@@ -341,9 +373,6 @@ pub struct Jtdi {}
 pub const TIM1_CH2N: Tim1Ch2n = Tim1Ch2n {};
 pub struct Tim1Ch2n {}
 
-pub const TIM3_CH3: Tim3Ch3 = Tim3Ch3 {};
-pub struct Tim3Ch3 {}
-
 pub const TIM8_CH2N: Tim8Ch2n = Tim8Ch2n {};
 pub struct Tim8Ch2n {}
 
@@ -358,9 +387,6 @@ pub struct EthMiiRxd2 {}
 
 pub const TIM1_CH3N: Tim1Ch3n = Tim1Ch3n {};
 pub struct Tim1Ch3n {}
-
-pub const TIM3_CH4: Tim3Ch4 = Tim3Ch4 {};
-pub struct Tim3Ch4 {}
 
 pub const TIM8_CH3N: Tim8Ch3n = Tim8Ch3n {};
 pub struct Tim8Ch3n {}
@@ -416,9 +442,6 @@ pub struct FmcSdcke1 {}
 pub const DCMI_D10: DcmiD10 = DcmiD10 {};
 pub struct DcmiD10 {}
 
-pub const TIM4_CH1: Tim4Ch1 = Tim4Ch1 {};
-pub struct Tim4Ch1 {}
-
 pub const I2C1_SCL: I2c1Scl = I2c1Scl {};
 pub struct I2c1Scl {}
 
@@ -431,9 +454,6 @@ pub struct FmcSdne1 {}
 pub const DCMI_D5: DcmiD5 = DcmiD5 {};
 pub struct DcmiD5 {}
 
-pub const TIM4_CH2: Tim4Ch2 = Tim4Ch2 {};
-pub struct Tim4Ch2 {}
-
 pub const I2C1_SDA: I2c1Sda = I2c1Sda {};
 pub struct I2c1Sda {}
 
@@ -442,9 +462,6 @@ pub struct FmcNl {}
 
 pub const DCMI_VSYNC: DcmiVsync = DcmiVsync {};
 pub struct DcmiVsync {}
-
-pub const TIM4_CH3: Tim4Ch3 = Tim4Ch3 {};
-pub struct Tim4Ch3 {}
 
 pub const TIM10_CH1: Tim10Ch1 = Tim10Ch1 {};
 pub struct Tim10Ch1 {}
@@ -460,9 +477,6 @@ pub struct DcmiD6 {}
 
 pub const LCD_B6: LcdB6 = LcdB6 {};
 pub struct LcdB6 {}
-
-pub const TIM4_CH4: Tim4Ch4 = Tim4Ch4 {};
-pub struct Tim4Ch4 {}
 
 pub const TIM11_CH1: Tim11Ch1 = Tim11Ch1 {};
 pub struct Tim11Ch1 {}

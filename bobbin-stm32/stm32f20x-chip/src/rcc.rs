@@ -3987,6 +3987,16 @@ impl Rcc {
    }
 }
 
+impl En for super::dma::Dma2 {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().dma2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma2en(value)); }
+}
+
+impl En for super::dma::Dma1 {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().dma1en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma1en(value)); }
+}
+
 impl En for super::crc::Crc {
    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().crcen() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }

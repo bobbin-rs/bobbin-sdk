@@ -871,14 +871,14 @@
             (bit-offset 22)
             (bit-width 1)
             (description "DMA2 clock enable")
-            ;(link (name EN) (peripheral-group DMA) (peripheral DMA2))
+            (link (name EN) (peripheral-group DMA) (peripheral DMA2))
         )
         (field
             (name DMA1EN)
             (bit-offset 21)
             (bit-width 1)
             (description "DMA1 clock enable")
-            ;(link (name EN) (peripheral-group DMA) (peripheral DMA1))
+            (link (name EN) (peripheral-group DMA) (peripheral DMA1))
         )
         (field
             (name CCMDATARAMEN)
