@@ -1,9 +1,107 @@
 pub trait Signal<T> {}
 
+pub trait Ftm {}
+pub trait SignalFtm<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
 pub trait SignalRx<T> {}
+
+pub const FTM0_CH0: Ftm0Ch0 = Ftm0Ch0 {};
+pub struct Ftm0Ch0 {}
+impl Ftm for Ftm0Ch0 {}
+
+pub const FTM0_CH1: Ftm0Ch1 = Ftm0Ch1 {};
+pub struct Ftm0Ch1 {}
+impl Ftm for Ftm0Ch1 {}
+
+pub const FTM0_CH2: Ftm0Ch2 = Ftm0Ch2 {};
+pub struct Ftm0Ch2 {}
+impl Ftm for Ftm0Ch2 {}
+
+pub const FTM0_CH3: Ftm0Ch3 = Ftm0Ch3 {};
+pub struct Ftm0Ch3 {}
+impl Ftm for Ftm0Ch3 {}
+
+pub const FTM0_CH4: Ftm0Ch4 = Ftm0Ch4 {};
+pub struct Ftm0Ch4 {}
+impl Ftm for Ftm0Ch4 {}
+
+pub const FTM0_CH5: Ftm0Ch5 = Ftm0Ch5 {};
+pub struct Ftm0Ch5 {}
+impl Ftm for Ftm0Ch5 {}
+
+pub const FTM0_CH6: Ftm0Ch6 = Ftm0Ch6 {};
+pub struct Ftm0Ch6 {}
+impl Ftm for Ftm0Ch6 {}
+
+pub const FTM0_CH7: Ftm0Ch7 = Ftm0Ch7 {};
+pub struct Ftm0Ch7 {}
+impl Ftm for Ftm0Ch7 {}
+
+pub const FTM1_CH0: Ftm1Ch0 = Ftm1Ch0 {};
+pub struct Ftm1Ch0 {}
+impl Ftm for Ftm1Ch0 {}
+
+pub const FTM1_CH1: Ftm1Ch1 = Ftm1Ch1 {};
+pub struct Ftm1Ch1 {}
+impl Ftm for Ftm1Ch1 {}
+
+pub const FTM1_CH2: Ftm1Ch2 = Ftm1Ch2 {};
+pub struct Ftm1Ch2 {}
+impl Ftm for Ftm1Ch2 {}
+
+pub const FTM1_CH3: Ftm1Ch3 = Ftm1Ch3 {};
+pub struct Ftm1Ch3 {}
+impl Ftm for Ftm1Ch3 {}
+
+pub const FTM1_CH4: Ftm1Ch4 = Ftm1Ch4 {};
+pub struct Ftm1Ch4 {}
+impl Ftm for Ftm1Ch4 {}
+
+pub const FTM1_CH5: Ftm1Ch5 = Ftm1Ch5 {};
+pub struct Ftm1Ch5 {}
+impl Ftm for Ftm1Ch5 {}
+
+pub const FTM1_CH6: Ftm1Ch6 = Ftm1Ch6 {};
+pub struct Ftm1Ch6 {}
+impl Ftm for Ftm1Ch6 {}
+
+pub const FTM1_CH7: Ftm1Ch7 = Ftm1Ch7 {};
+pub struct Ftm1Ch7 {}
+impl Ftm for Ftm1Ch7 {}
+
+pub const FTM2_CH0: Ftm2Ch0 = Ftm2Ch0 {};
+pub struct Ftm2Ch0 {}
+impl Ftm for Ftm2Ch0 {}
+
+pub const FTM2_CH1: Ftm2Ch1 = Ftm2Ch1 {};
+pub struct Ftm2Ch1 {}
+impl Ftm for Ftm2Ch1 {}
+
+pub const FTM2_CH2: Ftm2Ch2 = Ftm2Ch2 {};
+pub struct Ftm2Ch2 {}
+impl Ftm for Ftm2Ch2 {}
+
+pub const FTM2_CH3: Ftm2Ch3 = Ftm2Ch3 {};
+pub struct Ftm2Ch3 {}
+impl Ftm for Ftm2Ch3 {}
+
+pub const FTM2_CH4: Ftm2Ch4 = Ftm2Ch4 {};
+pub struct Ftm2Ch4 {}
+impl Ftm for Ftm2Ch4 {}
+
+pub const FTM2_CH5: Ftm2Ch5 = Ftm2Ch5 {};
+pub struct Ftm2Ch5 {}
+impl Ftm for Ftm2Ch5 {}
+
+pub const FTM2_CH6: Ftm2Ch6 = Ftm2Ch6 {};
+pub struct Ftm2Ch6 {}
+impl Ftm for Ftm2Ch6 {}
+
+pub const FTM2_CH7: Ftm2Ch7 = Ftm2Ch7 {};
+pub struct Ftm2Ch7 {}
+impl Ftm for Ftm2Ch7 {}
 
 pub const UART0_TX: Uart0Tx = Uart0Tx {};
 pub struct Uart0Tx {}
@@ -62,9 +160,6 @@ pub struct Uart0CtsB {}
 pub const UART0_COL_B: Uart0ColB = Uart0ColB {};
 pub struct Uart0ColB {}
 
-pub const FTM0_CH5: Ftm0Ch5 = Ftm0Ch5 {};
-pub struct Ftm0Ch5 {}
-
 pub const JTAG_TCLK: JtagTclk = JtagTclk {};
 pub struct JtagTclk {}
 
@@ -74,17 +169,11 @@ pub struct SwdClk {}
 pub const PTA1: Pta1 = Pta1 {};
 pub struct Pta1 {}
 
-pub const FTM0_CH6: Ftm0Ch6 = Ftm0Ch6 {};
-pub struct Ftm0Ch6 {}
-
 pub const JTAG_TDI: JtagTdi = JtagTdi {};
 pub struct JtagTdi {}
 
 pub const PTA2: Pta2 = Pta2 {};
 pub struct Pta2 {}
-
-pub const FTM0_CH7: Ftm0Ch7 = Ftm0Ch7 {};
-pub struct Ftm0Ch7 {}
 
 pub const JTAG_TDO: JtagTdo = JtagTdo {};
 pub struct JtagTdo {}
@@ -98,9 +187,6 @@ pub struct Pta3 {}
 pub const UART0_RTS_B: Uart0RtsB = Uart0RtsB {};
 pub struct Uart0RtsB {}
 
-pub const FTM0_CH0: Ftm0Ch0 = Ftm0Ch0 {};
-pub struct Ftm0Ch0 {}
-
 pub const JTAG_TMS: JtagTms = JtagTms {};
 pub struct JtagTms {}
 
@@ -110,9 +196,6 @@ pub struct SwdDio {}
 pub const PTA4: Pta4 = Pta4 {};
 pub struct Pta4 {}
 
-pub const FTM0_CH1: Ftm0Ch1 = Ftm0Ch1 {};
-pub struct Ftm0Ch1 {}
-
 pub const NMI_B: NmiB = NmiB {};
 pub struct NmiB {}
 
@@ -121,9 +204,6 @@ pub struct Pta5 {}
 
 pub const USB_CLKIN: UsbClkin = UsbClkin {};
 pub struct UsbClkin {}
-
-pub const FTM0_CH2: Ftm0Ch2 = Ftm0Ch2 {};
-pub struct Ftm0Ch2 {}
 
 pub const RMII0_RXER: Rmii0Rxer = Rmii0Rxer {};
 pub struct Rmii0Rxer {}
@@ -143,9 +223,6 @@ pub struct JtagTrstB {}
 pub const PTA6: Pta6 = Pta6 {};
 pub struct Pta6 {}
 
-pub const FTM0_CH3: Ftm0Ch3 = Ftm0Ch3 {};
-pub struct Ftm0Ch3 {}
-
 pub const CLKOUT: Clkout = Clkout {};
 pub struct Clkout {}
 
@@ -158,9 +235,6 @@ pub struct Adc0Se10 {}
 pub const PTA7: Pta7 = Pta7 {};
 pub struct Pta7 {}
 
-pub const FTM0_CH4: Ftm0Ch4 = Ftm0Ch4 {};
-pub struct Ftm0Ch4 {}
-
 pub const TRACE_D3: TraceD3 = TraceD3 {};
 pub struct TraceD3 {}
 
@@ -170,9 +244,6 @@ pub struct Adc0Se11 {}
 pub const PTA8: Pta8 = Pta8 {};
 pub struct Pta8 {}
 
-pub const FTM1_CH0: Ftm1Ch0 = Ftm1Ch0 {};
-pub struct Ftm1Ch0 {}
-
 pub const FTM1_QD_PHA: Ftm1QdPha = Ftm1QdPha {};
 pub struct Ftm1QdPha {}
 
@@ -181,9 +252,6 @@ pub struct TraceD2 {}
 
 pub const PTA9: Pta9 = Pta9 {};
 pub struct Pta9 {}
-
-pub const FTM1_CH1: Ftm1Ch1 = Ftm1Ch1 {};
-pub struct Ftm1Ch1 {}
 
 pub const MII0_RXD3: Mii0Rxd3 = Mii0Rxd3 {};
 pub struct Mii0Rxd3 {}
@@ -197,9 +265,6 @@ pub struct TraceD1 {}
 pub const PTA10: Pta10 = Pta10 {};
 pub struct Pta10 {}
 
-pub const FTM2_CH0: Ftm2Ch0 = Ftm2Ch0 {};
-pub struct Ftm2Ch0 {}
-
 pub const MII0_RXD2: Mii0Rxd2 = Mii0Rxd2 {};
 pub struct Mii0Rxd2 {}
 
@@ -211,9 +276,6 @@ pub struct TraceD0 {}
 
 pub const PTA11: Pta11 = Pta11 {};
 pub struct Pta11 {}
-
-pub const FTM2_CH1: Ftm2Ch1 = Ftm2Ch1 {};
-pub struct Ftm2Ch1 {}
 
 pub const MII0_RXCLK: Mii0Rxclk = Mii0Rxclk {};
 pub struct Mii0Rxclk {}

@@ -32,7 +32,17 @@
     (peripheral-group
         (name LPUART)
         (prototype "periph/lpuart.rx")
-    )       
+    )
+    (peripheral-group
+        (name FTM)
+        (has-channels)
+        (prototype "periph/ftm.rx")
+    )
+    (peripheral-group
+        (name TPM)
+        (has-channels)
+        (prototype "periph/tpm.rx")
+    )    
     (peripheral-group
         (name PIT)
         (prototype "periph/pit.rx")

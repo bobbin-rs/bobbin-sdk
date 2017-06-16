@@ -1215,6 +1215,7 @@
             (bit-width 1)
             (access read-write)
             (description "TPM0 Clock Gate Control")
+            (link (name EN) (peripheral-group TPM) (peripheral TPM0))
             (value
                 (value "#0")
                 (name "0")
@@ -1232,6 +1233,7 @@
             (bit-width 1)
             (access read-write)
             (description "TPM1 Clock Gate Control")
+            (link (name EN) (peripheral-group TPM) (peripheral TPM1))
             (value
                 (value "#0")
                 (name "0")
@@ -1249,6 +1251,7 @@
             (bit-width 1)
             (access read-write)
             (description "TPM2 Clock Gate Control")
+            (link (name EN) (peripheral-group TPM) (peripheral TPM2))
             (value
                 (value "#0")
                 (name "0")

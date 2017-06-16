@@ -2038,6 +2038,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM0 Clock Gate Control")
+            (link (name EN) (peripheral-group FTM) (peripheral FTM0))
             (value
                 (value "#0")
                 (name "0")
@@ -2055,6 +2056,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM1 Clock Gate Control")
+            (link (name EN) (peripheral-group FTM) (peripheral FTM1))
             (value
                 (value "#0")
                 (name "0")
@@ -2072,6 +2074,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM2 Clock Gate Control")
+            (link (name EN) (peripheral-group FTM) (peripheral FTM2))
             (value
                 (value "#0")
                 (name "0")

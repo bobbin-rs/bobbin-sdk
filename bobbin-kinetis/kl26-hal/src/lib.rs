@@ -77,6 +77,11 @@ pub mod uart0 {
     pub use sim::{SimEnabled, SimSrc};
 }
 
+pub mod tpm {
+    pub use chip::tpm::*;
+    pub use kinetis_common::hal::tpm::*;
+    pub use sim::SimEnabled;
+}
 
 pub mod pit {
     pub use chip::pit::*;

@@ -2204,4 +2204,19 @@ impl En for super::pit::Pit {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_pit(value)); }
 }
 
+impl En for super::ftm::Ftm0 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().ftm0() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_ftm0(value)); }
+}
+
+impl En for super::ftm::Ftm1 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().ftm1() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_ftm1(value)); }
+}
+
+impl En for super::ftm::Ftm2 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().ftm2() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_ftm2(value)); }
+}
+
 

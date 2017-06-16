@@ -7,6 +7,8 @@ pub mod flexcan;
 pub mod lpit;
 pub mod lpspi;
 pub mod lpuart;
+pub mod ftm;
+pub mod tpm;
 pub mod pit;
 pub mod spi;
 pub mod i2c;

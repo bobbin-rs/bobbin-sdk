@@ -1594,4 +1594,19 @@ impl En for super::pit::Pit {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_pit(value)); }
 }
 
+impl En for super::tpm::Tpm0 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().tpm0() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_tpm0(value)); }
+}
+
+impl En for super::tpm::Tpm1 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().tpm1() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_tpm1(value)); }
+}
+
+impl En for super::tpm::Tpm2 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().tpm2() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_tpm2(value)); }
+}
+
 

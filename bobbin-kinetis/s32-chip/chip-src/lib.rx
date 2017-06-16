@@ -31,6 +31,51 @@
     (peripheral (include "periph/crc.rx"))
     
     (peripheral-group
+        (name FTM)
+        (module (name kinetis_common::chip::ftm::*))
+        (peripheral
+            (name FTM0)
+            (address 0x40038000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM1)
+            (address 0x40039000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM2)
+            (address 0x4003a000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM3)
+            (address 0x40026000)
+            (description "FlexTimer Module")
+        )        
+        (peripheral
+            (name FTM4)
+            (address 0x4006e000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM5)
+            (address 0x4006f000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM6)
+            (address 0x40070000)
+            (description "FlexTimer Module")
+        )
+        (peripheral
+            (name FTM7)
+            (address 0x40071000)
+            (description "FlexTimer Module")
+        )           
+    )
+
+    (peripheral-group
         (name LPIT)
         (module (name kinetis_common::chip::lpit::*))
         (peripheral

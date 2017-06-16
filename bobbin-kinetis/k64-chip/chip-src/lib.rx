@@ -26,6 +26,158 @@
     (peripheral (include "periph/enet.rx"))
     
     (peripheral-group
+        (name FTM)
+        (module (name kinetis_common::chip::ftm::*))
+        (peripheral
+            (name FTM0)
+            (address 0x40038000)
+            (description "FlexTimer Module")
+            (channel
+                (name FTM0_CH0)
+                (index 0)
+                (signal (name FTM0_CH0) (type FTM))
+            )
+            (channel
+                (name FTM0_CH1)
+                (index 1)
+                (signal (name FTM0_CH1) (type FTM))
+            )
+            (channel
+                (name FTM0_CH2)
+                (index 2)
+                (signal (name FTM0_CH2) (type FTM))
+            )
+            (channel
+                (name FTM0_CH3)
+                (index 3)
+                (signal (name FTM0_CH3) (type FTM))
+            )
+            (channel
+                (name FTM0_CH4)
+                (index 4)
+                (signal (name FTM0_CH4) (type FTM))
+            )
+            (channel
+                (name FTM0_CH5)
+                (index 5)
+                (signal (name FTM0_CH5) (type FTM))
+            )
+            (channel
+                (name FTM0_CH6)
+                (index 6)
+                (signal (name FTM0_CH6) (type FTM))
+            )
+            (channel
+                (name FTM0_CH7)
+                (index 7)
+                (signal (name FTM0_CH7) (type FTM))
+            )            
+            (interrupt
+                (name FTM0)
+                (value 42)
+            )
+        )
+        (peripheral
+            (name FTM1)
+            (address 0x40039000)
+            (description "FlexTimer Module")
+            (channel
+                (name FTM1_CH0)
+                (index 0)
+                (signal (name FTM1_CH0) (type FTM))
+            )
+            (channel
+                (name FTM1_CH1)
+                (index 1)
+                (signal (name FTM1_CH1) (type FTM))
+            )
+            (channel
+                (name FTM1_CH2)
+                (index 2)
+                (signal (name FTM1_CH2) (type FTM))
+            )
+            (channel
+                (name FTM1_CH3)
+                (index 3)
+                (signal (name FTM1_CH3) (type FTM))
+            )
+            (channel
+                (name FTM1_CH4)
+                (index 4)
+                (signal (name FTM1_CH4) (type FTM))
+            )
+            (channel
+                (name FTM1_CH5)
+                (index 5)
+                (signal (name FTM1_CH5) (type FTM))
+            )
+            (channel
+                (name FTM1_CH6)
+                (index 6)
+                (signal (name FTM1_CH6) (type FTM))
+            )
+            (channel
+                (name FTM1_CH7)
+                (index 7)
+                (signal (name FTM1_CH7) (type FTM))
+            )      
+            (interrupt
+                (name FTM1)
+                (value 43)
+            )        
+        )
+        (peripheral
+            (name FTM2)
+            (address 0x4003a000)
+            (description "FlexTimer Module")
+            (channel
+                (name FTM2_CH0)
+                (index 0)
+                (signal (name FTM2_CH0) (type FTM))
+            )
+            (channel
+                (name FTM2_CH1)
+                (index 1)
+                (signal (name FTM2_CH1) (type FTM))
+            )
+            (channel
+                (name FTM2_CH2)
+                (index 2)
+                (signal (name FTM2_CH2) (type FTM))
+            )
+            (channel
+                (name FTM2_CH3)
+                (index 3)
+                (signal (name FTM2_CH3) (type FTM))
+            )
+            (channel
+                (name FTM2_CH4)
+                (index 4)
+                (signal (name FTM2_CH4) (type FTM))
+            )
+            (channel
+                (name FTM2_CH5)
+                (index 5)
+                (signal (name FTM2_CH5) (type FTM))
+            )
+            (channel
+                (name FTM2_CH6)
+                (index 6)
+                (signal (name FTM2_CH6) (type FTM))
+            )
+            (channel
+                (name FTM2_CH7)
+                (index 7)
+                (signal (name FTM2_CH7) (type FTM))
+            )      
+            (interrupt
+                (name FTM2)
+                (value 44)
+            )        
+        )
+    )
+
+    (peripheral-group
         (name PIT)
         (module (name kinetis_common::chip::pit::*))
         (peripheral
@@ -216,50 +368,30 @@
             (address 0x400ff000)
             (description "General Purpose Input/Output")
             (link (name PORT) (peripheral-group PORT) (peripheral PORTA))
-            (interrupt
-                (name PORTA)
-                (value 59)
-            )
         )    
         (peripheral
             (name GPIOB)
             (address 0x400ff040)
             (description "General Purpose Input/Output")
             (link (name PORT) (peripheral-group PORT) (peripheral PORTB))
-            (interrupt
-                (name PORTB)
-                (value 60)
-            )        
         )
         (peripheral
             (name GPIOC)
             (address 0x400ff080)
             (description "General Purpose Input/Output")
             (link (name PORT) (peripheral-group PORT) (peripheral PORTC))
-            (interrupt
-                (name PORTC)
-                (value 61)
-            )        
         )
         (peripheral
             (name GPIOD)
             (address 0x400ff0c0)
             (description "General Purpose Input/Output")
             (link (name PORT) (peripheral-group PORT) (peripheral PORTD))
-            (interrupt
-                (name PORTD)
-                (value 62)
-            )
         )
         (peripheral
             (name GPIOE)
             (address 0x400ff100)
             (description "General Purpose Input/Output")
             (link (name PORT) (peripheral-group PORT) (peripheral PORTE))
-            (interrupt
-                (name PORTE)
-                (value 63)
-            )
         )                        
     )
     (peripheral-group

@@ -17,6 +17,7 @@ pub mod sim;
 pub mod mcg;
 pub mod osc;
 pub mod enet;
+pub mod ftm;
 pub mod pit;
 pub mod spi;
 pub mod i2c;

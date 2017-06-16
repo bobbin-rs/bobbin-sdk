@@ -20,6 +20,128 @@
     (peripheral (include "periph/mcg.rx"))
 
     (peripheral-group
+        (name TPM)
+        (module (name kinetis_common::chip::tpm::*))
+        (peripheral            
+            (name TPM0)
+            (address 0x40038000)
+            (description "Timer/PWM Module")
+            (channel
+                (name TPM0_CH0)
+                (index 0)
+                (signal (name TPM0_CH0) (type TPM))
+            )
+            (channel
+                (name TPM0_CH1)
+                (index 1)
+                (signal (name TPM0_CH1) (type TPM))
+            )
+            (channel
+                (name TPM0_CH2)
+                (index 2)
+                (signal (name TPM0_CH2) (type TPM))
+            )
+            (channel
+                (name TPM0_CH3)
+                (index 3)
+                (signal (name TPM0_CH3) (type TPM))
+            )
+            (channel
+                (name TPM0_CH4)
+                (index 4)
+                (signal (name TPM0_CH4) (type TPM))
+            )
+            (channel
+                (name TPM0_CH5)
+                (index 5)
+                (signal (name TPM0_CH5) (type TPM))
+            )        
+            (interrupt
+                (name TPM0)
+                (value 17)
+            )
+        )
+        (peripheral            
+            (name TPM1)
+            (address 0x40039000)
+            (description "Timer/PWM Module")
+            (channel
+                (name TPM1_CH0)
+                (index 0)
+                (signal (name TPM1_CH0) (type TPM))
+            )
+            (channel
+                (name TPM1_CH1)
+                (index 1)
+                (signal (name TPM1_CH1) (type TPM))
+            )
+            (channel
+                (name TPM1_CH2)
+                (index 2)
+                (signal (name TPM1_CH2) (type TPM))
+            )
+            (channel
+                (name TPM1_CH3)
+                (index 3)
+                (signal (name TPM1_CH3) (type TPM))
+            )
+            (channel
+                (name TPM1_CH4)
+                (index 4)
+                (signal (name TPM1_CH4) (type TPM))
+            )
+            (channel
+                (name TPM1_CH5)
+                (index 5)
+                (signal (name TPM1_CH5) (type TPM))
+            )   
+            (interrupt
+                (name TPM1)
+                (value 18)
+            )
+        )
+        (peripheral            
+            (name TPM2)
+            (address 0x4003a000)
+            (description "Timer/PWM Module")
+            (channel
+                (name TPM2_CH0)
+                (index 0)
+                (signal (name TPM2_CH0) (type TPM))
+            )
+            (channel
+                (name TPM2_CH1)
+                (index 1)
+                (signal (name TPM2_CH1) (type TPM))
+            )
+            (channel
+                (name TPM2_CH2)
+                (index 2)
+                (signal (name TPM2_CH2) (type TPM))
+            )
+            (channel
+                (name TPM2_CH3)
+                (index 3)
+                (signal (name TPM2_CH3) (type TPM))
+            )
+            (channel
+                (name TPM2_CH4)
+                (index 4)
+                (signal (name TPM2_CH4) (type TPM))
+            )
+            (channel
+                (name TPM2_CH5)
+                (index 5)
+                (signal (name TPM2_CH5) (type TPM))
+            )   
+            (interrupt
+                (name TPM2)
+                (value 19)
+            )
+        )
+    )
+
+    (peripheral-group
         (name PIT)
         (module (name kinetis_common::chip::pit::*))
         (peripheral            
@@ -175,7 +297,7 @@
             (address 0x4004b000)
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOC))
             (interrupt
-                (name PORTC_PORTD)
+                (name PORTC)
                 (value 31)
             )
             (pin (name PTC0) (index 0)
@@ -271,7 +393,7 @@
             (address 0x4004c000)
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOD))
             (interrupt
-                (name PORTC_PORTD)
+                (name PORTD)
                 (value 31)
             )
             (pin (name PTD0) (index 0)
@@ -411,10 +533,6 @@
             (name GPIOA)
             (address 0x400ff000)
             (link (name PORT) (peripheral-group PORT) (peripheral PORTA))
-            (interrupt
-                (name PORTA)
-                (value 30)
-            )
         )
         (peripheral
             (name GPIOB)
@@ -425,19 +543,11 @@
             (name GPIOC)
             (address 0x400ff080)
             (link (name PORT) (peripheral-group PORT) (peripheral PORTC))
-            (interrupt
-                (name PORTC_PORTD)
-                (value 31)
-            )
         )
         (peripheral
             (name GPIOD)
             (address 0x400ff0c0)
             (link (name PORT) (peripheral-group PORT) (peripheral PORTD))
-            (interrupt
-                (name PORTC_PORTD)
-                (value 31)
-            )
         )
         (peripheral
             (name GPIOE)

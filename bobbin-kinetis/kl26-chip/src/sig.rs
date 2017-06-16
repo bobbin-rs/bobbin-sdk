@@ -1,9 +1,83 @@
 pub trait Signal<T> {}
 
+pub trait Tpm {}
+pub trait SignalTpm<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
 pub trait SignalRx<T> {}
+
+pub const TPM0_CH0: Tpm0Ch0 = Tpm0Ch0 {};
+pub struct Tpm0Ch0 {}
+impl Tpm for Tpm0Ch0 {}
+
+pub const TPM0_CH1: Tpm0Ch1 = Tpm0Ch1 {};
+pub struct Tpm0Ch1 {}
+impl Tpm for Tpm0Ch1 {}
+
+pub const TPM0_CH2: Tpm0Ch2 = Tpm0Ch2 {};
+pub struct Tpm0Ch2 {}
+impl Tpm for Tpm0Ch2 {}
+
+pub const TPM0_CH3: Tpm0Ch3 = Tpm0Ch3 {};
+pub struct Tpm0Ch3 {}
+impl Tpm for Tpm0Ch3 {}
+
+pub const TPM0_CH4: Tpm0Ch4 = Tpm0Ch4 {};
+pub struct Tpm0Ch4 {}
+impl Tpm for Tpm0Ch4 {}
+
+pub const TPM0_CH5: Tpm0Ch5 = Tpm0Ch5 {};
+pub struct Tpm0Ch5 {}
+impl Tpm for Tpm0Ch5 {}
+
+pub const TPM1_CH0: Tpm1Ch0 = Tpm1Ch0 {};
+pub struct Tpm1Ch0 {}
+impl Tpm for Tpm1Ch0 {}
+
+pub const TPM1_CH1: Tpm1Ch1 = Tpm1Ch1 {};
+pub struct Tpm1Ch1 {}
+impl Tpm for Tpm1Ch1 {}
+
+pub const TPM1_CH2: Tpm1Ch2 = Tpm1Ch2 {};
+pub struct Tpm1Ch2 {}
+impl Tpm for Tpm1Ch2 {}
+
+pub const TPM1_CH3: Tpm1Ch3 = Tpm1Ch3 {};
+pub struct Tpm1Ch3 {}
+impl Tpm for Tpm1Ch3 {}
+
+pub const TPM1_CH4: Tpm1Ch4 = Tpm1Ch4 {};
+pub struct Tpm1Ch4 {}
+impl Tpm for Tpm1Ch4 {}
+
+pub const TPM1_CH5: Tpm1Ch5 = Tpm1Ch5 {};
+pub struct Tpm1Ch5 {}
+impl Tpm for Tpm1Ch5 {}
+
+pub const TPM2_CH0: Tpm2Ch0 = Tpm2Ch0 {};
+pub struct Tpm2Ch0 {}
+impl Tpm for Tpm2Ch0 {}
+
+pub const TPM2_CH1: Tpm2Ch1 = Tpm2Ch1 {};
+pub struct Tpm2Ch1 {}
+impl Tpm for Tpm2Ch1 {}
+
+pub const TPM2_CH2: Tpm2Ch2 = Tpm2Ch2 {};
+pub struct Tpm2Ch2 {}
+impl Tpm for Tpm2Ch2 {}
+
+pub const TPM2_CH3: Tpm2Ch3 = Tpm2Ch3 {};
+pub struct Tpm2Ch3 {}
+impl Tpm for Tpm2Ch3 {}
+
+pub const TPM2_CH4: Tpm2Ch4 = Tpm2Ch4 {};
+pub struct Tpm2Ch4 {}
+impl Tpm for Tpm2Ch4 {}
+
+pub const TPM2_CH5: Tpm2Ch5 = Tpm2Ch5 {};
+pub struct Tpm2Ch5 {}
+impl Tpm for Tpm2Ch5 {}
 
 pub const UART0_TX: Uart0Tx = Uart0Tx {};
 pub struct Uart0Tx {}
@@ -35,9 +109,6 @@ pub struct Tsi0Ch1 {}
 pub const PTA0: Pta0 = Pta0 {};
 pub struct Pta0 {}
 
-pub const TPM0_CH5: Tpm0Ch5 = Tpm0Ch5 {};
-pub struct Tpm0Ch5 {}
-
 pub const SWD_CLK: SwdClk = SwdClk {};
 pub struct SwdClk {}
 
@@ -47,17 +118,11 @@ pub struct Tsi0Ch2 {}
 pub const PTA1: Pta1 = Pta1 {};
 pub struct Pta1 {}
 
-pub const TPM2_CH0: Tpm2Ch0 = Tpm2Ch0 {};
-pub struct Tpm2Ch0 {}
-
 pub const TSI0_CH3: Tsi0Ch3 = Tsi0Ch3 {};
 pub struct Tsi0Ch3 {}
 
 pub const PTA2: Pta2 = Pta2 {};
 pub struct Pta2 {}
-
-pub const TPM2_CH1: Tpm2Ch1 = Tpm2Ch1 {};
-pub struct Tpm2Ch1 {}
 
 pub const TSI0_CH4: Tsi0Ch4 = Tsi0Ch4 {};
 pub struct Tsi0Ch4 {}
@@ -67,9 +132,6 @@ pub struct Pta3 {}
 
 pub const I2C1_SCL: I2c1Scl = I2c1Scl {};
 pub struct I2c1Scl {}
-
-pub const TPM0_CH0: Tpm0Ch0 = Tpm0Ch0 {};
-pub struct Tpm0Ch0 {}
 
 pub const SWD_DIO: SwdDio = SwdDio {};
 pub struct SwdDio {}
@@ -83,9 +145,6 @@ pub struct Pta4 {}
 pub const I2C1_SDA: I2c1Sda = I2c1Sda {};
 pub struct I2c1Sda {}
 
-pub const TPM0_CH1: Tpm0Ch1 = Tpm0Ch1 {};
-pub struct Tpm0Ch1 {}
-
 pub const NMI_B: NmiB = NmiB {};
 pub struct NmiB {}
 
@@ -95,26 +154,17 @@ pub struct Pta5 {}
 pub const USB_CLKIN: UsbClkin = UsbClkin {};
 pub struct UsbClkin {}
 
-pub const TPM0_CH2: Tpm0Ch2 = Tpm0Ch2 {};
-pub struct Tpm0Ch2 {}
-
 pub const I2S0_TX_BCLK: I2s0TxBclk = I2s0TxBclk {};
 pub struct I2s0TxBclk {}
 
 pub const PTA12: Pta12 = Pta12 {};
 pub struct Pta12 {}
 
-pub const TPM1_CH0: Tpm1Ch0 = Tpm1Ch0 {};
-pub struct Tpm1Ch0 {}
-
 pub const I2S0_TXD0: I2s0Txd0 = I2s0Txd0 {};
 pub struct I2s0Txd0 {}
 
 pub const PTA13: Pta13 = Pta13 {};
 pub struct Pta13 {}
-
-pub const TPM1_CH1: Tpm1Ch1 = Tpm1Ch1 {};
-pub struct Tpm1Ch1 {}
 
 pub const I2S0_TX_FS: I2s0TxFs = I2s0TxFs {};
 pub struct I2s0TxFs {}
@@ -266,9 +316,6 @@ pub struct Ptc4 {}
 pub const SPI0_PCS0: Spi0Pcs0 = Spi0Pcs0 {};
 pub struct Spi0Pcs0 {}
 
-pub const TPM0_CH3: Tpm0Ch3 = Tpm0Ch3 {};
-pub struct Tpm0Ch3 {}
-
 pub const I2S0_MCLK: I2s0Mclk = I2s0Mclk {};
 pub struct I2s0Mclk {}
 
@@ -313,9 +360,6 @@ pub struct Cmp0In2 {}
 
 pub const PTC8: Ptc8 = Ptc8 {};
 pub struct Ptc8 {}
-
-pub const TPM0_CH4: Tpm0Ch4 = Tpm0Ch4 {};
-pub struct Tpm0Ch4 {}
 
 pub const CMP0_IN3: Cmp0In3 = Cmp0In3 {};
 pub struct Cmp0In3 {}

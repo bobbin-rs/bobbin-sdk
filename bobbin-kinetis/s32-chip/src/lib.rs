@@ -18,6 +18,7 @@ pub mod sim;
 pub mod scg;
 pub mod pcc;
 pub mod crc;
+pub mod ftm;
 pub mod lpit;
 pub mod flexcan;
 pub mod port;

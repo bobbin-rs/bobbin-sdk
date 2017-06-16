@@ -75,6 +75,12 @@ pub mod uart {
     pub use sim::SimEnabled;
 }
 
+pub mod ftm {
+    pub use chip::ftm::*;
+    pub use kinetis_common::hal::ftm::*;
+    pub use sim::SimEnabled;
+}
+
 pub mod pit {
     pub use chip::pit::*;
     pub use kinetis_common::hal::pit::*;
