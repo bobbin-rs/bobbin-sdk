@@ -963,7 +963,7 @@
             (name I2C3)
             (address 0x40007800)
             (interrupt
-                (name I2C2_EV)
+                (name I2C3_EV)
                 (value 72)
                 (description "I2C3 event interrupt")
             )

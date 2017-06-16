@@ -489,7 +489,7 @@
             (address 0x40005400)
             (description "Inter-integrated circuit")
             (interrupt
-                (name I2C1_EV_EXTI23)
+                (name I2C1_EV)
                 (value 31)
                 (description "I2C1 event interrupt and EXTI Line23 interrupt")
             )
@@ -503,7 +503,7 @@
             (name I2C2)
             (address 0x40005800)
             (interrupt
-                (name I2C2_EV_EXTI24)
+                (name I2C2_EV)
                 (value 33)
                 (description "I2C2 event interrupt & EXTI Line24 interrupt")
             )
@@ -517,14 +517,14 @@
             (name I2C3)
             (address 0x40007800)
             (interrupt
-                (name I2C2_EV_EXTI24)
-                (value 33)
-                (description "I2C2 event interrupt & EXTI Line24 interrupt")
+                (name I2C3_EV)
+                (value 72)
+                (description "I2C3 event interrupt")
             )
             (interrupt
-                (name I2C2_ER)
-                (value 34)
-                (description "I2C2 error interrupt")
+                (name I2C3_ER)
+                (value 73)
+                (description "I2C3 error interrupt")
             )    
         )        
     )
@@ -569,18 +569,18 @@
             (address 0x50000000)
             (description "Analog-to-Digital Converter")
             (interrupt
-                (name ADC1_2)
+                (name ADC1)
                 (value 18)
-                (description "ADC1 and ADC2 global interrupt")
+                (description "ADC1 global interrupt")
             )
         )
         (peripheral
             (name ADC2)
             (address 0x50000100)
             (interrupt
-                (name ADC1_2)
+                (name ADC2)
                 (value 18)
-                (description "ADC1 and ADC2 global interrupt")
+                (description "ADC2 global interrupt")
             )
         )
         (peripheral
@@ -641,9 +641,9 @@
             (address 0x40001000)
             (description "Basic Timer")
             (interrupt
-                (name TIM6_DACUNDER)
+                (name TIM6)
                 (value 54)
-                (description "TIM6 global and DAC12 underrun interrupts")
+                (description "TIM6 global interrupt")
             )
         )
         (peripheral
@@ -665,6 +665,26 @@
             (name TIM2)
             (address 0x40000000)
             (description "General purpose timer")
+            (channel
+                (name TIM2_CH1)
+                (index 0)
+                (signal (name TIM2_CH1) (type TIM))
+            )
+            (channel
+                (name TIM2_CH2)
+                (index 1)
+                (signal (name TIM2_CH2) (type TIM))
+            )
+            (channel
+                (name TIM2_CH3)
+                (index 2)
+                (signal (name TIM2_CH3) (type TIM))
+            )
+            (channel
+                (name TIM2_CH4)
+                (index 3)
+                (signal (name TIM2_CH4) (type TIM))
+            )                             
             (interrupt
                 (name TIM2)
                 (value 28)
@@ -674,6 +694,21 @@
         (peripheral
             (name TIM3)
             (address 0x40000400)
+            (channel
+                (name TIM3_CH2)
+                (index 1)
+                (signal (name TIM3_CH2) (type TIM))
+            )
+            (channel
+                (name TIM3_CH3)
+                (index 2)
+                (signal (name TIM3_CH3) (type TIM))
+            )
+            (channel
+                (name TIM3_CH4)
+                (index 3)
+                (signal (name TIM3_CH4) (type TIM))
+            )            
             (interrupt
                 (name TIM3)
                 (value 29)
@@ -683,6 +718,26 @@
         (peripheral
             (name TIM4)
             (address 0x40000800)
+            (channel
+                (name TIM4_CH1)
+                (index 0)
+                (signal (name TIM4_CH1) (type TIM))
+            )
+            (channel
+                (name TIM4_CH2)
+                (index 1)
+                (signal (name TIM4_CH2) (type TIM))
+            )
+            (channel
+                (name TIM4_CH3)
+                (index 2)
+                (signal (name TIM4_CH3) (type TIM))
+            )
+            (channel
+                (name TIM4_CH4)
+                (index 3)
+                (signal (name TIM4_CH4) (type TIM))
+            )                  
             (interrupt
                 (name TIM4)
                 (value 30)
@@ -693,30 +748,52 @@
             (name TIM15)
             (address 0x40014000)
             (description "General purpose timers")
+            (channel
+                (name TIM15_CH1)
+                (index 0)
+                (signal (name TIM15_CH1) (type TIM))
+            )      
+            (channel
+                (name TIM15_CH2)
+                (index 1)
+                (signal (name TIM15_CH2) (type TIM))
+            )                 
             (interrupt
-                (name TIM1_BRK_TIM15)
+                (name TIM15)
                 (value 24)
-                (description "TIM1 Break/TIM15 global interruts")
+                (description "TIM15 global interruts")
             )
         )
         (peripheral
             (name TIM16)
             (address 0x40014400)
             (description "General-purpose-timers")
+            (channel
+                (name TIM16_CH1)
+                (index 0)
+                (signal (name TIM16_CH1) (type TIM))
+                (signal (name TIM16_CH1N) (type TIMN))
+            )            
             (interrupt
-                (name TIM1_UP_TIM16)
+                (name TIM16)
                 (value 25)
-                (description "TIM1 Update/TIM16 global interrupts")
+                (description "TIM16 global interrupt")
             )
         )
         (peripheral
             (name TIM17)
             (address 0x40014800)
             (description "General purpose timer")
+            (channel
+                (name TIM17_CH1)
+                (index 0)
+                (signal (name TIM17_CH1) (type TIM))
+                (signal (name TIM17_CH1N) (type TIMN))
+            )
             (interrupt
-                (name TIM1_TRG_COM_TIM17)
+                (name TIM17)
                 (value 26)
-                (description "TIM1 trigger and commutation/TIM17 interrupts")
+                (description "TIM17 interrupts")
             )
         )            
     )
@@ -727,6 +804,41 @@
             (name TIM1)
             (address 0x40012c00)
             (description "Advanced timer")
+            (channel
+                (name TIM1_CH1)
+                (index 0)
+                (signal (name TIM1_CH1) (type TIM))
+            )
+            (channel
+                (name TIM1_CH2)
+                (index 1)
+                (signal (name TIM1_CH2) (type TIM))
+            )
+            (channel
+                (name TIM1_CH3)
+                (index 2)
+                (signal (name TIM1_CH3) (type TIM))
+            )
+            (channel
+                (name TIM1_CH4)
+                (index 3)
+                (signal (name TIM1_CH4) (type TIM))
+            )               
+            (interrupt
+                (name TIM1_BRK)
+                (value 24)
+                (description "TIM1 break interrupt")
+            )
+            (interrupt
+                (name TIM1_UP)
+                (value 25)
+                (description "TIM1 update interrupt")
+            )
+            (interrupt
+                (name TIM1_TRG_COM)
+                (value 26)
+                (description "TIM1 trigger and commutation interrupt")
+            )                
             (interrupt
                 (name TIM1_CC)
                 (value 27)
@@ -737,6 +849,26 @@
             (name TIM8)
             (address 0x40013400)
             (description "Advanced-timers")
+            (channel
+                (name TIM8_CH1)
+                (index 0)
+                (signal (name TIM8_CH1) (type TIM))
+            )
+            (channel
+                (name TIM8_CH2)
+                (index 1)
+                (signal (name TIM8_CH2) (type TIM))
+            )
+            (channel
+                (name TIM8_CH3)
+                (index 2)
+                (signal (name TIM8_CH3) (type TIM))
+            )
+            (channel
+                (name TIM8_CH4)
+                (index 3)
+                (signal (name TIM8_CH4) (type TIM))
+            )                   
             (interrupt
                 (name TIM8_BRK)
                 (value 43)
@@ -761,85 +893,179 @@
         (peripheral
             (name TIM20)
             (address 0x40015000)
+            (channel
+                (name TIM20_CH1)
+                (index 0)
+                (signal (name TIM20_CH1) (type TIM))
+            )
+            (channel
+                (name TIM20_CH2)
+                (index 1)
+                (signal (name TIM20_CH2) (type TIM))
+            )
+            (channel
+                (name TIM20_CH3)
+                (index 2)
+                (signal (name TIM20_CH3) (type TIM))
+            )
+            (channel
+                (name TIM20_CH4)
+                (index 3)
+                (signal (name TIM20_CH4) (type TIM))
+            )                   
             (interrupt
-                (name TIM1_CC)
-                (value 27)
-                (description "TIM1 capture compare interrupt")
+                (name TIM20_BRK)
+                (value 77)
+                (description "TIM20 break interrupt")
+            )
+            (interrupt
+                (name TIM20_UP)
+                (value 78)
+                (description "TIM20 update interrupt")
+            )
+            (interrupt
+                (name TIM20_TRG_COM)
+                (value 79)
+                (description "TIM20 Trigger and commutation interrupts")
+            )
+            (interrupt
+                (name TIM20_CC)
+                (value 80)
+                (description "TIM20 capture compare interrupt")
             )
         )    
     )
     (peripheral-group
         (name DMA)
-        (prototype "periph/dma.rx")
+        (module (name stm32_common::chip::dma_f3::*))
         (peripheral
             (name DMA1)
             (address 0x40020000)
             (description "DMA controller 1")
-            (interrupt
+            (channel
                 (name DMA1_CH1)
-                (value 11)
-                (description "DMA1 channel 1 interrupt")
+                (index 0)
+                (interrupt
+                    (name DMA1_CH1)
+                    (type DMA)
+                    (value 11)
+                    (description "DMA1 channel 1 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH2)
-                (value 12)
-                (description "DMA1 channel 2 interrupt")
+                (index 1)
+                (interrupt
+                    (name DMA1_CH2)
+                    (type DMA)
+                    (value 12)
+                    (description "DMA1 channel 2 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH3)
-                (value 13)
-                (description "DMA1 channel 3 interrupt")
+                (index 2)
+                (interrupt
+                    (name DMA1_CH3)
+                    (type DMA)
+                    (value 13)
+                    (description "DMA1 channel 3 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH4)
-                (value 14)
-                (description "DMA1 channel 4 interrupt")
+                (index 3)    
+                (interrupt
+                    (name DMA1_CH4)
+                    (type DMA)
+                    (value 14)
+                    (description "DMA1 channel 4 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH5)
-                (value 15)
-                (description "DMA1 channel 5 interrupt")
+                (index 4)    
+                (interrupt
+                    (name DMA1_CH5)
+                    (type DMA)
+                    (value 15)
+                    (description "DMA1 channel 5 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH6)
-                (value 16)
-                (description "DMA1 channel 6 interrupt")
+                (index 5)    
+                (interrupt
+                    (name DMA1_CH6)
+                    (type DMA)
+                    (value 16)
+                    (description "DMA1 channel 6 interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA1_CH7)
-                (value 17)
-                (description "DMA1 channel 7interrupt")
+                (index 6)    
+                (interrupt
+                    (name DMA1_CH7)
+                    (type DMA)
+                    (value 17)
+                    (description "DMA1 channel 7 interrupt")
+                )
             )
         )
         (peripheral
             (name DMA2)
             (address 0x40020400)
-            (interrupt
+            (channel
                 (name DMA2_CH1)
-                (value 56)
-                (description "DMA2 channel1 global interrupt")
+                (index 0)    
+                (interrupt
+                    (name DMA2_CH1)
+                    (type DMA)
+                    (value 56)
+                    (description "DMA2 channel1 global interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH2)
-                (value 57)
-                (description "DMA2 channel2 global interrupt")
+                (index 1)
+                (interrupt
+                    (name DMA2_CH2)
+                    (type DMA)
+                    (value 57)
+                    (description "DMA2 channel2 global interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH3)
-                (value 58)
-                (description "DMA2 channel3 global interrupt")
+                (index 2)    
+                (interrupt
+                    (name DMA2_CH3)
+                    (type DMA)
+                    (value 58)
+                    (description "DMA2 channel3 global interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH4)
-                (value 59)
-                (description "DMA2 channel4 global interrupt")
+                (index 3)    
+                (interrupt
+                    (name DMA2_CH4)
+                    (type DMA)
+                    (value 59)
+                    (description "DMA2 channel4 global interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH5)
-                (value 60)
-                (description "DMA2 channel5 global interrupt")
+                (index 4)
+                (interrupt
+                    (name DMA2_CH5)
+                    (type DMA)
+                    (value 60)
+                    (description "DMA2 channel5 global interrupt")
+                )
             )
         )
-    
     )
 )

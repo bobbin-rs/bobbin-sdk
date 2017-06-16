@@ -39,22 +39,22 @@
         (description "EXTI Line5 to Line9 interrupts")
     )
     (interrupt
-        (name I2C1_EV_EXTI23)
+        (name EXTI23)
         (value 31)
         (description "I2C1 event interrupt and EXTI Line23 interrupt")
     )
     (interrupt
-        (name USART1_EXTI25)
+        (name EXTI25)
         (value 37)
         (description "USART1 global interrupt and EXTI Line 25 interrupt")
     )
     (interrupt
-        (name USART2_EXTI26)
+        (name EXTI26)
         (value 38)
         (description "USART2 global interrupt and EXTI Line 26 interrupt")
     )
     (interrupt
-        (name USART3_EXTI28)
+        (name EXTI28)
         (value 39)
         (description "USART3 global interrupt and EXTI Line 28 interrupt")
     )
@@ -64,17 +64,17 @@
         (description "EXTI Line15 to Line10 interrupts")
     )
     (interrupt
-        (name UART4_EXTI34)
+        (name EXTI34)
         (value 52)
         (description "UART4 global and EXTI Line 34 interrupts")
     )
     (interrupt
-        (name UART5_EXTI35)
+        (name EXTI35)
         (value 53)
         (description "UART5 global and EXTI Line 35 interrupts")
     )
     (interrupt
-        (name USB_WKUP_EXTI)
+        (name EXTI18)
         (value 76)
         (description "USB wakeup from Suspend and EXTI Line 18")
     )
