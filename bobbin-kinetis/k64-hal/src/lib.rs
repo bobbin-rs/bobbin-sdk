@@ -22,7 +22,7 @@ pub mod port {
     pub use kinetis_common::hal::port::*;
     pub use sim::SimEnabled;
     use chip::gpio;
-    use chip::sig::{SignalTx, SignalRx};
+    use chip::sig::{SignalTx, SignalRx, SignalFtm};
 
     pub trait GpioPin<PIN_ID, GPIO_ID> {
         fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
@@ -47,6 +47,10 @@ pub mod port {
         fn mode_rx(&self, _: &S) -> &Self;
     }
 
+    pub trait ModeFtm<T, S> {
+        fn mode_ftm(&self, _: &S) -> &Self;
+    }
+
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
         fn mode_tx(&self, _: &S) -> &Self {
             self.set_mux(self.id.alt_fn());
@@ -59,7 +63,14 @@ pub mod port {
             self.set_mux(self.id.alt_fn());
             self
         }
-    }    
+    }   
+
+    impl<P, O, S, T> ModeFtm<T, S> for Pin<P, O> where S: SignalFtm<T>, P: AltFn<T> {
+        fn mode_ftm(&self, _: &S) -> &Self {
+            self.set_mux(self.id.alt_fn());
+            self
+        }
+    }        
 }
 
 pub mod gpio {
