@@ -1,4 +1,4 @@
-use core::fmt::{self, Arguments, Write};
+//use core::fmt::{self, Arguments, Write};
 
 /// Macro for sending `print!`-formatted messages to the ITM (Instrumentation
 /// Trace Macrocell).
