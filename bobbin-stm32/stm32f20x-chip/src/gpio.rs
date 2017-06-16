@@ -370,7 +370,7 @@ impl AltFn<super::sig::I2c3Smba> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Uasrt1Tx> for Pa9Id {
+impl AltFn<super::sig::Usart1Tx> for Pa9Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 

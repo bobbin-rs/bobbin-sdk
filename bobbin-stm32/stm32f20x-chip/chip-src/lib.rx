@@ -535,7 +535,7 @@
             (pin (name PA9) (index 9)
                 (altfn 1 TIM1_CH2)
                 (altfn 4 I2C3_SMBA)
-                (altfn 7 UASRT1_TX)
+                (altfn 7 USART1_TX)
                 (altfn 13 DCMI_D0)
                 (altfn 15 EVENTOUT)
             )

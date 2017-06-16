@@ -316,9 +316,6 @@ pub struct Tim1Ch2 {}
 pub const I2C3_SMBA: I2c3Smba = I2c3Smba {};
 pub struct I2c3Smba {}
 
-pub const UASRT1_TX: Uasrt1Tx = Uasrt1Tx {};
-pub struct Uasrt1Tx {}
-
 pub const DCMI_D0: DcmiD0 = DcmiD0 {};
 pub struct DcmiD0 {}
 
