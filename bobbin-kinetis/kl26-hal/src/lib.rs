@@ -16,7 +16,7 @@ pub mod port {
     pub use kinetis_common::hal::port::*;
     pub use sim::SimEnabled;
     use chip::gpio;
-    use chip::sig::{SignalTx, SignalRx};
+    use chip::sig::{SignalTx, SignalRx, SignalTpm};
     //use core::ops::Deref;
 
     pub trait GpioPin<PIN_ID, GPIO_ID> {
@@ -42,6 +42,11 @@ pub mod port {
         fn mode_rx(&self, _: &S) -> &Self;
     }
 
+    pub trait ModeTpm<T, S> {
+        fn mode_tpm(&self, _: &S) -> &Self;
+    }
+
+
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
         fn mode_tx(&self, _: &S) -> &Self {
             self.set_mux(self.id.alt_fn());
@@ -55,6 +60,13 @@ pub mod port {
             self
         }
     }    
+
+    impl<P, O, S, T> ModeTpm<T, S> for Pin<P, O> where S: SignalTpm<T>, P: AltFn<T> {
+        fn mode_tpm(&self, _: &S) -> &Self {
+            self.set_mux(self.id.alt_fn());
+            self
+        }
+    }        
 
 }
 
@@ -80,7 +92,7 @@ pub mod uart0 {
 pub mod tpm {
     pub use chip::tpm::*;
     pub use kinetis_common::hal::tpm::*;
-    pub use sim::SimEnabled;
+    pub use sim::{SimEnabled, SimSrc};
 }
 
 pub mod pit {

@@ -1544,6 +1544,21 @@ impl Sim {
    }
 }
 
+impl Src for super::tpm::Tpm0 {
+   #[inline] fn src(&self) -> u32 { SIM.sopt2().tpmsrc() }
+   #[inline] fn set_src(&self, value: u32) { SIM.with_sopt2(|r| r.set_tpmsrc(value)); }
+}
+
+impl Src for super::tpm::Tpm1 {
+   #[inline] fn src(&self) -> u32 { SIM.sopt2().tpmsrc() }
+   #[inline] fn set_src(&self, value: u32) { SIM.with_sopt2(|r| r.set_tpmsrc(value)); }
+}
+
+impl Src for super::tpm::Tpm2 {
+   #[inline] fn src(&self) -> u32 { SIM.sopt2().tpmsrc() }
+   #[inline] fn set_src(&self, value: u32) { SIM.with_sopt2(|r| r.set_tpmsrc(value)); }
+}
+
 impl Src for super::uart0::Uart0 {
    #[inline] fn src(&self) -> u32 { SIM.sopt2().uart0src() }
    #[inline] fn set_src(&self, value: u32) { SIM.with_sopt2(|r| r.set_uart0src(value)); }
