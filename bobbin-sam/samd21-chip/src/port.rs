@@ -1105,11 +1105,7 @@ impl AltFn<super::sig::Sercom1Pad0> for Pa00Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa00Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pa00Id {
+impl AltFn<super::sig::Tcc2Wo0> for Pa00Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -1125,11 +1121,7 @@ impl AltFn<super::sig::Sercom1Pad1> for Pa01Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa01Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pa01Id {
+impl AltFn<super::sig::Tcc2Wo1> for Pa01Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -1213,11 +1205,7 @@ impl AltFn<super::sig::Sercom0Pad0> for Pa04Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pa04Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pa04Id {
+impl AltFn<super::sig::Tcc0Wo0> for Pa04Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -1245,11 +1233,7 @@ impl AltFn<super::sig::Sercom0Pad1> for Pa05Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pa05Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pa05Id {
+impl AltFn<super::sig::Tcc0Wo1> for Pa05Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -1277,11 +1261,7 @@ impl AltFn<super::sig::Sercom0Pad2> for Pa06Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa06Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pa06Id {
+impl AltFn<super::sig::Tcc1Wo0> for Pa06Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -1309,19 +1289,11 @@ impl AltFn<super::sig::Sercom0Pad3> for Pa07Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa07Id {
+impl AltFn<super::sig::Tcc1Wo1> for Pa07Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa07Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2s> for Pa07Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sd0> for Pa07Id {
+impl AltFn<super::sig::I2sSd0> for Pa07Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1349,27 +1321,15 @@ impl AltFn<super::sig::Sercom2Pad0> for Pa08Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pa08Id {
+impl AltFn<super::sig::Tcc0Wo0> for Pa08Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa08Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pa08Id {
+impl AltFn<super::sig::Tcc1Wo2> for Pa08Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo2> for Pa08Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa08Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sd1> for Pa08Id {
+impl AltFn<super::sig::I2sSd1> for Pa08Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1397,27 +1357,15 @@ impl AltFn<super::sig::Sercom2Pad1> for Pa09Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pa09Id {
+impl AltFn<super::sig::Tcc0Wo1> for Pa09Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa09Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pa09Id {
+impl AltFn<super::sig::Tcc1Wo3> for Pa09Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo3> for Pa09Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa09Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Mck0> for Pa09Id {
+impl AltFn<super::sig::I2sMck0> for Pa09Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1445,27 +1393,15 @@ impl AltFn<super::sig::Sercom2Pad2> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa10Id {
+impl AltFn<super::sig::Tcc1Wo0> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa10Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa10Id {
+impl AltFn<super::sig::Tcc0Wo2> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo2> for Pa10Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sck0> for Pa10Id {
+impl AltFn<super::sig::I2sSck0> for Pa10Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1497,27 +1433,15 @@ impl AltFn<super::sig::Sercom2Pad3> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa11Id {
+impl AltFn<super::sig::Tcc1Wo1> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa11Id {
+impl AltFn<super::sig::Tcc0Wo3> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo3> for Pa11Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Fs0> for Pa11Id {
+impl AltFn<super::sig::I2sFs0> for Pa11Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1541,27 +1465,15 @@ impl AltFn<super::sig::Sercom4Pad0> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa12Id {
+impl AltFn<super::sig::Tcc2Wo0> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa12Id {
+impl AltFn<super::sig::Tcc0Wo6> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo6> for Pa12Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ac> for Pa12Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Cmp0> for Pa12Id {
+impl AltFn<super::sig::AcCmp0> for Pa12Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
@@ -1581,27 +1493,15 @@ impl AltFn<super::sig::Sercom4Pad1> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa13Id {
+impl AltFn<super::sig::Tcc2Wo1> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa13Id {
+impl AltFn<super::sig::Tcc0Wo7> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo7> for Pa13Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ac> for Pa13Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Cmp1> for Pa13Id {
+impl AltFn<super::sig::AcCmp1> for Pa13Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
@@ -1621,19 +1521,11 @@ impl AltFn<super::sig::Sercom4Pad2> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc3> for Pa14Id {
+impl AltFn<super::sig::Tc3Wo0> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa14Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa14Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo4> for Pa14Id {
+impl AltFn<super::sig::Tcc0Wo4> for Pa14Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -1657,19 +1549,11 @@ impl AltFn<super::sig::Sercom4Pad3> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc3> for Pa15Id {
+impl AltFn<super::sig::Tc3Wo1> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa15Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa15Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo5> for Pa15Id {
+impl AltFn<super::sig::Tcc0Wo5> for Pa15Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -1697,19 +1581,11 @@ impl AltFn<super::sig::Sercom3Pad0> for Pa16Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa16Id {
+impl AltFn<super::sig::Tcc2Wo0> for Pa16Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo6> for Pa16Id {
+impl AltFn<super::sig::Tcc0Wo6> for Pa16Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -1737,19 +1613,11 @@ impl AltFn<super::sig::Sercom3Pad1> for Pa17Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc2> for Pa17Id {
+impl AltFn<super::sig::Tcc2Wo1> for Pa17Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo7> for Pa17Id {
+impl AltFn<super::sig::Tcc0Wo7> for Pa17Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -1777,27 +1645,15 @@ impl AltFn<super::sig::Sercom3Pad2> for Pa18Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc3> for Pa18Id {
+impl AltFn<super::sig::Tc3Wo0> for Pa18Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa18Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa18Id {
+impl AltFn<super::sig::Tcc0Wo2> for Pa18Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo2> for Pa18Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ac> for Pa18Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Cmp0> for Pa18Id {
+impl AltFn<super::sig::AcCmp0> for Pa18Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
@@ -1821,35 +1677,19 @@ impl AltFn<super::sig::Sercom3Pad3> for Pa19Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc3> for Pa19Id {
+impl AltFn<super::sig::Tc3Wo1> for Pa19Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa19Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa19Id {
+impl AltFn<super::sig::Tcc0Wo3> for Pa19Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo3> for Pa19Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa19Id {
+impl AltFn<super::sig::I2sSd0> for Pa19Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
-impl AltFn<super::sig::Sd0> for Pa19Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Ac> for Pa19Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::Cmp1> for Pa19Id {
+impl AltFn<super::sig::AcCmp1> for Pa19Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
@@ -1873,27 +1713,15 @@ impl AltFn<super::sig::Sercom3Pad2> for Pa20Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pa20Id {
+impl AltFn<super::sig::Tc7Wo0> for Pa20Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa20Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa20Id {
+impl AltFn<super::sig::Tcc0Wo6> for Pa20Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo6> for Pa20Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa20Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sck0> for Pa20Id {
+impl AltFn<super::sig::I2sSck0> for Pa20Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1921,27 +1749,15 @@ impl AltFn<super::sig::Sercom3Pad3> for Pa21Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pa21Id {
+impl AltFn<super::sig::Tc7Wo1> for Pa21Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa21Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa21Id {
+impl AltFn<super::sig::Tcc0Wo7> for Pa21Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo7> for Pa21Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pa21Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Fs0> for Pa21Id {
+impl AltFn<super::sig::I2sFs0> for Pa21Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -1969,19 +1785,11 @@ impl AltFn<super::sig::Sercom5Pad0> for Pa22Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc4> for Pa22Id {
+impl AltFn<super::sig::Tc4Wo0> for Pa22Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa22Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa22Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo4> for Pa22Id {
+impl AltFn<super::sig::Tcc0Wo4> for Pa22Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -2009,27 +1817,15 @@ impl AltFn<super::sig::Sercom5Pad1> for Pa23Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc4> for Pa23Id {
+impl AltFn<super::sig::Tc4Wo1> for Pa23Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa23Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pa23Id {
+impl AltFn<super::sig::Tcc0Wo5> for Pa23Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo5> for Pa23Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Usb> for Pa23Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sof1khz> for Pa23Id {
+impl AltFn<super::sig::UsbSof1khz> for Pa23Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2053,27 +1849,15 @@ impl AltFn<super::sig::Sercom5Pad2> for Pa24Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc5> for Pa24Id {
+impl AltFn<super::sig::Tc5Wo0> for Pa24Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pa24Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pa24Id {
+impl AltFn<super::sig::Tcc1Wo2> for Pa24Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo2> for Pa24Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Usb> for Pa24Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Dm> for Pa24Id {
+impl AltFn<super::sig::UsbDm> for Pa24Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2093,27 +1877,15 @@ impl AltFn<super::sig::Sercom5Pad3> for Pa25Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc5> for Pa25Id {
+impl AltFn<super::sig::Tc5Wo1> for Pa25Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pa25Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pa25Id {
+impl AltFn<super::sig::Tcc1Wo3> for Pa25Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo3> for Pa25Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Usb> for Pa25Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Dp> for Pa25Id {
+impl AltFn<super::sig::UsbDp> for Pa25Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2153,11 +1925,7 @@ impl AltFn<super::sig::Sercom1Pad2> for Pa30Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa30Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pa30Id {
+impl AltFn<super::sig::Tcc1Wo0> for Pa30Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2181,11 +1949,7 @@ impl AltFn<super::sig::Sercom1Pad3> for Pa31Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc1> for Pa31Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pa31Id {
+impl AltFn<super::sig::Tcc1Wo1> for Pa31Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2213,11 +1977,7 @@ impl AltFn<super::sig::Sercom5Pad2> for Pb00Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pb00Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pb00Id {
+impl AltFn<super::sig::Tc7Wo0> for Pb00Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2241,11 +2001,7 @@ impl AltFn<super::sig::Sercom5Pad3> for Pb01Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pb01Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pb01Id {
+impl AltFn<super::sig::Tc7Wo1> for Pb01Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2269,11 +2025,7 @@ impl AltFn<super::sig::Sercom5Pad0> for Pb02Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc6> for Pb02Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pb02Id {
+impl AltFn<super::sig::Tc6Wo0> for Pb02Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2297,11 +2049,7 @@ impl AltFn<super::sig::Sercom5Pad1> for Pb03Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc6> for Pb03Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pb03Id {
+impl AltFn<super::sig::Tc6Wo1> for Pb03Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2389,11 +2137,7 @@ impl AltFn<super::sig::Sercom4Pad0> for Pb08Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc4> for Pb08Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pb08Id {
+impl AltFn<super::sig::Tc4Wo0> for Pb08Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2417,11 +2161,7 @@ impl AltFn<super::sig::Sercom4Pad1> for Pb09Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc4> for Pb09Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pb09Id {
+impl AltFn<super::sig::Tc4Wo1> for Pb09Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2437,27 +2177,15 @@ impl AltFn<super::sig::Sercom4Pad2> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc5> for Pb10Id {
+impl AltFn<super::sig::Tc5Wo0> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb10Id {
+impl AltFn<super::sig::Tcc0Wo4> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo4> for Pb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Mck1> for Pb10Id {
+impl AltFn<super::sig::I2sMck1> for Pb10Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2477,27 +2205,15 @@ impl AltFn<super::sig::Sercom4Pad3> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc5> for Pb11Id {
+impl AltFn<super::sig::Tc5Wo1> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb11Id {
+impl AltFn<super::sig::Tcc0Wo5> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo5> for Pb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sck1> for Pb11Id {
+impl AltFn<super::sig::I2sSck1> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2521,27 +2237,15 @@ impl AltFn<super::sig::Sercom4Pad0> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc4> for Pb12Id {
+impl AltFn<super::sig::Tc4Wo0> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb12Id {
+impl AltFn<super::sig::Tcc0Wo6> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo6> for Pb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Fs1> for Pb12Id {
+impl AltFn<super::sig::I2sFs1> for Pb12Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2565,19 +2269,11 @@ impl AltFn<super::sig::Sercom4Pad1> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc4> for Pb13Id {
+impl AltFn<super::sig::Tc4Wo1> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo7> for Pb13Id {
+impl AltFn<super::sig::Tcc0Wo7> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -2601,11 +2297,7 @@ impl AltFn<super::sig::Sercom4Pad2> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc5> for Pb14Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pb14Id {
+impl AltFn<super::sig::Tc5Wo0> for Pb14Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2629,11 +2321,7 @@ impl AltFn<super::sig::Sercom4Pad3> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc5> for Pb15Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pb15Id {
+impl AltFn<super::sig::Tc5Wo1> for Pb15Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2653,27 +2341,15 @@ impl AltFn<super::sig::Sercom5Pad0> for Pb16Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc6> for Pb16Id {
+impl AltFn<super::sig::Tc6Wo0> for Pb16Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb16Id {
+impl AltFn<super::sig::Tcc0Wo4> for Pb16Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo4> for Pb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Sd1> for Pb16Id {
+impl AltFn<super::sig::I2sSd1> for Pb16Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2693,27 +2369,15 @@ impl AltFn<super::sig::Sercom5Pad1> for Pb17Id {
    #[inline] fn alt_fn(&self) -> usize { 2 }
 }
 
-impl AltFn<super::sig::Tc6> for Pb17Id {
+impl AltFn<super::sig::Tc6Wo1> for Pb17Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc0> for Pb17Id {
+impl AltFn<super::sig::Tcc0Wo5> for Pb17Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
-impl AltFn<super::sig::Wo5> for Pb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s> for Pb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Mck0> for Pb17Id {
+impl AltFn<super::sig::I2sMck0> for Pb17Id {
    #[inline] fn alt_fn(&self) -> usize { 6 }
 }
 
@@ -2733,11 +2397,7 @@ impl AltFn<super::sig::Sercom5Pad2> for Pb22Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pb22Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo0> for Pb22Id {
+impl AltFn<super::sig::Tc7Wo0> for Pb22Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2757,11 +2417,7 @@ impl AltFn<super::sig::Sercom5Pad3> for Pb23Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tc7> for Pb23Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Wo1> for Pb23Id {
+impl AltFn<super::sig::Tc7Wo1> for Pb23Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
@@ -2781,19 +2437,11 @@ impl AltFn<super::sig::Sercom5Pad0> for Pb30Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pb30Id {
+impl AltFn<super::sig::Tcc0Wo0> for Pb30Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo0> for Pb30Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pb30Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo2> for Pb30Id {
+impl AltFn<super::sig::Tcc1Wo2> for Pb30Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 
@@ -2809,19 +2457,11 @@ impl AltFn<super::sig::Sercom5Pad1> for Pb31Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
 
-impl AltFn<super::sig::Tcc0> for Pb31Id {
+impl AltFn<super::sig::Tcc0Wo1> for Pb31Id {
    #[inline] fn alt_fn(&self) -> usize { 4 }
 }
 
-impl AltFn<super::sig::Wo1> for Pb31Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Tcc1> for Pb31Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Wo3> for Pb31Id {
+impl AltFn<super::sig::Tcc1Wo3> for Pb31Id {
    #[inline] fn alt_fn(&self) -> usize { 5 }
 }
 

@@ -15,8 +15,56 @@ pub type Tcc1 = Periph<Tcc1Id>;
 pub struct Tcc2Id {}
 pub type Tcc2 = Periph<Tcc2Id>;
 
+impl super::sig::Signal<super::sig::Tcc0Wo0> for Tcc0 {}
+impl super::sig::SignalWo0<super::sig::Tcc0Wo0> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo1> for Tcc0 {}
+impl super::sig::SignalWo1<super::sig::Tcc0Wo1> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo2> for Tcc0 {}
+impl super::sig::SignalWo2<super::sig::Tcc0Wo2> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo3> for Tcc0 {}
+impl super::sig::SignalWo3<super::sig::Tcc0Wo3> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo4> for Tcc0 {}
+impl super::sig::SignalWo4<super::sig::Tcc0Wo4> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo5> for Tcc0 {}
+impl super::sig::SignalWo5<super::sig::Tcc0Wo5> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo6> for Tcc0 {}
+impl super::sig::SignalWo6<super::sig::Tcc0Wo6> for Tcc0 {}
+impl super::sig::Signal<super::sig::Tcc0Wo7> for Tcc0 {}
+impl super::sig::SignalWo7<super::sig::Tcc0Wo7> for Tcc0 {}
 
+impl super::sig::Signal<super::sig::Tcc1Wo0> for Tcc1 {}
+impl super::sig::SignalWo0<super::sig::Tcc1Wo0> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo1> for Tcc1 {}
+impl super::sig::SignalWo1<super::sig::Tcc1Wo1> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo2> for Tcc1 {}
+impl super::sig::SignalWo2<super::sig::Tcc1Wo2> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo3> for Tcc1 {}
+impl super::sig::SignalWo3<super::sig::Tcc1Wo3> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo4> for Tcc1 {}
+impl super::sig::SignalWo4<super::sig::Tcc1Wo4> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo5> for Tcc1 {}
+impl super::sig::SignalWo5<super::sig::Tcc1Wo5> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo6> for Tcc1 {}
+impl super::sig::SignalWo6<super::sig::Tcc1Wo6> for Tcc1 {}
+impl super::sig::Signal<super::sig::Tcc1Wo7> for Tcc1 {}
+impl super::sig::SignalWo7<super::sig::Tcc1Wo7> for Tcc1 {}
 
+impl super::sig::Signal<super::sig::Tcc2Wo0> for Tcc2 {}
+impl super::sig::SignalWo0<super::sig::Tcc2Wo0> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo1> for Tcc2 {}
+impl super::sig::SignalWo1<super::sig::Tcc2Wo1> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo2> for Tcc2 {}
+impl super::sig::SignalWo2<super::sig::Tcc2Wo2> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo3> for Tcc2 {}
+impl super::sig::SignalWo3<super::sig::Tcc2Wo3> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo4> for Tcc2 {}
+impl super::sig::SignalWo4<super::sig::Tcc2Wo4> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo5> for Tcc2 {}
+impl super::sig::SignalWo5<super::sig::Tcc2Wo5> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo6> for Tcc2 {}
+impl super::sig::SignalWo6<super::sig::Tcc2Wo6> for Tcc2 {}
+impl super::sig::Signal<super::sig::Tcc2Wo7> for Tcc2 {}
+impl super::sig::SignalWo7<super::sig::Tcc2Wo7> for Tcc2 {}
 
 
 impl<T> Periph<T> {
@@ -3556,3 +3604,71 @@ impl ::core::fmt::Debug for Wexctrl {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+
+pub const TCC0_CH0: Channel<Tcc0Ch0Id, Tcc0Id> = Channel { periph: TCC0, index: 0, id: Tcc0Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc0Ch0Id {}
+pub type Tcc0Ch0 = Channel<Tcc0Ch0Id, Tcc0Id>;
+
+pub const TCC0_CH1: Channel<Tcc0Ch1Id, Tcc0Id> = Channel { periph: TCC0, index: 1, id: Tcc0Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc0Ch1Id {}
+pub type Tcc0Ch1 = Channel<Tcc0Ch1Id, Tcc0Id>;
+
+pub const TCC0_CH2: Channel<Tcc0Ch2Id, Tcc0Id> = Channel { periph: TCC0, index: 2, id: Tcc0Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc0Ch2Id {}
+pub type Tcc0Ch2 = Channel<Tcc0Ch2Id, Tcc0Id>;
+
+pub const TCC0_CH3: Channel<Tcc0Ch3Id, Tcc0Id> = Channel { periph: TCC0, index: 3, id: Tcc0Ch3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc0Ch3Id {}
+pub type Tcc0Ch3 = Channel<Tcc0Ch3Id, Tcc0Id>;
+
+pub const TCC1_CH0: Channel<Tcc1Ch0Id, Tcc1Id> = Channel { periph: TCC1, index: 0, id: Tcc1Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc1Ch0Id {}
+pub type Tcc1Ch0 = Channel<Tcc1Ch0Id, Tcc1Id>;
+
+pub const TCC1_CH1: Channel<Tcc1Ch1Id, Tcc1Id> = Channel { periph: TCC1, index: 1, id: Tcc1Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc1Ch1Id {}
+pub type Tcc1Ch1 = Channel<Tcc1Ch1Id, Tcc1Id>;
+
+pub const TCC1_CH2: Channel<Tcc1Ch2Id, Tcc1Id> = Channel { periph: TCC1, index: 2, id: Tcc1Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc1Ch2Id {}
+pub type Tcc1Ch2 = Channel<Tcc1Ch2Id, Tcc1Id>;
+
+pub const TCC1_CH3: Channel<Tcc1Ch3Id, Tcc1Id> = Channel { periph: TCC1, index: 3, id: Tcc1Ch3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc1Ch3Id {}
+pub type Tcc1Ch3 = Channel<Tcc1Ch3Id, Tcc1Id>;
+
+pub const TCC2_CH0: Channel<Tcc2Ch0Id, Tcc2Id> = Channel { periph: TCC2, index: 0, id: Tcc2Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc2Ch0Id {}
+pub type Tcc2Ch0 = Channel<Tcc2Ch0Id, Tcc2Id>;
+
+pub const TCC2_CH1: Channel<Tcc2Ch1Id, Tcc2Id> = Channel { periph: TCC2, index: 1, id: Tcc2Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc2Ch1Id {}
+pub type Tcc2Ch1 = Channel<Tcc2Ch1Id, Tcc2Id>;
+
+pub const TCC2_CH2: Channel<Tcc2Ch2Id, Tcc2Id> = Channel { periph: TCC2, index: 2, id: Tcc2Ch2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc2Ch2Id {}
+pub type Tcc2Ch2 = Channel<Tcc2Ch2Id, Tcc2Id>;
+
+pub const TCC2_CH3: Channel<Tcc2Ch3Id, Tcc2Id> = Channel { periph: TCC2, index: 3, id: Tcc2Ch3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tcc2Ch3Id {}
+pub type Tcc2Ch3 = Channel<Tcc2Ch3Id, Tcc2Id>;
+

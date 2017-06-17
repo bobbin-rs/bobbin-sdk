@@ -1,5 +1,6 @@
 pub use chip::port::*;
 use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
+use chip::sig::{SignalWo0, SignalWo1, SignalWo2, SignalWo3, SignalWo4, SignalWo5, SignalWo6, SignalWo7};
 pub use pm::PmEnabled;
 
 use chip::port::Pin;
@@ -95,8 +96,41 @@ pub trait ModePad1<T, S> {
 pub trait ModePad2<T, S> {
     fn mode_pad_2(&self, _: &S) -> &Self;
 }
+
 pub trait ModePad3<T, S> {
     fn mode_pad_3(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo0<T, S> {
+    fn mode_wo_0(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo1<T, S> {
+    fn mode_wo_1(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo2<T, S> {
+    fn mode_wo_2(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo3<T, S> {
+    fn mode_wo_3(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo4<T, S> {
+    fn mode_wo_4(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo5<T, S> {
+    fn mode_wo_5(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo6<T, S> {
+    fn mode_wo_6(&self, _: &S) -> &Self;
+}
+
+pub trait ModeWo7<T, S> {
+    fn mode_wo_7(&self, _: &S) -> &Self;
 }
 
 impl<P, O, S, T> ModePad0<T, S> for Pin<P, O> where S: SignalPad0<T>, P: AltFn<T> {
@@ -122,6 +156,62 @@ impl<P, O, S, T> ModePad2<T, S> for Pin<P, O> where S: SignalPad2<T>, P: AltFn<T
 
 impl<P, O, S, T> ModePad3<T, S> for Pin<P, O> where S: SignalPad3<T>, P: AltFn<T> {
     fn mode_pad_3(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo0<T, S> for Pin<P, O> where S: SignalWo0<T>, P: AltFn<T> {
+    fn mode_wo_0(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo1<T, S> for Pin<P, O> where S: SignalWo1<T>, P: AltFn<T> {
+    fn mode_wo_1(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo2<T, S> for Pin<P, O> where S: SignalWo2<T>, P: AltFn<T> {
+    fn mode_wo_2(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo3<T, S> for Pin<P, O> where S: SignalWo3<T>, P: AltFn<T> {
+    fn mode_wo_3(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo4<T, S> for Pin<P, O> where S: SignalWo4<T>, P: AltFn<T> {
+    fn mode_wo_4(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo5<T, S> for Pin<P, O> where S: SignalWo5<T>, P: AltFn<T> {
+    fn mode_wo_5(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo6<T, S> for Pin<P, O> where S: SignalWo6<T>, P: AltFn<T> {
+    fn mode_wo_6(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeWo7<T, S> for Pin<P, O> where S: SignalWo7<T>, P: AltFn<T> {
+    fn mode_wo_7(&self, _: &S) -> &Self {
         self.set_mode_pmux(self.id.alt_fn());
         self
     }

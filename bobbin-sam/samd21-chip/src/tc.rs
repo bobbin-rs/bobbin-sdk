@@ -15,8 +15,20 @@ pub type Tc4 = Periph<Tc4Id>;
 pub struct Tc5Id {}
 pub type Tc5 = Periph<Tc5Id>;
 
+impl super::sig::Signal<super::sig::Tc3Wo0> for Tc3Ch0 {}
+impl super::sig::SignalWo<super::sig::Tc3Wo0> for Tc3Ch0 {}
+impl super::sig::Signal<super::sig::Tc3Wo1> for Tc3Ch1 {}
+impl super::sig::SignalWo<super::sig::Tc3Wo1> for Tc3Ch1 {}
 
+impl super::sig::Signal<super::sig::Tc4Wo0> for Tc4Ch0 {}
+impl super::sig::SignalWo<super::sig::Tc4Wo0> for Tc4Ch0 {}
+impl super::sig::Signal<super::sig::Tc4Wo1> for Tc4Ch1 {}
+impl super::sig::SignalWo<super::sig::Tc4Wo1> for Tc4Ch1 {}
 
+impl super::sig::Signal<super::sig::Tc5Wo0> for Tc5Ch0 {}
+impl super::sig::SignalWo<super::sig::Tc5Wo0> for Tc5Ch0 {}
+impl super::sig::Signal<super::sig::Tc5Wo1> for Tc5Ch1 {}
+impl super::sig::SignalWo<super::sig::Tc5Wo1> for Tc5Ch1 {}
 
 
 impl<T> Periph<T> {
@@ -3116,3 +3128,41 @@ impl ::core::fmt::Debug for Status {
 }
 }
 // End of count32
+#[derive(Clone, Copy, PartialEq)]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+
+pub const TC3_CH0: Channel<Tc3Ch0Id, Tc3Id> = Channel { periph: TC3, index: 0, id: Tc3Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc3Ch0Id {}
+pub type Tc3Ch0 = Channel<Tc3Ch0Id, Tc3Id>;
+
+pub const TC3_CH1: Channel<Tc3Ch1Id, Tc3Id> = Channel { periph: TC3, index: 1, id: Tc3Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc3Ch1Id {}
+pub type Tc3Ch1 = Channel<Tc3Ch1Id, Tc3Id>;
+
+pub const TC4_CH0: Channel<Tc4Ch0Id, Tc4Id> = Channel { periph: TC4, index: 0, id: Tc4Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc4Ch0Id {}
+pub type Tc4Ch0 = Channel<Tc4Ch0Id, Tc4Id>;
+
+pub const TC4_CH1: Channel<Tc4Ch1Id, Tc4Id> = Channel { periph: TC4, index: 1, id: Tc4Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc4Ch1Id {}
+pub type Tc4Ch1 = Channel<Tc4Ch1Id, Tc4Id>;
+
+pub const TC5_CH0: Channel<Tc5Ch0Id, Tc5Id> = Channel { periph: TC5, index: 0, id: Tc5Ch0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc5Ch0Id {}
+pub type Tc5Ch0 = Channel<Tc5Ch0Id, Tc5Id>;
+
+pub const TC5_CH1: Channel<Tc5Ch1Id, Tc5Id> = Channel { periph: TC5, index: 1, id: Tc5Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tc5Ch1Id {}
+pub type Tc5Ch1 = Channel<Tc5Ch1Id, Tc5Id>;
+

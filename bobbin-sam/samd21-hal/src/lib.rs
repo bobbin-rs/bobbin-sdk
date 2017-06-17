@@ -11,6 +11,7 @@ pub mod port;
 pub mod gclk;
 pub mod pm;
 pub mod tc;
+pub mod tcc;
 pub mod sercom;
 
 // pub mod port;
