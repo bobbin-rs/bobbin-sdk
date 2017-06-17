@@ -738,43 +738,17 @@ impl Ctrla {
      self
   }
 
-  #[inline] pub fn cpten0(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn cpten(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 24 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [24]
   }
-  #[inline] pub fn set_cpten0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cpten(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn cpten1(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-  #[inline] pub fn set_cpten1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-  #[inline] pub fn cpten2(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-  #[inline] pub fn set_cpten2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-  #[inline] pub fn cpten3(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
-  }
-  #[inline] pub fn set_cpten3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
+     let shift: usize = 24 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -795,10 +769,10 @@ impl ::core::fmt::Debug for Ctrla {
       if self.prescsync() != 0 { try!(write!(f, " prescsync=0x{:x}", self.prescsync()))}
       if self.alock() != 0 { try!(write!(f, " alock"))}
       if self.msync() != 0 { try!(write!(f, " msync"))}
-      if self.cpten0() != 0 { try!(write!(f, " cpten0"))}
-      if self.cpten1() != 0 { try!(write!(f, " cpten1"))}
-      if self.cpten2() != 0 { try!(write!(f, " cpten2"))}
-      if self.cpten3() != 0 { try!(write!(f, " cpten3"))}
+      if self.cpten(0) != 0 { try!(write!(f, " cpten[0]"))}
+      if self.cpten(1) != 0 { try!(write!(f, " cpten[1]"))}
+      if self.cpten(2) != 0 { try!(write!(f, " cpten[2]"))}
+      if self.cpten(3) != 0 { try!(write!(f, " cpten[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2003,43 +1977,17 @@ impl Intenset {
      self
   }
 
-  #[inline] pub fn mc0(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn mc(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
   }
-  #[inline] pub fn set_mc0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mc(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn mc1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-  #[inline] pub fn set_mc1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn mc2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-  #[inline] pub fn set_mc2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-  #[inline] pub fn mc3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-  #[inline] pub fn set_mc3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2061,10 +2009,10 @@ impl ::core::fmt::Debug for Intenset {
       if self.faultb() != 0 { try!(write!(f, " faultb"))}
       if self.fault0() != 0 { try!(write!(f, " fault0"))}
       if self.fault1() != 0 { try!(write!(f, " fault1"))}
-      if self.mc0() != 0 { try!(write!(f, " mc0"))}
-      if self.mc1() != 0 { try!(write!(f, " mc1"))}
-      if self.mc2() != 0 { try!(write!(f, " mc2"))}
-      if self.mc3() != 0 { try!(write!(f, " mc3"))}
+      if self.mc(0) != 0 { try!(write!(f, " mc[0]"))}
+      if self.mc(1) != 0 { try!(write!(f, " mc[1]"))}
+      if self.mc(2) != 0 { try!(write!(f, " mc[2]"))}
+      if self.mc(3) != 0 { try!(write!(f, " mc[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2162,43 +2110,17 @@ impl Intflag {
      self
   }
 
-  #[inline] pub fn mc0(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn mc(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
   }
-  #[inline] pub fn set_mc0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mc(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn mc1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-  #[inline] pub fn set_mc1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn mc2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-  #[inline] pub fn set_mc2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-  #[inline] pub fn mc3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-  #[inline] pub fn set_mc3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2220,10 +2142,10 @@ impl ::core::fmt::Debug for Intflag {
       if self.faultb() != 0 { try!(write!(f, " faultb"))}
       if self.fault0() != 0 { try!(write!(f, " fault0"))}
       if self.fault1() != 0 { try!(write!(f, " fault1"))}
-      if self.mc0() != 0 { try!(write!(f, " mc0"))}
-      if self.mc1() != 0 { try!(write!(f, " mc1"))}
-      if self.mc2() != 0 { try!(write!(f, " mc2"))}
-      if self.mc3() != 0 { try!(write!(f, " mc3"))}
+      if self.mc(0) != 0 { try!(write!(f, " mc[0]"))}
+      if self.mc(1) != 0 { try!(write!(f, " mc[1]"))}
+      if self.mc(2) != 0 { try!(write!(f, " mc[2]"))}
+      if self.mc(3) != 0 { try!(write!(f, " mc[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2231,163 +2153,31 @@ impl ::core::fmt::Debug for Intflag {
 #[derive(PartialEq, Eq)]
 pub struct Patt(pub u16);
 impl Patt {
-  #[inline] pub fn pge0(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x1 // [0]
+  #[inline] pub fn pge(&self, index: usize) -> u16 {
+     assert!(index < 8);
+     let shift: usize = 0 + index;
+     ((self.0 as u16) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_pge0(mut self, value: u16) -> Self {
+  #[inline] pub fn set_pge(mut self, index: usize, value: u16) -> Self {
+     assert!(index < 8);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn pge1(&self) -> u16 {
-     ((self.0 as u16) >> 1) & 0x1 // [1]
+  #[inline] pub fn pgv(&self, index: usize) -> u16 {
+     assert!(index < 8);
+     let shift: usize = 8 + index;
+     ((self.0 as u16) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_pge1(mut self, value: u16) -> Self {
+  #[inline] pub fn set_pgv(mut self, index: usize, value: u16) -> Self {
+     assert!(index < 8);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn pge2(&self) -> u16 {
-     ((self.0 as u16) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_pge2(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn pge3(&self) -> u16 {
-     ((self.0 as u16) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_pge3(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn pge4(&self) -> u16 {
-     ((self.0 as u16) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_pge4(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn pge5(&self) -> u16 {
-     ((self.0 as u16) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_pge5(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn pge6(&self) -> u16 {
-     ((self.0 as u16) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_pge6(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn pge7(&self) -> u16 {
-     ((self.0 as u16) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_pge7(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn pgv0(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_pgv0(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn pgv1(&self) -> u16 {
-     ((self.0 as u16) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_pgv1(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn pgv2(&self) -> u16 {
-     ((self.0 as u16) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_pgv2(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn pgv3(&self) -> u16 {
-     ((self.0 as u16) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_pgv3(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn pgv4(&self) -> u16 {
-     ((self.0 as u16) >> 12) & 0x1 // [12]
-  }
-  #[inline] pub fn set_pgv4(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn pgv5(&self) -> u16 {
-     ((self.0 as u16) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_pgv5(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-  #[inline] pub fn pgv6(&self) -> u16 {
-     ((self.0 as u16) >> 14) & 0x1 // [14]
-  }
-  #[inline] pub fn set_pgv6(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline] pub fn pgv7(&self) -> u16 {
-     ((self.0 as u16) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_pgv7(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2400,22 +2190,22 @@ impl ::core::fmt::Display for Patt {
 impl ::core::fmt::Debug for Patt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.pge0() != 0 { try!(write!(f, " pge0"))}
-      if self.pge1() != 0 { try!(write!(f, " pge1"))}
-      if self.pge2() != 0 { try!(write!(f, " pge2"))}
-      if self.pge3() != 0 { try!(write!(f, " pge3"))}
-      if self.pge4() != 0 { try!(write!(f, " pge4"))}
-      if self.pge5() != 0 { try!(write!(f, " pge5"))}
-      if self.pge6() != 0 { try!(write!(f, " pge6"))}
-      if self.pge7() != 0 { try!(write!(f, " pge7"))}
-      if self.pgv0() != 0 { try!(write!(f, " pgv0"))}
-      if self.pgv1() != 0 { try!(write!(f, " pgv1"))}
-      if self.pgv2() != 0 { try!(write!(f, " pgv2"))}
-      if self.pgv3() != 0 { try!(write!(f, " pgv3"))}
-      if self.pgv4() != 0 { try!(write!(f, " pgv4"))}
-      if self.pgv5() != 0 { try!(write!(f, " pgv5"))}
-      if self.pgv6() != 0 { try!(write!(f, " pgv6"))}
-      if self.pgv7() != 0 { try!(write!(f, " pgv7"))}
+      if self.pge(0) != 0 { try!(write!(f, " pge[0]"))}
+      if self.pge(1) != 0 { try!(write!(f, " pge[1]"))}
+      if self.pge(2) != 0 { try!(write!(f, " pge[2]"))}
+      if self.pge(3) != 0 { try!(write!(f, " pge[3]"))}
+      if self.pge(4) != 0 { try!(write!(f, " pge[4]"))}
+      if self.pge(5) != 0 { try!(write!(f, " pge[5]"))}
+      if self.pge(6) != 0 { try!(write!(f, " pge[6]"))}
+      if self.pge(7) != 0 { try!(write!(f, " pge[7]"))}
+      if self.pgv(0) != 0 { try!(write!(f, " pgv[0]"))}
+      if self.pgv(1) != 0 { try!(write!(f, " pgv[1]"))}
+      if self.pgv(2) != 0 { try!(write!(f, " pgv[2]"))}
+      if self.pgv(3) != 0 { try!(write!(f, " pgv[3]"))}
+      if self.pgv(4) != 0 { try!(write!(f, " pgv[4]"))}
+      if self.pgv(5) != 0 { try!(write!(f, " pgv[5]"))}
+      if self.pgv(6) != 0 { try!(write!(f, " pgv[6]"))}
+      if self.pgv(7) != 0 { try!(write!(f, " pgv[7]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2423,163 +2213,31 @@ impl ::core::fmt::Debug for Patt {
 #[derive(PartialEq, Eq)]
 pub struct Pattb(pub u16);
 impl Pattb {
-  #[inline] pub fn pgeb0(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x1 // [0]
+  #[inline] pub fn pgeb(&self, index: usize) -> u16 {
+     assert!(index < 8);
+     let shift: usize = 0 + index;
+     ((self.0 as u16) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_pgeb0(mut self, value: u16) -> Self {
+  #[inline] pub fn set_pgeb(mut self, index: usize, value: u16) -> Self {
+     assert!(index < 8);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn pgeb1(&self) -> u16 {
-     ((self.0 as u16) >> 1) & 0x1 // [1]
+  #[inline] pub fn pgvb(&self, index: usize) -> u16 {
+     assert!(index < 8);
+     let shift: usize = 8 + index;
+     ((self.0 as u16) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_pgeb1(mut self, value: u16) -> Self {
+  #[inline] pub fn set_pgvb(mut self, index: usize, value: u16) -> Self {
+     assert!(index < 8);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn pgeb2(&self) -> u16 {
-     ((self.0 as u16) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_pgeb2(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn pgeb3(&self) -> u16 {
-     ((self.0 as u16) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_pgeb3(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn pgeb4(&self) -> u16 {
-     ((self.0 as u16) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_pgeb4(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn pgeb5(&self) -> u16 {
-     ((self.0 as u16) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_pgeb5(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn pgeb6(&self) -> u16 {
-     ((self.0 as u16) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_pgeb6(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn pgeb7(&self) -> u16 {
-     ((self.0 as u16) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_pgeb7(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn pgvb0(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_pgvb0(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn pgvb1(&self) -> u16 {
-     ((self.0 as u16) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_pgvb1(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn pgvb2(&self) -> u16 {
-     ((self.0 as u16) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_pgvb2(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn pgvb3(&self) -> u16 {
-     ((self.0 as u16) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_pgvb3(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn pgvb4(&self) -> u16 {
-     ((self.0 as u16) >> 12) & 0x1 // [12]
-  }
-  #[inline] pub fn set_pgvb4(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn pgvb5(&self) -> u16 {
-     ((self.0 as u16) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_pgvb5(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-  #[inline] pub fn pgvb6(&self) -> u16 {
-     ((self.0 as u16) >> 14) & 0x1 // [14]
-  }
-  #[inline] pub fn set_pgvb6(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline] pub fn pgvb7(&self) -> u16 {
-     ((self.0 as u16) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_pgvb7(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2592,22 +2250,22 @@ impl ::core::fmt::Display for Pattb {
 impl ::core::fmt::Debug for Pattb {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.pgeb0() != 0 { try!(write!(f, " pgeb0"))}
-      if self.pgeb1() != 0 { try!(write!(f, " pgeb1"))}
-      if self.pgeb2() != 0 { try!(write!(f, " pgeb2"))}
-      if self.pgeb3() != 0 { try!(write!(f, " pgeb3"))}
-      if self.pgeb4() != 0 { try!(write!(f, " pgeb4"))}
-      if self.pgeb5() != 0 { try!(write!(f, " pgeb5"))}
-      if self.pgeb6() != 0 { try!(write!(f, " pgeb6"))}
-      if self.pgeb7() != 0 { try!(write!(f, " pgeb7"))}
-      if self.pgvb0() != 0 { try!(write!(f, " pgvb0"))}
-      if self.pgvb1() != 0 { try!(write!(f, " pgvb1"))}
-      if self.pgvb2() != 0 { try!(write!(f, " pgvb2"))}
-      if self.pgvb3() != 0 { try!(write!(f, " pgvb3"))}
-      if self.pgvb4() != 0 { try!(write!(f, " pgvb4"))}
-      if self.pgvb5() != 0 { try!(write!(f, " pgvb5"))}
-      if self.pgvb6() != 0 { try!(write!(f, " pgvb6"))}
-      if self.pgvb7() != 0 { try!(write!(f, " pgvb7"))}
+      if self.pgeb(0) != 0 { try!(write!(f, " pgeb[0]"))}
+      if self.pgeb(1) != 0 { try!(write!(f, " pgeb[1]"))}
+      if self.pgeb(2) != 0 { try!(write!(f, " pgeb[2]"))}
+      if self.pgeb(3) != 0 { try!(write!(f, " pgeb[3]"))}
+      if self.pgeb(4) != 0 { try!(write!(f, " pgeb[4]"))}
+      if self.pgeb(5) != 0 { try!(write!(f, " pgeb[5]"))}
+      if self.pgeb(6) != 0 { try!(write!(f, " pgeb[6]"))}
+      if self.pgeb(7) != 0 { try!(write!(f, " pgeb[7]"))}
+      if self.pgvb(0) != 0 { try!(write!(f, " pgvb[0]"))}
+      if self.pgvb(1) != 0 { try!(write!(f, " pgvb[1]"))}
+      if self.pgvb(2) != 0 { try!(write!(f, " pgvb[2]"))}
+      if self.pgvb(3) != 0 { try!(write!(f, " pgvb[3]"))}
+      if self.pgvb(4) != 0 { try!(write!(f, " pgvb[4]"))}
+      if self.pgvb(5) != 0 { try!(write!(f, " pgvb[5]"))}
+      if self.pgvb(6) != 0 { try!(write!(f, " pgvb[6]"))}
+      if self.pgvb(7) != 0 { try!(write!(f, " pgvb[7]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2809,83 +2467,31 @@ impl Status {
      self
   }
 
-  #[inline] pub fn ccbv0(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn ccbv(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
   }
-  #[inline] pub fn set_ccbv0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccbv(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ccbv1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn cmp(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 24 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [24]
   }
-  #[inline] pub fn set_ccbv1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmp(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn ccbv2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-  #[inline] pub fn set_ccbv2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-  #[inline] pub fn ccbv3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-  #[inline] pub fn set_ccbv3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-  #[inline] pub fn cmp0(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
-  }
-  #[inline] pub fn set_cmp0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn cmp1(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-  #[inline] pub fn set_cmp1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-  #[inline] pub fn cmp2(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-  #[inline] pub fn set_cmp2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-  #[inline] pub fn cmp3(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
-  }
-  #[inline] pub fn set_cmp3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
+     let shift: usize = 24 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2912,14 +2518,14 @@ impl ::core::fmt::Debug for Status {
       if self.faultb() != 0 { try!(write!(f, " faultb"))}
       if self.fault0() != 0 { try!(write!(f, " fault0"))}
       if self.fault1() != 0 { try!(write!(f, " fault1"))}
-      if self.ccbv0() != 0 { try!(write!(f, " ccbv0"))}
-      if self.ccbv1() != 0 { try!(write!(f, " ccbv1"))}
-      if self.ccbv2() != 0 { try!(write!(f, " ccbv2"))}
-      if self.ccbv3() != 0 { try!(write!(f, " ccbv3"))}
-      if self.cmp0() != 0 { try!(write!(f, " cmp0"))}
-      if self.cmp1() != 0 { try!(write!(f, " cmp1"))}
-      if self.cmp2() != 0 { try!(write!(f, " cmp2"))}
-      if self.cmp3() != 0 { try!(write!(f, " cmp3"))}
+      if self.ccbv(0) != 0 { try!(write!(f, " ccbv[0]"))}
+      if self.ccbv(1) != 0 { try!(write!(f, " ccbv[1]"))}
+      if self.ccbv(2) != 0 { try!(write!(f, " ccbv[2]"))}
+      if self.ccbv(3) != 0 { try!(write!(f, " ccbv[3]"))}
+      if self.cmp(0) != 0 { try!(write!(f, " cmp[0]"))}
+      if self.cmp(1) != 0 { try!(write!(f, " cmp[1]"))}
+      if self.cmp(2) != 0 { try!(write!(f, " cmp[2]"))}
+      if self.cmp(3) != 0 { try!(write!(f, " cmp[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3007,43 +2613,17 @@ impl Syncbusy {
      self
   }
 
-  #[inline] pub fn cc0(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn cc(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 8 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_cc0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cc(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cc1(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cc1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cc2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cc2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn cc3(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_cc3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -3077,43 +2657,17 @@ impl Syncbusy {
      self
   }
 
-  #[inline] pub fn ccb0(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn ccb(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 19 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [19]
   }
-  #[inline] pub fn set_ccb0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccb(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-  #[inline] pub fn ccb1(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-  #[inline] pub fn set_ccb1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn ccb2(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-  #[inline] pub fn set_ccb2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
-     self
-  }
-
-  #[inline] pub fn ccb3(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-  #[inline] pub fn set_ccb3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
+     let shift: usize = 19 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -3134,17 +2688,17 @@ impl ::core::fmt::Debug for Syncbusy {
       if self.patt() != 0 { try!(write!(f, " patt"))}
       if self.wave() != 0 { try!(write!(f, " wave"))}
       if self.per() != 0 { try!(write!(f, " per"))}
-      if self.cc0() != 0 { try!(write!(f, " cc0"))}
-      if self.cc1() != 0 { try!(write!(f, " cc1"))}
-      if self.cc2() != 0 { try!(write!(f, " cc2"))}
-      if self.cc3() != 0 { try!(write!(f, " cc3"))}
+      if self.cc(0) != 0 { try!(write!(f, " cc[0]"))}
+      if self.cc(1) != 0 { try!(write!(f, " cc[1]"))}
+      if self.cc(2) != 0 { try!(write!(f, " cc[2]"))}
+      if self.cc(3) != 0 { try!(write!(f, " cc[3]"))}
       if self.pattb() != 0 { try!(write!(f, " pattb"))}
       if self.waveb() != 0 { try!(write!(f, " waveb"))}
       if self.perb() != 0 { try!(write!(f, " perb"))}
-      if self.ccb0() != 0 { try!(write!(f, " ccb0"))}
-      if self.ccb1() != 0 { try!(write!(f, " ccb1"))}
-      if self.ccb2() != 0 { try!(write!(f, " ccb2"))}
-      if self.ccb3() != 0 { try!(write!(f, " ccb3"))}
+      if self.ccb(0) != 0 { try!(write!(f, " ccb[0]"))}
+      if self.ccb(1) != 0 { try!(write!(f, " ccb[1]"))}
+      if self.ccb(2) != 0 { try!(write!(f, " ccb[2]"))}
+      if self.ccb(3) != 0 { try!(write!(f, " ccb[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3182,123 +2736,45 @@ impl Wave {
      self
   }
 
-  #[inline] pub fn ciccen0(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn ciccen(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 8 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_ciccen0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ciccen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ciccen1(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn pol(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
   }
-  #[inline] pub fn set_ciccen1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pol(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ciccen2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn swap(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 24 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [24]
   }
-  #[inline] pub fn set_ciccen2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_swap(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn ciccen3(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_ciccen3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn pol0(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-  #[inline] pub fn set_pol0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn pol1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-  #[inline] pub fn set_pol1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn pol2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-  #[inline] pub fn set_pol2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-  #[inline] pub fn pol3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-  #[inline] pub fn set_pol3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-  #[inline] pub fn swap0(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
-  }
-  #[inline] pub fn set_swap0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn swap1(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-  #[inline] pub fn set_swap1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-  #[inline] pub fn swap2(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-  #[inline] pub fn set_swap2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-  #[inline] pub fn swap3(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
-  }
-  #[inline] pub fn set_swap3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
+     let shift: usize = 24 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -3314,18 +2790,18 @@ impl ::core::fmt::Debug for Wave {
       if self.wavegen() != 0 { try!(write!(f, " wavegen=0x{:x}", self.wavegen()))}
       if self.ramp() != 0 { try!(write!(f, " ramp=0x{:x}", self.ramp()))}
       if self.ciperen() != 0 { try!(write!(f, " ciperen"))}
-      if self.ciccen0() != 0 { try!(write!(f, " ciccen0"))}
-      if self.ciccen1() != 0 { try!(write!(f, " ciccen1"))}
-      if self.ciccen2() != 0 { try!(write!(f, " ciccen2"))}
-      if self.ciccen3() != 0 { try!(write!(f, " ciccen3"))}
-      if self.pol0() != 0 { try!(write!(f, " pol0"))}
-      if self.pol1() != 0 { try!(write!(f, " pol1"))}
-      if self.pol2() != 0 { try!(write!(f, " pol2"))}
-      if self.pol3() != 0 { try!(write!(f, " pol3"))}
-      if self.swap0() != 0 { try!(write!(f, " swap0"))}
-      if self.swap1() != 0 { try!(write!(f, " swap1"))}
-      if self.swap2() != 0 { try!(write!(f, " swap2"))}
-      if self.swap3() != 0 { try!(write!(f, " swap3"))}
+      if self.ciccen(0) != 0 { try!(write!(f, " ciccen[0]"))}
+      if self.ciccen(1) != 0 { try!(write!(f, " ciccen[1]"))}
+      if self.ciccen(2) != 0 { try!(write!(f, " ciccen[2]"))}
+      if self.ciccen(3) != 0 { try!(write!(f, " ciccen[3]"))}
+      if self.pol(0) != 0 { try!(write!(f, " pol[0]"))}
+      if self.pol(1) != 0 { try!(write!(f, " pol[1]"))}
+      if self.pol(2) != 0 { try!(write!(f, " pol[2]"))}
+      if self.pol(3) != 0 { try!(write!(f, " pol[3]"))}
+      if self.swap(0) != 0 { try!(write!(f, " swap[0]"))}
+      if self.swap(1) != 0 { try!(write!(f, " swap[1]"))}
+      if self.swap(2) != 0 { try!(write!(f, " swap[2]"))}
+      if self.swap(3) != 0 { try!(write!(f, " swap[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3363,123 +2839,45 @@ impl Waveb {
      self
   }
 
-  #[inline] pub fn ciccenb0(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn ciccenb(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 8 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_ciccenb0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ciccenb(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ciccenb1(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn polb(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
   }
-  #[inline] pub fn set_ciccenb1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_polb(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ciccenb2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn swapb(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 24 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [24]
   }
-  #[inline] pub fn set_ciccenb2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_swapb(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn ciccenb3(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_ciccenb3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn polb0(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-  #[inline] pub fn set_polb0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn polb1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-  #[inline] pub fn set_polb1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn polb2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-  #[inline] pub fn set_polb2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-  #[inline] pub fn polb3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-  #[inline] pub fn set_polb3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-  #[inline] pub fn swapb0(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
-  }
-  #[inline] pub fn set_swapb0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn swapb1(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-  #[inline] pub fn set_swapb1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-  #[inline] pub fn swapb2(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-  #[inline] pub fn set_swapb2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-  #[inline] pub fn swapb3(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
-  }
-  #[inline] pub fn set_swapb3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
+     let shift: usize = 24 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -3495,18 +2893,18 @@ impl ::core::fmt::Debug for Waveb {
       if self.wavegenb() != 0 { try!(write!(f, " wavegenb=0x{:x}", self.wavegenb()))}
       if self.rampb() != 0 { try!(write!(f, " rampb=0x{:x}", self.rampb()))}
       if self.ciperenb() != 0 { try!(write!(f, " ciperenb"))}
-      if self.ciccenb0() != 0 { try!(write!(f, " ciccenb0"))}
-      if self.ciccenb1() != 0 { try!(write!(f, " ciccenb1"))}
-      if self.ciccenb2() != 0 { try!(write!(f, " ciccenb2"))}
-      if self.ciccenb3() != 0 { try!(write!(f, " ciccenb3"))}
-      if self.polb0() != 0 { try!(write!(f, " polb0"))}
-      if self.polb1() != 0 { try!(write!(f, " polb1"))}
-      if self.polb2() != 0 { try!(write!(f, " polb2"))}
-      if self.polb3() != 0 { try!(write!(f, " polb3"))}
-      if self.swapb0() != 0 { try!(write!(f, " swapb0"))}
-      if self.swapb1() != 0 { try!(write!(f, " swapb1"))}
-      if self.swapb2() != 0 { try!(write!(f, " swapb2"))}
-      if self.swapb3() != 0 { try!(write!(f, " swapb3"))}
+      if self.ciccenb(0) != 0 { try!(write!(f, " ciccenb[0]"))}
+      if self.ciccenb(1) != 0 { try!(write!(f, " ciccenb[1]"))}
+      if self.ciccenb(2) != 0 { try!(write!(f, " ciccenb[2]"))}
+      if self.ciccenb(3) != 0 { try!(write!(f, " ciccenb[3]"))}
+      if self.polb(0) != 0 { try!(write!(f, " polb[0]"))}
+      if self.polb(1) != 0 { try!(write!(f, " polb[1]"))}
+      if self.polb(2) != 0 { try!(write!(f, " polb[2]"))}
+      if self.polb(3) != 0 { try!(write!(f, " polb[3]"))}
+      if self.swapb(0) != 0 { try!(write!(f, " swapb[0]"))}
+      if self.swapb(1) != 0 { try!(write!(f, " swapb[1]"))}
+      if self.swapb(2) != 0 { try!(write!(f, " swapb[2]"))}
+      if self.swapb(3) != 0 { try!(write!(f, " swapb[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3524,43 +2922,17 @@ impl Wexctrl {
      self
   }
 
-  #[inline] pub fn dtien0(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dtien(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 8 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_dtien0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dtien(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn dtien1(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_dtien1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn dtien2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_dtien2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn dtien3(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_dtien3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -3594,10 +2966,10 @@ impl ::core::fmt::Debug for Wexctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.otmx() != 0 { try!(write!(f, " otmx=0x{:x}", self.otmx()))}
-      if self.dtien0() != 0 { try!(write!(f, " dtien0"))}
-      if self.dtien1() != 0 { try!(write!(f, " dtien1"))}
-      if self.dtien2() != 0 { try!(write!(f, " dtien2"))}
-      if self.dtien3() != 0 { try!(write!(f, " dtien3"))}
+      if self.dtien(0) != 0 { try!(write!(f, " dtien[0]"))}
+      if self.dtien(1) != 0 { try!(write!(f, " dtien[1]"))}
+      if self.dtien(2) != 0 { try!(write!(f, " dtien[2]"))}
+      if self.dtien(3) != 0 { try!(write!(f, " dtien[3]"))}
       if self.dtls() != 0 { try!(write!(f, " dtls=0x{:x}", self.dtls()))}
       if self.dths() != 0 { try!(write!(f, " dths=0x{:x}", self.dths()))}
       try!(write!(f, "]"));
