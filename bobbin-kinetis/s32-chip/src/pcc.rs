@@ -5367,6 +5367,11 @@ impl Cgc for super::flexcan::Can1 {
    #[inline] fn set_cgc(&self, value: u32) { PCC.with_flexcan1(|r| r.set_cgc(value)); }
 }
 
+impl Pcs for super::ftm::Ftm3 {
+   #[inline] fn pcs(&self) -> u32 { PCC.ftm3().pcs() }
+   #[inline] fn set_pcs(&self, value: u32) { PCC.with_ftm3(|r| r.set_pcs(value)); }
+}
+
 impl Cgc for super::flexcan::Can2 {
    #[inline] fn cgc(&self) -> u32 { PCC.flexcan2().cgc() }
    #[inline] fn set_cgc(&self, value: u32) { PCC.with_flexcan2(|r| r.set_cgc(value)); }
@@ -5415,6 +5420,36 @@ impl Pcs for super::lpit::Lpit0 {
 impl Cgc for super::lpit::Lpit0 {
    #[inline] fn cgc(&self) -> u32 { PCC.lpit().cgc() }
    #[inline] fn set_cgc(&self, value: u32) { PCC.with_lpit(|r| r.set_cgc(value)); }
+}
+
+impl Pcs for super::ftm::Ftm0 {
+   #[inline] fn pcs(&self) -> u32 { PCC.ftm0().pcs() }
+   #[inline] fn set_pcs(&self, value: u32) { PCC.with_ftm0(|r| r.set_pcs(value)); }
+}
+
+impl Cgc for super::ftm::Ftm0 {
+   #[inline] fn cgc(&self) -> u32 { PCC.ftm0().cgc() }
+   #[inline] fn set_cgc(&self, value: u32) { PCC.with_ftm0(|r| r.set_cgc(value)); }
+}
+
+impl Pcs for super::ftm::Ftm1 {
+   #[inline] fn pcs(&self) -> u32 { PCC.ftm1().pcs() }
+   #[inline] fn set_pcs(&self, value: u32) { PCC.with_ftm1(|r| r.set_pcs(value)); }
+}
+
+impl Cgc for super::ftm::Ftm1 {
+   #[inline] fn cgc(&self) -> u32 { PCC.ftm1().cgc() }
+   #[inline] fn set_cgc(&self, value: u32) { PCC.with_ftm1(|r| r.set_cgc(value)); }
+}
+
+impl Pcs for super::ftm::Ftm2 {
+   #[inline] fn pcs(&self) -> u32 { PCC.ftm2().pcs() }
+   #[inline] fn set_pcs(&self, value: u32) { PCC.with_ftm2(|r| r.set_pcs(value)); }
+}
+
+impl Cgc for super::ftm::Ftm2 {
+   #[inline] fn cgc(&self) -> u32 { PCC.ftm2().cgc() }
+   #[inline] fn set_cgc(&self, value: u32) { PCC.with_ftm2(|r| r.set_cgc(value)); }
 }
 
 impl Cgc for super::port::Porta {

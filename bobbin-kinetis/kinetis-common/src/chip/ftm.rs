@@ -618,6 +618,30 @@ impl Sc {
      self
   }
 
+  #[inline] pub fn pwmen(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 16 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [16]
+  }
+  #[inline] pub fn set_pwmen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 16 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
+     self
+  }
+
+  #[inline] pub fn fltps(&self) -> u32 {
+     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  }
+  #[inline] pub fn set_fltps(mut self, value: u32) -> Self {
+     assert!((value & !0xf) == 0);
+     self.0 &= !(0xf << 24);
+     self.0 |= value << 24;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Sc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -632,6 +656,15 @@ impl ::core::fmt::Debug for Sc {
       if self.cpwms() != 0 { try!(write!(f, " cpwms"))}
       if self.toie() != 0 { try!(write!(f, " toie"))}
       if self.tof() != 0 { try!(write!(f, " tof"))}
+      if self.pwmen(0) != 0 { try!(write!(f, " pwmen[0]"))}
+      if self.pwmen(1) != 0 { try!(write!(f, " pwmen[1]"))}
+      if self.pwmen(2) != 0 { try!(write!(f, " pwmen[2]"))}
+      if self.pwmen(3) != 0 { try!(write!(f, " pwmen[3]"))}
+      if self.pwmen(4) != 0 { try!(write!(f, " pwmen[4]"))}
+      if self.pwmen(5) != 0 { try!(write!(f, " pwmen[5]"))}
+      if self.pwmen(6) != 0 { try!(write!(f, " pwmen[6]"))}
+      if self.pwmen(7) != 0 { try!(write!(f, " pwmen[7]"))}
+      if self.fltps() != 0 { try!(write!(f, " fltps=0x{:x}", self.fltps()))}
       try!(write!(f, "]"));
       Ok(())
    }

@@ -133,6 +133,23 @@
                 (description "FTM counter has overflowed.")
             )
         )
+        ; only in S32K
+        (field
+            (name PWMEN)
+            (dim 8)
+            (dim-increment 1)
+            (bit-offset 16)
+            (bit-width 1)
+            (access read-write)
+            (description "PWM Enable")
+        )
+        (field
+            (name FLTPS)
+            (bit-offset 24)
+            (bit-width 4)
+            (access read-write)
+            (description "Filter Prescaler")
+        )        
     )
     (register
         (name CNT)

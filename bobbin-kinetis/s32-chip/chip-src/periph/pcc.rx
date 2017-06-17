@@ -500,6 +500,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group FTM) (peripheral FTM3))
             (value
                 (value "#000")
                 (name "000")
@@ -1294,6 +1295,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group FTM) (peripheral FTM0))
             (value
                 (value "#000")
                 (name "000")
@@ -1341,6 +1343,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FTM) (peripheral FTM0))
             (value
                 (value "#0")
                 (name "0")
@@ -1384,6 +1387,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group FTM) (peripheral FTM1))
             (value
                 (value "#000")
                 (name "000")
@@ -1431,6 +1435,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FTM) (peripheral FTM1))
             (value
                 (value "#0")
                 (name "0")
@@ -1474,6 +1479,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group FTM) (peripheral FTM2))
             (value
                 (value "#000")
                 (name "000")
@@ -1521,6 +1527,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group FTM) (peripheral FTM2))
             (value
                 (value "#0")
                 (name "0")
