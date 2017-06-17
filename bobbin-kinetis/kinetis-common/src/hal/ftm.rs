@@ -60,6 +60,7 @@ pub trait FtmChExt {
     fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self;
     fn set_value(&self, value: u16) -> &Self;
     fn chf(&self) -> bool { self.csc().chf() != 0}
+    fn set_pwmen(&self, value: bool) -> &Self;
 }
 
 impl<P, T> FtmChExt for Channel<P, T> {
@@ -72,6 +73,11 @@ impl<P, T> FtmChExt for Channel<P, T> {
     }
     fn set_value(&self, value: u16) -> &Self {
         self.periph.set_cv(self.index, Cv(0).set_val(value as u32));
+        self
+    }
+    fn set_pwmen(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.periph.with_sc(|r| r.set_pwmen(self.index, value));
         self
     }
 }
