@@ -12,6 +12,7 @@ pub mod sysctl;
 pub mod gpio;
 pub mod uart;
 pub mod timer;
+pub mod pwm;
 // pub mod i2c;
 // pub mod ssi;
 // pub mod emac;

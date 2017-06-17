@@ -21,6 +21,57 @@
     (peripheral (include "periph/emac.rx"))
     
     (peripheral-group
+        (name PWM)
+        (prototype "periph/pwm.rx")
+        (has-channels)    
+        (peripheral
+            (name PWM0)
+            (address 0x40028000)
+            (description "Register map for PWM0 peripheral")
+            (channel
+                (name PWM0_CH0)
+                (index 0)
+                (signal (name M0PWM0) (type PWM))
+                (interrupt
+                    (name PWM0_CH0)
+                    (value 10)
+                )
+            )
+            (channel
+                (name PWM0_CH1)
+                (index 1)
+                (signal (name M0PWM1) (type PWM))
+                (interrupt
+                    (name PWM0_CH1)
+                    (value 11)
+                )
+            )
+            (channel
+                (name PWM0_CH2)
+                (index 2)
+                (signal (name M0PWM2) (type PWM))
+                (interrupt
+                    (name PWM0_CH2)
+                    (value 12)
+                )
+            )
+            (channel
+                (name PWM0_CH3)
+                (index 3)
+                (signal (name M0PWM3) (type PWM))
+                (interrupt
+                    (name PWM0_CH3)
+                    (value 43)
+                )
+            )                        
+            (interrupt
+                (name PWM0_FAULT)
+                (value 9)
+            )        
+        )
+    )    
+
+    (peripheral-group
         (name TIMER)
         (prototype "periph/timer.rx")
         (has-channels)

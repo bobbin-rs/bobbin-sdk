@@ -12787,4 +12787,9 @@ impl Rcgc for super::uart::Uart7 {
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcuart(|r| r.set_r7(value)); }
 }
 
+impl Rcgc for super::pwm::Pwm0 {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcpwm().r0() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcpwm(|r| r.set_r0(value)); }
+}
+
 

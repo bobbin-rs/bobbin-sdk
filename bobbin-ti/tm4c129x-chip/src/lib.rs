@@ -13,6 +13,7 @@ pub mod irq;
 pub mod sig;
 pub mod sysctl;
 pub mod emac;
+pub mod pwm;
 pub mod timer;
 pub mod uart;
 pub mod i2c;

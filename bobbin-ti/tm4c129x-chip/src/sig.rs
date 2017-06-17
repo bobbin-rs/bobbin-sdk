@@ -1,11 +1,29 @@
 pub trait Signal<T> {}
 
+pub trait Pwm {}
+pub trait SignalPwm<T> {}
 pub trait Ccp {}
 pub trait SignalCcp<T> {}
 pub trait Rx {}
 pub trait SignalRx<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
+
+pub const M0PWM0: M0pwm0 = M0pwm0 {};
+pub struct M0pwm0 {}
+impl Pwm for M0pwm0 {}
+
+pub const M0PWM1: M0pwm1 = M0pwm1 {};
+pub struct M0pwm1 {}
+impl Pwm for M0pwm1 {}
+
+pub const M0PWM2: M0pwm2 = M0pwm2 {};
+pub struct M0pwm2 {}
+impl Pwm for M0pwm2 {}
+
+pub const M0PWM3: M0pwm3 = M0pwm3 {};
+pub struct M0pwm3 {}
+impl Pwm for M0pwm3 {}
 
 pub const T0CCP0: T0ccp0 = T0ccp0 {};
 pub struct T0ccp0 {}
@@ -405,9 +423,6 @@ pub struct Ssi1xdat1 {}
 pub const EN0LED0: En0led0 = En0led0 {};
 pub struct En0led0 {}
 
-pub const M0PWM0: M0pwm0 = M0pwm0 {};
-pub struct M0pwm0 {}
-
 pub const SSI3XDAT1: Ssi3xdat1 = Ssi3xdat1 {};
 pub struct Ssi3xdat1 {}
 
@@ -417,26 +432,17 @@ pub struct Trd2 {}
 pub const EN0LED2: En0led2 = En0led2 {};
 pub struct En0led2 {}
 
-pub const M0PWM1: M0pwm1 = M0pwm1 {};
-pub struct M0pwm1 {}
-
 pub const SSI3XDAT0: Ssi3xdat0 = Ssi3xdat0 {};
 pub struct Ssi3xdat0 {}
 
 pub const TRD1: Trd1 = Trd1 {};
 pub struct Trd1 {}
 
-pub const M0PWM2: M0pwm2 = M0pwm2 {};
-pub struct M0pwm2 {}
-
 pub const SSI3FSS: Ssi3fss = Ssi3fss {};
 pub struct Ssi3fss {}
 
 pub const TRD0: Trd0 = Trd0 {};
 pub struct Trd0 {}
-
-pub const M0PWM3: M0pwm3 = M0pwm3 {};
-pub struct M0pwm3 {}
 
 pub const SSI3CLK: Ssi3clk = Ssi3clk {};
 pub struct Ssi3clk {}

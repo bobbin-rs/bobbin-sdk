@@ -1,10 +1,55 @@
 pub use chip::gpio::*;
 pub use sysctl::SysctlEnabled;
-use chip::sig::{SignalTx, SignalRx};
+use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm};
 
 pub enum Dir {
     In = 0,
     Out = 1,    
+}
+
+pub trait ModeTx<T, S> {
+    fn mode_tx(&self, _: &S) -> &Self;
+}
+
+pub trait ModeRx<T, S> {
+    fn mode_rx(&self, _: &S) -> &Self;
+}
+
+pub trait ModeCcp<T, S> {
+    fn mode_ccp(&self, _: &S) -> &Self;
+}
+
+pub trait ModePwm<T, S> {
+    fn mode_pwm(&self, _: &S) -> &Self;
+}
+
+
+impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
+    fn mode_tx(&self, _: &S) -> &Self {
+        self.mode_altfn(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
+    fn mode_rx(&self, _: &S) -> &Self {
+        self.mode_altfn(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeCcp<T, S> for Pin<P, O> where S: SignalCcp<T>, P: AltFn<T> {
+    fn mode_ccp(&self, _: &S) -> &Self {
+        self.mode_altfn(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModePwm<T, S> for Pin<P, O> where S: SignalPwm<T>, P: AltFn<T> {
+    fn mode_pwm(&self, _: &S) -> &Self {
+        self.mode_altfn(self.id.alt_fn());
+        self
+    }
 }
 
 pub trait GpioExt {
@@ -122,28 +167,6 @@ impl<P, T> GpioExt for Pin<P, T> {
 
     fn toggle_output(&self) -> &Self {
         self.set_output(!self.output())
-    }
-}
-
-pub trait ModeTx<T, S> {
-    fn mode_tx(&self, _: &S) -> &Self;
-}
-
-pub trait ModeRx<T, S> {
-    fn mode_rx(&self, _: &S) -> &Self;
-}
-
-impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
-    fn mode_tx(&self, _: &S) -> &Self {
-        self.mode_altfn(self.id.alt_fn());
-        self
-    }
-}
-
-impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
-    fn mode_rx(&self, _: &S) -> &Self {
-        self.mode_altfn(self.id.alt_fn());
-        self
     }
 }
 

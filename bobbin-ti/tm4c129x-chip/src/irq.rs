@@ -1,6 +1,11 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
+pub const IRQ_PWM0_FAULT: IrqPwm0Fault = Irq(9, Pwm0FaultId {});
+pub const IRQ_PWM0_CH0: IrqPwm0Ch0 = Irq(10, Pwm0Ch0Id {});
+pub const IRQ_PWM0_CH1: IrqPwm0Ch1 = Irq(11, Pwm0Ch1Id {});
+pub const IRQ_PWM0_CH2: IrqPwm0Ch2 = Irq(12, Pwm0Ch2Id {});
+pub const IRQ_PWM0_CH3: IrqPwm0Ch3 = Irq(43, Pwm0Ch3Id {});
 pub const IRQ_TIMER0A: IrqTimer0a = Irq(19, Timer0aId {});
 pub const IRQ_TIMER0B: IrqTimer0b = Irq(20, Timer0bId {});
 pub const IRQ_TIMER1A: IrqTimer1a = Irq(21, Timer1aId {});
@@ -72,6 +77,11 @@ pub const IRQ_GPIOQ5: IrqGpioq5 = Irq(89, Gpioq5Id {});
 pub const IRQ_GPIOQ6: IrqGpioq6 = Irq(90, Gpioq6Id {});
 pub const IRQ_GPIOQ7: IrqGpioq7 = Irq(91, Gpioq7Id {});
 
+pub type IrqPwm0Fault = Irq<Pwm0FaultId>;
+pub type IrqPwm0Ch0 = Irq<Pwm0Ch0Id>;
+pub type IrqPwm0Ch1 = Irq<Pwm0Ch1Id>;
+pub type IrqPwm0Ch2 = Irq<Pwm0Ch2Id>;
+pub type IrqPwm0Ch3 = Irq<Pwm0Ch3Id>;
 pub type IrqTimer0a = Irq<Timer0aId>;
 pub type IrqTimer0b = Irq<Timer0bId>;
 pub type IrqTimer1a = Irq<Timer1aId>;
@@ -143,6 +153,11 @@ pub type IrqGpioq5 = Irq<Gpioq5Id>;
 pub type IrqGpioq6 = Irq<Gpioq6Id>;
 pub type IrqGpioq7 = Irq<Gpioq7Id>;
 
+pub struct Pwm0FaultId {} // IRQ 9
+pub struct Pwm0Ch0Id {} // IRQ 10
+pub struct Pwm0Ch1Id {} // IRQ 11
+pub struct Pwm0Ch2Id {} // IRQ 12
+pub struct Pwm0Ch3Id {} // IRQ 43
 pub struct Timer0aId {} // IRQ 19
 pub struct Timer0bId {} // IRQ 20
 pub struct Timer1aId {} // IRQ 21
@@ -294,6 +309,66 @@ pub trait RegisterHandler {
 
 pub trait HandleInterrupt {
    fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqPwm0Fault {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(9, Some(wrapper::<F>));
+       IrqGuard::new(9)
+   }
+}
+
+impl RegisterHandler for IrqPwm0Ch0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(10, Some(wrapper::<F>));
+       IrqGuard::new(10)
+   }
+}
+
+impl RegisterHandler for IrqPwm0Ch1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(11, Some(wrapper::<F>));
+       IrqGuard::new(11)
+   }
+}
+
+impl RegisterHandler for IrqPwm0Ch2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(12, Some(wrapper::<F>));
+       IrqGuard::new(12)
+   }
+}
+
+impl RegisterHandler for IrqPwm0Ch3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(43, Some(wrapper::<F>));
+       IrqGuard::new(43)
+   }
 }
 
 impl RegisterHandler for IrqTimer0a {
@@ -1148,7 +1223,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,                          // IRQ 6: No Description
    None,                          // IRQ 7: No Description
    None,                          // IRQ 8: No Description
-   None,
+   None,                          // IRQ 9: No Description
    None,
    None,
    None,

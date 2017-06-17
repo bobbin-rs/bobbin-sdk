@@ -2858,6 +2858,7 @@
             (name R0)
             (bit-offset 0)
             (bit-width 1)
+            (link (name RCGC) (peripheral-group PWM) (peripheral PWM0))
             (description "PWM Module 0 Run Mode Clock Gating Control")
         )
     )
