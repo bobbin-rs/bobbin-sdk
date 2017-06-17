@@ -31,7 +31,8 @@ pub extern "C" fn main() -> ! {
     t0.set_count(0);
 
     // Setup Edge PWM    
-    t0.with_sc(|r| r.set_pwmen(ch.index(), 1));
+    
+    ch.set_pwmen(true);
     ch.with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1));
     ch.set_value(1024);
 
