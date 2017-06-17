@@ -1,6 +1,35 @@
 use core::fmt::{self, Write, Arguments};
-//use pin;
-use usart;
+use hal::port::*;
+use hal::sercom::*;
+use hal::gclk;
+
+pub const SERCOM: Sercom0 = SERCOM0;
+pub const SERCOM_TX: Pa10 = PA10;
+pub const SERCOM_RX: Pa11 = PA11;
+
+pub fn init() {
+    SERCOM.pm_set_enabled(true);
+    SERCOM_RX.port().pm_set_enabled(true);
+    SERCOM_TX.port().pm_set_enabled(true);
+    // Set GCLK_GEN0 as source for SERCOM
+
+    gclk::GCLK.set_clkctrl(gclk::Clkctrl(0)
+        .set_id(0x14 + 5)
+        .set_gen(0x0)
+        .set_clken(1)
+    );
+    // Wait for synchronization
+    while gclk::GCLK.status().syncbusy() != 0 {}
+
+    // Set Pin Configuration
+    SERCOM_TX.mode_pad_2(&SERCOM);
+    SERCOM_RX.mode_pad_3(&SERCOM);
+
+    // let _rx = pin::pb22().into_pmux(PMux::PMuxD);
+    // let _rx = pin::pb23().into_pmux(PMux::PMuxD);
+    // let u = usart::device(SERCOM5);
+    SERCOM.configure(63018, 1, 3);    
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -29,24 +58,14 @@ pub const CONSOLE: Console = Console {};
 
 pub struct Console {}
 
-impl Console {
-    pub fn init(&self, baud: u32) {
-        usart::usart0(baud);
-    }
-
-    pub fn usart(&self) -> ::hal::usart::UsartDevice {
-        unsafe { usart::usart0_unchecked() }
-    }
-}
-
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let usart = self.usart();
+        let uart = SERCOM;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                usart.putc(b'\r')
+                uart.putc(b'\r');
             }
-            usart.putc(byte)
+            uart.putc(byte);
         }
         Ok(())
     }

@@ -5,12 +5,17 @@
 #[macro_use]
 extern crate feather_m0 as board;
 
+use board::hal::port::PinExt;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("Running Console");
+    let led0 = board::led::LED0;
+
+    println!("Running Console");    
     let mut i = 0u32;
     loop {
+        led0.toggle_output();
         println!("Hello, World! {}", i);
         i = i.wrapping_add(1);
         board::delay(1024);
