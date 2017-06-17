@@ -1,77 +1,1138 @@
-pub type Handler = unsafe extern "C" fn();
+use ::core::marker::PhantomData;
+pub type Handler = extern "C" fn();
 
-pub const IRQ_GPIOA: Irq = Irq(0);       // IRQ 0: No Description
-pub const IRQ_GPIOB: Irq = Irq(1);       // IRQ 1: No Description
-pub const IRQ_GPIOC: Irq = Irq(2);       // IRQ 2: No Description
-pub const IRQ_GPIOD: Irq = Irq(3);       // IRQ 3: No Description
-pub const IRQ_GPIOE: Irq = Irq(4);       // IRQ 4: No Description
-pub const IRQ_UART0: Irq = Irq(5);       // IRQ 5: No Description
-pub const IRQ_UART1: Irq = Irq(6);       // IRQ 6: No Description
-pub const IRQ_SSI0: Irq = Irq(7);        // IRQ 7: No Description
-pub const IRQ_I2C0: Irq = Irq(8);        // IRQ 8: No Description
-pub const IRQ_TIMER0A: Irq = Irq(19);    // IRQ 19: No Description
-pub const IRQ_TIMER0B: Irq = Irq(20);    // IRQ 20: No Description
-pub const IRQ_TIMER1A: Irq = Irq(21);    // IRQ 21: No Description
-pub const IRQ_TIMER1B: Irq = Irq(22);    // IRQ 22: No Description
-pub const IRQ_TIMER2A: Irq = Irq(23);    // IRQ 23: No Description
-pub const IRQ_TIMER2B: Irq = Irq(24);    // IRQ 24: No Description
-pub const IRQ_SYSCTL: Irq = Irq(28);     // IRQ 28: No Description
-pub const IRQ_GPIOF: Irq = Irq(30);      // IRQ 30: No Description
-pub const IRQ_GPIOG: Irq = Irq(31);      // IRQ 31: No Description
-pub const IRQ_GPIOH: Irq = Irq(32);      // IRQ 32: No Description
-pub const IRQ_UART2: Irq = Irq(33);      // IRQ 33: No Description
-pub const IRQ_SSI1: Irq = Irq(34);       // IRQ 34: No Description
-pub const IRQ_TIMER3A: Irq = Irq(35);    // IRQ 35: No Description
-pub const IRQ_TIMER3B: Irq = Irq(36);    // IRQ 36: No Description
-pub const IRQ_I2C1: Irq = Irq(37);       // IRQ 37: No Description
-pub const IRQ_EMAC0: Irq = Irq(40);      // IRQ 40: No Description
-pub const IRQ_GPIOL: Irq = Irq(53);      // IRQ 53: No Description
-pub const IRQ_GPIOJ: Irq = Irq(54);      // IRQ 54: No Description
-pub const IRQ_GPIOK: Irq = Irq(55);      // IRQ 55: No Description
-pub const IRQ_UART3: Irq = Irq(56);      // IRQ 56: No Description
-pub const IRQ_UART4: Irq = Irq(57);      // IRQ 57: No Description
-pub const IRQ_UART5: Irq = Irq(58);      // IRQ 58: No Description
-pub const IRQ_UART6: Irq = Irq(59);      // IRQ 59: No Description
-pub const IRQ_UART7: Irq = Irq(60);      // IRQ 60: No Description
-pub const IRQ_I2C2: Irq = Irq(61);       // IRQ 61: No Description
-pub const IRQ_I2C3: Irq = Irq(62);       // IRQ 62: No Description
-pub const IRQ_TIMER4A: Irq = Irq(63);    // IRQ 63: No Description
-pub const IRQ_TIMER4B: Irq = Irq(64);    // IRQ 64: No Description
-pub const IRQ_TIMER5A: Irq = Irq(65);    // IRQ 65: No Description
-pub const IRQ_TIMER5B: Irq = Irq(66);    // IRQ 66: No Description
-pub const IRQ_GPIOM: Irq = Irq(72);      // IRQ 72: No Description
-pub const IRQ_GPION: Irq = Irq(73);      // IRQ 73: No Description
-pub const IRQ_GPIOP0: Irq = Irq(76);     // IRQ 76: No Description
-pub const IRQ_GPIOP1: Irq = Irq(77);     // IRQ 77: No Description
-pub const IRQ_GPIOP2: Irq = Irq(78);     // IRQ 78: No Description
-pub const IRQ_GPIOP3: Irq = Irq(79);     // IRQ 79: No Description
-pub const IRQ_GPIOP4: Irq = Irq(80);     // IRQ 80: No Description
-pub const IRQ_GPIOP5: Irq = Irq(81);     // IRQ 81: No Description
-pub const IRQ_GPIOP6: Irq = Irq(82);     // IRQ 82: No Description
-pub const IRQ_GPIOP7: Irq = Irq(83);     // IRQ 83: No Description
-pub const IRQ_GPIOQ0: Irq = Irq(84);     // IRQ 84: No Description
-pub const IRQ_GPIOQ1: Irq = Irq(85);     // IRQ 85: No Description
-pub const IRQ_GPIOQ2: Irq = Irq(86);     // IRQ 86: No Description
-pub const IRQ_GPIOQ3: Irq = Irq(87);     // IRQ 87: No Description
-pub const IRQ_GPIOQ4: Irq = Irq(88);     // IRQ 88: No Description
-pub const IRQ_GPIOQ5: Irq = Irq(89);     // IRQ 89: No Description
-pub const IRQ_GPIOQ6: Irq = Irq(90);     // IRQ 90: No Description
-pub const IRQ_GPIOQ7: Irq = Irq(91);     // IRQ 91: No Description
-pub const IRQ_TIMER6A: Irq = Irq(98);    // IRQ 98: No Description
-pub const IRQ_TIMER6B: Irq = Irq(99);    // IRQ 99: No Description
-pub const IRQ_TIMER7A: Irq = Irq(100);   // IRQ 100: No Description
-pub const IRQ_TIMER7B: Irq = Irq(101);   // IRQ 101: No Description
+pub const IRQ_TIMER0A: IrqTimer0a = Irq(19, Timer0aId {});
+pub const IRQ_TIMER0B: IrqTimer0b = Irq(20, Timer0bId {});
+pub const IRQ_TIMER1A: IrqTimer1a = Irq(21, Timer1aId {});
+pub const IRQ_TIMER1B: IrqTimer1b = Irq(22, Timer1bId {});
+pub const IRQ_TIMER2A: IrqTimer2a = Irq(23, Timer2aId {});
+pub const IRQ_TIMER2B: IrqTimer2b = Irq(24, Timer2bId {});
+pub const IRQ_TIMER3A: IrqTimer3a = Irq(35, Timer3aId {});
+pub const IRQ_TIMER3B: IrqTimer3b = Irq(36, Timer3bId {});
+pub const IRQ_TIMER4A: IrqTimer4a = Irq(63, Timer4aId {});
+pub const IRQ_TIMER4B: IrqTimer4b = Irq(64, Timer4bId {});
+pub const IRQ_TIMER5A: IrqTimer5a = Irq(65, Timer5aId {});
+pub const IRQ_TIMER5B: IrqTimer5b = Irq(66, Timer5bId {});
+pub const IRQ_TIMER6A: IrqTimer6a = Irq(98, Timer6aId {});
+pub const IRQ_TIMER6B: IrqTimer6b = Irq(99, Timer6bId {});
+pub const IRQ_TIMER7A: IrqTimer7a = Irq(100, Timer7aId {});
+pub const IRQ_TIMER7B: IrqTimer7b = Irq(101, Timer7bId {});
+pub const IRQ_UART0: IrqUart0 = Irq(5, Uart0Id {});
+pub const IRQ_UART1: IrqUart1 = Irq(6, Uart1Id {});
+pub const IRQ_UART2: IrqUart2 = Irq(33, Uart2Id {});
+pub const IRQ_UART3: IrqUart3 = Irq(56, Uart3Id {});
+pub const IRQ_UART4: IrqUart4 = Irq(57, Uart4Id {});
+pub const IRQ_UART5: IrqUart5 = Irq(58, Uart5Id {});
+pub const IRQ_UART6: IrqUart6 = Irq(59, Uart6Id {});
+pub const IRQ_UART7: IrqUart7 = Irq(60, Uart7Id {});
+pub const IRQ_I2C0: IrqI2c0 = Irq(8, I2c0Id {});
+pub const IRQ_I2C1: IrqI2c1 = Irq(37, I2c1Id {});
+pub const IRQ_I2C2: IrqI2c2 = Irq(61, I2c2Id {});
+pub const IRQ_I2C3: IrqI2c3 = Irq(62, I2c3Id {});
+pub const IRQ_SSI0: IrqSsi0 = Irq(7, Ssi0Id {});
+pub const IRQ_SSI1: IrqSsi1 = Irq(34, Ssi1Id {});
+pub const IRQ_SSI2: IrqSsi2 = Irq(54, Ssi2Id {});
+pub const IRQ_SSI3: IrqSsi3 = Irq(55, Ssi3Id {});
+pub const IRQ_GPIOA: IrqGpioa = Irq(0, GpioaId {});
+pub const IRQ_GPIOB: IrqGpiob = Irq(1, GpiobId {});
+pub const IRQ_GPIOC: IrqGpioc = Irq(2, GpiocId {});
+pub const IRQ_GPIOD: IrqGpiod = Irq(3, GpiodId {});
+pub const IRQ_GPIOE: IrqGpioe = Irq(4, GpioeId {});
+pub const IRQ_GPIOF: IrqGpiof = Irq(30, GpiofId {});
+pub const IRQ_GPIOG: IrqGpiog = Irq(31, GpiogId {});
+pub const IRQ_GPIOH: IrqGpioh = Irq(32, GpiohId {});
+pub const IRQ_GPIOJ: IrqGpioj = Irq(54, GpiojId {});
+pub const IRQ_GPIOA_AHB: IrqGpioaAhb = Irq(0, GpioaAhbId {});
+pub const IRQ_GPIOB_AHB: IrqGpiobAhb = Irq(1, GpiobAhbId {});
+pub const IRQ_GPIOC_AHB: IrqGpiocAhb = Irq(2, GpiocAhbId {});
+pub const IRQ_GPIOD_AHB: IrqGpiodAhb = Irq(3, GpiodAhbId {});
+pub const IRQ_GPIOE_AHB: IrqGpioeAhb = Irq(4, GpioeAhbId {});
+pub const IRQ_GPIOF_AHB: IrqGpiofAhb = Irq(30, GpiofAhbId {});
+pub const IRQ_GPIOG_AHB: IrqGpiogAhb = Irq(31, GpiogAhbId {});
+pub const IRQ_GPIOH_AHB: IrqGpiohAhb = Irq(32, GpiohAhbId {});
+pub const IRQ_GPIOJ_AHB: IrqGpiojAhb = Irq(54, GpiojAhbId {});
+pub const IRQ_GPIOK: IrqGpiok = Irq(55, GpiokId {});
+pub const IRQ_GPIOL: IrqGpiol = Irq(53, GpiolId {});
+pub const IRQ_GPIOM: IrqGpiom = Irq(72, GpiomId {});
+pub const IRQ_GPION: IrqGpion = Irq(73, GpionId {});
+pub const IRQ_GPIOP0: IrqGpiop0 = Irq(76, Gpiop0Id {});
+pub const IRQ_GPIOP1: IrqGpiop1 = Irq(77, Gpiop1Id {});
+pub const IRQ_GPIOP2: IrqGpiop2 = Irq(78, Gpiop2Id {});
+pub const IRQ_GPIOP3: IrqGpiop3 = Irq(79, Gpiop3Id {});
+pub const IRQ_GPIOP4: IrqGpiop4 = Irq(80, Gpiop4Id {});
+pub const IRQ_GPIOP5: IrqGpiop5 = Irq(81, Gpiop5Id {});
+pub const IRQ_GPIOP6: IrqGpiop6 = Irq(82, Gpiop6Id {});
+pub const IRQ_GPIOP7: IrqGpiop7 = Irq(83, Gpiop7Id {});
+pub const IRQ_GPIOQ0: IrqGpioq0 = Irq(84, Gpioq0Id {});
+pub const IRQ_GPIOQ1: IrqGpioq1 = Irq(85, Gpioq1Id {});
+pub const IRQ_GPIOQ2: IrqGpioq2 = Irq(86, Gpioq2Id {});
+pub const IRQ_GPIOQ3: IrqGpioq3 = Irq(87, Gpioq3Id {});
+pub const IRQ_GPIOQ4: IrqGpioq4 = Irq(88, Gpioq4Id {});
+pub const IRQ_GPIOQ5: IrqGpioq5 = Irq(89, Gpioq5Id {});
+pub const IRQ_GPIOQ6: IrqGpioq6 = Irq(90, Gpioq6Id {});
+pub const IRQ_GPIOQ7: IrqGpioq7 = Irq(91, Gpioq7Id {});
 
-pub fn set_handler(irq: Irq, handler: Option<Handler>) {
-  unsafe { R_INTERRUPT_HANDLERS[irq.0] = handler };
+pub type IrqTimer0a = Irq<Timer0aId>;
+pub type IrqTimer0b = Irq<Timer0bId>;
+pub type IrqTimer1a = Irq<Timer1aId>;
+pub type IrqTimer1b = Irq<Timer1bId>;
+pub type IrqTimer2a = Irq<Timer2aId>;
+pub type IrqTimer2b = Irq<Timer2bId>;
+pub type IrqTimer3a = Irq<Timer3aId>;
+pub type IrqTimer3b = Irq<Timer3bId>;
+pub type IrqTimer4a = Irq<Timer4aId>;
+pub type IrqTimer4b = Irq<Timer4bId>;
+pub type IrqTimer5a = Irq<Timer5aId>;
+pub type IrqTimer5b = Irq<Timer5bId>;
+pub type IrqTimer6a = Irq<Timer6aId>;
+pub type IrqTimer6b = Irq<Timer6bId>;
+pub type IrqTimer7a = Irq<Timer7aId>;
+pub type IrqTimer7b = Irq<Timer7bId>;
+pub type IrqUart0 = Irq<Uart0Id>;
+pub type IrqUart1 = Irq<Uart1Id>;
+pub type IrqUart2 = Irq<Uart2Id>;
+pub type IrqUart3 = Irq<Uart3Id>;
+pub type IrqUart4 = Irq<Uart4Id>;
+pub type IrqUart5 = Irq<Uart5Id>;
+pub type IrqUart6 = Irq<Uart6Id>;
+pub type IrqUart7 = Irq<Uart7Id>;
+pub type IrqI2c0 = Irq<I2c0Id>;
+pub type IrqI2c1 = Irq<I2c1Id>;
+pub type IrqI2c2 = Irq<I2c2Id>;
+pub type IrqI2c3 = Irq<I2c3Id>;
+pub type IrqSsi0 = Irq<Ssi0Id>;
+pub type IrqSsi1 = Irq<Ssi1Id>;
+pub type IrqSsi2 = Irq<Ssi2Id>;
+pub type IrqSsi3 = Irq<Ssi3Id>;
+pub type IrqGpioa = Irq<GpioaId>;
+pub type IrqGpiob = Irq<GpiobId>;
+pub type IrqGpioc = Irq<GpiocId>;
+pub type IrqGpiod = Irq<GpiodId>;
+pub type IrqGpioe = Irq<GpioeId>;
+pub type IrqGpiof = Irq<GpiofId>;
+pub type IrqGpiog = Irq<GpiogId>;
+pub type IrqGpioh = Irq<GpiohId>;
+pub type IrqGpioj = Irq<GpiojId>;
+pub type IrqGpioaAhb = Irq<GpioaAhbId>;
+pub type IrqGpiobAhb = Irq<GpiobAhbId>;
+pub type IrqGpiocAhb = Irq<GpiocAhbId>;
+pub type IrqGpiodAhb = Irq<GpiodAhbId>;
+pub type IrqGpioeAhb = Irq<GpioeAhbId>;
+pub type IrqGpiofAhb = Irq<GpiofAhbId>;
+pub type IrqGpiogAhb = Irq<GpiogAhbId>;
+pub type IrqGpiohAhb = Irq<GpiohAhbId>;
+pub type IrqGpiojAhb = Irq<GpiojAhbId>;
+pub type IrqGpiok = Irq<GpiokId>;
+pub type IrqGpiol = Irq<GpiolId>;
+pub type IrqGpiom = Irq<GpiomId>;
+pub type IrqGpion = Irq<GpionId>;
+pub type IrqGpiop0 = Irq<Gpiop0Id>;
+pub type IrqGpiop1 = Irq<Gpiop1Id>;
+pub type IrqGpiop2 = Irq<Gpiop2Id>;
+pub type IrqGpiop3 = Irq<Gpiop3Id>;
+pub type IrqGpiop4 = Irq<Gpiop4Id>;
+pub type IrqGpiop5 = Irq<Gpiop5Id>;
+pub type IrqGpiop6 = Irq<Gpiop6Id>;
+pub type IrqGpiop7 = Irq<Gpiop7Id>;
+pub type IrqGpioq0 = Irq<Gpioq0Id>;
+pub type IrqGpioq1 = Irq<Gpioq1Id>;
+pub type IrqGpioq2 = Irq<Gpioq2Id>;
+pub type IrqGpioq3 = Irq<Gpioq3Id>;
+pub type IrqGpioq4 = Irq<Gpioq4Id>;
+pub type IrqGpioq5 = Irq<Gpioq5Id>;
+pub type IrqGpioq6 = Irq<Gpioq6Id>;
+pub type IrqGpioq7 = Irq<Gpioq7Id>;
+
+pub struct Timer0aId {} // IRQ 19
+pub struct Timer0bId {} // IRQ 20
+pub struct Timer1aId {} // IRQ 21
+pub struct Timer1bId {} // IRQ 22
+pub struct Timer2aId {} // IRQ 23
+pub struct Timer2bId {} // IRQ 24
+pub struct Timer3aId {} // IRQ 35
+pub struct Timer3bId {} // IRQ 36
+pub struct Timer4aId {} // IRQ 63
+pub struct Timer4bId {} // IRQ 64
+pub struct Timer5aId {} // IRQ 65
+pub struct Timer5bId {} // IRQ 66
+pub struct Timer6aId {} // IRQ 98
+pub struct Timer6bId {} // IRQ 99
+pub struct Timer7aId {} // IRQ 100
+pub struct Timer7bId {} // IRQ 101
+pub struct Uart0Id {} // IRQ 5
+pub struct Uart1Id {} // IRQ 6
+pub struct Uart2Id {} // IRQ 33
+pub struct Uart3Id {} // IRQ 56
+pub struct Uart4Id {} // IRQ 57
+pub struct Uart5Id {} // IRQ 58
+pub struct Uart6Id {} // IRQ 59
+pub struct Uart7Id {} // IRQ 60
+pub struct I2c0Id {} // IRQ 8
+pub struct I2c1Id {} // IRQ 37
+pub struct I2c2Id {} // IRQ 61
+pub struct I2c3Id {} // IRQ 62
+pub struct Ssi0Id {} // IRQ 7
+pub struct Ssi1Id {} // IRQ 34
+pub struct Ssi2Id {} // IRQ 54
+pub struct Ssi3Id {} // IRQ 55
+pub struct GpioaId {} // IRQ 0
+pub struct GpiobId {} // IRQ 1
+pub struct GpiocId {} // IRQ 2
+pub struct GpiodId {} // IRQ 3
+pub struct GpioeId {} // IRQ 4
+pub struct GpiofId {} // IRQ 30
+pub struct GpiogId {} // IRQ 31
+pub struct GpiohId {} // IRQ 32
+pub struct GpiojId {} // IRQ 54
+pub struct GpioaAhbId {} // IRQ 0
+pub struct GpiobAhbId {} // IRQ 1
+pub struct GpiocAhbId {} // IRQ 2
+pub struct GpiodAhbId {} // IRQ 3
+pub struct GpioeAhbId {} // IRQ 4
+pub struct GpiofAhbId {} // IRQ 30
+pub struct GpiogAhbId {} // IRQ 31
+pub struct GpiohAhbId {} // IRQ 32
+pub struct GpiojAhbId {} // IRQ 54
+pub struct GpiokId {} // IRQ 55
+pub struct GpiolId {} // IRQ 53
+pub struct GpiomId {} // IRQ 72
+pub struct GpionId {} // IRQ 73
+pub struct Gpiop0Id {} // IRQ 76
+pub struct Gpiop1Id {} // IRQ 77
+pub struct Gpiop2Id {} // IRQ 78
+pub struct Gpiop3Id {} // IRQ 79
+pub struct Gpiop4Id {} // IRQ 80
+pub struct Gpiop5Id {} // IRQ 81
+pub struct Gpiop6Id {} // IRQ 82
+pub struct Gpiop7Id {} // IRQ 83
+pub struct Gpioq0Id {} // IRQ 84
+pub struct Gpioq1Id {} // IRQ 85
+pub struct Gpioq2Id {} // IRQ 86
+pub struct Gpioq3Id {} // IRQ 87
+pub struct Gpioq4Id {} // IRQ 88
+pub struct Gpioq5Id {} // IRQ 89
+pub struct Gpioq6Id {} // IRQ 90
+pub struct Gpioq7Id {} // IRQ 91
+
+pub fn set_handler(index: usize, handler: Option<Handler>) {
+  unsafe { 
+     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+     R_INTERRUPT_HANDLERS[index] = handler
+  };
 }
 
+use super::nvic::{NVIC, Iser, Icer, Ispr, Icpr, Stir};
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Irq(pub usize);
+pub struct Irq<T>(usize, T);
+impl<T> Irq<T> {
+   pub fn index(&self) -> usize { self.0 }
 
-impl Irq {
+   pub fn is_enabled(&self) -> bool { NVIC.iser((self.0 >> 5)).setena((self.0 & 0b11111)) != 0 }
+
+   pub fn set_enabled(&self, value: bool) {
+      if value {
+         assert!(self.handler().is_some());
+         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));
+      } else {
+         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));
+      }
+   }
+
+   pub fn is_pending(&self) -> bool {
+       NVIC.ispr((self.0 >> 5)).setpend((self.0 & 0b11111)) != 0
+   }
+
+   pub fn set_pending(&self, value: bool) {
+       if value {
+           NVIC.set_ispr((self.0 >> 5), Ispr(0).set_setpend((self.0 & 0b11111), 1));
+       } else {
+           NVIC.set_icpr((self.0 >> 5), Icpr(0).set_clrpend((self.0 & 0b11111), 1));
+       }
+   }
+
+   pub fn is_active(&self) -> bool {
+       NVIC.iabr((self.0 >> 5)).active((self.0 & 0b11111)) != 0
+   }
+
+   pub fn priority(&self) -> u8 {
+       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8
+   }
+
+   pub fn set_priority(&self, value: u8) {
+       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));
+   }
+
+   pub fn trigger_interrupt(&self) {
+       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));
+   }
+
+   pub fn handler(&self) -> Option<Handler> { unsafe { R_INTERRUPT_HANDLERS[self.0] } }
+
    pub fn set_handler(&self, handler: Option<Handler>) {
+      unsafe { assert!(R_INTERRUPT_HANDLERS[self.0].is_some() != handler.is_some()); };
       unsafe { R_INTERRUPT_HANDLERS[self.0] = handler };
+   }
+}
+
+pub struct IrqHandle {}
+pub struct IrqGuard<'a>(usize, PhantomData<&'a IrqHandle>);
+impl<'a> IrqGuard<'a> {
+   pub fn new(index: usize) -> Self {
+      IrqGuard(index, PhantomData)
+   }
+}
+impl<'a> Drop for IrqGuard<'a> {
+   fn drop(&mut self) {
+      set_handler(self.0, None)
+   }
+}
+
+
+pub trait RegisterHandler {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a>;
+}
+
+pub trait HandleInterrupt {
+   fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqTimer0a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(19, Some(wrapper::<F>));
+       IrqGuard::new(19)
+   }
+}
+
+impl RegisterHandler for IrqTimer0b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(20, Some(wrapper::<F>));
+       IrqGuard::new(20)
+   }
+}
+
+impl RegisterHandler for IrqTimer1a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(21, Some(wrapper::<F>));
+       IrqGuard::new(21)
+   }
+}
+
+impl RegisterHandler for IrqTimer1b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(22, Some(wrapper::<F>));
+       IrqGuard::new(22)
+   }
+}
+
+impl RegisterHandler for IrqTimer2a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(23, Some(wrapper::<F>));
+       IrqGuard::new(23)
+   }
+}
+
+impl RegisterHandler for IrqTimer2b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(24, Some(wrapper::<F>));
+       IrqGuard::new(24)
+   }
+}
+
+impl RegisterHandler for IrqTimer3a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(35, Some(wrapper::<F>));
+       IrqGuard::new(35)
+   }
+}
+
+impl RegisterHandler for IrqTimer3b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(36, Some(wrapper::<F>));
+       IrqGuard::new(36)
+   }
+}
+
+impl RegisterHandler for IrqTimer4a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(63, Some(wrapper::<F>));
+       IrqGuard::new(63)
+   }
+}
+
+impl RegisterHandler for IrqTimer4b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(64, Some(wrapper::<F>));
+       IrqGuard::new(64)
+   }
+}
+
+impl RegisterHandler for IrqTimer5a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(65, Some(wrapper::<F>));
+       IrqGuard::new(65)
+   }
+}
+
+impl RegisterHandler for IrqTimer5b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(66, Some(wrapper::<F>));
+       IrqGuard::new(66)
+   }
+}
+
+impl RegisterHandler for IrqTimer6a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(98, Some(wrapper::<F>));
+       IrqGuard::new(98)
+   }
+}
+
+impl RegisterHandler for IrqTimer6b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(99, Some(wrapper::<F>));
+       IrqGuard::new(99)
+   }
+}
+
+impl RegisterHandler for IrqTimer7a {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(100, Some(wrapper::<F>));
+       IrqGuard::new(100)
+   }
+}
+
+impl RegisterHandler for IrqTimer7b {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(101, Some(wrapper::<F>));
+       IrqGuard::new(101)
+   }
+}
+
+impl RegisterHandler for IrqUart0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(5, Some(wrapper::<F>));
+       IrqGuard::new(5)
+   }
+}
+
+impl RegisterHandler for IrqUart1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(6, Some(wrapper::<F>));
+       IrqGuard::new(6)
+   }
+}
+
+impl RegisterHandler for IrqUart2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(33, Some(wrapper::<F>));
+       IrqGuard::new(33)
+   }
+}
+
+impl RegisterHandler for IrqUart3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(56, Some(wrapper::<F>));
+       IrqGuard::new(56)
+   }
+}
+
+impl RegisterHandler for IrqUart4 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(57, Some(wrapper::<F>));
+       IrqGuard::new(57)
+   }
+}
+
+impl RegisterHandler for IrqUart5 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(58, Some(wrapper::<F>));
+       IrqGuard::new(58)
+   }
+}
+
+impl RegisterHandler for IrqUart6 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(59, Some(wrapper::<F>));
+       IrqGuard::new(59)
+   }
+}
+
+impl RegisterHandler for IrqUart7 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(60, Some(wrapper::<F>));
+       IrqGuard::new(60)
+   }
+}
+
+impl RegisterHandler for IrqI2c0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(8, Some(wrapper::<F>));
+       IrqGuard::new(8)
+   }
+}
+
+impl RegisterHandler for IrqI2c1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(37, Some(wrapper::<F>));
+       IrqGuard::new(37)
+   }
+}
+
+impl RegisterHandler for IrqI2c2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(61, Some(wrapper::<F>));
+       IrqGuard::new(61)
+   }
+}
+
+impl RegisterHandler for IrqI2c3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(62, Some(wrapper::<F>));
+       IrqGuard::new(62)
+   }
+}
+
+impl RegisterHandler for IrqSsi0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(7, Some(wrapper::<F>));
+       IrqGuard::new(7)
+   }
+}
+
+impl RegisterHandler for IrqSsi1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(34, Some(wrapper::<F>));
+       IrqGuard::new(34)
+   }
+}
+
+impl RegisterHandler for IrqSsi2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(54, Some(wrapper::<F>));
+       IrqGuard::new(54)
+   }
+}
+
+impl RegisterHandler for IrqSsi3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(55, Some(wrapper::<F>));
+       IrqGuard::new(55)
+   }
+}
+
+impl RegisterHandler for IrqGpioa {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(0, Some(wrapper::<F>));
+       IrqGuard::new(0)
+   }
+}
+
+impl RegisterHandler for IrqGpiob {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(1, Some(wrapper::<F>));
+       IrqGuard::new(1)
+   }
+}
+
+impl RegisterHandler for IrqGpioc {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(2, Some(wrapper::<F>));
+       IrqGuard::new(2)
+   }
+}
+
+impl RegisterHandler for IrqGpiod {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(3, Some(wrapper::<F>));
+       IrqGuard::new(3)
+   }
+}
+
+impl RegisterHandler for IrqGpioe {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(4, Some(wrapper::<F>));
+       IrqGuard::new(4)
+   }
+}
+
+impl RegisterHandler for IrqGpiof {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(30, Some(wrapper::<F>));
+       IrqGuard::new(30)
+   }
+}
+
+impl RegisterHandler for IrqGpiog {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(31, Some(wrapper::<F>));
+       IrqGuard::new(31)
+   }
+}
+
+impl RegisterHandler for IrqGpioh {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(32, Some(wrapper::<F>));
+       IrqGuard::new(32)
+   }
+}
+
+impl RegisterHandler for IrqGpioj {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(54, Some(wrapper::<F>));
+       IrqGuard::new(54)
+   }
+}
+
+impl RegisterHandler for IrqGpioaAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(0, Some(wrapper::<F>));
+       IrqGuard::new(0)
+   }
+}
+
+impl RegisterHandler for IrqGpiobAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(1, Some(wrapper::<F>));
+       IrqGuard::new(1)
+   }
+}
+
+impl RegisterHandler for IrqGpiocAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(2, Some(wrapper::<F>));
+       IrqGuard::new(2)
+   }
+}
+
+impl RegisterHandler for IrqGpiodAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(3, Some(wrapper::<F>));
+       IrqGuard::new(3)
+   }
+}
+
+impl RegisterHandler for IrqGpioeAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(4, Some(wrapper::<F>));
+       IrqGuard::new(4)
+   }
+}
+
+impl RegisterHandler for IrqGpiofAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(30, Some(wrapper::<F>));
+       IrqGuard::new(30)
+   }
+}
+
+impl RegisterHandler for IrqGpiogAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(31, Some(wrapper::<F>));
+       IrqGuard::new(31)
+   }
+}
+
+impl RegisterHandler for IrqGpiohAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(32, Some(wrapper::<F>));
+       IrqGuard::new(32)
+   }
+}
+
+impl RegisterHandler for IrqGpiojAhb {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(54, Some(wrapper::<F>));
+       IrqGuard::new(54)
+   }
+}
+
+impl RegisterHandler for IrqGpiok {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(55, Some(wrapper::<F>));
+       IrqGuard::new(55)
+   }
+}
+
+impl RegisterHandler for IrqGpiol {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(53, Some(wrapper::<F>));
+       IrqGuard::new(53)
+   }
+}
+
+impl RegisterHandler for IrqGpiom {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(72, Some(wrapper::<F>));
+       IrqGuard::new(72)
+   }
+}
+
+impl RegisterHandler for IrqGpion {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(73, Some(wrapper::<F>));
+       IrqGuard::new(73)
+   }
+}
+
+impl RegisterHandler for IrqGpiop0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(76, Some(wrapper::<F>));
+       IrqGuard::new(76)
+   }
+}
+
+impl RegisterHandler for IrqGpiop1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(77, Some(wrapper::<F>));
+       IrqGuard::new(77)
+   }
+}
+
+impl RegisterHandler for IrqGpiop2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(78, Some(wrapper::<F>));
+       IrqGuard::new(78)
+   }
+}
+
+impl RegisterHandler for IrqGpiop3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(79, Some(wrapper::<F>));
+       IrqGuard::new(79)
+   }
+}
+
+impl RegisterHandler for IrqGpiop4 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(80, Some(wrapper::<F>));
+       IrqGuard::new(80)
+   }
+}
+
+impl RegisterHandler for IrqGpiop5 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(81, Some(wrapper::<F>));
+       IrqGuard::new(81)
+   }
+}
+
+impl RegisterHandler for IrqGpiop6 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(82, Some(wrapper::<F>));
+       IrqGuard::new(82)
+   }
+}
+
+impl RegisterHandler for IrqGpiop7 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(83, Some(wrapper::<F>));
+       IrqGuard::new(83)
+   }
+}
+
+impl RegisterHandler for IrqGpioq0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(84, Some(wrapper::<F>));
+       IrqGuard::new(84)
+   }
+}
+
+impl RegisterHandler for IrqGpioq1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(85, Some(wrapper::<F>));
+       IrqGuard::new(85)
+   }
+}
+
+impl RegisterHandler for IrqGpioq2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(86, Some(wrapper::<F>));
+       IrqGuard::new(86)
+   }
+}
+
+impl RegisterHandler for IrqGpioq3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(87, Some(wrapper::<F>));
+       IrqGuard::new(87)
+   }
+}
+
+impl RegisterHandler for IrqGpioq4 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(88, Some(wrapper::<F>));
+       IrqGuard::new(88)
+   }
+}
+
+impl RegisterHandler for IrqGpioq5 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(89, Some(wrapper::<F>));
+       IrqGuard::new(89)
+   }
+}
+
+impl RegisterHandler for IrqGpioq6 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(90, Some(wrapper::<F>));
+       IrqGuard::new(90)
+   }
+}
+
+impl RegisterHandler for IrqGpioq7 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(91, Some(wrapper::<F>));
+       IrqGuard::new(91)
    }
 }
 
@@ -97,12 +1158,12 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,
    None,
    None,
-   None,                          // IRQ 19: No Description
-   None,                          // IRQ 20: No Description
-   None,                          // IRQ 21: No Description
-   None,                          // IRQ 22: No Description
-   None,                          // IRQ 23: No Description
-   None,                          // IRQ 24: No Description
+   None,
+   None,
+   None,
+   None,
+   None,
+   None,
    None,
    None,
    None,
@@ -113,8 +1174,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,                          // IRQ 32: No Description
    None,                          // IRQ 33: No Description
    None,                          // IRQ 34: No Description
-   None,                          // IRQ 35: No Description
-   None,                          // IRQ 36: No Description
+   None,
+   None,
    None,                          // IRQ 37: No Description
    None,
    None,
@@ -141,10 +1202,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,                          // IRQ 60: No Description
    None,                          // IRQ 61: No Description
    None,                          // IRQ 62: No Description
-   None,                          // IRQ 63: No Description
-   None,                          // IRQ 64: No Description
-   None,                          // IRQ 65: No Description
-   None,                          // IRQ 66: No Description
+   None,
+   None,
+   None,
+   None,
    None,
    None,
    None,
@@ -176,10 +1237,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,
    None,
    None,
-   None,                          // IRQ 98: No Description
-   None,                          // IRQ 99: No Description
-   None,                          // IRQ 100: No Description
-   None,                          // IRQ 101: No Description
+   None,
+   None,
+   None,
+   None,
    None,
    None,
    None,

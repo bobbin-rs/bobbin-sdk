@@ -1,9 +1,75 @@
 pub trait Signal<T> {}
 
+pub trait Ccp {}
+pub trait SignalCcp<T> {}
 pub trait Rx {}
 pub trait SignalRx<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
+
+pub const T0CCP0: T0ccp0 = T0ccp0 {};
+pub struct T0ccp0 {}
+impl Ccp for T0ccp0 {}
+
+pub const T0CCP1: T0ccp1 = T0ccp1 {};
+pub struct T0ccp1 {}
+impl Ccp for T0ccp1 {}
+
+pub const T1CCP0: T1ccp0 = T1ccp0 {};
+pub struct T1ccp0 {}
+impl Ccp for T1ccp0 {}
+
+pub const T1CCP1: T1ccp1 = T1ccp1 {};
+pub struct T1ccp1 {}
+impl Ccp for T1ccp1 {}
+
+pub const T2CCP0: T2ccp0 = T2ccp0 {};
+pub struct T2ccp0 {}
+impl Ccp for T2ccp0 {}
+
+pub const T2CCP1: T2ccp1 = T2ccp1 {};
+pub struct T2ccp1 {}
+impl Ccp for T2ccp1 {}
+
+pub const T3CCP0: T3ccp0 = T3ccp0 {};
+pub struct T3ccp0 {}
+impl Ccp for T3ccp0 {}
+
+pub const T3CCP1: T3ccp1 = T3ccp1 {};
+pub struct T3ccp1 {}
+impl Ccp for T3ccp1 {}
+
+pub const T4CCP0: T4ccp0 = T4ccp0 {};
+pub struct T4ccp0 {}
+impl Ccp for T4ccp0 {}
+
+pub const T4CCP1: T4ccp1 = T4ccp1 {};
+pub struct T4ccp1 {}
+impl Ccp for T4ccp1 {}
+
+pub const T5CCP0: T5ccp0 = T5ccp0 {};
+pub struct T5ccp0 {}
+impl Ccp for T5ccp0 {}
+
+pub const T5CCP1: T5ccp1 = T5ccp1 {};
+pub struct T5ccp1 {}
+impl Ccp for T5ccp1 {}
+
+pub const T6CCP0: T6ccp0 = T6ccp0 {};
+pub struct T6ccp0 {}
+impl Ccp for T6ccp0 {}
+
+pub const T6CCP1: T6ccp1 = T6ccp1 {};
+pub struct T6ccp1 {}
+impl Ccp for T6ccp1 {}
+
+pub const T7CCP0: T7ccp0 = T7ccp0 {};
+pub struct T7ccp0 {}
+impl Ccp for T7ccp0 {}
+
+pub const T7CCP1: T7ccp1 = T7ccp1 {};
+pub struct T7ccp1 {}
+impl Ccp for T7ccp1 {}
 
 pub const U0RX: U0rx = U0rx {};
 pub struct U0rx {}
@@ -72,17 +138,11 @@ impl Tx for U7tx {}
 pub const I2C9SCL: I2c9scl = I2c9scl {};
 pub struct I2c9scl {}
 
-pub const T0CCP0: T0ccp0 = T0ccp0 {};
-pub struct T0ccp0 {}
-
 pub const CAN0RX: Can0rx = Can0rx {};
 pub struct Can0rx {}
 
 pub const I2C9SDA: I2c9sda = I2c9sda {};
 pub struct I2c9sda {}
-
-pub const T0CCP1: T0ccp1 = T0ccp1 {};
-pub struct T0ccp1 {}
 
 pub const CAN0TX: Can0tx = Can0tx {};
 pub struct Can0tx {}
@@ -90,17 +150,11 @@ pub struct Can0tx {}
 pub const I2C8SCL: I2c8scl = I2c8scl {};
 pub struct I2c8scl {}
 
-pub const T1CCP0: T1ccp0 = T1ccp0 {};
-pub struct T1ccp0 {}
-
 pub const SSI0CLK: Ssi0clk = Ssi0clk {};
 pub struct Ssi0clk {}
 
 pub const I2C8SDA: I2c8sda = I2c8sda {};
 pub struct I2c8sda {}
-
-pub const T1CCP1: T1ccp1 = T1ccp1 {};
-pub struct T1ccp1 {}
 
 pub const SSI0FSS: Ssi0fss = Ssi0fss {};
 pub struct Ssi0fss {}
@@ -108,26 +162,17 @@ pub struct Ssi0fss {}
 pub const I2C7SCL: I2c7scl = I2c7scl {};
 pub struct I2c7scl {}
 
-pub const T2CCP0: T2ccp0 = T2ccp0 {};
-pub struct T2ccp0 {}
-
 pub const SSI0XDAT0: Ssi0xdat0 = Ssi0xdat0 {};
 pub struct Ssi0xdat0 {}
 
 pub const I2C7SDA: I2c7sda = I2c7sda {};
 pub struct I2c7sda {}
 
-pub const T2CCP1: T2ccp1 = T2ccp1 {};
-pub struct T2ccp1 {}
-
 pub const SSI0XDAT1: Ssi0xdat1 = Ssi0xdat1 {};
 pub struct Ssi0xdat1 {}
 
 pub const I2C6SCL: I2c6scl = I2c6scl {};
 pub struct I2c6scl {}
-
-pub const T3CCP0: T3ccp0 = T3ccp0 {};
-pub struct T3ccp0 {}
 
 pub const USB0EPEN: Usb0epen = Usb0epen {};
 pub struct Usb0epen {}
@@ -140,9 +185,6 @@ pub struct Epi0s8 {}
 
 pub const I2C6SDA: I2c6sda = I2c6sda {};
 pub struct I2c6sda {}
-
-pub const T3CCP1: T3ccp1 = T3ccp1 {};
-pub struct T3ccp1 {}
 
 pub const USB0PFLT: Usb0pflt = Usb0pflt {};
 pub struct Usb0pflt {}
@@ -159,9 +201,6 @@ pub struct Usb0id {}
 pub const I2C5SCL: I2c5scl = I2c5scl {};
 pub struct I2c5scl {}
 
-pub const T4CCP0: T4ccp0 = T4ccp0 {};
-pub struct T4ccp0 {}
-
 pub const CAN1RX: Can1rx = Can1rx {};
 pub struct Can1rx {}
 
@@ -171,17 +210,11 @@ pub struct Usb0vbus {}
 pub const I2C5SDA: I2c5sda = I2c5sda {};
 pub struct I2c5sda {}
 
-pub const T4CCP1: T4ccp1 = T4ccp1 {};
-pub struct T4ccp1 {}
-
 pub const CAN1TX: Can1tx = Can1tx {};
 pub struct Can1tx {}
 
 pub const I2C0SCL: I2c0scl = I2c0scl {};
 pub struct I2c0scl {}
-
-pub const T5CCP0: T5ccp0 = T5ccp0 {};
-pub struct T5ccp0 {}
 
 pub const USB0STP: Usb0stp = Usb0stp {};
 pub struct Usb0stp {}
@@ -191,9 +224,6 @@ pub struct Epi0s27 {}
 
 pub const I2C0SDA: I2c0sda = I2c0sda {};
 pub struct I2c0sda {}
-
-pub const T5CCP1: T5ccp1 = T5ccp1 {};
-pub struct T5ccp1 {}
 
 pub const USB0CLK: Usb0clk = Usb0clk {};
 pub struct Usb0clk {}

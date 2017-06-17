@@ -35,13 +35,45 @@ pub type Timer6 = Periph<Timer6Id>;
 pub struct Timer7Id {}
 pub type Timer7 = Periph<Timer7Id>;
 
+impl super::sig::Signal<super::sig::T0ccp0> for Timer0a {}
+impl super::sig::SignalCcp<super::sig::T0ccp0> for Timer0a {}
+impl super::sig::Signal<super::sig::T0ccp1> for Timer0b {}
+impl super::sig::SignalCcp<super::sig::T0ccp1> for Timer0b {}
 
+impl super::sig::Signal<super::sig::T1ccp0> for Timer1a {}
+impl super::sig::SignalCcp<super::sig::T1ccp0> for Timer1a {}
+impl super::sig::Signal<super::sig::T1ccp1> for Timer1b {}
+impl super::sig::SignalCcp<super::sig::T1ccp1> for Timer1b {}
 
+impl super::sig::Signal<super::sig::T2ccp0> for Timer2a {}
+impl super::sig::SignalCcp<super::sig::T2ccp0> for Timer2a {}
+impl super::sig::Signal<super::sig::T2ccp1> for Timer2b {}
+impl super::sig::SignalCcp<super::sig::T2ccp1> for Timer2b {}
 
+impl super::sig::Signal<super::sig::T3ccp0> for Timer3a {}
+impl super::sig::SignalCcp<super::sig::T3ccp0> for Timer3a {}
+impl super::sig::Signal<super::sig::T3ccp1> for Timer3b {}
+impl super::sig::SignalCcp<super::sig::T3ccp1> for Timer3b {}
 
+impl super::sig::Signal<super::sig::T4ccp0> for Timer4a {}
+impl super::sig::SignalCcp<super::sig::T4ccp0> for Timer4a {}
+impl super::sig::Signal<super::sig::T4ccp1> for Timer4b {}
+impl super::sig::SignalCcp<super::sig::T4ccp1> for Timer4b {}
 
+impl super::sig::Signal<super::sig::T5ccp0> for Timer5a {}
+impl super::sig::SignalCcp<super::sig::T5ccp0> for Timer5a {}
+impl super::sig::Signal<super::sig::T5ccp1> for Timer5b {}
+impl super::sig::SignalCcp<super::sig::T5ccp1> for Timer5b {}
 
+impl super::sig::Signal<super::sig::T6ccp0> for Timer6a {}
+impl super::sig::SignalCcp<super::sig::T6ccp0> for Timer6a {}
+impl super::sig::Signal<super::sig::T6ccp1> for Timer6b {}
+impl super::sig::SignalCcp<super::sig::T6ccp1> for Timer6b {}
 
+impl super::sig::Signal<super::sig::T7ccp0> for Timer7a {}
+impl super::sig::SignalCcp<super::sig::T7ccp0> for Timer7a {}
+impl super::sig::Signal<super::sig::T7ccp1> for Timer7b {}
+impl super::sig::SignalCcp<super::sig::T7ccp1> for Timer7b {}
 
 
 impl<T> Periph<T> {
@@ -67,48 +99,30 @@ impl<T> Periph<T> {
      self.set_cfg(f(tmp))
   }
 
-  #[inline] pub fn tamr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
+  #[inline] pub fn tmr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x4 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tamr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
+  #[inline] pub fn tmr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x4 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tamr(&self) -> Tamr { 
+  #[inline] pub fn tmr(&self, index: usize) -> Tmr { 
+     assert!(index < 2);
      unsafe {
-        Tamr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+        Tmr(::core::ptr::read_volatile(((self.0 as usize) + 0x4 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tamr(&self, value: Tamr) -> &Self {
+  #[inline] pub fn set_tmr(&self, index: usize, value: Tmr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tamr<F: FnOnce(Tamr) -> Tamr>(&self, f: F) -> &Self {
-     let tmp = self.tamr();
-     self.set_tamr(f(tmp))
-  }
-
-  #[inline] pub fn tbmr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
-  #[inline] pub fn tbmr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
-  #[inline] pub fn tbmr(&self) -> Tbmr { 
-     unsafe {
-        Tbmr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tbmr(&self, value: Tbmr) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tbmr<F: FnOnce(Tbmr) -> Tbmr>(&self, f: F) -> &Self {
-     let tmp = self.tbmr();
-     self.set_tbmr(f(tmp))
+  #[inline] pub fn with_tmr<F: FnOnce(Tmr) -> Tmr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tmr(index);
+     self.set_tmr(index, f(tmp))
   }
 
   #[inline] pub fn ctl_ptr(&self) -> *const u32 { 
@@ -234,268 +248,160 @@ impl<T> Periph<T> {
      self
   }
 
-  #[inline] pub fn tailr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x28) as *const u32
+  #[inline] pub fn tilr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x28 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tailr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x28) as *mut u32
+  #[inline] pub fn tilr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x28 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tailr(&self) -> Tailr { 
+  #[inline] pub fn tilr(&self, index: usize) -> Tilr { 
+     assert!(index < 2);
      unsafe {
-        Tailr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+        Tilr(::core::ptr::read_volatile(((self.0 as usize) + 0x28 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tailr(&self, value: Tailr) -> &Self {
+  #[inline] pub fn set_tilr(&self, index: usize, value: Tilr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tailr<F: FnOnce(Tailr) -> Tailr>(&self, f: F) -> &Self {
-     let tmp = self.tailr();
-     self.set_tailr(f(tmp))
+  #[inline] pub fn with_tilr<F: FnOnce(Tilr) -> Tilr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tilr(index);
+     self.set_tilr(index, f(tmp))
   }
 
-  #[inline] pub fn tbilr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x2c) as *const u32
+  #[inline] pub fn tmtchr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x30 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tbilr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x2c) as *mut u32
+  #[inline] pub fn tmtchr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x30 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tbilr(&self) -> Tbilr { 
+  #[inline] pub fn tmtchr(&self, index: usize) -> Tmtchr { 
+     assert!(index < 2);
      unsafe {
-        Tbilr(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+        Tmtchr(::core::ptr::read_volatile(((self.0 as usize) + 0x30 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tbilr(&self, value: Tbilr) -> &Self {
+  #[inline] pub fn set_tmtchr(&self, index: usize, value: Tmtchr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x30 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tbilr<F: FnOnce(Tbilr) -> Tbilr>(&self, f: F) -> &Self {
-     let tmp = self.tbilr();
-     self.set_tbilr(f(tmp))
+  #[inline] pub fn with_tmtchr<F: FnOnce(Tmtchr) -> Tmtchr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tmtchr(index);
+     self.set_tmtchr(index, f(tmp))
   }
 
-  #[inline] pub fn tamatchr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x30) as *const u32
+  #[inline] pub fn tpr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x38 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tamatchr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x30) as *mut u32
+  #[inline] pub fn tpr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x38 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tamatchr(&self) -> Tamatchr { 
+  #[inline] pub fn tpr(&self, index: usize) -> Tpr { 
+     assert!(index < 2);
      unsafe {
-        Tamatchr(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+        Tpr(::core::ptr::read_volatile(((self.0 as usize) + 0x38 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tamatchr(&self, value: Tamatchr) -> &Self {
+  #[inline] pub fn set_tpr(&self, index: usize, value: Tpr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x38 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tamatchr<F: FnOnce(Tamatchr) -> Tamatchr>(&self, f: F) -> &Self {
-     let tmp = self.tamatchr();
-     self.set_tamatchr(f(tmp))
+  #[inline] pub fn with_tpr<F: FnOnce(Tpr) -> Tpr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tpr(index);
+     self.set_tpr(index, f(tmp))
   }
 
-  #[inline] pub fn tbmatchr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x34) as *const u32
+  #[inline] pub fn tpmr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x40 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tbmatchr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x34) as *mut u32
+  #[inline] pub fn tpmr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x40 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tbmatchr(&self) -> Tbmatchr { 
+  #[inline] pub fn tpmr(&self, index: usize) -> Tpmr { 
+     assert!(index < 2);
      unsafe {
-        Tbmatchr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+        Tpmr(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tbmatchr(&self, value: Tbmatchr) -> &Self {
+  #[inline] pub fn set_tpmr(&self, index: usize, value: Tpmr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tbmatchr<F: FnOnce(Tbmatchr) -> Tbmatchr>(&self, f: F) -> &Self {
-     let tmp = self.tbmatchr();
-     self.set_tbmatchr(f(tmp))
+  #[inline] pub fn with_tpmr<F: FnOnce(Tpmr) -> Tpmr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tpmr(index);
+     self.set_tpmr(index, f(tmp))
   }
 
-  #[inline] pub fn tapr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x38) as *const u32
+  #[inline] pub fn tr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x48 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tapr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x38) as *mut u32
+  #[inline] pub fn tr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x48 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tapr(&self) -> Tapr { 
+  #[inline] pub fn tr(&self, index: usize) -> Tr { 
+     assert!(index < 2);
      unsafe {
-        Tapr(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
+        Tr(::core::ptr::read_volatile(((self.0 as usize) + 0x48 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tapr(&self, value: Tapr) -> &Self {
+  #[inline] pub fn set_tr(&self, index: usize, value: Tr) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tapr<F: FnOnce(Tapr) -> Tapr>(&self, f: F) -> &Self {
-     let tmp = self.tapr();
-     self.set_tapr(f(tmp))
+  #[inline] pub fn with_tr<F: FnOnce(Tr) -> Tr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tr(index);
+     self.set_tr(index, f(tmp))
   }
 
-  #[inline] pub fn tbpr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x3c) as *const u32
+  #[inline] pub fn tv_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x50 + (index << 2)) as *const u32
   }
-  #[inline] pub fn tbpr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x3c) as *mut u32
+  #[inline] pub fn tv_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x50 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn tbpr(&self) -> Tbpr { 
+  #[inline] pub fn tv(&self, index: usize) -> Tv { 
+     assert!(index < 2);
      unsafe {
-        Tbpr(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
+        Tv(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_tbpr(&self, value: Tbpr) -> &Self {
+  #[inline] pub fn set_tv(&self, index: usize, value: Tv) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tbpr<F: FnOnce(Tbpr) -> Tbpr>(&self, f: F) -> &Self {
-     let tmp = self.tbpr();
-     self.set_tbpr(f(tmp))
-  }
-
-  #[inline] pub fn tapmr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x40) as *const u32
-  }
-  #[inline] pub fn tapmr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x40) as *mut u32
-  }
-  #[inline] pub fn tapmr(&self) -> Tapmr { 
-     unsafe {
-        Tapmr(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tapmr(&self, value: Tapmr) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tapmr<F: FnOnce(Tapmr) -> Tapmr>(&self, f: F) -> &Self {
-     let tmp = self.tapmr();
-     self.set_tapmr(f(tmp))
-  }
-
-  #[inline] pub fn tbpmr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x44) as *const u32
-  }
-  #[inline] pub fn tbpmr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x44) as *mut u32
-  }
-  #[inline] pub fn tbpmr(&self) -> Tbpmr { 
-     unsafe {
-        Tbpmr(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tbpmr(&self, value: Tbpmr) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tbpmr<F: FnOnce(Tbpmr) -> Tbpmr>(&self, f: F) -> &Self {
-     let tmp = self.tbpmr();
-     self.set_tbpmr(f(tmp))
-  }
-
-  #[inline] pub fn tar_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x48) as *const u32
-  }
-  #[inline] pub fn tar_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x48) as *mut u32
-  }
-  #[inline] pub fn tar(&self) -> Tar { 
-     unsafe {
-        Tar(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tar(&self, value: Tar) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tar<F: FnOnce(Tar) -> Tar>(&self, f: F) -> &Self {
-     let tmp = self.tar();
-     self.set_tar(f(tmp))
-  }
-
-  #[inline] pub fn tbr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4c) as *const u32
-  }
-  #[inline] pub fn tbr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4c) as *mut u32
-  }
-  #[inline] pub fn tbr(&self) -> Tbr { 
-     unsafe {
-        Tbr(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tbr(&self, value: Tbr) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tbr<F: FnOnce(Tbr) -> Tbr>(&self, f: F) -> &Self {
-     let tmp = self.tbr();
-     self.set_tbr(f(tmp))
-  }
-
-  #[inline] pub fn tav_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x50) as *const u32
-  }
-  #[inline] pub fn tav_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x50) as *mut u32
-  }
-  #[inline] pub fn tav(&self) -> Tav { 
-     unsafe {
-        Tav(::core::ptr::read_volatile(((self.0 as usize) + 0x50) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tav(&self, value: Tav) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tav<F: FnOnce(Tav) -> Tav>(&self, f: F) -> &Self {
-     let tmp = self.tav();
-     self.set_tav(f(tmp))
-  }
-
-  #[inline] pub fn tbv_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x54) as *const u32
-  }
-  #[inline] pub fn tbv_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x54) as *mut u32
-  }
-  #[inline] pub fn tbv(&self) -> Tbv { 
-     unsafe {
-        Tbv(::core::ptr::read_volatile(((self.0 as usize) + 0x54) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tbv(&self, value: Tbv) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_tbv<F: FnOnce(Tbv) -> Tbv>(&self, f: F) -> &Self {
-     let tmp = self.tbv();
-     self.set_tbv(f(tmp))
+  #[inline] pub fn with_tv<F: FnOnce(Tv) -> Tv>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tv(index);
+     self.set_tv(index, f(tmp))
   }
 
   #[inline] pub fn rtcpd_ptr(&self) -> *const u32 { 
@@ -520,48 +426,30 @@ impl<T> Periph<T> {
      self.set_rtcpd(f(tmp))
   }
 
-  #[inline] pub fn taps_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x5c) as *const u32
+  #[inline] pub fn tps_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x5c + (index << 2)) as *const u32
   }
-  #[inline] pub fn taps_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x5c) as *mut u32
+  #[inline] pub fn tps_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x5c + (index << 2)) as *mut u32
   }
-  #[inline] pub fn taps(&self) -> Taps { 
+  #[inline] pub fn tps(&self, index: usize) -> Tps { 
+     assert!(index < 2);
      unsafe {
-        Taps(::core::ptr::read_volatile(((self.0 as usize) + 0x5c) as *const u32))
+        Tps(::core::ptr::read_volatile(((self.0 as usize) + 0x5c + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_taps(&self, value: Taps) -> &Self {
+  #[inline] pub fn set_tps(&self, index: usize, value: Tps) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_taps<F: FnOnce(Taps) -> Taps>(&self, f: F) -> &Self {
-     let tmp = self.taps();
-     self.set_taps(f(tmp))
-  }
-
-  #[inline] pub fn tbps_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x60) as *const u32
-  }
-  #[inline] pub fn tbps_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x60) as *mut u32
-  }
-  #[inline] pub fn tbps(&self) -> Tbps { 
-     unsafe {
-        Tbps(::core::ptr::read_volatile(((self.0 as usize) + 0x60) as *const u32))
-     }
-  }
-  #[inline] pub fn set_tbps(&self, value: Tbps) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_tbps<F: FnOnce(Tbps) -> Tbps>(&self, f: F) -> &Self {
-     let tmp = self.tbps();
-     self.set_tbps(f(tmp))
+  #[inline] pub fn with_tps<F: FnOnce(Tps) -> Tps>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.tps(index);
+     self.set_tps(index, f(tmp))
   }
 
   #[inline] pub fn dmaev_ptr(&self) -> *const u32 { 
@@ -682,122 +570,122 @@ impl ::core::fmt::Debug for Cfg {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tamr(pub u32);
-impl Tamr {
-  #[inline] pub fn tamr(&self) -> u32 {
+pub struct Tmr(pub u32);
+impl Tmr {
+  #[inline] pub fn tmr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3 // [1:0]
   }
-  #[inline] pub fn set_tamr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmr(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
      self
   }
 
-  #[inline] pub fn tacmr(&self) -> u32 {
+  #[inline] pub fn tcmr(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline] pub fn set_tacmr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcmr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline] pub fn taams(&self) -> u32 {
+  #[inline] pub fn tams(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline] pub fn set_taams(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tams(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
-  #[inline] pub fn tacdir(&self) -> u32 {
+  #[inline] pub fn tcdir(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-  #[inline] pub fn set_tacdir(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcdir(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
-  #[inline] pub fn tamie(&self) -> u32 {
+  #[inline] pub fn tmie(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-  #[inline] pub fn set_tamie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
-  #[inline] pub fn tawot(&self) -> u32 {
+  #[inline] pub fn twot(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-  #[inline] pub fn set_tawot(mut self, value: u32) -> Self {
+  #[inline] pub fn set_twot(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
-  #[inline] pub fn tasnaps(&self) -> u32 {
+  #[inline] pub fn tsnaps(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-  #[inline] pub fn set_tasnaps(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsnaps(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
-  #[inline] pub fn taild(&self) -> u32 {
+  #[inline] pub fn tild(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-  #[inline] pub fn set_taild(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tild(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
      self
   }
 
-  #[inline] pub fn tapwmie(&self) -> u32 {
+  #[inline] pub fn tpwmie(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-  #[inline] pub fn set_tapwmie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpwmie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
      self
   }
 
-  #[inline] pub fn tamrsu(&self) -> u32 {
+  #[inline] pub fn tmrsu(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-  #[inline] pub fn set_tamrsu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmrsu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
      self
   }
 
-  #[inline] pub fn taplo(&self) -> u32 {
+  #[inline] pub fn tplo(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-  #[inline] pub fn set_taplo(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tplo(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
      self
   }
 
-  #[inline] pub fn tacintd(&self) -> u32 {
+  #[inline] pub fn tcintd(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
-  #[inline] pub fn set_tacintd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcintd(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -815,185 +703,26 @@ impl Tamr {
   }
 
 }
-impl ::core::fmt::Display for Tamr {
+impl ::core::fmt::Display for Tmr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tamr {
+impl ::core::fmt::Debug for Tmr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tamr() != 0 { try!(write!(f, " tamr=0x{:x}", self.tamr()))}
-      if self.tacmr() != 0 { try!(write!(f, " tacmr"))}
-      if self.taams() != 0 { try!(write!(f, " taams"))}
-      if self.tacdir() != 0 { try!(write!(f, " tacdir"))}
-      if self.tamie() != 0 { try!(write!(f, " tamie"))}
-      if self.tawot() != 0 { try!(write!(f, " tawot"))}
-      if self.tasnaps() != 0 { try!(write!(f, " tasnaps"))}
-      if self.taild() != 0 { try!(write!(f, " taild"))}
-      if self.tapwmie() != 0 { try!(write!(f, " tapwmie"))}
-      if self.tamrsu() != 0 { try!(write!(f, " tamrsu"))}
-      if self.taplo() != 0 { try!(write!(f, " taplo"))}
-      if self.tacintd() != 0 { try!(write!(f, " tacintd"))}
-      if self.tcact() != 0 { try!(write!(f, " tcact=0x{:x}", self.tcact()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tbmr(pub u32);
-impl Tbmr {
-  #[inline] pub fn tbmr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline] pub fn set_tbmr(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn tbcmr(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_tbcmr(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn tbams(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_tbams(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn tbcdir(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_tbcdir(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn tbmie(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_tbmie(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn tbwot(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_tbwot(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn tbsnaps(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_tbsnaps(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn tbild(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbild(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn tbpwmie(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_tbpwmie(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn tbmrsu(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_tbmrsu(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbplo(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbplo(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn tbcintd(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-  #[inline] pub fn set_tbcintd(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn tcact(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x7 // [15:13]
-  }
-  #[inline] pub fn set_tcact(mut self, value: u32) -> Self {
-     assert!((value & !0x7) == 0);
-     self.0 &= !(0x7 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tbmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tbmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tbmr() != 0 { try!(write!(f, " tbmr=0x{:x}", self.tbmr()))}
-      if self.tbcmr() != 0 { try!(write!(f, " tbcmr"))}
-      if self.tbams() != 0 { try!(write!(f, " tbams"))}
-      if self.tbcdir() != 0 { try!(write!(f, " tbcdir"))}
-      if self.tbmie() != 0 { try!(write!(f, " tbmie"))}
-      if self.tbwot() != 0 { try!(write!(f, " tbwot"))}
-      if self.tbsnaps() != 0 { try!(write!(f, " tbsnaps"))}
-      if self.tbild() != 0 { try!(write!(f, " tbild"))}
-      if self.tbpwmie() != 0 { try!(write!(f, " tbpwmie"))}
-      if self.tbmrsu() != 0 { try!(write!(f, " tbmrsu"))}
-      if self.tbplo() != 0 { try!(write!(f, " tbplo"))}
-      if self.tbcintd() != 0 { try!(write!(f, " tbcintd"))}
+      if self.tmr() != 0 { try!(write!(f, " tmr=0x{:x}", self.tmr()))}
+      if self.tcmr() != 0 { try!(write!(f, " tcmr"))}
+      if self.tams() != 0 { try!(write!(f, " tams"))}
+      if self.tcdir() != 0 { try!(write!(f, " tcdir"))}
+      if self.tmie() != 0 { try!(write!(f, " tmie"))}
+      if self.twot() != 0 { try!(write!(f, " twot"))}
+      if self.tsnaps() != 0 { try!(write!(f, " tsnaps"))}
+      if self.tild() != 0 { try!(write!(f, " tild"))}
+      if self.tpwmie() != 0 { try!(write!(f, " tpwmie"))}
+      if self.tmrsu() != 0 { try!(write!(f, " tmrsu"))}
+      if self.tplo() != 0 { try!(write!(f, " tplo"))}
+      if self.tcintd() != 0 { try!(write!(f, " tcintd"))}
       if self.tcact() != 0 { try!(write!(f, " tcact=0x{:x}", self.tcact()))}
       try!(write!(f, "]"));
       Ok(())
@@ -1002,33 +731,45 @@ impl ::core::fmt::Debug for Tbmr {
 #[derive(PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
-  #[inline] pub fn taen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ten(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_taen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ten(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn tastall(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tstall(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_tastall(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tstall(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn taevent(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
+  #[inline] pub fn tevent(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x3 // [3:2]
   }
-  #[inline] pub fn set_taevent(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tevent(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x3 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1042,73 +783,31 @@ impl Ctl {
      self
   }
 
-  #[inline] pub fn taote(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn tote(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 5 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [5]
   }
-  #[inline] pub fn set_taote(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tote(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
+     let shift: usize = 5 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn tapwml(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn tpwml(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 6 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [6]
   }
-  #[inline] pub fn set_tapwml(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpwml(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn tben(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tben(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn tbstall(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_tbstall(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn tbevent(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
-  }
-  #[inline] pub fn set_tbevent(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbote(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_tbote(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-  #[inline] pub fn tbpwml(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline] pub fn set_tbpwml(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
+     let shift: usize = 6 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1121,17 +820,17 @@ impl ::core::fmt::Display for Ctl {
 impl ::core::fmt::Debug for Ctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.taen() != 0 { try!(write!(f, " taen"))}
-      if self.tastall() != 0 { try!(write!(f, " tastall"))}
-      if self.taevent() != 0 { try!(write!(f, " taevent=0x{:x}", self.taevent()))}
+      if self.ten(0) != 0 { try!(write!(f, " ten[0]"))}
+      if self.ten(1) != 0 { try!(write!(f, " ten[1]"))}
+      if self.tstall(0) != 0 { try!(write!(f, " tstall[0]"))}
+      if self.tstall(1) != 0 { try!(write!(f, " tstall[1]"))}
+      if self.tevent(0) != 0 { try!(write!(f, " tevent[0]=0x{:x}", self.tevent(0)))}
+      if self.tevent(1) != 0 { try!(write!(f, " tevent[1]=0x{:x}", self.tevent(1)))}
       if self.rtcen() != 0 { try!(write!(f, " rtcen"))}
-      if self.taote() != 0 { try!(write!(f, " taote"))}
-      if self.tapwml() != 0 { try!(write!(f, " tapwml"))}
-      if self.tben() != 0 { try!(write!(f, " tben"))}
-      if self.tbstall() != 0 { try!(write!(f, " tbstall"))}
-      if self.tbevent() != 0 { try!(write!(f, " tbevent=0x{:x}", self.tbevent()))}
-      if self.tbote() != 0 { try!(write!(f, " tbote"))}
-      if self.tbpwml() != 0 { try!(write!(f, " tbpwml"))}
+      if self.tote(0) != 0 { try!(write!(f, " tote[0]"))}
+      if self.tote(1) != 0 { try!(write!(f, " tote[1]"))}
+      if self.tpwml(0) != 0 { try!(write!(f, " tpwml[0]"))}
+      if self.tpwml(1) != 0 { try!(write!(f, " tpwml[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1139,83 +838,17 @@ impl ::core::fmt::Debug for Ctl {
 #[derive(PartialEq, Eq)]
 pub struct Sync(pub u32);
 impl Sync {
-  #[inline] pub fn synct0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn synct(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 0 + (index << 1);
+     ((self.0 as u32) >> shift) & 0x3 // [1:0]
   }
-  #[inline] pub fn set_synct0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_synct(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn synct1(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
-  }
-  #[inline] pub fn set_synct1(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn synct2(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
-  }
-  #[inline] pub fn set_synct2(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn synct3(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x3 // [7:6]
-  }
-  #[inline] pub fn set_synct3(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn synct4(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
-  }
-  #[inline] pub fn set_synct4(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn synct5(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
-  }
-  #[inline] pub fn set_synct5(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn synct6(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x3 // [13:12]
-  }
-  #[inline] pub fn set_synct6(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn synct7(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x3 // [15:14]
-  }
-  #[inline] pub fn set_synct7(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 14);
-     self.0 |= value << 14;
+     let shift: usize = 0 + (index << 1);
+     self.0 &= !(0x3 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1228,14 +861,14 @@ impl ::core::fmt::Display for Sync {
 impl ::core::fmt::Debug for Sync {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.synct0() != 0 { try!(write!(f, " synct0=0x{:x}", self.synct0()))}
-      if self.synct1() != 0 { try!(write!(f, " synct1=0x{:x}", self.synct1()))}
-      if self.synct2() != 0 { try!(write!(f, " synct2=0x{:x}", self.synct2()))}
-      if self.synct3() != 0 { try!(write!(f, " synct3=0x{:x}", self.synct3()))}
-      if self.synct4() != 0 { try!(write!(f, " synct4=0x{:x}", self.synct4()))}
-      if self.synct5() != 0 { try!(write!(f, " synct5=0x{:x}", self.synct5()))}
-      if self.synct6() != 0 { try!(write!(f, " synct6=0x{:x}", self.synct6()))}
-      if self.synct7() != 0 { try!(write!(f, " synct7=0x{:x}", self.synct7()))}
+      if self.synct(0) != 0 { try!(write!(f, " synct[0]=0x{:x}", self.synct(0)))}
+      if self.synct(1) != 0 { try!(write!(f, " synct[1]=0x{:x}", self.synct(1)))}
+      if self.synct(2) != 0 { try!(write!(f, " synct[2]=0x{:x}", self.synct(2)))}
+      if self.synct(3) != 0 { try!(write!(f, " synct[3]=0x{:x}", self.synct(3)))}
+      if self.synct(4) != 0 { try!(write!(f, " synct[4]=0x{:x}", self.synct(4)))}
+      if self.synct(5) != 0 { try!(write!(f, " synct[5]=0x{:x}", self.synct(5)))}
+      if self.synct(6) != 0 { try!(write!(f, " synct[6]=0x{:x}", self.synct(6)))}
+      if self.synct(7) != 0 { try!(write!(f, " synct[7]=0x{:x}", self.synct(7)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1243,33 +876,45 @@ impl ::core::fmt::Debug for Sync {
 #[derive(PartialEq, Eq)]
 pub struct Imr(pub u32);
 impl Imr {
-  #[inline] pub fn tatoim(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttoim(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatoim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttoim(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn camim(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmim(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_camim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmim(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caeim(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ceim(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caeim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ceim(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1283,73 +928,31 @@ impl Imr {
      self
   }
 
-  #[inline] pub fn tamim(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmim(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tamim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmim(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn dmaaim(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dmaim(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 5 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [5]
   }
-  #[inline] pub fn set_dmaaim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaim(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn tbtoim(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtoim(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmim(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmim(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cbeim(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cbeim(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmim(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmim(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn dmabim(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_dmabim(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
+     let shift: usize = 5 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1362,17 +965,17 @@ impl ::core::fmt::Display for Imr {
 impl ::core::fmt::Debug for Imr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatoim() != 0 { try!(write!(f, " tatoim"))}
-      if self.camim() != 0 { try!(write!(f, " camim"))}
-      if self.caeim() != 0 { try!(write!(f, " caeim"))}
+      if self.ttoim(0) != 0 { try!(write!(f, " ttoim[0]"))}
+      if self.ttoim(1) != 0 { try!(write!(f, " ttoim[1]"))}
+      if self.cmim(0) != 0 { try!(write!(f, " cmim[0]"))}
+      if self.cmim(1) != 0 { try!(write!(f, " cmim[1]"))}
+      if self.ceim(0) != 0 { try!(write!(f, " ceim[0]"))}
+      if self.ceim(1) != 0 { try!(write!(f, " ceim[1]"))}
       if self.rtcim() != 0 { try!(write!(f, " rtcim"))}
-      if self.tamim() != 0 { try!(write!(f, " tamim"))}
-      if self.dmaaim() != 0 { try!(write!(f, " dmaaim"))}
-      if self.tbtoim() != 0 { try!(write!(f, " tbtoim"))}
-      if self.cbmim() != 0 { try!(write!(f, " cbmim"))}
-      if self.cbeim() != 0 { try!(write!(f, " cbeim"))}
-      if self.tbmim() != 0 { try!(write!(f, " tbmim"))}
-      if self.dmabim() != 0 { try!(write!(f, " dmabim"))}
+      if self.tmim(0) != 0 { try!(write!(f, " tmim[0]"))}
+      if self.tmim(1) != 0 { try!(write!(f, " tmim[1]"))}
+      if self.dmaim(0) != 0 { try!(write!(f, " dmaim[0]"))}
+      if self.dmaim(1) != 0 { try!(write!(f, " dmaim[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1380,33 +983,45 @@ impl ::core::fmt::Debug for Imr {
 #[derive(PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
-  #[inline] pub fn tatoris(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttoris(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatoris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttoris(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn camris(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmris(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_camris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmris(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caeris(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ceris(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caeris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ceris(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1420,73 +1035,31 @@ impl Ris {
      self
   }
 
-  #[inline] pub fn tamris(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmris(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tamris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmris(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn dmaaris(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dmaris(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 5 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [5]
   }
-  #[inline] pub fn set_dmaaris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaris(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn tbtoris(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtoris(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmris(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmris(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cberis(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cberis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmris(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmris(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn dmabris(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_dmabris(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
+     let shift: usize = 5 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1499,17 +1072,17 @@ impl ::core::fmt::Display for Ris {
 impl ::core::fmt::Debug for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatoris() != 0 { try!(write!(f, " tatoris"))}
-      if self.camris() != 0 { try!(write!(f, " camris"))}
-      if self.caeris() != 0 { try!(write!(f, " caeris"))}
+      if self.ttoris(0) != 0 { try!(write!(f, " ttoris[0]"))}
+      if self.ttoris(1) != 0 { try!(write!(f, " ttoris[1]"))}
+      if self.cmris(0) != 0 { try!(write!(f, " cmris[0]"))}
+      if self.cmris(1) != 0 { try!(write!(f, " cmris[1]"))}
+      if self.ceris(0) != 0 { try!(write!(f, " ceris[0]"))}
+      if self.ceris(1) != 0 { try!(write!(f, " ceris[1]"))}
       if self.rtcris() != 0 { try!(write!(f, " rtcris"))}
-      if self.tamris() != 0 { try!(write!(f, " tamris"))}
-      if self.dmaaris() != 0 { try!(write!(f, " dmaaris"))}
-      if self.tbtoris() != 0 { try!(write!(f, " tbtoris"))}
-      if self.cbmris() != 0 { try!(write!(f, " cbmris"))}
-      if self.cberis() != 0 { try!(write!(f, " cberis"))}
-      if self.tbmris() != 0 { try!(write!(f, " tbmris"))}
-      if self.dmabris() != 0 { try!(write!(f, " dmabris"))}
+      if self.tmris(0) != 0 { try!(write!(f, " tmris[0]"))}
+      if self.tmris(1) != 0 { try!(write!(f, " tmris[1]"))}
+      if self.dmaris(0) != 0 { try!(write!(f, " dmaris[0]"))}
+      if self.dmaris(1) != 0 { try!(write!(f, " dmaris[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1517,33 +1090,45 @@ impl ::core::fmt::Debug for Ris {
 #[derive(PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
-  #[inline] pub fn tatomis(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttomis(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatomis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttomis(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn cammis(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmmis(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_cammis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmmis(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caemis(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn cemis(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caemis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cemis(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1557,73 +1142,31 @@ impl Mis {
      self
   }
 
-  #[inline] pub fn tammis(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmmis(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tammis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmmis(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn dmaamis(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dmamis(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 5 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [5]
   }
-  #[inline] pub fn set_dmaamis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmamis(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn tbtomis(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtomis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmmis(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmmis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cbemis(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cbemis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmmis(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmmis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn dmabmis(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_dmabmis(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
+     let shift: usize = 5 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1636,17 +1179,17 @@ impl ::core::fmt::Display for Mis {
 impl ::core::fmt::Debug for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatomis() != 0 { try!(write!(f, " tatomis"))}
-      if self.cammis() != 0 { try!(write!(f, " cammis"))}
-      if self.caemis() != 0 { try!(write!(f, " caemis"))}
+      if self.ttomis(0) != 0 { try!(write!(f, " ttomis[0]"))}
+      if self.ttomis(1) != 0 { try!(write!(f, " ttomis[1]"))}
+      if self.cmmis(0) != 0 { try!(write!(f, " cmmis[0]"))}
+      if self.cmmis(1) != 0 { try!(write!(f, " cmmis[1]"))}
+      if self.cemis(0) != 0 { try!(write!(f, " cemis[0]"))}
+      if self.cemis(1) != 0 { try!(write!(f, " cemis[1]"))}
       if self.rtcmis() != 0 { try!(write!(f, " rtcmis"))}
-      if self.tammis() != 0 { try!(write!(f, " tammis"))}
-      if self.dmaamis() != 0 { try!(write!(f, " dmaamis"))}
-      if self.tbtomis() != 0 { try!(write!(f, " tbtomis"))}
-      if self.cbmmis() != 0 { try!(write!(f, " cbmmis"))}
-      if self.cbemis() != 0 { try!(write!(f, " cbemis"))}
-      if self.tbmmis() != 0 { try!(write!(f, " tbmmis"))}
-      if self.dmabmis() != 0 { try!(write!(f, " dmabmis"))}
+      if self.tmmis(0) != 0 { try!(write!(f, " tmmis[0]"))}
+      if self.tmmis(1) != 0 { try!(write!(f, " tmmis[1]"))}
+      if self.dmamis(0) != 0 { try!(write!(f, " dmamis[0]"))}
+      if self.dmamis(1) != 0 { try!(write!(f, " dmamis[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1654,33 +1197,45 @@ impl ::core::fmt::Debug for Mis {
 #[derive(PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
-  #[inline] pub fn tatocint(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttocint(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatocint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttocint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn camcint(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmcint(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_camcint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmcint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caecint(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn cecint(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caecint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cecint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1694,73 +1249,31 @@ impl Icr {
      self
   }
 
-  #[inline] pub fn tamcint(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmcint(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tamcint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmcint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn dmaaint(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dmaint(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 5 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [5]
   }
-  #[inline] pub fn set_dmaaint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn tbtocint(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtocint(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmcint(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmcint(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cbecint(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cbecint(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmcint(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmcint(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn dmabint(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_dmabint(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
+     let shift: usize = 5 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1773,28 +1286,28 @@ impl ::core::fmt::Display for Icr {
 impl ::core::fmt::Debug for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatocint() != 0 { try!(write!(f, " tatocint"))}
-      if self.camcint() != 0 { try!(write!(f, " camcint"))}
-      if self.caecint() != 0 { try!(write!(f, " caecint"))}
+      if self.ttocint(0) != 0 { try!(write!(f, " ttocint[0]"))}
+      if self.ttocint(1) != 0 { try!(write!(f, " ttocint[1]"))}
+      if self.cmcint(0) != 0 { try!(write!(f, " cmcint[0]"))}
+      if self.cmcint(1) != 0 { try!(write!(f, " cmcint[1]"))}
+      if self.cecint(0) != 0 { try!(write!(f, " cecint[0]"))}
+      if self.cecint(1) != 0 { try!(write!(f, " cecint[1]"))}
       if self.rtccint() != 0 { try!(write!(f, " rtccint"))}
-      if self.tamcint() != 0 { try!(write!(f, " tamcint"))}
-      if self.dmaaint() != 0 { try!(write!(f, " dmaaint"))}
-      if self.tbtocint() != 0 { try!(write!(f, " tbtocint"))}
-      if self.cbmcint() != 0 { try!(write!(f, " cbmcint"))}
-      if self.cbecint() != 0 { try!(write!(f, " cbecint"))}
-      if self.tbmcint() != 0 { try!(write!(f, " tbmcint"))}
-      if self.dmabint() != 0 { try!(write!(f, " dmabint"))}
+      if self.tmcint(0) != 0 { try!(write!(f, " tmcint[0]"))}
+      if self.tmcint(1) != 0 { try!(write!(f, " tmcint[1]"))}
+      if self.dmaint(0) != 0 { try!(write!(f, " dmaint[0]"))}
+      if self.dmaint(1) != 0 { try!(write!(f, " dmaint[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tailr(pub u32);
-impl Tailr {
-  #[inline] pub fn tailr(&self) -> u32 {
+pub struct Tilr(pub u32);
+impl Tilr {
+  #[inline] pub fn tilr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline] pub fn set_tailr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tilr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1802,12 +1315,12 @@ impl Tailr {
   }
 
 }
-impl ::core::fmt::Display for Tailr {
+impl ::core::fmt::Display for Tilr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tailr {
+impl ::core::fmt::Debug for Tilr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       try!(write!(f, "]"));
@@ -1815,12 +1328,12 @@ impl ::core::fmt::Debug for Tailr {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tbilr(pub u32);
-impl Tbilr {
-  #[inline] pub fn tbilr(&self) -> u32 {
+pub struct Tmtchr(pub u32);
+impl Tmtchr {
+  #[inline] pub fn tmatchr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline] pub fn set_tbilr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmatchr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1828,12 +1341,12 @@ impl Tbilr {
   }
 
 }
-impl ::core::fmt::Display for Tbilr {
+impl ::core::fmt::Display for Tmtchr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tbilr {
+impl ::core::fmt::Debug for Tmtchr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       try!(write!(f, "]"));
@@ -1841,64 +1354,12 @@ impl ::core::fmt::Debug for Tbilr {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tamatchr(pub u32);
-impl Tamatchr {
-  #[inline] pub fn tamatchr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
-  }
-  #[inline] pub fn set_tamatchr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tamatchr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tamatchr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tbmatchr(pub u32);
-impl Tbmatchr {
-  #[inline] pub fn tbmatchr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
-  }
-  #[inline] pub fn set_tbmatchr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tbmatchr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tbmatchr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tapr(pub u32);
-impl Tapr {
-  #[inline] pub fn tapsr(&self) -> u32 {
+pub struct Tpr(pub u32);
+impl Tpr {
+  #[inline] pub fn tpsr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
-  #[inline] pub fn set_tapsr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpsr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1906,26 +1367,26 @@ impl Tapr {
   }
 
 }
-impl ::core::fmt::Display for Tapr {
+impl ::core::fmt::Display for Tpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tapr {
+impl ::core::fmt::Debug for Tpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tapsr() != 0 { try!(write!(f, " tapsr=0x{:x}", self.tapsr()))}
+      if self.tpsr() != 0 { try!(write!(f, " tpsr=0x{:x}", self.tpsr()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tbpr(pub u32);
-impl Tbpr {
-  #[inline] pub fn tbpsr(&self) -> u32 {
+pub struct Tpmr(pub u32);
+impl Tpmr {
+  #[inline] pub fn tpsmr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
-  #[inline] pub fn set_tbpsr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpsmr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1933,80 +1394,26 @@ impl Tbpr {
   }
 
 }
-impl ::core::fmt::Display for Tbpr {
+impl ::core::fmt::Display for Tpmr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tbpr {
+impl ::core::fmt::Debug for Tpmr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tbpsr() != 0 { try!(write!(f, " tbpsr=0x{:x}", self.tbpsr()))}
+      if self.tpsmr() != 0 { try!(write!(f, " tpsmr=0x{:x}", self.tpsmr()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tapmr(pub u32);
-impl Tapmr {
-  #[inline] pub fn tapsmr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
-  }
-  #[inline] pub fn set_tapsmr(mut self, value: u32) -> Self {
-     assert!((value & !0xff) == 0);
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tapmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tapmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tapsmr() != 0 { try!(write!(f, " tapsmr=0x{:x}", self.tapsmr()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tbpmr(pub u32);
-impl Tbpmr {
-  #[inline] pub fn tbpsmr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
-  }
-  #[inline] pub fn set_tbpsmr(mut self, value: u32) -> Self {
-     assert!((value & !0xff) == 0);
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tbpmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tbpmr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tbpsmr() != 0 { try!(write!(f, " tbpsmr=0x{:x}", self.tbpsmr()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tar(pub u32);
-impl Tar {
-  #[inline] pub fn tar(&self) -> u32 {
+pub struct Tr(pub u32);
+impl Tr {
+  #[inline] pub fn tr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline] pub fn set_tar(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -2014,12 +1421,12 @@ impl Tar {
   }
 
 }
-impl ::core::fmt::Display for Tar {
+impl ::core::fmt::Display for Tr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tar {
+impl ::core::fmt::Debug for Tr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       try!(write!(f, "]"));
@@ -2027,12 +1434,12 @@ impl ::core::fmt::Debug for Tar {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Tbr(pub u32);
-impl Tbr {
-  #[inline] pub fn tbr(&self) -> u32 {
+pub struct Tv(pub u32);
+impl Tv {
+  #[inline] pub fn tv(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline] pub fn set_tbr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tv(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -2040,64 +1447,12 @@ impl Tbr {
   }
 
 }
-impl ::core::fmt::Display for Tbr {
+impl ::core::fmt::Display for Tv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Tbr {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tav(pub u32);
-impl Tav {
-  #[inline] pub fn tav(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
-  }
-  #[inline] pub fn set_tav(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tav {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tav {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tbv(pub u32);
-impl Tbv {
-  #[inline] pub fn tbv(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
-  }
-  #[inline] pub fn set_tbv(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tbv {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tbv {
+impl ::core::fmt::Debug for Tv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       try!(write!(f, "]"));
@@ -2132,8 +1487,8 @@ impl ::core::fmt::Debug for Rtcpd {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Taps(pub u32);
-impl Taps {
+pub struct Tps(pub u32);
+impl Tps {
   #[inline] pub fn pss(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
@@ -2145,39 +1500,12 @@ impl Taps {
   }
 
 }
-impl ::core::fmt::Display for Taps {
+impl ::core::fmt::Display for Tps {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Taps {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.pss() != 0 { try!(write!(f, " pss=0x{:x}", self.pss()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Tbps(pub u32);
-impl Tbps {
-  #[inline] pub fn pss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
-  }
-  #[inline] pub fn set_pss(mut self, value: u32) -> Self {
-     assert!((value & !0xffff) == 0);
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Tbps {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Tbps {
+impl ::core::fmt::Debug for Tps {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.pss() != 0 { try!(write!(f, " pss=0x{:x}", self.pss()))}
@@ -2188,33 +1516,45 @@ impl ::core::fmt::Debug for Tbps {
 #[derive(PartialEq, Eq)]
 pub struct Dmaev(pub u32);
 impl Dmaev {
-  #[inline] pub fn tatodmaen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttodmaen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatodmaen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttodmaen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn camdmaen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmdmaen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_camdmaen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmdmaen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caedmaen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn cedmaen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caedmaen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cedmaen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2228,53 +1568,17 @@ impl Dmaev {
      self
   }
 
-  #[inline] pub fn tamdmaen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmdmaen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tamdmaen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmdmaen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn tbtodmaen(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtodmaen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmdmaen(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmdmaen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cbedmaen(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cbedmaen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmdmaen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmdmaen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2287,15 +1591,15 @@ impl ::core::fmt::Display for Dmaev {
 impl ::core::fmt::Debug for Dmaev {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatodmaen() != 0 { try!(write!(f, " tatodmaen"))}
-      if self.camdmaen() != 0 { try!(write!(f, " camdmaen"))}
-      if self.caedmaen() != 0 { try!(write!(f, " caedmaen"))}
+      if self.ttodmaen(0) != 0 { try!(write!(f, " ttodmaen[0]"))}
+      if self.ttodmaen(1) != 0 { try!(write!(f, " ttodmaen[1]"))}
+      if self.cmdmaen(0) != 0 { try!(write!(f, " cmdmaen[0]"))}
+      if self.cmdmaen(1) != 0 { try!(write!(f, " cmdmaen[1]"))}
+      if self.cedmaen(0) != 0 { try!(write!(f, " cedmaen[0]"))}
+      if self.cedmaen(1) != 0 { try!(write!(f, " cedmaen[1]"))}
       if self.rtcdmaen() != 0 { try!(write!(f, " rtcdmaen"))}
-      if self.tamdmaen() != 0 { try!(write!(f, " tamdmaen"))}
-      if self.tbtodmaen() != 0 { try!(write!(f, " tbtodmaen"))}
-      if self.cbmdmaen() != 0 { try!(write!(f, " cbmdmaen"))}
-      if self.cbedmaen() != 0 { try!(write!(f, " cbedmaen"))}
-      if self.tbmdmaen() != 0 { try!(write!(f, " tbmdmaen"))}
+      if self.tmdmaen(0) != 0 { try!(write!(f, " tmdmaen[0]"))}
+      if self.tmdmaen(1) != 0 { try!(write!(f, " tmdmaen[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2303,33 +1607,45 @@ impl ::core::fmt::Debug for Dmaev {
 #[derive(PartialEq, Eq)]
 pub struct Adcev(pub u32);
 impl Adcev {
-  #[inline] pub fn tatoadcen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ttoadcen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_tatoadcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttoadcen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn camadcen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cmadcen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 1 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_camadcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmadcen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn caeadcen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ceadcen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_caeadcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ceadcen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2343,53 +1659,17 @@ impl Adcev {
      self
   }
 
-  #[inline] pub fn tamadcen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tmadcen(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [4]
   }
-  #[inline] pub fn set_tamadcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmadcen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn tbtoadcen(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_tbtoadcen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cbmadcen(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cbmadcen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cbeadcen(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cbeadcen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn tbmadcen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_tbmadcen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -2402,15 +1682,15 @@ impl ::core::fmt::Display for Adcev {
 impl ::core::fmt::Debug for Adcev {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tatoadcen() != 0 { try!(write!(f, " tatoadcen"))}
-      if self.camadcen() != 0 { try!(write!(f, " camadcen"))}
-      if self.caeadcen() != 0 { try!(write!(f, " caeadcen"))}
+      if self.ttoadcen(0) != 0 { try!(write!(f, " ttoadcen[0]"))}
+      if self.ttoadcen(1) != 0 { try!(write!(f, " ttoadcen[1]"))}
+      if self.cmadcen(0) != 0 { try!(write!(f, " cmadcen[0]"))}
+      if self.cmadcen(1) != 0 { try!(write!(f, " cmadcen[1]"))}
+      if self.ceadcen(0) != 0 { try!(write!(f, " ceadcen[0]"))}
+      if self.ceadcen(1) != 0 { try!(write!(f, " ceadcen[1]"))}
       if self.rtcadcen() != 0 { try!(write!(f, " rtcadcen"))}
-      if self.tamadcen() != 0 { try!(write!(f, " tamadcen"))}
-      if self.tbtoadcen() != 0 { try!(write!(f, " tbtoadcen"))}
-      if self.cbmadcen() != 0 { try!(write!(f, " cbmadcen"))}
-      if self.cbeadcen() != 0 { try!(write!(f, " cbeadcen"))}
-      if self.tbmadcen() != 0 { try!(write!(f, " tbmadcen"))}
+      if self.tmadcen(0) != 0 { try!(write!(f, " tmadcen[0]"))}
+      if self.tmadcen(1) != 0 { try!(write!(f, " tmadcen[1]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2502,3 +1782,359 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+
+pub const TIMER0A: Channel<Timer0aId, Timer0Id> = Channel { periph: TIMER0, index: 0, id: Timer0aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer0aId {}
+pub type Timer0a = Channel<Timer0aId, Timer0Id>;
+
+pub const TIMER0B: Channel<Timer0bId, Timer0Id> = Channel { periph: TIMER0, index: 1, id: Timer0bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer0bId {}
+pub type Timer0b = Channel<Timer0bId, Timer0Id>;
+
+pub const TIMER1A: Channel<Timer1aId, Timer1Id> = Channel { periph: TIMER1, index: 0, id: Timer1aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer1aId {}
+pub type Timer1a = Channel<Timer1aId, Timer1Id>;
+
+pub const TIMER1B: Channel<Timer1bId, Timer1Id> = Channel { periph: TIMER1, index: 1, id: Timer1bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer1bId {}
+pub type Timer1b = Channel<Timer1bId, Timer1Id>;
+
+pub const TIMER2A: Channel<Timer2aId, Timer2Id> = Channel { periph: TIMER2, index: 0, id: Timer2aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer2aId {}
+pub type Timer2a = Channel<Timer2aId, Timer2Id>;
+
+pub const TIMER2B: Channel<Timer2bId, Timer2Id> = Channel { periph: TIMER2, index: 1, id: Timer2bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer2bId {}
+pub type Timer2b = Channel<Timer2bId, Timer2Id>;
+
+pub const TIMER3A: Channel<Timer3aId, Timer3Id> = Channel { periph: TIMER3, index: 0, id: Timer3aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer3aId {}
+pub type Timer3a = Channel<Timer3aId, Timer3Id>;
+
+pub const TIMER3B: Channel<Timer3bId, Timer3Id> = Channel { periph: TIMER3, index: 1, id: Timer3bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer3bId {}
+pub type Timer3b = Channel<Timer3bId, Timer3Id>;
+
+pub const TIMER4A: Channel<Timer4aId, Timer4Id> = Channel { periph: TIMER4, index: 0, id: Timer4aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer4aId {}
+pub type Timer4a = Channel<Timer4aId, Timer4Id>;
+
+pub const TIMER4B: Channel<Timer4bId, Timer4Id> = Channel { periph: TIMER4, index: 1, id: Timer4bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer4bId {}
+pub type Timer4b = Channel<Timer4bId, Timer4Id>;
+
+pub const TIMER5A: Channel<Timer5aId, Timer5Id> = Channel { periph: TIMER5, index: 0, id: Timer5aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer5aId {}
+pub type Timer5a = Channel<Timer5aId, Timer5Id>;
+
+pub const TIMER5B: Channel<Timer5bId, Timer5Id> = Channel { periph: TIMER5, index: 1, id: Timer5bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer5bId {}
+pub type Timer5b = Channel<Timer5bId, Timer5Id>;
+
+pub const TIMER6A: Channel<Timer6aId, Timer6Id> = Channel { periph: TIMER6, index: 0, id: Timer6aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer6aId {}
+pub type Timer6a = Channel<Timer6aId, Timer6Id>;
+
+pub const TIMER6B: Channel<Timer6bId, Timer6Id> = Channel { periph: TIMER6, index: 1, id: Timer6bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer6bId {}
+pub type Timer6b = Channel<Timer6bId, Timer6Id>;
+
+pub const TIMER7A: Channel<Timer7aId, Timer7Id> = Channel { periph: TIMER7, index: 0, id: Timer7aId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer7aId {}
+pub type Timer7a = Channel<Timer7aId, Timer7Id>;
+
+pub const TIMER7B: Channel<Timer7bId, Timer7Id> = Channel { periph: TIMER7, index: 1, id: Timer7bId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Timer7bId {}
+pub type Timer7b = Channel<Timer7bId, Timer7Id>;
+
+pub trait IrqTimer<T> {
+   fn irq_timer(&self) -> super::irq::Irq<T>;
+}
+
+pub trait RegisterTimerHandler {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+}
+
+pub trait HandleTimer {
+   fn handle_timer(&self);
+}
+
+impl IrqTimer<super::irq::Timer0aId> for Timer0a {
+   fn irq_timer(&self) -> super::irq::IrqTimer0a { super::irq::IRQ_TIMER0A }
+}
+
+impl RegisterTimerHandler for Timer0a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(19, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(19)
+   }
+}
+
+impl IrqTimer<super::irq::Timer0bId> for Timer0b {
+   fn irq_timer(&self) -> super::irq::IrqTimer0b { super::irq::IRQ_TIMER0B }
+}
+
+impl RegisterTimerHandler for Timer0b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(20, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(20)
+   }
+}
+
+impl IrqTimer<super::irq::Timer1aId> for Timer1a {
+   fn irq_timer(&self) -> super::irq::IrqTimer1a { super::irq::IRQ_TIMER1A }
+}
+
+impl RegisterTimerHandler for Timer1a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(21, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(21)
+   }
+}
+
+impl IrqTimer<super::irq::Timer1bId> for Timer1b {
+   fn irq_timer(&self) -> super::irq::IrqTimer1b { super::irq::IRQ_TIMER1B }
+}
+
+impl RegisterTimerHandler for Timer1b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(22, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(22)
+   }
+}
+
+impl IrqTimer<super::irq::Timer2aId> for Timer2a {
+   fn irq_timer(&self) -> super::irq::IrqTimer2a { super::irq::IRQ_TIMER2A }
+}
+
+impl RegisterTimerHandler for Timer2a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
+   }
+}
+
+impl IrqTimer<super::irq::Timer2bId> for Timer2b {
+   fn irq_timer(&self) -> super::irq::IrqTimer2b { super::irq::IRQ_TIMER2B }
+}
+
+impl RegisterTimerHandler for Timer2b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(24, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(24)
+   }
+}
+
+impl IrqTimer<super::irq::Timer3aId> for Timer3a {
+   fn irq_timer(&self) -> super::irq::IrqTimer3a { super::irq::IRQ_TIMER3A }
+}
+
+impl RegisterTimerHandler for Timer3a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(35, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(35)
+   }
+}
+
+impl IrqTimer<super::irq::Timer3bId> for Timer3b {
+   fn irq_timer(&self) -> super::irq::IrqTimer3b { super::irq::IRQ_TIMER3B }
+}
+
+impl RegisterTimerHandler for Timer3b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(36, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(36)
+   }
+}
+
+impl IrqTimer<super::irq::Timer4aId> for Timer4a {
+   fn irq_timer(&self) -> super::irq::IrqTimer4a { super::irq::IRQ_TIMER4A }
+}
+
+impl RegisterTimerHandler for Timer4a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(63, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(63)
+   }
+}
+
+impl IrqTimer<super::irq::Timer4bId> for Timer4b {
+   fn irq_timer(&self) -> super::irq::IrqTimer4b { super::irq::IRQ_TIMER4B }
+}
+
+impl RegisterTimerHandler for Timer4b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(64, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(64)
+   }
+}
+
+impl IrqTimer<super::irq::Timer5aId> for Timer5a {
+   fn irq_timer(&self) -> super::irq::IrqTimer5a { super::irq::IRQ_TIMER5A }
+}
+
+impl RegisterTimerHandler for Timer5a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(65, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(65)
+   }
+}
+
+impl IrqTimer<super::irq::Timer5bId> for Timer5b {
+   fn irq_timer(&self) -> super::irq::IrqTimer5b { super::irq::IRQ_TIMER5B }
+}
+
+impl RegisterTimerHandler for Timer5b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(66, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(66)
+   }
+}
+
+impl IrqTimer<super::irq::Timer6aId> for Timer6a {
+   fn irq_timer(&self) -> super::irq::IrqTimer6a { super::irq::IRQ_TIMER6A }
+}
+
+impl RegisterTimerHandler for Timer6a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(98, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(98)
+   }
+}
+
+impl IrqTimer<super::irq::Timer6bId> for Timer6b {
+   fn irq_timer(&self) -> super::irq::IrqTimer6b { super::irq::IRQ_TIMER6B }
+}
+
+impl RegisterTimerHandler for Timer6b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(99, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(99)
+   }
+}
+
+impl IrqTimer<super::irq::Timer7aId> for Timer7a {
+   fn irq_timer(&self) -> super::irq::IrqTimer7a { super::irq::IRQ_TIMER7A }
+}
+
+impl RegisterTimerHandler for Timer7a {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(100, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(100)
+   }
+}
+
+impl IrqTimer<super::irq::Timer7bId> for Timer7b {
+   fn irq_timer(&self) -> super::irq::IrqTimer7b { super::irq::IRQ_TIMER7B }
+}
+
+impl RegisterTimerHandler for Timer7b {
+   fn register_timer_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTimer>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTimer>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_timer() }
+       }
+       super::irq::set_handler(101, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(101)
+   }
+}
+

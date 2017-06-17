@@ -23,101 +23,198 @@
     (peripheral-group
         (name TIMER)
         (prototype "periph/timer.rx")
+        (has-channels)
         (peripheral
             (name TIMER0)
             (address 0x40030000)
             (description "Register map for TIMER0 peripheral")
-            (interrupt
+            (channel
                 (name TIMER0A)
-                (value 19)
+                (index 0)
+                (signal (name T0CCP0) (type CCP))
+                (interrupt
+                    (name TIMER0A)
+                    (type TIMER)
+                    (value 19)
+                )            
             )
-            (interrupt
+            (channel
                 (name TIMER0B)
-                (value 20)
+                (index 1)
+                (signal (name T0CCP1) (type CCP))
+                (interrupt
+                    (name TIMER0B)
+                    (type TIMER)
+                    (value 20)
+                )
             )
         )
         (peripheral
             (name TIMER1)
             (address 0x40031000)
-            (interrupt
+            (channel
                 (name TIMER1A)
-                (value 21)
+                (index 0)
+                (signal (name T1CCP0) (type CCP))
+                (interrupt
+                    (name TIMER1A)
+                    (type TIMER)
+                    (value 21)
+                )
             )
-            (interrupt
+            (channel
                 (name TIMER1B)
-                (value 22)
+                (index 1)
+                (signal (name T1CCP1) (type CCP))
+                (interrupt
+                    (name TIMER1B)
+                    (type TIMER)
+                    (value 22)
+                )
             )
         )
         (peripheral
             (name TIMER2)
             (address 0x40032000)
-            (interrupt
+            (channel
                 (name TIMER2A)
-                (value 23)
+                (index 0)
+                (signal (name T2CCP0) (type CCP))
+                (interrupt
+                    (name TIMER2A)
+                    (type TIMER)
+                    (value 23)
+                )
             )
-            (interrupt
+            (channel
                 (name TIMER2B)
-                (value 24)
+                (index 1)
+                (signal (name T2CCP1) (type CCP))
+                (interrupt
+                    (name TIMER2B)
+                    (type TIMER)
+                    (value 24)
+                )
             )
         )
         (peripheral
             (name TIMER3)
             (address 0x40033000)
-            (interrupt
+            (channel
                 (name TIMER3A)
-                (value 35)
-            )
-            (interrupt
+                (index 0)
+                (signal (name T3CCP0) (type CCP))
+                (interrupt
+                    (name TIMER3A)
+                    (type TIMER)
+                    (value 35)
+                )
+            )    
+            (channel
                 (name TIMER3B)
-                (value 36)
+                (index 1)
+                (signal (name T3CCP1) (type CCP))
+                (interrupt
+                    (name TIMER3B)
+                    (type TIMER)
+                    (value 36)
+                )
             )
         )
         (peripheral
             (name TIMER4)
             (address 0x40034000)
-            (interrupt
+            (channel
                 (name TIMER4A)
-                (value 63)
-            )
-            (interrupt
+                (index 0)
+                (signal (name T4CCP0) (type CCP))
+                (interrupt
+                    (name TIMER4A)
+                    (type TIMER)
+                    (value 63)
+                )
+            )    
+            (channel
                 (name TIMER4B)
-                (value 64)
-            )
+                (index 1)
+                (signal (name T4CCP1) (type CCP))
+                (interrupt
+                    (name TIMER4B)
+                    (type TIMER)
+                    (value 64)
+                )
+            )            
         )
         (peripheral
             (name TIMER5)
             (address 0x40035000)
-            (interrupt
+            (channel
                 (name TIMER5A)
-                (value 65)
-            )
-            (interrupt
+                (index 0)
+                (signal (name T5CCP0) (type CCP))
+                (interrupt
+                    (name TIMER5A)
+                    (type TIMER)
+                    (value 65)
+                )
+            )    
+            (channel
                 (name TIMER5B)
-                (value 66)
+                (index 1)
+                (signal (name T5CCP1) (type CCP))
+                (interrupt
+                    (name TIMER5B)
+                    (type TIMER)
+                    (value 66)
+                )
             )
         )
         (peripheral
             (name TIMER6)
             (address 0x400e0000)
-            (interrupt
+            (channel
                 (name TIMER6A)
-                (value 98)
-            )
-            (interrupt
+                (index 0)
+                (signal (name T6CCP0) (type CCP))
+                (interrupt
+                    (name TIMER6A)
+                    (type TIMER)
+                    (value 98)
+                )
+            )    
+            (channel
                 (name TIMER6B)
-                (value 99)
+                (index 1)
+                (signal (name T6CCP1) (type CCP))
+                (interrupt
+                    (name TIMER6B)
+                    (type TIMER)
+                    (value 99)
+                )
             )
         )
         (peripheral
             (name TIMER7)
             (address 0x400e1000)
-            (interrupt
+            (channel
                 (name TIMER7A)
-                (value 100)
-            )
-            (interrupt
+                (index 0)
+                (signal (name T7CCP0) (type CCP))
+                (interrupt
+                    (name TIMER7A)
+                    (type TIMER)
+                    (value 100)
+                )
+            )    
+            (channel
                 (name TIMER7B)
-                (value 101)
+                (index 1)
+                (signal (name T7CCP1) (type CCP))
+                (interrupt
+                    (name TIMER7B)
+                    (type TIMER)
+                    (value 101)
+                )
             )
         )
     )
@@ -632,7 +729,7 @@
             (name GPIOA_AHB)
             (address 0x40058000)
             (interrupt
-                (name GPIOA)
+                (name GPIOA_AHB)
                 (value 0)
             )
         )
@@ -640,7 +737,7 @@
             (name GPIOB_AHB)
             (address 0x40059000)
             (interrupt
-                (name GPIOB)
+                (name GPIOB_AHB)
                 (value 1)
             )
         )
@@ -648,7 +745,7 @@
             (name GPIOC_AHB)
             (address 0x4005a000)
             (interrupt
-                (name GPIOC)
+                (name GPIOC_AHB)
                 (value 2)
             )
         )
@@ -656,7 +753,7 @@
             (name GPIOD_AHB)
             (address 0x4005b000)
             (interrupt
-                (name GPIOD)
+                (name GPIOD_AHB)
                 (value 3)
             )
         )
@@ -664,7 +761,7 @@
             (name GPIOE_AHB)
             (address 0x4005c000)
             (interrupt
-                (name GPIOE)
+                (name GPIOE_AHB)
                 (value 4)
             )
         )
@@ -672,7 +769,7 @@
             (name GPIOF_AHB)
             (address 0x4005d000)
             (interrupt
-                (name GPIOF)
+                (name GPIOF_AHB)
                 (value 30)
             )
         )
@@ -680,7 +777,7 @@
             (name GPIOG_AHB)
             (address 0x4005e000)
             (interrupt
-                (name GPIOG)
+                (name GPIOG_AHB)
                 (value 31)
             )
         )
@@ -688,7 +785,7 @@
             (name GPIOH_AHB)
             (address 0x4005f000)
             (interrupt
-                (name GPIOH)
+                (name GPIOH_AHB)
                 (value 32)
             )
         )
@@ -696,7 +793,7 @@
             (name GPIOJ_AHB)
             (address 0x40060000)
             (interrupt
-                (name GPIOJ)
+                (name GPIOJ_AHB)
                 (value 54)
             )
         )
