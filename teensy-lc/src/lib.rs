@@ -20,10 +20,9 @@ pub mod lang_items;
 
 pub mod clock;
 pub mod led;
-pub mod sw;
-pub mod pin;
+pub mod btn;
+//pub mod pin;
 pub mod tim;
-pub mod uart;
 
 pub use tim::delay;
 
@@ -35,5 +34,8 @@ pub use tim::delay;
 
 pub fn init() {
     clock::init();
-    //console::CONSOLE.init(115_200);
+    led::init();
+    btn::init();
+    tim::init();
+    console::init();
 }

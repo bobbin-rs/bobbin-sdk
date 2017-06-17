@@ -2,7 +2,6 @@
 name = "teensy_lc"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
-build = "build.rs"
 
 [dependencies]
 #kl26 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
@@ -12,6 +11,9 @@ r0 = "0.1.0"
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
+
+[features]
+default = ["kl26/Z64"]
 
 [profile.dev]
 panic = "abort"
