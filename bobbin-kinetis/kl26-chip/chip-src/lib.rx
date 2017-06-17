@@ -4,7 +4,8 @@
     (interrupt-count 48)
     (description "KL26")
     (variants
-        (variant (name Z128) (link "z128.ld"))    
+        (variant (name Z128) (link "z128.ld"))
+        (variant (name Z64) (link "z64.ld"))
     )
     (crate
         (name bobbin_cortexm)

@@ -9,3 +9,4 @@ kl26-hal = { path = "../kl26-hal" }
 
 [features]
 Z128 = ["kl26-chip/Z128"]
+Z64 = ["kl26-chip/Z64"]

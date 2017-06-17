@@ -17,3 +17,4 @@ kinetis-common = { path = "../kinetis-common"}
 
 [features]
 Z128 = []
+Z64 = []
