@@ -6,6 +6,7 @@
 
     (variants
         (variant (name K64FN1M0) (link "k64fn1m0.ld"))
+        (variant (name K64FX512) (link "k64fx512.ld"))
     )
 
     (crate
