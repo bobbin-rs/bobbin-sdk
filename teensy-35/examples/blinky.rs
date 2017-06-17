@@ -3,17 +3,20 @@
 
 extern crate teensy_35 as board;
 
+use board::hal::port::GpioPin;
+use board::hal::gpio::GpioExt;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    let led0 = board::led::led0();
-    let sw2 = board::sw::sw2();
+    board::init();    
+    let led0 = board::led::LED0.gpio_pin();
+    let btn0 = board::btn::BTN0.gpio_pin();        
     loop {
-        led0.toggle();
-        if sw2.get() {
+        led0.toggle_output();
+        if btn0.input() {
             board::delay(500);
         } else {
-            board::delay(250);            
+            board::delay(100);            
         }        
     }
 }

@@ -1,10 +1,10 @@
-use chip::port::PORTC;
-use hal::sim;
-use hal::port;
+use hal::port::*;
+use hal::gpio::GpioExt;
 
-// LED RED = PC5
+pub const LED0: Ptc5 = PTC5; // Red
 
-pub fn led0() -> port::PinOutput {
-    sim::set_port_enabled(PORTC, true);
-    port::pin(PORTC, 5).into_output()
+pub fn init() {
+    LED0.port().sim_enable();
+    LED0.gpio_pin().set_dir_output().set_output(true);
+    LED0.set_mux_gpio();
 }
