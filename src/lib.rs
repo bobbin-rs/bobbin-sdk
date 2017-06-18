@@ -178,6 +178,7 @@ pub struct Peripheral {
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,
     pub registers: Vec<Register>,
+    pub descriptors: Vec<Descriptor>,
     pub signals: Vec<Signal>,
     pub pins: Vec<Pin>,
     pub channels: Vec<Channel>,
@@ -185,6 +186,14 @@ pub struct Peripheral {
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
     pub dim_index: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Descriptor {
+    pub name: String,
+    pub size: Option<u64>,
+    pub registers: Vec<Register>,
+    pub description: Option<String>,    
 }
 
 #[derive(Debug, Clone, Default)]

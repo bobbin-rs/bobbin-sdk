@@ -6,7 +6,7 @@ use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
-use {Exception, Cluster, Register, Field, Link, EnumeratedValue};
+use {Exception, Cluster, Descriptor, Register, Field, Link, EnumeratedValue};
 use {PathElement};
 use {Pin, AltFn, Channel, Clock, Variant};
 
@@ -522,6 +522,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("channel") => p.channels.push(try!(read_channel(ctx, &arr[1..]))),
                 Some("cluster") => p.clusters.push(try!(read_cluster(ctx, &arr[1..]))),
                 Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),                
+                Some("descriptor") => p.descriptors.push(try!(read_descriptor(ctx, &arr[1..]))),                
                 Some("link") => p.links.push(try!(read_link(ctx, &arr[1..]))),
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-increment") => p.dim_increment = Some(try!(expect_u64(ctx, &arr[1]))),
@@ -663,6 +664,23 @@ fn read_cluster(ctx: &Context, s: &[Sexp]) -> Result<Cluster, ReadError> {
         }        
     }
     Ok(c)
+}
+
+fn read_descriptor(ctx: &Context, s: &[Sexp]) -> Result<Descriptor, ReadError> {
+    let mut d = Descriptor::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => d.name = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("size") => d.size = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("register") => d.registers.push(try!(read_register(ctx, &arr[1..]))),
+                Some("description") => d.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s),arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}",  ctx.location_of(s), s)))
+        }        
+    }
+    Ok(d)
 }
 
 
