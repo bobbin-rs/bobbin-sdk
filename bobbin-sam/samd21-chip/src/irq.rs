@@ -1,6 +1,7 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
+pub const IRQ_DMAC: IrqDmac = Irq(6, DmacId {});
 pub const IRQ_ADC: IrqAdc = Irq(23, AdcId {});
 pub const IRQ_TCC0: IrqTcc0 = Irq(15, Tcc0Id {});
 pub const IRQ_TCC1: IrqTcc1 = Irq(16, Tcc1Id {});
@@ -15,6 +16,7 @@ pub const IRQ_SERCOM3: IrqSercom3 = Irq(12, Sercom3Id {});
 pub const IRQ_SERCOM4: IrqSercom4 = Irq(13, Sercom4Id {});
 pub const IRQ_SERCOM5: IrqSercom5 = Irq(14, Sercom5Id {});
 
+pub type IrqDmac = Irq<DmacId>;
 pub type IrqAdc = Irq<AdcId>;
 pub type IrqTcc0 = Irq<Tcc0Id>;
 pub type IrqTcc1 = Irq<Tcc1Id>;
@@ -29,6 +31,7 @@ pub type IrqSercom3 = Irq<Sercom3Id>;
 pub type IrqSercom4 = Irq<Sercom4Id>;
 pub type IrqSercom5 = Irq<Sercom5Id>;
 
+pub struct DmacId {} // IRQ 6
 pub struct AdcId {} // IRQ 23
 pub struct Tcc0Id {} // IRQ 15
 pub struct Tcc1Id {} // IRQ 16
@@ -123,6 +126,18 @@ pub trait RegisterHandler {
 
 pub trait HandleInterrupt {
    fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqDmac {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(6, Some(wrapper::<F>));
+       IrqGuard::new(6)
+   }
 }
 
 impl RegisterHandler for IrqAdc {
@@ -290,7 +305,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 28] = [
    None,                          // IRQ 3: No Description
    None,
    None,                          // IRQ 5: No Description
-   None,
+   None,                          // IRQ 6: No Description
    None,
    None,
    None,                          // IRQ 9: No Description

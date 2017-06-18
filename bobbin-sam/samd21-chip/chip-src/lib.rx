@@ -21,6 +21,19 @@
     (peripheral (include "periph/sysctrl.rx"))
     (peripheral (include "periph/rtc.rx"))
 
+    (peripheral-group
+        (name DMAC)
+        (prototype "periph/dmac.rx")
+        (peripheral
+            (name DMAC)
+            (address 0x41004800)
+            (description "Direct Memory Access Controller")
+            (interrupt
+                (name DMAC)
+                (value 6)
+            )
+        )
+    )
 
     (peripheral-group
         (name ADC)

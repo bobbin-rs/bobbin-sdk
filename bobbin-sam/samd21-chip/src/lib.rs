@@ -14,6 +14,7 @@ pub mod nvmctrl;
 pub mod pm;
 pub mod sysctrl;
 pub mod rtc;
+pub mod dmac;
 pub mod adc;
 pub mod tcc;
 pub mod tc;
