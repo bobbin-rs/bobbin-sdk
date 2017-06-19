@@ -1,6 +1,10 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
+pub const IRQ_DMA0: IrqDma0 = Irq(0, Dma0Id {});
+pub const IRQ_DMA1: IrqDma1 = Irq(1, Dma1Id {});
+pub const IRQ_DMA2: IrqDma2 = Irq(2, Dma2Id {});
+pub const IRQ_DMA3: IrqDma3 = Irq(3, Dma3Id {});
 pub const IRQ_TPM0: IrqTpm0 = Irq(17, Tpm0Id {});
 pub const IRQ_TPM1: IrqTpm1 = Irq(18, Tpm1Id {});
 pub const IRQ_TPM2: IrqTpm2 = Irq(19, Tpm2Id {});
@@ -12,6 +16,10 @@ pub const IRQ_UART0: IrqUart0 = Irq(12, Uart0Id {});
 pub const IRQ_UART1: IrqUart1 = Irq(13, Uart1Id {});
 pub const IRQ_UART2: IrqUart2 = Irq(14, Uart2Id {});
 
+pub type IrqDma0 = Irq<Dma0Id>;
+pub type IrqDma1 = Irq<Dma1Id>;
+pub type IrqDma2 = Irq<Dma2Id>;
+pub type IrqDma3 = Irq<Dma3Id>;
 pub type IrqTpm0 = Irq<Tpm0Id>;
 pub type IrqTpm1 = Irq<Tpm1Id>;
 pub type IrqTpm2 = Irq<Tpm2Id>;
@@ -23,6 +31,10 @@ pub type IrqUart0 = Irq<Uart0Id>;
 pub type IrqUart1 = Irq<Uart1Id>;
 pub type IrqUart2 = Irq<Uart2Id>;
 
+pub struct Dma0Id {} // IRQ 0
+pub struct Dma1Id {} // IRQ 1
+pub struct Dma2Id {} // IRQ 2
+pub struct Dma3Id {} // IRQ 3
 pub struct Tpm0Id {} // IRQ 17
 pub struct Tpm1Id {} // IRQ 18
 pub struct Tpm2Id {} // IRQ 19
@@ -114,6 +126,54 @@ pub trait RegisterHandler {
 
 pub trait HandleInterrupt {
    fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqDma0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(0, Some(wrapper::<F>));
+       IrqGuard::new(0)
+   }
+}
+
+impl RegisterHandler for IrqDma1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(1, Some(wrapper::<F>));
+       IrqGuard::new(1)
+   }
+}
+
+impl RegisterHandler for IrqDma2 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(2, Some(wrapper::<F>));
+       IrqGuard::new(2)
+   }
+}
+
+impl RegisterHandler for IrqDma3 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(3, Some(wrapper::<F>));
+       IrqGuard::new(3)
+   }
 }
 
 impl RegisterHandler for IrqTpm0 {

@@ -13,6 +13,7 @@ pub mod ftfa;
 pub mod osc;
 pub mod sim;
 pub mod mcg;
+pub mod dma;
 pub mod tpm;
 pub mod pit;
 pub mod port;

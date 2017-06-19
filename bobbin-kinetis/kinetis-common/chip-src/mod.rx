@@ -56,6 +56,11 @@
         (prototype "periph/i2c.rx")
     )
     (peripheral-group
+        (name DMA)
+        (has-channels)
+        (prototype "periph/dma.rx")
+    )    
+    (peripheral-group
         (name EDMA)
         (has-channels)
         (prototype "periph/edma.rx")
