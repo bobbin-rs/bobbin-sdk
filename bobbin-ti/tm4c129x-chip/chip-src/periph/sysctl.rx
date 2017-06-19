@@ -2598,11 +2598,12 @@
     (register
         (name RCGCDMA)
         (offset 0x60c)
-        (description "Micro Direct Memory Access Run Mode Clock Gating Control")
+        (description "Micro Direct Memory Access Run Mode Clock Gating Control")        
         (field
             (name R0)
             (bit-offset 0)
             (bit-width 1)
+            (link (name RCGC) (peripheral-group UDMA) (peripheral UDMA))
             (description "uDMA Module Run Mode Clock Gating Control")
         )
     )

@@ -12747,6 +12747,11 @@ impl Rcgc for super::gpio::Gpioq {
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcgpio(|r| r.set_r14(value)); }
 }
 
+impl Rcgc for super::udma::Udma {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcdma().r0() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcdma(|r| r.set_r0(value)); }
+}
+
 impl Rcgc for super::uart::Uart0 {
    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcuart().r0() }
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcuart(|r| r.set_r0(value)); }
