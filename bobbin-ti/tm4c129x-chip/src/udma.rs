@@ -565,13 +565,17 @@ impl ::core::fmt::Debug for Altbase {
 #[derive(PartialEq, Eq)]
 pub struct Waitstat(pub u32);
 impl Waitstat {
-  #[inline] pub fn udma_waitstat_waitreq(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_waitstat_waitreq(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_waitstat_waitreq(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_waitstat_waitreq(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -584,6 +588,38 @@ impl ::core::fmt::Display for Waitstat {
 impl ::core::fmt::Debug for Waitstat {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_waitstat_waitreq(0) != 0 { try!(write!(f, " udma_waitstat_waitreq[0]"))}
+      if self.udma_waitstat_waitreq(1) != 0 { try!(write!(f, " udma_waitstat_waitreq[1]"))}
+      if self.udma_waitstat_waitreq(2) != 0 { try!(write!(f, " udma_waitstat_waitreq[2]"))}
+      if self.udma_waitstat_waitreq(3) != 0 { try!(write!(f, " udma_waitstat_waitreq[3]"))}
+      if self.udma_waitstat_waitreq(4) != 0 { try!(write!(f, " udma_waitstat_waitreq[4]"))}
+      if self.udma_waitstat_waitreq(5) != 0 { try!(write!(f, " udma_waitstat_waitreq[5]"))}
+      if self.udma_waitstat_waitreq(6) != 0 { try!(write!(f, " udma_waitstat_waitreq[6]"))}
+      if self.udma_waitstat_waitreq(7) != 0 { try!(write!(f, " udma_waitstat_waitreq[7]"))}
+      if self.udma_waitstat_waitreq(8) != 0 { try!(write!(f, " udma_waitstat_waitreq[8]"))}
+      if self.udma_waitstat_waitreq(9) != 0 { try!(write!(f, " udma_waitstat_waitreq[9]"))}
+      if self.udma_waitstat_waitreq(10) != 0 { try!(write!(f, " udma_waitstat_waitreq[10]"))}
+      if self.udma_waitstat_waitreq(11) != 0 { try!(write!(f, " udma_waitstat_waitreq[11]"))}
+      if self.udma_waitstat_waitreq(12) != 0 { try!(write!(f, " udma_waitstat_waitreq[12]"))}
+      if self.udma_waitstat_waitreq(13) != 0 { try!(write!(f, " udma_waitstat_waitreq[13]"))}
+      if self.udma_waitstat_waitreq(14) != 0 { try!(write!(f, " udma_waitstat_waitreq[14]"))}
+      if self.udma_waitstat_waitreq(15) != 0 { try!(write!(f, " udma_waitstat_waitreq[15]"))}
+      if self.udma_waitstat_waitreq(16) != 0 { try!(write!(f, " udma_waitstat_waitreq[16]"))}
+      if self.udma_waitstat_waitreq(17) != 0 { try!(write!(f, " udma_waitstat_waitreq[17]"))}
+      if self.udma_waitstat_waitreq(18) != 0 { try!(write!(f, " udma_waitstat_waitreq[18]"))}
+      if self.udma_waitstat_waitreq(19) != 0 { try!(write!(f, " udma_waitstat_waitreq[19]"))}
+      if self.udma_waitstat_waitreq(20) != 0 { try!(write!(f, " udma_waitstat_waitreq[20]"))}
+      if self.udma_waitstat_waitreq(21) != 0 { try!(write!(f, " udma_waitstat_waitreq[21]"))}
+      if self.udma_waitstat_waitreq(22) != 0 { try!(write!(f, " udma_waitstat_waitreq[22]"))}
+      if self.udma_waitstat_waitreq(23) != 0 { try!(write!(f, " udma_waitstat_waitreq[23]"))}
+      if self.udma_waitstat_waitreq(24) != 0 { try!(write!(f, " udma_waitstat_waitreq[24]"))}
+      if self.udma_waitstat_waitreq(25) != 0 { try!(write!(f, " udma_waitstat_waitreq[25]"))}
+      if self.udma_waitstat_waitreq(26) != 0 { try!(write!(f, " udma_waitstat_waitreq[26]"))}
+      if self.udma_waitstat_waitreq(27) != 0 { try!(write!(f, " udma_waitstat_waitreq[27]"))}
+      if self.udma_waitstat_waitreq(28) != 0 { try!(write!(f, " udma_waitstat_waitreq[28]"))}
+      if self.udma_waitstat_waitreq(29) != 0 { try!(write!(f, " udma_waitstat_waitreq[29]"))}
+      if self.udma_waitstat_waitreq(30) != 0 { try!(write!(f, " udma_waitstat_waitreq[30]"))}
+      if self.udma_waitstat_waitreq(31) != 0 { try!(write!(f, " udma_waitstat_waitreq[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -591,13 +627,17 @@ impl ::core::fmt::Debug for Waitstat {
 #[derive(PartialEq, Eq)]
 pub struct Swreq(pub u32);
 impl Swreq {
-  #[inline] pub fn udma_swreq(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_swreq(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_swreq(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_swreq(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -610,6 +650,38 @@ impl ::core::fmt::Display for Swreq {
 impl ::core::fmt::Debug for Swreq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_swreq(0) != 0 { try!(write!(f, " udma_swreq[0]"))}
+      if self.udma_swreq(1) != 0 { try!(write!(f, " udma_swreq[1]"))}
+      if self.udma_swreq(2) != 0 { try!(write!(f, " udma_swreq[2]"))}
+      if self.udma_swreq(3) != 0 { try!(write!(f, " udma_swreq[3]"))}
+      if self.udma_swreq(4) != 0 { try!(write!(f, " udma_swreq[4]"))}
+      if self.udma_swreq(5) != 0 { try!(write!(f, " udma_swreq[5]"))}
+      if self.udma_swreq(6) != 0 { try!(write!(f, " udma_swreq[6]"))}
+      if self.udma_swreq(7) != 0 { try!(write!(f, " udma_swreq[7]"))}
+      if self.udma_swreq(8) != 0 { try!(write!(f, " udma_swreq[8]"))}
+      if self.udma_swreq(9) != 0 { try!(write!(f, " udma_swreq[9]"))}
+      if self.udma_swreq(10) != 0 { try!(write!(f, " udma_swreq[10]"))}
+      if self.udma_swreq(11) != 0 { try!(write!(f, " udma_swreq[11]"))}
+      if self.udma_swreq(12) != 0 { try!(write!(f, " udma_swreq[12]"))}
+      if self.udma_swreq(13) != 0 { try!(write!(f, " udma_swreq[13]"))}
+      if self.udma_swreq(14) != 0 { try!(write!(f, " udma_swreq[14]"))}
+      if self.udma_swreq(15) != 0 { try!(write!(f, " udma_swreq[15]"))}
+      if self.udma_swreq(16) != 0 { try!(write!(f, " udma_swreq[16]"))}
+      if self.udma_swreq(17) != 0 { try!(write!(f, " udma_swreq[17]"))}
+      if self.udma_swreq(18) != 0 { try!(write!(f, " udma_swreq[18]"))}
+      if self.udma_swreq(19) != 0 { try!(write!(f, " udma_swreq[19]"))}
+      if self.udma_swreq(20) != 0 { try!(write!(f, " udma_swreq[20]"))}
+      if self.udma_swreq(21) != 0 { try!(write!(f, " udma_swreq[21]"))}
+      if self.udma_swreq(22) != 0 { try!(write!(f, " udma_swreq[22]"))}
+      if self.udma_swreq(23) != 0 { try!(write!(f, " udma_swreq[23]"))}
+      if self.udma_swreq(24) != 0 { try!(write!(f, " udma_swreq[24]"))}
+      if self.udma_swreq(25) != 0 { try!(write!(f, " udma_swreq[25]"))}
+      if self.udma_swreq(26) != 0 { try!(write!(f, " udma_swreq[26]"))}
+      if self.udma_swreq(27) != 0 { try!(write!(f, " udma_swreq[27]"))}
+      if self.udma_swreq(28) != 0 { try!(write!(f, " udma_swreq[28]"))}
+      if self.udma_swreq(29) != 0 { try!(write!(f, " udma_swreq[29]"))}
+      if self.udma_swreq(30) != 0 { try!(write!(f, " udma_swreq[30]"))}
+      if self.udma_swreq(31) != 0 { try!(write!(f, " udma_swreq[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -617,13 +689,17 @@ impl ::core::fmt::Debug for Swreq {
 #[derive(PartialEq, Eq)]
 pub struct Useburstset(pub u32);
 impl Useburstset {
-  #[inline] pub fn udma_useburstset_set(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_useburstset_set(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_useburstset_set(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_useburstset_set(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -636,6 +712,38 @@ impl ::core::fmt::Display for Useburstset {
 impl ::core::fmt::Debug for Useburstset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_useburstset_set(0) != 0 { try!(write!(f, " udma_useburstset_set[0]"))}
+      if self.udma_useburstset_set(1) != 0 { try!(write!(f, " udma_useburstset_set[1]"))}
+      if self.udma_useburstset_set(2) != 0 { try!(write!(f, " udma_useburstset_set[2]"))}
+      if self.udma_useburstset_set(3) != 0 { try!(write!(f, " udma_useburstset_set[3]"))}
+      if self.udma_useburstset_set(4) != 0 { try!(write!(f, " udma_useburstset_set[4]"))}
+      if self.udma_useburstset_set(5) != 0 { try!(write!(f, " udma_useburstset_set[5]"))}
+      if self.udma_useburstset_set(6) != 0 { try!(write!(f, " udma_useburstset_set[6]"))}
+      if self.udma_useburstset_set(7) != 0 { try!(write!(f, " udma_useburstset_set[7]"))}
+      if self.udma_useburstset_set(8) != 0 { try!(write!(f, " udma_useburstset_set[8]"))}
+      if self.udma_useburstset_set(9) != 0 { try!(write!(f, " udma_useburstset_set[9]"))}
+      if self.udma_useburstset_set(10) != 0 { try!(write!(f, " udma_useburstset_set[10]"))}
+      if self.udma_useburstset_set(11) != 0 { try!(write!(f, " udma_useburstset_set[11]"))}
+      if self.udma_useburstset_set(12) != 0 { try!(write!(f, " udma_useburstset_set[12]"))}
+      if self.udma_useburstset_set(13) != 0 { try!(write!(f, " udma_useburstset_set[13]"))}
+      if self.udma_useburstset_set(14) != 0 { try!(write!(f, " udma_useburstset_set[14]"))}
+      if self.udma_useburstset_set(15) != 0 { try!(write!(f, " udma_useburstset_set[15]"))}
+      if self.udma_useburstset_set(16) != 0 { try!(write!(f, " udma_useburstset_set[16]"))}
+      if self.udma_useburstset_set(17) != 0 { try!(write!(f, " udma_useburstset_set[17]"))}
+      if self.udma_useburstset_set(18) != 0 { try!(write!(f, " udma_useburstset_set[18]"))}
+      if self.udma_useburstset_set(19) != 0 { try!(write!(f, " udma_useburstset_set[19]"))}
+      if self.udma_useburstset_set(20) != 0 { try!(write!(f, " udma_useburstset_set[20]"))}
+      if self.udma_useburstset_set(21) != 0 { try!(write!(f, " udma_useburstset_set[21]"))}
+      if self.udma_useburstset_set(22) != 0 { try!(write!(f, " udma_useburstset_set[22]"))}
+      if self.udma_useburstset_set(23) != 0 { try!(write!(f, " udma_useburstset_set[23]"))}
+      if self.udma_useburstset_set(24) != 0 { try!(write!(f, " udma_useburstset_set[24]"))}
+      if self.udma_useburstset_set(25) != 0 { try!(write!(f, " udma_useburstset_set[25]"))}
+      if self.udma_useburstset_set(26) != 0 { try!(write!(f, " udma_useburstset_set[26]"))}
+      if self.udma_useburstset_set(27) != 0 { try!(write!(f, " udma_useburstset_set[27]"))}
+      if self.udma_useburstset_set(28) != 0 { try!(write!(f, " udma_useburstset_set[28]"))}
+      if self.udma_useburstset_set(29) != 0 { try!(write!(f, " udma_useburstset_set[29]"))}
+      if self.udma_useburstset_set(30) != 0 { try!(write!(f, " udma_useburstset_set[30]"))}
+      if self.udma_useburstset_set(31) != 0 { try!(write!(f, " udma_useburstset_set[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -643,13 +751,17 @@ impl ::core::fmt::Debug for Useburstset {
 #[derive(PartialEq, Eq)]
 pub struct Useburstclr(pub u32);
 impl Useburstclr {
-  #[inline] pub fn udma_useburstclr_clr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_useburstclr_clr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_useburstclr_clr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_useburstclr_clr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -662,6 +774,38 @@ impl ::core::fmt::Display for Useburstclr {
 impl ::core::fmt::Debug for Useburstclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_useburstclr_clr(0) != 0 { try!(write!(f, " udma_useburstclr_clr[0]"))}
+      if self.udma_useburstclr_clr(1) != 0 { try!(write!(f, " udma_useburstclr_clr[1]"))}
+      if self.udma_useburstclr_clr(2) != 0 { try!(write!(f, " udma_useburstclr_clr[2]"))}
+      if self.udma_useburstclr_clr(3) != 0 { try!(write!(f, " udma_useburstclr_clr[3]"))}
+      if self.udma_useburstclr_clr(4) != 0 { try!(write!(f, " udma_useburstclr_clr[4]"))}
+      if self.udma_useburstclr_clr(5) != 0 { try!(write!(f, " udma_useburstclr_clr[5]"))}
+      if self.udma_useburstclr_clr(6) != 0 { try!(write!(f, " udma_useburstclr_clr[6]"))}
+      if self.udma_useburstclr_clr(7) != 0 { try!(write!(f, " udma_useburstclr_clr[7]"))}
+      if self.udma_useburstclr_clr(8) != 0 { try!(write!(f, " udma_useburstclr_clr[8]"))}
+      if self.udma_useburstclr_clr(9) != 0 { try!(write!(f, " udma_useburstclr_clr[9]"))}
+      if self.udma_useburstclr_clr(10) != 0 { try!(write!(f, " udma_useburstclr_clr[10]"))}
+      if self.udma_useburstclr_clr(11) != 0 { try!(write!(f, " udma_useburstclr_clr[11]"))}
+      if self.udma_useburstclr_clr(12) != 0 { try!(write!(f, " udma_useburstclr_clr[12]"))}
+      if self.udma_useburstclr_clr(13) != 0 { try!(write!(f, " udma_useburstclr_clr[13]"))}
+      if self.udma_useburstclr_clr(14) != 0 { try!(write!(f, " udma_useburstclr_clr[14]"))}
+      if self.udma_useburstclr_clr(15) != 0 { try!(write!(f, " udma_useburstclr_clr[15]"))}
+      if self.udma_useburstclr_clr(16) != 0 { try!(write!(f, " udma_useburstclr_clr[16]"))}
+      if self.udma_useburstclr_clr(17) != 0 { try!(write!(f, " udma_useburstclr_clr[17]"))}
+      if self.udma_useburstclr_clr(18) != 0 { try!(write!(f, " udma_useburstclr_clr[18]"))}
+      if self.udma_useburstclr_clr(19) != 0 { try!(write!(f, " udma_useburstclr_clr[19]"))}
+      if self.udma_useburstclr_clr(20) != 0 { try!(write!(f, " udma_useburstclr_clr[20]"))}
+      if self.udma_useburstclr_clr(21) != 0 { try!(write!(f, " udma_useburstclr_clr[21]"))}
+      if self.udma_useburstclr_clr(22) != 0 { try!(write!(f, " udma_useburstclr_clr[22]"))}
+      if self.udma_useburstclr_clr(23) != 0 { try!(write!(f, " udma_useburstclr_clr[23]"))}
+      if self.udma_useburstclr_clr(24) != 0 { try!(write!(f, " udma_useburstclr_clr[24]"))}
+      if self.udma_useburstclr_clr(25) != 0 { try!(write!(f, " udma_useburstclr_clr[25]"))}
+      if self.udma_useburstclr_clr(26) != 0 { try!(write!(f, " udma_useburstclr_clr[26]"))}
+      if self.udma_useburstclr_clr(27) != 0 { try!(write!(f, " udma_useburstclr_clr[27]"))}
+      if self.udma_useburstclr_clr(28) != 0 { try!(write!(f, " udma_useburstclr_clr[28]"))}
+      if self.udma_useburstclr_clr(29) != 0 { try!(write!(f, " udma_useburstclr_clr[29]"))}
+      if self.udma_useburstclr_clr(30) != 0 { try!(write!(f, " udma_useburstclr_clr[30]"))}
+      if self.udma_useburstclr_clr(31) != 0 { try!(write!(f, " udma_useburstclr_clr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -669,13 +813,17 @@ impl ::core::fmt::Debug for Useburstclr {
 #[derive(PartialEq, Eq)]
 pub struct Reqmaskset(pub u32);
 impl Reqmaskset {
-  #[inline] pub fn udma_reqmaskset_set(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_reqmaskset_set(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_reqmaskset_set(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_reqmaskset_set(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -688,6 +836,38 @@ impl ::core::fmt::Display for Reqmaskset {
 impl ::core::fmt::Debug for Reqmaskset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_reqmaskset_set(0) != 0 { try!(write!(f, " udma_reqmaskset_set[0]"))}
+      if self.udma_reqmaskset_set(1) != 0 { try!(write!(f, " udma_reqmaskset_set[1]"))}
+      if self.udma_reqmaskset_set(2) != 0 { try!(write!(f, " udma_reqmaskset_set[2]"))}
+      if self.udma_reqmaskset_set(3) != 0 { try!(write!(f, " udma_reqmaskset_set[3]"))}
+      if self.udma_reqmaskset_set(4) != 0 { try!(write!(f, " udma_reqmaskset_set[4]"))}
+      if self.udma_reqmaskset_set(5) != 0 { try!(write!(f, " udma_reqmaskset_set[5]"))}
+      if self.udma_reqmaskset_set(6) != 0 { try!(write!(f, " udma_reqmaskset_set[6]"))}
+      if self.udma_reqmaskset_set(7) != 0 { try!(write!(f, " udma_reqmaskset_set[7]"))}
+      if self.udma_reqmaskset_set(8) != 0 { try!(write!(f, " udma_reqmaskset_set[8]"))}
+      if self.udma_reqmaskset_set(9) != 0 { try!(write!(f, " udma_reqmaskset_set[9]"))}
+      if self.udma_reqmaskset_set(10) != 0 { try!(write!(f, " udma_reqmaskset_set[10]"))}
+      if self.udma_reqmaskset_set(11) != 0 { try!(write!(f, " udma_reqmaskset_set[11]"))}
+      if self.udma_reqmaskset_set(12) != 0 { try!(write!(f, " udma_reqmaskset_set[12]"))}
+      if self.udma_reqmaskset_set(13) != 0 { try!(write!(f, " udma_reqmaskset_set[13]"))}
+      if self.udma_reqmaskset_set(14) != 0 { try!(write!(f, " udma_reqmaskset_set[14]"))}
+      if self.udma_reqmaskset_set(15) != 0 { try!(write!(f, " udma_reqmaskset_set[15]"))}
+      if self.udma_reqmaskset_set(16) != 0 { try!(write!(f, " udma_reqmaskset_set[16]"))}
+      if self.udma_reqmaskset_set(17) != 0 { try!(write!(f, " udma_reqmaskset_set[17]"))}
+      if self.udma_reqmaskset_set(18) != 0 { try!(write!(f, " udma_reqmaskset_set[18]"))}
+      if self.udma_reqmaskset_set(19) != 0 { try!(write!(f, " udma_reqmaskset_set[19]"))}
+      if self.udma_reqmaskset_set(20) != 0 { try!(write!(f, " udma_reqmaskset_set[20]"))}
+      if self.udma_reqmaskset_set(21) != 0 { try!(write!(f, " udma_reqmaskset_set[21]"))}
+      if self.udma_reqmaskset_set(22) != 0 { try!(write!(f, " udma_reqmaskset_set[22]"))}
+      if self.udma_reqmaskset_set(23) != 0 { try!(write!(f, " udma_reqmaskset_set[23]"))}
+      if self.udma_reqmaskset_set(24) != 0 { try!(write!(f, " udma_reqmaskset_set[24]"))}
+      if self.udma_reqmaskset_set(25) != 0 { try!(write!(f, " udma_reqmaskset_set[25]"))}
+      if self.udma_reqmaskset_set(26) != 0 { try!(write!(f, " udma_reqmaskset_set[26]"))}
+      if self.udma_reqmaskset_set(27) != 0 { try!(write!(f, " udma_reqmaskset_set[27]"))}
+      if self.udma_reqmaskset_set(28) != 0 { try!(write!(f, " udma_reqmaskset_set[28]"))}
+      if self.udma_reqmaskset_set(29) != 0 { try!(write!(f, " udma_reqmaskset_set[29]"))}
+      if self.udma_reqmaskset_set(30) != 0 { try!(write!(f, " udma_reqmaskset_set[30]"))}
+      if self.udma_reqmaskset_set(31) != 0 { try!(write!(f, " udma_reqmaskset_set[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -695,13 +875,17 @@ impl ::core::fmt::Debug for Reqmaskset {
 #[derive(PartialEq, Eq)]
 pub struct Reqmaskclr(pub u32);
 impl Reqmaskclr {
-  #[inline] pub fn udma_reqmaskclr_clr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_reqmaskclr_clr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_reqmaskclr_clr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_reqmaskclr_clr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -714,6 +898,38 @@ impl ::core::fmt::Display for Reqmaskclr {
 impl ::core::fmt::Debug for Reqmaskclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_reqmaskclr_clr(0) != 0 { try!(write!(f, " udma_reqmaskclr_clr[0]"))}
+      if self.udma_reqmaskclr_clr(1) != 0 { try!(write!(f, " udma_reqmaskclr_clr[1]"))}
+      if self.udma_reqmaskclr_clr(2) != 0 { try!(write!(f, " udma_reqmaskclr_clr[2]"))}
+      if self.udma_reqmaskclr_clr(3) != 0 { try!(write!(f, " udma_reqmaskclr_clr[3]"))}
+      if self.udma_reqmaskclr_clr(4) != 0 { try!(write!(f, " udma_reqmaskclr_clr[4]"))}
+      if self.udma_reqmaskclr_clr(5) != 0 { try!(write!(f, " udma_reqmaskclr_clr[5]"))}
+      if self.udma_reqmaskclr_clr(6) != 0 { try!(write!(f, " udma_reqmaskclr_clr[6]"))}
+      if self.udma_reqmaskclr_clr(7) != 0 { try!(write!(f, " udma_reqmaskclr_clr[7]"))}
+      if self.udma_reqmaskclr_clr(8) != 0 { try!(write!(f, " udma_reqmaskclr_clr[8]"))}
+      if self.udma_reqmaskclr_clr(9) != 0 { try!(write!(f, " udma_reqmaskclr_clr[9]"))}
+      if self.udma_reqmaskclr_clr(10) != 0 { try!(write!(f, " udma_reqmaskclr_clr[10]"))}
+      if self.udma_reqmaskclr_clr(11) != 0 { try!(write!(f, " udma_reqmaskclr_clr[11]"))}
+      if self.udma_reqmaskclr_clr(12) != 0 { try!(write!(f, " udma_reqmaskclr_clr[12]"))}
+      if self.udma_reqmaskclr_clr(13) != 0 { try!(write!(f, " udma_reqmaskclr_clr[13]"))}
+      if self.udma_reqmaskclr_clr(14) != 0 { try!(write!(f, " udma_reqmaskclr_clr[14]"))}
+      if self.udma_reqmaskclr_clr(15) != 0 { try!(write!(f, " udma_reqmaskclr_clr[15]"))}
+      if self.udma_reqmaskclr_clr(16) != 0 { try!(write!(f, " udma_reqmaskclr_clr[16]"))}
+      if self.udma_reqmaskclr_clr(17) != 0 { try!(write!(f, " udma_reqmaskclr_clr[17]"))}
+      if self.udma_reqmaskclr_clr(18) != 0 { try!(write!(f, " udma_reqmaskclr_clr[18]"))}
+      if self.udma_reqmaskclr_clr(19) != 0 { try!(write!(f, " udma_reqmaskclr_clr[19]"))}
+      if self.udma_reqmaskclr_clr(20) != 0 { try!(write!(f, " udma_reqmaskclr_clr[20]"))}
+      if self.udma_reqmaskclr_clr(21) != 0 { try!(write!(f, " udma_reqmaskclr_clr[21]"))}
+      if self.udma_reqmaskclr_clr(22) != 0 { try!(write!(f, " udma_reqmaskclr_clr[22]"))}
+      if self.udma_reqmaskclr_clr(23) != 0 { try!(write!(f, " udma_reqmaskclr_clr[23]"))}
+      if self.udma_reqmaskclr_clr(24) != 0 { try!(write!(f, " udma_reqmaskclr_clr[24]"))}
+      if self.udma_reqmaskclr_clr(25) != 0 { try!(write!(f, " udma_reqmaskclr_clr[25]"))}
+      if self.udma_reqmaskclr_clr(26) != 0 { try!(write!(f, " udma_reqmaskclr_clr[26]"))}
+      if self.udma_reqmaskclr_clr(27) != 0 { try!(write!(f, " udma_reqmaskclr_clr[27]"))}
+      if self.udma_reqmaskclr_clr(28) != 0 { try!(write!(f, " udma_reqmaskclr_clr[28]"))}
+      if self.udma_reqmaskclr_clr(29) != 0 { try!(write!(f, " udma_reqmaskclr_clr[29]"))}
+      if self.udma_reqmaskclr_clr(30) != 0 { try!(write!(f, " udma_reqmaskclr_clr[30]"))}
+      if self.udma_reqmaskclr_clr(31) != 0 { try!(write!(f, " udma_reqmaskclr_clr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -721,13 +937,17 @@ impl ::core::fmt::Debug for Reqmaskclr {
 #[derive(PartialEq, Eq)]
 pub struct Enaset(pub u32);
 impl Enaset {
-  #[inline] pub fn udma_enaset_set(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_enaset_set(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_enaset_set(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_enaset_set(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -740,6 +960,38 @@ impl ::core::fmt::Display for Enaset {
 impl ::core::fmt::Debug for Enaset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_enaset_set(0) != 0 { try!(write!(f, " udma_enaset_set[0]"))}
+      if self.udma_enaset_set(1) != 0 { try!(write!(f, " udma_enaset_set[1]"))}
+      if self.udma_enaset_set(2) != 0 { try!(write!(f, " udma_enaset_set[2]"))}
+      if self.udma_enaset_set(3) != 0 { try!(write!(f, " udma_enaset_set[3]"))}
+      if self.udma_enaset_set(4) != 0 { try!(write!(f, " udma_enaset_set[4]"))}
+      if self.udma_enaset_set(5) != 0 { try!(write!(f, " udma_enaset_set[5]"))}
+      if self.udma_enaset_set(6) != 0 { try!(write!(f, " udma_enaset_set[6]"))}
+      if self.udma_enaset_set(7) != 0 { try!(write!(f, " udma_enaset_set[7]"))}
+      if self.udma_enaset_set(8) != 0 { try!(write!(f, " udma_enaset_set[8]"))}
+      if self.udma_enaset_set(9) != 0 { try!(write!(f, " udma_enaset_set[9]"))}
+      if self.udma_enaset_set(10) != 0 { try!(write!(f, " udma_enaset_set[10]"))}
+      if self.udma_enaset_set(11) != 0 { try!(write!(f, " udma_enaset_set[11]"))}
+      if self.udma_enaset_set(12) != 0 { try!(write!(f, " udma_enaset_set[12]"))}
+      if self.udma_enaset_set(13) != 0 { try!(write!(f, " udma_enaset_set[13]"))}
+      if self.udma_enaset_set(14) != 0 { try!(write!(f, " udma_enaset_set[14]"))}
+      if self.udma_enaset_set(15) != 0 { try!(write!(f, " udma_enaset_set[15]"))}
+      if self.udma_enaset_set(16) != 0 { try!(write!(f, " udma_enaset_set[16]"))}
+      if self.udma_enaset_set(17) != 0 { try!(write!(f, " udma_enaset_set[17]"))}
+      if self.udma_enaset_set(18) != 0 { try!(write!(f, " udma_enaset_set[18]"))}
+      if self.udma_enaset_set(19) != 0 { try!(write!(f, " udma_enaset_set[19]"))}
+      if self.udma_enaset_set(20) != 0 { try!(write!(f, " udma_enaset_set[20]"))}
+      if self.udma_enaset_set(21) != 0 { try!(write!(f, " udma_enaset_set[21]"))}
+      if self.udma_enaset_set(22) != 0 { try!(write!(f, " udma_enaset_set[22]"))}
+      if self.udma_enaset_set(23) != 0 { try!(write!(f, " udma_enaset_set[23]"))}
+      if self.udma_enaset_set(24) != 0 { try!(write!(f, " udma_enaset_set[24]"))}
+      if self.udma_enaset_set(25) != 0 { try!(write!(f, " udma_enaset_set[25]"))}
+      if self.udma_enaset_set(26) != 0 { try!(write!(f, " udma_enaset_set[26]"))}
+      if self.udma_enaset_set(27) != 0 { try!(write!(f, " udma_enaset_set[27]"))}
+      if self.udma_enaset_set(28) != 0 { try!(write!(f, " udma_enaset_set[28]"))}
+      if self.udma_enaset_set(29) != 0 { try!(write!(f, " udma_enaset_set[29]"))}
+      if self.udma_enaset_set(30) != 0 { try!(write!(f, " udma_enaset_set[30]"))}
+      if self.udma_enaset_set(31) != 0 { try!(write!(f, " udma_enaset_set[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -747,13 +999,17 @@ impl ::core::fmt::Debug for Enaset {
 #[derive(PartialEq, Eq)]
 pub struct Enaclr(pub u32);
 impl Enaclr {
-  #[inline] pub fn udma_enaclr_clr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_enaclr_clr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_enaclr_clr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_enaclr_clr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -766,6 +1022,38 @@ impl ::core::fmt::Display for Enaclr {
 impl ::core::fmt::Debug for Enaclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_enaclr_clr(0) != 0 { try!(write!(f, " udma_enaclr_clr[0]"))}
+      if self.udma_enaclr_clr(1) != 0 { try!(write!(f, " udma_enaclr_clr[1]"))}
+      if self.udma_enaclr_clr(2) != 0 { try!(write!(f, " udma_enaclr_clr[2]"))}
+      if self.udma_enaclr_clr(3) != 0 { try!(write!(f, " udma_enaclr_clr[3]"))}
+      if self.udma_enaclr_clr(4) != 0 { try!(write!(f, " udma_enaclr_clr[4]"))}
+      if self.udma_enaclr_clr(5) != 0 { try!(write!(f, " udma_enaclr_clr[5]"))}
+      if self.udma_enaclr_clr(6) != 0 { try!(write!(f, " udma_enaclr_clr[6]"))}
+      if self.udma_enaclr_clr(7) != 0 { try!(write!(f, " udma_enaclr_clr[7]"))}
+      if self.udma_enaclr_clr(8) != 0 { try!(write!(f, " udma_enaclr_clr[8]"))}
+      if self.udma_enaclr_clr(9) != 0 { try!(write!(f, " udma_enaclr_clr[9]"))}
+      if self.udma_enaclr_clr(10) != 0 { try!(write!(f, " udma_enaclr_clr[10]"))}
+      if self.udma_enaclr_clr(11) != 0 { try!(write!(f, " udma_enaclr_clr[11]"))}
+      if self.udma_enaclr_clr(12) != 0 { try!(write!(f, " udma_enaclr_clr[12]"))}
+      if self.udma_enaclr_clr(13) != 0 { try!(write!(f, " udma_enaclr_clr[13]"))}
+      if self.udma_enaclr_clr(14) != 0 { try!(write!(f, " udma_enaclr_clr[14]"))}
+      if self.udma_enaclr_clr(15) != 0 { try!(write!(f, " udma_enaclr_clr[15]"))}
+      if self.udma_enaclr_clr(16) != 0 { try!(write!(f, " udma_enaclr_clr[16]"))}
+      if self.udma_enaclr_clr(17) != 0 { try!(write!(f, " udma_enaclr_clr[17]"))}
+      if self.udma_enaclr_clr(18) != 0 { try!(write!(f, " udma_enaclr_clr[18]"))}
+      if self.udma_enaclr_clr(19) != 0 { try!(write!(f, " udma_enaclr_clr[19]"))}
+      if self.udma_enaclr_clr(20) != 0 { try!(write!(f, " udma_enaclr_clr[20]"))}
+      if self.udma_enaclr_clr(21) != 0 { try!(write!(f, " udma_enaclr_clr[21]"))}
+      if self.udma_enaclr_clr(22) != 0 { try!(write!(f, " udma_enaclr_clr[22]"))}
+      if self.udma_enaclr_clr(23) != 0 { try!(write!(f, " udma_enaclr_clr[23]"))}
+      if self.udma_enaclr_clr(24) != 0 { try!(write!(f, " udma_enaclr_clr[24]"))}
+      if self.udma_enaclr_clr(25) != 0 { try!(write!(f, " udma_enaclr_clr[25]"))}
+      if self.udma_enaclr_clr(26) != 0 { try!(write!(f, " udma_enaclr_clr[26]"))}
+      if self.udma_enaclr_clr(27) != 0 { try!(write!(f, " udma_enaclr_clr[27]"))}
+      if self.udma_enaclr_clr(28) != 0 { try!(write!(f, " udma_enaclr_clr[28]"))}
+      if self.udma_enaclr_clr(29) != 0 { try!(write!(f, " udma_enaclr_clr[29]"))}
+      if self.udma_enaclr_clr(30) != 0 { try!(write!(f, " udma_enaclr_clr[30]"))}
+      if self.udma_enaclr_clr(31) != 0 { try!(write!(f, " udma_enaclr_clr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -773,13 +1061,17 @@ impl ::core::fmt::Debug for Enaclr {
 #[derive(PartialEq, Eq)]
 pub struct Altset(pub u32);
 impl Altset {
-  #[inline] pub fn udma_altset_set(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_altset_set(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_altset_set(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_altset_set(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -792,6 +1084,38 @@ impl ::core::fmt::Display for Altset {
 impl ::core::fmt::Debug for Altset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_altset_set(0) != 0 { try!(write!(f, " udma_altset_set[0]"))}
+      if self.udma_altset_set(1) != 0 { try!(write!(f, " udma_altset_set[1]"))}
+      if self.udma_altset_set(2) != 0 { try!(write!(f, " udma_altset_set[2]"))}
+      if self.udma_altset_set(3) != 0 { try!(write!(f, " udma_altset_set[3]"))}
+      if self.udma_altset_set(4) != 0 { try!(write!(f, " udma_altset_set[4]"))}
+      if self.udma_altset_set(5) != 0 { try!(write!(f, " udma_altset_set[5]"))}
+      if self.udma_altset_set(6) != 0 { try!(write!(f, " udma_altset_set[6]"))}
+      if self.udma_altset_set(7) != 0 { try!(write!(f, " udma_altset_set[7]"))}
+      if self.udma_altset_set(8) != 0 { try!(write!(f, " udma_altset_set[8]"))}
+      if self.udma_altset_set(9) != 0 { try!(write!(f, " udma_altset_set[9]"))}
+      if self.udma_altset_set(10) != 0 { try!(write!(f, " udma_altset_set[10]"))}
+      if self.udma_altset_set(11) != 0 { try!(write!(f, " udma_altset_set[11]"))}
+      if self.udma_altset_set(12) != 0 { try!(write!(f, " udma_altset_set[12]"))}
+      if self.udma_altset_set(13) != 0 { try!(write!(f, " udma_altset_set[13]"))}
+      if self.udma_altset_set(14) != 0 { try!(write!(f, " udma_altset_set[14]"))}
+      if self.udma_altset_set(15) != 0 { try!(write!(f, " udma_altset_set[15]"))}
+      if self.udma_altset_set(16) != 0 { try!(write!(f, " udma_altset_set[16]"))}
+      if self.udma_altset_set(17) != 0 { try!(write!(f, " udma_altset_set[17]"))}
+      if self.udma_altset_set(18) != 0 { try!(write!(f, " udma_altset_set[18]"))}
+      if self.udma_altset_set(19) != 0 { try!(write!(f, " udma_altset_set[19]"))}
+      if self.udma_altset_set(20) != 0 { try!(write!(f, " udma_altset_set[20]"))}
+      if self.udma_altset_set(21) != 0 { try!(write!(f, " udma_altset_set[21]"))}
+      if self.udma_altset_set(22) != 0 { try!(write!(f, " udma_altset_set[22]"))}
+      if self.udma_altset_set(23) != 0 { try!(write!(f, " udma_altset_set[23]"))}
+      if self.udma_altset_set(24) != 0 { try!(write!(f, " udma_altset_set[24]"))}
+      if self.udma_altset_set(25) != 0 { try!(write!(f, " udma_altset_set[25]"))}
+      if self.udma_altset_set(26) != 0 { try!(write!(f, " udma_altset_set[26]"))}
+      if self.udma_altset_set(27) != 0 { try!(write!(f, " udma_altset_set[27]"))}
+      if self.udma_altset_set(28) != 0 { try!(write!(f, " udma_altset_set[28]"))}
+      if self.udma_altset_set(29) != 0 { try!(write!(f, " udma_altset_set[29]"))}
+      if self.udma_altset_set(30) != 0 { try!(write!(f, " udma_altset_set[30]"))}
+      if self.udma_altset_set(31) != 0 { try!(write!(f, " udma_altset_set[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -799,13 +1123,17 @@ impl ::core::fmt::Debug for Altset {
 #[derive(PartialEq, Eq)]
 pub struct Altclr(pub u32);
 impl Altclr {
-  #[inline] pub fn udma_altclr_clr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_altclr_clr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_altclr_clr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_altclr_clr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -818,6 +1146,38 @@ impl ::core::fmt::Display for Altclr {
 impl ::core::fmt::Debug for Altclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_altclr_clr(0) != 0 { try!(write!(f, " udma_altclr_clr[0]"))}
+      if self.udma_altclr_clr(1) != 0 { try!(write!(f, " udma_altclr_clr[1]"))}
+      if self.udma_altclr_clr(2) != 0 { try!(write!(f, " udma_altclr_clr[2]"))}
+      if self.udma_altclr_clr(3) != 0 { try!(write!(f, " udma_altclr_clr[3]"))}
+      if self.udma_altclr_clr(4) != 0 { try!(write!(f, " udma_altclr_clr[4]"))}
+      if self.udma_altclr_clr(5) != 0 { try!(write!(f, " udma_altclr_clr[5]"))}
+      if self.udma_altclr_clr(6) != 0 { try!(write!(f, " udma_altclr_clr[6]"))}
+      if self.udma_altclr_clr(7) != 0 { try!(write!(f, " udma_altclr_clr[7]"))}
+      if self.udma_altclr_clr(8) != 0 { try!(write!(f, " udma_altclr_clr[8]"))}
+      if self.udma_altclr_clr(9) != 0 { try!(write!(f, " udma_altclr_clr[9]"))}
+      if self.udma_altclr_clr(10) != 0 { try!(write!(f, " udma_altclr_clr[10]"))}
+      if self.udma_altclr_clr(11) != 0 { try!(write!(f, " udma_altclr_clr[11]"))}
+      if self.udma_altclr_clr(12) != 0 { try!(write!(f, " udma_altclr_clr[12]"))}
+      if self.udma_altclr_clr(13) != 0 { try!(write!(f, " udma_altclr_clr[13]"))}
+      if self.udma_altclr_clr(14) != 0 { try!(write!(f, " udma_altclr_clr[14]"))}
+      if self.udma_altclr_clr(15) != 0 { try!(write!(f, " udma_altclr_clr[15]"))}
+      if self.udma_altclr_clr(16) != 0 { try!(write!(f, " udma_altclr_clr[16]"))}
+      if self.udma_altclr_clr(17) != 0 { try!(write!(f, " udma_altclr_clr[17]"))}
+      if self.udma_altclr_clr(18) != 0 { try!(write!(f, " udma_altclr_clr[18]"))}
+      if self.udma_altclr_clr(19) != 0 { try!(write!(f, " udma_altclr_clr[19]"))}
+      if self.udma_altclr_clr(20) != 0 { try!(write!(f, " udma_altclr_clr[20]"))}
+      if self.udma_altclr_clr(21) != 0 { try!(write!(f, " udma_altclr_clr[21]"))}
+      if self.udma_altclr_clr(22) != 0 { try!(write!(f, " udma_altclr_clr[22]"))}
+      if self.udma_altclr_clr(23) != 0 { try!(write!(f, " udma_altclr_clr[23]"))}
+      if self.udma_altclr_clr(24) != 0 { try!(write!(f, " udma_altclr_clr[24]"))}
+      if self.udma_altclr_clr(25) != 0 { try!(write!(f, " udma_altclr_clr[25]"))}
+      if self.udma_altclr_clr(26) != 0 { try!(write!(f, " udma_altclr_clr[26]"))}
+      if self.udma_altclr_clr(27) != 0 { try!(write!(f, " udma_altclr_clr[27]"))}
+      if self.udma_altclr_clr(28) != 0 { try!(write!(f, " udma_altclr_clr[28]"))}
+      if self.udma_altclr_clr(29) != 0 { try!(write!(f, " udma_altclr_clr[29]"))}
+      if self.udma_altclr_clr(30) != 0 { try!(write!(f, " udma_altclr_clr[30]"))}
+      if self.udma_altclr_clr(31) != 0 { try!(write!(f, " udma_altclr_clr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -825,13 +1185,17 @@ impl ::core::fmt::Debug for Altclr {
 #[derive(PartialEq, Eq)]
 pub struct Prioset(pub u32);
 impl Prioset {
-  #[inline] pub fn udma_prioset_set(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_prioset_set(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_prioset_set(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_prioset_set(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -844,6 +1208,38 @@ impl ::core::fmt::Display for Prioset {
 impl ::core::fmt::Debug for Prioset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_prioset_set(0) != 0 { try!(write!(f, " udma_prioset_set[0]"))}
+      if self.udma_prioset_set(1) != 0 { try!(write!(f, " udma_prioset_set[1]"))}
+      if self.udma_prioset_set(2) != 0 { try!(write!(f, " udma_prioset_set[2]"))}
+      if self.udma_prioset_set(3) != 0 { try!(write!(f, " udma_prioset_set[3]"))}
+      if self.udma_prioset_set(4) != 0 { try!(write!(f, " udma_prioset_set[4]"))}
+      if self.udma_prioset_set(5) != 0 { try!(write!(f, " udma_prioset_set[5]"))}
+      if self.udma_prioset_set(6) != 0 { try!(write!(f, " udma_prioset_set[6]"))}
+      if self.udma_prioset_set(7) != 0 { try!(write!(f, " udma_prioset_set[7]"))}
+      if self.udma_prioset_set(8) != 0 { try!(write!(f, " udma_prioset_set[8]"))}
+      if self.udma_prioset_set(9) != 0 { try!(write!(f, " udma_prioset_set[9]"))}
+      if self.udma_prioset_set(10) != 0 { try!(write!(f, " udma_prioset_set[10]"))}
+      if self.udma_prioset_set(11) != 0 { try!(write!(f, " udma_prioset_set[11]"))}
+      if self.udma_prioset_set(12) != 0 { try!(write!(f, " udma_prioset_set[12]"))}
+      if self.udma_prioset_set(13) != 0 { try!(write!(f, " udma_prioset_set[13]"))}
+      if self.udma_prioset_set(14) != 0 { try!(write!(f, " udma_prioset_set[14]"))}
+      if self.udma_prioset_set(15) != 0 { try!(write!(f, " udma_prioset_set[15]"))}
+      if self.udma_prioset_set(16) != 0 { try!(write!(f, " udma_prioset_set[16]"))}
+      if self.udma_prioset_set(17) != 0 { try!(write!(f, " udma_prioset_set[17]"))}
+      if self.udma_prioset_set(18) != 0 { try!(write!(f, " udma_prioset_set[18]"))}
+      if self.udma_prioset_set(19) != 0 { try!(write!(f, " udma_prioset_set[19]"))}
+      if self.udma_prioset_set(20) != 0 { try!(write!(f, " udma_prioset_set[20]"))}
+      if self.udma_prioset_set(21) != 0 { try!(write!(f, " udma_prioset_set[21]"))}
+      if self.udma_prioset_set(22) != 0 { try!(write!(f, " udma_prioset_set[22]"))}
+      if self.udma_prioset_set(23) != 0 { try!(write!(f, " udma_prioset_set[23]"))}
+      if self.udma_prioset_set(24) != 0 { try!(write!(f, " udma_prioset_set[24]"))}
+      if self.udma_prioset_set(25) != 0 { try!(write!(f, " udma_prioset_set[25]"))}
+      if self.udma_prioset_set(26) != 0 { try!(write!(f, " udma_prioset_set[26]"))}
+      if self.udma_prioset_set(27) != 0 { try!(write!(f, " udma_prioset_set[27]"))}
+      if self.udma_prioset_set(28) != 0 { try!(write!(f, " udma_prioset_set[28]"))}
+      if self.udma_prioset_set(29) != 0 { try!(write!(f, " udma_prioset_set[29]"))}
+      if self.udma_prioset_set(30) != 0 { try!(write!(f, " udma_prioset_set[30]"))}
+      if self.udma_prioset_set(31) != 0 { try!(write!(f, " udma_prioset_set[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -851,13 +1247,17 @@ impl ::core::fmt::Debug for Prioset {
 #[derive(PartialEq, Eq)]
 pub struct Prioclr(pub u32);
 impl Prioclr {
-  #[inline] pub fn udma_prioclr_clr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_prioclr_clr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_prioclr_clr(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_prioclr_clr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -870,6 +1270,38 @@ impl ::core::fmt::Display for Prioclr {
 impl ::core::fmt::Debug for Prioclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_prioclr_clr(0) != 0 { try!(write!(f, " udma_prioclr_clr[0]"))}
+      if self.udma_prioclr_clr(1) != 0 { try!(write!(f, " udma_prioclr_clr[1]"))}
+      if self.udma_prioclr_clr(2) != 0 { try!(write!(f, " udma_prioclr_clr[2]"))}
+      if self.udma_prioclr_clr(3) != 0 { try!(write!(f, " udma_prioclr_clr[3]"))}
+      if self.udma_prioclr_clr(4) != 0 { try!(write!(f, " udma_prioclr_clr[4]"))}
+      if self.udma_prioclr_clr(5) != 0 { try!(write!(f, " udma_prioclr_clr[5]"))}
+      if self.udma_prioclr_clr(6) != 0 { try!(write!(f, " udma_prioclr_clr[6]"))}
+      if self.udma_prioclr_clr(7) != 0 { try!(write!(f, " udma_prioclr_clr[7]"))}
+      if self.udma_prioclr_clr(8) != 0 { try!(write!(f, " udma_prioclr_clr[8]"))}
+      if self.udma_prioclr_clr(9) != 0 { try!(write!(f, " udma_prioclr_clr[9]"))}
+      if self.udma_prioclr_clr(10) != 0 { try!(write!(f, " udma_prioclr_clr[10]"))}
+      if self.udma_prioclr_clr(11) != 0 { try!(write!(f, " udma_prioclr_clr[11]"))}
+      if self.udma_prioclr_clr(12) != 0 { try!(write!(f, " udma_prioclr_clr[12]"))}
+      if self.udma_prioclr_clr(13) != 0 { try!(write!(f, " udma_prioclr_clr[13]"))}
+      if self.udma_prioclr_clr(14) != 0 { try!(write!(f, " udma_prioclr_clr[14]"))}
+      if self.udma_prioclr_clr(15) != 0 { try!(write!(f, " udma_prioclr_clr[15]"))}
+      if self.udma_prioclr_clr(16) != 0 { try!(write!(f, " udma_prioclr_clr[16]"))}
+      if self.udma_prioclr_clr(17) != 0 { try!(write!(f, " udma_prioclr_clr[17]"))}
+      if self.udma_prioclr_clr(18) != 0 { try!(write!(f, " udma_prioclr_clr[18]"))}
+      if self.udma_prioclr_clr(19) != 0 { try!(write!(f, " udma_prioclr_clr[19]"))}
+      if self.udma_prioclr_clr(20) != 0 { try!(write!(f, " udma_prioclr_clr[20]"))}
+      if self.udma_prioclr_clr(21) != 0 { try!(write!(f, " udma_prioclr_clr[21]"))}
+      if self.udma_prioclr_clr(22) != 0 { try!(write!(f, " udma_prioclr_clr[22]"))}
+      if self.udma_prioclr_clr(23) != 0 { try!(write!(f, " udma_prioclr_clr[23]"))}
+      if self.udma_prioclr_clr(24) != 0 { try!(write!(f, " udma_prioclr_clr[24]"))}
+      if self.udma_prioclr_clr(25) != 0 { try!(write!(f, " udma_prioclr_clr[25]"))}
+      if self.udma_prioclr_clr(26) != 0 { try!(write!(f, " udma_prioclr_clr[26]"))}
+      if self.udma_prioclr_clr(27) != 0 { try!(write!(f, " udma_prioclr_clr[27]"))}
+      if self.udma_prioclr_clr(28) != 0 { try!(write!(f, " udma_prioclr_clr[28]"))}
+      if self.udma_prioclr_clr(29) != 0 { try!(write!(f, " udma_prioclr_clr[29]"))}
+      if self.udma_prioclr_clr(30) != 0 { try!(write!(f, " udma_prioclr_clr[30]"))}
+      if self.udma_prioclr_clr(31) != 0 { try!(write!(f, " udma_prioclr_clr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -877,13 +1309,17 @@ impl ::core::fmt::Debug for Prioclr {
 #[derive(PartialEq, Eq)]
 pub struct Errclr(pub u32);
 impl Errclr {
-  #[inline] pub fn udma_errclr_errclr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn udma_errclr_errclr(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_errclr_errclr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_udma_errclr_errclr(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -896,7 +1332,38 @@ impl ::core::fmt::Display for Errclr {
 impl ::core::fmt::Debug for Errclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.udma_errclr_errclr() != 0 { try!(write!(f, " udma_errclr_errclr"))}
+      if self.udma_errclr_errclr(0) != 0 { try!(write!(f, " udma_errclr_errclr[0]"))}
+      if self.udma_errclr_errclr(1) != 0 { try!(write!(f, " udma_errclr_errclr[1]"))}
+      if self.udma_errclr_errclr(2) != 0 { try!(write!(f, " udma_errclr_errclr[2]"))}
+      if self.udma_errclr_errclr(3) != 0 { try!(write!(f, " udma_errclr_errclr[3]"))}
+      if self.udma_errclr_errclr(4) != 0 { try!(write!(f, " udma_errclr_errclr[4]"))}
+      if self.udma_errclr_errclr(5) != 0 { try!(write!(f, " udma_errclr_errclr[5]"))}
+      if self.udma_errclr_errclr(6) != 0 { try!(write!(f, " udma_errclr_errclr[6]"))}
+      if self.udma_errclr_errclr(7) != 0 { try!(write!(f, " udma_errclr_errclr[7]"))}
+      if self.udma_errclr_errclr(8) != 0 { try!(write!(f, " udma_errclr_errclr[8]"))}
+      if self.udma_errclr_errclr(9) != 0 { try!(write!(f, " udma_errclr_errclr[9]"))}
+      if self.udma_errclr_errclr(10) != 0 { try!(write!(f, " udma_errclr_errclr[10]"))}
+      if self.udma_errclr_errclr(11) != 0 { try!(write!(f, " udma_errclr_errclr[11]"))}
+      if self.udma_errclr_errclr(12) != 0 { try!(write!(f, " udma_errclr_errclr[12]"))}
+      if self.udma_errclr_errclr(13) != 0 { try!(write!(f, " udma_errclr_errclr[13]"))}
+      if self.udma_errclr_errclr(14) != 0 { try!(write!(f, " udma_errclr_errclr[14]"))}
+      if self.udma_errclr_errclr(15) != 0 { try!(write!(f, " udma_errclr_errclr[15]"))}
+      if self.udma_errclr_errclr(16) != 0 { try!(write!(f, " udma_errclr_errclr[16]"))}
+      if self.udma_errclr_errclr(17) != 0 { try!(write!(f, " udma_errclr_errclr[17]"))}
+      if self.udma_errclr_errclr(18) != 0 { try!(write!(f, " udma_errclr_errclr[18]"))}
+      if self.udma_errclr_errclr(19) != 0 { try!(write!(f, " udma_errclr_errclr[19]"))}
+      if self.udma_errclr_errclr(20) != 0 { try!(write!(f, " udma_errclr_errclr[20]"))}
+      if self.udma_errclr_errclr(21) != 0 { try!(write!(f, " udma_errclr_errclr[21]"))}
+      if self.udma_errclr_errclr(22) != 0 { try!(write!(f, " udma_errclr_errclr[22]"))}
+      if self.udma_errclr_errclr(23) != 0 { try!(write!(f, " udma_errclr_errclr[23]"))}
+      if self.udma_errclr_errclr(24) != 0 { try!(write!(f, " udma_errclr_errclr[24]"))}
+      if self.udma_errclr_errclr(25) != 0 { try!(write!(f, " udma_errclr_errclr[25]"))}
+      if self.udma_errclr_errclr(26) != 0 { try!(write!(f, " udma_errclr_errclr[26]"))}
+      if self.udma_errclr_errclr(27) != 0 { try!(write!(f, " udma_errclr_errclr[27]"))}
+      if self.udma_errclr_errclr(28) != 0 { try!(write!(f, " udma_errclr_errclr[28]"))}
+      if self.udma_errclr_errclr(29) != 0 { try!(write!(f, " udma_errclr_errclr[29]"))}
+      if self.udma_errclr_errclr(30) != 0 { try!(write!(f, " udma_errclr_errclr[30]"))}
+      if self.udma_errclr_errclr(31) != 0 { try!(write!(f, " udma_errclr_errclr[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -904,13 +1371,17 @@ impl ::core::fmt::Debug for Errclr {
 #[derive(PartialEq, Eq)]
 pub struct Chasgn(pub u32);
 impl Chasgn {
-  #[inline] pub fn udma_chasgn(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn udma_chasgn(&self, index: usize) -> u32 {
+     assert!(index < 32);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_udma_chasgn(mut self, value: u32) -> Self {
-     assert!((value & !0xffffffff) == 0);
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+  #[inline] pub fn set_udma_chasgn(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 32);
+     assert!((value & !0x1) == 0);
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -923,6 +1394,38 @@ impl ::core::fmt::Display for Chasgn {
 impl ::core::fmt::Debug for Chasgn {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.udma_chasgn(0) != 0 { try!(write!(f, " udma_chasgn[0]"))}
+      if self.udma_chasgn(1) != 0 { try!(write!(f, " udma_chasgn[1]"))}
+      if self.udma_chasgn(2) != 0 { try!(write!(f, " udma_chasgn[2]"))}
+      if self.udma_chasgn(3) != 0 { try!(write!(f, " udma_chasgn[3]"))}
+      if self.udma_chasgn(4) != 0 { try!(write!(f, " udma_chasgn[4]"))}
+      if self.udma_chasgn(5) != 0 { try!(write!(f, " udma_chasgn[5]"))}
+      if self.udma_chasgn(6) != 0 { try!(write!(f, " udma_chasgn[6]"))}
+      if self.udma_chasgn(7) != 0 { try!(write!(f, " udma_chasgn[7]"))}
+      if self.udma_chasgn(8) != 0 { try!(write!(f, " udma_chasgn[8]"))}
+      if self.udma_chasgn(9) != 0 { try!(write!(f, " udma_chasgn[9]"))}
+      if self.udma_chasgn(10) != 0 { try!(write!(f, " udma_chasgn[10]"))}
+      if self.udma_chasgn(11) != 0 { try!(write!(f, " udma_chasgn[11]"))}
+      if self.udma_chasgn(12) != 0 { try!(write!(f, " udma_chasgn[12]"))}
+      if self.udma_chasgn(13) != 0 { try!(write!(f, " udma_chasgn[13]"))}
+      if self.udma_chasgn(14) != 0 { try!(write!(f, " udma_chasgn[14]"))}
+      if self.udma_chasgn(15) != 0 { try!(write!(f, " udma_chasgn[15]"))}
+      if self.udma_chasgn(16) != 0 { try!(write!(f, " udma_chasgn[16]"))}
+      if self.udma_chasgn(17) != 0 { try!(write!(f, " udma_chasgn[17]"))}
+      if self.udma_chasgn(18) != 0 { try!(write!(f, " udma_chasgn[18]"))}
+      if self.udma_chasgn(19) != 0 { try!(write!(f, " udma_chasgn[19]"))}
+      if self.udma_chasgn(20) != 0 { try!(write!(f, " udma_chasgn[20]"))}
+      if self.udma_chasgn(21) != 0 { try!(write!(f, " udma_chasgn[21]"))}
+      if self.udma_chasgn(22) != 0 { try!(write!(f, " udma_chasgn[22]"))}
+      if self.udma_chasgn(23) != 0 { try!(write!(f, " udma_chasgn[23]"))}
+      if self.udma_chasgn(24) != 0 { try!(write!(f, " udma_chasgn[24]"))}
+      if self.udma_chasgn(25) != 0 { try!(write!(f, " udma_chasgn[25]"))}
+      if self.udma_chasgn(26) != 0 { try!(write!(f, " udma_chasgn[26]"))}
+      if self.udma_chasgn(27) != 0 { try!(write!(f, " udma_chasgn[27]"))}
+      if self.udma_chasgn(28) != 0 { try!(write!(f, " udma_chasgn[28]"))}
+      if self.udma_chasgn(29) != 0 { try!(write!(f, " udma_chasgn[29]"))}
+      if self.udma_chasgn(30) != 0 { try!(write!(f, " udma_chasgn[30]"))}
+      if self.udma_chasgn(31) != 0 { try!(write!(f, " udma_chasgn[31]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -930,83 +1433,17 @@ impl ::core::fmt::Debug for Chasgn {
 #[derive(PartialEq, Eq)]
 pub struct Chmap0(pub u32);
 impl Chmap0 {
-  #[inline] pub fn udma_chmap0_ch0sel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn udma_chmap0_chsel(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 0 + (index << 2);
+     ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline] pub fn set_udma_chmap0_ch0sel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_udma_chmap0_chsel(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch1sel(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_udma_chmap0_ch1sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch2sel(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
-  }
-  #[inline] pub fn set_udma_chmap0_ch2sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch3sel(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
-  }
-  #[inline] pub fn set_udma_chmap0_ch3sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch4sel(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
-  }
-  #[inline] pub fn set_udma_chmap0_ch4sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch5sel(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
-  }
-  #[inline] pub fn set_udma_chmap0_ch5sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch6sel(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
-  }
-  #[inline] pub fn set_udma_chmap0_ch6sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn udma_chmap0_ch7sel(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0xf // [31:28]
-  }
-  #[inline] pub fn set_udma_chmap0_ch7sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 28);
-     self.0 |= value << 28;
+     let shift: usize = 0 + (index << 2);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1019,14 +1456,14 @@ impl ::core::fmt::Display for Chmap0 {
 impl ::core::fmt::Debug for Chmap0 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.udma_chmap0_ch0sel() != 0 { try!(write!(f, " udma_chmap0_ch0sel=0x{:x}", self.udma_chmap0_ch0sel()))}
-      if self.udma_chmap0_ch1sel() != 0 { try!(write!(f, " udma_chmap0_ch1sel=0x{:x}", self.udma_chmap0_ch1sel()))}
-      if self.udma_chmap0_ch2sel() != 0 { try!(write!(f, " udma_chmap0_ch2sel=0x{:x}", self.udma_chmap0_ch2sel()))}
-      if self.udma_chmap0_ch3sel() != 0 { try!(write!(f, " udma_chmap0_ch3sel=0x{:x}", self.udma_chmap0_ch3sel()))}
-      if self.udma_chmap0_ch4sel() != 0 { try!(write!(f, " udma_chmap0_ch4sel=0x{:x}", self.udma_chmap0_ch4sel()))}
-      if self.udma_chmap0_ch5sel() != 0 { try!(write!(f, " udma_chmap0_ch5sel=0x{:x}", self.udma_chmap0_ch5sel()))}
-      if self.udma_chmap0_ch6sel() != 0 { try!(write!(f, " udma_chmap0_ch6sel=0x{:x}", self.udma_chmap0_ch6sel()))}
-      if self.udma_chmap0_ch7sel() != 0 { try!(write!(f, " udma_chmap0_ch7sel=0x{:x}", self.udma_chmap0_ch7sel()))}
+      if self.udma_chmap0_chsel(0) != 0 { try!(write!(f, " udma_chmap0_chsel[0]=0x{:x}", self.udma_chmap0_chsel(0)))}
+      if self.udma_chmap0_chsel(1) != 0 { try!(write!(f, " udma_chmap0_chsel[1]=0x{:x}", self.udma_chmap0_chsel(1)))}
+      if self.udma_chmap0_chsel(2) != 0 { try!(write!(f, " udma_chmap0_chsel[2]=0x{:x}", self.udma_chmap0_chsel(2)))}
+      if self.udma_chmap0_chsel(3) != 0 { try!(write!(f, " udma_chmap0_chsel[3]=0x{:x}", self.udma_chmap0_chsel(3)))}
+      if self.udma_chmap0_chsel(4) != 0 { try!(write!(f, " udma_chmap0_chsel[4]=0x{:x}", self.udma_chmap0_chsel(4)))}
+      if self.udma_chmap0_chsel(5) != 0 { try!(write!(f, " udma_chmap0_chsel[5]=0x{:x}", self.udma_chmap0_chsel(5)))}
+      if self.udma_chmap0_chsel(6) != 0 { try!(write!(f, " udma_chmap0_chsel[6]=0x{:x}", self.udma_chmap0_chsel(6)))}
+      if self.udma_chmap0_chsel(7) != 0 { try!(write!(f, " udma_chmap0_chsel[7]=0x{:x}", self.udma_chmap0_chsel(7)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1034,83 +1471,17 @@ impl ::core::fmt::Debug for Chmap0 {
 #[derive(PartialEq, Eq)]
 pub struct Chmap1(pub u32);
 impl Chmap1 {
-  #[inline] pub fn udma_chmap1_ch8sel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn udma_chmap1_chsel(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 0 + (index << 2);
+     ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline] pub fn set_udma_chmap1_ch8sel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_udma_chmap1_chsel(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch9sel(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_udma_chmap1_ch9sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch10sel(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
-  }
-  #[inline] pub fn set_udma_chmap1_ch10sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch11sel(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
-  }
-  #[inline] pub fn set_udma_chmap1_ch11sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch12sel(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
-  }
-  #[inline] pub fn set_udma_chmap1_ch12sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch13sel(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
-  }
-  #[inline] pub fn set_udma_chmap1_ch13sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch14sel(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
-  }
-  #[inline] pub fn set_udma_chmap1_ch14sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn udma_chmap1_ch15sel(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0xf // [31:28]
-  }
-  #[inline] pub fn set_udma_chmap1_ch15sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 28);
-     self.0 |= value << 28;
+     let shift: usize = 0 + (index << 2);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1123,14 +1494,14 @@ impl ::core::fmt::Display for Chmap1 {
 impl ::core::fmt::Debug for Chmap1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.udma_chmap1_ch8sel() != 0 { try!(write!(f, " udma_chmap1_ch8sel=0x{:x}", self.udma_chmap1_ch8sel()))}
-      if self.udma_chmap1_ch9sel() != 0 { try!(write!(f, " udma_chmap1_ch9sel=0x{:x}", self.udma_chmap1_ch9sel()))}
-      if self.udma_chmap1_ch10sel() != 0 { try!(write!(f, " udma_chmap1_ch10sel=0x{:x}", self.udma_chmap1_ch10sel()))}
-      if self.udma_chmap1_ch11sel() != 0 { try!(write!(f, " udma_chmap1_ch11sel=0x{:x}", self.udma_chmap1_ch11sel()))}
-      if self.udma_chmap1_ch12sel() != 0 { try!(write!(f, " udma_chmap1_ch12sel=0x{:x}", self.udma_chmap1_ch12sel()))}
-      if self.udma_chmap1_ch13sel() != 0 { try!(write!(f, " udma_chmap1_ch13sel=0x{:x}", self.udma_chmap1_ch13sel()))}
-      if self.udma_chmap1_ch14sel() != 0 { try!(write!(f, " udma_chmap1_ch14sel=0x{:x}", self.udma_chmap1_ch14sel()))}
-      if self.udma_chmap1_ch15sel() != 0 { try!(write!(f, " udma_chmap1_ch15sel=0x{:x}", self.udma_chmap1_ch15sel()))}
+      if self.udma_chmap1_chsel(0) != 0 { try!(write!(f, " udma_chmap1_chsel[0]=0x{:x}", self.udma_chmap1_chsel(0)))}
+      if self.udma_chmap1_chsel(1) != 0 { try!(write!(f, " udma_chmap1_chsel[1]=0x{:x}", self.udma_chmap1_chsel(1)))}
+      if self.udma_chmap1_chsel(2) != 0 { try!(write!(f, " udma_chmap1_chsel[2]=0x{:x}", self.udma_chmap1_chsel(2)))}
+      if self.udma_chmap1_chsel(3) != 0 { try!(write!(f, " udma_chmap1_chsel[3]=0x{:x}", self.udma_chmap1_chsel(3)))}
+      if self.udma_chmap1_chsel(4) != 0 { try!(write!(f, " udma_chmap1_chsel[4]=0x{:x}", self.udma_chmap1_chsel(4)))}
+      if self.udma_chmap1_chsel(5) != 0 { try!(write!(f, " udma_chmap1_chsel[5]=0x{:x}", self.udma_chmap1_chsel(5)))}
+      if self.udma_chmap1_chsel(6) != 0 { try!(write!(f, " udma_chmap1_chsel[6]=0x{:x}", self.udma_chmap1_chsel(6)))}
+      if self.udma_chmap1_chsel(7) != 0 { try!(write!(f, " udma_chmap1_chsel[7]=0x{:x}", self.udma_chmap1_chsel(7)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1138,83 +1509,17 @@ impl ::core::fmt::Debug for Chmap1 {
 #[derive(PartialEq, Eq)]
 pub struct Chmap2(pub u32);
 impl Chmap2 {
-  #[inline] pub fn udma_chmap2_ch16sel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn udma_chmap2_chsel(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 0 + (index << 2);
+     ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline] pub fn set_udma_chmap2_ch16sel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_udma_chmap2_chsel(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch17sel(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_udma_chmap2_ch17sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch18sel(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
-  }
-  #[inline] pub fn set_udma_chmap2_ch18sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch19sel(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
-  }
-  #[inline] pub fn set_udma_chmap2_ch19sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch20sel(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
-  }
-  #[inline] pub fn set_udma_chmap2_ch20sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch21sel(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
-  }
-  #[inline] pub fn set_udma_chmap2_ch21sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch22sel(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
-  }
-  #[inline] pub fn set_udma_chmap2_ch22sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn udma_chmap2_ch23sel(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0xf // [31:28]
-  }
-  #[inline] pub fn set_udma_chmap2_ch23sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 28);
-     self.0 |= value << 28;
+     let shift: usize = 0 + (index << 2);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1227,14 +1532,14 @@ impl ::core::fmt::Display for Chmap2 {
 impl ::core::fmt::Debug for Chmap2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.udma_chmap2_ch16sel() != 0 { try!(write!(f, " udma_chmap2_ch16sel=0x{:x}", self.udma_chmap2_ch16sel()))}
-      if self.udma_chmap2_ch17sel() != 0 { try!(write!(f, " udma_chmap2_ch17sel=0x{:x}", self.udma_chmap2_ch17sel()))}
-      if self.udma_chmap2_ch18sel() != 0 { try!(write!(f, " udma_chmap2_ch18sel=0x{:x}", self.udma_chmap2_ch18sel()))}
-      if self.udma_chmap2_ch19sel() != 0 { try!(write!(f, " udma_chmap2_ch19sel=0x{:x}", self.udma_chmap2_ch19sel()))}
-      if self.udma_chmap2_ch20sel() != 0 { try!(write!(f, " udma_chmap2_ch20sel=0x{:x}", self.udma_chmap2_ch20sel()))}
-      if self.udma_chmap2_ch21sel() != 0 { try!(write!(f, " udma_chmap2_ch21sel=0x{:x}", self.udma_chmap2_ch21sel()))}
-      if self.udma_chmap2_ch22sel() != 0 { try!(write!(f, " udma_chmap2_ch22sel=0x{:x}", self.udma_chmap2_ch22sel()))}
-      if self.udma_chmap2_ch23sel() != 0 { try!(write!(f, " udma_chmap2_ch23sel=0x{:x}", self.udma_chmap2_ch23sel()))}
+      if self.udma_chmap2_chsel(0) != 0 { try!(write!(f, " udma_chmap2_chsel[0]=0x{:x}", self.udma_chmap2_chsel(0)))}
+      if self.udma_chmap2_chsel(1) != 0 { try!(write!(f, " udma_chmap2_chsel[1]=0x{:x}", self.udma_chmap2_chsel(1)))}
+      if self.udma_chmap2_chsel(2) != 0 { try!(write!(f, " udma_chmap2_chsel[2]=0x{:x}", self.udma_chmap2_chsel(2)))}
+      if self.udma_chmap2_chsel(3) != 0 { try!(write!(f, " udma_chmap2_chsel[3]=0x{:x}", self.udma_chmap2_chsel(3)))}
+      if self.udma_chmap2_chsel(4) != 0 { try!(write!(f, " udma_chmap2_chsel[4]=0x{:x}", self.udma_chmap2_chsel(4)))}
+      if self.udma_chmap2_chsel(5) != 0 { try!(write!(f, " udma_chmap2_chsel[5]=0x{:x}", self.udma_chmap2_chsel(5)))}
+      if self.udma_chmap2_chsel(6) != 0 { try!(write!(f, " udma_chmap2_chsel[6]=0x{:x}", self.udma_chmap2_chsel(6)))}
+      if self.udma_chmap2_chsel(7) != 0 { try!(write!(f, " udma_chmap2_chsel[7]=0x{:x}", self.udma_chmap2_chsel(7)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1242,83 +1547,17 @@ impl ::core::fmt::Debug for Chmap2 {
 #[derive(PartialEq, Eq)]
 pub struct Chmap3(pub u32);
 impl Chmap3 {
-  #[inline] pub fn udma_chmap3_ch24sel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn udma_chmap3_chsel(&self, index: usize) -> u32 {
+     assert!(index < 8);
+     let shift: usize = 0 + (index << 2);
+     ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline] pub fn set_udma_chmap3_ch24sel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_udma_chmap3_chsel(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 8);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch25sel(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_udma_chmap3_ch25sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch26sel(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
-  }
-  #[inline] pub fn set_udma_chmap3_ch26sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch27sel(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
-  }
-  #[inline] pub fn set_udma_chmap3_ch27sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch28sel(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
-  }
-  #[inline] pub fn set_udma_chmap3_ch28sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch29sel(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
-  }
-  #[inline] pub fn set_udma_chmap3_ch29sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch30sel(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
-  }
-  #[inline] pub fn set_udma_chmap3_ch30sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn udma_chmap3_ch31sel(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0xf // [31:28]
-  }
-  #[inline] pub fn set_udma_chmap3_ch31sel(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 28);
-     self.0 |= value << 28;
+     let shift: usize = 0 + (index << 2);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1331,14 +1570,245 @@ impl ::core::fmt::Display for Chmap3 {
 impl ::core::fmt::Debug for Chmap3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.udma_chmap3_ch24sel() != 0 { try!(write!(f, " udma_chmap3_ch24sel=0x{:x}", self.udma_chmap3_ch24sel()))}
-      if self.udma_chmap3_ch25sel() != 0 { try!(write!(f, " udma_chmap3_ch25sel=0x{:x}", self.udma_chmap3_ch25sel()))}
-      if self.udma_chmap3_ch26sel() != 0 { try!(write!(f, " udma_chmap3_ch26sel=0x{:x}", self.udma_chmap3_ch26sel()))}
-      if self.udma_chmap3_ch27sel() != 0 { try!(write!(f, " udma_chmap3_ch27sel=0x{:x}", self.udma_chmap3_ch27sel()))}
-      if self.udma_chmap3_ch28sel() != 0 { try!(write!(f, " udma_chmap3_ch28sel=0x{:x}", self.udma_chmap3_ch28sel()))}
-      if self.udma_chmap3_ch29sel() != 0 { try!(write!(f, " udma_chmap3_ch29sel=0x{:x}", self.udma_chmap3_ch29sel()))}
-      if self.udma_chmap3_ch30sel() != 0 { try!(write!(f, " udma_chmap3_ch30sel=0x{:x}", self.udma_chmap3_ch30sel()))}
-      if self.udma_chmap3_ch31sel() != 0 { try!(write!(f, " udma_chmap3_ch31sel=0x{:x}", self.udma_chmap3_ch31sel()))}
+      if self.udma_chmap3_chsel(0) != 0 { try!(write!(f, " udma_chmap3_chsel[0]=0x{:x}", self.udma_chmap3_chsel(0)))}
+      if self.udma_chmap3_chsel(1) != 0 { try!(write!(f, " udma_chmap3_chsel[1]=0x{:x}", self.udma_chmap3_chsel(1)))}
+      if self.udma_chmap3_chsel(2) != 0 { try!(write!(f, " udma_chmap3_chsel[2]=0x{:x}", self.udma_chmap3_chsel(2)))}
+      if self.udma_chmap3_chsel(3) != 0 { try!(write!(f, " udma_chmap3_chsel[3]=0x{:x}", self.udma_chmap3_chsel(3)))}
+      if self.udma_chmap3_chsel(4) != 0 { try!(write!(f, " udma_chmap3_chsel[4]=0x{:x}", self.udma_chmap3_chsel(4)))}
+      if self.udma_chmap3_chsel(5) != 0 { try!(write!(f, " udma_chmap3_chsel[5]=0x{:x}", self.udma_chmap3_chsel(5)))}
+      if self.udma_chmap3_chsel(6) != 0 { try!(write!(f, " udma_chmap3_chsel[6]=0x{:x}", self.udma_chmap3_chsel(6)))}
+      if self.udma_chmap3_chsel(7) != 0 { try!(write!(f, " udma_chmap3_chsel[7]=0x{:x}", self.udma_chmap3_chsel(7)))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
+pub struct Ccs(pub [u8; 16]);
+
+impl Ccs {
+   #[inline] pub fn srcendp(&self) -> Srcendp { 
+      unsafe {
+         Srcendp(::core::ptr::read_volatile(self.0.as_ptr().offset(0x0) as *const u32))
+      }
+   }
+   #[inline] pub fn set_srcendp(&mut self, value: Srcendp) -> &mut Self {
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
+      }
+      self
+  }
+   #[inline] pub fn with_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &mut Self {
+      let tmp = self.srcendp();
+      self.set_srcendp(f(tmp))
+   }
+
+   #[inline] pub fn dstendp(&self) -> Dstendp { 
+      unsafe {
+         Dstendp(::core::ptr::read_volatile(self.0.as_ptr().offset(0x0) as *const u32))
+      }
+   }
+   #[inline] pub fn set_dstendp(&mut self, value: Dstendp) -> &mut Self {
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
+      }
+      self
+  }
+   #[inline] pub fn with_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &mut Self {
+      let tmp = self.dstendp();
+      self.set_dstendp(f(tmp))
+   }
+
+   #[inline] pub fn chctl(&self) -> Chctl { 
+      unsafe {
+         Chctl(::core::ptr::read_volatile(self.0.as_ptr().offset(0x0) as *const u32))
+      }
+   }
+   #[inline] pub fn set_chctl(&mut self, value: Chctl) -> &mut Self {
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
+      }
+      self
+  }
+   #[inline] pub fn with_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &mut Self {
+      let tmp = self.chctl();
+      self.set_chctl(f(tmp))
+   }
+
+}
+#[derive(PartialEq, Eq)]
+pub struct Srcendp(pub u32);
+impl Srcendp {
+  #[inline] pub fn addr(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  }
+  #[inline] pub fn set_addr(mut self, value: u32) -> Self {
+     assert!((value & !0xffffffff) == 0);
+     self.0 &= !(0xffffffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Srcendp {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Srcendp {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[derive(PartialEq, Eq)]
+pub struct Dstendp(pub u32);
+impl Dstendp {
+  #[inline] pub fn addr(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  }
+  #[inline] pub fn set_addr(mut self, value: u32) -> Self {
+     assert!((value & !0xffffffff) == 0);
+     self.0 &= !(0xffffffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dstendp {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dstendp {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[derive(PartialEq, Eq)]
+pub struct Chctl(pub u32);
+impl Chctl {
+  #[inline] pub fn dstinc(&self) -> u32 {
+     ((self.0 as u32) >> 30) & 0x3 // [31:30]
+  }
+  #[inline] pub fn set_dstinc(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 30);
+     self.0 |= value << 30;
+     self
+  }
+
+  #[inline] pub fn dstsize(&self) -> u32 {
+     ((self.0 as u32) >> 28) & 0x3 // [29:28]
+  }
+  #[inline] pub fn set_dstsize(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 28);
+     self.0 |= value << 28;
+     self
+  }
+
+  #[inline] pub fn srcinc(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x3 // [27:26]
+  }
+  #[inline] pub fn set_srcinc(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 26);
+     self.0 |= value << 26;
+     self
+  }
+
+  #[inline] pub fn srcsize(&self) -> u32 {
+     ((self.0 as u32) >> 24) & 0x3 // [25:24]
+  }
+  #[inline] pub fn set_srcsize(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 24);
+     self.0 |= value << 24;
+     self
+  }
+
+  #[inline] pub fn dstproto(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
+  }
+  #[inline] pub fn set_dstproto(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+  #[inline] pub fn srcproto(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+  #[inline] pub fn set_srcproto(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+  #[inline] pub fn arbsize(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0xf // [17:14]
+  }
+  #[inline] pub fn set_arbsize(mut self, value: u32) -> Self {
+     assert!((value & !0xf) == 0);
+     self.0 &= !(0xf << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+  #[inline] pub fn xfersize(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x3ff // [13:4]
+  }
+  #[inline] pub fn set_xfersize(mut self, value: u32) -> Self {
+     assert!((value & !0x3ff) == 0);
+     self.0 &= !(0x3ff << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+  #[inline] pub fn nxtuseburst(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+  #[inline] pub fn set_nxtuseburst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+  #[inline] pub fn xfermode(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x7 // [2:0]
+  }
+  #[inline] pub fn set_xfermode(mut self, value: u32) -> Self {
+     assert!((value & !0x7) == 0);
+     self.0 &= !(0x7 << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Chctl {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Chctl {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.dstinc() != 0 { try!(write!(f, " dstinc=0x{:x}", self.dstinc()))}
+      if self.dstsize() != 0 { try!(write!(f, " dstsize=0x{:x}", self.dstsize()))}
+      if self.srcinc() != 0 { try!(write!(f, " srcinc=0x{:x}", self.srcinc()))}
+      if self.srcsize() != 0 { try!(write!(f, " srcsize=0x{:x}", self.srcsize()))}
+      if self.dstproto() != 0 { try!(write!(f, " dstproto"))}
+      if self.srcproto() != 0 { try!(write!(f, " srcproto"))}
+      if self.arbsize() != 0 { try!(write!(f, " arbsize=0x{:x}", self.arbsize()))}
+      if self.xfersize() != 0 { try!(write!(f, " xfersize=0x{:x}", self.xfersize()))}
+      if self.nxtuseburst() != 0 { try!(write!(f, " nxtuseburst"))}
+      if self.xfermode() != 0 { try!(write!(f, " xfermode=0x{:x}", self.xfermode()))}
       try!(write!(f, "]"));
       Ok(())
    }
