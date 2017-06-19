@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate frdm_kl26f as board;
+extern crate frdm_kl26z as board;
 
 use board::hal::port::GpioPin;
 use board::hal::gpio::GpioExt;

@@ -1,5 +1,5 @@
 [package]
-name = "frdm-kl26f"
+name = "frdm-kl26z"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 

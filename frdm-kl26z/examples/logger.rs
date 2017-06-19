@@ -6,7 +6,7 @@
 extern crate log;
 
 #[macro_use]
-extern crate frdm_kl26f as board;
+extern crate frdm_kl26z as board;
 
 use board::logger;
 

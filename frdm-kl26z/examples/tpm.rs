@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate frdm_kl26f as board;
+extern crate frdm_kl26z as board;
 
 use board::hal::port::ModeTpm;
 use board::hal::tpm::*;
