@@ -97,3 +97,8 @@ pub mod flexcan {
     pub use kinetis_common::hal::flexcan::*;
     pub use pcc::{PccEnabled, PccClockSource};
 }
+
+pub mod dma {
+    pub use chip::dma::*;
+    pub use kinetis_common::hal::dma::*;
+}
