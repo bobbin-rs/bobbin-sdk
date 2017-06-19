@@ -32,7 +32,7 @@
     
     (peripheral-group
         (name DMA)
-        (module (name kinetis_common::chip::dma::*))
+        (module (name kinetis_common::chip::edma::*))
         (peripheral
             (name DMA)
             (address 0x40008000)

@@ -12,4 +12,4 @@ pub mod tpm;
 pub mod pit;
 pub mod spi;
 pub mod i2c;
-pub mod dma;
+pub mod edma;

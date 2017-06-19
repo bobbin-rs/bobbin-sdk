@@ -1,4 +1,4 @@
-pub use kinetis_common::chip::dma::*;
+pub use kinetis_common::chip::edma::*;
 
 pub const DMA: Dma = Periph(0x40008000, DmaId {});
 

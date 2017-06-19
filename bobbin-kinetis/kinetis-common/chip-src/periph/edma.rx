@@ -1,5 +1,5 @@
 (peripheral
-    (group-name DMA)
+    (group-name EDMA)
     (register
         (name CR)
         (offset 0x0)
