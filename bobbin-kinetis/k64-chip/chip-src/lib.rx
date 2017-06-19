@@ -25,7 +25,149 @@
     (peripheral (include "periph/mcg.rx"))
     (peripheral (include "periph/osc.rx"))
     (peripheral (include "periph/enet.rx"))
-    
+
+    (peripheral-group
+        (name DMA)
+        (module (name kinetis_common::chip::dma::*))
+        (peripheral
+            (name DMA)
+            (address 0x40008000)
+            (description "Enhanced direct memory access controller")            
+            (channel
+                (name DMA0)
+                (index 0)
+                (interrupt
+                    (name DMA0)
+                    (value 0)
+                )
+            )
+            (channel
+                (name DMA1)
+                (index 1)
+                (interrupt
+                    (name DMA1)
+                    (value 1)
+                )
+            )
+            (channel
+                (name DMA2)
+                (index 2)
+                (interrupt
+                    (name DMA2)
+                    (value 2)
+                )
+            )
+            (channel
+                (name DMA3)
+                (index 3)
+                (interrupt
+                    (name DMA3)
+                    (value 3)
+                )
+            )
+            (channel
+                (name DMA4)
+                (index 4)
+                (interrupt
+                    (name DMA4)
+                    (value 4)
+                )
+            )
+            (channel
+                (name DMA5)
+                (index 5)
+                (interrupt
+                    (name DMA5)
+                    (value 5)
+                )
+            )
+            (channel
+                (name DMA6)
+                (index 6)
+                (interrupt
+                    (name DMA6)
+                    (value 6)
+                )
+            )
+            (channel
+                (name DMA7)
+                (index 7)
+                (interrupt
+                    (name DMA7)
+                    (value 7)
+                )
+            )
+            (channel
+                (name DMA8)
+                (index 8)
+                (interrupt
+                    (name DMA8)
+                    (value 8)
+                )
+            )
+            (channel
+                (name DMA9)
+                (index 9)
+                (interrupt
+                    (name DMA9)
+                    (value 9)
+                )
+            )
+            (channel
+                (name DMA10)
+                (index 10)
+                (interrupt
+                    (name DMA10)
+                    (value 10)
+                )
+            )
+            (channel
+                (name DMA11)
+                (index 11)
+                (interrupt
+                    (name DMA11)
+                    (value 11)
+                )
+            )
+            (channel
+                (name DMA12)
+                (index 12)
+                (interrupt
+                    (name DMA12)
+                    (value 12)
+                )
+            )
+            (channel
+                (name DMA13)
+                (index 13)
+                (interrupt
+                    (name DMA13)
+                    (value 13)
+                )
+            )
+            (channel
+                (name DMA14)
+                (index 14)
+                (interrupt
+                    (name DMA14)
+                    (value 14)
+                )
+            )
+            (channel
+                (name DMA15)
+                (index 15)
+                (interrupt
+                    (name DMA15)
+                    (value 15)
+                )
+            )
+            (interrupt
+                (name DMA_Error)
+                (value 16)
+            )        
+        )
+    )
+
     (peripheral-group
         (name FTM)
         (module (name kinetis_common::chip::ftm::*))
