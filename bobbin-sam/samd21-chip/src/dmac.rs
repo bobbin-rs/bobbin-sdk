@@ -378,26 +378,26 @@ impl<T> Periph<T> {
      }
   }
 
-  #[inline] pub fn prictrl0_ptr(&self) -> *const u32 { 
+  #[inline] pub fn prictrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
-  #[inline] pub fn prictrl0_mut(&self) -> *mut u32 { 
+  #[inline] pub fn prictrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
-  #[inline] pub fn prictrl0(&self) -> Prictrl0 { 
+  #[inline] pub fn prictrl(&self) -> Prictrl { 
      unsafe {
-        Prictrl0(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+        Prictrl(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
-  #[inline] pub fn set_prictrl0(&self, value: Prictrl0) -> &Self {
+  #[inline] pub fn set_prictrl(&self, value: Prictrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_prictrl0<F: FnOnce(Prictrl0) -> Prictrl0>(&self, f: F) -> &Self {
-     let tmp = self.prictrl0();
-     self.set_prictrl0(f(tmp))
+  #[inline] pub fn with_prictrl<F: FnOnce(Prictrl) -> Prictrl>(&self, f: F) -> &Self {
+     let tmp = self.prictrl();
+     self.set_prictrl(f(tmp))
   }
 
   #[inline] pub fn swtrigctrl_ptr(&self) -> *const u32 { 
@@ -449,43 +449,17 @@ impl<T> Periph<T> {
 #[derive(PartialEq, Eq)]
 pub struct Active(pub u32);
 impl Active {
-  #[inline] pub fn lvlex0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn lvlex(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_lvlex0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lvlex(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn lvlex1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_lvlex1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn lvlex2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_lvlex2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn lvlex3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_lvlex3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -528,10 +502,10 @@ impl ::core::fmt::Display for Active {
 impl ::core::fmt::Debug for Active {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.lvlex0() != 0 { try!(write!(f, " lvlex0"))}
-      if self.lvlex1() != 0 { try!(write!(f, " lvlex1"))}
-      if self.lvlex2() != 0 { try!(write!(f, " lvlex2"))}
-      if self.lvlex3() != 0 { try!(write!(f, " lvlex3"))}
+      if self.lvlex(0) != 0 { try!(write!(f, " lvlex[0]"))}
+      if self.lvlex(1) != 0 { try!(write!(f, " lvlex[1]"))}
+      if self.lvlex(2) != 0 { try!(write!(f, " lvlex[2]"))}
+      if self.lvlex(3) != 0 { try!(write!(f, " lvlex[3]"))}
       if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
       if self.abusy() != 0 { try!(write!(f, " abusy"))}
       if self.btcnt() != 0 { try!(write!(f, " btcnt=0x{:x}", self.btcnt()))}
@@ -568,123 +542,17 @@ impl ::core::fmt::Debug for Baseaddr {
 #[derive(PartialEq, Eq)]
 pub struct Busych(pub u32);
 impl Busych {
-  #[inline] pub fn busych0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn busych(&self, index: usize) -> u32 {
+     assert!(index < 12);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_busych0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_busych(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 12);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn busych1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_busych1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn busych2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_busych2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn busych3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_busych3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn busych4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_busych4(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn busych5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_busych5(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn busych6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_busych6(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn busych7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_busych7(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn busych8(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_busych8(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn busych9(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_busych9(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn busych10(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_busych10(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn busych11(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_busych11(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -697,18 +565,18 @@ impl ::core::fmt::Display for Busych {
 impl ::core::fmt::Debug for Busych {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.busych0() != 0 { try!(write!(f, " busych0"))}
-      if self.busych1() != 0 { try!(write!(f, " busych1"))}
-      if self.busych2() != 0 { try!(write!(f, " busych2"))}
-      if self.busych3() != 0 { try!(write!(f, " busych3"))}
-      if self.busych4() != 0 { try!(write!(f, " busych4"))}
-      if self.busych5() != 0 { try!(write!(f, " busych5"))}
-      if self.busych6() != 0 { try!(write!(f, " busych6"))}
-      if self.busych7() != 0 { try!(write!(f, " busych7"))}
-      if self.busych8() != 0 { try!(write!(f, " busych8"))}
-      if self.busych9() != 0 { try!(write!(f, " busych9"))}
-      if self.busych10() != 0 { try!(write!(f, " busych10"))}
-      if self.busych11() != 0 { try!(write!(f, " busych11"))}
+      if self.busych(0) != 0 { try!(write!(f, " busych[0]"))}
+      if self.busych(1) != 0 { try!(write!(f, " busych[1]"))}
+      if self.busych(2) != 0 { try!(write!(f, " busych[2]"))}
+      if self.busych(3) != 0 { try!(write!(f, " busych[3]"))}
+      if self.busych(4) != 0 { try!(write!(f, " busych[4]"))}
+      if self.busych(5) != 0 { try!(write!(f, " busych[5]"))}
+      if self.busych(6) != 0 { try!(write!(f, " busych[6]"))}
+      if self.busych(7) != 0 { try!(write!(f, " busych[7]"))}
+      if self.busych(8) != 0 { try!(write!(f, " busych[8]"))}
+      if self.busych(9) != 0 { try!(write!(f, " busych[9]"))}
+      if self.busych(10) != 0 { try!(write!(f, " busych[10]"))}
+      if self.busych(11) != 0 { try!(write!(f, " busych[11]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1239,43 +1107,17 @@ impl Ctrl {
      self
   }
 
-  #[inline] pub fn lvlen0(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x1 // [8]
+  #[inline] pub fn lvlen(&self, index: usize) -> u16 {
+     assert!(index < 4);
+     let shift: usize = 8 + index;
+     ((self.0 as u16) >> shift) & 0x1 // [8]
   }
-  #[inline] pub fn set_lvlen0(mut self, value: u16) -> Self {
+  #[inline] pub fn set_lvlen(mut self, index: usize, value: u16) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn lvlen1(&self) -> u16 {
-     ((self.0 as u16) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_lvlen1(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn lvlen2(&self) -> u16 {
-     ((self.0 as u16) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_lvlen2(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn lvlen3(&self) -> u16 {
-     ((self.0 as u16) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_lvlen3(mut self, value: u16) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 8 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1291,10 +1133,10 @@ impl ::core::fmt::Debug for Ctrl {
       if self.swrst() != 0 { try!(write!(f, " swrst"))}
       if self.dmaenable() != 0 { try!(write!(f, " dmaenable"))}
       if self.crcenable() != 0 { try!(write!(f, " crcenable"))}
-      if self.lvlen0() != 0 { try!(write!(f, " lvlen0"))}
-      if self.lvlen1() != 0 { try!(write!(f, " lvlen1"))}
-      if self.lvlen2() != 0 { try!(write!(f, " lvlen2"))}
-      if self.lvlen3() != 0 { try!(write!(f, " lvlen3"))}
+      if self.lvlen(0) != 0 { try!(write!(f, " lvlen[0]"))}
+      if self.lvlen(1) != 0 { try!(write!(f, " lvlen[1]"))}
+      if self.lvlen(2) != 0 { try!(write!(f, " lvlen[2]"))}
+      if self.lvlen(3) != 0 { try!(write!(f, " lvlen[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1422,123 +1264,17 @@ impl ::core::fmt::Debug for Intpend {
 #[derive(PartialEq, Eq)]
 pub struct Intstatus(pub u32);
 impl Intstatus {
-  #[inline] pub fn chint0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn chint(&self, index: usize) -> u32 {
+     assert!(index < 12);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_chint0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_chint(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 12);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn chint1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_chint1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn chint2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_chint2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn chint3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_chint3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn chint4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_chint4(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn chint5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_chint5(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn chint6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_chint6(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn chint7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_chint7(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn chint8(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_chint8(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn chint9(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_chint9(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn chint10(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_chint10(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn chint11(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_chint11(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1551,18 +1287,18 @@ impl ::core::fmt::Display for Intstatus {
 impl ::core::fmt::Debug for Intstatus {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.chint0() != 0 { try!(write!(f, " chint0"))}
-      if self.chint1() != 0 { try!(write!(f, " chint1"))}
-      if self.chint2() != 0 { try!(write!(f, " chint2"))}
-      if self.chint3() != 0 { try!(write!(f, " chint3"))}
-      if self.chint4() != 0 { try!(write!(f, " chint4"))}
-      if self.chint5() != 0 { try!(write!(f, " chint5"))}
-      if self.chint6() != 0 { try!(write!(f, " chint6"))}
-      if self.chint7() != 0 { try!(write!(f, " chint7"))}
-      if self.chint8() != 0 { try!(write!(f, " chint8"))}
-      if self.chint9() != 0 { try!(write!(f, " chint9"))}
-      if self.chint10() != 0 { try!(write!(f, " chint10"))}
-      if self.chint11() != 0 { try!(write!(f, " chint11"))}
+      if self.chint(0) != 0 { try!(write!(f, " chint[0]"))}
+      if self.chint(1) != 0 { try!(write!(f, " chint[1]"))}
+      if self.chint(2) != 0 { try!(write!(f, " chint[2]"))}
+      if self.chint(3) != 0 { try!(write!(f, " chint[3]"))}
+      if self.chint(4) != 0 { try!(write!(f, " chint[4]"))}
+      if self.chint(5) != 0 { try!(write!(f, " chint[5]"))}
+      if self.chint(6) != 0 { try!(write!(f, " chint[6]"))}
+      if self.chint(7) != 0 { try!(write!(f, " chint[7]"))}
+      if self.chint(8) != 0 { try!(write!(f, " chint[8]"))}
+      if self.chint(9) != 0 { try!(write!(f, " chint[9]"))}
+      if self.chint(10) != 0 { try!(write!(f, " chint[10]"))}
+      if self.chint(11) != 0 { try!(write!(f, " chint[11]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1570,123 +1306,17 @@ impl ::core::fmt::Debug for Intstatus {
 #[derive(PartialEq, Eq)]
 pub struct Pendch(pub u32);
 impl Pendch {
-  #[inline] pub fn pendch0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pendch(&self, index: usize) -> u32 {
+     assert!(index < 12);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_pendch0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendch(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 12);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn pendch1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_pendch1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn pendch2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_pendch2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn pendch3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_pendch3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn pendch4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_pendch4(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn pendch5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_pendch5(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn pendch6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_pendch6(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn pendch7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_pendch7(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn pendch8(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_pendch8(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn pendch9(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_pendch9(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn pendch10(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_pendch10(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn pendch11(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_pendch11(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1699,122 +1329,70 @@ impl ::core::fmt::Display for Pendch {
 impl ::core::fmt::Debug for Pendch {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.pendch0() != 0 { try!(write!(f, " pendch0"))}
-      if self.pendch1() != 0 { try!(write!(f, " pendch1"))}
-      if self.pendch2() != 0 { try!(write!(f, " pendch2"))}
-      if self.pendch3() != 0 { try!(write!(f, " pendch3"))}
-      if self.pendch4() != 0 { try!(write!(f, " pendch4"))}
-      if self.pendch5() != 0 { try!(write!(f, " pendch5"))}
-      if self.pendch6() != 0 { try!(write!(f, " pendch6"))}
-      if self.pendch7() != 0 { try!(write!(f, " pendch7"))}
-      if self.pendch8() != 0 { try!(write!(f, " pendch8"))}
-      if self.pendch9() != 0 { try!(write!(f, " pendch9"))}
-      if self.pendch10() != 0 { try!(write!(f, " pendch10"))}
-      if self.pendch11() != 0 { try!(write!(f, " pendch11"))}
+      if self.pendch(0) != 0 { try!(write!(f, " pendch[0]"))}
+      if self.pendch(1) != 0 { try!(write!(f, " pendch[1]"))}
+      if self.pendch(2) != 0 { try!(write!(f, " pendch[2]"))}
+      if self.pendch(3) != 0 { try!(write!(f, " pendch[3]"))}
+      if self.pendch(4) != 0 { try!(write!(f, " pendch[4]"))}
+      if self.pendch(5) != 0 { try!(write!(f, " pendch[5]"))}
+      if self.pendch(6) != 0 { try!(write!(f, " pendch[6]"))}
+      if self.pendch(7) != 0 { try!(write!(f, " pendch[7]"))}
+      if self.pendch(8) != 0 { try!(write!(f, " pendch[8]"))}
+      if self.pendch(9) != 0 { try!(write!(f, " pendch[9]"))}
+      if self.pendch(10) != 0 { try!(write!(f, " pendch[10]"))}
+      if self.pendch(11) != 0 { try!(write!(f, " pendch[11]"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Prictrl0(pub u32);
-impl Prictrl0 {
-  #[inline] pub fn lvlpri0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+pub struct Prictrl(pub u32);
+impl Prictrl {
+  #[inline] pub fn lvlpri(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
-  #[inline] pub fn set_lvlpri0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lvlpri(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn rrlvlen0(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn rrlvlen(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 7 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [7]
   }
-  #[inline] pub fn set_rrlvlen0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rrlvlen(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn lvlpri1(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
-  }
-  #[inline] pub fn set_lvlpri1(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn rrlvlen1(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_rrlvlen1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-  #[inline] pub fn lvlpri2(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
-  }
-  #[inline] pub fn set_lvlpri2(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn rrlvlen2(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
-  }
-  #[inline] pub fn set_rrlvlen2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
-
-  #[inline] pub fn lvlpri3(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
-  }
-  #[inline] pub fn set_lvlpri3(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-  #[inline] pub fn rrlvlen3(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
-  }
-  #[inline] pub fn set_rrlvlen3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 31);
-     self.0 |= value << 31;
+     let shift: usize = 7 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
 }
-impl ::core::fmt::Display for Prictrl0 {
+impl ::core::fmt::Display for Prictrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Prictrl0 {
+impl ::core::fmt::Debug for Prictrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.lvlpri0() != 0 { try!(write!(f, " lvlpri0=0x{:x}", self.lvlpri0()))}
-      if self.rrlvlen0() != 0 { try!(write!(f, " rrlvlen0"))}
-      if self.lvlpri1() != 0 { try!(write!(f, " lvlpri1=0x{:x}", self.lvlpri1()))}
-      if self.rrlvlen1() != 0 { try!(write!(f, " rrlvlen1"))}
-      if self.lvlpri2() != 0 { try!(write!(f, " lvlpri2=0x{:x}", self.lvlpri2()))}
-      if self.rrlvlen2() != 0 { try!(write!(f, " rrlvlen2"))}
-      if self.lvlpri3() != 0 { try!(write!(f, " lvlpri3=0x{:x}", self.lvlpri3()))}
-      if self.rrlvlen3() != 0 { try!(write!(f, " rrlvlen3"))}
+      if self.lvlpri(0) != 0 { try!(write!(f, " lvlpri[0]=0x{:x}", self.lvlpri(0)))}
+      if self.lvlpri(1) != 0 { try!(write!(f, " lvlpri[1]=0x{:x}", self.lvlpri(1)))}
+      if self.lvlpri(2) != 0 { try!(write!(f, " lvlpri[2]=0x{:x}", self.lvlpri(2)))}
+      if self.lvlpri(3) != 0 { try!(write!(f, " lvlpri[3]=0x{:x}", self.lvlpri(3)))}
+      if self.rrlvlen(0) != 0 { try!(write!(f, " rrlvlen[0]"))}
+      if self.rrlvlen(1) != 0 { try!(write!(f, " rrlvlen[1]"))}
+      if self.rrlvlen(2) != 0 { try!(write!(f, " rrlvlen[2]"))}
+      if self.rrlvlen(3) != 0 { try!(write!(f, " rrlvlen[3]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1822,123 +1400,17 @@ impl ::core::fmt::Debug for Prictrl0 {
 #[derive(PartialEq, Eq)]
 pub struct Swtrigctrl(pub u32);
 impl Swtrigctrl {
-  #[inline] pub fn swtrig0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn swtrig(&self, index: usize) -> u32 {
+     assert!(index < 12);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_swtrig0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_swtrig(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 12);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn swtrig1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_swtrig1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn swtrig2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_swtrig2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn swtrig3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_swtrig3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn swtrig4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_swtrig4(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn swtrig5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_swtrig5(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn swtrig6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_swtrig6(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn swtrig7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_swtrig7(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn swtrig8(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_swtrig8(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn swtrig9(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_swtrig9(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn swtrig10(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_swtrig10(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn swtrig11(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_swtrig11(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1951,18 +1423,18 @@ impl ::core::fmt::Display for Swtrigctrl {
 impl ::core::fmt::Debug for Swtrigctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.swtrig0() != 0 { try!(write!(f, " swtrig0"))}
-      if self.swtrig1() != 0 { try!(write!(f, " swtrig1"))}
-      if self.swtrig2() != 0 { try!(write!(f, " swtrig2"))}
-      if self.swtrig3() != 0 { try!(write!(f, " swtrig3"))}
-      if self.swtrig4() != 0 { try!(write!(f, " swtrig4"))}
-      if self.swtrig5() != 0 { try!(write!(f, " swtrig5"))}
-      if self.swtrig6() != 0 { try!(write!(f, " swtrig6"))}
-      if self.swtrig7() != 0 { try!(write!(f, " swtrig7"))}
-      if self.swtrig8() != 0 { try!(write!(f, " swtrig8"))}
-      if self.swtrig9() != 0 { try!(write!(f, " swtrig9"))}
-      if self.swtrig10() != 0 { try!(write!(f, " swtrig10"))}
-      if self.swtrig11() != 0 { try!(write!(f, " swtrig11"))}
+      if self.swtrig(0) != 0 { try!(write!(f, " swtrig[0]"))}
+      if self.swtrig(1) != 0 { try!(write!(f, " swtrig[1]"))}
+      if self.swtrig(2) != 0 { try!(write!(f, " swtrig[2]"))}
+      if self.swtrig(3) != 0 { try!(write!(f, " swtrig[3]"))}
+      if self.swtrig(4) != 0 { try!(write!(f, " swtrig[4]"))}
+      if self.swtrig(5) != 0 { try!(write!(f, " swtrig[5]"))}
+      if self.swtrig(6) != 0 { try!(write!(f, " swtrig[6]"))}
+      if self.swtrig(7) != 0 { try!(write!(f, " swtrig[7]"))}
+      if self.swtrig(8) != 0 { try!(write!(f, " swtrig[8]"))}
+      if self.swtrig(9) != 0 { try!(write!(f, " swtrig[9]"))}
+      if self.swtrig(10) != 0 { try!(write!(f, " swtrig[10]"))}
+      if self.swtrig(11) != 0 { try!(write!(f, " swtrig[11]"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2287,3 +1759,71 @@ impl ::core::fmt::Debug for Descaddr {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+
+pub const DMAC_CH0: Channel<DmacCh0Id, DmacId> = Channel { periph: DMAC, index: 0, id: DmacCh0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh0Id {}
+pub type DmacCh0 = Channel<DmacCh0Id, DmacId>;
+
+pub const DMAC_CH1: Channel<DmacCh1Id, DmacId> = Channel { periph: DMAC, index: 1, id: DmacCh1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh1Id {}
+pub type DmacCh1 = Channel<DmacCh1Id, DmacId>;
+
+pub const DMAC_CH2: Channel<DmacCh2Id, DmacId> = Channel { periph: DMAC, index: 2, id: DmacCh2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh2Id {}
+pub type DmacCh2 = Channel<DmacCh2Id, DmacId>;
+
+pub const DMAC_CH3: Channel<DmacCh3Id, DmacId> = Channel { periph: DMAC, index: 3, id: DmacCh3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh3Id {}
+pub type DmacCh3 = Channel<DmacCh3Id, DmacId>;
+
+pub const DMAC_CH4: Channel<DmacCh4Id, DmacId> = Channel { periph: DMAC, index: 4, id: DmacCh4Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh4Id {}
+pub type DmacCh4 = Channel<DmacCh4Id, DmacId>;
+
+pub const DMAC_CH5: Channel<DmacCh5Id, DmacId> = Channel { periph: DMAC, index: 5, id: DmacCh5Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh5Id {}
+pub type DmacCh5 = Channel<DmacCh5Id, DmacId>;
+
+pub const DMAC_CH6: Channel<DmacCh6Id, DmacId> = Channel { periph: DMAC, index: 6, id: DmacCh6Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh6Id {}
+pub type DmacCh6 = Channel<DmacCh6Id, DmacId>;
+
+pub const DMAC_CH7: Channel<DmacCh7Id, DmacId> = Channel { periph: DMAC, index: 7, id: DmacCh7Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh7Id {}
+pub type DmacCh7 = Channel<DmacCh7Id, DmacId>;
+
+pub const DMAC_CH8: Channel<DmacCh8Id, DmacId> = Channel { periph: DMAC, index: 8, id: DmacCh8Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh8Id {}
+pub type DmacCh8 = Channel<DmacCh8Id, DmacId>;
+
+pub const DMAC_CH9: Channel<DmacCh9Id, DmacId> = Channel { periph: DMAC, index: 9, id: DmacCh9Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh9Id {}
+pub type DmacCh9 = Channel<DmacCh9Id, DmacId>;
+
+pub const DMAC_CH10: Channel<DmacCh10Id, DmacId> = Channel { periph: DMAC, index: 10, id: DmacCh10Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh10Id {}
+pub type DmacCh10 = Channel<DmacCh10Id, DmacId>;
+
+pub const DMAC_CH11: Channel<DmacCh11Id, DmacId> = Channel { periph: DMAC, index: 11, id: DmacCh11Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct DmacCh11Id {}
+pub type DmacCh11 = Channel<DmacCh11Id, DmacId>;
+

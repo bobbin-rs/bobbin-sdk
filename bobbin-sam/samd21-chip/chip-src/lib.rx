@@ -24,10 +24,23 @@
     (peripheral-group
         (name DMAC)
         (prototype "periph/dmac.rx")
+        (has-channels)
         (peripheral
             (name DMAC)
             (address 0x41004800)
             (description "Direct Memory Access Controller")
+            (channel (name DMAC_CH0) (index 0))
+            (channel (name DMAC_CH1) (index 1))
+            (channel (name DMAC_CH2) (index 2))
+            (channel (name DMAC_CH3) (index 3))
+            (channel (name DMAC_CH4) (index 4))
+            (channel (name DMAC_CH5) (index 5))
+            (channel (name DMAC_CH6) (index 6))
+            (channel (name DMAC_CH7) (index 7))
+            (channel (name DMAC_CH8) (index 8))
+            (channel (name DMAC_CH9) (index 9))
+            (channel (name DMAC_CH10) (index 10))
+            (channel (name DMAC_CH11) (index 11))            
             (interrupt
                 (name DMAC)
                 (value 6)
