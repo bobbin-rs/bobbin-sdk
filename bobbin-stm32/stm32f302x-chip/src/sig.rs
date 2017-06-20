@@ -131,6 +131,10 @@ pub const TIM2_CH4: Tim2Ch4 = Tim2Ch4 {};
 pub struct Tim2Ch4 {}
 impl Tim for Tim2Ch4 {}
 
+pub const TIM3_CH1: Tim3Ch1 = Tim3Ch1 {};
+pub struct Tim3Ch1 {}
+impl Tim for Tim3Ch1 {}
+
 pub const TIM3_CH2: Tim3Ch2 = Tim3Ch2 {};
 pub struct Tim3Ch2 {}
 impl Tim for Tim3Ch2 {}

@@ -35,6 +35,8 @@ impl super::sig::SignalTim<super::sig::Tim2Ch3> for Tim2Ch3 {}
 impl super::sig::Signal<super::sig::Tim2Ch4> for Tim2Ch4 {}
 impl super::sig::SignalTim<super::sig::Tim2Ch4> for Tim2Ch4 {}
 
+impl super::sig::Signal<super::sig::Tim3Ch1> for Tim3Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim3Ch1> for Tim3Ch1 {}
 impl super::sig::Signal<super::sig::Tim3Ch2> for Tim3Ch2 {}
 impl super::sig::SignalTim<super::sig::Tim3Ch2> for Tim3Ch2 {}
 impl super::sig::Signal<super::sig::Tim3Ch3> for Tim3Ch3 {}
@@ -86,6 +88,11 @@ pub const TIM2_CH4: Channel<Tim2Ch4Id, Tim2Id> = Channel { periph: TIM2, index: 
 #[derive(Clone, Copy, PartialEq)]
 pub struct Tim2Ch4Id {}
 pub type Tim2Ch4 = Channel<Tim2Ch4Id, Tim2Id>;
+
+pub const TIM3_CH1: Channel<Tim3Ch1Id, Tim3Id> = Channel { periph: TIM3, index: 0, id: Tim3Ch1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct Tim3Ch1Id {}
+pub type Tim3Ch1 = Channel<Tim3Ch1Id, Tim3Id>;
 
 pub const TIM3_CH2: Channel<Tim3Ch2Id, Tim3Id> = Channel { periph: TIM3, index: 1, id: Tim3Ch2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]

@@ -41,4 +41,21 @@
         (has-channels)
         (prototype "periph/tim_adv.rx")
     )
+    (peripheral-group
+        (name CRC)
+        (prototype "periph/crc.rx")
+    )     
+    (peripheral-group
+        (name RNG)
+        (prototype "periph/rng.rx")
+    )           
+    (peripheral-group
+        (name IWDG)
+        (prototype "periph/iwdg.rx")
+    )        
+    (peripheral-group
+        (name WWDG)
+        (prototype "periph/wwdg.rx")
+    )        
+    
 )

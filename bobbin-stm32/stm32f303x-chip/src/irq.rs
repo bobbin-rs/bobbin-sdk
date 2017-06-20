@@ -10,7 +10,7 @@ pub const IRQ_I2C1_EV_EXTI23: IrqI2c1EvExti23 = Irq(31, I2c1EvExti23Id {});
 pub const IRQ_I2C1_ER: IrqI2c1Er = Irq(32, I2c1ErId {});
 pub const IRQ_I2C2_EV_EXTI24: IrqI2c2EvExti24 = Irq(33, I2c2EvExti24Id {});
 pub const IRQ_I2C2_ER: IrqI2c2Er = Irq(34, I2c2ErId {});
-pub const IRQ_I2C2_EV: IrqI2c2Ev = Irq(72, I2c2EvId {});
+pub const IRQ_I2C3_EV: IrqI2c3Ev = Irq(72, I2c3EvId {});
 pub const IRQ_I2C3_ER: IrqI2c3Er = Irq(73, I2c3ErId {});
 pub const IRQ_SPI1: IrqSpi1 = Irq(35, Spi1Id {});
 pub const IRQ_SPI2: IrqSpi2 = Irq(36, Spi2Id {});
@@ -62,7 +62,7 @@ pub type IrqI2c1EvExti23 = Irq<I2c1EvExti23Id>;
 pub type IrqI2c1Er = Irq<I2c1ErId>;
 pub type IrqI2c2EvExti24 = Irq<I2c2EvExti24Id>;
 pub type IrqI2c2Er = Irq<I2c2ErId>;
-pub type IrqI2c2Ev = Irq<I2c2EvId>;
+pub type IrqI2c3Ev = Irq<I2c3EvId>;
 pub type IrqI2c3Er = Irq<I2c3ErId>;
 pub type IrqSpi1 = Irq<Spi1Id>;
 pub type IrqSpi2 = Irq<Spi2Id>;
@@ -114,7 +114,7 @@ pub struct I2c1EvExti23Id {} // IRQ 31
 pub struct I2c1ErId {} // IRQ 32
 pub struct I2c2EvExti24Id {} // IRQ 33
 pub struct I2c2ErId {} // IRQ 34
-pub struct I2c2EvId {} // IRQ 72
+pub struct I2c3EvId {} // IRQ 72
 pub struct I2c3ErId {} // IRQ 73
 pub struct Spi1Id {} // IRQ 35
 pub struct Spi2Id {} // IRQ 36
@@ -347,7 +347,7 @@ impl RegisterHandler for IrqI2c2Er {
    }
 }
 
-impl RegisterHandler for IrqI2c2Ev {
+impl RegisterHandler for IrqI2c3Ev {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }

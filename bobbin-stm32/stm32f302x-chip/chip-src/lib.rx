@@ -697,7 +697,7 @@
             (channel
                 (name TIM3_CH1)
                 (index 0)
-                (signal (name TIM3_CH2) (type TIM))
+                (signal (name TIM3_CH1) (type TIM))
             )            
             (channel
                 (name TIM3_CH2)

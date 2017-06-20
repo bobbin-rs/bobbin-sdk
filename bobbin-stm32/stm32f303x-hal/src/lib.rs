@@ -73,3 +73,27 @@ pub mod tim {
     pub use stm32_common::hal::tim_gen::*;
     pub use rcc::RccEnabled;
 }
+
+// pub mod crc {
+//     pub use chip::crc::*;
+//     pub use stm32_common::hal::crc::*;
+//     pub use rcc::RccEnabled;
+// }
+
+// pub mod rng {
+//     pub use chip::rng::*;
+//     pub use stm32_common::hal::rng::*;
+//     pub use rcc::RccEnabled;
+// }
+
+// pub mod iwdg {
+//     pub use chip::iwdg::*;
+//     pub use stm32_common::hal::iwdg::*;
+//     pub use rcc::RccEnabled;
+// }
+
+// pub mod wwdg {
+//     pub use chip::wwdg::*;
+//     pub use stm32_common::hal::wwdg::*;
+//     pub use rcc::RccEnabled;
+// }

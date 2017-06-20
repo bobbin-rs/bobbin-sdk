@@ -8,3 +8,7 @@ pub mod usart_f24;
 pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
+pub mod crc;
+pub mod rng;
+pub mod iwdg;
+pub mod wwdg;
