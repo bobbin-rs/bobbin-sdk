@@ -5,21 +5,27 @@
 
 extern crate r0;
 extern crate compiler_builtins;
+
 extern crate log;
 
-extern crate k20;
-pub use k20::{chip, hal};
+extern crate k64;
+pub use k64::{chip, hal};
 
-#[macro_use] pub mod itm;
-#[macro_use] pub mod console;
-#[macro_use] pub mod logger;
+#[macro_use]
+pub mod console;
+
+#[macro_use]
+pub mod logger;
 
 pub mod exceptions;
 pub mod lang_items;
 
 pub mod clock;
 pub mod led;
+pub mod sw;
+pub mod pin;
 pub mod tim;
+pub mod uart;
 
 pub use tim::delay;
 
@@ -31,7 +37,5 @@ pub use tim::delay;
 
 pub fn init() {
     clock::init();
-    led::init();
-    tim::init();
-    console::init();
+    //console::CONSOLE.init(115_200);
 }

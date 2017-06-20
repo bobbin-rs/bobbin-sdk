@@ -1,25 +1,6 @@
 use core::fmt::{self, Write, Arguments};
-use hal::port::*;
-use hal::uart::*;
-
-pub const UART: Uart0 = UART0;
-pub const UART_RX: Ptb16 = PTB16;
-pub const UART_TX: Ptb17 = PTB17;
-pub const UART_BD: u16 = 65;
-
-pub fn init() {
-    // Enable Clocks
-    UART.sim_enable();
-    UART_TX.port().sim_enable();
-    UART_RX.port().sim_enable();
-
-    // Set Pin Configuration
-    UART_TX.mode_tx(&UART);
-    UART_RX.mode_rx(&UART);
-
-    // Set Baud and Enable USART
-    UART.enable(UART_BD);
-}
+use pin;
+use uart;
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
@@ -48,9 +29,19 @@ pub const CONSOLE: Console = Console {};
 
 pub struct Console {}
 
+impl Console {
+    pub fn init(&self, _baud: u32) {
+        uart::uart0(pin::pb16(), pin::pb17());
+    }
+
+    pub fn uart(&self) -> ::hal::uart::UartDevice {
+        unsafe { uart::uart0_unchecked(pin::pb16(), pin::pb17()) }
+    }
+}
+
 impl Write for Console {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = UART;
+        let uart = self.uart();
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
                 uart.putc(b'\r')

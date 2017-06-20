@@ -55,7 +55,7 @@ pub unsafe extern "C" fn reset() -> ! {
 
     // Copy ISR vectors to RAM
     r0::init_data(&mut _srvector, &_ervector, &_svector); 
-    hal::scb::set_tbloff(0x1FFFF000 >> 7);
+    hal::scb::set_tbloff(0x1FFF8000 >> 7);
         
     main();
     loop {}

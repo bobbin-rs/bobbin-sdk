@@ -6,7 +6,7 @@
 extern crate log;
 
 #[macro_use]
-extern crate teensy_32 as board;
+extern crate teensy_35 as board;
 
 use board::logger;
 
