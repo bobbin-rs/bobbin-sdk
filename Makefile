@@ -19,8 +19,7 @@ evb-s32k144:
 	cd evb-s32k144 && bobbin build
 
 feather-m0:
-	@echo "Skipping feather-m0"
-	@#cd feather-m0 && bobbin build
+	@cd feather-m0 && bobbin build
 
 frdm-k64f:
 	cd frdm-k64f && bobbin build
@@ -44,17 +43,13 @@ nucleo-f429zi:
 	cd nucleo-f429zi && bobbin build
 
 teensy-32:
-	@echo "Skipping teensy-32"
-	@#cd teensy-32 && bobbin build
+	@cd teensy-32 && bobbin build
 
 teensy-35:
-	@echo "Skipping teensy-35"
-	@#cd teensy-35 && bobbin build
+	@cd teensy-35 && bobbin build
 
 teensy-36:
-	@echo "Skipping teensy-36"
-	@#cd teensy-36 && bobbin build
+	@cd teensy-36 && bobbin build
 
 teensy-lc:
-	@echo "Skipping teensy-lc"
-	@#cd teensy-lc && bobbin build
+	@cd teensy-lc && bobbin build
