@@ -1,0 +1,10 @@
+[package]
+name = "k20-hal"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+kinetis-common = { path = "../kinetis-common"}
+k20-chip = { path = "../k20-chip" }

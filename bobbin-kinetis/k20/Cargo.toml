@@ -1,0 +1,11 @@
+[package]
+name = "k20"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+k20-chip = { path = "../k20-chip" }
+k20-hal = { path = "../k20-hal" }
+
+[features]
+K20DX256 = ["k20-chip/K20DX256"]
