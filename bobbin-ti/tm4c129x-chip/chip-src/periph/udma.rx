@@ -5,74 +5,74 @@
         (offset 0x0)
         (description "DMA Status")
         (field
-            (name UDMA_STAT_MASTEN)
+            (name MASTEN)
             (bit-offset 0)
             (bit-width 1)
             (description "Master Enable Status")
         )
         (field
-            (name UDMA_STAT_STATE)
+            (name STATE)
             (bit-offset 4)
             (bit-width 4)
             (description "Control State Machine Status")
             (value
                 (value "0x0")
-                (name "UDMA_STAT_STATE_IDLE")
+                (name "IDLE")
                 (description "Idle")
             )
             (value
                 (value "0x1")
-                (name "UDMA_STAT_STATE_RD_CTRL")
+                (name "RD_CTRL")
                 (description "Reading channel controller data")
             )
             (value
                 (value "0x2")
-                (name "UDMA_STAT_STATE_RD_SRCENDP")
+                (name "RD_SRCENDP")
                 (description "Reading source end pointer")
             )
             (value
                 (value "0x3")
-                (name "UDMA_STAT_STATE_RD_DSTENDP")
+                (name "RD_DSTENDP")
                 (description "Reading destination end pointer")
             )
             (value
                 (value "0x4")
-                (name "UDMA_STAT_STATE_RD_SRCDAT")
+                (name "RD_SRCDAT")
                 (description "Reading source data")
             )
             (value
                 (value "0x5")
-                (name "UDMA_STAT_STATE_WR_DSTDAT")
+                (name "WR_DSTDAT")
                 (description "Writing destination data")
             )
             (value
                 (value "0x6")
-                (name "UDMA_STAT_STATE_WAIT")
+                (name "WAIT")
                 (description "Waiting for uDMA request to clear")
             )
             (value
                 (value "0x7")
-                (name "UDMA_STAT_STATE_WR_CTRL")
+                (name "WR_CTRL")
                 (description "Writing channel controller data")
             )
             (value
                 (value "0x8")
-                (name "UDMA_STAT_STATE_STALL")
+                (name "STALL")
                 (description "Stalled")
             )
             (value
                 (value "0x9")
-                (name "UDMA_STAT_STATE_DONE")
+                (name "DONE")
                 (description "Done")
             )
             (value
                 (value "0xa")
-                (name "UDMA_STAT_STATE_UNDEF")
+                (name "UNDEF")
                 (description "Undefined")
             )
         )
         (field
-            (name UDMA_STAT_DMACHANS)
+            (name DMACHANS)
             (bit-offset 16)
             (bit-width 5)
             (description "Available uDMA Channels Minus 1")
@@ -84,7 +84,7 @@
         (access write-only)
         (description "DMA Configuration")
         (field
-            (name UDMA_CFG_MASTEN)
+            (name MASTEN)
             (bit-offset 0)
             (bit-width 1)
             (access write-only)
@@ -96,7 +96,7 @@
         (offset 0x8)
         (description "DMA Channel Control Base Pointer")
         (field
-            (name UDMA_CTLBASE_ADDR)
+            (name ADDR)
             (bit-offset 10)
             (bit-width 22)
             (description "Channel Control Base Address")
@@ -107,7 +107,7 @@
         (offset 0xc)
         (description "DMA Alternate Channel Control Base Pointer")
         (field
-            (name UDMA_ALTBASE_ADDR)
+            (name ADDR)
             (bit-offset 0)
             (bit-width 32)
             (description "Alternate Channel Address Pointer")
@@ -118,7 +118,7 @@
         (offset 0x10)
         (description "DMA Channel Wait-on-Request Status")
         (field
-            (name UDMA_WAITSTAT_WAITREQ)
+            (name WAITREQ)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -132,7 +132,7 @@
         (access write-only)
         (description "DMA Channel Software Request")
         (field
-            (name UDMA_SWREQ)
+            (name SWREQ)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -146,7 +146,7 @@
         (offset 0x18)
         (description "DMA Channel Useburst Set")
         (field
-            (name UDMA_USEBURSTSET_SET)
+            (name SET)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -160,7 +160,7 @@
         (access write-only)
         (description "DMA Channel Useburst Clear")
         (field
-            (name UDMA_USEBURSTCLR_CLR)
+            (name CLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -174,7 +174,7 @@
         (offset 0x20)
         (description "DMA Channel Request Mask Set")
         (field
-            (name UDMA_REQMASKSET_SET)
+            (name SET)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -188,7 +188,7 @@
         (access write-only)
         (description "DMA Channel Request Mask Clear")
         (field
-            (name UDMA_REQMASKCLR_CLR)
+            (name CLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -202,7 +202,7 @@
         (offset 0x28)
         (description "DMA Channel Enable Set")
         (field
-            (name UDMA_ENASET_SET)
+            (name SET)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -216,7 +216,7 @@
         (access write-only)
         (description "DMA Channel Enable Clear")
         (field
-            (name UDMA_ENACLR_CLR)
+            (name CLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -230,7 +230,7 @@
         (offset 0x30)
         (description "DMA Channel Primary Alternate Set")
         (field
-            (name UDMA_ALTSET_SET)
+            (name SET)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -244,7 +244,7 @@
         (access write-only)
         (description "DMA Channel Primary Alternate Clear")
         (field
-            (name UDMA_ALTCLR_CLR)
+            (name CLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -258,7 +258,7 @@
         (offset 0x38)
         (description "DMA Channel Priority Set")
         (field
-            (name UDMA_PRIOSET_SET)
+            (name SET)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -272,7 +272,7 @@
         (access write-only)
         (description "DMA Channel Priority Clear")
         (field
-            (name UDMA_PRIOCLR_CLR)
+            (name CLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -286,7 +286,7 @@
         (offset 0x4c)
         (description "DMA Bus Error Clear")
         (field
-            (name UDMA_ERRCLR_ERRCLR)
+            (name ERRCLR)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -299,7 +299,7 @@
         (offset 0x500)
         (description "DMA Channel Assignment")
         (field
-            (name UDMA_CHASGN)
+            (name CHASGN)
             (dim 32)
             (dim-increment 1)
             (bit-offset 0)
@@ -307,12 +307,12 @@
             (description "Channel [n] Assignment Select")
             (value
                 (value "0x0")
-                (name "UDMA_CHASGN_PRIMARY")
+                (name "PRIMARY")
                 (description "Use the primary channel assignment")
             )
             (value
                 (value "0x1")
-                (name "UDMA_CHASGN_SECONDARY")
+                (name "SECONDARY")
                 (description "Use the secondary channel assignment")
             )
         )
@@ -322,7 +322,7 @@
         (offset 0x510)
         (description "DMA Channel Map Select 0")
         (field
-            (name UDMA_CHMAP0_CHSEL)
+            (name CHSEL)
             (dim 8)
             (dim-increment 4)
             (bit-offset 0)
@@ -335,7 +335,7 @@
         (offset 0x514)
         (description "DMA Channel Map Select 1")
         (field
-            (name UDMA_CHMAP1_CHSEL)
+            (name CHSEL)
             (dim 8)
             (dim-increment 4)            
             (bit-offset 0)
@@ -348,7 +348,7 @@
         (offset 0x518)
         (description "DMA Channel Map Select 2")
         (field
-            (name UDMA_CHMAP2_CHSEL)
+            (name CHSEL)
             (dim 8)
             (dim-increment 4)            
             (bit-offset 0)
@@ -361,7 +361,7 @@
         (offset 0x51c)
         (description "DMA Channel Map Select 3")
         (field
-            (name UDMA_CHMAP3_CHSEL)
+            (name CHSEL)
             (dim 8)
             (dim-increment 4)            
             (bit-offset 0)
@@ -370,7 +370,7 @@
         )
     )
     (descriptor
-        (name CCS)
+        (name CHDESC)
         (size 0x10)
         (register
             (name SRCENDP)
@@ -384,7 +384,7 @@
         )
         (register
             (name DSTENDP)
-            (offset 0x0)
+            (offset 0x4)
             (size 0x20)
             (field
                 (name ADDR)
@@ -394,7 +394,7 @@
         )        
         (register
             (name CHCTL)
-            (offset 0x0)
+            (offset 0x8)
             (size 0x20)
             (field
                 (name DSTINC)
