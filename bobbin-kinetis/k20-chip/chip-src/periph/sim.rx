@@ -1367,7 +1367,6 @@
             (bit-width 1)
             (access read-write)
             (description "ENET Clock Gate Control")
-            (link (name EN) (peripheral-group ENET) (peripheral ENET))
             (value
                 (value "#0")
                 (name "0")

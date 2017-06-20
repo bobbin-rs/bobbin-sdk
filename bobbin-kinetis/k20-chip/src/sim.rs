@@ -2124,11 +2124,6 @@ impl En for super::uart::Uart5 {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc1(|r| r.set_uart5(value)); }
 }
 
-impl En for super::enet::Enet {
-   #[inline] fn en(&self) -> u32 { SIM.scgc2().enet() }
-   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc2(|r| r.set_enet(value)); }
-}
-
 impl En for super::spi::Spi2 {
    #[inline] fn en(&self) -> u32 { SIM.scgc3().spi2() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc3(|r| r.set_spi2(value)); }

@@ -876,10 +876,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,
    None,
    None,
-   None,                          // IRQ 82: No Description
-   None,                          // IRQ 83: No Description
-   None,                          // IRQ 84: No Description
-   None,                          // IRQ 85: No Description
+   None,
+   None,
+   None,
+   None,
 ];
 
 #[link_section = ".bss.r_interrupts"]
