@@ -739,6 +739,7 @@ fn read_link(ctx: &Context, s: &[Sexp]) -> Result<Link, ReadError> {
                 Some("name") => l.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral-group") => l.peripheral_group = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral") => l.peripheral = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("channel") => l.channel = String::from(try!(read_name(ctx, &arr[1]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))

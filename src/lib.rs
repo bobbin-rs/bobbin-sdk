@@ -272,6 +272,7 @@ pub struct Link {
     pub name: String,
     pub peripheral_group: String,
     pub peripheral: String,
+    pub channel: String,
 }
 
 #[derive(Debug, Clone, Default)]
