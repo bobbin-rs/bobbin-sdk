@@ -716,6 +716,7 @@
             (bit-offset 11)
             (bit-width 1)
             (description "Window watchdog clock enable")
+            (link (name EN) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
             (name SPI2EN)

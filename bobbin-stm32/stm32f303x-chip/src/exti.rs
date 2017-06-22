@@ -1,840 +1,757 @@
-pub const EXTI: Exti = Exti(0x40010400);
+pub use stm32_common::chip::exti::*;
+
+pub const EXTI: Exti = Periph(0x40010400, ExtiId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Exti(pub u32);
-impl Exti {
-  #[inline] pub fn imr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x0) as *const u32
-  }
-  #[inline] pub fn imr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x0) as *mut u32
-  }
-  #[inline] pub fn imr1(&self) -> Imr1 { 
-     unsafe {
-        Imr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }
-  }
-  #[inline] pub fn set_imr1(&self, value: Imr1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_imr1<F: FnOnce(Imr1) -> Imr1>(&self, f: F) -> &Self {
-     let tmp = self.imr1();
-     self.set_imr1(f(tmp))
-  }
+pub struct ExtiId {}
+pub type Exti = Periph<ExtiId>;
 
-  #[inline] pub fn emr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
-  }
-  #[inline] pub fn emr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
-  }
-  #[inline] pub fn emr1(&self) -> Emr1 { 
-     unsafe {
-        Emr1(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }
-  }
-  #[inline] pub fn set_emr1(&self, value: Emr1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_emr1<F: FnOnce(Emr1) -> Emr1>(&self, f: F) -> &Self {
-     let tmp = self.emr1();
-     self.set_emr1(f(tmp))
-  }
 
-  #[inline] pub fn rtsr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
-  #[inline] pub fn rtsr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
-  #[inline] pub fn rtsr1(&self) -> Rtsr1 { 
-     unsafe {
-        Rtsr1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
-  #[inline] pub fn set_rtsr1(&self, value: Rtsr1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_rtsr1<F: FnOnce(Rtsr1) -> Rtsr1>(&self, f: F) -> &Self {
-     let tmp = self.rtsr1();
-     self.set_rtsr1(f(tmp))
-  }
 
-  #[inline] pub fn ftsr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xc) as *const u32
-  }
-  #[inline] pub fn ftsr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xc) as *mut u32
-  }
-  #[inline] pub fn ftsr1(&self) -> Ftsr1 { 
-     unsafe {
-        Ftsr1(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ftsr1(&self, value: Ftsr1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ftsr1<F: FnOnce(Ftsr1) -> Ftsr1>(&self, f: F) -> &Self {
-     let tmp = self.ftsr1();
-     self.set_ftsr1(f(tmp))
-  }
+pub const EXTI_LINE0: Channel<ExtiLine0Id, ExtiId> = Channel { periph: EXTI, index: 0, id: ExtiLine0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine0Id {}
+pub type ExtiLine0 = Channel<ExtiLine0Id, ExtiId>;
 
-  #[inline] pub fn swier1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x10) as *const u32
-  }
-  #[inline] pub fn swier1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x10) as *mut u32
-  }
-  #[inline] pub fn swier1(&self) -> Swier1 { 
-     unsafe {
-        Swier1(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }
-  }
-  #[inline] pub fn set_swier1(&self, value: Swier1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_swier1<F: FnOnce(Swier1) -> Swier1>(&self, f: F) -> &Self {
-     let tmp = self.swier1();
-     self.set_swier1(f(tmp))
-  }
+pub const EXTI_LINE1: Channel<ExtiLine1Id, ExtiId> = Channel { periph: EXTI, index: 1, id: ExtiLine1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine1Id {}
+pub type ExtiLine1 = Channel<ExtiLine1Id, ExtiId>;
 
-  #[inline] pub fn pr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x14) as *const u32
-  }
-  #[inline] pub fn pr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x14) as *mut u32
-  }
-  #[inline] pub fn pr1(&self) -> Pr1 { 
-     unsafe {
-        Pr1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }
-  }
-  #[inline] pub fn set_pr1(&self, value: Pr1) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_pr1<F: FnOnce(Pr1) -> Pr1>(&self, f: F) -> &Self {
-     let tmp = self.pr1();
-     self.set_pr1(f(tmp))
-  }
+pub const EXTI_LINE2: Channel<ExtiLine2Id, ExtiId> = Channel { periph: EXTI, index: 2, id: ExtiLine2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine2Id {}
+pub type ExtiLine2 = Channel<ExtiLine2Id, ExtiId>;
 
-  #[inline] pub fn imr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
-  }
-  #[inline] pub fn imr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
-  }
-  #[inline] pub fn imr2(&self) -> Imr2 { 
-     unsafe {
-        Imr2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }
-  }
-  #[inline] pub fn set_imr2(&self, value: Imr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_imr2<F: FnOnce(Imr2) -> Imr2>(&self, f: F) -> &Self {
-     let tmp = self.imr2();
-     self.set_imr2(f(tmp))
-  }
+pub const EXTI_LINE3: Channel<ExtiLine3Id, ExtiId> = Channel { periph: EXTI, index: 3, id: ExtiLine3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine3Id {}
+pub type ExtiLine3 = Channel<ExtiLine3Id, ExtiId>;
 
-  #[inline] pub fn emr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
-  #[inline] pub fn emr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
-  #[inline] pub fn emr2(&self) -> Emr2 { 
-     unsafe {
-        Emr2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_emr2(&self, value: Emr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_emr2<F: FnOnce(Emr2) -> Emr2>(&self, f: F) -> &Self {
-     let tmp = self.emr2();
-     self.set_emr2(f(tmp))
-  }
+pub const EXTI_LINE4: Channel<ExtiLine4Id, ExtiId> = Channel { periph: EXTI, index: 4, id: ExtiLine4Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine4Id {}
+pub type ExtiLine4 = Channel<ExtiLine4Id, ExtiId>;
 
-  #[inline] pub fn rtsr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x20) as *const u32
-  }
-  #[inline] pub fn rtsr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x20) as *mut u32
-  }
-  #[inline] pub fn rtsr2(&self) -> Rtsr2 { 
-     unsafe {
-        Rtsr2(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }
-  }
-  #[inline] pub fn set_rtsr2(&self, value: Rtsr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_rtsr2<F: FnOnce(Rtsr2) -> Rtsr2>(&self, f: F) -> &Self {
-     let tmp = self.rtsr2();
-     self.set_rtsr2(f(tmp))
-  }
+pub const EXTI_LINE5: Channel<ExtiLine5Id, ExtiId> = Channel { periph: EXTI, index: 5, id: ExtiLine5Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine5Id {}
+pub type ExtiLine5 = Channel<ExtiLine5Id, ExtiId>;
 
-  #[inline] pub fn ftsr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x24) as *const u32
-  }
-  #[inline] pub fn ftsr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x24) as *mut u32
-  }
-  #[inline] pub fn ftsr2(&self) -> Ftsr2 { 
-     unsafe {
-        Ftsr2(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ftsr2(&self, value: Ftsr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ftsr2<F: FnOnce(Ftsr2) -> Ftsr2>(&self, f: F) -> &Self {
-     let tmp = self.ftsr2();
-     self.set_ftsr2(f(tmp))
-  }
+pub const EXTI_LINE6: Channel<ExtiLine6Id, ExtiId> = Channel { periph: EXTI, index: 6, id: ExtiLine6Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine6Id {}
+pub type ExtiLine6 = Channel<ExtiLine6Id, ExtiId>;
 
-  #[inline] pub fn swier2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x28) as *const u32
-  }
-  #[inline] pub fn swier2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x28) as *mut u32
-  }
-  #[inline] pub fn swier2(&self) -> Swier2 { 
-     unsafe {
-        Swier2(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
-     }
-  }
-  #[inline] pub fn set_swier2(&self, value: Swier2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_swier2<F: FnOnce(Swier2) -> Swier2>(&self, f: F) -> &Self {
-     let tmp = self.swier2();
-     self.set_swier2(f(tmp))
-  }
+pub const EXTI_LINE7: Channel<ExtiLine7Id, ExtiId> = Channel { periph: EXTI, index: 7, id: ExtiLine7Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine7Id {}
+pub type ExtiLine7 = Channel<ExtiLine7Id, ExtiId>;
 
-  #[inline] pub fn pr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x2c) as *const u32
-  }
-  #[inline] pub fn pr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x2c) as *mut u32
-  }
-  #[inline] pub fn pr2(&self) -> Pr2 { 
-     unsafe {
-        Pr2(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_pr2(&self, value: Pr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_pr2<F: FnOnce(Pr2) -> Pr2>(&self, f: F) -> &Self {
-     let tmp = self.pr2();
-     self.set_pr2(f(tmp))
-  }
+pub const EXTI_LINE8: Channel<ExtiLine8Id, ExtiId> = Channel { periph: EXTI, index: 8, id: ExtiLine8Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine8Id {}
+pub type ExtiLine8 = Channel<ExtiLine8Id, ExtiId>;
 
+pub const EXTI_LINE9: Channel<ExtiLine9Id, ExtiId> = Channel { periph: EXTI, index: 9, id: ExtiLine9Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine9Id {}
+pub type ExtiLine9 = Channel<ExtiLine9Id, ExtiId>;
+
+pub const EXTI_LINE10: Channel<ExtiLine10Id, ExtiId> = Channel { periph: EXTI, index: 10, id: ExtiLine10Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine10Id {}
+pub type ExtiLine10 = Channel<ExtiLine10Id, ExtiId>;
+
+pub const EXTI_LINE11: Channel<ExtiLine11Id, ExtiId> = Channel { periph: EXTI, index: 11, id: ExtiLine11Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine11Id {}
+pub type ExtiLine11 = Channel<ExtiLine11Id, ExtiId>;
+
+pub const EXTI_LINE12: Channel<ExtiLine12Id, ExtiId> = Channel { periph: EXTI, index: 12, id: ExtiLine12Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine12Id {}
+pub type ExtiLine12 = Channel<ExtiLine12Id, ExtiId>;
+
+pub const EXTI_LINE13: Channel<ExtiLine13Id, ExtiId> = Channel { periph: EXTI, index: 13, id: ExtiLine13Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine13Id {}
+pub type ExtiLine13 = Channel<ExtiLine13Id, ExtiId>;
+
+pub const EXTI_LINE14: Channel<ExtiLine14Id, ExtiId> = Channel { periph: EXTI, index: 14, id: ExtiLine14Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine14Id {}
+pub type ExtiLine14 = Channel<ExtiLine14Id, ExtiId>;
+
+pub const EXTI_LINE15: Channel<ExtiLine15Id, ExtiId> = Channel { periph: EXTI, index: 15, id: ExtiLine15Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine15Id {}
+pub type ExtiLine15 = Channel<ExtiLine15Id, ExtiId>;
+
+pub const EXTI_LINE16: Channel<ExtiLine16Id, ExtiId> = Channel { periph: EXTI, index: 16, id: ExtiLine16Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine16Id {}
+pub type ExtiLine16 = Channel<ExtiLine16Id, ExtiId>;
+
+pub const EXTI_LINE17: Channel<ExtiLine17Id, ExtiId> = Channel { periph: EXTI, index: 17, id: ExtiLine17Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine17Id {}
+pub type ExtiLine17 = Channel<ExtiLine17Id, ExtiId>;
+
+pub const EXTI_LINE18: Channel<ExtiLine18Id, ExtiId> = Channel { periph: EXTI, index: 18, id: ExtiLine18Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine18Id {}
+pub type ExtiLine18 = Channel<ExtiLine18Id, ExtiId>;
+
+pub const EXTI_LINE19: Channel<ExtiLine19Id, ExtiId> = Channel { periph: EXTI, index: 19, id: ExtiLine19Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine19Id {}
+pub type ExtiLine19 = Channel<ExtiLine19Id, ExtiId>;
+
+pub const EXTI_LINE20: Channel<ExtiLine20Id, ExtiId> = Channel { periph: EXTI, index: 20, id: ExtiLine20Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine20Id {}
+pub type ExtiLine20 = Channel<ExtiLine20Id, ExtiId>;
+
+pub const EXTI_LINE21: Channel<ExtiLine21Id, ExtiId> = Channel { periph: EXTI, index: 21, id: ExtiLine21Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine21Id {}
+pub type ExtiLine21 = Channel<ExtiLine21Id, ExtiId>;
+
+pub const EXTI_LINE22: Channel<ExtiLine22Id, ExtiId> = Channel { periph: EXTI, index: 22, id: ExtiLine22Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine22Id {}
+pub type ExtiLine22 = Channel<ExtiLine22Id, ExtiId>;
+
+pub const EXTI_LINE23: Channel<ExtiLine23Id, ExtiId> = Channel { periph: EXTI, index: 23, id: ExtiLine23Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine23Id {}
+pub type ExtiLine23 = Channel<ExtiLine23Id, ExtiId>;
+
+pub const EXTI_LINE24: Channel<ExtiLine24Id, ExtiId> = Channel { periph: EXTI, index: 24, id: ExtiLine24Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine24Id {}
+pub type ExtiLine24 = Channel<ExtiLine24Id, ExtiId>;
+
+pub const EXTI_LINE25: Channel<ExtiLine25Id, ExtiId> = Channel { periph: EXTI, index: 25, id: ExtiLine25Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine25Id {}
+pub type ExtiLine25 = Channel<ExtiLine25Id, ExtiId>;
+
+pub const EXTI_LINE26: Channel<ExtiLine26Id, ExtiId> = Channel { periph: EXTI, index: 26, id: ExtiLine26Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine26Id {}
+pub type ExtiLine26 = Channel<ExtiLine26Id, ExtiId>;
+
+pub const EXTI_LINE28: Channel<ExtiLine28Id, ExtiId> = Channel { periph: EXTI, index: 28, id: ExtiLine28Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine28Id {}
+pub type ExtiLine28 = Channel<ExtiLine28Id, ExtiId>;
+
+pub const EXTI_LINE29: Channel<ExtiLine29Id, ExtiId> = Channel { periph: EXTI, index: 29, id: ExtiLine29Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine29Id {}
+pub type ExtiLine29 = Channel<ExtiLine29Id, ExtiId>;
+
+pub const EXTI_LINE30: Channel<ExtiLine30Id, ExtiId> = Channel { periph: EXTI, index: 30, id: ExtiLine30Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine30Id {}
+pub type ExtiLine30 = Channel<ExtiLine30Id, ExtiId>;
+
+pub const EXTI_LINE31: Channel<ExtiLine31Id, ExtiId> = Channel { periph: EXTI, index: 31, id: ExtiLine31Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine31Id {}
+pub type ExtiLine31 = Channel<ExtiLine31Id, ExtiId>;
+
+pub const EXTI_LINE32: Channel<ExtiLine32Id, ExtiId> = Channel { periph: EXTI, index: 32, id: ExtiLine32Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine32Id {}
+pub type ExtiLine32 = Channel<ExtiLine32Id, ExtiId>;
+
+pub const EXTI_LINE33: Channel<ExtiLine33Id, ExtiId> = Channel { periph: EXTI, index: 33, id: ExtiLine33Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine33Id {}
+pub type ExtiLine33 = Channel<ExtiLine33Id, ExtiId>;
+
+pub const EXTI_LINE34: Channel<ExtiLine34Id, ExtiId> = Channel { periph: EXTI, index: 34, id: ExtiLine34Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine34Id {}
+pub type ExtiLine34 = Channel<ExtiLine34Id, ExtiId>;
+
+pub const EXTI_LINE35: Channel<ExtiLine35Id, ExtiId> = Channel { periph: EXTI, index: 35, id: ExtiLine35Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+pub struct ExtiLine35Id {}
+pub type ExtiLine35 = Channel<ExtiLine35Id, ExtiId>;
+
+pub trait IrqExti<T> {
+   fn irq_exti(&self) -> super::irq::Irq<T>;
 }
 
-#[derive(PartialEq, Eq)]
-pub struct Imr1(pub u32);
-impl Imr1 {
-  #[inline] pub fn mr(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
-
+pub trait RegisterExtiHandler {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a>;
 }
-impl ::core::fmt::Display for Imr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+
+pub trait HandleExti {
+   fn handle_exti(&self);
+}
+
+impl IrqExti<super::irq::Exti0Id> for ExtiLine0 {
+   fn irq_exti(&self) -> super::irq::IrqExti0 { super::irq::IRQ_EXTI0 }
+}
+
+impl RegisterExtiHandler for ExtiLine0 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(6, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(6)
    }
 }
-impl ::core::fmt::Debug for Imr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.mr(0) != 0 { try!(write!(f, " mr[0]"))}
-      if self.mr(1) != 0 { try!(write!(f, " mr[1]"))}
-      if self.mr(2) != 0 { try!(write!(f, " mr[2]"))}
-      if self.mr(3) != 0 { try!(write!(f, " mr[3]"))}
-      if self.mr(4) != 0 { try!(write!(f, " mr[4]"))}
-      if self.mr(5) != 0 { try!(write!(f, " mr[5]"))}
-      if self.mr(6) != 0 { try!(write!(f, " mr[6]"))}
-      if self.mr(7) != 0 { try!(write!(f, " mr[7]"))}
-      if self.mr(8) != 0 { try!(write!(f, " mr[8]"))}
-      if self.mr(9) != 0 { try!(write!(f, " mr[9]"))}
-      if self.mr(10) != 0 { try!(write!(f, " mr[10]"))}
-      if self.mr(11) != 0 { try!(write!(f, " mr[11]"))}
-      if self.mr(12) != 0 { try!(write!(f, " mr[12]"))}
-      if self.mr(13) != 0 { try!(write!(f, " mr[13]"))}
-      if self.mr(14) != 0 { try!(write!(f, " mr[14]"))}
-      if self.mr(15) != 0 { try!(write!(f, " mr[15]"))}
-      if self.mr(16) != 0 { try!(write!(f, " mr[16]"))}
-      if self.mr(17) != 0 { try!(write!(f, " mr[17]"))}
-      if self.mr(18) != 0 { try!(write!(f, " mr[18]"))}
-      if self.mr(19) != 0 { try!(write!(f, " mr[19]"))}
-      if self.mr(20) != 0 { try!(write!(f, " mr[20]"))}
-      if self.mr(21) != 0 { try!(write!(f, " mr[21]"))}
-      if self.mr(22) != 0 { try!(write!(f, " mr[22]"))}
-      if self.mr(23) != 0 { try!(write!(f, " mr[23]"))}
-      if self.mr(24) != 0 { try!(write!(f, " mr[24]"))}
-      if self.mr(25) != 0 { try!(write!(f, " mr[25]"))}
-      if self.mr(26) != 0 { try!(write!(f, " mr[26]"))}
-      if self.mr(27) != 0 { try!(write!(f, " mr[27]"))}
-      if self.mr(28) != 0 { try!(write!(f, " mr[28]"))}
-      if self.mr(29) != 0 { try!(write!(f, " mr[29]"))}
-      if self.mr(30) != 0 { try!(write!(f, " mr[30]"))}
-      if self.mr(31) != 0 { try!(write!(f, " mr[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Emr1(pub u32);
-impl Emr1 {
-  #[inline] pub fn mr(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti1Id> for ExtiLine1 {
+   fn irq_exti(&self) -> super::irq::IrqExti1 { super::irq::IRQ_EXTI1 }
 }
-impl ::core::fmt::Display for Emr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Emr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.mr(0) != 0 { try!(write!(f, " mr[0]"))}
-      if self.mr(1) != 0 { try!(write!(f, " mr[1]"))}
-      if self.mr(2) != 0 { try!(write!(f, " mr[2]"))}
-      if self.mr(3) != 0 { try!(write!(f, " mr[3]"))}
-      if self.mr(4) != 0 { try!(write!(f, " mr[4]"))}
-      if self.mr(5) != 0 { try!(write!(f, " mr[5]"))}
-      if self.mr(6) != 0 { try!(write!(f, " mr[6]"))}
-      if self.mr(7) != 0 { try!(write!(f, " mr[7]"))}
-      if self.mr(8) != 0 { try!(write!(f, " mr[8]"))}
-      if self.mr(9) != 0 { try!(write!(f, " mr[9]"))}
-      if self.mr(10) != 0 { try!(write!(f, " mr[10]"))}
-      if self.mr(11) != 0 { try!(write!(f, " mr[11]"))}
-      if self.mr(12) != 0 { try!(write!(f, " mr[12]"))}
-      if self.mr(13) != 0 { try!(write!(f, " mr[13]"))}
-      if self.mr(14) != 0 { try!(write!(f, " mr[14]"))}
-      if self.mr(15) != 0 { try!(write!(f, " mr[15]"))}
-      if self.mr(16) != 0 { try!(write!(f, " mr[16]"))}
-      if self.mr(17) != 0 { try!(write!(f, " mr[17]"))}
-      if self.mr(18) != 0 { try!(write!(f, " mr[18]"))}
-      if self.mr(19) != 0 { try!(write!(f, " mr[19]"))}
-      if self.mr(20) != 0 { try!(write!(f, " mr[20]"))}
-      if self.mr(21) != 0 { try!(write!(f, " mr[21]"))}
-      if self.mr(22) != 0 { try!(write!(f, " mr[22]"))}
-      if self.mr(23) != 0 { try!(write!(f, " mr[23]"))}
-      if self.mr(24) != 0 { try!(write!(f, " mr[24]"))}
-      if self.mr(25) != 0 { try!(write!(f, " mr[25]"))}
-      if self.mr(26) != 0 { try!(write!(f, " mr[26]"))}
-      if self.mr(27) != 0 { try!(write!(f, " mr[27]"))}
-      if self.mr(28) != 0 { try!(write!(f, " mr[28]"))}
-      if self.mr(29) != 0 { try!(write!(f, " mr[29]"))}
-      if self.mr(30) != 0 { try!(write!(f, " mr[30]"))}
-      if self.mr(31) != 0 { try!(write!(f, " mr[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Rtsr1(pub u32);
-impl Rtsr1 {
-  #[inline] pub fn tr(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
-}
-impl ::core::fmt::Display for Rtsr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+impl RegisterExtiHandler for ExtiLine1 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(7, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(7)
    }
 }
-impl ::core::fmt::Debug for Rtsr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tr(0) != 0 { try!(write!(f, " tr[0]"))}
-      if self.tr(1) != 0 { try!(write!(f, " tr[1]"))}
-      if self.tr(2) != 0 { try!(write!(f, " tr[2]"))}
-      if self.tr(3) != 0 { try!(write!(f, " tr[3]"))}
-      if self.tr(4) != 0 { try!(write!(f, " tr[4]"))}
-      if self.tr(5) != 0 { try!(write!(f, " tr[5]"))}
-      if self.tr(6) != 0 { try!(write!(f, " tr[6]"))}
-      if self.tr(7) != 0 { try!(write!(f, " tr[7]"))}
-      if self.tr(8) != 0 { try!(write!(f, " tr[8]"))}
-      if self.tr(9) != 0 { try!(write!(f, " tr[9]"))}
-      if self.tr(10) != 0 { try!(write!(f, " tr[10]"))}
-      if self.tr(11) != 0 { try!(write!(f, " tr[11]"))}
-      if self.tr(12) != 0 { try!(write!(f, " tr[12]"))}
-      if self.tr(13) != 0 { try!(write!(f, " tr[13]"))}
-      if self.tr(14) != 0 { try!(write!(f, " tr[14]"))}
-      if self.tr(15) != 0 { try!(write!(f, " tr[15]"))}
-      if self.tr(16) != 0 { try!(write!(f, " tr[16]"))}
-      if self.tr(17) != 0 { try!(write!(f, " tr[17]"))}
-      if self.tr(18) != 0 { try!(write!(f, " tr[18]"))}
-      if self.tr(19) != 0 { try!(write!(f, " tr[19]"))}
-      if self.tr(20) != 0 { try!(write!(f, " tr[20]"))}
-      if self.tr(21) != 0 { try!(write!(f, " tr[21]"))}
-      if self.tr(22) != 0 { try!(write!(f, " tr[22]"))}
-      if self.tr(23) != 0 { try!(write!(f, " tr[23]"))}
-      if self.tr(24) != 0 { try!(write!(f, " tr[24]"))}
-      if self.tr(25) != 0 { try!(write!(f, " tr[25]"))}
-      if self.tr(26) != 0 { try!(write!(f, " tr[26]"))}
-      if self.tr(27) != 0 { try!(write!(f, " tr[27]"))}
-      if self.tr(28) != 0 { try!(write!(f, " tr[28]"))}
-      if self.tr(29) != 0 { try!(write!(f, " tr[29]"))}
-      if self.tr(30) != 0 { try!(write!(f, " tr[30]"))}
-      if self.tr(31) != 0 { try!(write!(f, " tr[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ftsr1(pub u32);
-impl Ftsr1 {
-  #[inline] pub fn tr(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti2Id> for ExtiLine2 {
+   fn irq_exti(&self) -> super::irq::IrqExti2 { super::irq::IRQ_EXTI2 }
 }
-impl ::core::fmt::Display for Ftsr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ftsr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tr(0) != 0 { try!(write!(f, " tr[0]"))}
-      if self.tr(1) != 0 { try!(write!(f, " tr[1]"))}
-      if self.tr(2) != 0 { try!(write!(f, " tr[2]"))}
-      if self.tr(3) != 0 { try!(write!(f, " tr[3]"))}
-      if self.tr(4) != 0 { try!(write!(f, " tr[4]"))}
-      if self.tr(5) != 0 { try!(write!(f, " tr[5]"))}
-      if self.tr(6) != 0 { try!(write!(f, " tr[6]"))}
-      if self.tr(7) != 0 { try!(write!(f, " tr[7]"))}
-      if self.tr(8) != 0 { try!(write!(f, " tr[8]"))}
-      if self.tr(9) != 0 { try!(write!(f, " tr[9]"))}
-      if self.tr(10) != 0 { try!(write!(f, " tr[10]"))}
-      if self.tr(11) != 0 { try!(write!(f, " tr[11]"))}
-      if self.tr(12) != 0 { try!(write!(f, " tr[12]"))}
-      if self.tr(13) != 0 { try!(write!(f, " tr[13]"))}
-      if self.tr(14) != 0 { try!(write!(f, " tr[14]"))}
-      if self.tr(15) != 0 { try!(write!(f, " tr[15]"))}
-      if self.tr(16) != 0 { try!(write!(f, " tr[16]"))}
-      if self.tr(17) != 0 { try!(write!(f, " tr[17]"))}
-      if self.tr(18) != 0 { try!(write!(f, " tr[18]"))}
-      if self.tr(19) != 0 { try!(write!(f, " tr[19]"))}
-      if self.tr(20) != 0 { try!(write!(f, " tr[20]"))}
-      if self.tr(21) != 0 { try!(write!(f, " tr[21]"))}
-      if self.tr(22) != 0 { try!(write!(f, " tr[22]"))}
-      if self.tr(23) != 0 { try!(write!(f, " tr[23]"))}
-      if self.tr(24) != 0 { try!(write!(f, " tr[24]"))}
-      if self.tr(25) != 0 { try!(write!(f, " tr[25]"))}
-      if self.tr(26) != 0 { try!(write!(f, " tr[26]"))}
-      if self.tr(27) != 0 { try!(write!(f, " tr[27]"))}
-      if self.tr(28) != 0 { try!(write!(f, " tr[28]"))}
-      if self.tr(29) != 0 { try!(write!(f, " tr[29]"))}
-      if self.tr(30) != 0 { try!(write!(f, " tr[30]"))}
-      if self.tr(31) != 0 { try!(write!(f, " tr[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Swier1(pub u32);
-impl Swier1 {
-  #[inline] pub fn swier(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_swier(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
-}
-impl ::core::fmt::Display for Swier1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+impl RegisterExtiHandler for ExtiLine2 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(8, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(8)
    }
 }
-impl ::core::fmt::Debug for Swier1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.swier(0) != 0 { try!(write!(f, " swier[0]"))}
-      if self.swier(1) != 0 { try!(write!(f, " swier[1]"))}
-      if self.swier(2) != 0 { try!(write!(f, " swier[2]"))}
-      if self.swier(3) != 0 { try!(write!(f, " swier[3]"))}
-      if self.swier(4) != 0 { try!(write!(f, " swier[4]"))}
-      if self.swier(5) != 0 { try!(write!(f, " swier[5]"))}
-      if self.swier(6) != 0 { try!(write!(f, " swier[6]"))}
-      if self.swier(7) != 0 { try!(write!(f, " swier[7]"))}
-      if self.swier(8) != 0 { try!(write!(f, " swier[8]"))}
-      if self.swier(9) != 0 { try!(write!(f, " swier[9]"))}
-      if self.swier(10) != 0 { try!(write!(f, " swier[10]"))}
-      if self.swier(11) != 0 { try!(write!(f, " swier[11]"))}
-      if self.swier(12) != 0 { try!(write!(f, " swier[12]"))}
-      if self.swier(13) != 0 { try!(write!(f, " swier[13]"))}
-      if self.swier(14) != 0 { try!(write!(f, " swier[14]"))}
-      if self.swier(15) != 0 { try!(write!(f, " swier[15]"))}
-      if self.swier(16) != 0 { try!(write!(f, " swier[16]"))}
-      if self.swier(17) != 0 { try!(write!(f, " swier[17]"))}
-      if self.swier(18) != 0 { try!(write!(f, " swier[18]"))}
-      if self.swier(19) != 0 { try!(write!(f, " swier[19]"))}
-      if self.swier(20) != 0 { try!(write!(f, " swier[20]"))}
-      if self.swier(21) != 0 { try!(write!(f, " swier[21]"))}
-      if self.swier(22) != 0 { try!(write!(f, " swier[22]"))}
-      if self.swier(23) != 0 { try!(write!(f, " swier[23]"))}
-      if self.swier(24) != 0 { try!(write!(f, " swier[24]"))}
-      if self.swier(25) != 0 { try!(write!(f, " swier[25]"))}
-      if self.swier(26) != 0 { try!(write!(f, " swier[26]"))}
-      if self.swier(27) != 0 { try!(write!(f, " swier[27]"))}
-      if self.swier(28) != 0 { try!(write!(f, " swier[28]"))}
-      if self.swier(29) != 0 { try!(write!(f, " swier[29]"))}
-      if self.swier(30) != 0 { try!(write!(f, " swier[30]"))}
-      if self.swier(31) != 0 { try!(write!(f, " swier[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Pr1(pub u32);
-impl Pr1 {
-  #[inline] pub fn pr(&self, index: usize) -> u32 {
-     assert!(index < 32);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_pr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 32);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti3Id> for ExtiLine3 {
+   fn irq_exti(&self) -> super::irq::IrqExti3 { super::irq::IRQ_EXTI3 }
 }
-impl ::core::fmt::Display for Pr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Pr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.pr(0) != 0 { try!(write!(f, " pr[0]"))}
-      if self.pr(1) != 0 { try!(write!(f, " pr[1]"))}
-      if self.pr(2) != 0 { try!(write!(f, " pr[2]"))}
-      if self.pr(3) != 0 { try!(write!(f, " pr[3]"))}
-      if self.pr(4) != 0 { try!(write!(f, " pr[4]"))}
-      if self.pr(5) != 0 { try!(write!(f, " pr[5]"))}
-      if self.pr(6) != 0 { try!(write!(f, " pr[6]"))}
-      if self.pr(7) != 0 { try!(write!(f, " pr[7]"))}
-      if self.pr(8) != 0 { try!(write!(f, " pr[8]"))}
-      if self.pr(9) != 0 { try!(write!(f, " pr[9]"))}
-      if self.pr(10) != 0 { try!(write!(f, " pr[10]"))}
-      if self.pr(11) != 0 { try!(write!(f, " pr[11]"))}
-      if self.pr(12) != 0 { try!(write!(f, " pr[12]"))}
-      if self.pr(13) != 0 { try!(write!(f, " pr[13]"))}
-      if self.pr(14) != 0 { try!(write!(f, " pr[14]"))}
-      if self.pr(15) != 0 { try!(write!(f, " pr[15]"))}
-      if self.pr(16) != 0 { try!(write!(f, " pr[16]"))}
-      if self.pr(17) != 0 { try!(write!(f, " pr[17]"))}
-      if self.pr(18) != 0 { try!(write!(f, " pr[18]"))}
-      if self.pr(19) != 0 { try!(write!(f, " pr[19]"))}
-      if self.pr(20) != 0 { try!(write!(f, " pr[20]"))}
-      if self.pr(21) != 0 { try!(write!(f, " pr[21]"))}
-      if self.pr(22) != 0 { try!(write!(f, " pr[22]"))}
-      if self.pr(23) != 0 { try!(write!(f, " pr[23]"))}
-      if self.pr(24) != 0 { try!(write!(f, " pr[24]"))}
-      if self.pr(25) != 0 { try!(write!(f, " pr[25]"))}
-      if self.pr(26) != 0 { try!(write!(f, " pr[26]"))}
-      if self.pr(27) != 0 { try!(write!(f, " pr[27]"))}
-      if self.pr(28) != 0 { try!(write!(f, " pr[28]"))}
-      if self.pr(29) != 0 { try!(write!(f, " pr[29]"))}
-      if self.pr(30) != 0 { try!(write!(f, " pr[30]"))}
-      if self.pr(31) != 0 { try!(write!(f, " pr[31]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Imr2(pub u32);
-impl Imr2 {
-  #[inline] pub fn mr(&self, index: usize) -> u32 {
-     assert!(index < 4);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 4);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
-}
-impl ::core::fmt::Display for Imr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+impl RegisterExtiHandler for ExtiLine3 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(9, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(9)
    }
 }
-impl ::core::fmt::Debug for Imr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.mr(0) != 0 { try!(write!(f, " mr[0]"))}
-      if self.mr(1) != 0 { try!(write!(f, " mr[1]"))}
-      if self.mr(2) != 0 { try!(write!(f, " mr[2]"))}
-      if self.mr(3) != 0 { try!(write!(f, " mr[3]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Emr2(pub u32);
-impl Emr2 {
-  #[inline] pub fn mr(&self, index: usize) -> u32 {
-     assert!(index < 4);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 4);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti4Id> for ExtiLine4 {
+   fn irq_exti(&self) -> super::irq::IrqExti4 { super::irq::IRQ_EXTI4 }
 }
-impl ::core::fmt::Display for Emr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Emr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.mr(0) != 0 { try!(write!(f, " mr[0]"))}
-      if self.mr(1) != 0 { try!(write!(f, " mr[1]"))}
-      if self.mr(2) != 0 { try!(write!(f, " mr[2]"))}
-      if self.mr(3) != 0 { try!(write!(f, " mr[3]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Rtsr2(pub u32);
-impl Rtsr2 {
-  #[inline] pub fn tr(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
-}
-impl ::core::fmt::Display for Rtsr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+impl RegisterExtiHandler for ExtiLine4 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(10, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(10)
    }
 }
-impl ::core::fmt::Debug for Rtsr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tr(0) != 0 { try!(write!(f, " tr[0]"))}
-      if self.tr(1) != 0 { try!(write!(f, " tr[1]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ftsr2(pub u32);
-impl Ftsr2 {
-  #[inline] pub fn tr(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti5Id> for ExtiLine5 {
+   fn irq_exti(&self) -> super::irq::IrqExti5 { super::irq::IRQ_EXTI5 }
 }
-impl ::core::fmt::Display for Ftsr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ftsr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.tr(0) != 0 { try!(write!(f, " tr[0]"))}
-      if self.tr(1) != 0 { try!(write!(f, " tr[1]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Swier2(pub u32);
-impl Swier2 {
-  #[inline] pub fn swier(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_swier(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
-}
-impl ::core::fmt::Display for Swier2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+impl RegisterExtiHandler for ExtiLine5 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
    }
 }
-impl ::core::fmt::Debug for Swier2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.swier(0) != 0 { try!(write!(f, " swier[0]"))}
-      if self.swier(1) != 0 { try!(write!(f, " swier[1]"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Pr2(pub u32);
-impl Pr2 {
-  #[inline] pub fn pr(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
-  }
-  #[inline] pub fn set_pr(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
-     assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
 
+impl IrqExti<super::irq::Exti6Id> for ExtiLine6 {
+   fn irq_exti(&self) -> super::irq::IrqExti6 { super::irq::IRQ_EXTI6 }
 }
-impl ::core::fmt::Display for Pr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
+
+impl RegisterExtiHandler for ExtiLine6 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
    }
 }
-impl ::core::fmt::Debug for Pr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.pr(0) != 0 { try!(write!(f, " pr[0]"))}
-      if self.pr(1) != 0 { try!(write!(f, " pr[1]"))}
-      try!(write!(f, "]"));
-      Ok(())
+
+impl IrqExti<super::irq::Exti7Id> for ExtiLine7 {
+   fn irq_exti(&self) -> super::irq::IrqExti7 { super::irq::IRQ_EXTI7 }
+}
+
+impl RegisterExtiHandler for ExtiLine7 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
+   }
+}
+
+impl IrqExti<super::irq::Exti8Id> for ExtiLine8 {
+   fn irq_exti(&self) -> super::irq::IrqExti8 { super::irq::IRQ_EXTI8 }
+}
+
+impl RegisterExtiHandler for ExtiLine8 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
+   }
+}
+
+impl IrqExti<super::irq::Exti9Id> for ExtiLine9 {
+   fn irq_exti(&self) -> super::irq::IrqExti9 { super::irq::IRQ_EXTI9 }
+}
+
+impl RegisterExtiHandler for ExtiLine9 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
+   }
+}
+
+impl IrqExti<super::irq::Exti10Id> for ExtiLine10 {
+   fn irq_exti(&self) -> super::irq::IrqExti10 { super::irq::IRQ_EXTI10 }
+}
+
+impl RegisterExtiHandler for ExtiLine10 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti11Id> for ExtiLine11 {
+   fn irq_exti(&self) -> super::irq::IrqExti11 { super::irq::IRQ_EXTI11 }
+}
+
+impl RegisterExtiHandler for ExtiLine11 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti12Id> for ExtiLine12 {
+   fn irq_exti(&self) -> super::irq::IrqExti12 { super::irq::IRQ_EXTI12 }
+}
+
+impl RegisterExtiHandler for ExtiLine12 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti13Id> for ExtiLine13 {
+   fn irq_exti(&self) -> super::irq::IrqExti13 { super::irq::IRQ_EXTI13 }
+}
+
+impl RegisterExtiHandler for ExtiLine13 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti14Id> for ExtiLine14 {
+   fn irq_exti(&self) -> super::irq::IrqExti14 { super::irq::IRQ_EXTI14 }
+}
+
+impl RegisterExtiHandler for ExtiLine14 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti15Id> for ExtiLine15 {
+   fn irq_exti(&self) -> super::irq::IrqExti15 { super::irq::IRQ_EXTI15 }
+}
+
+impl RegisterExtiHandler for ExtiLine15 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(40, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(40)
+   }
+}
+
+impl IrqExti<super::irq::Exti16Id> for ExtiLine16 {
+   fn irq_exti(&self) -> super::irq::IrqExti16 { super::irq::IRQ_EXTI16 }
+}
+
+impl RegisterExtiHandler for ExtiLine16 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(1, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(1)
+   }
+}
+
+impl IrqExti<super::irq::Exti17Id> for ExtiLine17 {
+   fn irq_exti(&self) -> super::irq::IrqExti17 { super::irq::IRQ_EXTI17 }
+}
+
+impl RegisterExtiHandler for ExtiLine17 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(2, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(2)
+   }
+}
+
+impl IrqExti<super::irq::Exti18Id> for ExtiLine18 {
+   fn irq_exti(&self) -> super::irq::IrqExti18 { super::irq::IRQ_EXTI18 }
+}
+
+impl RegisterExtiHandler for ExtiLine18 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(42, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(42)
+   }
+}
+
+impl IrqExti<super::irq::Exti19Id> for ExtiLine19 {
+   fn irq_exti(&self) -> super::irq::IrqExti19 { super::irq::IRQ_EXTI19 }
+}
+
+impl RegisterExtiHandler for ExtiLine19 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(2, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(2)
+   }
+}
+
+impl IrqExti<super::irq::Exti20Id> for ExtiLine20 {
+   fn irq_exti(&self) -> super::irq::IrqExti20 { super::irq::IRQ_EXTI20 }
+}
+
+impl RegisterExtiHandler for ExtiLine20 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(3, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(3)
+   }
+}
+
+impl IrqExti<super::irq::Exti21Id> for ExtiLine21 {
+   fn irq_exti(&self) -> super::irq::IrqExti21 { super::irq::IRQ_EXTI21 }
+}
+
+impl RegisterExtiHandler for ExtiLine21 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(64, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(64)
+   }
+}
+
+impl IrqExti<super::irq::Exti22Id> for ExtiLine22 {
+   fn irq_exti(&self) -> super::irq::IrqExti22 { super::irq::IRQ_EXTI22 }
+}
+
+impl RegisterExtiHandler for ExtiLine22 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(64, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(64)
+   }
+}
+
+impl IrqExti<super::irq::Exti23Id> for ExtiLine23 {
+   fn irq_exti(&self) -> super::irq::IrqExti23 { super::irq::IRQ_EXTI23 }
+}
+
+impl RegisterExtiHandler for ExtiLine23 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(31, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(31)
+   }
+}
+
+impl IrqExti<super::irq::Exti24Id> for ExtiLine24 {
+   fn irq_exti(&self) -> super::irq::IrqExti24 { super::irq::IRQ_EXTI24 }
+}
+
+impl RegisterExtiHandler for ExtiLine24 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(32, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(32)
+   }
+}
+
+impl IrqExti<super::irq::Exti25Id> for ExtiLine25 {
+   fn irq_exti(&self) -> super::irq::IrqExti25 { super::irq::IRQ_EXTI25 }
+}
+
+impl RegisterExtiHandler for ExtiLine25 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(37, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(37)
+   }
+}
+
+impl IrqExti<super::irq::Exti26Id> for ExtiLine26 {
+   fn irq_exti(&self) -> super::irq::IrqExti26 { super::irq::IRQ_EXTI26 }
+}
+
+impl RegisterExtiHandler for ExtiLine26 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(38, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(38)
+   }
+}
+
+impl IrqExti<super::irq::Exti28Id> for ExtiLine28 {
+   fn irq_exti(&self) -> super::irq::IrqExti28 { super::irq::IRQ_EXTI28 }
+}
+
+impl RegisterExtiHandler for ExtiLine28 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(39, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(39)
+   }
+}
+
+impl IrqExti<super::irq::Exti29Id> for ExtiLine29 {
+   fn irq_exti(&self) -> super::irq::IrqExti29 { super::irq::IRQ_EXTI29 }
+}
+
+impl RegisterExtiHandler for ExtiLine29 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(64, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(64)
+   }
+}
+
+impl IrqExti<super::irq::Exti30Id> for ExtiLine30 {
+   fn irq_exti(&self) -> super::irq::IrqExti30 { super::irq::IRQ_EXTI30 }
+}
+
+impl RegisterExtiHandler for ExtiLine30 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(65, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(65)
+   }
+}
+
+impl IrqExti<super::irq::Exti31Id> for ExtiLine31 {
+   fn irq_exti(&self) -> super::irq::IrqExti31 { super::irq::IRQ_EXTI31 }
+}
+
+impl RegisterExtiHandler for ExtiLine31 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(65, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(65)
+   }
+}
+
+impl IrqExti<super::irq::Exti32Id> for ExtiLine32 {
+   fn irq_exti(&self) -> super::irq::IrqExti32 { super::irq::IRQ_EXTI32 }
+}
+
+impl RegisterExtiHandler for ExtiLine32 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(65, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(65)
+   }
+}
+
+impl IrqExti<super::irq::Exti33Id> for ExtiLine33 {
+   fn irq_exti(&self) -> super::irq::IrqExti33 { super::irq::IRQ_EXTI33 }
+}
+
+impl RegisterExtiHandler for ExtiLine33 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(66, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(66)
+   }
+}
+
+impl IrqExti<super::irq::Exti34Id> for ExtiLine34 {
+   fn irq_exti(&self) -> super::irq::IrqExti34 { super::irq::IRQ_EXTI34 }
+}
+
+impl RegisterExtiHandler for ExtiLine34 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(52, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(52)
+   }
+}
+
+impl IrqExti<super::irq::Exti35Id> for ExtiLine35 {
+   fn irq_exti(&self) -> super::irq::IrqExti35 { super::irq::IRQ_EXTI35 }
+}
+
+impl RegisterExtiHandler for ExtiLine35 {
+   fn register_exti_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleExti>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleExti>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_exti() }
+       }
+       super::irq::set_handler(53, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(53)
    }
 }
 

@@ -2291,6 +2291,11 @@ impl En for super::tim_bas::Tim7 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim7en(value)); }
 }
 
+impl En for super::wwdg::Wwdg {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
+}
+
 impl En for super::spi::Spi2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }

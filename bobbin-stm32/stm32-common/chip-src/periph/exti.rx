@@ -1,4 +1,5 @@
 (peripheral
+    ; Also need to support EXTI with more than 32 channels
     (group-name EXTI)
     (description "External interrupt/event controller")
     (register
