@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-#![feature(asm)]
 
 #[macro_use]
 extern crate nucleo_f031k6 as board;
@@ -13,7 +12,7 @@ pub extern "C" fn main() -> ! {
     println!("Running CRC Test");
 
     CRC.rcc_set_enabled(true);
-    CRC.configure(&Config::default()).initialize(0x1234);
+    CRC.configure(Config::default()).initialize(0x1234);
 
     let mut i = 0;
     loop {
