@@ -10,3 +10,4 @@ pub mod crc;
 pub mod rng;
 pub mod iwdg;
 pub mod wwdg;
+pub mod exti;
