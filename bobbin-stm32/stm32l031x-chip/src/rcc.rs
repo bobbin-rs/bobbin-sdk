@@ -2636,11 +2636,6 @@ impl Rst for super::gpio::Gpioa {
    #[inline] fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_ioparst(value)); }
 }
 
-impl Rst for super::rng::Rng {
-   #[inline] fn rst(&self) -> u32 { RCC.ahbrstr().rngrst() }
-   #[inline] fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_rngrst(value)); }
-}
-
 impl Rst for super::crc::Crc {
    #[inline] fn rst(&self) -> u32 { RCC.ahbrstr().crcrst() }
    #[inline] fn set_rst(&self, value: u32) { RCC.with_ahbrstr(|r| r.set_crcrst(value)); }
@@ -2719,11 +2714,6 @@ impl En for super::gpio::Gpioc {
 impl En for super::gpio::Gpioh {
    #[inline] fn en(&self) -> u32 { RCC.iopenr().iophen() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_iopenr(|r| r.set_iophen(value)); }
-}
-
-impl En for super::rng::Rng {
-   #[inline] fn en(&self) -> u32 { RCC.ahbenr().rngen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_rngen(value)); }
 }
 
 impl En for super::crc::Crc {

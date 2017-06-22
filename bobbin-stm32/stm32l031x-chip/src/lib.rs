@@ -18,7 +18,6 @@ pub mod syscfg;
 pub mod iwdg;
 pub mod wwdg;
 pub mod crc;
-pub mod rng;
 pub mod rtc;
 pub mod lptim;
 pub mod exti;

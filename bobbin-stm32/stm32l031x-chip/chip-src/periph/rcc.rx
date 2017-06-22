@@ -503,7 +503,7 @@
             (bit-offset 20)
             (bit-width 1)
             (description "Random Number Generator module reset")
-            (link (name RST) (peripheral-group RNG) (peripheral RNG))
+            ;(link (name RST) (peripheral-group RNG) (peripheral RNG))
         )
         (field
             (name TOUCHRST)
@@ -704,7 +704,7 @@
             (bit-offset 20)
             (bit-width 1)
             (description "Random Number Generator clock enable bit")
-            (link (name EN) (peripheral-group RNG) (peripheral RNG))
+            ;(link (name EN) (peripheral-group RNG) (peripheral RNG))
         )
         (field
             (name TOUCHEN)
