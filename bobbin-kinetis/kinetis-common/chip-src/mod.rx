@@ -56,6 +56,10 @@
         (prototype "periph/i2c.rx")
     )
     (peripheral-group
+        (name DMAMUX)
+        (prototype "periph/dmamux.rx")
+    )        
+    (peripheral-group
         (name DMA)
         (has-channels)
         (prototype "periph/dma.rx")

@@ -21,6 +21,15 @@
     (peripheral (include "periph/mcg.rx"))
 
     (peripheral-group
+        (name DMAMUX)
+        (module (name kinetis_common::chip::dmamux::*))
+        (peripheral
+            (name DMAMUX)
+            (address 0x40021000)
+        )
+    )
+
+    (peripheral-group
         (name DMA)
         (module (name kinetis_common::chip::dma::*))
         (peripheral

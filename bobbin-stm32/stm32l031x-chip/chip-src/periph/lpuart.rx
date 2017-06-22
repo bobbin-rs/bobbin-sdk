@@ -1,5 +1,5 @@
 (peripheral
-    (group-name USART)
+    (group-name LPUART)
     (description "Universal synchronous asynchronous receiver transmitter")
     (register
         (name CR1)

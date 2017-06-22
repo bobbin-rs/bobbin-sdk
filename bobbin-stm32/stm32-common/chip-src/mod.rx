@@ -1,5 +1,10 @@
 (device
     (peripheral-group
+        (name EXTI)
+        (has-channels)
+        (prototype "periph/exti.rx")
+    )
+    (peripheral-group
         (name DMA)
         (has-channels)
         (prototype "periph/dma.rx")
@@ -15,8 +20,8 @@
         (prototype "periph/gpio.rx")
     )
     (peripheral-group
-        (name LPUSART)
-        (prototype "periph/lpusart.rx")
+        (name LPUART)
+        (prototype "periph/lpuart.rx")
     )        
     (peripheral-group
         (name USART)
@@ -25,7 +30,11 @@
     (peripheral-group
         (name USART_F24)
         (prototype "periph/usart_24.rx")
-    )        
+    )
+    (peripheral-group
+        (name LPTIM)
+        (prototype "periph/lptim.rx")
+    )     
     (peripheral-group
         (name TIM_BAS)
         (has-channels)
@@ -48,7 +57,11 @@
     (peripheral-group
         (name RNG)
         (prototype "periph/rng.rx")
-    )           
+    )
+    (peripheral-group
+        (name RTC)
+        (prototype "periph/rtc.rx")
+    )
     (peripheral-group
         (name IWDG)
         (prototype "periph/iwdg.rx")
