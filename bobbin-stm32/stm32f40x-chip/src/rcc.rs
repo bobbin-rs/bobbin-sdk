@@ -3656,7 +3656,7 @@ impl En for super::dma::Dma1 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma1en(value)); }
 }
 
-impl En for super::crc::Crc {
+impl En for super::crc_24::Crc {
    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().crcen() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }
 }
@@ -3749,6 +3749,11 @@ impl En for super::spi::Spi3 {
 impl En for super::spi::Spi2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
+}
+
+impl En for super::wwdg::Wwdg {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
 }
 
 impl En for super::tim_gen::Tim14 {
