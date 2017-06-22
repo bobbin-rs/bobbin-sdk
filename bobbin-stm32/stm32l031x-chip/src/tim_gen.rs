@@ -80,3 +80,63 @@ pub const TIM22_CH2: Channel<Tim22Ch2Id, Tim22Id> = Channel { periph: TIM22, ind
 pub struct Tim22Ch2Id {}
 pub type Tim22Ch2 = Channel<Tim22Ch2Id, Tim22Id>;
 
+pub trait IrqTim<T> {
+   fn irq_tim(&self) -> super::irq::Irq<T>;
+}
+
+pub trait RegisterTimHandler {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+}
+
+pub trait HandleTim {
+   fn handle_tim(&self);
+}
+
+impl IrqTim<super::irq::Tim2Id> for Tim2 {
+   fn irq_tim(&self) -> super::irq::IrqTim2 { super::irq::IRQ_TIM2 }
+}
+
+impl RegisterTimHandler for Tim2 {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTim>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_tim() }
+       }
+       super::irq::set_handler(15, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(15)
+   }
+}
+
+impl IrqTim<super::irq::Tim21Id> for Tim21 {
+   fn irq_tim(&self) -> super::irq::IrqTim21 { super::irq::IRQ_TIM21 }
+}
+
+impl RegisterTimHandler for Tim21 {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTim>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_tim() }
+       }
+       super::irq::set_handler(20, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(20)
+   }
+}
+
+impl IrqTim<super::irq::Tim22Id> for Tim22 {
+   fn irq_tim(&self) -> super::irq::IrqTim22 { super::irq::IRQ_TIM22 }
+}
+
+impl RegisterTimHandler for Tim22 {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTim>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_tim() }
+       }
+       super::irq::set_handler(22, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(22)
+   }
+}
+

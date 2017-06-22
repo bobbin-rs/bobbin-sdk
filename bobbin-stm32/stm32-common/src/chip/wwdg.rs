@@ -125,12 +125,12 @@ impl Cfr {
   }
 
   #[inline] pub fn wdgtb(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+     ((self.0 as u32) >> 7) & 0x3 // [8:7]
   }
   #[inline] pub fn set_wdgtb(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
+     self.0 &= !(0x3 << 7);
+     self.0 |= value << 7;
      self
   }
 

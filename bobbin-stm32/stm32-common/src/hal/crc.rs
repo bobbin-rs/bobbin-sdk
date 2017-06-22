@@ -44,14 +44,14 @@ impl Config {
 }
 
 pub trait CrcExt {
-    fn configure(&self, cfg: &Config) -> &Self;
+    fn configure(&self, cfg: Config) -> &Self;
     fn initialize(&self, value: u32) -> &Self;
     fn write(&self, value: u32) -> &Self;
     fn read(&self) -> u32;
 }
 
 impl<T> CrcExt for Periph<T> {
-    fn configure(&self, cfg: &Config) -> &Self {
+    fn configure(&self, cfg: Config) -> &Self {
         self.with_cr(|r| r
             .set_rev_out(if cfg.rev_out { 1 } else { 0 })
             .set_rev_in(if cfg.rev_in { 1 } else { 0 })

@@ -1243,3 +1243,31 @@ impl ::core::fmt::Debug for Txdr {
       Ok(())
    }
 }
+pub trait IrqI2c<T> {
+   fn irq_i2c(&self) -> super::irq::Irq<T>;
+}
+
+pub trait RegisterI2cHandler {
+   fn register_i2c_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleI2c>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+}
+
+pub trait HandleI2c {
+   fn handle_i2c(&self);
+}
+
+impl IrqI2c<super::irq::I2c1Id> for I2c1 {
+   fn irq_i2c(&self) -> super::irq::IrqI2c1 { super::irq::IRQ_I2C1 }
+}
+
+impl RegisterI2cHandler for I2c1 {
+   fn register_i2c_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleI2c>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleI2c>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_i2c() }
+       }
+       super::irq::set_handler(23, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(23)
+   }
+}
+

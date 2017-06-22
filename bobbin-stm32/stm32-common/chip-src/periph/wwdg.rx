@@ -35,7 +35,7 @@
         )
         (field
             (name WDGTB)
-            (bit-offset 8)
+            (bit-offset 7)
             (bit-width 2)
             (description "Timer base")
         )

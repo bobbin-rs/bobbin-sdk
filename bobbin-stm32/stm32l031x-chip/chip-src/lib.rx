@@ -58,6 +58,7 @@
             (interrupt
                 (name WWDG)
                 (value 0)
+                (type WWDG)
                 (description "Window Watchdog interrupt")
             ) 
         )
@@ -83,6 +84,7 @@
             (interrupt
                 (name RTC)
                 (value 2)
+                (type RTC)
                 (description "RTC global interrupt")
             )        
         )
@@ -98,6 +100,7 @@
             (interrupt
                 (name LPTIM1)
                 (value 13)
+                (type LPTIM)
                 (description "LPTIMER1 interrupt through EXTI29")
             )
         )
@@ -114,6 +117,7 @@
                 (interrupt
                     (name EXTI0)
                     (value 5)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -121,6 +125,7 @@
                 (interrupt
                     (name EXTI1)
                     (value 5)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -128,6 +133,7 @@
                 (interrupt
                     (name EXTI2)
                     (value 6)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -135,6 +141,7 @@
                 (interrupt
                     (name EXTI3)
                     (value 6)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )            
             )
@@ -142,6 +149,7 @@
                 (interrupt
                     (name EXTI4)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -149,6 +157,7 @@
                 (interrupt
                     (name EXTI5)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -156,6 +165,7 @@
                 (interrupt
                     (name EXTI6)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -163,6 +173,7 @@
                 (interrupt
                     (name EXTI7)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -170,6 +181,7 @@
                 (interrupt
                     (name EXTI8)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -177,6 +189,7 @@
                 (interrupt
                     (name EXTI9)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -184,6 +197,7 @@
                 (interrupt
                     (name EXTI10)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -191,6 +205,7 @@
                 (interrupt
                     (name EXTI11)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -198,6 +213,7 @@
                 (interrupt
                     (name EXTI12)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -205,6 +221,7 @@
                 (interrupt
                     (name EXTI13)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -212,6 +229,7 @@
                 (interrupt
                     (name EXTI14)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -219,6 +237,7 @@
                 (interrupt
                     (name EXTI15)
                     (value 7)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -226,6 +245,7 @@
                 (interrupt
                     (name EXTI16)
                     (value 1)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )            
             )
@@ -233,6 +253,7 @@
                 (interrupt
                     (name EXTI17)
                     (value 2)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -241,6 +262,7 @@
                 (interrupt
                     (name EXTI19)
                     (value 2)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -248,6 +270,7 @@
                 (interrupt
                     (name EXTI20)
                     (value 2)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -255,12 +278,15 @@
                 (interrupt
                     (name EXTI21)
                     (value 12)
+                    (type EXTI)
                     (description "EXTI interrupt")
-                )            )
+                )            
+            )
             (channel (name EXTI_LINE22) (index 22)
                 (interrupt
                     (name EXTI22)
                     (value 12)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )                
             )
@@ -268,6 +294,7 @@
                 (interrupt
                     (name EXTI23)
                     (value 23)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -275,6 +302,7 @@
                 (interrupt
                     (name EXTI24)
                     (value 24)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -282,6 +310,7 @@
                 (interrupt
                     (name EXTI25)
                     (value 27)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )            
             )
@@ -289,6 +318,7 @@
                 (interrupt
                     (name EXTI26)
                     (value 28)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )
             )
@@ -297,6 +327,7 @@
                 (interrupt
                     (name EXTI28)
                     (value 29)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )            
             )
@@ -304,6 +335,7 @@
                 (interrupt
                     (name EXTI29)
                     (value 13)
+                    (type EXTI)
                     (description "EXTI interrupt")
                 )                )
             ;(channel (name EXTI_LINE30) (index 30))
@@ -401,6 +433,7 @@
             (interrupt
                 (name I2C1)
                 (value 23)
+                (type I2C)
                 (description "I2C1 global interrupt")
             )
         )         
@@ -437,6 +470,7 @@
             (interrupt
                 (name TIM2)
                 (value 15)
+                (type TIM)
                 (description "TIM2 global interrupt")
             )        
         )
@@ -458,6 +492,7 @@
             (interrupt
                 (name TIM21)
                 (value 20)
+                (type TIM)
                 (description "TIMER21 global interrupt")
             )
         )        
@@ -479,6 +514,7 @@
             (interrupt
                 (name TIM22)
                 (value 22)
+                (type TIM)
                 (description "TIMER22 global interrupt")
             )
         )
@@ -713,6 +749,7 @@
             (interrupt
                 (name USART2)
                 (value 28)
+                (type USART)
                 (description "USART2 global interrupt through EXTI26")
             )
         )
@@ -731,6 +768,7 @@
             (interrupt
                 (name LPUART1)
                 (value 29)
+                (type LPUART)
                 (description "LPUART1 global interrupt through EXTI28")
             )            
         )        
@@ -749,6 +787,7 @@
             (interrupt
                 (name SPI1)
                 (value 25)
+                (type SPI)
                 (description "SPI1_global_interrupt")
             )
         )
