@@ -55,6 +55,10 @@
         (prototype "periph/crc.rx")
     )     
     (peripheral-group
+        (name CRC_24)
+        (prototype "periph/crc_24.rx")
+    )         
+    (peripheral-group
         (name RNG)
         (prototype "periph/rng.rx")
     )

@@ -11,6 +11,7 @@ pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
 pub mod crc;
+pub mod crc_24;
 pub mod rng;
 pub mod rtc;
 pub mod iwdg;
