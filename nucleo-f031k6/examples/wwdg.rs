@@ -4,12 +4,17 @@
 #[macro_use]
 extern crate nucleo_f031k6 as board;
 
+use board::hal::rcc::RCC;
 use board::hal::wwdg::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Running WWDG Test");
+    println!("RCC_CSR: {:?}", RCC.csr());
+    println!("Clearing Reset Flags");
+    RCC.with_csr(|r| r.set_rmvf(1));
+        
     board::delay(1000);
 
     // APB1 = 32MHz
