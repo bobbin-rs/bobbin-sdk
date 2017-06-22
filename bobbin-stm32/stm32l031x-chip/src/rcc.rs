@@ -2437,12 +2437,12 @@ impl Csr {
   }
 
   #[inline] pub fn rmvf(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+     ((self.0 as u32) >> 23) & 0x1 // [23]
   }
   #[inline] pub fn set_rmvf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
      self
   }
 

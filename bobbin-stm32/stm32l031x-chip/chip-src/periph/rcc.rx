@@ -1162,7 +1162,7 @@
         )
         (field
             (name RMVF)
-            (bit-offset 24)
+            (bit-offset 23)
             (bit-width 1)
             (access read-write)
             (description "Remove reset flag")
