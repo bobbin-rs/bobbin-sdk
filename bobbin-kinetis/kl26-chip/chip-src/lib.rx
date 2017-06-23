@@ -19,6 +19,7 @@
     (peripheral (include "periph/osc.rx"))
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/mcg.rx"))
+    (peripheral (include "periph/rcm.rx"))
 
     (peripheral-group
         (name DMAMUX)

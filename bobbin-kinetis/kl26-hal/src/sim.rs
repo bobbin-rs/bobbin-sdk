@@ -32,3 +32,62 @@ impl<P> SimSrc for P where P: Src {
         self
     }
 }
+
+pub enum CopTimeout {
+    Disabled = 0b00,
+    Short = 0b01, 
+    Medium = 0b10,
+    Long = 0b11,
+}
+
+pub enum CopSource {
+    Khz = 0,
+    Bus = 1,
+}
+
+pub trait SimExt {
+    fn cop_reset(&self) -> &Self;
+    fn cop_source(&self) -> CopSource;
+    fn cop_set_source(&self, CopSource) -> &Self;
+    fn cop_windowed(&self) -> bool;
+    fn cop_set_windowed(&self, bool) -> &Self;
+    fn cop_timeout(&self) -> CopTimeout;
+    fn cop_set_timeout(&self, CopTimeout) -> &Self;
+}
+
+impl SimExt for Sim {
+    fn cop_reset(&self) -> &Self {
+        self.set_srvcop(Srvcop(0).set_srvcop(0x55));
+        self.set_srvcop(Srvcop(0).set_srvcop(0xAA));
+        self
+    }
+    fn cop_source(&self) -> CopSource {
+        match self.copc().copclks() {
+            0 => CopSource::Khz,
+            1 => CopSource::Bus,
+            _ => unimplemented!()
+        }
+    }
+    fn cop_set_source(&self, value: CopSource) -> &Self {
+        self.with_copc(|r| r.set_copclks(value as u32))
+    }
+    fn cop_windowed(&self) -> bool {
+        self.copc().copw() != 0
+    }
+    fn cop_set_windowed(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_copc(|r| r.set_copw(value))
+    }
+    fn cop_timeout(&self) -> CopTimeout {
+        match self.copc().copt() {
+            0b00 => CopTimeout::Disabled,
+            0b01 => CopTimeout::Short,
+            0b10 => CopTimeout::Medium,
+            0b11 => CopTimeout::Long,
+            _ => unimplemented!()
+        }
+    }
+    fn cop_set_timeout(&self, value: CopTimeout) -> &Self {
+        self.with_copc(|r| r.set_copt(value as u32))
+    }
+}
