@@ -1,5 +1,9 @@
 (device
     (peripheral-group
+        (name WDOG)
+        (prototype "periph/wdog.rx")
+    )
+    (peripheral-group
         (name GPIO)
         (has-pins)
         (prototype "periph/gpio.rx")

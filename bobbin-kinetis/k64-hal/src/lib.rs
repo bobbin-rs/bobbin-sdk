@@ -103,3 +103,8 @@ pub mod dma {
     pub use kinetis_common::hal::dma::*;
     pub use sim::SimEnabled;
 }
+
+pub mod wdog {
+    pub use chip::wdog::*;
+    pub use kinetis_common::hal::wdog::*;
+}

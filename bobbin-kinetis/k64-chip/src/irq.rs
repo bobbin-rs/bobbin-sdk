@@ -1,6 +1,7 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
+pub const IRQ_WDOG: IrqWdog = Irq(22, WdogId {});
 pub const IRQ_DMA_ERROR: IrqDmaError = Irq(16, DmaErrorId {});
 pub const IRQ_DMA0: IrqDma0 = Irq(0, Dma0Id {});
 pub const IRQ_DMA1: IrqDma1 = Irq(1, Dma1Id {});
@@ -49,6 +50,7 @@ pub const IRQ_PORTC: IrqPortc = Irq(61, PortcId {});
 pub const IRQ_PORTD: IrqPortd = Irq(62, PortdId {});
 pub const IRQ_PORTE: IrqPorte = Irq(63, PorteId {});
 
+pub type IrqWdog = Irq<WdogId>;
 pub type IrqDmaError = Irq<DmaErrorId>;
 pub type IrqDma0 = Irq<Dma0Id>;
 pub type IrqDma1 = Irq<Dma1Id>;
@@ -97,6 +99,7 @@ pub type IrqPortc = Irq<PortcId>;
 pub type IrqPortd = Irq<PortdId>;
 pub type IrqPorte = Irq<PorteId>;
 
+pub struct WdogId {} // IRQ 22
 pub struct DmaErrorId {} // IRQ 16
 pub struct Dma0Id {} // IRQ 0
 pub struct Dma1Id {} // IRQ 1
@@ -225,6 +228,18 @@ pub trait RegisterHandler {
 
 pub trait HandleInterrupt {
    fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqWdog {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(22, Some(wrapper::<F>));
+       IrqGuard::new(22)
+   }
 }
 
 impl RegisterHandler for IrqDmaError {
@@ -816,7 +831,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,
    None,
    None,
-   None,
+   None,                          // IRQ 22: No Description
    None,
    None,                          // IRQ 24: No Description
    None,                          // IRQ 25: No Description
