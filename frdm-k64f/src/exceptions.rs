@@ -30,7 +30,6 @@ pub unsafe extern "C" fn reset() -> ! {
     
     // Disable Watchdog
     // Write 0xC520 followed by 0xD928 within 20 bus clock cycles to a specific unlock register (WDOG_UNLOCK).
-    
     asm!("
 
         /* unlock */
