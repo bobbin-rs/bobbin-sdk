@@ -13,10 +13,11 @@ extern crate kinetis_common;
 
 pub mod irq;
 pub mod sig;
-pub mod wdog;
 pub mod sim;
 pub mod scg;
 pub mod pcc;
+pub mod rcm;
+pub mod wdog;
 pub mod crc;
 pub mod dmamux;
 pub mod dma;

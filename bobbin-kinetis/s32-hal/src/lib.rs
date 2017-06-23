@@ -10,6 +10,7 @@ pub use bobbin_cortexm::hal::*;
 
 pub mod clock;
 pub mod pcc;
+pub mod wdog;
 
 pub mod port {
     pub use chip::port::*;    
@@ -102,3 +103,4 @@ pub mod dma {
     pub use chip::dma::*;
     pub use kinetis_common::hal::dma::*;
 }
+

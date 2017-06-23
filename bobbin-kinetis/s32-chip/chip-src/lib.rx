@@ -24,25 +24,12 @@
         (module (name chip::itm))
     )    
     (crate (name kinetis_common))
-    (peripheral (include "periph/wdog.rx"))
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/scg.rx"))
     (peripheral (include "periph/pcc.rx"))
+    (peripheral (include "periph/rcm.rx"))
+    (peripheral (include "periph/wdog.rx"))
     (peripheral (include "periph/crc.rx"))
-    
-    (peripheral-group
-        (name WDOG)
-        (module (name kinetis_common::chip::wdog::*))
-        (peripheral
-            (name WDOG)
-            (address 0x40052000)
-            (description "Generation 2008 Watchdog Timer")
-            (interrupt
-                (name WDOG_EWM)
-                (value 22)
-            )
-        )
-    )
 
     (peripheral-group
         (name DMAMUX)
