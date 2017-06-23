@@ -1194,6 +1194,11 @@ impl En for super::gclk::Gclk {
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_gclk(value)); }
 }
 
+impl En for super::wdt::Wdt {
+   #[inline] fn en(&self) -> u32 { PM.apbamask().wdt() }
+   #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_wdt(value)); }
+}
+
 impl En for super::rtc::Rtc {
    #[inline] fn en(&self) -> u32 { PM.apbamask().rtc() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_rtc(value)); }

@@ -13,6 +13,7 @@ pub mod gclk;
 pub mod nvmctrl;
 pub mod pm;
 pub mod sysctrl;
+pub mod wdt;
 pub mod rtc;
 pub mod dmac;
 pub mod adc;

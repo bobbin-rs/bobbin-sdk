@@ -301,7 +301,7 @@ impl RegisterHandler for IrqSercom5 {
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 28] = [
    None,                          // IRQ 0: No Description
    None,                          // IRQ 1: No Description
-   None,
+   None,                          // IRQ 2: No Description
    None,                          // IRQ 3: No Description
    None,
    None,                          // IRQ 5: No Description

@@ -96,6 +96,7 @@
             (bit-offset 4)
             (bit-width 1)
             (description "WDT APB Clock Enable")
+            (link (name EN) (peripheral-group WDT) (peripheral WDT))
         )
         (field
             (name RTC)

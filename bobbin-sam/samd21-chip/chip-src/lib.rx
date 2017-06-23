@@ -19,6 +19,7 @@
     (peripheral (include "periph/nvmctrl.rx"))
     (peripheral (include "periph/pm.rx"))
     (peripheral (include "periph/sysctrl.rx"))
+    (peripheral (include "periph/wdt.rx"))
     (peripheral (include "periph/rtc.rx"))
 
     (peripheral-group
