@@ -8,6 +8,7 @@
         (value 28)
     )
     (link (name RCGC))
+    (link (name PR))
     (register
         (name DID0)
         (offset 0x0)
@@ -2416,12 +2417,14 @@
             (bit-offset 0)
             (bit-width 1)
             (description "Watchdog Timer 0 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group WATCHDOG) (peripheral WATCHDOG0))
         )
         (field
             (name R1)
             (bit-offset 1)
             (bit-width 1)
             (description "Watchdog Timer 1 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group WATCHDOG) (peripheral WATCHDOG1))
         )
     )
     (register
@@ -4316,12 +4319,14 @@
             (name R0)
             (bit-offset 0)
             (bit-width 1)
+            (link (name PR) (peripheral-group WATCHDOG) (peripheral WATCHDOG0))
             (description "Watchdog Timer 0 Peripheral Ready")
         )
         (field
             (name R1)
             (bit-offset 1)
             (bit-width 1)
+            (link (name PR) (peripheral-group WATCHDOG) (peripheral WATCHDOG1))
             (description "Watchdog Timer 1 Peripheral Ready")
         )
     )

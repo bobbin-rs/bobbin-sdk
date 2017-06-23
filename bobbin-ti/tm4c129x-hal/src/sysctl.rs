@@ -17,3 +17,13 @@ impl<P> SysctlEnabled for P where P: Rcgc {
         self
     }
 }
+
+pub trait SysctlReady {
+    fn sysctl_ready(&self) -> bool;
+}
+
+impl<P> SysctlReady for P where P: Pr {
+    fn sysctl_ready(&self) -> bool {
+        self.pr() != 0
+    }
+}

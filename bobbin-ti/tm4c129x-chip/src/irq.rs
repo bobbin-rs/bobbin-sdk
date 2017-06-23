@@ -1,6 +1,7 @@
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
+pub const IRQ_WATCHDOG0: IrqWatchdog0 = Irq(18, Watchdog0Id {});
 pub const IRQ_UDMA: IrqUdma = Irq(44, UdmaId {});
 pub const IRQ_UDMAERR: IrqUdmaerr = Irq(45, UdmaerrId {});
 pub const IRQ_PWM0_FAULT: IrqPwm0Fault = Irq(9, Pwm0FaultId {});
@@ -79,6 +80,7 @@ pub const IRQ_GPIOQ5: IrqGpioq5 = Irq(89, Gpioq5Id {});
 pub const IRQ_GPIOQ6: IrqGpioq6 = Irq(90, Gpioq6Id {});
 pub const IRQ_GPIOQ7: IrqGpioq7 = Irq(91, Gpioq7Id {});
 
+pub type IrqWatchdog0 = Irq<Watchdog0Id>;
 pub type IrqUdma = Irq<UdmaId>;
 pub type IrqUdmaerr = Irq<UdmaerrId>;
 pub type IrqPwm0Fault = Irq<Pwm0FaultId>;
@@ -157,6 +159,7 @@ pub type IrqGpioq5 = Irq<Gpioq5Id>;
 pub type IrqGpioq6 = Irq<Gpioq6Id>;
 pub type IrqGpioq7 = Irq<Gpioq7Id>;
 
+pub struct Watchdog0Id {} // IRQ 18
 pub struct UdmaId {} // IRQ 44
 pub struct UdmaerrId {} // IRQ 45
 pub struct Pwm0FaultId {} // IRQ 9
@@ -315,6 +318,18 @@ pub trait RegisterHandler {
 
 pub trait HandleInterrupt {
    fn handle_interrupt(&self);
+}
+
+impl RegisterHandler for IrqWatchdog0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(18, Some(wrapper::<F>));
+       IrqGuard::new(18)
+   }
 }
 
 impl RegisterHandler for IrqUdma {
@@ -1262,7 +1277,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,
    None,
    None,
-   None,
+   None,                          // IRQ 18: No Description
    None,
    None,
    None,

@@ -14,6 +14,7 @@ pub mod uart;
 pub mod timer;
 pub mod pwm;
 pub mod udma;
+pub mod watchdog;
 // pub mod i2c;
 // pub mod ssi;
 // pub mod emac;

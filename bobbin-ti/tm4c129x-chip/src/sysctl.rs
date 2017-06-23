@@ -12632,6 +12632,30 @@ impl Sysctl {
    }
 }
 
+pub trait Pr {
+   fn pr(&self) -> u32;
+   fn set_pr(&self, value: u32);
+}
+
+impl Sysctl {
+   #[inline] pub fn pr<P: Pr>(&self, p: &P) -> u32 {
+      p.pr()
+   }
+   #[inline] pub fn set_pr<P: Pr>(&self, p: &P, value: u32) {
+      p.set_pr(value)
+   }
+}
+
+impl Rcgc for super::watchdog::Watchdog0 {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcwd().r0() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcwd(|r| r.set_r0(value)); }
+}
+
+impl Rcgc for super::watchdog::Watchdog1 {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcwd().r1() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcwd(|r| r.set_r1(value)); }
+}
+
 impl Rcgc for super::timer::Timer0 {
    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgctimer().r0() }
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgctimer(|r| r.set_r0(value)); }
@@ -12795,6 +12819,16 @@ impl Rcgc for super::uart::Uart7 {
 impl Rcgc for super::pwm::Pwm0 {
    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcpwm().r0() }
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcpwm(|r| r.set_r0(value)); }
+}
+
+impl Pr for super::watchdog::Watchdog0 {
+   #[inline] fn pr(&self) -> u32 { SYSCTL.prwd().r0() }
+   #[inline] fn set_pr(&self, value: u32) { SYSCTL.with_prwd(|r| r.set_r0(value)); }
+}
+
+impl Pr for super::watchdog::Watchdog1 {
+   #[inline] fn pr(&self) -> u32 { SYSCTL.prwd().r1() }
+   #[inline] fn set_pr(&self, value: u32) { SYSCTL.with_prwd(|r| r.set_r1(value)); }
 }
 
 

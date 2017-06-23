@@ -21,6 +21,24 @@
     (peripheral (include "periph/emac.rx"))
     
     (peripheral-group
+        (name WATCHDOG)
+        (prototype "periph/watchdog.rx")
+        (peripheral
+            (name WATCHDOG0)
+            (address 0x40000000)
+            (interrupt
+                (name WATCHDOG0)
+                (value 18)
+            )        
+        )
+        (peripheral
+            (name WATCHDOG1)
+            (address 0x40001000)        
+        )
+
+    )
+
+    (peripheral-group
         (name UDMA)
         (prototype "periph/udma.rx")
         (has-channels)
