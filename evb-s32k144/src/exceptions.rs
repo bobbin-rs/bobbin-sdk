@@ -34,7 +34,7 @@ pub unsafe extern "C" fn reset() -> ! {
     // Unlock WDOG and set configuration and counter
     // Counter must be explicitly set!    
     ptr::write_volatile(0x40052004 as *mut u32, 0xD928C520);
-    ptr::write_volatile(0x40052000 as *mut u32, 0x00002900);
+    ptr::write_volatile(0x40052000 as *mut u32, 0x00002920);
     ptr::write_volatile(0x40052008 as *mut u32, 0x00000400);
 
     r0::zero_bss(&mut _sbss, &_ebss);
