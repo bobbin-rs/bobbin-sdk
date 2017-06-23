@@ -1,5 +1,6 @@
 use r0;
 use hal;
+#[allow(unused_imports)]
 use ::core::ptr;
 
 #[doc(hidden)]
@@ -30,6 +31,7 @@ pub unsafe extern "C" fn reset() -> ! {
     }    
     
     // Disable Watchdog
+    #[cfg(not(feature = "allow-cop"))]
     ptr::write_volatile(0x40048100 as *mut u32, 0);
 
     r0::zero_bss(&mut _sbss, &_ebss);
