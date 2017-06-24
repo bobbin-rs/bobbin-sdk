@@ -128,92 +128,56 @@ impl<T> Periph<T> {
      self
   }
 
-  #[inline] pub fn ccmr1_output_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
+  #[inline] pub fn ccmr_output_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
-  #[inline] pub fn ccmr1_output_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
+  #[inline] pub fn ccmr_output_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn ccmr1_output(&self) -> Ccmr1Output { 
+  #[inline] pub fn ccmr_output(&self, index: usize) -> CcmrOutput { 
+     assert!(index < 2);
      unsafe {
-        Ccmr1Output(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+        CcmrOutput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_ccmr1_output(&self, value: Ccmr1Output) -> &Self {
+  #[inline] pub fn set_ccmr_output(&self, index: usize, value: CcmrOutput) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_ccmr1_output<F: FnOnce(Ccmr1Output) -> Ccmr1Output>(&self, f: F) -> &Self {
-     let tmp = self.ccmr1_output();
-     self.set_ccmr1_output(f(tmp))
+  #[inline] pub fn with_ccmr_output<F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.ccmr_output(index);
+     self.set_ccmr_output(index, f(tmp))
   }
 
-  #[inline] pub fn ccmr1_input_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
+  #[inline] pub fn ccmr_input_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
-  #[inline] pub fn ccmr1_input_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
+  #[inline] pub fn ccmr_input_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 2);
+     ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn ccmr1_input(&self) -> Ccmr1Input { 
+  #[inline] pub fn ccmr_input(&self, index: usize) -> CcmrInput { 
+     assert!(index < 2);
      unsafe {
-        Ccmr1Input(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+        CcmrInput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_ccmr1_input(&self, value: Ccmr1Input) -> &Self {
+  #[inline] pub fn set_ccmr_input(&self, index: usize, value: CcmrInput) -> &Self {
+     assert!(index < 2);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ccmr1_input<F: FnOnce(Ccmr1Input) -> Ccmr1Input>(&self, f: F) -> &Self {
-     let tmp = self.ccmr1_input();
-     self.set_ccmr1_input(f(tmp))
-  }
-
-  #[inline] pub fn ccmr2_output_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
-  #[inline] pub fn ccmr2_output_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
-  #[inline] pub fn ccmr2_output(&self) -> Ccmr2Output { 
-     unsafe {
-        Ccmr2Output(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ccmr2_output(&self, value: Ccmr2Output) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_ccmr2_output<F: FnOnce(Ccmr2Output) -> Ccmr2Output>(&self, f: F) -> &Self {
-     let tmp = self.ccmr2_output();
-     self.set_ccmr2_output(f(tmp))
-  }
-
-  #[inline] pub fn ccmr2_input_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
-  #[inline] pub fn ccmr2_input_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
-  #[inline] pub fn ccmr2_input(&self) -> Ccmr2Input { 
-     unsafe {
-        Ccmr2Input(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ccmr2_input(&self, value: Ccmr2Input) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ccmr2_input<F: FnOnce(Ccmr2Input) -> Ccmr2Input>(&self, f: F) -> &Self {
-     let tmp = self.ccmr2_input();
-     self.set_ccmr2_input(f(tmp))
+  #[inline] pub fn with_ccmr_input<F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.ccmr_input(index);
+     self.set_ccmr_input(index, f(tmp))
   }
 
   #[inline] pub fn ccer_ptr(&self) -> *const u32 { 
@@ -326,92 +290,30 @@ impl<T> Periph<T> {
      self.set_rcr(f(tmp))
   }
 
-  #[inline] pub fn ccr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x34) as *const u32
+  #[inline] pub fn ccr_ptr(&self, index: usize) -> *const u32 { 
+     assert!(index < 4);
+     ((self.0 as usize) + 0x34 + (index << 2)) as *const u32
   }
-  #[inline] pub fn ccr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x34) as *mut u32
+  #[inline] pub fn ccr_mut(&self, index: usize) -> *mut u32 { 
+     assert!(index < 4);
+     ((self.0 as usize) + 0x34 + (index << 2)) as *mut u32
   }
-  #[inline] pub fn ccr1(&self) -> Ccr1 { 
+  #[inline] pub fn ccr(&self, index: usize) -> Ccr { 
+     assert!(index < 4);
      unsafe {
-        Ccr1(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
+        Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *const u32))
      }
   }
-  #[inline] pub fn set_ccr1(&self, value: Ccr1) -> &Self {
+  #[inline] pub fn set_ccr(&self, index: usize, value: Ccr) -> &Self {
+     assert!(index < 4);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ccr1<F: FnOnce(Ccr1) -> Ccr1>(&self, f: F) -> &Self {
-     let tmp = self.ccr1();
-     self.set_ccr1(f(tmp))
-  }
-
-  #[inline] pub fn ccr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x38) as *const u32
-  }
-  #[inline] pub fn ccr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x38) as *mut u32
-  }
-  #[inline] pub fn ccr2(&self) -> Ccr2 { 
-     unsafe {
-        Ccr2(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ccr2(&self, value: Ccr2) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-  #[inline] pub fn with_ccr2<F: FnOnce(Ccr2) -> Ccr2>(&self, f: F) -> &Self {
-     let tmp = self.ccr2();
-     self.set_ccr2(f(tmp))
-  }
-
-  #[inline] pub fn ccr3_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x3c) as *const u32
-  }
-  #[inline] pub fn ccr3_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x3c) as *mut u32
-  }
-  #[inline] pub fn ccr3(&self) -> Ccr3 { 
-     unsafe {
-        Ccr3(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ccr3(&self, value: Ccr3) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ccr3<F: FnOnce(Ccr3) -> Ccr3>(&self, f: F) -> &Self {
-     let tmp = self.ccr3();
-     self.set_ccr3(f(tmp))
-  }
-
-  #[inline] pub fn ccr4_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x40) as *const u32
-  }
-  #[inline] pub fn ccr4_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x40) as *mut u32
-  }
-  #[inline] pub fn ccr4(&self) -> Ccr4 { 
-     unsafe {
-        Ccr4(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
-     }
-  }
-  #[inline] pub fn set_ccr4(&self, value: Ccr4) -> &Self {
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
-     }
-     self
-  }
-  #[inline] pub fn with_ccr4<F: FnOnce(Ccr4) -> Ccr4>(&self, f: F) -> &Self {
-     let tmp = self.ccr4();
-     self.set_ccr4(f(tmp))
+  #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Self {
+     let tmp = self.ccr(index);
+     self.set_ccr(index, f(tmp))
   }
 
   #[inline] pub fn bdtr_ptr(&self) -> *const u32 { 
@@ -1004,43 +906,17 @@ impl Dier {
      self
   }
 
-  #[inline] pub fn cc4de(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn ccde(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 9 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [9]
   }
-  #[inline] pub fn set_cc4de(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccde(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn cc3de(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_cc3de(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn cc2de(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cc2de(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn cc1de(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cc1de(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
+     let shift: usize = 9 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1084,43 +960,17 @@ impl Dier {
      self
   }
 
-  #[inline] pub fn cc4ie(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn ccie(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 1 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [1]
   }
-  #[inline] pub fn set_cc4ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccie(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn cc3ie(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_cc3ie(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn cc2ie(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_cc2ie(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn cc1ie(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_cc1ie(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
+     let shift: usize = 1 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1145,18 +995,18 @@ impl ::core::fmt::Debug for Dier {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.tde() != 0 { try!(write!(f, " tde"))}
       if self.comde() != 0 { try!(write!(f, " comde"))}
-      if self.cc4de() != 0 { try!(write!(f, " cc4de"))}
-      if self.cc3de() != 0 { try!(write!(f, " cc3de"))}
-      if self.cc2de() != 0 { try!(write!(f, " cc2de"))}
-      if self.cc1de() != 0 { try!(write!(f, " cc1de"))}
+      if self.ccde(0) != 0 { try!(write!(f, " ccde[0]"))}
+      if self.ccde(1) != 0 { try!(write!(f, " ccde[1]"))}
+      if self.ccde(2) != 0 { try!(write!(f, " ccde[2]"))}
+      if self.ccde(3) != 0 { try!(write!(f, " ccde[3]"))}
       if self.ude() != 0 { try!(write!(f, " ude"))}
       if self.bie() != 0 { try!(write!(f, " bie"))}
       if self.tie() != 0 { try!(write!(f, " tie"))}
       if self.comie() != 0 { try!(write!(f, " comie"))}
-      if self.cc4ie() != 0 { try!(write!(f, " cc4ie"))}
-      if self.cc3ie() != 0 { try!(write!(f, " cc3ie"))}
-      if self.cc2ie() != 0 { try!(write!(f, " cc2ie"))}
-      if self.cc1ie() != 0 { try!(write!(f, " cc1ie"))}
+      if self.ccie(0) != 0 { try!(write!(f, " ccie[0]"))}
+      if self.ccie(1) != 0 { try!(write!(f, " ccie[1]"))}
+      if self.ccie(2) != 0 { try!(write!(f, " ccie[2]"))}
+      if self.ccie(3) != 0 { try!(write!(f, " ccie[3]"))}
       if self.uie() != 0 { try!(write!(f, " uie"))}
       try!(write!(f, "]"));
       Ok(())
@@ -1459,461 +1309,161 @@ impl ::core::fmt::Debug for Egr {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Ccmr1Output(pub u32);
-impl Ccmr1Output {
-  #[inline] pub fn oc2ce(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+pub struct CcmrOutput(pub u32);
+impl CcmrOutput {
+  #[inline] pub fn occe(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 7 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [7]
   }
-  #[inline] pub fn set_oc2ce(mut self, value: u32) -> Self {
+  #[inline] pub fn set_occe(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
+     let shift: usize = 7 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn oc2m(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
+  #[inline] pub fn ocm(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x7 // [6:4]
   }
-  #[inline] pub fn set_oc2m(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ocm(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x7) == 0);
-     self.0 &= !(0x7 << 12);
-     self.0 |= value << 12;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0x7 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn oc2pe(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn ocpe(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 3 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [3]
   }
-  #[inline] pub fn set_oc2pe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ocpe(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
+     let shift: usize = 3 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn oc2fe(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn ocfe(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x1 // [2]
   }
-  #[inline] pub fn set_oc2fe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ocfe(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn cc2s(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn ccs(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x3 // [1:0]
   }
-  #[inline] pub fn set_cc2s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccs(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn oc1ce(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_oc1ce(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn oc1m(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
-  }
-  #[inline] pub fn set_oc1m(mut self, value: u32) -> Self {
-     assert!((value & !0x7) == 0);
-     self.0 &= !(0x7 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn oc1pe(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_oc1pe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn oc1fe(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_oc1fe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn cc1s(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline] pub fn set_cc1s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn oc1m_3(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-  #[inline] pub fn set_oc1m_3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn oc2m_3(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
-  }
-  #[inline] pub fn set_oc2m_3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x3 << shift);
+     self.0 |= value << shift;
      self
   }
 
 }
-impl ::core::fmt::Display for Ccmr1Output {
+impl ::core::fmt::Display for CcmrOutput {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Ccmr1Output {
+impl ::core::fmt::Debug for CcmrOutput {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.oc2ce() != 0 { try!(write!(f, " oc2ce"))}
-      if self.oc2m() != 0 { try!(write!(f, " oc2m=0x{:x}", self.oc2m()))}
-      if self.oc2pe() != 0 { try!(write!(f, " oc2pe"))}
-      if self.oc2fe() != 0 { try!(write!(f, " oc2fe"))}
-      if self.cc2s() != 0 { try!(write!(f, " cc2s=0x{:x}", self.cc2s()))}
-      if self.oc1ce() != 0 { try!(write!(f, " oc1ce"))}
-      if self.oc1m() != 0 { try!(write!(f, " oc1m=0x{:x}", self.oc1m()))}
-      if self.oc1pe() != 0 { try!(write!(f, " oc1pe"))}
-      if self.oc1fe() != 0 { try!(write!(f, " oc1fe"))}
-      if self.cc1s() != 0 { try!(write!(f, " cc1s=0x{:x}", self.cc1s()))}
-      if self.oc1m_3() != 0 { try!(write!(f, " oc1m_3"))}
-      if self.oc2m_3() != 0 { try!(write!(f, " oc2m_3"))}
+      if self.occe(0) != 0 { try!(write!(f, " occe[0]"))}
+      if self.occe(1) != 0 { try!(write!(f, " occe[1]"))}
+      if self.ocm(0) != 0 { try!(write!(f, " ocm[0]=0x{:x}", self.ocm(0)))}
+      if self.ocm(1) != 0 { try!(write!(f, " ocm[1]=0x{:x}", self.ocm(1)))}
+      if self.ocpe(0) != 0 { try!(write!(f, " ocpe[0]"))}
+      if self.ocpe(1) != 0 { try!(write!(f, " ocpe[1]"))}
+      if self.ocfe(0) != 0 { try!(write!(f, " ocfe[0]"))}
+      if self.ocfe(1) != 0 { try!(write!(f, " ocfe[1]"))}
+      if self.ccs(0) != 0 { try!(write!(f, " ccs[0]=0x{:x}", self.ccs(0)))}
+      if self.ccs(1) != 0 { try!(write!(f, " ccs[1]=0x{:x}", self.ccs(1)))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Ccmr1Input(pub u32);
-impl Ccmr1Input {
-  #[inline] pub fn ic2f(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+pub struct CcmrInput(pub u32);
+impl CcmrInput {
+  #[inline] pub fn icf(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 4 + (index << 3);
+     ((self.0 as u32) >> shift) & 0xf // [7:4]
   }
-  #[inline] pub fn set_ic2f(mut self, value: u32) -> Self {
+  #[inline] pub fn set_icf(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
+     let shift: usize = 4 + (index << 3);
+     self.0 &= !(0xf << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn ic2pcs(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
+  #[inline] pub fn icpcs(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 2 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x3 // [3:2]
   }
-  #[inline] pub fn set_ic2pcs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_icpcs(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 10);
-     self.0 |= value << 10;
+     let shift: usize = 2 + (index << 3);
+     self.0 &= !(0x3 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn cc2s(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn cc1s(&self, index: usize) -> u32 {
+     assert!(index < 2);
+     let shift: usize = 0 + (index << 3);
+     ((self.0 as u32) >> shift) & 0x3 // [1:0]
   }
-  #[inline] pub fn set_cc2s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cc1s(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 2);
      assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn ic1f(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_ic1f(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn ic1pcs(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
-  }
-  #[inline] pub fn set_ic1pcs(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn cc1s(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline] pub fn set_cc1s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 3);
+     self.0 &= !(0x3 << shift);
+     self.0 |= value << shift;
      self
   }
 
 }
-impl ::core::fmt::Display for Ccmr1Input {
+impl ::core::fmt::Display for CcmrInput {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Ccmr1Input {
+impl ::core::fmt::Debug for CcmrInput {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.ic2f() != 0 { try!(write!(f, " ic2f=0x{:x}", self.ic2f()))}
-      if self.ic2pcs() != 0 { try!(write!(f, " ic2pcs=0x{:x}", self.ic2pcs()))}
-      if self.cc2s() != 0 { try!(write!(f, " cc2s=0x{:x}", self.cc2s()))}
-      if self.ic1f() != 0 { try!(write!(f, " ic1f=0x{:x}", self.ic1f()))}
-      if self.ic1pcs() != 0 { try!(write!(f, " ic1pcs=0x{:x}", self.ic1pcs()))}
-      if self.cc1s() != 0 { try!(write!(f, " cc1s=0x{:x}", self.cc1s()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ccmr2Output(pub u32);
-impl Ccmr2Output {
-  #[inline] pub fn oc4ce(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_oc4ce(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-  #[inline] pub fn oc4m(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
-  }
-  #[inline] pub fn set_oc4m(mut self, value: u32) -> Self {
-     assert!((value & !0x7) == 0);
-     self.0 &= !(0x7 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn oc4pe(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_oc4pe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn oc4fe(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_oc4fe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn cc4s(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
-  }
-  #[inline] pub fn set_cc4s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn oc3ce(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_oc3ce(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn oc3m(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
-  }
-  #[inline] pub fn set_oc3m(mut self, value: u32) -> Self {
-     assert!((value & !0x7) == 0);
-     self.0 &= !(0x7 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn oc3pe(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_oc3pe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn oc3fe(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_oc3fe(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn cc3s(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline] pub fn set_cc3s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn oc3m_3(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-  #[inline] pub fn set_oc3m_3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn oc4m_3(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
-  }
-  #[inline] pub fn set_oc4m_3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Ccmr2Output {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ccmr2Output {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.oc4ce() != 0 { try!(write!(f, " oc4ce"))}
-      if self.oc4m() != 0 { try!(write!(f, " oc4m=0x{:x}", self.oc4m()))}
-      if self.oc4pe() != 0 { try!(write!(f, " oc4pe"))}
-      if self.oc4fe() != 0 { try!(write!(f, " oc4fe"))}
-      if self.cc4s() != 0 { try!(write!(f, " cc4s=0x{:x}", self.cc4s()))}
-      if self.oc3ce() != 0 { try!(write!(f, " oc3ce"))}
-      if self.oc3m() != 0 { try!(write!(f, " oc3m=0x{:x}", self.oc3m()))}
-      if self.oc3pe() != 0 { try!(write!(f, " oc3pe"))}
-      if self.oc3fe() != 0 { try!(write!(f, " oc3fe"))}
-      if self.cc3s() != 0 { try!(write!(f, " cc3s=0x{:x}", self.cc3s()))}
-      if self.oc3m_3() != 0 { try!(write!(f, " oc3m_3"))}
-      if self.oc4m_3() != 0 { try!(write!(f, " oc4m_3"))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ccmr2Input(pub u32);
-impl Ccmr2Input {
-  #[inline] pub fn ic4f(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
-  }
-  #[inline] pub fn set_ic4f(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn ic4psc(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
-  }
-  #[inline] pub fn set_ic4psc(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn cc4s(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
-  }
-  #[inline] pub fn set_cc4s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn ic3f(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
-  }
-  #[inline] pub fn set_ic3f(mut self, value: u32) -> Self {
-     assert!((value & !0xf) == 0);
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn ic3psc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
-  }
-  #[inline] pub fn set_ic3psc(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn cc3s(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
-  }
-  #[inline] pub fn set_cc3s(mut self, value: u32) -> Self {
-     assert!((value & !0x3) == 0);
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Ccmr2Input {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ccmr2Input {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.ic4f() != 0 { try!(write!(f, " ic4f=0x{:x}", self.ic4f()))}
-      if self.ic4psc() != 0 { try!(write!(f, " ic4psc=0x{:x}", self.ic4psc()))}
-      if self.cc4s() != 0 { try!(write!(f, " cc4s=0x{:x}", self.cc4s()))}
-      if self.ic3f() != 0 { try!(write!(f, " ic3f=0x{:x}", self.ic3f()))}
-      if self.ic3psc() != 0 { try!(write!(f, " ic3psc=0x{:x}", self.ic3psc()))}
-      if self.cc3s() != 0 { try!(write!(f, " cc3s=0x{:x}", self.cc3s()))}
+      if self.icf(0) != 0 { try!(write!(f, " icf[0]=0x{:x}", self.icf(0)))}
+      if self.icf(1) != 0 { try!(write!(f, " icf[1]=0x{:x}", self.icf(1)))}
+      if self.icpcs(0) != 0 { try!(write!(f, " icpcs[0]=0x{:x}", self.icpcs(0)))}
+      if self.icpcs(1) != 0 { try!(write!(f, " icpcs[1]=0x{:x}", self.icpcs(1)))}
+      if self.cc1s(0) != 0 { try!(write!(f, " cc1s[0]=0x{:x}", self.cc1s(0)))}
+      if self.cc1s(1) != 0 { try!(write!(f, " cc1s[1]=0x{:x}", self.cc1s(1)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1921,193 +1471,47 @@ impl ::core::fmt::Debug for Ccmr2Input {
 #[derive(PartialEq, Eq)]
 pub struct Ccer(pub u32);
 impl Ccer {
-  #[inline] pub fn cc1e(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn cce(&self, index: usize) -> u32 {
+     assert!(index < 4);
+     let shift: usize = 0 + (index << 2);
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_cc1e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cce(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 4);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index << 2);
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
-  #[inline] pub fn cc1p(&self) -> u32 {
+  #[inline] pub fn ccp(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-  #[inline] pub fn set_cc1p(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
-  #[inline] pub fn cc1ne(&self) -> u32 {
+  #[inline] pub fn ccne(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-  #[inline] pub fn set_cc1ne(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccne(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
-  #[inline] pub fn cc1np(&self) -> u32 {
+  #[inline] pub fn ccnp(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-  #[inline] pub fn set_cc1np(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccnp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn cc2e(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_cc2e(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn cc2p(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_cc2p(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn cc2ne(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_cc2ne(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn cc2np(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_cc2np(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn cc3e(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_cc3e(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn cc3p(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_cc3p(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn cc3ne(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_cc3ne(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn cc3np(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_cc3np(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn cc4e(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-  #[inline] pub fn set_cc4e(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn cc4p(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_cc4p(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-  #[inline] pub fn cc4np(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_cc4np(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-  #[inline] pub fn cc5e(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-  #[inline] pub fn set_cc5e(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-  #[inline] pub fn cc5p(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-  #[inline] pub fn set_cc5p(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-  #[inline] pub fn cc6e(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-  #[inline] pub fn set_cc6e(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-  #[inline] pub fn cc6p(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-  #[inline] pub fn set_cc6p(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
      self
   }
 
@@ -2120,25 +1524,13 @@ impl ::core::fmt::Display for Ccer {
 impl ::core::fmt::Debug for Ccer {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.cc1e() != 0 { try!(write!(f, " cc1e"))}
-      if self.cc1p() != 0 { try!(write!(f, " cc1p"))}
-      if self.cc1ne() != 0 { try!(write!(f, " cc1ne"))}
-      if self.cc1np() != 0 { try!(write!(f, " cc1np"))}
-      if self.cc2e() != 0 { try!(write!(f, " cc2e"))}
-      if self.cc2p() != 0 { try!(write!(f, " cc2p"))}
-      if self.cc2ne() != 0 { try!(write!(f, " cc2ne"))}
-      if self.cc2np() != 0 { try!(write!(f, " cc2np"))}
-      if self.cc3e() != 0 { try!(write!(f, " cc3e"))}
-      if self.cc3p() != 0 { try!(write!(f, " cc3p"))}
-      if self.cc3ne() != 0 { try!(write!(f, " cc3ne"))}
-      if self.cc3np() != 0 { try!(write!(f, " cc3np"))}
-      if self.cc4e() != 0 { try!(write!(f, " cc4e"))}
-      if self.cc4p() != 0 { try!(write!(f, " cc4p"))}
-      if self.cc4np() != 0 { try!(write!(f, " cc4np"))}
-      if self.cc5e() != 0 { try!(write!(f, " cc5e"))}
-      if self.cc5p() != 0 { try!(write!(f, " cc5p"))}
-      if self.cc6e() != 0 { try!(write!(f, " cc6e"))}
-      if self.cc6p() != 0 { try!(write!(f, " cc6p"))}
+      if self.cce(0) != 0 { try!(write!(f, " cce[0]"))}
+      if self.cce(1) != 0 { try!(write!(f, " cce[1]"))}
+      if self.cce(2) != 0 { try!(write!(f, " cce[2]"))}
+      if self.cce(3) != 0 { try!(write!(f, " cce[3]"))}
+      if self.ccp() != 0 { try!(write!(f, " ccp"))}
+      if self.ccne() != 0 { try!(write!(f, " ccne"))}
+      if self.ccnp() != 0 { try!(write!(f, " ccnp"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2263,12 +1655,12 @@ impl ::core::fmt::Debug for Rcr {
    }
 }
 #[derive(PartialEq, Eq)]
-pub struct Ccr1(pub u32);
-impl Ccr1 {
-  #[inline] pub fn ccr1(&self) -> u32 {
+pub struct Ccr(pub u32);
+impl Ccr {
+  #[inline] pub fn ccr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-  #[inline] pub fn set_ccr1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ccr(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2276,96 +1668,15 @@ impl Ccr1 {
   }
 
 }
-impl ::core::fmt::Display for Ccr1 {
+impl ::core::fmt::Display for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Ccr1 {
+impl ::core::fmt::Debug for Ccr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.ccr1() != 0 { try!(write!(f, " ccr1=0x{:x}", self.ccr1()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ccr2(pub u32);
-impl Ccr2 {
-  #[inline] pub fn ccr2(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
-  }
-  #[inline] pub fn set_ccr2(mut self, value: u32) -> Self {
-     assert!((value & !0xffff) == 0);
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Ccr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ccr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.ccr2() != 0 { try!(write!(f, " ccr2=0x{:x}", self.ccr2()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ccr3(pub u32);
-impl Ccr3 {
-  #[inline] pub fn ccr3(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
-  }
-  #[inline] pub fn set_ccr3(mut self, value: u32) -> Self {
-     assert!((value & !0xffff) == 0);
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Ccr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ccr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.ccr3() != 0 { try!(write!(f, " ccr3=0x{:x}", self.ccr3()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[derive(PartialEq, Eq)]
-pub struct Ccr4(pub u32);
-impl Ccr4 {
-  #[inline] pub fn ccr4(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
-  }
-  #[inline] pub fn set_ccr4(mut self, value: u32) -> Self {
-     assert!((value & !0xffff) == 0);
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Ccr4 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Ccr4 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.ccr4() != 0 { try!(write!(f, " ccr4=0x{:x}", self.ccr4()))}
+      if self.ccr() != 0 { try!(write!(f, " ccr=0x{:x}", self.ccr()))}
       try!(write!(f, "]"));
       Ok(())
    }

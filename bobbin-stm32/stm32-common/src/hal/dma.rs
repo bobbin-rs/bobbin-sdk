@@ -109,6 +109,8 @@ pub trait ChannelExt {
     fn sfcr(&self) -> Sfcr;
     fn set_sfcr(&self, Sfcr) -> &Self;
     fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, F) -> &Self;
+
+    fn set_chsel(&self, value: u8) -> &Self;
 }
 
 impl<P, T> ChannelExt for Channel<P, T> {
@@ -326,4 +328,8 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self.periph().with_sfcr(self.index, f);
         self
     }    
+    fn set_chsel(&self, value: u8) -> &Self {
+        self.periph().with_scr(self.index, |r| r.set_chsel(value as u32));
+        self
+    }
 }
