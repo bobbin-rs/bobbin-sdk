@@ -65,6 +65,9 @@ pub trait ChannelExt {
     fn set_scr(&self, Scr) -> &Self;
     fn with_scr<F: FnOnce(Scr) -> Scr>(&self, F) -> &Self;
 
+    fn is_enabled(&self) -> bool {
+        self.scr().en() != 0
+    }
     fn set_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.with_scr(|r| r.set_en(value))        
