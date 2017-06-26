@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate frdm_k64f as board;
 
-use board::hal::dma::*;
+use board::hal::edma::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
