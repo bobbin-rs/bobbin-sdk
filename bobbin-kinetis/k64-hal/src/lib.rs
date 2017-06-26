@@ -98,11 +98,18 @@ pub mod pit {
     pub use sim::SimEnabled;
 }
 
-pub mod dma {
-    pub use chip::dma::*;
-    pub use kinetis_common::hal::dma::*;
+pub mod edma {
+    pub use chip::edma::*;
+    pub use kinetis_common::hal::edma::*;
     pub use sim::SimEnabled;
 }
+
+pub mod dmamux {
+    pub use chip::dmamux::*;
+    pub use kinetis_common::hal::dmamux::*;
+    pub use sim::SimEnabled;
+}
+
 
 pub mod wdog {
     pub use chip::wdog::*;

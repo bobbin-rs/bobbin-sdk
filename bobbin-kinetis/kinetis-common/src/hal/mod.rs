@@ -11,4 +11,5 @@ pub mod uart;
 pub mod uart0;
 pub mod dma;
 pub mod edma;
+pub mod dmamux;
 pub mod wdog;

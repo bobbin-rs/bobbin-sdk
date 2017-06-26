@@ -916,163 +916,17 @@ impl ::core::fmt::Debug for Es {
 #[derive(PartialEq, Eq)]
 pub struct Erq(pub u32);
 impl Erq {
-  #[inline] pub fn erq0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn erq(&self, index: usize) -> u32 {
+     assert!(index < 16);
+     let shift: usize = 0 + index;
+     ((self.0 as u32) >> shift) & 0x1 // [0]
   }
-  #[inline] pub fn set_erq0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_erq(mut self, index: usize, value: u32) -> Self {
+     assert!(index < 16);
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-  #[inline] pub fn erq1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-  #[inline] pub fn set_erq1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-  #[inline] pub fn erq2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-  #[inline] pub fn set_erq2(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-  #[inline] pub fn erq3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-  #[inline] pub fn set_erq3(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-  #[inline] pub fn erq4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-  #[inline] pub fn set_erq4(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-  #[inline] pub fn erq5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-  #[inline] pub fn set_erq5(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-  #[inline] pub fn erq6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-  #[inline] pub fn set_erq6(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-  #[inline] pub fn erq7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-  #[inline] pub fn set_erq7(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-  #[inline] pub fn erq8(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-  #[inline] pub fn set_erq8(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-  #[inline] pub fn erq9(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-  #[inline] pub fn set_erq9(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-  #[inline] pub fn erq10(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-  #[inline] pub fn set_erq10(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-  #[inline] pub fn erq11(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-  #[inline] pub fn set_erq11(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-  #[inline] pub fn erq12(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-  #[inline] pub fn set_erq12(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-  #[inline] pub fn erq13(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-  #[inline] pub fn set_erq13(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-  #[inline] pub fn erq14(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-  #[inline] pub fn set_erq14(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-  #[inline] pub fn erq15(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-  #[inline] pub fn set_erq15(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
+     let shift: usize = 0 + index;
+     self.0 &= !(0x1 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1085,22 +939,22 @@ impl ::core::fmt::Display for Erq {
 impl ::core::fmt::Debug for Erq {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.erq0() != 0 { try!(write!(f, " erq0"))}
-      if self.erq1() != 0 { try!(write!(f, " erq1"))}
-      if self.erq2() != 0 { try!(write!(f, " erq2"))}
-      if self.erq3() != 0 { try!(write!(f, " erq3"))}
-      if self.erq4() != 0 { try!(write!(f, " erq4"))}
-      if self.erq5() != 0 { try!(write!(f, " erq5"))}
-      if self.erq6() != 0 { try!(write!(f, " erq6"))}
-      if self.erq7() != 0 { try!(write!(f, " erq7"))}
-      if self.erq8() != 0 { try!(write!(f, " erq8"))}
-      if self.erq9() != 0 { try!(write!(f, " erq9"))}
-      if self.erq10() != 0 { try!(write!(f, " erq10"))}
-      if self.erq11() != 0 { try!(write!(f, " erq11"))}
-      if self.erq12() != 0 { try!(write!(f, " erq12"))}
-      if self.erq13() != 0 { try!(write!(f, " erq13"))}
-      if self.erq14() != 0 { try!(write!(f, " erq14"))}
-      if self.erq15() != 0 { try!(write!(f, " erq15"))}
+      if self.erq(0) != 0 { try!(write!(f, " erq[0]"))}
+      if self.erq(1) != 0 { try!(write!(f, " erq[1]"))}
+      if self.erq(2) != 0 { try!(write!(f, " erq[2]"))}
+      if self.erq(3) != 0 { try!(write!(f, " erq[3]"))}
+      if self.erq(4) != 0 { try!(write!(f, " erq[4]"))}
+      if self.erq(5) != 0 { try!(write!(f, " erq[5]"))}
+      if self.erq(6) != 0 { try!(write!(f, " erq[6]"))}
+      if self.erq(7) != 0 { try!(write!(f, " erq[7]"))}
+      if self.erq(8) != 0 { try!(write!(f, " erq[8]"))}
+      if self.erq(9) != 0 { try!(write!(f, " erq[9]"))}
+      if self.erq(10) != 0 { try!(write!(f, " erq[10]"))}
+      if self.erq(11) != 0 { try!(write!(f, " erq[11]"))}
+      if self.erq(12) != 0 { try!(write!(f, " erq[12]"))}
+      if self.erq(13) != 0 { try!(write!(f, " erq[13]"))}
+      if self.erq(14) != 0 { try!(write!(f, " erq[14]"))}
+      if self.erq(15) != 0 { try!(write!(f, " erq[15]"))}
       try!(write!(f, "]"));
       Ok(())
    }
