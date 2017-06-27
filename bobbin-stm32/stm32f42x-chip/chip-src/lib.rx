@@ -2017,7 +2017,7 @@
                 (name DMA1_STREAM0)
                 (index 0)
                 (interrupt
-                    (name DMA1_Stream0)
+                    (name DMA1_STREAM0)
                     (type DMA)
                     (value 11)
                     (description "DMA1 Stream0 global interrupt")                
@@ -2027,7 +2027,7 @@
                 (name DMA1_STREAM1)
                 (index 1)
                 (interrupt
-                    (name DMA1_Stream1)
+                    (name DMA1_STREAM1)
                     (type DMA)
                     (value 12)
                     (description "DMA1 Stream1 global interrupt")
@@ -2037,7 +2037,7 @@
                 (name DMA1_STREAM2)
                 (index 2)
                 (interrupt
-                    (name DMA1_Stream2)
+                    (name DMA1_STREAM2)
                     (type DMA)
                     (value 13)
                     (description "DMA1 Stream2 global interrupt")
@@ -2047,7 +2047,7 @@
                 (name DMA1_STREAM3)
                 (index 3)
                 (interrupt
-                    (name DMA1_Stream3)
+                    (name DMA1_STREAM3)
                     (type DMA)
                     (value 14)
                     (description "DMA1 Stream3 global interrupt")
@@ -2057,7 +2057,7 @@
                 (name DMA1_STREAM4)
                 (index 4)
                 (interrupt
-                    (name DMA1_Stream4)
+                    (name DMA1_STREAM4)
                     (type DMA)
                     (value 15)
                     (description "DMA1 Stream4 global interrupt")
@@ -2067,7 +2067,7 @@
                 (name DMA1_STREAM5)
                 (index 5)
                 (interrupt
-                    (name DMA1_Stream5)
+                    (name DMA1_STREAM5)
                     (type DMA)
                     (value 16)
                     (description "DMA1 Stream5 global interrupt")
@@ -2077,7 +2077,7 @@
                 (name DMA1_STREAM6)
                 (index 6)
                 (interrupt
-                    (name DMA1_Stream6)
+                    (name DMA1_STREAM6)
                     (type DMA)
                     (value 17)
                     (description "DMA1 Stream6 global interrupt")
@@ -2087,7 +2087,7 @@
                 (name DMA1_STREAM7)
                 (index 7)
                 (interrupt
-                    (name DMA1_Stream7)
+                    (name DMA1_STREAM7)
                     (type DMA)
                     (value 47)
                     (description "DMA1 Stream7 global interrupt")
@@ -2103,7 +2103,7 @@
                 (name DMA2_STREAM0)
                 (index 0)
                 (interrupt
-                    (name DMA2_Stream0)
+                    (name DMA2_STREAM0)
                     (type DMA)
                     (value 56)
                     (description "DMA2 Stream0 global interrupt")
@@ -2113,7 +2113,7 @@
                 (name DMA2_STREAM1)
                 (index 1)
                 (interrupt
-                    (name DMA2_Stream1)
+                    (name DMA2_STREAM1)
                     (type DMA)
                     (value 57)
                     (description "DMA2 Stream1 global interrupt")
@@ -2123,7 +2123,7 @@
                 (name DMA2_STREAM2)
                 (index 2)
                 (interrupt
-                    (name DMA2_Stream2)
+                    (name DMA2_STREAM2)
                     (type DMA)
                     (value 58)
                     (description "DMA2 Stream2 global interrupt")
@@ -2133,7 +2133,7 @@
                 (name DMA2_STREAM3)
                 (index 3)
                 (interrupt
-                    (name DMA2_Stream3)
+                    (name DMA2_STREAM3)
                     (type DMA)
                     (value 59)
                     (description "DMA2 Stream3 global interrupt")
@@ -2143,7 +2143,7 @@
                 (name DMA2_STREAM4)
                 (index 4)
                 (interrupt
-                    (name DMA2_Stream4)
+                    (name DMA2_STREAM4)
                     (type DMA)
                     (value 60)
                     (description "DMA2 Stream4 global interrupt")
@@ -2153,7 +2153,7 @@
                 (name DMA2_STREAM5)
                 (index 5)
                 (interrupt
-                    (name DMA2_Stream5)
+                    (name DMA2_STREAM5)
                     (type DMA)
                     (value 68)
                     (description "DMA2 Stream5 global interrupt")
@@ -2163,7 +2163,7 @@
                 (name DMA2_STREAM6)
                 (index 6)
                 (interrupt
-                    (name DMA2_Stream6)
+                    (name DMA2_STREAM6)
                     (type DMA)
                     (value 69)
                     (description "DMA2 Stream6 global interrupt")
@@ -2173,7 +2173,7 @@
                 (name DMA2_STREAM7)
                 (index 7)
                 (interrupt
-                    (name DMA2_Stream7)
+                    (name DMA2_STREAM7)
                     (type DMA)
                     (value 70)
                     (description "DMA2 Stream7 global interrupt")
