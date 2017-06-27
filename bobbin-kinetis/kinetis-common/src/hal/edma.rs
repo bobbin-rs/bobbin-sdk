@@ -15,6 +15,9 @@ pub trait EdmaChExt {
     fn soff(&self) -> i16;
     fn set_soff(&self, i16) -> &Self;
 
+    fn slast(&self) -> i32;
+    fn set_slast(&self, i32) -> &Self;    
+
     fn daddr(&self) -> u32;
     fn set_daddr(&self, u32) -> &Self;
 
@@ -26,6 +29,9 @@ pub trait EdmaChExt {
 
     fn citer(&self) -> u16;
     fn set_citer(&self, u16) -> &Self;
+
+    fn dlastsga(&self) -> u32;
+    fn set_dlastsga(&self, u32) -> &Self;
 
     fn biter(&self) -> u16;
     fn set_biter(&self, u16) -> &Self;
@@ -93,6 +99,15 @@ impl<P, T> EdmaChExt for Channel<P, T> {
         self
     }
 
+    fn slast(&self) -> i32 {
+        self.periph.tcd_slast(self.index).slast() as i32
+    }
+
+    fn set_slast(&self, value: i32) -> &Self {
+        self.periph.set_tcd_slast(self.index, TcdSlast(0).set_slast(value as u32));
+        self
+    }    
+
     fn daddr(&self) -> u32 {
         self.periph.tcd_daddr(self.index).daddr()
     }
@@ -127,6 +142,16 @@ impl<P, T> EdmaChExt for Channel<P, T> {
         self.periph.set_tcd_citer_elinkno(self.index, TcdCiterElinkno(0).set_citer(value));
         self
     }
+
+
+    fn dlastsga(&self) -> u32 {
+        self.periph.tcd_dlastsga(self.index).dlastsga()
+    }
+    fn set_dlastsga(&self, value: u32) -> &Self {
+        self.periph.set_tcd_dlastsga(self.index, TcdDlastsga(0).set_dlastsga(value));
+        self
+    }
+
 
     fn biter(&self) -> u16 {
         self.periph.tcd_biter_elinkno(self.index).biter()

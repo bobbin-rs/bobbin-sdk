@@ -1827,3 +1827,31 @@ pub const DMAC_CH11: Channel<DmacCh11Id, DmacId> = Channel { periph: DMAC, index
 pub struct DmacCh11Id {}
 pub type DmacCh11 = Channel<DmacCh11Id, DmacId>;
 
+pub trait IrqDma<T> {
+   fn irq_dma(&self) -> super::irq::Irq<T>;
+}
+
+pub trait RegisterDmaHandler {
+   fn register_dma_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleDma>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+}
+
+pub trait HandleDma {
+   fn handle_dma(&self);
+}
+
+impl IrqDma<super::irq::DmacId> for Dmac {
+   fn irq_dma(&self) -> super::irq::IrqDmac { super::irq::IRQ_DMAC }
+}
+
+impl RegisterDmaHandler for Dmac {
+   fn register_dma_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleDma>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleDma>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_dma() }
+       }
+       super::irq::set_handler(6, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(6)
+   }
+}
+

@@ -45,6 +45,7 @@
             (interrupt
                 (name DMAC)
                 (value 6)
+                (type DMA)
             )
         )
     )
