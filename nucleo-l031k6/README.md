@@ -1,13 +1,13 @@
-# Nucleo-F031K6
+# Nucleo-L031K6
 
-The [Nucleo-F031K6](http://www.st.com/en/evaluation-tools/nucleo-f031k6.html) is an indexpensive development board with a [STM32F031K6](http://www.st.com/en/microcontrollers/stm32f031k6.html) MCU and onboard ST-Link V2.1 debugger.
+The [Nucleo-L031K6](http://www.st.com/en/evaluation-tools/nucleo-l031k6.html) is an indexpensive development board with a [STM32L031K6](http://www.st.com/en/microcontrollers/stm32l031k6.html) MCU and onboard ST-Link V2.1 debugger.
 
 ## Reference Materials
 
-- [Board Page](http://www.st.com/en/evaluation-tools/nucleo-f031k6.html)
+- [Board Page](http://www.st.com/en/evaluation-tools/nucleo-l031k6.html)
 - [Board User Manual](http://www.st.com/resource/en/user_manual/dm00231744.pdf)
-- [MCU Page](http://www.st.com/en/microcontrollers/stm32f031k6.html)
-- [MCU Datasheet](http://www.st.com/resource/en/datasheet/stm32f031k6.pdf)
+- [MCU Page](http://www.st.com/en/microcontrollers/stm32l031k6.html)
+- [MCU Datasheet](http://www.st.com/resource/en/datasheet/stm32l031k6.pdf)
 - [MCU Reference](http://www.st.com/resource/en/reference_manual/dm00031936.pdf)
 
 ## Getting Started

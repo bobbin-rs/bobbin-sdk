@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate nucleo_f031k6 as board;
+extern crate nucleo_l031k6 as board;
 
 use board::hal::rcc::RCC;
 use board::hal::wwdg::*;

@@ -3,7 +3,7 @@
 #![feature(asm)]
 
 #[macro_use]
-extern crate nucleo_f031k6 as board;
+extern crate nucleo_l031k6 as board;
 
 use board::btn::BTN0;
 use board::hal::gpio::*;

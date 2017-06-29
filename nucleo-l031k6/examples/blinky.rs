@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate nucleo_f031k6 as board;
+extern crate nucleo_l031k6 as board;
 
 use board::hal::gpio::*;
 use board::led::LED0;
