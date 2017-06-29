@@ -519,7 +519,32 @@
             )
         )
     )
-
+    (peripheral-group
+        (name TIM_BAS)
+        (module (name stm32_common::chip::tim_bas::*))
+        (peripheral            
+            (name TIM6)
+            (address 0x40001000)
+            (description "Basic timer")
+            (interrupt
+                (name TIM6)
+                (value 17)
+                (type TIM)
+                (description "TIMER6 global interrupt")
+            )
+        )
+        (peripheral            
+            (name TIM7)
+            (address 0X40001400)
+            (description "Basic timer")
+            (interrupt
+                (name TIM7)
+                (value 18)
+                (type TIM)
+                (description "TIMER6 global interrupt")
+            )
+        )
+    )
     (peripheral-group
         (name GPIO)
         (module (name stm32_common::chip::gpio::*))
