@@ -10,6 +10,7 @@
     )
     (link (name EN))
     (link (name RST))
+    (link (name SEL))
     (register
         (name CR)
         (offset 0x0)
@@ -1085,6 +1086,7 @@
             (bit-offset 18)
             (bit-width 2)
             (description "Low Power Timer clock source selection bits")
+            (link (name SEL) (peripheral-group LPTIM) (peripheral LPTIM))
         )
         (field
             (name I2C1SEL)

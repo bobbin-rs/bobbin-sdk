@@ -2616,6 +2616,20 @@ impl Rcc {
    }
 }
 
+pub trait Sel {
+   fn sel(&self) -> u32;
+   fn set_sel(&self, value: u32);
+}
+
+impl Rcc {
+   #[inline] pub fn sel<P: Sel>(&self, p: &P) -> u32 {
+      p.sel()
+   }
+   #[inline] pub fn set_sel<P: Sel>(&self, p: &P, value: u32) {
+      p.set_sel(value)
+   }
+}
+
 impl Rst for super::gpio::Gpioh {
    #[inline] fn rst(&self) -> u32 { RCC.ioprstr().iophrst() }
    #[inline] fn set_rst(&self, value: u32) { RCC.with_ioprstr(|r| r.set_iophrst(value)); }
@@ -2774,6 +2788,11 @@ impl En for super::wwdg::Wwdg {
 impl En for super::tim_gen::Tim2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
+}
+
+impl Sel for super::lptim::Lptim {
+   #[inline] fn sel(&self) -> u32 { RCC.ccipr().lptim1sel() }
+   #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_lptim1sel(value)); }
 }
 
 

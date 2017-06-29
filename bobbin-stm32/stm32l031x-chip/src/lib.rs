@@ -24,7 +24,6 @@ pub mod exti;
 pub mod dma;
 pub mod i2c;
 pub mod tim_gen;
-pub mod tim_bas;
 pub mod gpio;
 pub mod usart;
 pub mod lpuart;

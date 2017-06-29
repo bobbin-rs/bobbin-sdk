@@ -70,6 +70,20 @@ impl<P> RccEnabled for P where P: En {
     }
 }
 
+pub trait RccSel {
+    fn rcc_sel(&self) -> u32;
+    fn rcc_set_sel(&self, value: u32) -> &Self;
+}
+
+impl<P> RccSel for P where P: Sel {
+    fn rcc_sel(&self) -> u32 {
+        self.sel()
+    }
+    fn rcc_set_sel(&self, value: u32) -> &Self {
+        self.set_sel(value);
+        self
+    }    
+}
 
 
 // pub fn gpio_index(gpio: &GpioImpl) -> usize {

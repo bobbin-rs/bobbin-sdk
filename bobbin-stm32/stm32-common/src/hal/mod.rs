@@ -6,6 +6,7 @@ pub mod usart_f24;
 pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
+pub mod lptim;
 pub mod crc;
 pub mod crc_24;
 pub mod rng;
