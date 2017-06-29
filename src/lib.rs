@@ -158,6 +158,7 @@ pub struct PeripheralGroup {
     pub modules: Vec<Module>,
     pub has_pins: bool,
     pub has_channels: bool,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Clone, Default)]

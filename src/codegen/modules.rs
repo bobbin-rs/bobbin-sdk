@@ -114,6 +114,8 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
 }
 
 pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exception>) -> Result<()> {
+    try!(writeln!(out, "//! Exceptions"));
+    try!(writeln!(out, ""));
     try!(writeln!(out, "pub type Handler = unsafe extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
@@ -172,6 +174,9 @@ pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exce
 pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
     let mut interrupts: Vec<Option<&Interrupt>> = Vec::with_capacity(interrupt_count as usize);
 
+    try!(writeln!(out, "//! Interrupts"));
+    try!(writeln!(out, ""));
+
     for _ in 0..interrupt_count {
         interrupts.push(None);
     }
@@ -193,6 +198,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "use ::core::marker::PhantomData;"));
     try!(writeln!(out, "pub type Handler = extern \"C\" fn();"));
     try!(writeln!(out, ""));
+
 
     for pg in d.peripheral_groups.iter() {
         for p in pg.peripherals.iter() {
@@ -492,6 +498,10 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
     let mut signals = HashSet::new();
     let mut signal_types = HashSet::new();
 
+    try!(writeln!(out, "//! Signals"));
+    try!(writeln!(out, ""));
+
+
     try!(writeln!(out, "pub trait Signal<T> {{}}"));
     try!(writeln!(out, ""));
 
@@ -577,6 +587,13 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     let mut link_traits = HashSet::new();
+
+    if let Some(ref desc) = pg.description {
+        let desc = desc.trim();
+        if desc.len() > 0 {
+            try!(writeln!(out, "//! {}", desc));
+        }
+    }       
 
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -982,6 +999,13 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
 pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
+
+    if let Some(ref desc) = p.description {
+        let desc = desc.trim();
+        if desc.len() > 0 {
+            try!(writeln!(out, "//! {}", desc));
+        }
+    }       
 
     if let Some(dim) = p.dim {
         for (offset, name) in p.iter_dim() {

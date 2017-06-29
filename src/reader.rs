@@ -450,6 +450,7 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
                 Some("module") => pg.modules.push(try!(read_module(ctx, &arr[1..]))),
                 Some("has-pins") => pg.has_pins = true,
                 Some("has-channels") => pg.has_channels = true,
+                Some("description") => pg.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                 Some("prototype") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    
