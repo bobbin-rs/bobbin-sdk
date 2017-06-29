@@ -159,83 +159,161 @@ pub type IrqGpioq5 = Irq<Gpioq5Id>;
 pub type IrqGpioq6 = Irq<Gpioq6Id>;
 pub type IrqGpioq7 = Irq<Gpioq7Id>;
 
+#[doc(hidden)]
 pub struct Watchdog0Id {} // IRQ 18
+#[doc(hidden)]
 pub struct UdmaId {} // IRQ 44
+#[doc(hidden)]
 pub struct UdmaerrId {} // IRQ 45
+#[doc(hidden)]
 pub struct Pwm0FaultId {} // IRQ 9
+#[doc(hidden)]
 pub struct Pwm0Ch0Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Pwm0Ch1Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Pwm0Ch2Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Pwm0Ch3Id {} // IRQ 43
+#[doc(hidden)]
 pub struct Timer0aId {} // IRQ 19
+#[doc(hidden)]
 pub struct Timer0bId {} // IRQ 20
+#[doc(hidden)]
 pub struct Timer1aId {} // IRQ 21
+#[doc(hidden)]
 pub struct Timer1bId {} // IRQ 22
+#[doc(hidden)]
 pub struct Timer2aId {} // IRQ 23
+#[doc(hidden)]
 pub struct Timer2bId {} // IRQ 24
+#[doc(hidden)]
 pub struct Timer3aId {} // IRQ 35
+#[doc(hidden)]
 pub struct Timer3bId {} // IRQ 36
+#[doc(hidden)]
 pub struct Timer4aId {} // IRQ 63
+#[doc(hidden)]
 pub struct Timer4bId {} // IRQ 64
+#[doc(hidden)]
 pub struct Timer5aId {} // IRQ 65
+#[doc(hidden)]
 pub struct Timer5bId {} // IRQ 66
+#[doc(hidden)]
 pub struct Timer6aId {} // IRQ 98
+#[doc(hidden)]
 pub struct Timer6bId {} // IRQ 99
+#[doc(hidden)]
 pub struct Timer7aId {} // IRQ 100
+#[doc(hidden)]
 pub struct Timer7bId {} // IRQ 101
+#[doc(hidden)]
 pub struct Uart0Id {} // IRQ 5
+#[doc(hidden)]
 pub struct Uart1Id {} // IRQ 6
+#[doc(hidden)]
 pub struct Uart2Id {} // IRQ 33
+#[doc(hidden)]
 pub struct Uart3Id {} // IRQ 56
+#[doc(hidden)]
 pub struct Uart4Id {} // IRQ 57
+#[doc(hidden)]
 pub struct Uart5Id {} // IRQ 58
+#[doc(hidden)]
 pub struct Uart6Id {} // IRQ 59
+#[doc(hidden)]
 pub struct Uart7Id {} // IRQ 60
+#[doc(hidden)]
 pub struct I2c0Id {} // IRQ 8
+#[doc(hidden)]
 pub struct I2c1Id {} // IRQ 37
+#[doc(hidden)]
 pub struct I2c2Id {} // IRQ 61
+#[doc(hidden)]
 pub struct I2c3Id {} // IRQ 62
+#[doc(hidden)]
 pub struct Ssi0Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Ssi1Id {} // IRQ 34
+#[doc(hidden)]
 pub struct Ssi2Id {} // IRQ 54
+#[doc(hidden)]
 pub struct Ssi3Id {} // IRQ 55
+#[doc(hidden)]
 pub struct GpioaId {} // IRQ 0
+#[doc(hidden)]
 pub struct GpiobId {} // IRQ 1
+#[doc(hidden)]
 pub struct GpiocId {} // IRQ 2
+#[doc(hidden)]
 pub struct GpiodId {} // IRQ 3
+#[doc(hidden)]
 pub struct GpioeId {} // IRQ 4
+#[doc(hidden)]
 pub struct GpiofId {} // IRQ 30
+#[doc(hidden)]
 pub struct GpiogId {} // IRQ 31
+#[doc(hidden)]
 pub struct GpiohId {} // IRQ 32
+#[doc(hidden)]
 pub struct GpiojId {} // IRQ 54
+#[doc(hidden)]
 pub struct GpioaAhbId {} // IRQ 0
+#[doc(hidden)]
 pub struct GpiobAhbId {} // IRQ 1
+#[doc(hidden)]
 pub struct GpiocAhbId {} // IRQ 2
+#[doc(hidden)]
 pub struct GpiodAhbId {} // IRQ 3
+#[doc(hidden)]
 pub struct GpioeAhbId {} // IRQ 4
+#[doc(hidden)]
 pub struct GpiofAhbId {} // IRQ 30
+#[doc(hidden)]
 pub struct GpiogAhbId {} // IRQ 31
+#[doc(hidden)]
 pub struct GpiohAhbId {} // IRQ 32
+#[doc(hidden)]
 pub struct GpiojAhbId {} // IRQ 54
+#[doc(hidden)]
 pub struct GpiokId {} // IRQ 55
+#[doc(hidden)]
 pub struct GpiolId {} // IRQ 53
+#[doc(hidden)]
 pub struct GpiomId {} // IRQ 72
+#[doc(hidden)]
 pub struct GpionId {} // IRQ 73
+#[doc(hidden)]
 pub struct Gpiop0Id {} // IRQ 76
+#[doc(hidden)]
 pub struct Gpiop1Id {} // IRQ 77
+#[doc(hidden)]
 pub struct Gpiop2Id {} // IRQ 78
+#[doc(hidden)]
 pub struct Gpiop3Id {} // IRQ 79
+#[doc(hidden)]
 pub struct Gpiop4Id {} // IRQ 80
+#[doc(hidden)]
 pub struct Gpiop5Id {} // IRQ 81
+#[doc(hidden)]
 pub struct Gpiop6Id {} // IRQ 82
+#[doc(hidden)]
 pub struct Gpiop7Id {} // IRQ 83
+#[doc(hidden)]
 pub struct Gpioq0Id {} // IRQ 84
+#[doc(hidden)]
 pub struct Gpioq1Id {} // IRQ 85
+#[doc(hidden)]
 pub struct Gpioq2Id {} // IRQ 86
+#[doc(hidden)]
 pub struct Gpioq3Id {} // IRQ 87
+#[doc(hidden)]
 pub struct Gpioq4Id {} // IRQ 88
+#[doc(hidden)]
 pub struct Gpioq5Id {} // IRQ 89
+#[doc(hidden)]
 pub struct Gpioq6Id {} // IRQ 90
+#[doc(hidden)]
 pub struct Gpioq7Id {} // IRQ 91
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

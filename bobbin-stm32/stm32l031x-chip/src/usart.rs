@@ -3,6 +3,7 @@ pub use stm32_common::chip::usart::*;
 pub const USART2: Usart2 = Periph(0x40004400, Usart2Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Usart2Id {}
 pub type Usart2 = Periph<Usart2Id>;
 

@@ -1,301 +1,370 @@
 pub const PM: Pm = Pm(0x40000400);
 
+#[doc="Power Manager"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pm(pub u32);
 impl Pm {
+#[doc="Get the *const pointer for the AHBMASK register."]
   #[inline] pub fn ahbmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the AHBMASK register."]
   #[inline] pub fn ahbmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the AHBMASK register."]
   #[inline] pub fn ahbmask(&self) -> Ahbmask { 
      unsafe {
         Ahbmask(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the AHBMASK register."]
   #[inline] pub fn set_ahbmask(&self, value: Ahbmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the AHBMASK register."]
   #[inline] pub fn with_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
      let tmp = self.ahbmask();
      self.set_ahbmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBAMASK register."]
   #[inline] pub fn apbamask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the APBAMASK register."]
   #[inline] pub fn apbamask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the APBAMASK register."]
   #[inline] pub fn apbamask(&self) -> Apbamask { 
      unsafe {
         Apbamask(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the APBAMASK register."]
   #[inline] pub fn set_apbamask(&self, value: Apbamask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the APBAMASK register."]
   #[inline] pub fn with_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
      let tmp = self.apbamask();
      self.set_apbamask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBASEL register."]
   #[inline] pub fn apbasel_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x9) as *const u8
   }
+#[doc="Get the *mut pointer for the APBASEL register."]
   #[inline] pub fn apbasel_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x9) as *mut u8
   }
+#[doc="Read the APBASEL register."]
   #[inline] pub fn apbasel(&self) -> Apbasel { 
      unsafe {
         Apbasel(::core::ptr::read_volatile(((self.0 as usize) + 0x9) as *const u8))
      }
   }
+#[doc="Write the APBASEL register."]
   #[inline] pub fn set_apbasel(&self, value: Apbasel) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the APBASEL register."]
   #[inline] pub fn with_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
      let tmp = self.apbasel();
      self.set_apbasel(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBBMASK register."]
   #[inline] pub fn apbbmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the APBBMASK register."]
   #[inline] pub fn apbbmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the APBBMASK register."]
   #[inline] pub fn apbbmask(&self) -> Apbbmask { 
      unsafe {
         Apbbmask(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
+#[doc="Write the APBBMASK register."]
   #[inline] pub fn set_apbbmask(&self, value: Apbbmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the APBBMASK register."]
   #[inline] pub fn with_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
      let tmp = self.apbbmask();
      self.set_apbbmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBBSEL register."]
   #[inline] pub fn apbbsel_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xa) as *const u8
   }
+#[doc="Get the *mut pointer for the APBBSEL register."]
   #[inline] pub fn apbbsel_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xa) as *mut u8
   }
+#[doc="Read the APBBSEL register."]
   #[inline] pub fn apbbsel(&self) -> Apbbsel { 
      unsafe {
         Apbbsel(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
      }
   }
+#[doc="Write the APBBSEL register."]
   #[inline] pub fn set_apbbsel(&self, value: Apbbsel) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the APBBSEL register."]
   #[inline] pub fn with_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
      let tmp = self.apbbsel();
      self.set_apbbsel(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBCMASK register."]
   #[inline] pub fn apbcmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the APBCMASK register."]
   #[inline] pub fn apbcmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the APBCMASK register."]
   #[inline] pub fn apbcmask(&self) -> Apbcmask { 
      unsafe {
         Apbcmask(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the APBCMASK register."]
   #[inline] pub fn set_apbcmask(&self, value: Apbcmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the APBCMASK register."]
   #[inline] pub fn with_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
      let tmp = self.apbcmask();
      self.set_apbcmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APBCSEL register."]
   #[inline] pub fn apbcsel_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xb) as *const u8
   }
+#[doc="Get the *mut pointer for the APBCSEL register."]
   #[inline] pub fn apbcsel_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xb) as *mut u8
   }
+#[doc="Read the APBCSEL register."]
   #[inline] pub fn apbcsel(&self) -> Apbcsel { 
      unsafe {
         Apbcsel(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
      }
   }
+#[doc="Write the APBCSEL register."]
   #[inline] pub fn set_apbcsel(&self, value: Apbcsel) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the APBCSEL register."]
   #[inline] pub fn with_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
      let tmp = self.apbcsel();
      self.set_apbcsel(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CPUSEL register."]
   #[inline] pub fn cpusel_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x8) as *const u8
   }
+#[doc="Get the *mut pointer for the CPUSEL register."]
   #[inline] pub fn cpusel_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x8) as *mut u8
   }
+#[doc="Read the CPUSEL register."]
   #[inline] pub fn cpusel(&self) -> Cpusel { 
      unsafe {
         Cpusel(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
      }
   }
+#[doc="Write the CPUSEL register."]
   #[inline] pub fn set_cpusel(&self, value: Cpusel) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the CPUSEL register."]
   #[inline] pub fn with_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
      let tmp = self.cpusel();
      self.set_cpusel(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL register."]
   #[inline] pub fn ctrl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
   }
+#[doc="Get the *mut pointer for the CTRL register."]
   #[inline] pub fn ctrl_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x0) as *mut u8
   }
+#[doc="Read the CTRL register."]
   #[inline] pub fn ctrl(&self) -> Ctrl { 
      unsafe {
         Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u8))
      }
   }
+#[doc="Write the CTRL register."]
   #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTENCLR register."]
   #[inline] pub fn intenclr_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x34) as *const u8
   }
+#[doc="Get the *mut pointer for the INTENCLR register."]
   #[inline] pub fn intenclr_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x34) as *mut u8
   }
+#[doc="Read the INTENCLR register."]
   #[inline] pub fn intenclr(&self) -> Intenclr { 
      unsafe {
         Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u8))
      }
   }
+#[doc="Write the INTENCLR register."]
   #[inline] pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTENCLR register."]
   #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTENSET register."]
   #[inline] pub fn intenset_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x35) as *const u8
   }
+#[doc="Get the *mut pointer for the INTENSET register."]
   #[inline] pub fn intenset_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x35) as *mut u8
   }
+#[doc="Read the INTENSET register."]
   #[inline] pub fn intenset(&self) -> Intenset { 
      unsafe {
         Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x35) as *const u8))
      }
   }
+#[doc="Write the INTENSET register."]
   #[inline] pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x35) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTENSET register."]
   #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTFLAG register."]
   #[inline] pub fn intflag_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x36) as *const u8
   }
+#[doc="Get the *mut pointer for the INTFLAG register."]
   #[inline] pub fn intflag_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x36) as *mut u8
   }
+#[doc="Read the INTFLAG register."]
   #[inline] pub fn intflag(&self) -> Intflag { 
      unsafe {
         Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x36) as *const u8))
      }
   }
+#[doc="Write the INTFLAG register."]
   #[inline] pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x36) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTFLAG register."]
   #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RCAUSE register."]
   #[inline] pub fn rcause_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x38) as *const u8
   }
+#[doc="Get the *mut pointer for the RCAUSE register."]
   #[inline] pub fn rcause_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x38) as *mut u8
   }
+#[doc="Read the RCAUSE register."]
   #[inline] pub fn rcause(&self) -> Rcause { 
      unsafe {
         Rcause(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the SLEEP register."]
   #[inline] pub fn sleep_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x1) as *const u8
   }
+#[doc="Get the *mut pointer for the SLEEP register."]
   #[inline] pub fn sleep_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x1) as *mut u8
   }
+#[doc="Read the SLEEP register."]
   #[inline] pub fn sleep(&self) -> Sleep { 
      unsafe {
         Sleep(::core::ptr::read_volatile(((self.0 as usize) + 0x1) as *const u8))
      }
   }
+#[doc="Write the SLEEP register."]
   #[inline] pub fn set_sleep(&self, value: Sleep) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the SLEEP register."]
   #[inline] pub fn with_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
      let tmp = self.sleep();
      self.set_sleep(f(tmp))
@@ -303,12 +372,15 @@ impl Pm {
 
 }
 
+#[doc="AHB Mask"]
 #[derive(PartialEq, Eq)]
 pub struct Ahbmask(pub u32);
 impl Ahbmask {
+#[doc="HPB0 AHB Clock Enable"]
   #[inline] pub fn hpb0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="HPB0 AHB Clock Enable"]
   #[inline] pub fn set_hpb0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -316,9 +388,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="HPB1 AHB Clock Enable"]
   #[inline] pub fn hpb1(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="HPB1 AHB Clock Enable"]
   #[inline] pub fn set_hpb1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -326,9 +400,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="HPB2 AHB Clock Enable"]
   #[inline] pub fn hpb2(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="HPB2 AHB Clock Enable"]
   #[inline] pub fn set_hpb2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -336,9 +412,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="DSU AHB Clock Enable"]
   #[inline] pub fn dsu(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="DSU AHB Clock Enable"]
   #[inline] pub fn set_dsu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -346,9 +424,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="NVMCTRL AHB Clock Enable"]
   #[inline] pub fn nvmctrl(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="NVMCTRL AHB Clock Enable"]
   #[inline] pub fn set_nvmctrl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -356,9 +436,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="DMAC AHB Clock Enable"]
   #[inline] pub fn dmac(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="DMAC AHB Clock Enable"]
   #[inline] pub fn set_dmac(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -366,9 +448,11 @@ impl Ahbmask {
      self
   }
 
+#[doc="USB AHB Clock Enable"]
   #[inline] pub fn usb(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="USB AHB Clock Enable"]
   #[inline] pub fn set_usb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -396,12 +480,15 @@ impl ::core::fmt::Debug for Ahbmask {
       Ok(())
    }
 }
+#[doc="APBA Mask"]
 #[derive(PartialEq, Eq)]
 pub struct Apbamask(pub u32);
 impl Apbamask {
+#[doc="PAC0 APB Clock Enable"]
   #[inline] pub fn pac0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="PAC0 APB Clock Enable"]
   #[inline] pub fn set_pac0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -409,9 +496,11 @@ impl Apbamask {
      self
   }
 
+#[doc="PM APB Clock Enable"]
   #[inline] pub fn pm(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="PM APB Clock Enable"]
   #[inline] pub fn set_pm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -419,9 +508,11 @@ impl Apbamask {
      self
   }
 
+#[doc="SYSCTRL APB Clock Enable"]
   #[inline] pub fn sysctrl(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="SYSCTRL APB Clock Enable"]
   #[inline] pub fn set_sysctrl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -429,9 +520,11 @@ impl Apbamask {
      self
   }
 
+#[doc="GCLK APB Clock Enable"]
   #[inline] pub fn gclk(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="GCLK APB Clock Enable"]
   #[inline] pub fn set_gclk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -439,9 +532,11 @@ impl Apbamask {
      self
   }
 
+#[doc="WDT APB Clock Enable"]
   #[inline] pub fn wdt(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="WDT APB Clock Enable"]
   #[inline] pub fn set_wdt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -449,9 +544,11 @@ impl Apbamask {
      self
   }
 
+#[doc="RTC APB Clock Enable"]
   #[inline] pub fn rtc(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="RTC APB Clock Enable"]
   #[inline] pub fn set_rtc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -459,9 +556,11 @@ impl Apbamask {
      self
   }
 
+#[doc="EIC APB Clock Enable"]
   #[inline] pub fn eic(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="EIC APB Clock Enable"]
   #[inline] pub fn set_eic(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -489,12 +588,15 @@ impl ::core::fmt::Debug for Apbamask {
       Ok(())
    }
 }
+#[doc="APBA Clock Select"]
 #[derive(PartialEq, Eq)]
 pub struct Apbasel(pub u8);
 impl Apbasel {
+#[doc="APBA Prescaler Selection"]
   #[inline] pub fn apbadiv(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7 // [2:0]
   }
+#[doc="APBA Prescaler Selection"]
   #[inline] pub fn set_apbadiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -516,12 +618,15 @@ impl ::core::fmt::Debug for Apbasel {
       Ok(())
    }
 }
+#[doc="APBB Mask"]
 #[derive(PartialEq, Eq)]
 pub struct Apbbmask(pub u32);
 impl Apbbmask {
+#[doc="PAC1 APB Clock Enable"]
   #[inline] pub fn pac1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="PAC1 APB Clock Enable"]
   #[inline] pub fn set_pac1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -529,9 +634,11 @@ impl Apbbmask {
      self
   }
 
+#[doc="DSU APB Clock Enable"]
   #[inline] pub fn dsu(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="DSU APB Clock Enable"]
   #[inline] pub fn set_dsu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -539,9 +646,11 @@ impl Apbbmask {
      self
   }
 
+#[doc="NVMCTRL APB Clock Enable"]
   #[inline] pub fn nvmctrl(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="NVMCTRL APB Clock Enable"]
   #[inline] pub fn set_nvmctrl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -549,9 +658,11 @@ impl Apbbmask {
      self
   }
 
+#[doc="PORT APB Clock Enable"]
   #[inline] pub fn port(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="PORT APB Clock Enable"]
   #[inline] pub fn set_port(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -559,9 +670,11 @@ impl Apbbmask {
      self
   }
 
+#[doc="DMAC APB Clock Enable"]
   #[inline] pub fn dmac(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="DMAC APB Clock Enable"]
   #[inline] pub fn set_dmac(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -569,9 +682,11 @@ impl Apbbmask {
      self
   }
 
+#[doc="USB APB Clock Enable"]
   #[inline] pub fn usb(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="USB APB Clock Enable"]
   #[inline] pub fn set_usb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -598,12 +713,15 @@ impl ::core::fmt::Debug for Apbbmask {
       Ok(())
    }
 }
+#[doc="APBB Clock Select"]
 #[derive(PartialEq, Eq)]
 pub struct Apbbsel(pub u8);
 impl Apbbsel {
+#[doc="APBB Prescaler Selection"]
   #[inline] pub fn apbbdiv(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7 // [2:0]
   }
+#[doc="APBB Prescaler Selection"]
   #[inline] pub fn set_apbbdiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -625,12 +743,15 @@ impl ::core::fmt::Debug for Apbbsel {
       Ok(())
    }
 }
+#[doc="APBC Mask"]
 #[derive(PartialEq, Eq)]
 pub struct Apbcmask(pub u32);
 impl Apbcmask {
+#[doc="PAC2 APB Clock Enable"]
   #[inline] pub fn pac2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="PAC2 APB Clock Enable"]
   #[inline] pub fn set_pac2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -638,9 +759,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="EVSYS APB Clock Enable"]
   #[inline] pub fn evsys(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="EVSYS APB Clock Enable"]
   #[inline] pub fn set_evsys(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -648,9 +771,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM0 APB Clock Enable"]
   #[inline] pub fn sercom0(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="SERCOM0 APB Clock Enable"]
   #[inline] pub fn set_sercom0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -658,9 +783,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM1 APB Clock Enable"]
   #[inline] pub fn sercom1(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="SERCOM1 APB Clock Enable"]
   #[inline] pub fn set_sercom1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -668,9 +795,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM2 APB Clock Enable"]
   #[inline] pub fn sercom2(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="SERCOM2 APB Clock Enable"]
   #[inline] pub fn set_sercom2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -678,9 +807,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM3 APB Clock Enable"]
   #[inline] pub fn sercom3(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="SERCOM3 APB Clock Enable"]
   #[inline] pub fn set_sercom3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -688,9 +819,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM4 APB Clock Enable"]
   #[inline] pub fn sercom4(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="SERCOM4 APB Clock Enable"]
   #[inline] pub fn set_sercom4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -698,9 +831,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="SERCOM5 APB Clock Enable"]
   #[inline] pub fn sercom5(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="SERCOM5 APB Clock Enable"]
   #[inline] pub fn set_sercom5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -708,9 +843,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TCC0 APB Clock Enable"]
   #[inline] pub fn tcc0(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="TCC0 APB Clock Enable"]
   #[inline] pub fn set_tcc0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -718,9 +855,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TCC1 APB Clock Enable"]
   #[inline] pub fn tcc1(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="TCC1 APB Clock Enable"]
   #[inline] pub fn set_tcc1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -728,9 +867,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TCC2 APB Clock Enable"]
   #[inline] pub fn tcc2(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="TCC2 APB Clock Enable"]
   #[inline] pub fn set_tcc2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -738,9 +879,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TC3 APB Clock Enable"]
   #[inline] pub fn tc3(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="TC3 APB Clock Enable"]
   #[inline] pub fn set_tc3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -748,9 +891,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TC4 APB Clock Enable"]
   #[inline] pub fn tc4(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="TC4 APB Clock Enable"]
   #[inline] pub fn set_tc4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -758,9 +903,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="TC5 APB Clock Enable"]
   #[inline] pub fn tc5(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="TC5 APB Clock Enable"]
   #[inline] pub fn set_tc5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -768,9 +915,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="ADC APB Clock Enable"]
   #[inline] pub fn adc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="ADC APB Clock Enable"]
   #[inline] pub fn set_adc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -778,9 +927,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="AC APB Clock Enable"]
   #[inline] pub fn ac(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="AC APB Clock Enable"]
   #[inline] pub fn set_ac(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -788,9 +939,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="DAC APB Clock Enable"]
   #[inline] pub fn dac(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="DAC APB Clock Enable"]
   #[inline] pub fn set_dac(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -798,9 +951,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="I2S APB Clock Enable"]
   #[inline] pub fn i2s(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="I2S APB Clock Enable"]
   #[inline] pub fn set_i2s(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -808,9 +963,11 @@ impl Apbcmask {
      self
   }
 
+#[doc="ATW APB Clock Enable"]
   #[inline] pub fn atw(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="ATW APB Clock Enable"]
   #[inline] pub fn set_atw(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -850,12 +1007,15 @@ impl ::core::fmt::Debug for Apbcmask {
       Ok(())
    }
 }
+#[doc="APBC Clock Select"]
 #[derive(PartialEq, Eq)]
 pub struct Apbcsel(pub u8);
 impl Apbcsel {
+#[doc="APBC Prescaler Selection"]
   #[inline] pub fn apbcdiv(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7 // [2:0]
   }
+#[doc="APBC Prescaler Selection"]
   #[inline] pub fn set_apbcdiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -877,12 +1037,15 @@ impl ::core::fmt::Debug for Apbcsel {
       Ok(())
    }
 }
+#[doc="CPU Clock Select"]
 #[derive(PartialEq, Eq)]
 pub struct Cpusel(pub u8);
 impl Cpusel {
+#[doc="CPU Prescaler Selection"]
   #[inline] pub fn cpudiv(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x7 // [2:0]
   }
+#[doc="CPU Prescaler Selection"]
   #[inline] pub fn set_cpudiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -904,12 +1067,15 @@ impl ::core::fmt::Debug for Cpusel {
       Ok(())
    }
 }
+#[doc="Control"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
+#[doc="Clock Failure Detector Enable"]
   #[inline] pub fn cfden(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Clock Failure Detector Enable"]
   #[inline] pub fn set_cfden(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -917,9 +1083,11 @@ impl Ctrl {
      self
   }
 
+#[doc="Backup Clock Select"]
   #[inline] pub fn bkupclk(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Backup Clock Select"]
   #[inline] pub fn set_bkupclk(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -942,12 +1110,15 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+#[doc="Interrupt Enable Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
+#[doc="Clock Ready Interrupt Enable"]
   #[inline] pub fn ckrdy(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Clock Ready Interrupt Enable"]
   #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -955,9 +1126,11 @@ impl Intenclr {
      self
   }
 
+#[doc="Clock Failure Detector Interrupt Enable"]
   #[inline] pub fn cfd(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Clock Failure Detector Interrupt Enable"]
   #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -980,12 +1153,15 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
+#[doc="Interrupt Enable Set"]
 #[derive(PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
+#[doc="Clock Ready Interrupt Enable"]
   #[inline] pub fn ckrdy(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Clock Ready Interrupt Enable"]
   #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -993,9 +1169,11 @@ impl Intenset {
      self
   }
 
+#[doc="Clock Failure Detector Interrupt Enable"]
   #[inline] pub fn cfd(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Clock Failure Detector Interrupt Enable"]
   #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1018,12 +1196,15 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
+#[doc="Interrupt Flag Status and Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
+#[doc="Clock Ready"]
   #[inline] pub fn ckrdy(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Clock Ready"]
   #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1031,9 +1212,11 @@ impl Intflag {
      self
   }
 
+#[doc="Clock Failure Detector"]
   #[inline] pub fn cfd(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Clock Failure Detector"]
   #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1056,12 +1239,15 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
+#[doc="Reset Cause"]
 #[derive(PartialEq, Eq)]
 pub struct Rcause(pub u8);
 impl Rcause {
+#[doc="Power On Reset"]
   #[inline] pub fn por(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Power On Reset"]
   #[inline] pub fn set_por(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1069,9 +1255,11 @@ impl Rcause {
      self
   }
 
+#[doc="Brown Out 12 Detector Reset"]
   #[inline] pub fn bod12(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Brown Out 12 Detector Reset"]
   #[inline] pub fn set_bod12(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1079,9 +1267,11 @@ impl Rcause {
      self
   }
 
+#[doc="Brown Out 33 Detector Reset"]
   #[inline] pub fn bod33(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Brown Out 33 Detector Reset"]
   #[inline] pub fn set_bod33(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1089,9 +1279,11 @@ impl Rcause {
      self
   }
 
+#[doc="External Reset"]
   #[inline] pub fn ext(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="External Reset"]
   #[inline] pub fn set_ext(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1099,9 +1291,11 @@ impl Rcause {
      self
   }
 
+#[doc="Watchdog Reset"]
   #[inline] pub fn wdt(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Watchdog Reset"]
   #[inline] pub fn set_wdt(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1109,9 +1303,11 @@ impl Rcause {
      self
   }
 
+#[doc="System Reset Request"]
   #[inline] pub fn syst(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="System Reset Request"]
   #[inline] pub fn set_syst(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1138,12 +1334,15 @@ impl ::core::fmt::Debug for Rcause {
       Ok(())
    }
 }
+#[doc="Sleep Mode"]
 #[derive(PartialEq, Eq)]
 pub struct Sleep(pub u8);
 impl Sleep {
+#[doc="Idle Mode Configuration"]
   #[inline] pub fn idle(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x3 // [1:0]
   }
+#[doc="Idle Mode Configuration"]
   #[inline] pub fn set_idle(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);

@@ -1,43 +1,53 @@
 pub const UDMA: Udma = Periph(0x400ff000, UdmaId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="UDMA Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct UdmaId {}
 pub type Udma = Periph<UdmaId>;
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the STAT register."]
   #[inline] pub fn stat_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the STAT register."]
   #[inline] pub fn stat_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the STAT register."]
   #[inline] pub fn stat(&self) -> Stat { 
      unsafe {
         Stat(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the STAT register."]
   #[inline] pub fn set_stat(&self, value: Stat) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the STAT register."]
   #[inline] pub fn with_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
      let tmp = self.stat();
      self.set_stat(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CFG register."]
   #[inline] pub fn cfg_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CFG register."]
   #[inline] pub fn cfg_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Write the CFG register."]
   #[inline] pub fn set_cfg(&self, value: Cfg) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
@@ -45,78 +55,96 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the CTLBASE register."]
   #[inline] pub fn ctlbase_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the CTLBASE register."]
   #[inline] pub fn ctlbase_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the CTLBASE register."]
   #[inline] pub fn ctlbase(&self) -> Ctlbase { 
      unsafe {
         Ctlbase(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the CTLBASE register."]
   #[inline] pub fn set_ctlbase(&self, value: Ctlbase) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTLBASE register."]
   #[inline] pub fn with_ctlbase<F: FnOnce(Ctlbase) -> Ctlbase>(&self, f: F) -> &Self {
      let tmp = self.ctlbase();
      self.set_ctlbase(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ALTBASE register."]
   #[inline] pub fn altbase_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the ALTBASE register."]
   #[inline] pub fn altbase_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the ALTBASE register."]
   #[inline] pub fn altbase(&self) -> Altbase { 
      unsafe {
         Altbase(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the ALTBASE register."]
   #[inline] pub fn set_altbase(&self, value: Altbase) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ALTBASE register."]
   #[inline] pub fn with_altbase<F: FnOnce(Altbase) -> Altbase>(&self, f: F) -> &Self {
      let tmp = self.altbase();
      self.set_altbase(f(tmp))
   }
 
+#[doc="Get the *const pointer for the WAITSTAT register."]
   #[inline] pub fn waitstat_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the WAITSTAT register."]
   #[inline] pub fn waitstat_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the WAITSTAT register."]
   #[inline] pub fn waitstat(&self) -> Waitstat { 
      unsafe {
         Waitstat(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the WAITSTAT register."]
   #[inline] pub fn set_waitstat(&self, value: Waitstat) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the WAITSTAT register."]
   #[inline] pub fn with_waitstat<F: FnOnce(Waitstat) -> Waitstat>(&self, f: F) -> &Self {
      let tmp = self.waitstat();
      self.set_waitstat(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SWREQ register."]
   #[inline] pub fn swreq_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the SWREQ register."]
   #[inline] pub fn swreq_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Write the SWREQ register."]
   #[inline] pub fn set_swreq(&self, value: Swreq) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
@@ -124,34 +152,42 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the USEBURSTSET register."]
   #[inline] pub fn useburstset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the USEBURSTSET register."]
   #[inline] pub fn useburstset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the USEBURSTSET register."]
   #[inline] pub fn useburstset(&self) -> Useburstset { 
      unsafe {
         Useburstset(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the USEBURSTSET register."]
   #[inline] pub fn set_useburstset(&self, value: Useburstset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the USEBURSTSET register."]
   #[inline] pub fn with_useburstset<F: FnOnce(Useburstset) -> Useburstset>(&self, f: F) -> &Self {
      let tmp = self.useburstset();
      self.set_useburstset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the USEBURSTCLR register."]
   #[inline] pub fn useburstclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the USEBURSTCLR register."]
   #[inline] pub fn useburstclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Write the USEBURSTCLR register."]
   #[inline] pub fn set_useburstclr(&self, value: Useburstclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
@@ -159,34 +195,42 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the REQMASKSET register."]
   #[inline] pub fn reqmaskset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the REQMASKSET register."]
   #[inline] pub fn reqmaskset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the REQMASKSET register."]
   #[inline] pub fn reqmaskset(&self) -> Reqmaskset { 
      unsafe {
         Reqmaskset(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the REQMASKSET register."]
   #[inline] pub fn set_reqmaskset(&self, value: Reqmaskset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the REQMASKSET register."]
   #[inline] pub fn with_reqmaskset<F: FnOnce(Reqmaskset) -> Reqmaskset>(&self, f: F) -> &Self {
      let tmp = self.reqmaskset();
      self.set_reqmaskset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the REQMASKCLR register."]
   #[inline] pub fn reqmaskclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
+#[doc="Get the *mut pointer for the REQMASKCLR register."]
   #[inline] pub fn reqmaskclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
+#[doc="Write the REQMASKCLR register."]
   #[inline] pub fn set_reqmaskclr(&self, value: Reqmaskclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
@@ -194,34 +238,42 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the ENASET register."]
   #[inline] pub fn enaset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x28) as *const u32
   }
+#[doc="Get the *mut pointer for the ENASET register."]
   #[inline] pub fn enaset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x28) as *mut u32
   }
+#[doc="Read the ENASET register."]
   #[inline] pub fn enaset(&self) -> Enaset { 
      unsafe {
         Enaset(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
      }
   }
+#[doc="Write the ENASET register."]
   #[inline] pub fn set_enaset(&self, value: Enaset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ENASET register."]
   #[inline] pub fn with_enaset<F: FnOnce(Enaset) -> Enaset>(&self, f: F) -> &Self {
      let tmp = self.enaset();
      self.set_enaset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ENACLR register."]
   #[inline] pub fn enaclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x2c) as *const u32
   }
+#[doc="Get the *mut pointer for the ENACLR register."]
   #[inline] pub fn enaclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x2c) as *mut u32
   }
+#[doc="Write the ENACLR register."]
   #[inline] pub fn set_enaclr(&self, value: Enaclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
@@ -229,34 +281,42 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the ALTSET register."]
   #[inline] pub fn altset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x30) as *const u32
   }
+#[doc="Get the *mut pointer for the ALTSET register."]
   #[inline] pub fn altset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x30) as *mut u32
   }
+#[doc="Read the ALTSET register."]
   #[inline] pub fn altset(&self) -> Altset { 
      unsafe {
         Altset(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
      }
   }
+#[doc="Write the ALTSET register."]
   #[inline] pub fn set_altset(&self, value: Altset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ALTSET register."]
   #[inline] pub fn with_altset<F: FnOnce(Altset) -> Altset>(&self, f: F) -> &Self {
      let tmp = self.altset();
      self.set_altset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ALTCLR register."]
   #[inline] pub fn altclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x34) as *const u32
   }
+#[doc="Get the *mut pointer for the ALTCLR register."]
   #[inline] pub fn altclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x34) as *mut u32
   }
+#[doc="Write the ALTCLR register."]
   #[inline] pub fn set_altclr(&self, value: Altclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
@@ -264,34 +324,42 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the PRIOSET register."]
   #[inline] pub fn prioset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x38) as *const u32
   }
+#[doc="Get the *mut pointer for the PRIOSET register."]
   #[inline] pub fn prioset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x38) as *mut u32
   }
+#[doc="Read the PRIOSET register."]
   #[inline] pub fn prioset(&self) -> Prioset { 
      unsafe {
         Prioset(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
      }
   }
+#[doc="Write the PRIOSET register."]
   #[inline] pub fn set_prioset(&self, value: Prioset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PRIOSET register."]
   #[inline] pub fn with_prioset<F: FnOnce(Prioset) -> Prioset>(&self, f: F) -> &Self {
      let tmp = self.prioset();
      self.set_prioset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PRIOCLR register."]
   #[inline] pub fn prioclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x3c) as *const u32
   }
+#[doc="Get the *mut pointer for the PRIOCLR register."]
   #[inline] pub fn prioclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x3c) as *mut u32
   }
+#[doc="Write the PRIOCLR register."]
   #[inline] pub fn set_prioclr(&self, value: Prioclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
@@ -299,133 +367,163 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the ERRCLR register."]
   #[inline] pub fn errclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
+#[doc="Get the *mut pointer for the ERRCLR register."]
   #[inline] pub fn errclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
+#[doc="Read the ERRCLR register."]
   #[inline] pub fn errclr(&self) -> Errclr { 
      unsafe {
         Errclr(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
+#[doc="Write the ERRCLR register."]
   #[inline] pub fn set_errclr(&self, value: Errclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ERRCLR register."]
   #[inline] pub fn with_errclr<F: FnOnce(Errclr) -> Errclr>(&self, f: F) -> &Self {
      let tmp = self.errclr();
      self.set_errclr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CHASGN register."]
   #[inline] pub fn chasgn_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x500) as *const u32
   }
+#[doc="Get the *mut pointer for the CHASGN register."]
   #[inline] pub fn chasgn_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x500) as *mut u32
   }
+#[doc="Read the CHASGN register."]
   #[inline] pub fn chasgn(&self) -> Chasgn { 
      unsafe {
         Chasgn(::core::ptr::read_volatile(((self.0 as usize) + 0x500) as *const u32))
      }
   }
+#[doc="Write the CHASGN register."]
   #[inline] pub fn set_chasgn(&self, value: Chasgn) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x500) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CHASGN register."]
   #[inline] pub fn with_chasgn<F: FnOnce(Chasgn) -> Chasgn>(&self, f: F) -> &Self {
      let tmp = self.chasgn();
      self.set_chasgn(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CHMAP0 register."]
   #[inline] pub fn chmap0_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x510) as *const u32
   }
+#[doc="Get the *mut pointer for the CHMAP0 register."]
   #[inline] pub fn chmap0_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x510) as *mut u32
   }
+#[doc="Read the CHMAP0 register."]
   #[inline] pub fn chmap0(&self) -> Chmap0 { 
      unsafe {
         Chmap0(::core::ptr::read_volatile(((self.0 as usize) + 0x510) as *const u32))
      }
   }
+#[doc="Write the CHMAP0 register."]
   #[inline] pub fn set_chmap0(&self, value: Chmap0) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x510) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CHMAP0 register."]
   #[inline] pub fn with_chmap0<F: FnOnce(Chmap0) -> Chmap0>(&self, f: F) -> &Self {
      let tmp = self.chmap0();
      self.set_chmap0(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CHMAP1 register."]
   #[inline] pub fn chmap1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x514) as *const u32
   }
+#[doc="Get the *mut pointer for the CHMAP1 register."]
   #[inline] pub fn chmap1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x514) as *mut u32
   }
+#[doc="Read the CHMAP1 register."]
   #[inline] pub fn chmap1(&self) -> Chmap1 { 
      unsafe {
         Chmap1(::core::ptr::read_volatile(((self.0 as usize) + 0x514) as *const u32))
      }
   }
+#[doc="Write the CHMAP1 register."]
   #[inline] pub fn set_chmap1(&self, value: Chmap1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x514) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CHMAP1 register."]
   #[inline] pub fn with_chmap1<F: FnOnce(Chmap1) -> Chmap1>(&self, f: F) -> &Self {
      let tmp = self.chmap1();
      self.set_chmap1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CHMAP2 register."]
   #[inline] pub fn chmap2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x518) as *const u32
   }
+#[doc="Get the *mut pointer for the CHMAP2 register."]
   #[inline] pub fn chmap2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x518) as *mut u32
   }
+#[doc="Read the CHMAP2 register."]
   #[inline] pub fn chmap2(&self) -> Chmap2 { 
      unsafe {
         Chmap2(::core::ptr::read_volatile(((self.0 as usize) + 0x518) as *const u32))
      }
   }
+#[doc="Write the CHMAP2 register."]
   #[inline] pub fn set_chmap2(&self, value: Chmap2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x518) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CHMAP2 register."]
   #[inline] pub fn with_chmap2<F: FnOnce(Chmap2) -> Chmap2>(&self, f: F) -> &Self {
      let tmp = self.chmap2();
      self.set_chmap2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CHMAP3 register."]
   #[inline] pub fn chmap3_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x51c) as *const u32
   }
+#[doc="Get the *mut pointer for the CHMAP3 register."]
   #[inline] pub fn chmap3_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x51c) as *mut u32
   }
+#[doc="Read the CHMAP3 register."]
   #[inline] pub fn chmap3(&self) -> Chmap3 { 
      unsafe {
         Chmap3(::core::ptr::read_volatile(((self.0 as usize) + 0x51c) as *const u32))
      }
   }
+#[doc="Write the CHMAP3 register."]
   #[inline] pub fn set_chmap3(&self, value: Chmap3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x51c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CHMAP3 register."]
   #[inline] pub fn with_chmap3<F: FnOnce(Chmap3) -> Chmap3>(&self, f: F) -> &Self {
      let tmp = self.chmap3();
      self.set_chmap3(f(tmp))
@@ -433,12 +531,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="DMA Status"]
 #[derive(PartialEq, Eq)]
 pub struct Stat(pub u32);
 impl Stat {
+#[doc="Master Enable Status"]
   #[inline] pub fn masten(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Master Enable Status"]
   #[inline] pub fn set_masten(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -446,9 +547,11 @@ impl Stat {
      self
   }
 
+#[doc="Control State Machine Status"]
   #[inline] pub fn state(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0xf // [7:4]
   }
+#[doc="Control State Machine Status"]
   #[inline] pub fn set_state(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
@@ -456,9 +559,11 @@ impl Stat {
      self
   }
 
+#[doc="Available uDMA Channels Minus 1"]
   #[inline] pub fn dmachans(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1f // [20:16]
   }
+#[doc="Available uDMA Channels Minus 1"]
   #[inline] pub fn set_dmachans(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 16);
@@ -482,12 +587,15 @@ impl ::core::fmt::Debug for Stat {
       Ok(())
    }
 }
+#[doc="DMA Configuration"]
 #[derive(PartialEq, Eq)]
 pub struct Cfg(pub u32);
 impl Cfg {
+#[doc="Controller Master Enable"]
   #[inline] pub fn masten(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Controller Master Enable"]
   #[inline] pub fn set_masten(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -509,12 +617,15 @@ impl ::core::fmt::Debug for Cfg {
       Ok(())
    }
 }
+#[doc="DMA Channel Control Base Pointer"]
 #[derive(PartialEq, Eq)]
 pub struct Ctlbase(pub u32);
 impl Ctlbase {
+#[doc="Channel Control Base Address"]
   #[inline] pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x3fffff // [31:10]
   }
+#[doc="Channel Control Base Address"]
   #[inline] pub fn set_addr(mut self, value: u32) -> Self {
      assert!((value & !0x3fffff) == 0);
      self.0 &= !(0x3fffff << 10);
@@ -536,12 +647,15 @@ impl ::core::fmt::Debug for Ctlbase {
       Ok(())
    }
 }
+#[doc="DMA Alternate Channel Control Base Pointer"]
 #[derive(PartialEq, Eq)]
 pub struct Altbase(pub u32);
 impl Altbase {
+#[doc="Alternate Channel Address Pointer"]
   #[inline] pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Alternate Channel Address Pointer"]
   #[inline] pub fn set_addr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -562,14 +676,17 @@ impl ::core::fmt::Debug for Altbase {
       Ok(())
    }
 }
+#[doc="DMA Channel Wait-on-Request Status"]
 #[derive(PartialEq, Eq)]
 pub struct Waitstat(pub u32);
 impl Waitstat {
+#[doc="Channel [n] Wait Status"]
   #[inline] pub fn waitreq(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Wait Status"]
   #[inline] pub fn set_waitreq(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -624,14 +741,17 @@ impl ::core::fmt::Debug for Waitstat {
       Ok(())
    }
 }
+#[doc="DMA Channel Software Request"]
 #[derive(PartialEq, Eq)]
 pub struct Swreq(pub u32);
 impl Swreq {
+#[doc="Channel [n] Software Request"]
   #[inline] pub fn swreq(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Software Request"]
   #[inline] pub fn set_swreq(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -686,14 +806,17 @@ impl ::core::fmt::Debug for Swreq {
       Ok(())
    }
 }
+#[doc="DMA Channel Useburst Set"]
 #[derive(PartialEq, Eq)]
 pub struct Useburstset(pub u32);
 impl Useburstset {
+#[doc="Channel [n] Useburst Set"]
   #[inline] pub fn set(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Useburst Set"]
   #[inline] pub fn set_set(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -748,14 +871,17 @@ impl ::core::fmt::Debug for Useburstset {
       Ok(())
    }
 }
+#[doc="DMA Channel Useburst Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Useburstclr(pub u32);
 impl Useburstclr {
+#[doc="Channel [n] Useburst Clear"]
   #[inline] pub fn clr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Useburst Clear"]
   #[inline] pub fn set_clr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -810,14 +936,17 @@ impl ::core::fmt::Debug for Useburstclr {
       Ok(())
    }
 }
+#[doc="DMA Channel Request Mask Set"]
 #[derive(PartialEq, Eq)]
 pub struct Reqmaskset(pub u32);
 impl Reqmaskset {
+#[doc="Channel [n] Request Mask Set"]
   #[inline] pub fn set(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Request Mask Set"]
   #[inline] pub fn set_set(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -872,14 +1001,17 @@ impl ::core::fmt::Debug for Reqmaskset {
       Ok(())
    }
 }
+#[doc="DMA Channel Request Mask Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Reqmaskclr(pub u32);
 impl Reqmaskclr {
+#[doc="Channel [n] Request Mask Clear"]
   #[inline] pub fn clr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Request Mask Clear"]
   #[inline] pub fn set_clr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -934,14 +1066,17 @@ impl ::core::fmt::Debug for Reqmaskclr {
       Ok(())
    }
 }
+#[doc="DMA Channel Enable Set"]
 #[derive(PartialEq, Eq)]
 pub struct Enaset(pub u32);
 impl Enaset {
+#[doc="Channel [n] Enable Set"]
   #[inline] pub fn set(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Enable Set"]
   #[inline] pub fn set_set(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -996,14 +1131,17 @@ impl ::core::fmt::Debug for Enaset {
       Ok(())
    }
 }
+#[doc="DMA Channel Enable Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Enaclr(pub u32);
 impl Enaclr {
+#[doc="Clear Channel [n] Enable Clear"]
   #[inline] pub fn clr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Clear Channel [n] Enable Clear"]
   #[inline] pub fn set_clr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1058,14 +1196,17 @@ impl ::core::fmt::Debug for Enaclr {
       Ok(())
    }
 }
+#[doc="DMA Channel Primary Alternate Set"]
 #[derive(PartialEq, Eq)]
 pub struct Altset(pub u32);
 impl Altset {
+#[doc="Channel [n] Alternate Set"]
   #[inline] pub fn set(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Alternate Set"]
   #[inline] pub fn set_set(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1120,14 +1261,17 @@ impl ::core::fmt::Debug for Altset {
       Ok(())
    }
 }
+#[doc="DMA Channel Primary Alternate Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Altclr(pub u32);
 impl Altclr {
+#[doc="Channel [n] Alternate Clear"]
   #[inline] pub fn clr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Alternate Clear"]
   #[inline] pub fn set_clr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1182,14 +1326,17 @@ impl ::core::fmt::Debug for Altclr {
       Ok(())
    }
 }
+#[doc="DMA Channel Priority Set"]
 #[derive(PartialEq, Eq)]
 pub struct Prioset(pub u32);
 impl Prioset {
+#[doc="Channel [n] Priority Set"]
   #[inline] pub fn set(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Priority Set"]
   #[inline] pub fn set_set(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1244,14 +1391,17 @@ impl ::core::fmt::Debug for Prioset {
       Ok(())
    }
 }
+#[doc="DMA Channel Priority Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Prioclr(pub u32);
 impl Prioclr {
+#[doc="Channel [n] Priority Clear"]
   #[inline] pub fn clr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Priority Clear"]
   #[inline] pub fn set_clr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1306,14 +1456,17 @@ impl ::core::fmt::Debug for Prioclr {
       Ok(())
    }
 }
+#[doc="DMA Bus Error Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Errclr(pub u32);
 impl Errclr {
+#[doc="uDMA Bus Error Status"]
   #[inline] pub fn errclr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="uDMA Bus Error Status"]
   #[inline] pub fn set_errclr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1368,14 +1521,17 @@ impl ::core::fmt::Debug for Errclr {
       Ok(())
    }
 }
+#[doc="DMA Channel Assignment"]
 #[derive(PartialEq, Eq)]
 pub struct Chasgn(pub u32);
 impl Chasgn {
+#[doc="Channel [n] Assignment Select"]
   #[inline] pub fn chasgn(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel [n] Assignment Select"]
   #[inline] pub fn set_chasgn(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1430,14 +1586,17 @@ impl ::core::fmt::Debug for Chasgn {
       Ok(())
    }
 }
+#[doc="DMA Channel Map Select 0"]
 #[derive(PartialEq, Eq)]
 pub struct Chmap0(pub u32);
 impl Chmap0 {
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn chsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn set_chsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0xf) == 0);
@@ -1468,14 +1627,17 @@ impl ::core::fmt::Debug for Chmap0 {
       Ok(())
    }
 }
+#[doc="DMA Channel Map Select 1"]
 #[derive(PartialEq, Eq)]
 pub struct Chmap1(pub u32);
 impl Chmap1 {
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn chsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn set_chsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0xf) == 0);
@@ -1506,14 +1668,17 @@ impl ::core::fmt::Debug for Chmap1 {
       Ok(())
    }
 }
+#[doc="DMA Channel Map Select 2"]
 #[derive(PartialEq, Eq)]
 pub struct Chmap2(pub u32);
 impl Chmap2 {
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn chsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn set_chsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0xf) == 0);
@@ -1544,14 +1709,17 @@ impl ::core::fmt::Debug for Chmap2 {
       Ok(())
    }
 }
+#[doc="DMA Channel Map Select 3"]
 #[derive(PartialEq, Eq)]
 pub struct Chmap3(pub u32);
 impl Chmap3 {
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn chsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
+#[doc="uDMA Channel n Source Select"]
   #[inline] pub fn set_chsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0xf) == 0);
@@ -1583,64 +1751,77 @@ impl ::core::fmt::Debug for Chmap3 {
    }
 }
 
+#[doc="DMA Descriptor"]
 pub struct Chdesc(pub [u8; 16]);
 
 impl Chdesc {
+#[doc="Read the SRCENDP register."]
    #[inline] pub fn srcendp(&self) -> Srcendp { 
       unsafe {
          Srcendp(::core::ptr::read_volatile(self.0.as_ptr().offset(0x0) as *const u32))
       }
    }
+#[doc="Write the SRCENDP register."]
    #[inline] pub fn set_srcendp(&mut self, value: Srcendp) -> &mut Self {
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
       }
       self
   }
+#[doc="Modfy the SRCENDP register."]
    #[inline] pub fn with_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.srcendp();
       self.set_srcendp(f(tmp))
    }
 
+#[doc="Read the DSTENDP register."]
    #[inline] pub fn dstendp(&self) -> Dstendp { 
       unsafe {
          Dstendp(::core::ptr::read_volatile(self.0.as_ptr().offset(0x4) as *const u32))
       }
    }
+#[doc="Write the DSTENDP register."]
    #[inline] pub fn set_dstendp(&mut self, value: Dstendp) -> &mut Self {
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
       }
       self
   }
+#[doc="Modfy the DSTENDP register."]
    #[inline] pub fn with_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.dstendp();
       self.set_dstendp(f(tmp))
    }
 
+#[doc="Read the CHCTL register."]
    #[inline] pub fn chctl(&self) -> Chctl { 
       unsafe {
          Chctl(::core::ptr::read_volatile(self.0.as_ptr().offset(0x8) as *const u32))
       }
    }
+#[doc="Write the CHCTL register."]
    #[inline] pub fn set_chctl(&mut self, value: Chctl) -> &mut Self {
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
       }
       self
   }
+#[doc="Modfy the CHCTL register."]
    #[inline] pub fn with_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &mut Self {
       let tmp = self.chctl();
       self.set_chctl(f(tmp))
    }
 
 }
+#[doc="DMA Channel Source Address End Pointer"]
 #[derive(PartialEq, Eq)]
 pub struct Srcendp(pub u32);
 impl Srcendp {
+#[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
   #[inline] pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
   #[inline] pub fn set_addr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1661,12 +1842,15 @@ impl ::core::fmt::Debug for Srcendp {
       Ok(())
    }
 }
+#[doc="DMA Channel Destination Address End Pointer"]
 #[derive(PartialEq, Eq)]
 pub struct Dstendp(pub u32);
 impl Dstendp {
+#[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
   #[inline] pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
   #[inline] pub fn set_addr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1687,12 +1871,15 @@ impl ::core::fmt::Debug for Dstendp {
       Ok(())
    }
 }
+#[doc="DMA Channel Control Word"]
 #[derive(PartialEq, Eq)]
 pub struct Chctl(pub u32);
 impl Chctl {
+#[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
   #[inline] pub fn dstinc(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x3 // [31:30]
   }
+#[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
   #[inline] pub fn set_dstinc(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 30);
@@ -1700,9 +1887,11 @@ impl Chctl {
      self
   }
 
+#[doc="Destination Data Size. This field configures the destination item data size."]
   #[inline] pub fn dstsize(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x3 // [29:28]
   }
+#[doc="Destination Data Size. This field configures the destination item data size."]
   #[inline] pub fn set_dstsize(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
@@ -1710,9 +1899,11 @@ impl Chctl {
      self
   }
 
+#[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
   #[inline] pub fn srcinc(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x3 // [27:26]
   }
+#[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
   #[inline] pub fn set_srcinc(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 26);
@@ -1720,9 +1911,11 @@ impl Chctl {
      self
   }
 
+#[doc="Source Data Size. This field configures the source item data size."]
   #[inline] pub fn srcsize(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x3 // [25:24]
   }
+#[doc="Source Data Size. This field configures the source item data size."]
   #[inline] pub fn set_srcsize(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 24);
@@ -1730,9 +1923,11 @@ impl Chctl {
      self
   }
 
+#[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
   #[inline] pub fn dstproto(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
   #[inline] pub fn set_dstproto(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -1740,9 +1935,11 @@ impl Chctl {
      self
   }
 
+#[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
   #[inline] pub fn srcproto(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
   #[inline] pub fn set_srcproto(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1750,9 +1947,11 @@ impl Chctl {
      self
   }
 
+#[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
   #[inline] pub fn arbsize(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0xf // [17:14]
   }
+#[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
   #[inline] pub fn set_arbsize(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 14);
@@ -1760,9 +1959,11 @@ impl Chctl {
      self
   }
 
+#[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
   #[inline] pub fn xfersize(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x3ff // [13:4]
   }
+#[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
   #[inline] pub fn set_xfersize(mut self, value: u32) -> Self {
      assert!((value & !0x3ff) == 0);
      self.0 &= !(0x3ff << 4);
@@ -1770,9 +1971,11 @@ impl Chctl {
      self
   }
 
+#[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
   #[inline] pub fn nxtuseburst(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
   #[inline] pub fn set_nxtuseburst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1780,9 +1983,11 @@ impl Chctl {
      self
   }
 
+#[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]
   #[inline] pub fn xfermode(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]
   #[inline] pub fn set_xfermode(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -1814,6 +2019,8 @@ impl ::core::fmt::Debug for Chctl {
    }
 }
 #[derive(Clone, Copy, PartialEq)]
+#[doc="UDMA Channel"]
+#[doc="UDMA Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {
@@ -1823,161 +2030,193 @@ impl<P,T> Channel<P,T> {
 
 pub const UDMA_CH0: Channel<UdmaCh0Id, UdmaId> = Channel { periph: UDMA, index: 0, id: UdmaCh0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh0Id {}
 pub type UdmaCh0 = Channel<UdmaCh0Id, UdmaId>;
 
 pub const UDMA_CH1: Channel<UdmaCh1Id, UdmaId> = Channel { periph: UDMA, index: 1, id: UdmaCh1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh1Id {}
 pub type UdmaCh1 = Channel<UdmaCh1Id, UdmaId>;
 
 pub const UDMA_CH2: Channel<UdmaCh2Id, UdmaId> = Channel { periph: UDMA, index: 2, id: UdmaCh2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh2Id {}
 pub type UdmaCh2 = Channel<UdmaCh2Id, UdmaId>;
 
 pub const UDMA_CH3: Channel<UdmaCh3Id, UdmaId> = Channel { periph: UDMA, index: 3, id: UdmaCh3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh3Id {}
 pub type UdmaCh3 = Channel<UdmaCh3Id, UdmaId>;
 
 pub const UDMA_CH4: Channel<UdmaCh4Id, UdmaId> = Channel { periph: UDMA, index: 4, id: UdmaCh4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh4Id {}
 pub type UdmaCh4 = Channel<UdmaCh4Id, UdmaId>;
 
 pub const UDMA_CH5: Channel<UdmaCh5Id, UdmaId> = Channel { periph: UDMA, index: 5, id: UdmaCh5Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh5Id {}
 pub type UdmaCh5 = Channel<UdmaCh5Id, UdmaId>;
 
 pub const UDMA_CH6: Channel<UdmaCh6Id, UdmaId> = Channel { periph: UDMA, index: 6, id: UdmaCh6Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh6Id {}
 pub type UdmaCh6 = Channel<UdmaCh6Id, UdmaId>;
 
 pub const UDMA_CH7: Channel<UdmaCh7Id, UdmaId> = Channel { periph: UDMA, index: 7, id: UdmaCh7Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh7Id {}
 pub type UdmaCh7 = Channel<UdmaCh7Id, UdmaId>;
 
 pub const UDMA_CH8: Channel<UdmaCh8Id, UdmaId> = Channel { periph: UDMA, index: 8, id: UdmaCh8Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh8Id {}
 pub type UdmaCh8 = Channel<UdmaCh8Id, UdmaId>;
 
 pub const UDMA_CH9: Channel<UdmaCh9Id, UdmaId> = Channel { periph: UDMA, index: 9, id: UdmaCh9Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh9Id {}
 pub type UdmaCh9 = Channel<UdmaCh9Id, UdmaId>;
 
 pub const UDMA_CH10: Channel<UdmaCh10Id, UdmaId> = Channel { periph: UDMA, index: 10, id: UdmaCh10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh10Id {}
 pub type UdmaCh10 = Channel<UdmaCh10Id, UdmaId>;
 
 pub const UDMA_CH11: Channel<UdmaCh11Id, UdmaId> = Channel { periph: UDMA, index: 11, id: UdmaCh11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh11Id {}
 pub type UdmaCh11 = Channel<UdmaCh11Id, UdmaId>;
 
 pub const UDMA_CH12: Channel<UdmaCh12Id, UdmaId> = Channel { periph: UDMA, index: 12, id: UdmaCh12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh12Id {}
 pub type UdmaCh12 = Channel<UdmaCh12Id, UdmaId>;
 
 pub const UDMA_CH13: Channel<UdmaCh13Id, UdmaId> = Channel { periph: UDMA, index: 13, id: UdmaCh13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh13Id {}
 pub type UdmaCh13 = Channel<UdmaCh13Id, UdmaId>;
 
 pub const UDMA_CH14: Channel<UdmaCh14Id, UdmaId> = Channel { periph: UDMA, index: 14, id: UdmaCh14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh14Id {}
 pub type UdmaCh14 = Channel<UdmaCh14Id, UdmaId>;
 
 pub const UDMA_CH15: Channel<UdmaCh15Id, UdmaId> = Channel { periph: UDMA, index: 15, id: UdmaCh15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh15Id {}
 pub type UdmaCh15 = Channel<UdmaCh15Id, UdmaId>;
 
 pub const UDMA_CH16: Channel<UdmaCh16Id, UdmaId> = Channel { periph: UDMA, index: 16, id: UdmaCh16Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh16Id {}
 pub type UdmaCh16 = Channel<UdmaCh16Id, UdmaId>;
 
 pub const UDMA_CH17: Channel<UdmaCh17Id, UdmaId> = Channel { periph: UDMA, index: 17, id: UdmaCh17Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh17Id {}
 pub type UdmaCh17 = Channel<UdmaCh17Id, UdmaId>;
 
 pub const UDMA_CH18: Channel<UdmaCh18Id, UdmaId> = Channel { periph: UDMA, index: 18, id: UdmaCh18Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh18Id {}
 pub type UdmaCh18 = Channel<UdmaCh18Id, UdmaId>;
 
 pub const UDMA_CH19: Channel<UdmaCh19Id, UdmaId> = Channel { periph: UDMA, index: 19, id: UdmaCh19Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh19Id {}
 pub type UdmaCh19 = Channel<UdmaCh19Id, UdmaId>;
 
 pub const UDMA_CH20: Channel<UdmaCh20Id, UdmaId> = Channel { periph: UDMA, index: 20, id: UdmaCh20Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh20Id {}
 pub type UdmaCh20 = Channel<UdmaCh20Id, UdmaId>;
 
 pub const UDMA_CH21: Channel<UdmaCh21Id, UdmaId> = Channel { periph: UDMA, index: 21, id: UdmaCh21Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh21Id {}
 pub type UdmaCh21 = Channel<UdmaCh21Id, UdmaId>;
 
 pub const UDMA_CH22: Channel<UdmaCh22Id, UdmaId> = Channel { periph: UDMA, index: 22, id: UdmaCh22Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh22Id {}
 pub type UdmaCh22 = Channel<UdmaCh22Id, UdmaId>;
 
 pub const UDMA_CH23: Channel<UdmaCh23Id, UdmaId> = Channel { periph: UDMA, index: 23, id: UdmaCh23Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh23Id {}
 pub type UdmaCh23 = Channel<UdmaCh23Id, UdmaId>;
 
 pub const UDMA_CH24: Channel<UdmaCh24Id, UdmaId> = Channel { periph: UDMA, index: 24, id: UdmaCh24Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh24Id {}
 pub type UdmaCh24 = Channel<UdmaCh24Id, UdmaId>;
 
 pub const UDMA_CH25: Channel<UdmaCh25Id, UdmaId> = Channel { periph: UDMA, index: 25, id: UdmaCh25Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh25Id {}
 pub type UdmaCh25 = Channel<UdmaCh25Id, UdmaId>;
 
 pub const UDMA_CH26: Channel<UdmaCh26Id, UdmaId> = Channel { periph: UDMA, index: 26, id: UdmaCh26Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh26Id {}
 pub type UdmaCh26 = Channel<UdmaCh26Id, UdmaId>;
 
 pub const UDMA_CH27: Channel<UdmaCh27Id, UdmaId> = Channel { periph: UDMA, index: 27, id: UdmaCh27Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh27Id {}
 pub type UdmaCh27 = Channel<UdmaCh27Id, UdmaId>;
 
 pub const UDMA_CH28: Channel<UdmaCh28Id, UdmaId> = Channel { periph: UDMA, index: 28, id: UdmaCh28Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh28Id {}
 pub type UdmaCh28 = Channel<UdmaCh28Id, UdmaId>;
 
 pub const UDMA_CH29: Channel<UdmaCh29Id, UdmaId> = Channel { periph: UDMA, index: 29, id: UdmaCh29Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh29Id {}
 pub type UdmaCh29 = Channel<UdmaCh29Id, UdmaId>;
 
 pub const UDMA_CH30: Channel<UdmaCh30Id, UdmaId> = Channel { periph: UDMA, index: 30, id: UdmaCh30Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh30Id {}
 pub type UdmaCh30 = Channel<UdmaCh30Id, UdmaId>;
 
 pub const UDMA_CH31: Channel<UdmaCh31Id, UdmaId> = Channel { periph: UDMA, index: 31, id: UdmaCh31Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct UdmaCh31Id {}
 pub type UdmaCh31 = Channel<UdmaCh31Id, UdmaId>;
 

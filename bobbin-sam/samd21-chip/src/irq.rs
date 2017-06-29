@@ -31,19 +31,33 @@ pub type IrqSercom3 = Irq<Sercom3Id>;
 pub type IrqSercom4 = Irq<Sercom4Id>;
 pub type IrqSercom5 = Irq<Sercom5Id>;
 
+#[doc(hidden)]
 pub struct DmacId {} // IRQ 6
+#[doc(hidden)]
 pub struct AdcId {} // IRQ 23
+#[doc(hidden)]
 pub struct Tcc0Id {} // IRQ 15
+#[doc(hidden)]
 pub struct Tcc1Id {} // IRQ 16
+#[doc(hidden)]
 pub struct Tcc2Id {} // IRQ 17
+#[doc(hidden)]
 pub struct Tc3Id {} // IRQ 18
+#[doc(hidden)]
 pub struct Tc4Id {} // IRQ 19
+#[doc(hidden)]
 pub struct Tc5Id {} // IRQ 20
+#[doc(hidden)]
 pub struct Sercom0Id {} // IRQ 9
+#[doc(hidden)]
 pub struct Sercom1Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Sercom2Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Sercom3Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Sercom4Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Sercom5Id {} // IRQ 14
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

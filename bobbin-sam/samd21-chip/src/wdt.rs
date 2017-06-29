@@ -1,14 +1,18 @@
 pub const WDT: Wdt = Wdt(0x40001000);
 
+#[doc="Watchdog Timer"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wdt(pub u32);
 impl Wdt {
+#[doc="Get the *const pointer for the CLEAR register."]
   #[inline] pub fn clear_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x8) as *const u8
   }
+#[doc="Get the *mut pointer for the CLEAR register."]
   #[inline] pub fn clear_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x8) as *mut u8
   }
+#[doc="Write the CLEAR register."]
   #[inline] pub fn set_clear(&self, value: Clear) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
@@ -16,144 +20,177 @@ impl Wdt {
      self
   }
 
+#[doc="Get the *const pointer for the CONFIG register."]
   #[inline] pub fn config_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x1) as *const u8
   }
+#[doc="Get the *mut pointer for the CONFIG register."]
   #[inline] pub fn config_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x1) as *mut u8
   }
+#[doc="Read the CONFIG register."]
   #[inline] pub fn config(&self) -> Config { 
      unsafe {
         Config(::core::ptr::read_volatile(((self.0 as usize) + 0x1) as *const u8))
      }
   }
+#[doc="Write the CONFIG register."]
   #[inline] pub fn set_config(&self, value: Config) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the CONFIG register."]
   #[inline] pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
      let tmp = self.config();
      self.set_config(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL register."]
   #[inline] pub fn ctrl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
   }
+#[doc="Get the *mut pointer for the CTRL register."]
   #[inline] pub fn ctrl_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x0) as *mut u8
   }
+#[doc="Read the CTRL register."]
   #[inline] pub fn ctrl(&self) -> Ctrl { 
      unsafe {
         Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u8))
      }
   }
+#[doc="Write the CTRL register."]
   #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the EWCTRL register."]
   #[inline] pub fn ewctrl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x2) as *const u8
   }
+#[doc="Get the *mut pointer for the EWCTRL register."]
   #[inline] pub fn ewctrl_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x2) as *mut u8
   }
+#[doc="Read the EWCTRL register."]
   #[inline] pub fn ewctrl(&self) -> Ewctrl { 
      unsafe {
         Ewctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u8))
      }
   }
+#[doc="Write the EWCTRL register."]
   #[inline] pub fn set_ewctrl(&self, value: Ewctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the EWCTRL register."]
   #[inline] pub fn with_ewctrl<F: FnOnce(Ewctrl) -> Ewctrl>(&self, f: F) -> &Self {
      let tmp = self.ewctrl();
      self.set_ewctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTENCLR register."]
   #[inline] pub fn intenclr_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x4) as *const u8
   }
+#[doc="Get the *mut pointer for the INTENCLR register."]
   #[inline] pub fn intenclr_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x4) as *mut u8
   }
+#[doc="Read the INTENCLR register."]
   #[inline] pub fn intenclr(&self) -> Intenclr { 
      unsafe {
         Intenclr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u8))
      }
   }
+#[doc="Write the INTENCLR register."]
   #[inline] pub fn set_intenclr(&self, value: Intenclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTENCLR register."]
   #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
      self.set_intenclr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTENSET register."]
   #[inline] pub fn intenset_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x5) as *const u8
   }
+#[doc="Get the *mut pointer for the INTENSET register."]
   #[inline] pub fn intenset_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x5) as *mut u8
   }
+#[doc="Read the INTENSET register."]
   #[inline] pub fn intenset(&self) -> Intenset { 
      unsafe {
         Intenset(::core::ptr::read_volatile(((self.0 as usize) + 0x5) as *const u8))
      }
   }
+#[doc="Write the INTENSET register."]
   #[inline] pub fn set_intenset(&self, value: Intenset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTENSET register."]
   #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
      self.set_intenset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INTFLAG register."]
   #[inline] pub fn intflag_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x6) as *const u8
   }
+#[doc="Get the *mut pointer for the INTFLAG register."]
   #[inline] pub fn intflag_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x6) as *mut u8
   }
+#[doc="Read the INTFLAG register."]
   #[inline] pub fn intflag(&self) -> Intflag { 
      unsafe {
         Intflag(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
      }
   }
+#[doc="Write the INTFLAG register."]
   #[inline] pub fn set_intflag(&self, value: Intflag) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the INTFLAG register."]
   #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
      self.set_intflag(f(tmp))
   }
 
+#[doc="Get the *const pointer for the STATUS register."]
   #[inline] pub fn status_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x7) as *const u8
   }
+#[doc="Get the *mut pointer for the STATUS register."]
   #[inline] pub fn status_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x7) as *mut u8
   }
+#[doc="Read the STATUS register."]
   #[inline] pub fn status(&self) -> Status { 
      unsafe {
         Status(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
@@ -162,12 +199,15 @@ impl Wdt {
 
 }
 
+#[doc="Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Clear(pub u8);
 impl Clear {
+#[doc="Watchdog Clear"]
   #[inline] pub fn clear(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Watchdog Clear"]
   #[inline] pub fn set_clear(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -189,12 +229,15 @@ impl ::core::fmt::Debug for Clear {
       Ok(())
    }
 }
+#[doc="Configuration"]
 #[derive(PartialEq, Eq)]
 pub struct Config(pub u8);
 impl Config {
+#[doc="Time-Out Period"]
   #[inline] pub fn per(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xf // [3:0]
   }
+#[doc="Time-Out Period"]
   #[inline] pub fn set_per(mut self, value: u8) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
@@ -202,9 +245,11 @@ impl Config {
      self
   }
 
+#[doc="Window Mode Time-Out Period"]
   #[inline] pub fn window(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0xf // [7:4]
   }
+#[doc="Window Mode Time-Out Period"]
   #[inline] pub fn set_window(mut self, value: u8) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
@@ -227,12 +272,15 @@ impl ::core::fmt::Debug for Config {
       Ok(())
    }
 }
+#[doc="Control"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
+#[doc="Enable"]
   #[inline] pub fn enable(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Enable"]
   #[inline] pub fn set_enable(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -240,9 +288,11 @@ impl Ctrl {
      self
   }
 
+#[doc="Watchdog Timer Window Mode Enable"]
   #[inline] pub fn wen(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Watchdog Timer Window Mode Enable"]
   #[inline] pub fn set_wen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -250,9 +300,11 @@ impl Ctrl {
      self
   }
 
+#[doc="Always-On"]
   #[inline] pub fn alwayson(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Always-On"]
   #[inline] pub fn set_alwayson(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -276,12 +328,15 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+#[doc="Early Warning Interrupt Control"]
 #[derive(PartialEq, Eq)]
 pub struct Ewctrl(pub u8);
 impl Ewctrl {
+#[doc="Early Warning Interrupt Time Offset"]
   #[inline] pub fn ewoffset(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xf // [3:0]
   }
+#[doc="Early Warning Interrupt Time Offset"]
   #[inline] pub fn set_ewoffset(mut self, value: u8) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
@@ -303,12 +358,15 @@ impl ::core::fmt::Debug for Ewctrl {
       Ok(())
    }
 }
+#[doc="Interrupt Enable Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
+#[doc="Early Warning Interrupt Enable"]
   #[inline] pub fn ew(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Early Warning Interrupt Enable"]
   #[inline] pub fn set_ew(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -330,12 +388,15 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
+#[doc="Interrupt Enable Set"]
 #[derive(PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
+#[doc="Early Warning Interrupt Enable"]
   #[inline] pub fn ew(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Early Warning Interrupt Enable"]
   #[inline] pub fn set_ew(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -357,12 +418,15 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
+#[doc="Interrupt Flag Status and Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
+#[doc="Early Warning"]
   #[inline] pub fn ew(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Early Warning"]
   #[inline] pub fn set_ew(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -384,12 +448,15 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
+#[doc="Status"]
 #[derive(PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
+#[doc="Synchronization Busy"]
   #[inline] pub fn syncbusy(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Synchronization Busy"]
   #[inline] pub fn set_syncbusy(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);

@@ -1,91 +1,112 @@
 pub const FPU: Fpu = Fpu(0xe000e000);
 
+#[doc="FPU"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fpu(pub u32);
 impl Fpu {
+#[doc="Get the *const pointer for the CPACR register."]
   #[inline] pub fn cpacr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xd88) as *const u32
   }
+#[doc="Get the *mut pointer for the CPACR register."]
   #[inline] pub fn cpacr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xd88) as *mut u32
   }
+#[doc="Read the CPACR register."]
   #[inline] pub fn cpacr(&self) -> Cpacr { 
      unsafe {
         Cpacr(::core::ptr::read_volatile(((self.0 as usize) + 0xd88) as *const u32))
      }
   }
+#[doc="Write the CPACR register."]
   #[inline] pub fn set_cpacr(&self, value: Cpacr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xd88) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CPACR register."]
   #[inline] pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
      let tmp = self.cpacr();
      self.set_cpacr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FPCCR register."]
   #[inline] pub fn fpccr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xf34) as *const u32
   }
+#[doc="Get the *mut pointer for the FPCCR register."]
   #[inline] pub fn fpccr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xf34) as *mut u32
   }
+#[doc="Read the FPCCR register."]
   #[inline] pub fn fpccr(&self) -> Fpccr { 
      unsafe {
         Fpccr(::core::ptr::read_volatile(((self.0 as usize) + 0xf34) as *const u32))
      }
   }
+#[doc="Write the FPCCR register."]
   #[inline] pub fn set_fpccr(&self, value: Fpccr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xf34) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FPCCR register."]
   #[inline] pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
      let tmp = self.fpccr();
      self.set_fpccr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FPCAR register."]
   #[inline] pub fn fpcar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xf38) as *const u32
   }
+#[doc="Get the *mut pointer for the FPCAR register."]
   #[inline] pub fn fpcar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xf38) as *mut u32
   }
+#[doc="Read the FPCAR register."]
   #[inline] pub fn fpcar(&self) -> Fpcar { 
      unsafe {
         Fpcar(::core::ptr::read_volatile(((self.0 as usize) + 0xf38) as *const u32))
      }
   }
+#[doc="Write the FPCAR register."]
   #[inline] pub fn set_fpcar(&self, value: Fpcar) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xf38) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FPCAR register."]
   #[inline] pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
      let tmp = self.fpcar();
      self.set_fpcar(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FPDSCR register."]
   #[inline] pub fn fpdscr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xf3c) as *const u32
   }
+#[doc="Get the *mut pointer for the FPDSCR register."]
   #[inline] pub fn fpdscr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xf3c) as *mut u32
   }
+#[doc="Read the FPDSCR register."]
   #[inline] pub fn fpdscr(&self) -> Fpdscr { 
      unsafe {
         Fpdscr(::core::ptr::read_volatile(((self.0 as usize) + 0xf3c) as *const u32))
      }
   }
+#[doc="Write the FPDSCR register."]
   #[inline] pub fn set_fpdscr(&self, value: Fpdscr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xf3c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FPDSCR register."]
   #[inline] pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
      let tmp = self.fpdscr();
      self.set_fpdscr(f(tmp))
@@ -93,12 +114,15 @@ impl Fpu {
 
 }
 
+#[doc="Coprocessor Access Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cpacr(pub u32);
 impl Cpacr {
+#[doc="CP10 Access privileges"]
   #[inline] pub fn cp10(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
   }
+#[doc="CP10 Access privileges"]
   #[inline] pub fn set_cp10(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
@@ -106,9 +130,11 @@ impl Cpacr {
      self
   }
 
+#[doc="CP11 Access privileges"]
   #[inline] pub fn cp11(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x3 // [23:22]
   }
+#[doc="CP11 Access privileges"]
   #[inline] pub fn set_cp11(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 22);
@@ -131,6 +157,7 @@ impl ::core::fmt::Debug for Cpacr {
       Ok(())
    }
 }
+#[doc="Floating-point Context Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fpccr(pub u32);
 impl Fpccr {
@@ -246,6 +273,7 @@ impl ::core::fmt::Debug for Fpccr {
       Ok(())
    }
 }
+#[doc="Floating-point Context Address Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fpcar(pub u32);
 impl Fpcar {
@@ -273,6 +301,7 @@ impl ::core::fmt::Debug for Fpcar {
       Ok(())
    }
 }
+#[doc="Floating-point Default Status Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fpdscr(pub u32);
 impl Fpdscr {

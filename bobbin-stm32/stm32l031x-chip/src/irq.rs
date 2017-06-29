@@ -93,50 +93,95 @@ pub type IrqUsart2 = Irq<Usart2Id>;
 pub type IrqLpuart1 = Irq<Lpuart1Id>;
 pub type IrqSpi1 = Irq<Spi1Id>;
 
+#[doc(hidden)]
 pub struct WwdgId {} // IRQ 0
+#[doc(hidden)]
 pub struct RtcId {} // IRQ 2
+#[doc(hidden)]
 pub struct Lptim1Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Exti0Id {} // IRQ 5
+#[doc(hidden)]
 pub struct Exti1Id {} // IRQ 5
+#[doc(hidden)]
 pub struct Exti2Id {} // IRQ 6
+#[doc(hidden)]
 pub struct Exti3Id {} // IRQ 6
+#[doc(hidden)]
 pub struct Exti4Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti5Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti6Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti7Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti8Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti9Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti10Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti11Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti12Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti13Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti14Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti15Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti16Id {} // IRQ 1
+#[doc(hidden)]
 pub struct Exti17Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Exti19Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Exti20Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Exti21Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Exti22Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Exti23Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti24Id {} // IRQ 24
+#[doc(hidden)]
 pub struct Exti25Id {} // IRQ 27
+#[doc(hidden)]
 pub struct Exti26Id {} // IRQ 28
+#[doc(hidden)]
 pub struct Exti28Id {} // IRQ 29
+#[doc(hidden)]
 pub struct Exti29Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Dma1Ch1Id {} // IRQ 9
+#[doc(hidden)]
 pub struct Dma1Ch2Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Dma1Ch3Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Dma1Ch4Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Dma1Ch5Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Dma1Ch6Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Dma1Ch7Id {} // IRQ 11
+#[doc(hidden)]
 pub struct I2c1Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Tim2Id {} // IRQ 15
+#[doc(hidden)]
 pub struct Tim21Id {} // IRQ 20
+#[doc(hidden)]
 pub struct Tim22Id {} // IRQ 22
+#[doc(hidden)]
 pub struct Usart2Id {} // IRQ 28
+#[doc(hidden)]
 pub struct Lpuart1Id {} // IRQ 29
+#[doc(hidden)]
 pub struct Spi1Id {} // IRQ 25
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

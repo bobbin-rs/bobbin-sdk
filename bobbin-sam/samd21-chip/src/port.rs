@@ -2,12 +2,15 @@ pub const PORTA: Porta = Periph(0x41004400, PortaId {});
 pub const PORTB: Portb = Periph(0x41004480, PortbId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="PORT Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct PortaId {}
 pub type Porta = Periph<PortaId>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct PortbId {}
 pub type Portb = Periph<PortbId>;
 
@@ -15,230 +18,282 @@ pub type Portb = Periph<PortbId>;
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the CTRL register."]
   #[inline] pub fn ctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
+#[doc="Get the *mut pointer for the CTRL register."]
   #[inline] pub fn ctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
+#[doc="Read the CTRL register."]
   #[inline] pub fn ctrl(&self) -> Ctrl { 
      unsafe {
         Ctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
      }
   }
+#[doc="Write the CTRL register."]
   #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
      self.set_ctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DIR register."]
   #[inline] pub fn dir_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the DIR register."]
   #[inline] pub fn dir_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the DIR register."]
   #[inline] pub fn dir(&self) -> Dir { 
      unsafe {
         Dir(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the DIR register."]
   #[inline] pub fn set_dir(&self, value: Dir) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DIR register."]
   #[inline] pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
      let tmp = self.dir();
      self.set_dir(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DIRCLR register."]
   #[inline] pub fn dirclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the DIRCLR register."]
   #[inline] pub fn dirclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the DIRCLR register."]
   #[inline] pub fn dirclr(&self) -> Dirclr { 
      unsafe {
         Dirclr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the DIRCLR register."]
   #[inline] pub fn set_dirclr(&self, value: Dirclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DIRCLR register."]
   #[inline] pub fn with_dirclr<F: FnOnce(Dirclr) -> Dirclr>(&self, f: F) -> &Self {
      let tmp = self.dirclr();
      self.set_dirclr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DIRSET register."]
   #[inline] pub fn dirset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the DIRSET register."]
   #[inline] pub fn dirset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the DIRSET register."]
   #[inline] pub fn dirset(&self) -> Dirset { 
      unsafe {
         Dirset(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the DIRSET register."]
   #[inline] pub fn set_dirset(&self, value: Dirset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DIRSET register."]
   #[inline] pub fn with_dirset<F: FnOnce(Dirset) -> Dirset>(&self, f: F) -> &Self {
      let tmp = self.dirset();
      self.set_dirset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DIRTGL register."]
   #[inline] pub fn dirtgl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the DIRTGL register."]
   #[inline] pub fn dirtgl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the DIRTGL register."]
   #[inline] pub fn dirtgl(&self) -> Dirtgl { 
      unsafe {
         Dirtgl(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the DIRTGL register."]
   #[inline] pub fn set_dirtgl(&self, value: Dirtgl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DIRTGL register."]
   #[inline] pub fn with_dirtgl<F: FnOnce(Dirtgl) -> Dirtgl>(&self, f: F) -> &Self {
      let tmp = self.dirtgl();
      self.set_dirtgl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the IN register."]
   #[inline] pub fn in_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the IN register."]
   #[inline] pub fn in_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the IN register."]
   #[inline] pub fn _in(&self) -> In { 
      unsafe {
         In(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the OUT register."]
   #[inline] pub fn out_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the OUT register."]
   #[inline] pub fn out_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the OUT register."]
   #[inline] pub fn out(&self) -> Out { 
      unsafe {
         Out(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the OUT register."]
   #[inline] pub fn set_out(&self, value: Out) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUT register."]
   #[inline] pub fn with_out<F: FnOnce(Out) -> Out>(&self, f: F) -> &Self {
      let tmp = self.out();
      self.set_out(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OUTCLR register."]
   #[inline] pub fn outclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the OUTCLR register."]
   #[inline] pub fn outclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the OUTCLR register."]
   #[inline] pub fn outclr(&self) -> Outclr { 
      unsafe {
         Outclr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the OUTCLR register."]
   #[inline] pub fn set_outclr(&self, value: Outclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUTCLR register."]
   #[inline] pub fn with_outclr<F: FnOnce(Outclr) -> Outclr>(&self, f: F) -> &Self {
      let tmp = self.outclr();
      self.set_outclr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OUTSET register."]
   #[inline] pub fn outset_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the OUTSET register."]
   #[inline] pub fn outset_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the OUTSET register."]
   #[inline] pub fn outset(&self) -> Outset { 
      unsafe {
         Outset(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the OUTSET register."]
   #[inline] pub fn set_outset(&self, value: Outset) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUTSET register."]
   #[inline] pub fn with_outset<F: FnOnce(Outset) -> Outset>(&self, f: F) -> &Self {
      let tmp = self.outset();
      self.set_outset(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OUTTGL register."]
   #[inline] pub fn outtgl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the OUTTGL register."]
   #[inline] pub fn outtgl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the OUTTGL register."]
   #[inline] pub fn outtgl(&self) -> Outtgl { 
      unsafe {
         Outtgl(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
+#[doc="Write the OUTTGL register."]
   #[inline] pub fn set_outtgl(&self, value: Outtgl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUTTGL register."]
   #[inline] pub fn with_outtgl<F: FnOnce(Outtgl) -> Outtgl>(&self, f: F) -> &Self {
      let tmp = self.outtgl();
      self.set_outtgl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PINCFG register."]
   #[inline] pub fn pincfg_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 32);
      ((self.0 as usize) + 0x40 + (index)) as *const u8
   }
+#[doc="Get the *mut pointer for the PINCFG register."]
   #[inline] pub fn pincfg_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 32);
      ((self.0 as usize) + 0x40 + (index)) as *mut u8
   }
+#[doc="Read the PINCFG register."]
   #[inline] pub fn pincfg(&self, index: usize) -> Pincfg { 
      assert!(index < 32);
      unsafe {
         Pincfg(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index)) as *const u8))
      }
   }
+#[doc="Write the PINCFG register."]
   #[inline] pub fn set_pincfg(&self, index: usize, value: Pincfg) -> &Self {
      assert!(index < 32);
      unsafe {
@@ -246,25 +301,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the PINCFG register."]
   #[inline] pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, index: usize, f: F) -> &Self {
      let tmp = self.pincfg(index);
      self.set_pincfg(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the PMUX register."]
   #[inline] pub fn pmux_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x30 + (index)) as *const u8
   }
+#[doc="Get the *mut pointer for the PMUX register."]
   #[inline] pub fn pmux_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x30 + (index)) as *mut u8
   }
+#[doc="Read the PMUX register."]
   #[inline] pub fn pmux(&self, index: usize) -> Pmux { 
      assert!(index < 16);
      unsafe {
         Pmux(::core::ptr::read_volatile(((self.0 as usize) + 0x30 + (index)) as *const u8))
      }
   }
+#[doc="Write the PMUX register."]
   #[inline] pub fn set_pmux(&self, index: usize, value: Pmux) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -272,17 +332,21 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the PMUX register."]
   #[inline] pub fn with_pmux<F: FnOnce(Pmux) -> Pmux>(&self, index: usize, f: F) -> &Self {
      let tmp = self.pmux(index);
      self.set_pmux(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the WRCONFIG register."]
   #[inline] pub fn wrconfig_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x28) as *const u32
   }
+#[doc="Get the *mut pointer for the WRCONFIG register."]
   #[inline] pub fn wrconfig_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x28) as *mut u32
   }
+#[doc="Write the WRCONFIG register."]
   #[inline] pub fn set_wrconfig(&self, value: Wrconfig) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
@@ -292,12 +356,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Control"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl(pub u32);
 impl Ctrl {
+#[doc="Input Sampling Mode"]
   #[inline] pub fn sampling(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Input Sampling Mode"]
   #[inline] pub fn set_sampling(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -318,14 +385,17 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+#[doc="Data Direction"]
 #[derive(PartialEq, Eq)]
 pub struct Dir(pub u32);
 impl Dir {
+#[doc="Port Data Direction"]
   #[inline] pub fn dir(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Direction"]
   #[inline] pub fn set_dir(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -380,14 +450,17 @@ impl ::core::fmt::Debug for Dir {
       Ok(())
    }
 }
+#[doc="Data Direction Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Dirclr(pub u32);
 impl Dirclr {
+#[doc="Port Data Direction Clear"]
   #[inline] pub fn dirclr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Direction Clear"]
   #[inline] pub fn set_dirclr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -442,14 +515,17 @@ impl ::core::fmt::Debug for Dirclr {
       Ok(())
    }
 }
+#[doc="Data Direction Set"]
 #[derive(PartialEq, Eq)]
 pub struct Dirset(pub u32);
 impl Dirset {
+#[doc="Port Data Direction Set"]
   #[inline] pub fn dirset(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Direction Set"]
   #[inline] pub fn set_dirset(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -504,14 +580,17 @@ impl ::core::fmt::Debug for Dirset {
       Ok(())
    }
 }
+#[doc="Data Direction Toggle"]
 #[derive(PartialEq, Eq)]
 pub struct Dirtgl(pub u32);
 impl Dirtgl {
+#[doc="Port Data Direction Toggle"]
   #[inline] pub fn dirtgl(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Direction Toggle"]
   #[inline] pub fn set_dirtgl(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -566,14 +645,17 @@ impl ::core::fmt::Debug for Dirtgl {
       Ok(())
    }
 }
+#[doc="Data Input Value"]
 #[derive(PartialEq, Eq)]
 pub struct In(pub u32);
 impl In {
+#[doc="Port Data Input Value"]
   #[inline] pub fn _in(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Input Value"]
   #[inline] pub fn set_in(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -628,14 +710,17 @@ impl ::core::fmt::Debug for In {
       Ok(())
    }
 }
+#[doc="Data Output Value"]
 #[derive(PartialEq, Eq)]
 pub struct Out(pub u32);
 impl Out {
+#[doc="Port Data Output Value"]
   #[inline] pub fn out(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Output Value"]
   #[inline] pub fn set_out(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -690,14 +775,17 @@ impl ::core::fmt::Debug for Out {
       Ok(())
    }
 }
+#[doc="Data Output Value Clear"]
 #[derive(PartialEq, Eq)]
 pub struct Outclr(pub u32);
 impl Outclr {
+#[doc="Port Data Output Value Clear"]
   #[inline] pub fn outclr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Output Value Clear"]
   #[inline] pub fn set_outclr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -752,14 +840,17 @@ impl ::core::fmt::Debug for Outclr {
       Ok(())
    }
 }
+#[doc="Data Output Value Set"]
 #[derive(PartialEq, Eq)]
 pub struct Outset(pub u32);
 impl Outset {
+#[doc="Port Data Output Value Set"]
   #[inline] pub fn outset(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Output Value Set"]
   #[inline] pub fn set_outset(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -814,14 +905,17 @@ impl ::core::fmt::Debug for Outset {
       Ok(())
    }
 }
+#[doc="Data Output Value Toggle"]
 #[derive(PartialEq, Eq)]
 pub struct Outtgl(pub u32);
 impl Outtgl {
+#[doc="Port Data Output Value Toggle"]
   #[inline] pub fn outtgl(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Port Data Output Value Toggle"]
   #[inline] pub fn set_outtgl(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -876,12 +970,15 @@ impl ::core::fmt::Debug for Outtgl {
       Ok(())
    }
 }
+#[doc="Pin Configuration n"]
 #[derive(PartialEq, Eq)]
 pub struct Pincfg(pub u8);
 impl Pincfg {
+#[doc="Peripheral Multiplexer Enable"]
   #[inline] pub fn pmuxen(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Peripheral Multiplexer Enable"]
   #[inline] pub fn set_pmuxen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -889,9 +986,11 @@ impl Pincfg {
      self
   }
 
+#[doc="Input Enable"]
   #[inline] pub fn inen(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Input Enable"]
   #[inline] pub fn set_inen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -899,9 +998,11 @@ impl Pincfg {
      self
   }
 
+#[doc="Pull Enable"]
   #[inline] pub fn pullen(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Pull Enable"]
   #[inline] pub fn set_pullen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -909,9 +1010,11 @@ impl Pincfg {
      self
   }
 
+#[doc="Output Driver Strength Selection"]
   #[inline] pub fn drvstr(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Output Driver Strength Selection"]
   #[inline] pub fn set_drvstr(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -936,14 +1039,17 @@ impl ::core::fmt::Debug for Pincfg {
       Ok(())
    }
 }
+#[doc="Peripheral Multiplexing n - Group 0"]
 #[derive(PartialEq, Eq)]
 pub struct Pmux(pub u8);
 impl Pmux {
+#[doc="Peripheral Multiplexing Even"]
   #[inline] pub fn pmux(&self, index: usize) -> u8 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u8) >> shift) & 0xf // [3:0]
   }
+#[doc="Peripheral Multiplexing Even"]
   #[inline] pub fn set_pmux(mut self, index: usize, value: u8) -> Self {
      assert!(index < 2);
      assert!((value & !0xf) == 0);
@@ -968,12 +1074,15 @@ impl ::core::fmt::Debug for Pmux {
       Ok(())
    }
 }
+#[doc="Write Configuration"]
 #[derive(PartialEq, Eq)]
 pub struct Wrconfig(pub u32);
 impl Wrconfig {
+#[doc="Pin Mask for Multiple Pin Configuration"]
   #[inline] pub fn pinmask(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Pin Mask for Multiple Pin Configuration"]
   #[inline] pub fn set_pinmask(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -981,9 +1090,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Peripheral Multiplexer Enable"]
   #[inline] pub fn pmuxen(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Peripheral Multiplexer Enable"]
   #[inline] pub fn set_pmuxen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -991,9 +1102,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Input Enable"]
   #[inline] pub fn inen(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Input Enable"]
   #[inline] pub fn set_inen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -1001,9 +1114,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Pull Enable"]
   #[inline] pub fn pullen(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Pull Enable"]
   #[inline] pub fn set_pullen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1011,9 +1126,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Output Driver Strength Selection"]
   #[inline] pub fn drvstr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Output Driver Strength Selection"]
   #[inline] pub fn set_drvstr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -1021,9 +1138,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Peripheral Multiplexing"]
   #[inline] pub fn pmux(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+#[doc="Peripheral Multiplexing"]
   #[inline] pub fn set_pmux(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
@@ -1031,9 +1150,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Write PMUX"]
   #[inline] pub fn wrpmux(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+#[doc="Write PMUX"]
   #[inline] pub fn set_wrpmux(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -1041,9 +1162,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Write PINCFG"]
   #[inline] pub fn wrpincfg(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="Write PINCFG"]
   #[inline] pub fn set_wrpincfg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -1051,9 +1174,11 @@ impl Wrconfig {
      self
   }
 
+#[doc="Half-Word Select"]
   #[inline] pub fn hwsel(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Half-Word Select"]
   #[inline] pub fn set_hwsel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1083,6 +1208,7 @@ impl ::core::fmt::Debug for Wrconfig {
       Ok(())
    }
 }
+#[doc="PORT Pin"]
 pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Pin<P,T> {
@@ -1095,6 +1221,7 @@ pub trait AltFn<T> {
 
 pub const PA00: Pin<Pa00Id, PortaId> = Pin { port: PORTA, index: 0, id: Pa00Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa00Id {}
 pub type Pa00 = Pin<Pa00Id, PortaId>;
 impl AltFn<super::sig::Extint0> for Pa00Id {
@@ -1111,6 +1238,7 @@ impl AltFn<super::sig::Tcc2Wo0> for Pa00Id {
 
 pub const PA01: Pin<Pa01Id, PortaId> = Pin { port: PORTA, index: 1, id: Pa01Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa01Id {}
 pub type Pa01 = Pin<Pa01Id, PortaId>;
 impl AltFn<super::sig::Extint1> for Pa01Id {
@@ -1127,6 +1255,7 @@ impl AltFn<super::sig::Tcc2Wo1> for Pa01Id {
 
 pub const PA02: Pin<Pa02Id, PortaId> = Pin { port: PORTA, index: 2, id: Pa02Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa02Id {}
 pub type Pa02 = Pin<Pa02Id, PortaId>;
 impl AltFn<super::sig::Extint2> for Pa02Id {
@@ -1147,6 +1276,7 @@ impl AltFn<super::sig::Vout> for Pa02Id {
 
 pub const PA03: Pin<Pa03Id, PortaId> = Pin { port: PORTA, index: 3, id: Pa03Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa03Id {}
 pub type Pa03 = Pin<Pa03Id, PortaId>;
 impl AltFn<super::sig::Extint3> for Pa03Id {
@@ -1175,6 +1305,7 @@ impl AltFn<super::sig::Y1> for Pa03Id {
 
 pub const PA04: Pin<Pa04Id, PortaId> = Pin { port: PORTA, index: 4, id: Pa04Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa04Id {}
 pub type Pa04 = Pin<Pa04Id, PortaId>;
 impl AltFn<super::sig::Extint4> for Pa04Id {
@@ -1211,6 +1342,7 @@ impl AltFn<super::sig::Tcc0Wo0> for Pa04Id {
 
 pub const PA05: Pin<Pa05Id, PortaId> = Pin { port: PORTA, index: 5, id: Pa05Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa05Id {}
 pub type Pa05 = Pin<Pa05Id, PortaId>;
 impl AltFn<super::sig::Extint5> for Pa05Id {
@@ -1239,6 +1371,7 @@ impl AltFn<super::sig::Tcc0Wo1> for Pa05Id {
 
 pub const PA06: Pin<Pa06Id, PortaId> = Pin { port: PORTA, index: 6, id: Pa06Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa06Id {}
 pub type Pa06 = Pin<Pa06Id, PortaId>;
 impl AltFn<super::sig::Extint6> for Pa06Id {
@@ -1267,6 +1400,7 @@ impl AltFn<super::sig::Tcc1Wo0> for Pa06Id {
 
 pub const PA07: Pin<Pa07Id, PortaId> = Pin { port: PORTA, index: 7, id: Pa07Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa07Id {}
 pub type Pa07 = Pin<Pa07Id, PortaId>;
 impl AltFn<super::sig::Extint7> for Pa07Id {
@@ -1299,6 +1433,7 @@ impl AltFn<super::sig::I2sSd0> for Pa07Id {
 
 pub const PA08: Pin<Pa08Id, PortaId> = Pin { port: PORTA, index: 8, id: Pa08Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa08Id {}
 pub type Pa08 = Pin<Pa08Id, PortaId>;
 impl AltFn<super::sig::Nmi> for Pa08Id {
@@ -1335,6 +1470,7 @@ impl AltFn<super::sig::I2sSd1> for Pa08Id {
 
 pub const PA09: Pin<Pa09Id, PortaId> = Pin { port: PORTA, index: 9, id: Pa09Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa09Id {}
 pub type Pa09 = Pin<Pa09Id, PortaId>;
 impl AltFn<super::sig::Extint9> for Pa09Id {
@@ -1371,6 +1507,7 @@ impl AltFn<super::sig::I2sMck0> for Pa09Id {
 
 pub const PA10: Pin<Pa10Id, PortaId> = Pin { port: PORTA, index: 10, id: Pa10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa10Id {}
 pub type Pa10 = Pin<Pa10Id, PortaId>;
 impl AltFn<super::sig::Extint10> for Pa10Id {
@@ -1411,6 +1548,7 @@ impl AltFn<super::sig::GclkIo4> for Pa10Id {
 
 pub const PA11: Pin<Pa11Id, PortaId> = Pin { port: PORTA, index: 11, id: Pa11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa11Id {}
 pub type Pa11 = Pin<Pa11Id, PortaId>;
 impl AltFn<super::sig::Extint11> for Pa11Id {
@@ -1451,6 +1589,7 @@ impl AltFn<super::sig::GclkIo5> for Pa11Id {
 
 pub const PA12: Pin<Pa12Id, PortaId> = Pin { port: PORTA, index: 12, id: Pa12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa12Id {}
 pub type Pa12 = Pin<Pa12Id, PortaId>;
 impl AltFn<super::sig::Extint12> for Pa12Id {
@@ -1479,6 +1618,7 @@ impl AltFn<super::sig::AcCmp0> for Pa12Id {
 
 pub const PA13: Pin<Pa13Id, PortaId> = Pin { port: PORTA, index: 13, id: Pa13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa13Id {}
 pub type Pa13 = Pin<Pa13Id, PortaId>;
 impl AltFn<super::sig::Extint13> for Pa13Id {
@@ -1507,6 +1647,7 @@ impl AltFn<super::sig::AcCmp1> for Pa13Id {
 
 pub const PA14: Pin<Pa14Id, PortaId> = Pin { port: PORTA, index: 14, id: Pa14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa14Id {}
 pub type Pa14 = Pin<Pa14Id, PortaId>;
 impl AltFn<super::sig::Extint14> for Pa14Id {
@@ -1535,6 +1676,7 @@ impl AltFn<super::sig::GclkIo0> for Pa14Id {
 
 pub const PA15: Pin<Pa15Id, PortaId> = Pin { port: PORTA, index: 15, id: Pa15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa15Id {}
 pub type Pa15 = Pin<Pa15Id, PortaId>;
 impl AltFn<super::sig::Extint15> for Pa15Id {
@@ -1563,6 +1705,7 @@ impl AltFn<super::sig::GclkIo1> for Pa15Id {
 
 pub const PA16: Pin<Pa16Id, PortaId> = Pin { port: PORTA, index: 16, id: Pa16Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa16Id {}
 pub type Pa16 = Pin<Pa16Id, PortaId>;
 impl AltFn<super::sig::Extint0> for Pa16Id {
@@ -1595,6 +1738,7 @@ impl AltFn<super::sig::GclkIo2> for Pa16Id {
 
 pub const PA17: Pin<Pa17Id, PortaId> = Pin { port: PORTA, index: 17, id: Pa17Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa17Id {}
 pub type Pa17 = Pin<Pa17Id, PortaId>;
 impl AltFn<super::sig::Extint1> for Pa17Id {
@@ -1627,6 +1771,7 @@ impl AltFn<super::sig::GclkIo3> for Pa17Id {
 
 pub const PA18: Pin<Pa18Id, PortaId> = Pin { port: PORTA, index: 18, id: Pa18Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa18Id {}
 pub type Pa18 = Pin<Pa18Id, PortaId>;
 impl AltFn<super::sig::Extint2> for Pa18Id {
@@ -1659,6 +1804,7 @@ impl AltFn<super::sig::AcCmp0> for Pa18Id {
 
 pub const PA19: Pin<Pa19Id, PortaId> = Pin { port: PORTA, index: 19, id: Pa19Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa19Id {}
 pub type Pa19 = Pin<Pa19Id, PortaId>;
 impl AltFn<super::sig::Extint3> for Pa19Id {
@@ -1695,6 +1841,7 @@ impl AltFn<super::sig::AcCmp1> for Pa19Id {
 
 pub const PA20: Pin<Pa20Id, PortaId> = Pin { port: PORTA, index: 20, id: Pa20Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa20Id {}
 pub type Pa20 = Pin<Pa20Id, PortaId>;
 impl AltFn<super::sig::Extint4> for Pa20Id {
@@ -1731,6 +1878,7 @@ impl AltFn<super::sig::GclkIo4> for Pa20Id {
 
 pub const PA21: Pin<Pa21Id, PortaId> = Pin { port: PORTA, index: 21, id: Pa21Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa21Id {}
 pub type Pa21 = Pin<Pa21Id, PortaId>;
 impl AltFn<super::sig::Extint5> for Pa21Id {
@@ -1767,6 +1915,7 @@ impl AltFn<super::sig::GclkIo5> for Pa21Id {
 
 pub const PA22: Pin<Pa22Id, PortaId> = Pin { port: PORTA, index: 22, id: Pa22Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa22Id {}
 pub type Pa22 = Pin<Pa22Id, PortaId>;
 impl AltFn<super::sig::Extint6> for Pa22Id {
@@ -1799,6 +1948,7 @@ impl AltFn<super::sig::GclkIo6> for Pa22Id {
 
 pub const PA23: Pin<Pa23Id, PortaId> = Pin { port: PORTA, index: 23, id: Pa23Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa23Id {}
 pub type Pa23 = Pin<Pa23Id, PortaId>;
 impl AltFn<super::sig::Extint7> for Pa23Id {
@@ -1835,6 +1985,7 @@ impl AltFn<super::sig::GclkIo7> for Pa23Id {
 
 pub const PA24: Pin<Pa24Id, PortaId> = Pin { port: PORTA, index: 24, id: Pa24Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa24Id {}
 pub type Pa24 = Pin<Pa24Id, PortaId>;
 impl AltFn<super::sig::Extint12> for Pa24Id {
@@ -1863,6 +2014,7 @@ impl AltFn<super::sig::UsbDm> for Pa24Id {
 
 pub const PA25: Pin<Pa25Id, PortaId> = Pin { port: PORTA, index: 25, id: Pa25Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa25Id {}
 pub type Pa25 = Pin<Pa25Id, PortaId>;
 impl AltFn<super::sig::Extint13> for Pa25Id {
@@ -1891,6 +2043,7 @@ impl AltFn<super::sig::UsbDp> for Pa25Id {
 
 pub const PA27: Pin<Pa27Id, PortaId> = Pin { port: PORTA, index: 27, id: Pa27Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa27Id {}
 pub type Pa27 = Pin<Pa27Id, PortaId>;
 impl AltFn<super::sig::Extint15> for Pa27Id {
@@ -1903,6 +2056,7 @@ impl AltFn<super::sig::GclkIo0> for Pa27Id {
 
 pub const PA28: Pin<Pa28Id, PortaId> = Pin { port: PORTA, index: 28, id: Pa28Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa28Id {}
 pub type Pa28 = Pin<Pa28Id, PortaId>;
 impl AltFn<super::sig::Extint8> for Pa28Id {
@@ -1915,6 +2069,7 @@ impl AltFn<super::sig::GclkIo0> for Pa28Id {
 
 pub const PA30: Pin<Pa30Id, PortaId> = Pin { port: PORTA, index: 30, id: Pa30Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa30Id {}
 pub type Pa30 = Pin<Pa30Id, PortaId>;
 impl AltFn<super::sig::Extint10> for Pa30Id {
@@ -1939,6 +2094,7 @@ impl AltFn<super::sig::GclkIo0> for Pa30Id {
 
 pub const PA31: Pin<Pa31Id, PortaId> = Pin { port: PORTA, index: 31, id: Pa31Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pa31Id {}
 pub type Pa31 = Pin<Pa31Id, PortaId>;
 impl AltFn<super::sig::Extint11> for Pa31Id {
@@ -1959,6 +2115,7 @@ impl AltFn<super::sig::Swdio> for Pa31Id {
 
 pub const PB00: Pin<Pb00Id, PortbId> = Pin { port: PORTB, index: 0, id: Pb00Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb00Id {}
 pub type Pb00 = Pin<Pb00Id, PortbId>;
 impl AltFn<super::sig::Extint0> for Pb00Id {
@@ -1983,6 +2140,7 @@ impl AltFn<super::sig::Tc7Wo0> for Pb00Id {
 
 pub const PB01: Pin<Pb01Id, PortbId> = Pin { port: PORTB, index: 1, id: Pb01Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb01Id {}
 pub type Pb01 = Pin<Pb01Id, PortbId>;
 impl AltFn<super::sig::Extint1> for Pb01Id {
@@ -2007,6 +2165,7 @@ impl AltFn<super::sig::Tc7Wo1> for Pb01Id {
 
 pub const PB02: Pin<Pb02Id, PortbId> = Pin { port: PORTB, index: 2, id: Pb02Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb02Id {}
 pub type Pb02 = Pin<Pb02Id, PortbId>;
 impl AltFn<super::sig::Extint2> for Pb02Id {
@@ -2031,6 +2190,7 @@ impl AltFn<super::sig::Tc6Wo0> for Pb02Id {
 
 pub const PB03: Pin<Pb03Id, PortbId> = Pin { port: PORTB, index: 3, id: Pb03Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb03Id {}
 pub type Pb03 = Pin<Pb03Id, PortbId>;
 impl AltFn<super::sig::Extint3> for Pb03Id {
@@ -2055,6 +2215,7 @@ impl AltFn<super::sig::Tc6Wo1> for Pb03Id {
 
 pub const PB04: Pin<Pb04Id, PortbId> = Pin { port: PORTB, index: 4, id: Pb04Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb04Id {}
 pub type Pb04 = Pin<Pb04Id, PortbId>;
 impl AltFn<super::sig::Extint4> for Pb04Id {
@@ -2071,6 +2232,7 @@ impl AltFn<super::sig::Y10> for Pb04Id {
 
 pub const PB05: Pin<Pb05Id, PortbId> = Pin { port: PORTB, index: 5, id: Pb05Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb05Id {}
 pub type Pb05 = Pin<Pb05Id, PortbId>;
 impl AltFn<super::sig::Extint5> for Pb05Id {
@@ -2087,6 +2249,7 @@ impl AltFn<super::sig::Y11> for Pb05Id {
 
 pub const PB06: Pin<Pb06Id, PortbId> = Pin { port: PORTB, index: 6, id: Pb06Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb06Id {}
 pub type Pb06 = Pin<Pb06Id, PortbId>;
 impl AltFn<super::sig::Extint6> for Pb06Id {
@@ -2103,6 +2266,7 @@ impl AltFn<super::sig::Y12> for Pb06Id {
 
 pub const PB07: Pin<Pb07Id, PortbId> = Pin { port: PORTB, index: 7, id: Pb07Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb07Id {}
 pub type Pb07 = Pin<Pb07Id, PortbId>;
 impl AltFn<super::sig::Extint7> for Pb07Id {
@@ -2119,6 +2283,7 @@ impl AltFn<super::sig::Y13> for Pb07Id {
 
 pub const PB08: Pin<Pb08Id, PortbId> = Pin { port: PORTB, index: 8, id: Pb08Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb08Id {}
 pub type Pb08 = Pin<Pb08Id, PortbId>;
 impl AltFn<super::sig::Extint8> for Pb08Id {
@@ -2143,6 +2308,7 @@ impl AltFn<super::sig::Tc4Wo0> for Pb08Id {
 
 pub const PB09: Pin<Pb09Id, PortbId> = Pin { port: PORTB, index: 9, id: Pb09Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb09Id {}
 pub type Pb09 = Pin<Pb09Id, PortbId>;
 impl AltFn<super::sig::Extint9> for Pb09Id {
@@ -2167,6 +2333,7 @@ impl AltFn<super::sig::Tc4Wo1> for Pb09Id {
 
 pub const PB10: Pin<Pb10Id, PortbId> = Pin { port: PORTB, index: 10, id: Pb10Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb10Id {}
 pub type Pb10 = Pin<Pb10Id, PortbId>;
 impl AltFn<super::sig::Extint10> for Pb10Id {
@@ -2195,6 +2362,7 @@ impl AltFn<super::sig::GclkIo4> for Pb10Id {
 
 pub const PB11: Pin<Pb11Id, PortbId> = Pin { port: PORTB, index: 11, id: Pb11Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb11Id {}
 pub type Pb11 = Pin<Pb11Id, PortbId>;
 impl AltFn<super::sig::Extint11> for Pb11Id {
@@ -2223,6 +2391,7 @@ impl AltFn<super::sig::GclkIo5> for Pb11Id {
 
 pub const PB12: Pin<Pb12Id, PortbId> = Pin { port: PORTB, index: 12, id: Pb12Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb12Id {}
 pub type Pb12 = Pin<Pb12Id, PortbId>;
 impl AltFn<super::sig::Extint12> for Pb12Id {
@@ -2255,6 +2424,7 @@ impl AltFn<super::sig::GclkIo6> for Pb12Id {
 
 pub const PB13: Pin<Pb13Id, PortbId> = Pin { port: PORTB, index: 13, id: Pb13Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb13Id {}
 pub type Pb13 = Pin<Pb13Id, PortbId>;
 impl AltFn<super::sig::Extint13> for Pb13Id {
@@ -2283,6 +2453,7 @@ impl AltFn<super::sig::GclkIo7> for Pb13Id {
 
 pub const PB14: Pin<Pb14Id, PortbId> = Pin { port: PORTB, index: 14, id: Pb14Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb14Id {}
 pub type Pb14 = Pin<Pb14Id, PortbId>;
 impl AltFn<super::sig::Extint14> for Pb14Id {
@@ -2307,6 +2478,7 @@ impl AltFn<super::sig::GclkIo0> for Pb14Id {
 
 pub const PB15: Pin<Pb15Id, PortbId> = Pin { port: PORTB, index: 15, id: Pb15Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb15Id {}
 pub type Pb15 = Pin<Pb15Id, PortbId>;
 impl AltFn<super::sig::Extint15> for Pb15Id {
@@ -2331,6 +2503,7 @@ impl AltFn<super::sig::GclkIo1> for Pb15Id {
 
 pub const PB16: Pin<Pb16Id, PortbId> = Pin { port: PORTB, index: 16, id: Pb16Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb16Id {}
 pub type Pb16 = Pin<Pb16Id, PortbId>;
 impl AltFn<super::sig::Extint0> for Pb16Id {
@@ -2359,6 +2532,7 @@ impl AltFn<super::sig::GclkIo2> for Pb16Id {
 
 pub const PB17: Pin<Pb17Id, PortbId> = Pin { port: PORTB, index: 17, id: Pb17Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb17Id {}
 pub type Pb17 = Pin<Pb17Id, PortbId>;
 impl AltFn<super::sig::Extint1> for Pb17Id {
@@ -2387,6 +2561,7 @@ impl AltFn<super::sig::GclkIo3> for Pb17Id {
 
 pub const PB22: Pin<Pb22Id, PortbId> = Pin { port: PORTB, index: 22, id: Pb22Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb22Id {}
 pub type Pb22 = Pin<Pb22Id, PortbId>;
 impl AltFn<super::sig::Extint6> for Pb22Id {
@@ -2407,6 +2582,7 @@ impl AltFn<super::sig::GclkIo0> for Pb22Id {
 
 pub const PB23: Pin<Pb23Id, PortbId> = Pin { port: PORTB, index: 23, id: Pb23Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb23Id {}
 pub type Pb23 = Pin<Pb23Id, PortbId>;
 impl AltFn<super::sig::Extint7> for Pb23Id {
@@ -2427,6 +2603,7 @@ impl AltFn<super::sig::GclkIo1> for Pb23Id {
 
 pub const PB30: Pin<Pb30Id, PortbId> = Pin { port: PORTB, index: 30, id: Pb30Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb30Id {}
 pub type Pb30 = Pin<Pb30Id, PortbId>;
 impl AltFn<super::sig::Extint14> for Pb30Id {
@@ -2447,6 +2624,7 @@ impl AltFn<super::sig::Tcc1Wo2> for Pb30Id {
 
 pub const PB31: Pin<Pb31Id, PortbId> = Pin { port: PORTB, index: 31, id: Pb31Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
 pub struct Pb31Id {}
 pub type Pb31 = Pin<Pb31Id, PortbId>;
 impl AltFn<super::sig::Extint15> for Pb31Id {

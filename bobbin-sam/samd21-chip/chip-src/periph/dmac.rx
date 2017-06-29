@@ -593,10 +593,12 @@
     (descriptor
         (name TRANSFER)
         (size 0x10)
+        (description "DMAC Block Transfer Descriptor")
         (register
             (name BTCTRL)
             (offset 0x0)
             (size 0x10)
+            (description "Block Transfer Control")
             (field
                 (name VALID)
                 (bit-offset 0)
@@ -650,6 +652,7 @@
             (name BTCNT)
             (offset 0x02)
             (size 0x10)
+            (description "Block Transfer Count")
             (field
                 (name BTCNT)
                 (bit-offset 0)
@@ -661,6 +664,7 @@
             (name SRCADDR)
             (offset 0x04)
             (size 0x20)
+            (description "Block Transfer Source Address")
             (field
                 (name SRCADDR)
                 (bit-offset 0)
@@ -672,6 +676,7 @@
             (name DSTADDR)
             (offset 0x08)
             (size 0x20)
+            (description "Block Transfer Source Address")
             (field
                 (name DSTADDR)
                 (bit-offset 0)
@@ -683,6 +688,7 @@
             (name DESCADDR)
             (offset 0x0c)
             (size 0x20)
+            (description "Block Transfer Destination Address")
             (field
                 (name DESCADDR)
                 (bit-offset 0)
