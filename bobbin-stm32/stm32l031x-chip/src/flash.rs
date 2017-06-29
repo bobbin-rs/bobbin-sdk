@@ -1,3 +1,4 @@
+//! Flash
 pub const FLASH: Flash = Flash(0x40022000);
 
 #[doc="Flash"]

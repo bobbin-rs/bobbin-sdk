@@ -1,3 +1,4 @@
+//! Timer/Counter
 pub const TC3: Tc3 = Periph(0x42002c00, Tc3Id {});
 pub const TC4: Tc4 = Periph(0x42003000, Tc4Id {});
 pub const TC5: Tc5 = Periph(0x42003400, Tc5Id {});

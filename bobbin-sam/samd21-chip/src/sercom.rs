@@ -1,3 +1,4 @@
+//! Serial Communication Interface
 pub const SERCOM0: Sercom0 = Periph(0x42000800, Sercom0Id {});
 pub const SERCOM1: Sercom1 = Periph(0x42000c00, Sercom1Id {});
 pub const SERCOM2: Sercom2 = Periph(0x42001000, Sercom2Id {});

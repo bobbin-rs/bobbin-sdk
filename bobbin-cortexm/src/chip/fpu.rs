@@ -1,3 +1,4 @@
+//! FPU
 pub const FPU: Fpu = Fpu(0xe000e000);
 
 #[doc="FPU"]

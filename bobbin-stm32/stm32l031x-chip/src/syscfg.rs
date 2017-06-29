@@ -1,3 +1,4 @@
+//! System configuration controller
 pub const SYSCFG: Syscfg = Syscfg(0x40010000);
 
 #[doc="System configuration controller"]

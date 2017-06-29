@@ -2020,7 +2020,6 @@ impl ::core::fmt::Debug for Chctl {
 }
 #[derive(Clone, Copy, PartialEq)]
 #[doc="UDMA Channel"]
-#[doc="UDMA Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

@@ -1,3 +1,4 @@
+//! Power control
 pub const PWR: Pwr = Pwr(0x40007000);
 
 #[doc="Power control"]

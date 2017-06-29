@@ -1,3 +1,4 @@
+//! ITM
 pub const ITM: Itm = Itm(0xe0000000);
 
 #[doc="ITM"]

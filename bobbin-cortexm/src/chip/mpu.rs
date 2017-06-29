@@ -1,3 +1,4 @@
+//! Memory Protection Unit
 pub const MPU: Mpu = Mpu(0xe000ed90);
 
 #[doc="Memory Protection Unit"]

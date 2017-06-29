@@ -1,24 +1,29 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="PORT Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the PCR register."]
   #[inline] pub fn pcr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 32);
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
   }
+#[doc="Get the *mut pointer for the PCR register."]
   #[inline] pub fn pcr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 32);
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
   }
+#[doc="Read the PCR register."]
   #[inline] pub fn pcr(&self, index: usize) -> Pcr { 
      assert!(index < 32);
      unsafe {
         Pcr(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u32))
      }
   }
+#[doc="Write the PCR register."]
   #[inline] pub fn set_pcr(&self, index: usize, value: Pcr) -> &Self {
      assert!(index < 32);
      unsafe {
@@ -26,17 +31,21 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the PCR register."]
   #[inline] pub fn with_pcr<F: FnOnce(Pcr) -> Pcr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.pcr(index);
      self.set_pcr(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the GPCLR register."]
   #[inline] pub fn gpclr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x80) as *const u32
   }
+#[doc="Get the *mut pointer for the GPCLR register."]
   #[inline] pub fn gpclr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x80) as *mut u32
   }
+#[doc="Write the GPCLR register."]
   #[inline] pub fn set_gpclr(&self, value: Gpclr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
@@ -44,12 +53,15 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the GPCHR register."]
   #[inline] pub fn gpchr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x84) as *const u32
   }
+#[doc="Get the *mut pointer for the GPCHR register."]
   #[inline] pub fn gpchr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x84) as *mut u32
   }
+#[doc="Write the GPCHR register."]
   #[inline] pub fn set_gpchr(&self, value: Gpchr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
@@ -57,23 +69,28 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the ISFR register."]
   #[inline] pub fn isfr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xa0) as *const u32
   }
+#[doc="Get the *mut pointer for the ISFR register."]
   #[inline] pub fn isfr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xa0) as *mut u32
   }
+#[doc="Read the ISFR register."]
   #[inline] pub fn isfr(&self) -> Isfr { 
      unsafe {
         Isfr(::core::ptr::read_volatile(((self.0 as usize) + 0xa0) as *const u32))
      }
   }
+#[doc="Write the ISFR register."]
   #[inline] pub fn set_isfr(&self, value: Isfr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ISFR register."]
   #[inline] pub fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
      let tmp = self.isfr();
      self.set_isfr(f(tmp))
@@ -81,12 +98,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Pin Control Register n"]
 #[derive(PartialEq, Eq)]
 pub struct Pcr(pub u32);
 impl Pcr {
+#[doc="Pull Select"]
   #[inline] pub fn ps(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Pull Select"]
   #[inline] pub fn set_ps(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -94,9 +114,11 @@ impl Pcr {
      self
   }
 
+#[doc="Pull Enable"]
   #[inline] pub fn pe(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Pull Enable"]
   #[inline] pub fn set_pe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -104,9 +126,11 @@ impl Pcr {
      self
   }
 
+#[doc="Slew Rate Enable"]
   #[inline] pub fn sre(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Slew Rate Enable"]
   #[inline] pub fn set_sre(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -114,9 +138,11 @@ impl Pcr {
      self
   }
 
+#[doc="Passive Filter Enable"]
   #[inline] pub fn pfe(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Passive Filter Enable"]
   #[inline] pub fn set_pfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -124,9 +150,11 @@ impl Pcr {
      self
   }
 
+#[doc="Open Drain Enable"]
   #[inline] pub fn ode(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Open Drain Enable"]
   #[inline] pub fn set_ode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -134,9 +162,11 @@ impl Pcr {
      self
   }
 
+#[doc="Drive Strength Enable"]
   #[inline] pub fn dse(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Drive Strength Enable"]
   #[inline] pub fn set_dse(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -144,9 +174,11 @@ impl Pcr {
      self
   }
 
+#[doc="Pin Mux Control"]
   #[inline] pub fn mux(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x7 // [10:8]
   }
+#[doc="Pin Mux Control"]
   #[inline] pub fn set_mux(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
@@ -154,9 +186,11 @@ impl Pcr {
      self
   }
 
+#[doc="Lock Register"]
   #[inline] pub fn lk(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Lock Register"]
   #[inline] pub fn set_lk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -164,9 +198,11 @@ impl Pcr {
      self
   }
 
+#[doc="Interrupt Configuration"]
   #[inline] pub fn irqc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Interrupt Configuration"]
   #[inline] pub fn set_irqc(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -174,9 +210,11 @@ impl Pcr {
      self
   }
 
+#[doc="Interrupt Status Flag"]
   #[inline] pub fn isf(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="Interrupt Status Flag"]
   #[inline] pub fn set_isf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -207,12 +245,15 @@ impl ::core::fmt::Debug for Pcr {
       Ok(())
    }
 }
+#[doc="Global Pin Control Low Register"]
 #[derive(PartialEq, Eq)]
 pub struct Gpclr(pub u32);
 impl Gpclr {
+#[doc="Global Pin Write Data"]
   #[inline] pub fn gpwd(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Global Pin Write Data"]
   #[inline] pub fn set_gpwd(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -220,9 +261,11 @@ impl Gpclr {
      self
   }
 
+#[doc="Global Pin Write Enable"]
   #[inline] pub fn gpwe(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+#[doc="Global Pin Write Enable"]
   #[inline] pub fn set_gpwe(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -245,12 +288,15 @@ impl ::core::fmt::Debug for Gpclr {
       Ok(())
    }
 }
+#[doc="Global Pin Control High Register"]
 #[derive(PartialEq, Eq)]
 pub struct Gpchr(pub u32);
 impl Gpchr {
+#[doc="Global Pin Write Data"]
   #[inline] pub fn gpwd(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Global Pin Write Data"]
   #[inline] pub fn set_gpwd(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -258,9 +304,11 @@ impl Gpchr {
      self
   }
 
+#[doc="Global Pin Write Enable"]
   #[inline] pub fn gpwe(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+#[doc="Global Pin Write Enable"]
   #[inline] pub fn set_gpwe(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -283,14 +331,17 @@ impl ::core::fmt::Debug for Gpchr {
       Ok(())
    }
 }
+#[doc="Interrupt Status Flag Register"]
 #[derive(PartialEq, Eq)]
 pub struct Isfr(pub u32);
 impl Isfr {
+#[doc="Interrupt Status Flag"]
   #[inline] pub fn isf(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Interrupt Status Flag"]
   #[inline] pub fn set_isf(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -345,6 +396,7 @@ impl ::core::fmt::Debug for Isfr {
       Ok(())
    }
 }
+#[doc="PORT Pin"]
 pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Pin<P,T> {

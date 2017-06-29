@@ -5,12 +5,15 @@ pub const LPUART1: Lpuart1 = Periph(0x4006b000, Lpuart1Id {});
 pub const LPUART2: Lpuart2 = Periph(0x4006c000, Lpuart2Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Lpuart0Id {}
 pub type Lpuart0 = Periph<Lpuart0Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Lpuart1Id {}
 pub type Lpuart1 = Periph<Lpuart1Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Lpuart2Id {}
 pub type Lpuart2 = Periph<Lpuart2Id>;
 

@@ -1,3 +1,4 @@
+//! Timer/Counter for Control Applications
 pub const TCC0: Tcc0 = Periph(0x42002000, Tcc0Id {});
 pub const TCC1: Tcc1 = Periph(0x42002400, Tcc1Id {});
 pub const TCC2: Tcc2 = Periph(0x42002800, Tcc2Id {});

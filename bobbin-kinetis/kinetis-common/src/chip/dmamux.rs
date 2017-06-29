@@ -1,24 +1,29 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="DMAMUX Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the CHCFG register."]
   #[inline] pub fn chcfg_ptr(&self, index: usize) -> *const u8 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x0 + (index)) as *const u8
   }
+#[doc="Get the *mut pointer for the CHCFG register."]
   #[inline] pub fn chcfg_mut(&self, index: usize) -> *mut u8 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x0 + (index)) as *mut u8
   }
+#[doc="Read the CHCFG register."]
   #[inline] pub fn chcfg(&self, index: usize) -> Chcfg { 
      assert!(index < 16);
      unsafe {
         Chcfg(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index)) as *const u8))
      }
   }
+#[doc="Write the CHCFG register."]
   #[inline] pub fn set_chcfg(&self, index: usize, value: Chcfg) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -26,6 +31,7 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the CHCFG register."]
   #[inline] pub fn with_chcfg<F: FnOnce(Chcfg) -> Chcfg>(&self, index: usize, f: F) -> &Self {
      let tmp = self.chcfg(index);
      self.set_chcfg(index, f(tmp))
@@ -33,12 +39,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Channel Configuration register"]
 #[derive(PartialEq, Eq)]
 pub struct Chcfg(pub u8);
 impl Chcfg {
+#[doc="DMA Channel Source (Slot)"]
   #[inline] pub fn source(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x3f // [5:0]
   }
+#[doc="DMA Channel Source (Slot)"]
   #[inline] pub fn set_source(mut self, value: u8) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -46,9 +55,11 @@ impl Chcfg {
      self
   }
 
+#[doc="DMA Channel Trigger Enable"]
   #[inline] pub fn trig(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="DMA Channel Trigger Enable"]
   #[inline] pub fn set_trig(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -56,9 +67,11 @@ impl Chcfg {
      self
   }
 
+#[doc="DMA Channel Enable"]
   #[inline] pub fn enbl(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="DMA Channel Enable"]
   #[inline] pub fn set_enbl(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);

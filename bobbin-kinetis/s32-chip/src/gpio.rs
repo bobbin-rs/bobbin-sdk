@@ -11,18 +11,23 @@ pub const GPIOD: Gpiod = Periph(0x400ff0c0, GpiodId {});
 pub const GPIOE: Gpioe = Periph(0x400ff100, GpioeId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct GpioaId {}
 pub type Gpioa = Periph<GpioaId>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct GpiobId {}
 pub type Gpiob = Periph<GpiobId>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct GpiocId {}
 pub type Gpioc = Periph<GpiocId>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct GpiodId {}
 pub type Gpiod = Periph<GpiodId>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct GpioeId {}
 pub type Gpioe = Periph<GpioeId>;
 

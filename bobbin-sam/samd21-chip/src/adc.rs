@@ -1,3 +1,4 @@
+//! Analog-to-Digital Converter
 pub const ADC: Adc = Periph(0x42004000, AdcId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]

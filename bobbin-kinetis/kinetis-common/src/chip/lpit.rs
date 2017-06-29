@@ -1,158 +1,194 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="LPIT Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the VERID register."]
   #[inline] pub fn verid_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the VERID register."]
   #[inline] pub fn verid_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the VERID register."]
   #[inline] pub fn verid(&self) -> Verid { 
      unsafe {
         Verid(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the PARAM register."]
   #[inline] pub fn param_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the PARAM register."]
   #[inline] pub fn param_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the PARAM register."]
   #[inline] pub fn param(&self) -> Param { 
      unsafe {
         Param(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the MCR register."]
   #[inline] pub fn mcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the MCR register."]
   #[inline] pub fn mcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the MCR register."]
   #[inline] pub fn mcr(&self) -> Mcr { 
      unsafe {
         Mcr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the MCR register."]
   #[inline] pub fn set_mcr(&self, value: Mcr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MCR register."]
   #[inline] pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MSR register."]
   #[inline] pub fn msr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the MSR register."]
   #[inline] pub fn msr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the MSR register."]
   #[inline] pub fn msr(&self) -> Msr { 
      unsafe {
         Msr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the MSR register."]
   #[inline] pub fn set_msr(&self, value: Msr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MSR register."]
   #[inline] pub fn with_msr<F: FnOnce(Msr) -> Msr>(&self, f: F) -> &Self {
      let tmp = self.msr();
      self.set_msr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MIER register."]
   #[inline] pub fn mier_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the MIER register."]
   #[inline] pub fn mier_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the MIER register."]
   #[inline] pub fn mier(&self) -> Mier { 
      unsafe {
         Mier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the MIER register."]
   #[inline] pub fn set_mier(&self, value: Mier) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MIER register."]
   #[inline] pub fn with_mier<F: FnOnce(Mier) -> Mier>(&self, f: F) -> &Self {
      let tmp = self.mier();
      self.set_mier(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SETTEN register."]
   #[inline] pub fn setten_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the SETTEN register."]
   #[inline] pub fn setten_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the SETTEN register."]
   #[inline] pub fn setten(&self) -> Setten { 
      unsafe {
         Setten(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the SETTEN register."]
   #[inline] pub fn set_setten(&self, value: Setten) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SETTEN register."]
   #[inline] pub fn with_setten<F: FnOnce(Setten) -> Setten>(&self, f: F) -> &Self {
      let tmp = self.setten();
      self.set_setten(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CLRTEN register."]
   #[inline] pub fn clrten_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the CLRTEN register."]
   #[inline] pub fn clrten_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the CLRTEN register."]
   #[inline] pub fn clrten(&self) -> Clrten { 
      unsafe {
         Clrten(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the CLRTEN register."]
   #[inline] pub fn set_clrten(&self, value: Clrten) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CLRTEN register."]
   #[inline] pub fn with_clrten<F: FnOnce(Clrten) -> Clrten>(&self, f: F) -> &Self {
      let tmp = self.clrten();
      self.set_clrten(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TVAL register."]
   #[inline] pub fn tval_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x20 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the TVAL register."]
   #[inline] pub fn tval_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x20 + (index << 4)) as *mut u32
   }
+#[doc="Read the TVAL register."]
   #[inline] pub fn tval(&self, index: usize) -> Tval { 
      assert!(index < 4);
      unsafe {
         Tval(::core::ptr::read_volatile(((self.0 as usize) + 0x20 + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the TVAL register."]
   #[inline] pub fn set_tval(&self, index: usize, value: Tval) -> &Self {
      assert!(index < 4);
      unsafe {
@@ -160,19 +196,23 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the TVAL register."]
   #[inline] pub fn with_tval<F: FnOnce(Tval) -> Tval>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tval(index);
      self.set_tval(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the CVAL register."]
   #[inline] pub fn cval_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x24 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the CVAL register."]
   #[inline] pub fn cval_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x24 + (index << 4)) as *mut u32
   }
+#[doc="Read the CVAL register."]
   #[inline] pub fn cval(&self, index: usize) -> Cval { 
      assert!(index < 4);
      unsafe {
@@ -180,20 +220,24 @@ impl<T> Periph<T> {
      }
   }
 
+#[doc="Get the *const pointer for the TCTRL register."]
   #[inline] pub fn tctrl_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x28 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the TCTRL register."]
   #[inline] pub fn tctrl_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 4);
      ((self.0 as usize) + 0x28 + (index << 4)) as *mut u32
   }
+#[doc="Read the TCTRL register."]
   #[inline] pub fn tctrl(&self, index: usize) -> Tctrl { 
      assert!(index < 4);
      unsafe {
         Tctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x28 + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the TCTRL register."]
   #[inline] pub fn set_tctrl(&self, index: usize, value: Tctrl) -> &Self {
      assert!(index < 4);
      unsafe {
@@ -201,6 +245,7 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the TCTRL register."]
   #[inline] pub fn with_tctrl<F: FnOnce(Tctrl) -> Tctrl>(&self, index: usize, f: F) -> &Self {
      let tmp = self.tctrl(index);
      self.set_tctrl(index, f(tmp))
@@ -208,12 +253,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Version ID Register"]
 #[derive(PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
+#[doc="Feature Number"]
   #[inline] pub fn feature(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Feature Number"]
   #[inline] pub fn set_feature(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -221,9 +269,11 @@ impl Verid {
      self
   }
 
+#[doc="Minor Version Number"]
   #[inline] pub fn minor(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Minor Version Number"]
   #[inline] pub fn set_minor(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -231,9 +281,11 @@ impl Verid {
      self
   }
 
+#[doc="Major Version Number"]
   #[inline] pub fn major(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Major Version Number"]
   #[inline] pub fn set_major(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -257,12 +309,15 @@ impl ::core::fmt::Debug for Verid {
       Ok(())
    }
 }
+#[doc="Parameter Register"]
 #[derive(PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
+#[doc="Number of Timer Channels"]
   #[inline] pub fn channel(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Number of Timer Channels"]
   #[inline] pub fn set_channel(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -270,9 +325,11 @@ impl Param {
      self
   }
 
+#[doc="Number of External Trigger Inputs"]
   #[inline] pub fn ext_trig(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Number of External Trigger Inputs"]
   #[inline] pub fn set_ext_trig(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -295,12 +352,15 @@ impl ::core::fmt::Debug for Param {
       Ok(())
    }
 }
+#[doc="Module Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
+#[doc="Module Clock Enable"]
   #[inline] pub fn m_cen(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Module Clock Enable"]
   #[inline] pub fn set_m_cen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -308,9 +368,11 @@ impl Mcr {
      self
   }
 
+#[doc="Software Reset Bit"]
   #[inline] pub fn sw_rst(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Software Reset Bit"]
   #[inline] pub fn set_sw_rst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -318,9 +380,11 @@ impl Mcr {
      self
   }
 
+#[doc="DOZE Mode Enable Bit"]
   #[inline] pub fn doze_en(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="DOZE Mode Enable Bit"]
   #[inline] pub fn set_doze_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -328,9 +392,11 @@ impl Mcr {
      self
   }
 
+#[doc="Debug Enable Bit"]
   #[inline] pub fn dbg_en(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Debug Enable Bit"]
   #[inline] pub fn set_dbg_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -355,14 +421,17 @@ impl ::core::fmt::Debug for Mcr {
       Ok(())
    }
 }
+#[doc="Module Status Register"]
 #[derive(PartialEq, Eq)]
 pub struct Msr(pub u32);
 impl Msr {
+#[doc="Channel n Timer Interrupt Flag"]
   #[inline] pub fn tif(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Timer Interrupt Flag"]
   #[inline] pub fn set_tif(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -389,14 +458,17 @@ impl ::core::fmt::Debug for Msr {
       Ok(())
    }
 }
+#[doc="Module Interrupt Enable Register"]
 #[derive(PartialEq, Eq)]
 pub struct Mier(pub u32);
 impl Mier {
+#[doc="Channel n Timer Interrupt Enable"]
   #[inline] pub fn tie(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Timer Interrupt Enable"]
   #[inline] pub fn set_tie(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -423,14 +495,17 @@ impl ::core::fmt::Debug for Mier {
       Ok(())
    }
 }
+#[doc="Set Timer Enable Register"]
 #[derive(PartialEq, Eq)]
 pub struct Setten(pub u32);
 impl Setten {
+#[doc="Set Timer n Enable"]
   #[inline] pub fn set_t_en(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Set Timer n Enable"]
   #[inline] pub fn set_set_t_en(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -457,14 +532,17 @@ impl ::core::fmt::Debug for Setten {
       Ok(())
    }
 }
+#[doc="Clear Timer Enable Register"]
 #[derive(PartialEq, Eq)]
 pub struct Clrten(pub u32);
 impl Clrten {
+#[doc="Clear Timer n Enable"]
   #[inline] pub fn clr_t_en(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Clear Timer n Enable"]
   #[inline] pub fn set_clr_t_en(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -491,12 +569,15 @@ impl ::core::fmt::Debug for Clrten {
       Ok(())
    }
 }
+#[doc="Timer Value Register"]
 #[derive(PartialEq, Eq)]
 pub struct Tval(pub u32);
 impl Tval {
+#[doc="Timer Value"]
   #[inline] pub fn tmr_val(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Timer Value"]
   #[inline] pub fn set_tmr_val(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -517,12 +598,15 @@ impl ::core::fmt::Debug for Tval {
       Ok(())
    }
 }
+#[doc="Current Timer Value"]
 #[derive(PartialEq, Eq)]
 pub struct Cval(pub u32);
 impl Cval {
+#[doc="Current Timer Value"]
   #[inline] pub fn tmr_cur_val(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Current Timer Value"]
   #[inline] pub fn set_tmr_cur_val(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -543,12 +627,15 @@ impl ::core::fmt::Debug for Cval {
       Ok(())
    }
 }
+#[doc="Timer Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Tctrl(pub u32);
 impl Tctrl {
+#[doc="Timer Enable"]
   #[inline] pub fn t_en(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Timer Enable"]
   #[inline] pub fn set_t_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -556,9 +643,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Chain Channel"]
   #[inline] pub fn chain(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Chain Channel"]
   #[inline] pub fn set_chain(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -566,9 +655,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Timer Operation Mode"]
   #[inline] pub fn mode(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x3 // [3:2]
   }
+#[doc="Timer Operation Mode"]
   #[inline] pub fn set_mode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -576,9 +667,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Timer Start On Trigger"]
   #[inline] pub fn tsot(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Timer Start On Trigger"]
   #[inline] pub fn set_tsot(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -586,9 +679,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Timer Stop On Interrupt"]
   #[inline] pub fn tsoi(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Timer Stop On Interrupt"]
   #[inline] pub fn set_tsoi(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -596,9 +691,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Timer Reload On Trigger"]
   #[inline] pub fn trot(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Timer Reload On Trigger"]
   #[inline] pub fn set_trot(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -606,9 +703,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Trigger Source"]
   #[inline] pub fn trg_src(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="Trigger Source"]
   #[inline] pub fn set_trg_src(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -616,9 +715,11 @@ impl Tctrl {
      self
   }
 
+#[doc="Trigger Select"]
   #[inline] pub fn trg_sel(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+#[doc="Trigger Select"]
   #[inline] pub fn set_trg_sel(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);

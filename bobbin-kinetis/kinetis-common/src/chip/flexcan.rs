@@ -1,346 +1,425 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="FLEXCAN Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the MCR register."]
   #[inline] pub fn mcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the MCR register."]
   #[inline] pub fn mcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the MCR register."]
   #[inline] pub fn mcr(&self) -> Mcr { 
      unsafe {
         Mcr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the MCR register."]
   #[inline] pub fn set_mcr(&self, value: Mcr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MCR register."]
   #[inline] pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
      let tmp = self.mcr();
      self.set_mcr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL1 register."]
   #[inline] pub fn ctrl1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CTRL1 register."]
   #[inline] pub fn ctrl1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CTRL1 register."]
   #[inline] pub fn ctrl1(&self) -> Ctrl1 { 
      unsafe {
         Ctrl1(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CTRL1 register."]
   #[inline] pub fn set_ctrl1(&self, value: Ctrl1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTRL1 register."]
   #[inline] pub fn with_ctrl1<F: FnOnce(Ctrl1) -> Ctrl1>(&self, f: F) -> &Self {
      let tmp = self.ctrl1();
      self.set_ctrl1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TIMER register."]
   #[inline] pub fn timer_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the TIMER register."]
   #[inline] pub fn timer_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the TIMER register."]
   #[inline] pub fn timer(&self) -> Timer { 
      unsafe {
         Timer(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the TIMER register."]
   #[inline] pub fn set_timer(&self, value: Timer) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TIMER register."]
   #[inline] pub fn with_timer<F: FnOnce(Timer) -> Timer>(&self, f: F) -> &Self {
      let tmp = self.timer();
      self.set_timer(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RXMGMASK register."]
   #[inline] pub fn rxmgmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the RXMGMASK register."]
   #[inline] pub fn rxmgmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the RXMGMASK register."]
   #[inline] pub fn rxmgmask(&self) -> Rxmgmask { 
      unsafe {
         Rxmgmask(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the RXMGMASK register."]
   #[inline] pub fn set_rxmgmask(&self, value: Rxmgmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RXMGMASK register."]
   #[inline] pub fn with_rxmgmask<F: FnOnce(Rxmgmask) -> Rxmgmask>(&self, f: F) -> &Self {
      let tmp = self.rxmgmask();
      self.set_rxmgmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RX14MASK register."]
   #[inline] pub fn rx14mask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the RX14MASK register."]
   #[inline] pub fn rx14mask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the RX14MASK register."]
   #[inline] pub fn rx14mask(&self) -> Rx14mask { 
      unsafe {
         Rx14mask(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the RX14MASK register."]
   #[inline] pub fn set_rx14mask(&self, value: Rx14mask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RX14MASK register."]
   #[inline] pub fn with_rx14mask<F: FnOnce(Rx14mask) -> Rx14mask>(&self, f: F) -> &Self {
      let tmp = self.rx14mask();
      self.set_rx14mask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RX15MASK register."]
   #[inline] pub fn rx15mask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the RX15MASK register."]
   #[inline] pub fn rx15mask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the RX15MASK register."]
   #[inline] pub fn rx15mask(&self) -> Rx15mask { 
      unsafe {
         Rx15mask(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the RX15MASK register."]
   #[inline] pub fn set_rx15mask(&self, value: Rx15mask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RX15MASK register."]
   #[inline] pub fn with_rx15mask<F: FnOnce(Rx15mask) -> Rx15mask>(&self, f: F) -> &Self {
      let tmp = self.rx15mask();
      self.set_rx15mask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ECR register."]
   #[inline] pub fn ecr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the ECR register."]
   #[inline] pub fn ecr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the ECR register."]
   #[inline] pub fn ecr(&self) -> Ecr { 
      unsafe {
         Ecr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
+#[doc="Write the ECR register."]
   #[inline] pub fn set_ecr(&self, value: Ecr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ECR register."]
   #[inline] pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
      let tmp = self.ecr();
      self.set_ecr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ESR1 register."]
   #[inline] pub fn esr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the ESR1 register."]
   #[inline] pub fn esr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the ESR1 register."]
   #[inline] pub fn esr1(&self) -> Esr1 { 
      unsafe {
         Esr1(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the ESR1 register."]
   #[inline] pub fn set_esr1(&self, value: Esr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ESR1 register."]
   #[inline] pub fn with_esr1<F: FnOnce(Esr1) -> Esr1>(&self, f: F) -> &Self {
      let tmp = self.esr1();
      self.set_esr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the IMASK1 register."]
   #[inline] pub fn imask1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x28) as *const u32
   }
+#[doc="Get the *mut pointer for the IMASK1 register."]
   #[inline] pub fn imask1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x28) as *mut u32
   }
+#[doc="Read the IMASK1 register."]
   #[inline] pub fn imask1(&self) -> Imask1 { 
      unsafe {
         Imask1(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
      }
   }
+#[doc="Write the IMASK1 register."]
   #[inline] pub fn set_imask1(&self, value: Imask1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the IMASK1 register."]
   #[inline] pub fn with_imask1<F: FnOnce(Imask1) -> Imask1>(&self, f: F) -> &Self {
      let tmp = self.imask1();
      self.set_imask1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the IFLAG1 register."]
   #[inline] pub fn iflag1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x30) as *const u32
   }
+#[doc="Get the *mut pointer for the IFLAG1 register."]
   #[inline] pub fn iflag1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x30) as *mut u32
   }
+#[doc="Read the IFLAG1 register."]
   #[inline] pub fn iflag1(&self) -> Iflag1 { 
      unsafe {
         Iflag1(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
      }
   }
+#[doc="Write the IFLAG1 register."]
   #[inline] pub fn set_iflag1(&self, value: Iflag1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the IFLAG1 register."]
   #[inline] pub fn with_iflag1<F: FnOnce(Iflag1) -> Iflag1>(&self, f: F) -> &Self {
      let tmp = self.iflag1();
      self.set_iflag1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL2 register."]
   #[inline] pub fn ctrl2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x34) as *const u32
   }
+#[doc="Get the *mut pointer for the CTRL2 register."]
   #[inline] pub fn ctrl2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x34) as *mut u32
   }
+#[doc="Read the CTRL2 register."]
   #[inline] pub fn ctrl2(&self) -> Ctrl2 { 
      unsafe {
         Ctrl2(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
      }
   }
+#[doc="Write the CTRL2 register."]
   #[inline] pub fn set_ctrl2(&self, value: Ctrl2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTRL2 register."]
   #[inline] pub fn with_ctrl2<F: FnOnce(Ctrl2) -> Ctrl2>(&self, f: F) -> &Self {
      let tmp = self.ctrl2();
      self.set_ctrl2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ESR2 register."]
   #[inline] pub fn esr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x38) as *const u32
   }
+#[doc="Get the *mut pointer for the ESR2 register."]
   #[inline] pub fn esr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x38) as *mut u32
   }
+#[doc="Read the ESR2 register."]
   #[inline] pub fn esr2(&self) -> Esr2 { 
      unsafe {
         Esr2(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the CRCR register."]
   #[inline] pub fn crcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x44) as *const u32
   }
+#[doc="Get the *mut pointer for the CRCR register."]
   #[inline] pub fn crcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x44) as *mut u32
   }
+#[doc="Read the CRCR register."]
   #[inline] pub fn crcr(&self) -> Crcr { 
      unsafe {
         Crcr(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the RXFGMASK register."]
   #[inline] pub fn rxfgmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x48) as *const u32
   }
+#[doc="Get the *mut pointer for the RXFGMASK register."]
   #[inline] pub fn rxfgmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x48) as *mut u32
   }
+#[doc="Read the RXFGMASK register."]
   #[inline] pub fn rxfgmask(&self) -> Rxfgmask { 
      unsafe {
         Rxfgmask(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
      }
   }
+#[doc="Write the RXFGMASK register."]
   #[inline] pub fn set_rxfgmask(&self, value: Rxfgmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RXFGMASK register."]
   #[inline] pub fn with_rxfgmask<F: FnOnce(Rxfgmask) -> Rxfgmask>(&self, f: F) -> &Self {
      let tmp = self.rxfgmask();
      self.set_rxfgmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RXFIR register."]
   #[inline] pub fn rxfir_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
+#[doc="Get the *mut pointer for the RXFIR register."]
   #[inline] pub fn rxfir_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
+#[doc="Read the RXFIR register."]
   #[inline] pub fn rxfir(&self) -> Rxfir { 
      unsafe {
         Rxfir(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the CBT register."]
   #[inline] pub fn cbt_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x50) as *const u32
   }
+#[doc="Get the *mut pointer for the CBT register."]
   #[inline] pub fn cbt_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x50) as *mut u32
   }
+#[doc="Read the CBT register."]
   #[inline] pub fn cbt(&self) -> Cbt { 
      unsafe {
         Cbt(::core::ptr::read_volatile(((self.0 as usize) + 0x50) as *const u32))
      }
   }
+#[doc="Write the CBT register."]
   #[inline] pub fn set_cbt(&self, value: Cbt) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CBT register."]
   #[inline] pub fn with_cbt<F: FnOnce(Cbt) -> Cbt>(&self, f: F) -> &Self {
      let tmp = self.cbt();
      self.set_cbt(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RAM register."]
   #[inline] pub fn ram_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 128);
      ((self.0 as usize) + 0x80 + (index << 2)) as *const u32
   }
+#[doc="Get the *mut pointer for the RAM register."]
   #[inline] pub fn ram_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 128);
      ((self.0 as usize) + 0x80 + (index << 2)) as *mut u32
   }
+#[doc="Read the RAM register."]
   #[inline] pub fn ram(&self, index: usize) -> Ram { 
      assert!(index < 128);
      unsafe {
         Ram(::core::ptr::read_volatile(((self.0 as usize) + 0x80 + (index << 2)) as *const u32))
      }
   }
+#[doc="Write the RAM register."]
   #[inline] pub fn set_ram(&self, index: usize, value: Ram) -> &Self {
      assert!(index < 128);
      unsafe {
@@ -348,25 +427,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the RAM register."]
   #[inline] pub fn with_ram<F: FnOnce(Ram) -> Ram>(&self, index: usize, f: F) -> &Self {
      let tmp = self.ram(index);
      self.set_ram(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the MB8H0 register."]
   #[inline] pub fn mb8h0_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x80 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the MB8H0 register."]
   #[inline] pub fn mb8h0_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x80 + (index << 4)) as *mut u32
   }
+#[doc="Read the MB8H0 register."]
   #[inline] pub fn mb8h0(&self, index: usize) -> Mb8h0 { 
      assert!(index < 16);
      unsafe {
         Mb8h0(::core::ptr::read_volatile(((self.0 as usize) + 0x80 + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the MB8H0 register."]
   #[inline] pub fn set_mb8h0(&self, index: usize, value: Mb8h0) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -374,25 +458,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the MB8H0 register."]
   #[inline] pub fn with_mb8h0<F: FnOnce(Mb8h0) -> Mb8h0>(&self, index: usize, f: F) -> &Self {
      let tmp = self.mb8h0(index);
      self.set_mb8h0(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the MB8H1 register."]
   #[inline] pub fn mb8h1_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x84 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the MB8H1 register."]
   #[inline] pub fn mb8h1_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x84 + (index << 4)) as *mut u32
   }
+#[doc="Read the MB8H1 register."]
   #[inline] pub fn mb8h1(&self, index: usize) -> Mb8h1 { 
      assert!(index < 16);
      unsafe {
         Mb8h1(::core::ptr::read_volatile(((self.0 as usize) + 0x84 + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the MB8H1 register."]
   #[inline] pub fn set_mb8h1(&self, index: usize, value: Mb8h1) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -400,25 +489,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the MB8H1 register."]
   #[inline] pub fn with_mb8h1<F: FnOnce(Mb8h1) -> Mb8h1>(&self, index: usize, f: F) -> &Self {
      let tmp = self.mb8h1(index);
      self.set_mb8h1(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the MB8D0 register."]
   #[inline] pub fn mb8d0_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x88 + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the MB8D0 register."]
   #[inline] pub fn mb8d0_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x88 + (index << 4)) as *mut u32
   }
+#[doc="Read the MB8D0 register."]
   #[inline] pub fn mb8d0(&self, index: usize) -> Mb8d0 { 
      assert!(index < 16);
      unsafe {
         Mb8d0(::core::ptr::read_volatile(((self.0 as usize) + 0x88 + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the MB8D0 register."]
   #[inline] pub fn set_mb8d0(&self, index: usize, value: Mb8d0) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -426,25 +520,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the MB8D0 register."]
   #[inline] pub fn with_mb8d0<F: FnOnce(Mb8d0) -> Mb8d0>(&self, index: usize, f: F) -> &Self {
      let tmp = self.mb8d0(index);
      self.set_mb8d0(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the MB8D1 register."]
   #[inline] pub fn mb8d1_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x8c + (index << 4)) as *const u32
   }
+#[doc="Get the *mut pointer for the MB8D1 register."]
   #[inline] pub fn mb8d1_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x8c + (index << 4)) as *mut u32
   }
+#[doc="Read the MB8D1 register."]
   #[inline] pub fn mb8d1(&self, index: usize) -> Mb8d1 { 
      assert!(index < 16);
      unsafe {
         Mb8d1(::core::ptr::read_volatile(((self.0 as usize) + 0x8c + (index << 4)) as *const u32))
      }
   }
+#[doc="Write the MB8D1 register."]
   #[inline] pub fn set_mb8d1(&self, index: usize, value: Mb8d1) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -452,25 +551,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the MB8D1 register."]
   #[inline] pub fn with_mb8d1<F: FnOnce(Mb8d1) -> Mb8d1>(&self, index: usize, f: F) -> &Self {
      let tmp = self.mb8d1(index);
      self.set_mb8d1(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the RXIMR register."]
   #[inline] pub fn rximr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x880 + (index << 2)) as *const u32
   }
+#[doc="Get the *mut pointer for the RXIMR register."]
   #[inline] pub fn rximr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 16);
      ((self.0 as usize) + 0x880 + (index << 2)) as *mut u32
   }
+#[doc="Read the RXIMR register."]
   #[inline] pub fn rximr(&self, index: usize) -> Rximr { 
      assert!(index < 16);
      unsafe {
         Rximr(::core::ptr::read_volatile(((self.0 as usize) + 0x880 + (index << 2)) as *const u32))
      }
   }
+#[doc="Write the RXIMR register."]
   #[inline] pub fn set_rximr(&self, index: usize, value: Rximr) -> &Self {
      assert!(index < 16);
      unsafe {
@@ -478,473 +582,585 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the RXIMR register."]
   #[inline] pub fn with_rximr<F: FnOnce(Rximr) -> Rximr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.rximr(index);
      self.set_rximr(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL1_PN register."]
   #[inline] pub fn ctrl1_pn_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb00) as *const u32
   }
+#[doc="Get the *mut pointer for the CTRL1_PN register."]
   #[inline] pub fn ctrl1_pn_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb00) as *mut u32
   }
+#[doc="Read the CTRL1_PN register."]
   #[inline] pub fn ctrl1_pn(&self) -> Ctrl1Pn { 
      unsafe {
         Ctrl1Pn(::core::ptr::read_volatile(((self.0 as usize) + 0xb00) as *const u32))
      }
   }
+#[doc="Write the CTRL1_PN register."]
   #[inline] pub fn set_ctrl1_pn(&self, value: Ctrl1Pn) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb00) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTRL1_PN register."]
   #[inline] pub fn with_ctrl1_pn<F: FnOnce(Ctrl1Pn) -> Ctrl1Pn>(&self, f: F) -> &Self {
      let tmp = self.ctrl1_pn();
      self.set_ctrl1_pn(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CTRL2_PN register."]
   #[inline] pub fn ctrl2_pn_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb04) as *const u32
   }
+#[doc="Get the *mut pointer for the CTRL2_PN register."]
   #[inline] pub fn ctrl2_pn_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb04) as *mut u32
   }
+#[doc="Read the CTRL2_PN register."]
   #[inline] pub fn ctrl2_pn(&self) -> Ctrl2Pn { 
      unsafe {
         Ctrl2Pn(::core::ptr::read_volatile(((self.0 as usize) + 0xb04) as *const u32))
      }
   }
+#[doc="Write the CTRL2_PN register."]
   #[inline] pub fn set_ctrl2_pn(&self, value: Ctrl2Pn) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb04) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CTRL2_PN register."]
   #[inline] pub fn with_ctrl2_pn<F: FnOnce(Ctrl2Pn) -> Ctrl2Pn>(&self, f: F) -> &Self {
      let tmp = self.ctrl2_pn();
      self.set_ctrl2_pn(f(tmp))
   }
 
+#[doc="Get the *const pointer for the WU_MTC register."]
   #[inline] pub fn wu_mtc_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb08) as *const u32
   }
+#[doc="Get the *mut pointer for the WU_MTC register."]
   #[inline] pub fn wu_mtc_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb08) as *mut u32
   }
+#[doc="Read the WU_MTC register."]
   #[inline] pub fn wu_mtc(&self) -> WuMtc { 
      unsafe {
         WuMtc(::core::ptr::read_volatile(((self.0 as usize) + 0xb08) as *const u32))
      }
   }
+#[doc="Write the WU_MTC register."]
   #[inline] pub fn set_wu_mtc(&self, value: WuMtc) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb08) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the WU_MTC register."]
   #[inline] pub fn with_wu_mtc<F: FnOnce(WuMtc) -> WuMtc>(&self, f: F) -> &Self {
      let tmp = self.wu_mtc();
      self.set_wu_mtc(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLT_ID1 register."]
   #[inline] pub fn flt_id1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb0c) as *const u32
   }
+#[doc="Get the *mut pointer for the FLT_ID1 register."]
   #[inline] pub fn flt_id1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb0c) as *mut u32
   }
+#[doc="Read the FLT_ID1 register."]
   #[inline] pub fn flt_id1(&self) -> FltId1 { 
      unsafe {
         FltId1(::core::ptr::read_volatile(((self.0 as usize) + 0xb0c) as *const u32))
      }
   }
+#[doc="Write the FLT_ID1 register."]
   #[inline] pub fn set_flt_id1(&self, value: FltId1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb0c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLT_ID1 register."]
   #[inline] pub fn with_flt_id1<F: FnOnce(FltId1) -> FltId1>(&self, f: F) -> &Self {
      let tmp = self.flt_id1();
      self.set_flt_id1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLT_DLC register."]
   #[inline] pub fn flt_dlc_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb10) as *const u32
   }
+#[doc="Get the *mut pointer for the FLT_DLC register."]
   #[inline] pub fn flt_dlc_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb10) as *mut u32
   }
+#[doc="Read the FLT_DLC register."]
   #[inline] pub fn flt_dlc(&self) -> FltDlc { 
      unsafe {
         FltDlc(::core::ptr::read_volatile(((self.0 as usize) + 0xb10) as *const u32))
      }
   }
+#[doc="Write the FLT_DLC register."]
   #[inline] pub fn set_flt_dlc(&self, value: FltDlc) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLT_DLC register."]
   #[inline] pub fn with_flt_dlc<F: FnOnce(FltDlc) -> FltDlc>(&self, f: F) -> &Self {
      let tmp = self.flt_dlc();
      self.set_flt_dlc(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PL1_LO register."]
   #[inline] pub fn pl1_lo_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb14) as *const u32
   }
+#[doc="Get the *mut pointer for the PL1_LO register."]
   #[inline] pub fn pl1_lo_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb14) as *mut u32
   }
+#[doc="Read the PL1_LO register."]
   #[inline] pub fn pl1_lo(&self) -> Pl1Lo { 
      unsafe {
         Pl1Lo(::core::ptr::read_volatile(((self.0 as usize) + 0xb14) as *const u32))
      }
   }
+#[doc="Write the PL1_LO register."]
   #[inline] pub fn set_pl1_lo(&self, value: Pl1Lo) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PL1_LO register."]
   #[inline] pub fn with_pl1_lo<F: FnOnce(Pl1Lo) -> Pl1Lo>(&self, f: F) -> &Self {
      let tmp = self.pl1_lo();
      self.set_pl1_lo(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PL1_HI register."]
   #[inline] pub fn pl1_hi_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb18) as *const u32
   }
+#[doc="Get the *mut pointer for the PL1_HI register."]
   #[inline] pub fn pl1_hi_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb18) as *mut u32
   }
+#[doc="Read the PL1_HI register."]
   #[inline] pub fn pl1_hi(&self) -> Pl1Hi { 
      unsafe {
         Pl1Hi(::core::ptr::read_volatile(((self.0 as usize) + 0xb18) as *const u32))
      }
   }
+#[doc="Write the PL1_HI register."]
   #[inline] pub fn set_pl1_hi(&self, value: Pl1Hi) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PL1_HI register."]
   #[inline] pub fn with_pl1_hi<F: FnOnce(Pl1Hi) -> Pl1Hi>(&self, f: F) -> &Self {
      let tmp = self.pl1_hi();
      self.set_pl1_hi(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLT_ID2_IDMASK register."]
   #[inline] pub fn flt_id2_idmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb1c) as *const u32
   }
+#[doc="Get the *mut pointer for the FLT_ID2_IDMASK register."]
   #[inline] pub fn flt_id2_idmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb1c) as *mut u32
   }
+#[doc="Read the FLT_ID2_IDMASK register."]
   #[inline] pub fn flt_id2_idmask(&self) -> FltId2Idmask { 
      unsafe {
         FltId2Idmask(::core::ptr::read_volatile(((self.0 as usize) + 0xb1c) as *const u32))
      }
   }
+#[doc="Write the FLT_ID2_IDMASK register."]
   #[inline] pub fn set_flt_id2_idmask(&self, value: FltId2Idmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLT_ID2_IDMASK register."]
   #[inline] pub fn with_flt_id2_idmask<F: FnOnce(FltId2Idmask) -> FltId2Idmask>(&self, f: F) -> &Self {
      let tmp = self.flt_id2_idmask();
      self.set_flt_id2_idmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PL2_PLMASK_LO register."]
   #[inline] pub fn pl2_plmask_lo_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb20) as *const u32
   }
+#[doc="Get the *mut pointer for the PL2_PLMASK_LO register."]
   #[inline] pub fn pl2_plmask_lo_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb20) as *mut u32
   }
+#[doc="Read the PL2_PLMASK_LO register."]
   #[inline] pub fn pl2_plmask_lo(&self) -> Pl2PlmaskLo { 
      unsafe {
         Pl2PlmaskLo(::core::ptr::read_volatile(((self.0 as usize) + 0xb20) as *const u32))
      }
   }
+#[doc="Write the PL2_PLMASK_LO register."]
   #[inline] pub fn set_pl2_plmask_lo(&self, value: Pl2PlmaskLo) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PL2_PLMASK_LO register."]
   #[inline] pub fn with_pl2_plmask_lo<F: FnOnce(Pl2PlmaskLo) -> Pl2PlmaskLo>(&self, f: F) -> &Self {
      let tmp = self.pl2_plmask_lo();
      self.set_pl2_plmask_lo(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PL2_PLMASK_HI register."]
   #[inline] pub fn pl2_plmask_hi_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb24) as *const u32
   }
+#[doc="Get the *mut pointer for the PL2_PLMASK_HI register."]
   #[inline] pub fn pl2_plmask_hi_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb24) as *mut u32
   }
+#[doc="Read the PL2_PLMASK_HI register."]
   #[inline] pub fn pl2_plmask_hi(&self) -> Pl2PlmaskHi { 
      unsafe {
         Pl2PlmaskHi(::core::ptr::read_volatile(((self.0 as usize) + 0xb24) as *const u32))
      }
   }
+#[doc="Write the PL2_PLMASK_HI register."]
   #[inline] pub fn set_pl2_plmask_hi(&self, value: Pl2PlmaskHi) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb24) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PL2_PLMASK_HI register."]
   #[inline] pub fn with_pl2_plmask_hi<F: FnOnce(Pl2PlmaskHi) -> Pl2PlmaskHi>(&self, f: F) -> &Self {
      let tmp = self.pl2_plmask_hi();
      self.set_pl2_plmask_hi(f(tmp))
   }
 
+#[doc="Get the *const pointer for the WMB0_CS register."]
   #[inline] pub fn wmb0_cs_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb40) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB0_CS register."]
   #[inline] pub fn wmb0_cs_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb40) as *mut u32
   }
+#[doc="Read the WMB0_CS register."]
   #[inline] pub fn wmb0_cs(&self) -> Wmb0Cs { 
      unsafe {
         Wmb0Cs(::core::ptr::read_volatile(((self.0 as usize) + 0xb40) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB0_ID register."]
   #[inline] pub fn wmb0_id_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb44) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB0_ID register."]
   #[inline] pub fn wmb0_id_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb44) as *mut u32
   }
+#[doc="Read the WMB0_ID register."]
   #[inline] pub fn wmb0_id(&self) -> Wmb0Id { 
      unsafe {
         Wmb0Id(::core::ptr::read_volatile(((self.0 as usize) + 0xb44) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB0_D03 register."]
   #[inline] pub fn wmb0_d03_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb48) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB0_D03 register."]
   #[inline] pub fn wmb0_d03_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb48) as *mut u32
   }
+#[doc="Read the WMB0_D03 register."]
   #[inline] pub fn wmb0_d03(&self) -> Wmb0D03 { 
      unsafe {
         Wmb0D03(::core::ptr::read_volatile(((self.0 as usize) + 0xb48) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB0_D47 register."]
   #[inline] pub fn wmb0_d47_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb4c) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB0_D47 register."]
   #[inline] pub fn wmb0_d47_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb4c) as *mut u32
   }
+#[doc="Read the WMB0_D47 register."]
   #[inline] pub fn wmb0_d47(&self) -> Wmb0D47 { 
      unsafe {
         Wmb0D47(::core::ptr::read_volatile(((self.0 as usize) + 0xb4c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB1_CS register."]
   #[inline] pub fn wmb1_cs_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb50) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB1_CS register."]
   #[inline] pub fn wmb1_cs_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb50) as *mut u32
   }
+#[doc="Read the WMB1_CS register."]
   #[inline] pub fn wmb1_cs(&self) -> Wmb1Cs { 
      unsafe {
         Wmb1Cs(::core::ptr::read_volatile(((self.0 as usize) + 0xb50) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB1_ID register."]
   #[inline] pub fn wmb1_id_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb54) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB1_ID register."]
   #[inline] pub fn wmb1_id_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb54) as *mut u32
   }
+#[doc="Read the WMB1_ID register."]
   #[inline] pub fn wmb1_id(&self) -> Wmb1Id { 
      unsafe {
         Wmb1Id(::core::ptr::read_volatile(((self.0 as usize) + 0xb54) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB1_D03 register."]
   #[inline] pub fn wmb1_d03_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb58) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB1_D03 register."]
   #[inline] pub fn wmb1_d03_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb58) as *mut u32
   }
+#[doc="Read the WMB1_D03 register."]
   #[inline] pub fn wmb1_d03(&self) -> Wmb1D03 { 
      unsafe {
         Wmb1D03(::core::ptr::read_volatile(((self.0 as usize) + 0xb58) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB1_D47 register."]
   #[inline] pub fn wmb1_d47_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb5c) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB1_D47 register."]
   #[inline] pub fn wmb1_d47_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb5c) as *mut u32
   }
+#[doc="Read the WMB1_D47 register."]
   #[inline] pub fn wmb1_d47(&self) -> Wmb1D47 { 
      unsafe {
         Wmb1D47(::core::ptr::read_volatile(((self.0 as usize) + 0xb5c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB2_CS register."]
   #[inline] pub fn wmb2_cs_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb60) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB2_CS register."]
   #[inline] pub fn wmb2_cs_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb60) as *mut u32
   }
+#[doc="Read the WMB2_CS register."]
   #[inline] pub fn wmb2_cs(&self) -> Wmb2Cs { 
      unsafe {
         Wmb2Cs(::core::ptr::read_volatile(((self.0 as usize) + 0xb60) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB2_ID register."]
   #[inline] pub fn wmb2_id_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb64) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB2_ID register."]
   #[inline] pub fn wmb2_id_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb64) as *mut u32
   }
+#[doc="Read the WMB2_ID register."]
   #[inline] pub fn wmb2_id(&self) -> Wmb2Id { 
      unsafe {
         Wmb2Id(::core::ptr::read_volatile(((self.0 as usize) + 0xb64) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB2_D03 register."]
   #[inline] pub fn wmb2_d03_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb68) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB2_D03 register."]
   #[inline] pub fn wmb2_d03_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb68) as *mut u32
   }
+#[doc="Read the WMB2_D03 register."]
   #[inline] pub fn wmb2_d03(&self) -> Wmb2D03 { 
      unsafe {
         Wmb2D03(::core::ptr::read_volatile(((self.0 as usize) + 0xb68) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB2_D47 register."]
   #[inline] pub fn wmb2_d47_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb6c) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB2_D47 register."]
   #[inline] pub fn wmb2_d47_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb6c) as *mut u32
   }
+#[doc="Read the WMB2_D47 register."]
   #[inline] pub fn wmb2_d47(&self) -> Wmb2D47 { 
      unsafe {
         Wmb2D47(::core::ptr::read_volatile(((self.0 as usize) + 0xb6c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB3_CS register."]
   #[inline] pub fn wmb3_cs_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb70) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB3_CS register."]
   #[inline] pub fn wmb3_cs_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb70) as *mut u32
   }
+#[doc="Read the WMB3_CS register."]
   #[inline] pub fn wmb3_cs(&self) -> Wmb3Cs { 
      unsafe {
         Wmb3Cs(::core::ptr::read_volatile(((self.0 as usize) + 0xb70) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB3_ID register."]
   #[inline] pub fn wmb3_id_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb74) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB3_ID register."]
   #[inline] pub fn wmb3_id_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb74) as *mut u32
   }
+#[doc="Read the WMB3_ID register."]
   #[inline] pub fn wmb3_id(&self) -> Wmb3Id { 
      unsafe {
         Wmb3Id(::core::ptr::read_volatile(((self.0 as usize) + 0xb74) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB3_D03 register."]
   #[inline] pub fn wmb3_d03_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb78) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB3_D03 register."]
   #[inline] pub fn wmb3_d03_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb78) as *mut u32
   }
+#[doc="Read the WMB3_D03 register."]
   #[inline] pub fn wmb3_d03(&self) -> Wmb3D03 { 
      unsafe {
         Wmb3D03(::core::ptr::read_volatile(((self.0 as usize) + 0xb78) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WMB3_D47 register."]
   #[inline] pub fn wmb3_d47_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb7c) as *const u32
   }
+#[doc="Get the *mut pointer for the WMB3_D47 register."]
   #[inline] pub fn wmb3_d47_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb7c) as *mut u32
   }
+#[doc="Read the WMB3_D47 register."]
   #[inline] pub fn wmb3_d47(&self) -> Wmb3D47 { 
      unsafe {
         Wmb3D47(::core::ptr::read_volatile(((self.0 as usize) + 0xb7c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the FDCTRL register."]
   #[inline] pub fn fdctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc00) as *const u32
   }
+#[doc="Get the *mut pointer for the FDCTRL register."]
   #[inline] pub fn fdctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc00) as *mut u32
   }
+#[doc="Read the FDCTRL register."]
   #[inline] pub fn fdctrl(&self) -> Fdctrl { 
      unsafe {
         Fdctrl(::core::ptr::read_volatile(((self.0 as usize) + 0xc00) as *const u32))
      }
   }
+#[doc="Write the FDCTRL register."]
   #[inline] pub fn set_fdctrl(&self, value: Fdctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc00) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FDCTRL register."]
   #[inline] pub fn with_fdctrl<F: FnOnce(Fdctrl) -> Fdctrl>(&self, f: F) -> &Self {
      let tmp = self.fdctrl();
      self.set_fdctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FDCBT register."]
   #[inline] pub fn fdcbt_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc04) as *const u32
   }
+#[doc="Get the *mut pointer for the FDCBT register."]
   #[inline] pub fn fdcbt_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc04) as *mut u32
   }
+#[doc="Read the FDCBT register."]
   #[inline] pub fn fdcbt(&self) -> Fdcbt { 
      unsafe {
         Fdcbt(::core::ptr::read_volatile(((self.0 as usize) + 0xc04) as *const u32))
      }
   }
+#[doc="Write the FDCBT register."]
   #[inline] pub fn set_fdcbt(&self, value: Fdcbt) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc04) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FDCBT register."]
   #[inline] pub fn with_fdcbt<F: FnOnce(Fdcbt) -> Fdcbt>(&self, f: F) -> &Self {
      let tmp = self.fdcbt();
      self.set_fdcbt(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FDCRC register."]
   #[inline] pub fn fdcrc_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc08) as *const u32
   }
+#[doc="Get the *mut pointer for the FDCRC register."]
   #[inline] pub fn fdcrc_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc08) as *mut u32
   }
+#[doc="Read the FDCRC register."]
   #[inline] pub fn fdcrc(&self) -> Fdcrc { 
      unsafe {
         Fdcrc(::core::ptr::read_volatile(((self.0 as usize) + 0xc08) as *const u32))
@@ -953,12 +1169,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Module Configuration Register"]
 #[derive(PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
+#[doc="Number Of The Last Message Buffer"]
   #[inline] pub fn maxmb(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+#[doc="Number Of The Last Message Buffer"]
   #[inline] pub fn set_maxmb(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
@@ -966,9 +1185,11 @@ impl Mcr {
      self
   }
 
+#[doc="ID Acceptance Mode"]
   #[inline] pub fn idam(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x3 // [9:8]
   }
+#[doc="ID Acceptance Mode"]
   #[inline] pub fn set_idam(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
@@ -976,9 +1197,11 @@ impl Mcr {
      self
   }
 
+#[doc="CAN FD operation enable"]
   #[inline] pub fn fden(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="CAN FD operation enable"]
   #[inline] pub fn set_fden(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -986,9 +1209,11 @@ impl Mcr {
      self
   }
 
+#[doc="Abort Enable"]
   #[inline] pub fn aen(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Abort Enable"]
   #[inline] pub fn set_aen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -996,9 +1221,11 @@ impl Mcr {
      self
   }
 
+#[doc="Local Priority Enable"]
   #[inline] pub fn lprioen(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="Local Priority Enable"]
   #[inline] pub fn set_lprioen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -1006,9 +1233,11 @@ impl Mcr {
      self
   }
 
+#[doc="Pretended Networking Enable"]
   #[inline] pub fn pnet_en(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Pretended Networking Enable"]
   #[inline] pub fn set_pnet_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1016,9 +1245,11 @@ impl Mcr {
      self
   }
 
+#[doc="DMA Enable"]
   #[inline] pub fn dma(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="DMA Enable"]
   #[inline] pub fn set_dma(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1026,9 +1257,11 @@ impl Mcr {
      self
   }
 
+#[doc="Individual Rx Masking And Queue Enable"]
   #[inline] pub fn irmq(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Individual Rx Masking And Queue Enable"]
   #[inline] pub fn set_irmq(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1036,9 +1269,11 @@ impl Mcr {
      self
   }
 
+#[doc="Self Reception Disable"]
   #[inline] pub fn srxdis(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Self Reception Disable"]
   #[inline] pub fn set_srxdis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -1046,9 +1281,11 @@ impl Mcr {
      self
   }
 
+#[doc="Low-Power Mode Acknowledge"]
   #[inline] pub fn lpmack(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Low-Power Mode Acknowledge"]
   #[inline] pub fn set_lpmack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -1056,9 +1293,11 @@ impl Mcr {
      self
   }
 
+#[doc="Warning Interrupt Enable"]
   #[inline] pub fn wrnen(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="Warning Interrupt Enable"]
   #[inline] pub fn set_wrnen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -1066,9 +1305,11 @@ impl Mcr {
      self
   }
 
+#[doc="Supervisor Mode"]
   #[inline] pub fn supv(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="Supervisor Mode"]
   #[inline] pub fn set_supv(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -1076,9 +1317,11 @@ impl Mcr {
      self
   }
 
+#[doc="Freeze Mode Acknowledge"]
   #[inline] pub fn frzack(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="Freeze Mode Acknowledge"]
   #[inline] pub fn set_frzack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -1086,9 +1329,11 @@ impl Mcr {
      self
   }
 
+#[doc="Soft Reset"]
   #[inline] pub fn softrst(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+#[doc="Soft Reset"]
   #[inline] pub fn set_softrst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -1096,9 +1341,11 @@ impl Mcr {
      self
   }
 
+#[doc="FlexCAN Not Ready"]
   #[inline] pub fn notrdy(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
+#[doc="FlexCAN Not Ready"]
   #[inline] pub fn set_notrdy(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -1106,9 +1353,11 @@ impl Mcr {
      self
   }
 
+#[doc="Halt FlexCAN"]
   #[inline] pub fn halt(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+#[doc="Halt FlexCAN"]
   #[inline] pub fn set_halt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -1116,9 +1365,11 @@ impl Mcr {
      self
   }
 
+#[doc="Rx FIFO Enable"]
   #[inline] pub fn rfen(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+#[doc="Rx FIFO Enable"]
   #[inline] pub fn set_rfen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -1126,9 +1377,11 @@ impl Mcr {
      self
   }
 
+#[doc="Freeze Enable"]
   #[inline] pub fn frz(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="Freeze Enable"]
   #[inline] pub fn set_frz(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -1136,9 +1389,11 @@ impl Mcr {
      self
   }
 
+#[doc="Module Disable"]
   #[inline] pub fn mdis(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Module Disable"]
   #[inline] pub fn set_mdis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1178,12 +1433,15 @@ impl ::core::fmt::Debug for Mcr {
       Ok(())
    }
 }
+#[doc="Control 1 register"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl1(pub u32);
 impl Ctrl1 {
+#[doc="Propagation Segment"]
   #[inline] pub fn propseg(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="Propagation Segment"]
   #[inline] pub fn set_propseg(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -1191,9 +1449,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Listen-Only Mode"]
   #[inline] pub fn lom(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Listen-Only Mode"]
   #[inline] pub fn set_lom(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1201,9 +1461,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Lowest Buffer Transmitted First"]
   #[inline] pub fn lbuf(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Lowest Buffer Transmitted First"]
   #[inline] pub fn set_lbuf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1211,9 +1473,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Timer Sync"]
   #[inline] pub fn tsyn(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Timer Sync"]
   #[inline] pub fn set_tsyn(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1221,9 +1485,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Bus Off Recovery"]
   #[inline] pub fn boffrec(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Bus Off Recovery"]
   #[inline] pub fn set_boffrec(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1231,9 +1497,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="CAN Bit Sampling"]
   #[inline] pub fn smp(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="CAN Bit Sampling"]
   #[inline] pub fn set_smp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1241,9 +1509,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Rx Warning Interrupt Mask"]
   #[inline] pub fn rwrnmsk(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Rx Warning Interrupt Mask"]
   #[inline] pub fn set_rwrnmsk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1251,9 +1521,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Tx Warning Interrupt Mask"]
   #[inline] pub fn twrnmsk(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Tx Warning Interrupt Mask"]
   #[inline] pub fn set_twrnmsk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1261,9 +1533,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Loop Back Mode"]
   #[inline] pub fn lpb(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Loop Back Mode"]
   #[inline] pub fn set_lpb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -1271,9 +1545,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="CAN Engine Clock Source"]
   #[inline] pub fn clksrc(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="CAN Engine Clock Source"]
   #[inline] pub fn set_clksrc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -1281,9 +1557,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Error Interrupt Mask"]
   #[inline] pub fn errmsk(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Error Interrupt Mask"]
   #[inline] pub fn set_errmsk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1291,9 +1569,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Bus Off Interrupt Mask"]
   #[inline] pub fn boffmsk(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Bus Off Interrupt Mask"]
   #[inline] pub fn set_boffmsk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1301,9 +1581,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Phase Segment 2"]
   #[inline] pub fn pseg2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7 // [18:16]
   }
+#[doc="Phase Segment 2"]
   #[inline] pub fn set_pseg2(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
@@ -1311,9 +1593,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Phase Segment 1"]
   #[inline] pub fn pseg1(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x7 // [21:19]
   }
+#[doc="Phase Segment 1"]
   #[inline] pub fn set_pseg1(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 19);
@@ -1321,9 +1605,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Resync Jump Width"]
   #[inline] pub fn rjw(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x3 // [23:22]
   }
+#[doc="Resync Jump Width"]
   #[inline] pub fn set_rjw(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 22);
@@ -1331,9 +1617,11 @@ impl Ctrl1 {
      self
   }
 
+#[doc="Prescaler Division Factor"]
   #[inline] pub fn presdiv(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Prescaler Division Factor"]
   #[inline] pub fn set_presdiv(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -1370,12 +1658,15 @@ impl ::core::fmt::Debug for Ctrl1 {
       Ok(())
    }
 }
+#[doc="Free Running Timer"]
 #[derive(PartialEq, Eq)]
 pub struct Timer(pub u32);
 impl Timer {
+#[doc="Timer Value"]
   #[inline] pub fn timer(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Timer Value"]
   #[inline] pub fn set_timer(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -1397,12 +1688,15 @@ impl ::core::fmt::Debug for Timer {
       Ok(())
    }
 }
+#[doc="Rx Mailboxes Global Mask Register"]
 #[derive(PartialEq, Eq)]
 pub struct Rxmgmask(pub u32);
 impl Rxmgmask {
+#[doc="Rx Mailboxes Global Mask Bits"]
   #[inline] pub fn mg(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Rx Mailboxes Global Mask Bits"]
   #[inline] pub fn set_mg(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1423,12 +1717,15 @@ impl ::core::fmt::Debug for Rxmgmask {
       Ok(())
    }
 }
+#[doc="Rx 14 Mask register"]
 #[derive(PartialEq, Eq)]
 pub struct Rx14mask(pub u32);
 impl Rx14mask {
+#[doc="Rx Buffer 14 Mask Bits"]
   #[inline] pub fn rx14m(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Rx Buffer 14 Mask Bits"]
   #[inline] pub fn set_rx14m(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1449,12 +1746,15 @@ impl ::core::fmt::Debug for Rx14mask {
       Ok(())
    }
 }
+#[doc="Rx 15 Mask register"]
 #[derive(PartialEq, Eq)]
 pub struct Rx15mask(pub u32);
 impl Rx15mask {
+#[doc="Rx Buffer 15 Mask Bits"]
   #[inline] pub fn rx15m(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Rx Buffer 15 Mask Bits"]
   #[inline] pub fn set_rx15m(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1475,12 +1775,15 @@ impl ::core::fmt::Debug for Rx15mask {
       Ok(())
    }
 }
+#[doc="Error Counter"]
 #[derive(PartialEq, Eq)]
 pub struct Ecr(pub u32);
 impl Ecr {
+#[doc="Transmit Error Counter"]
   #[inline] pub fn txerrcnt(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Transmit Error Counter"]
   #[inline] pub fn set_txerrcnt(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1488,9 +1791,11 @@ impl Ecr {
      self
   }
 
+#[doc="Receive Error Counter"]
   #[inline] pub fn rxerrcnt(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Receive Error Counter"]
   #[inline] pub fn set_rxerrcnt(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -1498,9 +1803,11 @@ impl Ecr {
      self
   }
 
+#[doc="Transmit Error Counter for fast bits"]
   #[inline] pub fn txerrcnt_fast(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Transmit Error Counter for fast bits"]
   #[inline] pub fn set_txerrcnt_fast(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -1508,9 +1815,11 @@ impl Ecr {
      self
   }
 
+#[doc="Receive Error Counter for fast bits"]
   #[inline] pub fn rxerrcnt_fast(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Receive Error Counter for fast bits"]
   #[inline] pub fn set_rxerrcnt_fast(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -1535,12 +1844,15 @@ impl ::core::fmt::Debug for Ecr {
       Ok(())
    }
 }
+#[doc="Error and Status 1 register"]
 #[derive(PartialEq, Eq)]
 pub struct Esr1(pub u32);
 impl Esr1 {
+#[doc="Error Interrupt"]
   #[inline] pub fn errint(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Error Interrupt"]
   #[inline] pub fn set_errint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1548,9 +1860,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bus Off Interrupt"]
   #[inline] pub fn boffint(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Bus Off Interrupt"]
   #[inline] pub fn set_boffint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1558,9 +1872,11 @@ impl Esr1 {
      self
   }
 
+#[doc="FlexCAN In Reception"]
   #[inline] pub fn rx(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="FlexCAN In Reception"]
   #[inline] pub fn set_rx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1568,9 +1884,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Fault Confinement State"]
   #[inline] pub fn fltconf(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x3 // [5:4]
   }
+#[doc="Fault Confinement State"]
   #[inline] pub fn set_fltconf(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
@@ -1578,9 +1896,11 @@ impl Esr1 {
      self
   }
 
+#[doc="FlexCAN In Transmission"]
   #[inline] pub fn tx(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="FlexCAN In Transmission"]
   #[inline] pub fn set_tx(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1588,9 +1908,11 @@ impl Esr1 {
      self
   }
 
+#[doc="IDLE"]
   #[inline] pub fn idle(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="IDLE"]
   #[inline] pub fn set_idle(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1598,9 +1920,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Rx Error Warning"]
   #[inline] pub fn rxwrn(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Rx Error Warning"]
   #[inline] pub fn set_rxwrn(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1608,9 +1932,11 @@ impl Esr1 {
      self
   }
 
+#[doc="TX Error Warning"]
   #[inline] pub fn txwrn(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="TX Error Warning"]
   #[inline] pub fn set_txwrn(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1618,9 +1944,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Stuffing Error"]
   #[inline] pub fn stferr(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Stuffing Error"]
   #[inline] pub fn set_stferr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1628,9 +1956,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Form Error"]
   #[inline] pub fn frmerr(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Form Error"]
   #[inline] pub fn set_frmerr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1638,9 +1968,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Cyclic Redundancy Check Error"]
   #[inline] pub fn crcerr(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Cyclic Redundancy Check Error"]
   #[inline] pub fn set_crcerr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -1648,9 +1980,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Acknowledge Error"]
   #[inline] pub fn ackerr(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="Acknowledge Error"]
   #[inline] pub fn set_ackerr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -1658,9 +1992,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bit0 Error"]
   #[inline] pub fn bit0err(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Bit0 Error"]
   #[inline] pub fn set_bit0err(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1668,9 +2004,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bit1 Error"]
   #[inline] pub fn bit1err(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Bit1 Error"]
   #[inline] pub fn set_bit1err(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1678,9 +2016,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Rx Warning Interrupt Flag"]
   #[inline] pub fn rwrnint(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Rx Warning Interrupt Flag"]
   #[inline] pub fn set_rwrnint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1688,9 +2028,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Tx Warning Interrupt Flag"]
   #[inline] pub fn twrnint(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Tx Warning Interrupt Flag"]
   #[inline] pub fn set_twrnint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -1698,9 +2040,11 @@ impl Esr1 {
      self
   }
 
+#[doc="CAN Synchronization Status"]
   #[inline] pub fn synch(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="CAN Synchronization Status"]
   #[inline] pub fn set_synch(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1708,9 +2052,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bus Off Done Interrupt"]
   #[inline] pub fn boffdoneint(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+#[doc="Bus Off Done Interrupt"]
   #[inline] pub fn set_boffdoneint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -1718,9 +2064,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn errint_fast(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_errint_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -1728,9 +2076,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Error Overrun bit"]
   #[inline] pub fn errovr(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="Error Overrun bit"]
   #[inline] pub fn set_errovr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -1738,9 +2088,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn stferr_fast(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+#[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_stferr_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -1748,9 +2100,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn frmerr_fast(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
+#[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_frmerr_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -1758,9 +2112,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
   #[inline] pub fn crcerr_fast(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+#[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_crcerr_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -1768,9 +2124,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn bit0err_fast(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_bit0err_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -1778,9 +2136,11 @@ impl Esr1 {
      self
   }
 
+#[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn bit1err_fast(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
   #[inline] pub fn set_bit1err_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1826,12 +2186,15 @@ impl ::core::fmt::Debug for Esr1 {
       Ok(())
    }
 }
+#[doc="Interrupt Masks 1 register"]
 #[derive(PartialEq, Eq)]
 pub struct Imask1(pub u32);
 impl Imask1 {
+#[doc="Buffer MB i Mask"]
   #[inline] pub fn buf31to0m(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Buffer MB i Mask"]
   #[inline] pub fn set_buf31to0m(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1852,14 +2215,17 @@ impl ::core::fmt::Debug for Imask1 {
       Ok(())
    }
 }
+#[doc="Interrupt Flags 1 register"]
 #[derive(PartialEq, Eq)]
 pub struct Iflag1(pub u32);
 impl Iflag1 {
+#[doc="Buffer MB Interrupt"]
   #[inline] pub fn bufi(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Buffer MB Interrupt"]
   #[inline] pub fn set_bufi(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -1914,12 +2280,15 @@ impl ::core::fmt::Debug for Iflag1 {
       Ok(())
    }
 }
+#[doc="Control 2 register"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl2(pub u32);
 impl Ctrl2 {
+#[doc="Edge Filter Disable"]
   #[inline] pub fn edfltdis(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Edge Filter Disable"]
   #[inline] pub fn set_edfltdis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1927,9 +2296,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="ISO CAN FD Enable"]
   #[inline] pub fn isocanfden(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="ISO CAN FD Enable"]
   #[inline] pub fn set_isocanfden(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -1937,9 +2308,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Protocol Exception Enable"]
   #[inline] pub fn prexcen(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Protocol Exception Enable"]
   #[inline] pub fn set_prexcen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1947,9 +2320,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Timer Source"]
   #[inline] pub fn timer_src(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Timer Source"]
   #[inline] pub fn set_timer_src(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1957,9 +2332,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
   #[inline] pub fn eacen(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
   #[inline] pub fn set_eacen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1967,9 +2344,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Remote Request Storing"]
   #[inline] pub fn rrs(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Remote Request Storing"]
   #[inline] pub fn set_rrs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -1977,9 +2356,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Mailboxes Reception Priority"]
   #[inline] pub fn mrp(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Mailboxes Reception Priority"]
   #[inline] pub fn set_mrp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1987,9 +2368,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Tx Arbitration Start Delay"]
   #[inline] pub fn tasd(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1f // [23:19]
   }
+#[doc="Tx Arbitration Start Delay"]
   #[inline] pub fn set_tasd(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 19);
@@ -1997,9 +2380,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Number Of Rx FIFO Filters"]
   #[inline] pub fn rffn(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+#[doc="Number Of Rx FIFO Filters"]
   #[inline] pub fn set_rffn(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
@@ -2007,9 +2392,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Bus Off Done Interrupt Mask"]
   #[inline] pub fn boffdonemsk(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="Bus Off Done Interrupt Mask"]
   #[inline] pub fn set_boffdonemsk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -2017,9 +2404,11 @@ impl Ctrl2 {
      self
   }
 
+#[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
   #[inline] pub fn errmsk_fast(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
   #[inline] pub fn set_errmsk_fast(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -2051,12 +2440,15 @@ impl ::core::fmt::Debug for Ctrl2 {
       Ok(())
    }
 }
+#[doc="Error and Status 2 register"]
 #[derive(PartialEq, Eq)]
 pub struct Esr2(pub u32);
 impl Esr2 {
+#[doc="Inactive Mailbox"]
   #[inline] pub fn imb(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="Inactive Mailbox"]
   #[inline] pub fn set_imb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -2064,9 +2456,11 @@ impl Esr2 {
      self
   }
 
+#[doc="Valid Priority Status"]
   #[inline] pub fn vps(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Valid Priority Status"]
   #[inline] pub fn set_vps(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -2074,9 +2468,11 @@ impl Esr2 {
      self
   }
 
+#[doc="Lowest Priority Tx Mailbox"]
   #[inline] pub fn lptm(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7f // [22:16]
   }
+#[doc="Lowest Priority Tx Mailbox"]
   #[inline] pub fn set_lptm(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
@@ -2100,12 +2496,15 @@ impl ::core::fmt::Debug for Esr2 {
       Ok(())
    }
 }
+#[doc="CRC Register"]
 #[derive(PartialEq, Eq)]
 pub struct Crcr(pub u32);
 impl Crcr {
+#[doc="Transmitted CRC value"]
   #[inline] pub fn txcrc(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7fff // [14:0]
   }
+#[doc="Transmitted CRC value"]
   #[inline] pub fn set_txcrc(mut self, value: u32) -> Self {
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
@@ -2113,9 +2512,11 @@ impl Crcr {
      self
   }
 
+#[doc="CRC Mailbox"]
   #[inline] pub fn mbcrc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7f // [22:16]
   }
+#[doc="CRC Mailbox"]
   #[inline] pub fn set_mbcrc(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
@@ -2138,12 +2539,15 @@ impl ::core::fmt::Debug for Crcr {
       Ok(())
    }
 }
+#[doc="Rx FIFO Global Mask register"]
 #[derive(PartialEq, Eq)]
 pub struct Rxfgmask(pub u32);
 impl Rxfgmask {
+#[doc="Rx FIFO Global Mask Bits"]
   #[inline] pub fn fgm(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Rx FIFO Global Mask Bits"]
   #[inline] pub fn set_fgm(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -2164,12 +2568,15 @@ impl ::core::fmt::Debug for Rxfgmask {
       Ok(())
    }
 }
+#[doc="Rx FIFO Information Register"]
 #[derive(PartialEq, Eq)]
 pub struct Rxfir(pub u32);
 impl Rxfir {
+#[doc="Identifier Acceptance Filter Hit Indicator"]
   #[inline] pub fn idhit(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1ff // [8:0]
   }
+#[doc="Identifier Acceptance Filter Hit Indicator"]
   #[inline] pub fn set_idhit(mut self, value: u32) -> Self {
      assert!((value & !0x1ff) == 0);
      self.0 &= !(0x1ff << 0);
@@ -2191,12 +2598,15 @@ impl ::core::fmt::Debug for Rxfir {
       Ok(())
    }
 }
+#[doc="CAN Bit Timing Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cbt(pub u32);
 impl Cbt {
+#[doc="Extended Phase Segment 2"]
   #[inline] pub fn epseg2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="Extended Phase Segment 2"]
   #[inline] pub fn set_epseg2(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -2204,9 +2614,11 @@ impl Cbt {
      self
   }
 
+#[doc="Extended Phase Segment 1"]
   #[inline] pub fn epseg1(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1f // [9:5]
   }
+#[doc="Extended Phase Segment 1"]
   #[inline] pub fn set_epseg1(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 5);
@@ -2214,9 +2626,11 @@ impl Cbt {
      self
   }
 
+#[doc="Extended Propagation Segment"]
   #[inline] pub fn epropseg(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x3f // [15:10]
   }
+#[doc="Extended Propagation Segment"]
   #[inline] pub fn set_epropseg(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 10);
@@ -2224,9 +2638,11 @@ impl Cbt {
      self
   }
 
+#[doc="Extended Resync Jump Width"]
   #[inline] pub fn erjw(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1f // [20:16]
   }
+#[doc="Extended Resync Jump Width"]
   #[inline] pub fn set_erjw(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 16);
@@ -2234,9 +2650,11 @@ impl Cbt {
      self
   }
 
+#[doc="Extended Prescaler Division Factor"]
   #[inline] pub fn epresdiv(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x3ff // [30:21]
   }
+#[doc="Extended Prescaler Division Factor"]
   #[inline] pub fn set_epresdiv(mut self, value: u32) -> Self {
      assert!((value & !0x3ff) == 0);
      self.0 &= !(0x3ff << 21);
@@ -2244,9 +2662,11 @@ impl Cbt {
      self
   }
 
+#[doc="Bit Timing Format Enable"]
   #[inline] pub fn btf(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Bit Timing Format Enable"]
   #[inline] pub fn set_btf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -2273,14 +2693,17 @@ impl ::core::fmt::Debug for Cbt {
       Ok(())
    }
 }
+#[doc="Embedded RAM"]
 #[derive(PartialEq, Eq)]
 pub struct Ram(pub u32);
 impl Ram {
+#[doc="Data byte 3 of Rx/Tx frame."]
   #[inline] pub fn byte(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      ((self.0 as u32) >> shift) & 0xff // [7:0]
   }
+#[doc="Data byte 3 of Rx/Tx frame."]
   #[inline] pub fn set_byte(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0xff) == 0);
@@ -2307,6 +2730,7 @@ impl ::core::fmt::Debug for Ram {
       Ok(())
    }
 }
+#[doc="Message Buffer Header Word 0"]
 #[derive(PartialEq, Eq)]
 pub struct Mb8h0(pub u32);
 impl Mb8h0 {
@@ -2422,6 +2846,7 @@ impl ::core::fmt::Debug for Mb8h0 {
       Ok(())
    }
 }
+#[doc="Message Buffer Header Word 1"]
 #[derive(PartialEq, Eq)]
 pub struct Mb8h1(pub u32);
 impl Mb8h1 {
@@ -2471,6 +2896,7 @@ impl ::core::fmt::Debug for Mb8h1 {
       Ok(())
    }
 }
+#[doc="Message Buffer Data Word"]
 #[derive(PartialEq, Eq)]
 pub struct Mb8d0(pub u32);
 impl Mb8d0 {
@@ -2505,6 +2931,7 @@ impl ::core::fmt::Debug for Mb8d0 {
       Ok(())
    }
 }
+#[doc="Message Buffer Data Word"]
 #[derive(PartialEq, Eq)]
 pub struct Mb8d1(pub u32);
 impl Mb8d1 {
@@ -2539,12 +2966,15 @@ impl ::core::fmt::Debug for Mb8d1 {
       Ok(())
    }
 }
+#[doc="Rx Individual Mask Registers"]
 #[derive(PartialEq, Eq)]
 pub struct Rximr(pub u32);
 impl Rximr {
+#[doc="Individual Mask Bits"]
   #[inline] pub fn mi(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="Individual Mask Bits"]
   #[inline] pub fn set_mi(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -2565,12 +2995,15 @@ impl ::core::fmt::Debug for Rximr {
       Ok(())
    }
 }
+#[doc="Pretended Networking Control 1 Register"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl1Pn(pub u32);
 impl Ctrl1Pn {
+#[doc="Filtering Combination Selection"]
   #[inline] pub fn fcs(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3 // [1:0]
   }
+#[doc="Filtering Combination Selection"]
   #[inline] pub fn set_fcs(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
@@ -2578,9 +3011,11 @@ impl Ctrl1Pn {
      self
   }
 
+#[doc="ID Filtering Selection"]
   #[inline] pub fn idfs(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x3 // [3:2]
   }
+#[doc="ID Filtering Selection"]
   #[inline] pub fn set_idfs(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -2588,9 +3023,11 @@ impl Ctrl1Pn {
      self
   }
 
+#[doc="Payload Filtering Selection"]
   #[inline] pub fn plfs(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x3 // [5:4]
   }
+#[doc="Payload Filtering Selection"]
   #[inline] pub fn set_plfs(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
@@ -2598,9 +3035,11 @@ impl Ctrl1Pn {
      self
   }
 
+#[doc="Number of Messages Matching the Same Filtering Criteria"]
   #[inline] pub fn nmatch(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Number of Messages Matching the Same Filtering Criteria"]
   #[inline] pub fn set_nmatch(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -2608,9 +3047,11 @@ impl Ctrl1Pn {
      self
   }
 
+#[doc="Wake Up by Match Flag Mask Bit"]
   #[inline] pub fn wumf_msk(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Wake Up by Match Flag Mask Bit"]
   #[inline] pub fn set_wumf_msk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -2618,9 +3059,11 @@ impl Ctrl1Pn {
      self
   }
 
+#[doc="Wake Up by Timeout Flag Mask Bit"]
   #[inline] pub fn wtof_msk(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Wake Up by Timeout Flag Mask Bit"]
   #[inline] pub fn set_wtof_msk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -2647,12 +3090,15 @@ impl ::core::fmt::Debug for Ctrl1Pn {
       Ok(())
    }
 }
+#[doc="Pretended Networking Control 2 Register"]
 #[derive(PartialEq, Eq)]
 pub struct Ctrl2Pn(pub u32);
 impl Ctrl2Pn {
+#[doc="Timeout for No Message Matching the Filtering Criteria"]
   #[inline] pub fn matchto(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Timeout for No Message Matching the Filtering Criteria"]
   #[inline] pub fn set_matchto(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -2674,12 +3120,15 @@ impl ::core::fmt::Debug for Ctrl2Pn {
       Ok(())
    }
 }
+#[doc="Pretended Networking Wake Up Match Register"]
 #[derive(PartialEq, Eq)]
 pub struct WuMtc(pub u32);
 impl WuMtc {
+#[doc="Number of Matches while in Pretended Networking"]
   #[inline] pub fn mcounter(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Number of Matches while in Pretended Networking"]
   #[inline] pub fn set_mcounter(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -2687,9 +3136,11 @@ impl WuMtc {
      self
   }
 
+#[doc="Wake Up by Match Flag Bit"]
   #[inline] pub fn wumf(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Wake Up by Match Flag Bit"]
   #[inline] pub fn set_wumf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -2697,9 +3148,11 @@ impl WuMtc {
      self
   }
 
+#[doc="Wake Up by Timeout Flag Bit"]
   #[inline] pub fn wtof(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="Wake Up by Timeout Flag Bit"]
   #[inline] pub fn set_wtof(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -2723,12 +3176,15 @@ impl ::core::fmt::Debug for WuMtc {
       Ok(())
    }
 }
+#[doc="Pretended Networking ID Filter 1 Register"]
 #[derive(PartialEq, Eq)]
 pub struct FltId1(pub u32);
 impl FltId1 {
+#[doc="ID Filter 1 for Pretended Networking filtering"]
   #[inline] pub fn flt_id1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="ID Filter 1 for Pretended Networking filtering"]
   #[inline] pub fn set_flt_id1(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -2736,9 +3192,11 @@ impl FltId1 {
      self
   }
 
+#[doc="Remote Transmission Request Filter"]
   #[inline] pub fn flt_rtr(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+#[doc="Remote Transmission Request Filter"]
   #[inline] pub fn set_flt_rtr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -2746,9 +3204,11 @@ impl FltId1 {
      self
   }
 
+#[doc="ID Extended Filter"]
   #[inline] pub fn flt_ide(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="ID Extended Filter"]
   #[inline] pub fn set_flt_ide(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -2772,12 +3232,15 @@ impl ::core::fmt::Debug for FltId1 {
       Ok(())
    }
 }
+#[doc="Pretended Networking DLC Filter Register"]
 #[derive(PartialEq, Eq)]
 pub struct FltDlc(pub u32);
 impl FltDlc {
+#[doc="Upper Limit for Length of Data Bytes Filter"]
   #[inline] pub fn flt_dlc_hi(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
+#[doc="Upper Limit for Length of Data Bytes Filter"]
   #[inline] pub fn set_flt_dlc_hi(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
@@ -2785,9 +3248,11 @@ impl FltDlc {
      self
   }
 
+#[doc="Lower Limit for Length of Data Bytes Filter"]
   #[inline] pub fn flt_dlc_lo(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Lower Limit for Length of Data Bytes Filter"]
   #[inline] pub fn set_flt_dlc_lo(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -2810,12 +3275,15 @@ impl ::core::fmt::Debug for FltDlc {
       Ok(())
    }
 }
+#[doc="Pretended Networking Payload Low Filter 1 Register"]
 #[derive(PartialEq, Eq)]
 pub struct Pl1Lo(pub u32);
 impl Pl1Lo {
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -2823,9 +3291,11 @@ impl Pl1Lo {
      self
   }
 
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -2833,9 +3303,11 @@ impl Pl1Lo {
      self
   }
 
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -2843,9 +3315,11 @@ impl Pl1Lo {
      self
   }
 
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -2870,12 +3344,15 @@ impl ::core::fmt::Debug for Pl1Lo {
       Ok(())
    }
 }
+#[doc="Pretended Networking Payload High Filter 1 Register"]
 #[derive(PartialEq, Eq)]
 pub struct Pl1Hi(pub u32);
 impl Pl1Hi {
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -2883,9 +3360,11 @@ impl Pl1Hi {
      self
   }
 
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -2893,9 +3372,11 @@ impl Pl1Hi {
      self
   }
 
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -2903,9 +3384,11 @@ impl Pl1Hi {
      self
   }
 
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -2930,12 +3413,15 @@ impl ::core::fmt::Debug for Pl1Hi {
       Ok(())
    }
 }
+#[doc="Pretended Networking ID Filter 2 Register / ID Mask Register"]
 #[derive(PartialEq, Eq)]
 pub struct FltId2Idmask(pub u32);
 impl FltId2Idmask {
+#[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
   #[inline] pub fn flt_id2_idmask(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
   #[inline] pub fn set_flt_id2_idmask(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -2943,9 +3429,11 @@ impl FltId2Idmask {
      self
   }
 
+#[doc="Remote Transmission Request Mask Bit"]
   #[inline] pub fn rtr_msk(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+#[doc="Remote Transmission Request Mask Bit"]
   #[inline] pub fn set_rtr_msk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -2953,9 +3441,11 @@ impl FltId2Idmask {
      self
   }
 
+#[doc="ID Extended Mask Bit"]
   #[inline] pub fn ide_msk(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="ID Extended Mask Bit"]
   #[inline] pub fn set_ide_msk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -2979,12 +3469,15 @@ impl ::core::fmt::Debug for FltId2Idmask {
       Ok(())
    }
 }
+#[doc="Pretended Networking Payload Low Filter 2 Register / Payload Low Mask Register"]
 #[derive(PartialEq, Eq)]
 pub struct Pl2PlmaskLo(pub u32);
 impl Pl2PlmaskLo {
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -2992,9 +3485,11 @@ impl Pl2PlmaskLo {
      self
   }
 
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3002,9 +3497,11 @@ impl Pl2PlmaskLo {
      self
   }
 
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3012,9 +3509,11 @@ impl Pl2PlmaskLo {
      self
   }
 
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3039,12 +3538,15 @@ impl ::core::fmt::Debug for Pl2PlmaskLo {
       Ok(())
    }
 }
+#[doc="Pretended Networking Payload High Filter 2 low order bits / Payload High Mask Register"]
 #[derive(PartialEq, Eq)]
 pub struct Pl2PlmaskHi(pub u32);
 impl Pl2PlmaskHi {
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3052,9 +3554,11 @@ impl Pl2PlmaskHi {
      self
   }
 
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3062,9 +3566,11 @@ impl Pl2PlmaskHi {
      self
   }
 
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3072,9 +3578,11 @@ impl Pl2PlmaskHi {
      self
   }
 
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3099,12 +3607,15 @@ impl ::core::fmt::Debug for Pl2PlmaskHi {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for C/S"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb0Cs(pub u32);
 impl Wmb0Cs {
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn dlc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn set_dlc(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -3112,9 +3623,11 @@ impl Wmb0Cs {
      self
   }
 
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn rtr(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn set_rtr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -3122,9 +3635,11 @@ impl Wmb0Cs {
      self
   }
 
+#[doc="ID Extended Bit"]
   #[inline] pub fn ide(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="ID Extended Bit"]
   #[inline] pub fn set_ide(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -3132,9 +3647,11 @@ impl Wmb0Cs {
      self
   }
 
+#[doc="Substitute Remote Request"]
   #[inline] pub fn srr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Substitute Remote Request"]
   #[inline] pub fn set_srr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -3159,12 +3676,15 @@ impl ::core::fmt::Debug for Wmb0Cs {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for ID"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb0Id(pub u32);
 impl Wmb0Id {
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn set_id(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -3186,12 +3706,15 @@ impl ::core::fmt::Debug for Wmb0Id {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for Data 0-3"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb0D03(pub u32);
 impl Wmb0D03 {
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3199,9 +3722,11 @@ impl Wmb0D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3209,9 +3734,11 @@ impl Wmb0D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3219,9 +3746,11 @@ impl Wmb0D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3246,12 +3775,15 @@ impl ::core::fmt::Debug for Wmb0D03 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register Data 4-7"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb0D47(pub u32);
 impl Wmb0D47 {
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3259,9 +3791,11 @@ impl Wmb0D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3269,9 +3803,11 @@ impl Wmb0D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3279,9 +3815,11 @@ impl Wmb0D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3306,12 +3844,15 @@ impl ::core::fmt::Debug for Wmb0D47 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for C/S"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb1Cs(pub u32);
 impl Wmb1Cs {
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn dlc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn set_dlc(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -3319,9 +3860,11 @@ impl Wmb1Cs {
      self
   }
 
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn rtr(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn set_rtr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -3329,9 +3872,11 @@ impl Wmb1Cs {
      self
   }
 
+#[doc="ID Extended Bit"]
   #[inline] pub fn ide(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="ID Extended Bit"]
   #[inline] pub fn set_ide(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -3339,9 +3884,11 @@ impl Wmb1Cs {
      self
   }
 
+#[doc="Substitute Remote Request"]
   #[inline] pub fn srr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Substitute Remote Request"]
   #[inline] pub fn set_srr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -3366,12 +3913,15 @@ impl ::core::fmt::Debug for Wmb1Cs {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for ID"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb1Id(pub u32);
 impl Wmb1Id {
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn set_id(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -3393,12 +3943,15 @@ impl ::core::fmt::Debug for Wmb1Id {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for Data 0-3"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb1D03(pub u32);
 impl Wmb1D03 {
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3406,9 +3959,11 @@ impl Wmb1D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3416,9 +3971,11 @@ impl Wmb1D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3426,9 +3983,11 @@ impl Wmb1D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3453,12 +4012,15 @@ impl ::core::fmt::Debug for Wmb1D03 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register Data 4-7"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb1D47(pub u32);
 impl Wmb1D47 {
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3466,9 +4028,11 @@ impl Wmb1D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3476,9 +4040,11 @@ impl Wmb1D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3486,9 +4052,11 @@ impl Wmb1D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3513,12 +4081,15 @@ impl ::core::fmt::Debug for Wmb1D47 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for C/S"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb2Cs(pub u32);
 impl Wmb2Cs {
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn dlc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn set_dlc(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -3526,9 +4097,11 @@ impl Wmb2Cs {
      self
   }
 
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn rtr(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn set_rtr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -3536,9 +4109,11 @@ impl Wmb2Cs {
      self
   }
 
+#[doc="ID Extended Bit"]
   #[inline] pub fn ide(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="ID Extended Bit"]
   #[inline] pub fn set_ide(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -3546,9 +4121,11 @@ impl Wmb2Cs {
      self
   }
 
+#[doc="Substitute Remote Request"]
   #[inline] pub fn srr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Substitute Remote Request"]
   #[inline] pub fn set_srr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -3573,12 +4150,15 @@ impl ::core::fmt::Debug for Wmb2Cs {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for ID"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb2Id(pub u32);
 impl Wmb2Id {
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn set_id(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -3600,12 +4180,15 @@ impl ::core::fmt::Debug for Wmb2Id {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for Data 0-3"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb2D03(pub u32);
 impl Wmb2D03 {
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3613,9 +4196,11 @@ impl Wmb2D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3623,9 +4208,11 @@ impl Wmb2D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3633,9 +4220,11 @@ impl Wmb2D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3660,12 +4249,15 @@ impl ::core::fmt::Debug for Wmb2D03 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register Data 4-7"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb2D47(pub u32);
 impl Wmb2D47 {
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3673,9 +4265,11 @@ impl Wmb2D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3683,9 +4277,11 @@ impl Wmb2D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3693,9 +4289,11 @@ impl Wmb2D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3720,12 +4318,15 @@ impl ::core::fmt::Debug for Wmb2D47 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for C/S"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb3Cs(pub u32);
 impl Wmb3Cs {
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn dlc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xf // [19:16]
   }
+#[doc="Length of Data in Bytes"]
   #[inline] pub fn set_dlc(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
@@ -3733,9 +4334,11 @@ impl Wmb3Cs {
      self
   }
 
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn rtr(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Remote Transmission Request Bit"]
   #[inline] pub fn set_rtr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -3743,9 +4346,11 @@ impl Wmb3Cs {
      self
   }
 
+#[doc="ID Extended Bit"]
   #[inline] pub fn ide(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="ID Extended Bit"]
   #[inline] pub fn set_ide(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -3753,9 +4358,11 @@ impl Wmb3Cs {
      self
   }
 
+#[doc="Substitute Remote Request"]
   #[inline] pub fn srr(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Substitute Remote Request"]
   #[inline] pub fn set_srr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -3780,12 +4387,15 @@ impl ::core::fmt::Debug for Wmb3Cs {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for ID"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb3Id(pub u32);
 impl Wmb3Id {
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffffff // [28:0]
   }
+#[doc="Received ID under Pretended Networking mode"]
   #[inline] pub fn set_id(mut self, value: u32) -> Self {
      assert!((value & !0x1fffffff) == 0);
      self.0 &= !(0x1fffffff << 0);
@@ -3807,12 +4417,15 @@ impl ::core::fmt::Debug for Wmb3Id {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register for Data 0-3"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb3D03(pub u32);
 impl Wmb3D03 {
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn data_byte_3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3820,9 +4433,11 @@ impl Wmb3D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn data_byte_2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3830,9 +4445,11 @@ impl Wmb3D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn data_byte_1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_1(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3840,9 +4457,11 @@ impl Wmb3D03 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn data_byte_0(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_0(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3867,12 +4486,15 @@ impl ::core::fmt::Debug for Wmb3D03 {
       Ok(())
    }
 }
+#[doc="Wake Up Message Buffer Register Data 4-7"]
 #[derive(PartialEq, Eq)]
 pub struct Wmb3D47(pub u32);
 impl Wmb3D47 {
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn data_byte_7(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_7(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -3880,9 +4502,11 @@ impl Wmb3D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn data_byte_6(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_6(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -3890,9 +4514,11 @@ impl Wmb3D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn data_byte_5(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_5(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -3900,9 +4526,11 @@ impl Wmb3D47 {
      self
   }
 
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn data_byte_4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xff // [31:24]
   }
+#[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
   #[inline] pub fn set_data_byte_4(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
@@ -3927,12 +4555,15 @@ impl ::core::fmt::Debug for Wmb3D47 {
       Ok(())
    }
 }
+#[doc="CAN FD Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fdctrl(pub u32);
 impl Fdctrl {
+#[doc="Transceiver Delay Compensation Value"]
   #[inline] pub fn tdcval(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+#[doc="Transceiver Delay Compensation Value"]
   #[inline] pub fn set_tdcval(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -3940,9 +4571,11 @@ impl Fdctrl {
      self
   }
 
+#[doc="Transceiver Delay Compensation Offset"]
   #[inline] pub fn tdcoff(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1f // [12:8]
   }
+#[doc="Transceiver Delay Compensation Offset"]
   #[inline] pub fn set_tdcoff(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 8);
@@ -3950,9 +4583,11 @@ impl Fdctrl {
      self
   }
 
+#[doc="Transceiver Delay Compensation Fail"]
   #[inline] pub fn tdcfail(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Transceiver Delay Compensation Fail"]
   #[inline] pub fn set_tdcfail(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -3960,9 +4595,11 @@ impl Fdctrl {
      self
   }
 
+#[doc="Transceiver Delay Compensation Enable"]
   #[inline] pub fn tdcen(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Transceiver Delay Compensation Enable"]
   #[inline] pub fn set_tdcen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -3970,9 +4607,11 @@ impl Fdctrl {
      self
   }
 
+#[doc="Message Buffer Data Size for Region 0"]
   #[inline] pub fn mbdsr0(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x3 // [17:16]
   }
+#[doc="Message Buffer Data Size for Region 0"]
   #[inline] pub fn set_mbdsr0(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
@@ -3980,9 +4619,11 @@ impl Fdctrl {
      self
   }
 
+#[doc="Bit Rate Switch Enable"]
   #[inline] pub fn fdrate(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="Bit Rate Switch Enable"]
   #[inline] pub fn set_fdrate(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -4009,12 +4650,15 @@ impl ::core::fmt::Debug for Fdctrl {
       Ok(())
    }
 }
+#[doc="CAN FD Bit Timing Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fdcbt(pub u32);
 impl Fdcbt {
+#[doc="Fast Phase Segment 2"]
   #[inline] pub fn fpseg2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="Fast Phase Segment 2"]
   #[inline] pub fn set_fpseg2(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -4022,9 +4666,11 @@ impl Fdcbt {
      self
   }
 
+#[doc="Fast Phase Segment 1"]
   #[inline] pub fn fpseg1(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x7 // [7:5]
   }
+#[doc="Fast Phase Segment 1"]
   #[inline] pub fn set_fpseg1(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 5);
@@ -4032,9 +4678,11 @@ impl Fdcbt {
      self
   }
 
+#[doc="Fast Propagation Segment"]
   #[inline] pub fn fpropseg(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1f // [14:10]
   }
+#[doc="Fast Propagation Segment"]
   #[inline] pub fn set_fpropseg(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 10);
@@ -4042,9 +4690,11 @@ impl Fdcbt {
      self
   }
 
+#[doc="Fast Resync Jump Width"]
   #[inline] pub fn frjw(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7 // [18:16]
   }
+#[doc="Fast Resync Jump Width"]
   #[inline] pub fn set_frjw(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
@@ -4052,9 +4702,11 @@ impl Fdcbt {
      self
   }
 
+#[doc="Fast Prescaler Division Factor"]
   #[inline] pub fn fpresdiv(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3ff // [29:20]
   }
+#[doc="Fast Prescaler Division Factor"]
   #[inline] pub fn set_fpresdiv(mut self, value: u32) -> Self {
      assert!((value & !0x3ff) == 0);
      self.0 &= !(0x3ff << 20);
@@ -4080,12 +4732,15 @@ impl ::core::fmt::Debug for Fdcbt {
       Ok(())
    }
 }
+#[doc="CAN FD CRC Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fdcrc(pub u32);
 impl Fdcrc {
+#[doc="Extended Transmitted CRC value"]
   #[inline] pub fn fd_txcrc(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1fffff // [20:0]
   }
+#[doc="Extended Transmitted CRC value"]
   #[inline] pub fn set_fd_txcrc(mut self, value: u32) -> Self {
      assert!((value & !0x1fffff) == 0);
      self.0 &= !(0x1fffff << 0);
@@ -4093,9 +4748,11 @@ impl Fdcrc {
      self
   }
 
+#[doc="CRC Mailbox Number for FD_TXCRC"]
   #[inline] pub fn fd_mbcrc(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x7f // [30:24]
   }
+#[doc="CRC Mailbox Number for FD_TXCRC"]
   #[inline] pub fn set_fd_mbcrc(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 24);

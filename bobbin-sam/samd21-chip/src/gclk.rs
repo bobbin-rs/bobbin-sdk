@@ -1,3 +1,4 @@
+//! Generic Clock Generator
 pub const GCLK: Gclk = Gclk(0x40000c00);
 
 #[doc="Generic Clock Generator"]

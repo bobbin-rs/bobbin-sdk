@@ -1,90 +1,110 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="FTM Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the SC register."]
   #[inline] pub fn sc_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the SC register."]
   #[inline] pub fn sc_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the SC register."]
   #[inline] pub fn sc(&self) -> Sc { 
      unsafe {
         Sc(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the SC register."]
   #[inline] pub fn set_sc(&self, value: Sc) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SC register."]
   #[inline] pub fn with_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Self {
      let tmp = self.sc();
      self.set_sc(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CNT register."]
   #[inline] pub fn cnt_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CNT register."]
   #[inline] pub fn cnt_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CNT register."]
   #[inline] pub fn cnt(&self) -> Cnt { 
      unsafe {
         Cnt(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CNT register."]
   #[inline] pub fn set_cnt(&self, value: Cnt) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CNT register."]
   #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
      self.set_cnt(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MOD register."]
   #[inline] pub fn mod_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the MOD register."]
   #[inline] pub fn mod_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the MOD register."]
   #[inline] pub fn _mod(&self) -> Mod { 
      unsafe {
         Mod(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the MOD register."]
   #[inline] pub fn set_mod(&self, value: Mod) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MOD register."]
   #[inline] pub fn with_mod<F: FnOnce(Mod) -> Mod>(&self, f: F) -> &Self {
      let tmp = self._mod();
      self.set_mod(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CSC register."]
   #[inline] pub fn csc_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0xc + (index << 3)) as *const u32
   }
+#[doc="Get the *mut pointer for the CSC register."]
   #[inline] pub fn csc_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0xc + (index << 3)) as *mut u32
   }
+#[doc="Read the CSC register."]
   #[inline] pub fn csc(&self, index: usize) -> Csc { 
      assert!(index < 8);
      unsafe {
         Csc(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index << 3)) as *const u32))
      }
   }
+#[doc="Write the CSC register."]
   #[inline] pub fn set_csc(&self, index: usize, value: Csc) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -92,25 +112,30 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the CSC register."]
   #[inline] pub fn with_csc<F: FnOnce(Csc) -> Csc>(&self, index: usize, f: F) -> &Self {
      let tmp = self.csc(index);
      self.set_csc(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the CV register."]
   #[inline] pub fn cv_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x10 + (index << 3)) as *const u32
   }
+#[doc="Get the *mut pointer for the CV register."]
   #[inline] pub fn cv_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x10 + (index << 3)) as *mut u32
   }
+#[doc="Read the CV register."]
   #[inline] pub fn cv(&self, index: usize) -> Cv { 
      assert!(index < 8);
      unsafe {
         Cv(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *const u32))
      }
   }
+#[doc="Write the CV register."]
   #[inline] pub fn set_cv(&self, index: usize, value: Cv) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -118,446 +143,547 @@ impl<T> Periph<T> {
      }
      self
   }
+#[doc="Modify the CV register."]
   #[inline] pub fn with_cv<F: FnOnce(Cv) -> Cv>(&self, index: usize, f: F) -> &Self {
      let tmp = self.cv(index);
      self.set_cv(index, f(tmp))
   }
 
+#[doc="Get the *const pointer for the CNTIN register."]
   #[inline] pub fn cntin_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
+#[doc="Get the *mut pointer for the CNTIN register."]
   #[inline] pub fn cntin_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
+#[doc="Read the CNTIN register."]
   #[inline] pub fn cntin(&self) -> Cntin { 
      unsafe {
         Cntin(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
+#[doc="Write the CNTIN register."]
   #[inline] pub fn set_cntin(&self, value: Cntin) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CNTIN register."]
   #[inline] pub fn with_cntin<F: FnOnce(Cntin) -> Cntin>(&self, f: F) -> &Self {
      let tmp = self.cntin();
      self.set_cntin(f(tmp))
   }
 
+#[doc="Get the *const pointer for the STATUS register."]
   #[inline] pub fn status_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x50) as *const u32
   }
+#[doc="Get the *mut pointer for the STATUS register."]
   #[inline] pub fn status_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x50) as *mut u32
   }
+#[doc="Read the STATUS register."]
   #[inline] pub fn status(&self) -> Status { 
      unsafe {
         Status(::core::ptr::read_volatile(((self.0 as usize) + 0x50) as *const u32))
      }
   }
+#[doc="Write the STATUS register."]
   #[inline] pub fn set_status(&self, value: Status) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the STATUS register."]
   #[inline] pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
      let tmp = self.status();
      self.set_status(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MODE register."]
   #[inline] pub fn mode_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x54) as *const u32
   }
+#[doc="Get the *mut pointer for the MODE register."]
   #[inline] pub fn mode_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x54) as *mut u32
   }
+#[doc="Read the MODE register."]
   #[inline] pub fn mode(&self) -> Mode { 
      unsafe {
         Mode(::core::ptr::read_volatile(((self.0 as usize) + 0x54) as *const u32))
      }
   }
+#[doc="Write the MODE register."]
   #[inline] pub fn set_mode(&self, value: Mode) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the MODE register."]
   #[inline] pub fn with_mode<F: FnOnce(Mode) -> Mode>(&self, f: F) -> &Self {
      let tmp = self.mode();
      self.set_mode(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SYNC register."]
   #[inline] pub fn sync_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x58) as *const u32
   }
+#[doc="Get the *mut pointer for the SYNC register."]
   #[inline] pub fn sync_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x58) as *mut u32
   }
+#[doc="Read the SYNC register."]
   #[inline] pub fn sync(&self) -> Sync { 
      unsafe {
         Sync(::core::ptr::read_volatile(((self.0 as usize) + 0x58) as *const u32))
      }
   }
+#[doc="Write the SYNC register."]
   #[inline] pub fn set_sync(&self, value: Sync) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SYNC register."]
   #[inline] pub fn with_sync<F: FnOnce(Sync) -> Sync>(&self, f: F) -> &Self {
      let tmp = self.sync();
      self.set_sync(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OUTINIT register."]
   #[inline] pub fn outinit_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x5c) as *const u32
   }
+#[doc="Get the *mut pointer for the OUTINIT register."]
   #[inline] pub fn outinit_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x5c) as *mut u32
   }
+#[doc="Read the OUTINIT register."]
   #[inline] pub fn outinit(&self) -> Outinit { 
      unsafe {
         Outinit(::core::ptr::read_volatile(((self.0 as usize) + 0x5c) as *const u32))
      }
   }
+#[doc="Write the OUTINIT register."]
   #[inline] pub fn set_outinit(&self, value: Outinit) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUTINIT register."]
   #[inline] pub fn with_outinit<F: FnOnce(Outinit) -> Outinit>(&self, f: F) -> &Self {
      let tmp = self.outinit();
      self.set_outinit(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OUTMASK register."]
   #[inline] pub fn outmask_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x60) as *const u32
   }
+#[doc="Get the *mut pointer for the OUTMASK register."]
   #[inline] pub fn outmask_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x60) as *mut u32
   }
+#[doc="Read the OUTMASK register."]
   #[inline] pub fn outmask(&self) -> Outmask { 
      unsafe {
         Outmask(::core::ptr::read_volatile(((self.0 as usize) + 0x60) as *const u32))
      }
   }
+#[doc="Write the OUTMASK register."]
   #[inline] pub fn set_outmask(&self, value: Outmask) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OUTMASK register."]
   #[inline] pub fn with_outmask<F: FnOnce(Outmask) -> Outmask>(&self, f: F) -> &Self {
      let tmp = self.outmask();
      self.set_outmask(f(tmp))
   }
 
+#[doc="Get the *const pointer for the COMBINE register."]
   #[inline] pub fn combine_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x64) as *const u32
   }
+#[doc="Get the *mut pointer for the COMBINE register."]
   #[inline] pub fn combine_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x64) as *mut u32
   }
+#[doc="Read the COMBINE register."]
   #[inline] pub fn combine(&self) -> Combine { 
      unsafe {
         Combine(::core::ptr::read_volatile(((self.0 as usize) + 0x64) as *const u32))
      }
   }
+#[doc="Write the COMBINE register."]
   #[inline] pub fn set_combine(&self, value: Combine) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the COMBINE register."]
   #[inline] pub fn with_combine<F: FnOnce(Combine) -> Combine>(&self, f: F) -> &Self {
      let tmp = self.combine();
      self.set_combine(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DEADTIME register."]
   #[inline] pub fn deadtime_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x68) as *const u32
   }
+#[doc="Get the *mut pointer for the DEADTIME register."]
   #[inline] pub fn deadtime_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x68) as *mut u32
   }
+#[doc="Read the DEADTIME register."]
   #[inline] pub fn deadtime(&self) -> Deadtime { 
      unsafe {
         Deadtime(::core::ptr::read_volatile(((self.0 as usize) + 0x68) as *const u32))
      }
   }
+#[doc="Write the DEADTIME register."]
   #[inline] pub fn set_deadtime(&self, value: Deadtime) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DEADTIME register."]
   #[inline] pub fn with_deadtime<F: FnOnce(Deadtime) -> Deadtime>(&self, f: F) -> &Self {
      let tmp = self.deadtime();
      self.set_deadtime(f(tmp))
   }
 
+#[doc="Get the *const pointer for the EXTTRIG register."]
   #[inline] pub fn exttrig_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x6c) as *const u32
   }
+#[doc="Get the *mut pointer for the EXTTRIG register."]
   #[inline] pub fn exttrig_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x6c) as *mut u32
   }
+#[doc="Read the EXTTRIG register."]
   #[inline] pub fn exttrig(&self) -> Exttrig { 
      unsafe {
         Exttrig(::core::ptr::read_volatile(((self.0 as usize) + 0x6c) as *const u32))
      }
   }
+#[doc="Write the EXTTRIG register."]
   #[inline] pub fn set_exttrig(&self, value: Exttrig) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the EXTTRIG register."]
   #[inline] pub fn with_exttrig<F: FnOnce(Exttrig) -> Exttrig>(&self, f: F) -> &Self {
      let tmp = self.exttrig();
      self.set_exttrig(f(tmp))
   }
 
+#[doc="Get the *const pointer for the POL register."]
   #[inline] pub fn pol_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x70) as *const u32
   }
+#[doc="Get the *mut pointer for the POL register."]
   #[inline] pub fn pol_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x70) as *mut u32
   }
+#[doc="Read the POL register."]
   #[inline] pub fn pol(&self) -> Pol { 
      unsafe {
         Pol(::core::ptr::read_volatile(((self.0 as usize) + 0x70) as *const u32))
      }
   }
+#[doc="Write the POL register."]
   #[inline] pub fn set_pol(&self, value: Pol) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the POL register."]
   #[inline] pub fn with_pol<F: FnOnce(Pol) -> Pol>(&self, f: F) -> &Self {
      let tmp = self.pol();
      self.set_pol(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FMS register."]
   #[inline] pub fn fms_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x74) as *const u32
   }
+#[doc="Get the *mut pointer for the FMS register."]
   #[inline] pub fn fms_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x74) as *mut u32
   }
+#[doc="Read the FMS register."]
   #[inline] pub fn fms(&self) -> Fms { 
      unsafe {
         Fms(::core::ptr::read_volatile(((self.0 as usize) + 0x74) as *const u32))
      }
   }
+#[doc="Write the FMS register."]
   #[inline] pub fn set_fms(&self, value: Fms) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FMS register."]
   #[inline] pub fn with_fms<F: FnOnce(Fms) -> Fms>(&self, f: F) -> &Self {
      let tmp = self.fms();
      self.set_fms(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FILTER register."]
   #[inline] pub fn filter_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x78) as *const u32
   }
+#[doc="Get the *mut pointer for the FILTER register."]
   #[inline] pub fn filter_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x78) as *mut u32
   }
+#[doc="Read the FILTER register."]
   #[inline] pub fn filter(&self) -> Filter { 
      unsafe {
         Filter(::core::ptr::read_volatile(((self.0 as usize) + 0x78) as *const u32))
      }
   }
+#[doc="Write the FILTER register."]
   #[inline] pub fn set_filter(&self, value: Filter) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FILTER register."]
   #[inline] pub fn with_filter<F: FnOnce(Filter) -> Filter>(&self, f: F) -> &Self {
      let tmp = self.filter();
      self.set_filter(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLTCTRL register."]
   #[inline] pub fn fltctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x7c) as *const u32
   }
+#[doc="Get the *mut pointer for the FLTCTRL register."]
   #[inline] pub fn fltctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x7c) as *mut u32
   }
+#[doc="Read the FLTCTRL register."]
   #[inline] pub fn fltctrl(&self) -> Fltctrl { 
      unsafe {
         Fltctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x7c) as *const u32))
      }
   }
+#[doc="Write the FLTCTRL register."]
   #[inline] pub fn set_fltctrl(&self, value: Fltctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLTCTRL register."]
   #[inline] pub fn with_fltctrl<F: FnOnce(Fltctrl) -> Fltctrl>(&self, f: F) -> &Self {
      let tmp = self.fltctrl();
      self.set_fltctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the QDCTRL register."]
   #[inline] pub fn qdctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x80) as *const u32
   }
+#[doc="Get the *mut pointer for the QDCTRL register."]
   #[inline] pub fn qdctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x80) as *mut u32
   }
+#[doc="Read the QDCTRL register."]
   #[inline] pub fn qdctrl(&self) -> Qdctrl { 
      unsafe {
         Qdctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x80) as *const u32))
      }
   }
+#[doc="Write the QDCTRL register."]
   #[inline] pub fn set_qdctrl(&self, value: Qdctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the QDCTRL register."]
   #[inline] pub fn with_qdctrl<F: FnOnce(Qdctrl) -> Qdctrl>(&self, f: F) -> &Self {
      let tmp = self.qdctrl();
      self.set_qdctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CONF register."]
   #[inline] pub fn conf_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x84) as *const u32
   }
+#[doc="Get the *mut pointer for the CONF register."]
   #[inline] pub fn conf_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x84) as *mut u32
   }
+#[doc="Read the CONF register."]
   #[inline] pub fn conf(&self) -> Conf { 
      unsafe {
         Conf(::core::ptr::read_volatile(((self.0 as usize) + 0x84) as *const u32))
      }
   }
+#[doc="Write the CONF register."]
   #[inline] pub fn set_conf(&self, value: Conf) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CONF register."]
   #[inline] pub fn with_conf<F: FnOnce(Conf) -> Conf>(&self, f: F) -> &Self {
      let tmp = self.conf();
      self.set_conf(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLTPOL register."]
   #[inline] pub fn fltpol_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x88) as *const u32
   }
+#[doc="Get the *mut pointer for the FLTPOL register."]
   #[inline] pub fn fltpol_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x88) as *mut u32
   }
+#[doc="Read the FLTPOL register."]
   #[inline] pub fn fltpol(&self) -> Fltpol { 
      unsafe {
         Fltpol(::core::ptr::read_volatile(((self.0 as usize) + 0x88) as *const u32))
      }
   }
+#[doc="Write the FLTPOL register."]
   #[inline] pub fn set_fltpol(&self, value: Fltpol) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLTPOL register."]
   #[inline] pub fn with_fltpol<F: FnOnce(Fltpol) -> Fltpol>(&self, f: F) -> &Self {
      let tmp = self.fltpol();
      self.set_fltpol(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SYNCONF register."]
   #[inline] pub fn synconf_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8c) as *const u32
   }
+#[doc="Get the *mut pointer for the SYNCONF register."]
   #[inline] pub fn synconf_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8c) as *mut u32
   }
+#[doc="Read the SYNCONF register."]
   #[inline] pub fn synconf(&self) -> Synconf { 
      unsafe {
         Synconf(::core::ptr::read_volatile(((self.0 as usize) + 0x8c) as *const u32))
      }
   }
+#[doc="Write the SYNCONF register."]
   #[inline] pub fn set_synconf(&self, value: Synconf) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SYNCONF register."]
   #[inline] pub fn with_synconf<F: FnOnce(Synconf) -> Synconf>(&self, f: F) -> &Self {
      let tmp = self.synconf();
      self.set_synconf(f(tmp))
   }
 
+#[doc="Get the *const pointer for the INVCTRL register."]
   #[inline] pub fn invctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x90) as *const u32
   }
+#[doc="Get the *mut pointer for the INVCTRL register."]
   #[inline] pub fn invctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x90) as *mut u32
   }
+#[doc="Read the INVCTRL register."]
   #[inline] pub fn invctrl(&self) -> Invctrl { 
      unsafe {
         Invctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x90) as *const u32))
      }
   }
+#[doc="Write the INVCTRL register."]
   #[inline] pub fn set_invctrl(&self, value: Invctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x90) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the INVCTRL register."]
   #[inline] pub fn with_invctrl<F: FnOnce(Invctrl) -> Invctrl>(&self, f: F) -> &Self {
      let tmp = self.invctrl();
      self.set_invctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SWOCTRL register."]
   #[inline] pub fn swoctrl_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x94) as *const u32
   }
+#[doc="Get the *mut pointer for the SWOCTRL register."]
   #[inline] pub fn swoctrl_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x94) as *mut u32
   }
+#[doc="Read the SWOCTRL register."]
   #[inline] pub fn swoctrl(&self) -> Swoctrl { 
      unsafe {
         Swoctrl(::core::ptr::read_volatile(((self.0 as usize) + 0x94) as *const u32))
      }
   }
+#[doc="Write the SWOCTRL register."]
   #[inline] pub fn set_swoctrl(&self, value: Swoctrl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x94) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SWOCTRL register."]
   #[inline] pub fn with_swoctrl<F: FnOnce(Swoctrl) -> Swoctrl>(&self, f: F) -> &Self {
      let tmp = self.swoctrl();
      self.set_swoctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PWMLOAD register."]
   #[inline] pub fn pwmload_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x98) as *const u32
   }
+#[doc="Get the *mut pointer for the PWMLOAD register."]
   #[inline] pub fn pwmload_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x98) as *mut u32
   }
+#[doc="Read the PWMLOAD register."]
   #[inline] pub fn pwmload(&self) -> Pwmload { 
      unsafe {
         Pwmload(::core::ptr::read_volatile(((self.0 as usize) + 0x98) as *const u32))
      }
   }
+#[doc="Write the PWMLOAD register."]
   #[inline] pub fn set_pwmload(&self, value: Pwmload) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x98) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PWMLOAD register."]
   #[inline] pub fn with_pwmload<F: FnOnce(Pwmload) -> Pwmload>(&self, f: F) -> &Self {
      let tmp = self.pwmload();
      self.set_pwmload(f(tmp))
@@ -565,12 +691,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Status And Control"]
 #[derive(PartialEq, Eq)]
 pub struct Sc(pub u32);
 impl Sc {
+#[doc="Prescale Factor Selection"]
   #[inline] pub fn ps(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="Prescale Factor Selection"]
   #[inline] pub fn set_ps(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -578,9 +707,11 @@ impl Sc {
      self
   }
 
+#[doc="Clock Source Selection"]
   #[inline] pub fn clks(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x3 // [4:3]
   }
+#[doc="Clock Source Selection"]
   #[inline] pub fn set_clks(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
@@ -588,9 +719,11 @@ impl Sc {
      self
   }
 
+#[doc="Center-Aligned PWM Select"]
   #[inline] pub fn cpwms(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Center-Aligned PWM Select"]
   #[inline] pub fn set_cpwms(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -598,9 +731,11 @@ impl Sc {
      self
   }
 
+#[doc="Timer Overflow Interrupt Enable"]
   #[inline] pub fn toie(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Timer Overflow Interrupt Enable"]
   #[inline] pub fn set_toie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -608,9 +743,11 @@ impl Sc {
      self
   }
 
+#[doc="Timer Overflow Flag"]
   #[inline] pub fn tof(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Timer Overflow Flag"]
   #[inline] pub fn set_tof(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -618,11 +755,13 @@ impl Sc {
      self
   }
 
+#[doc="PWM Enable"]
   #[inline] pub fn pwmen(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 16 + index;
      ((self.0 as u32) >> shift) & 0x1 // [16]
   }
+#[doc="PWM Enable"]
   #[inline] pub fn set_pwmen(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -632,9 +771,11 @@ impl Sc {
      self
   }
 
+#[doc="Filter Prescaler"]
   #[inline] pub fn fltps(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0xf // [27:24]
   }
+#[doc="Filter Prescaler"]
   #[inline] pub fn set_fltps(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
@@ -669,12 +810,15 @@ impl ::core::fmt::Debug for Sc {
       Ok(())
    }
 }
+#[doc="Counter"]
 #[derive(PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
+#[doc="Counter Value"]
   #[inline] pub fn count(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Counter Value"]
   #[inline] pub fn set_count(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -696,12 +840,15 @@ impl ::core::fmt::Debug for Cnt {
       Ok(())
    }
 }
+#[doc="Modulo"]
 #[derive(PartialEq, Eq)]
 pub struct Mod(pub u32);
 impl Mod {
+#[doc="Modulo Value"]
   #[inline] pub fn _mod(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Modulo Value"]
   #[inline] pub fn set_mod(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -723,12 +870,15 @@ impl ::core::fmt::Debug for Mod {
       Ok(())
    }
 }
+#[doc="Channel (n) Status And Control"]
 #[derive(PartialEq, Eq)]
 pub struct Csc(pub u32);
 impl Csc {
+#[doc="DMA Enable"]
   #[inline] pub fn dma(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="DMA Enable"]
   #[inline] pub fn set_dma(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -736,9 +886,11 @@ impl Csc {
      self
   }
 
+#[doc="Edge or Level Select"]
   #[inline] pub fn elsa(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Edge or Level Select"]
   #[inline] pub fn set_elsa(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -746,9 +898,11 @@ impl Csc {
      self
   }
 
+#[doc="Edge or Level Select"]
   #[inline] pub fn elsb(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Edge or Level Select"]
   #[inline] pub fn set_elsb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -756,9 +910,11 @@ impl Csc {
      self
   }
 
+#[doc="Channel Mode Select"]
   #[inline] pub fn msa(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Channel Mode Select"]
   #[inline] pub fn set_msa(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -766,9 +922,11 @@ impl Csc {
      self
   }
 
+#[doc="Channel Mode Select"]
   #[inline] pub fn msb(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Channel Mode Select"]
   #[inline] pub fn set_msb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -776,9 +934,11 @@ impl Csc {
      self
   }
 
+#[doc="Channel Interrupt Enable"]
   #[inline] pub fn chie(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Channel Interrupt Enable"]
   #[inline] pub fn set_chie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -786,9 +946,11 @@ impl Csc {
      self
   }
 
+#[doc="Channel Flag"]
   #[inline] pub fn chf(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Channel Flag"]
   #[inline] pub fn set_chf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -816,12 +978,15 @@ impl ::core::fmt::Debug for Csc {
       Ok(())
    }
 }
+#[doc="Channel (n) Value"]
 #[derive(PartialEq, Eq)]
 pub struct Cv(pub u32);
 impl Cv {
+#[doc="Channel Value"]
   #[inline] pub fn val(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Channel Value"]
   #[inline] pub fn set_val(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -843,12 +1008,15 @@ impl ::core::fmt::Debug for Cv {
       Ok(())
    }
 }
+#[doc="Counter Initial Value"]
 #[derive(PartialEq, Eq)]
 pub struct Cntin(pub u32);
 impl Cntin {
+#[doc="Initial Value Of The FTM Counter"]
   #[inline] pub fn init(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Initial Value Of The FTM Counter"]
   #[inline] pub fn set_init(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -870,14 +1038,17 @@ impl ::core::fmt::Debug for Cntin {
       Ok(())
    }
 }
+#[doc="Capture And Compare Status"]
 #[derive(PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
+#[doc="Channel n Flag"]
   #[inline] pub fn chf(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Flag"]
   #[inline] pub fn set_chf(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -908,12 +1079,15 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
+#[doc="Features Mode Selection"]
 #[derive(PartialEq, Eq)]
 pub struct Mode(pub u32);
 impl Mode {
+#[doc="FTM Enable"]
   #[inline] pub fn ftmen(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="FTM Enable"]
   #[inline] pub fn set_ftmen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -921,9 +1095,11 @@ impl Mode {
      self
   }
 
+#[doc="Initialize The Channels Output"]
   #[inline] pub fn init(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Initialize The Channels Output"]
   #[inline] pub fn set_init(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -931,9 +1107,11 @@ impl Mode {
      self
   }
 
+#[doc="Write Protection Disable"]
   #[inline] pub fn wpdis(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Write Protection Disable"]
   #[inline] pub fn set_wpdis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -941,9 +1119,11 @@ impl Mode {
      self
   }
 
+#[doc="PWM Synchronization Mode"]
   #[inline] pub fn pwmsync(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="PWM Synchronization Mode"]
   #[inline] pub fn set_pwmsync(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -951,9 +1131,11 @@ impl Mode {
      self
   }
 
+#[doc="Capture Test Mode Enable"]
   #[inline] pub fn captest(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Capture Test Mode Enable"]
   #[inline] pub fn set_captest(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -961,9 +1143,11 @@ impl Mode {
      self
   }
 
+#[doc="Fault Control Mode"]
   #[inline] pub fn faultm(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x3 // [6:5]
   }
+#[doc="Fault Control Mode"]
   #[inline] pub fn set_faultm(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 5);
@@ -971,9 +1155,11 @@ impl Mode {
      self
   }
 
+#[doc="Fault Interrupt Enable"]
   #[inline] pub fn faultie(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Fault Interrupt Enable"]
   #[inline] pub fn set_faultie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1001,12 +1187,15 @@ impl ::core::fmt::Debug for Mode {
       Ok(())
    }
 }
+#[doc="Synchronization"]
 #[derive(PartialEq, Eq)]
 pub struct Sync(pub u32);
 impl Sync {
+#[doc="Minimum Loading Point Enable"]
   #[inline] pub fn cntmin(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Minimum Loading Point Enable"]
   #[inline] pub fn set_cntmin(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1014,9 +1203,11 @@ impl Sync {
      self
   }
 
+#[doc="Maximum Loading Point Enable"]
   #[inline] pub fn cntmax(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Maximum Loading Point Enable"]
   #[inline] pub fn set_cntmax(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1024,9 +1215,11 @@ impl Sync {
      self
   }
 
+#[doc="FTM Counter Reinitialization By Synchronization (FTM counter synchronization)"]
   #[inline] pub fn reinit(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="FTM Counter Reinitialization By Synchronization (FTM counter synchronization)"]
   #[inline] pub fn set_reinit(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1034,9 +1227,11 @@ impl Sync {
      self
   }
 
+#[doc="Output Mask Synchronization"]
   #[inline] pub fn synchom(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Output Mask Synchronization"]
   #[inline] pub fn set_synchom(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1044,9 +1239,11 @@ impl Sync {
      self
   }
 
+#[doc="PWM Synchronization Hardware Trigger 0"]
   #[inline] pub fn trig0(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="PWM Synchronization Hardware Trigger 0"]
   #[inline] pub fn set_trig0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1054,9 +1251,11 @@ impl Sync {
      self
   }
 
+#[doc="PWM Synchronization Hardware Trigger 1"]
   #[inline] pub fn trig1(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="PWM Synchronization Hardware Trigger 1"]
   #[inline] pub fn set_trig1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1064,9 +1263,11 @@ impl Sync {
      self
   }
 
+#[doc="PWM Synchronization Hardware Trigger 2"]
   #[inline] pub fn trig2(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="PWM Synchronization Hardware Trigger 2"]
   #[inline] pub fn set_trig2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1074,9 +1275,11 @@ impl Sync {
      self
   }
 
+#[doc="PWM Synchronization Software Trigger"]
   #[inline] pub fn swsync(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="PWM Synchronization Software Trigger"]
   #[inline] pub fn set_swsync(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1105,14 +1308,17 @@ impl ::core::fmt::Debug for Sync {
       Ok(())
    }
 }
+#[doc="Initial State For Channels Output"]
 #[derive(PartialEq, Eq)]
 pub struct Outinit(pub u32);
 impl Outinit {
+#[doc="Channel n Output Initialization Value"]
   #[inline] pub fn choi(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Output Initialization Value"]
   #[inline] pub fn set_choi(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -1143,14 +1349,17 @@ impl ::core::fmt::Debug for Outinit {
       Ok(())
    }
 }
+#[doc="Output Mask"]
 #[derive(PartialEq, Eq)]
 pub struct Outmask(pub u32);
 impl Outmask {
+#[doc="Channel 0 Output Mask"]
   #[inline] pub fn chom(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel 0 Output Mask"]
   #[inline] pub fn set_chom(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -1181,14 +1390,17 @@ impl ::core::fmt::Debug for Outmask {
       Ok(())
    }
 }
+#[doc="Function For Linked Channels"]
 #[derive(PartialEq, Eq)]
 pub struct Combine(pub u32);
 impl Combine {
+#[doc="Combine Channels For n"]
   #[inline] pub fn combine(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Combine Channels For n"]
   #[inline] pub fn set_combine(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1198,11 +1410,13 @@ impl Combine {
      self
   }
 
+#[doc="Complement Of Channel (n) For n"]
   #[inline] pub fn comp(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 1 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [1]
   }
+#[doc="Complement Of Channel (n) For n"]
   #[inline] pub fn set_comp(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1212,11 +1426,13 @@ impl Combine {
      self
   }
 
+#[doc="Dual Edge Capture Mode Enable For n"]
   #[inline] pub fn decapen(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 2 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [2]
   }
+#[doc="Dual Edge Capture Mode Enable For n"]
   #[inline] pub fn set_decapen(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1226,11 +1442,13 @@ impl Combine {
      self
   }
 
+#[doc="Dual Edge Capture Mode Captures For n"]
   #[inline] pub fn decap(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 3 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [3]
   }
+#[doc="Dual Edge Capture Mode Captures For n"]
   #[inline] pub fn set_decap(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1240,11 +1458,13 @@ impl Combine {
      self
   }
 
+#[doc="Deadtime Enable For n"]
   #[inline] pub fn dten(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 4 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [4]
   }
+#[doc="Deadtime Enable For n"]
   #[inline] pub fn set_dten(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1254,11 +1474,13 @@ impl Combine {
      self
   }
 
+#[doc="Synchronization Enable For n"]
   #[inline] pub fn syncen(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 5 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [5]
   }
+#[doc="Synchronization Enable For n"]
   #[inline] pub fn set_syncen(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1268,11 +1490,13 @@ impl Combine {
      self
   }
 
+#[doc="Fault Control Enable For n"]
   #[inline] pub fn faulten(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 6 + (index << 3);
      ((self.0 as u32) >> shift) & 0x1 // [6]
   }
+#[doc="Fault Control Enable For n"]
   #[inline] pub fn set_faulten(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1323,12 +1547,15 @@ impl ::core::fmt::Debug for Combine {
       Ok(())
    }
 }
+#[doc="Deadtime Insertion Control"]
 #[derive(PartialEq, Eq)]
 pub struct Deadtime(pub u32);
 impl Deadtime {
+#[doc="Deadtime Value"]
   #[inline] pub fn dtval(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+#[doc="Deadtime Value"]
   #[inline] pub fn set_dtval(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -1336,9 +1563,11 @@ impl Deadtime {
      self
   }
 
+#[doc="Deadtime Prescaler Value"]
   #[inline] pub fn dtps(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+#[doc="Deadtime Prescaler Value"]
   #[inline] pub fn set_dtps(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -1361,12 +1590,15 @@ impl ::core::fmt::Debug for Deadtime {
       Ok(())
    }
 }
+#[doc="FTM External Trigger"]
 #[derive(PartialEq, Eq)]
 pub struct Exttrig(pub u32);
 impl Exttrig {
+#[doc="Channel 2 Trigger Enable"]
   #[inline] pub fn ch2trig(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Channel 2 Trigger Enable"]
   #[inline] pub fn set_ch2trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1374,9 +1606,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel 3 Trigger Enable"]
   #[inline] pub fn ch3trig(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Channel 3 Trigger Enable"]
   #[inline] pub fn set_ch3trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1384,9 +1618,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel 4 Trigger Enable"]
   #[inline] pub fn ch4trig(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Channel 4 Trigger Enable"]
   #[inline] pub fn set_ch4trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1394,9 +1630,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel 5 Trigger Enable"]
   #[inline] pub fn ch5trig(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Channel 5 Trigger Enable"]
   #[inline] pub fn set_ch5trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1404,9 +1642,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel 0 Trigger Enable"]
   #[inline] pub fn ch0trig(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Channel 0 Trigger Enable"]
   #[inline] pub fn set_ch0trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1414,9 +1654,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel 1 Trigger Enable"]
   #[inline] pub fn ch1trig(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Channel 1 Trigger Enable"]
   #[inline] pub fn set_ch1trig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1424,9 +1666,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Initialization Trigger Enable"]
   #[inline] pub fn inittrigen(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Initialization Trigger Enable"]
   #[inline] pub fn set_inittrigen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1434,9 +1678,11 @@ impl Exttrig {
      self
   }
 
+#[doc="Channel Trigger Flag"]
   #[inline] pub fn trigf(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Channel Trigger Flag"]
   #[inline] pub fn set_trigf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1465,14 +1711,17 @@ impl ::core::fmt::Debug for Exttrig {
       Ok(())
    }
 }
+#[doc="Channels Polarity"]
 #[derive(PartialEq, Eq)]
 pub struct Pol(pub u32);
 impl Pol {
+#[doc="Channel n Polarity"]
   #[inline] pub fn pol(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Polarity"]
   #[inline] pub fn set_pol(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -1503,12 +1752,15 @@ impl ::core::fmt::Debug for Pol {
       Ok(())
    }
 }
+#[doc="Fault Mode Status"]
 #[derive(PartialEq, Eq)]
 pub struct Fms(pub u32);
 impl Fms {
+#[doc="Fault Detection Flag 0"]
   #[inline] pub fn faultf0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Fault Detection Flag 0"]
   #[inline] pub fn set_faultf0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1516,9 +1768,11 @@ impl Fms {
      self
   }
 
+#[doc="Fault Detection Flag 1"]
   #[inline] pub fn faultf1(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Fault Detection Flag 1"]
   #[inline] pub fn set_faultf1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1526,9 +1780,11 @@ impl Fms {
      self
   }
 
+#[doc="Fault Detection Flag 2"]
   #[inline] pub fn faultf2(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Fault Detection Flag 2"]
   #[inline] pub fn set_faultf2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1536,9 +1792,11 @@ impl Fms {
      self
   }
 
+#[doc="Fault Detection Flag 3"]
   #[inline] pub fn faultf3(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Fault Detection Flag 3"]
   #[inline] pub fn set_faultf3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1546,9 +1804,11 @@ impl Fms {
      self
   }
 
+#[doc="Fault Inputs"]
   #[inline] pub fn faultin(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Fault Inputs"]
   #[inline] pub fn set_faultin(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1556,9 +1816,11 @@ impl Fms {
      self
   }
 
+#[doc="Write Protection Enable"]
   #[inline] pub fn wpen(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Write Protection Enable"]
   #[inline] pub fn set_wpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1566,9 +1828,11 @@ impl Fms {
      self
   }
 
+#[doc="Fault Detection Flag"]
   #[inline] pub fn faultf(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Fault Detection Flag"]
   #[inline] pub fn set_faultf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1596,14 +1860,17 @@ impl ::core::fmt::Debug for Fms {
       Ok(())
    }
 }
+#[doc="Input Capture Filter Control"]
 #[derive(PartialEq, Eq)]
 pub struct Filter(pub u32);
 impl Filter {
+#[doc="Channel n Input Filter"]
   #[inline] pub fn chfval(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + (index << 2);
      ((self.0 as u32) >> shift) & 0xf // [3:0]
   }
+#[doc="Channel n Input Filter"]
   #[inline] pub fn set_chfval(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0xf) == 0);
@@ -1630,14 +1897,17 @@ impl ::core::fmt::Debug for Filter {
       Ok(())
    }
 }
+#[doc="Fault Control"]
 #[derive(PartialEq, Eq)]
 pub struct Fltctrl(pub u32);
 impl Fltctrl {
+#[doc="Fault Input n Enable"]
   #[inline] pub fn faulten(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Fault Input n Enable"]
   #[inline] pub fn set_faulten(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1647,11 +1917,13 @@ impl Fltctrl {
      self
   }
 
+#[doc="Fault Input 0 Filter Enable"]
   #[inline] pub fn ffltren(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 4 + index;
      ((self.0 as u32) >> shift) & 0x1 // [4]
   }
+#[doc="Fault Input 0 Filter Enable"]
   #[inline] pub fn set_ffltren(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1661,9 +1933,11 @@ impl Fltctrl {
      self
   }
 
+#[doc="Fault Input Filter"]
   #[inline] pub fn ffval(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
+#[doc="Fault Input Filter"]
   #[inline] pub fn set_ffval(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -1693,12 +1967,15 @@ impl ::core::fmt::Debug for Fltctrl {
       Ok(())
    }
 }
+#[doc="Quadrature Decoder Control And Status"]
 #[derive(PartialEq, Eq)]
 pub struct Qdctrl(pub u32);
 impl Qdctrl {
+#[doc="Quadrature Decoder Mode Enable"]
   #[inline] pub fn quaden(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Quadrature Decoder Mode Enable"]
   #[inline] pub fn set_quaden(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1706,9 +1983,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Timer Overflow Direction In Quadrature Decoder Mode"]
   #[inline] pub fn tofdir(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Timer Overflow Direction In Quadrature Decoder Mode"]
   #[inline] pub fn set_tofdir(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1716,9 +1995,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="FTM Counter Direction In Quadrature Decoder Mode"]
   #[inline] pub fn quadir(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="FTM Counter Direction In Quadrature Decoder Mode"]
   #[inline] pub fn set_quadir(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1726,9 +2007,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Quadrature Decoder Mode"]
   #[inline] pub fn quadmode(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Quadrature Decoder Mode"]
   #[inline] pub fn set_quadmode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1736,9 +2019,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Phase B Input Polarity"]
   #[inline] pub fn phbpol(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Phase B Input Polarity"]
   #[inline] pub fn set_phbpol(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1746,9 +2031,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Phase A Input Polarity"]
   #[inline] pub fn phapol(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Phase A Input Polarity"]
   #[inline] pub fn set_phapol(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1756,9 +2043,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Phase B Input Filter Enable"]
   #[inline] pub fn phbfltren(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Phase B Input Filter Enable"]
   #[inline] pub fn set_phbfltren(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1766,9 +2055,11 @@ impl Qdctrl {
      self
   }
 
+#[doc="Phase A Input Filter Enable"]
   #[inline] pub fn phafltren(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Phase A Input Filter Enable"]
   #[inline] pub fn set_phafltren(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1797,12 +2088,15 @@ impl ::core::fmt::Debug for Qdctrl {
       Ok(())
    }
 }
+#[doc="Configuration"]
 #[derive(PartialEq, Eq)]
 pub struct Conf(pub u32);
 impl Conf {
+#[doc="TOF Frequency"]
   #[inline] pub fn numtof(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="TOF Frequency"]
   #[inline] pub fn set_numtof(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -1810,9 +2104,11 @@ impl Conf {
      self
   }
 
+#[doc="BDM Mode"]
   #[inline] pub fn bdmmode(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+#[doc="BDM Mode"]
   #[inline] pub fn set_bdmmode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -1820,9 +2116,11 @@ impl Conf {
      self
   }
 
+#[doc="Global Time Base Enable"]
   #[inline] pub fn gtbeen(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Global Time Base Enable"]
   #[inline] pub fn set_gtbeen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1830,9 +2128,11 @@ impl Conf {
      self
   }
 
+#[doc="Global Time Base Output"]
   #[inline] pub fn gtbeout(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Global Time Base Output"]
   #[inline] pub fn set_gtbeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1857,14 +2157,17 @@ impl ::core::fmt::Debug for Conf {
       Ok(())
    }
 }
+#[doc="FTM Fault Input Polarity"]
 #[derive(PartialEq, Eq)]
 pub struct Fltpol(pub u32);
 impl Fltpol {
+#[doc="Fault Input 0 Polarity"]
   #[inline] pub fn fltpol(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Fault Input 0 Polarity"]
   #[inline] pub fn set_fltpol(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -1891,12 +2194,15 @@ impl ::core::fmt::Debug for Fltpol {
       Ok(())
    }
 }
+#[doc="Synchronization Configuration"]
 #[derive(PartialEq, Eq)]
 pub struct Synconf(pub u32);
 impl Synconf {
+#[doc="Hardware Trigger Mode"]
   #[inline] pub fn hwtrigmode(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Hardware Trigger Mode"]
   #[inline] pub fn set_hwtrigmode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1904,9 +2210,11 @@ impl Synconf {
      self
   }
 
+#[doc="CNTIN Register Synchronization"]
   #[inline] pub fn cntinc(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="CNTIN Register Synchronization"]
   #[inline] pub fn set_cntinc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1914,9 +2222,11 @@ impl Synconf {
      self
   }
 
+#[doc="INVCTRL Register Synchronization"]
   #[inline] pub fn invc(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="INVCTRL Register Synchronization"]
   #[inline] pub fn set_invc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1924,9 +2234,11 @@ impl Synconf {
      self
   }
 
+#[doc="SWOCTRL Register Synchronization"]
   #[inline] pub fn swoc(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="SWOCTRL Register Synchronization"]
   #[inline] pub fn set_swoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1934,9 +2246,11 @@ impl Synconf {
      self
   }
 
+#[doc="Synchronization Mode"]
   #[inline] pub fn syncmode(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Synchronization Mode"]
   #[inline] pub fn set_syncmode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1944,9 +2258,11 @@ impl Synconf {
      self
   }
 
+#[doc="FTM counter synchronization is activated by the software trigger."]
   #[inline] pub fn swrstcnt(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="FTM counter synchronization is activated by the software trigger."]
   #[inline] pub fn set_swrstcnt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1954,9 +2270,11 @@ impl Synconf {
      self
   }
 
+#[doc="MOD, CNTIN, and CV registers synchronization is activated by the software trigger."]
   #[inline] pub fn swwrbuf(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="MOD, CNTIN, and CV registers synchronization is activated by the software trigger."]
   #[inline] pub fn set_swwrbuf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1964,9 +2282,11 @@ impl Synconf {
      self
   }
 
+#[doc="Output mask synchronization is activated by the software trigger."]
   #[inline] pub fn swom(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Output mask synchronization is activated by the software trigger."]
   #[inline] pub fn set_swom(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1974,9 +2294,11 @@ impl Synconf {
      self
   }
 
+#[doc="Inverting control synchronization is activated by the software trigger."]
   #[inline] pub fn swinvc(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Inverting control synchronization is activated by the software trigger."]
   #[inline] pub fn set_swinvc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1984,9 +2306,11 @@ impl Synconf {
      self
   }
 
+#[doc="Software output control synchronization is activated by the software trigger."]
   #[inline] pub fn swsoc(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Software output control synchronization is activated by the software trigger."]
   #[inline] pub fn set_swsoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -1994,9 +2318,11 @@ impl Synconf {
      self
   }
 
+#[doc="FTM counter synchronization is activated by a hardware trigger."]
   #[inline] pub fn hwrstcnt(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="FTM counter synchronization is activated by a hardware trigger."]
   #[inline] pub fn set_hwrstcnt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -2004,9 +2330,11 @@ impl Synconf {
      self
   }
 
+#[doc="MOD, CNTIN, and CV registers synchronization is activated by a hardware trigger."]
   #[inline] pub fn hwwrbuf(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="MOD, CNTIN, and CV registers synchronization is activated by a hardware trigger."]
   #[inline] pub fn set_hwwrbuf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -2014,9 +2342,11 @@ impl Synconf {
      self
   }
 
+#[doc="Output mask synchronization is activated by a hardware trigger."]
   #[inline] pub fn hwom(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Output mask synchronization is activated by a hardware trigger."]
   #[inline] pub fn set_hwom(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -2024,9 +2354,11 @@ impl Synconf {
      self
   }
 
+#[doc="Inverting control synchronization is activated by a hardware trigger."]
   #[inline] pub fn hwinvc(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+#[doc="Inverting control synchronization is activated by a hardware trigger."]
   #[inline] pub fn set_hwinvc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -2034,9 +2366,11 @@ impl Synconf {
      self
   }
 
+#[doc="Software output control synchronization is activated by a hardware trigger."]
   #[inline] pub fn hwsoc(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Software output control synchronization is activated by a hardware trigger."]
   #[inline] pub fn set_hwsoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -2072,14 +2406,17 @@ impl ::core::fmt::Debug for Synconf {
       Ok(())
    }
 }
+#[doc="FTM Inverting Control"]
 #[derive(PartialEq, Eq)]
 pub struct Invctrl(pub u32);
 impl Invctrl {
+#[doc="Pair Channels n Inverting Enable"]
   #[inline] pub fn inven(&self, index: usize) -> u32 {
      assert!(index < 4);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Pair Channels n Inverting Enable"]
   #[inline] pub fn set_inven(mut self, index: usize, value: u32) -> Self {
      assert!(index < 4);
      assert!((value & !0x1) == 0);
@@ -2106,14 +2443,17 @@ impl ::core::fmt::Debug for Invctrl {
       Ok(())
    }
 }
+#[doc="FTM Software Output Control"]
 #[derive(PartialEq, Eq)]
 pub struct Swoctrl(pub u32);
 impl Swoctrl {
+#[doc="Channel 0 Software Output Control Enable"]
   #[inline] pub fn choc(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel 0 Software Output Control Enable"]
   #[inline] pub fn set_choc(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -2123,11 +2463,13 @@ impl Swoctrl {
      self
   }
 
+#[doc="Channel n Software Output Control Value"]
   #[inline] pub fn chocv(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 8 + index;
      ((self.0 as u32) >> shift) & 0x1 // [8]
   }
+#[doc="Channel n Software Output Control Value"]
   #[inline] pub fn set_chocv(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -2166,14 +2508,17 @@ impl ::core::fmt::Debug for Swoctrl {
       Ok(())
    }
 }
+#[doc="FTM PWM Load"]
 #[derive(PartialEq, Eq)]
 pub struct Pwmload(pub u32);
 impl Pwmload {
+#[doc="Channel n Select"]
   #[inline] pub fn chsel(&self, index: usize) -> u32 {
      assert!(index < 8);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Channel n Select"]
   #[inline] pub fn set_chsel(mut self, index: usize, value: u32) -> Self {
      assert!(index < 8);
      assert!((value & !0x1) == 0);
@@ -2183,9 +2528,11 @@ impl Pwmload {
      self
   }
 
+#[doc="Load Enable"]
   #[inline] pub fn ldok(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Load Enable"]
   #[inline] pub fn set_ldok(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -2216,6 +2563,7 @@ impl ::core::fmt::Debug for Pwmload {
    }
 }
 #[derive(Clone, Copy, PartialEq)]
+#[doc="FTM Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

@@ -3027,7 +3027,6 @@ impl ::core::fmt::Debug for Cc {
 }
 #[derive(Clone, Copy, PartialEq)]
 #[doc="PWM Channel"]
-#[doc="PWM Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

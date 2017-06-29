@@ -1,3 +1,4 @@
+//! System Timer, SysTick
 pub const SYSTICK: Systick = Systick(0xe000e000);
 
 #[doc="System Timer, SysTick"]

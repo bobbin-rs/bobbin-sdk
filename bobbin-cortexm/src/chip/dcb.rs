@@ -1,3 +1,4 @@
+//! Debug Core Block
 pub const DCB: Dcb = Dcb(0xe000edf0);
 
 #[doc="Debug Core Block"]

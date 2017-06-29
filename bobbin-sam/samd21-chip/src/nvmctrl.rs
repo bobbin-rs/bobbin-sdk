@@ -1,3 +1,4 @@
+//! Non-Volatile Memory Controller
 pub const NVMCTRL: Nvmctrl = Nvmctrl(0x41004000);
 
 #[doc="Non-Volatile Memory Controller"]

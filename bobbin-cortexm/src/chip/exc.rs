@@ -1,3 +1,5 @@
+//! Exceptions
+
 pub type Handler = unsafe extern "C" fn();
 
 pub const EXC_RESET: Exception = Exception(0); // Reset Handler

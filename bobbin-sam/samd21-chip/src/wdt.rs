@@ -1,3 +1,4 @@
+//! Watchdog Timer
 pub const WDT: Wdt = Wdt(0x40001000);
 
 #[doc="Watchdog Timer"]

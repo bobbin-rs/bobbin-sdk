@@ -22,8 +22,9 @@
 
     (peripheral-group
         (name DMAC)
-        (prototype "periph/dmac.rx")
+        (prototype "periph/dmac.rx")        
         (has-channels)
+        (description "Direct Memory Access Controller")
         (peripheral
             (name DMAC)
             (address 0x41004800)
@@ -51,6 +52,7 @@
     (peripheral-group
         (name ADC)
         (prototype "periph/adc.rx")
+        (description "Analog-to-Digital Converter")
         (peripheral 
             (name ADC)
             (address 0x42004000)
@@ -65,6 +67,7 @@
         (name TCC)
         (prototype "periph/tcc.rx")
         (has-channels)
+        (description "Timer/Counter for Control Applications")
         (peripheral 
             (name TCC0)
             (address 0x42002000)
@@ -170,6 +173,7 @@
         (name TC)
         (prototype "periph/tc.rx")
         (has-channels)
+        (description "Timer/Counter")
         (peripheral 
             (name TC3)
             (address 0x42002c00)
@@ -234,6 +238,7 @@
         (name PORT)
         (has-pins)
         (prototype "periph/port.rx")
+        (description "I/O Pin Controller")
         (peripheral 
             (name PORTA)
             (address 0x41004400)
@@ -643,6 +648,7 @@
     (peripheral-group 
         (name SERCOM)
         (prototype "periph/sercom.rx")
+        (description "Serial Communication Interface")
         (peripheral 
             (name SERCOM0)
             (address 0x42000800)            

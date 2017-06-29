@@ -1,3 +1,4 @@
+//! Direct Memory Access Controller
 pub const DMAC: Dmac = Periph(0x41004800, DmacId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]

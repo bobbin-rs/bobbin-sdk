@@ -1,269 +1,330 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="UART0 Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the BDH register."]
   #[inline] pub fn bdh_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
   }
+#[doc="Get the *mut pointer for the BDH register."]
   #[inline] pub fn bdh_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x0) as *mut u8
   }
+#[doc="Read the BDH register."]
   #[inline] pub fn bdh(&self) -> Bdh { 
      unsafe {
         Bdh(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u8))
      }
   }
+#[doc="Write the BDH register."]
   #[inline] pub fn set_bdh(&self, value: Bdh) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the BDH register."]
   #[inline] pub fn with_bdh<F: FnOnce(Bdh) -> Bdh>(&self, f: F) -> &Self {
      let tmp = self.bdh();
      self.set_bdh(f(tmp))
   }
 
+#[doc="Get the *const pointer for the BDL register."]
   #[inline] pub fn bdl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x1) as *const u8
   }
+#[doc="Get the *mut pointer for the BDL register."]
   #[inline] pub fn bdl_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x1) as *mut u8
   }
+#[doc="Read the BDL register."]
   #[inline] pub fn bdl(&self) -> Bdl { 
      unsafe {
         Bdl(::core::ptr::read_volatile(((self.0 as usize) + 0x1) as *const u8))
      }
   }
+#[doc="Write the BDL register."]
   #[inline] pub fn set_bdl(&self, value: Bdl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the BDL register."]
   #[inline] pub fn with_bdl<F: FnOnce(Bdl) -> Bdl>(&self, f: F) -> &Self {
      let tmp = self.bdl();
      self.set_bdl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C1 register."]
   #[inline] pub fn c1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x2) as *const u8
   }
+#[doc="Get the *mut pointer for the C1 register."]
   #[inline] pub fn c1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x2) as *mut u8
   }
+#[doc="Read the C1 register."]
   #[inline] pub fn c1(&self) -> C1 { 
      unsafe {
         C1(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u8))
      }
   }
+#[doc="Write the C1 register."]
   #[inline] pub fn set_c1(&self, value: C1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C1 register."]
   #[inline] pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
      let tmp = self.c1();
      self.set_c1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C2 register."]
   #[inline] pub fn c2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x3) as *const u8
   }
+#[doc="Get the *mut pointer for the C2 register."]
   #[inline] pub fn c2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x3) as *mut u8
   }
+#[doc="Read the C2 register."]
   #[inline] pub fn c2(&self) -> C2 { 
      unsafe {
         C2(::core::ptr::read_volatile(((self.0 as usize) + 0x3) as *const u8))
      }
   }
+#[doc="Write the C2 register."]
   #[inline] pub fn set_c2(&self, value: C2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C2 register."]
   #[inline] pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
      let tmp = self.c2();
      self.set_c2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the S1 register."]
   #[inline] pub fn s1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x4) as *const u8
   }
+#[doc="Get the *mut pointer for the S1 register."]
   #[inline] pub fn s1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x4) as *mut u8
   }
+#[doc="Read the S1 register."]
   #[inline] pub fn s1(&self) -> S1 { 
      unsafe {
         S1(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u8))
      }
   }
+#[doc="Write the S1 register."]
   #[inline] pub fn set_s1(&self, value: S1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the S1 register."]
   #[inline] pub fn with_s1<F: FnOnce(S1) -> S1>(&self, f: F) -> &Self {
      let tmp = self.s1();
      self.set_s1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the S2 register."]
   #[inline] pub fn s2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x5) as *const u8
   }
+#[doc="Get the *mut pointer for the S2 register."]
   #[inline] pub fn s2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x5) as *mut u8
   }
+#[doc="Read the S2 register."]
   #[inline] pub fn s2(&self) -> S2 { 
      unsafe {
         S2(::core::ptr::read_volatile(((self.0 as usize) + 0x5) as *const u8))
      }
   }
+#[doc="Write the S2 register."]
   #[inline] pub fn set_s2(&self, value: S2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the S2 register."]
   #[inline] pub fn with_s2<F: FnOnce(S2) -> S2>(&self, f: F) -> &Self {
      let tmp = self.s2();
      self.set_s2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C3 register."]
   #[inline] pub fn c3_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x6) as *const u8
   }
+#[doc="Get the *mut pointer for the C3 register."]
   #[inline] pub fn c3_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x6) as *mut u8
   }
+#[doc="Read the C3 register."]
   #[inline] pub fn c3(&self) -> C3 { 
      unsafe {
         C3(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
      }
   }
+#[doc="Write the C3 register."]
   #[inline] pub fn set_c3(&self, value: C3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C3 register."]
   #[inline] pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
      let tmp = self.c3();
      self.set_c3(f(tmp))
   }
 
+#[doc="Get the *const pointer for the D register."]
   #[inline] pub fn d_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x7) as *const u8
   }
+#[doc="Get the *mut pointer for the D register."]
   #[inline] pub fn d_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x7) as *mut u8
   }
+#[doc="Read the D register."]
   #[inline] pub fn d(&self) -> D { 
      unsafe {
         D(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
      }
   }
+#[doc="Write the D register."]
   #[inline] pub fn set_d(&self, value: D) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x7) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the D register."]
   #[inline] pub fn with_d<F: FnOnce(D) -> D>(&self, f: F) -> &Self {
      let tmp = self.d();
      self.set_d(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MA1 register."]
   #[inline] pub fn ma1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x8) as *const u8
   }
+#[doc="Get the *mut pointer for the MA1 register."]
   #[inline] pub fn ma1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x8) as *mut u8
   }
+#[doc="Read the MA1 register."]
   #[inline] pub fn ma1(&self) -> Ma1 { 
      unsafe {
         Ma1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
      }
   }
+#[doc="Write the MA1 register."]
   #[inline] pub fn set_ma1(&self, value: Ma1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the MA1 register."]
   #[inline] pub fn with_ma1<F: FnOnce(Ma1) -> Ma1>(&self, f: F) -> &Self {
      let tmp = self.ma1();
      self.set_ma1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the MA2 register."]
   #[inline] pub fn ma2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x9) as *const u8
   }
+#[doc="Get the *mut pointer for the MA2 register."]
   #[inline] pub fn ma2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x9) as *mut u8
   }
+#[doc="Read the MA2 register."]
   #[inline] pub fn ma2(&self) -> Ma2 { 
      unsafe {
         Ma2(::core::ptr::read_volatile(((self.0 as usize) + 0x9) as *const u8))
      }
   }
+#[doc="Write the MA2 register."]
   #[inline] pub fn set_ma2(&self, value: Ma2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the MA2 register."]
   #[inline] pub fn with_ma2<F: FnOnce(Ma2) -> Ma2>(&self, f: F) -> &Self {
      let tmp = self.ma2();
      self.set_ma2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C4 register."]
   #[inline] pub fn c4_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xa) as *const u8
   }
+#[doc="Get the *mut pointer for the C4 register."]
   #[inline] pub fn c4_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xa) as *mut u8
   }
+#[doc="Read the C4 register."]
   #[inline] pub fn c4(&self) -> C4 { 
      unsafe {
         C4(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
      }
   }
+#[doc="Write the C4 register."]
   #[inline] pub fn set_c4(&self, value: C4) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C4 register."]
   #[inline] pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
      let tmp = self.c4();
      self.set_c4(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C5 register."]
   #[inline] pub fn c5_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xb) as *const u8
   }
+#[doc="Get the *mut pointer for the C5 register."]
   #[inline] pub fn c5_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xb) as *mut u8
   }
+#[doc="Read the C5 register."]
   #[inline] pub fn c5(&self) -> C5 { 
      unsafe {
         C5(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
      }
   }
+#[doc="Write the C5 register."]
   #[inline] pub fn set_c5(&self, value: C5) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C5 register."]
   #[inline] pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
      let tmp = self.c5();
      self.set_c5(f(tmp))
@@ -271,12 +332,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="UART Baud Rate Register High"]
 #[derive(PartialEq, Eq)]
 pub struct Bdh(pub u8);
 impl Bdh {
+#[doc="Baud Rate Modulo Divisor."]
   #[inline] pub fn sbr(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1f // [4:0]
   }
+#[doc="Baud Rate Modulo Divisor."]
   #[inline] pub fn set_sbr(mut self, value: u8) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -284,9 +348,11 @@ impl Bdh {
      self
   }
 
+#[doc="Stop Bit Number Select"]
   #[inline] pub fn sbns(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Stop Bit Number Select"]
   #[inline] pub fn set_sbns(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -294,9 +360,11 @@ impl Bdh {
      self
   }
 
+#[doc="RX Input Active Edge Interrupt Enable (for RXEDGIF)"]
   #[inline] pub fn rxedgie(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="RX Input Active Edge Interrupt Enable (for RXEDGIF)"]
   #[inline] pub fn set_rxedgie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -304,9 +372,11 @@ impl Bdh {
      self
   }
 
+#[doc="LIN Break Detect Interrupt Enable (for LBKDIF)"]
   #[inline] pub fn lbkdie(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="LIN Break Detect Interrupt Enable (for LBKDIF)"]
   #[inline] pub fn set_lbkdie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -331,12 +401,15 @@ impl ::core::fmt::Debug for Bdh {
       Ok(())
    }
 }
+#[doc="UART Baud Rate Register Low"]
 #[derive(PartialEq, Eq)]
 pub struct Bdl(pub u8);
 impl Bdl {
+#[doc="Baud Rate Modulo Divisor"]
   #[inline] pub fn sbr(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Baud Rate Modulo Divisor"]
   #[inline] pub fn set_sbr(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -358,12 +431,15 @@ impl ::core::fmt::Debug for Bdl {
       Ok(())
    }
 }
+#[doc="UART Control Register 1"]
 #[derive(PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
+#[doc="Parity Type"]
   #[inline] pub fn pt(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Parity Type"]
   #[inline] pub fn set_pt(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -371,9 +447,11 @@ impl C1 {
      self
   }
 
+#[doc="Parity Enable"]
   #[inline] pub fn pe(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Parity Enable"]
   #[inline] pub fn set_pe(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -381,9 +459,11 @@ impl C1 {
      self
   }
 
+#[doc="Idle Line Type Select"]
   #[inline] pub fn ilt(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Idle Line Type Select"]
   #[inline] pub fn set_ilt(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -391,9 +471,11 @@ impl C1 {
      self
   }
 
+#[doc="Receiver Wakeup Method Select"]
   #[inline] pub fn wake(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="Receiver Wakeup Method Select"]
   #[inline] pub fn set_wake(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -401,9 +483,11 @@ impl C1 {
      self
   }
 
+#[doc="9-Bit or 8-Bit Mode Select"]
   #[inline] pub fn m(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="9-Bit or 8-Bit Mode Select"]
   #[inline] pub fn set_m(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -411,9 +495,11 @@ impl C1 {
      self
   }
 
+#[doc="Receiver Source Select"]
   #[inline] pub fn rsrc(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Receiver Source Select"]
   #[inline] pub fn set_rsrc(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -421,9 +507,11 @@ impl C1 {
      self
   }
 
+#[doc="Doze Enable"]
   #[inline] pub fn dozeen(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Doze Enable"]
   #[inline] pub fn set_dozeen(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -431,9 +519,11 @@ impl C1 {
      self
   }
 
+#[doc="Loop Mode Select"]
   #[inline] pub fn loops(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Loop Mode Select"]
   #[inline] pub fn set_loops(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -462,12 +552,15 @@ impl ::core::fmt::Debug for C1 {
       Ok(())
    }
 }
+#[doc="UART Control Register 2"]
 #[derive(PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
+#[doc="Send Break"]
   #[inline] pub fn sbk(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Send Break"]
   #[inline] pub fn set_sbk(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -475,9 +568,11 @@ impl C2 {
      self
   }
 
+#[doc="Receiver Wakeup Control"]
   #[inline] pub fn rwu(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Receiver Wakeup Control"]
   #[inline] pub fn set_rwu(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -485,9 +580,11 @@ impl C2 {
      self
   }
 
+#[doc="Receiver Enable"]
   #[inline] pub fn re(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Receiver Enable"]
   #[inline] pub fn set_re(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -495,9 +592,11 @@ impl C2 {
      self
   }
 
+#[doc="Transmitter Enable"]
   #[inline] pub fn te(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="Transmitter Enable"]
   #[inline] pub fn set_te(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -505,9 +604,11 @@ impl C2 {
      self
   }
 
+#[doc="Idle Line Interrupt Enable for IDLE"]
   #[inline] pub fn ilie(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Idle Line Interrupt Enable for IDLE"]
   #[inline] pub fn set_ilie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -515,9 +616,11 @@ impl C2 {
      self
   }
 
+#[doc="Receiver Interrupt Enable for RDRF"]
   #[inline] pub fn rie(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Receiver Interrupt Enable for RDRF"]
   #[inline] pub fn set_rie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -525,9 +628,11 @@ impl C2 {
      self
   }
 
+#[doc="Transmission Complete Interrupt Enable for TC"]
   #[inline] pub fn tcie(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Transmission Complete Interrupt Enable for TC"]
   #[inline] pub fn set_tcie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -535,9 +640,11 @@ impl C2 {
      self
   }
 
+#[doc="Transmit Interrupt Enable for TDRE"]
   #[inline] pub fn tie(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Transmit Interrupt Enable for TDRE"]
   #[inline] pub fn set_tie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -566,12 +673,15 @@ impl ::core::fmt::Debug for C2 {
       Ok(())
    }
 }
+#[doc="UART Status Register 1"]
 #[derive(PartialEq, Eq)]
 pub struct S1(pub u8);
 impl S1 {
+#[doc="Parity Error Flag"]
   #[inline] pub fn pf(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Parity Error Flag"]
   #[inline] pub fn set_pf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -579,9 +689,11 @@ impl S1 {
      self
   }
 
+#[doc="Framing Error Flag"]
   #[inline] pub fn fe(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Framing Error Flag"]
   #[inline] pub fn set_fe(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -589,9 +701,11 @@ impl S1 {
      self
   }
 
+#[doc="Noise Flag"]
   #[inline] pub fn nf(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Noise Flag"]
   #[inline] pub fn set_nf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -599,9 +713,11 @@ impl S1 {
      self
   }
 
+#[doc="Receiver Overrun Flag"]
   #[inline] pub fn or(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="Receiver Overrun Flag"]
   #[inline] pub fn set_or(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -609,9 +725,11 @@ impl S1 {
      self
   }
 
+#[doc="Idle Line Flag"]
   #[inline] pub fn idle(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Idle Line Flag"]
   #[inline] pub fn set_idle(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -619,9 +737,11 @@ impl S1 {
      self
   }
 
+#[doc="Receive Data Register Full Flag"]
   #[inline] pub fn rdrf(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Receive Data Register Full Flag"]
   #[inline] pub fn set_rdrf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -629,9 +749,11 @@ impl S1 {
      self
   }
 
+#[doc="Transmission Complete Flag"]
   #[inline] pub fn tc(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Transmission Complete Flag"]
   #[inline] pub fn set_tc(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -639,9 +761,11 @@ impl S1 {
      self
   }
 
+#[doc="Transmit Data Register Empty Flag"]
   #[inline] pub fn tdre(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Transmit Data Register Empty Flag"]
   #[inline] pub fn set_tdre(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -670,12 +794,15 @@ impl ::core::fmt::Debug for S1 {
       Ok(())
    }
 }
+#[doc="UART Status Register 2"]
 #[derive(PartialEq, Eq)]
 pub struct S2(pub u8);
 impl S2 {
+#[doc="Receiver Active Flag"]
   #[inline] pub fn raf(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Receiver Active Flag"]
   #[inline] pub fn set_raf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -683,9 +810,11 @@ impl S2 {
      self
   }
 
+#[doc="LIN Break Detection Enable"]
   #[inline] pub fn lbkde(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="LIN Break Detection Enable"]
   #[inline] pub fn set_lbkde(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -693,9 +822,11 @@ impl S2 {
      self
   }
 
+#[doc="Break Character Generation Length"]
   #[inline] pub fn brk13(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Break Character Generation Length"]
   #[inline] pub fn set_brk13(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -703,9 +834,11 @@ impl S2 {
      self
   }
 
+#[doc="Receive Wake Up Idle Detect"]
   #[inline] pub fn rwuid(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="Receive Wake Up Idle Detect"]
   #[inline] pub fn set_rwuid(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -713,9 +846,11 @@ impl S2 {
      self
   }
 
+#[doc="Receive Data Inversion"]
   #[inline] pub fn rxinv(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Receive Data Inversion"]
   #[inline] pub fn set_rxinv(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -723,9 +858,11 @@ impl S2 {
      self
   }
 
+#[doc="MSB First"]
   #[inline] pub fn msbf(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="MSB First"]
   #[inline] pub fn set_msbf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -733,9 +870,11 @@ impl S2 {
      self
   }
 
+#[doc="UART_RX Pin Active Edge Interrupt Flag"]
   #[inline] pub fn rxedgif(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="UART_RX Pin Active Edge Interrupt Flag"]
   #[inline] pub fn set_rxedgif(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -743,9 +882,11 @@ impl S2 {
      self
   }
 
+#[doc="LIN Break Detect Interrupt Flag"]
   #[inline] pub fn lbkdif(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="LIN Break Detect Interrupt Flag"]
   #[inline] pub fn set_lbkdif(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -774,12 +915,15 @@ impl ::core::fmt::Debug for S2 {
       Ok(())
    }
 }
+#[doc="UART Control Register 3"]
 #[derive(PartialEq, Eq)]
 pub struct C3(pub u8);
 impl C3 {
+#[doc="Parity Error Interrupt Enable"]
   #[inline] pub fn peie(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Parity Error Interrupt Enable"]
   #[inline] pub fn set_peie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -787,9 +931,11 @@ impl C3 {
      self
   }
 
+#[doc="Framing Error Interrupt Enable"]
   #[inline] pub fn feie(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Framing Error Interrupt Enable"]
   #[inline] pub fn set_feie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -797,9 +943,11 @@ impl C3 {
      self
   }
 
+#[doc="Noise Error Interrupt Enable"]
   #[inline] pub fn neie(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Noise Error Interrupt Enable"]
   #[inline] pub fn set_neie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -807,9 +955,11 @@ impl C3 {
      self
   }
 
+#[doc="Overrun Interrupt Enable"]
   #[inline] pub fn orie(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="Overrun Interrupt Enable"]
   #[inline] pub fn set_orie(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -817,9 +967,11 @@ impl C3 {
      self
   }
 
+#[doc="Transmit Data Inversion"]
   #[inline] pub fn txinv(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Transmit Data Inversion"]
   #[inline] pub fn set_txinv(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -827,9 +979,11 @@ impl C3 {
      self
   }
 
+#[doc="UART_TX Pin Direction in Single-Wire Mode"]
   #[inline] pub fn txdir(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="UART_TX Pin Direction in Single-Wire Mode"]
   #[inline] pub fn set_txdir(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -837,9 +991,11 @@ impl C3 {
      self
   }
 
+#[doc="Receive Bit 9 / Transmit Bit 8"]
   #[inline] pub fn r9t8(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Receive Bit 9 / Transmit Bit 8"]
   #[inline] pub fn set_r9t8(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -847,9 +1003,11 @@ impl C3 {
      self
   }
 
+#[doc="Receive Bit 8 / Transmit Bit 9"]
   #[inline] pub fn r8t9(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Receive Bit 8 / Transmit Bit 9"]
   #[inline] pub fn set_r8t9(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -878,12 +1036,15 @@ impl ::core::fmt::Debug for C3 {
       Ok(())
    }
 }
+#[doc="UART Data Register"]
 #[derive(PartialEq, Eq)]
 pub struct D(pub u8);
 impl D {
+#[doc="Read receive data buffer or write transmit data buffer."]
   #[inline] pub fn rt(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Read receive data buffer or write transmit data buffer."]
   #[inline] pub fn set_rt(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -905,12 +1066,15 @@ impl ::core::fmt::Debug for D {
       Ok(())
    }
 }
+#[doc="UART Match Address Registers 1"]
 #[derive(PartialEq, Eq)]
 pub struct Ma1(pub u8);
 impl Ma1 {
+#[doc="Match Address"]
   #[inline] pub fn ma(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Match Address"]
   #[inline] pub fn set_ma(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -932,12 +1096,15 @@ impl ::core::fmt::Debug for Ma1 {
       Ok(())
    }
 }
+#[doc="UART Match Address Registers 2"]
 #[derive(PartialEq, Eq)]
 pub struct Ma2(pub u8);
 impl Ma2 {
+#[doc="Match Address"]
   #[inline] pub fn ma(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Match Address"]
   #[inline] pub fn set_ma(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -959,12 +1126,15 @@ impl ::core::fmt::Debug for Ma2 {
       Ok(())
    }
 }
+#[doc="UART Control Register 4"]
 #[derive(PartialEq, Eq)]
 pub struct C4(pub u8);
 impl C4 {
+#[doc="Over Sampling Ratio"]
   #[inline] pub fn osr(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1f // [4:0]
   }
+#[doc="Over Sampling Ratio"]
   #[inline] pub fn set_osr(mut self, value: u8) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -972,9 +1142,11 @@ impl C4 {
      self
   }
 
+#[doc="10-bit Mode select"]
   #[inline] pub fn m10(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="10-bit Mode select"]
   #[inline] pub fn set_m10(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -982,9 +1154,11 @@ impl C4 {
      self
   }
 
+#[doc="Match Address Mode Enable 2"]
   #[inline] pub fn maen2(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Match Address Mode Enable 2"]
   #[inline] pub fn set_maen2(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -992,9 +1166,11 @@ impl C4 {
      self
   }
 
+#[doc="Match Address Mode Enable 1"]
   #[inline] pub fn maen1(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Match Address Mode Enable 1"]
   #[inline] pub fn set_maen1(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1019,12 +1195,15 @@ impl ::core::fmt::Debug for C4 {
       Ok(())
    }
 }
+#[doc="UART Control Register 5"]
 #[derive(PartialEq, Eq)]
 pub struct C5(pub u8);
 impl C5 {
+#[doc="Resynchronization Disable"]
   #[inline] pub fn resyncdis(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Resynchronization Disable"]
   #[inline] pub fn set_resyncdis(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1032,9 +1211,11 @@ impl C5 {
      self
   }
 
+#[doc="Both Edge Sampling"]
   #[inline] pub fn bothedge(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Both Edge Sampling"]
   #[inline] pub fn set_bothedge(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1042,9 +1223,11 @@ impl C5 {
      self
   }
 
+#[doc="Receiver Full DMA Enable"]
   #[inline] pub fn rdmae(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Receiver Full DMA Enable"]
   #[inline] pub fn set_rdmae(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1052,9 +1235,11 @@ impl C5 {
      self
   }
 
+#[doc="Transmitter DMA Enable"]
   #[inline] pub fn tdmae(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Transmitter DMA Enable"]
   #[inline] pub fn set_tdmae(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);

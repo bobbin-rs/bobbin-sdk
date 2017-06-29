@@ -1,3 +1,4 @@
+//! Real-Time Counter
 pub const RTC: Rtc = Rtc(0x40001400);
 
 #[doc="Real-Time Counter"]

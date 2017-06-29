@@ -1,3 +1,4 @@
+//! I/O Pin Controller
 pub const PORTA: Porta = Periph(0x41004400, PortaId {});
 pub const PORTB: Portb = Periph(0x41004480, PortbId {});
 

@@ -1,3 +1,4 @@
+//! Nested Vectored Interrupt Controller
 pub const SCB: Scb = Scb(0xe000e000);
 
 #[doc="Nested Vectored Interrupt Controller"]

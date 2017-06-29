@@ -1,3 +1,4 @@
+//! System Control
 pub const SYSCTRL: Sysctrl = Sysctrl(0x40000800);
 
 #[doc="System Control"]

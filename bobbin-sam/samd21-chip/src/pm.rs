@@ -1,3 +1,4 @@
+//! Power Manager
 pub const PM: Pm = Pm(0x40000400);
 
 #[doc="Power Manager"]

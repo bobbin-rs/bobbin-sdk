@@ -1,3 +1,4 @@
+//! Reset and clock control
 pub const RCC: Rcc = Rcc(0x40021000);
 
 #[doc="Reset and clock control"]

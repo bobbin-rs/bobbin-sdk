@@ -1,91 +1,113 @@
+//! Watchdog timer
 pub const WDOG: Wdog = Wdog(0x40052000);
 
+#[doc="Watchdog timer"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wdog(pub u32);
 impl Wdog {
+#[doc="Get the *const pointer for the CS register."]
   #[inline] pub fn cs_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the CS register."]
   #[inline] pub fn cs_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the CS register."]
   #[inline] pub fn cs(&self) -> Cs { 
      unsafe {
         Cs(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the CS register."]
   #[inline] pub fn set_cs(&self, value: Cs) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CS register."]
   #[inline] pub fn with_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
      let tmp = self.cs();
      self.set_cs(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CNT register."]
   #[inline] pub fn cnt_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CNT register."]
   #[inline] pub fn cnt_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CNT register."]
   #[inline] pub fn cnt(&self) -> Cnt { 
      unsafe {
         Cnt(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CNT register."]
   #[inline] pub fn set_cnt(&self, value: Cnt) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CNT register."]
   #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
      self.set_cnt(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TOVAL register."]
   #[inline] pub fn toval_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the TOVAL register."]
   #[inline] pub fn toval_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the TOVAL register."]
   #[inline] pub fn toval(&self) -> Toval { 
      unsafe {
         Toval(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the TOVAL register."]
   #[inline] pub fn set_toval(&self, value: Toval) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TOVAL register."]
   #[inline] pub fn with_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
      let tmp = self.toval();
      self.set_toval(f(tmp))
   }
 
+#[doc="Get the *const pointer for the WIN register."]
   #[inline] pub fn win_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the WIN register."]
   #[inline] pub fn win_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the WIN register."]
   #[inline] pub fn win(&self) -> Win { 
      unsafe {
         Win(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the WIN register."]
   #[inline] pub fn set_win(&self, value: Win) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the WIN register."]
   #[inline] pub fn with_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
      let tmp = self.win();
      self.set_win(f(tmp))
@@ -93,12 +115,15 @@ impl Wdog {
 
 }
 
+#[doc="Watchdog Control and Status Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cs(pub u32);
 impl Cs {
+#[doc="Stop Enable"]
   #[inline] pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Stop Enable"]
   #[inline] pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -106,9 +131,11 @@ impl Cs {
      self
   }
 
+#[doc="Wait Enable"]
   #[inline] pub fn wait(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Wait Enable"]
   #[inline] pub fn set_wait(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -116,9 +143,11 @@ impl Cs {
      self
   }
 
+#[doc="Debug Enable"]
   #[inline] pub fn dbg(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Debug Enable"]
   #[inline] pub fn set_dbg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -126,9 +155,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Test"]
   #[inline] pub fn tst(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x3 // [4:3]
   }
+#[doc="Watchdog Test"]
   #[inline] pub fn set_tst(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
@@ -136,9 +167,11 @@ impl Cs {
      self
   }
 
+#[doc="Allow updates"]
   #[inline] pub fn update(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Allow updates"]
   #[inline] pub fn set_update(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -146,9 +179,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Interrupt"]
   #[inline] pub fn int(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Watchdog Interrupt"]
   #[inline] pub fn set_int(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -156,9 +191,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Enable"]
   #[inline] pub fn en(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Watchdog Enable"]
   #[inline] pub fn set_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -166,9 +203,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Clock"]
   #[inline] pub fn clk(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x3 // [9:8]
   }
+#[doc="Watchdog Clock"]
   #[inline] pub fn set_clk(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
@@ -176,9 +215,11 @@ impl Cs {
      self
   }
 
+#[doc="Reconfiguration Success"]
   #[inline] pub fn rcs(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Reconfiguration Success"]
   #[inline] pub fn set_rcs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -186,9 +227,11 @@ impl Cs {
      self
   }
 
+#[doc="Unlock status"]
   #[inline] pub fn ulk(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Unlock status"]
   #[inline] pub fn set_ulk(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -196,9 +239,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog prescaler"]
   #[inline] pub fn pres(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Watchdog prescaler"]
   #[inline] pub fn set_pres(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -206,9 +251,11 @@ impl Cs {
      self
   }
 
+#[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
   #[inline] pub fn cmd32en(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
   #[inline] pub fn set_cmd32en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -216,9 +263,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Interrupt Flag"]
   #[inline] pub fn flg(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Watchdog Interrupt Flag"]
   #[inline] pub fn set_flg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -226,9 +275,11 @@ impl Cs {
      self
   }
 
+#[doc="Watchdog Window"]
   #[inline] pub fn win(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Watchdog Window"]
   #[inline] pub fn set_win(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -263,12 +314,15 @@ impl ::core::fmt::Debug for Cs {
       Ok(())
    }
 }
+#[doc="Watchdog Counter Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
+#[doc="Low byte of the Watchdog Counter"]
   #[inline] pub fn cntlow(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Low byte of the Watchdog Counter"]
   #[inline] pub fn set_cntlow(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -276,9 +330,11 @@ impl Cnt {
      self
   }
 
+#[doc="High byte of the Watchdog Counter"]
   #[inline] pub fn cnthigh(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="High byte of the Watchdog Counter"]
   #[inline] pub fn set_cnthigh(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -301,12 +357,15 @@ impl ::core::fmt::Debug for Cnt {
       Ok(())
    }
 }
+#[doc="Watchdog Timeout Value Register"]
 #[derive(PartialEq, Eq)]
 pub struct Toval(pub u32);
 impl Toval {
+#[doc="Low byte of the timeout value"]
   #[inline] pub fn tovallow(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Low byte of the timeout value"]
   #[inline] pub fn set_tovallow(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -314,9 +373,11 @@ impl Toval {
      self
   }
 
+#[doc="High byte of the timeout value"]
   #[inline] pub fn tovalhigh(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="High byte of the timeout value"]
   #[inline] pub fn set_tovalhigh(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -339,12 +400,15 @@ impl ::core::fmt::Debug for Toval {
       Ok(())
    }
 }
+#[doc="Watchdog Window Register"]
 #[derive(PartialEq, Eq)]
 pub struct Win(pub u32);
 impl Win {
+#[doc="Low byte of Watchdog Window"]
   #[inline] pub fn winlow(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="Low byte of Watchdog Window"]
   #[inline] pub fn set_winlow(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -352,9 +416,11 @@ impl Win {
      self
   }
 
+#[doc="High byte of Watchdog Window"]
   #[inline] pub fn winhigh(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="High byte of Watchdog Window"]
   #[inline] pub fn set_winhigh(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
