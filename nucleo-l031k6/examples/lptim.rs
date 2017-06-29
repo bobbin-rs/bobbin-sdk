@@ -14,23 +14,37 @@ pub extern "C" fn main() -> ! {
     println!("LPTIM Test");
 
 
-    // System Clock 32MHz
-    // Prescaler 32_000
-    // Timer Clock 1KHz
-    // Reload = 1000
-    // Overflow @ 1Hz
+    // Timer Source = 32MHz
+    // Prescaler - Divide by 128
+    // Timer Clock 250KHz
+    // Reload = 50000
+    // Overflow @ 5Hz
 
     let t = LPTIM;
-    t.rcc_set_enabled(true);
-    t.set_prescaler(36_000 - 1);
-    t.set_auto_reload(2000 - 1);
-    t.clr_update_interrupt_flag();
-    t.set_enabled(true);
+    // Select LSE Clock as timer source
+    t.rcc_set_sel(0b00);
+    t.rcc_set_enabled(true);    
+    t.set_cfgr(Cfgr(0).set_presc(0b111));
+    t.set_cr(Cr(0).set_enable(1));    
+
+    t.set_arr(Arr(0).set_arr(50000));
+    while t.isr().arrok() == 0 {}
+
+    t.set_icr(Icr(0).set_arrmcf(1));
+    
+    t.set_cr(Cr(0).set_cntstrt(1).set_enable(1));
+
+    let mut n = 0;
     loop {
-        while !t.update_interrupt_flag() {}
-        t.clr_update_interrupt_flag();
+        while t.isr().arrm() == 0 {}
+        t.set_icr(Icr(0).set_arrmcf(1));
         LED0.toggle_output();
-        println!("tick..");
+        if n == 4 {
+            println!("tick..");
+            n = 0;
+        } else {
+            n += 1;
+        }
     }
 }
 
