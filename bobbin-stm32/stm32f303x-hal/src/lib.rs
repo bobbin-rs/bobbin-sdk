@@ -74,6 +74,18 @@ pub mod tim {
     pub use rcc::RccEnabled;
 }
 
+pub mod tim_bas {
+    pub use chip::tim_bas::*;
+    pub use stm32_common::hal::tim_bas::*;
+    pub use rcc::RccEnabled;
+}
+
+pub mod tim_adv {
+    pub use chip::tim_adv::*;
+    pub use stm32_common::hal::tim_adv::*;
+    pub use rcc::RccEnabled;
+}
+
 pub mod crc {
     pub use chip::crc::*;
     pub use stm32_common::hal::crc::*;
