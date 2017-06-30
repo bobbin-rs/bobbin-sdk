@@ -1,3 +1,4 @@
+//! Register map for SYSCTL peripheral
 pub const SYSCTL: Sysctl = Sysctl(0x400fe000);
 
 #[doc="Register map for SYSCTL peripheral"]

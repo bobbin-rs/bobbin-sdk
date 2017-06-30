@@ -1,3 +1,4 @@
+//! Register map for EMAC0 peripheral
 pub const EMAC0: Emac = Emac(0x400ec000);
 
 #[doc="Register map for EMAC0 peripheral"]

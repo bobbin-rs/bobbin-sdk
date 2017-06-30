@@ -1,3 +1,5 @@
+//! Interrupts
+
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
