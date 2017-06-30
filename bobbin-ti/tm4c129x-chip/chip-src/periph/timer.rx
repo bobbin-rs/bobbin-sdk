@@ -351,13 +351,11 @@
             (description "GPTM RTC Raw Interrupt")
         )
         (field
-            (name TMRIS)
-            (dim 2)
-            (dim-increment 8)
+            (name TAMRIS)
             (bit-offset 4)
             (bit-width 1)
-            (description "GPTM Timer n Match Raw Interrupt")
-        )
+            (description "GPTM Timer A Match Raw Interrupt")
+        )       
         (field
             (name DMARIS)
             (dim 2)
@@ -366,6 +364,12 @@
             (bit-width 1)
             (description "GPTM Timer n DMA Done Raw Interrupt Status")
         )
+        (field
+            (name TBMRIS)
+            (bit-offset 11)
+            (bit-width 1)
+            (description "GPTM Timer B Match Raw Interrupt")
+        )        
     )
     (register
         (name MIS)
@@ -402,12 +406,10 @@
             (description "GPTM RTC Masked Interrupt")
         )
         (field
-            (name TMMIS)
-            (dim 2)
-            (dim-increment 8)
+            (name TAMMIS)
             (bit-offset 4)
             (bit-width 1)
-            (description "GPTM Timer n Match Masked Interrupt")
+            (description "GPTM Timer A Match Masked Interrupt")
         )
         (field
             (name DMAMIS)
@@ -416,6 +418,12 @@
             (bit-offset 5)
             (bit-width 1)
             (description "GPTM Timer n DMA Done Masked Interrupt")
+        )
+        (field
+            (name TBMMIS)
+            (bit-offset 4)
+            (bit-width 1)
+            (description "GPTM Timer B Match Masked Interrupt")
         )
     )
     (register
@@ -458,13 +466,11 @@
             (description "GPTM RTC Interrupt Clear")
         )
         (field
-            (name TMCINT)
-            (dim 2)
-            (dim-increment 8)
+            (name TAMCINT)
             (bit-offset 4)
             (bit-width 1)
             (access write-only)
-            (description "GPTM Timer n Match Interrupt Clear")
+            (description "GPTM Timer A Match Interrupt Clear")
         )
         (field
             (name DMAINT)
@@ -475,6 +481,13 @@
             (access write-only)
             (description "GPTM Timer n DMA Done Interrupt Clear")
         )
+        (field
+            (name TBMCINT)
+            (bit-offset 11)
+            (bit-width 1)
+            (access write-only)
+            (description "GPTM Timer B Match Interrupt Clear")
+        )        
     )
     (register
         (name TILR)
@@ -495,7 +508,7 @@
         (offset 0x30)
         (description "GPTM Timer n Match")
         (field
-            (name TMATCHR)
+            (name TMTCHR)
             (bit-offset 0)
             (bit-width 32)
         )

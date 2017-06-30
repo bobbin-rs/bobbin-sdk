@@ -1210,19 +1210,15 @@ impl Ris {
      self
   }
 
-#[doc="GPTM Timer n Match Raw Interrupt"]
-  #[inline] pub fn tmris(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+#[doc="GPTM Timer A Match Raw Interrupt"]
+  #[inline] pub fn tamris(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="GPTM Timer n Match Raw Interrupt"]
-  #[inline] pub fn set_tmris(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
+#[doc="GPTM Timer A Match Raw Interrupt"]
+  #[inline] pub fn set_tamris(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     let shift: usize = 4 + (index << 3);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
      self
   }
 
@@ -1242,6 +1238,18 @@ impl Ris {
      self
   }
 
+#[doc="GPTM Timer B Match Raw Interrupt"]
+  #[inline] pub fn tbmris(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="GPTM Timer B Match Raw Interrupt"]
+  #[inline] pub fn set_tbmris(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1258,10 +1266,10 @@ impl ::core::fmt::Debug for Ris {
       if self.ceris(0) != 0 { try!(write!(f, " ceris[0]"))}
       if self.ceris(1) != 0 { try!(write!(f, " ceris[1]"))}
       if self.rtcris() != 0 { try!(write!(f, " rtcris"))}
-      if self.tmris(0) != 0 { try!(write!(f, " tmris[0]"))}
-      if self.tmris(1) != 0 { try!(write!(f, " tmris[1]"))}
+      if self.tamris() != 0 { try!(write!(f, " tamris"))}
       if self.dmaris(0) != 0 { try!(write!(f, " dmaris[0]"))}
       if self.dmaris(1) != 0 { try!(write!(f, " dmaris[1]"))}
+      if self.tbmris() != 0 { try!(write!(f, " tbmris"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1330,19 +1338,15 @@ impl Mis {
      self
   }
 
-#[doc="GPTM Timer n Match Masked Interrupt"]
-  #[inline] pub fn tmmis(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+#[doc="GPTM Timer A Match Masked Interrupt"]
+  #[inline] pub fn tammis(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="GPTM Timer n Match Masked Interrupt"]
-  #[inline] pub fn set_tmmis(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
+#[doc="GPTM Timer A Match Masked Interrupt"]
+  #[inline] pub fn set_tammis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     let shift: usize = 4 + (index << 3);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
      self
   }
 
@@ -1362,6 +1366,18 @@ impl Mis {
      self
   }
 
+#[doc="GPTM Timer B Match Masked Interrupt"]
+  #[inline] pub fn tbmmis(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="GPTM Timer B Match Masked Interrupt"]
+  #[inline] pub fn set_tbmmis(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1378,10 +1394,10 @@ impl ::core::fmt::Debug for Mis {
       if self.cemis(0) != 0 { try!(write!(f, " cemis[0]"))}
       if self.cemis(1) != 0 { try!(write!(f, " cemis[1]"))}
       if self.rtcmis() != 0 { try!(write!(f, " rtcmis"))}
-      if self.tmmis(0) != 0 { try!(write!(f, " tmmis[0]"))}
-      if self.tmmis(1) != 0 { try!(write!(f, " tmmis[1]"))}
+      if self.tammis() != 0 { try!(write!(f, " tammis"))}
       if self.dmamis(0) != 0 { try!(write!(f, " dmamis[0]"))}
       if self.dmamis(1) != 0 { try!(write!(f, " dmamis[1]"))}
+      if self.tbmmis() != 0 { try!(write!(f, " tbmmis"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1450,19 +1466,15 @@ impl Icr {
      self
   }
 
-#[doc="GPTM Timer n Match Interrupt Clear"]
-  #[inline] pub fn tmcint(&self, index: usize) -> u32 {
-     assert!(index < 2);
-     let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+#[doc="GPTM Timer A Match Interrupt Clear"]
+  #[inline] pub fn tamcint(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="GPTM Timer n Match Interrupt Clear"]
-  #[inline] pub fn set_tmcint(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 2);
+#[doc="GPTM Timer A Match Interrupt Clear"]
+  #[inline] pub fn set_tamcint(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     let shift: usize = 4 + (index << 3);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
      self
   }
 
@@ -1482,6 +1494,18 @@ impl Icr {
      self
   }
 
+#[doc="GPTM Timer B Match Interrupt Clear"]
+  #[inline] pub fn tbmcint(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="GPTM Timer B Match Interrupt Clear"]
+  #[inline] pub fn set_tbmcint(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1498,10 +1522,10 @@ impl ::core::fmt::Debug for Icr {
       if self.cecint(0) != 0 { try!(write!(f, " cecint[0]"))}
       if self.cecint(1) != 0 { try!(write!(f, " cecint[1]"))}
       if self.rtccint() != 0 { try!(write!(f, " rtccint"))}
-      if self.tmcint(0) != 0 { try!(write!(f, " tmcint[0]"))}
-      if self.tmcint(1) != 0 { try!(write!(f, " tmcint[1]"))}
+      if self.tamcint() != 0 { try!(write!(f, " tamcint"))}
       if self.dmaint(0) != 0 { try!(write!(f, " dmaint[0]"))}
       if self.dmaint(1) != 0 { try!(write!(f, " dmaint[1]"))}
+      if self.tbmcint() != 0 { try!(write!(f, " tbmcint"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1537,10 +1561,10 @@ impl ::core::fmt::Debug for Tilr {
 #[derive(PartialEq, Eq)]
 pub struct Tmtchr(pub u32);
 impl Tmtchr {
-  #[inline] pub fn tmatchr(&self) -> u32 {
+  #[inline] pub fn tmtchr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-  #[inline] pub fn set_tmatchr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmtchr(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
