@@ -1,9 +1,9 @@
 .PHONY: build arduino-zero discovery-stm32f4 ek-tm4c1294xl evb-s32k144 feather-m0 frdm-k64f \
-	frdm-kl26z nucleo-f031k6 nucleo-f207zg nucleo-f302r8 nucleo-f303ze nucleo-f429zi \
+	frdm-kl26z nucleo-l031k6 nucleo-f207zg nucleo-f302r8 nucleo-f303ze nucleo-f429zi \
 	teensy-32 teensy-35 teensy-36 teensy-lc
 
 build: arduino-zero discovery-stm32f4 ek-tm4c1294xl evb-s32k144 feather-m0 frdm-k64f \
-	frdm-kl26z nucleo-f031k6 nucleo-f207zg nucleo-f302r8 nucleo-f303ze nucleo-f429zi \
+	frdm-kl26z nucleo-l031k6 nucleo-f207zg nucleo-f302r8 nucleo-f303ze nucleo-f429zi \
 	teensy-32 teensy-35 teensy-36 teensy-lc
 
 arduino-zero:
@@ -27,8 +27,8 @@ frdm-k64f:
 frdm-kl26z:
 	cd frdm-kl26z && bobbin build
 
-nucleo-f031k6:
-	cd nucleo-f031k6 && bobbin build
+nucleo-l031k6:
+	cd nucleo-l031k6 && bobbin build
 
 nucleo-f207zg:
 	cd nucleo-f207zg && bobbin build
