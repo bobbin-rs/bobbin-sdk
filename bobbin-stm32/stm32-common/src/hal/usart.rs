@@ -8,6 +8,7 @@ pub trait UsartExt {
     fn getc(&self) -> u8;
     fn try_getc(&self) -> Option<u8>;
     fn write(&self, buf: &[u8]) -> usize;
+    fn read(&self, buf: &mut [u8]) -> usize;
 }
 
 impl<T> UsartExt for Periph<T> {
@@ -74,7 +75,17 @@ impl<T> UsartExt for Periph<T> {
             self.putc(*b)
         }
         buf.len()
-    }    
+    }
+
+    fn read(&self, buf: &mut [u8]) -> usize {
+        if buf.len() == 0 { return 0; }
+        if let Some(c) = self.try_getc() {
+            buf[0] = c;
+            1
+        } else {
+            0
+        }
+    }
 }
 
 impl<T> Write for Periph<T> {

@@ -1,113 +1,92 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="DMA Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
-#[doc="Get the *const pointer for the LISR register."]
   #[inline] pub fn lisr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
-#[doc="Get the *mut pointer for the LISR register."]
   #[inline] pub fn lisr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
-#[doc="Read the LISR register."]
   #[inline] pub fn lisr(&self) -> Lisr { 
      unsafe {
         Lisr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
-#[doc="Get the *const pointer for the HISR register."]
   #[inline] pub fn hisr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
-#[doc="Get the *mut pointer for the HISR register."]
   #[inline] pub fn hisr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
-#[doc="Read the HISR register."]
   #[inline] pub fn hisr(&self) -> Hisr { 
      unsafe {
         Hisr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
 
-#[doc="Get the *const pointer for the LIFCR register."]
   #[inline] pub fn lifcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
-#[doc="Get the *mut pointer for the LIFCR register."]
   #[inline] pub fn lifcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
-#[doc="Read the LIFCR register."]
   #[inline] pub fn lifcr(&self) -> Lifcr { 
      unsafe {
         Lifcr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
-#[doc="Write the LIFCR register."]
   #[inline] pub fn set_lifcr(&self, value: Lifcr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
-#[doc="Modify the LIFCR register."]
   #[inline] pub fn with_lifcr<F: FnOnce(Lifcr) -> Lifcr>(&self, f: F) -> &Self {
      let tmp = self.lifcr();
      self.set_lifcr(f(tmp))
   }
 
-#[doc="Get the *const pointer for the HIFCR register."]
   #[inline] pub fn hifcr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
-#[doc="Get the *mut pointer for the HIFCR register."]
   #[inline] pub fn hifcr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
-#[doc="Read the HIFCR register."]
   #[inline] pub fn hifcr(&self) -> Hifcr { 
      unsafe {
         Hifcr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
-#[doc="Write the HIFCR register."]
   #[inline] pub fn set_hifcr(&self, value: Hifcr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
-#[doc="Modify the HIFCR register."]
   #[inline] pub fn with_hifcr<F: FnOnce(Hifcr) -> Hifcr>(&self, f: F) -> &Self {
      let tmp = self.hifcr();
      self.set_hifcr(f(tmp))
   }
 
-#[doc="Get the *const pointer for the SCR register."]
   #[inline] pub fn scr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x10 + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SCR register."]
   #[inline] pub fn scr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x10 + (index * 24)) as *mut u32
   }
-#[doc="Read the SCR register."]
   #[inline] pub fn scr(&self, index: usize) -> Scr { 
      assert!(index < 8);
      unsafe {
         Scr(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SCR register."]
   #[inline] pub fn set_scr(&self, index: usize, value: Scr) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -115,30 +94,25 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SCR register."]
   #[inline] pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.scr(index);
      self.set_scr(index, f(tmp))
   }
 
-#[doc="Get the *const pointer for the SNDTR register."]
   #[inline] pub fn sndtr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x14 + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SNDTR register."]
   #[inline] pub fn sndtr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x14 + (index * 24)) as *mut u32
   }
-#[doc="Read the SNDTR register."]
   #[inline] pub fn sndtr(&self, index: usize) -> Sndtr { 
      assert!(index < 8);
      unsafe {
         Sndtr(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SNDTR register."]
   #[inline] pub fn set_sndtr(&self, index: usize, value: Sndtr) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -146,30 +120,25 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SNDTR register."]
   #[inline] pub fn with_sndtr<F: FnOnce(Sndtr) -> Sndtr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sndtr(index);
      self.set_sndtr(index, f(tmp))
   }
 
-#[doc="Get the *const pointer for the SPAR register."]
   #[inline] pub fn spar_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x18 + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SPAR register."]
   #[inline] pub fn spar_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x18 + (index * 24)) as *mut u32
   }
-#[doc="Read the SPAR register."]
   #[inline] pub fn spar(&self, index: usize) -> Spar { 
      assert!(index < 8);
      unsafe {
         Spar(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SPAR register."]
   #[inline] pub fn set_spar(&self, index: usize, value: Spar) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -177,30 +146,25 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SPAR register."]
   #[inline] pub fn with_spar<F: FnOnce(Spar) -> Spar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.spar(index);
      self.set_spar(index, f(tmp))
   }
 
-#[doc="Get the *const pointer for the SM0AR register."]
   #[inline] pub fn sm0ar_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x1c + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SM0AR register."]
   #[inline] pub fn sm0ar_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x1c + (index * 24)) as *mut u32
   }
-#[doc="Read the SM0AR register."]
   #[inline] pub fn sm0ar(&self, index: usize) -> Sm0ar { 
      assert!(index < 8);
      unsafe {
         Sm0ar(::core::ptr::read_volatile(((self.0 as usize) + 0x1c + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SM0AR register."]
   #[inline] pub fn set_sm0ar(&self, index: usize, value: Sm0ar) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -208,30 +172,25 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SM0AR register."]
   #[inline] pub fn with_sm0ar<F: FnOnce(Sm0ar) -> Sm0ar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sm0ar(index);
      self.set_sm0ar(index, f(tmp))
   }
 
-#[doc="Get the *const pointer for the SM1AR register."]
   #[inline] pub fn sm1ar_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x20 + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SM1AR register."]
   #[inline] pub fn sm1ar_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x20 + (index * 24)) as *mut u32
   }
-#[doc="Read the SM1AR register."]
   #[inline] pub fn sm1ar(&self, index: usize) -> Sm1ar { 
      assert!(index < 8);
      unsafe {
         Sm1ar(::core::ptr::read_volatile(((self.0 as usize) + 0x20 + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SM1AR register."]
   #[inline] pub fn set_sm1ar(&self, index: usize, value: Sm1ar) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -239,30 +198,25 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SM1AR register."]
   #[inline] pub fn with_sm1ar<F: FnOnce(Sm1ar) -> Sm1ar>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sm1ar(index);
      self.set_sm1ar(index, f(tmp))
   }
 
-#[doc="Get the *const pointer for the SFCR register."]
   #[inline] pub fn sfcr_ptr(&self, index: usize) -> *const u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x24 + (index * 24)) as *const u32
   }
-#[doc="Get the *mut pointer for the SFCR register."]
   #[inline] pub fn sfcr_mut(&self, index: usize) -> *mut u32 { 
      assert!(index < 8);
      ((self.0 as usize) + 0x24 + (index * 24)) as *mut u32
   }
-#[doc="Read the SFCR register."]
   #[inline] pub fn sfcr(&self, index: usize) -> Sfcr { 
      assert!(index < 8);
      unsafe {
         Sfcr(::core::ptr::read_volatile(((self.0 as usize) + 0x24 + (index * 24)) as *const u32))
      }
   }
-#[doc="Write the SFCR register."]
   #[inline] pub fn set_sfcr(&self, index: usize, value: Sfcr) -> &Self {
      assert!(index < 8);
      unsafe {
@@ -270,7 +224,6 @@ impl<T> Periph<T> {
      }
      self
   }
-#[doc="Modify the SFCR register."]
   #[inline] pub fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, index: usize, f: F) -> &Self {
      let tmp = self.sfcr(index);
      self.set_sfcr(index, f(tmp))
@@ -278,15 +231,12 @@ impl<T> Periph<T> {
 
 }
 
-#[doc="low interrupt status register"]
 #[derive(PartialEq, Eq)]
 pub struct Lisr(pub u32);
 impl Lisr {
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn tcif3(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_tcif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -294,11 +244,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn htif3(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn set_htif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -306,11 +254,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn teif3(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn set_teif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -318,11 +264,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn dmeif3(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn set_dmeif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -330,11 +274,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn feif3(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn set_feif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -342,11 +284,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn tcif2(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_tcif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -354,11 +294,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn htif2(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn set_htif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -366,11 +304,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn teif2(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn set_teif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -378,11 +314,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn dmeif2(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn set_dmeif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -390,11 +324,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn feif2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn set_feif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -402,11 +334,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn tcif1(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_tcif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -414,11 +344,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn htif1(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn set_htif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -426,11 +354,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn teif1(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn set_teif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -438,11 +364,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn dmeif1(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn set_dmeif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -450,11 +374,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn feif1(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn set_feif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -462,11 +384,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn tcif0(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-#[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_tcif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -474,11 +394,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn htif0(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="Stream x half transfer interrupt flag (x=3..0)"]
   #[inline] pub fn set_htif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -486,11 +404,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn teif0(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-#[doc="Stream x transfer error interrupt flag (x=3..0)"]
   #[inline] pub fn set_teif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -498,11 +414,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn dmeif0(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Stream x direct mode error interrupt flag (x=3..0)"]
   #[inline] pub fn set_dmeif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -510,11 +424,9 @@ impl Lisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn feif0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-#[doc="Stream x FIFO error interrupt flag (x=3..0)"]
   #[inline] pub fn set_feif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -555,15 +467,12 @@ impl ::core::fmt::Debug for Lisr {
       Ok(())
    }
 }
-#[doc="high interrupt status register"]
 #[derive(PartialEq, Eq)]
 pub struct Hisr(pub u32);
 impl Hisr {
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn tcif7(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn set_tcif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -571,11 +480,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn htif7(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn set_htif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -583,11 +490,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn teif7(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn set_teif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -595,11 +500,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn dmeif7(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn set_dmeif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -607,11 +510,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn feif7(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn set_feif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -619,11 +520,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn tcif6(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn set_tcif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -631,11 +530,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn htif6(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn set_htif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -643,11 +540,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn teif6(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn set_teif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -655,11 +550,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn dmeif6(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn set_dmeif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -667,11 +560,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn feif6(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn set_feif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -679,11 +570,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn tcif5(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn set_tcif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -691,11 +580,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn htif5(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn set_htif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -703,11 +590,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn teif5(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn set_teif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -715,11 +600,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn dmeif5(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn set_dmeif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -727,11 +610,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn feif5(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn set_feif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -739,11 +620,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn tcif4(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-#[doc="Stream x transfer complete interrupt flag (x=7..4)"]
   #[inline] pub fn set_tcif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -751,11 +630,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn htif4(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="Stream x half transfer interrupt flag (x=7..4)"]
   #[inline] pub fn set_htif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -763,11 +640,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn teif4(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-#[doc="Stream x transfer error interrupt flag (x=7..4)"]
   #[inline] pub fn set_teif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -775,11 +650,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn dmeif4(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Stream x direct mode error interrupt flag (x=7..4)"]
   #[inline] pub fn set_dmeif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -787,11 +660,9 @@ impl Hisr {
      self
   }
 
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn feif4(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-#[doc="Stream x FIFO error interrupt flag (x=7..4)"]
   #[inline] pub fn set_feif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -832,15 +703,12 @@ impl ::core::fmt::Debug for Hisr {
       Ok(())
    }
 }
-#[doc="low interrupt flag clear register"]
 #[derive(PartialEq, Eq)]
 pub struct Lifcr(pub u32);
 impl Lifcr {
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn ctcif3(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_ctcif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -848,11 +716,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn chtif3(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn set_chtif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -860,11 +726,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn cteif3(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cteif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -872,11 +736,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn cdmeif3(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cdmeif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -884,11 +746,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn cfeif3(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cfeif3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -896,11 +756,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn ctcif2(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_ctcif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -908,11 +766,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn chtif2(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn set_chtif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -920,11 +776,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn cteif2(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cteif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -932,11 +786,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn cdmeif2(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cdmeif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -944,11 +796,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn cfeif2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cfeif2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -956,11 +806,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn ctcif1(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_ctcif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -968,11 +816,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn chtif1(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn set_chtif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -980,11 +826,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn cteif1(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cteif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -992,11 +836,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn cdmeif1(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cdmeif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1004,11 +846,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn cfeif1(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cfeif1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1016,11 +856,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn ctcif0(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
   #[inline] pub fn set_ctcif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1028,11 +866,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn chtif0(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
   #[inline] pub fn set_chtif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1040,11 +876,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn cteif0(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cteif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1052,11 +886,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn cdmeif0(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cdmeif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1064,11 +896,9 @@ impl Lifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn cfeif0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
   #[inline] pub fn set_cfeif0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1109,15 +939,12 @@ impl ::core::fmt::Debug for Lifcr {
       Ok(())
    }
 }
-#[doc="high interrupt flag clear register"]
 #[derive(PartialEq, Eq)]
 pub struct Hifcr(pub u32);
 impl Hifcr {
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn ctcif7(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn set_ctcif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -1125,11 +952,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn chtif7(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn set_chtif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -1137,11 +962,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn cteif7(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cteif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -1149,11 +972,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn cdmeif7(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cdmeif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -1161,11 +982,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn cfeif7(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cfeif7(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -1173,11 +992,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn ctcif6(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn set_ctcif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -1185,11 +1002,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn chtif6(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn set_chtif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -1197,11 +1012,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn cteif6(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cteif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -1209,11 +1022,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn cdmeif6(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cdmeif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1221,11 +1032,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn cfeif6(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cfeif6(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1233,11 +1042,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn ctcif5(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn set_ctcif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -1245,11 +1052,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn chtif5(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn set_chtif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1257,11 +1062,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn cteif5(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cteif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1269,11 +1072,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn cdmeif5(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cdmeif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1281,11 +1082,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn cfeif5(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cfeif5(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -1293,11 +1092,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn ctcif4(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-#[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
   #[inline] pub fn set_ctcif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1305,11 +1102,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn chtif4(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
   #[inline] pub fn set_chtif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1317,11 +1112,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn cteif4(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-#[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cteif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1329,11 +1122,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn cdmeif4(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cdmeif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1341,11 +1132,9 @@ impl Hifcr {
      self
   }
 
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn cfeif4(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-#[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
   #[inline] pub fn set_cfeif4(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1386,15 +1175,12 @@ impl ::core::fmt::Debug for Hifcr {
       Ok(())
    }
 }
-#[doc="stream x configuration register"]
 #[derive(PartialEq, Eq)]
 pub struct Scr(pub u32);
 impl Scr {
-#[doc="Channel selection"]
   #[inline] pub fn chsel(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x7 // [27:25]
   }
-#[doc="Channel selection"]
   #[inline] pub fn set_chsel(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 25);
@@ -1402,11 +1188,9 @@ impl Scr {
      self
   }
 
-#[doc="Memory burst transfer configuration"]
   #[inline] pub fn mburst(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x3 // [24:23]
   }
-#[doc="Memory burst transfer configuration"]
   #[inline] pub fn set_mburst(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 23);
@@ -1414,11 +1198,9 @@ impl Scr {
      self
   }
 
-#[doc="Peripheral burst transfer configuration"]
   #[inline] pub fn pburst(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x3 // [22:21]
   }
-#[doc="Peripheral burst transfer configuration"]
   #[inline] pub fn set_pburst(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 21);
@@ -1426,11 +1208,9 @@ impl Scr {
      self
   }
 
-#[doc="Current target (only in double buffer mode)"]
   #[inline] pub fn ct(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
-#[doc="Current target (only in double buffer mode)"]
   #[inline] pub fn set_ct(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -1438,11 +1218,9 @@ impl Scr {
      self
   }
 
-#[doc="Double buffer mode"]
   #[inline] pub fn dbm(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
-#[doc="Double buffer mode"]
   #[inline] pub fn set_dbm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -1450,11 +1228,9 @@ impl Scr {
      self
   }
 
-#[doc="Priority level"]
   #[inline] pub fn pl(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x3 // [17:16]
   }
-#[doc="Priority level"]
   #[inline] pub fn set_pl(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
@@ -1462,11 +1238,9 @@ impl Scr {
      self
   }
 
-#[doc="Peripheral increment offset size"]
   #[inline] pub fn pincos(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
-#[doc="Peripheral increment offset size"]
   #[inline] pub fn set_pincos(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1474,11 +1248,9 @@ impl Scr {
      self
   }
 
-#[doc="Memory data size"]
   #[inline] pub fn msize(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x3 // [14:13]
   }
-#[doc="Memory data size"]
   #[inline] pub fn set_msize(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 13);
@@ -1486,11 +1258,9 @@ impl Scr {
      self
   }
 
-#[doc="Peripheral data size"]
   #[inline] pub fn psize(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x3 // [12:11]
   }
-#[doc="Peripheral data size"]
   #[inline] pub fn set_psize(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 11);
@@ -1498,11 +1268,9 @@ impl Scr {
      self
   }
 
-#[doc="Memory increment mode"]
   #[inline] pub fn minc(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="Memory increment mode"]
   #[inline] pub fn set_minc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1510,11 +1278,9 @@ impl Scr {
      self
   }
 
-#[doc="Peripheral increment mode"]
   #[inline] pub fn pinc(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
-#[doc="Peripheral increment mode"]
   #[inline] pub fn set_pinc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1522,11 +1288,9 @@ impl Scr {
      self
   }
 
-#[doc="Circular mode"]
   #[inline] pub fn circ(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="Circular mode"]
   #[inline] pub fn set_circ(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1534,11 +1298,9 @@ impl Scr {
      self
   }
 
-#[doc="Data transfer direction"]
   #[inline] pub fn dir(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
-#[doc="Data transfer direction"]
   #[inline] pub fn set_dir(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -1546,11 +1308,9 @@ impl Scr {
      self
   }
 
-#[doc="Peripheral flow controller"]
   #[inline] pub fn pfctrl(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
-#[doc="Peripheral flow controller"]
   #[inline] pub fn set_pfctrl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1558,11 +1318,9 @@ impl Scr {
      self
   }
 
-#[doc="Transfer complete interrupt enable"]
   #[inline] pub fn tcie(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
-#[doc="Transfer complete interrupt enable"]
   #[inline] pub fn set_tcie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -1570,11 +1328,9 @@ impl Scr {
      self
   }
 
-#[doc="Half transfer interrupt enable"]
   #[inline] pub fn htie(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
-#[doc="Half transfer interrupt enable"]
   #[inline] pub fn set_htie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -1582,11 +1338,9 @@ impl Scr {
      self
   }
 
-#[doc="Transfer error interrupt enable"]
   #[inline] pub fn teie(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Transfer error interrupt enable"]
   #[inline] pub fn set_teie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1594,11 +1348,9 @@ impl Scr {
      self
   }
 
-#[doc="Direct mode error interrupt enable"]
   #[inline] pub fn dmeie(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
-#[doc="Direct mode error interrupt enable"]
   #[inline] pub fn set_dmeie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1606,11 +1358,9 @@ impl Scr {
      self
   }
 
-#[doc="Stream enable / flag stream ready when read low"]
   #[inline] pub fn en(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
-#[doc="Stream enable / flag stream ready when read low"]
   #[inline] pub fn set_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1650,15 +1400,12 @@ impl ::core::fmt::Debug for Scr {
       Ok(())
    }
 }
-#[doc="stream x number of data register"]
 #[derive(PartialEq, Eq)]
 pub struct Sndtr(pub u32);
 impl Sndtr {
-#[doc="Number of data items to transfer"]
   #[inline] pub fn ndt(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
-#[doc="Number of data items to transfer"]
   #[inline] pub fn set_ndt(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -1680,15 +1427,12 @@ impl ::core::fmt::Debug for Sndtr {
       Ok(())
    }
 }
-#[doc="stream x peripheral address register"]
 #[derive(PartialEq, Eq)]
 pub struct Spar(pub u32);
 impl Spar {
-#[doc="Peripheral address"]
   #[inline] pub fn pa(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-#[doc="Peripheral address"]
   #[inline] pub fn set_pa(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1709,15 +1453,12 @@ impl ::core::fmt::Debug for Spar {
       Ok(())
    }
 }
-#[doc="stream x memory 0 address register"]
 #[derive(PartialEq, Eq)]
 pub struct Sm0ar(pub u32);
 impl Sm0ar {
-#[doc="Memory 0 address"]
   #[inline] pub fn m0a(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-#[doc="Memory 0 address"]
   #[inline] pub fn set_m0a(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1738,15 +1479,12 @@ impl ::core::fmt::Debug for Sm0ar {
       Ok(())
    }
 }
-#[doc="stream x memory 1 address register"]
 #[derive(PartialEq, Eq)]
 pub struct Sm1ar(pub u32);
 impl Sm1ar {
-#[doc="Memory 1 address (used in case of Double buffer mode)"]
   #[inline] pub fn m1a(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
-#[doc="Memory 1 address (used in case of Double buffer mode)"]
   #[inline] pub fn set_m1a(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1767,15 +1505,12 @@ impl ::core::fmt::Debug for Sm1ar {
       Ok(())
    }
 }
-#[doc="stream x FIFO control register"]
 #[derive(PartialEq, Eq)]
 pub struct Sfcr(pub u32);
 impl Sfcr {
-#[doc="FIFO error interrupt enable"]
   #[inline] pub fn feie(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
-#[doc="FIFO error interrupt enable"]
   #[inline] pub fn set_feie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1783,11 +1518,9 @@ impl Sfcr {
      self
   }
 
-#[doc="FIFO status"]
   #[inline] pub fn fs(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x7 // [5:3]
   }
-#[doc="FIFO status"]
   #[inline] pub fn set_fs(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
@@ -1795,11 +1528,9 @@ impl Sfcr {
      self
   }
 
-#[doc="Direct mode disable"]
   #[inline] pub fn dmdis(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
-#[doc="Direct mode disable"]
   #[inline] pub fn set_dmdis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -1807,11 +1538,9 @@ impl Sfcr {
      self
   }
 
-#[doc="FIFO threshold selection"]
   #[inline] pub fn fth(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3 // [1:0]
   }
-#[doc="FIFO threshold selection"]
   #[inline] pub fn set_fth(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
@@ -1837,7 +1566,6 @@ impl ::core::fmt::Debug for Sfcr {
    }
 }
 #[derive(Clone, Copy, PartialEq)]
-#[doc="DMA Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

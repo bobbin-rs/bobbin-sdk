@@ -5,15 +5,12 @@ pub const TIM21: Tim21 = Periph(0x40010800, Tim21Id {});
 pub const TIM22: Tim22 = Periph(0x40011400, Tim22Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
 pub struct Tim2Id {}
 pub type Tim2 = Periph<Tim2Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
 pub struct Tim21Id {}
 pub type Tim21 = Periph<Tim21Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
 pub struct Tim22Id {}
 pub type Tim22 = Periph<Tim22Id>;
 
@@ -45,49 +42,41 @@ impl super::sig::SignalTim<super::sig::Tim22Ch2> for Tim22Ch2 {}
 
 pub const TIM2_CH1: Channel<Tim2Ch1Id, Tim2Id> = Channel { periph: TIM2, index: 0, id: Tim2Ch1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim2Ch1Id {}
 pub type Tim2Ch1 = Channel<Tim2Ch1Id, Tim2Id>;
 
 pub const TIM2_CH2: Channel<Tim2Ch2Id, Tim2Id> = Channel { periph: TIM2, index: 1, id: Tim2Ch2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim2Ch2Id {}
 pub type Tim2Ch2 = Channel<Tim2Ch2Id, Tim2Id>;
 
 pub const TIM2_CH3: Channel<Tim2Ch3Id, Tim2Id> = Channel { periph: TIM2, index: 2, id: Tim2Ch3Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim2Ch3Id {}
 pub type Tim2Ch3 = Channel<Tim2Ch3Id, Tim2Id>;
 
 pub const TIM2_CH4: Channel<Tim2Ch4Id, Tim2Id> = Channel { periph: TIM2, index: 3, id: Tim2Ch4Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim2Ch4Id {}
 pub type Tim2Ch4 = Channel<Tim2Ch4Id, Tim2Id>;
 
 pub const TIM21_CH1: Channel<Tim21Ch1Id, Tim21Id> = Channel { periph: TIM21, index: 0, id: Tim21Ch1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim21Ch1Id {}
 pub type Tim21Ch1 = Channel<Tim21Ch1Id, Tim21Id>;
 
 pub const TIM21_CH2: Channel<Tim21Ch2Id, Tim21Id> = Channel { periph: TIM21, index: 1, id: Tim21Ch2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim21Ch2Id {}
 pub type Tim21Ch2 = Channel<Tim21Ch2Id, Tim21Id>;
 
 pub const TIM22_CH1: Channel<Tim22Ch1Id, Tim22Id> = Channel { periph: TIM22, index: 0, id: Tim22Ch1Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim22Ch1Id {}
 pub type Tim22Ch1 = Channel<Tim22Ch1Id, Tim22Id>;
 
 pub const TIM22_CH2: Channel<Tim22Ch2Id, Tim22Id> = Channel { periph: TIM22, index: 1, id: Tim22Ch2Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
 pub struct Tim22Ch2Id {}
 pub type Tim22Ch2 = Channel<Tim22Ch2Id, Tim22Id>;
 
