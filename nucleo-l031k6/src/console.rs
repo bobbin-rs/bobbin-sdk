@@ -72,7 +72,14 @@ pub fn write_str(s: &str) {
 }
 
 #[doc(hidden)]
-pub fn write(buf: &[u8]) {
-    USART.write(buf);
+pub fn write(buf: &[u8]) -> usize {
+    USART.write(buf)
 }
 
+pub fn try_getc() -> Option<u8> {
+    USART.try_getc()
+}
+
+pub fn read(buf: &mut [u8]) -> usize {
+    USART.read(buf)
+}
