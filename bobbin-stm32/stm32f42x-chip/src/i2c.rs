@@ -3,15 +3,19 @@ pub const I2C2: I2c2 = Periph(0x40005800, I2c2Id {});
 pub const I2C1: I2c1 = Periph(0x40005400, I2c1Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="I2C Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct I2c3Id {}
 pub type I2c3 = Periph<I2c3Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct I2c2Id {}
 pub type I2c2 = Periph<I2c2Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct I2c1Id {}
 pub type I2c1 = Periph<I2c1Id>;
 
@@ -20,211 +24,259 @@ pub type I2c1 = Periph<I2c1Id>;
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the CR1 register."]
   #[inline] pub fn cr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the CR1 register."]
   #[inline] pub fn cr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the CR1 register."]
   #[inline] pub fn cr1(&self) -> Cr1 { 
      unsafe {
         Cr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the CR1 register."]
   #[inline] pub fn set_cr1(&self, value: Cr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR1 register."]
   #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
      self.set_cr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CR2 register."]
   #[inline] pub fn cr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CR2 register."]
   #[inline] pub fn cr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CR2 register."]
   #[inline] pub fn cr2(&self) -> Cr2 { 
      unsafe {
         Cr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CR2 register."]
   #[inline] pub fn set_cr2(&self, value: Cr2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR2 register."]
   #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
      self.set_cr2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OAR1 register."]
   #[inline] pub fn oar1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the OAR1 register."]
   #[inline] pub fn oar1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the OAR1 register."]
   #[inline] pub fn oar1(&self) -> Oar1 { 
      unsafe {
         Oar1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the OAR1 register."]
   #[inline] pub fn set_oar1(&self, value: Oar1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OAR1 register."]
   #[inline] pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
      let tmp = self.oar1();
      self.set_oar1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OAR2 register."]
   #[inline] pub fn oar2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the OAR2 register."]
   #[inline] pub fn oar2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the OAR2 register."]
   #[inline] pub fn oar2(&self) -> Oar2 { 
      unsafe {
         Oar2(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the OAR2 register."]
   #[inline] pub fn set_oar2(&self, value: Oar2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OAR2 register."]
   #[inline] pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
      let tmp = self.oar2();
      self.set_oar2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DR register."]
   #[inline] pub fn dr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the DR register."]
   #[inline] pub fn dr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the DR register."]
   #[inline] pub fn dr(&self) -> Dr { 
      unsafe {
         Dr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the DR register."]
   #[inline] pub fn set_dr(&self, value: Dr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DR register."]
   #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
      self.set_dr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SR1 register."]
   #[inline] pub fn sr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the SR1 register."]
   #[inline] pub fn sr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the SR1 register."]
   #[inline] pub fn sr1(&self) -> Sr1 { 
      unsafe {
         Sr1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the SR1 register."]
   #[inline] pub fn set_sr1(&self, value: Sr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SR1 register."]
   #[inline] pub fn with_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &Self {
      let tmp = self.sr1();
      self.set_sr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SR2 register."]
   #[inline] pub fn sr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the SR2 register."]
   #[inline] pub fn sr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the SR2 register."]
   #[inline] pub fn sr2(&self) -> Sr2 { 
      unsafe {
         Sr2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the CCR register."]
   #[inline] pub fn ccr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the CCR register."]
   #[inline] pub fn ccr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the CCR register."]
   #[inline] pub fn ccr(&self) -> Ccr { 
      unsafe {
         Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
+#[doc="Write the CCR register."]
   #[inline] pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CCR register."]
   #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TRISE register."]
   #[inline] pub fn trise_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the TRISE register."]
   #[inline] pub fn trise_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the TRISE register."]
   #[inline] pub fn trise(&self) -> Trise { 
      unsafe {
         Trise(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the TRISE register."]
   #[inline] pub fn set_trise(&self, value: Trise) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TRISE register."]
   #[inline] pub fn with_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &Self {
      let tmp = self.trise();
      self.set_trise(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FLTR register."]
   #[inline] pub fn fltr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
+#[doc="Get the *mut pointer for the FLTR register."]
   #[inline] pub fn fltr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
+#[doc="Read the FLTR register."]
   #[inline] pub fn fltr(&self) -> Fltr { 
      unsafe {
         Fltr(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
      }
   }
+#[doc="Write the FLTR register."]
   #[inline] pub fn set_fltr(&self, value: Fltr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FLTR register."]
   #[inline] pub fn with_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &Self {
      let tmp = self.fltr();
      self.set_fltr(f(tmp))
@@ -232,12 +284,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Control register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
+#[doc="Software reset"]
   #[inline] pub fn swrst(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Software reset"]
   #[inline] pub fn set_swrst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -245,9 +300,11 @@ impl Cr1 {
      self
   }
 
+#[doc="SMBus alert"]
   #[inline] pub fn alert(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="SMBus alert"]
   #[inline] pub fn set_alert(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -255,9 +312,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Packet error checking"]
   #[inline] pub fn pec(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Packet error checking"]
   #[inline] pub fn set_pec(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -265,9 +324,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Acknowledge/PEC Position (for data reception)"]
   #[inline] pub fn pos(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Acknowledge/PEC Position (for data reception)"]
   #[inline] pub fn set_pos(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -275,9 +336,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Acknowledge enable"]
   #[inline] pub fn ack(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Acknowledge enable"]
   #[inline] pub fn set_ack(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -285,9 +348,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Stop generation"]
   #[inline] pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Stop generation"]
   #[inline] pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -295,9 +360,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Start generation"]
   #[inline] pub fn start(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Start generation"]
   #[inline] pub fn set_start(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -305,9 +372,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Clock stretching disable (Slave mode)"]
   #[inline] pub fn nostretch(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Clock stretching disable (Slave mode)"]
   #[inline] pub fn set_nostretch(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -315,9 +384,11 @@ impl Cr1 {
      self
   }
 
+#[doc="General call enable"]
   #[inline] pub fn engc(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="General call enable"]
   #[inline] pub fn set_engc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -325,9 +396,11 @@ impl Cr1 {
      self
   }
 
+#[doc="PEC enable"]
   #[inline] pub fn enpec(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="PEC enable"]
   #[inline] pub fn set_enpec(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -335,9 +408,11 @@ impl Cr1 {
      self
   }
 
+#[doc="ARP enable"]
   #[inline] pub fn enarp(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="ARP enable"]
   #[inline] pub fn set_enarp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -345,9 +420,11 @@ impl Cr1 {
      self
   }
 
+#[doc="SMBus type"]
   #[inline] pub fn smbtype(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="SMBus type"]
   #[inline] pub fn set_smbtype(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -355,9 +432,11 @@ impl Cr1 {
      self
   }
 
+#[doc="SMBus mode"]
   #[inline] pub fn smbus(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="SMBus mode"]
   #[inline] pub fn set_smbus(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -365,9 +444,11 @@ impl Cr1 {
      self
   }
 
+#[doc="Peripheral enable"]
   #[inline] pub fn pe(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Peripheral enable"]
   #[inline] pub fn set_pe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -402,12 +483,15 @@ impl ::core::fmt::Debug for Cr1 {
       Ok(())
    }
 }
+#[doc="Control register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
+#[doc="DMA last transfer"]
   #[inline] pub fn last(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="DMA last transfer"]
   #[inline] pub fn set_last(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -415,9 +499,11 @@ impl Cr2 {
      self
   }
 
+#[doc="DMA requests enable"]
   #[inline] pub fn dmaen(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="DMA requests enable"]
   #[inline] pub fn set_dmaen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -425,9 +511,11 @@ impl Cr2 {
      self
   }
 
+#[doc="Buffer interrupt enable"]
   #[inline] pub fn itbufen(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Buffer interrupt enable"]
   #[inline] pub fn set_itbufen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -435,9 +523,11 @@ impl Cr2 {
      self
   }
 
+#[doc="Event interrupt enable"]
   #[inline] pub fn itevten(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Event interrupt enable"]
   #[inline] pub fn set_itevten(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -445,9 +535,11 @@ impl Cr2 {
      self
   }
 
+#[doc="Error interrupt enable"]
   #[inline] pub fn iterren(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Error interrupt enable"]
   #[inline] pub fn set_iterren(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -455,9 +547,11 @@ impl Cr2 {
      self
   }
 
+#[doc="Peripheral clock frequency"]
   #[inline] pub fn freq(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+#[doc="Peripheral clock frequency"]
   #[inline] pub fn set_freq(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -484,12 +578,15 @@ impl ::core::fmt::Debug for Cr2 {
       Ok(())
    }
 }
+#[doc="Own address register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Oar1(pub u32);
 impl Oar1 {
+#[doc="Addressing mode (slave mode)"]
   #[inline] pub fn addmode(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="Addressing mode (slave mode)"]
   #[inline] pub fn set_addmode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -497,9 +594,11 @@ impl Oar1 {
      self
   }
 
+#[doc="Interface address"]
   #[inline] pub fn add10(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x3 // [9:8]
   }
+#[doc="Interface address"]
   #[inline] pub fn set_add10(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
@@ -507,9 +606,11 @@ impl Oar1 {
      self
   }
 
+#[doc="Interface address"]
   #[inline] pub fn add7(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x7f // [7:1]
   }
+#[doc="Interface address"]
   #[inline] pub fn set_add7(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
@@ -517,9 +618,11 @@ impl Oar1 {
      self
   }
 
+#[doc="Interface address"]
   #[inline] pub fn add0(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Interface address"]
   #[inline] pub fn set_add0(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -544,12 +647,15 @@ impl ::core::fmt::Debug for Oar1 {
       Ok(())
    }
 }
+#[doc="Own address register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Oar2(pub u32);
 impl Oar2 {
+#[doc="Interface address"]
   #[inline] pub fn add2(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x7f // [7:1]
   }
+#[doc="Interface address"]
   #[inline] pub fn set_add2(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
@@ -557,9 +663,11 @@ impl Oar2 {
      self
   }
 
+#[doc="Dual addressing mode enable"]
   #[inline] pub fn endual(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Dual addressing mode enable"]
   #[inline] pub fn set_endual(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -582,12 +690,15 @@ impl ::core::fmt::Debug for Oar2 {
       Ok(())
    }
 }
+#[doc="Data register"]
 #[derive(PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
+#[doc="8-bit data register"]
   #[inline] pub fn dr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="8-bit data register"]
   #[inline] pub fn set_dr(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -609,12 +720,15 @@ impl ::core::fmt::Debug for Dr {
       Ok(())
    }
 }
+#[doc="Status register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Sr1(pub u32);
 impl Sr1 {
+#[doc="SMBus alert"]
   #[inline] pub fn smbalert(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="SMBus alert"]
   #[inline] pub fn set_smbalert(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -622,9 +736,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Timeout or Tlow error"]
   #[inline] pub fn timeout(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Timeout or Tlow error"]
   #[inline] pub fn set_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -632,9 +748,11 @@ impl Sr1 {
      self
   }
 
+#[doc="PEC Error in reception"]
   #[inline] pub fn pecerr(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="PEC Error in reception"]
   #[inline] pub fn set_pecerr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -642,9 +760,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Overrun/Underrun"]
   #[inline] pub fn ovr(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Overrun/Underrun"]
   #[inline] pub fn set_ovr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -652,9 +772,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Acknowledge failure"]
   #[inline] pub fn af(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Acknowledge failure"]
   #[inline] pub fn set_af(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -662,9 +784,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Arbitration lost (master mode)"]
   #[inline] pub fn arlo(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Arbitration lost (master mode)"]
   #[inline] pub fn set_arlo(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -672,9 +796,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Bus error"]
   #[inline] pub fn berr(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Bus error"]
   #[inline] pub fn set_berr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -682,9 +808,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Data register empty (transmitters)"]
   #[inline] pub fn txe(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Data register empty (transmitters)"]
   #[inline] pub fn set_txe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -692,9 +820,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Data register not empty (receivers)"]
   #[inline] pub fn rxne(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Data register not empty (receivers)"]
   #[inline] pub fn set_rxne(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -702,9 +832,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Stop detection (slave mode)"]
   #[inline] pub fn stopf(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Stop detection (slave mode)"]
   #[inline] pub fn set_stopf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -712,9 +844,11 @@ impl Sr1 {
      self
   }
 
+#[doc="10-bit header sent (Master mode)"]
   #[inline] pub fn add10(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="10-bit header sent (Master mode)"]
   #[inline] pub fn set_add10(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -722,9 +856,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Byte transfer finished"]
   #[inline] pub fn btf(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Byte transfer finished"]
   #[inline] pub fn set_btf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -732,9 +868,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Address sent (master mode)/matched (slave mode)"]
   #[inline] pub fn addr(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Address sent (master mode)/matched (slave mode)"]
   #[inline] pub fn set_addr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -742,9 +880,11 @@ impl Sr1 {
      self
   }
 
+#[doc="Start bit (Master mode)"]
   #[inline] pub fn sb(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Start bit (Master mode)"]
   #[inline] pub fn set_sb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -779,12 +919,15 @@ impl ::core::fmt::Debug for Sr1 {
       Ok(())
    }
 }
+#[doc="Status register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Sr2(pub u32);
 impl Sr2 {
+#[doc="acket error checking register"]
   #[inline] pub fn pec(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xff // [15:8]
   }
+#[doc="acket error checking register"]
   #[inline] pub fn set_pec(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
@@ -792,9 +935,11 @@ impl Sr2 {
      self
   }
 
+#[doc="Dual flag (Slave mode)"]
   #[inline] pub fn dualf(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="Dual flag (Slave mode)"]
   #[inline] pub fn set_dualf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -802,9 +947,11 @@ impl Sr2 {
      self
   }
 
+#[doc="SMBus host header (Slave mode)"]
   #[inline] pub fn smbhost(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="SMBus host header (Slave mode)"]
   #[inline] pub fn set_smbhost(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -812,9 +959,11 @@ impl Sr2 {
      self
   }
 
+#[doc="SMBus device default address (Slave mode)"]
   #[inline] pub fn smbdefault(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="SMBus device default address (Slave mode)"]
   #[inline] pub fn set_smbdefault(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -822,9 +971,11 @@ impl Sr2 {
      self
   }
 
+#[doc="General call address (Slave mode)"]
   #[inline] pub fn gencall(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="General call address (Slave mode)"]
   #[inline] pub fn set_gencall(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -832,9 +983,11 @@ impl Sr2 {
      self
   }
 
+#[doc="Transmitter/receiver"]
   #[inline] pub fn tra(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Transmitter/receiver"]
   #[inline] pub fn set_tra(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -842,9 +995,11 @@ impl Sr2 {
      self
   }
 
+#[doc="Bus busy"]
   #[inline] pub fn busy(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Bus busy"]
   #[inline] pub fn set_busy(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -852,9 +1007,11 @@ impl Sr2 {
      self
   }
 
+#[doc="Master/slave"]
   #[inline] pub fn msl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Master/slave"]
   #[inline] pub fn set_msl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -883,12 +1040,15 @@ impl ::core::fmt::Debug for Sr2 {
       Ok(())
    }
 }
+#[doc="Clock control register"]
 #[derive(PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
+#[doc="I2C master mode selection"]
   #[inline] pub fn f_s(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="I2C master mode selection"]
   #[inline] pub fn set_f_s(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -896,9 +1056,11 @@ impl Ccr {
      self
   }
 
+#[doc="Fast mode duty cycle"]
   #[inline] pub fn duty(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="Fast mode duty cycle"]
   #[inline] pub fn set_duty(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -906,9 +1068,11 @@ impl Ccr {
      self
   }
 
+#[doc="Clock control register in Fast/Standard mode (Master mode)"]
   #[inline] pub fn ccr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="Clock control register in Fast/Standard mode (Master mode)"]
   #[inline] pub fn set_ccr(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -932,12 +1096,15 @@ impl ::core::fmt::Debug for Ccr {
       Ok(())
    }
 }
+#[doc="TRISE register"]
 #[derive(PartialEq, Eq)]
 pub struct Trise(pub u32);
 impl Trise {
+#[doc="Maximum rise time in Fast/Standard mode (Master mode)"]
   #[inline] pub fn trise(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3f // [5:0]
   }
+#[doc="Maximum rise time in Fast/Standard mode (Master mode)"]
   #[inline] pub fn set_trise(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
@@ -959,12 +1126,15 @@ impl ::core::fmt::Debug for Trise {
       Ok(())
    }
 }
+#[doc="I2C FLTR register"]
 #[derive(PartialEq, Eq)]
 pub struct Fltr(pub u32);
 impl Fltr {
+#[doc="Digital noise filter"]
   #[inline] pub fn dnf(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
+#[doc="Digital noise filter"]
   #[inline] pub fn set_dnf(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
@@ -972,9 +1142,11 @@ impl Fltr {
      self
   }
 
+#[doc="Analog noise filter OFF"]
   #[inline] pub fn anoff(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Analog noise filter OFF"]
   #[inline] pub fn set_anoff(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);

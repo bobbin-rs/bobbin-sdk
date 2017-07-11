@@ -1,48 +1,61 @@
+//! Common ADC registers
 pub const C_ADC: CAdc = CAdc(0x40012300);
 
+#[doc="Common ADC registers"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct CAdc(pub u32);
 impl CAdc {
+#[doc="Get the *const pointer for the CSR register."]
   #[inline] pub fn csr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the CSR register."]
   #[inline] pub fn csr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the CSR register."]
   #[inline] pub fn csr(&self) -> Csr { 
      unsafe {
         Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the CCR register."]
   #[inline] pub fn ccr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CCR register."]
   #[inline] pub fn ccr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CCR register."]
   #[inline] pub fn ccr(&self) -> Ccr { 
      unsafe {
         Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CCR register."]
   #[inline] pub fn set_ccr(&self, value: Ccr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CCR register."]
   #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
      self.set_ccr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CDR register."]
   #[inline] pub fn cdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the CDR register."]
   #[inline] pub fn cdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the CDR register."]
   #[inline] pub fn cdr(&self) -> Cdr { 
      unsafe {
         Cdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
@@ -51,12 +64,15 @@ impl CAdc {
 
 }
 
+#[doc="ADC Common status register"]
 #[derive(PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
+#[doc="Overrun flag of ADC3"]
   #[inline] pub fn ovr3(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="Overrun flag of ADC3"]
   #[inline] pub fn set_ovr3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -64,9 +80,11 @@ impl Csr {
      self
   }
 
+#[doc="Regular channel Start flag of ADC 3"]
   #[inline] pub fn strt3(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Regular channel Start flag of ADC 3"]
   #[inline] pub fn set_strt3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -74,9 +92,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel Start flag of ADC 3"]
   #[inline] pub fn jstrt3(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+#[doc="Injected channel Start flag of ADC 3"]
   #[inline] pub fn set_jstrt3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -84,9 +104,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel end of conversion of ADC 3"]
   #[inline] pub fn jeoc3(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="Injected channel end of conversion of ADC 3"]
   #[inline] pub fn set_jeoc3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -94,9 +116,11 @@ impl Csr {
      self
   }
 
+#[doc="End of conversion of ADC 3"]
   #[inline] pub fn eoc3(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="End of conversion of ADC 3"]
   #[inline] pub fn set_eoc3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -104,9 +128,11 @@ impl Csr {
      self
   }
 
+#[doc="Analog watchdog flag of ADC 3"]
   #[inline] pub fn awd3(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="Analog watchdog flag of ADC 3"]
   #[inline] pub fn set_awd3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -114,9 +140,11 @@ impl Csr {
      self
   }
 
+#[doc="Overrun flag of ADC 2"]
   #[inline] pub fn ovr2(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="Overrun flag of ADC 2"]
   #[inline] pub fn set_ovr2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -124,9 +152,11 @@ impl Csr {
      self
   }
 
+#[doc="Regular channel Start flag of ADC 2"]
   #[inline] pub fn strt2(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="Regular channel Start flag of ADC 2"]
   #[inline] pub fn set_strt2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -134,9 +164,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel Start flag of ADC 2"]
   #[inline] pub fn jstrt2(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="Injected channel Start flag of ADC 2"]
   #[inline] pub fn set_jstrt2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -144,9 +176,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel end of conversion of ADC 2"]
   #[inline] pub fn jeoc2(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="Injected channel end of conversion of ADC 2"]
   #[inline] pub fn set_jeoc2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -154,9 +188,11 @@ impl Csr {
      self
   }
 
+#[doc="End of conversion of ADC 2"]
   #[inline] pub fn eoc2(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="End of conversion of ADC 2"]
   #[inline] pub fn set_eoc2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -164,9 +200,11 @@ impl Csr {
      self
   }
 
+#[doc="Analog watchdog flag of ADC 2"]
   #[inline] pub fn awd2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Analog watchdog flag of ADC 2"]
   #[inline] pub fn set_awd2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -174,9 +212,11 @@ impl Csr {
      self
   }
 
+#[doc="Overrun flag of ADC 1"]
   #[inline] pub fn ovr1(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Overrun flag of ADC 1"]
   #[inline] pub fn set_ovr1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -184,9 +224,11 @@ impl Csr {
      self
   }
 
+#[doc="Regular channel Start flag of ADC 1"]
   #[inline] pub fn strt1(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Regular channel Start flag of ADC 1"]
   #[inline] pub fn set_strt1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -194,9 +236,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel Start flag of ADC 1"]
   #[inline] pub fn jstrt1(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Injected channel Start flag of ADC 1"]
   #[inline] pub fn set_jstrt1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -204,9 +248,11 @@ impl Csr {
      self
   }
 
+#[doc="Injected channel end of conversion of ADC 1"]
   #[inline] pub fn jeoc1(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Injected channel end of conversion of ADC 1"]
   #[inline] pub fn set_jeoc1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -214,9 +260,11 @@ impl Csr {
      self
   }
 
+#[doc="End of conversion of ADC 1"]
   #[inline] pub fn eoc1(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="End of conversion of ADC 1"]
   #[inline] pub fn set_eoc1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -224,9 +272,11 @@ impl Csr {
      self
   }
 
+#[doc="Analog watchdog flag of ADC 1"]
   #[inline] pub fn awd1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Analog watchdog flag of ADC 1"]
   #[inline] pub fn set_awd1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -265,12 +315,15 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
+#[doc="ADC common control register"]
 #[derive(PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
+#[doc="Temperature sensor and VREFINT enable"]
   #[inline] pub fn tsvrefe(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="Temperature sensor and VREFINT enable"]
   #[inline] pub fn set_tsvrefe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -278,9 +331,11 @@ impl Ccr {
      self
   }
 
+#[doc="VBAT enable"]
   #[inline] pub fn vbate(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="VBAT enable"]
   #[inline] pub fn set_vbate(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -288,9 +343,11 @@ impl Ccr {
      self
   }
 
+#[doc="ADC prescaler"]
   #[inline] pub fn adcpre(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x3 // [17:16]
   }
+#[doc="ADC prescaler"]
   #[inline] pub fn set_adcpre(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
@@ -298,9 +355,11 @@ impl Ccr {
      self
   }
 
+#[doc="Direct memory access mode for multi ADC mode"]
   #[inline] pub fn dma(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x3 // [15:14]
   }
+#[doc="Direct memory access mode for multi ADC mode"]
   #[inline] pub fn set_dma(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 14);
@@ -308,9 +367,11 @@ impl Ccr {
      self
   }
 
+#[doc="DMA disable selection for multi-ADC mode"]
   #[inline] pub fn dds(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="DMA disable selection for multi-ADC mode"]
   #[inline] pub fn set_dds(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -318,9 +379,11 @@ impl Ccr {
      self
   }
 
+#[doc="Delay between 2 sampling phases"]
   #[inline] pub fn delay(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0xf // [11:8]
   }
+#[doc="Delay between 2 sampling phases"]
   #[inline] pub fn set_delay(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
@@ -328,9 +391,11 @@ impl Ccr {
      self
   }
 
+#[doc="Multi ADC mode selection"]
   #[inline] pub fn mult(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="Multi ADC mode selection"]
   #[inline] pub fn set_mult(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -358,12 +423,15 @@ impl ::core::fmt::Debug for Ccr {
       Ok(())
    }
 }
+#[doc="ADC common regular data register for dual and triple modes"]
 #[derive(PartialEq, Eq)]
 pub struct Cdr(pub u32);
 impl Cdr {
+#[doc="2nd data item of a pair of regular conversions"]
   #[inline] pub fn data2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+#[doc="2nd data item of a pair of regular conversions"]
   #[inline] pub fn set_data2(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -371,9 +439,11 @@ impl Cdr {
      self
   }
 
+#[doc="1st data item of a pair of regular conversions"]
   #[inline] pub fn data1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="1st data item of a pair of regular conversions"]
   #[inline] pub fn set_data1(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);

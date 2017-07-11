@@ -1,270 +1,334 @@
+//! Ethernet: DMA controller operation
 pub const ETHERNET_DMA: EthernetDma = EthernetDma(0x40029000);
 
+#[doc="Ethernet: DMA controller operation"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct EthernetDma(pub u32);
 impl EthernetDma {
+#[doc="Get the *const pointer for the DMABMR register."]
   #[inline] pub fn dmabmr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the DMABMR register."]
   #[inline] pub fn dmabmr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the DMABMR register."]
   #[inline] pub fn dmabmr(&self) -> Dmabmr { 
      unsafe {
         Dmabmr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the DMABMR register."]
   #[inline] pub fn set_dmabmr(&self, value: Dmabmr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMABMR register."]
   #[inline] pub fn with_dmabmr<F: FnOnce(Dmabmr) -> Dmabmr>(&self, f: F) -> &Self {
      let tmp = self.dmabmr();
      self.set_dmabmr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMATPDR register."]
   #[inline] pub fn dmatpdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the DMATPDR register."]
   #[inline] pub fn dmatpdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the DMATPDR register."]
   #[inline] pub fn dmatpdr(&self) -> Dmatpdr { 
      unsafe {
         Dmatpdr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the DMATPDR register."]
   #[inline] pub fn set_dmatpdr(&self, value: Dmatpdr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMATPDR register."]
   #[inline] pub fn with_dmatpdr<F: FnOnce(Dmatpdr) -> Dmatpdr>(&self, f: F) -> &Self {
      let tmp = self.dmatpdr();
      self.set_dmatpdr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMARPDR register."]
   #[inline] pub fn dmarpdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the DMARPDR register."]
   #[inline] pub fn dmarpdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the DMARPDR register."]
   #[inline] pub fn dmarpdr(&self) -> Dmarpdr { 
      unsafe {
         Dmarpdr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the DMARPDR register."]
   #[inline] pub fn set_dmarpdr(&self, value: Dmarpdr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMARPDR register."]
   #[inline] pub fn with_dmarpdr<F: FnOnce(Dmarpdr) -> Dmarpdr>(&self, f: F) -> &Self {
      let tmp = self.dmarpdr();
      self.set_dmarpdr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMARDLAR register."]
   #[inline] pub fn dmardlar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the DMARDLAR register."]
   #[inline] pub fn dmardlar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the DMARDLAR register."]
   #[inline] pub fn dmardlar(&self) -> Dmardlar { 
      unsafe {
         Dmardlar(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the DMARDLAR register."]
   #[inline] pub fn set_dmardlar(&self, value: Dmardlar) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMARDLAR register."]
   #[inline] pub fn with_dmardlar<F: FnOnce(Dmardlar) -> Dmardlar>(&self, f: F) -> &Self {
      let tmp = self.dmardlar();
      self.set_dmardlar(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMATDLAR register."]
   #[inline] pub fn dmatdlar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the DMATDLAR register."]
   #[inline] pub fn dmatdlar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the DMATDLAR register."]
   #[inline] pub fn dmatdlar(&self) -> Dmatdlar { 
      unsafe {
         Dmatdlar(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the DMATDLAR register."]
   #[inline] pub fn set_dmatdlar(&self, value: Dmatdlar) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMATDLAR register."]
   #[inline] pub fn with_dmatdlar<F: FnOnce(Dmatdlar) -> Dmatdlar>(&self, f: F) -> &Self {
      let tmp = self.dmatdlar();
      self.set_dmatdlar(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMASR register."]
   #[inline] pub fn dmasr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the DMASR register."]
   #[inline] pub fn dmasr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the DMASR register."]
   #[inline] pub fn dmasr(&self) -> Dmasr { 
      unsafe {
         Dmasr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the DMASR register."]
   #[inline] pub fn set_dmasr(&self, value: Dmasr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMASR register."]
   #[inline] pub fn with_dmasr<F: FnOnce(Dmasr) -> Dmasr>(&self, f: F) -> &Self {
      let tmp = self.dmasr();
      self.set_dmasr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMAOMR register."]
   #[inline] pub fn dmaomr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the DMAOMR register."]
   #[inline] pub fn dmaomr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the DMAOMR register."]
   #[inline] pub fn dmaomr(&self) -> Dmaomr { 
      unsafe {
         Dmaomr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the DMAOMR register."]
   #[inline] pub fn set_dmaomr(&self, value: Dmaomr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMAOMR register."]
   #[inline] pub fn with_dmaomr<F: FnOnce(Dmaomr) -> Dmaomr>(&self, f: F) -> &Self {
      let tmp = self.dmaomr();
      self.set_dmaomr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMAIER register."]
   #[inline] pub fn dmaier_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the DMAIER register."]
   #[inline] pub fn dmaier_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the DMAIER register."]
   #[inline] pub fn dmaier(&self) -> Dmaier { 
      unsafe {
         Dmaier(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
      }
   }
+#[doc="Write the DMAIER register."]
   #[inline] pub fn set_dmaier(&self, value: Dmaier) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMAIER register."]
   #[inline] pub fn with_dmaier<F: FnOnce(Dmaier) -> Dmaier>(&self, f: F) -> &Self {
      let tmp = self.dmaier();
      self.set_dmaier(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMAMFBOCR register."]
   #[inline] pub fn dmamfbocr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the DMAMFBOCR register."]
   #[inline] pub fn dmamfbocr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the DMAMFBOCR register."]
   #[inline] pub fn dmamfbocr(&self) -> Dmamfbocr { 
      unsafe {
         Dmamfbocr(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the DMAMFBOCR register."]
   #[inline] pub fn set_dmamfbocr(&self, value: Dmamfbocr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMAMFBOCR register."]
   #[inline] pub fn with_dmamfbocr<F: FnOnce(Dmamfbocr) -> Dmamfbocr>(&self, f: F) -> &Self {
      let tmp = self.dmamfbocr();
      self.set_dmamfbocr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMARSWTR register."]
   #[inline] pub fn dmarswtr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
+#[doc="Get the *mut pointer for the DMARSWTR register."]
   #[inline] pub fn dmarswtr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
+#[doc="Read the DMARSWTR register."]
   #[inline] pub fn dmarswtr(&self) -> Dmarswtr { 
      unsafe {
         Dmarswtr(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
      }
   }
+#[doc="Write the DMARSWTR register."]
   #[inline] pub fn set_dmarswtr(&self, value: Dmarswtr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DMARSWTR register."]
   #[inline] pub fn with_dmarswtr<F: FnOnce(Dmarswtr) -> Dmarswtr>(&self, f: F) -> &Self {
      let tmp = self.dmarswtr();
      self.set_dmarswtr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DMACHTDR register."]
   #[inline] pub fn dmachtdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x48) as *const u32
   }
+#[doc="Get the *mut pointer for the DMACHTDR register."]
   #[inline] pub fn dmachtdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x48) as *mut u32
   }
+#[doc="Read the DMACHTDR register."]
   #[inline] pub fn dmachtdr(&self) -> Dmachtdr { 
      unsafe {
         Dmachtdr(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the DMACHRDR register."]
   #[inline] pub fn dmachrdr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
+#[doc="Get the *mut pointer for the DMACHRDR register."]
   #[inline] pub fn dmachrdr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
+#[doc="Read the DMACHRDR register."]
   #[inline] pub fn dmachrdr(&self) -> Dmachrdr { 
      unsafe {
         Dmachrdr(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the DMACHTBAR register."]
   #[inline] pub fn dmachtbar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x50) as *const u32
   }
+#[doc="Get the *mut pointer for the DMACHTBAR register."]
   #[inline] pub fn dmachtbar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x50) as *mut u32
   }
+#[doc="Read the DMACHTBAR register."]
   #[inline] pub fn dmachtbar(&self) -> Dmachtbar { 
      unsafe {
         Dmachtbar(::core::ptr::read_volatile(((self.0 as usize) + 0x50) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the DMACHRBAR register."]
   #[inline] pub fn dmachrbar_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x54) as *const u32
   }
+#[doc="Get the *mut pointer for the DMACHRBAR register."]
   #[inline] pub fn dmachrbar_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x54) as *mut u32
   }
+#[doc="Read the DMACHRBAR register."]
   #[inline] pub fn dmachrbar(&self) -> Dmachrbar { 
      unsafe {
         Dmachrbar(::core::ptr::read_volatile(((self.0 as usize) + 0x54) as *const u32))
@@ -273,12 +337,15 @@ impl EthernetDma {
 
 }
 
+#[doc="Ethernet DMA bus mode register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmabmr(pub u32);
 impl Dmabmr {
+#[doc="no description available"]
   #[inline] pub fn sr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_sr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -286,9 +353,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn da(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="no description available"]
   #[inline] pub fn set_da(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -296,9 +365,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn dsl(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1f // [6:2]
   }
+#[doc="no description available"]
   #[inline] pub fn set_dsl(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 2);
@@ -306,9 +377,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn edfe(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="no description available"]
   #[inline] pub fn set_edfe(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -316,9 +389,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn pbl(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x3f // [13:8]
   }
+#[doc="no description available"]
   #[inline] pub fn set_pbl(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 8);
@@ -326,9 +401,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rtpr(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x3 // [15:14]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rtpr(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 14);
@@ -336,9 +413,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn fb(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="no description available"]
   #[inline] pub fn set_fb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -346,9 +425,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rdp(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x3f // [22:17]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rdp(mut self, value: u32) -> Self {
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 17);
@@ -356,9 +437,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn usp(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="no description available"]
   #[inline] pub fn set_usp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -366,9 +449,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn fpm(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="no description available"]
   #[inline] pub fn set_fpm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -376,9 +461,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn aab(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+#[doc="no description available"]
   #[inline] pub fn set_aab(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -386,9 +473,11 @@ impl Dmabmr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn mb(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+#[doc="no description available"]
   #[inline] pub fn set_mb(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -421,12 +510,15 @@ impl ::core::fmt::Debug for Dmabmr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA transmit poll demand register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmatpdr(pub u32);
 impl Dmatpdr {
+#[doc="no description available"]
   #[inline] pub fn tpd(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tpd(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -447,12 +539,15 @@ impl ::core::fmt::Debug for Dmatpdr {
       Ok(())
    }
 }
+#[doc="EHERNET DMA receive poll demand register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmarpdr(pub u32);
 impl Dmarpdr {
+#[doc="RPD"]
   #[inline] pub fn rpd(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="RPD"]
   #[inline] pub fn set_rpd(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -473,12 +568,15 @@ impl ::core::fmt::Debug for Dmarpdr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA receive descriptor list address register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmardlar(pub u32);
 impl Dmardlar {
+#[doc="no description available"]
   #[inline] pub fn srl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_srl(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -499,12 +597,15 @@ impl ::core::fmt::Debug for Dmardlar {
       Ok(())
    }
 }
+#[doc="Ethernet DMA transmit descriptor list address register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmatdlar(pub u32);
 impl Dmatdlar {
+#[doc="no description available"]
   #[inline] pub fn stl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_stl(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -525,12 +626,15 @@ impl ::core::fmt::Debug for Dmatdlar {
       Ok(())
    }
 }
+#[doc="Ethernet DMA status register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmasr(pub u32);
 impl Dmasr {
+#[doc="no description available"]
   #[inline] pub fn ts(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -538,9 +642,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tpss(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tpss(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -548,9 +654,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tbus(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tbus(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -558,9 +666,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tjts(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tjts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -568,9 +678,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ros(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ros(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -578,9 +690,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tus(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tus(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -588,9 +702,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rs(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -598,9 +714,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rbus(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rbus(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -608,9 +726,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rpss(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rpss(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -618,9 +738,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn pwts(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="no description available"]
   #[inline] pub fn set_pwts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -628,9 +750,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ets(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ets(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -638,9 +762,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn fbes(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="no description available"]
   #[inline] pub fn set_fbes(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -648,9 +774,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ers(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ers(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -658,9 +786,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ais(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ais(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -668,9 +798,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn nis(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="no description available"]
   #[inline] pub fn set_nis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -678,9 +810,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rps(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x7 // [19:17]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rps(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 17);
@@ -688,9 +822,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tps(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x7 // [22:20]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tps(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 20);
@@ -698,9 +834,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ebs(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x7 // [25:23]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ebs(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 23);
@@ -708,9 +846,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn mmcs(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x1 // [27]
   }
+#[doc="no description available"]
   #[inline] pub fn set_mmcs(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
@@ -718,9 +858,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn pmts(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+#[doc="no description available"]
   #[inline] pub fn set_pmts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -728,9 +870,11 @@ impl Dmasr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tsts(&self) -> u32 {
      ((self.0 as u32) >> 29) & 0x1 // [29]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tsts(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
@@ -772,12 +916,15 @@ impl ::core::fmt::Debug for Dmasr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA operation mode register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmaomr(pub u32);
 impl Dmaomr {
+#[doc="SR"]
   #[inline] pub fn sr(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="SR"]
   #[inline] pub fn set_sr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -785,9 +932,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="OSF"]
   #[inline] pub fn osf(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="OSF"]
   #[inline] pub fn set_osf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -795,9 +944,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="RTC"]
   #[inline] pub fn rtc(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x3 // [4:3]
   }
+#[doc="RTC"]
   #[inline] pub fn set_rtc(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
@@ -805,9 +956,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="FUGF"]
   #[inline] pub fn fugf(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="FUGF"]
   #[inline] pub fn set_fugf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -815,9 +968,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="FEF"]
   #[inline] pub fn fef(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="FEF"]
   #[inline] pub fn set_fef(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -825,9 +980,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="ST"]
   #[inline] pub fn st(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="ST"]
   #[inline] pub fn set_st(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -835,9 +992,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="TTC"]
   #[inline] pub fn ttc(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x7 // [16:14]
   }
+#[doc="TTC"]
   #[inline] pub fn set_ttc(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 14);
@@ -845,9 +1004,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="FTF"]
   #[inline] pub fn ftf(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="FTF"]
   #[inline] pub fn set_ftf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -855,9 +1016,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="TSF"]
   #[inline] pub fn tsf(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="TSF"]
   #[inline] pub fn set_tsf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -865,9 +1028,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="DFRF"]
   #[inline] pub fn dfrf(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="DFRF"]
   #[inline] pub fn set_dfrf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -875,9 +1040,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="RSF"]
   #[inline] pub fn rsf(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+#[doc="RSF"]
   #[inline] pub fn set_rsf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -885,9 +1052,11 @@ impl Dmaomr {
      self
   }
 
+#[doc="DTCEFD"]
   #[inline] pub fn dtcefd(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+#[doc="DTCEFD"]
   #[inline] pub fn set_dtcefd(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -920,12 +1089,15 @@ impl ::core::fmt::Debug for Dmaomr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA interrupt enable register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmaier(pub u32);
 impl Dmaier {
+#[doc="no description available"]
   #[inline] pub fn tie(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -933,9 +1105,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tpsie(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tpsie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -943,9 +1117,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tbuie(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tbuie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -953,9 +1129,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tjtie(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tjtie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -963,9 +1141,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn roie(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="no description available"]
   #[inline] pub fn set_roie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -973,9 +1153,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn tuie(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="no description available"]
   #[inline] pub fn set_tuie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -983,9 +1165,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rie(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -993,9 +1177,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rbuie(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rbuie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -1003,9 +1189,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rpsie(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rpsie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -1013,9 +1201,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn rwtie(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="no description available"]
   #[inline] pub fn set_rwtie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -1023,9 +1213,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn etie(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="no description available"]
   #[inline] pub fn set_etie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -1033,9 +1225,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn fbeie(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="no description available"]
   #[inline] pub fn set_fbeie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -1043,9 +1237,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn erie(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="no description available"]
   #[inline] pub fn set_erie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1053,9 +1249,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn aise(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="no description available"]
   #[inline] pub fn set_aise(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1063,9 +1261,11 @@ impl Dmaier {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn nise(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="no description available"]
   #[inline] pub fn set_nise(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1101,12 +1301,15 @@ impl ::core::fmt::Debug for Dmaier {
       Ok(())
    }
 }
+#[doc="Ethernet DMA missed frame and buffer overflow counter register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmamfbocr(pub u32);
 impl Dmamfbocr {
+#[doc="no description available"]
   #[inline] pub fn mfc(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_mfc(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -1114,9 +1317,11 @@ impl Dmamfbocr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn omfc(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="no description available"]
   #[inline] pub fn set_omfc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1124,9 +1329,11 @@ impl Dmamfbocr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn mfa(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x7ff // [27:17]
   }
+#[doc="no description available"]
   #[inline] pub fn set_mfa(mut self, value: u32) -> Self {
      assert!((value & !0x7ff) == 0);
      self.0 &= !(0x7ff << 17);
@@ -1134,9 +1341,11 @@ impl Dmamfbocr {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn ofoc(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x1 // [28]
   }
+#[doc="no description available"]
   #[inline] pub fn set_ofoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
@@ -1161,12 +1370,15 @@ impl ::core::fmt::Debug for Dmamfbocr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA receive status watchdog timer register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmarswtr(pub u32);
 impl Dmarswtr {
+#[doc="RSWTC"]
   #[inline] pub fn rswtc(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="RSWTC"]
   #[inline] pub fn set_rswtc(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1188,12 +1400,15 @@ impl ::core::fmt::Debug for Dmarswtr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA current host transmit descriptor register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmachtdr(pub u32);
 impl Dmachtdr {
+#[doc="HTDAP"]
   #[inline] pub fn htdap(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="HTDAP"]
   #[inline] pub fn set_htdap(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1214,12 +1429,15 @@ impl ::core::fmt::Debug for Dmachtdr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA current host receive descriptor register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmachrdr(pub u32);
 impl Dmachrdr {
+#[doc="HRDAP"]
   #[inline] pub fn hrdap(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="HRDAP"]
   #[inline] pub fn set_hrdap(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1240,12 +1458,15 @@ impl ::core::fmt::Debug for Dmachrdr {
       Ok(())
    }
 }
+#[doc="Ethernet DMA current host transmit buffer address register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmachtbar(pub u32);
 impl Dmachtbar {
+#[doc="no description available"]
   #[inline] pub fn htbap(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_htbap(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
@@ -1266,12 +1487,15 @@ impl ::core::fmt::Debug for Dmachtbar {
       Ok(())
    }
 }
+#[doc="Ethernet DMA current host receive buffer address register"]
 #[derive(PartialEq, Eq)]
 pub struct Dmachrbar(pub u32);
 impl Dmachrbar {
+#[doc="no description available"]
   #[inline] pub fn hrbap(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_hrbap(mut self, value: u32) -> Self {
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);

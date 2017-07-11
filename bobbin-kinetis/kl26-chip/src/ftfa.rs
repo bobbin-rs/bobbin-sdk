@@ -1,170 +1,214 @@
+//! Flash configuration field
 pub const FTFA: Ftfa = Ftfa(0x00000400);
 
+#[doc="Flash configuration field"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftfa(pub u32);
 impl Ftfa {
+#[doc="Get the *const pointer for the BACKKEY3 register."]
   #[inline] pub fn backkey3_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY3 register."]
   #[inline] pub fn backkey3_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x0) as *mut u8
   }
+#[doc="Read the BACKKEY3 register."]
   #[inline] pub fn backkey3(&self) -> Backkey3 { 
      unsafe {
         Backkey3(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY2 register."]
   #[inline] pub fn backkey2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x1) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY2 register."]
   #[inline] pub fn backkey2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x1) as *mut u8
   }
+#[doc="Read the BACKKEY2 register."]
   #[inline] pub fn backkey2(&self) -> Backkey2 { 
      unsafe {
         Backkey2(::core::ptr::read_volatile(((self.0 as usize) + 0x1) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY1 register."]
   #[inline] pub fn backkey1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x2) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY1 register."]
   #[inline] pub fn backkey1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x2) as *mut u8
   }
+#[doc="Read the BACKKEY1 register."]
   #[inline] pub fn backkey1(&self) -> Backkey1 { 
      unsafe {
         Backkey1(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY0 register."]
   #[inline] pub fn backkey0_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x3) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY0 register."]
   #[inline] pub fn backkey0_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x3) as *mut u8
   }
+#[doc="Read the BACKKEY0 register."]
   #[inline] pub fn backkey0(&self) -> Backkey0 { 
      unsafe {
         Backkey0(::core::ptr::read_volatile(((self.0 as usize) + 0x3) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY7 register."]
   #[inline] pub fn backkey7_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x4) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY7 register."]
   #[inline] pub fn backkey7_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x4) as *mut u8
   }
+#[doc="Read the BACKKEY7 register."]
   #[inline] pub fn backkey7(&self) -> Backkey7 { 
      unsafe {
         Backkey7(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY6 register."]
   #[inline] pub fn backkey6_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x5) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY6 register."]
   #[inline] pub fn backkey6_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x5) as *mut u8
   }
+#[doc="Read the BACKKEY6 register."]
   #[inline] pub fn backkey6(&self) -> Backkey6 { 
      unsafe {
         Backkey6(::core::ptr::read_volatile(((self.0 as usize) + 0x5) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY5 register."]
   #[inline] pub fn backkey5_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x6) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY5 register."]
   #[inline] pub fn backkey5_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x6) as *mut u8
   }
+#[doc="Read the BACKKEY5 register."]
   #[inline] pub fn backkey5(&self) -> Backkey5 { 
      unsafe {
         Backkey5(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the BACKKEY4 register."]
   #[inline] pub fn backkey4_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x7) as *const u8
   }
+#[doc="Get the *mut pointer for the BACKKEY4 register."]
   #[inline] pub fn backkey4_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x7) as *mut u8
   }
+#[doc="Read the BACKKEY4 register."]
   #[inline] pub fn backkey4(&self) -> Backkey4 { 
      unsafe {
         Backkey4(::core::ptr::read_volatile(((self.0 as usize) + 0x7) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FPROT3 register."]
   #[inline] pub fn fprot3_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x8) as *const u8
   }
+#[doc="Get the *mut pointer for the FPROT3 register."]
   #[inline] pub fn fprot3_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x8) as *mut u8
   }
+#[doc="Read the FPROT3 register."]
   #[inline] pub fn fprot3(&self) -> Fprot3 { 
      unsafe {
         Fprot3(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FPROT2 register."]
   #[inline] pub fn fprot2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x9) as *const u8
   }
+#[doc="Get the *mut pointer for the FPROT2 register."]
   #[inline] pub fn fprot2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x9) as *mut u8
   }
+#[doc="Read the FPROT2 register."]
   #[inline] pub fn fprot2(&self) -> Fprot2 { 
      unsafe {
         Fprot2(::core::ptr::read_volatile(((self.0 as usize) + 0x9) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FPROT1 register."]
   #[inline] pub fn fprot1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xa) as *const u8
   }
+#[doc="Get the *mut pointer for the FPROT1 register."]
   #[inline] pub fn fprot1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xa) as *mut u8
   }
+#[doc="Read the FPROT1 register."]
   #[inline] pub fn fprot1(&self) -> Fprot1 { 
      unsafe {
         Fprot1(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FPROT0 register."]
   #[inline] pub fn fprot0_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xb) as *const u8
   }
+#[doc="Get the *mut pointer for the FPROT0 register."]
   #[inline] pub fn fprot0_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xb) as *mut u8
   }
+#[doc="Read the FPROT0 register."]
   #[inline] pub fn fprot0(&self) -> Fprot0 { 
      unsafe {
         Fprot0(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FSEC register."]
   #[inline] pub fn fsec_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xc) as *const u8
   }
+#[doc="Get the *mut pointer for the FSEC register."]
   #[inline] pub fn fsec_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xc) as *mut u8
   }
+#[doc="Read the FSEC register."]
   #[inline] pub fn fsec(&self) -> Fsec { 
      unsafe {
         Fsec(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the FOPT register."]
   #[inline] pub fn fopt_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xd) as *const u8
   }
+#[doc="Get the *mut pointer for the FOPT register."]
   #[inline] pub fn fopt_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xd) as *mut u8
   }
+#[doc="Read the FOPT register."]
   #[inline] pub fn fopt(&self) -> Fopt { 
      unsafe {
         Fopt(::core::ptr::read_volatile(((self.0 as usize) + 0xd) as *const u8))
@@ -173,12 +217,15 @@ impl Ftfa {
 
 }
 
+#[doc="Backdoor Comparison Key 3."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey3(pub u8);
 impl Backkey3 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -200,12 +247,15 @@ impl ::core::fmt::Debug for Backkey3 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 2."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey2(pub u8);
 impl Backkey2 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -227,12 +277,15 @@ impl ::core::fmt::Debug for Backkey2 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 1."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey1(pub u8);
 impl Backkey1 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -254,12 +307,15 @@ impl ::core::fmt::Debug for Backkey1 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 0."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey0(pub u8);
 impl Backkey0 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -281,12 +337,15 @@ impl ::core::fmt::Debug for Backkey0 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 7."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey7(pub u8);
 impl Backkey7 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -308,12 +367,15 @@ impl ::core::fmt::Debug for Backkey7 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 6."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey6(pub u8);
 impl Backkey6 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -335,12 +397,15 @@ impl ::core::fmt::Debug for Backkey6 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 5."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey5(pub u8);
 impl Backkey5 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -362,12 +427,15 @@ impl ::core::fmt::Debug for Backkey5 {
       Ok(())
    }
 }
+#[doc="Backdoor Comparison Key 4."]
 #[derive(PartialEq, Eq)]
 pub struct Backkey4(pub u8);
 impl Backkey4 {
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn key(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Backdoor Comparison Key."]
   #[inline] pub fn set_key(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -389,12 +457,15 @@ impl ::core::fmt::Debug for Backkey4 {
       Ok(())
    }
 }
+#[doc="Non-volatile P-Flash Protection 1 - Low Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fprot3(pub u8);
 impl Fprot3 {
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn prot(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn set_prot(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -416,12 +487,15 @@ impl ::core::fmt::Debug for Fprot3 {
       Ok(())
    }
 }
+#[doc="Non-volatile P-Flash Protection 1 - High Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fprot2(pub u8);
 impl Fprot2 {
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn prot(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn set_prot(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -443,12 +517,15 @@ impl ::core::fmt::Debug for Fprot2 {
       Ok(())
    }
 }
+#[doc="Non-volatile P-Flash Protection 0 - Low Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fprot1(pub u8);
 impl Fprot1 {
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn prot(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn set_prot(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -470,12 +547,15 @@ impl ::core::fmt::Debug for Fprot1 {
       Ok(())
    }
 }
+#[doc="Non-volatile P-Flash Protection 0 - High Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fprot0(pub u8);
 impl Fprot0 {
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn prot(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="P-Flash Region Protect"]
   #[inline] pub fn set_prot(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -497,12 +577,15 @@ impl ::core::fmt::Debug for Fprot0 {
       Ok(())
    }
 }
+#[doc="Non-volatile Flash Security Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fsec(pub u8);
 impl Fsec {
+#[doc="Flash Security"]
   #[inline] pub fn sec(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x3 // [1:0]
   }
+#[doc="Flash Security"]
   #[inline] pub fn set_sec(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
@@ -510,9 +593,11 @@ impl Fsec {
      self
   }
 
+#[doc="Freescale Failure Analysis Access Code"]
   #[inline] pub fn fslacc(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x3 // [3:2]
   }
+#[doc="Freescale Failure Analysis Access Code"]
   #[inline] pub fn set_fslacc(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -520,9 +605,11 @@ impl Fsec {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn meen(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x3 // [5:4]
   }
+#[doc="no description available"]
   #[inline] pub fn set_meen(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
@@ -530,9 +617,11 @@ impl Fsec {
      self
   }
 
+#[doc="Backdoor Key Security Enable"]
   #[inline] pub fn keyen(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x3 // [7:6]
   }
+#[doc="Backdoor Key Security Enable"]
   #[inline] pub fn set_keyen(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -557,12 +646,15 @@ impl ::core::fmt::Debug for Fsec {
       Ok(())
    }
 }
+#[doc="Non-volatile Flash Option Register"]
 #[derive(PartialEq, Eq)]
 pub struct Fopt(pub u8);
 impl Fopt {
+#[doc="no description available"]
   #[inline] pub fn lpboot0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="no description available"]
   #[inline] pub fn set_lpboot0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -570,9 +662,11 @@ impl Fopt {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn nmi_dis(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="no description available"]
   #[inline] pub fn set_nmi_dis(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -580,9 +674,11 @@ impl Fopt {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn reset_pin_cfg(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="no description available"]
   #[inline] pub fn set_reset_pin_cfg(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -590,9 +686,11 @@ impl Fopt {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn lpboot1(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="no description available"]
   #[inline] pub fn set_lpboot1(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -600,9 +698,11 @@ impl Fopt {
      self
   }
 
+#[doc="no description available"]
   #[inline] pub fn fast_init(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="no description available"]
   #[inline] pub fn set_fast_init(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);

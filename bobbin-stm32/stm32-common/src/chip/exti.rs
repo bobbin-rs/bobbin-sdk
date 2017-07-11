@@ -1,137 +1,168 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="EXTI Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the IMR register."]
   #[inline] pub fn imr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the IMR register."]
   #[inline] pub fn imr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the IMR register."]
   #[inline] pub fn imr(&self) -> Imr { 
      unsafe {
         Imr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the IMR register."]
   #[inline] pub fn set_imr(&self, value: Imr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the IMR register."]
   #[inline] pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Self {
      let tmp = self.imr();
      self.set_imr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the EMR register."]
   #[inline] pub fn emr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the EMR register."]
   #[inline] pub fn emr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the EMR register."]
   #[inline] pub fn emr(&self) -> Emr { 
      unsafe {
         Emr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the EMR register."]
   #[inline] pub fn set_emr(&self, value: Emr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the EMR register."]
   #[inline] pub fn with_emr<F: FnOnce(Emr) -> Emr>(&self, f: F) -> &Self {
      let tmp = self.emr();
      self.set_emr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RTSR register."]
   #[inline] pub fn rtsr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the RTSR register."]
   #[inline] pub fn rtsr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the RTSR register."]
   #[inline] pub fn rtsr(&self) -> Rtsr { 
      unsafe {
         Rtsr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the RTSR register."]
   #[inline] pub fn set_rtsr(&self, value: Rtsr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RTSR register."]
   #[inline] pub fn with_rtsr<F: FnOnce(Rtsr) -> Rtsr>(&self, f: F) -> &Self {
      let tmp = self.rtsr();
      self.set_rtsr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the FTSR register."]
   #[inline] pub fn ftsr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the FTSR register."]
   #[inline] pub fn ftsr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the FTSR register."]
   #[inline] pub fn ftsr(&self) -> Ftsr { 
      unsafe {
         Ftsr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the FTSR register."]
   #[inline] pub fn set_ftsr(&self, value: Ftsr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the FTSR register."]
   #[inline] pub fn with_ftsr<F: FnOnce(Ftsr) -> Ftsr>(&self, f: F) -> &Self {
      let tmp = self.ftsr();
      self.set_ftsr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SWIER register."]
   #[inline] pub fn swier_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the SWIER register."]
   #[inline] pub fn swier_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the SWIER register."]
   #[inline] pub fn swier(&self) -> Swier { 
      unsafe {
         Swier(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the SWIER register."]
   #[inline] pub fn set_swier(&self, value: Swier) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SWIER register."]
   #[inline] pub fn with_swier<F: FnOnce(Swier) -> Swier>(&self, f: F) -> &Self {
      let tmp = self.swier();
      self.set_swier(f(tmp))
   }
 
+#[doc="Get the *const pointer for the PR register."]
   #[inline] pub fn pr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the PR register."]
   #[inline] pub fn pr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the PR register."]
   #[inline] pub fn pr(&self) -> Pr { 
      unsafe {
         Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the PR register."]
   #[inline] pub fn set_pr(&self, value: Pr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PR register."]
   #[inline] pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
      let tmp = self.pr();
      self.set_pr(f(tmp))
@@ -139,14 +170,17 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Interrupt mask register (EXTI_IMR)"]
 #[derive(PartialEq, Eq)]
 pub struct Imr(pub u32);
 impl Imr {
+#[doc="Interrupt Mask on line n = 0..32"]
   #[inline] pub fn mr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Interrupt Mask on line n = 0..32"]
   #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -201,14 +235,17 @@ impl ::core::fmt::Debug for Imr {
       Ok(())
    }
 }
+#[doc="Event mask register (EXTI_EMR)"]
 #[derive(PartialEq, Eq)]
 pub struct Emr(pub u32);
 impl Emr {
+#[doc="Event Mask on line n = 0..32"]
   #[inline] pub fn mr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Event Mask on line n = 0..32"]
   #[inline] pub fn set_mr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -263,14 +300,17 @@ impl ::core::fmt::Debug for Emr {
       Ok(())
    }
 }
+#[doc="Rising Trigger selection register (EXTI_RTSR)"]
 #[derive(PartialEq, Eq)]
 pub struct Rtsr(pub u32);
 impl Rtsr {
+#[doc="Rising trigger event configuration of line n = 0..32"]
   #[inline] pub fn tr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Rising trigger event configuration of line n = 0..32"]
   #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -325,14 +365,17 @@ impl ::core::fmt::Debug for Rtsr {
       Ok(())
    }
 }
+#[doc="Falling Trigger selection register (EXTI_FTSR)"]
 #[derive(PartialEq, Eq)]
 pub struct Ftsr(pub u32);
 impl Ftsr {
+#[doc="Falling trigger event configuration of line n = 0..32"]
   #[inline] pub fn tr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Falling trigger event configuration of line n = 0..32"]
   #[inline] pub fn set_tr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -387,14 +430,17 @@ impl ::core::fmt::Debug for Ftsr {
       Ok(())
    }
 }
+#[doc="Software interrupt event register (EXTI_SWIER)"]
 #[derive(PartialEq, Eq)]
 pub struct Swier(pub u32);
 impl Swier {
+#[doc="Software Interrupt on line n = 0..32"]
   #[inline] pub fn swi(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Software Interrupt on line n = 0..32"]
   #[inline] pub fn set_swi(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -449,14 +495,17 @@ impl ::core::fmt::Debug for Swier {
       Ok(())
    }
 }
+#[doc="Pending interrupt register (EXTI_PR)"]
 #[derive(PartialEq, Eq)]
 pub struct Pr(pub u32);
 impl Pr {
+#[doc="Pending Interrupt bit n = 0..32"]
   #[inline] pub fn pr(&self, index: usize) -> u32 {
      assert!(index < 32);
      let shift: usize = 0 + index;
      ((self.0 as u32) >> shift) & 0x1 // [0]
   }
+#[doc="Pending Interrupt bit n = 0..32"]
   #[inline] pub fn set_pr(mut self, index: usize, value: u32) -> Self {
      assert!(index < 32);
      assert!((value & !0x1) == 0);
@@ -512,6 +561,7 @@ impl ::core::fmt::Debug for Pr {
    }
 }
 #[derive(Clone, Copy, PartialEq)]
+#[doc="EXTI Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

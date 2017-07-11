@@ -1,28 +1,35 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="LPTIM Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the ISR register."]
   #[inline] pub fn isr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the ISR register."]
   #[inline] pub fn isr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the ISR register."]
   #[inline] pub fn isr(&self) -> Isr { 
      unsafe {
         Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the ICR register."]
   #[inline] pub fn icr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the ICR register."]
   #[inline] pub fn icr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Write the ICR register."]
   #[inline] pub fn set_icr(&self, value: Icr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
@@ -30,122 +37,150 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the IER register."]
   #[inline] pub fn ier_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the IER register."]
   #[inline] pub fn ier_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the IER register."]
   #[inline] pub fn ier(&self) -> Ier { 
      unsafe {
         Ier(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the IER register."]
   #[inline] pub fn set_ier(&self, value: Ier) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the IER register."]
   #[inline] pub fn with_ier<F: FnOnce(Ier) -> Ier>(&self, f: F) -> &Self {
      let tmp = self.ier();
      self.set_ier(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CFGR register."]
   #[inline] pub fn cfgr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the CFGR register."]
   #[inline] pub fn cfgr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the CFGR register."]
   #[inline] pub fn cfgr(&self) -> Cfgr { 
      unsafe {
         Cfgr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the CFGR register."]
   #[inline] pub fn set_cfgr(&self, value: Cfgr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CFGR register."]
   #[inline] pub fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
      let tmp = self.cfgr();
      self.set_cfgr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CR register."]
   #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the CR register."]
   #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the CR register."]
   #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
         Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the CR register."]
   #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CMP register."]
   #[inline] pub fn cmp_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the CMP register."]
   #[inline] pub fn cmp_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the CMP register."]
   #[inline] pub fn cmp(&self) -> Cmp { 
      unsafe {
         Cmp(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the CMP register."]
   #[inline] pub fn set_cmp(&self, value: Cmp) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CMP register."]
   #[inline] pub fn with_cmp<F: FnOnce(Cmp) -> Cmp>(&self, f: F) -> &Self {
      let tmp = self.cmp();
      self.set_cmp(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ARR register."]
   #[inline] pub fn arr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the ARR register."]
   #[inline] pub fn arr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the ARR register."]
   #[inline] pub fn arr(&self) -> Arr { 
      unsafe {
         Arr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the ARR register."]
   #[inline] pub fn set_arr(&self, value: Arr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ARR register."]
   #[inline] pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
      let tmp = self.arr();
      self.set_arr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CNT register."]
   #[inline] pub fn cnt_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x1c) as *const u32
   }
+#[doc="Get the *mut pointer for the CNT register."]
   #[inline] pub fn cnt_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x1c) as *mut u32
   }
+#[doc="Read the CNT register."]
   #[inline] pub fn cnt(&self) -> Cnt { 
      unsafe {
         Cnt(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
@@ -154,12 +189,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Interrupt and Status Register"]
 #[derive(PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
+#[doc="Counter direction change up to down"]
   #[inline] pub fn down(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Counter direction change up to down"]
   #[inline] pub fn set_down(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -167,9 +205,11 @@ impl Isr {
      self
   }
 
+#[doc="Counter direction change down to up"]
   #[inline] pub fn up(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Counter direction change down to up"]
   #[inline] pub fn set_up(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -177,9 +217,11 @@ impl Isr {
      self
   }
 
+#[doc="Autoreload register update OK"]
   #[inline] pub fn arrok(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Autoreload register update OK"]
   #[inline] pub fn set_arrok(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -187,9 +229,11 @@ impl Isr {
      self
   }
 
+#[doc="Compare register update OK"]
   #[inline] pub fn cmpok(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Compare register update OK"]
   #[inline] pub fn set_cmpok(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -197,9 +241,11 @@ impl Isr {
      self
   }
 
+#[doc="External trigger edge event"]
   #[inline] pub fn exttrig(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="External trigger edge event"]
   #[inline] pub fn set_exttrig(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -207,9 +253,11 @@ impl Isr {
      self
   }
 
+#[doc="Autoreload match"]
   #[inline] pub fn arrm(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Autoreload match"]
   #[inline] pub fn set_arrm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -217,9 +265,11 @@ impl Isr {
      self
   }
 
+#[doc="Compare match"]
   #[inline] pub fn cmpm(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Compare match"]
   #[inline] pub fn set_cmpm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -247,12 +297,15 @@ impl ::core::fmt::Debug for Isr {
       Ok(())
    }
 }
+#[doc="Interrupt Clear Register"]
 #[derive(PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
+#[doc="Direction change to down Clear Flag"]
   #[inline] pub fn downcf(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Direction change to down Clear Flag"]
   #[inline] pub fn set_downcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -260,9 +313,11 @@ impl Icr {
      self
   }
 
+#[doc="Direction change to UP Clear Flag"]
   #[inline] pub fn upcf(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Direction change to UP Clear Flag"]
   #[inline] pub fn set_upcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -270,9 +325,11 @@ impl Icr {
      self
   }
 
+#[doc="Autoreload register update OK Clear Flag"]
   #[inline] pub fn arrokcf(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Autoreload register update OK Clear Flag"]
   #[inline] pub fn set_arrokcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -280,9 +337,11 @@ impl Icr {
      self
   }
 
+#[doc="Compare register update OK Clear Flag"]
   #[inline] pub fn cmpokcf(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Compare register update OK Clear Flag"]
   #[inline] pub fn set_cmpokcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -290,9 +349,11 @@ impl Icr {
      self
   }
 
+#[doc="External trigger valid edge Clear Flag"]
   #[inline] pub fn exttrigcf(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="External trigger valid edge Clear Flag"]
   #[inline] pub fn set_exttrigcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -300,9 +361,11 @@ impl Icr {
      self
   }
 
+#[doc="Autoreload match Clear Flag"]
   #[inline] pub fn arrmcf(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Autoreload match Clear Flag"]
   #[inline] pub fn set_arrmcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -310,9 +373,11 @@ impl Icr {
      self
   }
 
+#[doc="compare match Clear Flag"]
   #[inline] pub fn cmpmcf(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="compare match Clear Flag"]
   #[inline] pub fn set_cmpmcf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -340,12 +405,15 @@ impl ::core::fmt::Debug for Icr {
       Ok(())
    }
 }
+#[doc="Interrupt Enable Register"]
 #[derive(PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
+#[doc="Direction change to down Interrupt Enable"]
   #[inline] pub fn downie(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="Direction change to down Interrupt Enable"]
   #[inline] pub fn set_downie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -353,9 +421,11 @@ impl Ier {
      self
   }
 
+#[doc="Direction change to UP Interrupt Enable"]
   #[inline] pub fn upie(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="Direction change to UP Interrupt Enable"]
   #[inline] pub fn set_upie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -363,9 +433,11 @@ impl Ier {
      self
   }
 
+#[doc="Autoreload register update OK Interrupt Enable"]
   #[inline] pub fn arrokie(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Autoreload register update OK Interrupt Enable"]
   #[inline] pub fn set_arrokie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -373,9 +445,11 @@ impl Ier {
      self
   }
 
+#[doc="Compare register update OK Interrupt Enable"]
   #[inline] pub fn cmpokie(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Compare register update OK Interrupt Enable"]
   #[inline] pub fn set_cmpokie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -383,9 +457,11 @@ impl Ier {
      self
   }
 
+#[doc="External trigger valid edge Interrupt Enable"]
   #[inline] pub fn exttrigie(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="External trigger valid edge Interrupt Enable"]
   #[inline] pub fn set_exttrigie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -393,9 +469,11 @@ impl Ier {
      self
   }
 
+#[doc="Autoreload match Interrupt Enable"]
   #[inline] pub fn arrmie(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Autoreload match Interrupt Enable"]
   #[inline] pub fn set_arrmie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -403,9 +481,11 @@ impl Ier {
      self
   }
 
+#[doc="Compare match Interrupt Enable"]
   #[inline] pub fn cmpmie(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Compare match Interrupt Enable"]
   #[inline] pub fn set_cmpmie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -433,12 +513,15 @@ impl ::core::fmt::Debug for Ier {
       Ok(())
    }
 }
+#[doc="Configuration Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
+#[doc="Encoder mode enable"]
   #[inline] pub fn enc(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="Encoder mode enable"]
   #[inline] pub fn set_enc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -446,9 +529,11 @@ impl Cfgr {
      self
   }
 
+#[doc="counter mode enabled"]
   #[inline] pub fn countmode(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="counter mode enabled"]
   #[inline] pub fn set_countmode(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -456,9 +541,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Registers update mode"]
   #[inline] pub fn preload(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="Registers update mode"]
   #[inline] pub fn set_preload(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -466,9 +553,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Waveform shape polarity"]
   #[inline] pub fn wavpol(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="Waveform shape polarity"]
   #[inline] pub fn set_wavpol(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -476,9 +565,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Waveform shape"]
   #[inline] pub fn wave(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="Waveform shape"]
   #[inline] pub fn set_wave(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -486,9 +577,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Timeout enable"]
   #[inline] pub fn timout(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+#[doc="Timeout enable"]
   #[inline] pub fn set_timout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -496,9 +589,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Trigger enable and polarity"]
   #[inline] pub fn trigen(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x3 // [18:17]
   }
+#[doc="Trigger enable and polarity"]
   #[inline] pub fn set_trigen(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 17);
@@ -506,9 +601,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Trigger selector"]
   #[inline] pub fn trigsel(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x7 // [15:13]
   }
+#[doc="Trigger selector"]
   #[inline] pub fn set_trigsel(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
@@ -516,9 +613,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Clock prescaler"]
   #[inline] pub fn presc(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x7 // [11:9]
   }
+#[doc="Clock prescaler"]
   #[inline] pub fn set_presc(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 9);
@@ -526,9 +625,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Configurable digital filter for trigger"]
   #[inline] pub fn trgflt(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+#[doc="Configurable digital filter for trigger"]
   #[inline] pub fn set_trgflt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -536,9 +637,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Configurable digital filter for external clock"]
   #[inline] pub fn ckflt(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x3 // [4:3]
   }
+#[doc="Configurable digital filter for external clock"]
   #[inline] pub fn set_ckflt(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
@@ -546,9 +649,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Clock Polarity"]
   #[inline] pub fn ckpol(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x3 // [2:1]
   }
+#[doc="Clock Polarity"]
   #[inline] pub fn set_ckpol(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 1);
@@ -556,9 +661,11 @@ impl Cfgr {
      self
   }
 
+#[doc="Clock selector"]
   #[inline] pub fn cksel(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Clock selector"]
   #[inline] pub fn set_cksel(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -592,12 +699,15 @@ impl ::core::fmt::Debug for Cfgr {
       Ok(())
    }
 }
+#[doc="Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+#[doc="Timer start in continuous mode"]
   #[inline] pub fn cntstrt(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Timer start in continuous mode"]
   #[inline] pub fn set_cntstrt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -605,9 +715,11 @@ impl Cr {
      self
   }
 
+#[doc="LPTIM start in single mode"]
   #[inline] pub fn sngstrt(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="LPTIM start in single mode"]
   #[inline] pub fn set_sngstrt(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -615,9 +727,11 @@ impl Cr {
      self
   }
 
+#[doc="LPTIM Enable"]
   #[inline] pub fn enable(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="LPTIM Enable"]
   #[inline] pub fn set_enable(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -641,12 +755,15 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+#[doc="Compare Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cmp(pub u32);
 impl Cmp {
+#[doc="Compare value."]
   #[inline] pub fn cmp(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Compare value."]
   #[inline] pub fn set_cmp(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -668,12 +785,15 @@ impl ::core::fmt::Debug for Cmp {
       Ok(())
    }
 }
+#[doc="Autoreload Register"]
 #[derive(PartialEq, Eq)]
 pub struct Arr(pub u32);
 impl Arr {
+#[doc="Auto reload value."]
   #[inline] pub fn arr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Auto reload value."]
   #[inline] pub fn set_arr(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -695,12 +815,15 @@ impl ::core::fmt::Debug for Arr {
       Ok(())
    }
 }
+#[doc="Counter Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
+#[doc="Counter value."]
   #[inline] pub fn cnt(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Counter value."]
   #[inline] pub fn set_cnt(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);

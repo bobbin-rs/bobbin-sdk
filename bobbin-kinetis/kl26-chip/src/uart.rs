@@ -4,9 +4,11 @@ pub const UART1: Uart1 = Periph(0x4006b000, Uart1Id {});
 pub const UART2: Uart2 = Periph(0x4006c000, Uart2Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart1Id {}
 pub type Uart1 = Periph<Uart1Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart2Id {}
 pub type Uart2 = Periph<Uart2Id>;
 

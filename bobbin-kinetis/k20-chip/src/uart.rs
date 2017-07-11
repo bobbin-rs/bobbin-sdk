@@ -8,21 +8,27 @@ pub const UART4: Uart4 = Periph(0x400ea000, Uart4Id {});
 pub const UART5: Uart5 = Periph(0x400eb000, Uart5Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart0Id {}
 pub type Uart0 = Periph<Uart0Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart1Id {}
 pub type Uart1 = Periph<Uart1Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart2Id {}
 pub type Uart2 = Periph<Uart2Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart3Id {}
 pub type Uart3 = Periph<Uart3Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart4Id {}
 pub type Uart4 = Periph<Uart4Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Uart5Id {}
 pub type Uart5 = Periph<Uart5Id>;
 

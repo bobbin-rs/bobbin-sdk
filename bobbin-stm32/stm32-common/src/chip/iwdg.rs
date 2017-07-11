@@ -1,16 +1,20 @@
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="IWDG Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the KR register."]
   #[inline] pub fn kr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the KR register."]
   #[inline] pub fn kr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Write the KR register."]
   #[inline] pub fn set_kr(&self, value: Kr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
@@ -18,79 +22,97 @@ impl<T> Periph<T> {
      self
   }
 
+#[doc="Get the *const pointer for the PR register."]
   #[inline] pub fn pr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the PR register."]
   #[inline] pub fn pr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the PR register."]
   #[inline] pub fn pr(&self) -> Pr { 
      unsafe {
         Pr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the PR register."]
   #[inline] pub fn set_pr(&self, value: Pr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the PR register."]
   #[inline] pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
      let tmp = self.pr();
      self.set_pr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the RLR register."]
   #[inline] pub fn rlr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the RLR register."]
   #[inline] pub fn rlr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the RLR register."]
   #[inline] pub fn rlr(&self) -> Rlr { 
      unsafe {
         Rlr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the RLR register."]
   #[inline] pub fn set_rlr(&self, value: Rlr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the RLR register."]
   #[inline] pub fn with_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Self {
      let tmp = self.rlr();
      self.set_rlr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SR register."]
   #[inline] pub fn sr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the SR register."]
   #[inline] pub fn sr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the SR register."]
   #[inline] pub fn sr(&self) -> Sr { 
      unsafe {
         Sr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the WINR register."]
   #[inline] pub fn winr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x10) as *const u32
   }
+#[doc="Get the *mut pointer for the WINR register."]
   #[inline] pub fn winr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x10) as *mut u32
   }
+#[doc="Read the WINR register."]
   #[inline] pub fn winr(&self) -> Winr { 
      unsafe {
         Winr(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
      }
   }
+#[doc="Write the WINR register."]
   #[inline] pub fn set_winr(&self, value: Winr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the WINR register."]
   #[inline] pub fn with_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Self {
      let tmp = self.winr();
      self.set_winr(f(tmp))
@@ -98,12 +120,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="Key register"]
 #[derive(PartialEq, Eq)]
 pub struct Kr(pub u32);
 impl Kr {
+#[doc="Key value (write only, read 0x0000)"]
   #[inline] pub fn key(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="Key value (write only, read 0x0000)"]
   #[inline] pub fn set_key(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -125,12 +150,15 @@ impl ::core::fmt::Debug for Kr {
       Ok(())
    }
 }
+#[doc="Prescaler register"]
 #[derive(PartialEq, Eq)]
 pub struct Pr(pub u32);
 impl Pr {
+#[doc="Prescaler divider"]
   #[inline] pub fn pr(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="Prescaler divider"]
   #[inline] pub fn set_pr(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -152,12 +180,15 @@ impl ::core::fmt::Debug for Pr {
       Ok(())
    }
 }
+#[doc="Reload register"]
 #[derive(PartialEq, Eq)]
 pub struct Rlr(pub u32);
 impl Rlr {
+#[doc="Watchdog counter reload value"]
   #[inline] pub fn rl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="Watchdog counter reload value"]
   #[inline] pub fn set_rl(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -179,12 +210,15 @@ impl ::core::fmt::Debug for Rlr {
       Ok(())
    }
 }
+#[doc="Status register"]
 #[derive(PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
+#[doc="Watchdog counter window value update"]
   #[inline] pub fn wvu(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Watchdog counter window value update"]
   #[inline] pub fn set_wvu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -192,9 +226,11 @@ impl Sr {
      self
   }
 
+#[doc="Watchdog counter reload value update"]
   #[inline] pub fn rvu(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Watchdog counter reload value update"]
   #[inline] pub fn set_rvu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -202,9 +238,11 @@ impl Sr {
      self
   }
 
+#[doc="Watchdog prescaler value update"]
   #[inline] pub fn pvu(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Watchdog prescaler value update"]
   #[inline] pub fn set_pvu(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -228,12 +266,15 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
+#[doc="Window register"]
 #[derive(PartialEq, Eq)]
 pub struct Winr(pub u32);
 impl Winr {
+#[doc="Watchdog counter window value"]
   #[inline] pub fn win(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="Watchdog counter window value"]
   #[inline] pub fn set_win(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);

@@ -9,7 +9,7 @@ pub trait UartExt {
     fn try_getc(&self) -> Option<u8>;
     fn getc(&self) -> u8;
     fn putc(&self, value: u8);
-    fn write(&self, data: &[u8]);
+    fn write(&self, data: &[u8]) -> usize;
 }
 
 impl<T> UartExt for Periph<T> {
@@ -68,9 +68,10 @@ impl<T> UartExt for Periph<T> {
         uart.set_d(D(0).set_rt(value));
     }
 
-    fn write(&self, data: &[u8]) {
+    fn write(&self, data: &[u8]) -> usize {
         for i in 0..data.len() {
             self.putc(data[i]);
         }
+        data.len()
     }        
 }

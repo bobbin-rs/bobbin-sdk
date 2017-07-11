@@ -1,3 +1,5 @@
+//! Interrupts
+
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
@@ -97,52 +99,99 @@ pub type IrqPortc = Irq<PortcId>;
 pub type IrqPortd = Irq<PortdId>;
 pub type IrqPorte = Irq<PorteId>;
 
+#[doc(hidden)]
 pub struct DmaErrorId {} // IRQ 16
+#[doc(hidden)]
 pub struct Dma0Id {} // IRQ 0
+#[doc(hidden)]
 pub struct Dma1Id {} // IRQ 1
+#[doc(hidden)]
 pub struct Dma2Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Dma3Id {} // IRQ 3
+#[doc(hidden)]
 pub struct Dma4Id {} // IRQ 4
+#[doc(hidden)]
 pub struct Dma5Id {} // IRQ 5
+#[doc(hidden)]
 pub struct Dma6Id {} // IRQ 6
+#[doc(hidden)]
 pub struct Dma7Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Dma8Id {} // IRQ 8
+#[doc(hidden)]
 pub struct Dma9Id {} // IRQ 9
+#[doc(hidden)]
 pub struct Dma10Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Dma11Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Dma12Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Dma13Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Dma14Id {} // IRQ 14
+#[doc(hidden)]
 pub struct Dma15Id {} // IRQ 15
+#[doc(hidden)]
 pub struct Ftm0Id {} // IRQ 42
+#[doc(hidden)]
 pub struct Ftm1Id {} // IRQ 43
+#[doc(hidden)]
 pub struct Ftm2Id {} // IRQ 44
+#[doc(hidden)]
 pub struct Pit0Id {} // IRQ 48
+#[doc(hidden)]
 pub struct Pit1Id {} // IRQ 49
+#[doc(hidden)]
 pub struct Pit2Id {} // IRQ 50
+#[doc(hidden)]
 pub struct Pit3Id {} // IRQ 51
+#[doc(hidden)]
 pub struct Spi0Id {} // IRQ 26
+#[doc(hidden)]
 pub struct Spi1Id {} // IRQ 27
+#[doc(hidden)]
 pub struct Spi2Id {} // IRQ 65
+#[doc(hidden)]
 pub struct I2c0Id {} // IRQ 24
+#[doc(hidden)]
 pub struct I2c1Id {} // IRQ 25
+#[doc(hidden)]
 pub struct Uart0LonId {} // IRQ 30
+#[doc(hidden)]
 pub struct Uart0RxTxId {} // IRQ 31
+#[doc(hidden)]
 pub struct Uart0ErrId {} // IRQ 32
+#[doc(hidden)]
 pub struct Uart1RxTxId {} // IRQ 33
+#[doc(hidden)]
 pub struct Uart1ErrId {} // IRQ 34
+#[doc(hidden)]
 pub struct Uart2RxTxId {} // IRQ 35
+#[doc(hidden)]
 pub struct Uart2ErrId {} // IRQ 36
+#[doc(hidden)]
 pub struct Uart3RxTxId {} // IRQ 37
+#[doc(hidden)]
 pub struct Uart3ErrId {} // IRQ 38
+#[doc(hidden)]
 pub struct Uart4RxTxId {} // IRQ 66
+#[doc(hidden)]
 pub struct Uart4ErrId {} // IRQ 67
+#[doc(hidden)]
 pub struct Uart5RxTxId {} // IRQ 68
+#[doc(hidden)]
 pub struct Uart5ErrId {} // IRQ 69
+#[doc(hidden)]
 pub struct PortaId {} // IRQ 59
+#[doc(hidden)]
 pub struct PortbId {} // IRQ 60
+#[doc(hidden)]
 pub struct PortcId {} // IRQ 61
+#[doc(hidden)]
 pub struct PortdId {} // IRQ 62
+#[doc(hidden)]
 pub struct PorteId {} // IRQ 63
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

@@ -3,6 +3,7 @@ pub use stm32_common::chip::lpuart::*;
 pub const LPUART1: Lpuart1 = Periph(0x40004800, Lpuart1Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Lpuart1Id {}
 pub type Lpuart1 = Periph<Lpuart1Id>;
 

@@ -1,81 +1,101 @@
+//! Debug support
 pub const DBG: Dbg = Dbg(0xe0042000);
 
+#[doc="Debug support"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub u32);
 impl Dbg {
+#[doc="Get the *const pointer for the IDCODE register."]
   #[inline] pub fn idcode_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the IDCODE register."]
   #[inline] pub fn idcode_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the IDCODE register."]
   #[inline] pub fn idcode(&self) -> Idcode { 
      unsafe {
         Idcode(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the CR register."]
   #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CR register."]
   #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CR register."]
   #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
         Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CR register."]
   #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APB1_FZ register."]
   #[inline] pub fn apb1_fz_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the APB1_FZ register."]
   #[inline] pub fn apb1_fz_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the APB1_FZ register."]
   #[inline] pub fn apb1_fz(&self) -> Apb1Fz { 
      unsafe {
         Apb1Fz(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the APB1_FZ register."]
   #[inline] pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the APB1_FZ register."]
   #[inline] pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
      let tmp = self.apb1_fz();
      self.set_apb1_fz(f(tmp))
   }
 
+#[doc="Get the *const pointer for the APB2_FZ register."]
   #[inline] pub fn apb2_fz_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the APB2_FZ register."]
   #[inline] pub fn apb2_fz_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the APB2_FZ register."]
   #[inline] pub fn apb2_fz(&self) -> Apb2Fz { 
      unsafe {
         Apb2Fz(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the APB2_FZ register."]
   #[inline] pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the APB2_FZ register."]
   #[inline] pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
      let tmp = self.apb2_fz();
      self.set_apb2_fz(f(tmp))
@@ -83,12 +103,15 @@ impl Dbg {
 
 }
 
+#[doc="IDCODE"]
 #[derive(PartialEq, Eq)]
 pub struct Idcode(pub u32);
 impl Idcode {
+#[doc="DEV_ID"]
   #[inline] pub fn dev_id(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="DEV_ID"]
   #[inline] pub fn set_dev_id(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -96,9 +119,11 @@ impl Idcode {
      self
   }
 
+#[doc="REV_ID"]
   #[inline] pub fn rev_id(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xffff // [31:16]
   }
+#[doc="REV_ID"]
   #[inline] pub fn set_rev_id(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
@@ -121,12 +146,15 @@ impl ::core::fmt::Debug for Idcode {
       Ok(())
    }
 }
+#[doc="Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+#[doc="SLEEP"]
   #[inline] pub fn sleep(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="SLEEP"]
   #[inline] pub fn set_sleep(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -134,9 +162,11 @@ impl Cr {
      self
   }
 
+#[doc="STOP"]
   #[inline] pub fn stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="STOP"]
   #[inline] pub fn set_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -144,9 +174,11 @@ impl Cr {
      self
   }
 
+#[doc="STANDBY"]
   #[inline] pub fn standby(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="STANDBY"]
   #[inline] pub fn set_standby(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -154,9 +186,11 @@ impl Cr {
      self
   }
 
+#[doc="TRACE_IOEN"]
   #[inline] pub fn trace_ioen(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="TRACE_IOEN"]
   #[inline] pub fn set_trace_ioen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -164,9 +198,11 @@ impl Cr {
      self
   }
 
+#[doc="TRACE_MODE"]
   #[inline] pub fn trace_mode(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+#[doc="TRACE_MODE"]
   #[inline] pub fn set_trace_mode(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -174,9 +210,11 @@ impl Cr {
      self
   }
 
+#[doc="I2C2_SMBUS_TIMEOUT"]
   #[inline] pub fn i2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="I2C2_SMBUS_TIMEOUT"]
   #[inline] pub fn set_i2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -184,9 +222,11 @@ impl Cr {
      self
   }
 
+#[doc="TIM8_STOP"]
   #[inline] pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="TIM8_STOP"]
   #[inline] pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -194,9 +234,11 @@ impl Cr {
      self
   }
 
+#[doc="TIM5_STOP"]
   #[inline] pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="TIM5_STOP"]
   #[inline] pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
@@ -204,9 +246,11 @@ impl Cr {
      self
   }
 
+#[doc="TIM6_STOP"]
   #[inline] pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 19) & 0x1 // [19]
   }
+#[doc="TIM6_STOP"]
   #[inline] pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
@@ -214,9 +258,11 @@ impl Cr {
      self
   }
 
+#[doc="TIM7_STOP"]
   #[inline] pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="TIM7_STOP"]
   #[inline] pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -247,12 +293,15 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+#[doc="Debug MCU APB1 Freeze registe"]
 #[derive(PartialEq, Eq)]
 pub struct Apb1Fz(pub u32);
 impl Apb1Fz {
+#[doc="TIM2_STOP"]
   #[inline] pub fn tim2_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="TIM2_STOP"]
   #[inline] pub fn set_tim2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -260,9 +309,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM3 _STOP"]
   #[inline] pub fn tim3_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="TIM3 _STOP"]
   #[inline] pub fn set_tim3_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -270,9 +321,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM4_STOP"]
   #[inline] pub fn tim4_stop(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="TIM4_STOP"]
   #[inline] pub fn set_tim4_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -280,9 +333,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM5_STOP"]
   #[inline] pub fn tim5_stop(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="TIM5_STOP"]
   #[inline] pub fn set_tim5_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -290,9 +345,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM6_STOP"]
   #[inline] pub fn tim6_stop(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="TIM6_STOP"]
   #[inline] pub fn set_tim6_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -300,9 +357,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM7_STOP"]
   #[inline] pub fn tim7_stop(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="TIM7_STOP"]
   #[inline] pub fn set_tim7_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -310,9 +369,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM12_STOP"]
   #[inline] pub fn tim12_stop(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="TIM12_STOP"]
   #[inline] pub fn set_tim12_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -320,9 +381,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM13_STOP"]
   #[inline] pub fn tim13_stop(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="TIM13_STOP"]
   #[inline] pub fn set_tim13_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -330,9 +393,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="TIM14_STOP"]
   #[inline] pub fn tim14_stop(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="TIM14_STOP"]
   #[inline] pub fn set_tim14_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -340,9 +405,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="WWDG_STOP"]
   #[inline] pub fn wwdg_stop(&self) -> u32 {
      ((self.0 as u32) >> 11) & 0x1 // [11]
   }
+#[doc="WWDG_STOP"]
   #[inline] pub fn set_wwdg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
@@ -350,9 +417,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="IWDEG_STOP"]
   #[inline] pub fn iwdeg_stop(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="IWDEG_STOP"]
   #[inline] pub fn set_iwdeg_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -360,9 +429,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="J2C1_SMBUS_TIMEOUT"]
   #[inline] pub fn j2c1_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="J2C1_SMBUS_TIMEOUT"]
   #[inline] pub fn set_j2c1_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -370,9 +441,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="J2C2_SMBUS_TIMEOUT"]
   #[inline] pub fn j2c2_smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="J2C2_SMBUS_TIMEOUT"]
   #[inline] pub fn set_j2c2_smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -380,9 +453,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="J2C3SMBUS_TIMEOUT"]
   #[inline] pub fn j2c3smbus_timeout(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="J2C3SMBUS_TIMEOUT"]
   #[inline] pub fn set_j2c3smbus_timeout(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -390,9 +465,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="CAN1_STOP"]
   #[inline] pub fn can1_stop(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+#[doc="CAN1_STOP"]
   #[inline] pub fn set_can1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -400,9 +477,11 @@ impl Apb1Fz {
      self
   }
 
+#[doc="CAN2_STOP"]
   #[inline] pub fn can2_stop(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1 // [26]
   }
+#[doc="CAN2_STOP"]
   #[inline] pub fn set_can2_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
@@ -439,12 +518,15 @@ impl ::core::fmt::Debug for Apb1Fz {
       Ok(())
    }
 }
+#[doc="Debug MCU APB2 Freeze registe"]
 #[derive(PartialEq, Eq)]
 pub struct Apb2Fz(pub u32);
 impl Apb2Fz {
+#[doc="TIM1 counter stopped when core is halted"]
   #[inline] pub fn tim1_stop(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="TIM1 counter stopped when core is halted"]
   #[inline] pub fn set_tim1_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -452,9 +534,11 @@ impl Apb2Fz {
      self
   }
 
+#[doc="TIM8 counter stopped when core is halted"]
   #[inline] pub fn tim8_stop(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="TIM8 counter stopped when core is halted"]
   #[inline] pub fn set_tim8_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -462,9 +546,11 @@ impl Apb2Fz {
      self
   }
 
+#[doc="TIM9 counter stopped when core is halted"]
   #[inline] pub fn tim9_stop(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="TIM9 counter stopped when core is halted"]
   #[inline] pub fn set_tim9_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -472,9 +558,11 @@ impl Apb2Fz {
      self
   }
 
+#[doc="TIM10 counter stopped when core is halted"]
   #[inline] pub fn tim10_stop(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x1 // [17]
   }
+#[doc="TIM10 counter stopped when core is halted"]
   #[inline] pub fn set_tim10_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
@@ -482,9 +570,11 @@ impl Apb2Fz {
      self
   }
 
+#[doc="TIM11 counter stopped when core is halted"]
   #[inline] pub fn tim11_stop(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1 // [18]
   }
+#[doc="TIM11 counter stopped when core is halted"]
   #[inline] pub fn set_tim11_stop(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);

@@ -93,10 +93,11 @@ impl UartDevice {
         }
     }
 
-    pub fn write(&self, data: &[u8]) {
+    pub fn write(&self, data: &[u8]) -> usize {
         for i in 0..data.len() {
             self.putc(data[i]);
         }
+        data.len()
     }    
 }
 

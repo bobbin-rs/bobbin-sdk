@@ -1,47 +1,59 @@
+//! Power control
 pub const PWR: Pwr = Pwr(0x40007000);
 
+#[doc="Power control"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pwr(pub u32);
 impl Pwr {
+#[doc="Get the *const pointer for the CR register."]
   #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the CR register."]
   #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the CR register."]
   #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
         Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the CR register."]
   #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CSR register."]
   #[inline] pub fn csr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the CSR register."]
   #[inline] pub fn csr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the CSR register."]
   #[inline] pub fn csr(&self) -> Csr { 
      unsafe {
         Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the CSR register."]
   #[inline] pub fn set_csr(&self, value: Csr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CSR register."]
   #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
      self.set_csr(f(tmp))
@@ -49,12 +61,15 @@ impl Pwr {
 
 }
 
+#[doc="power control register"]
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+#[doc="Low-power deep sleep"]
   #[inline] pub fn lpds(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Low-power deep sleep"]
   #[inline] pub fn set_lpds(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -62,9 +77,11 @@ impl Cr {
      self
   }
 
+#[doc="Power down deepsleep"]
   #[inline] pub fn pdds(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Power down deepsleep"]
   #[inline] pub fn set_pdds(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -72,9 +89,11 @@ impl Cr {
      self
   }
 
+#[doc="Clear wakeup flag"]
   #[inline] pub fn cwuf(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="Clear wakeup flag"]
   #[inline] pub fn set_cwuf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -82,9 +101,11 @@ impl Cr {
      self
   }
 
+#[doc="Clear standby flag"]
   #[inline] pub fn csbf(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="Clear standby flag"]
   #[inline] pub fn set_csbf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -92,9 +113,11 @@ impl Cr {
      self
   }
 
+#[doc="Power voltage detector enable"]
   #[inline] pub fn pvde(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="Power voltage detector enable"]
   #[inline] pub fn set_pvde(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -102,9 +125,11 @@ impl Cr {
      self
   }
 
+#[doc="PVD level selection"]
   #[inline] pub fn pls(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x7 // [7:5]
   }
+#[doc="PVD level selection"]
   #[inline] pub fn set_pls(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 5);
@@ -112,9 +137,11 @@ impl Cr {
      self
   }
 
+#[doc="Disable backup domain write protection"]
   #[inline] pub fn dbp(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Disable backup domain write protection"]
   #[inline] pub fn set_dbp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -142,12 +169,15 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+#[doc="power control/status register"]
 #[derive(PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
+#[doc="Wakeup flag"]
   #[inline] pub fn wuf(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="Wakeup flag"]
   #[inline] pub fn set_wuf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -155,9 +185,11 @@ impl Csr {
      self
   }
 
+#[doc="Standby flag"]
   #[inline] pub fn sbf(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="Standby flag"]
   #[inline] pub fn set_sbf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -165,9 +197,11 @@ impl Csr {
      self
   }
 
+#[doc="PVD output"]
   #[inline] pub fn pvdo(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="PVD output"]
   #[inline] pub fn set_pvdo(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -175,9 +209,11 @@ impl Csr {
      self
   }
 
+#[doc="Enable WKUP1 pin"]
   #[inline] pub fn ewup1(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="Enable WKUP1 pin"]
   #[inline] pub fn set_ewup1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -185,9 +221,11 @@ impl Csr {
      self
   }
 
+#[doc="Enable WKUP2 pin"]
   #[inline] pub fn ewup2(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="Enable WKUP2 pin"]
   #[inline] pub fn set_ewup2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);

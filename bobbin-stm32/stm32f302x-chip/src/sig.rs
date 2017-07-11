@@ -1,3 +1,5 @@
+//! Signals
+
 pub trait Signal<T> {}
 
 pub trait Tx {}

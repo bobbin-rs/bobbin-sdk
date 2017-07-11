@@ -1,3 +1,5 @@
+//! Interrupts
+
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
@@ -31,19 +33,33 @@ pub type IrqUart0 = Irq<Uart0Id>;
 pub type IrqUart1 = Irq<Uart1Id>;
 pub type IrqUart2 = Irq<Uart2Id>;
 
+#[doc(hidden)]
 pub struct Dma0Id {} // IRQ 0
+#[doc(hidden)]
 pub struct Dma1Id {} // IRQ 1
+#[doc(hidden)]
 pub struct Dma2Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Dma3Id {} // IRQ 3
+#[doc(hidden)]
 pub struct Tpm0Id {} // IRQ 17
+#[doc(hidden)]
 pub struct Tpm1Id {} // IRQ 18
+#[doc(hidden)]
 pub struct Tpm2Id {} // IRQ 19
+#[doc(hidden)]
 pub struct PitId {} // IRQ 22
+#[doc(hidden)]
 pub struct PortaId {} // IRQ 30
+#[doc(hidden)]
 pub struct PortcId {} // IRQ 31
+#[doc(hidden)]
 pub struct PortdId {} // IRQ 31
+#[doc(hidden)]
 pub struct Uart0Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Uart1Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Uart2Id {} // IRQ 14
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

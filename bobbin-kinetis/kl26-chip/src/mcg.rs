@@ -1,290 +1,358 @@
+//! Multipurpose Clock Generator module
 pub const MCG: Mcg = Mcg(0x40064000);
 
+#[doc="Multipurpose Clock Generator module"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mcg(pub u32);
 impl Mcg {
+#[doc="Get the *const pointer for the C1 register."]
   #[inline] pub fn c1_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
   }
+#[doc="Get the *mut pointer for the C1 register."]
   #[inline] pub fn c1_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x0) as *mut u8
   }
+#[doc="Read the C1 register."]
   #[inline] pub fn c1(&self) -> C1 { 
      unsafe {
         C1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u8))
      }
   }
+#[doc="Write the C1 register."]
   #[inline] pub fn set_c1(&self, value: C1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C1 register."]
   #[inline] pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
      let tmp = self.c1();
      self.set_c1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C2 register."]
   #[inline] pub fn c2_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x1) as *const u8
   }
+#[doc="Get the *mut pointer for the C2 register."]
   #[inline] pub fn c2_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x1) as *mut u8
   }
+#[doc="Read the C2 register."]
   #[inline] pub fn c2(&self) -> C2 { 
      unsafe {
         C2(::core::ptr::read_volatile(((self.0 as usize) + 0x1) as *const u8))
      }
   }
+#[doc="Write the C2 register."]
   #[inline] pub fn set_c2(&self, value: C2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C2 register."]
   #[inline] pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
      let tmp = self.c2();
      self.set_c2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C3 register."]
   #[inline] pub fn c3_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x2) as *const u8
   }
+#[doc="Get the *mut pointer for the C3 register."]
   #[inline] pub fn c3_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x2) as *mut u8
   }
+#[doc="Read the C3 register."]
   #[inline] pub fn c3(&self) -> C3 { 
      unsafe {
         C3(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u8))
      }
   }
+#[doc="Write the C3 register."]
   #[inline] pub fn set_c3(&self, value: C3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C3 register."]
   #[inline] pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
      let tmp = self.c3();
      self.set_c3(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C4 register."]
   #[inline] pub fn c4_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x3) as *const u8
   }
+#[doc="Get the *mut pointer for the C4 register."]
   #[inline] pub fn c4_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x3) as *mut u8
   }
+#[doc="Read the C4 register."]
   #[inline] pub fn c4(&self) -> C4 { 
      unsafe {
         C4(::core::ptr::read_volatile(((self.0 as usize) + 0x3) as *const u8))
      }
   }
+#[doc="Write the C4 register."]
   #[inline] pub fn set_c4(&self, value: C4) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C4 register."]
   #[inline] pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
      let tmp = self.c4();
      self.set_c4(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C5 register."]
   #[inline] pub fn c5_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x4) as *const u8
   }
+#[doc="Get the *mut pointer for the C5 register."]
   #[inline] pub fn c5_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x4) as *mut u8
   }
+#[doc="Read the C5 register."]
   #[inline] pub fn c5(&self) -> C5 { 
      unsafe {
         C5(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u8))
      }
   }
+#[doc="Write the C5 register."]
   #[inline] pub fn set_c5(&self, value: C5) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C5 register."]
   #[inline] pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
      let tmp = self.c5();
      self.set_c5(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C6 register."]
   #[inline] pub fn c6_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x5) as *const u8
   }
+#[doc="Get the *mut pointer for the C6 register."]
   #[inline] pub fn c6_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x5) as *mut u8
   }
+#[doc="Read the C6 register."]
   #[inline] pub fn c6(&self) -> C6 { 
      unsafe {
         C6(::core::ptr::read_volatile(((self.0 as usize) + 0x5) as *const u8))
      }
   }
+#[doc="Write the C6 register."]
   #[inline] pub fn set_c6(&self, value: C6) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C6 register."]
   #[inline] pub fn with_c6<F: FnOnce(C6) -> C6>(&self, f: F) -> &Self {
      let tmp = self.c6();
      self.set_c6(f(tmp))
   }
 
+#[doc="Get the *const pointer for the S register."]
   #[inline] pub fn s_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x6) as *const u8
   }
+#[doc="Get the *mut pointer for the S register."]
   #[inline] pub fn s_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x6) as *mut u8
   }
+#[doc="Read the S register."]
   #[inline] pub fn s(&self) -> S { 
      unsafe {
         S(::core::ptr::read_volatile(((self.0 as usize) + 0x6) as *const u8))
      }
   }
+#[doc="Write the S register."]
   #[inline] pub fn set_s(&self, value: S) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the S register."]
   #[inline] pub fn with_s<F: FnOnce(S) -> S>(&self, f: F) -> &Self {
      let tmp = self.s();
      self.set_s(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SC register."]
   #[inline] pub fn sc_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x8) as *const u8
   }
+#[doc="Get the *mut pointer for the SC register."]
   #[inline] pub fn sc_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0x8) as *mut u8
   }
+#[doc="Read the SC register."]
   #[inline] pub fn sc(&self) -> Sc { 
      unsafe {
         Sc(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
      }
   }
+#[doc="Write the SC register."]
   #[inline] pub fn set_sc(&self, value: Sc) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the SC register."]
   #[inline] pub fn with_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Self {
      let tmp = self.sc();
      self.set_sc(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ATCVH register."]
   #[inline] pub fn atcvh_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xa) as *const u8
   }
+#[doc="Get the *mut pointer for the ATCVH register."]
   #[inline] pub fn atcvh_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xa) as *mut u8
   }
+#[doc="Read the ATCVH register."]
   #[inline] pub fn atcvh(&self) -> Atcvh { 
      unsafe {
         Atcvh(::core::ptr::read_volatile(((self.0 as usize) + 0xa) as *const u8))
      }
   }
+#[doc="Write the ATCVH register."]
   #[inline] pub fn set_atcvh(&self, value: Atcvh) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the ATCVH register."]
   #[inline] pub fn with_atcvh<F: FnOnce(Atcvh) -> Atcvh>(&self, f: F) -> &Self {
      let tmp = self.atcvh();
      self.set_atcvh(f(tmp))
   }
 
+#[doc="Get the *const pointer for the ATCVL register."]
   #[inline] pub fn atcvl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xb) as *const u8
   }
+#[doc="Get the *mut pointer for the ATCVL register."]
   #[inline] pub fn atcvl_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xb) as *mut u8
   }
+#[doc="Read the ATCVL register."]
   #[inline] pub fn atcvl(&self) -> Atcvl { 
      unsafe {
         Atcvl(::core::ptr::read_volatile(((self.0 as usize) + 0xb) as *const u8))
      }
   }
+#[doc="Write the ATCVL register."]
   #[inline] pub fn set_atcvl(&self, value: Atcvl) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the ATCVL register."]
   #[inline] pub fn with_atcvl<F: FnOnce(Atcvl) -> Atcvl>(&self, f: F) -> &Self {
      let tmp = self.atcvl();
      self.set_atcvl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C7 register."]
   #[inline] pub fn c7_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xc) as *const u8
   }
+#[doc="Get the *mut pointer for the C7 register."]
   #[inline] pub fn c7_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xc) as *mut u8
   }
+#[doc="Read the C7 register."]
   #[inline] pub fn c7(&self) -> C7 { 
      unsafe {
         C7(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u8))
      }
   }
+#[doc="Write the C7 register."]
   #[inline] pub fn set_c7(&self, value: C7) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C7 register."]
   #[inline] pub fn with_c7<F: FnOnce(C7) -> C7>(&self, f: F) -> &Self {
      let tmp = self.c7();
      self.set_c7(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C8 register."]
   #[inline] pub fn c8_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xd) as *const u8
   }
+#[doc="Get the *mut pointer for the C8 register."]
   #[inline] pub fn c8_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xd) as *mut u8
   }
+#[doc="Read the C8 register."]
   #[inline] pub fn c8(&self) -> C8 { 
      unsafe {
         C8(::core::ptr::read_volatile(((self.0 as usize) + 0xd) as *const u8))
      }
   }
+#[doc="Write the C8 register."]
   #[inline] pub fn set_c8(&self, value: C8) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xd) as *mut u8, value.0);
      }
      self
   }
+#[doc="Modify the C8 register."]
   #[inline] pub fn with_c8<F: FnOnce(C8) -> C8>(&self, f: F) -> &Self {
      let tmp = self.c8();
      self.set_c8(f(tmp))
   }
 
+#[doc="Get the *const pointer for the C9 register."]
   #[inline] pub fn c9_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xe) as *const u8
   }
+#[doc="Get the *mut pointer for the C9 register."]
   #[inline] pub fn c9_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xe) as *mut u8
   }
+#[doc="Read the C9 register."]
   #[inline] pub fn c9(&self) -> C9 { 
      unsafe {
         C9(::core::ptr::read_volatile(((self.0 as usize) + 0xe) as *const u8))
      }
   }
 
+#[doc="Get the *const pointer for the C10 register."]
   #[inline] pub fn c10_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0xf) as *const u8
   }
+#[doc="Get the *mut pointer for the C10 register."]
   #[inline] pub fn c10_mut(&self) -> *mut u8 { 
      ((self.0 as usize) + 0xf) as *mut u8
   }
+#[doc="Read the C10 register."]
   #[inline] pub fn c10(&self) -> C10 { 
      unsafe {
         C10(::core::ptr::read_volatile(((self.0 as usize) + 0xf) as *const u8))
@@ -293,12 +361,15 @@ impl Mcg {
 
 }
 
+#[doc="MCG Control 1 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
+#[doc="Internal Reference Stop Enable"]
   #[inline] pub fn irefsten(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Internal Reference Stop Enable"]
   #[inline] pub fn set_irefsten(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -306,9 +377,11 @@ impl C1 {
      self
   }
 
+#[doc="Internal Reference Clock Enable"]
   #[inline] pub fn irclken(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Internal Reference Clock Enable"]
   #[inline] pub fn set_irclken(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -316,9 +389,11 @@ impl C1 {
      self
   }
 
+#[doc="Internal Reference Select"]
   #[inline] pub fn irefs(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="Internal Reference Select"]
   #[inline] pub fn set_irefs(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -326,9 +401,11 @@ impl C1 {
      self
   }
 
+#[doc="FLL External Reference Divider"]
   #[inline] pub fn frdiv(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x7 // [5:3]
   }
+#[doc="FLL External Reference Divider"]
   #[inline] pub fn set_frdiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
@@ -336,9 +413,11 @@ impl C1 {
      self
   }
 
+#[doc="Clock Source Select"]
   #[inline] pub fn clks(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x3 // [7:6]
   }
+#[doc="Clock Source Select"]
   #[inline] pub fn set_clks(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -364,12 +443,15 @@ impl ::core::fmt::Debug for C1 {
       Ok(())
    }
 }
+#[doc="MCG Control 2 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
+#[doc="Internal Reference Clock Select"]
   #[inline] pub fn ircs(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Internal Reference Clock Select"]
   #[inline] pub fn set_ircs(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -377,9 +459,11 @@ impl C2 {
      self
   }
 
+#[doc="Low Power Select"]
   #[inline] pub fn lp(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="Low Power Select"]
   #[inline] pub fn set_lp(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -387,9 +471,11 @@ impl C2 {
      self
   }
 
+#[doc="External Reference Select"]
   #[inline] pub fn erefs0(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x1 // [2]
   }
+#[doc="External Reference Select"]
   #[inline] pub fn set_erefs0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -397,9 +483,11 @@ impl C2 {
      self
   }
 
+#[doc="High Gain Oscillator Select"]
   #[inline] pub fn hgo0(&self) -> u8 {
      ((self.0 as u8) >> 3) & 0x1 // [3]
   }
+#[doc="High Gain Oscillator Select"]
   #[inline] pub fn set_hgo0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -407,9 +495,11 @@ impl C2 {
      self
   }
 
+#[doc="Frequency Range Select"]
   #[inline] pub fn range0(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x3 // [5:4]
   }
+#[doc="Frequency Range Select"]
   #[inline] pub fn set_range0(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
@@ -417,9 +507,11 @@ impl C2 {
      self
   }
 
+#[doc="Fast Internal Reference Clock Fine Trim"]
   #[inline] pub fn fcftrim(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Fast Internal Reference Clock Fine Trim"]
   #[inline] pub fn set_fcftrim(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -427,9 +519,11 @@ impl C2 {
      self
   }
 
+#[doc="Loss of Clock Reset Enable"]
   #[inline] pub fn locre0(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Loss of Clock Reset Enable"]
   #[inline] pub fn set_locre0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -457,12 +551,15 @@ impl ::core::fmt::Debug for C2 {
       Ok(())
    }
 }
+#[doc="MCG Control 3 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C3(pub u8);
 impl C3 {
+#[doc="Slow Internal Reference Clock Trim Setting"]
   #[inline] pub fn sctrim(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="Slow Internal Reference Clock Trim Setting"]
   #[inline] pub fn set_sctrim(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -484,12 +581,15 @@ impl ::core::fmt::Debug for C3 {
       Ok(())
    }
 }
+#[doc="MCG Control 4 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C4(pub u8);
 impl C4 {
+#[doc="Slow Internal Reference Clock Fine Trim"]
   #[inline] pub fn scftrim(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Slow Internal Reference Clock Fine Trim"]
   #[inline] pub fn set_scftrim(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -497,9 +597,11 @@ impl C4 {
      self
   }
 
+#[doc="Fast Internal Reference Clock Trim Setting"]
   #[inline] pub fn fctrim(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0xf // [4:1]
   }
+#[doc="Fast Internal Reference Clock Trim Setting"]
   #[inline] pub fn set_fctrim(mut self, value: u8) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 1);
@@ -507,9 +609,11 @@ impl C4 {
      self
   }
 
+#[doc="DCO Range Select"]
   #[inline] pub fn drst_drs(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x3 // [6:5]
   }
+#[doc="DCO Range Select"]
   #[inline] pub fn set_drst_drs(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 5);
@@ -517,9 +621,11 @@ impl C4 {
      self
   }
 
+#[doc="DCO Maximum Frequency with 32.768 kHz Reference"]
   #[inline] pub fn dmx32(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="DCO Maximum Frequency with 32.768 kHz Reference"]
   #[inline] pub fn set_dmx32(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -544,12 +650,15 @@ impl ::core::fmt::Debug for C4 {
       Ok(())
    }
 }
+#[doc="MCG Control 5 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C5(pub u8);
 impl C5 {
+#[doc="PLL External Reference Divider"]
   #[inline] pub fn prdiv0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1f // [4:0]
   }
+#[doc="PLL External Reference Divider"]
   #[inline] pub fn set_prdiv0(mut self, value: u8) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -557,9 +666,11 @@ impl C5 {
      self
   }
 
+#[doc="PLL Stop Enable"]
   #[inline] pub fn pllsten0(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="PLL Stop Enable"]
   #[inline] pub fn set_pllsten0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -567,9 +678,11 @@ impl C5 {
      self
   }
 
+#[doc="PLL Clock Enable"]
   #[inline] pub fn pllclken0(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="PLL Clock Enable"]
   #[inline] pub fn set_pllclken0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -593,12 +706,15 @@ impl ::core::fmt::Debug for C5 {
       Ok(())
    }
 }
+#[doc="MCG Control 6 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C6(pub u8);
 impl C6 {
+#[doc="VCO 0 Divider"]
   #[inline] pub fn vdiv0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1f // [4:0]
   }
+#[doc="VCO 0 Divider"]
   #[inline] pub fn set_vdiv0(mut self, value: u8) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -606,9 +722,11 @@ impl C6 {
      self
   }
 
+#[doc="Clock Monitor Enable"]
   #[inline] pub fn cme0(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Clock Monitor Enable"]
   #[inline] pub fn set_cme0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -616,9 +734,11 @@ impl C6 {
      self
   }
 
+#[doc="PLL Select"]
   #[inline] pub fn plls(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="PLL Select"]
   #[inline] pub fn set_plls(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -626,9 +746,11 @@ impl C6 {
      self
   }
 
+#[doc="Loss of Lock Interrrupt Enable"]
   #[inline] pub fn lolie0(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Loss of Lock Interrrupt Enable"]
   #[inline] pub fn set_lolie0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -653,12 +775,15 @@ impl ::core::fmt::Debug for C6 {
       Ok(())
    }
 }
+#[doc="MCG Status Register"]
 #[derive(PartialEq, Eq)]
 pub struct S(pub u8);
 impl S {
+#[doc="Internal Reference Clock Status"]
   #[inline] pub fn ircst(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="Internal Reference Clock Status"]
   #[inline] pub fn set_ircst(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -666,9 +791,11 @@ impl S {
      self
   }
 
+#[doc="OSC Initialization"]
   #[inline] pub fn oscinit0(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x1 // [1]
   }
+#[doc="OSC Initialization"]
   #[inline] pub fn set_oscinit0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -676,9 +803,11 @@ impl S {
      self
   }
 
+#[doc="Clock Mode Status"]
   #[inline] pub fn clkst(&self) -> u8 {
      ((self.0 as u8) >> 2) & 0x3 // [3:2]
   }
+#[doc="Clock Mode Status"]
   #[inline] pub fn set_clkst(mut self, value: u8) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
@@ -686,9 +815,11 @@ impl S {
      self
   }
 
+#[doc="Internal Reference Status"]
   #[inline] pub fn irefst(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="Internal Reference Status"]
   #[inline] pub fn set_irefst(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -696,9 +827,11 @@ impl S {
      self
   }
 
+#[doc="PLL Select Status"]
   #[inline] pub fn pllst(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="PLL Select Status"]
   #[inline] pub fn set_pllst(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -706,9 +839,11 @@ impl S {
      self
   }
 
+#[doc="Lock Status"]
   #[inline] pub fn lock0(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Lock Status"]
   #[inline] pub fn set_lock0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -716,9 +851,11 @@ impl S {
      self
   }
 
+#[doc="Loss of Lock Status"]
   #[inline] pub fn lols0(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Loss of Lock Status"]
   #[inline] pub fn set_lols0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -746,12 +883,15 @@ impl ::core::fmt::Debug for S {
       Ok(())
    }
 }
+#[doc="MCG Status and Control Register"]
 #[derive(PartialEq, Eq)]
 pub struct Sc(pub u8);
 impl Sc {
+#[doc="OSC0 Loss of Clock Status"]
   #[inline] pub fn locs0(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="OSC0 Loss of Clock Status"]
   #[inline] pub fn set_locs0(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -759,9 +899,11 @@ impl Sc {
      self
   }
 
+#[doc="Fast Clock Internal Reference Divider"]
   #[inline] pub fn fcrdiv(&self) -> u8 {
      ((self.0 as u8) >> 1) & 0x7 // [3:1]
   }
+#[doc="Fast Clock Internal Reference Divider"]
   #[inline] pub fn set_fcrdiv(mut self, value: u8) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 1);
@@ -769,9 +911,11 @@ impl Sc {
      self
   }
 
+#[doc="FLL Filter Preserve Enable"]
   #[inline] pub fn fltprsrv(&self) -> u8 {
      ((self.0 as u8) >> 4) & 0x1 // [4]
   }
+#[doc="FLL Filter Preserve Enable"]
   #[inline] pub fn set_fltprsrv(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -779,9 +923,11 @@ impl Sc {
      self
   }
 
+#[doc="Automatic Trim Machine Fail Flag"]
   #[inline] pub fn atmf(&self) -> u8 {
      ((self.0 as u8) >> 5) & 0x1 // [5]
   }
+#[doc="Automatic Trim Machine Fail Flag"]
   #[inline] pub fn set_atmf(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -789,9 +935,11 @@ impl Sc {
      self
   }
 
+#[doc="Automatic Trim Machine Select"]
   #[inline] pub fn atms(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="Automatic Trim Machine Select"]
   #[inline] pub fn set_atms(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -799,9 +947,11 @@ impl Sc {
      self
   }
 
+#[doc="Automatic Trim Machine Enable"]
   #[inline] pub fn atme(&self) -> u8 {
      ((self.0 as u8) >> 7) & 0x1 // [7]
   }
+#[doc="Automatic Trim Machine Enable"]
   #[inline] pub fn set_atme(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -828,12 +978,15 @@ impl ::core::fmt::Debug for Sc {
       Ok(())
    }
 }
+#[doc="MCG Auto Trim Compare Value High Register"]
 #[derive(PartialEq, Eq)]
 pub struct Atcvh(pub u8);
 impl Atcvh {
+#[doc="ATM Compare Value High"]
   #[inline] pub fn atcvh(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="ATM Compare Value High"]
   #[inline] pub fn set_atcvh(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -855,12 +1008,15 @@ impl ::core::fmt::Debug for Atcvh {
       Ok(())
    }
 }
+#[doc="MCG Auto Trim Compare Value Low Register"]
 #[derive(PartialEq, Eq)]
 pub struct Atcvl(pub u8);
 impl Atcvl {
+#[doc="ATM Compare Value Low"]
   #[inline] pub fn atcvl(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0xff // [7:0]
   }
+#[doc="ATM Compare Value Low"]
   #[inline] pub fn set_atcvl(mut self, value: u8) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -882,12 +1038,15 @@ impl ::core::fmt::Debug for Atcvl {
       Ok(())
    }
 }
+#[doc="MCG Control 7 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C7(pub u8);
 impl C7 {
+#[doc="MCG OSC Clock Select"]
   #[inline] pub fn oscsel(&self) -> u8 {
      ((self.0 as u8) >> 0) & 0x1 // [0]
   }
+#[doc="MCG OSC Clock Select"]
   #[inline] pub fn set_oscsel(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -909,12 +1068,15 @@ impl ::core::fmt::Debug for C7 {
       Ok(())
    }
 }
+#[doc="MCG Control 8 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C8(pub u8);
 impl C8 {
+#[doc="PLL Loss of Lock Reset Enable"]
   #[inline] pub fn lolre(&self) -> u8 {
      ((self.0 as u8) >> 6) & 0x1 // [6]
   }
+#[doc="PLL Loss of Lock Reset Enable"]
   #[inline] pub fn set_lolre(mut self, value: u8) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -936,6 +1098,7 @@ impl ::core::fmt::Debug for C8 {
       Ok(())
    }
 }
+#[doc="MCG Control 9 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C9(pub u8);
 impl C9 {
@@ -952,6 +1115,7 @@ impl ::core::fmt::Debug for C9 {
       Ok(())
    }
 }
+#[doc="MCG Control 10 Register"]
 #[derive(PartialEq, Eq)]
 pub struct C10(pub u8);
 impl C10 {

@@ -1,3 +1,5 @@
+//! Interrupts
+
 use ::core::marker::PhantomData;
 pub type Handler = extern "C" fn();
 
@@ -177,92 +179,179 @@ pub type IrqDma2Ch3 = Irq<Dma2Ch3Id>;
 pub type IrqDma2Ch4 = Irq<Dma2Ch4Id>;
 pub type IrqDma2Ch5 = Irq<Dma2Ch5Id>;
 
+#[doc(hidden)]
 pub struct WwdgId {} // IRQ 0
+#[doc(hidden)]
 pub struct Exti0Id {} // IRQ 6
+#[doc(hidden)]
 pub struct Exti1Id {} // IRQ 7
+#[doc(hidden)]
 pub struct Exti2Id {} // IRQ 8
+#[doc(hidden)]
 pub struct Exti3Id {} // IRQ 9
+#[doc(hidden)]
 pub struct Exti4Id {} // IRQ 10
+#[doc(hidden)]
 pub struct Exti5Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti6Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti7Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti8Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti9Id {} // IRQ 23
+#[doc(hidden)]
 pub struct Exti10Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti11Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti12Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti13Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti14Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti15Id {} // IRQ 40
+#[doc(hidden)]
 pub struct Exti16Id {} // IRQ 1
+#[doc(hidden)]
 pub struct Exti17Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Exti18Id {} // IRQ 42
+#[doc(hidden)]
 pub struct Exti19Id {} // IRQ 2
+#[doc(hidden)]
 pub struct Exti20Id {} // IRQ 3
+#[doc(hidden)]
 pub struct Exti21Id {} // IRQ 64
+#[doc(hidden)]
 pub struct Exti22Id {} // IRQ 64
+#[doc(hidden)]
 pub struct Exti23Id {} // IRQ 31
+#[doc(hidden)]
 pub struct Exti24Id {} // IRQ 32
+#[doc(hidden)]
 pub struct Exti25Id {} // IRQ 37
+#[doc(hidden)]
 pub struct Exti26Id {} // IRQ 38
+#[doc(hidden)]
 pub struct Exti28Id {} // IRQ 39
+#[doc(hidden)]
 pub struct Exti29Id {} // IRQ 64
+#[doc(hidden)]
 pub struct Exti30Id {} // IRQ 65
+#[doc(hidden)]
 pub struct Exti31Id {} // IRQ 65
+#[doc(hidden)]
 pub struct Exti32Id {} // IRQ 65
+#[doc(hidden)]
 pub struct Exti33Id {} // IRQ 66
+#[doc(hidden)]
 pub struct Exti34Id {} // IRQ 52
+#[doc(hidden)]
 pub struct Exti35Id {} // IRQ 53
+#[doc(hidden)]
 pub struct Usart1Exti25Id {} // IRQ 37
+#[doc(hidden)]
 pub struct Usart2Exti26Id {} // IRQ 38
+#[doc(hidden)]
 pub struct Usart3Exti28Id {} // IRQ 39
+#[doc(hidden)]
 pub struct Uart4Exti34Id {} // IRQ 52
+#[doc(hidden)]
 pub struct Uart5Exti35Id {} // IRQ 53
+#[doc(hidden)]
 pub struct I2c1EvExti23Id {} // IRQ 31
+#[doc(hidden)]
 pub struct I2c1ErId {} // IRQ 32
+#[doc(hidden)]
 pub struct I2c2EvExti24Id {} // IRQ 33
+#[doc(hidden)]
 pub struct I2c2ErId {} // IRQ 34
+#[doc(hidden)]
 pub struct I2c3EvId {} // IRQ 72
+#[doc(hidden)]
 pub struct I2c3ErId {} // IRQ 73
+#[doc(hidden)]
 pub struct Spi1Id {} // IRQ 35
+#[doc(hidden)]
 pub struct Spi2Id {} // IRQ 36
+#[doc(hidden)]
 pub struct Spi3Id {} // IRQ 51
+#[doc(hidden)]
 pub struct Adc1Id {} // IRQ 18
+#[doc(hidden)]
 pub struct Adc2Id {} // IRQ 18
+#[doc(hidden)]
 pub struct Adc3Id {} // IRQ 47
+#[doc(hidden)]
 pub struct Adc4Id {} // IRQ 61
+#[doc(hidden)]
 pub struct DacunderId {} // IRQ 54
+#[doc(hidden)]
 pub struct Tim6Id {} // IRQ 54
+#[doc(hidden)]
 pub struct Tim7Id {} // IRQ 55
+#[doc(hidden)]
 pub struct Tim2Id {} // IRQ 28
+#[doc(hidden)]
 pub struct Tim3Id {} // IRQ 29
+#[doc(hidden)]
 pub struct Tim4Id {} // IRQ 30
+#[doc(hidden)]
 pub struct Tim15Id {} // IRQ 24
+#[doc(hidden)]
 pub struct Tim16Id {} // IRQ 25
+#[doc(hidden)]
 pub struct Tim17Id {} // IRQ 26
+#[doc(hidden)]
 pub struct Tim1BrkId {} // IRQ 24
+#[doc(hidden)]
 pub struct Tim1UpId {} // IRQ 25
+#[doc(hidden)]
 pub struct Tim1TrgComId {} // IRQ 26
+#[doc(hidden)]
 pub struct Tim1CcId {} // IRQ 27
+#[doc(hidden)]
 pub struct Tim8BrkId {} // IRQ 43
+#[doc(hidden)]
 pub struct Tim8UpId {} // IRQ 44
+#[doc(hidden)]
 pub struct Tim8TrgComId {} // IRQ 45
+#[doc(hidden)]
 pub struct Tim8CcId {} // IRQ 46
+#[doc(hidden)]
 pub struct Tim20BrkId {} // IRQ 77
+#[doc(hidden)]
 pub struct Tim20UpId {} // IRQ 78
+#[doc(hidden)]
 pub struct Tim20TrgComId {} // IRQ 79
+#[doc(hidden)]
 pub struct Tim20CcId {} // IRQ 80
+#[doc(hidden)]
 pub struct Dma1Ch1Id {} // IRQ 11
+#[doc(hidden)]
 pub struct Dma1Ch2Id {} // IRQ 12
+#[doc(hidden)]
 pub struct Dma1Ch3Id {} // IRQ 13
+#[doc(hidden)]
 pub struct Dma1Ch4Id {} // IRQ 14
+#[doc(hidden)]
 pub struct Dma1Ch5Id {} // IRQ 15
+#[doc(hidden)]
 pub struct Dma1Ch6Id {} // IRQ 16
+#[doc(hidden)]
 pub struct Dma1Ch7Id {} // IRQ 17
+#[doc(hidden)]
 pub struct Dma2Ch1Id {} // IRQ 56
+#[doc(hidden)]
 pub struct Dma2Ch2Id {} // IRQ 57
+#[doc(hidden)]
 pub struct Dma2Ch3Id {} // IRQ 58
+#[doc(hidden)]
 pub struct Dma2Ch4Id {} // IRQ 59
+#[doc(hidden)]
 pub struct Dma2Ch5Id {} // IRQ 60
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

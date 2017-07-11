@@ -4,18 +4,23 @@ pub const ADC3: Adc3 = Periph(0x50000400, Adc3Id {});
 pub const ADC4: Adc4 = Periph(0x50000500, Adc4Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="ADC Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Adc1Id {}
 pub type Adc1 = Periph<Adc1Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Adc2Id {}
 pub type Adc2 = Periph<Adc2Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Adc3Id {}
 pub type Adc3 = Periph<Adc3Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
 pub struct Adc4Id {}
 pub type Adc4 = Periph<Adc4Id>;
 
@@ -25,545 +30,670 @@ pub type Adc4 = Periph<Adc4Id>;
 
 
 impl<T> Periph<T> {
+#[doc="Get the *const pointer for the ISR register."]
   #[inline] pub fn isr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x0) as *const u32
   }
+#[doc="Get the *mut pointer for the ISR register."]
   #[inline] pub fn isr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x0) as *mut u32
   }
+#[doc="Read the ISR register."]
   #[inline] pub fn isr(&self) -> Isr { 
      unsafe {
         Isr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
      }
   }
+#[doc="Write the ISR register."]
   #[inline] pub fn set_isr(&self, value: Isr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the ISR register."]
   #[inline] pub fn with_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) -> &Self {
      let tmp = self.isr();
      self.set_isr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the IER register."]
   #[inline] pub fn ier_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4) as *const u32
   }
+#[doc="Get the *mut pointer for the IER register."]
   #[inline] pub fn ier_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4) as *mut u32
   }
+#[doc="Read the IER register."]
   #[inline] pub fn ier(&self) -> Ier { 
      unsafe {
         Ier(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
      }
   }
+#[doc="Write the IER register."]
   #[inline] pub fn set_ier(&self, value: Ier) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the IER register."]
   #[inline] pub fn with_ier<F: FnOnce(Ier) -> Ier>(&self, f: F) -> &Self {
      let tmp = self.ier();
      self.set_ier(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CR register."]
   #[inline] pub fn cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
   }
+#[doc="Get the *mut pointer for the CR register."]
   #[inline] pub fn cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8) as *mut u32
   }
+#[doc="Read the CR register."]
   #[inline] pub fn cr(&self) -> Cr { 
      unsafe {
         Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
      }
   }
+#[doc="Write the CR register."]
   #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
      self.set_cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CFGR register."]
   #[inline] pub fn cfgr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xc) as *const u32
   }
+#[doc="Get the *mut pointer for the CFGR register."]
   #[inline] pub fn cfgr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xc) as *mut u32
   }
+#[doc="Read the CFGR register."]
   #[inline] pub fn cfgr(&self) -> Cfgr { 
      unsafe {
         Cfgr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
      }
   }
+#[doc="Write the CFGR register."]
   #[inline] pub fn set_cfgr(&self, value: Cfgr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CFGR register."]
   #[inline] pub fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
      let tmp = self.cfgr();
      self.set_cfgr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SMPR1 register."]
   #[inline] pub fn smpr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x14) as *const u32
   }
+#[doc="Get the *mut pointer for the SMPR1 register."]
   #[inline] pub fn smpr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x14) as *mut u32
   }
+#[doc="Read the SMPR1 register."]
   #[inline] pub fn smpr1(&self) -> Smpr1 { 
      unsafe {
         Smpr1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
      }
   }
+#[doc="Write the SMPR1 register."]
   #[inline] pub fn set_smpr1(&self, value: Smpr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SMPR1 register."]
   #[inline] pub fn with_smpr1<F: FnOnce(Smpr1) -> Smpr1>(&self, f: F) -> &Self {
      let tmp = self.smpr1();
      self.set_smpr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SMPR2 register."]
   #[inline] pub fn smpr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x18) as *const u32
   }
+#[doc="Get the *mut pointer for the SMPR2 register."]
   #[inline] pub fn smpr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x18) as *mut u32
   }
+#[doc="Read the SMPR2 register."]
   #[inline] pub fn smpr2(&self) -> Smpr2 { 
      unsafe {
         Smpr2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
      }
   }
+#[doc="Write the SMPR2 register."]
   #[inline] pub fn set_smpr2(&self, value: Smpr2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SMPR2 register."]
   #[inline] pub fn with_smpr2<F: FnOnce(Smpr2) -> Smpr2>(&self, f: F) -> &Self {
      let tmp = self.smpr2();
      self.set_smpr2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TR1 register."]
   #[inline] pub fn tr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x20) as *const u32
   }
+#[doc="Get the *mut pointer for the TR1 register."]
   #[inline] pub fn tr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x20) as *mut u32
   }
+#[doc="Read the TR1 register."]
   #[inline] pub fn tr1(&self) -> Tr1 { 
      unsafe {
         Tr1(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
      }
   }
+#[doc="Write the TR1 register."]
   #[inline] pub fn set_tr1(&self, value: Tr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TR1 register."]
   #[inline] pub fn with_tr1<F: FnOnce(Tr1) -> Tr1>(&self, f: F) -> &Self {
      let tmp = self.tr1();
      self.set_tr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TR2 register."]
   #[inline] pub fn tr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x24) as *const u32
   }
+#[doc="Get the *mut pointer for the TR2 register."]
   #[inline] pub fn tr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x24) as *mut u32
   }
+#[doc="Read the TR2 register."]
   #[inline] pub fn tr2(&self) -> Tr2 { 
      unsafe {
         Tr2(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
      }
   }
+#[doc="Write the TR2 register."]
   #[inline] pub fn set_tr2(&self, value: Tr2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TR2 register."]
   #[inline] pub fn with_tr2<F: FnOnce(Tr2) -> Tr2>(&self, f: F) -> &Self {
      let tmp = self.tr2();
      self.set_tr2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the TR3 register."]
   #[inline] pub fn tr3_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x28) as *const u32
   }
+#[doc="Get the *mut pointer for the TR3 register."]
   #[inline] pub fn tr3_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x28) as *mut u32
   }
+#[doc="Read the TR3 register."]
   #[inline] pub fn tr3(&self) -> Tr3 { 
      unsafe {
         Tr3(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
      }
   }
+#[doc="Write the TR3 register."]
   #[inline] pub fn set_tr3(&self, value: Tr3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the TR3 register."]
   #[inline] pub fn with_tr3<F: FnOnce(Tr3) -> Tr3>(&self, f: F) -> &Self {
      let tmp = self.tr3();
      self.set_tr3(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SQR1 register."]
   #[inline] pub fn sqr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x30) as *const u32
   }
+#[doc="Get the *mut pointer for the SQR1 register."]
   #[inline] pub fn sqr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x30) as *mut u32
   }
+#[doc="Read the SQR1 register."]
   #[inline] pub fn sqr1(&self) -> Sqr1 { 
      unsafe {
         Sqr1(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
      }
   }
+#[doc="Write the SQR1 register."]
   #[inline] pub fn set_sqr1(&self, value: Sqr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SQR1 register."]
   #[inline] pub fn with_sqr1<F: FnOnce(Sqr1) -> Sqr1>(&self, f: F) -> &Self {
      let tmp = self.sqr1();
      self.set_sqr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SQR2 register."]
   #[inline] pub fn sqr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x34) as *const u32
   }
+#[doc="Get the *mut pointer for the SQR2 register."]
   #[inline] pub fn sqr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x34) as *mut u32
   }
+#[doc="Read the SQR2 register."]
   #[inline] pub fn sqr2(&self) -> Sqr2 { 
      unsafe {
         Sqr2(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
      }
   }
+#[doc="Write the SQR2 register."]
   #[inline] pub fn set_sqr2(&self, value: Sqr2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SQR2 register."]
   #[inline] pub fn with_sqr2<F: FnOnce(Sqr2) -> Sqr2>(&self, f: F) -> &Self {
      let tmp = self.sqr2();
      self.set_sqr2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SQR3 register."]
   #[inline] pub fn sqr3_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x38) as *const u32
   }
+#[doc="Get the *mut pointer for the SQR3 register."]
   #[inline] pub fn sqr3_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x38) as *mut u32
   }
+#[doc="Read the SQR3 register."]
   #[inline] pub fn sqr3(&self) -> Sqr3 { 
      unsafe {
         Sqr3(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
      }
   }
+#[doc="Write the SQR3 register."]
   #[inline] pub fn set_sqr3(&self, value: Sqr3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SQR3 register."]
   #[inline] pub fn with_sqr3<F: FnOnce(Sqr3) -> Sqr3>(&self, f: F) -> &Self {
      let tmp = self.sqr3();
      self.set_sqr3(f(tmp))
   }
 
+#[doc="Get the *const pointer for the SQR4 register."]
   #[inline] pub fn sqr4_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x3c) as *const u32
   }
+#[doc="Get the *mut pointer for the SQR4 register."]
   #[inline] pub fn sqr4_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x3c) as *mut u32
   }
+#[doc="Read the SQR4 register."]
   #[inline] pub fn sqr4(&self) -> Sqr4 { 
      unsafe {
         Sqr4(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
      }
   }
+#[doc="Write the SQR4 register."]
   #[inline] pub fn set_sqr4(&self, value: Sqr4) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the SQR4 register."]
   #[inline] pub fn with_sqr4<F: FnOnce(Sqr4) -> Sqr4>(&self, f: F) -> &Self {
      let tmp = self.sqr4();
      self.set_sqr4(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DR register."]
   #[inline] pub fn dr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x40) as *const u32
   }
+#[doc="Get the *mut pointer for the DR register."]
   #[inline] pub fn dr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x40) as *mut u32
   }
+#[doc="Read the DR register."]
   #[inline] pub fn dr(&self) -> Dr { 
      unsafe {
         Dr(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the JSQR register."]
   #[inline] pub fn jsqr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x4c) as *const u32
   }
+#[doc="Get the *mut pointer for the JSQR register."]
   #[inline] pub fn jsqr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x4c) as *mut u32
   }
+#[doc="Read the JSQR register."]
   #[inline] pub fn jsqr(&self) -> Jsqr { 
      unsafe {
         Jsqr(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
      }
   }
+#[doc="Write the JSQR register."]
   #[inline] pub fn set_jsqr(&self, value: Jsqr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the JSQR register."]
   #[inline] pub fn with_jsqr<F: FnOnce(Jsqr) -> Jsqr>(&self, f: F) -> &Self {
      let tmp = self.jsqr();
      self.set_jsqr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OFR1 register."]
   #[inline] pub fn ofr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x60) as *const u32
   }
+#[doc="Get the *mut pointer for the OFR1 register."]
   #[inline] pub fn ofr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x60) as *mut u32
   }
+#[doc="Read the OFR1 register."]
   #[inline] pub fn ofr1(&self) -> Ofr1 { 
      unsafe {
         Ofr1(::core::ptr::read_volatile(((self.0 as usize) + 0x60) as *const u32))
      }
   }
+#[doc="Write the OFR1 register."]
   #[inline] pub fn set_ofr1(&self, value: Ofr1) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OFR1 register."]
   #[inline] pub fn with_ofr1<F: FnOnce(Ofr1) -> Ofr1>(&self, f: F) -> &Self {
      let tmp = self.ofr1();
      self.set_ofr1(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OFR2 register."]
   #[inline] pub fn ofr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x64) as *const u32
   }
+#[doc="Get the *mut pointer for the OFR2 register."]
   #[inline] pub fn ofr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x64) as *mut u32
   }
+#[doc="Read the OFR2 register."]
   #[inline] pub fn ofr2(&self) -> Ofr2 { 
      unsafe {
         Ofr2(::core::ptr::read_volatile(((self.0 as usize) + 0x64) as *const u32))
      }
   }
+#[doc="Write the OFR2 register."]
   #[inline] pub fn set_ofr2(&self, value: Ofr2) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OFR2 register."]
   #[inline] pub fn with_ofr2<F: FnOnce(Ofr2) -> Ofr2>(&self, f: F) -> &Self {
      let tmp = self.ofr2();
      self.set_ofr2(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OFR3 register."]
   #[inline] pub fn ofr3_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x68) as *const u32
   }
+#[doc="Get the *mut pointer for the OFR3 register."]
   #[inline] pub fn ofr3_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x68) as *mut u32
   }
+#[doc="Read the OFR3 register."]
   #[inline] pub fn ofr3(&self) -> Ofr3 { 
      unsafe {
         Ofr3(::core::ptr::read_volatile(((self.0 as usize) + 0x68) as *const u32))
      }
   }
+#[doc="Write the OFR3 register."]
   #[inline] pub fn set_ofr3(&self, value: Ofr3) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OFR3 register."]
   #[inline] pub fn with_ofr3<F: FnOnce(Ofr3) -> Ofr3>(&self, f: F) -> &Self {
      let tmp = self.ofr3();
      self.set_ofr3(f(tmp))
   }
 
+#[doc="Get the *const pointer for the OFR4 register."]
   #[inline] pub fn ofr4_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x6c) as *const u32
   }
+#[doc="Get the *mut pointer for the OFR4 register."]
   #[inline] pub fn ofr4_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x6c) as *mut u32
   }
+#[doc="Read the OFR4 register."]
   #[inline] pub fn ofr4(&self) -> Ofr4 { 
      unsafe {
         Ofr4(::core::ptr::read_volatile(((self.0 as usize) + 0x6c) as *const u32))
      }
   }
+#[doc="Write the OFR4 register."]
   #[inline] pub fn set_ofr4(&self, value: Ofr4) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the OFR4 register."]
   #[inline] pub fn with_ofr4<F: FnOnce(Ofr4) -> Ofr4>(&self, f: F) -> &Self {
      let tmp = self.ofr4();
      self.set_ofr4(f(tmp))
   }
 
+#[doc="Get the *const pointer for the JDR1 register."]
   #[inline] pub fn jdr1_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x80) as *const u32
   }
+#[doc="Get the *mut pointer for the JDR1 register."]
   #[inline] pub fn jdr1_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x80) as *mut u32
   }
+#[doc="Read the JDR1 register."]
   #[inline] pub fn jdr1(&self) -> Jdr1 { 
      unsafe {
         Jdr1(::core::ptr::read_volatile(((self.0 as usize) + 0x80) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the JDR2 register."]
   #[inline] pub fn jdr2_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x84) as *const u32
   }
+#[doc="Get the *mut pointer for the JDR2 register."]
   #[inline] pub fn jdr2_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x84) as *mut u32
   }
+#[doc="Read the JDR2 register."]
   #[inline] pub fn jdr2(&self) -> Jdr2 { 
      unsafe {
         Jdr2(::core::ptr::read_volatile(((self.0 as usize) + 0x84) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the JDR3 register."]
   #[inline] pub fn jdr3_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x88) as *const u32
   }
+#[doc="Get the *mut pointer for the JDR3 register."]
   #[inline] pub fn jdr3_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x88) as *mut u32
   }
+#[doc="Read the JDR3 register."]
   #[inline] pub fn jdr3(&self) -> Jdr3 { 
      unsafe {
         Jdr3(::core::ptr::read_volatile(((self.0 as usize) + 0x88) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the JDR4 register."]
   #[inline] pub fn jdr4_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8c) as *const u32
   }
+#[doc="Get the *mut pointer for the JDR4 register."]
   #[inline] pub fn jdr4_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0x8c) as *mut u32
   }
+#[doc="Read the JDR4 register."]
   #[inline] pub fn jdr4(&self) -> Jdr4 { 
      unsafe {
         Jdr4(::core::ptr::read_volatile(((self.0 as usize) + 0x8c) as *const u32))
      }
   }
 
+#[doc="Get the *const pointer for the AWD2CR register."]
   #[inline] pub fn awd2cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xa0) as *const u32
   }
+#[doc="Get the *mut pointer for the AWD2CR register."]
   #[inline] pub fn awd2cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xa0) as *mut u32
   }
+#[doc="Read the AWD2CR register."]
   #[inline] pub fn awd2cr(&self) -> Awd2cr { 
      unsafe {
         Awd2cr(::core::ptr::read_volatile(((self.0 as usize) + 0xa0) as *const u32))
      }
   }
+#[doc="Write the AWD2CR register."]
   #[inline] pub fn set_awd2cr(&self, value: Awd2cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the AWD2CR register."]
   #[inline] pub fn with_awd2cr<F: FnOnce(Awd2cr) -> Awd2cr>(&self, f: F) -> &Self {
      let tmp = self.awd2cr();
      self.set_awd2cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the AWD3CR register."]
   #[inline] pub fn awd3cr_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xa4) as *const u32
   }
+#[doc="Get the *mut pointer for the AWD3CR register."]
   #[inline] pub fn awd3cr_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xa4) as *mut u32
   }
+#[doc="Read the AWD3CR register."]
   #[inline] pub fn awd3cr(&self) -> Awd3cr { 
      unsafe {
         Awd3cr(::core::ptr::read_volatile(((self.0 as usize) + 0xa4) as *const u32))
      }
   }
+#[doc="Write the AWD3CR register."]
   #[inline] pub fn set_awd3cr(&self, value: Awd3cr) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the AWD3CR register."]
   #[inline] pub fn with_awd3cr<F: FnOnce(Awd3cr) -> Awd3cr>(&self, f: F) -> &Self {
      let tmp = self.awd3cr();
      self.set_awd3cr(f(tmp))
   }
 
+#[doc="Get the *const pointer for the DIFSEL register."]
   #[inline] pub fn difsel_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb0) as *const u32
   }
+#[doc="Get the *mut pointer for the DIFSEL register."]
   #[inline] pub fn difsel_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb0) as *mut u32
   }
+#[doc="Read the DIFSEL register."]
   #[inline] pub fn difsel(&self) -> Difsel { 
      unsafe {
         Difsel(::core::ptr::read_volatile(((self.0 as usize) + 0xb0) as *const u32))
      }
   }
+#[doc="Write the DIFSEL register."]
   #[inline] pub fn set_difsel(&self, value: Difsel) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the DIFSEL register."]
   #[inline] pub fn with_difsel<F: FnOnce(Difsel) -> Difsel>(&self, f: F) -> &Self {
      let tmp = self.difsel();
      self.set_difsel(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CALFACT register."]
   #[inline] pub fn calfact_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0xb4) as *const u32
   }
+#[doc="Get the *mut pointer for the CALFACT register."]
   #[inline] pub fn calfact_mut(&self) -> *mut u32 { 
      ((self.0 as usize) + 0xb4) as *mut u32
   }
+#[doc="Read the CALFACT register."]
   #[inline] pub fn calfact(&self) -> Calfact { 
      unsafe {
         Calfact(::core::ptr::read_volatile(((self.0 as usize) + 0xb4) as *const u32))
      }
   }
+#[doc="Write the CALFACT register."]
   #[inline] pub fn set_calfact(&self, value: Calfact) -> &Self {
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb4) as *mut u32, value.0);
      }
      self
   }
+#[doc="Modify the CALFACT register."]
   #[inline] pub fn with_calfact<F: FnOnce(Calfact) -> Calfact>(&self, f: F) -> &Self {
      let tmp = self.calfact();
      self.set_calfact(f(tmp))
@@ -571,12 +701,15 @@ impl<T> Periph<T> {
 
 }
 
+#[doc="interrupt and status register"]
 #[derive(PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
+#[doc="JQOVF"]
   #[inline] pub fn jqovf(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="JQOVF"]
   #[inline] pub fn set_jqovf(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -584,9 +717,11 @@ impl Isr {
      self
   }
 
+#[doc="AWD3"]
   #[inline] pub fn awd3(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="AWD3"]
   #[inline] pub fn set_awd3(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -594,9 +729,11 @@ impl Isr {
      self
   }
 
+#[doc="AWD2"]
   #[inline] pub fn awd2(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="AWD2"]
   #[inline] pub fn set_awd2(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -604,9 +741,11 @@ impl Isr {
      self
   }
 
+#[doc="AWD1"]
   #[inline] pub fn awd1(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="AWD1"]
   #[inline] pub fn set_awd1(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -614,9 +753,11 @@ impl Isr {
      self
   }
 
+#[doc="JEOS"]
   #[inline] pub fn jeos(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="JEOS"]
   #[inline] pub fn set_jeos(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -624,9 +765,11 @@ impl Isr {
      self
   }
 
+#[doc="JEOC"]
   #[inline] pub fn jeoc(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="JEOC"]
   #[inline] pub fn set_jeoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -634,9 +777,11 @@ impl Isr {
      self
   }
 
+#[doc="OVR"]
   #[inline] pub fn ovr(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="OVR"]
   #[inline] pub fn set_ovr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -644,9 +789,11 @@ impl Isr {
      self
   }
 
+#[doc="EOS"]
   #[inline] pub fn eos(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="EOS"]
   #[inline] pub fn set_eos(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -654,9 +801,11 @@ impl Isr {
      self
   }
 
+#[doc="EOC"]
   #[inline] pub fn eoc(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="EOC"]
   #[inline] pub fn set_eoc(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -664,9 +813,11 @@ impl Isr {
      self
   }
 
+#[doc="EOSMP"]
   #[inline] pub fn eosmp(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="EOSMP"]
   #[inline] pub fn set_eosmp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -674,9 +825,11 @@ impl Isr {
      self
   }
 
+#[doc="ADRDY"]
   #[inline] pub fn adrdy(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="ADRDY"]
   #[inline] pub fn set_adrdy(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -708,12 +861,15 @@ impl ::core::fmt::Debug for Isr {
       Ok(())
    }
 }
+#[doc="interrupt enable register"]
 #[derive(PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
+#[doc="JQOVFIE"]
   #[inline] pub fn jqovfie(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x1 // [10]
   }
+#[doc="JQOVFIE"]
   #[inline] pub fn set_jqovfie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
@@ -721,9 +877,11 @@ impl Ier {
      self
   }
 
+#[doc="AWD3IE"]
   #[inline] pub fn awd3ie(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x1 // [9]
   }
+#[doc="AWD3IE"]
   #[inline] pub fn set_awd3ie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
@@ -731,9 +889,11 @@ impl Ier {
      self
   }
 
+#[doc="AWD2IE"]
   #[inline] pub fn awd2ie(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1 // [8]
   }
+#[doc="AWD2IE"]
   #[inline] pub fn set_awd2ie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
@@ -741,9 +901,11 @@ impl Ier {
      self
   }
 
+#[doc="AWD1IE"]
   #[inline] pub fn awd1ie(&self) -> u32 {
      ((self.0 as u32) >> 7) & 0x1 // [7]
   }
+#[doc="AWD1IE"]
   #[inline] pub fn set_awd1ie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
@@ -751,9 +913,11 @@ impl Ier {
      self
   }
 
+#[doc="JEOSIE"]
   #[inline] pub fn jeosie(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1 // [6]
   }
+#[doc="JEOSIE"]
   #[inline] pub fn set_jeosie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
@@ -761,9 +925,11 @@ impl Ier {
      self
   }
 
+#[doc="JEOCIE"]
   #[inline] pub fn jeocie(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="JEOCIE"]
   #[inline] pub fn set_jeocie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -771,9 +937,11 @@ impl Ier {
      self
   }
 
+#[doc="OVRIE"]
   #[inline] pub fn ovrie(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="OVRIE"]
   #[inline] pub fn set_ovrie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -781,9 +949,11 @@ impl Ier {
      self
   }
 
+#[doc="EOSIE"]
   #[inline] pub fn eosie(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="EOSIE"]
   #[inline] pub fn set_eosie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -791,9 +961,11 @@ impl Ier {
      self
   }
 
+#[doc="EOCIE"]
   #[inline] pub fn eocie(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="EOCIE"]
   #[inline] pub fn set_eocie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -801,9 +973,11 @@ impl Ier {
      self
   }
 
+#[doc="EOSMPIE"]
   #[inline] pub fn eosmpie(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="EOSMPIE"]
   #[inline] pub fn set_eosmpie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -811,9 +985,11 @@ impl Ier {
      self
   }
 
+#[doc="ADRDYIE"]
   #[inline] pub fn adrdyie(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="ADRDYIE"]
   #[inline] pub fn set_adrdyie(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -845,12 +1021,15 @@ impl ::core::fmt::Debug for Ier {
       Ok(())
    }
 }
+#[doc="control register"]
 #[derive(PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+#[doc="ADCAL"]
   #[inline] pub fn adcal(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="ADCAL"]
   #[inline] pub fn set_adcal(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -858,9 +1037,11 @@ impl Cr {
      self
   }
 
+#[doc="ADCALDIF"]
   #[inline] pub fn adcaldif(&self) -> u32 {
      ((self.0 as u32) >> 30) & 0x1 // [30]
   }
+#[doc="ADCALDIF"]
   #[inline] pub fn set_adcaldif(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
@@ -868,9 +1049,11 @@ impl Cr {
      self
   }
 
+#[doc="ADVREGEN"]
   #[inline] pub fn advregen(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x3 // [29:28]
   }
+#[doc="ADVREGEN"]
   #[inline] pub fn set_advregen(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
@@ -878,9 +1061,11 @@ impl Cr {
      self
   }
 
+#[doc="JADSTP"]
   #[inline] pub fn jadstp(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="JADSTP"]
   #[inline] pub fn set_jadstp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -888,9 +1073,11 @@ impl Cr {
      self
   }
 
+#[doc="ADSTP"]
   #[inline] pub fn adstp(&self) -> u32 {
      ((self.0 as u32) >> 4) & 0x1 // [4]
   }
+#[doc="ADSTP"]
   #[inline] pub fn set_adstp(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
@@ -898,9 +1085,11 @@ impl Cr {
      self
   }
 
+#[doc="JADSTART"]
   #[inline] pub fn jadstart(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x1 // [3]
   }
+#[doc="JADSTART"]
   #[inline] pub fn set_jadstart(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
@@ -908,9 +1097,11 @@ impl Cr {
      self
   }
 
+#[doc="ADSTART"]
   #[inline] pub fn adstart(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0x1 // [2]
   }
+#[doc="ADSTART"]
   #[inline] pub fn set_adstart(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
@@ -918,9 +1109,11 @@ impl Cr {
      self
   }
 
+#[doc="ADDIS"]
   #[inline] pub fn addis(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="ADDIS"]
   #[inline] pub fn set_addis(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -928,9 +1121,11 @@ impl Cr {
      self
   }
 
+#[doc="ADEN"]
   #[inline] pub fn aden(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="ADEN"]
   #[inline] pub fn set_aden(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -960,12 +1155,15 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+#[doc="configuration register"]
 #[derive(PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
+#[doc="AWDCH1CH"]
   #[inline] pub fn awdch1ch(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="AWDCH1CH"]
   #[inline] pub fn set_awdch1ch(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -973,9 +1171,11 @@ impl Cfgr {
      self
   }
 
+#[doc="JAUTO"]
   #[inline] pub fn jauto(&self) -> u32 {
      ((self.0 as u32) >> 25) & 0x1 // [25]
   }
+#[doc="JAUTO"]
   #[inline] pub fn set_jauto(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
@@ -983,9 +1183,11 @@ impl Cfgr {
      self
   }
 
+#[doc="JAWD1EN"]
   #[inline] pub fn jawd1en(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1 // [24]
   }
+#[doc="JAWD1EN"]
   #[inline] pub fn set_jawd1en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
@@ -993,9 +1195,11 @@ impl Cfgr {
      self
   }
 
+#[doc="AWD1EN"]
   #[inline] pub fn awd1en(&self) -> u32 {
      ((self.0 as u32) >> 23) & 0x1 // [23]
   }
+#[doc="AWD1EN"]
   #[inline] pub fn set_awd1en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
@@ -1003,9 +1207,11 @@ impl Cfgr {
      self
   }
 
+#[doc="AWD1SGL"]
   #[inline] pub fn awd1sgl(&self) -> u32 {
      ((self.0 as u32) >> 22) & 0x1 // [22]
   }
+#[doc="AWD1SGL"]
   #[inline] pub fn set_awd1sgl(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
@@ -1013,9 +1219,11 @@ impl Cfgr {
      self
   }
 
+#[doc="JQM"]
   #[inline] pub fn jqm(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x1 // [21]
   }
+#[doc="JQM"]
   #[inline] pub fn set_jqm(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
@@ -1023,9 +1231,11 @@ impl Cfgr {
      self
   }
 
+#[doc="JDISCEN"]
   #[inline] pub fn jdiscen(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1 // [20]
   }
+#[doc="JDISCEN"]
   #[inline] pub fn set_jdiscen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
@@ -1033,9 +1243,11 @@ impl Cfgr {
      self
   }
 
+#[doc="DISCNUM"]
   #[inline] pub fn discnum(&self) -> u32 {
      ((self.0 as u32) >> 17) & 0x7 // [19:17]
   }
+#[doc="DISCNUM"]
   #[inline] pub fn set_discnum(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 17);
@@ -1043,9 +1255,11 @@ impl Cfgr {
      self
   }
 
+#[doc="DISCEN"]
   #[inline] pub fn discen(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x1 // [16]
   }
+#[doc="DISCEN"]
   #[inline] pub fn set_discen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
@@ -1053,9 +1267,11 @@ impl Cfgr {
      self
   }
 
+#[doc="AUTOFF"]
   #[inline] pub fn autoff(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x1 // [15]
   }
+#[doc="AUTOFF"]
   #[inline] pub fn set_autoff(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
@@ -1063,9 +1279,11 @@ impl Cfgr {
      self
   }
 
+#[doc="AUTDLY"]
   #[inline] pub fn autdly(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1 // [14]
   }
+#[doc="AUTDLY"]
   #[inline] pub fn set_autdly(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
@@ -1073,9 +1291,11 @@ impl Cfgr {
      self
   }
 
+#[doc="CONT"]
   #[inline] pub fn cont(&self) -> u32 {
      ((self.0 as u32) >> 13) & 0x1 // [13]
   }
+#[doc="CONT"]
   #[inline] pub fn set_cont(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
@@ -1083,9 +1303,11 @@ impl Cfgr {
      self
   }
 
+#[doc="OVRMOD"]
   #[inline] pub fn ovrmod(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1 // [12]
   }
+#[doc="OVRMOD"]
   #[inline] pub fn set_ovrmod(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
@@ -1093,9 +1315,11 @@ impl Cfgr {
      self
   }
 
+#[doc="EXTEN"]
   #[inline] pub fn exten(&self) -> u32 {
      ((self.0 as u32) >> 10) & 0x3 // [11:10]
   }
+#[doc="EXTEN"]
   #[inline] pub fn set_exten(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 10);
@@ -1103,9 +1327,11 @@ impl Cfgr {
      self
   }
 
+#[doc="EXTSEL"]
   #[inline] pub fn extsel(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0xf // [9:6]
   }
+#[doc="EXTSEL"]
   #[inline] pub fn set_extsel(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 6);
@@ -1113,9 +1339,11 @@ impl Cfgr {
      self
   }
 
+#[doc="ALIGN"]
   #[inline] pub fn align(&self) -> u32 {
      ((self.0 as u32) >> 5) & 0x1 // [5]
   }
+#[doc="ALIGN"]
   #[inline] pub fn set_align(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
@@ -1123,9 +1351,11 @@ impl Cfgr {
      self
   }
 
+#[doc="RES"]
   #[inline] pub fn res(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x3 // [4:3]
   }
+#[doc="RES"]
   #[inline] pub fn set_res(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
@@ -1133,9 +1363,11 @@ impl Cfgr {
      self
   }
 
+#[doc="DMACFG"]
   #[inline] pub fn dmacfg(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x1 // [1]
   }
+#[doc="DMACFG"]
   #[inline] pub fn set_dmacfg(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
@@ -1143,9 +1375,11 @@ impl Cfgr {
      self
   }
 
+#[doc="DMAEN"]
   #[inline] pub fn dmaen(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1 // [0]
   }
+#[doc="DMAEN"]
   #[inline] pub fn set_dmaen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
@@ -1185,12 +1419,15 @@ impl ::core::fmt::Debug for Cfgr {
       Ok(())
    }
 }
+#[doc="sample time register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Smpr1(pub u32);
 impl Smpr1 {
+#[doc="SMP9"]
   #[inline] pub fn smp9(&self) -> u32 {
      ((self.0 as u32) >> 27) & 0x7 // [29:27]
   }
+#[doc="SMP9"]
   #[inline] pub fn set_smp9(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 27);
@@ -1198,9 +1435,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP8"]
   #[inline] pub fn smp8(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x7 // [26:24]
   }
+#[doc="SMP8"]
   #[inline] pub fn set_smp8(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
@@ -1208,9 +1447,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP7"]
   #[inline] pub fn smp7(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x7 // [23:21]
   }
+#[doc="SMP7"]
   #[inline] pub fn set_smp7(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 21);
@@ -1218,9 +1459,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP6"]
   #[inline] pub fn smp6(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x7 // [20:18]
   }
+#[doc="SMP6"]
   #[inline] pub fn set_smp6(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 18);
@@ -1228,9 +1471,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP5"]
   #[inline] pub fn smp5(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x7 // [17:15]
   }
+#[doc="SMP5"]
   #[inline] pub fn set_smp5(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 15);
@@ -1238,9 +1483,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP4"]
   #[inline] pub fn smp4(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
+#[doc="SMP4"]
   #[inline] pub fn set_smp4(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
@@ -1248,9 +1495,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP3"]
   #[inline] pub fn smp3(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x7 // [11:9]
   }
+#[doc="SMP3"]
   #[inline] pub fn set_smp3(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 9);
@@ -1258,9 +1507,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP2"]
   #[inline] pub fn smp2(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x7 // [8:6]
   }
+#[doc="SMP2"]
   #[inline] pub fn set_smp2(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 6);
@@ -1268,9 +1519,11 @@ impl Smpr1 {
      self
   }
 
+#[doc="SMP1"]
   #[inline] pub fn smp1(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x7 // [5:3]
   }
+#[doc="SMP1"]
   #[inline] pub fn set_smp1(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
@@ -1300,12 +1553,15 @@ impl ::core::fmt::Debug for Smpr1 {
       Ok(())
    }
 }
+#[doc="sample time register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Smpr2(pub u32);
 impl Smpr2 {
+#[doc="SMP18"]
   #[inline] pub fn smp18(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x7 // [26:24]
   }
+#[doc="SMP18"]
   #[inline] pub fn set_smp18(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
@@ -1313,9 +1569,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP17"]
   #[inline] pub fn smp17(&self) -> u32 {
      ((self.0 as u32) >> 21) & 0x7 // [23:21]
   }
+#[doc="SMP17"]
   #[inline] pub fn set_smp17(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 21);
@@ -1323,9 +1581,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP16"]
   #[inline] pub fn smp16(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x7 // [20:18]
   }
+#[doc="SMP16"]
   #[inline] pub fn set_smp16(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 18);
@@ -1333,9 +1593,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP15"]
   #[inline] pub fn smp15(&self) -> u32 {
      ((self.0 as u32) >> 15) & 0x7 // [17:15]
   }
+#[doc="SMP15"]
   #[inline] pub fn set_smp15(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 15);
@@ -1343,9 +1605,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP14"]
   #[inline] pub fn smp14(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x7 // [14:12]
   }
+#[doc="SMP14"]
   #[inline] pub fn set_smp14(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
@@ -1353,9 +1617,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP13"]
   #[inline] pub fn smp13(&self) -> u32 {
      ((self.0 as u32) >> 9) & 0x7 // [11:9]
   }
+#[doc="SMP13"]
   #[inline] pub fn set_smp13(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 9);
@@ -1363,9 +1629,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP12"]
   #[inline] pub fn smp12(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x7 // [8:6]
   }
+#[doc="SMP12"]
   #[inline] pub fn set_smp12(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 6);
@@ -1373,9 +1641,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP11"]
   #[inline] pub fn smp11(&self) -> u32 {
      ((self.0 as u32) >> 3) & 0x7 // [5:3]
   }
+#[doc="SMP11"]
   #[inline] pub fn set_smp11(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
@@ -1383,9 +1653,11 @@ impl Smpr2 {
      self
   }
 
+#[doc="SMP10"]
   #[inline] pub fn smp10(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7 // [2:0]
   }
+#[doc="SMP10"]
   #[inline] pub fn set_smp10(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
@@ -1415,12 +1687,15 @@ impl ::core::fmt::Debug for Smpr2 {
       Ok(())
    }
 }
+#[doc="watchdog threshold register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Tr1(pub u32);
 impl Tr1 {
+#[doc="HT1"]
   #[inline] pub fn ht1(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xfff // [27:16]
   }
+#[doc="HT1"]
   #[inline] pub fn set_ht1(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 16);
@@ -1428,9 +1703,11 @@ impl Tr1 {
      self
   }
 
+#[doc="LT1"]
   #[inline] pub fn lt1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="LT1"]
   #[inline] pub fn set_lt1(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -1453,12 +1730,15 @@ impl ::core::fmt::Debug for Tr1 {
       Ok(())
    }
 }
+#[doc="watchdog threshold register"]
 #[derive(PartialEq, Eq)]
 pub struct Tr2(pub u32);
 impl Tr2 {
+#[doc="HT2"]
   #[inline] pub fn ht2(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="HT2"]
   #[inline] pub fn set_ht2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -1466,9 +1746,11 @@ impl Tr2 {
      self
   }
 
+#[doc="LT2"]
   #[inline] pub fn lt2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="LT2"]
   #[inline] pub fn set_lt2(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1491,12 +1773,15 @@ impl ::core::fmt::Debug for Tr2 {
       Ok(())
    }
 }
+#[doc="watchdog threshold register 3"]
 #[derive(PartialEq, Eq)]
 pub struct Tr3(pub u32);
 impl Tr3 {
+#[doc="HT3"]
   #[inline] pub fn ht3(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0xff // [23:16]
   }
+#[doc="HT3"]
   #[inline] pub fn set_ht3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
@@ -1504,9 +1789,11 @@ impl Tr3 {
      self
   }
 
+#[doc="LT3"]
   #[inline] pub fn lt3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xff // [7:0]
   }
+#[doc="LT3"]
   #[inline] pub fn set_lt3(mut self, value: u32) -> Self {
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
@@ -1529,12 +1816,15 @@ impl ::core::fmt::Debug for Tr3 {
       Ok(())
    }
 }
+#[doc="regular sequence register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Sqr1(pub u32);
 impl Sqr1 {
+#[doc="SQ4"]
   #[inline] pub fn sq4(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1f // [28:24]
   }
+#[doc="SQ4"]
   #[inline] pub fn set_sq4(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 24);
@@ -1542,9 +1832,11 @@ impl Sqr1 {
      self
   }
 
+#[doc="SQ3"]
   #[inline] pub fn sq3(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1f // [22:18]
   }
+#[doc="SQ3"]
   #[inline] pub fn set_sq3(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 18);
@@ -1552,9 +1844,11 @@ impl Sqr1 {
      self
   }
 
+#[doc="SQ2"]
   #[inline] pub fn sq2(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1f // [16:12]
   }
+#[doc="SQ2"]
   #[inline] pub fn set_sq2(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 12);
@@ -1562,9 +1856,11 @@ impl Sqr1 {
      self
   }
 
+#[doc="SQ1"]
   #[inline] pub fn sq1(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1f // [10:6]
   }
+#[doc="SQ1"]
   #[inline] pub fn set_sq1(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 6);
@@ -1572,9 +1868,11 @@ impl Sqr1 {
      self
   }
 
+#[doc="L"]
   #[inline] pub fn l(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xf // [3:0]
   }
+#[doc="L"]
   #[inline] pub fn set_l(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
@@ -1600,12 +1898,15 @@ impl ::core::fmt::Debug for Sqr1 {
       Ok(())
    }
 }
+#[doc="regular sequence register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Sqr2(pub u32);
 impl Sqr2 {
+#[doc="SQ9"]
   #[inline] pub fn sq9(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1f // [28:24]
   }
+#[doc="SQ9"]
   #[inline] pub fn set_sq9(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 24);
@@ -1613,9 +1914,11 @@ impl Sqr2 {
      self
   }
 
+#[doc="SQ8"]
   #[inline] pub fn sq8(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1f // [22:18]
   }
+#[doc="SQ8"]
   #[inline] pub fn set_sq8(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 18);
@@ -1623,9 +1926,11 @@ impl Sqr2 {
      self
   }
 
+#[doc="SQ7"]
   #[inline] pub fn sq7(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1f // [16:12]
   }
+#[doc="SQ7"]
   #[inline] pub fn set_sq7(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 12);
@@ -1633,9 +1938,11 @@ impl Sqr2 {
      self
   }
 
+#[doc="SQ6"]
   #[inline] pub fn sq6(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1f // [10:6]
   }
+#[doc="SQ6"]
   #[inline] pub fn set_sq6(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 6);
@@ -1643,9 +1950,11 @@ impl Sqr2 {
      self
   }
 
+#[doc="SQ5"]
   #[inline] pub fn sq5(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="SQ5"]
   #[inline] pub fn set_sq5(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -1671,12 +1980,15 @@ impl ::core::fmt::Debug for Sqr2 {
       Ok(())
    }
 }
+#[doc="regular sequence register 3"]
 #[derive(PartialEq, Eq)]
 pub struct Sqr3(pub u32);
 impl Sqr3 {
+#[doc="SQ14"]
   #[inline] pub fn sq14(&self) -> u32 {
      ((self.0 as u32) >> 24) & 0x1f // [28:24]
   }
+#[doc="SQ14"]
   #[inline] pub fn set_sq14(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 24);
@@ -1684,9 +1996,11 @@ impl Sqr3 {
      self
   }
 
+#[doc="SQ13"]
   #[inline] pub fn sq13(&self) -> u32 {
      ((self.0 as u32) >> 18) & 0x1f // [22:18]
   }
+#[doc="SQ13"]
   #[inline] pub fn set_sq13(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 18);
@@ -1694,9 +2008,11 @@ impl Sqr3 {
      self
   }
 
+#[doc="SQ12"]
   #[inline] pub fn sq12(&self) -> u32 {
      ((self.0 as u32) >> 12) & 0x1f // [16:12]
   }
+#[doc="SQ12"]
   #[inline] pub fn set_sq12(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 12);
@@ -1704,9 +2020,11 @@ impl Sqr3 {
      self
   }
 
+#[doc="SQ11"]
   #[inline] pub fn sq11(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1f // [10:6]
   }
+#[doc="SQ11"]
   #[inline] pub fn set_sq11(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 6);
@@ -1714,9 +2032,11 @@ impl Sqr3 {
      self
   }
 
+#[doc="SQ10"]
   #[inline] pub fn sq10(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="SQ10"]
   #[inline] pub fn set_sq10(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -1742,12 +2062,15 @@ impl ::core::fmt::Debug for Sqr3 {
       Ok(())
    }
 }
+#[doc="regular sequence register 4"]
 #[derive(PartialEq, Eq)]
 pub struct Sqr4(pub u32);
 impl Sqr4 {
+#[doc="SQ16"]
   #[inline] pub fn sq16(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1f // [10:6]
   }
+#[doc="SQ16"]
   #[inline] pub fn set_sq16(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 6);
@@ -1755,9 +2078,11 @@ impl Sqr4 {
      self
   }
 
+#[doc="SQ15"]
   #[inline] pub fn sq15(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x1f // [4:0]
   }
+#[doc="SQ15"]
   #[inline] pub fn set_sq15(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
@@ -1780,12 +2105,15 @@ impl ::core::fmt::Debug for Sqr4 {
       Ok(())
    }
 }
+#[doc="regular Data Register"]
 #[derive(PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
+#[doc="regularDATA"]
   #[inline] pub fn regulardata(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="regularDATA"]
   #[inline] pub fn set_regulardata(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -1807,12 +2135,15 @@ impl ::core::fmt::Debug for Dr {
       Ok(())
    }
 }
+#[doc="injected sequence register"]
 #[derive(PartialEq, Eq)]
 pub struct Jsqr(pub u32);
 impl Jsqr {
+#[doc="JSQ4"]
   #[inline] pub fn jsq4(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="JSQ4"]
   #[inline] pub fn set_jsq4(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -1820,9 +2151,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JSQ3"]
   #[inline] pub fn jsq3(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x1f // [24:20]
   }
+#[doc="JSQ3"]
   #[inline] pub fn set_jsq3(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 20);
@@ -1830,9 +2163,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JSQ2"]
   #[inline] pub fn jsq2(&self) -> u32 {
      ((self.0 as u32) >> 14) & 0x1f // [18:14]
   }
+#[doc="JSQ2"]
   #[inline] pub fn set_jsq2(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 14);
@@ -1840,9 +2175,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JSQ1"]
   #[inline] pub fn jsq1(&self) -> u32 {
      ((self.0 as u32) >> 8) & 0x1f // [12:8]
   }
+#[doc="JSQ1"]
   #[inline] pub fn set_jsq1(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 8);
@@ -1850,9 +2187,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JEXTEN"]
   #[inline] pub fn jexten(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x3 // [7:6]
   }
+#[doc="JEXTEN"]
   #[inline] pub fn set_jexten(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
@@ -1860,9 +2199,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JEXTSEL"]
   #[inline] pub fn jextsel(&self) -> u32 {
      ((self.0 as u32) >> 2) & 0xf // [5:2]
   }
+#[doc="JEXTSEL"]
   #[inline] pub fn set_jextsel(mut self, value: u32) -> Self {
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 2);
@@ -1870,9 +2211,11 @@ impl Jsqr {
      self
   }
 
+#[doc="JL"]
   #[inline] pub fn jl(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x3 // [1:0]
   }
+#[doc="JL"]
   #[inline] pub fn set_jl(mut self, value: u32) -> Self {
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
@@ -1900,12 +2243,15 @@ impl ::core::fmt::Debug for Jsqr {
       Ok(())
    }
 }
+#[doc="offset register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Ofr1(pub u32);
 impl Ofr1 {
+#[doc="OFFSET1_EN"]
   #[inline] pub fn offset1_en(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="OFFSET1_EN"]
   #[inline] pub fn set_offset1_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1913,9 +2259,11 @@ impl Ofr1 {
      self
   }
 
+#[doc="OFFSET1_CH"]
   #[inline] pub fn offset1_ch(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="OFFSET1_CH"]
   #[inline] pub fn set_offset1_ch(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -1923,9 +2271,11 @@ impl Ofr1 {
      self
   }
 
+#[doc="OFFSET1"]
   #[inline] pub fn offset1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="OFFSET1"]
   #[inline] pub fn set_offset1(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -1949,12 +2299,15 @@ impl ::core::fmt::Debug for Ofr1 {
       Ok(())
    }
 }
+#[doc="offset register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Ofr2(pub u32);
 impl Ofr2 {
+#[doc="OFFSET2_EN"]
   #[inline] pub fn offset2_en(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="OFFSET2_EN"]
   #[inline] pub fn set_offset2_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -1962,9 +2315,11 @@ impl Ofr2 {
      self
   }
 
+#[doc="OFFSET2_CH"]
   #[inline] pub fn offset2_ch(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="OFFSET2_CH"]
   #[inline] pub fn set_offset2_ch(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -1972,9 +2327,11 @@ impl Ofr2 {
      self
   }
 
+#[doc="OFFSET2"]
   #[inline] pub fn offset2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="OFFSET2"]
   #[inline] pub fn set_offset2(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -1998,12 +2355,15 @@ impl ::core::fmt::Debug for Ofr2 {
       Ok(())
    }
 }
+#[doc="offset register 3"]
 #[derive(PartialEq, Eq)]
 pub struct Ofr3(pub u32);
 impl Ofr3 {
+#[doc="OFFSET3_EN"]
   #[inline] pub fn offset3_en(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="OFFSET3_EN"]
   #[inline] pub fn set_offset3_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -2011,9 +2371,11 @@ impl Ofr3 {
      self
   }
 
+#[doc="OFFSET3_CH"]
   #[inline] pub fn offset3_ch(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="OFFSET3_CH"]
   #[inline] pub fn set_offset3_ch(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -2021,9 +2383,11 @@ impl Ofr3 {
      self
   }
 
+#[doc="OFFSET3"]
   #[inline] pub fn offset3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="OFFSET3"]
   #[inline] pub fn set_offset3(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -2047,12 +2411,15 @@ impl ::core::fmt::Debug for Ofr3 {
       Ok(())
    }
 }
+#[doc="offset register 4"]
 #[derive(PartialEq, Eq)]
 pub struct Ofr4(pub u32);
 impl Ofr4 {
+#[doc="OFFSET4_EN"]
   #[inline] pub fn offset4_en(&self) -> u32 {
      ((self.0 as u32) >> 31) & 0x1 // [31]
   }
+#[doc="OFFSET4_EN"]
   #[inline] pub fn set_offset4_en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
@@ -2060,9 +2427,11 @@ impl Ofr4 {
      self
   }
 
+#[doc="OFFSET4_CH"]
   #[inline] pub fn offset4_ch(&self) -> u32 {
      ((self.0 as u32) >> 26) & 0x1f // [30:26]
   }
+#[doc="OFFSET4_CH"]
   #[inline] pub fn set_offset4_ch(mut self, value: u32) -> Self {
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 26);
@@ -2070,9 +2439,11 @@ impl Ofr4 {
      self
   }
 
+#[doc="OFFSET4"]
   #[inline] pub fn offset4(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xfff // [11:0]
   }
+#[doc="OFFSET4"]
   #[inline] pub fn set_offset4(mut self, value: u32) -> Self {
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
@@ -2096,12 +2467,15 @@ impl ::core::fmt::Debug for Ofr4 {
       Ok(())
    }
 }
+#[doc="injected data register 1"]
 #[derive(PartialEq, Eq)]
 pub struct Jdr1(pub u32);
 impl Jdr1 {
+#[doc="JDATA1"]
   #[inline] pub fn jdata1(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="JDATA1"]
   #[inline] pub fn set_jdata1(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -2123,12 +2497,15 @@ impl ::core::fmt::Debug for Jdr1 {
       Ok(())
    }
 }
+#[doc="injected data register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Jdr2(pub u32);
 impl Jdr2 {
+#[doc="JDATA2"]
   #[inline] pub fn jdata2(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="JDATA2"]
   #[inline] pub fn set_jdata2(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -2150,12 +2527,15 @@ impl ::core::fmt::Debug for Jdr2 {
       Ok(())
    }
 }
+#[doc="injected data register 3"]
 #[derive(PartialEq, Eq)]
 pub struct Jdr3(pub u32);
 impl Jdr3 {
+#[doc="JDATA3"]
   #[inline] pub fn jdata3(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="JDATA3"]
   #[inline] pub fn set_jdata3(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -2177,12 +2557,15 @@ impl ::core::fmt::Debug for Jdr3 {
       Ok(())
    }
 }
+#[doc="injected data register 4"]
 #[derive(PartialEq, Eq)]
 pub struct Jdr4(pub u32);
 impl Jdr4 {
+#[doc="JDATA4"]
   #[inline] pub fn jdata4(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0xffff // [15:0]
   }
+#[doc="JDATA4"]
   #[inline] pub fn set_jdata4(mut self, value: u32) -> Self {
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
@@ -2204,12 +2587,15 @@ impl ::core::fmt::Debug for Jdr4 {
       Ok(())
    }
 }
+#[doc="Analog Watchdog 2 Configuration Register"]
 #[derive(PartialEq, Eq)]
 pub struct Awd2cr(pub u32);
 impl Awd2cr {
+#[doc="AWD2CH"]
   #[inline] pub fn awd2ch(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x3ffff // [18:1]
   }
+#[doc="AWD2CH"]
   #[inline] pub fn set_awd2ch(mut self, value: u32) -> Self {
      assert!((value & !0x3ffff) == 0);
      self.0 &= !(0x3ffff << 1);
@@ -2231,12 +2617,15 @@ impl ::core::fmt::Debug for Awd2cr {
       Ok(())
    }
 }
+#[doc="Analog Watchdog 3 Configuration Register"]
 #[derive(PartialEq, Eq)]
 pub struct Awd3cr(pub u32);
 impl Awd3cr {
+#[doc="AWD3CH"]
   #[inline] pub fn awd3ch(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x3ffff // [18:1]
   }
+#[doc="AWD3CH"]
   #[inline] pub fn set_awd3ch(mut self, value: u32) -> Self {
      assert!((value & !0x3ffff) == 0);
      self.0 &= !(0x3ffff << 1);
@@ -2258,12 +2647,15 @@ impl ::core::fmt::Debug for Awd3cr {
       Ok(())
    }
 }
+#[doc="Differential Mode Selection Register 2"]
 #[derive(PartialEq, Eq)]
 pub struct Difsel(pub u32);
 impl Difsel {
+#[doc="Differential mode for channels 15 to 1"]
   #[inline] pub fn difsel_1_15(&self) -> u32 {
      ((self.0 as u32) >> 1) & 0x7fff // [15:1]
   }
+#[doc="Differential mode for channels 15 to 1"]
   #[inline] pub fn set_difsel_1_15(mut self, value: u32) -> Self {
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 1);
@@ -2271,9 +2663,11 @@ impl Difsel {
      self
   }
 
+#[doc="Differential mode for channels 18 to 16"]
   #[inline] pub fn difsel_16_18(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7 // [18:16]
   }
+#[doc="Differential mode for channels 18 to 16"]
   #[inline] pub fn set_difsel_16_18(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
@@ -2296,12 +2690,15 @@ impl ::core::fmt::Debug for Difsel {
       Ok(())
    }
 }
+#[doc="Calibration Factors"]
 #[derive(PartialEq, Eq)]
 pub struct Calfact(pub u32);
 impl Calfact {
+#[doc="CALFACT_D"]
   #[inline] pub fn calfact_d(&self) -> u32 {
      ((self.0 as u32) >> 16) & 0x7f // [22:16]
   }
+#[doc="CALFACT_D"]
   #[inline] pub fn set_calfact_d(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
@@ -2309,9 +2706,11 @@ impl Calfact {
      self
   }
 
+#[doc="CALFACT_S"]
   #[inline] pub fn calfact_s(&self) -> u32 {
      ((self.0 as u32) >> 0) & 0x7f // [6:0]
   }
+#[doc="CALFACT_S"]
   #[inline] pub fn set_calfact_s(mut self, value: u32) -> Self {
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
