@@ -70,3 +70,12 @@ pub fn write_fmt(args: Arguments) {
 pub fn write_str(s: &str) {
     CONSOLE.write_str(s).ok();
 }
+
+#[doc(hidden)]
+pub fn write(buf: &[u8]) -> usize {
+    UART.write(buf)
+}
+
+pub fn try_getc() -> Option<u8> {
+    UART.try_getc()
+}

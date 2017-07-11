@@ -71,3 +71,11 @@ pub fn write_str(s: &str) {
     CONSOLE.write_str(s).ok();
 }
 
+#[doc(hidden)]
+pub fn write(buf: &[u8]) -> usize {
+    USART.write(buf)
+}
+
+pub fn try_getc() -> Option<u8> {
+    USART.try_getc()
+}

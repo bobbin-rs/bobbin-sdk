@@ -80,6 +80,10 @@ pub fn try_getc() -> Option<u8> {
     USART.try_getc()
 }
 
+pub fn putc(c: u8) {
+    USART.putc(c)
+}
+
 pub fn read(buf: &mut [u8]) -> usize {
     USART.read(buf)
 }
