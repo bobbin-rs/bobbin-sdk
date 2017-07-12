@@ -1,32 +1,36 @@
-# Bobbin: Teensy LC
+# Bobbin Board Definitions
 
-This crate contains board support for the [Teensy LC](https://www.pjrc.com/store/teensylc.html) with a [Freescale MKL26Z64VFT4](http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/l-series-ultra-low-power-m0-plus/kinetis-kl2x-48-mhz-usb-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL2x) Cortex-M0+ processor.
+This repository contains board crates - Rust crates with all the information needed to build an application running on a specific embedded hardware platform.
 
-- [Board Overview](https://www.pjrc.com/store/teensylc.html)
-- [Board Schematic](https://www.pjrc.com/teensy/schematic.html)
-- [Board Datasheet](https://www.pjrc.com/teensy/KL26P64M48SF5.pdf)
-- [Board Reference](https://www.pjrc.com/teensy/KL26P121M48SF4RM.pdf)
+Each board crate does the following:
 
-## Getting Started
+  - Imports the appropriate chip and HAL crates for the processor on the board
+  - Adds a linker file and build script for the specific board, specifying the amount
+    of Flash and SRAM on board as well as the memory map.
+  - Includes a .cargo/config file
+  - Where appropriate, includes an openocd.cfg file that can be used to connect to
+    the device
+  - Defines panic and exception handlers, including any _reset handlers that set up
+    the runtime environment
+  - Adds a basic clock management module
+  - Adds a module with pin definitions
+  - Adds modules defining available LEDs and buttons
+  - Adds a module defining a uart-based console and print macros
+  - For Cortex-M3 / M4 devices, sets up console-based logging macros
 
-Before getting started, please make sure that you have the following installed in addition to Rust Nightly (more details to follow)
+Each board has a number of examples
 
-- [OpenOCD](http://openocd.org)
-- gcc-arm-embedded toolchain
-- [xargo](https://github.com/japaric/xargo)
-- [teensy_loader_cli](https://www.pjrc.com/teensy/loader_cli.html)
+  - minimal - runs an infinite loop
+  - blinky - blinks the LED at 1hz
+  - uart / usart - prints messages directly to the "console" serial port
+  - console - prints messages using the console print macros
+  - logger - prints messages using the logging macros
 
-## Examples
-
-The Teensy LC does not have an on-board debugger or virtual serial port. You will need to update your .bobbin/config directory to include a loader directive.
-
-To run examples using the default bootloader, go to the crate root and use the "flash" utility with the "--example" parameter and optionally the "--console" flag. You will
-need to put the board into bootloader mode first by pushing the reset button twice.
-
-To run the "blinky" example:
+To run examples, go to the crate root and use the "flash" utility with the "--example" parameter and optionally the "--console" flag. For instance, to run the "blinky" example:
 
 ```
 $ flash run --example blinky
+   Compiling nucleo-f031k6 v0.1.0 (file:///Users/jcsoo/bobbin/bobbin-boards/nucleo-f031k6)
     Finished dev [optimized + debuginfo] target(s) in 0.0 secs
 Build Complete
 Running OpenOCD
@@ -34,12 +38,11 @@ OpenOCD Complete
 $
 ```
 
-The Teensy LC does not have an on-board debugger or virtual serial port. 
-You will need to connect an external serial port to the appropriate pins. To run these examples, find the device path for the serial port you are using (ex. /dev/cu.usbmodemxxxx on OSX for /dev/ttyUSBx) and use it as a "--console" parameter. 
 To run the "console" example (using Control-C to exit):
 
 ```
 $ flash run --example console --console
+   Compiling nucleo-f031k6 v0.1.0 (file:///Users/jcsoo/bobbin/bobbin-boards/nucleo-f031k6)
     Finished dev [optimized + debuginfo] target(s) in 0.60 secs
 Build Complete
 Using console /dev/cu.usbmodem1413
