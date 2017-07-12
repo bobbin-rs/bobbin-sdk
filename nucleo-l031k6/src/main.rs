@@ -7,12 +7,11 @@ extern crate nucleo_l031k6 as board;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("# Running Tests");
-    println!("[start]");
+    println!("[start] Running tests for nucleo-l031K6");
     for i in 0..5 {
         println!("[pass] {}", i);
-        board::delay(500);
+        board::delay(100);
     }
-    println!("[done]");
+    println!("[done] All tests passed");
     loop {}
 }
