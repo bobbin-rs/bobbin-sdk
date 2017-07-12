@@ -8,7 +8,9 @@ TESTDIRS = test-arduino-zero test-ek-tm4c1294xl test-evb-s32k144 test-frdm-k64f 
 	test-nucleo-l031k6 test-nucleo-f207zg test-nucleo-f302r8 \
 	test-nucleo-f303ze test-nucleo-f429zi
 
-.PHONY: build test $(SUBDIRS) $(TESTDIRS)
+CLEANDIRS = $(SUBDIRS:%=clean-%)
+
+.PHONY: build test clean $(SUBDIRS) $(TESTDIRS) $(CLEANDIRS)
 
 build: $(SUBDIRS)
 
@@ -19,3 +21,8 @@ test: $(TESTDIRS)
 
 $(TESTDIRS): 
 	$(MAKE) -C $(@:test-%=%) test
+
+clean: $(CLEANDIRS)
+
+$(CLEANDIRS):
+	$(MAKE) -C $(@:clean-%=%) clean

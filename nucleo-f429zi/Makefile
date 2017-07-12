@@ -5,3 +5,6 @@ build:
 
 test:
 	@bobbin test
+
+clean:
+	@cargo clean
