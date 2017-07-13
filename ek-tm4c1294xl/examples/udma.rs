@@ -59,7 +59,7 @@ pub extern "C" fn main() -> ! {
     );
     println!("DESC: {:p}", desc);
     println!("   SRCENDP: {:?}", desc.srcendp());
-    println!("   DSTENDP: {:?}", desc.srcendp());
+    println!("   DSTENDP: {:?}", desc.dstendp());
     println!("   CHCTL:   {:?}", desc.chctl());
 
     d.set_enaset(Enaset(0).set_set(ch.index(), 1));
