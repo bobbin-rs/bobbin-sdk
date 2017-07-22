@@ -69,7 +69,7 @@ pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result
 
 fn get_selected_variant(device: &Device) -> Option<Variant> {
     for v in device.variants.iter() {
-        if let Ok(_) = env::var(format!("CARGO_FEATURE_{}", v.name)) {
+        if let Ok(_) = env::var(format!("CARGO_FEATURE_{}", v.name.to_uppercase())) {
             return Some(v.clone())
         }
     }
