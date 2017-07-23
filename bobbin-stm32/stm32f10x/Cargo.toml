@@ -1,0 +1,14 @@
+[package]
+name = "stm32f10x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+stm32f10x-chip = { path = "../stm32f10x-chip" }
+stm32f10x-hal = { path = "../stm32f10x-hal" }
+
+[features]
+default = []
+
+STM32F103x8 = ["stm32f10x-chip/STM32F103x8"]
+STM32F103xB = ["stm32f10x-chip/STM32F103xB"]

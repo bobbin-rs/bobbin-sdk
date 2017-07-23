@@ -1,0 +1,2679 @@
+//! Backup registers
+pub const BKP: Bkp = Bkp(0x40006c04);
+
+#[doc="Backup registers"]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Bkp(pub u32);
+impl Bkp {
+#[doc="Get the *const pointer for the DR1 register."]
+  #[inline] pub fn dr1_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x0) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR1 register."]
+  #[inline] pub fn dr1_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x0) as *mut u32
+  }
+#[doc="Read the DR1 register."]
+  #[inline] pub fn dr1(&self) -> Dr1 { 
+     unsafe {
+        Dr1(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
+     }
+  }
+#[doc="Write the DR1 register."]
+  #[inline] pub fn set_dr1(&self, value: Dr1) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR1 register."]
+  #[inline] pub fn with_dr1<F: FnOnce(Dr1) -> Dr1>(&self, f: F) -> &Self {
+     let tmp = self.dr1();
+     self.set_dr1(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR2 register."]
+  #[inline] pub fn dr2_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR2 register."]
+  #[inline] pub fn dr2_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4) as *mut u32
+  }
+#[doc="Read the DR2 register."]
+  #[inline] pub fn dr2(&self) -> Dr2 { 
+     unsafe {
+        Dr2(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
+     }
+  }
+#[doc="Write the DR2 register."]
+  #[inline] pub fn set_dr2(&self, value: Dr2) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR2 register."]
+  #[inline] pub fn with_dr2<F: FnOnce(Dr2) -> Dr2>(&self, f: F) -> &Self {
+     let tmp = self.dr2();
+     self.set_dr2(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR3 register."]
+  #[inline] pub fn dr3_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR3 register."]
+  #[inline] pub fn dr3_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8) as *mut u32
+  }
+#[doc="Read the DR3 register."]
+  #[inline] pub fn dr3(&self) -> Dr3 { 
+     unsafe {
+        Dr3(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
+     }
+  }
+#[doc="Write the DR3 register."]
+  #[inline] pub fn set_dr3(&self, value: Dr3) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR3 register."]
+  #[inline] pub fn with_dr3<F: FnOnce(Dr3) -> Dr3>(&self, f: F) -> &Self {
+     let tmp = self.dr3();
+     self.set_dr3(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR4 register."]
+  #[inline] pub fn dr4_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xc) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR4 register."]
+  #[inline] pub fn dr4_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xc) as *mut u32
+  }
+#[doc="Read the DR4 register."]
+  #[inline] pub fn dr4(&self) -> Dr4 { 
+     unsafe {
+        Dr4(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
+     }
+  }
+#[doc="Write the DR4 register."]
+  #[inline] pub fn set_dr4(&self, value: Dr4) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR4 register."]
+  #[inline] pub fn with_dr4<F: FnOnce(Dr4) -> Dr4>(&self, f: F) -> &Self {
+     let tmp = self.dr4();
+     self.set_dr4(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR5 register."]
+  #[inline] pub fn dr5_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x10) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR5 register."]
+  #[inline] pub fn dr5_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x10) as *mut u32
+  }
+#[doc="Read the DR5 register."]
+  #[inline] pub fn dr5(&self) -> Dr5 { 
+     unsafe {
+        Dr5(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
+     }
+  }
+#[doc="Write the DR5 register."]
+  #[inline] pub fn set_dr5(&self, value: Dr5) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR5 register."]
+  #[inline] pub fn with_dr5<F: FnOnce(Dr5) -> Dr5>(&self, f: F) -> &Self {
+     let tmp = self.dr5();
+     self.set_dr5(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR6 register."]
+  #[inline] pub fn dr6_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x14) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR6 register."]
+  #[inline] pub fn dr6_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x14) as *mut u32
+  }
+#[doc="Read the DR6 register."]
+  #[inline] pub fn dr6(&self) -> Dr6 { 
+     unsafe {
+        Dr6(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+     }
+  }
+#[doc="Write the DR6 register."]
+  #[inline] pub fn set_dr6(&self, value: Dr6) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR6 register."]
+  #[inline] pub fn with_dr6<F: FnOnce(Dr6) -> Dr6>(&self, f: F) -> &Self {
+     let tmp = self.dr6();
+     self.set_dr6(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR7 register."]
+  #[inline] pub fn dr7_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x18) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR7 register."]
+  #[inline] pub fn dr7_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x18) as *mut u32
+  }
+#[doc="Read the DR7 register."]
+  #[inline] pub fn dr7(&self) -> Dr7 { 
+     unsafe {
+        Dr7(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
+     }
+  }
+#[doc="Write the DR7 register."]
+  #[inline] pub fn set_dr7(&self, value: Dr7) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR7 register."]
+  #[inline] pub fn with_dr7<F: FnOnce(Dr7) -> Dr7>(&self, f: F) -> &Self {
+     let tmp = self.dr7();
+     self.set_dr7(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR8 register."]
+  #[inline] pub fn dr8_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x1c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR8 register."]
+  #[inline] pub fn dr8_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x1c) as *mut u32
+  }
+#[doc="Read the DR8 register."]
+  #[inline] pub fn dr8(&self) -> Dr8 { 
+     unsafe {
+        Dr8(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
+     }
+  }
+#[doc="Write the DR8 register."]
+  #[inline] pub fn set_dr8(&self, value: Dr8) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR8 register."]
+  #[inline] pub fn with_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+     let tmp = self.dr8();
+     self.set_dr8(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR9 register."]
+  #[inline] pub fn dr9_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x20) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR9 register."]
+  #[inline] pub fn dr9_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x20) as *mut u32
+  }
+#[doc="Read the DR9 register."]
+  #[inline] pub fn dr9(&self) -> Dr9 { 
+     unsafe {
+        Dr9(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
+     }
+  }
+#[doc="Write the DR9 register."]
+  #[inline] pub fn set_dr9(&self, value: Dr9) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR9 register."]
+  #[inline] pub fn with_dr9<F: FnOnce(Dr9) -> Dr9>(&self, f: F) -> &Self {
+     let tmp = self.dr9();
+     self.set_dr9(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR10 register."]
+  #[inline] pub fn dr10_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x24) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR10 register."]
+  #[inline] pub fn dr10_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x24) as *mut u32
+  }
+#[doc="Read the DR10 register."]
+  #[inline] pub fn dr10(&self) -> Dr10 { 
+     unsafe {
+        Dr10(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
+     }
+  }
+#[doc="Write the DR10 register."]
+  #[inline] pub fn set_dr10(&self, value: Dr10) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR10 register."]
+  #[inline] pub fn with_dr10<F: FnOnce(Dr10) -> Dr10>(&self, f: F) -> &Self {
+     let tmp = self.dr10();
+     self.set_dr10(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR11 register."]
+  #[inline] pub fn dr11_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x3c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR11 register."]
+  #[inline] pub fn dr11_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x3c) as *mut u32
+  }
+#[doc="Read the DR11 register."]
+  #[inline] pub fn dr11(&self) -> Dr11 { 
+     unsafe {
+        Dr11(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
+     }
+  }
+#[doc="Write the DR11 register."]
+  #[inline] pub fn set_dr11(&self, value: Dr11) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR11 register."]
+  #[inline] pub fn with_dr11<F: FnOnce(Dr11) -> Dr11>(&self, f: F) -> &Self {
+     let tmp = self.dr11();
+     self.set_dr11(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR12 register."]
+  #[inline] pub fn dr12_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x40) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR12 register."]
+  #[inline] pub fn dr12_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x40) as *mut u32
+  }
+#[doc="Read the DR12 register."]
+  #[inline] pub fn dr12(&self) -> Dr12 { 
+     unsafe {
+        Dr12(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
+     }
+  }
+#[doc="Write the DR12 register."]
+  #[inline] pub fn set_dr12(&self, value: Dr12) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR12 register."]
+  #[inline] pub fn with_dr12<F: FnOnce(Dr12) -> Dr12>(&self, f: F) -> &Self {
+     let tmp = self.dr12();
+     self.set_dr12(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR13 register."]
+  #[inline] pub fn dr13_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x44) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR13 register."]
+  #[inline] pub fn dr13_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x44) as *mut u32
+  }
+#[doc="Read the DR13 register."]
+  #[inline] pub fn dr13(&self) -> Dr13 { 
+     unsafe {
+        Dr13(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
+     }
+  }
+#[doc="Write the DR13 register."]
+  #[inline] pub fn set_dr13(&self, value: Dr13) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR13 register."]
+  #[inline] pub fn with_dr13<F: FnOnce(Dr13) -> Dr13>(&self, f: F) -> &Self {
+     let tmp = self.dr13();
+     self.set_dr13(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR14 register."]
+  #[inline] pub fn dr14_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x48) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR14 register."]
+  #[inline] pub fn dr14_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x48) as *mut u32
+  }
+#[doc="Read the DR14 register."]
+  #[inline] pub fn dr14(&self) -> Dr14 { 
+     unsafe {
+        Dr14(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
+     }
+  }
+#[doc="Write the DR14 register."]
+  #[inline] pub fn set_dr14(&self, value: Dr14) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR14 register."]
+  #[inline] pub fn with_dr14<F: FnOnce(Dr14) -> Dr14>(&self, f: F) -> &Self {
+     let tmp = self.dr14();
+     self.set_dr14(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR15 register."]
+  #[inline] pub fn dr15_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x4c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR15 register."]
+  #[inline] pub fn dr15_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x4c) as *mut u32
+  }
+#[doc="Read the DR15 register."]
+  #[inline] pub fn dr15(&self) -> Dr15 { 
+     unsafe {
+        Dr15(::core::ptr::read_volatile(((self.0 as usize) + 0x4c) as *const u32))
+     }
+  }
+#[doc="Write the DR15 register."]
+  #[inline] pub fn set_dr15(&self, value: Dr15) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR15 register."]
+  #[inline] pub fn with_dr15<F: FnOnce(Dr15) -> Dr15>(&self, f: F) -> &Self {
+     let tmp = self.dr15();
+     self.set_dr15(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR16 register."]
+  #[inline] pub fn dr16_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x50) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR16 register."]
+  #[inline] pub fn dr16_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x50) as *mut u32
+  }
+#[doc="Read the DR16 register."]
+  #[inline] pub fn dr16(&self) -> Dr16 { 
+     unsafe {
+        Dr16(::core::ptr::read_volatile(((self.0 as usize) + 0x50) as *const u32))
+     }
+  }
+#[doc="Write the DR16 register."]
+  #[inline] pub fn set_dr16(&self, value: Dr16) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR16 register."]
+  #[inline] pub fn with_dr16<F: FnOnce(Dr16) -> Dr16>(&self, f: F) -> &Self {
+     let tmp = self.dr16();
+     self.set_dr16(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR17 register."]
+  #[inline] pub fn dr17_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x54) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR17 register."]
+  #[inline] pub fn dr17_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x54) as *mut u32
+  }
+#[doc="Read the DR17 register."]
+  #[inline] pub fn dr17(&self) -> Dr17 { 
+     unsafe {
+        Dr17(::core::ptr::read_volatile(((self.0 as usize) + 0x54) as *const u32))
+     }
+  }
+#[doc="Write the DR17 register."]
+  #[inline] pub fn set_dr17(&self, value: Dr17) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR17 register."]
+  #[inline] pub fn with_dr17<F: FnOnce(Dr17) -> Dr17>(&self, f: F) -> &Self {
+     let tmp = self.dr17();
+     self.set_dr17(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR18 register."]
+  #[inline] pub fn dr18_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x58) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR18 register."]
+  #[inline] pub fn dr18_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x58) as *mut u32
+  }
+#[doc="Read the DR18 register."]
+  #[inline] pub fn dr18(&self) -> Dr18 { 
+     unsafe {
+        Dr18(::core::ptr::read_volatile(((self.0 as usize) + 0x58) as *const u32))
+     }
+  }
+#[doc="Write the DR18 register."]
+  #[inline] pub fn set_dr18(&self, value: Dr18) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR18 register."]
+  #[inline] pub fn with_dr18<F: FnOnce(Dr18) -> Dr18>(&self, f: F) -> &Self {
+     let tmp = self.dr18();
+     self.set_dr18(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR19 register."]
+  #[inline] pub fn dr19_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x5c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR19 register."]
+  #[inline] pub fn dr19_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x5c) as *mut u32
+  }
+#[doc="Read the DR19 register."]
+  #[inline] pub fn dr19(&self) -> Dr19 { 
+     unsafe {
+        Dr19(::core::ptr::read_volatile(((self.0 as usize) + 0x5c) as *const u32))
+     }
+  }
+#[doc="Write the DR19 register."]
+  #[inline] pub fn set_dr19(&self, value: Dr19) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR19 register."]
+  #[inline] pub fn with_dr19<F: FnOnce(Dr19) -> Dr19>(&self, f: F) -> &Self {
+     let tmp = self.dr19();
+     self.set_dr19(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR20 register."]
+  #[inline] pub fn dr20_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x60) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR20 register."]
+  #[inline] pub fn dr20_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x60) as *mut u32
+  }
+#[doc="Read the DR20 register."]
+  #[inline] pub fn dr20(&self) -> Dr20 { 
+     unsafe {
+        Dr20(::core::ptr::read_volatile(((self.0 as usize) + 0x60) as *const u32))
+     }
+  }
+#[doc="Write the DR20 register."]
+  #[inline] pub fn set_dr20(&self, value: Dr20) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR20 register."]
+  #[inline] pub fn with_dr20<F: FnOnce(Dr20) -> Dr20>(&self, f: F) -> &Self {
+     let tmp = self.dr20();
+     self.set_dr20(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR21 register."]
+  #[inline] pub fn dr21_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x64) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR21 register."]
+  #[inline] pub fn dr21_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x64) as *mut u32
+  }
+#[doc="Read the DR21 register."]
+  #[inline] pub fn dr21(&self) -> Dr21 { 
+     unsafe {
+        Dr21(::core::ptr::read_volatile(((self.0 as usize) + 0x64) as *const u32))
+     }
+  }
+#[doc="Write the DR21 register."]
+  #[inline] pub fn set_dr21(&self, value: Dr21) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR21 register."]
+  #[inline] pub fn with_dr21<F: FnOnce(Dr21) -> Dr21>(&self, f: F) -> &Self {
+     let tmp = self.dr21();
+     self.set_dr21(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR22 register."]
+  #[inline] pub fn dr22_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x68) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR22 register."]
+  #[inline] pub fn dr22_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x68) as *mut u32
+  }
+#[doc="Read the DR22 register."]
+  #[inline] pub fn dr22(&self) -> Dr22 { 
+     unsafe {
+        Dr22(::core::ptr::read_volatile(((self.0 as usize) + 0x68) as *const u32))
+     }
+  }
+#[doc="Write the DR22 register."]
+  #[inline] pub fn set_dr22(&self, value: Dr22) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR22 register."]
+  #[inline] pub fn with_dr22<F: FnOnce(Dr22) -> Dr22>(&self, f: F) -> &Self {
+     let tmp = self.dr22();
+     self.set_dr22(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR23 register."]
+  #[inline] pub fn dr23_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x6c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR23 register."]
+  #[inline] pub fn dr23_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x6c) as *mut u32
+  }
+#[doc="Read the DR23 register."]
+  #[inline] pub fn dr23(&self) -> Dr23 { 
+     unsafe {
+        Dr23(::core::ptr::read_volatile(((self.0 as usize) + 0x6c) as *const u32))
+     }
+  }
+#[doc="Write the DR23 register."]
+  #[inline] pub fn set_dr23(&self, value: Dr23) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR23 register."]
+  #[inline] pub fn with_dr23<F: FnOnce(Dr23) -> Dr23>(&self, f: F) -> &Self {
+     let tmp = self.dr23();
+     self.set_dr23(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR24 register."]
+  #[inline] pub fn dr24_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x70) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR24 register."]
+  #[inline] pub fn dr24_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x70) as *mut u32
+  }
+#[doc="Read the DR24 register."]
+  #[inline] pub fn dr24(&self) -> Dr24 { 
+     unsafe {
+        Dr24(::core::ptr::read_volatile(((self.0 as usize) + 0x70) as *const u32))
+     }
+  }
+#[doc="Write the DR24 register."]
+  #[inline] pub fn set_dr24(&self, value: Dr24) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR24 register."]
+  #[inline] pub fn with_dr24<F: FnOnce(Dr24) -> Dr24>(&self, f: F) -> &Self {
+     let tmp = self.dr24();
+     self.set_dr24(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR25 register."]
+  #[inline] pub fn dr25_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x74) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR25 register."]
+  #[inline] pub fn dr25_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x74) as *mut u32
+  }
+#[doc="Read the DR25 register."]
+  #[inline] pub fn dr25(&self) -> Dr25 { 
+     unsafe {
+        Dr25(::core::ptr::read_volatile(((self.0 as usize) + 0x74) as *const u32))
+     }
+  }
+#[doc="Write the DR25 register."]
+  #[inline] pub fn set_dr25(&self, value: Dr25) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR25 register."]
+  #[inline] pub fn with_dr25<F: FnOnce(Dr25) -> Dr25>(&self, f: F) -> &Self {
+     let tmp = self.dr25();
+     self.set_dr25(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR26 register."]
+  #[inline] pub fn dr26_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x78) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR26 register."]
+  #[inline] pub fn dr26_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x78) as *mut u32
+  }
+#[doc="Read the DR26 register."]
+  #[inline] pub fn dr26(&self) -> Dr26 { 
+     unsafe {
+        Dr26(::core::ptr::read_volatile(((self.0 as usize) + 0x78) as *const u32))
+     }
+  }
+#[doc="Write the DR26 register."]
+  #[inline] pub fn set_dr26(&self, value: Dr26) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR26 register."]
+  #[inline] pub fn with_dr26<F: FnOnce(Dr26) -> Dr26>(&self, f: F) -> &Self {
+     let tmp = self.dr26();
+     self.set_dr26(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR27 register."]
+  #[inline] pub fn dr27_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x7c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR27 register."]
+  #[inline] pub fn dr27_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x7c) as *mut u32
+  }
+#[doc="Read the DR27 register."]
+  #[inline] pub fn dr27(&self) -> Dr27 { 
+     unsafe {
+        Dr27(::core::ptr::read_volatile(((self.0 as usize) + 0x7c) as *const u32))
+     }
+  }
+#[doc="Write the DR27 register."]
+  #[inline] pub fn set_dr27(&self, value: Dr27) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR27 register."]
+  #[inline] pub fn with_dr27<F: FnOnce(Dr27) -> Dr27>(&self, f: F) -> &Self {
+     let tmp = self.dr27();
+     self.set_dr27(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR28 register."]
+  #[inline] pub fn dr28_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x80) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR28 register."]
+  #[inline] pub fn dr28_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x80) as *mut u32
+  }
+#[doc="Read the DR28 register."]
+  #[inline] pub fn dr28(&self) -> Dr28 { 
+     unsafe {
+        Dr28(::core::ptr::read_volatile(((self.0 as usize) + 0x80) as *const u32))
+     }
+  }
+#[doc="Write the DR28 register."]
+  #[inline] pub fn set_dr28(&self, value: Dr28) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR28 register."]
+  #[inline] pub fn with_dr28<F: FnOnce(Dr28) -> Dr28>(&self, f: F) -> &Self {
+     let tmp = self.dr28();
+     self.set_dr28(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR29 register."]
+  #[inline] pub fn dr29_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x84) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR29 register."]
+  #[inline] pub fn dr29_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x84) as *mut u32
+  }
+#[doc="Read the DR29 register."]
+  #[inline] pub fn dr29(&self) -> Dr29 { 
+     unsafe {
+        Dr29(::core::ptr::read_volatile(((self.0 as usize) + 0x84) as *const u32))
+     }
+  }
+#[doc="Write the DR29 register."]
+  #[inline] pub fn set_dr29(&self, value: Dr29) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR29 register."]
+  #[inline] pub fn with_dr29<F: FnOnce(Dr29) -> Dr29>(&self, f: F) -> &Self {
+     let tmp = self.dr29();
+     self.set_dr29(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR30 register."]
+  #[inline] pub fn dr30_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x88) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR30 register."]
+  #[inline] pub fn dr30_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x88) as *mut u32
+  }
+#[doc="Read the DR30 register."]
+  #[inline] pub fn dr30(&self) -> Dr30 { 
+     unsafe {
+        Dr30(::core::ptr::read_volatile(((self.0 as usize) + 0x88) as *const u32))
+     }
+  }
+#[doc="Write the DR30 register."]
+  #[inline] pub fn set_dr30(&self, value: Dr30) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR30 register."]
+  #[inline] pub fn with_dr30<F: FnOnce(Dr30) -> Dr30>(&self, f: F) -> &Self {
+     let tmp = self.dr30();
+     self.set_dr30(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR31 register."]
+  #[inline] pub fn dr31_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x8c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR31 register."]
+  #[inline] pub fn dr31_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x8c) as *mut u32
+  }
+#[doc="Read the DR31 register."]
+  #[inline] pub fn dr31(&self) -> Dr31 { 
+     unsafe {
+        Dr31(::core::ptr::read_volatile(((self.0 as usize) + 0x8c) as *const u32))
+     }
+  }
+#[doc="Write the DR31 register."]
+  #[inline] pub fn set_dr31(&self, value: Dr31) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR31 register."]
+  #[inline] pub fn with_dr31<F: FnOnce(Dr31) -> Dr31>(&self, f: F) -> &Self {
+     let tmp = self.dr31();
+     self.set_dr31(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR32 register."]
+  #[inline] pub fn dr32_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x90) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR32 register."]
+  #[inline] pub fn dr32_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x90) as *mut u32
+  }
+#[doc="Read the DR32 register."]
+  #[inline] pub fn dr32(&self) -> Dr32 { 
+     unsafe {
+        Dr32(::core::ptr::read_volatile(((self.0 as usize) + 0x90) as *const u32))
+     }
+  }
+#[doc="Write the DR32 register."]
+  #[inline] pub fn set_dr32(&self, value: Dr32) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x90) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR32 register."]
+  #[inline] pub fn with_dr32<F: FnOnce(Dr32) -> Dr32>(&self, f: F) -> &Self {
+     let tmp = self.dr32();
+     self.set_dr32(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR33 register."]
+  #[inline] pub fn dr33_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x94) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR33 register."]
+  #[inline] pub fn dr33_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x94) as *mut u32
+  }
+#[doc="Read the DR33 register."]
+  #[inline] pub fn dr33(&self) -> Dr33 { 
+     unsafe {
+        Dr33(::core::ptr::read_volatile(((self.0 as usize) + 0x94) as *const u32))
+     }
+  }
+#[doc="Write the DR33 register."]
+  #[inline] pub fn set_dr33(&self, value: Dr33) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x94) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR33 register."]
+  #[inline] pub fn with_dr33<F: FnOnce(Dr33) -> Dr33>(&self, f: F) -> &Self {
+     let tmp = self.dr33();
+     self.set_dr33(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR34 register."]
+  #[inline] pub fn dr34_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x98) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR34 register."]
+  #[inline] pub fn dr34_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x98) as *mut u32
+  }
+#[doc="Read the DR34 register."]
+  #[inline] pub fn dr34(&self) -> Dr34 { 
+     unsafe {
+        Dr34(::core::ptr::read_volatile(((self.0 as usize) + 0x98) as *const u32))
+     }
+  }
+#[doc="Write the DR34 register."]
+  #[inline] pub fn set_dr34(&self, value: Dr34) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x98) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR34 register."]
+  #[inline] pub fn with_dr34<F: FnOnce(Dr34) -> Dr34>(&self, f: F) -> &Self {
+     let tmp = self.dr34();
+     self.set_dr34(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR35 register."]
+  #[inline] pub fn dr35_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x9c) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR35 register."]
+  #[inline] pub fn dr35_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x9c) as *mut u32
+  }
+#[doc="Read the DR35 register."]
+  #[inline] pub fn dr35(&self) -> Dr35 { 
+     unsafe {
+        Dr35(::core::ptr::read_volatile(((self.0 as usize) + 0x9c) as *const u32))
+     }
+  }
+#[doc="Write the DR35 register."]
+  #[inline] pub fn set_dr35(&self, value: Dr35) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x9c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR35 register."]
+  #[inline] pub fn with_dr35<F: FnOnce(Dr35) -> Dr35>(&self, f: F) -> &Self {
+     let tmp = self.dr35();
+     self.set_dr35(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR36 register."]
+  #[inline] pub fn dr36_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xa0) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR36 register."]
+  #[inline] pub fn dr36_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xa0) as *mut u32
+  }
+#[doc="Read the DR36 register."]
+  #[inline] pub fn dr36(&self) -> Dr36 { 
+     unsafe {
+        Dr36(::core::ptr::read_volatile(((self.0 as usize) + 0xa0) as *const u32))
+     }
+  }
+#[doc="Write the DR36 register."]
+  #[inline] pub fn set_dr36(&self, value: Dr36) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR36 register."]
+  #[inline] pub fn with_dr36<F: FnOnce(Dr36) -> Dr36>(&self, f: F) -> &Self {
+     let tmp = self.dr36();
+     self.set_dr36(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR37 register."]
+  #[inline] pub fn dr37_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xa4) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR37 register."]
+  #[inline] pub fn dr37_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xa4) as *mut u32
+  }
+#[doc="Read the DR37 register."]
+  #[inline] pub fn dr37(&self) -> Dr37 { 
+     unsafe {
+        Dr37(::core::ptr::read_volatile(((self.0 as usize) + 0xa4) as *const u32))
+     }
+  }
+#[doc="Write the DR37 register."]
+  #[inline] pub fn set_dr37(&self, value: Dr37) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR37 register."]
+  #[inline] pub fn with_dr37<F: FnOnce(Dr37) -> Dr37>(&self, f: F) -> &Self {
+     let tmp = self.dr37();
+     self.set_dr37(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR38 register."]
+  #[inline] pub fn dr38_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xa8) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR38 register."]
+  #[inline] pub fn dr38_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xa8) as *mut u32
+  }
+#[doc="Read the DR38 register."]
+  #[inline] pub fn dr38(&self) -> Dr38 { 
+     unsafe {
+        Dr38(::core::ptr::read_volatile(((self.0 as usize) + 0xa8) as *const u32))
+     }
+  }
+#[doc="Write the DR38 register."]
+  #[inline] pub fn set_dr38(&self, value: Dr38) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR38 register."]
+  #[inline] pub fn with_dr38<F: FnOnce(Dr38) -> Dr38>(&self, f: F) -> &Self {
+     let tmp = self.dr38();
+     self.set_dr38(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR39 register."]
+  #[inline] pub fn dr39_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xac) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR39 register."]
+  #[inline] pub fn dr39_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xac) as *mut u32
+  }
+#[doc="Read the DR39 register."]
+  #[inline] pub fn dr39(&self) -> Dr39 { 
+     unsafe {
+        Dr39(::core::ptr::read_volatile(((self.0 as usize) + 0xac) as *const u32))
+     }
+  }
+#[doc="Write the DR39 register."]
+  #[inline] pub fn set_dr39(&self, value: Dr39) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR39 register."]
+  #[inline] pub fn with_dr39<F: FnOnce(Dr39) -> Dr39>(&self, f: F) -> &Self {
+     let tmp = self.dr39();
+     self.set_dr39(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR40 register."]
+  #[inline] pub fn dr40_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xb0) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR40 register."]
+  #[inline] pub fn dr40_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xb0) as *mut u32
+  }
+#[doc="Read the DR40 register."]
+  #[inline] pub fn dr40(&self) -> Dr40 { 
+     unsafe {
+        Dr40(::core::ptr::read_volatile(((self.0 as usize) + 0xb0) as *const u32))
+     }
+  }
+#[doc="Write the DR40 register."]
+  #[inline] pub fn set_dr40(&self, value: Dr40) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR40 register."]
+  #[inline] pub fn with_dr40<F: FnOnce(Dr40) -> Dr40>(&self, f: F) -> &Self {
+     let tmp = self.dr40();
+     self.set_dr40(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR41 register."]
+  #[inline] pub fn dr41_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xb4) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR41 register."]
+  #[inline] pub fn dr41_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xb4) as *mut u32
+  }
+#[doc="Read the DR41 register."]
+  #[inline] pub fn dr41(&self) -> Dr41 { 
+     unsafe {
+        Dr41(::core::ptr::read_volatile(((self.0 as usize) + 0xb4) as *const u32))
+     }
+  }
+#[doc="Write the DR41 register."]
+  #[inline] pub fn set_dr41(&self, value: Dr41) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb4) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR41 register."]
+  #[inline] pub fn with_dr41<F: FnOnce(Dr41) -> Dr41>(&self, f: F) -> &Self {
+     let tmp = self.dr41();
+     self.set_dr41(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the DR42 register."]
+  #[inline] pub fn dr42_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0xb8) as *const u32
+  }
+#[doc="Get the *mut pointer for the DR42 register."]
+  #[inline] pub fn dr42_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0xb8) as *mut u32
+  }
+#[doc="Read the DR42 register."]
+  #[inline] pub fn dr42(&self) -> Dr42 { 
+     unsafe {
+        Dr42(::core::ptr::read_volatile(((self.0 as usize) + 0xb8) as *const u32))
+     }
+  }
+#[doc="Write the DR42 register."]
+  #[inline] pub fn set_dr42(&self, value: Dr42) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb8) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the DR42 register."]
+  #[inline] pub fn with_dr42<F: FnOnce(Dr42) -> Dr42>(&self, f: F) -> &Self {
+     let tmp = self.dr42();
+     self.set_dr42(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the RTCCR register."]
+  #[inline] pub fn rtccr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x28) as *const u32
+  }
+#[doc="Get the *mut pointer for the RTCCR register."]
+  #[inline] pub fn rtccr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x28) as *mut u32
+  }
+#[doc="Read the RTCCR register."]
+  #[inline] pub fn rtccr(&self) -> Rtccr { 
+     unsafe {
+        Rtccr(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
+     }
+  }
+#[doc="Write the RTCCR register."]
+  #[inline] pub fn set_rtccr(&self, value: Rtccr) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the RTCCR register."]
+  #[inline] pub fn with_rtccr<F: FnOnce(Rtccr) -> Rtccr>(&self, f: F) -> &Self {
+     let tmp = self.rtccr();
+     self.set_rtccr(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the CR register."]
+  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x2c) as *const u32
+  }
+#[doc="Get the *mut pointer for the CR register."]
+  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x2c) as *mut u32
+  }
+#[doc="Read the CR register."]
+  #[inline] pub fn cr(&self) -> Cr { 
+     unsafe {
+        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
+     }
+  }
+#[doc="Write the CR register."]
+  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the CR register."]
+  #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+     let tmp = self.cr();
+     self.set_cr(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the CSR register."]
+  #[inline] pub fn csr_ptr(&self) -> *const u32 { 
+     ((self.0 as usize) + 0x30) as *const u32
+  }
+#[doc="Get the *mut pointer for the CSR register."]
+  #[inline] pub fn csr_mut(&self) -> *mut u32 { 
+     ((self.0 as usize) + 0x30) as *mut u32
+  }
+#[doc="Read the CSR register."]
+  #[inline] pub fn csr(&self) -> Csr { 
+     unsafe {
+        Csr(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
+     }
+  }
+#[doc="Write the CSR register."]
+  #[inline] pub fn set_csr(&self, value: Csr) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+     }
+     self
+  }
+#[doc="Modify the CSR register."]
+  #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
+     let tmp = self.csr();
+     self.set_csr(f(tmp))
+  }
+
+}
+
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr1(pub u32);
+impl Dr1 {
+#[doc="Backup data"]
+  #[inline] pub fn d1(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d1(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr1 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr1 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d1() != 0 { try!(write!(f, " d1=0x{:x}", self.d1()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr2(pub u32);
+impl Dr2 {
+#[doc="Backup data"]
+  #[inline] pub fn d2(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d2(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr2 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr2 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d2() != 0 { try!(write!(f, " d2=0x{:x}", self.d2()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr3(pub u32);
+impl Dr3 {
+#[doc="Backup data"]
+  #[inline] pub fn d3(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d3(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr3 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr3 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d3() != 0 { try!(write!(f, " d3=0x{:x}", self.d3()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr4(pub u32);
+impl Dr4 {
+#[doc="Backup data"]
+  #[inline] pub fn d4(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d4(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr4 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr4 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d4() != 0 { try!(write!(f, " d4=0x{:x}", self.d4()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr5(pub u32);
+impl Dr5 {
+#[doc="Backup data"]
+  #[inline] pub fn d5(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d5(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr5 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr5 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d5() != 0 { try!(write!(f, " d5=0x{:x}", self.d5()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr6(pub u32);
+impl Dr6 {
+#[doc="Backup data"]
+  #[inline] pub fn d6(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d6(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr6 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr6 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d6() != 0 { try!(write!(f, " d6=0x{:x}", self.d6()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr7(pub u32);
+impl Dr7 {
+#[doc="Backup data"]
+  #[inline] pub fn d7(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d7(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr7 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr7 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d7() != 0 { try!(write!(f, " d7=0x{:x}", self.d7()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr8(pub u32);
+impl Dr8 {
+#[doc="Backup data"]
+  #[inline] pub fn d8(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d8(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr8 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr8 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d8() != 0 { try!(write!(f, " d8=0x{:x}", self.d8()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr9(pub u32);
+impl Dr9 {
+#[doc="Backup data"]
+  #[inline] pub fn d9(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d9(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr9 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr9 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d9() != 0 { try!(write!(f, " d9=0x{:x}", self.d9()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr10(pub u32);
+impl Dr10 {
+#[doc="Backup data"]
+  #[inline] pub fn d10(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d10(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr10 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr10 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d10() != 0 { try!(write!(f, " d10=0x{:x}", self.d10()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr11(pub u32);
+impl Dr11 {
+#[doc="Backup data"]
+  #[inline] pub fn dr11(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_dr11(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr11 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr11 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.dr11() != 0 { try!(write!(f, " dr11=0x{:x}", self.dr11()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr12(pub u32);
+impl Dr12 {
+#[doc="Backup data"]
+  #[inline] pub fn dr12(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_dr12(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr12 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr12 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.dr12() != 0 { try!(write!(f, " dr12=0x{:x}", self.dr12()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr13(pub u32);
+impl Dr13 {
+#[doc="Backup data"]
+  #[inline] pub fn dr13(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_dr13(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr13 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr13 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.dr13() != 0 { try!(write!(f, " dr13=0x{:x}", self.dr13()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr14(pub u32);
+impl Dr14 {
+#[doc="Backup data"]
+  #[inline] pub fn d14(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d14(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr14 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr14 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d14() != 0 { try!(write!(f, " d14=0x{:x}", self.d14()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr15(pub u32);
+impl Dr15 {
+#[doc="Backup data"]
+  #[inline] pub fn d15(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d15(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr15 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr15 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d15() != 0 { try!(write!(f, " d15=0x{:x}", self.d15()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr16(pub u32);
+impl Dr16 {
+#[doc="Backup data"]
+  #[inline] pub fn d16(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d16(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr16 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr16 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d16() != 0 { try!(write!(f, " d16=0x{:x}", self.d16()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr17(pub u32);
+impl Dr17 {
+#[doc="Backup data"]
+  #[inline] pub fn d17(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d17(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr17 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr17 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d17() != 0 { try!(write!(f, " d17=0x{:x}", self.d17()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr18(pub u32);
+impl Dr18 {
+#[doc="Backup data"]
+  #[inline] pub fn d18(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d18(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr18 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr18 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d18() != 0 { try!(write!(f, " d18=0x{:x}", self.d18()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr19(pub u32);
+impl Dr19 {
+#[doc="Backup data"]
+  #[inline] pub fn d19(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d19(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr19 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr19 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d19() != 0 { try!(write!(f, " d19=0x{:x}", self.d19()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr20(pub u32);
+impl Dr20 {
+#[doc="Backup data"]
+  #[inline] pub fn d20(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d20(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr20 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr20 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d20() != 0 { try!(write!(f, " d20=0x{:x}", self.d20()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr21(pub u32);
+impl Dr21 {
+#[doc="Backup data"]
+  #[inline] pub fn d21(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d21(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr21 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr21 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d21() != 0 { try!(write!(f, " d21=0x{:x}", self.d21()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr22(pub u32);
+impl Dr22 {
+#[doc="Backup data"]
+  #[inline] pub fn d22(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d22(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr22 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr22 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d22() != 0 { try!(write!(f, " d22=0x{:x}", self.d22()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr23(pub u32);
+impl Dr23 {
+#[doc="Backup data"]
+  #[inline] pub fn d23(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d23(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr23 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr23 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d23() != 0 { try!(write!(f, " d23=0x{:x}", self.d23()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr24(pub u32);
+impl Dr24 {
+#[doc="Backup data"]
+  #[inline] pub fn d24(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d24(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr24 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr24 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d24() != 0 { try!(write!(f, " d24=0x{:x}", self.d24()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr25(pub u32);
+impl Dr25 {
+#[doc="Backup data"]
+  #[inline] pub fn d25(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d25(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr25 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr25 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d25() != 0 { try!(write!(f, " d25=0x{:x}", self.d25()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr26(pub u32);
+impl Dr26 {
+#[doc="Backup data"]
+  #[inline] pub fn d26(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d26(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr26 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr26 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d26() != 0 { try!(write!(f, " d26=0x{:x}", self.d26()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr27(pub u32);
+impl Dr27 {
+#[doc="Backup data"]
+  #[inline] pub fn d27(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d27(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr27 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr27 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d27() != 0 { try!(write!(f, " d27=0x{:x}", self.d27()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr28(pub u32);
+impl Dr28 {
+#[doc="Backup data"]
+  #[inline] pub fn d28(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d28(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr28 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr28 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d28() != 0 { try!(write!(f, " d28=0x{:x}", self.d28()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr29(pub u32);
+impl Dr29 {
+#[doc="Backup data"]
+  #[inline] pub fn d29(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d29(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr29 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr29 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d29() != 0 { try!(write!(f, " d29=0x{:x}", self.d29()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr30(pub u32);
+impl Dr30 {
+#[doc="Backup data"]
+  #[inline] pub fn d30(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d30(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr30 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr30 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d30() != 0 { try!(write!(f, " d30=0x{:x}", self.d30()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr31(pub u32);
+impl Dr31 {
+#[doc="Backup data"]
+  #[inline] pub fn d31(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d31(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr31 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr31 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d31() != 0 { try!(write!(f, " d31=0x{:x}", self.d31()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr32(pub u32);
+impl Dr32 {
+#[doc="Backup data"]
+  #[inline] pub fn d32(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d32(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr32 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr32 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d32() != 0 { try!(write!(f, " d32=0x{:x}", self.d32()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr33(pub u32);
+impl Dr33 {
+#[doc="Backup data"]
+  #[inline] pub fn d33(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d33(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr33 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr33 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d33() != 0 { try!(write!(f, " d33=0x{:x}", self.d33()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr34(pub u32);
+impl Dr34 {
+#[doc="Backup data"]
+  #[inline] pub fn d34(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d34(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr34 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr34 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d34() != 0 { try!(write!(f, " d34=0x{:x}", self.d34()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr35(pub u32);
+impl Dr35 {
+#[doc="Backup data"]
+  #[inline] pub fn d35(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d35(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr35 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr35 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d35() != 0 { try!(write!(f, " d35=0x{:x}", self.d35()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr36(pub u32);
+impl Dr36 {
+#[doc="Backup data"]
+  #[inline] pub fn d36(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d36(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr36 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr36 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d36() != 0 { try!(write!(f, " d36=0x{:x}", self.d36()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr37(pub u32);
+impl Dr37 {
+#[doc="Backup data"]
+  #[inline] pub fn d37(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d37(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr37 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr37 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d37() != 0 { try!(write!(f, " d37=0x{:x}", self.d37()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr38(pub u32);
+impl Dr38 {
+#[doc="Backup data"]
+  #[inline] pub fn d38(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d38(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr38 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr38 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d38() != 0 { try!(write!(f, " d38=0x{:x}", self.d38()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr39(pub u32);
+impl Dr39 {
+#[doc="Backup data"]
+  #[inline] pub fn d39(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d39(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr39 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr39 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d39() != 0 { try!(write!(f, " d39=0x{:x}", self.d39()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr40(pub u32);
+impl Dr40 {
+#[doc="Backup data"]
+  #[inline] pub fn d40(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d40(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr40 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr40 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d40() != 0 { try!(write!(f, " d40=0x{:x}", self.d40()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr41(pub u32);
+impl Dr41 {
+#[doc="Backup data"]
+  #[inline] pub fn d41(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d41(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr41 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr41 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d41() != 0 { try!(write!(f, " d41=0x{:x}", self.d41()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup data register (BKP_DR)"]
+#[derive(PartialEq, Eq)]
+pub struct Dr42(pub u32);
+impl Dr42 {
+#[doc="Backup data"]
+  #[inline] pub fn d42(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  }
+#[doc="Backup data"]
+  #[inline] pub fn set_d42(mut self, value: u32) -> Self {
+     assert!((value & !0xffff) == 0);
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Dr42 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Dr42 {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.d42() != 0 { try!(write!(f, " d42=0x{:x}", self.d42()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="RTC clock calibration register (BKP_RTCCR)"]
+#[derive(PartialEq, Eq)]
+pub struct Rtccr(pub u32);
+impl Rtccr {
+#[doc="Calibration value"]
+  #[inline] pub fn cal(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x7f // [6:0]
+  }
+#[doc="Calibration value"]
+  #[inline] pub fn set_cal(mut self, value: u32) -> Self {
+     assert!((value & !0x7f) == 0);
+     self.0 &= !(0x7f << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Calibration Clock Output"]
+  #[inline] pub fn cco(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="Calibration Clock Output"]
+  #[inline] pub fn set_cco(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="Alarm or second output enable"]
+  #[inline] pub fn asoe(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="Alarm or second output enable"]
+  #[inline] pub fn set_asoe(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="Alarm or second output selection"]
+  #[inline] pub fn asos(&self) -> u32 {
+     ((self.0 as u32) >> 9) & 0x1 // [9]
+  }
+#[doc="Alarm or second output selection"]
+  #[inline] pub fn set_asos(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 9);
+     self.0 |= value << 9;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Rtccr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Rtccr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cal() != 0 { try!(write!(f, " cal=0x{:x}", self.cal()))}
+      if self.cco() != 0 { try!(write!(f, " cco"))}
+      if self.asoe() != 0 { try!(write!(f, " asoe"))}
+      if self.asos() != 0 { try!(write!(f, " asos"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Backup control register (BKP_CR)"]
+#[derive(PartialEq, Eq)]
+pub struct Cr(pub u32);
+impl Cr {
+#[doc="Tamper pin enable"]
+  #[inline] pub fn tpe(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="Tamper pin enable"]
+  #[inline] pub fn set_tpe(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Tamper pin active level"]
+  #[inline] pub fn tpal(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="Tamper pin active level"]
+  #[inline] pub fn set_tpal(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Cr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Cr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.tpe() != 0 { try!(write!(f, " tpe"))}
+      if self.tpal() != 0 { try!(write!(f, " tpal"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="BKP_CSR control/status register (BKP_CSR)"]
+#[derive(PartialEq, Eq)]
+pub struct Csr(pub u32);
+impl Csr {
+#[doc="Clear Tamper event"]
+  #[inline] pub fn cte(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="Clear Tamper event"]
+  #[inline] pub fn set_cte(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Clear Tamper Interrupt"]
+  #[inline] pub fn cti(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="Clear Tamper Interrupt"]
+  #[inline] pub fn set_cti(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="Tamper Pin interrupt enable"]
+  #[inline] pub fn tpie(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="Tamper Pin interrupt enable"]
+  #[inline] pub fn set_tpie(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="Tamper Event Flag"]
+  #[inline] pub fn tef(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="Tamper Event Flag"]
+  #[inline] pub fn set_tef(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="Tamper Interrupt Flag"]
+  #[inline] pub fn tif(&self) -> u32 {
+     ((self.0 as u32) >> 9) & 0x1 // [9]
+  }
+#[doc="Tamper Interrupt Flag"]
+  #[inline] pub fn set_tif(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 9);
+     self.0 |= value << 9;
+     self
+  }
+
+}
+impl ::core::fmt::Display for Csr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for Csr {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.cte() != 0 { try!(write!(f, " cte"))}
+      if self.cti() != 0 { try!(write!(f, " cti"))}
+      if self.tpie() != 0 { try!(write!(f, " tpie"))}
+      if self.tef() != 0 { try!(write!(f, " tef"))}
+      if self.tif() != 0 { try!(write!(f, " tif"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+
