@@ -9,9 +9,9 @@ pub const TIM_PRESCALE: u16 = 35999;
 // APB1 = 36Mhz (Divide by 2)
 // APB2 = 72Mhz (Divide by 1)
 
-// TIM4 is APB1 Clock = 36MHz
+// TIM4 is APB1 Clock x 2 = 72MHz
 
-// Clock at 36MHz
+// Clock at 72MHz
 // Divide by 36,000 => 1khz
 // Set auto_reload to ms
 
