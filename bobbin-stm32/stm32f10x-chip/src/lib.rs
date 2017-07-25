@@ -25,7 +25,6 @@ pub mod iwdg;
 pub mod wwdg;
 pub mod crc;
 pub mod exti;
-pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
 pub mod adc;

@@ -12,10 +12,8 @@ pub mod clock;
 
 pub mod dma {
     pub use chip::dma::*;
-    pub use stm32_common::hal::dma::*;
+    pub use stm32_common::hal::dma_f3::*;
     pub use rcc::RccEnabled;
-
-    // Note: Only DMA2 may perform memory-to-memory transfers
 
 }
 
@@ -32,6 +30,13 @@ pub mod tim {
     pub use stm32_common::hal::tim_gen::*;
     pub use rcc::RccEnabled;
 }
+
+pub mod tim_adv {
+    pub use chip::tim_adv::*;
+    pub use stm32_common::hal::tim_adv::*;
+    pub use rcc::RccEnabled;
+}
+
 
 pub mod crc {
     pub use chip::crc::*;

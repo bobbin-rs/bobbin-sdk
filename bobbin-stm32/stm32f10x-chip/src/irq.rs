@@ -27,8 +27,6 @@ pub const IRQ_EXTI19: IrqExti19 = Irq(62, Exti19Id {});
 pub const IRQ_EXTI20: IrqExti20 = Irq(76, Exti20Id {});
 pub const IRQ_EXTI21: IrqExti21 = Irq(2, Exti21Id {});
 pub const IRQ_EXTI22: IrqExti22 = Irq(3, Exti22Id {});
-pub const IRQ_TIM6_DAC: IrqTim6Dac = Irq(54, Tim6DacId {});
-pub const IRQ_TIM7: IrqTim7 = Irq(55, Tim7Id {});
 pub const IRQ_TIM2: IrqTim2 = Irq(28, Tim2Id {});
 pub const IRQ_TIM3: IrqTim3 = Irq(29, Tim3Id {});
 pub const IRQ_TIM4: IrqTim4 = Irq(30, Tim4Id {});
@@ -86,8 +84,6 @@ pub type IrqExti19 = Irq<Exti19Id>;
 pub type IrqExti20 = Irq<Exti20Id>;
 pub type IrqExti21 = Irq<Exti21Id>;
 pub type IrqExti22 = Irq<Exti22Id>;
-pub type IrqTim6Dac = Irq<Tim6DacId>;
-pub type IrqTim7 = Irq<Tim7Id>;
 pub type IrqTim2 = Irq<Tim2Id>;
 pub type IrqTim3 = Irq<Tim3Id>;
 pub type IrqTim4 = Irq<Tim4Id>;
@@ -169,10 +165,6 @@ pub struct Exti20Id {} // IRQ 76
 pub struct Exti21Id {} // IRQ 2
 #[doc(hidden)]
 pub struct Exti22Id {} // IRQ 3
-#[doc(hidden)]
-pub struct Tim6DacId {} // IRQ 54
-#[doc(hidden)]
-pub struct Tim7Id {} // IRQ 55
 #[doc(hidden)]
 pub struct Tim2Id {} // IRQ 28
 #[doc(hidden)]
@@ -605,30 +597,6 @@ impl RegisterHandler for IrqExti22 {
        }
        set_handler(3, Some(wrapper::<F>));
        IrqGuard::new(3)
-   }
-}
-
-impl RegisterHandler for IrqTim6Dac {
-   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleInterrupt>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
-       }
-       set_handler(54, Some(wrapper::<F>));
-       IrqGuard::new(54)
-   }
-}
-
-impl RegisterHandler for IrqTim7 {
-   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleInterrupt>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
-       }
-       set_handler(55, Some(wrapper::<F>));
-       IrqGuard::new(55)
    }
 }
 
@@ -1073,8 +1041,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 68] = [
    None,                          // IRQ 51: SPI3 global interrupt
    None,
    None,
-   None,                          // IRQ 54: TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt
-   None,                          // IRQ 55: TIM7 global interrupt
+   None,
+   None,
    None,
    None,
    None,

@@ -1,6 +1,6 @@
 pub use stm32_common::chip::tim_adv::*;
 
-pub const TIM1: Tim1 = Periph(0x40010000, Tim1Id {});
+pub const TIM1: Tim1 = Periph(0x40012c00, Tim1Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(hidden)]

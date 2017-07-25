@@ -260,30 +260,6 @@
     ; Timers
 
     (peripheral-group
-        (name TIM_BAS)
-        (module (name stm32_common::chip::tim_bas::*))
-        (peripheral
-            (name TIM6)
-            (address 0x40001000)
-            (description "Basic timers")
-            (interrupt
-                (name TIM6_DAC)
-                (value 54)
-                (description "TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt")
-            )
-        )
-        (peripheral
-            (name TIM7)
-            (address 0x40001400)
-            (interrupt
-                (name TIM7)
-                (value 55)
-                (description "TIM7 global interrupt")
-            )
-        )
-    )
-
-    (peripheral-group
         (name TIM_GEN)
         (module (name stm32_common::chip::tim_gen::*))
         (peripheral
@@ -382,7 +358,7 @@
         (module (name stm32_common::chip::tim_adv::*))
         (peripheral
             (name TIM1)
-            (address 0x40010000)
+            (address 0x40012c00)
             (description "Advanced-timers")
             (interrupt
                 (name TIM1_BRK)
