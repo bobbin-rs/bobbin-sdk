@@ -1,26 +1,30 @@
 use core::fmt::{self, Write, Arguments};
 use hal::gpio::*;
 use hal::usart::*;
+use chip::afio::*;
 
-pub const USART: Usart2 = USART2;
-pub const USART_TX: Pa2 = PA2;
-pub const USART_RX: Pa3 = PA3;
-pub const USART_CLOCK: u32 = 36_000_000;
+pub const USART: Usart1 = USART1;
+pub const USART_TX: Pb6 = PB6;
+pub const USART_RX: Pb7 = PB7;
+pub const USART_CLOCK: u32 = 72_000_000;
 pub const USART_BAUD: u32 = 115_200;
 
-// pub fn init() {
-//     // Enable Clocks
-//     USART.rcc_enable();
-//     USART_TX.port().rcc_enable();
-//     USART_RX.port().rcc_enable();
+pub fn init() {
+    // Enable Clocks
+    USART.rcc_enable();
+    USART_TX.port().rcc_enable();
+    USART_RX.port().rcc_enable();
 
-//     // Set Pin Configuration
-//     USART_TX.mode_tx(&USART);
-//     USART_RX.mode_rx(&USART);
+    AFIO.rcc_enable();
+    AFIO.with_mapr(|r| r.set_usart1_remap(1));
 
-//     // Set Baud and Enable USART
-//     USART.enable(USART_CLOCK / USART_BAUD);
-// }
+    USART_TX.mode_altfn();
+    USART_RX.mode_input();
+
+    // Set Baud and Enable USART
+    USART.enable(USART_CLOCK / USART_BAUD);
+
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
