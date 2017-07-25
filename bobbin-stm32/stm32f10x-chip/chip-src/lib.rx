@@ -25,6 +25,7 @@
     (peripheral (include "periph/dbg.rx"))
     (peripheral (include "periph/bkp.rx"))
     (peripheral (include "periph/fsmc.rx"))
+    (peripheral (include "periph/afio.rx"))
 
     (peripheral-group
         (name IWDG)
@@ -374,73 +375,6 @@
                 (description "TIM4 global interrupt")
             )
         )
-        (peripheral
-            (name TIM5)
-            (address 0x40000c00)
-            (description "General-purpose-timers")
-            (interrupt
-                (name TIM5)
-                (value 50)
-                (description "TIM5 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM9)
-            (address 0x40014000)
-            (description "General purpose timers")
-            (interrupt
-                (name TIM9)
-                (value 24)
-                (description "TIM9 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM10)
-            (address 0x40014400)
-            (description "General-purpose-timers")
-            (interrupt
-                (name TIM10)
-                (value 25)
-                (description "TIM10 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM11)
-            (address 0x40014800)
-            (description "General-purpose-timers")
-            (interrupt
-                (name TIM11)
-                (value 26)
-                (description "TIM11 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM12)
-            (address 0x40001800)
-            (interrupt
-                (name TIM12)
-                (value 43)
-                (description "TIM12 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM13)
-            (address 0x40001c00)
-            (interrupt
-                (name TIM13)
-                (value 44)
-                (description "TIM13 global interrupt")
-            )
-        )
-        (peripheral
-            (name TIM14)
-            (address 0x40002000)
-            (interrupt
-                (name TIM14)
-                (value 45)
-                (description "TIM14 global interrupt")
-            )
-        )
     )
 
     (peripheral-group
@@ -470,30 +404,6 @@
                 (value 27)
                 (description "TIM1 Capture Compare interrupt")
             )
-        )
-        (peripheral
-            (name TIM8)
-            (address 0x40010400)
-            (interrupt
-                (name TIM8_BRK)
-                (value 43)
-                (description "TIM8 Break interrupt and TIM12 global interrupt")
-            )
-            (interrupt
-                (name TIM8_UP)
-                (value 44)
-                (description "TIM8 Update interrupt and TIM13 global interrupt")
-            )
-            (interrupt
-                (name TIM8_TRG_COM)
-                (value 45)
-                (description "TIM8 Trigger and Commutation interrupts and TIM14 global interrupt")
-            )
-            (interrupt
-                (name TIM8_CC)
-                (value 46)
-                (description "TIM8 Capture Compare interrupt")
-            )        
         )
     )
     
@@ -747,7 +657,7 @@
         (module (name stm32_common::chip::usart_f24::*))
         (peripheral 
             (name USART1)
-            (address 0x40011000)
+            (address 0x40013800)
             (signal (name USART1_TX) (type TX))
             (signal (name USART1_RX) (type RX))
             (signal (name USART1_CTS) (type CTS))

@@ -1,6 +1,6 @@
 pub use stm32_common::chip::usart_f24::*;
 
-pub const USART1: Usart1 = Periph(0x40011000, Usart1Id {});
+pub const USART1: Usart1 = Periph(0x40013800, Usart1Id {});
 pub const USART2: Usart2 = Periph(0x40004400, Usart2Id {});
 pub const USART3: Usart3 = Periph(0x40004800, Usart3Id {});
 

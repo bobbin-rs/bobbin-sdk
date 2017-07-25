@@ -2336,6 +2336,11 @@ impl En for super::crc::Crc {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_crcen(value)); }
 }
 
+impl En for super::afio::Afio {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().afioen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_afioen(value)); }
+}
+
 impl En for super::gpio::Gpioa {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().iopaen() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_iopaen(value)); }
@@ -2379,6 +2384,21 @@ impl En for super::tim_adv::Tim1 {
 impl En for super::usart::Usart1 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
+}
+
+impl En for super::tim_gen::Tim2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
+}
+
+impl En for super::tim_gen::Tim3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim3en(value)); }
+}
+
+impl En for super::tim_gen::Tim4 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim4en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim4en(value)); }
 }
 
 impl En for super::wwdg::Wwdg {

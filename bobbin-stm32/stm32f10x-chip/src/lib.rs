@@ -19,6 +19,7 @@ pub mod syscfg;
 pub mod dbg;
 pub mod bkp;
 pub mod fsmc;
+pub mod afio;
 pub mod c_adc;
 pub mod iwdg;
 pub mod wwdg;

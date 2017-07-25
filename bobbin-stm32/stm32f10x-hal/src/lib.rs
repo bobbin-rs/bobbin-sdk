@@ -8,7 +8,7 @@ extern crate stm32f10x_chip as chip;
 pub use bobbin_cortexm::hal::*;
 
 pub mod rcc;
-//pub mod clock;
+pub mod clock;
 
 pub mod dma {
     pub use chip::dma::*;

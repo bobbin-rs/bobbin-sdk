@@ -6,6 +6,7 @@ pub trait PinExt {
     // fn set_mode(&self, value: Mode) -> &Self;       
     fn mode_input(&self) -> &Self;
     fn mode_output(&self) -> &Self;
+    fn mode_altfn(&self) -> &Self;
     fn output(&self) -> bool;
     fn set_output(&self, value: bool) -> &Self;
     fn toggle_output(&self) -> &Self;
@@ -37,6 +38,19 @@ impl<P, T> PinExt for Pin<P,T> {
         self
     }
     
+    #[inline]
+    fn mode_altfn(&self) -> &Self {
+        match self.index {
+            0 ... 8 => {
+                self.port.with_crl(|r| r.set_cnf(self.index, 0b10).set_mode(self.index, 0b01));
+            },
+            _ => {
+                self.port.with_crh(|r| r.set_cnf(self.index - 8, 0b10).set_mode(self.index - 8, 0b01));
+            }
+        }
+        self
+    }    
+
     #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0

@@ -624,7 +624,7 @@
             (bit-offset 0)
             (bit-width 1)
             (description "Alternate function I/O clock enable")
-            ;(link (name EN) (peripheral-group AFIO) (peripheral AFIO))
+            (link (name EN) (peripheral-group AFIO) (peripheral AFIO))
         )
         (field
             (name IOPAEN)
@@ -750,18 +750,21 @@
             (bit-offset 0)
             (bit-width 1)
             (description "Timer 2 clock enable")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM2))
         )
         (field
             (name TIM3EN)
             (bit-offset 1)
             (bit-width 1)
             (description "Timer 3 clock enable")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM3))
         )
         (field
             (name TIM4EN)
             (bit-offset 2)
             (bit-width 1)
             (description "Timer 4 clock enable")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM4))
         )
         (field
             (name TIM5EN)
