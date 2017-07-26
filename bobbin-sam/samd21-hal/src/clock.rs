@@ -172,13 +172,6 @@ pub const OSC32K: Hz = Some(32767);
 pub const OSCULP32K: Hz = Some(32767);
 pub const OSC8M: Hz = Some(8_000_000);
 
-pub type Hz = Option<u32>;
-
-pub struct ClockTree {
-    pub xosc: Hz,
-    pub xosc32k: Hz,    
-}
-
 #[derive(Debug, PartialEq)]
 pub enum Osc8MPrescaler {
     Div1 = 0,
@@ -192,6 +185,80 @@ pub enum DpllRefClock {
     Xosc32k = 0,
     Xosc = 1,
     GclkDpll = 2,
+}
+
+#[derive(Debug, PartialEq)]
+pub enum Source {
+    Xosc = 0x00,
+    GclkIn = 0x01,
+    GclkGen1 = 0x02,
+    OscUlp32k = 0x3,
+    Osc32k = 0x4,
+    Xosc32K = 0x5,
+    Osc8m = 0x6,
+    Dffl48m = 0x7,
+    Fdpll86m = 0x8
+}
+
+#[derive(Debug, PartialEq)]
+pub enum Generator {
+    GClkGen0 = 0,
+    GClkGen1 = 1,
+    GClkGen2 = 2,
+    GClkGen3 = 3,
+    GClkGen4 = 4,
+    GClkGen5 = 5,
+    GClkGen6 = 6,
+    GClkGen7 = 7,
+    GClkGen8 = 8,
+}
+
+#[derive(Debug, PartialEq)]
+pub enum Multiplexer {
+    Dfll48mRef = 0x00,
+    Dpll = 0x01,
+    Dpll32k = 0x02,
+    Wdt = 0x03,
+    Rtc = 0x04,
+    Eic = 0x05,
+    Usb = 0x06,
+    EvsysCh0 = 0x07,
+    EvsysCh1 = 0x08,
+    EvsysCh2 = 0x09,
+    EvsysCh3 = 0x0a,
+    EvsysCh4 = 0x0b,
+    EvsysCh5 = 0x0c,
+    EvsysCh6 = 0x0d,
+    EvsysCh7 = 0x0e,
+    EvsysCh8 = 0x0f,
+    EvsysCh9 = 0x10,
+    EvsysCh10 = 0x11,
+    EvsysCh11 = 0x12,
+    SercomSlow = 0x13,
+    Sercom0 = 0x14,
+    Sercom1 = 0x15,
+    Sercom2 = 0x16,
+    Sercom3 = 0x17,
+    Sercom4 = 0x18,
+    Sercom5 = 0x19,
+    Tcc0Tcc1 = 0x1a,
+    Tcc2Tc3 = 0x1b,
+    Tc4Tc5 = 0x1c,
+    Tc6Tc7 = 0x1d,
+    Adc = 0x1e,
+    AcDig = 0x1f,
+    AcAna = 0x21,
+    Dac = 0x23,
+    Ptc = 0x24,
+    I2s0 = 0x25,
+    I2s1 = 0x26,
+}
+
+pub type Hz = Option<u32>;
+
+pub struct ClockTree {
+    pub xosc: Hz,
+    pub xosc32k: Hz,    
 }
 
 impl ClockTree {
@@ -505,6 +572,5 @@ impl ClockTree {
         } else {
             None
         }
-    }        
-    
+    }    
 }
