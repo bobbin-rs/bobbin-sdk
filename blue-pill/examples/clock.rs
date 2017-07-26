@@ -3,11 +3,16 @@
 
 #[macro_use]
 extern crate blue_pill as board;
+use board::chip::usart::*;
+use board::chip::tim_gen::*;
+use board::chip::tim_adv::*;
+use board::chip::iwdg::*;
+use board::chip::wwdg::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let clk = Clock { hse_osc: Some(8_000_000)};
+    let clk = CLK;
     println!("Clock Test");
     println!("Current Source: {:?}", clk.sysclk_src());
 
@@ -33,6 +38,16 @@ pub extern "C" fn main() -> ! {
     println!("RTCCLK:   {:?}", clk.rtcclk());
     println!("FLITFCLK: {:?}", clk.flitfclk());
     println!("IWDGCLK:  {:?}", clk.iwdgclk());
+
+    println!("USART1:   {:?}", USART1.clk());
+    println!("USART2:   {:?}", USART2.clk());
+    println!("USART3:   {:?}", USART3.clk());
+    println!("TIM1:     {:?}", TIM1.clk());
+    println!("TIM2:     {:?}", TIM2.clk());
+    println!("TIM3:     {:?}", TIM3.clk());
+    println!("TIM4:     {:?}", TIM4.clk());
+    println!("IWDG:     {:?}", IWDG.clk());
+    println!("WWDG:     {:?}", WWDG.clk());
 
     println!("Switching to HSI to HSE to PLL");
     board::delay(10);
@@ -110,6 +125,8 @@ pub extern "C" fn main() -> ! {
 
 use board::chip::rcc::RCC;
 use board::chip::pwr::PWR;
+
+pub const CLK: Clock = Clock { hse_osc: Some(8_000_000) };
 
 pub type Hz = Option<u32>;
 
@@ -604,5 +621,63 @@ impl Clock {
 
     pub fn flitfclk(&self) -> Hz {
         self.hsi()
+    }
+}
+
+pub trait Clk {
+    fn clk(&self) -> Hz;
+}
+
+impl Clk for Usart1 {
+    fn clk(&self) -> Hz {
+        CLK.pclk2()
+    }
+}
+
+impl Clk for Usart2 {
+    fn clk(&self) -> Hz {
+        CLK.pclk1()
+    }
+}
+
+impl Clk for Usart3 {
+    fn clk(&self) -> Hz {
+        CLK.pclk1()
+    }
+}
+
+impl Clk for Tim1 {
+    fn clk(&self) -> Hz {
+        CLK.timclk_apb2()
+    }
+}
+
+impl Clk for Tim2 {
+    fn clk(&self) -> Hz {
+        CLK.timclk_apb1()
+    }
+}
+
+impl Clk for Tim3 {
+    fn clk(&self) -> Hz {
+        CLK.timclk_apb1()
+    }
+}
+
+impl Clk for Tim4 {
+    fn clk(&self) -> Hz {
+        CLK.timclk_apb1()
+    }
+}
+
+impl Clk for Iwdg {
+    fn clk(&self) -> Hz {
+        CLK.iwdgclk()
+    }
+}
+
+impl Clk for Wwdg {
+    fn clk(&self) -> Hz {
+        CLK.pclk1()
     }
 }
