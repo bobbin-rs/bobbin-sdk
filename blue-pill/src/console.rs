@@ -2,6 +2,7 @@ use core::fmt::{self, Write, Arguments};
 use hal::gpio::*;
 use hal::usart::*;
 use chip::afio::*;
+use clock::CLK;
 
 pub const USART: Usart1 = USART1;
 pub const USART_TX: Pb6 = PB6;
@@ -22,8 +23,11 @@ pub fn init() {
     USART_RX.mode_input();
 
     // Set Baud and Enable USART
-    USART.enable(USART_CLOCK / USART_BAUD);
+    USART.enable(CLK.clock(&USART).expect("No clock available") / USART_BAUD);
+}
 
+pub fn reinit() {
+    USART.disable().enable(CLK.clock(&USART).expect("No clock available") / USART_BAUD);
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
