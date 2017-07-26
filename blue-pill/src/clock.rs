@@ -1,7 +1,10 @@
 use hal::clock::*;
 use chip::flash::FLASH;
 
-pub const CLK: ClockTree = ClockTree { hse_osc: Some(8_000_000) };
+pub const CLK: ClockTree = ClockTree { 
+    hse_osc: Some(8_000_000),
+    lse_osc: Some(32767),
+};
 
 pub fn init() {    
     // 8Mhz external clock
@@ -34,6 +37,7 @@ pub fn init() {
         .wait_pll_rdy()
         // Switch to PLL
         .set_sysclk_src(SysClockSrc::Pll)
-        .wait_sysclk_rdy();
+        .wait_sysclk_rdy()
+        .set_hsi_on(false);
 
 }
