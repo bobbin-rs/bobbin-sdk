@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(asm)]
 
 extern crate bobbin_common;
 extern crate bobbin_cortexm;
@@ -9,6 +10,7 @@ pub use bobbin_cortexm::hal::*;
 
 pub mod rcc;
 pub mod clock;
+pub mod power;
 
 pub mod dma {
     pub use chip::dma::*;
