@@ -1,3 +1,4 @@
+use clock::CLK;
 use hal::tim::*;
 
 pub const TIM: Tim21 = TIM21;
@@ -12,5 +13,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, TIM_PRESCALE);    
+    TIM.delay(ms << 1, ((CLK.clock(&TIM).expect("No clock defined")  / 2000) - 1) as u16);
 }
