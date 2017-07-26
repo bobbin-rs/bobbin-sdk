@@ -189,7 +189,7 @@ pub enum Osc8MPrescaler {
 
 #[derive(Debug, PartialEq)]
 pub enum DpllRefClock {
-    Xosc32 = 0,
+    Xosc32k = 0,
     Xosc = 1,
     GclkDpll = 2,
 }
@@ -217,6 +217,15 @@ impl ClockTree {
         self
     }
 
+    pub fn xosc_ondemand(&self) -> bool {
+        SYSCTRL.xosc().ondemand() != 0
+    }
+    
+    pub fn set_xosc_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc(|r| r.set_ondemand(value));
+        self
+    }
     pub fn xosc_rdy(&self) -> bool {
         SYSCTRL.pclksr().xoscrdy() != 0
     }
@@ -251,6 +260,15 @@ impl ClockTree {
         self
     }
 
+    pub fn xosc32k_ondemand(&self) -> bool {
+        SYSCTRL.xosc32k().ondemand() != 0
+    }
+    
+    pub fn set_xosc32k_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc32k(|r| r.set_ondemand(value));
+        self
+    }
     pub fn xosc32k_rdy(&self) -> bool {
         SYSCTRL.pclksr().xosc32krdy() != 0
     }
@@ -275,6 +293,15 @@ impl ClockTree {
         self
     }
 
+    pub fn osc32k_ondemand(&self) -> bool {
+        SYSCTRL.osc32k().ondemand() != 0
+    }
+    
+    pub fn set_osc32k_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_osc32k(|r| r.set_ondemand(value));
+        self
+    }
     pub fn osc32k_rdy(&self) -> bool {
         SYSCTRL.pclksr().osc32krdy() != 0
     }
@@ -320,6 +347,16 @@ impl ClockTree {
         self
     }
 
+    pub fn osc8m_ondemand(&self) -> bool {
+        SYSCTRL.osc8m().ondemand() != 0
+    }
+    
+    pub fn set_osc8m_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_osc8m(|r| r.set_ondemand(value));
+        self
+    }
+
     pub fn osc8m_rdy(&self) -> bool {
         SYSCTRL.pclksr().osc8mrdy() != 0
     }
@@ -342,6 +379,17 @@ impl ClockTree {
     pub fn set_dfll_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         SYSCTRL.with_dfllctrl(|r| r.set_enable(value));
+        self
+    }
+
+
+    pub fn dfll_ondemand(&self) -> bool {
+        SYSCTRL.dfllctrl().ondemand() != 0
+    }
+    
+    pub fn set_dfll_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_dfllctrl(|r| r.set_ondemand(value));
         self
     }
 
@@ -369,7 +417,7 @@ impl ClockTree {
     // DPLL
 
     pub fn dpll_enabled(&self) -> bool {
-        SYSCTRL.dpllctrla().enable() != 0
+        SYSCTRL.dpllstatus().enable() != 0
     }
     
     pub fn set_dpll_enabled(&self, value: bool) -> &Self {
@@ -377,6 +425,17 @@ impl ClockTree {
         SYSCTRL.with_dpllctrla(|r| r.set_enable(value));
         self
     }
+
+    pub fn dpll_ondemand(&self) -> bool {
+        SYSCTRL.dpllctrla().ondemand() != 0
+    }
+    
+    pub fn set_dpll_ondemand(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_dpllctrla(|r| r.set_ondemand(value));
+        self
+    }
+    
 
     pub fn dpll_mul(&self) -> u32 {
         SYSCTRL.dpllratio().ldr()
@@ -407,16 +466,25 @@ impl ClockTree {
 
     pub fn dpll_refclk(&self) -> DpllRefClock {
         match SYSCTRL.dpllctrlb().refclk() {
-            0 => DpllRefClock::Xosc32,
+            0 => DpllRefClock::Xosc32k,
             1 => DpllRefClock::Xosc,
             2 => DpllRefClock::GclkDpll,
             _ => unimplemented!(),
         }
     }
 
+    pub fn set_dpll_refclk(&self, value: DpllRefClock) -> &Self {
+        SYSCTRL.with_dpllctrlb(|r| r.set_refclk(value as u32));
+        self
+    }
+
     pub fn dpll_divider_enable(&self) -> bool {
         SYSCTRL.dpllstatus().div() != 0
     }
+
+    pub fn dpll_lock(&self) -> bool {
+        SYSCTRL.dpllstatus().lock() != 0
+    }    
 
     pub fn dpll_rdy(&self) -> bool {
         SYSCTRL.dpllstatus().clkrdy() != 0
@@ -424,7 +492,16 @@ impl ClockTree {
 
     pub fn dpll(&self) -> Hz {
         if self.dpll_rdy() {
-            OSC32K.map(|v| v * self.dpll_mul())
+            let clk = match SYSCTRL.dpllctrlb().refclk() {
+                0 => self.xosc32k(),
+                1 => self.xosc(),
+                _ => unimplemented!(),
+            };
+            if self.dpll_div() != 0 {
+                clk.map(|v| v * self.dpll_mul() / self.dpll_div())
+            } else {
+                clk.map(|v| v * self.dpll_mul())
+            }
         } else {
             None
         }
