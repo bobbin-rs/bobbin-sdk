@@ -1,43 +1,816 @@
-use ::chip::flash::*;
-use ::chip::rcc::*;
+use ::chip::rcc::RCC;
+use ::chip::pwr::PWR;
+use ::chip::usart::*;
+use ::chip::lpuart::*;
+// use ::chip::tim_bas::*;
 
-// Main System Clock = 32MHz
-// APB2 = 32MHz
-// APB1 = 32MHz
-// AHB = 32MHz
+use ::chip::lptim::*;
+use ::chip::tim_gen::*;
+// use ::chip::iwdg::*;
+// use ::chip::wwdg::*;
+pub type Hz = Option<u32>;
 
-pub fn init_pll() {
-    unsafe {
-        // (1) Set one wait state in Latency bit of FLASH_ACR 
-        FLASH.with_acr(|r| r.set_latency(1));
+pub const HSI16: Hz = Some(16_000_000);
+pub const LSI: Hz = Some(37_000);
 
-        // (2) Check the latency is set
-        while FLASH.acr().latency() == 0 {}
+#[derive(Debug, PartialEq)]
+pub enum SysClockSrc {
+    Msi = 0b00,
+    Hsi16 = 0b01,
+    Hse = 0b10,
+    Pll = 0b11,
+}
 
-        // (3) Switch the clock on HSI16/4 and disable PLL
+#[derive(Debug, PartialEq)]
+pub enum PllSrc {
+    Hsi16 = 0b00,
+    Hse = 0b01,
+}
 
-        RCC.with_cr(|r| r.set_pllon(0).set_hsi16divf(0).set_hsi16on(1));
+#[derive(Debug, PartialEq)]
+pub enum RtcSel {
+    None = 0b00,
+    Lse = 0b01,
+    Lsi = 0b10,
+    HseDiv128 = 0b11,
+}
 
-        // Wait for HSI16 Ready Flag
-        while RCC.cr().hsi16rdyf() == 0 {}
+#[derive(Debug, PartialEq)]
+pub enum HPre {
+    Div1 = 0b0000,
+    Div2 = 0b1000,
+    Div4 = 0b1001,
+    Div8 = 0b1010,
+    Div16 = 0b1011,
+    // Note: Divide by 32 is skipped
+    Div64 = 0b1100,
+    Div128 = 0b1101,
+    Div256 = 0b1110,
+    Div512 = 0b1111,
+}
 
-        // (4) Set PLLMUL to 16 to get 32MHz on CPU clock, PLLDIV/2
+#[derive(Debug, PartialEq)]
+pub enum PPre1 {
+    Div1 = 0b000,
+    Div2 = 0b100,
+    Div4 = 0b101,
+    Div8 = 0b110,
+    Div16 = 0b111,
+}
 
-        RCC.with_cfgr(|r| r.set_pllmul(0b0010).set_plldiv(0b10));
+#[derive(Debug, PartialEq)]
+pub enum PPre2 {
+    Div1 = 0b000,
+    Div2 = 0b100,
+    Div4 = 0b101,
+    Div8 = 0b110,
+    Div16 = 0b111,
+}
 
-        // (5) Enable and switch on PLL 
+#[derive(Debug, PartialEq)]
+pub enum MsiRange {
+    KHz65 = 0x0000,
+    KHz131 = 0b001,
+    KHz262 = 0b010,
+    KHz524 = 0b011,
+    KHz1048 = 0b100,
+    KHz2097 = 0b101,
+    KHz4194 = 0b110,    
+}
 
-        RCC.with_cr(|r| r.set_pllon(1));
+#[derive(Debug, PartialEq)]
+pub enum HsiDiv {
+    Div1 = 0,
+    Div4 = 1,
+}
 
-        // Wait for PLL Ready
-        while RCC.cr().pllrdy() == 0 {}
+#[derive(Debug, PartialEq)]
+pub enum LpTim1Sel {
+    Apb = 0b00,
+    Lsi = 0b01,
+    Hsi16 = 0b10,
+    Lse = 0b11,
+}
 
-        // Switch to PLL
-        RCC.with_cfgr(|r| r.set_sw(0b11));
+#[derive(Debug, PartialEq)]
+pub enum LpUart1Sel {
+    Apb = 0b00,
+    SysClk = 0b01,
+    Hsi16 = 0b10,
+    Lse = 0b11,
+}
 
-        // Wait for system clock to use PLL
-        while RCC.cfgr().sws() != 0b11 {}
-        
+#[derive(Debug, PartialEq)]
+pub enum Usart2Sel {
+    Apb = 0b00,
+    SysClk = 0b01,
+    Hsi16 = 0b10,
+    Lse = 0b11,
+}
+
+pub struct ClockTree {
+    pub hse_osc: Hz,
+    pub lse_osc: Hz,
+}
+
+impl ClockTree {
+    pub fn hsi16(&self) -> Hz { 
+        if self.hsi16_rdy() { 
+            if self.hsi16_div() {
+                HSI16.map(|v| v >> 2)
+            } else {
+                HSI16
+            }
+        } else {
+            None
+        } 
+    }
+
+    pub fn hsi16_rdy(&self) -> bool {
+        match RCC.cr().hsi16rdyf() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_hsi16_rdy(&self) -> &Self {
+        while !self.hsi16_rdy() {}
+        self
+    }
+
+    pub fn hsi16_on(&self) -> bool {
+        match RCC.cr().hsi16on() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_hsi16_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_hsi16on(value) );
+        self
+    }
+
+    pub fn hsi16_div(&self) -> bool {
+        match RCC.cr().hsi16diven() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_hsi16_div(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_hsi16diven(value) );
+        while RCC.cr().hsi16divf() != value {}
+        self        
+    }
+
+    pub fn msi(&self) -> Hz { 
+        if self.msi_rdy() { 
+            match RCC.icscr().msirange() {
+                0b000 => Some(65536),
+                0b001 => Some(131072),
+                0b010 => Some(262144),
+                0b011 => Some(524288),
+                0b100 => Some(1048000),
+                0b101 => Some(2097000),
+                0b110 => Some(4194000),
+                _ => unimplemented!()
+            }
+        } else {
+            None
+        }
+    }
+
+    pub fn msi_rdy(&self) -> bool {
+        match RCC.cr().msirdy() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_msi_rdy(&self) -> &Self {
+        while !self.msi_rdy() {}
+        self
     }
     
+    pub fn msi_range(&self) -> MsiRange {
+        match RCC.icscr().msirange() {
+            0b000 => MsiRange::KHz65,
+            0b001 => MsiRange::KHz131,
+            0b010 => MsiRange::KHz262,
+            0b011 => MsiRange::KHz524,
+            0b100 => MsiRange::KHz1048,
+            0b101 => MsiRange::KHz2097,
+            0b110 => MsiRange::KHz4194,
+            _ => unimplemented!()
+        }
+    }
+
+    pub fn set_msi_range(&self, value: MsiRange) -> &Self {
+        RCC.with_icscr(|r| r.set_msirange(value as u32));
+        self
+    }
+
+    pub fn msi_on(&self) -> bool {
+        match RCC.cr().msion() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_msi_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_msion(value) );
+        self
+    }
+
+
+    pub fn hse(&self) -> Hz { 
+        if self.hse_rdy() { self.hse_osc } else { None } 
+    }
+
+    pub fn hse_rdy(&self) -> bool {
+        match RCC.cr().hserdy() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_hse_rdy(&self) -> &Self {
+        while !self.hse_rdy() {}
+        self
+    }
+    
+    pub fn hse_bypass(&self) -> bool {
+        match RCC.cr().hsebyp() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+
+    pub fn set_hse_bypass(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_hsebyp(value) );
+        self
+    }
+
+    pub fn hse_on(&self) -> bool {
+        match RCC.cr().hseon() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+    pub fn set_hse_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_hseon(value) );
+        self
+    }
+
+
+    pub fn lsi(&self) -> Hz { 
+        if self.lsi_rdy() {
+            LSI
+        } else {
+            None
+        }
+    }
+
+    pub fn lsi_rdy(&self) -> bool {
+        match RCC.csr().lsirdy() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_lsi_rdy(&self) -> &Self {
+        while !self.lsi_rdy() {}
+        self
+    }
+
+
+    pub fn lsi_on(&self) -> bool {
+        match RCC.csr().lsion() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_lsi_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_csr(|r| r.set_lsion(value) );
+        self
+    }
+
+    pub fn lse(&self) -> Hz {
+        if self.lse_rdy() { self.lse_osc } else { None }
+    }
+
+    pub fn lse_rdy(&self) -> bool {
+        match RCC.csr().lserdy() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_lse_rdy(&self) -> &Self {
+        while !self.lse_rdy() {}
+        self
+    }
+
+    pub fn lse_bypass(&self) -> bool {
+        match RCC.csr().lsebyp() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_lse_bypass(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        let p = RCC.apb1enr().pwren();
+        RCC.with_apb1enr(|r| r.set_pwren(1));
+        PWR.with_cr(|r| r.set_dbp(1));
+        RCC.with_csr(|r| r.set_lsebyp(value) );
+        PWR.with_cr(|r| r.set_dbp(0));
+        RCC.with_apb1enr(|r| r.set_pwren(p));
+        self
+    }    
+
+    pub fn lse_on(&self) -> bool {
+        match RCC.csr().lseon() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_lse_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        let p = RCC.apb1enr().pwren();
+        RCC.with_apb1enr(|r| r.set_pwren(1));
+        PWR.with_cr(|r| r.set_dbp(1));
+        RCC.with_csr(|r| r.set_lseon(value) );
+        PWR.with_cr(|r| r.set_dbp(0));
+        RCC.with_apb1enr(|r| r.set_pwren(p));
+        self
+    }    
+
+    pub fn pll_src(&self) -> PllSrc {
+        match RCC.cfgr().pllsrc() {
+            0b0 => PllSrc::Hsi16,
+            0b1 => PllSrc::Hse,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_pll_src(&self, value: PllSrc) -> &Self {
+        RCC.with_cfgr(|r| r.set_pllsrc(value as u32));
+        self
+    }
+
+    pub fn pll_div(&self) -> u32 {
+        match RCC.cfgr().plldiv() {
+            0b01 => 2,
+            0b10 => 3,
+            0b11 => 4,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_pll_div(&self, value: u32) -> &Self {
+        let value = match value {
+            2 => 0b01,
+            3 => 0b10,
+            4 => 0b11,
+            _ => panic!("Unsupported PLL Divider"),
+        };
+        RCC.with_cfgr(|r| r.set_plldiv(value));
+        self        
+    }
+
+    pub fn pll_mul(&self) -> u32 {
+        match RCC.cfgr().pllmul() {
+            0b0000 => 3,
+            0b0001 => 4,
+            0b0010 => 6,
+            0b0011 => 8,
+            0b0100 => 12,
+            0b0101 => 16,
+            0b0110 => 24,
+            0b0111 => 32,
+            0b1000 => 48,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_pll_mul(&self, value: u32) -> &Self {
+        let value = match value {
+            3 => 0b0000,
+            4 => 0b0001,
+            6 => 0b0010,
+            8 => 0b0011,
+            12 => 0b0100,
+            16 => 0b0101,
+            24 => 0b0110,
+            32 => 0b0111,
+            48 => 0b1000,
+            _ => panic!("Unsupported PLL Multiplier"),
+        };
+        RCC.with_cfgr(|r| r.set_pllmul(value));
+        self
+    }
+
+    pub fn pll_rdy(&self) -> bool {
+        match RCC.cr().pllrdy() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn wait_pll_rdy(&self) -> &Self {
+        while !self.pll_rdy() {}
+        self
+    }
+
+    pub fn pll_on(&self) -> bool {
+        match RCC.cr().pllon() {
+            0b0 => false,
+            0b1 => true,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_pll_on(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        RCC.with_cr(|r| r.set_pllon(value) );
+        self
+    }
+
+    pub fn pllclk(&self) -> Hz {
+        match RCC.cr().pllrdy() {
+            0b0 => None,
+            0b1 => match RCC.cfgr().pllsrc() {
+                0b0 => self.hsi16(),
+                0b1 => self.hse(),
+                _ => unimplemented!(),
+            }.map(|v| v * self.pll_mul() / self.pll_div()),
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn sysclk_src(&self) -> SysClockSrc {
+        match RCC.cfgr().sws() {
+            0b00 => SysClockSrc::Msi,
+            0b01 => SysClockSrc::Hsi16,
+            0b10 => SysClockSrc::Hse,
+            0b11 => SysClockSrc::Pll,
+            _ => unimplemented!()
+        }
+    }
+
+    pub fn set_sysclk_src(&self, value: SysClockSrc) -> &Self {
+        RCC.with_cfgr(|r| r.set_sw(value as u32));
+        self
+    }
+
+    pub fn wait_sysclk_rdy(&self) -> &Self {
+        loop {
+            let cfgr = RCC.cfgr();
+            if cfgr.sws() == cfgr.sw() {
+                return self
+            }
+        }
+    }
+
+
+    pub fn sysclk(&self) -> Hz {
+        match self.sysclk_src() {
+            SysClockSrc::Msi => self.msi(),
+            SysClockSrc::Hsi16 => self.hsi16(),
+            SysClockSrc::Hse => self.hse(),
+            SysClockSrc::Pll => self.pllclk(),
+        }
+    }
+
+    pub fn hclk_pre(&self) -> HPre {
+        match RCC.cfgr().hpre() {
+            0b0000 ... 0b0111 => HPre::Div1,
+            0b1000 => HPre::Div2,
+            0b1001 => HPre::Div4,
+            0b1010 => HPre::Div8,
+            0b1011 => HPre::Div16,
+            // Div32 is skipped
+            0b1100 => HPre::Div64,
+            0b1101 => HPre::Div128,
+            0b1110 => HPre::Div256,
+            0b1111 => HPre::Div512,
+            _ => unimplemented!(),            
+        }        
+    }
+
+    pub fn set_hclk_pre(&self, value: HPre) -> &Self {
+        RCC.with_cfgr(|r| r.set_hpre(value as u32));
+        self
+    }    
+
+    pub fn hclk(&self) -> Hz {
+        // Note: Divide by 32 is skipped
+        let hclk_shift = match RCC.cfgr().hpre() {
+            0b0000 ... 0b0111 => 0,
+            0b1000 => 1,
+            0b1001 => 2,
+            0b1010 => 3,
+            0b1011 => 4,
+            // Div32 is skipped
+            0b1100 => 6,
+            0b1101 => 7,
+            0b1110 => 8,
+            0b1111 => 9,
+            _ => unimplemented!(),
+        };
+        self.sysclk().map(|v| v >> hclk_shift)
+    }
+
+    pub fn pclk1_pre(&self) -> PPre1 {
+        match RCC.cfgr().ppre1() {
+            0b000 ... 0b011 => PPre1::Div1,
+            0b100 => PPre1::Div2,
+            0b101 => PPre1::Div4,
+            0b110 => PPre1::Div8,
+            0b111 => PPre1::Div16,
+            _ => unimplemented!(),            
+        }        
+    }
+
+    pub fn set_pclk1_pre(&self, value: PPre1) -> &Self {
+        RCC.with_cfgr(|r| r.set_ppre1(value as u32));
+        self
+    }       
+
+    pub fn pclk1(&self) -> Hz {
+        let ppre1_shift = match RCC.cfgr().ppre1() {
+            0b000 ... 0b011 => 0,
+            0b100 => 1,
+            0b101 => 2,
+            0b110 => 3,
+            0b111 => 4,
+            _ => unimplemented!(),
+        };
+        self.hclk().map(|v| v >> ppre1_shift)
+    }
+
+    pub fn pclk2_pre(&self) -> PPre2 {
+        match RCC.cfgr().ppre2() {
+            0b000 ... 0b011 => PPre2::Div1,
+            0b100 => PPre2::Div2,
+            0b101 => PPre2::Div4,
+            0b110 => PPre2::Div8,
+            0b111 => PPre2::Div16,
+            _ => unimplemented!(),            
+        }        
+    }
+
+    pub fn set_pclk2_pre(&self, value: PPre2) -> &Self {
+        RCC.with_cfgr(|r| r.set_ppre2(value as u32));
+        self
+    }       
+
+    pub fn pclk2(&self) -> Hz {
+        let ppre2_shift = match RCC.cfgr().ppre2() {
+            0b000 ... 0b011 => 0,
+            0b100 => 1,
+            0b101 => 2,
+            0b110 => 3,
+            0b111 => 4,
+            _ => unimplemented!(),
+        };
+        self.hclk().map(|v| v >> ppre2_shift)
+    }
+
+    pub fn timclk_apb1(&self) -> Hz {
+        let timclk_shift = match RCC.cfgr().ppre1() {
+            0b000 ... 0b011 => 0,
+            0b100 ... 0b111 => 1,
+            _ => unimplemented!(),
+        };
+        self.pclk1().map(|v| v << timclk_shift)
+    }
+
+    pub fn timclk_apb2(&self) -> Hz {
+        let timclk_shift = match RCC.cfgr().ppre2() {
+            0b000 ... 0b011 => 0,
+            0b100 ... 0b111 => 1,
+            _ => unimplemented!(),
+        };
+        self.pclk2().map(|v| v << timclk_shift)
+    }
+
+    // pub fn adcclk(&self) -> Hz {
+    //     let adc_div = match RCC.cfgr().adcpre() {
+    //         0b00 => 2,
+    //         0b01 => 4,
+    //         0b10 => 6,
+    //         0b11 => 8,
+    //         _ => unimplemented!(),
+    //     };
+    //     self.pclk2().map(|v| v >> adc_div)
+    // }
+
+    pub fn systick(&self) -> Hz {
+        self.hclk().map(|v| v >> 3)
+    }
+
+    pub fn lptim1sel(&self) -> LpTim1Sel {
+        match RCC.ccipr().lptim1sel() {
+            0b00 => LpTim1Sel::Apb,
+            0b01 => LpTim1Sel::Lsi,
+            0b10 => LpTim1Sel::Hsi16,
+            0b11 => LpTim1Sel::Lse,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_lptim1sel(&self, value: LpTim1Sel) -> &Self {
+        RCC.with_ccipr(|r| r.set_lptim1sel(value as u32));
+        self
+    }
+
+    pub fn lpuart1sel(&self) -> LpUart1Sel {
+        match RCC.ccipr().lpuart1sel() {
+            0b00 => LpUart1Sel::Apb,
+            0b01 => LpUart1Sel::SysClk,
+            0b10 => LpUart1Sel::Hsi16,
+            0b11 => LpUart1Sel::Lse,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_lpuart1sel(&self, value: LpUart1Sel) -> &Self {
+        RCC.with_ccipr(|r| r.set_lpuart1sel(value as u32));
+        self
+    }
+    
+    pub fn usart2sel(&self) -> Usart2Sel {
+        match RCC.ccipr().usart2sel() {
+            0b00 => Usart2Sel::Apb,
+            0b01 => Usart2Sel::SysClk,
+            0b10 => Usart2Sel::Hsi16,
+            0b11 => Usart2Sel::Lse,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_usart2sel(&self, value: Usart2Sel) -> &Self {
+        RCC.with_ccipr(|r| r.set_usart2sel(value as u32));
+        self
+    }
+
+    // pub fn rtc_enabled(&self) -> bool {
+    //     match RCC.bdcr().rtcen() {
+    //         0b0 => false,
+    //         0b1 => true,
+    //         _ => unimplemented!(),
+    //     }
+    // }
+
+    // pub fn set_rtc_enabled(&self, value: bool) -> &Self {
+    //     let value = if value { 1 } else { 0 };
+    //     let p = RCC.apb1enr().pwren();
+    //     RCC.with_apb1enr(|r| r.set_pwren(1));
+    //     PWR.with_cr(|r| r.set_dbp(1));
+    //     RCC.with_bdcr(|r| r.set_rtcen(value) );
+    //     PWR.with_cr(|r| r.set_dbp(0));
+    //     RCC.with_apb1enr(|r| r.set_pwren(p));
+    //     self
+    // }
+
+    // pub fn rtcclk_sel(&self) -> RtcSel {
+    //     match RCC.bdcr().rtcsel() {
+    //         0b00 => RtcSel::None,
+    //         0b01 => RtcSel::Lse,
+    //         0b10 => RtcSel::Lsi,
+    //         0b11 => RtcSel::HseDiv128,
+    //         _ => unimplemented!(),
+    //     }
+    // }
+
+    // pub fn rtcclk(&self) -> Hz {
+    //     match RCC.bdcr().rtcsel() {
+    //         0b00 => None,
+    //         0b01 => self.lse(),
+    //         0b10 => self.lsi(),
+    //         0b11 => self.hse().map(|v| v >> 7),
+    //         _ => unimplemented!(),
+    //     }
+    // }
+
+    // pub fn iwdgclk(&self) -> Hz {
+    //     self.lsi()
+    // }
+
+    pub fn clock<P: Clock>(&self, p: &P) -> Hz {
+        p.clock(self)
+    }
 }
+
+pub trait Clock {
+    fn clock(&self, clk: &ClockTree) -> Hz;
+}
+
+impl Clock for Lpuart1 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        match RCC.ccipr().lpuart1sel() {
+            0b00 => clk.pclk1(),
+            0b01 => clk.sysclk(),
+            0b10 => clk.hsi16(),
+            0b11 => clk.lse(),
+            _ => unimplemented!(),
+        }
+    }
+}
+
+impl Clock for Usart2 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        match RCC.ccipr().usart2sel() {
+            0b00 => clk.pclk1(),
+            0b01 => clk.sysclk(),
+            0b10 => clk.hsi16(),
+            0b11 => clk.lse(),
+            _ => unimplemented!(),
+        }
+    }
+}
+
+
+impl Clock for Lptim {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        match RCC.ccipr().lptim1sel() {
+            0b00 => clk.pclk1(),
+            0b01 => clk.lsi(),
+            0b10 => clk.hsi16(),
+            0b11 => clk.lse(),
+            _ => unimplemented!(),
+        }
+    }
+}
+// impl Clock for Tim1 {
+//     fn clock(&self, clk: &ClockTree) -> Hz {
+//         clk.timclk_apb2()
+//     }
+// }
+
+impl Clock for Tim2 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.timclk_apb1()
+    }
+}
+
+impl Clock for Tim21 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.timclk_apb2()
+    }
+}
+
+impl Clock for Tim22 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.timclk_apb2()
+    }
+}
+
+// impl Clock for Tim3 {
+//     fn clock(&self, clk: &ClockTree) -> Hz {
+//         clk.timclk_apb1()
+//     }
+// }
+
+// impl Clock for Tim4 {
+//     fn clock(&self, clk: &ClockTree) -> Hz {
+//         clk.timclk_apb1()
+//     }
+// }
+
+// impl Clock for Iwdg {
+//     fn clock(&self, clk: &ClockTree) -> Hz {
+//         clk.iwdgclk()
+//     }
+// }
+
+// impl Clock for Wwdg {
+//     fn clock(&self, clk: &ClockTree) -> Hz {
+//         clk.pclk1()
+//     }
+// }
