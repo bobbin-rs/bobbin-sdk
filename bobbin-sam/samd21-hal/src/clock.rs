@@ -1,4 +1,5 @@
 use ::chip::{gclk, sysctrl, nvmctrl, pm};
+use ::chip::sysctrl::SYSCTRL;
 
 const VARIANT_MCK: u32 = 48_000_000;
 const VARIANT_MAINOSC: u32 = 32_768;
@@ -167,3 +168,266 @@ pub fn run_48mhz() {
         
 }
 
+pub const OSC32K: Hz = Some(32767);
+pub const OSCULP32K: Hz = Some(32767);
+pub const OSC8M: Hz = Some(8_000_000);
+
+pub type Hz = Option<u32>;
+
+pub struct ClockTree {
+    pub xosc: Hz,
+    pub xosc32k: Hz,    
+}
+
+#[derive(Debug, PartialEq)]
+pub enum Osc8MPrescaler {
+    Div1 = 0,
+    Div2 = 1,
+    Div4 = 2,
+    Div8 = 3,
+}
+
+#[derive(Debug, PartialEq)]
+pub enum DpllRefClock {
+    Xosc32 = 0,
+    Xosc = 1,
+    GclkDpll = 2,
+}
+
+impl ClockTree {
+    // XOSC
+
+    pub fn xosc_xtal_enabled(&self) -> bool {
+        SYSCTRL.xosc().xtalen() != 0
+    }
+    
+    pub fn set_xosc_xtal_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc(|r| r.set_xtalen(value));
+        self
+    }    
+
+    pub fn xosc_enabled(&self) -> bool {
+        SYSCTRL.xosc().enable() != 0
+    }
+    
+    pub fn set_xosc_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn xosc_rdy(&self) -> bool {
+        SYSCTRL.pclksr().xoscrdy() != 0
+    }
+
+    pub fn xosc(&self) -> Hz {
+        if self.xosc_rdy() {
+            self.xosc
+        } else {
+            None
+        }
+    }
+
+    // XOSC32K
+
+    pub fn xosc32k_xtal_enabled(&self) -> bool {
+        SYSCTRL.xosc32k().xtalen() != 0
+    }
+    
+    pub fn set_xosc32k_xtal_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc32k(|r| r.set_xtalen(value));
+        self
+    }        
+
+    pub fn xosc32k_enabled(&self) -> bool {
+        SYSCTRL.xosc32k().enable() != 0
+    }
+    
+    pub fn set_xosc32k_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_xosc32k(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn xosc32k_rdy(&self) -> bool {
+        SYSCTRL.pclksr().xosc32krdy() != 0
+    }
+
+    pub fn xosc32k(&self) -> Hz {
+        if self.xosc32k_rdy() {
+            self.xosc32k
+        } else {
+            None
+        }
+    }
+
+    // OSC32K
+
+    pub fn osc32k_enabled(&self) -> bool {
+        SYSCTRL.osc32k().enable() != 0
+    }
+    
+    pub fn set_osc32k_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_osc32k(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn osc32k_rdy(&self) -> bool {
+        SYSCTRL.pclksr().osc32krdy() != 0
+    }
+
+    pub fn osc32k(&self) -> Hz {
+        if self.osc32k_rdy() {
+            OSC32K
+        } else {
+            None
+        }
+    }    
+
+    // OSCULP32K
+
+    pub fn osculp32k(&self) -> Hz {
+        OSCULP32K
+    }
+
+    // OSC8M
+
+    pub fn osc8m_pre(&self) -> Osc8MPrescaler {
+        match SYSCTRL.osc8m().presc() {
+            0 => Osc8MPrescaler::Div1,
+            1 => Osc8MPrescaler::Div2,
+            2 => Osc8MPrescaler::Div4,
+            3 => Osc8MPrescaler::Div8,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_osc8m_pre(&self, value: Osc8MPrescaler) -> &Self {
+        SYSCTRL.with_osc8m(|r| r.set_presc(value as u32));
+        self
+    }
+
+    pub fn osc8m_enabled(&self) -> bool {
+        SYSCTRL.osc8m().enable() != 0
+    }
+    
+    pub fn set_osc8m_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_osc8m(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn osc8m_rdy(&self) -> bool {
+        SYSCTRL.pclksr().osc8mrdy() != 0
+    }
+    
+    pub fn osc8m(&self) -> Hz {
+        if self.osc8m_rdy() {
+            OSC8M.map(|v| v >> SYSCTRL.osc8m().presc())
+        } else {
+            None
+        }
+    }
+
+
+    // DFLL
+
+    pub fn dfll_enabled(&self) -> bool {
+        SYSCTRL.dfllctrl().enable() != 0
+    }
+    
+    pub fn set_dfll_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_dfllctrl(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn dfll_mul(&self) -> u32 {
+        SYSCTRL.dfllmul().mul()
+    }
+
+    pub fn set_dfll_mul(&self, value: u32) -> &Self {
+        SYSCTRL.with_dfllmul(|r| r.set_mul(value));
+        self
+    }
+
+    pub fn dfll_rdy(&self) -> bool {
+        SYSCTRL.pclksr().dfllrdy() != 0
+    }
+
+    pub fn dfll(&self) -> Hz {
+        if self.dfll_rdy() {
+            OSC32K.map(|v| v * self.dfll_mul())
+        } else {
+            None
+        }
+    }  
+
+    // DPLL
+
+    pub fn dpll_enabled(&self) -> bool {
+        SYSCTRL.dpllctrla().enable() != 0
+    }
+    
+    pub fn set_dpll_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        SYSCTRL.with_dpllctrla(|r| r.set_enable(value));
+        self
+    }
+
+    pub fn dpll_mul(&self) -> u32 {
+        SYSCTRL.dpllratio().ldr()
+    }
+
+    pub fn set_dpll_mul(&self, value: u32) -> &Self {
+        SYSCTRL.with_dpllratio(|r| r.set_ldr(value));
+        self
+    }
+
+    pub fn dpll_mul_frac(&self) -> u32 {
+        SYSCTRL.dpllratio().ldrfrac()
+    }
+
+    pub fn set_dpll_mul_frac(&self, value: u32) -> &Self {
+        SYSCTRL.with_dpllratio(|r| r.set_ldrfrac(value));
+        self
+    }
+
+    pub fn dpll_div(&self) -> u32 {
+        SYSCTRL.dpllctrlb().div()
+    }
+
+    pub fn set_dpll_div(&self, value: u32) -> &Self {
+        SYSCTRL.with_dpllctrlb(|r| r.set_div(value));
+        self
+    }
+
+    pub fn dpll_refclk(&self) -> DpllRefClock {
+        match SYSCTRL.dpllctrlb().refclk() {
+            0 => DpllRefClock::Xosc32,
+            1 => DpllRefClock::Xosc,
+            2 => DpllRefClock::GclkDpll,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn dpll_divider_enable(&self) -> bool {
+        SYSCTRL.dpllstatus().div() != 0
+    }
+
+    pub fn dpll_rdy(&self) -> bool {
+        SYSCTRL.dpllstatus().clkrdy() != 0
+    }
+
+    pub fn dpll(&self) -> Hz {
+        if self.dpll_rdy() {
+            OSC32K.map(|v| v * self.dpll_mul())
+        } else {
+            None
+        }
+    }        
+    
+}
