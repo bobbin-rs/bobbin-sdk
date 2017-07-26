@@ -271,6 +271,19 @@ impl ClockTree {
         self
     }    
 
+    pub fn pll_src(&self) -> PllSrc {
+        match RCC.cfgr().pllsrc() {
+            0b0 => PllSrc::HsiDiv2,
+            0b1 => PllSrc::Hse,
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn set_pll_src(&self, value: PllSrc) -> &Self {
+        RCC.with_cfgr(|r| r.set_pllsrc(value as u32));
+        self
+    }
+
     pub fn pll_mul(&self) -> u32 {
         match RCC.cfgr().pllmul() {
             0b0000 => 2,
@@ -469,7 +482,7 @@ impl ClockTree {
         }        
     }
 
-    pub fn set_pclk2_pre(&self, value: PPre1) -> &Self {
+    pub fn set_pclk2_pre(&self, value: PPre2) -> &Self {
         RCC.with_cfgr(|r| r.set_ppre2(value as u32));
         self
     }       
