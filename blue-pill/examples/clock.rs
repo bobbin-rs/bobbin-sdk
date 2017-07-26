@@ -13,7 +13,7 @@ use board::chip::wwdg::*;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let clk = CLK;
+    let clk = board::clock::CLK;
     println!("Clock Test");
     println!("Current Source: {:?}", clk.sysclk_src());
 
@@ -40,15 +40,15 @@ pub extern "C" fn main() -> ! {
     println!("FLITFCLK: {:?}", clk.flitfclk());
     println!("IWDGCLK:  {:?}", clk.iwdgclk());
 
-    println!("USART1:   {:?}", USART1.clock());
-    println!("USART2:   {:?}", USART2.clock());
-    println!("USART3:   {:?}", USART3.clock());
-    println!("TIM1:     {:?}", TIM1.clock());
-    println!("TIM2:     {:?}", TIM2.clock());
-    println!("TIM3:     {:?}", TIM3.clock());
-    println!("TIM4:     {:?}", TIM4.clock());
-    println!("IWDG:     {:?}", IWDG.clock());
-    println!("WWDG:     {:?}", WWDG.clock());
+    println!("USART1:   {:?}", clk.clock(&USART1));
+    println!("USART2:   {:?}", clk.clock(&USART2));
+    println!("USART3:   {:?}", clk.clock(&USART3));
+    println!("TIM1:     {:?}", clk.clock(&TIM1));
+    println!("TIM2:     {:?}", clk.clock(&TIM2));
+    println!("TIM3:     {:?}", clk.clock(&TIM3));
+    println!("TIM4:     {:?}", clk.clock(&TIM4));
+    println!("IWDG:     {:?}", clk.clock(&IWDG));
+    println!("WWDG:     {:?}", clk.clock(&WWDG));
 
     println!("Switching to HSI to HSE to PLL");
     board::delay(10);
