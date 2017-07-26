@@ -3,6 +3,7 @@ use chip::usart_f24::*;
 
 pub trait UsartExt {
     fn enable(&self, brr: u32) -> &Self;
+    fn disable(&self) -> &Self;
     fn putc(&self, c: u8);
     fn try_putc(&self, c: u8) -> Option<usize>;
     fn getc(&self) -> u8;
@@ -36,6 +37,10 @@ impl<T> UsartExt for Periph<T> {
                 .set_re(1)
                 .set_te(1)
             )        
+    }
+
+    fn disable(&self) -> &Self {
+        self.with_cr1(|r| r.set_ue(0).set_re(0).set_te(0))
     }
 
     fn putc(&self, c: u8) {
