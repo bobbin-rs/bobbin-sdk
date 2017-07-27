@@ -221,23 +221,23 @@ impl ClockTree {
     // From 5.4 Clock Definitions
 
     pub fn core(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv1())
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv1() + 1))
     }
 
     pub fn system(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv1())
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv1() + 1))
     }
 
     pub fn bus(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv2())
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv2() + 1))
     }
 
     pub fn flexbus(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv3())
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv3() + 1))
     }    
 
     pub fn flash(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv4())
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv4() + 1))
     }      
 
     pub fn ircclk(&self) -> Hz {
