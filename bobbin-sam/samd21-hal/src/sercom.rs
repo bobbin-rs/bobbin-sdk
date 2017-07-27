@@ -18,6 +18,8 @@ pub use pm::PmEnabled;
 
 pub trait Usart {
     fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self;
+    fn set_baud(&self, baud: u16) -> &Self;
+    fn set_enabled(&self, bool) -> &Self;
     fn write(&self, buf: &[u8]) -> &Self;
     fn putc(&self, c: u8) -> &Self;
     fn try_getc(&self) -> Option<u8>;
@@ -71,12 +73,21 @@ impl<T> Usart for Periph<T> {
         );
 
         // Load the baud value
-        s.set_baud(usart::Baud(baud));
+        self.set_baud(baud);
+        self
+    }
 
-        // Wait for synchronization
+    fn set_baud(&self, value: u16) -> &Self {
+        let s = self.usart();
+        s.set_baud(usart::Baud(value));
         while s.syncbusy().enable() != 0 {}
+        self
+    }
 
-        s.with_ctrla(|r| r.set_enable(1));
+    fn set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        let s = self.usart();
+        s.with_ctrla(|r| r.set_enable(value));
         self
     }
 
