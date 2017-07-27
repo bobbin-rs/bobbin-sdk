@@ -28,7 +28,8 @@ pub fn init() {
     // let _rx = pin::pb22().into_pmux(PMux::PMuxD);
     // let _rx = pin::pb23().into_pmux(PMux::PMuxD);
     // let u = usart::device(SERCOM5);
-    SERCOM.configure(63018, 1, 3);    
+    SERCOM.configure(63018, 1, 3);   
+    SERCOM.set_enabled(true);
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
