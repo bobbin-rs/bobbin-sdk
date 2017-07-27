@@ -2,6 +2,7 @@ use chip::uart::*;
 
 pub trait UartExt {
     fn enable(&self, bd: u16) -> &Self;
+    fn disable(&self) -> &Self;
     fn tx_empty(&self) -> bool;
     fn tx_complete(&self) -> bool;
     fn rx_full(&self) -> bool;
@@ -29,6 +30,10 @@ impl<T> UartExt for Periph<T> {
         u.set_c2(C2(0).set_te(1).set_re(1));    
         self    
     }    
+
+    fn disable(&self) -> &Self {
+        self.set_c2(C2(0).set_te(0).set_re(0))
+    }
 
     fn tx_empty(&self) -> bool {
         self.s1().tdre() != 0
