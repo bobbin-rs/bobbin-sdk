@@ -204,3 +204,146 @@ pub fn sysclk_hz() -> u32 {
 pub fn set_sysclk_hz(hz: u32) {
     unsafe { SYSCLK_HZ = hz }
 }
+
+pub const IRC48M: Hz = Some(48_000_000);
+pub const IRC4M: Hz = Some(4_000_000);
+pub const IRC32K: Hz = Some(32_000);
+pub const LPO: Hz = Some(1000);
+
+pub type Hz = Option<u32>;
+
+pub struct ClockTree {
+    pub xtal0: Hz,
+    pub xtal32: Hz,
+}
+
+impl ClockTree {
+    // From 5.4 Clock Definitions
+
+    pub fn core(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv1())
+    }
+
+    pub fn system(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv1())
+    }
+
+    pub fn bus(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv2())
+    }
+
+    pub fn flexbus(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv3())
+    }    
+
+    pub fn flash(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / SIM.clkdiv1().outdiv4())
+    }      
+
+    pub fn ircclk(&self) -> Hz {
+        if MCG.c2().ircs() != 0 {
+            let fcrdiv = MCG.sc().fcrdiv() as u32;
+            IRC4M.map(|v| v >> fcrdiv)
+        } else {
+            IRC32K
+        }
+    }
+
+    pub fn mcgirclk(&self) -> Hz {
+        if MCG.c1().irclken() != 0 {
+            self.ircclk()
+        } else {
+            None
+        }
+    }        
+
+    pub fn mcgeref(&self) -> Hz {
+        match MCG.c7().oscsel() {
+            0b00 => self.oscclk(),
+            0b01 => self.rtc32k(),
+            0b10 => self.irc48mclk(),
+            _ => panic!("Invalid Value"),
+        }
+    }
+
+    pub fn mcgffclk(&self) -> Hz {
+        if MCG.c1().irefs() != 0 {
+            IRC32K
+        } else {
+            self.mcgeref().map(|v| v / (MCG.c1().frdiv() as u32))
+        }
+    }        
+
+    pub fn mcgoutclk(&self) -> Hz {
+        match MCG.c1().clks() {
+            0b00 => match MCG.c6().plls() {
+                0b00 => self.mcgfllclk(),
+                0b01 => self.mcgpllclk(),
+                _ => panic!("Invalid Value"),
+            },
+            0b01 => self.ircclk(),
+            0b10 => self.mcgeref(),
+            _ => panic!("Invalid Value"),
+        }
+    }        
+
+    pub fn mcgfllclk(&self) -> Hz {
+        unimplemented!()
+        // match MCG.c1().irefs() {            
+        // }
+    }        
+
+    pub fn mcgpllclk(&self) -> Hz {
+        unimplemented!()
+    }        
+
+    pub fn irc48mclk(&self) -> Hz {
+        if SIM.sopt2().pllfllsel() == 0b11 {
+            IRC48M
+        } else if MCG.c7().oscsel() == 0b10 {
+            IRC48M
+        } else {
+            None
+        }
+    }
+
+    pub fn oscclk(&self) -> Hz {
+        match MCG.c2().erefs() {
+            0b0 => match OSC.cr().erclken() {
+                0b0 => None,
+                0b1 => self.xtal0,
+                _ => unimplemented!(),
+            },
+            0b1 => unimplemented!(),
+            _ => unimplemented!(),
+        }
+    }        
+
+    pub fn oscerclk(&self) -> Hz {
+        if OSC.cr().erclken() != 0 {
+            self.oscclk()
+        } else {
+            None
+        }
+    }
+
+    pub fn osc32kclk(&self) -> Hz {
+        unimplemented!()
+    }
+    pub fn erclk32k(&self) -> Hz {
+        unimplemented!()
+    }    
+
+    pub fn rtc32k(&self) -> Hz {
+        // RTC_CR[OSCE]
+        unimplemented!()
+    }
+
+    pub fn rtc(&self) -> Hz {
+        unimplemented!()
+    }
+    pub fn lpo(&self) -> Hz { 
+        LPO 
+    }
+
+}
