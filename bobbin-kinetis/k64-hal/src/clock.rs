@@ -1,6 +1,9 @@
 use chip::sim::SIM;
 use chip::osc::{self, OSC};
 use chip::mcg::{self, MCG};
+use chip::uart::*;
+use chip::pit::*;
+
 // use hal::mcg::MCG;
 // use hal::sim::SIM;
 // use hal::osc::OSC;
@@ -370,4 +373,29 @@ impl ClockTree {
         LPO 
     }
 
+    pub fn clock<P: Clock>(&self, p: &P) -> Hz {
+        p.clock(self)
+    }
+}
+
+pub trait Clock {
+    fn clock(&self, clk: &ClockTree) -> Hz;
+}
+
+impl Clock for Uart0 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.system()
+    }
+}
+
+impl Clock for Uart1 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.system()
+    }
+}
+
+impl Clock for Pit {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.bus()
+    }
 }
