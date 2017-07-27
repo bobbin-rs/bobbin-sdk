@@ -201,6 +201,23 @@ pub enum Source {
     Fdpll86m = 0x8
 }
 
+impl From<u8> for Source {
+    fn from(other: u8) -> Source {
+        match other {
+            0x0 => Source::Xosc,
+            0x1 => Source::GclkIn,
+            0x2 => Source::GclkGen1,
+            0x3 => Source::OscUlp32k,
+            0x4 => Source::Osc32k,
+            0x5 => Source::Xosc32K,
+            0x6 => Source::Osc8m,
+            0x7 => Source::Dffl48m,
+            0x8 => Source::Fdpll86m,
+            _ => panic!("Invalid Source ID"),
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Generator {
     GClkGen0 = 0,
@@ -253,6 +270,51 @@ pub enum Clock {
     Ptc = 0x24,
     I2s0 = 0x25,
     I2s1 = 0x26,
+}
+
+impl From<u8> for Clock {
+    fn from(other: u8) -> Clock {
+        match other {
+            0x00 => Clock::Dfll48mRef,
+            0x01 => Clock::Dpll,
+            0x02 => Clock::Dpll32k,
+            0x03 => Clock::Wdt,
+            0x04 => Clock::Rtc,
+            0x05 => Clock::Eic,
+            0x06 => Clock::Usb,
+            0x07 => Clock::EvsysCh0,
+            0x08 => Clock::EvsysCh1,
+            0x09 => Clock::EvsysCh2,
+            0x0a => Clock::EvsysCh3,
+            0x0b => Clock::EvsysCh4,
+            0x0c => Clock::EvsysCh5,
+            0x0d => Clock::EvsysCh6,
+            0x0e => Clock::EvsysCh7,
+            0x0f => Clock::EvsysCh8,
+            0x10 => Clock::EvsysCh9,
+            0x11 => Clock::EvsysCh10,
+            0x12 => Clock::EvsysCh11,
+            0x13 => Clock::SercomSlow,
+            0x14 => Clock::Sercom0,
+            0x15 => Clock::Sercom1,
+            0x16 => Clock::Sercom2,
+            0x17 => Clock::Sercom3,
+            0x18 => Clock::Sercom4,
+            0x19 => Clock::Sercom5,
+            0x1a => Clock::Tcc0Tcc1,
+            0x1b => Clock::Tcc2Tc3,
+            0x1c => Clock::Tc4Tc5,
+            0x1d => Clock::Tc6Tc7,
+            0x1e => Clock::Adc,
+            0x1f => Clock::AcDig,
+            0x21 => Clock::AcAna,
+            0x23 => Clock::Dac,
+            0x24 => Clock::Ptc,
+            0x25 => Clock::I2s0,
+            0x26 => Clock::I2s1,
+            _ => panic!("Invalid Clock ID"),
+        }
+    }
 }
 
 pub type Hz = Option<u32>;
@@ -590,5 +652,61 @@ impl ClockTree {
         GCLK.set_gendiv(gclk::Gendiv(0).set_id(id as u32).set_div(div as u32));
         GCLK.set_genctrl(gclk::Genctrl(0).set_id(id as u32).set_src(src as u32).set_divsel(divsel).set_genen(enabled));
         self
+    }
+
+    // Clock and Generator Access
+
+    pub fn clock_ctrl(&self, id: u8) -> gclk::Clkctrl {
+        GCLK.set_clkctrl_id(gclk::ClkctrlId(0).set_id(id));
+        GCLK.clkctrl()
+    }
+    
+    pub fn generator_ctrl(&self, id: u8) -> gclk::Genctrl {
+        GCLK.set_genctrl_id(gclk::GenctrlId(0).set_id(id));
+        GCLK.genctrl()
+    }
+
+    pub fn generator_div(&self, id: u8) -> gclk::Gendiv {
+        GCLK.set_gendiv_id(gclk::GendivId(0).set_id(id));
+        GCLK.gendiv()
+    }
+
+    pub fn source(&self, id: u8) -> Hz {
+        match id {
+            0x00 => self.xosc(),
+            0x01 => None,
+            0x02 => self.generator(1),
+            0x03 => self.osculp32k(),
+            0x04 => self.osc32k(),
+            0x05 => self.xosc32k(),
+            0x06 => self.osc8m(),
+            0x07 => self.dfll(),
+            0x08 => self.dpll(),
+            _ => unimplemented!(),
+        }
+    }
+
+    pub fn generator(&self, id: u8) -> Hz {
+        let ctrl = self.generator_ctrl(id);
+        let div = self.generator_div(id);
+        if ctrl.genen() == 0 { return None }
+        let src_hz = self.source(ctrl.src() as u8);
+        if ctrl.divsel() == 0 {
+            let div = div.div();
+            let div = if div == 0 { 1 } else { div };
+            src_hz.map(|v| v / div)
+        } else {
+            let shift = div.div() + 1;
+            src_hz.map(|v| v >> shift)
+        }        
+    }
+
+    pub fn clock(&self, id: Clock) -> Hz {
+        let ctrl = self.clock_ctrl(id as u8);
+        if ctrl.clken() == 0 {
+            None
+        } else {
+            self.generator(ctrl.gen() as u8)
+        }
     }
 }

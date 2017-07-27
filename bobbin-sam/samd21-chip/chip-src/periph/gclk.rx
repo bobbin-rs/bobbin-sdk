@@ -74,6 +74,18 @@
         )
     )
     (register
+        (name CLKCTRL_ID)
+        (offset 0x2)
+        (size 0x8)
+        (description "Generic Clock Control - ID Field")
+        (field
+            (name ID)
+            (bit-offset 0)
+            (bit-width 6)
+            (description "Generic Clock Selection ID")
+        )
+    )    
+    (register
         (name CTRL)
         (offset 0x0)
         (size 0x8)
@@ -180,6 +192,18 @@
         )
     )
     (register
+        (name GENCTRL_ID)
+        (offset 0x4)
+        (size 0x8)
+        (description "Generic Clock Generator Control - ID Only")
+        (field
+            (name ID)
+            (bit-offset 0)
+            (bit-width 4)
+            (description "Generic Clock Generator Selection")
+        )
+    )    
+    (register
         (name GENDIV)
         (offset 0x8)
         (size 0x20)
@@ -197,6 +221,18 @@
             (description "Division Factor")
         )
     )
+    (register
+        (name GENDIV_ID)
+        (offset 0x8)
+        (size 0x8)
+        (description "Generic Clock Generator Division - ID Only")
+        (field
+            (name ID)
+            (bit-offset 0)
+            (bit-width 4)
+            (description "Generic Clock Generator Selection")
+        )
+    )    
     (register
         (name STATUS)
         (offset 0x1)

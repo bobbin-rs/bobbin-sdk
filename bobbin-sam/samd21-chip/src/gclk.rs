@@ -32,6 +32,33 @@ impl Gclk {
      self.set_clkctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the CLKCTRL_ID register."]
+  #[inline] pub fn clkctrl_id_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x2) as *const u8
+  }
+#[doc="Get the *mut pointer for the CLKCTRL_ID register."]
+  #[inline] pub fn clkctrl_id_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x2) as *mut u8
+  }
+#[doc="Read the CLKCTRL_ID register."]
+  #[inline] pub fn clkctrl_id(&self) -> ClkctrlId { 
+     unsafe {
+        ClkctrlId(::core::ptr::read_volatile(((self.0 as usize) + 0x2) as *const u8))
+     }
+  }
+#[doc="Write the CLKCTRL_ID register."]
+  #[inline] pub fn set_clkctrl_id(&self, value: ClkctrlId) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
+     }
+     self
+  }
+#[doc="Modify the CLKCTRL_ID register."]
+  #[inline] pub fn with_clkctrl_id<F: FnOnce(ClkctrlId) -> ClkctrlId>(&self, f: F) -> &Self {
+     let tmp = self.clkctrl_id();
+     self.set_clkctrl_id(f(tmp))
+  }
+
 #[doc="Get the *const pointer for the CTRL register."]
   #[inline] pub fn ctrl_ptr(&self) -> *const u8 { 
      ((self.0 as usize) + 0x0) as *const u8
@@ -86,6 +113,33 @@ impl Gclk {
      self.set_genctrl(f(tmp))
   }
 
+#[doc="Get the *const pointer for the GENCTRL_ID register."]
+  #[inline] pub fn genctrl_id_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x4) as *const u8
+  }
+#[doc="Get the *mut pointer for the GENCTRL_ID register."]
+  #[inline] pub fn genctrl_id_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x4) as *mut u8
+  }
+#[doc="Read the GENCTRL_ID register."]
+  #[inline] pub fn genctrl_id(&self) -> GenctrlId { 
+     unsafe {
+        GenctrlId(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u8))
+     }
+  }
+#[doc="Write the GENCTRL_ID register."]
+  #[inline] pub fn set_genctrl_id(&self, value: GenctrlId) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
+     }
+     self
+  }
+#[doc="Modify the GENCTRL_ID register."]
+  #[inline] pub fn with_genctrl_id<F: FnOnce(GenctrlId) -> GenctrlId>(&self, f: F) -> &Self {
+     let tmp = self.genctrl_id();
+     self.set_genctrl_id(f(tmp))
+  }
+
 #[doc="Get the *const pointer for the GENDIV register."]
   #[inline] pub fn gendiv_ptr(&self) -> *const u32 { 
      ((self.0 as usize) + 0x8) as *const u32
@@ -111,6 +165,33 @@ impl Gclk {
   #[inline] pub fn with_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Self {
      let tmp = self.gendiv();
      self.set_gendiv(f(tmp))
+  }
+
+#[doc="Get the *const pointer for the GENDIV_ID register."]
+  #[inline] pub fn gendiv_id_ptr(&self) -> *const u8 { 
+     ((self.0 as usize) + 0x8) as *const u8
+  }
+#[doc="Get the *mut pointer for the GENDIV_ID register."]
+  #[inline] pub fn gendiv_id_mut(&self) -> *mut u8 { 
+     ((self.0 as usize) + 0x8) as *mut u8
+  }
+#[doc="Read the GENDIV_ID register."]
+  #[inline] pub fn gendiv_id(&self) -> GendivId { 
+     unsafe {
+        GendivId(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u8))
+     }
+  }
+#[doc="Write the GENDIV_ID register."]
+  #[inline] pub fn set_gendiv_id(&self, value: GendivId) -> &Self {
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
+  }
+#[doc="Modify the GENDIV_ID register."]
+  #[inline] pub fn with_gendiv_id<F: FnOnce(GendivId) -> GendivId>(&self, f: F) -> &Self {
+     let tmp = self.gendiv_id();
+     self.set_gendiv_id(f(tmp))
   }
 
 #[doc="Get the *const pointer for the STATUS register."]
@@ -195,6 +276,36 @@ impl ::core::fmt::Debug for Clkctrl {
       if self.gen() != 0 { try!(write!(f, " gen=0x{:x}", self.gen()))}
       if self.clken() != 0 { try!(write!(f, " clken"))}
       if self.wrtlock() != 0 { try!(write!(f, " wrtlock"))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Generic Clock Control - ID Field"]
+#[derive(PartialEq, Eq)]
+pub struct ClkctrlId(pub u8);
+impl ClkctrlId {
+#[doc="Generic Clock Selection ID"]
+  #[inline] pub fn id(&self) -> u8 {
+     ((self.0 as u8) >> 0) & 0x3f // [5:0]
+  }
+#[doc="Generic Clock Selection ID"]
+  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+     assert!((value & !0x3f) == 0);
+     self.0 &= !(0x3f << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for ClkctrlId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for ClkctrlId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -350,6 +461,36 @@ impl ::core::fmt::Debug for Genctrl {
       Ok(())
    }
 }
+#[doc="Generic Clock Generator Control - ID Only"]
+#[derive(PartialEq, Eq)]
+pub struct GenctrlId(pub u8);
+impl GenctrlId {
+#[doc="Generic Clock Generator Selection"]
+  #[inline] pub fn id(&self) -> u8 {
+     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  }
+#[doc="Generic Clock Generator Selection"]
+  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+     assert!((value & !0xf) == 0);
+     self.0 &= !(0xf << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for GenctrlId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for GenctrlId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
 #[doc="Generic Clock Generator Division"]
 #[derive(PartialEq, Eq)]
 pub struct Gendiv(pub u32);
@@ -389,6 +530,36 @@ impl ::core::fmt::Debug for Gendiv {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
       if self.div() != 0 { try!(write!(f, " div=0x{:x}", self.div()))}
+      try!(write!(f, "]"));
+      Ok(())
+   }
+}
+#[doc="Generic Clock Generator Division - ID Only"]
+#[derive(PartialEq, Eq)]
+pub struct GendivId(pub u8);
+impl GendivId {
+#[doc="Generic Clock Generator Selection"]
+  #[inline] pub fn id(&self) -> u8 {
+     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  }
+#[doc="Generic Clock Generator Selection"]
+  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+     assert!((value & !0xf) == 0);
+     self.0 &= !(0xf << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+}
+impl ::core::fmt::Display for GendivId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       self.0.fmt(f)
+   }
+}
+impl ::core::fmt::Debug for GendivId {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+      try!(write!(f, "[0x{:08x}", self.0));
+      if self.id() != 0 { try!(write!(f, " id=0x{:x}", self.id()))}
       try!(write!(f, "]"));
       Ok(())
    }
