@@ -2,6 +2,12 @@ use ::chip::{gclk, sysctrl, nvmctrl, pm};
 use ::chip::sysctrl::SYSCTRL;
 use ::chip::gclk::GCLK;
 
+use ::chip::sercom::*;
+use ::chip::tc::*;
+use ::chip::tcc::*;
+use ::chip::adc::*;
+use ::chip::wdt::*;
+
 const VARIANT_MCK: u32 = 48_000_000;
 const VARIANT_MAINOSC: u32 = 32_768;
 
@@ -232,7 +238,7 @@ pub enum Generator {
 }
 
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Clock {
+pub enum ClockMux {
     Dfll48mRef = 0x00,
     Dpll = 0x01,
     Dpll32k = 0x02,
@@ -272,47 +278,47 @@ pub enum Clock {
     I2s1 = 0x26,
 }
 
-impl From<u8> for Clock {
-    fn from(other: u8) -> Clock {
+impl From<u8> for ClockMux {
+    fn from(other: u8) -> ClockMux {
         match other {
-            0x00 => Clock::Dfll48mRef,
-            0x01 => Clock::Dpll,
-            0x02 => Clock::Dpll32k,
-            0x03 => Clock::Wdt,
-            0x04 => Clock::Rtc,
-            0x05 => Clock::Eic,
-            0x06 => Clock::Usb,
-            0x07 => Clock::EvsysCh0,
-            0x08 => Clock::EvsysCh1,
-            0x09 => Clock::EvsysCh2,
-            0x0a => Clock::EvsysCh3,
-            0x0b => Clock::EvsysCh4,
-            0x0c => Clock::EvsysCh5,
-            0x0d => Clock::EvsysCh6,
-            0x0e => Clock::EvsysCh7,
-            0x0f => Clock::EvsysCh8,
-            0x10 => Clock::EvsysCh9,
-            0x11 => Clock::EvsysCh10,
-            0x12 => Clock::EvsysCh11,
-            0x13 => Clock::SercomSlow,
-            0x14 => Clock::Sercom0,
-            0x15 => Clock::Sercom1,
-            0x16 => Clock::Sercom2,
-            0x17 => Clock::Sercom3,
-            0x18 => Clock::Sercom4,
-            0x19 => Clock::Sercom5,
-            0x1a => Clock::Tcc0Tcc1,
-            0x1b => Clock::Tcc2Tc3,
-            0x1c => Clock::Tc4Tc5,
-            0x1d => Clock::Tc6Tc7,
-            0x1e => Clock::Adc,
-            0x1f => Clock::AcDig,
-            0x21 => Clock::AcAna,
-            0x23 => Clock::Dac,
-            0x24 => Clock::Ptc,
-            0x25 => Clock::I2s0,
-            0x26 => Clock::I2s1,
-            _ => panic!("Invalid Clock ID"),
+            0x00 => ClockMux::Dfll48mRef,
+            0x01 => ClockMux::Dpll,
+            0x02 => ClockMux::Dpll32k,
+            0x03 => ClockMux::Wdt,
+            0x04 => ClockMux::Rtc,
+            0x05 => ClockMux::Eic,
+            0x06 => ClockMux::Usb,
+            0x07 => ClockMux::EvsysCh0,
+            0x08 => ClockMux::EvsysCh1,
+            0x09 => ClockMux::EvsysCh2,
+            0x0a => ClockMux::EvsysCh3,
+            0x0b => ClockMux::EvsysCh4,
+            0x0c => ClockMux::EvsysCh5,
+            0x0d => ClockMux::EvsysCh6,
+            0x0e => ClockMux::EvsysCh7,
+            0x0f => ClockMux::EvsysCh8,
+            0x10 => ClockMux::EvsysCh9,
+            0x11 => ClockMux::EvsysCh10,
+            0x12 => ClockMux::EvsysCh11,
+            0x13 => ClockMux::SercomSlow,
+            0x14 => ClockMux::Sercom0,
+            0x15 => ClockMux::Sercom1,
+            0x16 => ClockMux::Sercom2,
+            0x17 => ClockMux::Sercom3,
+            0x18 => ClockMux::Sercom4,
+            0x19 => ClockMux::Sercom5,
+            0x1a => ClockMux::Tcc0Tcc1,
+            0x1b => ClockMux::Tcc2Tc3,
+            0x1c => ClockMux::Tc4Tc5,
+            0x1d => ClockMux::Tc6Tc7,
+            0x1e => ClockMux::Adc,
+            0x1f => ClockMux::AcDig,
+            0x21 => ClockMux::AcAna,
+            0x23 => ClockMux::Dac,
+            0x24 => ClockMux::Ptc,
+            0x25 => ClockMux::I2s0,
+            0x26 => ClockMux::I2s1,
+            _ => panic!("Invalid ClockMux ID"),
         }
     }
 }
@@ -638,7 +644,7 @@ impl ClockTree {
     }    
     // Clock Multiplexer Configuration
 
-    pub fn cfg_clock(&self, id: Clock, gen: Generator, enabled: bool) -> &Self {
+    pub fn cfg_clockmux(&self, id: ClockMux, gen: Generator, enabled: bool) -> &Self {
         let enabled = if enabled { 1 } else { 0 };
         GCLK.set_clkctrl(gclk::Clkctrl(0).set_id(id as u16).set_gen(gen as u16).set_clken(enabled));
         self
@@ -656,18 +662,18 @@ impl ClockTree {
 
     // Clock and Generator Access
 
-    pub fn clock_ctrl(&self, id: u8) -> gclk::Clkctrl {
+    pub fn clockmux_ctrl(&self, id: u8) -> gclk::Clkctrl {
         GCLK.set_clkctrl_id(gclk::ClkctrlId(0).set_id(id));
         GCLK.clkctrl()
     }
     
-    pub fn set_clock_ctrl(&self, id: u8, value: gclk::Clkctrl) -> &Self {                
+    pub fn set_clockmux_ctrl(&self, id: u8, value: gclk::Clkctrl) -> &Self {                
         GCLK.set_clkctrl(value.set_id(id as u16));
         self
     }
 
-    pub fn with_clock_ctrl<F: FnOnce(gclk::Clkctrl) -> gclk::Clkctrl>(&self, id: u8, f: F) -> &Self {
-        let ctrl = self.clock_ctrl(id);
+    pub fn with_clockmux_ctrl<F: FnOnce(gclk::Clkctrl) -> gclk::Clkctrl>(&self, id: u8, f: F) -> &Self {
+        let ctrl = self.clockmux_ctrl(id);
         GCLK.set_clkctrl(f(ctrl));
         self
     }
@@ -727,12 +733,104 @@ impl ClockTree {
         }        
     }
 
-    pub fn clock(&self, id: Clock) -> Hz {
-        let ctrl = self.clock_ctrl(id as u8);
+    pub fn clockmux(&self, id: ClockMux) -> Hz {
+        let ctrl = self.clockmux_ctrl(id as u8);
         if ctrl.clken() == 0 {
             None
         } else {
             self.generator(ctrl.gen() as u8)
         }
+    }
+
+    pub fn clock<P: Clock>(&self, p: &P) -> Hz {
+        p.clock(self)
+    }
+}
+
+pub trait Clock {
+    fn clock(&self, clk: &ClockTree) -> Hz;
+}
+
+impl Clock for Sercom0 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom0)
+    }
+}
+
+impl Clock for Sercom1 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom1)
+    }
+}
+
+impl Clock for Sercom2 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom2)
+    }
+}
+
+impl Clock for Sercom3 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom3)
+    }
+}
+
+impl Clock for Sercom4 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom4)
+    }
+}
+
+impl Clock for Sercom5 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Sercom5)
+    }
+}
+
+impl Clock for Tcc0 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tcc0Tcc1)
+    }
+}
+
+impl Clock for Tcc1 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tcc0Tcc1)
+    }
+}
+
+impl Clock for Tcc2 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tcc2Tc3)
+    }
+}
+
+impl Clock for Tc3 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tcc2Tc3)
+    }
+}
+
+impl Clock for Tc4 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tc4Tc5)
+    }
+}
+
+impl Clock for Tc5 {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Tc4Tc5)
+    }
+}
+
+impl Clock for Adc {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Adc)
+    }
+}
+
+impl Clock for Wdt {
+    fn clock(&self, clk: &ClockTree) -> Hz {
+        clk.clockmux(ClockMux::Wdt)
     }
 }
