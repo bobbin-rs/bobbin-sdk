@@ -278,15 +278,12 @@ impl ClockTree {
     }        
 
     pub fn mcgoutclk(&self) -> Hz {
-        match MCG.c1().clks() {
-            0b00 => match MCG.c6().plls() {
-                0b00 => self.mcgfllclk(),
-                0b01 => self.mcgpllclk(),
-                _ => panic!("Invalid Value"),
-            },
+        match MCG.s().clkst() {
+            0b00 => self.mcgfllclk(),
             0b01 => self.ircclk(),
             0b10 => self.oscselclk(),
-            _ => panic!("Invalid Value"),
+            0b11 => self.mcgpllclk(),
+            _ => unimplemented!()
         }
     }        
 
