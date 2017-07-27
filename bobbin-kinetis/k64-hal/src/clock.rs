@@ -257,7 +257,7 @@ impl ClockTree {
         }
     }        
 
-    pub fn mcgeref(&self) -> Hz {
+    pub fn oscselclk(&self) -> Hz {
         match MCG.c7().oscsel() {
             0b00 => self.oscclk(),
             0b01 => self.rtc32k(),
@@ -270,7 +270,7 @@ impl ClockTree {
         if MCG.c1().irefs() != 0 {
             IRC32K
         } else {
-            self.mcgeref().map(|v| v / (MCG.c1().frdiv() as u32))
+            self.oscselclk().map(|v| v / (MCG.c1().frdiv() as u32))
         }
     }        
 
@@ -282,19 +282,45 @@ impl ClockTree {
                 _ => panic!("Invalid Value"),
             },
             0b01 => self.ircclk(),
-            0b10 => self.mcgeref(),
+            0b10 => self.oscselclk(),
             _ => panic!("Invalid Value"),
         }
     }        
 
     pub fn mcgfllclk(&self) -> Hz {
-        unimplemented!()
-        // match MCG.c1().irefs() {            
-        // }
+        let c4 = MCG.c4();
+        let div = MCG.c1().frdiv() as u32;
+        if div == 0 {
+            return None
+        }
+        let div = if MCG.c2().range() == 0 || MCG.c7().oscsel() == 1 {
+            div
+        } else {
+            div << 5
+        };
+        let mul = match (c4.drst_drs(), c4.dmx32()) {
+            (0b00, 0b0) => 640,
+            (0b00, 0b1) => 732,
+            (0b01, 0b0) => 1280,
+            (0b01, 0b1) => 1464,
+            (0b10, 0b0) => 1920,
+            (0b10, 0b1) => 2197,
+            (0b11, 0b0) => 2560,
+            (0b11, 0b1) => 2929,
+            _ => unimplemented!()
+        };        
+        self.mcgffclk().map(|v| (v / div) * mul)
     }        
 
-    pub fn mcgpllclk(&self) -> Hz {
-        unimplemented!()
+    pub fn mcgpllclk(&self) -> Hz {        
+        if MCG.s().lock0() != 0 {
+            let div = (MCG.c5().prdiv0() + 1) as u32;
+            let mul = (MCG.c6().vdiv0() + 24) as u32;
+            self.oscselclk().map(|v| (v / div) * mul)
+        } else {
+            None
+        }
+        
     }        
 
     pub fn irc48mclk(&self) -> Hz {
@@ -308,14 +334,11 @@ impl ClockTree {
     }
 
     pub fn oscclk(&self) -> Hz {
-        match MCG.c2().erefs() {
-            0b0 => match OSC.cr().erclken() {
-                0b0 => None,
-                0b1 => self.xtal0,
-                _ => unimplemented!(),
-            },
-            0b1 => unimplemented!(),
-            _ => unimplemented!(),
+        if MCG.c2().erefs() != 0 {
+            // check if osc is active
+            self.xtal0
+        } else {
+            self.xtal0
         }
     }        
 
@@ -328,7 +351,8 @@ impl ClockTree {
     }
 
     pub fn osc32kclk(&self) -> Hz {
-        unimplemented!()
+        // Only handling case when external clock is used
+        None
     }
     pub fn erclk32k(&self) -> Hz {
         unimplemented!()
