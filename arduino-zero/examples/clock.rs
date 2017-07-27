@@ -5,8 +5,8 @@
 #[macro_use]
 extern crate arduino_zero as board;
 
-
 use board::hal::clock;
+use board::hal::sercom::SERCOM5;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -52,14 +52,16 @@ pub extern "C" fn main() -> ! {
         }
     }
 
-    println!("Clocks");
+    println!("Clock Multiplexers");
     for i in 0..26 {
-        let ctrl = clk.clock_ctrl(i);
+        let ctrl = clk.clockmux_ctrl(i);
         if ctrl.clken() != 0 {
-            let clk_id = clock::Clock::from(i);
-            println!("  {:?}: {:?} {:?}", clk_id, clk.clock(clk_id), ctrl);
+            let clk_id = clock::ClockMux::from(i);
+            println!("  {:?}: {:?} {:?}", clk_id, clk.clockmux(clk_id), ctrl);
         }
     }    
+
+    println!("SERCOM5 Clock: {:?}", clk.clock(&SERCOM5));
 
         
     println!("DONE");
