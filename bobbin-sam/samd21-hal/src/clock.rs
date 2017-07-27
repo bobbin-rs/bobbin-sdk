@@ -661,14 +661,41 @@ impl ClockTree {
         GCLK.clkctrl()
     }
     
+    pub fn set_clock_ctrl(&self, id: u8, value: gclk::Clkctrl) -> &Self {                
+        GCLK.set_clkctrl(value.set_id(id as u16));
+        self
+    }
+
+    pub fn with_clock_ctrl<F: FnOnce(gclk::Clkctrl) -> gclk::Clkctrl>(&self, id: u8, f: F) -> &Self {
+        let ctrl = self.clock_ctrl(id);
+        GCLK.set_clkctrl(f(ctrl));
+        self
+    }
+
     pub fn generator_ctrl(&self, id: u8) -> gclk::Genctrl {
         GCLK.set_genctrl_id(gclk::GenctrlId(0).set_id(id));
         GCLK.genctrl()
+    }    
+
+    pub fn set_generator_ctrl(&self, id: u8, value: gclk::Genctrl) -> &Self {
+        GCLK.set_genctrl(value.set_id(id as u32));
+        self
     }
 
-    pub fn generator_div(&self, id: u8) -> gclk::Gendiv {
+    pub fn with_generator_ctrl<F: FnOnce(gclk::Genctrl) -> gclk::Genctrl>(&self, id: u8, f: F) -> &Self {
+        let ctrl = self.generator_ctrl(id);
+        GCLK.set_genctrl(f(ctrl));
+        self
+    }
+
+    pub fn generator_div(&self, id: u8) -> u16 {
         GCLK.set_gendiv_id(gclk::GendivId(0).set_id(id));
-        GCLK.gendiv()
+        GCLK.gendiv().div() as u16
+    }
+
+    pub fn set_generator_div(&self, id: u8, value: u16) -> &Self {
+        GCLK.set_gendiv(gclk::Gendiv(0).set_id(id as u32).set_div(value as u32));
+        self
     }
 
     pub fn source(&self, id: u8) -> Hz {
@@ -692,11 +719,10 @@ impl ClockTree {
         if ctrl.genen() == 0 { return None }
         let src_hz = self.source(ctrl.src() as u8);
         if ctrl.divsel() == 0 {
-            let div = div.div();
             let div = if div == 0 { 1 } else { div };
-            src_hz.map(|v| v / div)
+            src_hz.map(|v| v / div as u32)
         } else {
-            let shift = div.div() + 1;
+            let shift = div + 1;
             src_hz.map(|v| v >> shift)
         }        
     }
