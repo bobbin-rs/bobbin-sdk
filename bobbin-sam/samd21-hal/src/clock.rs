@@ -1,5 +1,6 @@
 use ::chip::{gclk, sysctrl, nvmctrl, pm};
 use ::chip::sysctrl::SYSCTRL;
+use ::chip::gclk::GCLK;
 
 const VARIANT_MCK: u32 = 48_000_000;
 const VARIANT_MAINOSC: u32 = 32_768;
@@ -187,7 +188,7 @@ pub enum DpllRefClock {
     GclkDpll = 2,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Source {
     Xosc = 0x00,
     GclkIn = 0x01,
@@ -200,7 +201,7 @@ pub enum Source {
     Fdpll86m = 0x8
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Generator {
     GClkGen0 = 0,
     GClkGen1 = 1,
@@ -213,8 +214,8 @@ pub enum Generator {
     GClkGen8 = 8,
 }
 
-#[derive(Debug, PartialEq)]
-pub enum Multiplexer {
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub enum Clock {
     Dfll48mRef = 0x00,
     Dpll = 0x01,
     Dpll32k = 0x02,
@@ -573,4 +574,21 @@ impl ClockTree {
             None
         }
     }    
+    // Clock Multiplexer Configuration
+
+    pub fn cfg_clock(&self, id: Clock, gen: Generator, enabled: bool) -> &Self {
+        let enabled = if enabled { 1 } else { 0 };
+        GCLK.set_clkctrl(gclk::Clkctrl(0).set_id(id as u16).set_gen(gen as u16).set_clken(enabled));
+        self
+    }
+
+    // Clock Generator Configuration
+
+    pub fn cfg_generator(&self, id: Generator, src: Source, div: u16, divsel: bool, enabled: bool) -> &Self {
+        let enabled = if enabled { 1 } else { 0 };
+        let divsel = if divsel { 1 } else { 0 };
+        GCLK.set_gendiv(gclk::Gendiv(0).set_id(id as u32).set_div(div as u32));
+        GCLK.set_genctrl(gclk::Genctrl(0).set_id(id as u32).set_src(src as u32).set_divsel(divsel).set_genen(enabled));
+        self
+    }
 }
