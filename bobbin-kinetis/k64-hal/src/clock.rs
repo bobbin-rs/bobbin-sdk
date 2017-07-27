@@ -270,7 +270,7 @@ impl ClockTree {
     }
 
     pub fn mcgffclk(&self) -> Hz {
-        if MCG.c1().irefs() != 0 {
+        if MCG.s().irefst() != 0 {
             IRC32K
         } else {
             self.oscselclk().map(|v| v / (MCG.c1().frdiv() as u32))
@@ -339,6 +339,7 @@ impl ClockTree {
     pub fn oscclk(&self) -> Hz {
         if MCG.c2().erefs() != 0 {
             // check if osc is active
+            // S[OSCINIT0]
             self.xtal0
         } else {
             self.xtal0
