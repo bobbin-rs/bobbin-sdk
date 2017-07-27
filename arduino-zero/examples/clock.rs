@@ -31,6 +31,7 @@ pub extern "C" fn main() -> ! {
         .set_dpll_mul(1499)
         .set_dpll_div(0)
         .set_dpll_ondemand(false);
+
     println!("Enabling DPLL");
     clk
         .set_dpll_enabled(true);
@@ -42,6 +43,25 @@ pub extern "C" fn main() -> ! {
 
     println!("DPLL:        {:?} EN: {} ONDEMAND: {} RDY: {} MUL: {} DIV: {} REF: {:?}", 
         clk.dpll(), clk.dpll_enabled(), clk.dpll_ondemand(), clk.dpll_rdy(), clk.dpll_mul(), clk.dpll_div(), clk.dpll_refclk());
+
+    println!("Generators");
+    for i in 0..8 {
+        let ctrl = clk.generator_ctrl(i);
+        if ctrl.genen() != 0 {
+            println!("  {}: {:?} <= {:?} - {:?} {:?}", i, clk.generator(i), clock::Source::from(ctrl.src() as u8), clk.generator_div(i), ctrl);
+        }
+    }
+
+    println!("Clocks");
+    for i in 0..26 {
+        let ctrl = clk.clock_ctrl(i);
+        if ctrl.clken() != 0 {
+            let clk_id = clock::Clock::from(i);
+            println!("  {:?}: {:?} {:?}", clk_id, clk.clock(clk_id), ctrl);
+        }
+    }    
+
+        
     println!("DONE");
     loop {}
 }
