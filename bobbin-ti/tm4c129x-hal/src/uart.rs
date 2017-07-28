@@ -2,7 +2,9 @@ pub use chip::uart::*;
 pub use sysctl::SysctlEnabled;
 
 pub trait UartExt {
-    fn enable(&self, baud_hz: u32, sysclk_hz: u32) -> &Self;
+    fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self;
+    fn enable(&self) -> &Self;
+    fn disable(&self) -> &Self;
     fn try_getc(&self) -> Option<u8>;
     fn putc(&self, c: u8);
     fn write(&self, buf: &[u8]);
@@ -13,7 +15,7 @@ pub trait UartExt {
 }
 
 impl<T> UartExt for Periph<T> {
-    fn enable(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
+    fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
         let baud_div = ((8 * sysclk_hz) / baud_hz) + 1;
         let baud_int = baud_div / 64;
         let baud_frac = baud_div % 64;
@@ -22,9 +24,16 @@ impl<T> UartExt for Periph<T> {
         self.with_ibrd(|r| r.set_divint(baud_int));
         self.with_fbrd(|r| r.set_divfrac(baud_frac));
         self.with_lcrh(|r| r.set_wlen(0x3).set_fen(1));
-        self.with_ctl(|r| r.set_hse(1).set_rxe(1).set_txe(1));
-        self.with_ctl(|r| r.set_uarten(1));
+        self.with_ctl(|r| r.set_hse(1).set_rxe(1).set_txe(1));        
         self
+    }
+
+    fn enable(&self) -> &Self {
+        self.with_ctl(|r| r.set_uarten(1))        
+    }
+
+    fn disable(&self) -> &Self {
+        self.with_ctl(|r| r.set_uarten(0))
     }
 
     fn try_getc(&self) -> Option<u8> {
