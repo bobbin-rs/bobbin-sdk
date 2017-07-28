@@ -1,7 +1,7 @@
 use core::fmt::{self, Write, Arguments};
 use hal::gpio::*;
 use hal::uart::*;
-use clock;
+use clock::{self, Clock};
 
 pub const UART: Uart0 = UART0;
 pub const UART_RX: Pa0 = PA0;
@@ -19,7 +19,25 @@ pub fn init() {
     UART_RX.mode_rx(&UART);
 
     // Set Baud and Enable uart
-    UART.enable(UART_BAUD, clock::sysclk_hz());
+
+    // UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
+    UART.configure(UART_BAUD, clock::sysclk_hz());
+    UART.enable();
+}
+
+pub fn enable() {
+    UART.enable();
+}
+
+pub fn disable() {
+    UART.disable();    
+}
+
+pub fn reinit() {
+    UART.disable();
+    // UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
+    UART.configure(UART_BAUD, clock::sysclk_hz());
+    UART.enable();    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
