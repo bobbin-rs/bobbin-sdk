@@ -20,8 +20,9 @@ pub fn init() {
 
     // Set Baud and Enable uart
 
-    // UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
-    UART.configure(UART_BAUD, clock::sysclk_hz());
+    UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
+    // UART.configure(UART_BAUD, clock::sysclk_hz());
+    // UART.configure(UART_BAUD, 120_000_000);
     UART.enable();
 }
 
