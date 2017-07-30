@@ -1,6 +1,10 @@
 use ::chip::osc::*;
 use ::chip::mcg::*;
 use ::chip::sim::*;
+use ::chip::uart0::Uart0;
+use ::chip::uart::{Uart1, Uart2};
+use ::chip::pit::Pit;
+use core::fmt;
 
 static mut SYSCLK_HZ: u32 = 0;
 
@@ -168,4 +172,191 @@ pub fn set_mode_pee() {
     /* Wait until output of the PLL is selected */
     //while((MCG_S & 0x0CU) != 0x0CU) {}
     while m.s().clkst() != 0x3 {}
+}
+
+pub const IRC4M: Hz = Some(4_000_000);
+pub const IRC32K: Hz = Some(32_000);
+
+pub type Hz = Option<u32>;
+
+pub trait ClockTree {
+    fn coreclk(&self) -> Hz;
+    fn busclk(&self) -> Hz;
+    fn mcgirclk(&self) -> Hz;
+    fn mcgfllclk(&self) -> Hz;
+    fn mcgpllclk(&self) -> Hz;
+    fn oscerclk(&self) -> Hz;
+    // fn erclk32k(&self) -> Hz;
+}
+
+pub struct DynamicClock {
+    pub xtal0: Hz,
+}
+
+impl DynamicClock {
+    pub fn irefclk(&self) -> Hz {
+        if MCG.c2().ircs() != 0 {
+            IRC4M.map(|v| v >> MCG.sc().fcrdiv())
+        } else {
+            IRC32K
+        }
+    }
+
+    pub fn oscclk(&self) -> Hz {
+        if MCG.s().oscinit0() != 0 {
+            self.xtal0
+        } else {
+            None
+        }
+    }
+
+    pub fn mcgoutclk(&self) -> Hz {
+        match MCG.s().clkst() {
+            0b00 => self.mcgfllclk(),
+            0b01 => self.irefclk(),
+            0b10 => self.oscclk(),
+            0b11 => self.mcgpllclk(),
+            _ => unimplemented!(),
+        }
+    }
+}
+
+impl ClockTree for DynamicClock {
+    fn coreclk(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / (1 + SIM.clkdiv1().outdiv1()))
+    }
+
+    fn mcgirclk(&self) -> Hz {
+        if MCG.c1().irclken() != 0 {
+            self.irefclk()
+        } else {
+            None
+        }
+    }
+
+    fn busclk(&self)-> Hz {
+        self.coreclk().map(|v| v / ( 1 + SIM.clkdiv1().outdiv4()))
+    }
+    fn mcgfllclk(&self) -> Hz {
+        let c1 = MCG.c1();
+        
+        let fllref = if c1.irefs() != 0 {
+            IRC32K
+        } else {
+            self.oscclk()
+        };
+        let c2 = MCG.c2();
+        let c4 = MCG.c4();            
+        let mul = match (c4.drst_drs(), c4.dmx32()) {
+            (0b00, 0b0) => 640,
+            (0b00, 0b1) => 732,
+            (0b01, 0b0) => 1280,
+            (0b01, 0b1) => 1464,
+            (0b10, 0b0) => 1920,
+            (0b10, 0b1) => 2197,
+            (0b11, 0b0) => 2560,
+            (0b11, 0b1) => 2929,
+            _ => unimplemented!(),
+        };
+
+        let div = if c2.range0() == 0 {
+            1 << c1.frdiv()
+        } else {
+            match c1.frdiv() {
+                0b000 => 32,
+                0b001 => 64,
+                0b010 => 128,
+                0b011 => 256,
+                0b100 => 512,
+                0b101 => 1024,
+                0b110 => 1280,
+                0b111 => 1536,
+                _ => unimplemented!(),
+            }
+        };
+        fllref.map(|v| (v / div) * mul)
+        // if MCG.c7().oscsel() != 0 {
+            
+        // } else {
+        //     IRC32K.map(|v| (v / div) * mul)
+        // }
+        // }
+    }
+    fn mcgpllclk(&self) -> Hz {
+        let c5 = MCG.c5();
+        let c6 = MCG.c6();
+        if MCG.s().lock0() == 0 { return None }
+        let mul = (c6.vdiv0() + 24) as u32;
+        let div = (c5.prdiv0() + 1) as u32;        
+        self.oscclk().map(|v| v * mul / div)
+    }
+
+    fn oscerclk(&self) -> Hz {
+        if OSC0.cr().erclken() != 0 {
+            self.oscclk()
+        } else {
+            None
+        }
+    }
+    // fn erclk32k(&self) -> Hz {
+    //     unimplemented!()
+    // }
+}
+
+impl fmt::Debug for DynamicClock {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[DynamicCLock")?;
+        write!(f, " IREFCLK={:?}", self.irefclk())?;
+        write!(f, " OSCCLK={:?}", self.oscclk())?;
+        write!(f, " MCGOUTCLK={:?}", self.mcgoutclk())?;
+        
+        // write!(f, " CORE={:?}", self.coreclk())?;
+        // write!(f, " BUS={:?}", self.busclk())?;
+        write!(f, " MCGIRCLK={:?}", self.mcgirclk())?;
+        // write!(f, " MCGFLLCLK={:?}", self.mcgfllclk())?;
+        write!(f, " MCGPLLCLK={:?}", self.mcgpllclk())?;
+        // write!(f, " OSCERCLK={:?}", self.oscerclk())?;
+        write!(f, "]")?;
+        Ok(())
+    }
+}
+
+pub trait Clock<T: ClockTree> {
+    fn clock(&self, t: &T) -> Hz;
+}
+
+impl<T: ClockTree> Clock<T> for Uart0 {
+    fn clock(&self, t: &T) -> Hz {
+        let sopt2 = SIM.sopt2();
+        match sopt2.uart0src() {
+            0b00 => None,
+            0b01 => if sopt2.pllfllsel() == 0 {
+                t.mcgfllclk()
+            } else {
+                t.mcgpllclk().map(|v| v >> 1)
+            },
+            0b10 => t.oscerclk(),
+            0b11 => t.mcgirclk(),
+            _ => unimplemented!(),
+        }
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Uart1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.busclk()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Uart2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.busclk()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Pit {
+    fn clock(&self, t: &T) -> Hz {
+        t.busclk()
+    }
 }
