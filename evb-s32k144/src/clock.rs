@@ -1,5 +1,10 @@
-use hal;
+use hal::clock::{self, DynamicClock};
+
+pub const CLK: DynamicClock = DynamicClock {
+    xosc: Some(8_000_000),
+    xrtc: None,
+};
 
 pub fn init() {
-    hal::clock::init();
+    clock::init();
 }

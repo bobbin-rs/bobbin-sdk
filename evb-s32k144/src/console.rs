@@ -2,11 +2,14 @@ use core::fmt::{self, Write, Arguments};
 use hal::port::*;
 use hal::lpuart::*;
 use hal::pcc::ClockSource;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const UART: Lpuart1 = LPUART1;
 pub const UART_CLK: ClockSource = ClockSource::SPLLDIV2;
 pub const UART_RX: Ptc6 = PTC6;
 pub const UART_TX: Ptc7 = PTC7;
+pub const UART_BAUD: u32 = 115_000;
 //pub const UART_BD: u16 = 22;
 
 pub fn init() {
@@ -25,14 +28,37 @@ pub fn init() {
     UART_TX.mode_tx(&UART);
     UART_RX.mode_rx(&UART);
 
+    let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
+
     // Set Baud and Enable USART
     UART
         .set_osr(0b1111)
-        .set_sbr(22)
+        .set_sbr(sbr as u16)
         .set_te(true)
         .set_re(true)
         .set_txfe(true)
         .set_rxfe(true);
+}
+
+pub fn disable() {
+    UART
+        .set_te(false)
+        .set_re(false)
+        .set_txfe(false)
+        .set_rxfe(false);
+}
+
+pub fn reinit() {
+    let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
+
+    // Set Baud and Enable USART
+    UART
+        .set_osr(0b1111)
+        .set_sbr(sbr as u16)
+        .set_te(true)
+        .set_re(true)
+        .set_txfe(true)
+        .set_rxfe(true);    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console

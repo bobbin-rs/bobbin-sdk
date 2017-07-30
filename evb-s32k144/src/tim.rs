@@ -1,5 +1,7 @@
 use hal::lpit::*;
 use hal::pcc::ClockSource;
+use clock::CLK;
+use hal::clock::Clock;
 
 pub const PIT: Lpit0 = LPIT0;
 pub const PIT_CH: usize = 0;
@@ -15,7 +17,7 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {
-    PIT.set_ch_value(PIT_CH, PIT_RELOAD * ms);
+    PIT.set_ch_value(PIT_CH, (PIT.clock(&CLK).unwrap() / 1000) * ms);
     PIT.clr_ch_tif(PIT_CH);
     PIT.set_ch_enabled(PIT_CH, true);
     
