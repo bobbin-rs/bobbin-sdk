@@ -9,7 +9,7 @@ use board::chip::tim_gen::*;
 use board::chip::tim_adv::*;
 use board::chip::tim_bas::*;
 use board::hal::clock::Clock;
-
+use board::chip::rcc::RCC;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -34,5 +34,28 @@ pub extern "C" fn main() -> ! {
     println!("TIM17: {:?}", TIM17.clock(&clk));        
     println!("TIM20: {:?}", TIM20.clock(&clk));        
 
-    loop {}
+    loop {
+        println!("Switching to HSE");
+        board::delay(50);
+        board::console::disable();
+        // Select HSE as SYSCLK source.        
+        RCC.with_cfgr(|r| r.set_sw(0b01));
+        // Wait for HSE to be selected
+        while RCC.cfgr().sws() != 0b01 {}
+        board::console::reinit();
+        println!("Running on HSE");
+
+        board::delay(1000);
+
+        println!("Switching to PLL");
+        board::delay(50);
+        board::console::disable();
+        // Select PLL as SYSCLK source.        
+        RCC.with_cfgr(|r| r.set_sw(0b10));
+        // Wait for PLL to be selected
+        while RCC.cfgr().sws() != 0b10 {}
+        board::console::reinit();
+        println!("Running on PLL");        
+        board::delay(1000);
+    }
 }
