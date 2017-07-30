@@ -2469,6 +2469,54 @@ impl Cfgr3 {
      self
   }
 
+#[doc="Timer15 clock source selection"]
+  #[inline] pub fn tim15sw(&self) -> u32 {
+     ((self.0 as u32) >> 10) & 0x1 // [10]
+  }
+#[doc="Timer15 clock source selection"]
+  #[inline] pub fn set_tim15sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 10);
+     self.0 |= value << 10;
+     self
+  }
+
+#[doc="Timer16 clock source selection"]
+  #[inline] pub fn tim16sw(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="Timer16 clock source selection"]
+  #[inline] pub fn set_tim16sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn tim17sw(&self) -> u32 {
+     ((self.0 as u32) >> 13) & 0x1 // [13]
+  }
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn set_tim17sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 13);
+     self.0 |= value << 13;
+     self
+  }
+
+#[doc="Timer16 clock source selection"]
+  #[inline] pub fn tim20sw(&self) -> u32 {
+     ((self.0 as u32) >> 15) & 0x1 // [15]
+  }
+#[doc="Timer16 clock source selection"]
+  #[inline] pub fn set_tim20sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
 #[doc="UART4 clock source selection"]
   #[inline] pub fn uart4sw(&self) -> u32 {
      ((self.0 as u32) >> 20) & 0x3 // [21:20]
@@ -2493,6 +2541,30 @@ impl Cfgr3 {
      self
   }
 
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn tim2sw(&self) -> u32 {
+     ((self.0 as u32) >> 24) & 0x1 // [24]
+  }
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn set_tim2sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 24);
+     self.0 |= value << 24;
+     self
+  }
+
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn tim34sw(&self) -> u32 {
+     ((self.0 as u32) >> 24) & 0x1 // [24]
+  }
+#[doc="Timer17 clock source selection"]
+  #[inline] pub fn set_tim34sw(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 24);
+     self.0 |= value << 24;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Cfgr3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -2510,8 +2582,14 @@ impl ::core::fmt::Debug for Cfgr3 {
       if self.usart3sw() != 0 { try!(write!(f, " usart3sw=0x{:x}", self.usart3sw()))}
       if self.tim1sw() != 0 { try!(write!(f, " tim1sw"))}
       if self.tim8sw() != 0 { try!(write!(f, " tim8sw"))}
+      if self.tim15sw() != 0 { try!(write!(f, " tim15sw"))}
+      if self.tim16sw() != 0 { try!(write!(f, " tim16sw"))}
+      if self.tim17sw() != 0 { try!(write!(f, " tim17sw"))}
+      if self.tim20sw() != 0 { try!(write!(f, " tim20sw"))}
       if self.uart4sw() != 0 { try!(write!(f, " uart4sw=0x{:x}", self.uart4sw()))}
       if self.uart5sw() != 0 { try!(write!(f, " uart5sw=0x{:x}", self.uart5sw()))}
+      if self.tim2sw() != 0 { try!(write!(f, " tim2sw"))}
+      if self.tim34sw() != 0 { try!(write!(f, " tim34sw"))}
       try!(write!(f, "]"));
       Ok(())
    }

@@ -1065,7 +1065,7 @@
             (bit-offset 16)
             (bit-width 2)
             (description "USART2 clock source selection")
-        )
+        )        
         (field
             (name USART3SW)
             (bit-offset 18)
@@ -1085,6 +1085,30 @@
             (description "Timer8 clock source selection")
         )
         (field
+            (name TIM15SW)
+            (bit-offset 10)
+            (bit-width 1)
+            (description "Timer15 clock source selection")
+        )     
+        (field
+            (name TIM16SW)
+            (bit-offset 11)
+            (bit-width 1)
+            (description "Timer16 clock source selection")
+        )
+        (field
+            (name TIM17SW)
+            (bit-offset 13)
+            (bit-width 1)
+            (description "Timer17 clock source selection")
+        )
+        (field
+            (name TIM20SW)
+            (bit-offset 15)
+            (bit-width 1)
+            (description "Timer16 clock source selection")
+        )        
+        (field
             (name UART4SW)
             (bit-offset 20)
             (bit-width 2)
@@ -1096,5 +1120,17 @@
             (bit-width 2)
             (description "UART5 clock source selection")
         )
+        (field
+            (name TIM2SW)
+            (bit-offset 24)
+            (bit-width 1)
+            (description "Timer17 clock source selection")
+        )  
+        (field
+            (name TIM34SW)
+            (bit-offset 24)
+            (bit-width 1)
+            (description "Timer17 clock source selection")
+        )                
     )
 )
