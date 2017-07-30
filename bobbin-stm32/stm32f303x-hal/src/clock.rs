@@ -246,7 +246,7 @@ impl<T: ClockTree> Clock<T> for Usart1 {
 impl<T: ClockTree> Clock<T> for Usart2 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.cfgr3().usart2sw() {
-            0b00 => t.pclk2(),
+            0b00 => t.pclk1(),
             0b01 => t.sysclk(),
             0b10 => t.lse(),
             0b11 => t.hsi(),
@@ -258,7 +258,7 @@ impl<T: ClockTree> Clock<T> for Usart2 {
 impl<T: ClockTree> Clock<T> for Usart3 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.cfgr3().usart3sw() {
-            0b00 => t.pclk2(),
+            0b00 => t.pclk1(),
             0b01 => t.sysclk(),
             0b10 => t.lse(),
             0b11 => t.hsi(),
@@ -270,7 +270,7 @@ impl<T: ClockTree> Clock<T> for Usart3 {
 impl<T: ClockTree> Clock<T> for Uart4 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.cfgr3().uart4sw() {
-            0b00 => t.pclk2(),
+            0b00 => t.pclk1(),
             0b01 => t.sysclk(),
             0b10 => t.lse(),
             0b11 => t.hsi(),
@@ -283,7 +283,7 @@ impl<T: ClockTree> Clock<T> for Uart4 {
 impl<T: ClockTree> Clock<T> for Uart5 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.cfgr3().uart5sw() {
-            0b00 => t.pclk2(),
+            0b00 => t.pclk1(),
             0b01 => t.sysclk(),
             0b10 => t.lse(),
             0b11 => t.hsi(),
