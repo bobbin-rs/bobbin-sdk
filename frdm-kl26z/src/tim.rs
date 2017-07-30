@@ -1,4 +1,6 @@
 use hal::pit::*;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const PIT_CH: usize = 0;
 pub const PIT_RELOAD: u32 = 24_000;
@@ -10,7 +12,7 @@ pub fn init() {
 
 pub fn delay(ms: u32) {
     PIT
-        .set_load_value(PIT_CH, PIT_RELOAD * ms)
+        .set_load_value(PIT_CH, (PIT.clock(&CLK).unwrap() / 1000) * ms)
         .clr_interrupt_flag(PIT_CH)
         .set_timer_enabled(PIT_CH, true);
     while !PIT.interrupt_flag(PIT_CH) {}

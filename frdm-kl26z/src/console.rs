@@ -9,10 +9,13 @@
 use core::fmt::{self, Write, Arguments};
 use hal::port::*;
 use hal::uart0::*;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const UART: Uart0 = UART0;
 pub const UART_RX: Pta1 = PTA1;
 pub const UART_TX: Pta2 = PTA2;
+pub const UART_BAUD: u32 = 115200;
 pub const UART_BD: u16 = 104;
 
 pub fn init() {
@@ -31,7 +34,16 @@ pub fn init() {
     UART_RX.mode_rx(&UART);
 
     // Set Baud and Enable USART
-    UART.enable(UART_BD);
+    // UART.enable(UART_BD);
+    UART.enable((UART.clock(&CLK).unwrap() / (4 * UART_BAUD)) as u16);
+}
+
+pub fn disable() {
+    UART.disable();
+}
+
+pub fn reinit() {
+    UART.enable((UART.clock(&CLK).unwrap() / (4 * UART_BAUD)) as u16);
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
