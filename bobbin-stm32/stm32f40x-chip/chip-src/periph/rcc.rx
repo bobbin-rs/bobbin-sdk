@@ -4,7 +4,7 @@
     (address 0x40023800)
     (description "Reset and clock control")
     (interrupt
-        (name RCC_IRQ)
+        (name RCC)
         (value 5)
         (description "RCC global interrupt")
     )
@@ -1773,13 +1773,13 @@
         (reset-value 0x20003000)
         (description "PLLI2S configuration register")
         (field
-            (name PLLI2SRx)
+            (name PLLI2SR)
             (bit-offset 28)
             (bit-width 3)
             (description "PLLI2S division factor for I2S clocks")
         )
         (field
-            (name PLLI2SNx)
+            (name PLLI2SN)
             (bit-offset 6)
             (bit-width 9)
             (description "PLLI2S multiplication factor for VCO")

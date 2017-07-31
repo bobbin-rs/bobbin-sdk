@@ -4218,11 +4218,11 @@ impl ::core::fmt::Debug for Sscgr {
 pub struct Plli2scfgr(pub u32);
 impl Plli2scfgr {
 #[doc="PLLI2S division factor for I2S clocks"]
-  #[inline] pub fn plli2srx(&self) -> u32 {
+  #[inline] pub fn plli2sr(&self) -> u32 {
      ((self.0 as u32) >> 28) & 0x7 // [30:28]
   }
 #[doc="PLLI2S division factor for I2S clocks"]
-  #[inline] pub fn set_plli2srx(mut self, value: u32) -> Self {
+  #[inline] pub fn set_plli2sr(mut self, value: u32) -> Self {
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 28);
      self.0 |= value << 28;
@@ -4230,11 +4230,11 @@ impl Plli2scfgr {
   }
 
 #[doc="PLLI2S multiplication factor for VCO"]
-  #[inline] pub fn plli2snx(&self) -> u32 {
+  #[inline] pub fn plli2sn(&self) -> u32 {
      ((self.0 as u32) >> 6) & 0x1ff // [14:6]
   }
 #[doc="PLLI2S multiplication factor for VCO"]
-  #[inline] pub fn set_plli2snx(mut self, value: u32) -> Self {
+  #[inline] pub fn set_plli2sn(mut self, value: u32) -> Self {
      assert!((value & !0x1ff) == 0);
      self.0 &= !(0x1ff << 6);
      self.0 |= value << 6;
@@ -4250,8 +4250,8 @@ impl ::core::fmt::Display for Plli2scfgr {
 impl ::core::fmt::Debug for Plli2scfgr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.plli2srx() != 0 { try!(write!(f, " plli2srx=0x{:x}", self.plli2srx()))}
-      if self.plli2snx() != 0 { try!(write!(f, " plli2snx=0x{:x}", self.plli2snx()))}
+      if self.plli2sr() != 0 { try!(write!(f, " plli2sr=0x{:x}", self.plli2sr()))}
+      if self.plli2sn() != 0 { try!(write!(f, " plli2sn=0x{:x}", self.plli2sn()))}
       try!(write!(f, "]"));
       Ok(())
    }

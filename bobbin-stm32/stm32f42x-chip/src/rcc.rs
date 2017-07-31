@@ -1713,279 +1713,15 @@ impl ::core::fmt::Debug for Ahb3rstr {
 #[derive(PartialEq, Eq)]
 pub struct Apb1rstr(pub u32);
 impl Apb1rstr {
-#[doc="TIM2 reset"]
-  #[inline] pub fn tim2rst(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="UART8 reset"]
+  #[inline] pub fn uart8rst(&self) -> u32 {
+     ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-#[doc="TIM2 reset"]
-  #[inline] pub fn set_tim2rst(mut self, value: u32) -> Self {
+#[doc="UART8 reset"]
+  #[inline] pub fn set_uart8rst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM3 reset"]
-  #[inline] pub fn tim3rst(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM3 reset"]
-  #[inline] pub fn set_tim3rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="TIM4 reset"]
-  #[inline] pub fn tim4rst(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="TIM4 reset"]
-  #[inline] pub fn set_tim4rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-#[doc="TIM5 reset"]
-  #[inline] pub fn tim5rst(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-#[doc="TIM5 reset"]
-  #[inline] pub fn set_tim5rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="TIM6 reset"]
-  #[inline] pub fn tim6rst(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="TIM6 reset"]
-  #[inline] pub fn set_tim6rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="TIM7 reset"]
-  #[inline] pub fn tim7rst(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="TIM7 reset"]
-  #[inline] pub fn set_tim7rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="TIM12 reset"]
-  #[inline] pub fn tim12rst(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-#[doc="TIM12 reset"]
-  #[inline] pub fn set_tim12rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-#[doc="TIM13 reset"]
-  #[inline] pub fn tim13rst(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-#[doc="TIM13 reset"]
-  #[inline] pub fn set_tim13rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-#[doc="TIM14 reset"]
-  #[inline] pub fn tim14rst(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="TIM14 reset"]
-  #[inline] pub fn set_tim14rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="Window watchdog reset"]
-  #[inline] pub fn wwdgrst(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="Window watchdog reset"]
-  #[inline] pub fn set_wwdgrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI 2 reset"]
-  #[inline] pub fn spi2rst(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="SPI 2 reset"]
-  #[inline] pub fn set_spi2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="SPI 3 reset"]
-  #[inline] pub fn spi3rst(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-#[doc="SPI 3 reset"]
-  #[inline] pub fn set_spi3rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-#[doc="USART 2 reset"]
-  #[inline] pub fn uart2rst(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="USART 2 reset"]
-  #[inline] pub fn set_uart2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="USART 3 reset"]
-  #[inline] pub fn uart3rst(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="USART 3 reset"]
-  #[inline] pub fn set_uart3rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="USART 4 reset"]
-  #[inline] pub fn uart4rst(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-#[doc="USART 4 reset"]
-  #[inline] pub fn set_uart4rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-#[doc="USART 5 reset"]
-  #[inline] pub fn uart5rst(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="USART 5 reset"]
-  #[inline] pub fn set_uart5rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="I2C 1 reset"]
-  #[inline] pub fn i2c1rst(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="I2C 1 reset"]
-  #[inline] pub fn set_i2c1rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
-     self
-  }
-
-#[doc="I2C 2 reset"]
-  #[inline] pub fn i2c2rst(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-#[doc="I2C 2 reset"]
-  #[inline] pub fn set_i2c2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-#[doc="I2C3 reset"]
-  #[inline] pub fn i2c3rst(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
-  }
-#[doc="I2C3 reset"]
-  #[inline] pub fn set_i2c3rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
-
-#[doc="CAN1 reset"]
-  #[inline] pub fn can1rst(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-#[doc="CAN1 reset"]
-  #[inline] pub fn set_can1rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-#[doc="CAN2 reset"]
-  #[inline] pub fn can2rst(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-#[doc="CAN2 reset"]
-  #[inline] pub fn set_can2rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-#[doc="Power interface reset"]
-  #[inline] pub fn pwrrst(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
-  }
-#[doc="Power interface reset"]
-  #[inline] pub fn set_pwrrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 28);
-     self.0 |= value << 28;
-     self
-  }
-
-#[doc="DAC reset"]
-  #[inline] pub fn dacrst(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
-  }
-#[doc="DAC reset"]
-  #[inline] pub fn set_dacrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 29);
-     self.0 |= value << 29;
+     self.0 &= !(0x1 << 31);
+     self.0 |= value << 31;
      self
   }
 
@@ -2001,15 +1737,279 @@ impl Apb1rstr {
      self
   }
 
-#[doc="UART8 reset"]
-  #[inline] pub fn uart8rst(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+#[doc="DAC reset"]
+  #[inline] pub fn dacrst(&self) -> u32 {
+     ((self.0 as u32) >> 29) & 0x1 // [29]
   }
-#[doc="UART8 reset"]
-  #[inline] pub fn set_uart8rst(mut self, value: u32) -> Self {
+#[doc="DAC reset"]
+  #[inline] pub fn set_dacrst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 31);
-     self.0 |= value << 31;
+     self.0 &= !(0x1 << 29);
+     self.0 |= value << 29;
+     self
+  }
+
+#[doc="Power interface reset"]
+  #[inline] pub fn pwrrst(&self) -> u32 {
+     ((self.0 as u32) >> 28) & 0x1 // [28]
+  }
+#[doc="Power interface reset"]
+  #[inline] pub fn set_pwrrst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 28);
+     self.0 |= value << 28;
+     self
+  }
+
+#[doc="CAN2 reset"]
+  #[inline] pub fn can2rst(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
+  }
+#[doc="CAN2 reset"]
+  #[inline] pub fn set_can2rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
+     self
+  }
+
+#[doc="CAN1 reset"]
+  #[inline] pub fn can1rst(&self) -> u32 {
+     ((self.0 as u32) >> 25) & 0x1 // [25]
+  }
+#[doc="CAN1 reset"]
+  #[inline] pub fn set_can1rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 25);
+     self.0 |= value << 25;
+     self
+  }
+
+#[doc="I2C3 reset"]
+  #[inline] pub fn i2c3rst(&self) -> u32 {
+     ((self.0 as u32) >> 23) & 0x1 // [23]
+  }
+#[doc="I2C3 reset"]
+  #[inline] pub fn set_i2c3rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
+     self
+  }
+
+#[doc="I2C 2 reset"]
+  #[inline] pub fn i2c2rst(&self) -> u32 {
+     ((self.0 as u32) >> 22) & 0x1 // [22]
+  }
+#[doc="I2C 2 reset"]
+  #[inline] pub fn set_i2c2rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 22);
+     self.0 |= value << 22;
+     self
+  }
+
+#[doc="I2C 1 reset"]
+  #[inline] pub fn i2c1rst(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
+  }
+#[doc="I2C 1 reset"]
+  #[inline] pub fn set_i2c1rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="USART 5 reset"]
+  #[inline] pub fn uart5rst(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="USART 5 reset"]
+  #[inline] pub fn set_uart5rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="USART 4 reset"]
+  #[inline] pub fn uart4rst(&self) -> u32 {
+     ((self.0 as u32) >> 19) & 0x1 // [19]
+  }
+#[doc="USART 4 reset"]
+  #[inline] pub fn set_uart4rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 19);
+     self.0 |= value << 19;
+     self
+  }
+
+#[doc="USART 3 reset"]
+  #[inline] pub fn uart3rst(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="USART 3 reset"]
+  #[inline] pub fn set_uart3rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="USART 2 reset"]
+  #[inline] pub fn uart2rst(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="USART 2 reset"]
+  #[inline] pub fn set_uart2rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="SPI 3 reset"]
+  #[inline] pub fn spi3rst(&self) -> u32 {
+     ((self.0 as u32) >> 15) & 0x1 // [15]
+  }
+#[doc="SPI 3 reset"]
+  #[inline] pub fn set_spi3rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
+#[doc="SPI 2 reset"]
+  #[inline] pub fn spi2rst(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="SPI 2 reset"]
+  #[inline] pub fn set_spi2rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="Window watchdog reset"]
+  #[inline] pub fn wwdgrst(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="Window watchdog reset"]
+  #[inline] pub fn set_wwdgrst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="TIM14 reset"]
+  #[inline] pub fn tim14rst(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="TIM14 reset"]
+  #[inline] pub fn set_tim14rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="TIM13 reset"]
+  #[inline] pub fn tim13rst(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="TIM13 reset"]
+  #[inline] pub fn set_tim13rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="TIM12 reset"]
+  #[inline] pub fn tim12rst(&self) -> u32 {
+     ((self.0 as u32) >> 6) & 0x1 // [6]
+  }
+#[doc="TIM12 reset"]
+  #[inline] pub fn set_tim12rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 6);
+     self.0 |= value << 6;
+     self
+  }
+
+#[doc="TIM7 reset"]
+  #[inline] pub fn tim7rst(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="TIM7 reset"]
+  #[inline] pub fn set_tim7rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="TIM6 reset"]
+  #[inline] pub fn tim6rst(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="TIM6 reset"]
+  #[inline] pub fn set_tim6rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM5 reset"]
+  #[inline] pub fn tim5rst(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+#[doc="TIM5 reset"]
+  #[inline] pub fn set_tim5rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+#[doc="TIM4 reset"]
+  #[inline] pub fn tim4rst(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="TIM4 reset"]
+  #[inline] pub fn set_tim4rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="TIM3 reset"]
+  #[inline] pub fn tim3rst(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM3 reset"]
+  #[inline] pub fn set_tim3rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM2 reset"]
+  #[inline] pub fn tim2rst(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM2 reset"]
+  #[inline] pub fn set_tim2rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -2022,31 +2022,31 @@ impl ::core::fmt::Display for Apb1rstr {
 impl ::core::fmt::Debug for Apb1rstr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim2rst() != 0 { try!(write!(f, " tim2rst"))}
-      if self.tim3rst() != 0 { try!(write!(f, " tim3rst"))}
-      if self.tim4rst() != 0 { try!(write!(f, " tim4rst"))}
-      if self.tim5rst() != 0 { try!(write!(f, " tim5rst"))}
-      if self.tim6rst() != 0 { try!(write!(f, " tim6rst"))}
-      if self.tim7rst() != 0 { try!(write!(f, " tim7rst"))}
-      if self.tim12rst() != 0 { try!(write!(f, " tim12rst"))}
-      if self.tim13rst() != 0 { try!(write!(f, " tim13rst"))}
-      if self.tim14rst() != 0 { try!(write!(f, " tim14rst"))}
-      if self.wwdgrst() != 0 { try!(write!(f, " wwdgrst"))}
-      if self.spi2rst() != 0 { try!(write!(f, " spi2rst"))}
-      if self.spi3rst() != 0 { try!(write!(f, " spi3rst"))}
-      if self.uart2rst() != 0 { try!(write!(f, " uart2rst"))}
-      if self.uart3rst() != 0 { try!(write!(f, " uart3rst"))}
-      if self.uart4rst() != 0 { try!(write!(f, " uart4rst"))}
-      if self.uart5rst() != 0 { try!(write!(f, " uart5rst"))}
-      if self.i2c1rst() != 0 { try!(write!(f, " i2c1rst"))}
-      if self.i2c2rst() != 0 { try!(write!(f, " i2c2rst"))}
-      if self.i2c3rst() != 0 { try!(write!(f, " i2c3rst"))}
-      if self.can1rst() != 0 { try!(write!(f, " can1rst"))}
-      if self.can2rst() != 0 { try!(write!(f, " can2rst"))}
-      if self.pwrrst() != 0 { try!(write!(f, " pwrrst"))}
-      if self.dacrst() != 0 { try!(write!(f, " dacrst"))}
-      if self.uart7rst() != 0 { try!(write!(f, " uart7rst"))}
       if self.uart8rst() != 0 { try!(write!(f, " uart8rst"))}
+      if self.uart7rst() != 0 { try!(write!(f, " uart7rst"))}
+      if self.dacrst() != 0 { try!(write!(f, " dacrst"))}
+      if self.pwrrst() != 0 { try!(write!(f, " pwrrst"))}
+      if self.can2rst() != 0 { try!(write!(f, " can2rst"))}
+      if self.can1rst() != 0 { try!(write!(f, " can1rst"))}
+      if self.i2c3rst() != 0 { try!(write!(f, " i2c3rst"))}
+      if self.i2c2rst() != 0 { try!(write!(f, " i2c2rst"))}
+      if self.i2c1rst() != 0 { try!(write!(f, " i2c1rst"))}
+      if self.uart5rst() != 0 { try!(write!(f, " uart5rst"))}
+      if self.uart4rst() != 0 { try!(write!(f, " uart4rst"))}
+      if self.uart3rst() != 0 { try!(write!(f, " uart3rst"))}
+      if self.uart2rst() != 0 { try!(write!(f, " uart2rst"))}
+      if self.spi3rst() != 0 { try!(write!(f, " spi3rst"))}
+      if self.spi2rst() != 0 { try!(write!(f, " spi2rst"))}
+      if self.wwdgrst() != 0 { try!(write!(f, " wwdgrst"))}
+      if self.tim14rst() != 0 { try!(write!(f, " tim14rst"))}
+      if self.tim13rst() != 0 { try!(write!(f, " tim13rst"))}
+      if self.tim12rst() != 0 { try!(write!(f, " tim12rst"))}
+      if self.tim7rst() != 0 { try!(write!(f, " tim7rst"))}
+      if self.tim6rst() != 0 { try!(write!(f, " tim6rst"))}
+      if self.tim5rst() != 0 { try!(write!(f, " tim5rst"))}
+      if self.tim4rst() != 0 { try!(write!(f, " tim4rst"))}
+      if self.tim3rst() != 0 { try!(write!(f, " tim3rst"))}
+      if self.tim2rst() != 0 { try!(write!(f, " tim2rst"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2055,171 +2055,15 @@ impl ::core::fmt::Debug for Apb1rstr {
 #[derive(PartialEq, Eq)]
 pub struct Apb2rstr(pub u32);
 impl Apb2rstr {
-#[doc="TIM1 reset"]
-  #[inline] pub fn tim1rst(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="LTDC reset"]
+  #[inline] pub fn ltdcrst(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="TIM1 reset"]
-  #[inline] pub fn set_tim1rst(mut self, value: u32) -> Self {
+#[doc="LTDC reset"]
+  #[inline] pub fn set_ltdcrst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM8 reset"]
-  #[inline] pub fn tim8rst(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM8 reset"]
-  #[inline] pub fn set_tim8rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="USART1 reset"]
-  #[inline] pub fn usart1rst(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="USART1 reset"]
-  #[inline] pub fn set_usart1rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="USART6 reset"]
-  #[inline] pub fn usart6rst(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="USART6 reset"]
-  #[inline] pub fn set_usart6rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="ADC interface reset (common to all ADCs)"]
-  #[inline] pub fn adcrst(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="ADC interface reset (common to all ADCs)"]
-  #[inline] pub fn set_adcrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="SDIO reset"]
-  #[inline] pub fn sdiorst(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="SDIO reset"]
-  #[inline] pub fn set_sdiorst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI 1 reset"]
-  #[inline] pub fn spi1rst(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-#[doc="SPI 1 reset"]
-  #[inline] pub fn set_spi1rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-#[doc="SPI4 reset"]
-  #[inline] pub fn spi4rst(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-#[doc="SPI4 reset"]
-  #[inline] pub fn set_spi4rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-#[doc="System configuration controller reset"]
-  #[inline] pub fn syscfgrst(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="System configuration controller reset"]
-  #[inline] pub fn set_syscfgrst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="TIM9 reset"]
-  #[inline] pub fn tim9rst(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-#[doc="TIM9 reset"]
-  #[inline] pub fn set_tim9rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-#[doc="TIM10 reset"]
-  #[inline] pub fn tim10rst(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="TIM10 reset"]
-  #[inline] pub fn set_tim10rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="TIM11 reset"]
-  #[inline] pub fn tim11rst(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="TIM11 reset"]
-  #[inline] pub fn set_tim11rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="SPI5 reset"]
-  #[inline] pub fn spi5rst(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="SPI5 reset"]
-  #[inline] pub fn set_spi5rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="SPI6 reset"]
-  #[inline] pub fn spi6rst(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="SPI6 reset"]
-  #[inline] pub fn set_spi6rst(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
      self
   }
 
@@ -2235,15 +2079,171 @@ impl Apb2rstr {
      self
   }
 
-#[doc="LTDC reset"]
-  #[inline] pub fn ltdcrst(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+#[doc="SPI6 reset"]
+  #[inline] pub fn spi6rst(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="LTDC reset"]
-  #[inline] pub fn set_ltdcrst(mut self, value: u32) -> Self {
+#[doc="SPI6 reset"]
+  #[inline] pub fn set_spi6rst(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="SPI5 reset"]
+  #[inline] pub fn spi5rst(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="SPI5 reset"]
+  #[inline] pub fn set_spi5rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="TIM11 reset"]
+  #[inline] pub fn tim11rst(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="TIM11 reset"]
+  #[inline] pub fn set_tim11rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="TIM10 reset"]
+  #[inline] pub fn tim10rst(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="TIM10 reset"]
+  #[inline] pub fn set_tim10rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="TIM9 reset"]
+  #[inline] pub fn tim9rst(&self) -> u32 {
+     ((self.0 as u32) >> 16) & 0x1 // [16]
+  }
+#[doc="TIM9 reset"]
+  #[inline] pub fn set_tim9rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 16);
+     self.0 |= value << 16;
+     self
+  }
+
+#[doc="System configuration controller reset"]
+  #[inline] pub fn syscfgrst(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="System configuration controller reset"]
+  #[inline] pub fn set_syscfgrst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="SPI4 reset"]
+  #[inline] pub fn spi4rst(&self) -> u32 {
+     ((self.0 as u32) >> 13) & 0x1 // [13]
+  }
+#[doc="SPI4 reset"]
+  #[inline] pub fn set_spi4rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 13);
+     self.0 |= value << 13;
+     self
+  }
+
+#[doc="SPI 1 reset"]
+  #[inline] pub fn spi1rst(&self) -> u32 {
+     ((self.0 as u32) >> 12) & 0x1 // [12]
+  }
+#[doc="SPI 1 reset"]
+  #[inline] pub fn set_spi1rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 12);
+     self.0 |= value << 12;
+     self
+  }
+
+#[doc="SDIO reset"]
+  #[inline] pub fn sdiorst(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="SDIO reset"]
+  #[inline] pub fn set_sdiorst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="ADC interface reset (common to all ADCs)"]
+  #[inline] pub fn adcrst(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="ADC interface reset (common to all ADCs)"]
+  #[inline] pub fn set_adcrst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="USART6 reset"]
+  #[inline] pub fn usart6rst(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="USART6 reset"]
+  #[inline] pub fn set_usart6rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="USART1 reset"]
+  #[inline] pub fn usart1rst(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="USART1 reset"]
+  #[inline] pub fn set_usart1rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM8 reset"]
+  #[inline] pub fn tim8rst(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM8 reset"]
+  #[inline] pub fn set_tim8rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM1 reset"]
+  #[inline] pub fn tim1rst(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM1 reset"]
+  #[inline] pub fn set_tim1rst(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -2256,22 +2256,22 @@ impl ::core::fmt::Display for Apb2rstr {
 impl ::core::fmt::Debug for Apb2rstr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim1rst() != 0 { try!(write!(f, " tim1rst"))}
-      if self.tim8rst() != 0 { try!(write!(f, " tim8rst"))}
-      if self.usart1rst() != 0 { try!(write!(f, " usart1rst"))}
-      if self.usart6rst() != 0 { try!(write!(f, " usart6rst"))}
-      if self.adcrst() != 0 { try!(write!(f, " adcrst"))}
-      if self.sdiorst() != 0 { try!(write!(f, " sdiorst"))}
-      if self.spi1rst() != 0 { try!(write!(f, " spi1rst"))}
-      if self.spi4rst() != 0 { try!(write!(f, " spi4rst"))}
-      if self.syscfgrst() != 0 { try!(write!(f, " syscfgrst"))}
-      if self.tim9rst() != 0 { try!(write!(f, " tim9rst"))}
-      if self.tim10rst() != 0 { try!(write!(f, " tim10rst"))}
-      if self.tim11rst() != 0 { try!(write!(f, " tim11rst"))}
-      if self.spi5rst() != 0 { try!(write!(f, " spi5rst"))}
-      if self.spi6rst() != 0 { try!(write!(f, " spi6rst"))}
-      if self.sai1rst() != 0 { try!(write!(f, " sai1rst"))}
       if self.ltdcrst() != 0 { try!(write!(f, " ltdcrst"))}
+      if self.sai1rst() != 0 { try!(write!(f, " sai1rst"))}
+      if self.spi6rst() != 0 { try!(write!(f, " spi6rst"))}
+      if self.spi5rst() != 0 { try!(write!(f, " spi5rst"))}
+      if self.tim11rst() != 0 { try!(write!(f, " tim11rst"))}
+      if self.tim10rst() != 0 { try!(write!(f, " tim10rst"))}
+      if self.tim9rst() != 0 { try!(write!(f, " tim9rst"))}
+      if self.syscfgrst() != 0 { try!(write!(f, " syscfgrst"))}
+      if self.spi4rst() != 0 { try!(write!(f, " spi4rst"))}
+      if self.spi1rst() != 0 { try!(write!(f, " spi1rst"))}
+      if self.sdiorst() != 0 { try!(write!(f, " sdiorst"))}
+      if self.adcrst() != 0 { try!(write!(f, " adcrst"))}
+      if self.usart6rst() != 0 { try!(write!(f, " usart6rst"))}
+      if self.usart1rst() != 0 { try!(write!(f, " usart1rst"))}
+      if self.tim8rst() != 0 { try!(write!(f, " tim8rst"))}
+      if self.tim1rst() != 0 { try!(write!(f, " tim1rst"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2424,127 +2424,15 @@ impl Ahb1enr {
      self
   }
 
-#[doc="IO port n clock enable"]
-  #[inline] pub fn gpioen(&self, index: usize) -> u32 {
-     assert!(index < 11);
-     let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+#[doc="IO port K clock enable"]
+  #[inline] pub fn gpioken(&self) -> u32 {
+     ((self.0 as u32) >> 10) & 0x1 // [10]
   }
-#[doc="IO port n clock enable"]
-  #[inline] pub fn set_gpioen(mut self, index: usize, value: u32) -> Self {
-     assert!(index < 11);
+#[doc="IO port K clock enable"]
+  #[inline] pub fn set_gpioken(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
-
-#[doc="IO port A clock enable"]
-  #[inline] pub fn gpioaen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
-  }
-#[doc="IO port A clock enable"]
-  #[inline] pub fn set_gpioaen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="IO port B clock enable"]
-  #[inline] pub fn gpioben(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="IO port B clock enable"]
-  #[inline] pub fn set_gpioben(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="IO port C clock enable"]
-  #[inline] pub fn gpiocen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="IO port C clock enable"]
-  #[inline] pub fn set_gpiocen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-#[doc="IO port D clock enable"]
-  #[inline] pub fn gpioden(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-#[doc="IO port D clock enable"]
-  #[inline] pub fn set_gpioden(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="IO port E clock enable"]
-  #[inline] pub fn gpioeen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="IO port E clock enable"]
-  #[inline] pub fn set_gpioeen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="IO port F clock enable"]
-  #[inline] pub fn gpiofen(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="IO port F clock enable"]
-  #[inline] pub fn set_gpiofen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="IO port G clock enable"]
-  #[inline] pub fn gpiogen(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-#[doc="IO port G clock enable"]
-  #[inline] pub fn set_gpiogen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-#[doc="IO port H clock enable"]
-  #[inline] pub fn gpiohen(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-#[doc="IO port H clock enable"]
-  #[inline] pub fn set_gpiohen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-#[doc="IO port I clock enable"]
-  #[inline] pub fn gpioien(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="IO port I clock enable"]
-  #[inline] pub fn set_gpioien(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
+     self.0 &= !(0x1 << 10);
+     self.0 |= value << 10;
      self
   }
 
@@ -2560,15 +2448,111 @@ impl Ahb1enr {
      self
   }
 
-#[doc="IO port K clock enable"]
-  #[inline] pub fn gpioken(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+#[doc="IO port I clock enable"]
+  #[inline] pub fn gpioien(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
   }
-#[doc="IO port K clock enable"]
-  #[inline] pub fn set_gpioken(mut self, value: u32) -> Self {
+#[doc="IO port I clock enable"]
+  #[inline] pub fn set_gpioien(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="IO port H clock enable"]
+  #[inline] pub fn gpiohen(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="IO port H clock enable"]
+  #[inline] pub fn set_gpiohen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="IO port G clock enable"]
+  #[inline] pub fn gpiogen(&self) -> u32 {
+     ((self.0 as u32) >> 6) & 0x1 // [6]
+  }
+#[doc="IO port G clock enable"]
+  #[inline] pub fn set_gpiogen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 6);
+     self.0 |= value << 6;
+     self
+  }
+
+#[doc="IO port F clock enable"]
+  #[inline] pub fn gpiofen(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="IO port F clock enable"]
+  #[inline] pub fn set_gpiofen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="IO port E clock enable"]
+  #[inline] pub fn gpioeen(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="IO port E clock enable"]
+  #[inline] pub fn set_gpioeen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="IO port D clock enable"]
+  #[inline] pub fn gpioden(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+#[doc="IO port D clock enable"]
+  #[inline] pub fn set_gpioden(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+#[doc="IO port C clock enable"]
+  #[inline] pub fn gpiocen(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="IO port C clock enable"]
+  #[inline] pub fn set_gpiocen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="IO port B clock enable"]
+  #[inline] pub fn gpioben(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="IO port B clock enable"]
+  #[inline] pub fn set_gpioben(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="IO port A clock enable"]
+  #[inline] pub fn gpioaen(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="IO port A clock enable"]
+  #[inline] pub fn set_gpioaen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -2593,28 +2577,17 @@ impl ::core::fmt::Debug for Ahb1enr {
       if self.ccmdataramen() != 0 { try!(write!(f, " ccmdataramen"))}
       if self.bkpsramen() != 0 { try!(write!(f, " bkpsramen"))}
       if self.crcen() != 0 { try!(write!(f, " crcen"))}
-      if self.gpioen(0) != 0 { try!(write!(f, " gpioen[0]"))}
-      if self.gpioen(1) != 0 { try!(write!(f, " gpioen[1]"))}
-      if self.gpioen(2) != 0 { try!(write!(f, " gpioen[2]"))}
-      if self.gpioen(3) != 0 { try!(write!(f, " gpioen[3]"))}
-      if self.gpioen(4) != 0 { try!(write!(f, " gpioen[4]"))}
-      if self.gpioen(5) != 0 { try!(write!(f, " gpioen[5]"))}
-      if self.gpioen(6) != 0 { try!(write!(f, " gpioen[6]"))}
-      if self.gpioen(7) != 0 { try!(write!(f, " gpioen[7]"))}
-      if self.gpioen(8) != 0 { try!(write!(f, " gpioen[8]"))}
-      if self.gpioen(9) != 0 { try!(write!(f, " gpioen[9]"))}
-      if self.gpioen(10) != 0 { try!(write!(f, " gpioen[10]"))}
-      if self.gpioaen() != 0 { try!(write!(f, " gpioaen"))}
-      if self.gpioben() != 0 { try!(write!(f, " gpioben"))}
-      if self.gpiocen() != 0 { try!(write!(f, " gpiocen"))}
-      if self.gpioden() != 0 { try!(write!(f, " gpioden"))}
-      if self.gpioeen() != 0 { try!(write!(f, " gpioeen"))}
-      if self.gpiofen() != 0 { try!(write!(f, " gpiofen"))}
-      if self.gpiogen() != 0 { try!(write!(f, " gpiogen"))}
-      if self.gpiohen() != 0 { try!(write!(f, " gpiohen"))}
-      if self.gpioien() != 0 { try!(write!(f, " gpioien"))}
-      if self.gpiojen() != 0 { try!(write!(f, " gpiojen"))}
       if self.gpioken() != 0 { try!(write!(f, " gpioken"))}
+      if self.gpiojen() != 0 { try!(write!(f, " gpiojen"))}
+      if self.gpioien() != 0 { try!(write!(f, " gpioien"))}
+      if self.gpiohen() != 0 { try!(write!(f, " gpiohen"))}
+      if self.gpiogen() != 0 { try!(write!(f, " gpiogen"))}
+      if self.gpiofen() != 0 { try!(write!(f, " gpiofen"))}
+      if self.gpioeen() != 0 { try!(write!(f, " gpioeen"))}
+      if self.gpioden() != 0 { try!(write!(f, " gpioden"))}
+      if self.gpiocen() != 0 { try!(write!(f, " gpiocen"))}
+      if self.gpioben() != 0 { try!(write!(f, " gpioben"))}
+      if self.gpioaen() != 0 { try!(write!(f, " gpioaen"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -2709,279 +2682,15 @@ impl ::core::fmt::Debug for Ahb3enr {
 #[derive(PartialEq, Eq)]
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
-#[doc="TIM2 clock enable"]
-  #[inline] pub fn tim2en(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="UART8 clock enable"]
+  #[inline] pub fn uart8enr(&self) -> u32 {
+     ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-#[doc="TIM2 clock enable"]
-  #[inline] pub fn set_tim2en(mut self, value: u32) -> Self {
+#[doc="UART8 clock enable"]
+  #[inline] pub fn set_uart8enr(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM3 clock enable"]
-  #[inline] pub fn tim3en(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM3 clock enable"]
-  #[inline] pub fn set_tim3en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="TIM4 clock enable"]
-  #[inline] pub fn tim4en(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="TIM4 clock enable"]
-  #[inline] pub fn set_tim4en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-#[doc="TIM5 clock enable"]
-  #[inline] pub fn tim5en(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-#[doc="TIM5 clock enable"]
-  #[inline] pub fn set_tim5en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="TIM6 clock enable"]
-  #[inline] pub fn tim6en(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="TIM6 clock enable"]
-  #[inline] pub fn set_tim6en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="TIM7 clock enable"]
-  #[inline] pub fn tim7en(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="TIM7 clock enable"]
-  #[inline] pub fn set_tim7en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="TIM12 clock enable"]
-  #[inline] pub fn tim12en(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-#[doc="TIM12 clock enable"]
-  #[inline] pub fn set_tim12en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-#[doc="TIM13 clock enable"]
-  #[inline] pub fn tim13en(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-#[doc="TIM13 clock enable"]
-  #[inline] pub fn set_tim13en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-#[doc="TIM14 clock enable"]
-  #[inline] pub fn tim14en(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="TIM14 clock enable"]
-  #[inline] pub fn set_tim14en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="Window watchdog clock enable"]
-  #[inline] pub fn wwdgen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="Window watchdog clock enable"]
-  #[inline] pub fn set_wwdgen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI2 clock enable"]
-  #[inline] pub fn spi2en(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="SPI2 clock enable"]
-  #[inline] pub fn set_spi2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="SPI3 clock enable"]
-  #[inline] pub fn spi3en(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-#[doc="SPI3 clock enable"]
-  #[inline] pub fn set_spi3en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-#[doc="USART 2 clock enable"]
-  #[inline] pub fn usart2en(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="USART 2 clock enable"]
-  #[inline] pub fn set_usart2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="USART3 clock enable"]
-  #[inline] pub fn usart3en(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="USART3 clock enable"]
-  #[inline] pub fn set_usart3en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="UART4 clock enable"]
-  #[inline] pub fn uart4en(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-#[doc="UART4 clock enable"]
-  #[inline] pub fn set_uart4en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-#[doc="UART5 clock enable"]
-  #[inline] pub fn uart5en(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="UART5 clock enable"]
-  #[inline] pub fn set_uart5en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="I2C1 clock enable"]
-  #[inline] pub fn i2c1en(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="I2C1 clock enable"]
-  #[inline] pub fn set_i2c1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
-     self
-  }
-
-#[doc="I2C2 clock enable"]
-  #[inline] pub fn i2c2en(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-#[doc="I2C2 clock enable"]
-  #[inline] pub fn set_i2c2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-#[doc="I2C3 clock enable"]
-  #[inline] pub fn i2c3en(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
-  }
-#[doc="I2C3 clock enable"]
-  #[inline] pub fn set_i2c3en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
-
-#[doc="CAN 1 clock enable"]
-  #[inline] pub fn can1en(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-#[doc="CAN 1 clock enable"]
-  #[inline] pub fn set_can1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-#[doc="CAN 2 clock enable"]
-  #[inline] pub fn can2en(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-#[doc="CAN 2 clock enable"]
-  #[inline] pub fn set_can2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-#[doc="Power interface clock enable"]
-  #[inline] pub fn pwren(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
-  }
-#[doc="Power interface clock enable"]
-  #[inline] pub fn set_pwren(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 28);
-     self.0 |= value << 28;
-     self
-  }
-
-#[doc="DAC interface clock enable"]
-  #[inline] pub fn dacen(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
-  }
-#[doc="DAC interface clock enable"]
-  #[inline] pub fn set_dacen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 29);
-     self.0 |= value << 29;
+     self.0 &= !(0x1 << 31);
+     self.0 |= value << 31;
      self
   }
 
@@ -2997,15 +2706,279 @@ impl Apb1enr {
      self
   }
 
-#[doc="UART8 clock enable"]
-  #[inline] pub fn uart8enr(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+#[doc="DAC interface clock enable"]
+  #[inline] pub fn dacen(&self) -> u32 {
+     ((self.0 as u32) >> 29) & 0x1 // [29]
   }
-#[doc="UART8 clock enable"]
-  #[inline] pub fn set_uart8enr(mut self, value: u32) -> Self {
+#[doc="DAC interface clock enable"]
+  #[inline] pub fn set_dacen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 31);
-     self.0 |= value << 31;
+     self.0 &= !(0x1 << 29);
+     self.0 |= value << 29;
+     self
+  }
+
+#[doc="Power interface clock enable"]
+  #[inline] pub fn pwren(&self) -> u32 {
+     ((self.0 as u32) >> 28) & 0x1 // [28]
+  }
+#[doc="Power interface clock enable"]
+  #[inline] pub fn set_pwren(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 28);
+     self.0 |= value << 28;
+     self
+  }
+
+#[doc="CAN 2 clock enable"]
+  #[inline] pub fn can2en(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
+  }
+#[doc="CAN 2 clock enable"]
+  #[inline] pub fn set_can2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
+     self
+  }
+
+#[doc="CAN 1 clock enable"]
+  #[inline] pub fn can1en(&self) -> u32 {
+     ((self.0 as u32) >> 25) & 0x1 // [25]
+  }
+#[doc="CAN 1 clock enable"]
+  #[inline] pub fn set_can1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 25);
+     self.0 |= value << 25;
+     self
+  }
+
+#[doc="I2C3 clock enable"]
+  #[inline] pub fn i2c3en(&self) -> u32 {
+     ((self.0 as u32) >> 23) & 0x1 // [23]
+  }
+#[doc="I2C3 clock enable"]
+  #[inline] pub fn set_i2c3en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
+     self
+  }
+
+#[doc="I2C2 clock enable"]
+  #[inline] pub fn i2c2en(&self) -> u32 {
+     ((self.0 as u32) >> 22) & 0x1 // [22]
+  }
+#[doc="I2C2 clock enable"]
+  #[inline] pub fn set_i2c2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 22);
+     self.0 |= value << 22;
+     self
+  }
+
+#[doc="I2C1 clock enable"]
+  #[inline] pub fn i2c1en(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
+  }
+#[doc="I2C1 clock enable"]
+  #[inline] pub fn set_i2c1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="UART5 clock enable"]
+  #[inline] pub fn uart5en(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="UART5 clock enable"]
+  #[inline] pub fn set_uart5en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="UART4 clock enable"]
+  #[inline] pub fn uart4en(&self) -> u32 {
+     ((self.0 as u32) >> 19) & 0x1 // [19]
+  }
+#[doc="UART4 clock enable"]
+  #[inline] pub fn set_uart4en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 19);
+     self.0 |= value << 19;
+     self
+  }
+
+#[doc="USART3 clock enable"]
+  #[inline] pub fn usart3en(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="USART3 clock enable"]
+  #[inline] pub fn set_usart3en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="USART 2 clock enable"]
+  #[inline] pub fn usart2en(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="USART 2 clock enable"]
+  #[inline] pub fn set_usart2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="SPI3 clock enable"]
+  #[inline] pub fn spi3en(&self) -> u32 {
+     ((self.0 as u32) >> 15) & 0x1 // [15]
+  }
+#[doc="SPI3 clock enable"]
+  #[inline] pub fn set_spi3en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
+#[doc="SPI2 clock enable"]
+  #[inline] pub fn spi2en(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="SPI2 clock enable"]
+  #[inline] pub fn set_spi2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="Window watchdog clock enable"]
+  #[inline] pub fn wwdgen(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="Window watchdog clock enable"]
+  #[inline] pub fn set_wwdgen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="TIM14 clock enable"]
+  #[inline] pub fn tim14en(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="TIM14 clock enable"]
+  #[inline] pub fn set_tim14en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="TIM13 clock enable"]
+  #[inline] pub fn tim13en(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="TIM13 clock enable"]
+  #[inline] pub fn set_tim13en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="TIM12 clock enable"]
+  #[inline] pub fn tim12en(&self) -> u32 {
+     ((self.0 as u32) >> 6) & 0x1 // [6]
+  }
+#[doc="TIM12 clock enable"]
+  #[inline] pub fn set_tim12en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 6);
+     self.0 |= value << 6;
+     self
+  }
+
+#[doc="TIM7 clock enable"]
+  #[inline] pub fn tim7en(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="TIM7 clock enable"]
+  #[inline] pub fn set_tim7en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="TIM6 clock enable"]
+  #[inline] pub fn tim6en(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="TIM6 clock enable"]
+  #[inline] pub fn set_tim6en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM5 clock enable"]
+  #[inline] pub fn tim5en(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+#[doc="TIM5 clock enable"]
+  #[inline] pub fn set_tim5en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+#[doc="TIM4 clock enable"]
+  #[inline] pub fn tim4en(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="TIM4 clock enable"]
+  #[inline] pub fn set_tim4en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="TIM3 clock enable"]
+  #[inline] pub fn tim3en(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM3 clock enable"]
+  #[inline] pub fn set_tim3en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM2 clock enable"]
+  #[inline] pub fn tim2en(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM2 clock enable"]
+  #[inline] pub fn set_tim2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -3018,31 +2991,31 @@ impl ::core::fmt::Display for Apb1enr {
 impl ::core::fmt::Debug for Apb1enr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim2en() != 0 { try!(write!(f, " tim2en"))}
-      if self.tim3en() != 0 { try!(write!(f, " tim3en"))}
-      if self.tim4en() != 0 { try!(write!(f, " tim4en"))}
-      if self.tim5en() != 0 { try!(write!(f, " tim5en"))}
-      if self.tim6en() != 0 { try!(write!(f, " tim6en"))}
-      if self.tim7en() != 0 { try!(write!(f, " tim7en"))}
-      if self.tim12en() != 0 { try!(write!(f, " tim12en"))}
-      if self.tim13en() != 0 { try!(write!(f, " tim13en"))}
-      if self.tim14en() != 0 { try!(write!(f, " tim14en"))}
-      if self.wwdgen() != 0 { try!(write!(f, " wwdgen"))}
-      if self.spi2en() != 0 { try!(write!(f, " spi2en"))}
-      if self.spi3en() != 0 { try!(write!(f, " spi3en"))}
-      if self.usart2en() != 0 { try!(write!(f, " usart2en"))}
-      if self.usart3en() != 0 { try!(write!(f, " usart3en"))}
-      if self.uart4en() != 0 { try!(write!(f, " uart4en"))}
-      if self.uart5en() != 0 { try!(write!(f, " uart5en"))}
-      if self.i2c1en() != 0 { try!(write!(f, " i2c1en"))}
-      if self.i2c2en() != 0 { try!(write!(f, " i2c2en"))}
-      if self.i2c3en() != 0 { try!(write!(f, " i2c3en"))}
-      if self.can1en() != 0 { try!(write!(f, " can1en"))}
-      if self.can2en() != 0 { try!(write!(f, " can2en"))}
-      if self.pwren() != 0 { try!(write!(f, " pwren"))}
-      if self.dacen() != 0 { try!(write!(f, " dacen"))}
-      if self.uart7enr() != 0 { try!(write!(f, " uart7enr"))}
       if self.uart8enr() != 0 { try!(write!(f, " uart8enr"))}
+      if self.uart7enr() != 0 { try!(write!(f, " uart7enr"))}
+      if self.dacen() != 0 { try!(write!(f, " dacen"))}
+      if self.pwren() != 0 { try!(write!(f, " pwren"))}
+      if self.can2en() != 0 { try!(write!(f, " can2en"))}
+      if self.can1en() != 0 { try!(write!(f, " can1en"))}
+      if self.i2c3en() != 0 { try!(write!(f, " i2c3en"))}
+      if self.i2c2en() != 0 { try!(write!(f, " i2c2en"))}
+      if self.i2c1en() != 0 { try!(write!(f, " i2c1en"))}
+      if self.uart5en() != 0 { try!(write!(f, " uart5en"))}
+      if self.uart4en() != 0 { try!(write!(f, " uart4en"))}
+      if self.usart3en() != 0 { try!(write!(f, " usart3en"))}
+      if self.usart2en() != 0 { try!(write!(f, " usart2en"))}
+      if self.spi3en() != 0 { try!(write!(f, " spi3en"))}
+      if self.spi2en() != 0 { try!(write!(f, " spi2en"))}
+      if self.wwdgen() != 0 { try!(write!(f, " wwdgen"))}
+      if self.tim14en() != 0 { try!(write!(f, " tim14en"))}
+      if self.tim13en() != 0 { try!(write!(f, " tim13en"))}
+      if self.tim12en() != 0 { try!(write!(f, " tim12en"))}
+      if self.tim7en() != 0 { try!(write!(f, " tim7en"))}
+      if self.tim6en() != 0 { try!(write!(f, " tim6en"))}
+      if self.tim5en() != 0 { try!(write!(f, " tim5en"))}
+      if self.tim4en() != 0 { try!(write!(f, " tim4en"))}
+      if self.tim3en() != 0 { try!(write!(f, " tim3en"))}
+      if self.tim2en() != 0 { try!(write!(f, " tim2en"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3051,195 +3024,15 @@ impl ::core::fmt::Debug for Apb1enr {
 #[derive(PartialEq, Eq)]
 pub struct Apb2enr(pub u32);
 impl Apb2enr {
-#[doc="TIM1 clock enable"]
-  #[inline] pub fn tim1en(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="LTDC clock enable"]
+  #[inline] pub fn ltdcen(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="TIM1 clock enable"]
-  #[inline] pub fn set_tim1en(mut self, value: u32) -> Self {
+#[doc="LTDC clock enable"]
+  #[inline] pub fn set_ltdcen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM8 clock enable"]
-  #[inline] pub fn tim8en(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM8 clock enable"]
-  #[inline] pub fn set_tim8en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="USART1 clock enable"]
-  #[inline] pub fn usart1en(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="USART1 clock enable"]
-  #[inline] pub fn set_usart1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="USART6 clock enable"]
-  #[inline] pub fn usart6en(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="USART6 clock enable"]
-  #[inline] pub fn set_usart6en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="ADC1 clock enable"]
-  #[inline] pub fn adc1en(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="ADC1 clock enable"]
-  #[inline] pub fn set_adc1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="ADC2 clock enable"]
-  #[inline] pub fn adc2en(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-#[doc="ADC2 clock enable"]
-  #[inline] pub fn set_adc2en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-#[doc="ADC3 clock enable"]
-  #[inline] pub fn adc3en(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-#[doc="ADC3 clock enable"]
-  #[inline] pub fn set_adc3en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-#[doc="SDIO clock enable"]
-  #[inline] pub fn sdioen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="SDIO clock enable"]
-  #[inline] pub fn set_sdioen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI1 clock enable"]
-  #[inline] pub fn spi1en(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-#[doc="SPI1 clock enable"]
-  #[inline] pub fn set_spi1en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-#[doc="SPI4 clock enable"]
-  #[inline] pub fn spi4enr(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-#[doc="SPI4 clock enable"]
-  #[inline] pub fn set_spi4enr(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-#[doc="System configuration controller clock enable"]
-  #[inline] pub fn syscfgen(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="System configuration controller clock enable"]
-  #[inline] pub fn set_syscfgen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="TIM9 clock enable"]
-  #[inline] pub fn tim9en(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-#[doc="TIM9 clock enable"]
-  #[inline] pub fn set_tim9en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-#[doc="TIM10 clock enable"]
-  #[inline] pub fn tim10en(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="TIM10 clock enable"]
-  #[inline] pub fn set_tim10en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="TIM11 clock enable"]
-  #[inline] pub fn tim11en(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="TIM11 clock enable"]
-  #[inline] pub fn set_tim11en(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="SPI5 clock enable"]
-  #[inline] pub fn spi5enr(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="SPI5 clock enable"]
-  #[inline] pub fn set_spi5enr(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="SPI6 clock enable"]
-  #[inline] pub fn spi6enr(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="SPI6 clock enable"]
-  #[inline] pub fn set_spi6enr(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
      self
   }
 
@@ -3255,15 +3048,195 @@ impl Apb2enr {
      self
   }
 
-#[doc="LTDC clock enable"]
-  #[inline] pub fn ltdcen(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+#[doc="SPI6 clock enable"]
+  #[inline] pub fn spi6en(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="LTDC clock enable"]
-  #[inline] pub fn set_ltdcen(mut self, value: u32) -> Self {
+#[doc="SPI6 clock enable"]
+  #[inline] pub fn set_spi6en(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="SPI5 clock enable"]
+  #[inline] pub fn spi5en(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="SPI5 clock enable"]
+  #[inline] pub fn set_spi5en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="TIM11 clock enable"]
+  #[inline] pub fn tim11en(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="TIM11 clock enable"]
+  #[inline] pub fn set_tim11en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="TIM10 clock enable"]
+  #[inline] pub fn tim10en(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="TIM10 clock enable"]
+  #[inline] pub fn set_tim10en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="TIM9 clock enable"]
+  #[inline] pub fn tim9en(&self) -> u32 {
+     ((self.0 as u32) >> 16) & 0x1 // [16]
+  }
+#[doc="TIM9 clock enable"]
+  #[inline] pub fn set_tim9en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 16);
+     self.0 |= value << 16;
+     self
+  }
+
+#[doc="System configuration controller clock enable"]
+  #[inline] pub fn syscfgen(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="System configuration controller clock enable"]
+  #[inline] pub fn set_syscfgen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="SPI4 clock enable"]
+  #[inline] pub fn spi4en(&self) -> u32 {
+     ((self.0 as u32) >> 13) & 0x1 // [13]
+  }
+#[doc="SPI4 clock enable"]
+  #[inline] pub fn set_spi4en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 13);
+     self.0 |= value << 13;
+     self
+  }
+
+#[doc="SPI1 clock enable"]
+  #[inline] pub fn spi1en(&self) -> u32 {
+     ((self.0 as u32) >> 12) & 0x1 // [12]
+  }
+#[doc="SPI1 clock enable"]
+  #[inline] pub fn set_spi1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 12);
+     self.0 |= value << 12;
+     self
+  }
+
+#[doc="SDIO clock enable"]
+  #[inline] pub fn sdioen(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="SDIO clock enable"]
+  #[inline] pub fn set_sdioen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="ADC3 clock enable"]
+  #[inline] pub fn adc3en(&self) -> u32 {
+     ((self.0 as u32) >> 10) & 0x1 // [10]
+  }
+#[doc="ADC3 clock enable"]
+  #[inline] pub fn set_adc3en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 10);
+     self.0 |= value << 10;
+     self
+  }
+
+#[doc="ADC2 clock enable"]
+  #[inline] pub fn adc2en(&self) -> u32 {
+     ((self.0 as u32) >> 9) & 0x1 // [9]
+  }
+#[doc="ADC2 clock enable"]
+  #[inline] pub fn set_adc2en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 9);
+     self.0 |= value << 9;
+     self
+  }
+
+#[doc="ADC1 clock enable"]
+  #[inline] pub fn adc1en(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="ADC1 clock enable"]
+  #[inline] pub fn set_adc1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="USART6 clock enable"]
+  #[inline] pub fn usart6en(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="USART6 clock enable"]
+  #[inline] pub fn set_usart6en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="USART1 clock enable"]
+  #[inline] pub fn usart1en(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="USART1 clock enable"]
+  #[inline] pub fn set_usart1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM8 clock enable"]
+  #[inline] pub fn tim8en(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM8 clock enable"]
+  #[inline] pub fn set_tim8en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM1 clock enable"]
+  #[inline] pub fn tim1en(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM1 clock enable"]
+  #[inline] pub fn set_tim1en(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -3276,24 +3249,24 @@ impl ::core::fmt::Display for Apb2enr {
 impl ::core::fmt::Debug for Apb2enr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim1en() != 0 { try!(write!(f, " tim1en"))}
-      if self.tim8en() != 0 { try!(write!(f, " tim8en"))}
-      if self.usart1en() != 0 { try!(write!(f, " usart1en"))}
-      if self.usart6en() != 0 { try!(write!(f, " usart6en"))}
-      if self.adc1en() != 0 { try!(write!(f, " adc1en"))}
-      if self.adc2en() != 0 { try!(write!(f, " adc2en"))}
-      if self.adc3en() != 0 { try!(write!(f, " adc3en"))}
-      if self.sdioen() != 0 { try!(write!(f, " sdioen"))}
-      if self.spi1en() != 0 { try!(write!(f, " spi1en"))}
-      if self.spi4enr() != 0 { try!(write!(f, " spi4enr"))}
-      if self.syscfgen() != 0 { try!(write!(f, " syscfgen"))}
-      if self.tim9en() != 0 { try!(write!(f, " tim9en"))}
-      if self.tim10en() != 0 { try!(write!(f, " tim10en"))}
-      if self.tim11en() != 0 { try!(write!(f, " tim11en"))}
-      if self.spi5enr() != 0 { try!(write!(f, " spi5enr"))}
-      if self.spi6enr() != 0 { try!(write!(f, " spi6enr"))}
-      if self.sai1en() != 0 { try!(write!(f, " sai1en"))}
       if self.ltdcen() != 0 { try!(write!(f, " ltdcen"))}
+      if self.sai1en() != 0 { try!(write!(f, " sai1en"))}
+      if self.spi6en() != 0 { try!(write!(f, " spi6en"))}
+      if self.spi5en() != 0 { try!(write!(f, " spi5en"))}
+      if self.tim11en() != 0 { try!(write!(f, " tim11en"))}
+      if self.tim10en() != 0 { try!(write!(f, " tim10en"))}
+      if self.tim9en() != 0 { try!(write!(f, " tim9en"))}
+      if self.syscfgen() != 0 { try!(write!(f, " syscfgen"))}
+      if self.spi4en() != 0 { try!(write!(f, " spi4en"))}
+      if self.spi1en() != 0 { try!(write!(f, " spi1en"))}
+      if self.sdioen() != 0 { try!(write!(f, " sdioen"))}
+      if self.adc3en() != 0 { try!(write!(f, " adc3en"))}
+      if self.adc2en() != 0 { try!(write!(f, " adc2en"))}
+      if self.adc1en() != 0 { try!(write!(f, " adc1en"))}
+      if self.usart6en() != 0 { try!(write!(f, " usart6en"))}
+      if self.usart1en() != 0 { try!(write!(f, " usart1en"))}
+      if self.tim8en() != 0 { try!(write!(f, " tim8en"))}
+      if self.tim1en() != 0 { try!(write!(f, " tim1en"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3302,291 +3275,15 @@ impl ::core::fmt::Debug for Apb2enr {
 #[derive(PartialEq, Eq)]
 pub struct Ahb1lpenr(pub u32);
 impl Ahb1lpenr {
-#[doc="IO port A clock enable during sleep mode"]
-  #[inline] pub fn gpioalpen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="USB OTG HS ULPI clock enable during Sleep mode"]
+  #[inline] pub fn otghsulpilpen(&self) -> u32 {
+     ((self.0 as u32) >> 30) & 0x1 // [30]
   }
-#[doc="IO port A clock enable during sleep mode"]
-  #[inline] pub fn set_gpioalpen(mut self, value: u32) -> Self {
+#[doc="USB OTG HS ULPI clock enable during Sleep mode"]
+  #[inline] pub fn set_otghsulpilpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="IO port B clock enable during Sleep mode"]
-  #[inline] pub fn gpioblpen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="IO port B clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioblpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="IO port C clock enable during Sleep mode"]
-  #[inline] pub fn gpioclpen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="IO port C clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioclpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-#[doc="IO port D clock enable during Sleep mode"]
-  #[inline] pub fn gpiodlpen(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-#[doc="IO port D clock enable during Sleep mode"]
-  #[inline] pub fn set_gpiodlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="IO port E clock enable during Sleep mode"]
-  #[inline] pub fn gpioelpen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="IO port E clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioelpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="IO port F clock enable during Sleep mode"]
-  #[inline] pub fn gpioflpen(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="IO port F clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioflpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="IO port G clock enable during Sleep mode"]
-  #[inline] pub fn gpioglpen(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-#[doc="IO port G clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioglpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-#[doc="IO port H clock enable during Sleep mode"]
-  #[inline] pub fn gpiohlpen(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-#[doc="IO port H clock enable during Sleep mode"]
-  #[inline] pub fn set_gpiohlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-#[doc="IO port I clock enable during Sleep mode"]
-  #[inline] pub fn gpioilpen(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="IO port I clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioilpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="IO port J clock enable during Sleep mode"]
-  #[inline] pub fn gpiojlpen(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-#[doc="IO port J clock enable during Sleep mode"]
-  #[inline] pub fn set_gpiojlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-#[doc="IO port K clock enable during Sleep mode"]
-  #[inline] pub fn gpioklpen(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-#[doc="IO port K clock enable during Sleep mode"]
-  #[inline] pub fn set_gpioklpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-#[doc="CRC clock enable during Sleep mode"]
-  #[inline] pub fn crclpen(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-#[doc="CRC clock enable during Sleep mode"]
-  #[inline] pub fn set_crclpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-#[doc="Flash interface clock enable during Sleep mode"]
-  #[inline] pub fn flitflpen(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-#[doc="Flash interface clock enable during Sleep mode"]
-  #[inline] pub fn set_flitflpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-#[doc="SRAM 1interface clock enable during Sleep mode"]
-  #[inline] pub fn sram1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-#[doc="SRAM 1interface clock enable during Sleep mode"]
-  #[inline] pub fn set_sram1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-#[doc="SRAM 2 interface clock enable during Sleep mode"]
-  #[inline] pub fn sram2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="SRAM 2 interface clock enable during Sleep mode"]
-  #[inline] pub fn set_sram2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="Backup SRAM interface clock enable during Sleep mode"]
-  #[inline] pub fn bkpsramlpen(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="Backup SRAM interface clock enable during Sleep mode"]
-  #[inline] pub fn set_bkpsramlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="SRAM 3 interface clock enable during Sleep mode"]
-  #[inline] pub fn sram3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-#[doc="SRAM 3 interface clock enable during Sleep mode"]
-  #[inline] pub fn set_sram3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-#[doc="DMA1 clock enable during Sleep mode"]
-  #[inline] pub fn dma1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="DMA1 clock enable during Sleep mode"]
-  #[inline] pub fn set_dma1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
-     self
-  }
-
-#[doc="DMA2 clock enable during Sleep mode"]
-  #[inline] pub fn dma2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-#[doc="DMA2 clock enable during Sleep mode"]
-  #[inline] pub fn set_dma2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-#[doc="DMA2D clock enable during Sleep mode"]
-  #[inline] pub fn dma2dlpen(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
-  }
-#[doc="DMA2D clock enable during Sleep mode"]
-  #[inline] pub fn set_dma2dlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
-
-#[doc="Ethernet MAC clock enable during Sleep mode"]
-  #[inline] pub fn ethmaclpen(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-#[doc="Ethernet MAC clock enable during Sleep mode"]
-  #[inline] pub fn set_ethmaclpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-#[doc="Ethernet transmission clock enable during Sleep mode"]
-  #[inline] pub fn ethmactxlpen(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-#[doc="Ethernet transmission clock enable during Sleep mode"]
-  #[inline] pub fn set_ethmactxlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-#[doc="Ethernet reception clock enable during Sleep mode"]
-  #[inline] pub fn ethmacrxlpen(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
-  }
-#[doc="Ethernet reception clock enable during Sleep mode"]
-  #[inline] pub fn set_ethmacrxlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
-     self
-  }
-
-#[doc="Ethernet PTP clock enable during Sleep mode"]
-  #[inline] pub fn ethmacptplpen(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
-  }
-#[doc="Ethernet PTP clock enable during Sleep mode"]
-  #[inline] pub fn set_ethmacptplpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 28);
-     self.0 |= value << 28;
+     self.0 &= !(0x1 << 30);
+     self.0 |= value << 30;
      self
   }
 
@@ -3602,15 +3299,291 @@ impl Ahb1lpenr {
      self
   }
 
-#[doc="USB OTG HS ULPI clock enable during Sleep mode"]
-  #[inline] pub fn otghsulpilpen(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+#[doc="Ethernet PTP clock enable during Sleep mode"]
+  #[inline] pub fn ethmacptplpen(&self) -> u32 {
+     ((self.0 as u32) >> 28) & 0x1 // [28]
   }
-#[doc="USB OTG HS ULPI clock enable during Sleep mode"]
-  #[inline] pub fn set_otghsulpilpen(mut self, value: u32) -> Self {
+#[doc="Ethernet PTP clock enable during Sleep mode"]
+  #[inline] pub fn set_ethmacptplpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 30);
-     self.0 |= value << 30;
+     self.0 &= !(0x1 << 28);
+     self.0 |= value << 28;
+     self
+  }
+
+#[doc="Ethernet reception clock enable during Sleep mode"]
+  #[inline] pub fn ethmacrxlpen(&self) -> u32 {
+     ((self.0 as u32) >> 27) & 0x1 // [27]
+  }
+#[doc="Ethernet reception clock enable during Sleep mode"]
+  #[inline] pub fn set_ethmacrxlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 27);
+     self.0 |= value << 27;
+     self
+  }
+
+#[doc="Ethernet transmission clock enable during Sleep mode"]
+  #[inline] pub fn ethmactxlpen(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
+  }
+#[doc="Ethernet transmission clock enable during Sleep mode"]
+  #[inline] pub fn set_ethmactxlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
+     self
+  }
+
+#[doc="Ethernet MAC clock enable during Sleep mode"]
+  #[inline] pub fn ethmaclpen(&self) -> u32 {
+     ((self.0 as u32) >> 25) & 0x1 // [25]
+  }
+#[doc="Ethernet MAC clock enable during Sleep mode"]
+  #[inline] pub fn set_ethmaclpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 25);
+     self.0 |= value << 25;
+     self
+  }
+
+#[doc="DMA2D clock enable during Sleep mode"]
+  #[inline] pub fn dma2dlpen(&self) -> u32 {
+     ((self.0 as u32) >> 23) & 0x1 // [23]
+  }
+#[doc="DMA2D clock enable during Sleep mode"]
+  #[inline] pub fn set_dma2dlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
+     self
+  }
+
+#[doc="DMA2 clock enable during Sleep mode"]
+  #[inline] pub fn dma2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 22) & 0x1 // [22]
+  }
+#[doc="DMA2 clock enable during Sleep mode"]
+  #[inline] pub fn set_dma2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 22);
+     self.0 |= value << 22;
+     self
+  }
+
+#[doc="DMA1 clock enable during Sleep mode"]
+  #[inline] pub fn dma1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
+  }
+#[doc="DMA1 clock enable during Sleep mode"]
+  #[inline] pub fn set_dma1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="SRAM 3 interface clock enable during Sleep mode"]
+  #[inline] pub fn sram3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 19) & 0x1 // [19]
+  }
+#[doc="SRAM 3 interface clock enable during Sleep mode"]
+  #[inline] pub fn set_sram3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 19);
+     self.0 |= value << 19;
+     self
+  }
+
+#[doc="Backup SRAM interface clock enable during Sleep mode"]
+  #[inline] pub fn bkpsramlpen(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="Backup SRAM interface clock enable during Sleep mode"]
+  #[inline] pub fn set_bkpsramlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="SRAM 2 interface clock enable during Sleep mode"]
+  #[inline] pub fn sram2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="SRAM 2 interface clock enable during Sleep mode"]
+  #[inline] pub fn set_sram2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="SRAM 1interface clock enable during Sleep mode"]
+  #[inline] pub fn sram1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 16) & 0x1 // [16]
+  }
+#[doc="SRAM 1interface clock enable during Sleep mode"]
+  #[inline] pub fn set_sram1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 16);
+     self.0 |= value << 16;
+     self
+  }
+
+#[doc="Flash interface clock enable during Sleep mode"]
+  #[inline] pub fn flitflpen(&self) -> u32 {
+     ((self.0 as u32) >> 15) & 0x1 // [15]
+  }
+#[doc="Flash interface clock enable during Sleep mode"]
+  #[inline] pub fn set_flitflpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
+#[doc="CRC clock enable during Sleep mode"]
+  #[inline] pub fn crclpen(&self) -> u32 {
+     ((self.0 as u32) >> 12) & 0x1 // [12]
+  }
+#[doc="CRC clock enable during Sleep mode"]
+  #[inline] pub fn set_crclpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 12);
+     self.0 |= value << 12;
+     self
+  }
+
+#[doc="IO port K clock enable during Sleep mode"]
+  #[inline] pub fn gpioklpen(&self) -> u32 {
+     ((self.0 as u32) >> 10) & 0x1 // [10]
+  }
+#[doc="IO port K clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioklpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 10);
+     self.0 |= value << 10;
+     self
+  }
+
+#[doc="IO port J clock enable during Sleep mode"]
+  #[inline] pub fn gpiojlpen(&self) -> u32 {
+     ((self.0 as u32) >> 9) & 0x1 // [9]
+  }
+#[doc="IO port J clock enable during Sleep mode"]
+  #[inline] pub fn set_gpiojlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 9);
+     self.0 |= value << 9;
+     self
+  }
+
+#[doc="IO port I clock enable during Sleep mode"]
+  #[inline] pub fn gpioilpen(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="IO port I clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioilpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="IO port H clock enable during Sleep mode"]
+  #[inline] pub fn gpiohlpen(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="IO port H clock enable during Sleep mode"]
+  #[inline] pub fn set_gpiohlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="IO port G clock enable during Sleep mode"]
+  #[inline] pub fn gpioglpen(&self) -> u32 {
+     ((self.0 as u32) >> 6) & 0x1 // [6]
+  }
+#[doc="IO port G clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioglpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 6);
+     self.0 |= value << 6;
+     self
+  }
+
+#[doc="IO port F clock enable during Sleep mode"]
+  #[inline] pub fn gpioflpen(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="IO port F clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioflpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="IO port E clock enable during Sleep mode"]
+  #[inline] pub fn gpioelpen(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="IO port E clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioelpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="IO port D clock enable during Sleep mode"]
+  #[inline] pub fn gpiodlpen(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+#[doc="IO port D clock enable during Sleep mode"]
+  #[inline] pub fn set_gpiodlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+#[doc="IO port C clock enable during Sleep mode"]
+  #[inline] pub fn gpioclpen(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="IO port C clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioclpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="IO port B clock enable during Sleep mode"]
+  #[inline] pub fn gpioblpen(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="IO port B clock enable during Sleep mode"]
+  #[inline] pub fn set_gpioblpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="IO port A clock enable during sleep mode"]
+  #[inline] pub fn gpioalpen(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="IO port A clock enable during sleep mode"]
+  #[inline] pub fn set_gpioalpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -3623,32 +3596,32 @@ impl ::core::fmt::Display for Ahb1lpenr {
 impl ::core::fmt::Debug for Ahb1lpenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.gpioalpen() != 0 { try!(write!(f, " gpioalpen"))}
-      if self.gpioblpen() != 0 { try!(write!(f, " gpioblpen"))}
-      if self.gpioclpen() != 0 { try!(write!(f, " gpioclpen"))}
-      if self.gpiodlpen() != 0 { try!(write!(f, " gpiodlpen"))}
-      if self.gpioelpen() != 0 { try!(write!(f, " gpioelpen"))}
-      if self.gpioflpen() != 0 { try!(write!(f, " gpioflpen"))}
-      if self.gpioglpen() != 0 { try!(write!(f, " gpioglpen"))}
-      if self.gpiohlpen() != 0 { try!(write!(f, " gpiohlpen"))}
-      if self.gpioilpen() != 0 { try!(write!(f, " gpioilpen"))}
-      if self.gpiojlpen() != 0 { try!(write!(f, " gpiojlpen"))}
-      if self.gpioklpen() != 0 { try!(write!(f, " gpioklpen"))}
-      if self.crclpen() != 0 { try!(write!(f, " crclpen"))}
-      if self.flitflpen() != 0 { try!(write!(f, " flitflpen"))}
-      if self.sram1lpen() != 0 { try!(write!(f, " sram1lpen"))}
-      if self.sram2lpen() != 0 { try!(write!(f, " sram2lpen"))}
-      if self.bkpsramlpen() != 0 { try!(write!(f, " bkpsramlpen"))}
-      if self.sram3lpen() != 0 { try!(write!(f, " sram3lpen"))}
-      if self.dma1lpen() != 0 { try!(write!(f, " dma1lpen"))}
-      if self.dma2lpen() != 0 { try!(write!(f, " dma2lpen"))}
-      if self.dma2dlpen() != 0 { try!(write!(f, " dma2dlpen"))}
-      if self.ethmaclpen() != 0 { try!(write!(f, " ethmaclpen"))}
-      if self.ethmactxlpen() != 0 { try!(write!(f, " ethmactxlpen"))}
-      if self.ethmacrxlpen() != 0 { try!(write!(f, " ethmacrxlpen"))}
-      if self.ethmacptplpen() != 0 { try!(write!(f, " ethmacptplpen"))}
-      if self.otghslpen() != 0 { try!(write!(f, " otghslpen"))}
       if self.otghsulpilpen() != 0 { try!(write!(f, " otghsulpilpen"))}
+      if self.otghslpen() != 0 { try!(write!(f, " otghslpen"))}
+      if self.ethmacptplpen() != 0 { try!(write!(f, " ethmacptplpen"))}
+      if self.ethmacrxlpen() != 0 { try!(write!(f, " ethmacrxlpen"))}
+      if self.ethmactxlpen() != 0 { try!(write!(f, " ethmactxlpen"))}
+      if self.ethmaclpen() != 0 { try!(write!(f, " ethmaclpen"))}
+      if self.dma2dlpen() != 0 { try!(write!(f, " dma2dlpen"))}
+      if self.dma2lpen() != 0 { try!(write!(f, " dma2lpen"))}
+      if self.dma1lpen() != 0 { try!(write!(f, " dma1lpen"))}
+      if self.sram3lpen() != 0 { try!(write!(f, " sram3lpen"))}
+      if self.bkpsramlpen() != 0 { try!(write!(f, " bkpsramlpen"))}
+      if self.sram2lpen() != 0 { try!(write!(f, " sram2lpen"))}
+      if self.sram1lpen() != 0 { try!(write!(f, " sram1lpen"))}
+      if self.flitflpen() != 0 { try!(write!(f, " flitflpen"))}
+      if self.crclpen() != 0 { try!(write!(f, " crclpen"))}
+      if self.gpioklpen() != 0 { try!(write!(f, " gpioklpen"))}
+      if self.gpiojlpen() != 0 { try!(write!(f, " gpiojlpen"))}
+      if self.gpioilpen() != 0 { try!(write!(f, " gpioilpen"))}
+      if self.gpiohlpen() != 0 { try!(write!(f, " gpiohlpen"))}
+      if self.gpioglpen() != 0 { try!(write!(f, " gpioglpen"))}
+      if self.gpioflpen() != 0 { try!(write!(f, " gpioflpen"))}
+      if self.gpioelpen() != 0 { try!(write!(f, " gpioelpen"))}
+      if self.gpiodlpen() != 0 { try!(write!(f, " gpiodlpen"))}
+      if self.gpioclpen() != 0 { try!(write!(f, " gpioclpen"))}
+      if self.gpioblpen() != 0 { try!(write!(f, " gpioblpen"))}
+      if self.gpioalpen() != 0 { try!(write!(f, " gpioalpen"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3743,279 +3716,15 @@ impl ::core::fmt::Debug for Ahb3lpenr {
 #[derive(PartialEq, Eq)]
 pub struct Apb1lpenr(pub u32);
 impl Apb1lpenr {
-#[doc="TIM2 clock enable during Sleep mode"]
-  #[inline] pub fn tim2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="UART8 clock enable during Sleep mode"]
+  #[inline] pub fn uart8lpen(&self) -> u32 {
+     ((self.0 as u32) >> 31) & 0x1 // [31]
   }
-#[doc="TIM2 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim2lpen(mut self, value: u32) -> Self {
+#[doc="UART8 clock enable during Sleep mode"]
+  #[inline] pub fn set_uart8lpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM3 clock enable during Sleep mode"]
-  #[inline] pub fn tim3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM3 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="TIM4 clock enable during Sleep mode"]
-  #[inline] pub fn tim4lpen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="TIM4 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim4lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
-
-#[doc="TIM5 clock enable during Sleep mode"]
-  #[inline] pub fn tim5lpen(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
-  }
-#[doc="TIM5 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim5lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="TIM6 clock enable during Sleep mode"]
-  #[inline] pub fn tim6lpen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="TIM6 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim6lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="TIM7 clock enable during Sleep mode"]
-  #[inline] pub fn tim7lpen(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="TIM7 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim7lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="TIM12 clock enable during Sleep mode"]
-  #[inline] pub fn tim12lpen(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
-  }
-#[doc="TIM12 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim12lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
-
-#[doc="TIM13 clock enable during Sleep mode"]
-  #[inline] pub fn tim13lpen(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
-  }
-#[doc="TIM13 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim13lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
-
-#[doc="TIM14 clock enable during Sleep mode"]
-  #[inline] pub fn tim14lpen(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="TIM14 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim14lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="Window watchdog clock enable during Sleep mode"]
-  #[inline] pub fn wwdglpen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="Window watchdog clock enable during Sleep mode"]
-  #[inline] pub fn set_wwdglpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI2 clock enable during Sleep mode"]
-  #[inline] pub fn spi2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="SPI2 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="SPI3 clock enable during Sleep mode"]
-  #[inline] pub fn spi3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
-  }
-#[doc="SPI3 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 15);
-     self.0 |= value << 15;
-     self
-  }
-
-#[doc="USART2 clock enable during Sleep mode"]
-  #[inline] pub fn usart2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="USART2 clock enable during Sleep mode"]
-  #[inline] pub fn set_usart2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="USART3 clock enable during Sleep mode"]
-  #[inline] pub fn usart3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="USART3 clock enable during Sleep mode"]
-  #[inline] pub fn set_usart3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="UART4 clock enable during Sleep mode"]
-  #[inline] pub fn uart4lpen(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
-  }
-#[doc="UART4 clock enable during Sleep mode"]
-  #[inline] pub fn set_uart4lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
-#[doc="UART5 clock enable during Sleep mode"]
-  #[inline] pub fn uart5lpen(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="UART5 clock enable during Sleep mode"]
-  #[inline] pub fn set_uart5lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="I2C1 clock enable during Sleep mode"]
-  #[inline] pub fn i2c1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="I2C1 clock enable during Sleep mode"]
-  #[inline] pub fn set_i2c1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
-     self
-  }
-
-#[doc="I2C2 clock enable during Sleep mode"]
-  #[inline] pub fn i2c2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
-  }
-#[doc="I2C2 clock enable during Sleep mode"]
-  #[inline] pub fn set_i2c2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 22);
-     self.0 |= value << 22;
-     self
-  }
-
-#[doc="I2C3 clock enable during Sleep mode"]
-  #[inline] pub fn i2c3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
-  }
-#[doc="I2C3 clock enable during Sleep mode"]
-  #[inline] pub fn set_i2c3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
-
-#[doc="CAN 1 clock enable during Sleep mode"]
-  #[inline] pub fn can1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
-  }
-#[doc="CAN 1 clock enable during Sleep mode"]
-  #[inline] pub fn set_can1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 25);
-     self.0 |= value << 25;
-     self
-  }
-
-#[doc="CAN 2 clock enable during Sleep mode"]
-  #[inline] pub fn can2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
-  }
-#[doc="CAN 2 clock enable during Sleep mode"]
-  #[inline] pub fn set_can2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-#[doc="Power interface clock enable during Sleep mode"]
-  #[inline] pub fn pwrlpen(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
-  }
-#[doc="Power interface clock enable during Sleep mode"]
-  #[inline] pub fn set_pwrlpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 28);
-     self.0 |= value << 28;
-     self
-  }
-
-#[doc="DAC interface clock enable during Sleep mode"]
-  #[inline] pub fn daclpen(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
-  }
-#[doc="DAC interface clock enable during Sleep mode"]
-  #[inline] pub fn set_daclpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 29);
-     self.0 |= value << 29;
+     self.0 &= !(0x1 << 31);
+     self.0 |= value << 31;
      self
   }
 
@@ -4031,15 +3740,279 @@ impl Apb1lpenr {
      self
   }
 
-#[doc="UART8 clock enable during Sleep mode"]
-  #[inline] pub fn uart8lpen(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+#[doc="DAC interface clock enable during Sleep mode"]
+  #[inline] pub fn daclpen(&self) -> u32 {
+     ((self.0 as u32) >> 29) & 0x1 // [29]
   }
-#[doc="UART8 clock enable during Sleep mode"]
-  #[inline] pub fn set_uart8lpen(mut self, value: u32) -> Self {
+#[doc="DAC interface clock enable during Sleep mode"]
+  #[inline] pub fn set_daclpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 31);
-     self.0 |= value << 31;
+     self.0 &= !(0x1 << 29);
+     self.0 |= value << 29;
+     self
+  }
+
+#[doc="Power interface clock enable during Sleep mode"]
+  #[inline] pub fn pwrlpen(&self) -> u32 {
+     ((self.0 as u32) >> 28) & 0x1 // [28]
+  }
+#[doc="Power interface clock enable during Sleep mode"]
+  #[inline] pub fn set_pwrlpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 28);
+     self.0 |= value << 28;
+     self
+  }
+
+#[doc="CAN 2 clock enable during Sleep mode"]
+  #[inline] pub fn can2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
+  }
+#[doc="CAN 2 clock enable during Sleep mode"]
+  #[inline] pub fn set_can2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
+     self
+  }
+
+#[doc="CAN 1 clock enable during Sleep mode"]
+  #[inline] pub fn can1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 25) & 0x1 // [25]
+  }
+#[doc="CAN 1 clock enable during Sleep mode"]
+  #[inline] pub fn set_can1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 25);
+     self.0 |= value << 25;
+     self
+  }
+
+#[doc="I2C3 clock enable during Sleep mode"]
+  #[inline] pub fn i2c3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 23) & 0x1 // [23]
+  }
+#[doc="I2C3 clock enable during Sleep mode"]
+  #[inline] pub fn set_i2c3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
+     self
+  }
+
+#[doc="I2C2 clock enable during Sleep mode"]
+  #[inline] pub fn i2c2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 22) & 0x1 // [22]
+  }
+#[doc="I2C2 clock enable during Sleep mode"]
+  #[inline] pub fn set_i2c2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 22);
+     self.0 |= value << 22;
+     self
+  }
+
+#[doc="I2C1 clock enable during Sleep mode"]
+  #[inline] pub fn i2c1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
+  }
+#[doc="I2C1 clock enable during Sleep mode"]
+  #[inline] pub fn set_i2c1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="UART5 clock enable during Sleep mode"]
+  #[inline] pub fn uart5lpen(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="UART5 clock enable during Sleep mode"]
+  #[inline] pub fn set_uart5lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="UART4 clock enable during Sleep mode"]
+  #[inline] pub fn uart4lpen(&self) -> u32 {
+     ((self.0 as u32) >> 19) & 0x1 // [19]
+  }
+#[doc="UART4 clock enable during Sleep mode"]
+  #[inline] pub fn set_uart4lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 19);
+     self.0 |= value << 19;
+     self
+  }
+
+#[doc="USART3 clock enable during Sleep mode"]
+  #[inline] pub fn usart3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="USART3 clock enable during Sleep mode"]
+  #[inline] pub fn set_usart3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="USART2 clock enable during Sleep mode"]
+  #[inline] pub fn usart2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="USART2 clock enable during Sleep mode"]
+  #[inline] pub fn set_usart2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="SPI3 clock enable during Sleep mode"]
+  #[inline] pub fn spi3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 15) & 0x1 // [15]
+  }
+#[doc="SPI3 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
+#[doc="SPI2 clock enable during Sleep mode"]
+  #[inline] pub fn spi2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="SPI2 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="Window watchdog clock enable during Sleep mode"]
+  #[inline] pub fn wwdglpen(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="Window watchdog clock enable during Sleep mode"]
+  #[inline] pub fn set_wwdglpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="TIM14 clock enable during Sleep mode"]
+  #[inline] pub fn tim14lpen(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="TIM14 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim14lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="TIM13 clock enable during Sleep mode"]
+  #[inline] pub fn tim13lpen(&self) -> u32 {
+     ((self.0 as u32) >> 7) & 0x1 // [7]
+  }
+#[doc="TIM13 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim13lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 7);
+     self.0 |= value << 7;
+     self
+  }
+
+#[doc="TIM12 clock enable during Sleep mode"]
+  #[inline] pub fn tim12lpen(&self) -> u32 {
+     ((self.0 as u32) >> 6) & 0x1 // [6]
+  }
+#[doc="TIM12 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim12lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 6);
+     self.0 |= value << 6;
+     self
+  }
+
+#[doc="TIM7 clock enable during Sleep mode"]
+  #[inline] pub fn tim7lpen(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="TIM7 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim7lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="TIM6 clock enable during Sleep mode"]
+  #[inline] pub fn tim6lpen(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="TIM6 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim6lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM5 clock enable during Sleep mode"]
+  #[inline] pub fn tim5lpen(&self) -> u32 {
+     ((self.0 as u32) >> 3) & 0x1 // [3]
+  }
+#[doc="TIM5 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim5lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 3);
+     self.0 |= value << 3;
+     self
+  }
+
+#[doc="TIM4 clock enable during Sleep mode"]
+  #[inline] pub fn tim4lpen(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x1 // [2]
+  }
+#[doc="TIM4 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim4lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 2);
+     self.0 |= value << 2;
+     self
+  }
+
+#[doc="TIM3 clock enable during Sleep mode"]
+  #[inline] pub fn tim3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM3 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM2 clock enable during Sleep mode"]
+  #[inline] pub fn tim2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM2 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -4052,31 +4025,31 @@ impl ::core::fmt::Display for Apb1lpenr {
 impl ::core::fmt::Debug for Apb1lpenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim2lpen() != 0 { try!(write!(f, " tim2lpen"))}
-      if self.tim3lpen() != 0 { try!(write!(f, " tim3lpen"))}
-      if self.tim4lpen() != 0 { try!(write!(f, " tim4lpen"))}
-      if self.tim5lpen() != 0 { try!(write!(f, " tim5lpen"))}
-      if self.tim6lpen() != 0 { try!(write!(f, " tim6lpen"))}
-      if self.tim7lpen() != 0 { try!(write!(f, " tim7lpen"))}
-      if self.tim12lpen() != 0 { try!(write!(f, " tim12lpen"))}
-      if self.tim13lpen() != 0 { try!(write!(f, " tim13lpen"))}
-      if self.tim14lpen() != 0 { try!(write!(f, " tim14lpen"))}
-      if self.wwdglpen() != 0 { try!(write!(f, " wwdglpen"))}
-      if self.spi2lpen() != 0 { try!(write!(f, " spi2lpen"))}
-      if self.spi3lpen() != 0 { try!(write!(f, " spi3lpen"))}
-      if self.usart2lpen() != 0 { try!(write!(f, " usart2lpen"))}
-      if self.usart3lpen() != 0 { try!(write!(f, " usart3lpen"))}
-      if self.uart4lpen() != 0 { try!(write!(f, " uart4lpen"))}
-      if self.uart5lpen() != 0 { try!(write!(f, " uart5lpen"))}
-      if self.i2c1lpen() != 0 { try!(write!(f, " i2c1lpen"))}
-      if self.i2c2lpen() != 0 { try!(write!(f, " i2c2lpen"))}
-      if self.i2c3lpen() != 0 { try!(write!(f, " i2c3lpen"))}
-      if self.can1lpen() != 0 { try!(write!(f, " can1lpen"))}
-      if self.can2lpen() != 0 { try!(write!(f, " can2lpen"))}
-      if self.pwrlpen() != 0 { try!(write!(f, " pwrlpen"))}
-      if self.daclpen() != 0 { try!(write!(f, " daclpen"))}
-      if self.uart7lpen() != 0 { try!(write!(f, " uart7lpen"))}
       if self.uart8lpen() != 0 { try!(write!(f, " uart8lpen"))}
+      if self.uart7lpen() != 0 { try!(write!(f, " uart7lpen"))}
+      if self.daclpen() != 0 { try!(write!(f, " daclpen"))}
+      if self.pwrlpen() != 0 { try!(write!(f, " pwrlpen"))}
+      if self.can2lpen() != 0 { try!(write!(f, " can2lpen"))}
+      if self.can1lpen() != 0 { try!(write!(f, " can1lpen"))}
+      if self.i2c3lpen() != 0 { try!(write!(f, " i2c3lpen"))}
+      if self.i2c2lpen() != 0 { try!(write!(f, " i2c2lpen"))}
+      if self.i2c1lpen() != 0 { try!(write!(f, " i2c1lpen"))}
+      if self.uart5lpen() != 0 { try!(write!(f, " uart5lpen"))}
+      if self.uart4lpen() != 0 { try!(write!(f, " uart4lpen"))}
+      if self.usart3lpen() != 0 { try!(write!(f, " usart3lpen"))}
+      if self.usart2lpen() != 0 { try!(write!(f, " usart2lpen"))}
+      if self.spi3lpen() != 0 { try!(write!(f, " spi3lpen"))}
+      if self.spi2lpen() != 0 { try!(write!(f, " spi2lpen"))}
+      if self.wwdglpen() != 0 { try!(write!(f, " wwdglpen"))}
+      if self.tim14lpen() != 0 { try!(write!(f, " tim14lpen"))}
+      if self.tim13lpen() != 0 { try!(write!(f, " tim13lpen"))}
+      if self.tim12lpen() != 0 { try!(write!(f, " tim12lpen"))}
+      if self.tim7lpen() != 0 { try!(write!(f, " tim7lpen"))}
+      if self.tim6lpen() != 0 { try!(write!(f, " tim6lpen"))}
+      if self.tim5lpen() != 0 { try!(write!(f, " tim5lpen"))}
+      if self.tim4lpen() != 0 { try!(write!(f, " tim4lpen"))}
+      if self.tim3lpen() != 0 { try!(write!(f, " tim3lpen"))}
+      if self.tim2lpen() != 0 { try!(write!(f, " tim2lpen"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -4085,195 +4058,15 @@ impl ::core::fmt::Debug for Apb1lpenr {
 #[derive(PartialEq, Eq)]
 pub struct Apb2lpenr(pub u32);
 impl Apb2lpenr {
-#[doc="TIM1 clock enable during Sleep mode"]
-  #[inline] pub fn tim1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+#[doc="LTDC clock enable"]
+  #[inline] pub fn ltdclpen(&self) -> u32 {
+     ((self.0 as u32) >> 26) & 0x1 // [26]
   }
-#[doc="TIM1 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim1lpen(mut self, value: u32) -> Self {
+#[doc="LTDC clock enable"]
+  #[inline] pub fn set_ltdclpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="TIM8 clock enable during Sleep mode"]
-  #[inline] pub fn tim8lpen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
-  }
-#[doc="TIM8 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim8lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="USART1 clock enable during Sleep mode"]
-  #[inline] pub fn usart1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
-  }
-#[doc="USART1 clock enable during Sleep mode"]
-  #[inline] pub fn set_usart1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
-
-#[doc="USART6 clock enable during Sleep mode"]
-  #[inline] pub fn usart6lpen(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
-  }
-#[doc="USART6 clock enable during Sleep mode"]
-  #[inline] pub fn set_usart6lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 5);
-     self.0 |= value << 5;
-     self
-  }
-
-#[doc="ADC1 clock enable during Sleep mode"]
-  #[inline] pub fn adc1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
-  }
-#[doc="ADC1 clock enable during Sleep mode"]
-  #[inline] pub fn set_adc1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
-
-#[doc="ADC2 clock enable during Sleep mode"]
-  #[inline] pub fn adc2lpen(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
-  }
-#[doc="ADC2 clock enable during Sleep mode"]
-  #[inline] pub fn set_adc2lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
-
-#[doc="ADC 3 clock enable during Sleep mode"]
-  #[inline] pub fn adc3lpen(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
-  }
-#[doc="ADC 3 clock enable during Sleep mode"]
-  #[inline] pub fn set_adc3lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-#[doc="SDIO clock enable during Sleep mode"]
-  #[inline] pub fn sdiolpen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
-  }
-#[doc="SDIO clock enable during Sleep mode"]
-  #[inline] pub fn set_sdiolpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 11);
-     self.0 |= value << 11;
-     self
-  }
-
-#[doc="SPI 1 clock enable during Sleep mode"]
-  #[inline] pub fn spi1lpen(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
-  }
-#[doc="SPI 1 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi1lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
-
-#[doc="SPI 4 clock enable during Sleep mode"]
-  #[inline] pub fn spi4lpen(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
-  }
-#[doc="SPI 4 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi4lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
-
-#[doc="System configuration controller clock enable during Sleep mode"]
-  #[inline] pub fn syscfglpen(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
-  }
-#[doc="System configuration controller clock enable during Sleep mode"]
-  #[inline] pub fn set_syscfglpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 14);
-     self.0 |= value << 14;
-     self
-  }
-
-#[doc="TIM9 clock enable during sleep mode"]
-  #[inline] pub fn tim9lpen(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
-  }
-#[doc="TIM9 clock enable during sleep mode"]
-  #[inline] pub fn set_tim9lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
-
-#[doc="TIM10 clock enable during Sleep mode"]
-  #[inline] pub fn tim10lpen(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
-  }
-#[doc="TIM10 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim10lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="TIM11 clock enable during Sleep mode"]
-  #[inline] pub fn tim11lpen(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
-  }
-#[doc="TIM11 clock enable during Sleep mode"]
-  #[inline] pub fn set_tim11lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="SPI 5 clock enable during Sleep mode"]
-  #[inline] pub fn spi5lpen(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
-  }
-#[doc="SPI 5 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi5lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 20);
-     self.0 |= value << 20;
-     self
-  }
-
-#[doc="SPI 6 clock enable during Sleep mode"]
-  #[inline] pub fn spi6lpen(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
-  }
-#[doc="SPI 6 clock enable during Sleep mode"]
-  #[inline] pub fn set_spi6lpen(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 21);
-     self.0 |= value << 21;
+     self.0 &= !(0x1 << 26);
+     self.0 |= value << 26;
      self
   }
 
@@ -4289,15 +4082,195 @@ impl Apb2lpenr {
      self
   }
 
-#[doc="LTDC clock enable"]
-  #[inline] pub fn ltdclpen(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+#[doc="SPI 6 clock enable during Sleep mode"]
+  #[inline] pub fn spi6lpen(&self) -> u32 {
+     ((self.0 as u32) >> 21) & 0x1 // [21]
   }
-#[doc="LTDC clock enable"]
-  #[inline] pub fn set_ltdclpen(mut self, value: u32) -> Self {
+#[doc="SPI 6 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi6lpen(mut self, value: u32) -> Self {
      assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="SPI 5 clock enable during Sleep mode"]
+  #[inline] pub fn spi5lpen(&self) -> u32 {
+     ((self.0 as u32) >> 20) & 0x1 // [20]
+  }
+#[doc="SPI 5 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi5lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 20);
+     self.0 |= value << 20;
+     self
+  }
+
+#[doc="TIM11 clock enable during Sleep mode"]
+  #[inline] pub fn tim11lpen(&self) -> u32 {
+     ((self.0 as u32) >> 18) & 0x1 // [18]
+  }
+#[doc="TIM11 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim11lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 18);
+     self.0 |= value << 18;
+     self
+  }
+
+#[doc="TIM10 clock enable during Sleep mode"]
+  #[inline] pub fn tim10lpen(&self) -> u32 {
+     ((self.0 as u32) >> 17) & 0x1 // [17]
+  }
+#[doc="TIM10 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim10lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="TIM9 clock enable during sleep mode"]
+  #[inline] pub fn tim9lpen(&self) -> u32 {
+     ((self.0 as u32) >> 16) & 0x1 // [16]
+  }
+#[doc="TIM9 clock enable during sleep mode"]
+  #[inline] pub fn set_tim9lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 16);
+     self.0 |= value << 16;
+     self
+  }
+
+#[doc="System configuration controller clock enable during Sleep mode"]
+  #[inline] pub fn syscfglpen(&self) -> u32 {
+     ((self.0 as u32) >> 14) & 0x1 // [14]
+  }
+#[doc="System configuration controller clock enable during Sleep mode"]
+  #[inline] pub fn set_syscfglpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 14);
+     self.0 |= value << 14;
+     self
+  }
+
+#[doc="SPI 4 clock enable during Sleep mode"]
+  #[inline] pub fn spi4lpen(&self) -> u32 {
+     ((self.0 as u32) >> 13) & 0x1 // [13]
+  }
+#[doc="SPI 4 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi4lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 13);
+     self.0 |= value << 13;
+     self
+  }
+
+#[doc="SPI 1 clock enable during Sleep mode"]
+  #[inline] pub fn spi1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 12) & 0x1 // [12]
+  }
+#[doc="SPI 1 clock enable during Sleep mode"]
+  #[inline] pub fn set_spi1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 12);
+     self.0 |= value << 12;
+     self
+  }
+
+#[doc="SDIO clock enable during Sleep mode"]
+  #[inline] pub fn sdiolpen(&self) -> u32 {
+     ((self.0 as u32) >> 11) & 0x1 // [11]
+  }
+#[doc="SDIO clock enable during Sleep mode"]
+  #[inline] pub fn set_sdiolpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 11);
+     self.0 |= value << 11;
+     self
+  }
+
+#[doc="ADC 3 clock enable during Sleep mode"]
+  #[inline] pub fn adc3lpen(&self) -> u32 {
+     ((self.0 as u32) >> 10) & 0x1 // [10]
+  }
+#[doc="ADC 3 clock enable during Sleep mode"]
+  #[inline] pub fn set_adc3lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 10);
+     self.0 |= value << 10;
+     self
+  }
+
+#[doc="ADC2 clock enable during Sleep mode"]
+  #[inline] pub fn adc2lpen(&self) -> u32 {
+     ((self.0 as u32) >> 9) & 0x1 // [9]
+  }
+#[doc="ADC2 clock enable during Sleep mode"]
+  #[inline] pub fn set_adc2lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 9);
+     self.0 |= value << 9;
+     self
+  }
+
+#[doc="ADC1 clock enable during Sleep mode"]
+  #[inline] pub fn adc1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 8) & 0x1 // [8]
+  }
+#[doc="ADC1 clock enable during Sleep mode"]
+  #[inline] pub fn set_adc1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 8);
+     self.0 |= value << 8;
+     self
+  }
+
+#[doc="USART6 clock enable during Sleep mode"]
+  #[inline] pub fn usart6lpen(&self) -> u32 {
+     ((self.0 as u32) >> 5) & 0x1 // [5]
+  }
+#[doc="USART6 clock enable during Sleep mode"]
+  #[inline] pub fn set_usart6lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 5);
+     self.0 |= value << 5;
+     self
+  }
+
+#[doc="USART1 clock enable during Sleep mode"]
+  #[inline] pub fn usart1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 4) & 0x1 // [4]
+  }
+#[doc="USART1 clock enable during Sleep mode"]
+  #[inline] pub fn set_usart1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 4);
+     self.0 |= value << 4;
+     self
+  }
+
+#[doc="TIM8 clock enable during Sleep mode"]
+  #[inline] pub fn tim8lpen(&self) -> u32 {
+     ((self.0 as u32) >> 1) & 0x1 // [1]
+  }
+#[doc="TIM8 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim8lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 1);
+     self.0 |= value << 1;
+     self
+  }
+
+#[doc="TIM1 clock enable during Sleep mode"]
+  #[inline] pub fn tim1lpen(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x1 // [0]
+  }
+#[doc="TIM1 clock enable during Sleep mode"]
+  #[inline] pub fn set_tim1lpen(mut self, value: u32) -> Self {
+     assert!((value & !0x1) == 0);
+     self.0 &= !(0x1 << 0);
+     self.0 |= value << 0;
      self
   }
 
@@ -4310,24 +4283,24 @@ impl ::core::fmt::Display for Apb2lpenr {
 impl ::core::fmt::Debug for Apb2lpenr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.tim1lpen() != 0 { try!(write!(f, " tim1lpen"))}
-      if self.tim8lpen() != 0 { try!(write!(f, " tim8lpen"))}
-      if self.usart1lpen() != 0 { try!(write!(f, " usart1lpen"))}
-      if self.usart6lpen() != 0 { try!(write!(f, " usart6lpen"))}
-      if self.adc1lpen() != 0 { try!(write!(f, " adc1lpen"))}
-      if self.adc2lpen() != 0 { try!(write!(f, " adc2lpen"))}
-      if self.adc3lpen() != 0 { try!(write!(f, " adc3lpen"))}
-      if self.sdiolpen() != 0 { try!(write!(f, " sdiolpen"))}
-      if self.spi1lpen() != 0 { try!(write!(f, " spi1lpen"))}
-      if self.spi4lpen() != 0 { try!(write!(f, " spi4lpen"))}
-      if self.syscfglpen() != 0 { try!(write!(f, " syscfglpen"))}
-      if self.tim9lpen() != 0 { try!(write!(f, " tim9lpen"))}
-      if self.tim10lpen() != 0 { try!(write!(f, " tim10lpen"))}
-      if self.tim11lpen() != 0 { try!(write!(f, " tim11lpen"))}
-      if self.spi5lpen() != 0 { try!(write!(f, " spi5lpen"))}
-      if self.spi6lpen() != 0 { try!(write!(f, " spi6lpen"))}
-      if self.sai1lpen() != 0 { try!(write!(f, " sai1lpen"))}
       if self.ltdclpen() != 0 { try!(write!(f, " ltdclpen"))}
+      if self.sai1lpen() != 0 { try!(write!(f, " sai1lpen"))}
+      if self.spi6lpen() != 0 { try!(write!(f, " spi6lpen"))}
+      if self.spi5lpen() != 0 { try!(write!(f, " spi5lpen"))}
+      if self.tim11lpen() != 0 { try!(write!(f, " tim11lpen"))}
+      if self.tim10lpen() != 0 { try!(write!(f, " tim10lpen"))}
+      if self.tim9lpen() != 0 { try!(write!(f, " tim9lpen"))}
+      if self.syscfglpen() != 0 { try!(write!(f, " syscfglpen"))}
+      if self.spi4lpen() != 0 { try!(write!(f, " spi4lpen"))}
+      if self.spi1lpen() != 0 { try!(write!(f, " spi1lpen"))}
+      if self.sdiolpen() != 0 { try!(write!(f, " sdiolpen"))}
+      if self.adc3lpen() != 0 { try!(write!(f, " adc3lpen"))}
+      if self.adc2lpen() != 0 { try!(write!(f, " adc2lpen"))}
+      if self.adc1lpen() != 0 { try!(write!(f, " adc1lpen"))}
+      if self.usart6lpen() != 0 { try!(write!(f, " usart6lpen"))}
+      if self.usart1lpen() != 0 { try!(write!(f, " usart1lpen"))}
+      if self.tim8lpen() != 0 { try!(write!(f, " tim8lpen"))}
+      if self.tim1lpen() != 0 { try!(write!(f, " tim1lpen"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -4755,49 +4728,9 @@ impl En for super::crc_24::Crc {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }
 }
 
-impl En for super::gpio::Gpioa {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioaen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioaen(value)); }
-}
-
-impl En for super::gpio::Gpiob {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioben() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioben(value)); }
-}
-
-impl En for super::gpio::Gpioc {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiocen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiocen(value)); }
-}
-
-impl En for super::gpio::Gpiod {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioden() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioden(value)); }
-}
-
-impl En for super::gpio::Gpioe {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioeen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioeen(value)); }
-}
-
-impl En for super::gpio::Gpiof {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiofen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiofen(value)); }
-}
-
-impl En for super::gpio::Gpiog {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiogen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiogen(value)); }
-}
-
-impl En for super::gpio::Gpioh {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiohen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiohen(value)); }
-}
-
-impl En for super::gpio::Gpioi {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioien() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioien(value)); }
+impl En for super::gpio::Gpiok {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioken() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioken(value)); }
 }
 
 impl En for super::gpio::Gpioj {
@@ -4805,99 +4738,49 @@ impl En for super::gpio::Gpioj {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiojen(value)); }
 }
 
-impl En for super::gpio::Gpiok {
-   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioken() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioken(value)); }
+impl En for super::gpio::Gpioi {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioien() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioien(value)); }
 }
 
-impl En for super::tim_gen::Tim2 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
+impl En for super::gpio::Gpioh {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiohen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiohen(value)); }
 }
 
-impl En for super::tim_gen::Tim3 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim3en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim3en(value)); }
+impl En for super::gpio::Gpiog {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiogen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiogen(value)); }
 }
 
-impl En for super::tim_gen::Tim4 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim4en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim4en(value)); }
+impl En for super::gpio::Gpiof {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiofen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiofen(value)); }
 }
 
-impl En for super::tim_gen::Tim5 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim5en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim5en(value)); }
+impl En for super::gpio::Gpioe {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioeen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioeen(value)); }
 }
 
-impl En for super::tim_bas::Tim6 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim6en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim6en(value)); }
+impl En for super::gpio::Gpiod {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioden() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioden(value)); }
 }
 
-impl En for super::tim_bas::Tim7 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim7en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim7en(value)); }
+impl En for super::gpio::Gpioc {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpiocen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpiocen(value)); }
 }
 
-impl En for super::tim_gen::Tim12 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim12en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim12en(value)); }
+impl En for super::gpio::Gpiob {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioben() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioben(value)); }
 }
 
-impl En for super::tim_gen::Tim13 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim13en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim13en(value)); }
-}
-
-impl En for super::tim_gen::Tim14 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim14en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim14en(value)); }
-}
-
-impl En for super::wwdg::Wwdg {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
-}
-
-impl En for super::spi::Spi2 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
-}
-
-impl En for super::spi::Spi3 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi3en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi3en(value)); }
-}
-
-impl En for super::usart_f24::Usart2 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
-}
-
-impl En for super::usart_f24::Usart3 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart3en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart3en(value)); }
-}
-
-impl En for super::i2c::I2c1 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c1en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
-}
-
-impl En for super::i2c::I2c2 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c2en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c2en(value)); }
-}
-
-impl En for super::i2c::I2c3 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c3en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c3en(value)); }
-}
-
-impl En for super::usart_f24::Uart7 {
-   #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart7enr() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart7enr(value)); }
+impl En for super::gpio::Gpioa {
+   #[inline] fn en(&self) -> u32 { RCC.ahb1enr().gpioaen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioaen(value)); }
 }
 
 impl En for super::usart_f24::Uart8 {
@@ -4905,49 +4788,104 @@ impl En for super::usart_f24::Uart8 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart8enr(value)); }
 }
 
-impl En for super::tim_adv::Tim1 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim1en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim1en(value)); }
+impl En for super::usart_f24::Uart7 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart7enr() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart7enr(value)); }
 }
 
-impl En for super::tim_adv::Tim8 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim8en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim8en(value)); }
+impl En for super::i2c::I2c3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c3en(value)); }
 }
 
-impl En for super::usart_f24::Usart1 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
+impl En for super::i2c::I2c2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c2en(value)); }
 }
 
-impl En for super::usart_f24::Usart6 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart6en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart6en(value)); }
+impl En for super::i2c::I2c1 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c1en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
 }
 
-impl En for super::spi::Spi1 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+impl En for super::usart_f24::Usart3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart3en(value)); }
 }
 
-impl En for super::spi::Spi4 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi4enr() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi4enr(value)); }
+impl En for super::usart_f24::Usart2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
 }
 
-impl En for super::syscfg::Syscfg {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().syscfgen() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
+impl En for super::spi::Spi3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi3en(value)); }
 }
 
-impl En for super::tim_gen::Tim9 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim9en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim9en(value)); }
+impl En for super::spi::Spi2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
 }
 
-impl En for super::tim_gen::Tim10 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim10en() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim10en(value)); }
+impl En for super::wwdg::Wwdg {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().wwdgen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
+}
+
+impl En for super::tim_gen::Tim14 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim14en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim14en(value)); }
+}
+
+impl En for super::tim_gen::Tim13 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim13en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim13en(value)); }
+}
+
+impl En for super::tim_gen::Tim12 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim12en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim12en(value)); }
+}
+
+impl En for super::tim_bas::Tim7 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim7en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim7en(value)); }
+}
+
+impl En for super::tim_bas::Tim6 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim6en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim6en(value)); }
+}
+
+impl En for super::tim_gen::Tim5 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim5en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim5en(value)); }
+}
+
+impl En for super::tim_gen::Tim4 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim4en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim4en(value)); }
+}
+
+impl En for super::tim_gen::Tim3 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim3en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim3en(value)); }
+}
+
+impl En for super::tim_gen::Tim2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb1enr().tim2en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_tim2en(value)); }
+}
+
+impl En for super::spi::Spi6 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi6en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi6en(value)); }
+}
+
+impl En for super::spi::Spi5 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi5en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi5en(value)); }
 }
 
 impl En for super::tim_gen::Tim11 {
@@ -4955,14 +4893,49 @@ impl En for super::tim_gen::Tim11 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim11en(value)); }
 }
 
-impl En for super::spi::Spi5 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi5enr() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi5enr(value)); }
+impl En for super::tim_gen::Tim10 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim10en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim10en(value)); }
 }
 
-impl En for super::spi::Spi6 {
-   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi6enr() }
-   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi6enr(value)); }
+impl En for super::tim_gen::Tim9 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim9en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim9en(value)); }
+}
+
+impl En for super::syscfg::Syscfg {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().syscfgen() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
+}
+
+impl En for super::spi::Spi4 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi4en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi4en(value)); }
+}
+
+impl En for super::spi::Spi1 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+}
+
+impl En for super::usart_f24::Usart6 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart6en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart6en(value)); }
+}
+
+impl En for super::usart_f24::Usart1 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
+}
+
+impl En for super::tim_adv::Tim8 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim8en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim8en(value)); }
+}
+
+impl En for super::tim_adv::Tim1 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim1en() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim1en(value)); }
 }
 
 
