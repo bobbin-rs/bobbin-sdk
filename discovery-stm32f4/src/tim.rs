@@ -1,4 +1,6 @@
 use hal::tim::*;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const TIM: Tim14 = TIM14;
 pub const TIM_PRESCALE: u16 = 41_999;
@@ -21,22 +23,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, TIM_PRESCALE);    
+    TIM.delay(ms << 1, ((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16);    
 }
-
-
-
-// pub fn delay(ms: u32) {
-//     let t = tim14();
-//     // Clock at 42MHz
-//     // Divide by 42,000 => 2khz
-//     t.set_prescaler(41_999);
-//     t.set_update_event();
-//     t.clr_update_interrupt_flag();
-//     // Set auto_reload to ms x 2
-//     t.set_auto_reload(ms << 1);
-//     t.set_enabled(true);
-//     while t.update_interrupt_flag() == false {}
-//     t.clr_update_interrupt_flag();
-//     t.set_enabled(false);
-// }
