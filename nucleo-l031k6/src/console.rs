@@ -20,12 +20,13 @@ pub fn init() {
     USART_RX.mode_rx(&USART);
 
     // Set Baud and Enable USART
-    USART.enable(CLK.clock(&USART).expect("No clock available for USART") / USART_BAUD);
+    USART.with_config(|c| c.set_baud(USART_BAUD, CLK.clock(&USART).expect("No clock available for USART")));
+    USART.enable();
 }
 
 pub fn reinit() {
     // Set Baud and Enable USART
-    USART.disable().enable(CLK.clock(&USART).expect("No clock available for USART") / USART_BAUD);    
+    USART.disable().with_config(|c| c.set_baud(USART_BAUD, CLK.clock(&USART).expect("No clock available for USART"))).enable();    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
