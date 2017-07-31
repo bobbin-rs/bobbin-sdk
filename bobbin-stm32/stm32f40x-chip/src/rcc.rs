@@ -996,49 +996,25 @@ impl Cfgr {
   }
 
 #[doc="System clock switch status"]
-  #[inline] pub fn sws1(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn sws(&self) -> u32 {
+     ((self.0 as u32) >> 2) & 0x3 // [3:2]
   }
 #[doc="System clock switch status"]
-  #[inline] pub fn set_sws1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 3);
-     self.0 |= value << 3;
-     self
-  }
-
-#[doc="System clock switch status"]
-  #[inline] pub fn sws0(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
-  }
-#[doc="System clock switch status"]
-  #[inline] pub fn set_sws0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 2);
+  #[inline] pub fn set_sws(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="System clock switch"]
-  #[inline] pub fn sw1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn sw(&self) -> u32 {
+     ((self.0 as u32) >> 0) & 0x3 // [1:0]
   }
 #[doc="System clock switch"]
-  #[inline] pub fn set_sw1(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
-
-#[doc="System clock switch"]
-  #[inline] pub fn sw0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
-  }
-#[doc="System clock switch"]
-  #[inline] pub fn set_sw0(mut self, value: u32) -> Self {
-     assert!((value & !0x1) == 0);
-     self.0 &= !(0x1 << 0);
+  #[inline] pub fn set_sw(mut self, value: u32) -> Self {
+     assert!((value & !0x3) == 0);
+     self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
      self
   }
@@ -1061,10 +1037,8 @@ impl ::core::fmt::Debug for Cfgr {
       if self.ppre2() != 0 { try!(write!(f, " ppre2=0x{:x}", self.ppre2()))}
       if self.ppre1() != 0 { try!(write!(f, " ppre1=0x{:x}", self.ppre1()))}
       if self.hpre() != 0 { try!(write!(f, " hpre=0x{:x}", self.hpre()))}
-      if self.sws1() != 0 { try!(write!(f, " sws1"))}
-      if self.sws0() != 0 { try!(write!(f, " sws0"))}
-      if self.sw1() != 0 { try!(write!(f, " sw1"))}
-      if self.sw0() != 0 { try!(write!(f, " sw0"))}
+      if self.sws() != 0 { try!(write!(f, " sws=0x{:x}", self.sws()))}
+      if self.sw() != 0 { try!(write!(f, " sw=0x{:x}", self.sw()))}
       try!(write!(f, "]"));
       Ok(())
    }
