@@ -123,6 +123,46 @@ pub const USART3_CK: Usart3Ck = Usart3Ck {};
 pub struct Usart3Ck {}
 impl Ck for Usart3Ck {}
 
+pub const USART4_TX: Usart4Tx = Usart4Tx {};
+pub struct Usart4Tx {}
+impl Tx for Usart4Tx {}
+
+pub const USART4_RX: Usart4Rx = Usart4Rx {};
+pub struct Usart4Rx {}
+impl Rx for Usart4Rx {}
+
+pub const USART4_CTS: Usart4Cts = Usart4Cts {};
+pub struct Usart4Cts {}
+impl Cts for Usart4Cts {}
+
+pub const USART4_RTS: Usart4Rts = Usart4Rts {};
+pub struct Usart4Rts {}
+impl Rts for Usart4Rts {}
+
+pub const USART4_CK: Usart4Ck = Usart4Ck {};
+pub struct Usart4Ck {}
+impl Ck for Usart4Ck {}
+
+pub const USART5_TX: Usart5Tx = Usart5Tx {};
+pub struct Usart5Tx {}
+impl Tx for Usart5Tx {}
+
+pub const USART5_RX: Usart5Rx = Usart5Rx {};
+pub struct Usart5Rx {}
+impl Rx for Usart5Rx {}
+
+pub const USART5_CTS: Usart5Cts = Usart5Cts {};
+pub struct Usart5Cts {}
+impl Cts for Usart5Cts {}
+
+pub const USART5_RTS: Usart5Rts = Usart5Rts {};
+pub struct Usart5Rts {}
+impl Rts for Usart5Rts {}
+
+pub const USART5_CK: Usart5Ck = Usart5Ck {};
+pub struct Usart5Ck {}
+impl Ck for Usart5Ck {}
+
 pub const USART6_TX: Usart6Tx = Usart6Tx {};
 pub struct Usart6Tx {}
 impl Tx for Usart6Tx {}
@@ -142,46 +182,6 @@ impl Rts for Usart6Rts {}
 pub const USART6_CK: Usart6Ck = Usart6Ck {};
 pub struct Usart6Ck {}
 impl Ck for Usart6Ck {}
-
-pub const UART7_TX: Uart7Tx = Uart7Tx {};
-pub struct Uart7Tx {}
-impl Tx for Uart7Tx {}
-
-pub const UART7_RX: Uart7Rx = Uart7Rx {};
-pub struct Uart7Rx {}
-impl Rx for Uart7Rx {}
-
-pub const UART7_CTS: Uart7Cts = Uart7Cts {};
-pub struct Uart7Cts {}
-impl Cts for Uart7Cts {}
-
-pub const UART7_RTS: Uart7Rts = Uart7Rts {};
-pub struct Uart7Rts {}
-impl Rts for Uart7Rts {}
-
-pub const UART7_CK: Uart7Ck = Uart7Ck {};
-pub struct Uart7Ck {}
-impl Ck for Uart7Ck {}
-
-pub const UART8_TX: Uart8Tx = Uart8Tx {};
-pub struct Uart8Tx {}
-impl Tx for Uart8Tx {}
-
-pub const UART8_RX: Uart8Rx = Uart8Rx {};
-pub struct Uart8Rx {}
-impl Rx for Uart8Rx {}
-
-pub const UART8_CTS: Uart8Cts = Uart8Cts {};
-pub struct Uart8Cts {}
-impl Cts for Uart8Cts {}
-
-pub const UART8_RTS: Uart8Rts = Uart8Rts {};
-pub struct Uart8Rts {}
-impl Rts for Uart8Rts {}
-
-pub const UART8_CK: Uart8Ck = Uart8Ck {};
-pub struct Uart8Ck {}
-impl Ck for Uart8Ck {}
 
 pub const TIM2_ETR: Tim2Etr = Tim2Etr {};
 pub struct Tim2Etr {}
@@ -771,8 +771,14 @@ pub struct FmcD1 {}
 pub const TIM4_ETR: Tim4Etr = Tim4Etr {};
 pub struct Tim4Etr {}
 
+pub const UART8_RX: Uart8Rx = Uart8Rx {};
+pub struct Uart8Rx {}
+
 pub const FMC_NBL0: FmcNbl0 = FmcNbl0 {};
 pub struct FmcNbl0 {}
+
+pub const UART8_TX: Uart8Tx = Uart8Tx {};
+pub struct Uart8Tx {}
 
 pub const FMC_NBL1: FmcNbl1 = FmcNbl1 {};
 pub struct FmcNbl1 {}
@@ -894,6 +900,9 @@ pub struct FmcA5 {}
 pub const SPI5_NSS: Spi5Nss = Spi5Nss {};
 pub struct Spi5Nss {}
 
+pub const UART7_RX: Uart7Rx = Uart7Rx {};
+pub struct Uart7Rx {}
+
 pub const FMC_NIORD: FmcNiord = FmcNiord {};
 pub struct FmcNiord {}
 
@@ -902,6 +911,9 @@ pub struct Spi5Sck {}
 
 pub const SAI1_MCLK_B: Sai1MclkB = Sai1MclkB {};
 pub struct Sai1MclkB {}
+
+pub const UART7_TX: Uart7Tx = Uart7Tx {};
+pub struct Uart7Tx {}
 
 pub const FMC_NREG: FmcNreg = FmcNreg {};
 pub struct FmcNreg {}
