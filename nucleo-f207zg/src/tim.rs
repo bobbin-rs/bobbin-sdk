@@ -1,7 +1,8 @@
 use hal::tim::*;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const TIM: Tim14 = TIM14;
-pub const TIM_PRESCALE: u16 = 29_999;
 
 // PLL Mode with 8Mhz External Oscillator
 //   120Mhz System Clock
@@ -9,7 +10,6 @@ pub const TIM_PRESCALE: u16 = 29_999;
 //   30Mhz APB1 Clock
 //   60Mhz APB2 Clock
 //   9Mhz SysTick clock
-// TIM14 is APB1 Clock = 42MHz
 
 // Clock at 30MHz
 // Divide by 30,000 => 2khz
@@ -20,5 +20,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, TIM_PRESCALE);    
+    TIM.delay(ms << 1, ((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16);        
 }
