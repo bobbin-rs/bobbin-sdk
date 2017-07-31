@@ -3,6 +3,8 @@ pub use stm32_common::chip::usart_f24::*;
 pub const USART1: Usart1 = Periph(0x40011000, Usart1Id {});
 pub const USART2: Usart2 = Periph(0x40004400, Usart2Id {});
 pub const USART3: Usart3 = Periph(0x40004800, Usart3Id {});
+pub const UART4: Uart4 = Periph(0x40004c00, Uart4Id {});
+pub const UART5: Uart5 = Periph(0x40005000, Uart5Id {});
 pub const USART6: Usart6 = Periph(0x40011400, Usart6Id {});
 pub const UART7: Uart7 = Periph(0x40007800, Uart7Id {});
 pub const UART8: Uart8 = Periph(0x40007c00, Uart8Id {});
@@ -19,6 +21,14 @@ pub type Usart2 = Periph<Usart2Id>;
 #[doc(hidden)]
 pub struct Usart3Id {}
 pub type Usart3 = Periph<Usart3Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
+pub struct Uart4Id {}
+pub type Uart4 = Periph<Uart4Id>;
+#[derive(Clone, Copy, PartialEq, Eq)]
+#[doc(hidden)]
+pub struct Uart5Id {}
+pub type Uart5 = Periph<Uart5Id>;
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(hidden)]
 pub struct Usart6Id {}
@@ -64,6 +74,28 @@ impl super::sig::Signal<super::sig::Usart3Rts> for Usart3 {}
 impl super::sig::SignalRts<super::sig::Usart3Rts> for Usart3 {}
 impl super::sig::Signal<super::sig::Usart3Ck> for Usart3 {}
 impl super::sig::SignalCk<super::sig::Usart3Ck> for Usart3 {}
+
+impl super::sig::Signal<super::sig::Uart4Tx> for Uart4 {}
+impl super::sig::SignalTx<super::sig::Uart4Tx> for Uart4 {}
+impl super::sig::Signal<super::sig::Uart4Rx> for Uart4 {}
+impl super::sig::SignalRx<super::sig::Uart4Rx> for Uart4 {}
+impl super::sig::Signal<super::sig::Uart4Cts> for Uart4 {}
+impl super::sig::SignalCts<super::sig::Uart4Cts> for Uart4 {}
+impl super::sig::Signal<super::sig::Uart4Rts> for Uart4 {}
+impl super::sig::SignalRts<super::sig::Uart4Rts> for Uart4 {}
+impl super::sig::Signal<super::sig::Uart4Ck> for Uart4 {}
+impl super::sig::SignalCk<super::sig::Uart4Ck> for Uart4 {}
+
+impl super::sig::Signal<super::sig::Uart5Tx> for Uart5 {}
+impl super::sig::SignalTx<super::sig::Uart5Tx> for Uart5 {}
+impl super::sig::Signal<super::sig::Uart5Rx> for Uart5 {}
+impl super::sig::SignalRx<super::sig::Uart5Rx> for Uart5 {}
+impl super::sig::Signal<super::sig::Uart5Cts> for Uart5 {}
+impl super::sig::SignalCts<super::sig::Uart5Cts> for Uart5 {}
+impl super::sig::Signal<super::sig::Uart5Rts> for Uart5 {}
+impl super::sig::SignalRts<super::sig::Uart5Rts> for Uart5 {}
+impl super::sig::Signal<super::sig::Uart5Ck> for Uart5 {}
+impl super::sig::SignalCk<super::sig::Uart5Ck> for Uart5 {}
 
 impl super::sig::Signal<super::sig::Usart6Tx> for Usart6 {}
 impl super::sig::SignalTx<super::sig::Usart6Tx> for Usart6 {}
@@ -156,6 +188,38 @@ impl RegisterUsartHandler for Usart3 {
        }
        super::irq::set_handler(39, Some(wrapper::<F>));
        super::irq::IrqGuard::new(39)
+   }
+}
+
+impl IrqUsart<super::irq::Uart4Id> for Uart4 {
+   fn irq_usart(&self) -> super::irq::IrqUart4 { super::irq::IRQ_UART4 }
+}
+
+impl RegisterUsartHandler for Uart4 {
+   fn register_usart_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleUsart>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleUsart>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_usart() }
+       }
+       super::irq::set_handler(52, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(52)
+   }
+}
+
+impl IrqUsart<super::irq::Uart5Id> for Uart5 {
+   fn irq_usart(&self) -> super::irq::IrqUart5 { super::irq::IRQ_UART5 }
+}
+
+impl RegisterUsartHandler for Uart5 {
+   fn register_usart_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleUsart>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleUsart>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_usart() }
+       }
+       super::irq::set_handler(53, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(53)
    }
 }
 
