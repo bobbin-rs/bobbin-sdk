@@ -13,7 +13,7 @@ git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
 
 [features]
-default = ["stm32f42x/STM32F429ZI"]
+default = ["stm32f42x/STM32F42xxI"]
 
 [profile.dev]
 panic = "abort"
