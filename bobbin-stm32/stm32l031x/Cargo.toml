@@ -13,13 +13,5 @@ stm32-common = { path = "../stm32-common" }
 
 [features]
 
-stm32l031f4 = []
-stm32l031e4 = []
-stm32l031g4 = []
-stm32l031k4 = []
-stm32l031c4 = []
-stm32l031f6 = []
-stm32l031e6 = []
-stm32l031g6 = []
-stm32l031k6 = []
-stm32l031c6 = []
+stm32l031x4 = []
+stm32l031x6 = []

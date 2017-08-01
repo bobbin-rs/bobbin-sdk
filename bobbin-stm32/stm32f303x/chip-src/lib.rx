@@ -5,12 +5,8 @@
     (description "STM32F3x")
 
     (variants
-        (variant (name STM32F303RDX) (link "f303xd.ld"))
-        (variant (name STM32F303REX) (link "f303xe.ld"))
-        (variant (name STM32F303VDX) (link "f303xd.ld"))
-        (variant (name STM32F303VEX) (link "f303xe.ld"))
-        (variant (name STM32F303ZDX) (link "f303xd.ld"))
-        (variant (name STM32F303ZEX) (link "f303xe.ld"))
+        (variant (name STM32F303xD) (link "f303xd.ld"))
+        (variant (name STM32F303xE) (link "f303xe.ld"))
     )
     
     (crate

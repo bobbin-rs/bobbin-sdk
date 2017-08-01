@@ -26,16 +26,8 @@
     ;(peripheral (include "periph/lptim.rx"))
 
     (variants
-        (variant (name STM32L031F4) (link "l031x4.ld"))
-        (variant (name STM32L031E4) (link "l031x4.ld"))
-        (variant (name STM32L031G4) (link "l031x4.ld"))
-        (variant (name STM32L031K4) (link "l031x4.ld"))
-        (variant (name STM32L031C4) (link "l031x4.ld"))
-        (variant (name STM32L031F6) (link "l031x6.ld"))
-        (variant (name STM32L031E6) (link "l031x6.ld"))
-        (variant (name STM32L031G6) (link "l031x6.ld"))
-        (variant (name STM32L031K6) (link "l031x6.ld")) 
-        (variant (name STM32L031C6) (link "l031x6.ld"))
+        (variant (name STM32L031x4) (link "l031x4.ld"))
+        (variant (name STM32L031x6) (link "l031x6.ld"))
     )
 
     (peripheral-group
