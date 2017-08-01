@@ -1,4 +1,8 @@
 #![no_std]
 
-pub extern crate k64_chip as chip;
-pub extern crate k64_hal as hal;
+extern crate bobbin_common;
+extern crate bobbin_cortexm;
+extern crate kinetis_common;
+
+pub mod chip;
+pub mod hal;

@@ -3,10 +3,14 @@ name = "kl26"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-kl26-chip = { path = "../kl26-chip" }
-kl26-hal = { path = "../kl26-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+kinetis-common = { path = "../kinetis-common" }
 
 [features]
-Z128 = ["kl26-chip/Z128"]
-Z64 = ["kl26-chip/Z64"]
+Z128 = []
+Z64 = []

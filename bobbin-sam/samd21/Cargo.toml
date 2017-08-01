@@ -3,9 +3,12 @@ name = "samd21"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-samd21-chip = { path = "../samd21-chip" }
-samd21-hal = { path = "../samd21-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
 [features]
-SAMD21G18 = ["samd21-chip/SAMD21G18"]
+SAMD21G18 = []

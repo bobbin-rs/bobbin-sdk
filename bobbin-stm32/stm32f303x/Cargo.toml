@@ -3,15 +3,19 @@ name = "stm32f303x"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-stm32f303x-chip = { path = "../stm32f303x-chip" }
-stm32f303x-hal = { path = "../stm32f303x-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
 
 [features]
 default = []
-stm32f303rdx = ["stm32f303x-chip/stm32f303rdx"]
-stm32f303rex = ["stm32f303x-chip/stm32f303rex"]
-stm32f303vdx = ["stm32f303x-chip/stm32f303vdx"]
-stm32f303vex = ["stm32f303x-chip/stm32f303vex"]
-stm32f303zdx = ["stm32f303x-chip/stm32f303zdx"]
-stm32f303zex = ["stm32f303x-chip/stm32f303zex"]
+stm32f303rdx = []
+stm32f303rex = []
+stm32f303vdx = []
+stm32f303vex = []
+stm32f303zdx = []
+stm32f303zex = []

@@ -3,12 +3,16 @@ name = "stm32f10x"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-stm32f10x-chip = { path = "../stm32f10x-chip" }
-stm32f10x-hal = { path = "../stm32f10x-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
 
 [features]
 default = []
 
-STM32F103x8 = ["stm32f10x-chip/STM32F103x8"]
-STM32F103xB = ["stm32f10x-chip/STM32F103xB"]
+STM32F103x8 = []
+STM32F103xB = []

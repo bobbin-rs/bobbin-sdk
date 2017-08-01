@@ -3,21 +3,23 @@ name = "stm32l031x"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-stm32l031x-chip = { path = "../stm32l031x-chip" }
-stm32l031x-hal = { path = "../stm32l031x-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
 
 [features]
 
-default = ["stm32l031k6"]
-
-stm32l031f4 = ["stm32l031x-chip/stm32l031f4"]
-stm32l031e4 = ["stm32l031x-chip/stm32l031e4"]
-stm32l031g4 = ["stm32l031x-chip/stm32l031g4"]
-stm32l031k4 = ["stm32l031x-chip/stm32l031k4"]
-stm32l031c4 = ["stm32l031x-chip/stm32l031c4"]
-stm32l031f6 = ["stm32l031x-chip/stm32l031f6"]
-stm32l031e6 = ["stm32l031x-chip/stm32l031e6"]
-stm32l031g6 = ["stm32l031x-chip/stm32l031g6"]
-stm32l031k6 = ["stm32l031x-chip/stm32l031k6"]
-stm32l031c6 = ["stm32l031x-chip/stm32l031c6"]
+stm32l031f4 = []
+stm32l031e4 = []
+stm32l031g4 = []
+stm32l031k4 = []
+stm32l031c4 = []
+stm32l031f6 = []
+stm32l031e6 = []
+stm32l031g6 = []
+stm32l031k6 = []
+stm32l031c6 = []

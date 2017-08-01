@@ -3,11 +3,17 @@ name = "stm32f42x"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-stm32f42x-chip = { path = "../stm32f42x-chip" }
-stm32f42x-hal = { path = "../stm32f42x-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
 
 [features]
-STM32F42xxE = ["stm32f42x-chip/STM32F42xxE"]
-STM32F42xxI = ["stm32f42x-chip/STM32F42xxI"]
-STM32F42xxG = ["stm32f42x-chip/STM32F42xxG"]
+default = []
+
+STM32F42xxE = []
+STM32F42xxI = []
+STM32F42xxG = []

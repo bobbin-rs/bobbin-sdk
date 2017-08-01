@@ -3,16 +3,19 @@ name = "stm32f40x"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-stm32f40x-chip = { path = "../stm32f40x-chip" }
-stm32f40x-hal = { path = "../stm32f40x-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
 
 [features]
-STM32F405xE = ["stm32f40x-chip/STM32F405xE"]
-STM32F405xG = ["stm32f40x-chip/STM32F405xG"]
-STM32F407xE = ["stm32f40x-chip/STM32F407xE"]
-STM32F407xG = ["stm32f40x-chip/STM32F407xG"]
-STM32F415xG = ["stm32f40x-chip/STM32F415xG"]
-STM32F417xE = ["stm32f40x-chip/STM32F415xE"]
-STM32F417xG = ["stm32f40x-chip/STM32F415xG"]
-
+STM32F405xE = []
+STM32F405xG = []
+STM32F407xE = []
+STM32F407xG = []
+STM32F415xG = []
+STM32F417xE = []
+STM32F417xG = []

@@ -3,10 +3,15 @@ name = "k64"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[build-dependencies]
+bobbin-chip = { path = "../../../bobbin-chip/" }
+
 [dependencies]
-k64-chip = { path = "../k64-chip" }
-k64-hal = { path = "../k64-hal" }
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+kinetis-common = { path = "../kinetis-common"}
+
 
 [features]
-K64FN1M0 = ["k64-chip/K64FN1M0"]
-K64FX512 = ["k64-chip/K64FX512"]
+K64FN1M0 = []
+K64FX512 = []

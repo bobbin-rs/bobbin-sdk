@@ -1,4 +1,8 @@
 #![no_std]
 
-pub extern crate stm32f20x_chip as chip;
-pub extern crate stm32f20x_hal as hal;
+extern crate bobbin_common;
+extern crate bobbin_cortexm;
+extern crate stm32_common;
+
+pub mod chip;
+pub mod hal;

@@ -1,2 +1,2 @@
 [workspace]
-members = ["samd21", "samd21-chip","samd21-hal"]
+members = ["samd21"]

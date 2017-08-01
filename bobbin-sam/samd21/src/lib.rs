@@ -1,4 +1,7 @@
 #![no_std]
 
-pub extern crate samd21_chip as chip;
-pub extern crate samd21_hal as hal;
+extern crate bobbin_common;
+extern crate bobbin_cortexm;
+
+pub mod chip;
+pub mod hal;

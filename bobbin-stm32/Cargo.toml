@@ -1,7 +1,11 @@
 [workspace]
 members = [
     "stm32-common", 
-    "stm32f303x", "stm32f303x-chip", "stm32f303x-hal",
-    "stm32f42x", "stm32f42x-chip", "stm32f42x-hal", 
-    "stm32l031x", "stm32l031x-chip", "stm32l031x-hal"
+    "stm32f10x", 
+    "stm32f20x", 
+    "stm32f3023x",
+    "stm32f303x", 
+    "stm32f40x", 
+    "stm32f42x", 
+    "stm32l031x",
     ]
