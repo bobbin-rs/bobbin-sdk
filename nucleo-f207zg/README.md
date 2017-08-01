@@ -1,6 +1,6 @@
 # Nucleo-F207ZG
 
-The [Nucleo-F207ZG](http://www.st.com/en/evaluation-tools/nucleo-f207zg.html) is an indexpensive development board with a [STM32F207ZG](http://www.st.com/en/microcontrollers/stm32f207zg.html) MCU and onboard ST-Link V2.1 debugger.
+The [Nucleo-F207ZG](http://www.st.com/en/evaluation-tools/nucleo-f207zg.html) is an inexpensive development board with a [STM32F207ZG](http://www.st.com/en/microcontrollers/stm32f207zg.html) MCU and onboard ST-Link V2.1 debugger.
 
 ## Reference Materials
 

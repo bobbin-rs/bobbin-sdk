@@ -1,6 +1,6 @@
 # Nucleo-L031K6
 
-The [Nucleo-L031K6](http://www.st.com/en/evaluation-tools/nucleo-l031k6.html) is an indexpensive development board with a [STM32L031K6](http://www.st.com/en/microcontrollers/stm32l031k6.html) MCU and onboard ST-Link V2.1 debugger.
+The [Nucleo-L031K6](http://www.st.com/en/evaluation-tools/nucleo-l031k6.html) is an inexpensive development board with a [STM32L031K6](http://www.st.com/en/microcontrollers/stm32l031k6.html) MCU and onboard ST-Link V2.1 debugger.
 
 ## Reference Materials
 

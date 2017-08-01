@@ -1,6 +1,6 @@
 # Nucleo-F302R8
 
-The [Nucleo-F302R8](http://www.st.com/en/evaluation-tools/nucleo-f302r8.html) is an indexpensive development board with a [STM32F302R8](http://www.st.com/en/microcontrollers/stm32f302r8.html) MCU and onboard ST-Link V2.1 debugger.
+The [Nucleo-F302R8](http://www.st.com/en/evaluation-tools/nucleo-f302r8.html) is an inexpensive development board with a [STM32F302R8](http://www.st.com/en/microcontrollers/stm32f302r8.html) MCU and onboard ST-Link V2.1 debugger.
 
 ## Reference Materials
 

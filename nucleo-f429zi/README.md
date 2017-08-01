@@ -1,6 +1,6 @@
 # Nucleo-F429ZI
 
-The [Nucleo-F429ZI](http://www.st.com/en/evaluation-tools/nucleo-f303ze.html) is an indexpensive 
+The [Nucleo-F429ZI](http://www.st.com/en/evaluation-tools/nucleo-f303ze.html) is an inexpensive 
 development board produced by ST.
 
 ## Reference Materials

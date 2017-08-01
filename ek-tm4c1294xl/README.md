@@ -1,6 +1,6 @@
 # Bobbin: TM4C129XL Connected Launchpad
 
-The [TM4C129XL Connected Launchpad](http://www.ti.com/tool/ek-tm4c1294xl) is an indexpensive development board produced by Texas Instruments.
+The [TM4C129XL Connected Launchpad](http://www.ti.com/tool/ek-tm4c1294xl) is an inexpensive development board produced by Texas Instruments.
 
 ## Reference Materials
 

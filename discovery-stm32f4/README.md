@@ -1,6 +1,6 @@
 # Bobbin: STM32F4Discovery
 
-The [STM32F4Discovery](http://www.st.com/en/evaluation-tools/nucleo-f303ze.html) is an indexpensive development board produced by ST.
+The [STM32F4Discovery](http://www.st.com/en/evaluation-tools/nucleo-f303ze.html) is an inexpensive development board produced by ST.
 
 ## Reference Materials
 
