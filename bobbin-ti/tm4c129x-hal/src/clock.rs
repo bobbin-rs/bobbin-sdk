@@ -2,6 +2,8 @@ use ::chip::sysctl::*;
 use ::chip::uart::*;
 use ::chip::timer::*;
 
+use core::fmt;
+
 pub fn set_clock(psysdiv: u16, mint: u16, mfrac: u16, n: u8, q: u8) {
     let s = SYSCTL;
 
@@ -34,21 +36,16 @@ pub type Hz = Option<u32>;
 pub const PIOSC: Hz = Some(16_000_000);
 pub const LFIOSC: Hz = Some(33_000);
 
-pub enum ExternalSource {
-    Osc(u32),
-    Clock(u32),
-}
-
 pub trait ClockTree {
     fn sysclk(&self) -> Hz;
 }
 
-pub struct DynamicClockTree {
+pub struct DynamicClock {
     pub osc: Hz,
     pub xosc: Hz,
 }
 
-impl DynamicClockTree {
+impl DynamicClock {
     // Fundamental Clock Sources
     pub fn mosc(&self) -> Hz {
         self.osc
@@ -92,7 +89,7 @@ impl DynamicClockTree {
     }
 }
 
-impl ClockTree for DynamicClockTree {
+impl ClockTree for DynamicClock {
     fn sysclk(&self) -> Hz {
         let rsclkcfg = SYSCTL.rsclkcfg();
         if rsclkcfg.usepll() == 0 {
@@ -103,7 +100,20 @@ impl ClockTree for DynamicClockTree {
     }
 }
 
-
+impl fmt::Debug for DynamicClock {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[DynamicCLock")?;
+        write!(f, " MOSC={:?}", self.mosc())?;
+        write!(f, " RTCOSC={:?}", self.rtcosc())?;
+        write!(f, " PIOSC={:?}", self.piosc())?;
+        write!(f, " LFIOSC={:?}", self.lfiosc())?;
+        write!(f, " OSCCLK={:?}", self.oscclk())?;
+        write!(f, " VCO={:?}", self.vco())?;
+        write!(f, " SYSCLK={:?}", self.sysclk())?;
+        write!(f, "]")?;
+        Ok(())
+    }
+}
 pub trait Clock<T: ClockTree + ?Sized> {
     fn clock(&self, t: &T) -> Hz;
 }
