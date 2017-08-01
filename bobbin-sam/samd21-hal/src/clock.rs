@@ -8,6 +8,8 @@ use ::chip::tcc::*;
 use ::chip::adc::*;
 use ::chip::wdt::*;
 
+use core::fmt;
+
 const VARIANT_MCK: u32 = 48_000_000;
 const VARIANT_MAINOSC: u32 = 32_768;
 
@@ -175,67 +177,6 @@ pub fn run_48mhz() {
         
 }
 
-pub const OSC32K: Hz = Some(32767);
-pub const OSCULP32K: Hz = Some(32767);
-pub const OSC8M: Hz = Some(8_000_000);
-
-#[derive(Debug, PartialEq)]
-pub enum Osc8MPrescaler {
-    Div1 = 0,
-    Div2 = 1,
-    Div4 = 2,
-    Div8 = 3,
-}
-
-#[derive(Debug, PartialEq)]
-pub enum DpllRefClock {
-    Xosc32k = 0,
-    Xosc = 1,
-    GclkDpll = 2,
-}
-
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Source {
-    Xosc = 0x00,
-    GclkIn = 0x01,
-    GclkGen1 = 0x02,
-    OscUlp32k = 0x3,
-    Osc32k = 0x4,
-    Xosc32K = 0x5,
-    Osc8m = 0x6,
-    Dffl48m = 0x7,
-    Fdpll86m = 0x8
-}
-
-impl From<u8> for Source {
-    fn from(other: u8) -> Source {
-        match other {
-            0x0 => Source::Xosc,
-            0x1 => Source::GclkIn,
-            0x2 => Source::GclkGen1,
-            0x3 => Source::OscUlp32k,
-            0x4 => Source::Osc32k,
-            0x5 => Source::Xosc32K,
-            0x6 => Source::Osc8m,
-            0x7 => Source::Dffl48m,
-            0x8 => Source::Fdpll86m,
-            _ => panic!("Invalid Source ID"),
-        }
-    }
-}
-
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Generator {
-    GClkGen0 = 0,
-    GClkGen1 = 1,
-    GClkGen2 = 2,
-    GClkGen3 = 3,
-    GClkGen4 = 4,
-    GClkGen5 = 5,
-    GClkGen6 = 6,
-    GClkGen7 = 7,
-    GClkGen8 = 8,
-}
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum ClockMux {
@@ -323,295 +264,59 @@ impl From<u8> for ClockMux {
     }
 }
 
+
+pub const OSC32K: Hz = Some(32767);
+pub const OSCULP32K: Hz = Some(32767);
+pub const OSC8M: Hz = Some(8_000_000);
+
 pub type Hz = Option<u32>;
 
-pub struct ClockTree {
+pub trait ClockTree {
+    fn clockmux(&self, id: ClockMux) -> Hz;
+}
+
+pub struct DynamicClock {
     pub xosc: Hz,
     pub xosc32k: Hz,    
 }
 
-impl ClockTree {
-    // XOSC
-
-    pub fn xosc_xtal_enabled(&self) -> bool {
-        SYSCTRL.xosc().xtalen() != 0
-    }
-    
-    pub fn set_xosc_xtal_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc(|r| r.set_xtalen(value));
-        self
-    }    
-
-    pub fn xosc_enabled(&self) -> bool {
-        SYSCTRL.xosc().enable() != 0
-    }
-    
-    pub fn set_xosc_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc(|r| r.set_enable(value));
-        self
-    }
-
-    pub fn xosc_ondemand(&self) -> bool {
-        SYSCTRL.xosc().ondemand() != 0
-    }
-    
-    pub fn set_xosc_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc(|r| r.set_ondemand(value));
-        self
-    }
-    pub fn xosc_rdy(&self) -> bool {
-        SYSCTRL.pclksr().xoscrdy() != 0
-    }
-
+impl DynamicClock {
     pub fn xosc(&self) -> Hz {
-        if self.xosc_rdy() {
-            self.xosc
-        } else {
-            None
-        }
-    }
-
-    // XOSC32K
-
-    pub fn xosc32k_xtal_enabled(&self) -> bool {
-        SYSCTRL.xosc32k().xtalen() != 0
-    }
-    
-    pub fn set_xosc32k_xtal_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc32k(|r| r.set_xtalen(value));
-        self
-    }        
-
-    pub fn xosc32k_enabled(&self) -> bool {
-        SYSCTRL.xosc32k().enable() != 0
-    }
-    
-    pub fn set_xosc32k_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc32k(|r| r.set_enable(value));
-        self
-    }
-
-    pub fn xosc32k_ondemand(&self) -> bool {
-        SYSCTRL.xosc32k().ondemand() != 0
-    }
-    
-    pub fn set_xosc32k_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_xosc32k(|r| r.set_ondemand(value));
-        self
-    }
-    pub fn xosc32k_rdy(&self) -> bool {
-        SYSCTRL.pclksr().xosc32krdy() != 0
+        self.xosc
     }
 
     pub fn xosc32k(&self) -> Hz {
-        if self.xosc32k_rdy() {
-            self.xosc32k
-        } else {
-            None
-        }
-    }
-
-    // OSC32K
-
-    pub fn osc32k_enabled(&self) -> bool {
-        SYSCTRL.osc32k().enable() != 0
-    }
-    
-    pub fn set_osc32k_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_osc32k(|r| r.set_enable(value));
-        self
-    }
-
-    pub fn osc32k_ondemand(&self) -> bool {
-        SYSCTRL.osc32k().ondemand() != 0
-    }
-    
-    pub fn set_osc32k_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_osc32k(|r| r.set_ondemand(value));
-        self
-    }
-    pub fn osc32k_rdy(&self) -> bool {
-        SYSCTRL.pclksr().osc32krdy() != 0
+        self.xosc32k
     }
 
     pub fn osc32k(&self) -> Hz {
-        if self.osc32k_rdy() {
-            OSC32K
-        } else {
-            None
-        }
+        OSC32K
     }    
-
-    // OSCULP32K
 
     pub fn osculp32k(&self) -> Hz {
         OSCULP32K
     }
 
-    // OSC8M
-
-    pub fn osc8m_pre(&self) -> Osc8MPrescaler {
-        match SYSCTRL.osc8m().presc() {
-            0 => Osc8MPrescaler::Div1,
-            1 => Osc8MPrescaler::Div2,
-            2 => Osc8MPrescaler::Div4,
-            3 => Osc8MPrescaler::Div8,
-            _ => unimplemented!(),
-        }
-    }
-
-    pub fn set_osc8m_pre(&self, value: Osc8MPrescaler) -> &Self {
-        SYSCTRL.with_osc8m(|r| r.set_presc(value as u32));
-        self
-    }
-
-    pub fn osc8m_enabled(&self) -> bool {
-        SYSCTRL.osc8m().enable() != 0
-    }
-    
-    pub fn set_osc8m_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_osc8m(|r| r.set_enable(value));
-        self
-    }
-
-    pub fn osc8m_ondemand(&self) -> bool {
-        SYSCTRL.osc8m().ondemand() != 0
-    }
-    
-    pub fn set_osc8m_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_osc8m(|r| r.set_ondemand(value));
-        self
-    }
-
-    pub fn osc8m_rdy(&self) -> bool {
-        SYSCTRL.pclksr().osc8mrdy() != 0
-    }
-    
     pub fn osc8m(&self) -> Hz {
-        if self.osc8m_rdy() {
-            OSC8M.map(|v| v >> SYSCTRL.osc8m().presc())
-        } else {
-            None
-        }
-    }
-
-
-    // DFLL
-
-    pub fn dfll_enabled(&self) -> bool {
-        SYSCTRL.dfllctrl().enable() != 0
-    }
-    
-    pub fn set_dfll_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_dfllctrl(|r| r.set_enable(value));
-        self
-    }
-
-
-    pub fn dfll_ondemand(&self) -> bool {
-        SYSCTRL.dfllctrl().ondemand() != 0
-    }
-    
-    pub fn set_dfll_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_dfllctrl(|r| r.set_ondemand(value));
-        self
-    }
-
-    pub fn dfll_mul(&self) -> u32 {
-        SYSCTRL.dfllmul().mul()
-    }
-
-    pub fn set_dfll_mul(&self, value: u32) -> &Self {
-        SYSCTRL.with_dfllmul(|r| r.set_mul(value));
-        self
-    }
-
-    pub fn dfll_rdy(&self) -> bool {
-        SYSCTRL.pclksr().dfllrdy() != 0
+        OSC8M.map(|v| v >> SYSCTRL.osc8m().presc())
     }
 
     pub fn dfll(&self) -> Hz {
-        if self.dfll_rdy() {
-            OSC32K.map(|v| v * self.dfll_mul())
-        } else {
-            None
-        }
+        OSC32K.map(|v| v * SYSCTRL.dfllmul().mul())
     }  
 
     // DPLL
 
-    pub fn dpll_enabled(&self) -> bool {
-        SYSCTRL.dpllstatus().enable() != 0
-    }
-    
-    pub fn set_dpll_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_dpllctrla(|r| r.set_enable(value));
-        self
-    }
-
-    pub fn dpll_ondemand(&self) -> bool {
-        SYSCTRL.dpllctrla().ondemand() != 0
-    }
-    
-    pub fn set_dpll_ondemand(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        SYSCTRL.with_dpllctrla(|r| r.set_ondemand(value));
-        self
-    }
-    
-
     pub fn dpll_mul(&self) -> u32 {
         SYSCTRL.dpllratio().ldr()
-    }
-
-    pub fn set_dpll_mul(&self, value: u32) -> &Self {
-        SYSCTRL.with_dpllratio(|r| r.set_ldr(value));
-        self
     }
 
     pub fn dpll_mul_frac(&self) -> u32 {
         SYSCTRL.dpllratio().ldrfrac()
     }
 
-    pub fn set_dpll_mul_frac(&self, value: u32) -> &Self {
-        SYSCTRL.with_dpllratio(|r| r.set_ldrfrac(value));
-        self
-    }
-
     pub fn dpll_div(&self) -> u32 {
         SYSCTRL.dpllctrlb().div()
-    }
-
-    pub fn set_dpll_div(&self, value: u32) -> &Self {
-        SYSCTRL.with_dpllctrlb(|r| r.set_div(value));
-        self
-    }
-
-    pub fn dpll_refclk(&self) -> DpllRefClock {
-        match SYSCTRL.dpllctrlb().refclk() {
-            0 => DpllRefClock::Xosc32k,
-            1 => DpllRefClock::Xosc,
-            2 => DpllRefClock::GclkDpll,
-            _ => unimplemented!(),
-        }
-    }
-
-    pub fn set_dpll_refclk(&self, value: DpllRefClock) -> &Self {
-        SYSCTRL.with_dpllctrlb(|r| r.set_refclk(value as u32));
-        self
     }
 
     pub fn dpll_divider_enable(&self) -> bool {
@@ -627,38 +332,21 @@ impl ClockTree {
     }
 
     pub fn dpll(&self) -> Hz {
-        if self.dpll_rdy() {
-            let clk = match SYSCTRL.dpllctrlb().refclk() {
-                0 => self.xosc32k(),
-                1 => self.xosc(),
-                _ => unimplemented!(),
-            };
-            if self.dpll_div() != 0 {
-                clk.map(|v| v * self.dpll_mul() / self.dpll_div())
-            } else {
-                clk.map(|v| v * self.dpll_mul())
-            }
+        let ctrlb = SYSCTRL.dpllctrlb();
+        let dpll_div = ctrlb.div();
+        let dpll_mul = SYSCTRL.dpllratio().ldr();
+        let clk = match ctrlb.refclk() {
+            0 => self.xosc32k(),
+            1 => self.xosc(),
+            2 => self.clockmux(ClockMux::Dpll),
+            _ => unimplemented!(),
+        };
+        if dpll_div != 0 {
+            clk.map(|v| v * dpll_mul / dpll_div)
         } else {
-            None
+            clk.map(|v| v * dpll_mul)
         }
     }    
-    // Clock Multiplexer Configuration
-
-    pub fn cfg_clockmux(&self, id: ClockMux, gen: Generator, enabled: bool) -> &Self {
-        let enabled = if enabled { 1 } else { 0 };
-        GCLK.set_clkctrl(gclk::Clkctrl(0).set_id(id as u16).set_gen(gen as u16).set_clken(enabled));
-        self
-    }
-
-    // Clock Generator Configuration
-
-    pub fn cfg_generator(&self, id: Generator, src: Source, div: u16, divsel: bool, enabled: bool) -> &Self {
-        let enabled = if enabled { 1 } else { 0 };
-        let divsel = if divsel { 1 } else { 0 };
-        GCLK.set_gendiv(gclk::Gendiv(0).set_id(id as u32).set_div(div as u32));
-        GCLK.set_genctrl(gclk::Genctrl(0).set_id(id as u32).set_src(src as u32).set_divsel(divsel).set_genen(enabled));
-        self
-    }
 
     // Clock and Generator Access
 
@@ -667,41 +355,14 @@ impl ClockTree {
         GCLK.clkctrl()
     }
     
-    pub fn set_clockmux_ctrl(&self, id: u8, value: gclk::Clkctrl) -> &Self {                
-        GCLK.set_clkctrl(value.set_id(id as u16));
-        self
-    }
-
-    pub fn with_clockmux_ctrl<F: FnOnce(gclk::Clkctrl) -> gclk::Clkctrl>(&self, id: u8, f: F) -> &Self {
-        let ctrl = self.clockmux_ctrl(id);
-        GCLK.set_clkctrl(f(ctrl));
-        self
-    }
-
     pub fn generator_ctrl(&self, id: u8) -> gclk::Genctrl {
         GCLK.set_genctrl_id(gclk::GenctrlId(0).set_id(id));
         GCLK.genctrl()
     }    
 
-    pub fn set_generator_ctrl(&self, id: u8, value: gclk::Genctrl) -> &Self {
-        GCLK.set_genctrl(value.set_id(id as u32));
-        self
-    }
-
-    pub fn with_generator_ctrl<F: FnOnce(gclk::Genctrl) -> gclk::Genctrl>(&self, id: u8, f: F) -> &Self {
-        let ctrl = self.generator_ctrl(id);
-        GCLK.set_genctrl(f(ctrl));
-        self
-    }
-
     pub fn generator_div(&self, id: u8) -> u16 {
         GCLK.set_gendiv_id(gclk::GendivId(0).set_id(id));
         GCLK.gendiv().div() as u16
-    }
-
-    pub fn set_generator_div(&self, id: u8, value: u16) -> &Self {
-        GCLK.set_gendiv(gclk::Gendiv(0).set_id(id as u32).set_div(value as u32));
-        self
     }
 
     pub fn source(&self, id: u8) -> Hz {
@@ -732,8 +393,10 @@ impl ClockTree {
             src_hz.map(|v| v >> shift)
         }        
     }
+}
 
-    pub fn clockmux(&self, id: ClockMux) -> Hz {
+impl ClockTree for DynamicClock {
+    fn clockmux(&self, id: ClockMux) -> Hz {
         let ctrl = self.clockmux_ctrl(id as u8);
         if ctrl.clken() == 0 {
             None
@@ -741,96 +404,107 @@ impl ClockTree {
             self.generator(ctrl.gen() as u8)
         }
     }
+}
 
-    pub fn clock<P: Clock>(&self, p: &P) -> Hz {
-        p.clock(self)
+impl fmt::Debug for DynamicClock {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[DynamicCLock")?;
+        write!(f, " XOSC={:?}", self.xosc())?;
+        write!(f, " XOSC32K={:?}", self.xosc32k())?;
+        write!(f, " OSC32K={:?}", self.osc32k())?;
+        write!(f, " OSCULP32K={:?}", self.osculp32k())?;
+        write!(f, " OSC8M={:?}", self.osc8m())?;
+        write!(f, " DFLL={:?}", self.dfll())?;
+        write!(f, " DPLL={:?}", self.dpll())?;
+        write!(f, "]")?;
+        Ok(())
     }
 }
 
-pub trait Clock {
-    fn clock(&self, clk: &ClockTree) -> Hz;
+pub trait Clock<T: ClockTree> {
+    fn clock(&self, t: &T) -> Hz;
 }
 
-impl Clock for Sercom0 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom0)
+impl<T: ClockTree> Clock<T> for Sercom0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom0)
     }
 }
 
-impl Clock for Sercom1 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom1)
+impl<T: ClockTree> Clock<T> for Sercom1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom1)
     }
 }
 
-impl Clock for Sercom2 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom2)
+impl<T: ClockTree> Clock<T> for Sercom2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom2)
     }
 }
 
-impl Clock for Sercom3 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom3)
+impl<T: ClockTree> Clock<T> for Sercom3 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom3)
     }
 }
 
-impl Clock for Sercom4 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom4)
+impl<T: ClockTree> Clock<T> for Sercom4 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom4)
     }
 }
 
-impl Clock for Sercom5 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Sercom5)
+impl<T: ClockTree> Clock<T> for Sercom5 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Sercom5)
     }
 }
 
-impl Clock for Tcc0 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tcc0Tcc1)
+impl<T: ClockTree> Clock<T> for Tcc0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tcc0Tcc1)
     }
 }
 
-impl Clock for Tcc1 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tcc0Tcc1)
+impl<T: ClockTree> Clock<T> for Tcc1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tcc0Tcc1)
     }
 }
 
-impl Clock for Tcc2 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tcc2Tc3)
+impl<T: ClockTree> Clock<T> for Tcc2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tcc2Tc3)
     }
 }
 
-impl Clock for Tc3 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tcc2Tc3)
+impl<T: ClockTree> Clock<T> for Tc3 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tcc2Tc3)
     }
 }
 
-impl Clock for Tc4 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tc4Tc5)
+impl<T: ClockTree> Clock<T> for Tc4 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tc4Tc5)
     }
 }
 
-impl Clock for Tc5 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Tc4Tc5)
+impl<T: ClockTree> Clock<T> for Tc5 {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Tc4Tc5)
     }
 }
 
-impl Clock for Adc {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Adc)
+impl<T: ClockTree> Clock<T> for Adc {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Adc)
     }
 }
 
-impl Clock for Wdt {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.clockmux(ClockMux::Wdt)
+impl<T: ClockTree> Clock<T> for Wdt {
+    fn clock(&self, t: &T) -> Hz {
+        t.clockmux(ClockMux::Wdt)
     }
 }
