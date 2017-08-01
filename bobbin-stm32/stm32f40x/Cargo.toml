@@ -4,18 +4,19 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [build-dependencies]
-bobbin-chip = { path = "../../../bobbin-chip/" }
+bobbin-build = { path = "../../bobbin-build/" }
 
 [dependencies]
 bobbin-common = { path = "../../bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 stm32-common = { path = "../stm32-common" }
 
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
+
 [features]
-STM32F405xE = []
-STM32F405xG = []
-STM32F407xE = []
-STM32F407xG = []
-STM32F415xG = []
-STM32F417xE = []
-STM32F417xG = []
+STM32F40xE = []
+STM32F40xG = []
+STM32F41xE = []
+STM32F41xG = []

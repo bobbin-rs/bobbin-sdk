@@ -4,11 +4,15 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [build-dependencies]
-bobbin-chip = { path = "../../../bobbin-chip/" }
+bobbin-build = { path = "../../bobbin-build/" }
 
 [dependencies]
 bobbin-common = { path = "../../bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
+
 [features]
-SAMD21G18 = []
+SAMD21x18 = []

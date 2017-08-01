@@ -1,6 +1,6 @@
-extern crate bobbin_chip as chip;
+extern crate bobbin_build;
 
 fn main() {
-    chip::builder::build("chip-src/lib.rx","src/chip/mod.rs").unwrap();
+    println!("cargo:rerun-if-changed=build.rs");
+    bobbin_build::setup_linker();
 }
-
