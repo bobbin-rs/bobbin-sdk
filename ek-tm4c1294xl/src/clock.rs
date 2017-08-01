@@ -1,10 +1,11 @@
-pub use ::hal::clock::{self, Hz, ClockTree, DynamicClockTree, Clock};
+pub use ::hal::clock::{self, Hz, ClockTree, DynamicClock, Clock};
 
 pub const CLK_120MHZ: &Clk120MHz = &Clk120MHz {};
 pub const CLK_60MHZ: &Clk60MHz = &Clk60MHz {};
 pub const CLK_16MHZ: &Clk16MHz = &Clk16MHz {};
 pub const CLK_32KHZ: &Clk32KHz = &Clk32KHz {};
-pub const CLK: &DynamicClockTree = &DynamicClockTree {
+
+pub const CLK: &DynamicClock = &DynamicClock {
     osc: Some(25_000_000),
     xosc: Some(32768),
 };

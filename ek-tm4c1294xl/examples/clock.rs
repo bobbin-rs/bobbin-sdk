@@ -3,21 +3,14 @@
 
 #[macro_use]
 extern crate ek_tm4c1294xl as board;
-use board::clock::{CLK, ClockTree};
+use board::clock::CLK;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     
     println!("Running Clock Test");    
-    println!("MOSC:      {:?}", CLK.mosc());
-    println!("RTCOSC:    {:?}", CLK.rtcosc());
-    println!("LFIOSC:    {:?}", CLK.lfiosc());
-    println!("PIOSC      {:?}", CLK.piosc());
-    println!("");
-    println!("OSCCLK:    {:?}", CLK.oscclk());
-    println!("VCO:       {:?}", CLK.vco());
-    println!("SYSCLK:    {:?}", CLK.sysclk());
+    println!("{:?}", CLK);
     println!("");
 
     loop {
