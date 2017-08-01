@@ -1,5 +1,6 @@
 use hal::tim::*;
-
+use clock::CLK;
+use hal::clock::Clock;
 pub const TIM: Tim15 = TIM15;
 pub const TIM_PRESCALE: u16 = 35999;
 
@@ -20,5 +21,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, TIM_PRESCALE);    
+    TIM.delay(ms << 1, TIM.clock(&CLK).unwrap() as u16);
 }

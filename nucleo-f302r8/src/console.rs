@@ -1,6 +1,8 @@
 use core::fmt::{self, Write, Arguments};
 use hal::gpio::*;
 use hal::usart::*;
+use hal::clock::Clock;
+use clock::CLK;
 
 pub const USART: Usart2 = USART2;
 pub const USART_TX: Pa2 = PA2;
@@ -19,9 +21,18 @@ pub fn init() {
     USART_RX.mode_rx(&USART);
 
     // Set Baud and Enable USART
-    USART.enable(USART_CLOCK / USART_BAUD);
+    USART.set_config(|cfg| cfg.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    USART.enable();
 }
 
+pub fn disable() {
+    USART.disable();
+}
+
+pub fn reinit() {
+    USART.set_config(|cfg| cfg.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    USART.enable();    
+}
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
 macro_rules! print {
