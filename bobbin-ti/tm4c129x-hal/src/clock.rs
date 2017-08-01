@@ -30,9 +30,6 @@ pub fn set_clock(psysdiv: u16, mint: u16, mfrac: u16, n: u8, q: u8) {
 }
 
 pub type Hz = Option<u32>;
-pub const KHZ: Hz = Some(1_000);
-pub const MHZ: Hz = Some(1_000_000);
-pub const GHZ: Hz = Some(1_000_000_000);
 
 pub const PIOSC: Hz = Some(16_000_000);
 pub const LFIOSC: Hz = Some(33_000);
@@ -115,7 +112,11 @@ macro_rules! impl_clock {
     ($t:ty, $m:ident) => (
         impl<T> Clock<T> for $t where T: ClockTree + ?Sized {
             fn clock(&self, t: &T) -> Hz {
-                t.$m()
+                if self.rcgc() != 0 {
+                    t.$m()
+                } else {
+                    None
+                }
             }
         }        
     )
