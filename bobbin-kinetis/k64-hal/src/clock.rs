@@ -4,6 +4,7 @@ use chip::mcg::{self, MCG};
 use chip::uart::*;
 use chip::pit::*;
 
+use core::fmt;
 // use hal::mcg::MCG;
 // use hal::sim::SIM;
 // use hal::osc::OSC;
@@ -215,33 +216,24 @@ pub const LPO: Hz = Some(1000);
 
 pub type Hz = Option<u32>;
 
-pub struct ClockTree {
+pub trait ClockTree {
+    fn system(&self) -> Hz;
+    fn bus(&self) -> Hz;
+    fn flexbus(&self) -> Hz;
+    fn flash(&self) -> Hz;
+}
+
+pub struct DynamicClock {
     pub xtal0: Hz,
     pub xtal32: Hz,
 }
 
-impl ClockTree {
+impl DynamicClock {
     // From 5.4 Clock Definitions
 
     pub fn core(&self) -> Hz {
         self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv1() + 1))
     }
-
-    pub fn system(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv1() + 1))
-    }
-
-    pub fn bus(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv2() + 1))
-    }
-
-    pub fn flexbus(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv3() + 1))
-    }    
-
-    pub fn flash(&self) -> Hz {
-        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv4() + 1))
-    }      
 
     pub fn ircclk(&self) -> Hz {
         if MCG.c2().ircs() != 0 {
@@ -370,30 +362,64 @@ impl ClockTree {
     pub fn lpo(&self) -> Hz { 
         LPO 
     }
+}
 
-    pub fn clock<P: Clock>(&self, p: &P) -> Hz {
-        p.clock(self)
+impl ClockTree for DynamicClock {
+    fn system(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv1() + 1))
+    }
+
+    fn bus(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv2() + 1))
+    }
+
+    fn flexbus(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv3() + 1))
+    }    
+
+    fn flash(&self) -> Hz {
+        self.mcgoutclk().map(|v| v / (SIM.clkdiv1().outdiv4() + 1))
+    }          
+}
+
+
+impl fmt::Debug for DynamicClock {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[DynamicCLock")?;
+        write!(f, " CORE={:?}", self.core())?;
+        write!(f, " BUS={:?}", self.bus())?;
+        write!(f, " FLEXBUS={:?}", self.flexbus())?;
+        write!(f, " FLASH={:?}", self.flash())?;
+        write!(f, " MCGIRCLK={:?}", self.mcgirclk())?;
+        write!(f, " MCGFFCLK={:?}", self.mcgffclk())?;
+        write!(f, " MCGFLLCLK={:?}", self.mcgfllclk())?;
+        write!(f, " MCGPLLCLK={:?}", self.mcgpllclk())?;
+        write!(f, " OSCERCLK={:?}", self.oscerclk())?;
+        write!(f, "]")?;
+        Ok(())
     }
 }
 
-pub trait Clock {
-    fn clock(&self, clk: &ClockTree) -> Hz;
+
+
+pub trait Clock<T: ClockTree> {
+    fn clock(&self, t: &T) -> Hz;
 }
 
-impl Clock for Uart0 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.system()
+impl<T: ClockTree> Clock<T> for Uart0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
     }
 }
 
-impl Clock for Uart1 {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.system()
+impl<T: ClockTree> Clock<T> for Uart1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
     }
 }
 
-impl Clock for Pit {
-    fn clock(&self, clk: &ClockTree) -> Hz {
-        clk.bus()
+impl<T: ClockTree> Clock<T> for Pit {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
     }
 }
