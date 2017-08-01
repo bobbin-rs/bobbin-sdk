@@ -1,4 +1,5 @@
 use core::fmt::{self, Write, Arguments};
+use hal::clock::Clock;
 use clock::CLK;
 use hal::gpio::*;
 use hal::usart::*;
@@ -20,13 +21,18 @@ pub fn init() {
     USART_RX.mode_rx(&USART);
 
     // Set Baud and Enable USART
-    USART.with_config(|c| c.set_baud(USART_BAUD, CLK.clock(&USART).expect("No clock available for USART")));
+    USART.with_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    // USART.with_config(|c| c.set_baud(USART_BAUD, 32_000_000));
     USART.enable();
 }
 
+pub fn disable() {
+    USART.disable();
+}
+
 pub fn reinit() {
-    // Set Baud and Enable USART
-    USART.disable().with_config(|c| c.set_baud(USART_BAUD, CLK.clock(&USART).expect("No clock available for USART"))).enable();    
+    USART.with_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    USART.enable();
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
