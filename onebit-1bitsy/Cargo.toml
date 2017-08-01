@@ -8,12 +8,8 @@ stm32f40x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f40x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
-default = ["stm32f40x/STM32F415xG"]
+default = ["stm32f40x/STM32F41xG"]
 
 [profile.dev]
 panic = "abort"

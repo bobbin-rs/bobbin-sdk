@@ -1,10 +1,10 @@
 #![no_std]
 #![feature(lang_items)]
-#![feature(compiler_builtins_lib)]
+
 #![feature(asm)]
 
 extern crate r0;
-extern crate compiler_builtins;
+
 
 extern crate log;
 

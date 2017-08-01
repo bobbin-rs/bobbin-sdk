@@ -4,17 +4,9 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
-#s32 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
 s32 = { path = "../../bobbin-mcu/bobbin-kinetis/s32"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
-
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
-[dev-dependencies]
-simple-semaphore = { path = "../../simple-semaphore"}
 
 [features]
 default = ["s32/K144"]

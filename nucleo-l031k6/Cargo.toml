@@ -7,10 +7,6 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 stm32l031x = { path = "../../bobbin-mcu/bobbin-stm32/stm32l031x"}
 r0 = "0.1.0"
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
 default = ["stm32l031x/stm32l031x6"]
 

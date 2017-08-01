@@ -1,11 +1,9 @@
 use chip::rcc;
 use chip::flash;
-// use chip::pwr;
 
 pub fn init() {
     let rcc = rcc::RCC;
     let flash = flash::FLASH;
-    // let pwr = pwr::PWR;
 
     // Enable internal high-speed oscillator.
     rcc.with_cr(|r| r.set_hsion(1));
@@ -14,7 +12,8 @@ pub fn init() {
     while rcc.cr().hsirdy() == 0 {}
 
     // Select HSI as SYSCLK source. 
-    rcc.with_cfgr(|r| r.set_sw1(0).set_sw0(0));
+    rcc.with_cfgr(|r| r.set_sw(0b01));
+    while rcc.cfgr().sws() != 0b00 {}
 
     // Enable external high-speed oscillator 25MHz.
     rcc.with_cr(|r| r.set_hseon(1).set_hsebyp(0));
@@ -77,15 +76,8 @@ pub fn init() {
     
     // Select PLL as SYSCLK source.
 
-    rcc.with_cfgr(|r| r.set_sw1(1));
-    
-    // Wait for PLL to be selected
-    let mut cfgr = rcc.cfgr();
-    while cfgr.sw1() == 0 && cfgr.sw0() == 0 {
-        cfgr = rcc.cfgr();
-    }   
-
-
+    rcc.with_cfgr(|r| r.set_sw(0b10));
+    while rcc.cfgr().sws() != 0b10 {}
     
     // Disable internal high-speed oscillator.        
     rcc.with_cr(|r| r.set_hsion(0));

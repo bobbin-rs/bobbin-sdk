@@ -5,17 +5,12 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 #build = "build.rs"
 
 [dependencies]
-#stm32f3 = { git = "https://github.com/bobbin-rs/bobbin-stm32"}
 stm32f302x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f302x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
-default = ["stm32f302x/STM32F302R8"]
+default = ["stm32f302x/STM32F302x8"]
 
 [profile.dev]
 panic = "abort"

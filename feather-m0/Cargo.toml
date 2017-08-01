@@ -5,16 +5,11 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 build = "build.rs"
 
 [dependencies]
-#samd = { git = "https://github.com/bobbin-rs/bobbin-sam"}
 samd21 = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
 r0 = "0.1.0"
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
-default = ["samd21/SAMD21G18"]
+default = ["samd21/SAMD21x18"]
 no_bootloader = []
 
 [profile.dev]

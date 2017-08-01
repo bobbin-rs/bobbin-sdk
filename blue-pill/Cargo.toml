@@ -8,12 +8,8 @@ stm32f10x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f10x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
-default = ["stm32f10x/STM32F103x8"]
+default = ["stm32f10x/STM32F10x8"]
 
 [profile.dev]
 panic = "abort"
