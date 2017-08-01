@@ -1,6 +1,7 @@
 use core::fmt::{self, Write, Arguments};
 use hal::port::*;
 use hal::uart::*;
+use hal::clock::Clock;
 use clock::CLK;
 
 pub const UART: Uart0 = UART0;
@@ -21,7 +22,7 @@ pub fn init() {
 
     // Set Baud and Enable USART
     // UART.enable(UART_BD);
-    UART.enable((CLK.clock(&UART).expect("No bus clock") / (16 * UART_BAUD)) as u16);
+    UART.enable((UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD)) as u16);
 }
 
 pub fn disable() {
@@ -31,7 +32,7 @@ pub fn disable() {
 
 pub fn enable() {
     UART.sim_enable();
-    UART.enable((CLK.clock(&UART).expect("No bus clock") / (16 * UART_BAUD)) as u16);
+    UART.enable((UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD)) as u16);
 }
 
 /// Macro for sending `print!`-formatted messages over the Console

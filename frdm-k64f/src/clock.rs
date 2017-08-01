@@ -1,6 +1,6 @@
-use hal::clock::{self, ClockTree};
+use hal::clock::{self, DynamicClock};
 
-pub const CLK: ClockTree = ClockTree {
+pub const CLK: DynamicClock = DynamicClock {
     xtal0: Some(50_000_000),
     xtal32: Some(32767),
 };
