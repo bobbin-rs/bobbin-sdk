@@ -4,6 +4,7 @@ use ::chip::usart::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
 use ::chip::tim_bas::*;
+use ::chip::rcc::En;
 
 use core::fmt;
 
@@ -233,48 +234,64 @@ impl fmt::Debug for DynamicClock {
 
 impl<T: ClockTree> Clock<T> for Usart1 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().usart1sw() {
-            0b00 => t.pclk2(),
-            0b01 => t.sysclk(),
-            0b10 => t.lse(),
-            0b11 => t.hsi(),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().usart1sw() {
+                0b00 => t.pclk2(),
+                0b01 => t.sysclk(),
+                0b10 => t.lse(),
+                0b11 => t.hsi(),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Usart2 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().usart2sw() {
-            0b00 => t.pclk1(),
-            0b01 => t.sysclk(),
-            0b10 => t.lse(),
-            0b11 => t.hsi(),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().usart2sw() {
+                0b00 => t.pclk1(),
+                0b01 => t.sysclk(),
+                0b10 => t.lse(),
+                0b11 => t.hsi(),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Usart3 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().usart3sw() {
-            0b00 => t.pclk1(),
-            0b01 => t.sysclk(),
-            0b10 => t.lse(),
-            0b11 => t.hsi(),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().usart3sw() {
+                0b00 => t.pclk1(),
+                0b01 => t.sysclk(),
+                0b10 => t.lse(),
+                0b11 => t.hsi(),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Uart4 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().uart4sw() {
-            0b00 => t.pclk1(),
-            0b01 => t.sysclk(),
-            0b10 => t.lse(),
-            0b11 => t.hsi(),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().uart4sw() {
+                0b00 => t.pclk1(),
+                0b01 => t.sysclk(),
+                0b10 => t.lse(),
+                0b11 => t.hsi(),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
@@ -282,12 +299,16 @@ impl<T: ClockTree> Clock<T> for Uart4 {
 
 impl<T: ClockTree> Clock<T> for Uart5 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().uart5sw() {
-            0b00 => t.pclk1(),
-            0b01 => t.sysclk(),
-            0b10 => t.lse(),
-            0b11 => t.hsi(),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().uart5sw() {
+                0b00 => t.pclk1(),
+                0b01 => t.sysclk(),
+                0b10 => t.lse(),
+                0b11 => t.hsi(),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
@@ -297,10 +318,14 @@ impl<T: ClockTree> Clock<T> for Uart5 {
 
 impl<T: ClockTree> Clock<T> for Tim1 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim1sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim1sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
@@ -308,10 +333,14 @@ impl<T: ClockTree> Clock<T> for Tim1 {
 
 impl<T: ClockTree> Clock<T> for Tim2 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim2sw() {
-            0b00 => t.tim_pclk1(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {        
+            match RCC.cfgr3().tim2sw() {
+                0b00 => t.tim_pclk1(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
@@ -319,82 +348,118 @@ impl<T: ClockTree> Clock<T> for Tim2 {
 
 impl<T: ClockTree> Clock<T> for Tim3 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim34sw() {
-            0b00 => t.tim_pclk1(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim34sw() {
+                0b00 => t.tim_pclk1(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim4 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim34sw() {
-            0b00 => t.tim_pclk1(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim34sw() {
+                0b00 => t.tim_pclk1(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim6 {
     fn clock(&self, t: &T) -> Hz {
-        t.tim_pclk1()
+        if self.en() != 0 {
+            t.tim_pclk1()
+        } else {
+            None
+        }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim7 {
     fn clock(&self, t: &T) -> Hz {
-        t.tim_pclk1()
+        if self.en() != 0 {
+            t.tim_pclk1()
+        } else {
+            None
+        }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim8 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim8sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim8sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim15 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim15sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim15sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim16 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim16sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim16sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim17 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim17sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {
+            match RCC.cfgr3().tim17sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim20 {
     fn clock(&self, t: &T) -> Hz {
-        match RCC.cfgr3().tim20sw() {
-            0b00 => t.tim_pclk2(),
-            0b01 => t.pllclk().map(|v| v << 1),
-            _ => unimplemented!(),
+        if self.en() != 0 {        
+            match RCC.cfgr3().tim20sw() {
+                0b00 => t.tim_pclk2(),
+                0b01 => t.pllclk().map(|v| v << 1),
+                _ => unimplemented!(),
+            }
+        } else {
+            None
         }
     }
 }
