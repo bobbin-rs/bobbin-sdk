@@ -8,6 +8,7 @@ use std::io::{self, Write};
 
 use chip::{TopLevel, Device};
 use chip::reader;
+use chip::builder;
 
 pub struct AppError(i32, String);
 
@@ -25,6 +26,8 @@ impl From<reader::ReadError> for AppError {
 
 fn main() {
     let matches = App::new("chip")
+        .arg(Arg::with_name("build")
+            .long("build"))
         .arg(Arg::with_name("groups")
             .long("groups"))
         .arg(Arg::with_name("constants")
@@ -46,11 +49,20 @@ fn main() {
         .arg(Arg::with_name("input"))
         .arg(Arg::with_name("output"))
         .get_matches();
-    
+        
     if !matches.is_present("input") {
         println!("{}", matches.usage());
         std::process::exit(1);
     }
+
+    if matches.is_present("build") {
+        let src = matches.value_of("input").unwrap();
+        let dst = matches.value_of("output").unwrap();
+        // println!("{} => {}", src, dst);
+        builder::build_inner(src, dst, false, false).unwrap();
+        std::process::exit(0);
+    }
+
 
     let device = match load_device(matches.value_of("input").unwrap()) {
         Ok(device) => device,
@@ -119,6 +131,7 @@ fn cmd_modules(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
 fn cmd_registers(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
     Ok(try!(chip::codegen::gen_registers(matches, &mut std::io::stdout(), &device)))
 }
+
 
 fn load_device<P: AsRef<Path>>(p: P) -> Result<Device, AppError> {
     let mut input = try!(File::open(&p));

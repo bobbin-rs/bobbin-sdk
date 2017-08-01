@@ -23,7 +23,11 @@ impl From<reader::ReadError> for BuildError {
     }
 }
 
-pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result<(), BuildError> {
+pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, setup_link: bool, in_cargo: bool) -> Result<(), BuildError> {
+    build_inner(src_path, dst_path, true, true)
+}
+
+pub fn build_inner<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, setup_link: bool, in_cargo: bool) -> Result<(), BuildError> {
     let src_path = src_path.as_ref();
     let dst_path = dst_path.as_ref();
 
@@ -41,26 +45,36 @@ pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D) -> Result
         let mut f_mod = try!(File::create(dst_path));
         let cfg = codegen::modules::Config { path: PathBuf::from(dst_path), is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")) };
         codegen::modules::gen_mod(&cfg, &mut f_mod, &device, dst_path.parent().expect("Destination file name must be lib.rs or mod.rs"))?;
-        println!("cargo:rerun-if-changed={}", src_path.display());
+        if in_cargo {
+            println!("cargo:rerun-if-changed={}", src_path.display());
+        }
         for f in fs::read_dir(src_dir.join("periph"))? {
             let f = f?;
-            println!("cargo:rerun-if-changed={}", f.path().display());
+            if in_cargo {
+                println!("cargo:rerun-if-changed={}", f.path().display());
+            }
         }
     }
-    if device.variants.len() > 0 {        
+    if setup_link && device.variants.len() > 0 {        
         if let Some(v) = get_selected_variant(&device) {
             if let Some(ref link_script) = v.link {
                 //println!("cargo:warning=link_script {}", link_script);                
                 let src = PathBuf::from("link").join(link_script);
-                println!("cargo:rerun-if-changed={}", src.display());
+                if in_cargo {
+                    println!("cargo:rerun-if-changed={}", src.display());
+                }
                 copy_link_script(&src);
             } else {
-                println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
+                if in_cargo {
+                    println!("cargo:warning=Link script {:?} was not found for variant {}", v.link, v.name);
+                }
             }
         } else {
-            println!("cargo:warning=No link script found, please check that you have selected a known device variant from the following:");
-            for v in device.variants.iter() {
-                println!("cargo:warning=   {}", v.name);
+            if in_cargo {
+                println!("cargo:warning=No link script found, please check that you have selected a known device variant from the following:");        
+                for v in device.variants.iter() {
+                    println!("cargo:warning=   {}", v.name);
+                }
             }
         }
     }
