@@ -1,3 +1,4 @@
+pub use bobbin_common::digital::*;
 use chip::gpio::{self, Pin};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -53,10 +54,10 @@ pub trait PinExt {
     fn push_pull(&self) -> &Self;
     fn open_drain(&self) -> &Self;
 
-    fn input(&self) -> bool;
-    fn output(&self) -> bool;
-    fn set_output(&self, value: bool) -> &Self;
-    fn toggle_output(&self) -> &Self;
+    // fn input(&self) -> bool;
+    // fn output(&self) -> bool;
+    // fn set_output(&self, value: bool) -> &Self;
+    // fn toggle_output(&self) -> &Self;
 }
 
 impl<P, T> PinExt for Pin<P,T> {
@@ -184,13 +185,16 @@ impl<P, T> PinExt for Pin<P,T> {
     fn open_drain(&self) -> &Self {
         self.set_output_type(OutputType::OpenDrain)
     }
+}
 
-
+impl<P, T> DigitalInput for Pin<P,T> {
     #[inline]
     fn input(&self) -> bool {
         self.port.idr().idr(self.index) != 0
     }
+}
 
+impl<P, T> DigitalOutput for Pin<P,T> {
     #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0
