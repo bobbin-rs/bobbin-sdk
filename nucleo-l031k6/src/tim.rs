@@ -14,5 +14,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, ((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16);
+    TIM.delay(ms << 1, ((TIM.clock(&CLK).unwrap() / 2000) - 1));
 }
