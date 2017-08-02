@@ -1,3 +1,4 @@
+pub use bobbin_common::timer::*;
 pub use chip::ftm::*;
 
 pub enum Prescale {
@@ -79,5 +80,65 @@ impl<P, T> FtmChExt for Channel<P, T> {
         let value = if value { 1 } else { 0 };
         self.periph.with_sc(|r| r.set_pwmen(self.index, value));
         self
+    }
+}
+
+impl<T> Timer<u16> for Periph<T> {
+    fn enabled(&self) -> bool {
+        self.sc().clks() != 0
+    }
+    fn set_enabled(&self, value: bool) -> &Self {
+        if value {
+            self.set_clock(ClockSource::FixedClk)
+        } else {
+            self.set_clock(ClockSource::Disabled)            
+        }
+    }
+
+    fn prescaler(&self) -> u16 {
+        1u16 << self.sc().ps()
+    }
+
+    fn set_prescaler(&self, prescale: u16) -> &Self {
+        let value = match prescale {
+            1 => 0b000,
+            2 => 0b001,
+            4 => 0b010,
+            8 => 0b011,
+            16 => 0b100,
+            32 => 0b101,
+            64 => 0b110,
+            128 => 0b111,
+            _ => panic!("Unsupported prescaler value: {}", prescale),
+        };
+        self.with_sc(|r| r.set_ps(value))
+    }
+
+    fn period(&self) -> u16 {
+        self.modulo()
+    }
+
+    fn set_period(&self, value: u16) -> &Self {
+        self.set_modulo(value);
+        self
+    }
+
+    fn timeout(&self) -> bool {
+        self.sc().tof() != 0
+    }
+    fn clr_timeout(&self) -> &Self {
+        self.with_sc(|r| r.set_tof(0))
+    }
+}
+
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, period: u16, prescale: u16) -> &Self {
+        self
+            .set_prescaler(prescale)
+            .set_period(period)
+            .clr_timeout()
+            .set_enabled(true)
+            .wait_timeout()
+            .set_enabled(false)
     }
 }

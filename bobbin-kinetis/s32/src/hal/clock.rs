@@ -2,7 +2,7 @@ use chip::scg::{self, SCG};
 use chip::pcc::PCC;
 use chip::lpuart::*;
 use chip::lpit::*;
-// use chip::ftm::*;
+use chip::ftm::*;
 use core::fmt;
 
 // 8 MHz Crystal on PTB6 / PTB7
@@ -298,3 +298,7 @@ impl_clock!(Lpuart0, lpuart0);
 impl_clock!(Lpuart1, lpuart1);
 impl_clock!(Lpuart2, lpuart2);
 impl_clock!(Lpit0, lpit);
+impl_clock!(Ftm0, ftm0);
+impl_clock!(Ftm1, ftm1);
+impl_clock!(Ftm2, ftm2);
+impl_clock!(Ftm3, ftm3);
