@@ -4,14 +4,14 @@
 #[macro_use]
 extern crate nucleo_l031k6 as board;
 
-use board::clock::CLK;
-use board::hal::clock::ClockTree;
+use board::clock::*;
 use board::hal::systick;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();    
     println!("Running Systick Example");
+
     let reload_value = (CLK.systick().unwrap() / 1000) - 1;
     println!("Setting reload_value to {}", reload_value);    
     systick::set_reload_value(reload_value);
