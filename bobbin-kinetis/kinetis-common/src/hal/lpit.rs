@@ -22,9 +22,6 @@ pub trait LpitExt {
 }
 
 pub trait LpitChannelExt {
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, value: bool) -> &Self;
-
     fn value(&self) -> u32;
     fn set_value(&self, value: u32) -> &Self;
 
@@ -90,14 +87,6 @@ impl<T> LpitExt for Periph<T> {
 }
 
 impl<P,T> LpitChannelExt for Channel<P, T> {
-    fn enabled(&self) -> bool {
-        self.periph().ch_enabled(self.index())
-    }
-    fn set_enabled(&self, value: bool) -> &Self {
-        self.periph().set_ch_enabled(self.index(), value);
-        self
-    }
-
     fn value(&self) -> u32 {
         self.periph().ch_value(self.index())
     }
@@ -124,6 +113,40 @@ impl<P,T> LpitChannelExt for Channel<P, T> {
     fn wait_tif(&self) -> &Self {
         while !self.tif() {}
         self
+    }
+}
+
+impl<P, T> Timer<u32> for Channel<P, T> {
+    fn enabled(&self) -> bool {
+        self.periph().ch_enabled(self.index())
+    }
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.periph().set_ch_enabled(self.index(), value);
+        self
+    }
+
+    fn prescaler(&self) -> u32 {
+        1
+    }
+    fn set_prescaler(&self, prescale: u32) -> &Self {
+        assert!(prescale == 1);
+        self
+    }
+
+    fn reload(&self) -> u32 {
+        self.periph().ch_value(self.index())
+    }
+
+    fn set_reload(&self, value: u32) -> &Self {
+        self.periph().set_ch_value(self.index(), value);
+        self
+    }
+
+    fn timeout(&self) -> bool {
+        self.tif()
+    }
+    fn clr_timeout(&self) -> &Self {
+        self.clr_tif()
     }
 }
 

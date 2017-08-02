@@ -143,10 +143,6 @@ impl<P, T> TimGenChExt for Channel<P, T> {
 }
 
 impl<T> Timer<u16> for Periph<T> {
-    const MAX_PRESCALE: u16 = ::core::u16::MAX as u16;
-    const MAX_RELOAD: u16 = ::core::u16::MAX as u16;
-    const MAX_COUNT: u16 = ::core::u16::MAX as u16;
-
     fn enabled(&self) -> bool {
         self.cr1().cen() != 0
     }
@@ -162,7 +158,6 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn set_prescaler(&self, value: u16) -> &Self {
-        assert!(value < Self::MAX_PRESCALE);
         self.set_psc(Psc(0).set_psc(value as u32))
     }
 
@@ -171,28 +166,17 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn set_reload(&self, value: u16) -> &Self {
-        assert!(value < Self::MAX_COUNT);
-        self.set_arr(Arr(0).set_arrl(value as u32))
+        self
+            .set_arr(Arr(0).set_arrl(value as u32))
+            .set_egr(Egr(0).set_ug(1))
     }
 
-    fn counter(&self) -> u16 {
-        self.cnt().cntl() as u16
-    }
-
-    fn set_counter(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_cntl(value as u32))
-    }
-
-    fn overflow(&self) -> bool {
+    fn timeout(&self) -> bool {
         self.sr().uif() != 0
     }
 
-    fn clr_overflow(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.with_sr(|r| r.set_uif(0))
-    }
-
-    fn sync(&self) -> &Self {
-        self.set_egr(Egr(0).set_ug(1))
     }
 }
 
@@ -202,8 +186,9 @@ impl<T> Delay<u16> for Periph<T> {
             .set_enabled(true)
             .set_prescaler(prescale)
             .set_reload(reload)
-            .sync()
+            .clr_timeout()
             .wait()
+            .clr_timeout()
             .set_enabled(false)
     }    
 }
