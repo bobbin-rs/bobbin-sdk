@@ -1,3 +1,4 @@
+pub use bobbin_common::timer::*;
 use chip::lpit::*;
 
 pub trait LpitExt {
@@ -18,6 +19,22 @@ pub trait LpitExt {
 
     fn ch_tif(&self, index: usize) -> bool;
     fn clr_ch_tif(&self, index: usize) -> &Self;    
+}
+
+pub trait LpitChannelExt {
+    fn enabled(&self) -> bool;
+    fn set_enabled(&self, value: bool) -> &Self;
+
+    fn value(&self) -> u32;
+    fn set_value(&self, value: u32) -> &Self;
+
+    fn tie(&self) -> bool;
+    fn set_tie(&self, value: bool) -> &Self;
+
+    fn tif(&self) -> bool;
+    fn clr_tif(&self) -> &Self;    
+
+    fn wait_tif(&self) -> &Self;
 }
 
 impl<T> LpitExt for Periph<T> {
@@ -70,4 +87,53 @@ impl<T> LpitExt for Periph<T> {
     fn clr_ch_tif(&self, index: usize) -> &Self {
         self.set_msr(Msr(0).set_tif(index, 1))
     }       
+}
+
+impl<P,T> LpitChannelExt for Channel<P, T> {
+    fn enabled(&self) -> bool {
+        self.periph().ch_enabled(self.index())
+    }
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.periph().set_ch_enabled(self.index(), value);
+        self
+    }
+
+    fn value(&self) -> u32 {
+        self.periph().ch_value(self.index())
+    }
+    fn set_value(&self, value: u32) -> &Self {
+        self.periph().set_ch_value(self.index(), value);
+        self
+    }
+
+    fn tie(&self) -> bool {
+        self.periph().ch_tie(self.index())
+    }
+    fn set_tie(&self, value: bool) -> &Self {
+        self.periph().set_ch_tie(self.index(), value);
+        self
+    }
+
+    fn tif(&self) -> bool {
+        self.periph().ch_tif(self.index())
+    }
+    fn clr_tif(&self) -> &Self {
+        self.periph().clr_ch_tif(self.index());
+        self
+    }
+    fn wait_tif(&self) -> &Self {
+        while !self.tif() {}
+        self
+    }
+}
+
+impl<P, T> Delay<u32> for Channel<P, T> {
+    fn delay(&self, reload: u32, prescale: u32) -> &Self {
+        self
+            .set_value(reload * prescale)
+            .clr_tif()
+            .set_enabled(true)
+            .wait_tif()
+            .set_enabled(false)
+    }
 }

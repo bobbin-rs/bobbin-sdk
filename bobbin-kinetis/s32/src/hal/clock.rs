@@ -2,7 +2,7 @@ use chip::scg::{self, SCG};
 use chip::pcc::PCC;
 use chip::lpuart::*;
 use chip::lpit::*;
-use chip::ftm::*;
+// use chip::ftm::*;
 use core::fmt;
 
 // 8 MHz Crystal on PTB6 / PTB7

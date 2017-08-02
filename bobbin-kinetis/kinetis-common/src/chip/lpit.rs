@@ -748,3 +748,12 @@ impl ::core::fmt::Debug for Tctrl {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+#[doc="LPIT Channel"]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+

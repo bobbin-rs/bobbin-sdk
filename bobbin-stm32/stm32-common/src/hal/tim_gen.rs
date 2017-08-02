@@ -142,10 +142,10 @@ impl<P, T> TimGenChExt for Channel<P, T> {
     }
 }
 
-impl<T> Timer for Periph<T> {
-    const MAX_PRESCALE: u32 = ::core::u16::MAX as u32;
-    const MAX_RELOAD: u32 = ::core::u16::MAX as u32;
-    const MAX_COUNT: u32 = ::core::u16::MAX as u32;
+impl<T> Timer<u16> for Periph<T> {
+    const MAX_PRESCALE: u16 = ::core::u16::MAX as u16;
+    const MAX_RELOAD: u16 = ::core::u16::MAX as u16;
+    const MAX_COUNT: u16 = ::core::u16::MAX as u16;
 
     fn enabled(&self) -> bool {
         self.cr1().cen() != 0
@@ -157,30 +157,30 @@ impl<T> Timer for Periph<T> {
 
     }
 
-    fn prescaler(&self) -> u32 {
-        self.psc().psc()
+    fn prescaler(&self) -> u16 {
+        self.psc().psc() as u16
     }
 
-    fn set_prescaler(&self, value: u32) -> &Self {
+    fn set_prescaler(&self, value: u16) -> &Self {
         assert!(value < Self::MAX_PRESCALE);
-        self.set_psc(Psc(value))
+        self.set_psc(Psc(0).set_psc(value as u32))
     }
 
-    fn reload(&self) -> u32 {
-        self.arr().0
+    fn reload(&self) -> u16 {
+        self.arr().arrl() as u16
     }
 
-    fn set_reload(&self, value: u32) -> &Self {
+    fn set_reload(&self, value: u16) -> &Self {
         assert!(value < Self::MAX_COUNT);
-        self.set_arr(Arr(value))
+        self.set_arr(Arr(0).set_arrl(value as u32))
     }
 
-    fn counter(&self) -> u32 {
-        self.cnt().0
+    fn counter(&self) -> u16 {
+        self.cnt().cntl() as u16
     }
 
-    fn set_counter(&self, value: u32) -> &Self {
-        self.set_cnt(Cnt(value))
+    fn set_counter(&self, value: u16) -> &Self {
+        self.set_cnt(Cnt(0).set_cntl(value as u32))
     }
 
     fn overflow(&self) -> bool {
@@ -194,8 +194,10 @@ impl<T> Timer for Periph<T> {
     fn sync(&self) -> &Self {
         self.set_egr(Egr(0).set_ug(1))
     }
+}
 
-    fn delay(&self, reload: u32, prescale: u32) -> &Self {
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, reload: u16, prescale: u16) -> &Self {
         self
             .set_enabled(true)
             .set_prescaler(prescale)

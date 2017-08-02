@@ -3,10 +3,10 @@
 //     Up,
 // }
 
-pub trait Timer {
-    const MAX_PRESCALE: u32;
-    const MAX_RELOAD: u32;
-    const MAX_COUNT: u32;
+pub trait Timer<T> {
+    const MAX_PRESCALE: T;
+    const MAX_RELOAD: T;
+    const MAX_COUNT: T;
 
     fn enabled(&self) -> bool;
     fn set_enabled(&self, bool) -> &Self;
@@ -14,14 +14,14 @@ pub trait Timer {
     // fn dir(&self) -> Direction;
     // fn set_dir(&self, dir: Direction);
 
-    fn prescaler(&self) -> u32;
-    fn set_prescaler(&self, prescale: u32) -> &Self;
+    fn prescaler(&self) -> T;
+    fn set_prescaler(&self, prescale: T) -> &Self;
 
-    fn reload(&self) -> u32;
-    fn set_reload(&self, value: u32) -> &Self;
+    fn reload(&self) -> T;
+    fn set_reload(&self, value: T) -> &Self;
 
-    fn counter(&self) -> u32;
-    fn set_counter(&self, value: u32) -> &Self;
+    fn counter(&self) -> T;
+    fn set_counter(&self, value: T) -> &Self;
 
     fn overflow(&self) -> bool;
     fn clr_overflow(&self) -> &Self;
@@ -32,8 +32,9 @@ pub trait Timer {
         self.clr_overflow();
         while !self.overflow() {}
         self
-    }
-    
-    fn delay(&self, reload: u32, prescale: u32) -> &Self;
-    
+    }    
+}
+
+pub trait Delay<T> {
+    fn delay(&self, reload: T, prescale: T) -> &Self;
 }
