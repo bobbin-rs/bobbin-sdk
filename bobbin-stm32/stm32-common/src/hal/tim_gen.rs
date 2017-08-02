@@ -1,3 +1,4 @@
+pub use bobbin_common::timer::*;
 pub use ::chip::tim_gen::*;
 
 pub enum Direction {
@@ -33,14 +34,14 @@ pub const CH3: usize = 2;
 pub const CH4: usize = 3;
 
 pub trait TimGenExt {
-    fn set_enabled(&self, value: bool) -> &Self;
+    // fn set_enabled(&self, value: bool) -> &Self;
     fn set_direction(&self, value: Direction) -> &Self;
-    fn set_prescaler(&self, value: u16) -> &Self;
+    // fn set_prescaler(&self, value: u16) -> &Self;
     fn set_update_event(&self) -> &Self;
     fn update_interrupt_flag(&self) -> bool;
     fn clr_update_interrupt_flag(&self) -> &Self;
     fn set_auto_reload(&self, value: u32) -> &Self;
-    fn delay(&self, reload: u32, prescaler: u16);
+    // fn delay(&self, reload: u32, prescaler: u16);
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self;
     fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self;
     fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self;
@@ -48,18 +49,18 @@ pub trait TimGenExt {
 }
 
 impl<T> TimGenExt for Periph<T> {
-    fn set_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_cr1(|r| r.set_cen(value))
-    }
+    // fn set_enabled(&self, value: bool) -> &Self {
+    //     let value = if value { 1 } else { 0 };
+    //     self.with_cr1(|r| r.set_cen(value))
+    // }
 
     fn set_direction(&self, value: Direction) -> &Self {
         self.with_cr1(|r| r.set_dir(value as u32))
     }
 
-    fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value as u32))
-    }
+    // fn set_prescaler(&self, value: u16) -> &Self {
+    //     self.set_psc(Psc(0).set_psc(value as u32))
+    // }
 
     fn set_update_event(&self) -> &Self {
         self.set_egr(Egr(0).set_ug(1))
@@ -77,18 +78,18 @@ impl<T> TimGenExt for Periph<T> {
         self.set_arr(Arr(value))
     }
 
-    fn delay(&self, reload: u32, prescaler: u16) {
-        self
-            .set_prescaler(prescaler)
-            .set_update_event()
-            .clr_update_interrupt_flag()
-            .set_auto_reload(reload)
-            .set_enabled(true);
-        while self.update_interrupt_flag() == false {}
-        self
-            .clr_update_interrupt_flag()
-            .set_enabled(false);
-    }    
+    // fn delay(&self, reload: u32, prescaler: u16) {
+    //     self
+    //         .set_prescaler(prescaler)
+    //         .set_update_event()
+    //         .clr_update_interrupt_flag()
+    //         .set_auto_reload(reload)
+    //         .set_enabled(true);
+    //     while self.update_interrupt_flag() == false {}
+    //     self
+    //         .clr_update_interrupt_flag()
+    //         .set_enabled(false);
+    // }    
 
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
@@ -139,4 +140,68 @@ impl<P, T> TimGenChExt for Channel<P, T> {
         self.periph().set_capture_compare(self.index(), value);
         self
     }
+}
+
+impl<T> Timer for Periph<T> {
+    const MAX_PRESCALE: u32 = ::core::u16::MAX as u32;
+    const MAX_RELOAD: u32 = ::core::u16::MAX as u32;
+    const MAX_COUNT: u32 = ::core::u16::MAX as u32;
+
+    fn enabled(&self) -> bool {
+        self.cr1().cen() != 0
+    }
+
+    fn set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_cr1(|r| r.set_cen(value))
+
+    }
+
+    fn prescaler(&self) -> u32 {
+        self.psc().psc()
+    }
+
+    fn set_prescaler(&self, value: u32) -> &Self {
+        assert!(value < Self::MAX_PRESCALE);
+        self.set_psc(Psc(value))
+    }
+
+    fn reload(&self) -> u32 {
+        self.arr().0
+    }
+
+    fn set_reload(&self, value: u32) -> &Self {
+        assert!(value < Self::MAX_COUNT);
+        self.set_arr(Arr(value))
+    }
+
+    fn counter(&self) -> u32 {
+        self.cnt().0
+    }
+
+    fn set_counter(&self, value: u32) -> &Self {
+        self.set_cnt(Cnt(value))
+    }
+
+    fn overflow(&self) -> bool {
+        self.sr().uif() != 0
+    }
+
+    fn clr_overflow(&self) -> &Self {
+        self.with_sr(|r| r.set_uif(0))
+    }
+
+    fn sync(&self) -> &Self {
+        self.set_egr(Egr(0).set_ug(1))
+    }
+
+    fn delay(&self, reload: u32, prescale: u32) -> &Self {
+        self
+            .set_enabled(true)
+            .set_prescaler(prescale)
+            .set_reload(reload)
+            .sync()
+            .wait()
+            .set_enabled(false)
+    }    
 }

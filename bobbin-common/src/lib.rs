@@ -1,5 +1,8 @@
 #![no_std]
 
+pub mod clock;
+pub mod timer;
+
 pub struct Pin<T, P>(T, P, usize);
 
 impl<T, P> Pin<T, P> {
