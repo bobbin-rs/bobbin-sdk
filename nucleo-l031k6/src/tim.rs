@@ -13,6 +13,6 @@ pub fn init() {
     TIM.rcc_enable();
 }
 
-pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, ((TIM.clock(&CLK).unwrap() / 2000) - 1));
+pub fn delay(ms: u16) {    
+    TIM.delay((ms << 1) as u16, ((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16);
 }
