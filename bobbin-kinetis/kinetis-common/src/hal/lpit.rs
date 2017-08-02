@@ -133,11 +133,11 @@ impl<P, T> Timer<u32> for Channel<P, T> {
         self
     }
 
-    fn reload(&self) -> u32 {
+    fn period(&self) -> u32 {
         self.periph().ch_value(self.index())
     }
 
-    fn set_reload(&self, value: u32) -> &Self {
+    fn set_period(&self, value: u32) -> &Self {
         self.periph().set_ch_value(self.index(), value);
         self
     }
@@ -151,9 +151,9 @@ impl<P, T> Timer<u32> for Channel<P, T> {
 }
 
 impl<P, T> Delay<u32> for Channel<P, T> {
-    fn delay(&self, reload: u32, prescale: u32) -> &Self {
+    fn delay(&self, period: u32, prescale: u32) -> &Self {
         self
-            .set_value(reload * prescale)
+            .set_value(period * prescale)
             .clr_tif()
             .set_enabled(true)
             .wait_tif()

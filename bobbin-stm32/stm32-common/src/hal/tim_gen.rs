@@ -161,11 +161,11 @@ impl<T> Timer<u16> for Periph<T> {
         self.set_psc(Psc(0).set_psc(value as u32))
     }
 
-    fn reload(&self) -> u16 {
+    fn period(&self) -> u16 {
         self.arr().arrl() as u16
     }
 
-    fn set_reload(&self, value: u16) -> &Self {
+    fn set_period(&self, value: u16) -> &Self {
         self
             .set_arr(Arr(0).set_arrl(value as u32))
             .set_egr(Egr(0).set_ug(1))
@@ -181,11 +181,11 @@ impl<T> Timer<u16> for Periph<T> {
 }
 
 impl<T> Delay<u16> for Periph<T> {
-    fn delay(&self, reload: u16, prescale: u16) -> &Self {
+    fn delay(&self, period: u16, prescale: u16) -> &Self {
         self
             .set_enabled(true)
             .set_prescaler(prescale)
-            .set_reload(reload)
+            .set_period(period)
             .clr_timeout()
             .wait()
             .clr_timeout()
