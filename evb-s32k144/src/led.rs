@@ -1,5 +1,5 @@
 use hal::port::*;
-use hal::gpio::GpioExt;
+use hal::gpio::{GpioExt, DigitalOutput};
 
 // LED BLUE = PTD0
 // LED Red = PTD15
