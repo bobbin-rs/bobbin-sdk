@@ -187,8 +187,27 @@ impl<T> Delay<u16> for Periph<T> {
             .set_prescaler(prescale)
             .set_period(period)
             .clr_timeout()
-            .wait()
+            .wait_timeout()
             .clr_timeout()
             .set_enabled(false)
     }    
+}
+
+
+impl<P, T> Compare<u16> for Channel<P, T> {
+    fn compare(&self) -> u16 {
+        self.periph().ccr(self.index).ccrl() as u16
+    }
+    fn set_compare(&self, value: u16) -> &Self {
+        self.periph().set_ccr(self.index, Ccr(0).set_ccrl(value as u32));
+        self
+    }
+
+    fn compare_flag(&self) -> bool {
+        self.periph().sr().ccif(self.index()) != 0
+    }
+    fn clr_compare_flag(&self) -> &Self {
+        self.periph().with_sr(|r| r.set_ccif(self.index(), 0));
+        self    
+    }
 }
