@@ -414,22 +414,42 @@
             (name LPIT0)
             (address 0x40037000)
             (description "Low Power Periodic Interrupt Timer (LPIT)")
-            (interrupt
-                (name LPIT0_Ch0)
-                (value 48)
+            (channel
+                (name LPIT0_CH0)
+                (index 0)
+                (interrupt
+                    (name LPIT0_CH0)
+                    (type LPIT)
+                    (value 48)
+                )
             )
-            (interrupt
-                (name LPIT0_Ch1)
-                (value 49)
+            (channel
+                (name LPIT0_CH1)
+                (index 1)
+                (interrupt
+                    (name LPIT0_CH1)
+                    (type LPIT)
+                    (value 49)
+                )
             )
-            (interrupt
-                (name LPIT0_Ch2)
-                (value 50)
+            (channel
+                (name LPIT0_CH2)
+                (index 2)
+                (interrupt
+                    (name LPIT0_CH2)
+                    (type LPIT)
+                    (value 50)
+                )
             )
-            (interrupt
-                (name LPIT0_Ch3)
-                (value 51)
-            )        
+            (channel
+                (name LPIT0_CH3)
+                (index 3)
+                (interrupt
+                    (name LPIT0_CH3)
+                    (type LPIT)
+                    (value 51)
+                )
+            )
         )
     )
 

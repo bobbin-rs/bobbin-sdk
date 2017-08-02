@@ -27,6 +27,7 @@
     )          
     (peripheral-group
         (name LPIT)
+        (has-channels)
         (prototype "periph/lpit.rx")
     )       
     (peripheral-group
