@@ -6,6 +6,8 @@ extern crate nucleo_l031k6 as board;
 
 use board::hal::gpio::*;
 use board::led::LED0;
+use board::hal::clock::Clock;
+use board::clock::CLK;
 use board::hal::lptim::*;
 
 #[no_mangle]
@@ -13,38 +15,29 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("LPTIM Test");
 
-
     // Timer Source = 32MHz
     // Prescaler - Divide by 128
     // Timer Clock 250KHz
-    // Reload = 50000
-    // Overflow @ 5Hz
+    // Reload = 62,500
+    // Overflow @ 4Hz
 
     let t = LPTIM;
     // Select LSE Clock as timer source
     t.rcc_set_sel(0b00);
     t.rcc_set_enabled(true);    
-    t.set_cfgr(Cfgr(0).set_presc(0b111));
-    t.set_cr(Cr(0).set_enable(1));    
-
-    t.set_arr(Arr(0).set_arr(50000));
-    while t.isr().arrok() == 0 {}
-
-    t.set_icr(Icr(0).set_arrmcf(1));
     
-    t.set_cr(Cr(0).set_cntstrt(1).set_enable(1));
+    let prescale = 128;
+    // 1/4 second to fit in 16 bit prescaler
+    let period = (t.clock(&CLK).unwrap() / 128) >> 2;    
 
-    let mut n = 0;
+    println!("prescale: {}, period: {}", prescale, period);
+
+    t.set_prescale(prescale);
+    t.start(period as u16);
     loop {
-        while t.isr().arrm() == 0 {}
-        t.set_icr(Icr(0).set_arrmcf(1));
-        LED0.toggle_output();
-        if n == 4 {
-            println!("tick..");
-            n = 0;
-        } else {
-            n += 1;
-        }
+        t.clr_timeout_flag().wait_timeout_flag();
+        println!("tick");
     }
+
 }
 

@@ -17,10 +17,9 @@ pub extern "C" fn main() -> ! {
     let t = ch.periph();
     t
         .rcc_set_enabled(true)
-        .set_period(1000)        
         .set_prescale((t.clock(&CLK).unwrap() / 1000) as u16);
     ch.set_compare(500);
-    t.set_enabled(true);
+    t.start(1000);
     
     loop {
         ch.clr_compare_flag().wait_compare_flag();        
