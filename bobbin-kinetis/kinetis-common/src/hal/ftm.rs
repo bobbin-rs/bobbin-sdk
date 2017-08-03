@@ -59,6 +59,7 @@ impl<T> FtmExt for Periph<T> {
 pub trait FtmChExt {
     fn csc(&self) -> Csc;
     fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self;
+    fn value(&self) -> u16;
     fn set_value(&self, value: u16) -> &Self;
     fn chf(&self) -> bool { self.csc().chf() != 0}
     fn set_pwmen(&self, value: bool) -> &Self;
@@ -71,6 +72,9 @@ impl<P, T> FtmChExt for Channel<P, T> {
     fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self {
         self.periph.with_csc(self.index, f);
         self
+    }
+    fn value(&self) -> u16 {
+        self.periph.cv(self.index).val() as u16
     }
     fn set_value(&self, value: u16) -> &Self {
         self.periph.set_cv(self.index, Cv(0).set_val(value as u32));
@@ -140,5 +144,24 @@ impl<T> Delay<u16> for Periph<T> {
             .set_enabled(true)
             .wait_timeout()
             .set_enabled(false)
+    }
+}
+
+
+impl<P, T> Compare<u16> for Channel<P, T> {
+    fn compare(&self) -> u16 {
+        self.periph().cv(self.index).val() as u16
+    }
+    fn set_compare(&self, value: u16) -> &Self {
+        self.periph().set_cv(self.index, Cv(0).set_val(value as u32));
+        self
+    }
+
+    fn compare_flag(&self) -> bool {
+        self.periph().csc(self.index()).chf() != 0
+    }
+    fn clr_compare_flag(&self) -> &Self {
+        self.periph().with_csc(self.index(), |r| r.set_chf(0));
+        self    
     }
 }

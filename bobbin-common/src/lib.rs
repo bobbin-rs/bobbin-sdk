@@ -3,6 +3,7 @@
 pub mod clock;
 pub mod timer;
 pub mod digital;
+pub mod analog;
 
 pub struct Pin<T, P>(T, P, usize);
 
