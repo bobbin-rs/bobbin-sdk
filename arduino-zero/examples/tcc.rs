@@ -7,15 +7,13 @@ extern crate arduino_zero as board;
 
 use board::hal::gclk;
 use board::hal::tcc::*;
-use board::hal::clock::Clock;
-use board::clock::CLK;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
 
     println!("Running TCC Test");
-    gclk::set_clk(gclk::GenericClock::TCC0_TCC1, gclk::GenericClockGen::GClkGen2);    
+    gclk::set_clk(gclk::GenericClock::TCC0_TCC1, gclk::GenericClockGen::GClkGen2);
 
     let ch0 = TCC0_CH0;
     let ch1 = TCC0_CH1;
@@ -24,8 +22,6 @@ pub extern "C" fn main() -> ! {
     let tcc = TCC0;
     
     tcc.pm_set_enabled(true);   
-    println!("{:?}", CLK);
-    println!("TCC Clock: {:?}", tcc.clock(&CLK));
     tcc.start(1024);
     ch0.set_compare(200);
     ch1.set_compare(400);
