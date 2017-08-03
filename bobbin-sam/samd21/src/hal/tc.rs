@@ -162,7 +162,7 @@ impl<T> Prescale<u16> for Periph<T> {
             1024 => 10,
             _ => panic!("Invalid prescaler value"),
         };
-        self.count16().ctrla().set_prescaler(shift);
+        self.count16().with_ctrla(|r| r.set_prescaler(shift));
         self
     }
 }
