@@ -17,5 +17,5 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {
-    PIT_CH.delay(ms, (PIT.clock(&CLK).unwrap() / 1000));
+    PIT_CH.delay(ms * (PIT.clock(&CLK).unwrap() / 1000));
 }

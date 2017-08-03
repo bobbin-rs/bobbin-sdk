@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-
 #[macro_use]
 extern crate nucleo_l031k6 as board;
 
@@ -18,15 +17,15 @@ pub extern "C" fn main() -> ! {
     let t = ch.periph();
     t
         .rcc_set_enabled(true)
-        .set_period(2000)
-        .set_prescaler(((t.clock(&CLK).unwrap() / 1000) - 1) as u16)
-        .set_enabled(true);
-    ch.set_compare(1000);
-
+        .set_period(1000)        
+        .set_prescale((t.clock(&CLK).unwrap() / 1000) as u16);
+    ch.set_compare(500);
+    t.set_enabled(true);
+    
     loop {
-        ch.wait_compare_flag().clr_compare_flag();
-        println!("Compare");
-        t.wait_timeout().clr_timeout();
-        println!("Timeout");
+        ch.clr_compare_flag().wait_compare_flag();        
+        println!("{}: Compare", t.counter());
+        t.clr_timeout_flag().wait_timeout_flag();
+        println!("{}: Timeout", t.counter());
     }
 }

@@ -27,23 +27,21 @@ pub extern "C" fn main() -> ! {
     println!("{} / {}", period, prescale);
 
     t0
-        .set_prescaler(prescale as u16)
+        .set_prescale(prescale as u16)
         .set_period(period as u16);
     ch
-        .with_csc(|r| r.set_chie(1).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0))
-        .set_value(period >> 1);
+        .with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0))
+        .set_compare(period >> 1);
         // Setup Edge PWM    
     
     // ch.set_pwmen(true);
     // ch.with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1));
     // ch.set_value(1024);
-
     t0.set_enabled(true);
     loop {
-        ch.clr_compare_flag().wait_compare_flag().clr_compare_flag();
-        println!("compare: {}", ch.value());
-        t0.wait_timeout().clr_timeout();
-        println!("timeout");
-        // t0.delay(period as u16, prescale as u16);
+        println!("{} - Wait Compare", t0.counter());
+        ch.clr_compare_flag().wait_compare_flag();
+        println!("{} - Wait Timeout", t0.counter());
+        t0.clr_timeout_flag().wait_timeout_flag();
     }
 }

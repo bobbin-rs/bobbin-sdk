@@ -10,9 +10,9 @@ pub const TIM_PRESCALE: u16 = 15999;
 // Set auto_reload to ms x 2
 
 pub fn init() {
-    TIM.rcc_enable();
+    TIM.rcc_enable().set_prescale((TIM.clock(&CLK).unwrap() / 2000) as u16);
 }
 
 pub fn delay(ms: u16) {    
-    TIM.delay((ms << 1) as u16, ((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16);
+    TIM.delay(ms << 1);
 }
