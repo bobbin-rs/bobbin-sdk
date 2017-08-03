@@ -16,15 +16,7 @@ pub fn init() {
 
 // Note: actually ticks at 1.024kHz
 pub fn delay(ticks: u16) {
-    let tc = TC;
-    tc.set_cc(0, ticks);
-    tc.clr_syncrdy();
-
-    tc.set_mc0_enabled(true);
-    tc.set_enabled(true);
-    
-    while tc.intflag().mc0() == 0 {}
-    tc.set_enabled(false);
+    TC.delay(ticks);
 }
 
 
