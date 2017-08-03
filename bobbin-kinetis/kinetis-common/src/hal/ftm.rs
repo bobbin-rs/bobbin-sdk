@@ -1,7 +1,7 @@
 pub use bobbin_common::timer::*;
 pub use chip::ftm::*;
 
-pub enum Prescale {
+pub enum FtmPrescale {
     Div1 = 0b000,
     Div2 = 0b001,
     Div4 = 0b010,
@@ -20,7 +20,7 @@ pub enum ClockSource {
 
 pub trait FtmExt {
     fn set_clock(&self, value: ClockSource) -> &Self;
-    fn set_prescale(&self, value: Prescale) -> &Self;
+    // fn set_prescale(&self, value: FtmPrescale) -> &Self;
     fn timer_overflow(&self) -> bool;
     fn clr_timer_overflow(&self) -> &Self;
     fn count(&self) -> u16;
@@ -33,9 +33,9 @@ impl<T> FtmExt for Periph<T> {
     fn set_clock(&self, value: ClockSource) -> &Self {
         self.with_sc(|r| r.set_clks(value as u32))
     }
-    fn set_prescale(&self, value: Prescale) -> &Self {
-        self.with_sc(|r| r.set_ps(value as u32))
-    }
+    // fn set_prescale(&self, value: FtmPrescale) -> &Self {
+    //     self.with_sc(|r| r.set_ps(value as u32))
+    // }
     fn timer_overflow(&self) -> bool {
         self.sc().tof() != 0
     }
@@ -99,12 +99,37 @@ impl<T> Timer<u16> for Periph<T> {
         }
     }
 
-    fn prescaler(&self) -> u16 {
+    fn period(&self) -> u16 {
+        self.modulo() + 1
+    }
+
+    fn set_period(&self, value: u16) -> &Self {
+        self.set_modulo(value - 1);
+        self
+    }
+
+    fn counter(&self) -> u16 {
+        self.cnt().count() as u16
+    }
+    fn set_counter(&self, value: u16) -> &Self {
+        self.set_cnt(Cnt(0).set_count(value as u32))
+    }
+
+    fn timeout_flag(&self) -> bool {
+        self.sc().tof() != 0
+    }
+    fn clr_timeout_flag(&self) -> &Self {
+        self.with_sc(|r| r.set_tof(0))
+    }
+}
+
+impl<T> Prescale<u16> for Periph<T> {
+    fn prescale(&self) -> u16 {
         1u16 << self.sc().ps()
     }
 
-    fn set_prescaler(&self, prescale: u16) -> &Self {
-        let value = match prescale {
+    fn set_prescale(&self, value: u16) -> &Self {
+        let value = match value {
             1 => 0b000,
             2 => 0b001,
             4 => 0b010,
@@ -113,40 +138,11 @@ impl<T> Timer<u16> for Periph<T> {
             32 => 0b101,
             64 => 0b110,
             128 => 0b111,
-            _ => panic!("Unsupported prescaler value: {}", prescale),
+            _ => panic!("Unsupported prescaler value: {}", value),
         };
         self.with_sc(|r| r.set_ps(value))
-    }
-
-    fn period(&self) -> u16 {
-        self.modulo()
-    }
-
-    fn set_period(&self, value: u16) -> &Self {
-        self.set_modulo(value);
-        self
-    }
-
-    fn timeout(&self) -> bool {
-        self.sc().tof() != 0
-    }
-    fn clr_timeout(&self) -> &Self {
-        self.with_sc(|r| r.set_tof(0))
-    }
+    }    
 }
-
-impl<T> Delay<u16> for Periph<T> {
-    fn delay(&self, period: u16, prescale: u16) -> &Self {
-        self
-            .set_prescaler(prescale)
-            .set_period(period)
-            .clr_timeout()
-            .set_enabled(true)
-            .wait_timeout()
-            .set_enabled(false)
-    }
-}
-
 
 impl<P, T> Compare<u16> for Channel<P, T> {
     fn compare(&self) -> u16 {
@@ -160,6 +156,7 @@ impl<P, T> Compare<u16> for Channel<P, T> {
     fn compare_flag(&self) -> bool {
         self.periph().csc(self.index()).chf() != 0
     }
+
     fn clr_compare_flag(&self) -> &Self {
         self.periph().with_csc(self.index(), |r| r.set_chf(0));
         self    

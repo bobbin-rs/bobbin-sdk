@@ -125,38 +125,27 @@ impl<P, T> Timer<u32> for Channel<P, T> {
         self
     }
 
-    fn prescaler(&self) -> u32 {
-        1
-    }
-    fn set_prescaler(&self, prescale: u32) -> &Self {
-        assert!(prescale == 1);
-        self
-    }
-
     fn period(&self) -> u32 {
-        self.periph().ch_value(self.index())
+        self.periph().ch_value(self.index()) + 1
     }
 
     fn set_period(&self, value: u32) -> &Self {
+        self.periph().set_ch_value(self.index(), value - 1);
+        self
+    }
+
+    fn counter(&self) -> u32 {
+        self.periph().ch_value(self.index())
+    }
+    fn set_counter(&self, value: u32) -> &Self {
         self.periph().set_ch_value(self.index(), value);
         self
     }
 
-    fn timeout(&self) -> bool {
+    fn timeout_flag(&self) -> bool {
         self.tif()
     }
-    fn clr_timeout(&self) -> &Self {
+    fn clr_timeout_flag(&self) -> &Self {
         self.clr_tif()
-    }
-}
-
-impl<P, T> Delay<u32> for Channel<P, T> {
-    fn delay(&self, period: u32, prescale: u32) -> &Self {
-        self
-            .set_value(period * prescale)
-            .clr_tif()
-            .set_enabled(true)
-            .wait_tif()
-            .set_enabled(false)
     }
 }

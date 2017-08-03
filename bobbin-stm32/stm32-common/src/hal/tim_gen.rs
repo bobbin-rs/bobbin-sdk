@@ -142,6 +142,18 @@ impl<P, T> TimGenChExt for Channel<P, T> {
     }
 }
 
+impl<T> Prescale<u16> for Periph<T> {
+    fn prescale(&self) -> u16 {
+        (self.psc().psc() as u16) + 1
+    }
+
+    fn set_prescale(&self, value: u16) -> &Self {
+        self
+            .set_psc(Psc(0).set_psc((value - 1) as u32))
+            .set_egr(Egr(0).set_ug(1))
+    }    
+}
+
 impl<T> Timer<u16> for Periph<T> {
     fn enabled(&self) -> bool {
         self.cr1().cen() != 0
@@ -153,45 +165,45 @@ impl<T> Timer<u16> for Periph<T> {
 
     }
 
-    fn prescaler(&self) -> u16 {
-        self.psc().psc() as u16
-    }
-
-    fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value as u32))
-    }
-
     fn period(&self) -> u16 {
-        self.arr().arrl() as u16
+        (self.arr().arrl() as u16) + 1
     }
 
     fn set_period(&self, value: u16) -> &Self {
         self
-            .set_arr(Arr(0).set_arrl(value as u32))
+            .set_arr(Arr(0).set_arrl((value - 1) as u32))
             .set_egr(Egr(0).set_ug(1))
     }
 
-    fn timeout(&self) -> bool {
+    fn counter(&self) -> u16 {
+        (self.cnt().cntl() as u16) + 1
+    }
+
+    fn set_counter(&self, value: u16) -> &Self {
+        self.set_cnt(Cnt(0).set_cntl((value - 1) as u32))
+    }
+
+    fn timeout_flag(&self) -> bool {
         self.sr().uif() != 0
     }
 
-    fn clr_timeout(&self) -> &Self {
+    fn clr_timeout_flag(&self) -> &Self {
         self.with_sr(|r| r.set_uif(0))
     }
 }
 
-impl<T> Delay<u16> for Periph<T> {
-    fn delay(&self, period: u16, prescale: u16) -> &Self {
-        self
-            .set_enabled(true)
-            .set_prescaler(prescale)
-            .set_period(period)
-            .clr_timeout()
-            .wait_timeout()
-            .clr_timeout()
-            .set_enabled(false)
-    }    
-}
+// impl<T> Delay<u16> for Periph<T> {
+//     fn delay(&self, period: u16, prescale: u16) -> &Self {
+//         self
+//             .set_enabled(true)
+//             .set_prescaler(prescale)
+//             .set_period(period)
+//             .clr_timeout()
+//             .wait_timeout()
+//             .clr_timeout()
+//             .set_enabled(false)
+//     }    
+// }
 
 
 impl<P, T> Compare<u16> for Channel<P, T> {
@@ -199,7 +211,9 @@ impl<P, T> Compare<u16> for Channel<P, T> {
         self.periph().ccr(self.index).ccrl() as u16
     }
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_ccr(self.index, Ccr(0).set_ccrl(value as u32));
+        self.periph()
+            .set_ccr(self.index, Ccr(0).set_ccrl(value as u32))
+            .set_egr(Egr(0).set_ug(1));
         self
     }
 
