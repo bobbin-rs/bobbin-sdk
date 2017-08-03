@@ -88,38 +88,44 @@ impl<P, T> FtmChExt for Channel<P, T> {
 }
 
 impl<T> Timer<u16> for Periph<T> {
-    fn enabled(&self) -> bool {
-        self.sc().clks() != 0
+    fn start(&self, value: u16) -> &Self {
+        self
+            .set_modulo(value - 1)
+            .set_clock(ClockSource::FixedClk)
     }
-    fn set_enabled(&self, value: bool) -> &Self {
-        if value {
-            self.set_clock(ClockSource::FixedClk)
-        } else {
-            self.set_clock(ClockSource::Disabled)            
-        }
+
+    fn stop(&self) -> &Self {
+        self.set_clock(ClockSource::Disabled)
+    }
+
+    fn running(&self) -> bool {
+        self.sc().clks() != 0
     }
 
     fn period(&self) -> u16 {
-        self.modulo() + 1
+        (self.modulo() as u16) + 1
     }
 
     fn set_period(&self, value: u16) -> &Self {
-        self.set_modulo(value - 1);
-        self
+        self.set_modulo(value - 1)
     }
 
     fn counter(&self) -> u16 {
         self.cnt().count() as u16
-    }
-    fn set_counter(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_count(value as u32))
-    }
+    }    
 
     fn timeout_flag(&self) -> bool {
         self.sc().tof() != 0
     }
+
     fn clr_timeout_flag(&self) -> &Self {
         self.with_sc(|r| r.set_tof(0))
+    }    
+}
+
+impl<T> SetCounter<u16> for Periph<T> {
+    fn set_counter(&self, value: u16) -> &Self {
+        self.set_cnt(Cnt(0).set_count(value as u32))
     }
 }
 

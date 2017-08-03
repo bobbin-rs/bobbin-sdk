@@ -4,14 +4,14 @@
 // }
 
 pub trait Timer<T> {
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, bool) -> &Self;
+    fn start(&self, value: T) -> &Self;
+    fn stop(&self) -> &Self;
+    fn running(&self) -> bool;
 
     fn period(&self) -> T;
     fn set_period(&self, value: T) -> &Self;
 
     fn counter(&self) -> T;
-    fn set_counter(&self, value: T) -> &Self;
 
     fn timeout_flag(&self) -> bool;
     fn clr_timeout_flag(&self) -> &Self;
@@ -23,23 +23,25 @@ pub trait Timer<T> {
 
     fn delay(&self, value: T) -> &Self {
         self
-            .set_enabled(false)
-            .set_period(value)
-            .set_enabled(true)
+            .start(value)
             .clr_timeout_flag()
             .wait_timeout_flag()
-            .set_enabled(false)
+            .stop()
     }
 }
 
 pub trait Prescale<T> {
     fn prescale(&self) -> T;
-    fn set_prescale(&self, prescale: T) -> &Self;
+    fn set_prescale(&self, value: T) -> &Self;
+}
+
+pub trait SetCounter<T> {
+    fn set_counter(&self, value: T) -> &Self;
 }
 
 pub trait Compare<T> {
     fn compare(&self) -> T;
-    fn set_compare(&self, value: u16) -> &Self;
+    fn set_compare(&self, value: T) -> &Self;
 
     fn compare_flag(&self) -> bool;
     fn clr_compare_flag(&self) -> &Self;

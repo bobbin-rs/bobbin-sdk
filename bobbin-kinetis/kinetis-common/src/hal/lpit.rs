@@ -117,18 +117,26 @@ impl<P,T> LpitChannelExt for Channel<P, T> {
 }
 
 impl<P, T> Timer<u32> for Channel<P, T> {
-    fn enabled(&self) -> bool {
-        self.periph().ch_enabled(self.index())
-    }
-    fn set_enabled(&self, value: bool) -> &Self {
-        self.periph().set_ch_enabled(self.index(), value);
+    fn start(&self, value: u32) -> &Self {       
+        self.periph()
+            .set_ch_value(self.index(), value - 1)
+            .set_ch_enabled(self.index(), true);
         self
     }
 
-    fn period(&self) -> u32 {
-        self.periph().ch_value(self.index()) + 1
+    fn stop(&self) -> &Self {
+        self.periph().set_ch_enabled(self.index(), false);
+        self
     }
 
+    fn running(&self) -> bool {
+        self.periph().ch_enabled(self.index())        
+    }
+
+    fn period(&self) -> u32 {
+        self.periph().ch_value(self.index()) + 1        
+    }
+    
     fn set_period(&self, value: u32) -> &Self {
         self.periph().set_ch_value(self.index(), value - 1);
         self
@@ -137,15 +145,19 @@ impl<P, T> Timer<u32> for Channel<P, T> {
     fn counter(&self) -> u32 {
         self.periph().ch_value(self.index())
     }
-    fn set_counter(&self, value: u32) -> &Self {
-        self.periph().set_ch_value(self.index(), value);
-        self
-    }
 
     fn timeout_flag(&self) -> bool {
         self.tif()
     }
+
     fn clr_timeout_flag(&self) -> &Self {
         self.clr_tif()
+    }
+}
+
+impl<P, T> SetCounter<u32> for Channel<P, T> {
+    fn set_counter(&self, value: u32) -> &Self {
+        self.periph().set_ch_value(self.index(), value);
+        self
     }
 }
