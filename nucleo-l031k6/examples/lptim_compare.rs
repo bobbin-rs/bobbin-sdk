@@ -4,6 +4,8 @@
 #[macro_use]
 extern crate nucleo_l031k6 as board;
 
+use board::hal::gpio::*;
+use board::led::LED0;
 use board::hal::clock::Clock;
 use board::clock::CLK;
 use board::hal::lptim::*;
@@ -30,11 +32,16 @@ pub extern "C" fn main() -> ! {
 
     println!("prescale: {}, period: {}", prescale, period);
 
-    t.set_prescale(prescale);
-    t.start(period as u16);
+    t
+        .set_prescale(prescale)
+        .set_compare(prescale >> 1)
+        .start(period as u16);
+        
     loop {
+        t.clr_compare_flag().wait_compare_flag();
+        println!("compare");
         t.clr_timeout_flag().wait_timeout_flag();
-        println!("tick");
+        println!("timeout");
     }
 
 }
