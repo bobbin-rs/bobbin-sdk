@@ -398,11 +398,12 @@ impl DynamicClock {
 impl ClockTree for DynamicClock {
     fn clockmux(&self, id: ClockMux) -> Hz {
         let ctrl = self.clockmux_ctrl(id as u8);
-        if ctrl.clken() == 0 {
-            None
-        } else {
-            self.generator(ctrl.gen() as u8)
-        }
+        self.generator(ctrl.gen() as u8)        
+        // if ctrl.clken() == 0 {
+        //     None
+        // } else {
+        //     self.generator(ctrl.gen() as u8)
+        // }
     }
 }
 
