@@ -21,19 +21,20 @@ pub extern "C" fn main() -> ! {
         .sim_set_enabled(true);
 
     println!("t0: {:?}", t0.clock(&CLK));
-    let prescale = 1;
-    let period = ((t0.clock(&CLK).unwrap() / prescale) / 1000) as u16;
+    let prescale = 128;
+    let period = (t0.clock(&CLK).unwrap() / prescale) / 1000;
 
     println!("{} / {}", period, prescale);
 
     t0.set_prescale(prescale as u16);
-    // ch
-    //     .with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0))
-    //     .set_compare(period >> 1);
 
+    let mut i = 0;
     loop {
-        t0.delay(period);
-        println!("tick");
+        for _ in 0..1000 {
+            t0.delay(period as u16);
+        }
+        println!("tick {}", i);
+        i += 1;
     }
 
 
