@@ -116,14 +116,16 @@ impl<P,T> LpitChannelExt for Channel<P, T> {
     }
 }
 
-impl<P, T> Timer<u32> for Channel<P, T> {
+impl<P, T> Start<u32> for Channel<P, T> {
     fn start(&self, value: u32) -> &Self {       
         self.periph()
             .set_ch_value(self.index(), value - 1)
             .set_ch_enabled(self.index(), true);
         self
     }
+}
 
+impl<P, T> Timer<u32> for Channel<P, T> {
     fn stop(&self) -> &Self {
         self.periph().set_ch_enabled(self.index(), false);
         self

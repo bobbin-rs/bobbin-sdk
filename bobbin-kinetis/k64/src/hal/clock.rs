@@ -3,6 +3,7 @@ use chip::osc::{self, OSC};
 use chip::mcg::{self, MCG};
 use chip::uart::*;
 use chip::pit::*;
+use chip::ftm::*;
 
 use core::fmt;
 // use hal::mcg::MCG;
@@ -423,3 +424,29 @@ impl<T: ClockTree> Clock<T> for Pit {
         t.bus()
     }
 }
+
+impl<T: ClockTree> Clock<T> for Ftm0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Ftm1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Ftm2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
+    }
+}
+
+// impl<T: ClockTree> Clock<T> for Ftm3 {
+//     fn clock(&self, t: &T) -> Hz {
+//         t.bus()
+//     }
+// }

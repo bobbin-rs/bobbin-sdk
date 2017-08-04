@@ -87,13 +87,24 @@ impl<P, T> FtmChExt for Channel<P, T> {
     }
 }
 
-impl<T> Timer<u16> for Periph<T> {
+impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {
         self
             .set_modulo(value - 1)
             .set_clock(ClockSource::FixedClk)
     }
+}
 
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, value: u16) -> &Self {
+        self
+            .start(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+            .stop()
+    }
+}
+impl<T> Timer<u16> for Periph<T> {
     fn stop(&self) -> &Self {
         self.set_clock(ClockSource::Disabled)
     }

@@ -15,14 +15,39 @@ impl<T> LptimExt for Periph<T> {
     }
 }
 
-
-impl<T> Timer<u16> for Periph<T> {
+impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {
+        self.start_up(value)
+    }
+}
+
+impl<T> StartUp<u16> for Periph<T> {
+    fn start_up(&self, value: u16) -> &Self {
         self
             .set_period(value)
             .with_cr(|r| r.set_cntstrt(1))
     }
+}
 
+impl<T> StartUpOnce<u16> for Periph<T> {
+    fn start_up_once(&self, value: u16) -> &Self {
+        self
+            .set_period(value)
+            .with_cr(|r| r.set_sngstrt(1))
+    }
+}
+
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, value: u16) -> &Self {
+        self
+            .start_up_once(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+            .stop()
+    }
+}
+
+impl<T> Timer<u16> for Periph<T> {
     fn stop(&self) -> &Self {
         self.set_enabled(false)
     }

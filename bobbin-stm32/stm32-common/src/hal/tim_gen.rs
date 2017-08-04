@@ -160,13 +160,59 @@ impl<T> Prescale<u16> for Periph<T> {
     }    
 }
 
-impl<T> Timer<u16> for Periph<T> {
+impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {
+        self.start_up(value)
+    }
+}
+
+impl<T> StartUp<u16> for Periph<T> {
+    fn start_up(&self, value: u16) -> &Self {
         self
             .set_arr(Arr(0).set_arrl((value - 1) as u32))
             .set_egr(Egr(0).set_ug(1))
-            .with_cr1(|r| r.set_cen(1))
+            .with_cr1(|r| r.set_dir(0).set_opm(0).set_cen(1))
     }
+}
+
+impl<T> StartUpOnce<u16> for Periph<T> {
+    fn start_up_once(&self, value: u16) -> &Self {
+        self
+            .set_arr(Arr(0).set_arrl((value - 1) as u32))
+            .set_egr(Egr(0).set_ug(1))
+            .with_cr1(|r| r.set_dir(0).set_opm(1).set_cen(1))
+    }
+}
+
+impl<T> StartDown<u16> for Periph<T> {
+    fn start_down(&self, value: u16) -> &Self {
+        self
+            .set_arr(Arr(0).set_arrl((value - 1) as u32))
+            .set_egr(Egr(0).set_ug(1))
+            .with_cr1(|r| r.set_dir(1).set_opm(0).set_cen(1))
+    }
+}
+
+impl<T> StartDownOnce<u16> for Periph<T> {
+    fn start_down_once(&self, value: u16) -> &Self {
+        self
+            .set_arr(Arr(0).set_arrl((value - 1) as u32))
+            .set_egr(Egr(0).set_ug(1))
+            .with_cr1(|r| r.set_dir(1).set_opm(1).set_cen(1))
+    }
+}
+
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, value: u16) -> &Self {
+        self
+            .start(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+            .stop()
+    }
+}
+
+impl<T> Timer<u16> for Periph<T> {
 
     fn stop(&self) -> &Self {
         self.with_cr1(|r| r.set_cen(0))

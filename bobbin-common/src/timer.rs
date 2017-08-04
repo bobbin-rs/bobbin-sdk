@@ -4,7 +4,6 @@
 // }
 
 pub trait Timer<T> {
-    fn start(&self, value: T) -> &Self;
     fn stop(&self) -> &Self;
     fn running(&self) -> bool;
 
@@ -20,14 +19,30 @@ pub trait Timer<T> {
         while !self.timeout_flag() {}
         self
     }    
+}
 
-    fn delay(&self, value: T) -> &Self {
-        self
-            .start(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
-            .stop()
-    }
+pub trait Start<T> {
+    fn start(&self, value: T) -> &Self;
+}
+
+pub trait StartDown<T> {
+    fn start_down(&self, value: T) -> &Self;
+}
+
+pub trait StartUp<T> {
+    fn start_up(&self, value: T) -> &Self;
+}
+
+pub trait StartDownOnce<T> {
+    fn start_down_once(&self, value: T) -> &Self;
+}
+
+pub trait StartUpOnce<T> {
+    fn start_up_once(&self, value: T) -> &Self;
+}
+
+pub trait Delay<T> {
+    fn delay(&self, value: T) -> &Self;
 }
 
 pub trait Prescale<T> {
