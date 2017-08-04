@@ -5,7 +5,6 @@
 extern crate nucleo_l031k6 as board;
 
 use board::hal::gpio::*;
-use board::led::LED0;
 use board::hal::clock::Clock;
 use board::clock::CLK;
 use board::hal::lptim::*;
