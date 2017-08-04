@@ -91,7 +91,7 @@ impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {
         self
             .set_modulo(value - 1)
-            .set_clock(ClockSource::FixedClk)
+            .set_clock(ClockSource::SystemClk)
     }
 }
 

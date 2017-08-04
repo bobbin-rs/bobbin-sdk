@@ -427,7 +427,7 @@ impl<T: ClockTree> Clock<T> for Pit {
 
 impl<T: ClockTree> Clock<T> for Ftm0 {
     fn clock(&self, t: &T) -> Hz {
-        t.system()
+        t.bus()
     }
 }
 
