@@ -50,8 +50,13 @@
     )    
     (peripheral-group
         (name PIT)
+        (has-channels)
         (prototype "periph/pit.rx")
     )      
+    (peripheral-group
+        (name LPTMR)
+        (prototype "periph/lptmr.rx")
+    )     
     (peripheral-group
         (name SPI)
         (prototype "periph/spi.rx")

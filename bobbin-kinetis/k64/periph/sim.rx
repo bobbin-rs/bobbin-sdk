@@ -1742,6 +1742,7 @@
             (bit-width 1)
             (access read-write)
             (description "Low Power Timer Access Control")
+            (link (name EN) (peripheral-group LPTMR) (peripheral LPTMR0))
             (value
                 (value "#0")
                 (name "0")

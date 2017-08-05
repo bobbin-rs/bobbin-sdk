@@ -351,24 +351,53 @@
             (name PIT)
             (address 0x40037000)
             (description "Periodic Interrupt Timer")
-            (interrupt
-                (name PIT0)
-                (value 48)
+            (channel
+                (name PIT_CH0)
+                (index 0)
+                (interrupt
+                    (name PIT0)
+                    (value 48)
+                )
             )
-            (interrupt
-                (name PIT1)
-                (value 49)
+            (channel
+                (name PIT_CH1)
+                (index 1)
+                (interrupt
+                    (name PIT1)
+                    (value 49)
+                )
             )
-            (interrupt
-                (name PIT2)
-                (value 50)
+            (channel
+                (name PIT_CH2)
+                (index 2)
+                (interrupt
+                    (name PIT2)
+                    (value 50)
+                )
             )
-            (interrupt
-                (name PIT3)
-                (value 51)
+            (channel
+                (name PIT_CH3)
+                (index 3)
+                (interrupt
+                    (name PIT3)
+                    (value 51)
+                )
             )
         )
+    )
 
+    (peripheral-group
+        (name LPTMR)  
+        (module (name kinetis_common::chip::lptmr::*))
+        (peripheral
+            (name LPTMR0)
+            (address 0x40040000)
+            (description "Low Power Timer")
+            (interrupt
+                (name LPTMR0)
+                (value 58)
+            )
+        )
     )
 
     (peripheral-group
