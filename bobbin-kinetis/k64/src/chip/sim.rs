@@ -2524,6 +2524,11 @@ impl En for super::uart::Uart3 {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_uart3(value)); }
 }
 
+impl En for super::lptmr::Lptmr0 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc5().lptmr() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc5(|r| r.set_lptmr(value)); }
+}
+
 impl En for super::port::Porta {
    #[inline] fn en(&self) -> u32 { SIM.scgc5().porta() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc5(|r| r.set_porta(value)); }

@@ -11,6 +11,7 @@ pub mod lpuart;
 pub mod ftm;
 pub mod tpm;
 pub mod pit;
+pub mod lptmr;
 pub mod spi;
 pub mod i2c;
 pub mod dmamux;

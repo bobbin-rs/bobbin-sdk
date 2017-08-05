@@ -22,6 +22,7 @@ pub mod dmamux;
 pub mod edma;
 pub mod ftm;
 pub mod pit;
+pub mod lptmr;
 pub mod spi;
 pub mod i2c;
 pub mod uart;
