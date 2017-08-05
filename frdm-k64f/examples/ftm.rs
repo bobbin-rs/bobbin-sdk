@@ -13,7 +13,6 @@ pub extern "C" fn main() -> ! {
     board::init();
     
     println!("FTM Test");    
-    println!("{:?}", CLK);
     let ch = FTM0_CH2;
     let t0 = ch.periph();
 
