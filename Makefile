@@ -58,4 +58,6 @@ stm32f303x:
 stm32l031x:
 	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../bobbin-mcu/bobbin-stm32/$@/src/chip/mod.rs
 
+tm4c129x:
+	$(CHIP) $(CHIP_ARGS) bobbin-ti/$@/lib.rx ../bobbin-mcu/bobbin-ti/$@/src/chip/mod.rs
 	
