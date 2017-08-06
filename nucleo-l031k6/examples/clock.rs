@@ -14,6 +14,8 @@ use board::chip::tim_gen::*;
 // use board::chip::iwdg::*;
 // use board::chip::wwdg::*;
 
+use board::common::bits::*;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
@@ -27,16 +29,15 @@ pub extern "C" fn main() -> ! {
     println!("TIM2:     {:?}", TIM2.clock(&clk));
     println!("TIM21:     {:?}", TIM21.clock(&clk));
     println!("TIM22:     {:?}", TIM22.clock(&clk));
-
     
     loop {
         println!("Switching to HSI");
         board::delay(50);
         board::console::disable();
         // Select HSI as SYSCLK source.        
-        RCC.with_cfgr(|r| r.set_sw(0b01));
+        RCC.with_cfgr(|r| r.set_sw(U2::B01));
         // Wait for HSI to be selected
-        while RCC.cfgr().sws() != 0b01 {}
+        while RCC.cfgr().sws() != U2::B01 {}
         board::console::reinit();
         println!("Running on HSI");
 
@@ -47,8 +48,8 @@ pub extern "C" fn main() -> ! {
         board::console::disable();
         
         // Select PLL as SYSCLK source.        
-        RCC.with_cfgr(|r| r.set_sw(0b11));
-        while RCC.cfgr().sws() != 0b11 {}        
+        RCC.with_cfgr(|r| r.set_sw(U2::B11));
+        while RCC.cfgr().sws() != U2::B11 {}        
 
         board::console::reinit();
         println!("Running on PLL");        

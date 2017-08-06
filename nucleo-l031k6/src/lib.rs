@@ -8,7 +8,7 @@ extern crate r0;
 pub mod console;
 
 extern crate stm32l031x;
-pub use stm32l031x::{chip, hal};
+pub use stm32l031x::{chip, hal, common};
 
 pub mod exceptions;
 pub mod lang_items;
