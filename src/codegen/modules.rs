@@ -1487,7 +1487,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         format!("[{}]", f_lo)
     };    
     let field_type = if cfg.bit_types {
-        format!("bits::B{}", f_width)
+        format!("bits::U{}", f_width)
     } else {
         format!("{}", size)
     };
