@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::rtc::*;
 
 pub const RTC: Rtc = Periph(0x40002800, RtcId {});

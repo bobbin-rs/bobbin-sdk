@@ -1,4 +1,5 @@
 //! Cyclic Redundancy Check
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const CRC: Crc = Crc(0x40032000);
 
 #[doc="Cyclic Redundancy Check"]
@@ -255,11 +256,13 @@ impl Crc {
 pub struct Data(pub u32);
 impl Data {
 #[doc="CRC Low Lower Byte"]
-  #[inline] pub fn ll(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn ll(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="CRC Low Lower Byte"]
-  #[inline] pub fn set_ll(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ll<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -267,11 +270,13 @@ impl Data {
   }
 
 #[doc="CRC Low Upper Byte"]
-  #[inline] pub fn lu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn lu(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="CRC Low Upper Byte"]
-  #[inline] pub fn set_lu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lu<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -279,11 +284,13 @@ impl Data {
   }
 
 #[doc="CRC High Lower Byte"]
-  #[inline] pub fn hl(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn hl(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="CRC High Lower Byte"]
-  #[inline] pub fn set_hl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hl<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -291,11 +298,13 @@ impl Data {
   }
 
 #[doc="CRC High Upper Byte"]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xff // [31:24]
+  #[inline] pub fn hu(&self) -> bits::B8 {
+     (((self.0 as u32) >> 24) & 0xff).into() // [31:24]
   }
 #[doc="CRC High Upper Byte"]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
      self.0 |= value << 24;
@@ -324,11 +333,13 @@ impl ::core::fmt::Debug for Data {
 pub struct Datal(pub u16);
 impl Datal {
 #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
-  #[inline] pub fn datal(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn datal(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
-  #[inline] pub fn set_datal(mut self, value: u16) -> Self {
+  #[inline] pub fn set_datal<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -354,11 +365,13 @@ impl ::core::fmt::Debug for Datal {
 pub struct Datall(pub u8);
 impl Datall {
 #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
-  #[inline] pub fn datall(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn datall(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
-  #[inline] pub fn set_datall(mut self, value: u8) -> Self {
+  #[inline] pub fn set_datall<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -384,11 +397,13 @@ impl ::core::fmt::Debug for Datall {
 pub struct Datalu(pub u8);
 impl Datalu {
 #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
-  #[inline] pub fn datalu(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn datalu(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
-  #[inline] pub fn set_datalu(mut self, value: u8) -> Self {
+  #[inline] pub fn set_datalu<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -414,11 +429,13 @@ impl ::core::fmt::Debug for Datalu {
 pub struct Datah(pub u16);
 impl Datah {
 #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
-  #[inline] pub fn datah(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn datah(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
-  #[inline] pub fn set_datah(mut self, value: u16) -> Self {
+  #[inline] pub fn set_datah<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -444,11 +461,13 @@ impl ::core::fmt::Debug for Datah {
 pub struct Datahl(pub u8);
 impl Datahl {
 #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
-  #[inline] pub fn datahl(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn datahl(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
-  #[inline] pub fn set_datahl(mut self, value: u8) -> Self {
+  #[inline] pub fn set_datahl<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -474,11 +493,13 @@ impl ::core::fmt::Debug for Datahl {
 pub struct Datahu(pub u8);
 impl Datahu {
 #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
-  #[inline] pub fn datahu(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn datahu(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
-  #[inline] pub fn set_datahu(mut self, value: u8) -> Self {
+  #[inline] pub fn set_datahu<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -504,11 +525,13 @@ impl ::core::fmt::Debug for Datahu {
 pub struct Gpoly(pub u32);
 impl Gpoly {
 #[doc="Low Polynominal Half-word"]
-  #[inline] pub fn low(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn low(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Low Polynominal Half-word"]
-  #[inline] pub fn set_low(mut self, value: u32) -> Self {
+  #[inline] pub fn set_low<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -516,11 +539,13 @@ impl Gpoly {
   }
 
 #[doc="High Polynominal Half-word"]
-  #[inline] pub fn high(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn high(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="High Polynominal Half-word"]
-  #[inline] pub fn set_high(mut self, value: u32) -> Self {
+  #[inline] pub fn set_high<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -547,11 +572,13 @@ impl ::core::fmt::Debug for Gpoly {
 pub struct Ctrl(pub u32);
 impl Ctrl {
 #[doc="TCRC"]
-  #[inline] pub fn tcrc(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn tcrc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 24) & 0x1).into() // [24]
   }
 #[doc="TCRC"]
-  #[inline] pub fn set_tcrc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcrc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
@@ -559,11 +586,13 @@ impl Ctrl {
   }
 
 #[doc="Write CRC Data Register As Seed"]
-  #[inline] pub fn was(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
+  #[inline] pub fn was(&self) -> bits::B1 {
+     (((self.0 as u32) >> 25) & 0x1).into() // [25]
   }
 #[doc="Write CRC Data Register As Seed"]
-  #[inline] pub fn set_was(mut self, value: u32) -> Self {
+  #[inline] pub fn set_was<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
@@ -571,11 +600,13 @@ impl Ctrl {
   }
 
 #[doc="Complement Read Of CRC Data Register"]
-  #[inline] pub fn fxor(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+  #[inline] pub fn fxor(&self) -> bits::B1 {
+     (((self.0 as u32) >> 26) & 0x1).into() // [26]
   }
 #[doc="Complement Read Of CRC Data Register"]
-  #[inline] pub fn set_fxor(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fxor<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -583,11 +614,13 @@ impl Ctrl {
   }
 
 #[doc="Type Of Transpose For Read"]
-  #[inline] pub fn totr(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x3 // [29:28]
+  #[inline] pub fn totr(&self) -> bits::B2 {
+     (((self.0 as u32) >> 28) & 0x3).into() // [29:28]
   }
 #[doc="Type Of Transpose For Read"]
-  #[inline] pub fn set_totr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_totr<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
@@ -595,11 +628,13 @@ impl Ctrl {
   }
 
 #[doc="Type Of Transpose For Writes"]
-  #[inline] pub fn tot(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x3 // [31:30]
+  #[inline] pub fn tot(&self) -> bits::B2 {
+     (((self.0 as u32) >> 30) & 0x3).into() // [31:30]
   }
 #[doc="Type Of Transpose For Writes"]
-  #[inline] pub fn set_tot(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tot<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 30);
      self.0 |= value << 30;

@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::usart_f24::*;
 
 pub const USART1: Usart1 = Periph(0x40013800, Usart1Id {});

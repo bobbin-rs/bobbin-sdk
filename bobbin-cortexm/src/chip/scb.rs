@@ -1,4 +1,5 @@
 //! Nested Vectored Interrupt Controller
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const SCB: Scb = Scb(0xe000e000);
 
 #[doc="Nested Vectored Interrupt Controller"]
@@ -525,11 +526,13 @@ impl Scb {
 pub struct Actlr(pub u32);
 impl Actlr {
 #[doc="When set to 1, disables IT folding."]
-  #[inline] pub fn disfold(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn disfold(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="When set to 1, disables IT folding."]
-  #[inline] pub fn set_disfold(mut self, value: u32) -> Self {
+  #[inline] pub fn set_disfold<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -537,11 +540,13 @@ impl Actlr {
   }
 
 #[doc="When set to 1, disables write buffer use during default memory map accesses."]
-  #[inline] pub fn disdefwbuf(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn disdefwbuf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="When set to 1, disables write buffer use during default memory map accesses."]
-  #[inline] pub fn set_disdefwbuf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_disdefwbuf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -549,11 +554,13 @@ impl Actlr {
   }
 
 #[doc="When set to 1, disables interruption of load multiple and store multiple instructions."]
-  #[inline] pub fn dismcycint(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn dismcycint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="When set to 1, disables interruption of load multiple and store multiple instructions."]
-  #[inline] pub fn set_dismcycint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dismcycint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -581,11 +588,13 @@ impl ::core::fmt::Debug for Actlr {
 pub struct Cpuid(pub u32);
 impl Cpuid {
 #[doc="Implementer Code"]
-  #[inline] pub fn implementer(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xff // [31:24]
+  #[inline] pub fn implementer(&self) -> bits::B8 {
+     (((self.0 as u32) >> 24) & 0xff).into() // [31:24]
   }
 #[doc="Implementer Code"]
-  #[inline] pub fn set_implementer(mut self, value: u32) -> Self {
+  #[inline] pub fn set_implementer<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
      self.0 |= value << 24;
@@ -593,11 +602,13 @@ impl Cpuid {
   }
 
 #[doc="Variant number, the r value in the rnpn product revision identifier"]
-  #[inline] pub fn variant(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
+  #[inline] pub fn variant(&self) -> bits::B4 {
+     (((self.0 as u32) >> 20) & 0xf).into() // [23:20]
   }
 #[doc="Variant number, the r value in the rnpn product revision identifier"]
-  #[inline] pub fn set_variant(mut self, value: u32) -> Self {
+  #[inline] pub fn set_variant<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 20);
      self.0 |= value << 20;
@@ -605,11 +616,13 @@ impl Cpuid {
   }
 
 #[doc="Reads as 0xF"]
-  #[inline] pub fn constant(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn constant(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Reads as 0xF"]
-  #[inline] pub fn set_constant(mut self, value: u32) -> Self {
+  #[inline] pub fn set_constant<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -617,11 +630,13 @@ impl Cpuid {
   }
 
 #[doc="Part number of the processor"]
-  #[inline] pub fn partno(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xfff // [15:4]
+  #[inline] pub fn partno(&self) -> bits::B12 {
+     (((self.0 as u32) >> 4) & 0xfff).into() // [15:4]
   }
 #[doc="Part number of the processor"]
-  #[inline] pub fn set_partno(mut self, value: u32) -> Self {
+  #[inline] pub fn set_partno<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
      self.0 |= value << 4;
@@ -629,11 +644,13 @@ impl Cpuid {
   }
 
 #[doc="Revision number, the p value in the rnpn product revision identifier"]
-  #[inline] pub fn revision(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn revision(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Revision number, the p value in the rnpn product revision identifier"]
-  #[inline] pub fn set_revision(mut self, value: u32) -> Self {
+  #[inline] pub fn set_revision<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -663,11 +680,13 @@ impl ::core::fmt::Debug for Cpuid {
 pub struct Icsr(pub u32);
 impl Icsr {
 #[doc="NMI set-pending bit"]
-  #[inline] pub fn nmipendset(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn nmipendset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="NMI set-pending bit"]
-  #[inline] pub fn set_nmipendset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_nmipendset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -675,11 +694,13 @@ impl Icsr {
   }
 
 #[doc="PendSV set-pending bit"]
-  #[inline] pub fn pendsvset(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn pendsvset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="PendSV set-pending bit"]
-  #[inline] pub fn set_pendsvset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendsvset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -687,11 +708,13 @@ impl Icsr {
   }
 
 #[doc="PendSV clear-pending bit"]
-  #[inline] pub fn pendsvclr(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
+  #[inline] pub fn pendsvclr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 27) & 0x1).into() // [27]
   }
 #[doc="PendSV clear-pending bit"]
-  #[inline] pub fn set_pendsvclr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendsvclr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
      self.0 |= value << 27;
@@ -699,11 +722,13 @@ impl Icsr {
   }
 
 #[doc="Systick exception set-pending bit"]
-  #[inline] pub fn pendstset(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+  #[inline] pub fn pendstset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 26) & 0x1).into() // [26]
   }
 #[doc="Systick exception set-pending bit"]
-  #[inline] pub fn set_pendstset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendstset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -711,11 +736,13 @@ impl Icsr {
   }
 
 #[doc="Systick clear-pending bit"]
-  #[inline] pub fn pendstclr(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
+  #[inline] pub fn pendstclr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 25) & 0x1).into() // [25]
   }
 #[doc="Systick clear-pending bit"]
-  #[inline] pub fn set_pendstclr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendstclr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
@@ -723,11 +750,13 @@ impl Icsr {
   }
 
 #[doc="Interrupt pending flag, excluding NMI and Faults"]
-  #[inline] pub fn isrpending(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn isrpending(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="Interrupt pending flag, excluding NMI and Faults"]
-  #[inline] pub fn set_isrpending(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isrpending<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -735,11 +764,13 @@ impl Icsr {
   }
 
 #[doc="Indicates the exception number of the highest priority pending enabled exception"]
-  #[inline] pub fn vectpending(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x3f // [17:12]
+  #[inline] pub fn vectpending(&self) -> bits::B6 {
+     (((self.0 as u32) >> 12) & 0x3f).into() // [17:12]
   }
 #[doc="Indicates the exception number of the highest priority pending enabled exception"]
-  #[inline] pub fn set_vectpending(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vectpending<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 12);
      self.0 |= value << 12;
@@ -747,11 +778,13 @@ impl Icsr {
   }
 
 #[doc="Indicates the exception number of the highest priority pending enabled exception"]
-  #[inline] pub fn rettobase(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn rettobase(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Indicates the exception number of the highest priority pending enabled exception"]
-  #[inline] pub fn set_rettobase(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rettobase<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -759,11 +792,13 @@ impl Icsr {
   }
 
 #[doc="Contains the active exception number. Subtract 16 from this value to obtain the CMSIS IRQ number required to index into the Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers"]
-  #[inline] pub fn vectactive(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn vectactive(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Contains the active exception number. Subtract 16 from this value to obtain the CMSIS IRQ number required to index into the Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers"]
-  #[inline] pub fn set_vectactive(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vectactive<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -797,11 +832,13 @@ impl ::core::fmt::Debug for Icsr {
 pub struct Vtor(pub u32);
 impl Vtor {
 #[doc="Vector table base offset field. It contains bits[29:7] of the offset of the table base from the bottom of the memory map."]
-  #[inline] pub fn tbloff(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1ffffff // [31:7]
+  #[inline] pub fn tbloff(&self) -> bits::B25 {
+     (((self.0 as u32) >> 7) & 0x1ffffff).into() // [31:7]
   }
 #[doc="Vector table base offset field. It contains bits[29:7] of the offset of the table base from the bottom of the memory map."]
-  #[inline] pub fn set_tbloff(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tbloff<V: Into<bits::B25>>(mut self, value: V) -> Self {
+     let value: bits::B25 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1ffffff) == 0);
      self.0 &= !(0x1ffffff << 7);
      self.0 |= value << 7;
@@ -827,11 +864,13 @@ impl ::core::fmt::Debug for Vtor {
 pub struct Aircr(pub u32);
 impl Aircr {
 #[doc="Register key: Reads as 0xFA05. On writes, write 0x5FA to VECTKEY, otherwise the write is ignored."]
-  #[inline] pub fn vectkey(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn vectkey(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="Register key: Reads as 0xFA05. On writes, write 0x5FA to VECTKEY, otherwise the write is ignored."]
-  #[inline] pub fn set_vectkey(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vectkey<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -839,11 +878,13 @@ impl Aircr {
   }
 
 #[doc="Data endianness bit is implementation defined: 0 = Little-endian, 1 = Big-endian."]
-  #[inline] pub fn endianness(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn endianness(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Data endianness bit is implementation defined: 0 = Little-endian, 1 = Big-endian."]
-  #[inline] pub fn set_endianness(mut self, value: u32) -> Self {
+  #[inline] pub fn set_endianness<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -851,11 +892,13 @@ impl Aircr {
   }
 
 #[doc="Interrupt priority grouping field is implementation defined. This field determines the split of group priority from subpriority, see Binary point."]
-  #[inline] pub fn prigroup(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x7 // [10:8]
+  #[inline] pub fn prigroup(&self) -> bits::B3 {
+     (((self.0 as u32) >> 8) & 0x7).into() // [10:8]
   }
 #[doc="Interrupt priority grouping field is implementation defined. This field determines the split of group priority from subpriority, see Binary point."]
-  #[inline] pub fn set_prigroup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_prigroup<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
@@ -863,11 +906,13 @@ impl Aircr {
   }
 
 #[doc="System reset request bit is implementation defined: 0 = no system reset request, 1 = asserts a signal to the outer system that requests a reset. This is intended to force a large system reset of all major components except for debug."]
-  #[inline] pub fn sysresetreq(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sysresetreq(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="System reset request bit is implementation defined: 0 = no system reset request, 1 = asserts a signal to the outer system that requests a reset. This is intended to force a large system reset of all major components except for debug."]
-  #[inline] pub fn set_sysresetreq(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sysresetreq<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -875,11 +920,13 @@ impl Aircr {
   }
 
 #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn vectclractive(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn vectclractive(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn set_vectclractive(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vectclractive<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -887,11 +934,13 @@ impl Aircr {
   }
 
 #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn vectreset(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn vectreset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn set_vectreset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vectreset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -922,11 +971,13 @@ impl ::core::fmt::Debug for Aircr {
 pub struct Scr(pub u32);
 impl Scr {
 #[doc="Send Event on Pending bit"]
-  #[inline] pub fn sevonpend(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn sevonpend(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Send Event on Pending bit"]
-  #[inline] pub fn set_sevonpend(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sevonpend<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -934,11 +985,13 @@ impl Scr {
   }
 
 #[doc="Controls whether the processor uses sleep or deep sleep as its low power mode"]
-  #[inline] pub fn sleepdeep(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sleepdeep(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Controls whether the processor uses sleep or deep sleep as its low power mode"]
-  #[inline] pub fn set_sleepdeep(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sleepdeep<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -946,11 +999,13 @@ impl Scr {
   }
 
 #[doc="Indicates sleep-on-exit when returning from Handler mode to Thread mode:"]
-  #[inline] pub fn sleeponexit(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn sleeponexit(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Indicates sleep-on-exit when returning from Handler mode to Thread mode:"]
-  #[inline] pub fn set_sleeponexit(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sleeponexit<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -978,11 +1033,13 @@ impl ::core::fmt::Debug for Scr {
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
-  #[inline] pub fn stkalign(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn stkalign(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
-  #[inline] pub fn set_stkalign(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stkalign<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -990,11 +1047,13 @@ impl Ccr {
   }
 
 #[doc="Enables handlers with priority -1 or -2 to ignore data BusFaults caused by load and store instructions. This applies to the hard fault, NMI, and FAULTMASK escalated handlers: 0 = data bus faults caused by load and store instructions cause a lock-up, 1 = handlers running at priority -1 and -2 ignore data bus faults caused by load and store instructions. Set this bit to 1 only when the handler and its data are in absolutely safe memory. The normal use of this bit is to probe system devices and bridges to detect control path problems and fix them."]
-  #[inline] pub fn bfhfnmign(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn bfhfnmign(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Enables handlers with priority -1 or -2 to ignore data BusFaults caused by load and store instructions. This applies to the hard fault, NMI, and FAULTMASK escalated handlers: 0 = data bus faults caused by load and store instructions cause a lock-up, 1 = handlers running at priority -1 and -2 ignore data bus faults caused by load and store instructions. Set this bit to 1 only when the handler and its data are in absolutely safe memory. The normal use of this bit is to probe system devices and bridges to detect control path problems and fix them."]
-  #[inline] pub fn set_bfhfnmign(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bfhfnmign<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1002,11 +1061,13 @@ impl Ccr {
   }
 
 #[doc="Enables faulting or halting when the processor executes an SDIV or UDIV instruction with a divisor of 0: 0 = do not trap divide by 0, 1 = trap divide by 0. When this bit is set to 0, a divide by zero returns a quotient of 0."]
-  #[inline] pub fn div_0_trp(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn div_0_trp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Enables faulting or halting when the processor executes an SDIV or UDIV instruction with a divisor of 0: 0 = do not trap divide by 0, 1 = trap divide by 0. When this bit is set to 0, a divide by zero returns a quotient of 0."]
-  #[inline] pub fn set_div_0_trp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_div_0_trp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1014,11 +1075,13 @@ impl Ccr {
   }
 
 #[doc="Enables unaligned access traps: 0 = do not trap unaligned halfword and word accesses1 = trap unaligned halfword and word accesses. If this bit is set to 1, an unaligned access generates a UsageFault. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of whether UNALIGN_TRP is set to 1."]
-  #[inline] pub fn unalign_trp(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn unalign_trp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Enables unaligned access traps: 0 = do not trap unaligned halfword and word accesses1 = trap unaligned halfword and word accesses. If this bit is set to 1, an unaligned access generates a UsageFault. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of whether UNALIGN_TRP is set to 1."]
-  #[inline] pub fn set_unalign_trp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_unalign_trp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1026,11 +1089,13 @@ impl Ccr {
   }
 
 #[doc="Enables unprivileged software access to the STIR, see Software Trigger Interrupt Register: 0 = disable, 1 = enable."]
-  #[inline] pub fn usersetmpend(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn usersetmpend(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Enables unprivileged software access to the STIR, see Software Trigger Interrupt Register: 0 = disable, 1 = enable."]
-  #[inline] pub fn set_usersetmpend(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usersetmpend<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1038,11 +1103,13 @@ impl Ccr {
   }
 
 #[doc="Indicates how the processor enters Thread mode: 0 = processor can enter Thread mode only when no exception is active, 1 = processor can enter Thread mode from any level under the control of an EXC_RETURN value, see Exception return."]
-  #[inline] pub fn nonbasethrdena(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn nonbasethrdena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Indicates how the processor enters Thread mode: 0 = processor can enter Thread mode only when no exception is active, 1 = processor can enter Thread mode from any level under the control of an EXC_RETURN value, see Exception return."]
-  #[inline] pub fn set_nonbasethrdena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_nonbasethrdena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1073,11 +1140,13 @@ impl ::core::fmt::Debug for Ccr {
 pub struct Shpr1(pub u32);
 impl Shpr1 {
 #[doc="Priority of system handler 6, UsageFault"]
-  #[inline] pub fn pri_6(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn pri_6(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="Priority of system handler 6, UsageFault"]
-  #[inline] pub fn set_pri_6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_6<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -1085,11 +1154,13 @@ impl Shpr1 {
   }
 
 #[doc="Priority of system handler 5, BusFault"]
-  #[inline] pub fn pri_5(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn pri_5(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="Priority of system handler 5, BusFault"]
-  #[inline] pub fn set_pri_5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_5<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -1097,11 +1168,13 @@ impl Shpr1 {
   }
 
 #[doc="Priority of system handler 4, MemManage"]
-  #[inline] pub fn pri_4(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn pri_4(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Priority of system handler 4, MemManage"]
-  #[inline] pub fn set_pri_4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_4<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1129,11 +1202,13 @@ impl ::core::fmt::Debug for Shpr1 {
 pub struct Shpr2(pub u32);
 impl Shpr2 {
 #[doc="Priority of system handler 11, SVCall"]
-  #[inline] pub fn pri_11(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xff // [31:24]
+  #[inline] pub fn pri_11(&self) -> bits::B8 {
+     (((self.0 as u32) >> 24) & 0xff).into() // [31:24]
   }
 #[doc="Priority of system handler 11, SVCall"]
-  #[inline] pub fn set_pri_11(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_11<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
      self.0 |= value << 24;
@@ -1159,11 +1234,13 @@ impl ::core::fmt::Debug for Shpr2 {
 pub struct Shpr3(pub u32);
 impl Shpr3 {
 #[doc="Priority of system handler 15, SysTick exception"]
-  #[inline] pub fn pri_15(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xff // [31:24]
+  #[inline] pub fn pri_15(&self) -> bits::B8 {
+     (((self.0 as u32) >> 24) & 0xff).into() // [31:24]
   }
 #[doc="Priority of system handler 15, SysTick exception"]
-  #[inline] pub fn set_pri_15(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_15<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
      self.0 |= value << 24;
@@ -1171,11 +1248,13 @@ impl Shpr3 {
   }
 
 #[doc="Priority of system handler 14, PendSV"]
-  #[inline] pub fn pri_14(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn pri_14(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="Priority of system handler 14, PendSV"]
-  #[inline] pub fn set_pri_14(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pri_14<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -1202,11 +1281,13 @@ impl ::core::fmt::Debug for Shpr3 {
 pub struct Shcsr(pub u32);
 impl Shcsr {
 #[doc="UsageFault enable bit, set to 1 to enable"]
-  #[inline] pub fn usgfaultena(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn usgfaultena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="UsageFault enable bit, set to 1 to enable"]
-  #[inline] pub fn set_usgfaultena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usgfaultena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -1214,11 +1295,13 @@ impl Shcsr {
   }
 
 #[doc="BusFault enable bit, set to 1 to enable"]
-  #[inline] pub fn busfaultena(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn busfaultena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="BusFault enable bit, set to 1 to enable"]
-  #[inline] pub fn set_busfaultena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_busfaultena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -1226,11 +1309,13 @@ impl Shcsr {
   }
 
 #[doc="MemManage enable bit, set to 1 to enable"]
-  #[inline] pub fn memfaultena(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn memfaultena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="MemManage enable bit, set to 1 to enable"]
-  #[inline] pub fn set_memfaultena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_memfaultena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -1238,11 +1323,13 @@ impl Shcsr {
   }
 
 #[doc="SVCall pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn svcallpended(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn svcallpended(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="SVCall pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn set_svcallpended(mut self, value: u32) -> Self {
+  #[inline] pub fn set_svcallpended<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -1250,11 +1337,13 @@ impl Shcsr {
   }
 
 #[doc="BusFault exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn busfaultpended(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn busfaultpended(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="BusFault exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn set_busfaultpended(mut self, value: u32) -> Self {
+  #[inline] pub fn set_busfaultpended<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -1262,11 +1351,13 @@ impl Shcsr {
   }
 
 #[doc="MemManage exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn memfaultpended(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn memfaultpended(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="MemManage exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn set_memfaultpended(mut self, value: u32) -> Self {
+  #[inline] pub fn set_memfaultpended<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -1274,11 +1365,13 @@ impl Shcsr {
   }
 
 #[doc="UsageFault exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn usgfaultpended(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn usgfaultpended(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="UsageFault exception pending bit, reads as 1 if exception is pending"]
-  #[inline] pub fn set_usgfaultpended(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usgfaultpended<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -1286,11 +1379,13 @@ impl Shcsr {
   }
 
 #[doc="SysTick exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn systickact(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn systickact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="SysTick exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn set_systickact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_systickact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -1298,11 +1393,13 @@ impl Shcsr {
   }
 
 #[doc="PendSV exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn pendsvact(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn pendsvact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="PendSV exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn set_pendsvact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pendsvact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -1310,11 +1407,13 @@ impl Shcsr {
   }
 
 #[doc="Debug monitor active bit, reads as 1 if Debug monitor is active"]
-  #[inline] pub fn monitoract(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn monitoract(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Debug monitor active bit, reads as 1 if Debug monitor is active"]
-  #[inline] pub fn set_monitoract(mut self, value: u32) -> Self {
+  #[inline] pub fn set_monitoract<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1322,11 +1421,13 @@ impl Shcsr {
   }
 
 #[doc="SVCall active bit, reads as 1 if SVC call is active"]
-  #[inline] pub fn svcallact(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn svcallact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="SVCall active bit, reads as 1 if SVC call is active"]
-  #[inline] pub fn set_svcallact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_svcallact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1334,11 +1435,13 @@ impl Shcsr {
   }
 
 #[doc="UsageFault exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn usgfaultact(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn usgfaultact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="UsageFault exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn set_usgfaultact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usgfaultact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1346,11 +1449,13 @@ impl Shcsr {
   }
 
 #[doc="BusFault exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn busfaultact(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn busfaultact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="BusFault exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn set_busfaultact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_busfaultact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1358,11 +1463,13 @@ impl Shcsr {
   }
 
 #[doc="MemManage exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn memfaultact(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn memfaultact(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="MemManage exception active bit, reads as 1 if exception is active"]
-  #[inline] pub fn set_memfaultact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_memfaultact<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1418,11 +1525,13 @@ impl ::core::fmt::Debug for Cfsr {
 pub struct Mmfsr(pub u8);
 impl Mmfsr {
 #[doc="MemManage Fault Address Register (MMFAR) valid flag: 0 = value in MMAR is not a valid fault address, 1 = MMAR holds a valid fault address. If a MemManage fault occurs and is escalated to a HardFault because of priority, the HardFault handler must set this bit to 0. This prevents problems on return to a stacked active MemManage fault handler whose MMAR value has been overwritten."]
-  #[inline] pub fn mmarvalid(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn mmarvalid(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="MemManage Fault Address Register (MMFAR) valid flag: 0 = value in MMAR is not a valid fault address, 1 = MMAR holds a valid fault address. If a MemManage fault occurs and is escalated to a HardFault because of priority, the HardFault handler must set this bit to 0. This prevents problems on return to a stacked active MemManage fault handler whose MMAR value has been overwritten."]
-  #[inline] pub fn set_mmarvalid(mut self, value: u8) -> Self {
+  #[inline] pub fn set_mmarvalid<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1430,11 +1539,13 @@ impl Mmfsr {
   }
 
 #[doc="MemManage fault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more access violations. When this bit is 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn mstkerr(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn mstkerr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="MemManage fault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more access violations. When this bit is 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn set_mstkerr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_mstkerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1442,11 +1553,13 @@ impl Mmfsr {
   }
 
 #[doc="MemManage fault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more access violations. This fault is chained to the handler. This means that when this bit is 1, the original return stack is still present. The processor has not adjusted the SP from the failing return, and has not performed a new save. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn munstkerr(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn munstkerr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="MemManage fault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more access violations. This fault is chained to the handler. This means that when this bit is 1, the original return stack is still present. The processor has not adjusted the SP from the failing return, and has not performed a new save. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn set_munstkerr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_munstkerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1454,11 +1567,13 @@ impl Mmfsr {
   }
 
 #[doc="Data access violation flag: 0 = no data access violation fault, 1 = the processor attempted a load or store at a location that does not permit the operation. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has loaded the MMAR with the address of the attempted access."]
-  #[inline] pub fn daccviol(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn daccviol(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Data access violation flag: 0 = no data access violation fault, 1 = the processor attempted a load or store at a location that does not permit the operation. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has loaded the MMAR with the address of the attempted access."]
-  #[inline] pub fn set_daccviol(mut self, value: u8) -> Self {
+  #[inline] pub fn set_daccviol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1466,11 +1581,13 @@ impl Mmfsr {
   }
 
 #[doc="Instruction access violation flag: 0 = no instruction access violation fault, 1 = the processor attempted an instruction fetch from a location that does not permit execution. This fault occurs on any access to an XN region, even when the MPU is disabled or not present. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn iaccviol(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn iaccviol(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Instruction access violation flag: 0 = no instruction access violation fault, 1 = the processor attempted an instruction fetch from a location that does not permit execution. This fault occurs on any access to an XN region, even when the MPU is disabled or not present. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has not written a fault address to the MMAR."]
-  #[inline] pub fn set_iaccviol(mut self, value: u8) -> Self {
+  #[inline] pub fn set_iaccviol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1500,11 +1617,13 @@ impl ::core::fmt::Debug for Mmfsr {
 pub struct Bfsr(pub u8);
 impl Bfsr {
 #[doc="BusFault Address Register (BFAR) valid flag: 0 = value in BFAR is not a valid fault address, 1 = BFAR holds a valid fault address. The processor sets this bit to 1 after a BusFault where the address is known. Other faults can set this bit to 0, such as a MemManage fault occurring later. If a BusFault occurs and is escalated to a hard fault because of priority, the hard fault handler must set this bit to 0. This prevents problems if returning to a stacked active BusFault handler whose BFAR value has been overwritten."]
-  #[inline] pub fn bfarvalid(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn bfarvalid(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="BusFault Address Register (BFAR) valid flag: 0 = value in BFAR is not a valid fault address, 1 = BFAR holds a valid fault address. The processor sets this bit to 1 after a BusFault where the address is known. Other faults can set this bit to 0, such as a MemManage fault occurring later. If a BusFault occurs and is escalated to a hard fault because of priority, the hard fault handler must set this bit to 0. This prevents problems if returning to a stacked active BusFault handler whose BFAR value has been overwritten."]
-  #[inline] pub fn set_bfarvalid(mut self, value: u8) -> Self {
+  #[inline] pub fn set_bfarvalid<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1512,11 +1631,13 @@ impl Bfsr {
   }
 
 #[doc="BusFault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more BusFaults. When the processor sets this bit to 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor does not write a fault address to the BFAR."]
-  #[inline] pub fn stkerr(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn stkerr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="BusFault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more BusFaults. When the processor sets this bit to 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor does not write a fault address to the BFAR."]
-  #[inline] pub fn set_stkerr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_stkerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1524,11 +1645,13 @@ impl Bfsr {
   }
 
 #[doc="BusFault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more BusFaults. This fault is chained to the handler. This means that when the processor sets this bit to 1, the original return stack is still present. The processor does not adjust the SP from the failing return, does not performed a new save, and does not write a fault address to the BFAR."]
-  #[inline] pub fn unstkerr(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn unstkerr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="BusFault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more BusFaults. This fault is chained to the handler. This means that when the processor sets this bit to 1, the original return stack is still present. The processor does not adjust the SP from the failing return, does not performed a new save, and does not write a fault address to the BFAR."]
-  #[inline] pub fn set_unstkerr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_unstkerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1536,11 +1659,13 @@ impl Bfsr {
   }
 
 #[doc="Imprecise data bus error: 0 = no imprecise data bus error, 1 = a data bus error has occurred, but the return address in the stack frame is not related to the instruction that caused the error. When the processor sets this bit to 1, it does not write a fault address to the BFAR. This is an asynchronous fault. Therefore, if it is detected when the priority of the current process is higher than the BusFault priority, the BusFault becomes pending and becomes active only when the processor returns from all higher priority processes. If a precise fault occurs before the processor enters the handler for the imprecise BusFault, the handler detects both IMPRECISERR set to 1 and one of the precise fault status bits set to 1."]
-  #[inline] pub fn impreciserr(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn impreciserr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Imprecise data bus error: 0 = no imprecise data bus error, 1 = a data bus error has occurred, but the return address in the stack frame is not related to the instruction that caused the error. When the processor sets this bit to 1, it does not write a fault address to the BFAR. This is an asynchronous fault. Therefore, if it is detected when the priority of the current process is higher than the BusFault priority, the BusFault becomes pending and becomes active only when the processor returns from all higher priority processes. If a precise fault occurs before the processor enters the handler for the imprecise BusFault, the handler detects both IMPRECISERR set to 1 and one of the precise fault status bits set to 1."]
-  #[inline] pub fn set_impreciserr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_impreciserr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1548,11 +1673,13 @@ impl Bfsr {
   }
 
 #[doc="Precise data bus error: 0 = no precise data bus error, 1 = a data bus error has occurred, and the PC value stacked for the exception return points to the instruction that caused the fault. When the processor sets this bit is 1, it writes the faulting address to the BFAR."]
-  #[inline] pub fn preciserr(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn preciserr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Precise data bus error: 0 = no precise data bus error, 1 = a data bus error has occurred, and the PC value stacked for the exception return points to the instruction that caused the fault. When the processor sets this bit is 1, it writes the faulting address to the BFAR."]
-  #[inline] pub fn set_preciserr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_preciserr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1560,11 +1687,13 @@ impl Bfsr {
   }
 
 #[doc="Instruction bus error: 0 = no instruction bus error, 1 = instruction bus error. The processor detects the instruction bus error on prefetching an instruction, but it sets the IBUSERR flag to 1 only if it attempts to issue the faulting instruction. When the processor sets this bit is 1, it does not write a fault address to the BFAR."]
-  #[inline] pub fn ibuserr(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ibuserr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Instruction bus error: 0 = no instruction bus error, 1 = instruction bus error. The processor detects the instruction bus error on prefetching an instruction, but it sets the IBUSERR flag to 1 only if it attempts to issue the faulting instruction. When the processor sets this bit is 1, it does not write a fault address to the BFAR."]
-  #[inline] pub fn set_ibuserr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ibuserr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1595,11 +1724,13 @@ impl ::core::fmt::Debug for Bfsr {
 pub struct Ufsr(pub u16);
 impl Ufsr {
 #[doc="Divide by zero UsageFault: 0 = no divide by zero fault, or divide by zero trapping not enabled, 1 = the processor has executed an SDIV or UDIV instruction with a divisor of 0. When the processor sets this bit to 1, the PC value stacked for the exception return points to the instruction that performed the divide by zero. Enable trapping of divide by zero by setting the DIV_0_TRP bit in the CCR to 1, see Configuration and Control Register."]
-  #[inline] pub fn divbyzero(&self) -> u16 {
-     ((self.0 as u16) >> 9) & 0x1 // [9]
+  #[inline] pub fn divbyzero(&self) -> bits::B1 {
+     (((self.0 as u16) >> 9) & 0x1).into() // [9]
   }
 #[doc="Divide by zero UsageFault: 0 = no divide by zero fault, or divide by zero trapping not enabled, 1 = the processor has executed an SDIV or UDIV instruction with a divisor of 0. When the processor sets this bit to 1, the PC value stacked for the exception return points to the instruction that performed the divide by zero. Enable trapping of divide by zero by setting the DIV_0_TRP bit in the CCR to 1, see Configuration and Control Register."]
-  #[inline] pub fn set_divbyzero(mut self, value: u16) -> Self {
+  #[inline] pub fn set_divbyzero<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1607,11 +1738,13 @@ impl Ufsr {
   }
 
 #[doc="Unaligned access UsageFault: 0 = no unaligned access fault, or unaligned access trapping not enabled, 1 = the processor has made an unaligned memory access. Enable trapping of unaligned accesses by setting the UNALIGN_TRP bit in the CCR to 1, see Configuration and Control Register. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of the setting of UNALIGN_TRP."]
-  #[inline] pub fn unaligned(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x1 // [8]
+  #[inline] pub fn unaligned(&self) -> bits::B1 {
+     (((self.0 as u16) >> 8) & 0x1).into() // [8]
   }
 #[doc="Unaligned access UsageFault: 0 = no unaligned access fault, or unaligned access trapping not enabled, 1 = the processor has made an unaligned memory access. Enable trapping of unaligned accesses by setting the UNALIGN_TRP bit in the CCR to 1, see Configuration and Control Register. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of the setting of UNALIGN_TRP."]
-  #[inline] pub fn set_unaligned(mut self, value: u16) -> Self {
+  #[inline] pub fn set_unaligned<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1619,11 +1752,13 @@ impl Ufsr {
   }
 
 #[doc="No coprocessor UsageFault. The processor does not support coprocessor instructions: 0 = no UsageFault caused by attempting to access a coprocessor, 1 = the processor has attempted to access a coprocessor."]
-  #[inline] pub fn nocp(&self) -> u16 {
-     ((self.0 as u16) >> 3) & 0x1 // [3]
+  #[inline] pub fn nocp(&self) -> bits::B1 {
+     (((self.0 as u16) >> 3) & 0x1).into() // [3]
   }
 #[doc="No coprocessor UsageFault. The processor does not support coprocessor instructions: 0 = no UsageFault caused by attempting to access a coprocessor, 1 = the processor has attempted to access a coprocessor."]
-  #[inline] pub fn set_nocp(mut self, value: u16) -> Self {
+  #[inline] pub fn set_nocp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1631,11 +1766,13 @@ impl Ufsr {
   }
 
 #[doc="Invalid PC load UsageFault, caused by an invalid PC load by EXC_RETURN: 0 = no invalid PC load UsageFault, 1 = the processor has attempted an illegal load of EXC_RETURN to the PC, as a result of an invalid context, or an invalid EXC_RETURN value. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that tried to perform the illegal load of the PC."]
-  #[inline] pub fn invpc(&self) -> u16 {
-     ((self.0 as u16) >> 2) & 0x1 // [2]
+  #[inline] pub fn invpc(&self) -> bits::B1 {
+     (((self.0 as u16) >> 2) & 0x1).into() // [2]
   }
 #[doc="Invalid PC load UsageFault, caused by an invalid PC load by EXC_RETURN: 0 = no invalid PC load UsageFault, 1 = the processor has attempted an illegal load of EXC_RETURN to the PC, as a result of an invalid context, or an invalid EXC_RETURN value. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that tried to perform the illegal load of the PC."]
-  #[inline] pub fn set_invpc(mut self, value: u16) -> Self {
+  #[inline] pub fn set_invpc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1643,11 +1780,13 @@ impl Ufsr {
   }
 
 #[doc="Invalid state UsageFault: 0 = no invalid state UsageFault, 1 = the processor has attempted to execute an instruction that makes illegal use of the EPSR. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that attempted the illegal use of the EPSR. This bit is not set to 1 if an undefined instruction uses the EPSR."]
-  #[inline] pub fn invstate(&self) -> u16 {
-     ((self.0 as u16) >> 1) & 0x1 // [1]
+  #[inline] pub fn invstate(&self) -> bits::B1 {
+     (((self.0 as u16) >> 1) & 0x1).into() // [1]
   }
 #[doc="Invalid state UsageFault: 0 = no invalid state UsageFault, 1 = the processor has attempted to execute an instruction that makes illegal use of the EPSR. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that attempted the illegal use of the EPSR. This bit is not set to 1 if an undefined instruction uses the EPSR."]
-  #[inline] pub fn set_invstate(mut self, value: u16) -> Self {
+  #[inline] pub fn set_invstate<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1655,11 +1794,13 @@ impl Ufsr {
   }
 
 #[doc="Undefined instruction UsageFault: 0 = no undefined instruction UsageFault, 1 = the processor has attempted to execute an undefined instruction. When this bit is set to 1, the PC value stacked for the exception return points to the undefined instruction. An undefined instruction is an instruction that the processor cannot decode."]
-  #[inline] pub fn undefinstr(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x1 // [0]
+  #[inline] pub fn undefinstr(&self) -> bits::B1 {
+     (((self.0 as u16) >> 0) & 0x1).into() // [0]
   }
 #[doc="Undefined instruction UsageFault: 0 = no undefined instruction UsageFault, 1 = the processor has attempted to execute an undefined instruction. When this bit is set to 1, the PC value stacked for the exception return points to the undefined instruction. An undefined instruction is an instruction that the processor cannot decode."]
-  #[inline] pub fn set_undefinstr(mut self, value: u16) -> Self {
+  #[inline] pub fn set_undefinstr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1690,11 +1831,13 @@ impl ::core::fmt::Debug for Ufsr {
 pub struct Hfsr(pub u32);
 impl Hfsr {
 #[doc="Reserved for Debug use. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn debugevt(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn debugevt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Reserved for Debug use. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
-  #[inline] pub fn set_debugevt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_debugevt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1702,11 +1845,13 @@ impl Hfsr {
   }
 
 #[doc="Indicates a forced hard fault, generated by escalation of a fault with configurable priority that cannot be handles, either because of priority or because it is disabled: 0 = no forced HardFault, 1 = forced HardFault. When this bit is set to 1, the HardFault handler must read the other fault status registers to find the cause of the fault."]
-  #[inline] pub fn forced(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn forced(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Indicates a forced hard fault, generated by escalation of a fault with configurable priority that cannot be handles, either because of priority or because it is disabled: 0 = no forced HardFault, 1 = forced HardFault. When this bit is set to 1, the HardFault handler must read the other fault status registers to find the cause of the fault."]
-  #[inline] pub fn set_forced(mut self, value: u32) -> Self {
+  #[inline] pub fn set_forced<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1714,11 +1859,13 @@ impl Hfsr {
   }
 
 #[doc="Indicates a BusFault on a vector table read during exception processing: 0 = no BusFault on vector table read, 1 = BusFault on vector table read. This error is always handled by the hard fault handler. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that was preempted by the exception."]
-  #[inline] pub fn vecttbl(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn vecttbl(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Indicates a BusFault on a vector table read during exception processing: 0 = no BusFault on vector table read, 1 = BusFault on vector table read. This error is always handled by the hard fault handler. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that was preempted by the exception."]
-  #[inline] pub fn set_vecttbl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vecttbl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1746,11 +1893,13 @@ impl ::core::fmt::Debug for Hfsr {
 pub struct Mmfar(pub u32);
 impl Mmfar {
 #[doc="When the MMARVALID bit of the MMFSR is set to 1, this field holds the address of the location that generated the MemManage fault"]
-  #[inline] pub fn address(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn address(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="When the MMARVALID bit of the MMFSR is set to 1, this field holds the address of the location that generated the MemManage fault"]
-  #[inline] pub fn set_address(mut self, value: u32) -> Self {
+  #[inline] pub fn set_address<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1775,11 +1924,13 @@ impl ::core::fmt::Debug for Mmfar {
 pub struct Bfar(pub u32);
 impl Bfar {
 #[doc="When the BFARVALID bit of the BFSR is set to 1, this field holds the address of the location that generated the BusFault"]
-  #[inline] pub fn address(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn address(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="When the BFARVALID bit of the BFSR is set to 1, this field holds the address of the location that generated the BusFault"]
-  #[inline] pub fn set_address(mut self, value: u32) -> Self {
+  #[inline] pub fn set_address<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1804,11 +1955,13 @@ impl ::core::fmt::Debug for Bfar {
 pub struct Afsr(pub u32);
 impl Afsr {
 #[doc="Implementation defined. The bits map to the AUXFAULT input signals."]
-  #[inline] pub fn impdef(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn impdef(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Implementation defined. The bits map to the AUXFAULT input signals."]
-  #[inline] pub fn set_impdef(mut self, value: u32) -> Self {
+  #[inline] pub fn set_impdef<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

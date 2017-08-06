@@ -1,5 +1,7 @@
 #![no_std]
 
+pub extern crate bit_types as bits;
+
 pub struct Pin<T, P>(T, P, usize);
 
 impl<T, P> Pin<T, P> {

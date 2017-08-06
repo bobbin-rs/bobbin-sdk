@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::pit::*;
 
 pub const PIT: Pit = Periph(0x40037000, PitId {});

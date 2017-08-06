@@ -1,4 +1,5 @@
 //! Power Manager
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const PM: Pm = Pm(0x40000400);
 
 #[doc="Power Manager"]
@@ -378,11 +379,13 @@ impl Pm {
 pub struct Ahbmask(pub u32);
 impl Ahbmask {
 #[doc="HPB0 AHB Clock Enable"]
-  #[inline] pub fn hpb0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn hpb0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="HPB0 AHB Clock Enable"]
-  #[inline] pub fn set_hpb0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hpb0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -390,11 +393,13 @@ impl Ahbmask {
   }
 
 #[doc="HPB1 AHB Clock Enable"]
-  #[inline] pub fn hpb1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn hpb1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="HPB1 AHB Clock Enable"]
-  #[inline] pub fn set_hpb1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hpb1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -402,11 +407,13 @@ impl Ahbmask {
   }
 
 #[doc="HPB2 AHB Clock Enable"]
-  #[inline] pub fn hpb2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn hpb2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="HPB2 AHB Clock Enable"]
-  #[inline] pub fn set_hpb2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hpb2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -414,11 +421,13 @@ impl Ahbmask {
   }
 
 #[doc="DSU AHB Clock Enable"]
-  #[inline] pub fn dsu(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn dsu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="DSU AHB Clock Enable"]
-  #[inline] pub fn set_dsu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dsu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -426,11 +435,13 @@ impl Ahbmask {
   }
 
 #[doc="NVMCTRL AHB Clock Enable"]
-  #[inline] pub fn nvmctrl(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn nvmctrl(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="NVMCTRL AHB Clock Enable"]
-  #[inline] pub fn set_nvmctrl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_nvmctrl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -438,11 +449,13 @@ impl Ahbmask {
   }
 
 #[doc="DMAC AHB Clock Enable"]
-  #[inline] pub fn dmac(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dmac(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="DMAC AHB Clock Enable"]
-  #[inline] pub fn set_dmac(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmac<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -450,11 +463,13 @@ impl Ahbmask {
   }
 
 #[doc="USB AHB Clock Enable"]
-  #[inline] pub fn usb(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn usb(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="USB AHB Clock Enable"]
-  #[inline] pub fn set_usb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usb<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -486,11 +501,13 @@ impl ::core::fmt::Debug for Ahbmask {
 pub struct Apbamask(pub u32);
 impl Apbamask {
 #[doc="PAC0 APB Clock Enable"]
-  #[inline] pub fn pac0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pac0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="PAC0 APB Clock Enable"]
-  #[inline] pub fn set_pac0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pac0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -498,11 +515,13 @@ impl Apbamask {
   }
 
 #[doc="PM APB Clock Enable"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="PM APB Clock Enable"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -510,11 +529,13 @@ impl Apbamask {
   }
 
 #[doc="SYSCTRL APB Clock Enable"]
-  #[inline] pub fn sysctrl(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sysctrl(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="SYSCTRL APB Clock Enable"]
-  #[inline] pub fn set_sysctrl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sysctrl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -522,11 +543,13 @@ impl Apbamask {
   }
 
 #[doc="GCLK APB Clock Enable"]
-  #[inline] pub fn gclk(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn gclk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GCLK APB Clock Enable"]
-  #[inline] pub fn set_gclk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gclk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -534,11 +557,13 @@ impl Apbamask {
   }
 
 #[doc="WDT APB Clock Enable"]
-  #[inline] pub fn wdt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn wdt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="WDT APB Clock Enable"]
-  #[inline] pub fn set_wdt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -546,11 +571,13 @@ impl Apbamask {
   }
 
 #[doc="RTC APB Clock Enable"]
-  #[inline] pub fn rtc(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn rtc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="RTC APB Clock Enable"]
-  #[inline] pub fn set_rtc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -558,11 +585,13 @@ impl Apbamask {
   }
 
 #[doc="EIC APB Clock Enable"]
-  #[inline] pub fn eic(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn eic(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="EIC APB Clock Enable"]
-  #[inline] pub fn set_eic(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eic<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -594,11 +623,13 @@ impl ::core::fmt::Debug for Apbamask {
 pub struct Apbasel(pub u8);
 impl Apbasel {
 #[doc="APBA Prescaler Selection"]
-  #[inline] pub fn apbadiv(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn apbadiv(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="APBA Prescaler Selection"]
-  #[inline] pub fn set_apbadiv(mut self, value: u8) -> Self {
+  #[inline] pub fn set_apbadiv<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -624,11 +655,13 @@ impl ::core::fmt::Debug for Apbasel {
 pub struct Apbbmask(pub u32);
 impl Apbbmask {
 #[doc="PAC1 APB Clock Enable"]
-  #[inline] pub fn pac1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pac1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="PAC1 APB Clock Enable"]
-  #[inline] pub fn set_pac1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pac1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -636,11 +669,13 @@ impl Apbbmask {
   }
 
 #[doc="DSU APB Clock Enable"]
-  #[inline] pub fn dsu(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn dsu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="DSU APB Clock Enable"]
-  #[inline] pub fn set_dsu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dsu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -648,11 +683,13 @@ impl Apbbmask {
   }
 
 #[doc="NVMCTRL APB Clock Enable"]
-  #[inline] pub fn nvmctrl(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn nvmctrl(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="NVMCTRL APB Clock Enable"]
-  #[inline] pub fn set_nvmctrl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_nvmctrl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -660,11 +697,13 @@ impl Apbbmask {
   }
 
 #[doc="PORT APB Clock Enable"]
-  #[inline] pub fn port(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn port(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="PORT APB Clock Enable"]
-  #[inline] pub fn set_port(mut self, value: u32) -> Self {
+  #[inline] pub fn set_port<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -672,11 +711,13 @@ impl Apbbmask {
   }
 
 #[doc="DMAC APB Clock Enable"]
-  #[inline] pub fn dmac(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn dmac(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="DMAC APB Clock Enable"]
-  #[inline] pub fn set_dmac(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmac<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -684,11 +725,13 @@ impl Apbbmask {
   }
 
 #[doc="USB APB Clock Enable"]
-  #[inline] pub fn usb(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn usb(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="USB APB Clock Enable"]
-  #[inline] pub fn set_usb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_usb<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -719,11 +762,13 @@ impl ::core::fmt::Debug for Apbbmask {
 pub struct Apbbsel(pub u8);
 impl Apbbsel {
 #[doc="APBB Prescaler Selection"]
-  #[inline] pub fn apbbdiv(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn apbbdiv(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="APBB Prescaler Selection"]
-  #[inline] pub fn set_apbbdiv(mut self, value: u8) -> Self {
+  #[inline] pub fn set_apbbdiv<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -749,11 +794,13 @@ impl ::core::fmt::Debug for Apbbsel {
 pub struct Apbcmask(pub u32);
 impl Apbcmask {
 #[doc="PAC2 APB Clock Enable"]
-  #[inline] pub fn pac2(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pac2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="PAC2 APB Clock Enable"]
-  #[inline] pub fn set_pac2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pac2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -761,11 +808,13 @@ impl Apbcmask {
   }
 
 #[doc="EVSYS APB Clock Enable"]
-  #[inline] pub fn evsys(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn evsys(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="EVSYS APB Clock Enable"]
-  #[inline] pub fn set_evsys(mut self, value: u32) -> Self {
+  #[inline] pub fn set_evsys<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -773,11 +822,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM0 APB Clock Enable"]
-  #[inline] pub fn sercom0(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sercom0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="SERCOM0 APB Clock Enable"]
-  #[inline] pub fn set_sercom0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -785,11 +836,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM1 APB Clock Enable"]
-  #[inline] pub fn sercom1(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn sercom1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="SERCOM1 APB Clock Enable"]
-  #[inline] pub fn set_sercom1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -797,11 +850,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM2 APB Clock Enable"]
-  #[inline] pub fn sercom2(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn sercom2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="SERCOM2 APB Clock Enable"]
-  #[inline] pub fn set_sercom2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -809,11 +864,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM3 APB Clock Enable"]
-  #[inline] pub fn sercom3(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn sercom3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="SERCOM3 APB Clock Enable"]
-  #[inline] pub fn set_sercom3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -821,11 +878,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM4 APB Clock Enable"]
-  #[inline] pub fn sercom4(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn sercom4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="SERCOM4 APB Clock Enable"]
-  #[inline] pub fn set_sercom4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -833,11 +892,13 @@ impl Apbcmask {
   }
 
 #[doc="SERCOM5 APB Clock Enable"]
-  #[inline] pub fn sercom5(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn sercom5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="SERCOM5 APB Clock Enable"]
-  #[inline] pub fn set_sercom5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sercom5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -845,11 +906,13 @@ impl Apbcmask {
   }
 
 #[doc="TCC0 APB Clock Enable"]
-  #[inline] pub fn tcc0(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn tcc0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="TCC0 APB Clock Enable"]
-  #[inline] pub fn set_tcc0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcc0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -857,11 +920,13 @@ impl Apbcmask {
   }
 
 #[doc="TCC1 APB Clock Enable"]
-  #[inline] pub fn tcc1(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tcc1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="TCC1 APB Clock Enable"]
-  #[inline] pub fn set_tcc1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcc1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -869,11 +934,13 @@ impl Apbcmask {
   }
 
 #[doc="TCC2 APB Clock Enable"]
-  #[inline] pub fn tcc2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn tcc2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="TCC2 APB Clock Enable"]
-  #[inline] pub fn set_tcc2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcc2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -881,11 +948,13 @@ impl Apbcmask {
   }
 
 #[doc="TC3 APB Clock Enable"]
-  #[inline] pub fn tc3(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tc3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="TC3 APB Clock Enable"]
-  #[inline] pub fn set_tc3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tc3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -893,11 +962,13 @@ impl Apbcmask {
   }
 
 #[doc="TC4 APB Clock Enable"]
-  #[inline] pub fn tc4(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn tc4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="TC4 APB Clock Enable"]
-  #[inline] pub fn set_tc4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tc4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -905,11 +976,13 @@ impl Apbcmask {
   }
 
 #[doc="TC5 APB Clock Enable"]
-  #[inline] pub fn tc5(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn tc5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="TC5 APB Clock Enable"]
-  #[inline] pub fn set_tc5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tc5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -917,11 +990,13 @@ impl Apbcmask {
   }
 
 #[doc="ADC APB Clock Enable"]
-  #[inline] pub fn adc(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn adc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="ADC APB Clock Enable"]
-  #[inline] pub fn set_adc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_adc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -929,11 +1004,13 @@ impl Apbcmask {
   }
 
 #[doc="AC APB Clock Enable"]
-  #[inline] pub fn ac(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn ac(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="AC APB Clock Enable"]
-  #[inline] pub fn set_ac(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ac<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -941,11 +1018,13 @@ impl Apbcmask {
   }
 
 #[doc="DAC APB Clock Enable"]
-  #[inline] pub fn dac(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn dac(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="DAC APB Clock Enable"]
-  #[inline] pub fn set_dac(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dac<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -953,11 +1032,13 @@ impl Apbcmask {
   }
 
 #[doc="I2S APB Clock Enable"]
-  #[inline] pub fn i2s(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
+  #[inline] pub fn i2s(&self) -> bits::B1 {
+     (((self.0 as u32) >> 20) & 0x1).into() // [20]
   }
 #[doc="I2S APB Clock Enable"]
-  #[inline] pub fn set_i2s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2s<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -965,11 +1046,13 @@ impl Apbcmask {
   }
 
 #[doc="ATW APB Clock Enable"]
-  #[inline] pub fn atw(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn atw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="ATW APB Clock Enable"]
-  #[inline] pub fn set_atw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_atw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -1013,11 +1096,13 @@ impl ::core::fmt::Debug for Apbcmask {
 pub struct Apbcsel(pub u8);
 impl Apbcsel {
 #[doc="APBC Prescaler Selection"]
-  #[inline] pub fn apbcdiv(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn apbcdiv(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="APBC Prescaler Selection"]
-  #[inline] pub fn set_apbcdiv(mut self, value: u8) -> Self {
+  #[inline] pub fn set_apbcdiv<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -1043,11 +1128,13 @@ impl ::core::fmt::Debug for Apbcsel {
 pub struct Cpusel(pub u8);
 impl Cpusel {
 #[doc="CPU Prescaler Selection"]
-  #[inline] pub fn cpudiv(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn cpudiv(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="CPU Prescaler Selection"]
-  #[inline] pub fn set_cpudiv(mut self, value: u8) -> Self {
+  #[inline] pub fn set_cpudiv<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -1073,11 +1160,13 @@ impl ::core::fmt::Debug for Cpusel {
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Clock Failure Detector Enable"]
-  #[inline] pub fn cfden(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn cfden(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Clock Failure Detector Enable"]
-  #[inline] pub fn set_cfden(mut self, value: u8) -> Self {
+  #[inline] pub fn set_cfden<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1085,11 +1174,13 @@ impl Ctrl {
   }
 
 #[doc="Backup Clock Select"]
-  #[inline] pub fn bkupclk(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn bkupclk(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Backup Clock Select"]
-  #[inline] pub fn set_bkupclk(mut self, value: u8) -> Self {
+  #[inline] pub fn set_bkupclk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1116,11 +1207,13 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Clock Ready Interrupt Enable"]
-  #[inline] pub fn ckrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ckrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Clock Ready Interrupt Enable"]
-  #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ckrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1128,11 +1221,13 @@ impl Intenclr {
   }
 
 #[doc="Clock Failure Detector Interrupt Enable"]
-  #[inline] pub fn cfd(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn cfd(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Clock Failure Detector Interrupt Enable"]
-  #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
+  #[inline] pub fn set_cfd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1159,11 +1254,13 @@ impl ::core::fmt::Debug for Intenclr {
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Clock Ready Interrupt Enable"]
-  #[inline] pub fn ckrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ckrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Clock Ready Interrupt Enable"]
-  #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ckrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1171,11 +1268,13 @@ impl Intenset {
   }
 
 #[doc="Clock Failure Detector Interrupt Enable"]
-  #[inline] pub fn cfd(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn cfd(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Clock Failure Detector Interrupt Enable"]
-  #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
+  #[inline] pub fn set_cfd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1202,11 +1301,13 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Clock Ready"]
-  #[inline] pub fn ckrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ckrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Clock Ready"]
-  #[inline] pub fn set_ckrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ckrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1214,11 +1315,13 @@ impl Intflag {
   }
 
 #[doc="Clock Failure Detector"]
-  #[inline] pub fn cfd(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn cfd(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Clock Failure Detector"]
-  #[inline] pub fn set_cfd(mut self, value: u8) -> Self {
+  #[inline] pub fn set_cfd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1245,11 +1348,13 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Rcause(pub u8);
 impl Rcause {
 #[doc="Power On Reset"]
-  #[inline] pub fn por(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn por(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Power On Reset"]
-  #[inline] pub fn set_por(mut self, value: u8) -> Self {
+  #[inline] pub fn set_por<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1257,11 +1362,13 @@ impl Rcause {
   }
 
 #[doc="Brown Out 12 Detector Reset"]
-  #[inline] pub fn bod12(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn bod12(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Brown Out 12 Detector Reset"]
-  #[inline] pub fn set_bod12(mut self, value: u8) -> Self {
+  #[inline] pub fn set_bod12<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1269,11 +1376,13 @@ impl Rcause {
   }
 
 #[doc="Brown Out 33 Detector Reset"]
-  #[inline] pub fn bod33(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn bod33(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Brown Out 33 Detector Reset"]
-  #[inline] pub fn set_bod33(mut self, value: u8) -> Self {
+  #[inline] pub fn set_bod33<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1281,11 +1390,13 @@ impl Rcause {
   }
 
 #[doc="External Reset"]
-  #[inline] pub fn ext(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn ext(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="External Reset"]
-  #[inline] pub fn set_ext(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ext<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1293,11 +1404,13 @@ impl Rcause {
   }
 
 #[doc="Watchdog Reset"]
-  #[inline] pub fn wdt(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn wdt(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="Watchdog Reset"]
-  #[inline] pub fn set_wdt(mut self, value: u8) -> Self {
+  #[inline] pub fn set_wdt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1305,11 +1418,13 @@ impl Rcause {
   }
 
 #[doc="System Reset Request"]
-  #[inline] pub fn syst(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn syst(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="System Reset Request"]
-  #[inline] pub fn set_syst(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syst<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -1340,11 +1455,13 @@ impl ::core::fmt::Debug for Rcause {
 pub struct Sleep(pub u8);
 impl Sleep {
 #[doc="Idle Mode Configuration"]
-  #[inline] pub fn idle(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn idle(&self) -> bits::B2 {
+     (((self.0 as u8) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Idle Mode Configuration"]
-  #[inline] pub fn set_idle(mut self, value: u8) -> Self {
+  #[inline] pub fn set_idle<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -1380,102 +1497,102 @@ impl Pm {
 }
 
 impl En for super::pm::Pm {
-   #[inline] fn en(&self) -> u32 { PM.apbamask().pm() }
+   #[inline] fn en(&self) -> u32 { PM.apbamask().pm().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_pm(value)); }
 }
 
 impl En for super::sysctrl::Sysctrl {
-   #[inline] fn en(&self) -> u32 { PM.apbamask().sysctrl() }
+   #[inline] fn en(&self) -> u32 { PM.apbamask().sysctrl().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_sysctrl(value)); }
 }
 
 impl En for super::gclk::Gclk {
-   #[inline] fn en(&self) -> u32 { PM.apbamask().gclk() }
+   #[inline] fn en(&self) -> u32 { PM.apbamask().gclk().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_gclk(value)); }
 }
 
 impl En for super::wdt::Wdt {
-   #[inline] fn en(&self) -> u32 { PM.apbamask().wdt() }
+   #[inline] fn en(&self) -> u32 { PM.apbamask().wdt().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_wdt(value)); }
 }
 
 impl En for super::rtc::Rtc {
-   #[inline] fn en(&self) -> u32 { PM.apbamask().rtc() }
+   #[inline] fn en(&self) -> u32 { PM.apbamask().rtc().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbamask(|r| r.set_rtc(value)); }
 }
 
 impl En for super::port::Porta {
-   #[inline] fn en(&self) -> u32 { PM.apbbmask().port() }
+   #[inline] fn en(&self) -> u32 { PM.apbbmask().port().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbbmask(|r| r.set_port(value)); }
 }
 
 impl En for super::port::Portb {
-   #[inline] fn en(&self) -> u32 { PM.apbbmask().port() }
+   #[inline] fn en(&self) -> u32 { PM.apbbmask().port().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbbmask(|r| r.set_port(value)); }
 }
 
 impl En for super::sercom::Sercom0 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom0() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom0().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom0(value)); }
 }
 
 impl En for super::sercom::Sercom1 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom1() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom1().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom1(value)); }
 }
 
 impl En for super::sercom::Sercom2 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom2() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom2().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom2(value)); }
 }
 
 impl En for super::sercom::Sercom3 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom3() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom3().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom3(value)); }
 }
 
 impl En for super::sercom::Sercom4 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom4() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom4().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom4(value)); }
 }
 
 impl En for super::sercom::Sercom5 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom5() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().sercom5().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_sercom5(value)); }
 }
 
 impl En for super::tcc::Tcc0 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc0() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc0().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tcc0(value)); }
 }
 
 impl En for super::tcc::Tcc1 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc1() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc1().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tcc1(value)); }
 }
 
 impl En for super::tcc::Tcc2 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc2() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tcc2().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tcc2(value)); }
 }
 
 impl En for super::tc::Tc3 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc3() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc3().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tc3(value)); }
 }
 
 impl En for super::tc::Tc4 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc4() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc4().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tc4(value)); }
 }
 
 impl En for super::tc::Tc5 {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc5() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().tc5().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_tc5(value)); }
 }
 
 impl En for super::adc::Adc {
-   #[inline] fn en(&self) -> u32 { PM.apbcmask().adc() }
+   #[inline] fn en(&self) -> u32 { PM.apbcmask().adc().into() }
    #[inline] fn set_en(&self, value: u32) { PM.with_apbcmask(|r| r.set_adc(value)); }
 }
 

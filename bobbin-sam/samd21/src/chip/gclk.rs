@@ -1,4 +1,5 @@
 //! Generic Clock Generator
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const GCLK: Gclk = Gclk(0x40000c00);
 
 #[doc="Generic Clock Generator"]
@@ -216,11 +217,13 @@ impl Gclk {
 pub struct Clkctrl(pub u16);
 impl Clkctrl {
 #[doc="Generic Clock Selection ID"]
-  #[inline] pub fn id(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x3f // [5:0]
+  #[inline] pub fn id(&self) -> bits::B6 {
+     (((self.0 as u16) >> 0) & 0x3f).into() // [5:0]
   }
 #[doc="Generic Clock Selection ID"]
-  #[inline] pub fn set_id(mut self, value: u16) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
@@ -228,11 +231,13 @@ impl Clkctrl {
   }
 
 #[doc="Generic Clock Generator"]
-  #[inline] pub fn gen(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0xf // [11:8]
+  #[inline] pub fn gen(&self) -> bits::B4 {
+     (((self.0 as u16) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Generic Clock Generator"]
-  #[inline] pub fn set_gen(mut self, value: u16) -> Self {
+  #[inline] pub fn set_gen<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -240,11 +245,13 @@ impl Clkctrl {
   }
 
 #[doc="Clock Enable"]
-  #[inline] pub fn clken(&self) -> u16 {
-     ((self.0 as u16) >> 14) & 0x1 // [14]
+  #[inline] pub fn clken(&self) -> bits::B1 {
+     (((self.0 as u16) >> 14) & 0x1).into() // [14]
   }
 #[doc="Clock Enable"]
-  #[inline] pub fn set_clken(mut self, value: u16) -> Self {
+  #[inline] pub fn set_clken<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -252,11 +259,13 @@ impl Clkctrl {
   }
 
 #[doc="Write Lock"]
-  #[inline] pub fn wrtlock(&self) -> u16 {
-     ((self.0 as u16) >> 15) & 0x1 // [15]
+  #[inline] pub fn wrtlock(&self) -> bits::B1 {
+     (((self.0 as u16) >> 15) & 0x1).into() // [15]
   }
 #[doc="Write Lock"]
-  #[inline] pub fn set_wrtlock(mut self, value: u16) -> Self {
+  #[inline] pub fn set_wrtlock<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -285,11 +294,13 @@ impl ::core::fmt::Debug for Clkctrl {
 pub struct ClkctrlId(pub u8);
 impl ClkctrlId {
 #[doc="Generic Clock Selection ID"]
-  #[inline] pub fn id(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x3f // [5:0]
+  #[inline] pub fn id(&self) -> bits::B6 {
+     (((self.0 as u8) >> 0) & 0x3f).into() // [5:0]
   }
 #[doc="Generic Clock Selection ID"]
-  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
@@ -315,11 +326,13 @@ impl ::core::fmt::Debug for ClkctrlId {
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Software Reset"]
-  #[inline] pub fn swrst(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn swrst(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Software Reset"]
-  #[inline] pub fn set_swrst(mut self, value: u8) -> Self {
+  #[inline] pub fn set_swrst<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -345,11 +358,13 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Genctrl(pub u32);
 impl Genctrl {
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn id(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn id(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn set_id(mut self, value: u32) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -357,11 +372,13 @@ impl Genctrl {
   }
 
 #[doc="Source Select"]
-  #[inline] pub fn src(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1f // [12:8]
+  #[inline] pub fn src(&self) -> bits::B5 {
+     (((self.0 as u32) >> 8) & 0x1f).into() // [12:8]
   }
 #[doc="Source Select"]
-  #[inline] pub fn set_src(mut self, value: u32) -> Self {
+  #[inline] pub fn set_src<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 8);
      self.0 |= value << 8;
@@ -369,11 +386,13 @@ impl Genctrl {
   }
 
 #[doc="Generic Clock Generator Enable"]
-  #[inline] pub fn genen(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn genen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Generic Clock Generator Enable"]
-  #[inline] pub fn set_genen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -381,11 +400,13 @@ impl Genctrl {
   }
 
 #[doc="Improve Duty Cycle"]
-  #[inline] pub fn idc(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn idc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Improve Duty Cycle"]
-  #[inline] pub fn set_idc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_idc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -393,11 +414,13 @@ impl Genctrl {
   }
 
 #[doc="Output Off Value"]
-  #[inline] pub fn oov(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn oov(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Output Off Value"]
-  #[inline] pub fn set_oov(mut self, value: u32) -> Self {
+  #[inline] pub fn set_oov<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -405,11 +428,13 @@ impl Genctrl {
   }
 
 #[doc="Output Enable"]
-  #[inline] pub fn oe(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn oe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Output Enable"]
-  #[inline] pub fn set_oe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_oe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -417,11 +442,13 @@ impl Genctrl {
   }
 
 #[doc="Divide Selection"]
-  #[inline] pub fn divsel(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
+  #[inline] pub fn divsel(&self) -> bits::B1 {
+     (((self.0 as u32) >> 20) & 0x1).into() // [20]
   }
 #[doc="Divide Selection"]
-  #[inline] pub fn set_divsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_divsel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -429,11 +456,13 @@ impl Genctrl {
   }
 
 #[doc="Run in Standby"]
-  #[inline] pub fn runstdby(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
+  #[inline] pub fn runstdby(&self) -> bits::B1 {
+     (((self.0 as u32) >> 21) & 0x1).into() // [21]
   }
 #[doc="Run in Standby"]
-  #[inline] pub fn set_runstdby(mut self, value: u32) -> Self {
+  #[inline] pub fn set_runstdby<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
@@ -466,11 +495,13 @@ impl ::core::fmt::Debug for Genctrl {
 pub struct GenctrlId(pub u8);
 impl GenctrlId {
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn id(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn id(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -496,11 +527,13 @@ impl ::core::fmt::Debug for GenctrlId {
 pub struct Gendiv(pub u32);
 impl Gendiv {
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn id(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn id(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn set_id(mut self, value: u32) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -508,11 +541,13 @@ impl Gendiv {
   }
 
 #[doc="Division Factor"]
-  #[inline] pub fn div(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xffff // [23:8]
+  #[inline] pub fn div(&self) -> bits::B16 {
+     (((self.0 as u32) >> 8) & 0xffff).into() // [23:8]
   }
 #[doc="Division Factor"]
-  #[inline] pub fn set_div(mut self, value: u32) -> Self {
+  #[inline] pub fn set_div<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 8);
      self.0 |= value << 8;
@@ -539,11 +574,13 @@ impl ::core::fmt::Debug for Gendiv {
 pub struct GendivId(pub u8);
 impl GendivId {
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn id(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn id(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Generic Clock Generator Selection"]
-  #[inline] pub fn set_id(mut self, value: u8) -> Self {
+  #[inline] pub fn set_id<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -569,11 +606,13 @@ impl ::core::fmt::Debug for GendivId {
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy Status"]
-  #[inline] pub fn syncbusy(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn syncbusy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Synchronization Busy Status"]
-  #[inline] pub fn set_syncbusy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncbusy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;

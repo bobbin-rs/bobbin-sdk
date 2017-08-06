@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="CRC_24 Peripheral"]
@@ -152,11 +153,13 @@ impl<T> Periph<T> {
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Data register bits"]
-  #[inline] pub fn dr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn dr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Data register bits"]
-  #[inline] pub fn set_dr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -181,11 +184,13 @@ impl ::core::fmt::Debug for Dr {
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="General-purpose 8-bit data register bits"]
-  #[inline] pub fn idr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn idr(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="General-purpose 8-bit data register bits"]
-  #[inline] pub fn set_idr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_idr<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -211,11 +216,13 @@ impl ::core::fmt::Debug for Idr {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="reset bit"]
-  #[inline] pub fn _reset(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn _reset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="reset bit"]
-  #[inline] pub fn set_reset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_reset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -223,11 +230,13 @@ impl Cr {
   }
 
 #[doc="Reverse input data"]
-  #[inline] pub fn rev_in(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x3 // [6:5]
+  #[inline] pub fn rev_in(&self) -> bits::B2 {
+     (((self.0 as u32) >> 5) & 0x3).into() // [6:5]
   }
 #[doc="Reverse input data"]
-  #[inline] pub fn set_rev_in(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rev_in<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 5);
      self.0 |= value << 5;
@@ -235,11 +244,13 @@ impl Cr {
   }
 
 #[doc="Reverse output data"]
-  #[inline] pub fn rev_out(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn rev_out(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Reverse output data"]
-  #[inline] pub fn set_rev_out(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rev_out<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -267,11 +278,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Init(pub u32);
 impl Init {
 #[doc="Programmable initial CRC value"]
-  #[inline] pub fn init(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn init(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Programmable initial CRC value"]
-  #[inline] pub fn set_init(mut self, value: u32) -> Self {
+  #[inline] pub fn set_init<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -296,11 +309,13 @@ impl ::core::fmt::Debug for Init {
 pub struct Dummy(pub u32);
 impl Dummy {
 #[doc="DUMMY DATA field"]
-  #[inline] pub fn data(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn data(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="DUMMY DATA field"]
-  #[inline] pub fn set_data(mut self, value: u32) -> Self {
+  #[inline] pub fn set_data<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

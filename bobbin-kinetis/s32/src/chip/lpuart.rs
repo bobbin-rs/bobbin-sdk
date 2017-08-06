@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::lpuart::*;
 
 pub const LPUART0: Lpuart0 = Periph(0x4006a000, Lpuart0Id {});

@@ -1,4 +1,5 @@
 //! Power control
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const PWR: Pwr = Pwr(0x40007000);
 
 #[doc="Power control"]
@@ -66,11 +67,13 @@ impl Pwr {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Low Power Deep Sleep"]
-  #[inline] pub fn lpds(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn lpds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Low Power Deep Sleep"]
-  #[inline] pub fn set_lpds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lpds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -78,11 +81,13 @@ impl Cr {
   }
 
 #[doc="Power Down Deep Sleep"]
-  #[inline] pub fn pdds(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn pdds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Power Down Deep Sleep"]
-  #[inline] pub fn set_pdds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pdds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -90,11 +95,13 @@ impl Cr {
   }
 
 #[doc="Clear Wake-up Flag"]
-  #[inline] pub fn cwuf(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn cwuf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Clear Wake-up Flag"]
-  #[inline] pub fn set_cwuf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cwuf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -102,11 +109,13 @@ impl Cr {
   }
 
 #[doc="Clear STANDBY Flag"]
-  #[inline] pub fn csbf(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn csbf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Clear STANDBY Flag"]
-  #[inline] pub fn set_csbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_csbf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -114,11 +123,13 @@ impl Cr {
   }
 
 #[doc="Power Voltage Detector Enable"]
-  #[inline] pub fn pvde(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn pvde(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Power Voltage Detector Enable"]
-  #[inline] pub fn set_pvde(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pvde<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -126,11 +137,13 @@ impl Cr {
   }
 
 #[doc="PVD Level Selection"]
-  #[inline] pub fn pls(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x7 // [7:5]
+  #[inline] pub fn pls(&self) -> bits::B3 {
+     (((self.0 as u32) >> 5) & 0x7).into() // [7:5]
   }
 #[doc="PVD Level Selection"]
-  #[inline] pub fn set_pls(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pls<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 5);
      self.0 |= value << 5;
@@ -138,11 +151,13 @@ impl Cr {
   }
 
 #[doc="Disable Backup Domain write protection"]
-  #[inline] pub fn dbp(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dbp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Disable Backup Domain write protection"]
-  #[inline] pub fn set_dbp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -174,11 +189,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Wake-Up Flag"]
-  #[inline] pub fn wuf(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn wuf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Wake-Up Flag"]
-  #[inline] pub fn set_wuf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wuf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -186,11 +203,13 @@ impl Csr {
   }
 
 #[doc="STANDBY Flag"]
-  #[inline] pub fn sbf(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn sbf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="STANDBY Flag"]
-  #[inline] pub fn set_sbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sbf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -198,11 +217,13 @@ impl Csr {
   }
 
 #[doc="PVD Output"]
-  #[inline] pub fn pvdo(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn pvdo(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="PVD Output"]
-  #[inline] pub fn set_pvdo(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pvdo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -210,11 +231,13 @@ impl Csr {
   }
 
 #[doc="Enable WKUP pin"]
-  #[inline] pub fn ewup(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn ewup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Enable WKUP pin"]
-  #[inline] pub fn set_ewup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;

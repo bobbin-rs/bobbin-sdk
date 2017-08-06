@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::dma_f3::*;
 
 pub const DMA1: Dma1 = Periph(0x40020000, Dma1Id {});

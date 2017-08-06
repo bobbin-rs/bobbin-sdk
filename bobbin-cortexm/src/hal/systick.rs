@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 pub use ::chip::systick::*;
 pub use ::chip::exc::{Handler, EXC_SYSTICK};
 
@@ -16,9 +17,8 @@ pub fn count_flag() -> bool {
 
 pub fn clock_source() -> ClockSource {
     match SYSTICK.csr().clksource() {
-        0 => ClockSource::External,
-        1 => ClockSource::Internal,
-        _ => unimplemented!(),
+        B1::B0 => ClockSource::External,
+        B1::B1 => ClockSource::Internal,
     }
 }
 
@@ -41,7 +41,7 @@ pub fn set_enabled(value: bool) {
 }
 
 pub fn reload_value() -> u32 {
-    SYSTICK.rvr().reload()
+    SYSTICK.rvr().reload().into()
 }
 
 pub fn set_reload_value(value: u32) {
@@ -49,7 +49,7 @@ pub fn set_reload_value(value: u32) {
 }
 
 pub fn current_value() -> u32 {
-    SYSTICK.cvr().current()
+    SYSTICK.cvr().current().into()
 }
 
 pub fn set_current_value(value: u32) {
@@ -65,5 +65,5 @@ pub fn skew() -> bool {
 }
 
 pub fn ten_ms() -> u32 {
-    SYSTICK.calib().tenms()
+    SYSTICK.calib().tenms().into()
 }

@@ -1,4 +1,5 @@
 //! System configuration controller
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const SYSCFG: Syscfg = Syscfg(0x40010000);
 
 #[doc="System configuration controller"]
@@ -201,11 +202,13 @@ impl Syscfg {
 pub struct Cfgr1(pub u32);
 impl Cfgr1 {
 #[doc="Boot mode selected by the boot pins status bits"]
-  #[inline] pub fn boot_mode(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn boot_mode(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="Boot mode selected by the boot pins status bits"]
-  #[inline] pub fn set_boot_mode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_boot_mode<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -213,11 +216,13 @@ impl Cfgr1 {
   }
 
 #[doc="Memory mapping selection bits"]
-  #[inline] pub fn mem_mode(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn mem_mode(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Memory mapping selection bits"]
-  #[inline] pub fn set_mem_mode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mem_mode<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -244,11 +249,13 @@ impl ::core::fmt::Debug for Cfgr1 {
 pub struct Cfgr2(pub u32);
 impl Cfgr2 {
 #[doc="I2C2 Fm+ drive capability enable bit"]
-  #[inline] pub fn i2c2_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn i2c2_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="I2C2 Fm+ drive capability enable bit"]
-  #[inline] pub fn set_i2c2_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c2_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -256,11 +263,13 @@ impl Cfgr2 {
   }
 
 #[doc="I2C1 Fm+ drive capability enable bit"]
-  #[inline] pub fn i2c1_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn i2c1_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="I2C1 Fm+ drive capability enable bit"]
-  #[inline] pub fn set_i2c1_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c1_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -268,11 +277,13 @@ impl Cfgr2 {
   }
 
 #[doc="Fm+ drive capability on PB9 enable bit"]
-  #[inline] pub fn i2c_pb9_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn i2c_pb9_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Fm+ drive capability on PB9 enable bit"]
-  #[inline] pub fn set_i2c_pb9_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c_pb9_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -280,11 +291,13 @@ impl Cfgr2 {
   }
 
 #[doc="Fm+ drive capability on PB8 enable bit"]
-  #[inline] pub fn i2c_pb8_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn i2c_pb8_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Fm+ drive capability on PB8 enable bit"]
-  #[inline] pub fn set_i2c_pb8_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c_pb8_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -292,11 +305,13 @@ impl Cfgr2 {
   }
 
 #[doc="Fm+ drive capability on PB7 enable bit"]
-  #[inline] pub fn i2c_pb7_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn i2c_pb7_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Fm+ drive capability on PB7 enable bit"]
-  #[inline] pub fn set_i2c_pb7_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c_pb7_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -304,11 +319,13 @@ impl Cfgr2 {
   }
 
 #[doc="Fm+ drive capability on PB6 enable bit"]
-  #[inline] pub fn i2c_pb6_fmp(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn i2c_pb6_fmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Fm+ drive capability on PB6 enable bit"]
-  #[inline] pub fn set_i2c_pb6_fmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_i2c_pb6_fmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -316,11 +333,13 @@ impl Cfgr2 {
   }
 
 #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
-  #[inline] pub fn capa(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x7 // [3:1]
+  #[inline] pub fn capa(&self) -> bits::B3 {
+     (((self.0 as u32) >> 1) & 0x7).into() // [3:1]
   }
 #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
-  #[inline] pub fn set_capa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_capa<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 1);
      self.0 |= value << 1;
@@ -328,11 +347,13 @@ impl Cfgr2 {
   }
 
 #[doc="Firewall disable bit"]
-  #[inline] pub fn fwdisen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn fwdisen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Firewall disable bit"]
-  #[inline] pub fn set_fwdisen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fwdisen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -365,11 +386,13 @@ impl ::core::fmt::Debug for Cfgr2 {
 pub struct Exticr1(pub u32);
 impl Exticr1 {
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn exti3(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+  #[inline] pub fn exti3(&self) -> bits::B4 {
+     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
   }
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn set_exti3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti3<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
@@ -377,11 +400,13 @@ impl Exticr1 {
   }
 
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn exti2(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn exti2(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn set_exti2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti2<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -389,11 +414,13 @@ impl Exticr1 {
   }
 
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn exti1(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
+  #[inline] pub fn exti1(&self) -> bits::B4 {
+     (((self.0 as u32) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn set_exti1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti1<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -401,11 +428,13 @@ impl Exticr1 {
   }
 
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn exti0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn exti0(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="EXTI x configuration (x = 0 to 3)"]
-  #[inline] pub fn set_exti0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti0<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -434,11 +463,13 @@ impl ::core::fmt::Debug for Exticr1 {
 pub struct Exticr2(pub u32);
 impl Exticr2 {
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn exti7(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+  #[inline] pub fn exti7(&self) -> bits::B4 {
+     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
   }
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn set_exti7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti7<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
@@ -446,11 +477,13 @@ impl Exticr2 {
   }
 
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn exti6(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn exti6(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn set_exti6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti6<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -458,11 +491,13 @@ impl Exticr2 {
   }
 
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn exti5(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
+  #[inline] pub fn exti5(&self) -> bits::B4 {
+     (((self.0 as u32) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn set_exti5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti5<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -470,11 +505,13 @@ impl Exticr2 {
   }
 
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn exti4(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn exti4(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="EXTI x configuration (x = 4 to 7)"]
-  #[inline] pub fn set_exti4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti4<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -503,11 +540,13 @@ impl ::core::fmt::Debug for Exticr2 {
 pub struct Exticr3(pub u32);
 impl Exticr3 {
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn exti11(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+  #[inline] pub fn exti11(&self) -> bits::B4 {
+     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
   }
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn set_exti11(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti11<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
@@ -515,11 +554,13 @@ impl Exticr3 {
   }
 
 #[doc="EXTI10"]
-  #[inline] pub fn exti10(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn exti10(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="EXTI10"]
-  #[inline] pub fn set_exti10(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti10<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -527,11 +568,13 @@ impl Exticr3 {
   }
 
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn exti9(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
+  #[inline] pub fn exti9(&self) -> bits::B4 {
+     (((self.0 as u32) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn set_exti9(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti9<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -539,11 +582,13 @@ impl Exticr3 {
   }
 
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn exti8(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn exti8(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="EXTI x configuration (x = 8 to 11)"]
-  #[inline] pub fn set_exti8(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti8<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -572,11 +617,13 @@ impl ::core::fmt::Debug for Exticr3 {
 pub struct Exticr4(pub u32);
 impl Exticr4 {
 #[doc="EXTI x configuration (x = 12 to 15)"]
-  #[inline] pub fn exti15(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+  #[inline] pub fn exti15(&self) -> bits::B4 {
+     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
   }
 #[doc="EXTI x configuration (x = 12 to 15)"]
-  #[inline] pub fn set_exti15(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti15<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
@@ -584,11 +631,13 @@ impl Exticr4 {
   }
 
 #[doc="EXTI14"]
-  #[inline] pub fn exti14(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn exti14(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="EXTI14"]
-  #[inline] pub fn set_exti14(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti14<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -596,11 +645,13 @@ impl Exticr4 {
   }
 
 #[doc="EXTI13"]
-  #[inline] pub fn exti13(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
+  #[inline] pub fn exti13(&self) -> bits::B4 {
+     (((self.0 as u32) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="EXTI13"]
-  #[inline] pub fn set_exti13(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti13<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -608,11 +659,13 @@ impl Exticr4 {
   }
 
 #[doc="EXTI12"]
-  #[inline] pub fn exti12(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn exti12(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="EXTI12"]
-  #[inline] pub fn set_exti12(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exti12<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -641,11 +694,13 @@ impl ::core::fmt::Debug for Exticr4 {
 pub struct Cfgr3(pub u32);
 impl Cfgr3 {
 #[doc="REF_CTRL lock bit"]
-  #[inline] pub fn ref_lock(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn ref_lock(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="REF_CTRL lock bit"]
-  #[inline] pub fn set_ref_lock(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ref_lock<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -653,11 +708,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT ready flag"]
-  #[inline] pub fn vrefint_rdyf(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn vrefint_rdyf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="VREFINT ready flag"]
-  #[inline] pub fn set_vrefint_rdyf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vrefint_rdyf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -665,11 +722,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT for comparator ready flag"]
-  #[inline] pub fn vrefint_comp_rdyf(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
+  #[inline] pub fn vrefint_comp_rdyf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 29) & 0x1).into() // [29]
   }
 #[doc="VREFINT for comparator ready flag"]
-  #[inline] pub fn set_vrefint_comp_rdyf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vrefint_comp_rdyf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
@@ -677,11 +736,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT for ADC ready flag"]
-  #[inline] pub fn vrefint_adc_rdyf(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn vrefint_adc_rdyf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="VREFINT for ADC ready flag"]
-  #[inline] pub fn set_vrefint_adc_rdyf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vrefint_adc_rdyf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -689,11 +750,13 @@ impl Cfgr3 {
   }
 
 #[doc="Sensor for ADC ready flag"]
-  #[inline] pub fn sensor_adc_rdyf(&self) -> u32 {
-     ((self.0 as u32) >> 27) & 0x1 // [27]
+  #[inline] pub fn sensor_adc_rdyf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 27) & 0x1).into() // [27]
   }
 #[doc="Sensor for ADC ready flag"]
-  #[inline] pub fn set_sensor_adc_rdyf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sensor_adc_rdyf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 27);
      self.0 |= value << 27;
@@ -701,11 +764,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
-  #[inline] pub fn ref_rc48mhz_rdyf(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+  #[inline] pub fn ref_rc48mhz_rdyf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 26) & 0x1).into() // [26]
   }
 #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
-  #[inline] pub fn set_ref_rc48mhz_rdyf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ref_rc48mhz_rdyf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -713,11 +778,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
-  #[inline] pub fn enref_rc48mhz(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn enref_rc48mhz(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
-  #[inline] pub fn set_enref_rc48mhz(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enref_rc48mhz<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -725,11 +792,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT reference for comparator 2 enable bit"]
-  #[inline] pub fn enbuf_vrefint_comp(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn enbuf_vrefint_comp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="VREFINT reference for comparator 2 enable bit"]
-  #[inline] pub fn set_enbuf_vrefint_comp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enbuf_vrefint_comp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -737,11 +806,13 @@ impl Cfgr3 {
   }
 
 #[doc="Sensor reference for ADC enable bit"]
-  #[inline] pub fn enbuf_sensor_adc(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn enbuf_sensor_adc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Sensor reference for ADC enable bit"]
-  #[inline] pub fn set_enbuf_sensor_adc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enbuf_sensor_adc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -749,11 +820,13 @@ impl Cfgr3 {
   }
 
 #[doc="VREFINT reference for ADC enable bit"]
-  #[inline] pub fn enbuf_bgap_adc(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn enbuf_bgap_adc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="VREFINT reference for ADC enable bit"]
-  #[inline] pub fn set_enbuf_bgap_adc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enbuf_bgap_adc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -761,11 +834,13 @@ impl Cfgr3 {
   }
 
 #[doc="BGAP_ADC connection bit"]
-  #[inline] pub fn sel_vref_out(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn sel_vref_out(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="BGAP_ADC connection bit"]
-  #[inline] pub fn set_sel_vref_out(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sel_vref_out<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -773,11 +848,13 @@ impl Cfgr3 {
   }
 
 #[doc="Vref Enable bit"]
-  #[inline] pub fn en_bgap(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn en_bgap(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Vref Enable bit"]
-  #[inline] pub fn set_en_bgap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_en_bgap<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;

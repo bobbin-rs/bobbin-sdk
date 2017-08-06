@@ -28,6 +28,7 @@ pub const IRQ_PIT0: IrqPit0 = Irq(48, Pit0Id {});
 pub const IRQ_PIT1: IrqPit1 = Irq(49, Pit1Id {});
 pub const IRQ_PIT2: IrqPit2 = Irq(50, Pit2Id {});
 pub const IRQ_PIT3: IrqPit3 = Irq(51, Pit3Id {});
+pub const IRQ_LPTMR0: IrqLptmr0 = Irq(58, Lptmr0Id {});
 pub const IRQ_SPI0: IrqSpi0 = Irq(26, Spi0Id {});
 pub const IRQ_SPI1: IrqSpi1 = Irq(27, Spi1Id {});
 pub const IRQ_SPI2: IrqSpi2 = Irq(65, Spi2Id {});
@@ -77,6 +78,7 @@ pub type IrqPit0 = Irq<Pit0Id>;
 pub type IrqPit1 = Irq<Pit1Id>;
 pub type IrqPit2 = Irq<Pit2Id>;
 pub type IrqPit3 = Irq<Pit3Id>;
+pub type IrqLptmr0 = Irq<Lptmr0Id>;
 pub type IrqSpi0 = Irq<Spi0Id>;
 pub type IrqSpi1 = Irq<Spi1Id>;
 pub type IrqSpi2 = Irq<Spi2Id>;
@@ -151,6 +153,8 @@ pub struct Pit1Id {} // IRQ 49
 pub struct Pit2Id {} // IRQ 50
 #[doc(hidden)]
 pub struct Pit3Id {} // IRQ 51
+#[doc(hidden)]
+pub struct Lptmr0Id {} // IRQ 58
 #[doc(hidden)]
 pub struct Spi0Id {} // IRQ 26
 #[doc(hidden)]
@@ -239,15 +243,15 @@ impl<T> Irq<T> {
    }
 
    pub fn priority(&self) -> u8 {
-       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8
+       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)).into()
    }
 
    pub fn set_priority(&self, value: u8) {
-       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));
+       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value));
    }
 
    pub fn trigger_interrupt(&self) {
-       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));
+       NVIC.set_stir(Stir(0).set_intid(self.0));
    }
 
    pub fn handler(&self) -> Option<Handler> { unsafe { R_INTERRUPT_HANDLERS[self.0] } }
@@ -580,6 +584,18 @@ impl RegisterHandler for IrqPit3 {
    }
 }
 
+impl RegisterHandler for IrqLptmr0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(58, Some(wrapper::<F>));
+       IrqGuard::new(58)
+   }
+}
+
 impl RegisterHandler for IrqSpi0 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
@@ -907,10 +923,6 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,
    None,
    None,
-   None,                          // IRQ 48: No Description
-   None,                          // IRQ 49: No Description
-   None,                          // IRQ 50: No Description
-   None,                          // IRQ 51: No Description
    None,
    None,
    None,
@@ -918,6 +930,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,
    None,
    None,
+   None,
+   None,
+   None,
+   None,                          // IRQ 58: No Description
    None,                          // IRQ 59: No Description
    None,                          // IRQ 60: No Description
    None,                          // IRQ 61: No Description

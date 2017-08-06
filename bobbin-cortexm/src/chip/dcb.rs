@@ -1,4 +1,5 @@
 //! Debug Core Block
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const DCB: Dcb = Dcb(0xe000edf0);
 
 #[doc="Debug Core Block"]
@@ -120,11 +121,13 @@ impl Dcb {
 pub struct Dhcsr(pub u32);
 impl Dhcsr {
 #[doc="Debug Key. 0xA05F must be written whenever this register is written. Reads back as status bits [25:16]. If not written as Key, the write operation is ignored and no bits are written into the register."]
-  #[inline] pub fn dbgkey(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn dbgkey(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="Debug Key. 0xA05F must be written whenever this register is written. Reads back as status bits [25:16]. If not written as Key, the write operation is ignored and no bits are written into the register."]
-  #[inline] pub fn set_dbgkey(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbgkey<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -132,11 +135,13 @@ impl Dhcsr {
   }
 
 #[doc="Indicates that the core has been reset, or is now being reset, since the last time this bit was read. This a sticky bit that clears on read. So, reading twice and getting 1 then 0 means it was reset in the past. Reading twice and getting 1 both times means that it is being reset now (held in reset still)."]
-  #[inline] pub fn s_reset_st(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
+  #[inline] pub fn s_reset_st(&self) -> bits::B1 {
+     (((self.0 as u32) >> 25) & 0x1).into() // [25]
   }
 #[doc="Indicates that the core has been reset, or is now being reset, since the last time this bit was read. This a sticky bit that clears on read. So, reading twice and getting 1 then 0 means it was reset in the past. Reading twice and getting 1 both times means that it is being reset now (held in reset still)."]
-  #[inline] pub fn set_s_reset_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_reset_st<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
@@ -144,11 +149,13 @@ impl Dhcsr {
   }
 
 #[doc="Indicates that an instruction has completed since last read. This is a sticky bit that clears on read. This determines if the core is stalled on a load/store or fetch."]
-  #[inline] pub fn s_retire_st(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn s_retire_st(&self) -> bits::B1 {
+     (((self.0 as u32) >> 24) & 0x1).into() // [24]
   }
 #[doc="Indicates that an instruction has completed since last read. This is a sticky bit that clears on read. This determines if the core is stalled on a load/store or fetch."]
-  #[inline] pub fn set_s_retire_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_retire_st<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
@@ -156,11 +163,13 @@ impl Dhcsr {
   }
 
 #[doc="Reads as one if the core is running (not halted) and a lockup condition is present."]
-  #[inline] pub fn s_lockup(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn s_lockup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Reads as one if the core is running (not halted) and a lockup condition is present."]
-  #[inline] pub fn set_s_lockup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_lockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -168,11 +177,13 @@ impl Dhcsr {
   }
 
 #[doc="ndicates that the core is sleeping (WFI, WFE or SLEEP-ON-EXIT). Must use C_HALT to gain control or wait for interrupt to wake-up."]
-  #[inline] pub fn s_sleep(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn s_sleep(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="ndicates that the core is sleeping (WFI, WFE or SLEEP-ON-EXIT). Must use C_HALT to gain control or wait for interrupt to wake-up."]
-  #[inline] pub fn set_s_sleep(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_sleep<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -180,11 +191,13 @@ impl Dhcsr {
   }
 
 #[doc="The core is in debug state when S_HALT is set."]
-  #[inline] pub fn s_halt(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn s_halt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="The core is in debug state when S_HALT is set."]
-  #[inline] pub fn set_s_halt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_halt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -192,11 +205,13 @@ impl Dhcsr {
   }
 
 #[doc="Register Read/Write on the Debug Core Register Selector register is available. Last transfer is complete."]
-  #[inline] pub fn s_regrdy(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn s_regrdy(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Register Read/Write on the Debug Core Register Selector register is available. Last transfer is complete."]
-  #[inline] pub fn set_s_regrdy(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s_regrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -204,11 +219,13 @@ impl Dhcsr {
   }
 
 #[doc="If the core is stalled on a load/store operation the stall ceases and the instruction is forced to complete. This enables Halting debug to gain control of the core. It can only be set if: C_DEBUGEN = 1 C_HALT = 1 The core reads S_RETIRE_ST as 0. This indicates that no instruction has advanced. This prevents misuse. The bus state is Unpredictable when this is used. S_RETIRE can detect core stalls on load/store operations."]
-  #[inline] pub fn c_snapstall(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn c_snapstall(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="If the core is stalled on a load/store operation the stall ceases and the instruction is forced to complete. This enables Halting debug to gain control of the core. It can only be set if: C_DEBUGEN = 1 C_HALT = 1 The core reads S_RETIRE_ST as 0. This indicates that no instruction has advanced. This prevents misuse. The bus state is Unpredictable when this is used. S_RETIRE can detect core stalls on load/store operations."]
-  #[inline] pub fn set_c_snapstall(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c_snapstall<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -216,11 +233,13 @@ impl Dhcsr {
   }
 
 #[doc="Mask interrupts when stepping or running in halted debug. Does not affect NMI, which is not maskable. Must only be modified when the processor is halted (S_HALT == 1)."]
-  #[inline] pub fn c_maskints(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn c_maskints(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Mask interrupts when stepping or running in halted debug. Does not affect NMI, which is not maskable. Must only be modified when the processor is halted (S_HALT == 1)."]
-  #[inline] pub fn set_c_maskints(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c_maskints<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -228,11 +247,13 @@ impl Dhcsr {
   }
 
 #[doc="Steps the core in halted debug. When C_DEBUGEN = 0, this bit has no effect. Must only be modified when the processor is halted (S_HALT == 1)."]
-  #[inline] pub fn c_step(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn c_step(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Steps the core in halted debug. When C_DEBUGEN = 0, this bit has no effect. Must only be modified when the processor is halted (S_HALT == 1)."]
-  #[inline] pub fn set_c_step(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c_step<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -240,11 +261,13 @@ impl Dhcsr {
   }
 
 #[doc="Halts the core. This bit is set automatically when the core Halts. For example Breakpoint. This bit clears on core reset. This bit can only be written if C_DEBUGEN is 1, otherwise it is ignored. When setting this bit to 1, C_DEBUGEN must also be written to 1 in the same value (value[1:0] is 2’b11). The core can halt itself, but only if C_DEBUGEN is already 1 and only if it writes with b11)."]
-  #[inline] pub fn c_halt(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn c_halt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Halts the core. This bit is set automatically when the core Halts. For example Breakpoint. This bit clears on core reset. This bit can only be written if C_DEBUGEN is 1, otherwise it is ignored. When setting this bit to 1, C_DEBUGEN must also be written to 1 in the same value (value[1:0] is 2’b11). The core can halt itself, but only if C_DEBUGEN is already 1 and only if it writes with b11)."]
-  #[inline] pub fn set_c_halt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c_halt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -253,12 +276,14 @@ impl Dhcsr {
 
 #[doc="Enables debug. This can only be written by AHB-AP and not by the core. It is ignored when written by the core, which cannot set or clear it.
 The core must write a 1 to it when writing C_HALT to halt itself."]
-  #[inline] pub fn c_debugen(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn c_debugen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Enables debug. This can only be written by AHB-AP and not by the core. It is ignored when written by the core, which cannot set or clear it.
 The core must write a 1 to it when writing C_HALT to halt itself."]
-  #[inline] pub fn set_c_debugen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c_debugen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -295,11 +320,13 @@ impl ::core::fmt::Debug for Dhcsr {
 pub struct Dcrsr(pub u32);
 impl Dcrsr {
 #[doc="Write = 1, Read = 0"]
-  #[inline] pub fn regwnr(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn regwnr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Write = 1, Read = 0"]
-  #[inline] pub fn set_regwnr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_regwnr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -307,11 +334,13 @@ impl Dcrsr {
   }
 
 #[doc="Register Select"]
-  #[inline] pub fn regsel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn regsel(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Register Select"]
-  #[inline] pub fn set_regsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_regsel<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -338,11 +367,13 @@ impl ::core::fmt::Debug for Dcrsr {
 pub struct Derdr(pub u32);
 impl Derdr {
 #[doc="This is the data value written to the register selected by the Debug Register Selector Register."]
-  #[inline] pub fn data(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn data(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="This is the data value written to the register selected by the Debug Register Selector Register."]
-  #[inline] pub fn set_data(mut self, value: u32) -> Self {
+  #[inline] pub fn set_data<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -367,11 +398,13 @@ impl ::core::fmt::Debug for Derdr {
 pub struct Demcr(pub u32);
 impl Demcr {
 #[doc="This bit must be set to 1 to enable use of the trace and debug blocks."]
-  #[inline] pub fn trcena(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn trcena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 24) & 0x1).into() // [24]
   }
 #[doc="This bit must be set to 1 to enable use of the trace and debug blocks."]
-  #[inline] pub fn set_trcena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_trcena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
@@ -379,11 +412,13 @@ impl Demcr {
   }
 
 #[doc="This enables the monitor to identify how it wakes up: 1 = woken up by MON_PEND, 0 = woken up by debug exception."]
-  #[inline] pub fn mon_req(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn mon_req(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="This enables the monitor to identify how it wakes up: 1 = woken up by MON_PEND, 0 = woken up by debug exception."]
-  #[inline] pub fn set_mon_req(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mon_req<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -391,11 +426,13 @@ impl Demcr {
   }
 
 #[doc="When MON_EN = 1, this steps the core. When MON_EN = 0, this bit is ignored. This is the equivalent to C_STEP. Interrupts are only stepped according to the priority of the monitor and settings of PRIMASK, FAULTMASK, or BASEPRI."]
-  #[inline] pub fn mon_step(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn mon_step(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="When MON_EN = 1, this steps the core. When MON_EN = 0, this bit is ignored. This is the equivalent to C_STEP. Interrupts are only stepped according to the priority of the monitor and settings of PRIMASK, FAULTMASK, or BASEPRI."]
-  #[inline] pub fn set_mon_step(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mon_step<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -403,11 +440,13 @@ impl Demcr {
   }
 
 #[doc="Pend the monitor to activate when priority permits."]
-  #[inline] pub fn mon_pend(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn mon_pend(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Pend the monitor to activate when priority permits."]
-  #[inline] pub fn set_mon_pend(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mon_pend<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -415,11 +454,13 @@ impl Demcr {
   }
 
 #[doc="Enable the debug monitor."]
-  #[inline] pub fn mon_en(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn mon_en(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Enable the debug monitor."]
-  #[inline] pub fn set_mon_en(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mon_en<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -427,11 +468,13 @@ impl Demcr {
   }
 
 #[doc="Debug trap on Hard Fault."]
-  #[inline] pub fn vc_harderr(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn vc_harderr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Debug trap on Hard Fault."]
-  #[inline] pub fn set_vc_harderr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_harderr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -439,11 +482,13 @@ impl Demcr {
   }
 
 #[doc="Debug Trap on interrupt/exception service errors. These are a subset of other faults and catches before BUSERR or HARDERR."]
-  #[inline] pub fn vc_interr(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn vc_interr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Debug Trap on interrupt/exception service errors. These are a subset of other faults and catches before BUSERR or HARDERR."]
-  #[inline] pub fn set_vc_interr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_interr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -451,11 +496,13 @@ impl Demcr {
   }
 
 #[doc="Debug Trap on normal Bus error."]
-  #[inline] pub fn vc_buserr(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn vc_buserr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Debug Trap on normal Bus error."]
-  #[inline] pub fn set_vc_buserr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_buserr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -463,11 +510,13 @@ impl Demcr {
   }
 
 #[doc="Debug trap on Usage Fault state errors."]
-  #[inline] pub fn vc_staterr(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn vc_staterr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Debug trap on Usage Fault state errors."]
-  #[inline] pub fn set_vc_staterr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_staterr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -475,11 +524,13 @@ impl Demcr {
   }
 
 #[doc="Debug trap on Usage Fault enabled checking errors."]
-  #[inline] pub fn vc_chkerr(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn vc_chkerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Debug trap on Usage Fault enabled checking errors."]
-  #[inline] pub fn set_vc_chkerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_chkerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -487,11 +538,13 @@ impl Demcr {
   }
 
 #[doc="Debug trap on Usage Fault access to Coprocessor which is not present or marked as not present in CAR register."]
-  #[inline] pub fn vc_nocperr(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn vc_nocperr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Debug trap on Usage Fault access to Coprocessor which is not present or marked as not present in CAR register."]
-  #[inline] pub fn set_vc_nocperr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_nocperr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -499,11 +552,13 @@ impl Demcr {
   }
 
 #[doc="Debug trap on Memory Management faults."]
-  #[inline] pub fn vc_mmerr(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn vc_mmerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Debug trap on Memory Management faults."]
-  #[inline] pub fn set_vc_mmerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_mmerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -511,11 +566,13 @@ impl Demcr {
   }
 
 #[doc="Reset Vector Catch. Halt running system if Core reset occurs."]
-  #[inline] pub fn vc_corereset(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn vc_corereset(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Reset Vector Catch. Halt running system if Core reset occurs."]
-  #[inline] pub fn set_vc_corereset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vc_corereset<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;

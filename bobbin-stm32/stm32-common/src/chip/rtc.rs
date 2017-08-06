@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RTC Peripheral"]
@@ -487,11 +488,13 @@ impl<T> Periph<T> {
 pub struct Tr(pub u32);
 impl Tr {
 #[doc="AM/PM notation"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="AM/PM notation"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -499,11 +502,13 @@ impl Tr {
   }
 
 #[doc="Hour tens in BCD format"]
-  #[inline] pub fn ht(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn ht(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Hour tens in BCD format"]
-  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -511,11 +516,13 @@ impl Tr {
   }
 
 #[doc="Hour units in BCD format"]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn hu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Hour units in BCD format"]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -523,11 +530,13 @@ impl Tr {
   }
 
 #[doc="Minute tens in BCD format"]
-  #[inline] pub fn mnt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
+  #[inline] pub fn mnt(&self) -> bits::B3 {
+     (((self.0 as u32) >> 12) & 0x7).into() // [14:12]
   }
 #[doc="Minute tens in BCD format"]
-  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
@@ -535,11 +544,13 @@ impl Tr {
   }
 
 #[doc="Minute units in BCD format"]
-  #[inline] pub fn mnu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mnu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Minute units in BCD format"]
-  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -547,11 +558,13 @@ impl Tr {
   }
 
 #[doc="Second tens in BCD format"]
-  #[inline] pub fn st(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
+  #[inline] pub fn st(&self) -> bits::B3 {
+     (((self.0 as u32) >> 4) & 0x7).into() // [6:4]
   }
 #[doc="Second tens in BCD format"]
-  #[inline] pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
@@ -559,11 +572,13 @@ impl Tr {
   }
 
 #[doc="Second units in BCD format"]
-  #[inline] pub fn su(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn su(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Second units in BCD format"]
-  #[inline] pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -595,11 +610,13 @@ impl ::core::fmt::Debug for Tr {
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Year tens in BCD format"]
-  #[inline] pub fn yt(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
+  #[inline] pub fn yt(&self) -> bits::B4 {
+     (((self.0 as u32) >> 20) & 0xf).into() // [23:20]
   }
 #[doc="Year tens in BCD format"]
-  #[inline] pub fn set_yt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_yt<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 20);
      self.0 |= value << 20;
@@ -607,11 +624,13 @@ impl Dr {
   }
 
 #[doc="Year units in BCD format"]
-  #[inline] pub fn yu(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn yu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Year units in BCD format"]
-  #[inline] pub fn set_yu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_yu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -619,11 +638,13 @@ impl Dr {
   }
 
 #[doc="Week day units"]
-  #[inline] pub fn wdu(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x7 // [15:13]
+  #[inline] pub fn wdu(&self) -> bits::B3 {
+     (((self.0 as u32) >> 13) & 0x7).into() // [15:13]
   }
 #[doc="Week day units"]
-  #[inline] pub fn set_wdu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdu<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
@@ -631,11 +652,13 @@ impl Dr {
   }
 
 #[doc="Month tens in BCD format"]
-  #[inline] pub fn mt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn mt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Month tens in BCD format"]
-  #[inline] pub fn set_mt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -643,11 +666,13 @@ impl Dr {
   }
 
 #[doc="Month units in BCD format"]
-  #[inline] pub fn mu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Month units in BCD format"]
-  #[inline] pub fn set_mu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -655,11 +680,13 @@ impl Dr {
   }
 
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn dt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn dt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -667,11 +694,13 @@ impl Dr {
   }
 
 #[doc="Date units in BCD format"]
-  #[inline] pub fn du(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn du(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Date units in BCD format"]
-  #[inline] pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -703,11 +732,13 @@ impl ::core::fmt::Debug for Dr {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Calibration output enable"]
-  #[inline] pub fn coe(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn coe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Calibration output enable"]
-  #[inline] pub fn set_coe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_coe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -715,11 +746,13 @@ impl Cr {
   }
 
 #[doc="Output selection"]
-  #[inline] pub fn osel(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x3 // [22:21]
+  #[inline] pub fn osel(&self) -> bits::B2 {
+     (((self.0 as u32) >> 21) & 0x3).into() // [22:21]
   }
 #[doc="Output selection"]
-  #[inline] pub fn set_osel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_osel<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 21);
      self.0 |= value << 21;
@@ -727,11 +760,13 @@ impl Cr {
   }
 
 #[doc="Output polarity"]
-  #[inline] pub fn pol(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
+  #[inline] pub fn pol(&self) -> bits::B1 {
+     (((self.0 as u32) >> 20) & 0x1).into() // [20]
   }
 #[doc="Output polarity"]
-  #[inline] pub fn set_pol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -739,11 +774,13 @@ impl Cr {
   }
 
 #[doc="Calibration output selection"]
-  #[inline] pub fn cosel(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn cosel(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Calibration output selection"]
-  #[inline] pub fn set_cosel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cosel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -751,11 +788,13 @@ impl Cr {
   }
 
 #[doc="Backup"]
-  #[inline] pub fn bkp(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn bkp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Backup"]
-  #[inline] pub fn set_bkp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bkp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -763,11 +802,13 @@ impl Cr {
   }
 
 #[doc="Subtract 1 hour (winter time change)"]
-  #[inline] pub fn sub1h(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn sub1h(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Subtract 1 hour (winter time change)"]
-  #[inline] pub fn set_sub1h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sub1h<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -775,11 +816,13 @@ impl Cr {
   }
 
 #[doc="Add 1 hour (summer time change)"]
-  #[inline] pub fn add1h(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn add1h(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Add 1 hour (summer time change)"]
-  #[inline] pub fn set_add1h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_add1h<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -787,11 +830,13 @@ impl Cr {
   }
 
 #[doc="Time-stamp interrupt enable"]
-  #[inline] pub fn tsie(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn tsie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Time-stamp interrupt enable"]
-  #[inline] pub fn set_tsie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -799,11 +844,13 @@ impl Cr {
   }
 
 #[doc="Wakeup timer interrupt enable"]
-  #[inline] pub fn wutie(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn wutie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="Wakeup timer interrupt enable"]
-  #[inline] pub fn set_wutie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -811,11 +858,13 @@ impl Cr {
   }
 
 #[doc="Alarm B interrupt enable"]
-  #[inline] pub fn alrbie(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn alrbie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Alarm B interrupt enable"]
-  #[inline] pub fn set_alrbie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -823,11 +872,13 @@ impl Cr {
   }
 
 #[doc="Alarm A interrupt enable"]
-  #[inline] pub fn alraie(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn alraie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Alarm A interrupt enable"]
-  #[inline] pub fn set_alraie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alraie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -835,11 +886,13 @@ impl Cr {
   }
 
 #[doc="timestamp enable"]
-  #[inline] pub fn tse(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tse(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="timestamp enable"]
-  #[inline] pub fn set_tse(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tse<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -847,11 +900,13 @@ impl Cr {
   }
 
 #[doc="Wakeup timer enable"]
-  #[inline] pub fn wute(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn wute(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Wakeup timer enable"]
-  #[inline] pub fn set_wute(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wute<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -859,11 +914,13 @@ impl Cr {
   }
 
 #[doc="Alarm B enable"]
-  #[inline] pub fn alrbe(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn alrbe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Alarm B enable"]
-  #[inline] pub fn set_alrbe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -871,11 +928,13 @@ impl Cr {
   }
 
 #[doc="Alarm A enable"]
-  #[inline] pub fn alrae(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn alrae(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Alarm A enable"]
-  #[inline] pub fn set_alrae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrae<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -883,11 +942,13 @@ impl Cr {
   }
 
 #[doc="Hour format"]
-  #[inline] pub fn fmt(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn fmt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Hour format"]
-  #[inline] pub fn set_fmt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fmt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -895,11 +956,13 @@ impl Cr {
   }
 
 #[doc="Bypass the shadow registers"]
-  #[inline] pub fn bypshad(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn bypshad(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Bypass the shadow registers"]
-  #[inline] pub fn set_bypshad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bypshad<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -907,11 +970,13 @@ impl Cr {
   }
 
 #[doc="RTC_REFIN reference clock detection enable (50 or 60 Hz)"]
-  #[inline] pub fn refckon(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn refckon(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="RTC_REFIN reference clock detection enable (50 or 60 Hz)"]
-  #[inline] pub fn set_refckon(mut self, value: u32) -> Self {
+  #[inline] pub fn set_refckon<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -919,11 +984,13 @@ impl Cr {
   }
 
 #[doc="Time-stamp event active edge"]
-  #[inline] pub fn tsedge(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn tsedge(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Time-stamp event active edge"]
-  #[inline] pub fn set_tsedge(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsedge<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -931,11 +998,13 @@ impl Cr {
   }
 
 #[doc="Wakeup clock selection"]
-  #[inline] pub fn wucksel(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn wucksel(&self) -> bits::B3 {
+     (((self.0 as u32) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="Wakeup clock selection"]
-  #[inline] pub fn set_wucksel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wucksel<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -980,11 +1049,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="RTC_TAMP2 detection flag"]
-  #[inline] pub fn tamp2f(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn tamp2f(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="RTC_TAMP2 detection flag"]
-  #[inline] pub fn set_tamp2f(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2f<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -992,11 +1063,13 @@ impl Isr {
   }
 
 #[doc="RTC_TAMP1 detection flag"]
-  #[inline] pub fn tamp1f(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn tamp1f(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="RTC_TAMP1 detection flag"]
-  #[inline] pub fn set_tamp1f(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1f<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -1004,11 +1077,13 @@ impl Isr {
   }
 
 #[doc="Time-stamp overflow flag"]
-  #[inline] pub fn tsovf(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn tsovf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Time-stamp overflow flag"]
-  #[inline] pub fn set_tsovf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsovf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -1016,11 +1091,13 @@ impl Isr {
   }
 
 #[doc="Time-stamp flag"]
-  #[inline] pub fn tsf(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tsf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Time-stamp flag"]
-  #[inline] pub fn set_tsf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -1028,11 +1105,13 @@ impl Isr {
   }
 
 #[doc="Wakeup timer flag"]
-  #[inline] pub fn wutf(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn wutf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Wakeup timer flag"]
-  #[inline] pub fn set_wutf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -1040,11 +1119,13 @@ impl Isr {
   }
 
 #[doc="Alarm B flag"]
-  #[inline] pub fn alrbf(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn alrbf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Alarm B flag"]
-  #[inline] pub fn set_alrbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1052,11 +1133,13 @@ impl Isr {
   }
 
 #[doc="Alarm A flag"]
-  #[inline] pub fn alraf(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn alraf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Alarm A flag"]
-  #[inline] pub fn set_alraf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alraf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1064,11 +1147,13 @@ impl Isr {
   }
 
 #[doc="Initialization mode"]
-  #[inline] pub fn init(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn init(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Initialization mode"]
-  #[inline] pub fn set_init(mut self, value: u32) -> Self {
+  #[inline] pub fn set_init<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1076,11 +1161,13 @@ impl Isr {
   }
 
 #[doc="Initialization flag"]
-  #[inline] pub fn initf(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn initf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Initialization flag"]
-  #[inline] pub fn set_initf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_initf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -1088,11 +1175,13 @@ impl Isr {
   }
 
 #[doc="Registers synchronization flag"]
-  #[inline] pub fn rsf(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn rsf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Registers synchronization flag"]
-  #[inline] pub fn set_rsf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rsf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1100,11 +1189,13 @@ impl Isr {
   }
 
 #[doc="Initialization status flag"]
-  #[inline] pub fn inits(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn inits(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Initialization status flag"]
-  #[inline] pub fn set_inits(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inits<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1112,11 +1203,13 @@ impl Isr {
   }
 
 #[doc="Shift operation pending"]
-  #[inline] pub fn shpf(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn shpf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Shift operation pending"]
-  #[inline] pub fn set_shpf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_shpf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1124,11 +1217,13 @@ impl Isr {
   }
 
 #[doc="Wakeup timer write flag"]
-  #[inline] pub fn wutwf(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn wutwf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Wakeup timer write flag"]
-  #[inline] pub fn set_wutwf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wutwf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1136,11 +1231,13 @@ impl Isr {
   }
 
 #[doc="Alarm B write flag"]
-  #[inline] pub fn alrbwf(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn alrbwf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Alarm B write flag"]
-  #[inline] pub fn set_alrbwf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrbwf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1148,11 +1245,13 @@ impl Isr {
   }
 
 #[doc="Alarm A write flag"]
-  #[inline] pub fn alrawf(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn alrawf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Alarm A write flag"]
-  #[inline] pub fn set_alrawf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_alrawf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1192,11 +1291,13 @@ impl ::core::fmt::Debug for Isr {
 pub struct Prer(pub u32);
 impl Prer {
 #[doc="Asynchronous prescaler factor"]
-  #[inline] pub fn prediv_a(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x7f // [22:16]
+  #[inline] pub fn prediv_a(&self) -> bits::B7 {
+     (((self.0 as u32) >> 16) & 0x7f).into() // [22:16]
   }
 #[doc="Asynchronous prescaler factor"]
-  #[inline] pub fn set_prediv_a(mut self, value: u32) -> Self {
+  #[inline] pub fn set_prediv_a<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
      self.0 |= value << 16;
@@ -1204,11 +1305,13 @@ impl Prer {
   }
 
 #[doc="Synchronous prescaler factor"]
-  #[inline] pub fn prediv_s(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn prediv_s(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Synchronous prescaler factor"]
-  #[inline] pub fn set_prediv_s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_prediv_s<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1235,11 +1338,13 @@ impl ::core::fmt::Debug for Prer {
 pub struct Wutr(pub u32);
 impl Wutr {
 #[doc="Wakeup auto-reload value bits"]
-  #[inline] pub fn wut(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn wut(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Wakeup auto-reload value bits"]
-  #[inline] pub fn set_wut(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wut<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1265,11 +1370,13 @@ impl ::core::fmt::Debug for Wutr {
 pub struct Alrmar(pub u32);
 impl Alrmar {
 #[doc="Alarm A date mask"]
-  #[inline] pub fn msk4(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn msk4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Alarm A date mask"]
-  #[inline] pub fn set_msk4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1277,11 +1384,13 @@ impl Alrmar {
   }
 
 #[doc="Week day selection"]
-  #[inline] pub fn wdsel(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn wdsel(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Week day selection"]
-  #[inline] pub fn set_wdsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdsel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1289,11 +1398,13 @@ impl Alrmar {
   }
 
 #[doc="Date tens in BCD format."]
-  #[inline] pub fn dt(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x3 // [29:28]
+  #[inline] pub fn dt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 28) & 0x3).into() // [29:28]
   }
 #[doc="Date tens in BCD format."]
-  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
@@ -1301,11 +1412,13 @@ impl Alrmar {
   }
 
 #[doc="Date units or day in BCD format."]
-  #[inline] pub fn du(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn du(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Date units or day in BCD format."]
-  #[inline] pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -1313,11 +1426,13 @@ impl Alrmar {
   }
 
 #[doc="Alarm A hours mask"]
-  #[inline] pub fn msk3(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn msk3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Alarm A hours mask"]
-  #[inline] pub fn set_msk3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -1325,11 +1440,13 @@ impl Alrmar {
   }
 
 #[doc="AM/PM notation"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="AM/PM notation"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -1337,11 +1454,13 @@ impl Alrmar {
   }
 
 #[doc="Hour tens in BCD format."]
-  #[inline] pub fn ht(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn ht(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Hour tens in BCD format."]
-  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -1349,11 +1468,13 @@ impl Alrmar {
   }
 
 #[doc="Hour units in BCD format."]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn hu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Hour units in BCD format."]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -1361,11 +1482,13 @@ impl Alrmar {
   }
 
 #[doc="Alarm A minutes mask"]
-  #[inline] pub fn msk2(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn msk2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Alarm A minutes mask"]
-  #[inline] pub fn set_msk2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -1373,11 +1496,13 @@ impl Alrmar {
   }
 
 #[doc="Minute tens in BCD format."]
-  #[inline] pub fn mnt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
+  #[inline] pub fn mnt(&self) -> bits::B3 {
+     (((self.0 as u32) >> 12) & 0x7).into() // [14:12]
   }
 #[doc="Minute tens in BCD format."]
-  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
@@ -1385,11 +1510,13 @@ impl Alrmar {
   }
 
 #[doc="Minute units in BCD format."]
-  #[inline] pub fn mnu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mnu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Minute units in BCD format."]
-  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -1397,11 +1524,13 @@ impl Alrmar {
   }
 
 #[doc="Alarm A seconds mask"]
-  #[inline] pub fn msk1(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn msk1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Alarm A seconds mask"]
-  #[inline] pub fn set_msk1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1409,11 +1538,13 @@ impl Alrmar {
   }
 
 #[doc="Second tens in BCD format."]
-  #[inline] pub fn st(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
+  #[inline] pub fn st(&self) -> bits::B3 {
+     (((self.0 as u32) >> 4) & 0x7).into() // [6:4]
   }
 #[doc="Second tens in BCD format."]
-  #[inline] pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
@@ -1421,11 +1552,13 @@ impl Alrmar {
   }
 
 #[doc="Second units in BCD format."]
-  #[inline] pub fn su(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn su(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Second units in BCD format."]
-  #[inline] pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1464,11 +1597,13 @@ impl ::core::fmt::Debug for Alrmar {
 pub struct Alrmbr(pub u32);
 impl Alrmbr {
 #[doc="Alarm B date mask"]
-  #[inline] pub fn msk4(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn msk4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Alarm B date mask"]
-  #[inline] pub fn set_msk4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1476,11 +1611,13 @@ impl Alrmbr {
   }
 
 #[doc="Week day selection"]
-  #[inline] pub fn wdsel(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn wdsel(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Week day selection"]
-  #[inline] pub fn set_wdsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdsel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1488,11 +1625,13 @@ impl Alrmbr {
   }
 
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn dt(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x3 // [29:28]
+  #[inline] pub fn dt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 28) & 0x3).into() // [29:28]
   }
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
@@ -1500,11 +1639,13 @@ impl Alrmbr {
   }
 
 #[doc="Date units or day in BCD format"]
-  #[inline] pub fn du(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn du(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Date units or day in BCD format"]
-  #[inline] pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -1512,11 +1653,13 @@ impl Alrmbr {
   }
 
 #[doc="Alarm B hours mask"]
-  #[inline] pub fn msk3(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn msk3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Alarm B hours mask"]
-  #[inline] pub fn set_msk3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -1524,11 +1667,13 @@ impl Alrmbr {
   }
 
 #[doc="AM/PM notation"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="AM/PM notation"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -1536,11 +1681,13 @@ impl Alrmbr {
   }
 
 #[doc="Hour tens in BCD format"]
-  #[inline] pub fn ht(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn ht(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Hour tens in BCD format"]
-  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -1548,11 +1695,13 @@ impl Alrmbr {
   }
 
 #[doc="Hour units in BCD format"]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn hu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Hour units in BCD format"]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -1560,11 +1709,13 @@ impl Alrmbr {
   }
 
 #[doc="Alarm B minutes mask"]
-  #[inline] pub fn msk2(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn msk2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Alarm B minutes mask"]
-  #[inline] pub fn set_msk2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -1572,11 +1723,13 @@ impl Alrmbr {
   }
 
 #[doc="Minute tens in BCD format"]
-  #[inline] pub fn mnt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
+  #[inline] pub fn mnt(&self) -> bits::B3 {
+     (((self.0 as u32) >> 12) & 0x7).into() // [14:12]
   }
 #[doc="Minute tens in BCD format"]
-  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
@@ -1584,11 +1737,13 @@ impl Alrmbr {
   }
 
 #[doc="Minute units in BCD format"]
-  #[inline] pub fn mnu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mnu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Minute units in BCD format"]
-  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -1596,11 +1751,13 @@ impl Alrmbr {
   }
 
 #[doc="Alarm B seconds mask"]
-  #[inline] pub fn msk1(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn msk1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Alarm B seconds mask"]
-  #[inline] pub fn set_msk1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_msk1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1608,11 +1765,13 @@ impl Alrmbr {
   }
 
 #[doc="Second tens in BCD format"]
-  #[inline] pub fn st(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
+  #[inline] pub fn st(&self) -> bits::B3 {
+     (((self.0 as u32) >> 4) & 0x7).into() // [6:4]
   }
 #[doc="Second tens in BCD format"]
-  #[inline] pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
@@ -1620,11 +1779,13 @@ impl Alrmbr {
   }
 
 #[doc="Second units in BCD format"]
-  #[inline] pub fn su(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn su(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Second units in BCD format"]
-  #[inline] pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1663,11 +1824,13 @@ impl ::core::fmt::Debug for Alrmbr {
 pub struct Wpr(pub u32);
 impl Wpr {
 #[doc="Write protection key"]
-  #[inline] pub fn key(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn key(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Write protection key"]
-  #[inline] pub fn set_key(mut self, value: u32) -> Self {
+  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1693,11 +1856,13 @@ impl ::core::fmt::Debug for Wpr {
 pub struct Ssr(pub u32);
 impl Ssr {
 #[doc="Sub second value"]
-  #[inline] pub fn ss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn ss(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Sub second value"]
-  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1723,11 +1888,13 @@ impl ::core::fmt::Debug for Ssr {
 pub struct Shiftr(pub u32);
 impl Shiftr {
 #[doc="Add one second"]
-  #[inline] pub fn add1s(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn add1s(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Add one second"]
-  #[inline] pub fn set_add1s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_add1s<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1735,11 +1902,13 @@ impl Shiftr {
   }
 
 #[doc="Subtract a fraction of a second"]
-  #[inline] pub fn subfs(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fff // [14:0]
+  #[inline] pub fn subfs(&self) -> bits::B15 {
+     (((self.0 as u32) >> 0) & 0x7fff).into() // [14:0]
   }
 #[doc="Subtract a fraction of a second"]
-  #[inline] pub fn set_subfs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_subfs<V: Into<bits::B15>>(mut self, value: V) -> Self {
+     let value: bits::B15 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -1766,11 +1935,13 @@ impl ::core::fmt::Debug for Shiftr {
 pub struct Tstr(pub u32);
 impl Tstr {
 #[doc="AM/PM notation"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="AM/PM notation"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -1778,11 +1949,13 @@ impl Tstr {
   }
 
 #[doc="Hour tens in BCD format."]
-  #[inline] pub fn ht(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn ht(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Hour tens in BCD format."]
-  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -1790,11 +1963,13 @@ impl Tstr {
   }
 
 #[doc="Hour units in BCD format."]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn hu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Hour units in BCD format."]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -1802,11 +1977,13 @@ impl Tstr {
   }
 
 #[doc="Minute tens in BCD format."]
-  #[inline] pub fn mnt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x7 // [14:12]
+  #[inline] pub fn mnt(&self) -> bits::B3 {
+     (((self.0 as u32) >> 12) & 0x7).into() // [14:12]
   }
 #[doc="Minute tens in BCD format."]
-  #[inline] pub fn set_mnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnt<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 12);
      self.0 |= value << 12;
@@ -1814,11 +1991,13 @@ impl Tstr {
   }
 
 #[doc="Minute units in BCD format."]
-  #[inline] pub fn mnu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mnu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Minute units in BCD format."]
-  #[inline] pub fn set_mnu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mnu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -1826,11 +2005,13 @@ impl Tstr {
   }
 
 #[doc="Second tens in BCD format."]
-  #[inline] pub fn st(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x7 // [6:4]
+  #[inline] pub fn st(&self) -> bits::B3 {
+     (((self.0 as u32) >> 4) & 0x7).into() // [6:4]
   }
 #[doc="Second tens in BCD format."]
-  #[inline] pub fn set_st(mut self, value: u32) -> Self {
+  #[inline] pub fn set_st<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
@@ -1838,11 +2019,13 @@ impl Tstr {
   }
 
 #[doc="Second units in BCD format."]
-  #[inline] pub fn su(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn su(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Second units in BCD format."]
-  #[inline] pub fn set_su(mut self, value: u32) -> Self {
+  #[inline] pub fn set_su<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1874,11 +2057,13 @@ impl ::core::fmt::Debug for Tstr {
 pub struct Tsdr(pub u32);
 impl Tsdr {
 #[doc="Week day units"]
-  #[inline] pub fn wdu(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x7 // [15:13]
+  #[inline] pub fn wdu(&self) -> bits::B3 {
+     (((self.0 as u32) >> 13) & 0x7).into() // [15:13]
   }
 #[doc="Week day units"]
-  #[inline] pub fn set_wdu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdu<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
@@ -1886,11 +2071,13 @@ impl Tsdr {
   }
 
 #[doc="Month tens in BCD format"]
-  #[inline] pub fn mt(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn mt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Month tens in BCD format"]
-  #[inline] pub fn set_mt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -1898,11 +2085,13 @@ impl Tsdr {
   }
 
 #[doc="Month units in BCD format"]
-  #[inline] pub fn mu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn mu(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Month units in BCD format"]
-  #[inline] pub fn set_mu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mu<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -1910,11 +2099,13 @@ impl Tsdr {
   }
 
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn dt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn dt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Date tens in BCD format"]
-  #[inline] pub fn set_dt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -1922,11 +2113,13 @@ impl Tsdr {
   }
 
 #[doc="Date units in BCD format"]
-  #[inline] pub fn du(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn du(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Date units in BCD format"]
-  #[inline] pub fn set_du(mut self, value: u32) -> Self {
+  #[inline] pub fn set_du<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1956,11 +2149,13 @@ impl ::core::fmt::Debug for Tsdr {
 pub struct Tsssr(pub u32);
 impl Tsssr {
 #[doc="Sub second value"]
-  #[inline] pub fn ss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn ss(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Sub second value"]
-  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1986,11 +2181,13 @@ impl ::core::fmt::Debug for Tsssr {
 pub struct Calr(pub u32);
 impl Calr {
 #[doc="Use an 8-second calibration cycle period"]
-  #[inline] pub fn calp(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn calp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Use an 8-second calibration cycle period"]
-  #[inline] pub fn set_calp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -1998,11 +2195,13 @@ impl Calr {
   }
 
 #[doc="Use a 16-second calibration cycle period"]
-  #[inline] pub fn calw8(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn calw8(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="Use a 16-second calibration cycle period"]
-  #[inline] pub fn set_calw8(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calw8<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -2010,11 +2209,13 @@ impl Calr {
   }
 
 #[doc="Reserved"]
-  #[inline] pub fn calw16(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn calw16(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Reserved"]
-  #[inline] pub fn set_calw16(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calw16<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -2022,11 +2223,13 @@ impl Calr {
   }
 
 #[doc="Calibration minus"]
-  #[inline] pub fn calm(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1ff // [8:0]
+  #[inline] pub fn calm(&self) -> bits::B9 {
+     (((self.0 as u32) >> 0) & 0x1ff).into() // [8:0]
   }
 #[doc="Calibration minus"]
-  #[inline] pub fn set_calm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_calm<V: Into<bits::B9>>(mut self, value: V) -> Self {
+     let value: bits::B9 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1ff) == 0);
      self.0 &= !(0x1ff << 0);
      self.0 |= value << 0;
@@ -2055,11 +2258,13 @@ impl ::core::fmt::Debug for Calr {
 pub struct Tampcr(pub u32);
 impl Tampcr {
 #[doc="Tamper 2 mask flag"]
-  #[inline] pub fn tamp2mf(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
+  #[inline] pub fn tamp2mf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 21) & 0x1).into() // [21]
   }
 #[doc="Tamper 2 mask flag"]
-  #[inline] pub fn set_tamp2mf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2mf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
@@ -2067,11 +2272,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper 2 no erase"]
-  #[inline] pub fn tamp2noerase(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
+  #[inline] pub fn tamp2noerase(&self) -> bits::B1 {
+     (((self.0 as u32) >> 20) & 0x1).into() // [20]
   }
 #[doc="Tamper 2 no erase"]
-  #[inline] pub fn set_tamp2noerase(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2noerase<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -2079,11 +2286,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper 2 interrupt enable"]
-  #[inline] pub fn tamp2ie(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn tamp2ie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Tamper 2 interrupt enable"]
-  #[inline] pub fn set_tamp2ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2ie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -2091,11 +2300,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper 1 mask flag"]
-  #[inline] pub fn tamp1mf(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn tamp1mf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Tamper 1 mask flag"]
-  #[inline] pub fn set_tamp1mf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1mf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -2103,11 +2314,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper 1 no erase"]
-  #[inline] pub fn tamp1noerase(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn tamp1noerase(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Tamper 1 no erase"]
-  #[inline] pub fn set_tamp1noerase(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1noerase<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -2115,11 +2328,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper 1 interrupt enable"]
-  #[inline] pub fn tamp1ie(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn tamp1ie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Tamper 1 interrupt enable"]
-  #[inline] pub fn set_tamp1ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1ie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -2127,11 +2342,13 @@ impl Tampcr {
   }
 
 #[doc="RTC_TAMPx pull-up disable"]
-  #[inline] pub fn tamppudis(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn tamppudis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="RTC_TAMPx pull-up disable"]
-  #[inline] pub fn set_tamppudis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamppudis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -2139,11 +2356,13 @@ impl Tampcr {
   }
 
 #[doc="RTC_TAMPx precharge duration"]
-  #[inline] pub fn tampprch(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x3 // [14:13]
+  #[inline] pub fn tampprch(&self) -> bits::B2 {
+     (((self.0 as u32) >> 13) & 0x3).into() // [14:13]
   }
 #[doc="RTC_TAMPx precharge duration"]
-  #[inline] pub fn set_tampprch(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampprch<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 13);
      self.0 |= value << 13;
@@ -2151,11 +2370,13 @@ impl Tampcr {
   }
 
 #[doc="RTC_TAMPx filter count"]
-  #[inline] pub fn tampflt(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x3 // [12:11]
+  #[inline] pub fn tampflt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 11) & 0x3).into() // [12:11]
   }
 #[doc="RTC_TAMPx filter count"]
-  #[inline] pub fn set_tampflt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampflt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 11);
      self.0 |= value << 11;
@@ -2163,11 +2384,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper sampling frequency"]
-  #[inline] pub fn tampfreq(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x7 // [10:8]
+  #[inline] pub fn tampfreq(&self) -> bits::B3 {
+     (((self.0 as u32) >> 8) & 0x7).into() // [10:8]
   }
 #[doc="Tamper sampling frequency"]
-  #[inline] pub fn set_tampfreq(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampfreq<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
@@ -2175,11 +2398,13 @@ impl Tampcr {
   }
 
 #[doc="Activate timestamp on tamper detection event"]
-  #[inline] pub fn tampts(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn tampts(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Activate timestamp on tamper detection event"]
-  #[inline] pub fn set_tampts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampts<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2187,11 +2412,13 @@ impl Tampcr {
   }
 
 #[doc="Active level for RTC_TAMP2 input"]
-  #[inline] pub fn tamp2_trg(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tamp2_trg(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Active level for RTC_TAMP2 input"]
-  #[inline] pub fn set_tamp2_trg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2_trg<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2199,11 +2426,13 @@ impl Tampcr {
   }
 
 #[doc="RTC_TAMP2 input detection enable"]
-  #[inline] pub fn tamp2e(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn tamp2e(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="RTC_TAMP2 input detection enable"]
-  #[inline] pub fn set_tamp2e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp2e<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2211,11 +2440,13 @@ impl Tampcr {
   }
 
 #[doc="Tamper interrupt enable"]
-  #[inline] pub fn tampie(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn tampie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Tamper interrupt enable"]
-  #[inline] pub fn set_tampie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tampie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2223,11 +2454,13 @@ impl Tampcr {
   }
 
 #[doc="Active level for RTC_TAMP1 input"]
-  #[inline] pub fn tamp1trg(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tamp1trg(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Active level for RTC_TAMP1 input"]
-  #[inline] pub fn set_tamp1trg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1trg<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2235,11 +2468,13 @@ impl Tampcr {
   }
 
 #[doc="RTC_TAMP1 input detection enable"]
-  #[inline] pub fn tamp1e(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tamp1e(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="RTC_TAMP1 input detection enable"]
-  #[inline] pub fn set_tamp1e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamp1e<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2280,11 +2515,13 @@ impl ::core::fmt::Debug for Tampcr {
 pub struct Alrmassr(pub u32);
 impl Alrmassr {
 #[doc="Mask the most-significant bits starting at this bit"]
-  #[inline] pub fn maskss(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn maskss(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Mask the most-significant bits starting at this bit"]
-  #[inline] pub fn set_maskss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maskss<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -2292,11 +2529,13 @@ impl Alrmassr {
   }
 
 #[doc="Sub seconds value"]
-  #[inline] pub fn ss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fff // [14:0]
+  #[inline] pub fn ss(&self) -> bits::B15 {
+     (((self.0 as u32) >> 0) & 0x7fff).into() // [14:0]
   }
 #[doc="Sub seconds value"]
-  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss<V: Into<bits::B15>>(mut self, value: V) -> Self {
+     let value: bits::B15 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -2323,11 +2562,13 @@ impl ::core::fmt::Debug for Alrmassr {
 pub struct Alrmbssr(pub u32);
 impl Alrmbssr {
 #[doc="Mask the most-significant bits starting at this bit"]
-  #[inline] pub fn maskss(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn maskss(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Mask the most-significant bits starting at this bit"]
-  #[inline] pub fn set_maskss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maskss<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -2335,11 +2576,13 @@ impl Alrmbssr {
   }
 
 #[doc="Sub seconds value"]
-  #[inline] pub fn ss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fff // [14:0]
+  #[inline] pub fn ss(&self) -> bits::B15 {
+     (((self.0 as u32) >> 0) & 0x7fff).into() // [14:0]
   }
 #[doc="Sub seconds value"]
-  #[inline] pub fn set_ss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ss<V: Into<bits::B15>>(mut self, value: V) -> Self {
+     let value: bits::B15 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fff) == 0);
      self.0 &= !(0x7fff << 0);
      self.0 |= value << 0;
@@ -2366,11 +2609,13 @@ impl ::core::fmt::Debug for Alrmbssr {
 pub struct Or(pub u32);
 impl Or {
 #[doc="RTC_ALARM on PC13 output type"]
-  #[inline] pub fn rtc_out_rmp(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn rtc_out_rmp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="RTC_ALARM on PC13 output type"]
-  #[inline] pub fn set_rtc_out_rmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtc_out_rmp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2378,11 +2623,13 @@ impl Or {
   }
 
 #[doc="RTC_ALARM on PC13 output type"]
-  #[inline] pub fn rtc_alarm_type(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn rtc_alarm_type(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="RTC_ALARM on PC13 output type"]
-  #[inline] pub fn set_rtc_alarm_type(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtc_alarm_type<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2409,11 +2656,13 @@ impl ::core::fmt::Debug for Or {
 pub struct Bkpr(pub u32);
 impl Bkpr {
 #[doc="BKP"]
-  #[inline] pub fn bkp(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn bkp(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="BKP"]
-  #[inline] pub fn set_bkp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bkp<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

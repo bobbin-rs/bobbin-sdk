@@ -1,4 +1,5 @@
 //! Reset Control Module
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const RCM: Rcm = Rcm(0x4007f000);
 
 #[doc="Reset Control Module"]
@@ -138,11 +139,13 @@ impl Rcm {
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Feature Specification Number"]
-  #[inline] pub fn feature(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn feature(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Feature Specification Number"]
-  #[inline] pub fn set_feature(mut self, value: u32) -> Self {
+  #[inline] pub fn set_feature<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -150,11 +153,13 @@ impl Verid {
   }
 
 #[doc="Minor Version Number"]
-  #[inline] pub fn minor(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn minor(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="Minor Version Number"]
-  #[inline] pub fn set_minor(mut self, value: u32) -> Self {
+  #[inline] pub fn set_minor<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -162,11 +167,13 @@ impl Verid {
   }
 
 #[doc="Major Version Number"]
-  #[inline] pub fn major(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xff // [31:24]
+  #[inline] pub fn major(&self) -> bits::B8 {
+     (((self.0 as u32) >> 24) & 0xff).into() // [31:24]
   }
 #[doc="Major Version Number"]
-  #[inline] pub fn set_major(mut self, value: u32) -> Self {
+  #[inline] pub fn set_major<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 24);
      self.0 |= value << 24;
@@ -194,11 +201,13 @@ impl ::core::fmt::Debug for Verid {
 pub struct Param(pub u32);
 impl Param {
 #[doc="Existence of SRS[WAKEUP] status indication feature"]
-  #[inline] pub fn ewakeup(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ewakeup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Existence of SRS[WAKEUP] status indication feature"]
-  #[inline] pub fn set_ewakeup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewakeup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -206,11 +215,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[LVD] status indication feature"]
-  #[inline] pub fn elvd(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn elvd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Existence of SRS[LVD] status indication feature"]
-  #[inline] pub fn set_elvd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_elvd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -218,11 +229,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[LOC] status indication feature"]
-  #[inline] pub fn eloc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn eloc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Existence of SRS[LOC] status indication feature"]
-  #[inline] pub fn set_eloc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eloc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -230,11 +243,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[LOL] status indication feature"]
-  #[inline] pub fn elol(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn elol(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Existence of SRS[LOL] status indication feature"]
-  #[inline] pub fn set_elol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_elol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -242,11 +257,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[WDOG] status indication feature"]
-  #[inline] pub fn ewdog(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ewdog(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Existence of SRS[WDOG] status indication feature"]
-  #[inline] pub fn set_ewdog(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewdog<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -254,11 +271,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[PIN] status indication feature"]
-  #[inline] pub fn epin(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn epin(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Existence of SRS[PIN] status indication feature"]
-  #[inline] pub fn set_epin(mut self, value: u32) -> Self {
+  #[inline] pub fn set_epin<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -266,11 +285,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[POR] status indication feature"]
-  #[inline] pub fn epor(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn epor(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Existence of SRS[POR] status indication feature"]
-  #[inline] pub fn set_epor(mut self, value: u32) -> Self {
+  #[inline] pub fn set_epor<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -278,11 +299,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[JTAG] status indication feature"]
-  #[inline] pub fn ejtag(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn ejtag(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Existence of SRS[JTAG] status indication feature"]
-  #[inline] pub fn set_ejtag(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ejtag<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -290,11 +313,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[LOCKUP] status indication feature"]
-  #[inline] pub fn elockup(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn elockup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Existence of SRS[LOCKUP] status indication feature"]
-  #[inline] pub fn set_elockup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_elockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -302,11 +327,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[SW] status indication feature"]
-  #[inline] pub fn esw(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn esw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Existence of SRS[SW] status indication feature"]
-  #[inline] pub fn set_esw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_esw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -314,11 +341,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[MDM_AP] status indication feature"]
-  #[inline] pub fn emdm_ap(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn emdm_ap(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Existence of SRS[MDM_AP] status indication feature"]
-  #[inline] pub fn set_emdm_ap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_emdm_ap<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -326,11 +355,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[SACKERR] status indication feature"]
-  #[inline] pub fn esackerr(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn esackerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Existence of SRS[SACKERR] status indication feature"]
-  #[inline] pub fn set_esackerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_esackerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -338,11 +369,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[TAMPER] status indication feature"]
-  #[inline] pub fn etamper(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn etamper(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Existence of SRS[TAMPER] status indication feature"]
-  #[inline] pub fn set_etamper(mut self, value: u32) -> Self {
+  #[inline] pub fn set_etamper<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -350,11 +383,13 @@ impl Param {
   }
 
 #[doc="Existence of SRS[CORE1] status indication feature"]
-  #[inline] pub fn ecore1(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn ecore1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Existence of SRS[CORE1] status indication feature"]
-  #[inline] pub fn set_ecore1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ecore1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -393,11 +428,13 @@ impl ::core::fmt::Debug for Param {
 pub struct Srs(pub u32);
 impl Srs {
 #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
-  #[inline] pub fn lvd(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn lvd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
-  #[inline] pub fn set_lvd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lvd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -405,11 +442,13 @@ impl Srs {
   }
 
 #[doc="Loss-of-Clock Reset"]
-  #[inline] pub fn loc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn loc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Loss-of-Clock Reset"]
-  #[inline] pub fn set_loc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_loc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -417,11 +456,13 @@ impl Srs {
   }
 
 #[doc="Loss-of-Lock Reset"]
-  #[inline] pub fn lol(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn lol(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Loss-of-Lock Reset"]
-  #[inline] pub fn set_lol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -429,11 +470,13 @@ impl Srs {
   }
 
 #[doc="Watchdog"]
-  #[inline] pub fn wdog(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn wdog(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Watchdog"]
-  #[inline] pub fn set_wdog(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdog<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -441,11 +484,13 @@ impl Srs {
   }
 
 #[doc="External Reset Pin"]
-  #[inline] pub fn pin(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn pin(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="External Reset Pin"]
-  #[inline] pub fn set_pin(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pin<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -453,11 +498,13 @@ impl Srs {
   }
 
 #[doc="Power-On Reset"]
-  #[inline] pub fn por(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn por(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Power-On Reset"]
-  #[inline] pub fn set_por(mut self, value: u32) -> Self {
+  #[inline] pub fn set_por<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -465,11 +512,13 @@ impl Srs {
   }
 
 #[doc="JTAG generated reset"]
-  #[inline] pub fn jtag(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn jtag(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="JTAG generated reset"]
-  #[inline] pub fn set_jtag(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jtag<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -477,11 +526,13 @@ impl Srs {
   }
 
 #[doc="Core Lockup"]
-  #[inline] pub fn lockup(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn lockup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Core Lockup"]
-  #[inline] pub fn set_lockup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -489,11 +540,13 @@ impl Srs {
   }
 
 #[doc="Software"]
-  #[inline] pub fn sw(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn sw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Software"]
-  #[inline] pub fn set_sw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -501,11 +554,13 @@ impl Srs {
   }
 
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn mdm_ap(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn mdm_ap(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn set_mdm_ap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mdm_ap<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -513,11 +568,13 @@ impl Srs {
   }
 
 #[doc="Stop Acknowledge Error"]
-  #[inline] pub fn sackerr(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn sackerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Stop Acknowledge Error"]
-  #[inline] pub fn set_sackerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sackerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -553,11 +610,13 @@ impl ::core::fmt::Debug for Srs {
 pub struct Rpc(pub u32);
 impl Rpc {
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
-  #[inline] pub fn rstfltsrw(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn rstfltsrw(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
-  #[inline] pub fn set_rstfltsrw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rstfltsrw<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -565,11 +624,13 @@ impl Rpc {
   }
 
 #[doc="Reset Pin Filter Select in Stop Mode"]
-  #[inline] pub fn rstfltss(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn rstfltss(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Reset Pin Filter Select in Stop Mode"]
-  #[inline] pub fn set_rstfltss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rstfltss<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -577,11 +638,13 @@ impl Rpc {
   }
 
 #[doc="Reset Pin Filter Bus Clock Select"]
-  #[inline] pub fn rstfltsel(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1f // [12:8]
+  #[inline] pub fn rstfltsel(&self) -> bits::B5 {
+     (((self.0 as u32) >> 8) & 0x1f).into() // [12:8]
   }
 #[doc="Reset Pin Filter Bus Clock Select"]
-  #[inline] pub fn set_rstfltsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rstfltsel<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 8);
      self.0 |= value << 8;
@@ -609,11 +672,13 @@ impl ::core::fmt::Debug for Rpc {
 pub struct Ssrs(pub u32);
 impl Ssrs {
 #[doc="Sticky Low-Voltage Detect Reset"]
-  #[inline] pub fn slvd(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn slvd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Sticky Low-Voltage Detect Reset"]
-  #[inline] pub fn set_slvd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_slvd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -621,11 +686,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Loss-of-Clock Reset"]
-  #[inline] pub fn sloc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sloc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Sticky Loss-of-Clock Reset"]
-  #[inline] pub fn set_sloc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sloc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -633,11 +700,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Loss-of-Lock Reset"]
-  #[inline] pub fn slol(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn slol(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Sticky Loss-of-Lock Reset"]
-  #[inline] pub fn set_slol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_slol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -645,11 +714,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Watchdog"]
-  #[inline] pub fn swdog(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn swdog(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Sticky Watchdog"]
-  #[inline] pub fn set_swdog(mut self, value: u32) -> Self {
+  #[inline] pub fn set_swdog<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -657,11 +728,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky External Reset Pin"]
-  #[inline] pub fn spin(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn spin(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Sticky External Reset Pin"]
-  #[inline] pub fn set_spin(mut self, value: u32) -> Self {
+  #[inline] pub fn set_spin<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -669,11 +742,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Power-On Reset"]
-  #[inline] pub fn spor(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn spor(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Sticky Power-On Reset"]
-  #[inline] pub fn set_spor(mut self, value: u32) -> Self {
+  #[inline] pub fn set_spor<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -681,11 +756,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky JTAG generated reset"]
-  #[inline] pub fn sjtag(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn sjtag(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Sticky JTAG generated reset"]
-  #[inline] pub fn set_sjtag(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sjtag<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -693,11 +770,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Core Lockup"]
-  #[inline] pub fn slockup(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn slockup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Sticky Core Lockup"]
-  #[inline] pub fn set_slockup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_slockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -705,11 +784,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Software"]
-  #[inline] pub fn ssw(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn ssw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Sticky Software"]
-  #[inline] pub fn set_ssw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ssw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -717,11 +798,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky MDM-AP System Reset Request"]
-  #[inline] pub fn smdm_ap(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn smdm_ap(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Sticky MDM-AP System Reset Request"]
-  #[inline] pub fn set_smdm_ap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_smdm_ap<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -729,11 +812,13 @@ impl Ssrs {
   }
 
 #[doc="Sticky Stop Acknowledge Error"]
-  #[inline] pub fn ssackerr(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn ssackerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Sticky Stop Acknowledge Error"]
-  #[inline] pub fn set_ssackerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ssackerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -769,11 +854,13 @@ impl ::core::fmt::Debug for Ssrs {
 pub struct Srie(pub u32);
 impl Srie {
 #[doc="Reset Delay Time"]
-  #[inline] pub fn delay(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn delay(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Reset Delay Time"]
-  #[inline] pub fn set_delay(mut self, value: u32) -> Self {
+  #[inline] pub fn set_delay<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -781,11 +868,13 @@ impl Srie {
   }
 
 #[doc="Loss-of-Clock Interrupt"]
-  #[inline] pub fn loc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn loc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Loss-of-Clock Interrupt"]
-  #[inline] pub fn set_loc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_loc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -793,11 +882,13 @@ impl Srie {
   }
 
 #[doc="Loss-of-Lock Interrupt"]
-  #[inline] pub fn lol(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn lol(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Loss-of-Lock Interrupt"]
-  #[inline] pub fn set_lol(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lol<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -805,11 +896,13 @@ impl Srie {
   }
 
 #[doc="Watchdog Interrupt"]
-  #[inline] pub fn wdog(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn wdog(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Watchdog Interrupt"]
-  #[inline] pub fn set_wdog(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdog<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -817,11 +910,13 @@ impl Srie {
   }
 
 #[doc="External Reset Pin Interrupt"]
-  #[inline] pub fn pin(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn pin(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="External Reset Pin Interrupt"]
-  #[inline] pub fn set_pin(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pin<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -829,11 +924,13 @@ impl Srie {
   }
 
 #[doc="Global Interrupt Enable"]
-  #[inline] pub fn gie(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn gie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Global Interrupt Enable"]
-  #[inline] pub fn set_gie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -841,11 +938,13 @@ impl Srie {
   }
 
 #[doc="JTAG generated reset"]
-  #[inline] pub fn jtag(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn jtag(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="JTAG generated reset"]
-  #[inline] pub fn set_jtag(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jtag<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -853,11 +952,13 @@ impl Srie {
   }
 
 #[doc="Core Lockup Interrupt"]
-  #[inline] pub fn lockup(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn lockup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Core Lockup Interrupt"]
-  #[inline] pub fn set_lockup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -865,11 +966,13 @@ impl Srie {
   }
 
 #[doc="Software Interrupt"]
-  #[inline] pub fn sw(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn sw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Software Interrupt"]
-  #[inline] pub fn set_sw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -877,11 +980,13 @@ impl Srie {
   }
 
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn mdm_ap(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn mdm_ap(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn set_mdm_ap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mdm_ap<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -889,11 +994,13 @@ impl Srie {
   }
 
 #[doc="Stop Acknowledge Error Interrupt"]
-  #[inline] pub fn sackerr(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn sackerr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Stop Acknowledge Error Interrupt"]
-  #[inline] pub fn set_sackerr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sackerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;

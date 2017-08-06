@@ -157,16 +157,16 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn ndt(&self) -> u16 {
-        self.periph().cndtr(self.index).ndt() as u16
+        self.periph().cndtr(self.index).ndt().into()
     }
 
     fn set_ndt(&self, value: u16) -> &Self {
-        self.periph().set_cndtr(self.index, Cndtr(0).set_ndt(value as u32));
+        self.periph().set_cndtr(self.index, Cndtr(0).set_ndt(value));
         self
     }
 
     fn pa(&self) -> u32 {
-        self.periph().cpar(self.index).pa() as u32
+        self.periph().cpar(self.index).pa().into()
     }
 
     fn set_pa(&self, value: u32) -> &Self {
@@ -175,7 +175,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }    
     
     fn ma(&self) -> u32 {
-        self.periph().cmar(self.index).ma() as u32
+        self.periph().cmar(self.index).ma().into()
     }
 
     fn set_ma(&self, value: u32) -> &Self {

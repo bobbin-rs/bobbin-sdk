@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2C Peripheral"]
@@ -337,11 +338,13 @@ impl<T> Periph<T> {
 pub struct A1(pub u8);
 impl A1 {
 #[doc="Address"]
-  #[inline] pub fn ad(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x7f // [7:1]
+  #[inline] pub fn ad(&self) -> bits::B7 {
+     (((self.0 as u8) >> 1) & 0x7f).into() // [7:1]
   }
 #[doc="Address"]
-  #[inline] pub fn set_ad(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ad<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
      self.0 |= value << 1;
@@ -367,11 +370,13 @@ impl ::core::fmt::Debug for A1 {
 pub struct F(pub u8);
 impl F {
 #[doc="ClockRate"]
-  #[inline] pub fn icr(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x3f // [5:0]
+  #[inline] pub fn icr(&self) -> bits::B6 {
+     (((self.0 as u8) >> 0) & 0x3f).into() // [5:0]
   }
 #[doc="ClockRate"]
-  #[inline] pub fn set_icr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_icr<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
@@ -379,11 +384,13 @@ impl F {
   }
 
 #[doc="Multiplier Factor"]
-  #[inline] pub fn mult(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x3 // [7:6]
+  #[inline] pub fn mult(&self) -> bits::B2 {
+     (((self.0 as u8) >> 6) & 0x3).into() // [7:6]
   }
 #[doc="Multiplier Factor"]
-  #[inline] pub fn set_mult(mut self, value: u8) -> Self {
+  #[inline] pub fn set_mult<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
@@ -410,11 +417,13 @@ impl ::core::fmt::Debug for F {
 pub struct C1(pub u8);
 impl C1 {
 #[doc="DMA Enable"]
-  #[inline] pub fn dmaen(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn dmaen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="DMA Enable"]
-  #[inline] pub fn set_dmaen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_dmaen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -422,11 +431,13 @@ impl C1 {
   }
 
 #[doc="Wakeup Enable"]
-  #[inline] pub fn wuen(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn wuen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Wakeup Enable"]
-  #[inline] pub fn set_wuen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_wuen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -434,11 +445,13 @@ impl C1 {
   }
 
 #[doc="Repeat START"]
-  #[inline] pub fn rsta(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn rsta(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Repeat START"]
-  #[inline] pub fn set_rsta(mut self, value: u8) -> Self {
+  #[inline] pub fn set_rsta<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -446,11 +459,13 @@ impl C1 {
   }
 
 #[doc="Transmit Acknowledge Enable"]
-  #[inline] pub fn txak(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn txak(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Transmit Acknowledge Enable"]
-  #[inline] pub fn set_txak(mut self, value: u8) -> Self {
+  #[inline] pub fn set_txak<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -458,11 +473,13 @@ impl C1 {
   }
 
 #[doc="Transmit Mode Select"]
-  #[inline] pub fn tx(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn tx(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Transmit Mode Select"]
-  #[inline] pub fn set_tx(mut self, value: u8) -> Self {
+  #[inline] pub fn set_tx<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -470,11 +487,13 @@ impl C1 {
   }
 
 #[doc="Master Mode Select"]
-  #[inline] pub fn mst(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn mst(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="Master Mode Select"]
-  #[inline] pub fn set_mst(mut self, value: u8) -> Self {
+  #[inline] pub fn set_mst<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -482,11 +501,13 @@ impl C1 {
   }
 
 #[doc="I2C Interrupt Enable"]
-  #[inline] pub fn iicie(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn iicie(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="I2C Interrupt Enable"]
-  #[inline] pub fn set_iicie(mut self, value: u8) -> Self {
+  #[inline] pub fn set_iicie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -494,11 +515,13 @@ impl C1 {
   }
 
 #[doc="I2C Enable"]
-  #[inline] pub fn iicen(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn iicen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="I2C Enable"]
-  #[inline] pub fn set_iicen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_iicen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -531,11 +554,13 @@ impl ::core::fmt::Debug for C1 {
 pub struct S(pub u8);
 impl S {
 #[doc="Receive Acknowledge"]
-  #[inline] pub fn rxak(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn rxak(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Receive Acknowledge"]
-  #[inline] pub fn set_rxak(mut self, value: u8) -> Self {
+  #[inline] pub fn set_rxak<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -543,11 +568,13 @@ impl S {
   }
 
 #[doc="Interrupt Flag"]
-  #[inline] pub fn iicif(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn iicif(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Interrupt Flag"]
-  #[inline] pub fn set_iicif(mut self, value: u8) -> Self {
+  #[inline] pub fn set_iicif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -555,11 +582,13 @@ impl S {
   }
 
 #[doc="Slave Read/Write"]
-  #[inline] pub fn srw(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn srw(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Slave Read/Write"]
-  #[inline] pub fn set_srw(mut self, value: u8) -> Self {
+  #[inline] pub fn set_srw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -567,11 +596,13 @@ impl S {
   }
 
 #[doc="Range Address Match"]
-  #[inline] pub fn ram(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn ram(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Range Address Match"]
-  #[inline] pub fn set_ram(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ram<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -579,11 +610,13 @@ impl S {
   }
 
 #[doc="Arbitration Lost"]
-  #[inline] pub fn arbl(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn arbl(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Arbitration Lost"]
-  #[inline] pub fn set_arbl(mut self, value: u8) -> Self {
+  #[inline] pub fn set_arbl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -591,11 +624,13 @@ impl S {
   }
 
 #[doc="Bus Busy"]
-  #[inline] pub fn busy(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn busy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="Bus Busy"]
-  #[inline] pub fn set_busy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_busy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -603,11 +638,13 @@ impl S {
   }
 
 #[doc="Addressed As A Slave"]
-  #[inline] pub fn iaas(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn iaas(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="Addressed As A Slave"]
-  #[inline] pub fn set_iaas(mut self, value: u8) -> Self {
+  #[inline] pub fn set_iaas<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -615,11 +652,13 @@ impl S {
   }
 
 #[doc="Transfer Complete Flag"]
-  #[inline] pub fn tcf(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn tcf(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Transfer Complete Flag"]
-  #[inline] pub fn set_tcf(mut self, value: u8) -> Self {
+  #[inline] pub fn set_tcf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -652,11 +691,13 @@ impl ::core::fmt::Debug for S {
 pub struct D(pub u8);
 impl D {
 #[doc="Data"]
-  #[inline] pub fn data(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn data(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Data"]
-  #[inline] pub fn set_data(mut self, value: u8) -> Self {
+  #[inline] pub fn set_data<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -682,11 +723,13 @@ impl ::core::fmt::Debug for D {
 pub struct C2(pub u8);
 impl C2 {
 #[doc="Slave Address"]
-  #[inline] pub fn ad(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn ad(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="Slave Address"]
-  #[inline] pub fn set_ad(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ad<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -694,11 +737,13 @@ impl C2 {
   }
 
 #[doc="Range Address Matching Enable"]
-  #[inline] pub fn rmen(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn rmen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Range Address Matching Enable"]
-  #[inline] pub fn set_rmen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_rmen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -706,11 +751,13 @@ impl C2 {
   }
 
 #[doc="Slave Baud Rate Control"]
-  #[inline] pub fn sbrc(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn sbrc(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Slave Baud Rate Control"]
-  #[inline] pub fn set_sbrc(mut self, value: u8) -> Self {
+  #[inline] pub fn set_sbrc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -718,11 +765,13 @@ impl C2 {
   }
 
 #[doc="High Drive Select"]
-  #[inline] pub fn hdrs(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn hdrs(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="High Drive Select"]
-  #[inline] pub fn set_hdrs(mut self, value: u8) -> Self {
+  #[inline] pub fn set_hdrs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -730,11 +779,13 @@ impl C2 {
   }
 
 #[doc="Address Extension"]
-  #[inline] pub fn adext(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn adext(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="Address Extension"]
-  #[inline] pub fn set_adext(mut self, value: u8) -> Self {
+  #[inline] pub fn set_adext<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -742,11 +793,13 @@ impl C2 {
   }
 
 #[doc="General Call Address Enable"]
-  #[inline] pub fn gcaen(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn gcaen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="General Call Address Enable"]
-  #[inline] pub fn set_gcaen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_gcaen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -777,11 +830,13 @@ impl ::core::fmt::Debug for C2 {
 pub struct Flt(pub u8);
 impl Flt {
 #[doc="I2C Programmable Filter Factor"]
-  #[inline] pub fn flt(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn flt(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="I2C Programmable Filter Factor"]
-  #[inline] pub fn set_flt(mut self, value: u8) -> Self {
+  #[inline] pub fn set_flt<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -789,11 +844,13 @@ impl Flt {
   }
 
 #[doc="I2C Bus Start Detect Flag"]
-  #[inline] pub fn startf(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn startf(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="I2C Bus Start Detect Flag"]
-  #[inline] pub fn set_startf(mut self, value: u8) -> Self {
+  #[inline] pub fn set_startf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -801,11 +858,13 @@ impl Flt {
   }
 
 #[doc="I2C Bus Stop or Start Interrupt Enable"]
-  #[inline] pub fn ssie(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn ssie(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="I2C Bus Stop or Start Interrupt Enable"]
-  #[inline] pub fn set_ssie(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ssie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -813,11 +872,13 @@ impl Flt {
   }
 
 #[doc="I2C Bus Stop Detect Flag"]
-  #[inline] pub fn stopf(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn stopf(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="I2C Bus Stop Detect Flag"]
-  #[inline] pub fn set_stopf(mut self, value: u8) -> Self {
+  #[inline] pub fn set_stopf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -825,11 +886,13 @@ impl Flt {
   }
 
 #[doc="Stop Hold Enable"]
-  #[inline] pub fn shen(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn shen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Stop Hold Enable"]
-  #[inline] pub fn set_shen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_shen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -859,11 +922,13 @@ impl ::core::fmt::Debug for Flt {
 pub struct Ra(pub u8);
 impl Ra {
 #[doc="Range Slave Address"]
-  #[inline] pub fn rad(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x7f // [7:1]
+  #[inline] pub fn rad(&self) -> bits::B7 {
+     (((self.0 as u8) >> 1) & 0x7f).into() // [7:1]
   }
 #[doc="Range Slave Address"]
-  #[inline] pub fn set_rad(mut self, value: u8) -> Self {
+  #[inline] pub fn set_rad<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
      self.0 |= value << 1;
@@ -889,11 +954,13 @@ impl ::core::fmt::Debug for Ra {
 pub struct Smb(pub u8);
 impl Smb {
 #[doc="SHTF2 Interrupt Enable"]
-  #[inline] pub fn shtf2ie(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn shtf2ie(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="SHTF2 Interrupt Enable"]
-  #[inline] pub fn set_shtf2ie(mut self, value: u8) -> Self {
+  #[inline] pub fn set_shtf2ie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -901,11 +968,13 @@ impl Smb {
   }
 
 #[doc="SCL High Timeout Flag 2"]
-  #[inline] pub fn shtf2(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn shtf2(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="SCL High Timeout Flag 2"]
-  #[inline] pub fn set_shtf2(mut self, value: u8) -> Self {
+  #[inline] pub fn set_shtf2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -913,11 +982,13 @@ impl Smb {
   }
 
 #[doc="SCL High Timeout Flag 1"]
-  #[inline] pub fn shtf1(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn shtf1(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="SCL High Timeout Flag 1"]
-  #[inline] pub fn set_shtf1(mut self, value: u8) -> Self {
+  #[inline] pub fn set_shtf1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -925,11 +996,13 @@ impl Smb {
   }
 
 #[doc="SCL Low Timeout Flag"]
-  #[inline] pub fn sltf(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn sltf(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="SCL Low Timeout Flag"]
-  #[inline] pub fn set_sltf(mut self, value: u8) -> Self {
+  #[inline] pub fn set_sltf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -937,11 +1010,13 @@ impl Smb {
   }
 
 #[doc="Timeout Counter Clock Select"]
-  #[inline] pub fn tcksel(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn tcksel(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Timeout Counter Clock Select"]
-  #[inline] pub fn set_tcksel(mut self, value: u8) -> Self {
+  #[inline] pub fn set_tcksel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -949,11 +1024,13 @@ impl Smb {
   }
 
 #[doc="Second I2C Address Enable"]
-  #[inline] pub fn siicaen(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn siicaen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="Second I2C Address Enable"]
-  #[inline] pub fn set_siicaen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_siicaen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -961,11 +1038,13 @@ impl Smb {
   }
 
 #[doc="SMBus Alert Response Address Enable"]
-  #[inline] pub fn alerten(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn alerten(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="SMBus Alert Response Address Enable"]
-  #[inline] pub fn set_alerten(mut self, value: u8) -> Self {
+  #[inline] pub fn set_alerten<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -973,11 +1052,13 @@ impl Smb {
   }
 
 #[doc="Fast NACK/ACK Enable"]
-  #[inline] pub fn fack(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn fack(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Fast NACK/ACK Enable"]
-  #[inline] pub fn set_fack(mut self, value: u8) -> Self {
+  #[inline] pub fn set_fack<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1010,11 +1091,13 @@ impl ::core::fmt::Debug for Smb {
 pub struct A2(pub u8);
 impl A2 {
 #[doc="SMBus Address"]
-  #[inline] pub fn sad(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x7f // [7:1]
+  #[inline] pub fn sad(&self) -> bits::B7 {
+     (((self.0 as u8) >> 1) & 0x7f).into() // [7:1]
   }
 #[doc="SMBus Address"]
-  #[inline] pub fn set_sad(mut self, value: u8) -> Self {
+  #[inline] pub fn set_sad<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 1);
      self.0 |= value << 1;
@@ -1040,11 +1123,13 @@ impl ::core::fmt::Debug for A2 {
 pub struct Slth(pub u8);
 impl Slth {
 #[doc="Most significant byte of SCL low timeout value that determines the timeout period of SCL low."]
-  #[inline] pub fn sslt(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn sslt(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Most significant byte of SCL low timeout value that determines the timeout period of SCL low."]
-  #[inline] pub fn set_sslt(mut self, value: u8) -> Self {
+  #[inline] pub fn set_sslt<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1070,11 +1155,13 @@ impl ::core::fmt::Debug for Slth {
 pub struct Sltl(pub u8);
 impl Sltl {
 #[doc="Least significant byte of SCL low timeout value that determines the timeout period of SCL low."]
-  #[inline] pub fn sslt(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn sslt(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Least significant byte of SCL low timeout value that determines the timeout period of SCL low."]
-  #[inline] pub fn set_sslt(mut self, value: u8) -> Self {
+  #[inline] pub fn set_sslt<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;

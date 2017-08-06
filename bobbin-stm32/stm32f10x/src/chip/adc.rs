@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const ADC1: Adc1 = Periph(0x40012000, Adc1Id {});
 pub const ADC2: Adc2 = Periph(0x40012100, Adc2Id {});
 pub const ADC3: Adc3 = Periph(0x40012200, Adc3Id {});
@@ -511,11 +512,13 @@ impl<T> Periph<T> {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Overrun"]
-  #[inline] pub fn ovr(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ovr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Overrun"]
-  #[inline] pub fn set_ovr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ovr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -523,11 +526,13 @@ impl Sr {
   }
 
 #[doc="Regular channel start flag"]
-  #[inline] pub fn strt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn strt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Regular channel start flag"]
-  #[inline] pub fn set_strt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_strt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -535,11 +540,13 @@ impl Sr {
   }
 
 #[doc="Injected channel start flag"]
-  #[inline] pub fn jstrt(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn jstrt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Injected channel start flag"]
-  #[inline] pub fn set_jstrt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jstrt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -547,11 +554,13 @@ impl Sr {
   }
 
 #[doc="Injected channel end of conversion"]
-  #[inline] pub fn jeoc(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn jeoc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Injected channel end of conversion"]
-  #[inline] pub fn set_jeoc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jeoc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -559,11 +568,13 @@ impl Sr {
   }
 
 #[doc="Regular channel end of conversion"]
-  #[inline] pub fn eoc(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn eoc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Regular channel end of conversion"]
-  #[inline] pub fn set_eoc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eoc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -571,11 +582,13 @@ impl Sr {
   }
 
 #[doc="Analog watchdog flag"]
-  #[inline] pub fn awd(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn awd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Analog watchdog flag"]
-  #[inline] pub fn set_awd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -606,11 +619,13 @@ impl ::core::fmt::Debug for Sr {
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Overrun interrupt enable"]
-  #[inline] pub fn ovrie(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+  #[inline] pub fn ovrie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 26) & 0x1).into() // [26]
   }
 #[doc="Overrun interrupt enable"]
-  #[inline] pub fn set_ovrie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ovrie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -618,11 +633,13 @@ impl Cr1 {
   }
 
 #[doc="Resolution"]
-  #[inline] pub fn res(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x3 // [25:24]
+  #[inline] pub fn res(&self) -> bits::B2 {
+     (((self.0 as u32) >> 24) & 0x3).into() // [25:24]
   }
 #[doc="Resolution"]
-  #[inline] pub fn set_res(mut self, value: u32) -> Self {
+  #[inline] pub fn set_res<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 24);
      self.0 |= value << 24;
@@ -630,11 +647,13 @@ impl Cr1 {
   }
 
 #[doc="Analog watchdog enable on regular channels"]
-  #[inline] pub fn awden(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn awden(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Analog watchdog enable on regular channels"]
-  #[inline] pub fn set_awden(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awden<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -642,11 +661,13 @@ impl Cr1 {
   }
 
 #[doc="Analog watchdog enable on injected channels"]
-  #[inline] pub fn jawden(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn jawden(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="Analog watchdog enable on injected channels"]
-  #[inline] pub fn set_jawden(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jawden<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -654,11 +675,13 @@ impl Cr1 {
   }
 
 #[doc="Discontinuous mode channel count"]
-  #[inline] pub fn discnum(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x7 // [15:13]
+  #[inline] pub fn discnum(&self) -> bits::B3 {
+     (((self.0 as u32) >> 13) & 0x7).into() // [15:13]
   }
 #[doc="Discontinuous mode channel count"]
-  #[inline] pub fn set_discnum(mut self, value: u32) -> Self {
+  #[inline] pub fn set_discnum<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
@@ -666,11 +689,13 @@ impl Cr1 {
   }
 
 #[doc="Discontinuous mode on injected channels"]
-  #[inline] pub fn jdiscen(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn jdiscen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Discontinuous mode on injected channels"]
-  #[inline] pub fn set_jdiscen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jdiscen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -678,11 +703,13 @@ impl Cr1 {
   }
 
 #[doc="Discontinuous mode on regular channels"]
-  #[inline] pub fn discen(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn discen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Discontinuous mode on regular channels"]
-  #[inline] pub fn set_discen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_discen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -690,11 +717,13 @@ impl Cr1 {
   }
 
 #[doc="Automatic injected group conversion"]
-  #[inline] pub fn jauto(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn jauto(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Automatic injected group conversion"]
-  #[inline] pub fn set_jauto(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jauto<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -702,11 +731,13 @@ impl Cr1 {
   }
 
 #[doc="Enable the watchdog on a single channel in scan mode"]
-  #[inline] pub fn awdsgl(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn awdsgl(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Enable the watchdog on a single channel in scan mode"]
-  #[inline] pub fn set_awdsgl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awdsgl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -714,11 +745,13 @@ impl Cr1 {
   }
 
 #[doc="Scan mode"]
-  #[inline] pub fn scan(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn scan(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Scan mode"]
-  #[inline] pub fn set_scan(mut self, value: u32) -> Self {
+  #[inline] pub fn set_scan<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -726,11 +759,13 @@ impl Cr1 {
   }
 
 #[doc="Interrupt enable for injected channels"]
-  #[inline] pub fn jeocie(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn jeocie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Interrupt enable for injected channels"]
-  #[inline] pub fn set_jeocie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jeocie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -738,11 +773,13 @@ impl Cr1 {
   }
 
 #[doc="Analog watchdog interrupt enable"]
-  #[inline] pub fn awdie(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn awdie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Analog watchdog interrupt enable"]
-  #[inline] pub fn set_awdie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awdie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -750,11 +787,13 @@ impl Cr1 {
   }
 
 #[doc="Interrupt enable for EOC"]
-  #[inline] pub fn eocie(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn eocie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Interrupt enable for EOC"]
-  #[inline] pub fn set_eocie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eocie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -762,11 +801,13 @@ impl Cr1 {
   }
 
 #[doc="Analog watchdog channel select bits"]
-  #[inline] pub fn awdch(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn awdch(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="Analog watchdog channel select bits"]
-  #[inline] pub fn set_awdch(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awdch<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -805,11 +846,13 @@ impl ::core::fmt::Debug for Cr1 {
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Start conversion of regular channels"]
-  #[inline] pub fn swstart(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn swstart(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Start conversion of regular channels"]
-  #[inline] pub fn set_swstart(mut self, value: u32) -> Self {
+  #[inline] pub fn set_swstart<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -817,11 +860,13 @@ impl Cr2 {
   }
 
 #[doc="External trigger enable for regular channels"]
-  #[inline] pub fn exten(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x3 // [29:28]
+  #[inline] pub fn exten(&self) -> bits::B2 {
+     (((self.0 as u32) >> 28) & 0x3).into() // [29:28]
   }
 #[doc="External trigger enable for regular channels"]
-  #[inline] pub fn set_exten(mut self, value: u32) -> Self {
+  #[inline] pub fn set_exten<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 28);
      self.0 |= value << 28;
@@ -829,11 +874,13 @@ impl Cr2 {
   }
 
 #[doc="External event select for regular group"]
-  #[inline] pub fn extsel(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn extsel(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="External event select for regular group"]
-  #[inline] pub fn set_extsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_extsel<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -841,11 +888,13 @@ impl Cr2 {
   }
 
 #[doc="Start conversion of injected channels"]
-  #[inline] pub fn jswstart(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn jswstart(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="Start conversion of injected channels"]
-  #[inline] pub fn set_jswstart(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jswstart<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -853,11 +902,13 @@ impl Cr2 {
   }
 
 #[doc="External trigger enable for injected channels"]
-  #[inline] pub fn jexten(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn jexten(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="External trigger enable for injected channels"]
-  #[inline] pub fn set_jexten(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jexten<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -865,11 +916,13 @@ impl Cr2 {
   }
 
 #[doc="External event select for injected group"]
-  #[inline] pub fn jextsel(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn jextsel(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="External event select for injected group"]
-  #[inline] pub fn set_jextsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jextsel<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -877,11 +930,13 @@ impl Cr2 {
   }
 
 #[doc="Data alignment"]
-  #[inline] pub fn align(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn align(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Data alignment"]
-  #[inline] pub fn set_align(mut self, value: u32) -> Self {
+  #[inline] pub fn set_align<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -889,11 +944,13 @@ impl Cr2 {
   }
 
 #[doc="End of conversion selection"]
-  #[inline] pub fn eocs(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn eocs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="End of conversion selection"]
-  #[inline] pub fn set_eocs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eocs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -901,11 +958,13 @@ impl Cr2 {
   }
 
 #[doc="DMA disable selection (for single ADC mode)"]
-  #[inline] pub fn dds(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn dds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="DMA disable selection (for single ADC mode)"]
-  #[inline] pub fn set_dds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -913,11 +972,13 @@ impl Cr2 {
   }
 
 #[doc="Direct memory access mode (for single ADC mode)"]
-  #[inline] pub fn dma(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dma(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Direct memory access mode (for single ADC mode)"]
-  #[inline] pub fn set_dma(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dma<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -925,11 +986,13 @@ impl Cr2 {
   }
 
 #[doc="Continuous conversion"]
-  #[inline] pub fn cont(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cont(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Continuous conversion"]
-  #[inline] pub fn set_cont(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cont<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -937,11 +1000,13 @@ impl Cr2 {
   }
 
 #[doc="A/D Converter ON / OFF"]
-  #[inline] pub fn adon(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn adon(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="A/D Converter ON / OFF"]
-  #[inline] pub fn set_adon(mut self, value: u32) -> Self {
+  #[inline] pub fn set_adon<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -978,11 +1043,13 @@ impl ::core::fmt::Debug for Cr2 {
 pub struct Smpr1(pub u32);
 impl Smpr1 {
 #[doc="Sample time bits"]
-  #[inline] pub fn smpx_x(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn smpx_x(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Sample time bits"]
-  #[inline] pub fn set_smpx_x(mut self, value: u32) -> Self {
+  #[inline] pub fn set_smpx_x<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1007,11 +1074,13 @@ impl ::core::fmt::Debug for Smpr1 {
 pub struct Smpr2(pub u32);
 impl Smpr2 {
 #[doc="Sample time bits"]
-  #[inline] pub fn smpx_x(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn smpx_x(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Sample time bits"]
-  #[inline] pub fn set_smpx_x(mut self, value: u32) -> Self {
+  #[inline] pub fn set_smpx_x<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1036,11 +1105,13 @@ impl ::core::fmt::Debug for Smpr2 {
 pub struct Jofr1(pub u32);
 impl Jofr1 {
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn joffset1(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_joffset1<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1066,11 +1137,13 @@ impl ::core::fmt::Debug for Jofr1 {
 pub struct Jofr2(pub u32);
 impl Jofr2 {
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset2(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn joffset2(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_joffset2<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1096,11 +1169,13 @@ impl ::core::fmt::Debug for Jofr2 {
 pub struct Jofr3(pub u32);
 impl Jofr3 {
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset3(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn joffset3(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_joffset3<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1126,11 +1201,13 @@ impl ::core::fmt::Debug for Jofr3 {
 pub struct Jofr4(pub u32);
 impl Jofr4 {
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset4(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn joffset4(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_joffset4<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1156,11 +1233,13 @@ impl ::core::fmt::Debug for Jofr4 {
 pub struct Htr(pub u32);
 impl Htr {
 #[doc="Analog watchdog higher threshold"]
-  #[inline] pub fn ht(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn ht(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Analog watchdog higher threshold"]
-  #[inline] pub fn set_ht(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ht<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1186,11 +1265,13 @@ impl ::core::fmt::Debug for Htr {
 pub struct Ltr(pub u32);
 impl Ltr {
 #[doc="Analog watchdog lower threshold"]
-  #[inline] pub fn lt(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn lt(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Analog watchdog lower threshold"]
-  #[inline] pub fn set_lt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lt<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1216,11 +1297,13 @@ impl ::core::fmt::Debug for Ltr {
 pub struct Sqr1(pub u32);
 impl Sqr1 {
 #[doc="Regular channel sequence length"]
-  #[inline] pub fn l(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
+  #[inline] pub fn l(&self) -> bits::B4 {
+     (((self.0 as u32) >> 20) & 0xf).into() // [23:20]
   }
 #[doc="Regular channel sequence length"]
-  #[inline] pub fn set_l(mut self, value: u32) -> Self {
+  #[inline] pub fn set_l<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 20);
      self.0 |= value << 20;
@@ -1228,11 +1311,13 @@ impl Sqr1 {
   }
 
 #[doc="16th conversion in regular sequence"]
-  #[inline] pub fn sq16(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1f // [19:15]
+  #[inline] pub fn sq16(&self) -> bits::B5 {
+     (((self.0 as u32) >> 15) & 0x1f).into() // [19:15]
   }
 #[doc="16th conversion in regular sequence"]
-  #[inline] pub fn set_sq16(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq16<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 15);
      self.0 |= value << 15;
@@ -1240,11 +1325,13 @@ impl Sqr1 {
   }
 
 #[doc="15th conversion in regular sequence"]
-  #[inline] pub fn sq15(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1f // [14:10]
+  #[inline] pub fn sq15(&self) -> bits::B5 {
+     (((self.0 as u32) >> 10) & 0x1f).into() // [14:10]
   }
 #[doc="15th conversion in regular sequence"]
-  #[inline] pub fn set_sq15(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq15<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 10);
      self.0 |= value << 10;
@@ -1252,11 +1339,13 @@ impl Sqr1 {
   }
 
 #[doc="14th conversion in regular sequence"]
-  #[inline] pub fn sq14(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1f // [9:5]
+  #[inline] pub fn sq14(&self) -> bits::B5 {
+     (((self.0 as u32) >> 5) & 0x1f).into() // [9:5]
   }
 #[doc="14th conversion in regular sequence"]
-  #[inline] pub fn set_sq14(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq14<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 5);
      self.0 |= value << 5;
@@ -1264,11 +1353,13 @@ impl Sqr1 {
   }
 
 #[doc="13th conversion in regular sequence"]
-  #[inline] pub fn sq13(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn sq13(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="13th conversion in regular sequence"]
-  #[inline] pub fn set_sq13(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq13<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -1298,11 +1389,13 @@ impl ::core::fmt::Debug for Sqr1 {
 pub struct Sqr2(pub u32);
 impl Sqr2 {
 #[doc="12th conversion in regular sequence"]
-  #[inline] pub fn sq12(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1f // [29:25]
+  #[inline] pub fn sq12(&self) -> bits::B5 {
+     (((self.0 as u32) >> 25) & 0x1f).into() // [29:25]
   }
 #[doc="12th conversion in regular sequence"]
-  #[inline] pub fn set_sq12(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq12<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 25);
      self.0 |= value << 25;
@@ -1310,11 +1403,13 @@ impl Sqr2 {
   }
 
 #[doc="11th conversion in regular sequence"]
-  #[inline] pub fn sq11(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1f // [24:20]
+  #[inline] pub fn sq11(&self) -> bits::B5 {
+     (((self.0 as u32) >> 20) & 0x1f).into() // [24:20]
   }
 #[doc="11th conversion in regular sequence"]
-  #[inline] pub fn set_sq11(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq11<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 20);
      self.0 |= value << 20;
@@ -1322,11 +1417,13 @@ impl Sqr2 {
   }
 
 #[doc="10th conversion in regular sequence"]
-  #[inline] pub fn sq10(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1f // [19:15]
+  #[inline] pub fn sq10(&self) -> bits::B5 {
+     (((self.0 as u32) >> 15) & 0x1f).into() // [19:15]
   }
 #[doc="10th conversion in regular sequence"]
-  #[inline] pub fn set_sq10(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq10<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 15);
      self.0 |= value << 15;
@@ -1334,11 +1431,13 @@ impl Sqr2 {
   }
 
 #[doc="9th conversion in regular sequence"]
-  #[inline] pub fn sq9(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1f // [14:10]
+  #[inline] pub fn sq9(&self) -> bits::B5 {
+     (((self.0 as u32) >> 10) & 0x1f).into() // [14:10]
   }
 #[doc="9th conversion in regular sequence"]
-  #[inline] pub fn set_sq9(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq9<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 10);
      self.0 |= value << 10;
@@ -1346,11 +1445,13 @@ impl Sqr2 {
   }
 
 #[doc="8th conversion in regular sequence"]
-  #[inline] pub fn sq8(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1f // [9:5]
+  #[inline] pub fn sq8(&self) -> bits::B5 {
+     (((self.0 as u32) >> 5) & 0x1f).into() // [9:5]
   }
 #[doc="8th conversion in regular sequence"]
-  #[inline] pub fn set_sq8(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq8<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 5);
      self.0 |= value << 5;
@@ -1358,11 +1459,13 @@ impl Sqr2 {
   }
 
 #[doc="7th conversion in regular sequence"]
-  #[inline] pub fn sq7(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn sq7(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="7th conversion in regular sequence"]
-  #[inline] pub fn set_sq7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq7<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -1393,11 +1496,13 @@ impl ::core::fmt::Debug for Sqr2 {
 pub struct Sqr3(pub u32);
 impl Sqr3 {
 #[doc="6th conversion in regular sequence"]
-  #[inline] pub fn sq6(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1f // [29:25]
+  #[inline] pub fn sq6(&self) -> bits::B5 {
+     (((self.0 as u32) >> 25) & 0x1f).into() // [29:25]
   }
 #[doc="6th conversion in regular sequence"]
-  #[inline] pub fn set_sq6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq6<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 25);
      self.0 |= value << 25;
@@ -1405,11 +1510,13 @@ impl Sqr3 {
   }
 
 #[doc="5th conversion in regular sequence"]
-  #[inline] pub fn sq5(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1f // [24:20]
+  #[inline] pub fn sq5(&self) -> bits::B5 {
+     (((self.0 as u32) >> 20) & 0x1f).into() // [24:20]
   }
 #[doc="5th conversion in regular sequence"]
-  #[inline] pub fn set_sq5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq5<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 20);
      self.0 |= value << 20;
@@ -1417,11 +1524,13 @@ impl Sqr3 {
   }
 
 #[doc="4th conversion in regular sequence"]
-  #[inline] pub fn sq4(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1f // [19:15]
+  #[inline] pub fn sq4(&self) -> bits::B5 {
+     (((self.0 as u32) >> 15) & 0x1f).into() // [19:15]
   }
 #[doc="4th conversion in regular sequence"]
-  #[inline] pub fn set_sq4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq4<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 15);
      self.0 |= value << 15;
@@ -1429,11 +1538,13 @@ impl Sqr3 {
   }
 
 #[doc="3rd conversion in regular sequence"]
-  #[inline] pub fn sq3(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1f // [14:10]
+  #[inline] pub fn sq3(&self) -> bits::B5 {
+     (((self.0 as u32) >> 10) & 0x1f).into() // [14:10]
   }
 #[doc="3rd conversion in regular sequence"]
-  #[inline] pub fn set_sq3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq3<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 10);
      self.0 |= value << 10;
@@ -1441,11 +1552,13 @@ impl Sqr3 {
   }
 
 #[doc="2nd conversion in regular sequence"]
-  #[inline] pub fn sq2(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1f // [9:5]
+  #[inline] pub fn sq2(&self) -> bits::B5 {
+     (((self.0 as u32) >> 5) & 0x1f).into() // [9:5]
   }
 #[doc="2nd conversion in regular sequence"]
-  #[inline] pub fn set_sq2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq2<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 5);
      self.0 |= value << 5;
@@ -1453,11 +1566,13 @@ impl Sqr3 {
   }
 
 #[doc="1st conversion in regular sequence"]
-  #[inline] pub fn sq1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn sq1(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="1st conversion in regular sequence"]
-  #[inline] pub fn set_sq1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sq1<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -1488,11 +1603,13 @@ impl ::core::fmt::Debug for Sqr3 {
 pub struct Jsqr(pub u32);
 impl Jsqr {
 #[doc="Injected sequence length"]
-  #[inline] pub fn jl(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn jl(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Injected sequence length"]
-  #[inline] pub fn set_jl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jl<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -1500,11 +1617,13 @@ impl Jsqr {
   }
 
 #[doc="4th conversion in injected sequence"]
-  #[inline] pub fn jsq4(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1f // [19:15]
+  #[inline] pub fn jsq4(&self) -> bits::B5 {
+     (((self.0 as u32) >> 15) & 0x1f).into() // [19:15]
   }
 #[doc="4th conversion in injected sequence"]
-  #[inline] pub fn set_jsq4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jsq4<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 15);
      self.0 |= value << 15;
@@ -1512,11 +1631,13 @@ impl Jsqr {
   }
 
 #[doc="3rd conversion in injected sequence"]
-  #[inline] pub fn jsq3(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1f // [14:10]
+  #[inline] pub fn jsq3(&self) -> bits::B5 {
+     (((self.0 as u32) >> 10) & 0x1f).into() // [14:10]
   }
 #[doc="3rd conversion in injected sequence"]
-  #[inline] pub fn set_jsq3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jsq3<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 10);
      self.0 |= value << 10;
@@ -1524,11 +1645,13 @@ impl Jsqr {
   }
 
 #[doc="2nd conversion in injected sequence"]
-  #[inline] pub fn jsq2(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1f // [9:5]
+  #[inline] pub fn jsq2(&self) -> bits::B5 {
+     (((self.0 as u32) >> 5) & 0x1f).into() // [9:5]
   }
 #[doc="2nd conversion in injected sequence"]
-  #[inline] pub fn set_jsq2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jsq2<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 5);
      self.0 |= value << 5;
@@ -1536,11 +1659,13 @@ impl Jsqr {
   }
 
 #[doc="1st conversion in injected sequence"]
-  #[inline] pub fn jsq1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn jsq1(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="1st conversion in injected sequence"]
-  #[inline] pub fn set_jsq1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jsq1<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -1570,11 +1695,13 @@ impl ::core::fmt::Debug for Jsqr {
 pub struct Jdr1(pub u32);
 impl Jdr1 {
 #[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn jdata(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Injected data"]
-  #[inline] pub fn set_jdata(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jdata<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1600,11 +1727,13 @@ impl ::core::fmt::Debug for Jdr1 {
 pub struct Jdr2(pub u32);
 impl Jdr2 {
 #[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn jdata(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Injected data"]
-  #[inline] pub fn set_jdata(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jdata<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1630,11 +1759,13 @@ impl ::core::fmt::Debug for Jdr2 {
 pub struct Jdr3(pub u32);
 impl Jdr3 {
 #[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn jdata(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Injected data"]
-  #[inline] pub fn set_jdata(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jdata<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1660,11 +1791,13 @@ impl ::core::fmt::Debug for Jdr3 {
 pub struct Jdr4(pub u32);
 impl Jdr4 {
 #[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn jdata(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Injected data"]
-  #[inline] pub fn set_jdata(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jdata<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1690,11 +1823,13 @@ impl ::core::fmt::Debug for Jdr4 {
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Regular data"]
-  #[inline] pub fn data(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn data(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Regular data"]
-  #[inline] pub fn set_data(mut self, value: u32) -> Self {
+  #[inline] pub fn set_data<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;

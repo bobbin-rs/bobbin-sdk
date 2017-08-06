@@ -76,7 +76,7 @@ impl<T> TimAdvExt for Periph<T> {
     }
 
     fn counter(&self) -> u32 {
-        self.cnt().cnt()
+        self.cnt().cnt().into()
     }
 
     fn set_counter(&self, value: u32) -> &Self {

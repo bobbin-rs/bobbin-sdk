@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 use chip::gpio::{self, Pin};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -63,11 +64,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn mode(&self) -> Mode {
         match self.port.moder().moder(self.index) {
-            0b00 => Mode::Input,
-            0b01 => Mode::Output,
-            0b10 => Mode::AltFn,
-            0b11 => Mode::Analog,
-            _ => panic!("Invalid value for mode")
+            B2::B00 => Mode::Input,
+            B2::B01 => Mode::Output,
+            B2::B10 => Mode::AltFn,
+            B2::B11 => Mode::Analog,
         }
     }
 
@@ -80,9 +80,8 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn output_type(&self) -> OutputType {
         match self.port.otyper().ot(self.index) {
-            0b0 => OutputType::PushPull,
-            0b1 => OutputType::OpenDrain,
-            _ => panic!("Invalid value for output_type")
+            B1::B0 => OutputType::PushPull,
+            B1::B1 => OutputType::OpenDrain,
         }
     }
 
@@ -95,11 +94,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn output_speed(&self) -> OutputSpeed {
         match self.port.ospeedr().ospeedr(self.index) {
-            0b00 => OutputSpeed::LowSpeed,
-            0b01 => OutputSpeed::MediumSpeed,
-            0b10 => OutputSpeed::FastSpeed,
-            0b11 => OutputSpeed::HighSpeed,
-            _ => panic!("Invalid value for output_speed")
+            B2::B00 => OutputSpeed::LowSpeed,
+            B2::B01 => OutputSpeed::MediumSpeed,
+            B2::B10 => OutputSpeed::FastSpeed,
+            B2::B11 => OutputSpeed::HighSpeed,
         }
     }
 
@@ -112,11 +110,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn pull(&self) -> Pull {
         match self.port.pupdr().pupdr(self.index) {
-            0b00 => Pull::None,
-            0b01 => Pull::PullUp,
-            0b10 => Pull::PullDown,
-            0b11 => Pull::Reserved,
-            _ => panic!("Invalid value for pull")
+            B2::B00 => Pull::None,
+            B2::B01 => Pull::PullUp,
+            B2::B10 => Pull::PullDown,
+            B2::B11 => Pull::Reserved,
         }
     }
 

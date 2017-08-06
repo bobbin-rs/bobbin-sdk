@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::lpspi::*;
 
 pub const LPSPI0: Lpspi0 = Periph(0x4002c000, Lpspi0Id {});

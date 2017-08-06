@@ -3,11 +3,11 @@ use ::chip::mpu::*;
 // MPU_TYPE
 
 pub fn iregion() -> u8 {
-    MPU.mpu_type().iregion() as u8
+    MPU.mpu_type().iregion().into()
 }
 
 pub fn dregion() -> u8 {
-    MPU.mpu_type().dregion() as u8
+    MPU.mpu_type().dregion().into()
 }
 
 pub fn separate() -> bool {
@@ -46,17 +46,17 @@ pub fn set_enable(value: bool) {
 // MPU_RNR
 
 pub fn region_number() -> u8 {
-    MPU.mpu_rnr().region() as u8
+    MPU.mpu_rnr().region().into()
 }
 
 pub fn set_region_number(value: u8) {
-    MPU.set_mpu_rnr(MpuRnr(0).set_region(value as u32));
+    MPU.set_mpu_rnr(MpuRnr(0).set_region(value));
 }
 
 // MPU_RBAR
 
 pub fn region_base_address() -> u32 {
-    MPU.mpu_rbar().addr()
+    MPU.mpu_rbar().addr().into()
 }
 
 pub fn set_region_base_address(value: u32) {
@@ -73,11 +73,11 @@ pub fn set_region_base_address_valid(value: bool) {
 }
 
 pub fn region_base_address_region() -> u8 {
-    MPU.mpu_rbar().region() as u8
+    MPU.mpu_rbar().region().into()
 }
 
 pub fn set_region_base_address_region(value: u8) {
-    MPU.with_mpu_rbar(|r| r.set_region(value as u32));
+    MPU.with_mpu_rbar(|r| r.set_region(value));
 }
 
 // MPU_RASR
@@ -92,19 +92,19 @@ pub fn set_region_xn(value: bool) {
 }
 
 pub fn region_ap() -> u8 {
-    MPU.mpu_rasr().ap() as u8
+    MPU.mpu_rasr().ap().into()
 }
 
 pub fn set_region_ap(value: u8) {
-    MPU.with_mpu_rasr(|r| r.set_ap(value as u32));
+    MPU.with_mpu_rasr(|r| r.set_ap(value));
 }
 
 pub fn region_tex() -> u8 {
-    MPU.mpu_rasr().tex() as u8
+    MPU.mpu_rasr().tex().into()
 }
 
 pub fn set_region_tex(value: u8) {
-    MPU.with_mpu_rasr(|r| r.set_tex(value as u32));
+    MPU.with_mpu_rasr(|r| r.set_tex(value));
 }
 
 pub fn region_c() -> bool {
@@ -126,19 +126,19 @@ pub fn set_region_b(value: bool) {
 }
 
 pub fn region_srd() -> u8 {
-    MPU.mpu_rasr().srd() as u8
+    MPU.mpu_rasr().srd().into()
 }
 
 pub fn set_region_srd(value: u8) {
-    MPU.with_mpu_rasr(|r| r.set_srd(value as u32));
+    MPU.with_mpu_rasr(|r| r.set_srd(value));
 }
 
 pub fn region_size() -> u8 {
-    MPU.mpu_rasr().size() as u8
+    MPU.mpu_rasr().size().into()
 }
 
 pub fn set_region_size(value: u8) {
-    MPU.with_mpu_rasr(|r| r.set_size(value as u32));
+    MPU.with_mpu_rasr(|r| r.set_size(value));
 }
 
 pub fn region_enable() -> bool {

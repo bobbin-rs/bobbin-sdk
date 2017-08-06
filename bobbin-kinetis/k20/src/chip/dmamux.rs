@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::dmamux::*;
 
 pub const DMAMUX: Dmamux = Periph(0x40021000, DmamuxId {});

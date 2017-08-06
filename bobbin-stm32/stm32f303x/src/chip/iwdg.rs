@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::iwdg::*;
 
 pub const IWDG: Iwdg = Periph(0x40003000, IwdgId {});

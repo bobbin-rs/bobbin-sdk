@@ -29,7 +29,7 @@ pub fn active(irq: usize) -> bool {
 }
 
 pub fn priority(irq: usize) -> u8 {
-    NVIC.ipr((irq >> 4)).pri((irq & 0b1111)) as u8
+    NVIC.ipr((irq >> 4)).pri((irq & 0b1111)).into()
 }
 
 pub fn set_priority(irq: usize, value: u8) {

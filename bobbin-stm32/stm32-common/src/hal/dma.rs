@@ -285,16 +285,16 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn ndt(&self) -> u16 {
-        self.periph().sndtr(self.index).ndt() as u16
+        self.periph().sndtr(self.index).ndt().into()
     }
 
     fn set_ndt(&self, value: u16) -> &Self {
-        self.periph().set_sndtr(self.index, Sndtr(0).set_ndt(value as u32));
+        self.periph().set_sndtr(self.index, Sndtr(0).set_ndt(value));
         self
     }
 
     fn pa(&self) -> u32 {
-        self.periph().spar(self.index).pa() as u32
+        self.periph().spar(self.index).pa().into()
     }
 
     fn set_pa(&self, value: u32) -> &Self {
@@ -303,7 +303,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }    
     
     fn m0a(&self) -> u32 {
-        self.periph().sm0ar(self.index).m0a() as u32
+        self.periph().sm0ar(self.index).m0a().into()
     }
 
     fn set_m0a(&self, value: u32) -> &Self {
@@ -312,7 +312,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }    
 
     fn m1a(&self) -> u32 {
-        self.periph().sm1ar(self.index).m1a() as u32
+        self.periph().sm1ar(self.index).m1a().into()
     }
 
     fn set_m1a(&self, value: u32) -> &Self {
@@ -332,7 +332,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }    
     fn set_chsel(&self, value: u8) -> &Self {
-        self.periph().with_scr(self.index, |r| r.set_chsel(value as u32));
+        self.periph().with_scr(self.index, |r| r.set_chsel(value));
         self
     }
 }

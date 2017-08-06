@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::lpuart::*;
 
 pub const LPUART1: Lpuart1 = Periph(0x40004800, Lpuart1Id {});

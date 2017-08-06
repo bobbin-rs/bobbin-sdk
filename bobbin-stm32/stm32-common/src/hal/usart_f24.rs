@@ -62,7 +62,7 @@ impl<T> UsartExt for Periph<T> {
     fn try_getc(&self) -> Option<u8> {
         let u = self;
         if u.sr().rxne() != 0 {
-            Some(u.dr().dr() as u8)
+            Some(u.dr().dr().into())
         } else {
             None
         }  
@@ -71,7 +71,7 @@ impl<T> UsartExt for Periph<T> {
     fn getc(&self) -> u8 {
         let u = self;
         while u.sr().rxne() == 0 {}
-        u.dr().dr() as u8            
+        u.dr().dr().into()
     }
 
     fn write(&self, buf: &[u8]) -> usize {

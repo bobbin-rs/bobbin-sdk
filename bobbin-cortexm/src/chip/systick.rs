@@ -1,4 +1,5 @@
 //! System Timer, SysTick
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const SYSTICK: Systick = Systick(0xe000e000);
 
 #[doc="System Timer, SysTick"]
@@ -120,11 +121,13 @@ impl Systick {
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Returns 1 if timer counted to 0 since last time this was read."]
-  #[inline] pub fn countflag(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn countflag(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Returns 1 if timer counted to 0 since last time this was read."]
-  #[inline] pub fn set_countflag(mut self, value: u32) -> Self {
+  #[inline] pub fn set_countflag<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -132,11 +135,13 @@ impl Csr {
   }
 
 #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
-  #[inline] pub fn clksource(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn clksource(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
-  #[inline] pub fn set_clksource(mut self, value: u32) -> Self {
+  #[inline] pub fn set_clksource<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -144,11 +149,13 @@ impl Csr {
   }
 
 #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
-  #[inline] pub fn tickint(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tickint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
-  #[inline] pub fn set_tickint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tickint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -156,11 +163,13 @@ impl Csr {
   }
 
 #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
-  #[inline] pub fn enable(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
-  #[inline] pub fn set_enable(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -189,11 +198,13 @@ impl ::core::fmt::Debug for Csr {
 pub struct Rvr(pub u32);
 impl Rvr {
 #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
-  #[inline] pub fn reload(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffff // [23:0]
+  #[inline] pub fn reload(&self) -> bits::B24 {
+     (((self.0 as u32) >> 0) & 0xffffff).into() // [23:0]
   }
 #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
-  #[inline] pub fn set_reload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_reload<V: Into<bits::B24>>(mut self, value: V) -> Self {
+     let value: bits::B24 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffff) == 0);
      self.0 &= !(0xffffff << 0);
      self.0 |= value << 0;
@@ -219,11 +230,13 @@ impl ::core::fmt::Debug for Rvr {
 pub struct Cvr(pub u32);
 impl Cvr {
 #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
-  #[inline] pub fn current(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffff // [23:0]
+  #[inline] pub fn current(&self) -> bits::B24 {
+     (((self.0 as u32) >> 0) & 0xffffff).into() // [23:0]
   }
 #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
-  #[inline] pub fn set_current(mut self, value: u32) -> Self {
+  #[inline] pub fn set_current<V: Into<bits::B24>>(mut self, value: V) -> Self {
+     let value: bits::B24 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffff) == 0);
      self.0 &= !(0xffffff << 0);
      self.0 |= value << 0;
@@ -249,11 +262,13 @@ impl ::core::fmt::Debug for Cvr {
 pub struct Calib(pub u32);
 impl Calib {
 #[doc="Indicates whether the device provides a reference clock to the processor"]
-  #[inline] pub fn noref(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn noref(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Indicates whether the device provides a reference clock to the processor"]
-  #[inline] pub fn set_noref(mut self, value: u32) -> Self {
+  #[inline] pub fn set_noref<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -261,11 +276,13 @@ impl Calib {
   }
 
 #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
-  #[inline] pub fn skew(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn skew(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
-  #[inline] pub fn set_skew(mut self, value: u32) -> Self {
+  #[inline] pub fn set_skew<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -273,11 +290,13 @@ impl Calib {
   }
 
 #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
-  #[inline] pub fn tenms(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffff // [23:0]
+  #[inline] pub fn tenms(&self) -> bits::B24 {
+     (((self.0 as u32) >> 0) & 0xffffff).into() // [23:0]
   }
 #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
-  #[inline] pub fn set_tenms(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tenms<V: Into<bits::B24>>(mut self, value: V) -> Self {
+     let value: bits::B24 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffff) == 0);
      self.0 &= !(0xffffff << 0);
      self.0 |= value << 0;

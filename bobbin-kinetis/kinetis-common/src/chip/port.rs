@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PORT Peripheral"]
@@ -103,11 +104,13 @@ impl<T> Periph<T> {
 pub struct Pcr(pub u32);
 impl Pcr {
 #[doc="Pull Select"]
-  #[inline] pub fn ps(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ps(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Pull Select"]
-  #[inline] pub fn set_ps(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ps<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -115,11 +118,13 @@ impl Pcr {
   }
 
 #[doc="Pull Enable"]
-  #[inline] pub fn pe(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn pe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Pull Enable"]
-  #[inline] pub fn set_pe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -127,11 +132,13 @@ impl Pcr {
   }
 
 #[doc="Slew Rate Enable"]
-  #[inline] pub fn sre(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn sre(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Slew Rate Enable"]
-  #[inline] pub fn set_sre(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sre<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -139,11 +146,13 @@ impl Pcr {
   }
 
 #[doc="Passive Filter Enable"]
-  #[inline] pub fn pfe(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn pfe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Passive Filter Enable"]
-  #[inline] pub fn set_pfe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pfe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -151,11 +160,13 @@ impl Pcr {
   }
 
 #[doc="Open Drain Enable"]
-  #[inline] pub fn ode(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ode(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Open Drain Enable"]
-  #[inline] pub fn set_ode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ode<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -163,11 +174,13 @@ impl Pcr {
   }
 
 #[doc="Drive Strength Enable"]
-  #[inline] pub fn dse(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn dse(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Drive Strength Enable"]
-  #[inline] pub fn set_dse(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dse<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -175,11 +188,13 @@ impl Pcr {
   }
 
 #[doc="Pin Mux Control"]
-  #[inline] pub fn mux(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x7 // [10:8]
+  #[inline] pub fn mux(&self) -> bits::B3 {
+     (((self.0 as u32) >> 8) & 0x7).into() // [10:8]
   }
 #[doc="Pin Mux Control"]
-  #[inline] pub fn set_mux(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mux<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
@@ -187,11 +202,13 @@ impl Pcr {
   }
 
 #[doc="Lock Register"]
-  #[inline] pub fn lk(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn lk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Lock Register"]
-  #[inline] pub fn set_lk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -199,11 +216,13 @@ impl Pcr {
   }
 
 #[doc="Interrupt Configuration"]
-  #[inline] pub fn irqc(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn irqc(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Interrupt Configuration"]
-  #[inline] pub fn set_irqc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_irqc<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -211,11 +230,13 @@ impl Pcr {
   }
 
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn isf(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn isf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 24) & 0x1).into() // [24]
   }
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn set_isf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
@@ -250,11 +271,13 @@ impl ::core::fmt::Debug for Pcr {
 pub struct Gpclr(pub u32);
 impl Gpclr {
 #[doc="Global Pin Write Data"]
-  #[inline] pub fn gpwd(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn gpwd(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Global Pin Write Data"]
-  #[inline] pub fn set_gpwd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpwd<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -262,11 +285,13 @@ impl Gpclr {
   }
 
 #[doc="Global Pin Write Enable"]
-  #[inline] pub fn gpwe(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn gpwe(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="Global Pin Write Enable"]
-  #[inline] pub fn set_gpwe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpwe<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -293,11 +318,13 @@ impl ::core::fmt::Debug for Gpclr {
 pub struct Gpchr(pub u32);
 impl Gpchr {
 #[doc="Global Pin Write Data"]
-  #[inline] pub fn gpwd(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn gpwd(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Global Pin Write Data"]
-  #[inline] pub fn set_gpwd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpwd<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -305,11 +332,13 @@ impl Gpchr {
   }
 
 #[doc="Global Pin Write Enable"]
-  #[inline] pub fn gpwe(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn gpwe(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="Global Pin Write Enable"]
-  #[inline] pub fn set_gpwe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpwe<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -336,13 +365,15 @@ impl ::core::fmt::Debug for Gpchr {
 pub struct Isfr(pub u32);
 impl Isfr {
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn isf(&self, index: usize) -> u32 {
+  #[inline] pub fn isf(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn set_isf(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_isf<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;

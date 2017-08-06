@@ -41,23 +41,23 @@ impl<T> TimBasExt for Periph<T> {
     }
 
     fn counter(&self) -> u16 {
-        self.cnt().cnt() as u16
+        self.cnt().cnt().into()
     }
     fn set_counter(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_cnt(value as u32))        
+        self.set_cnt(Cnt(0).set_cnt(value))        
     }
 
     fn prescaler(&self) -> u16 {
-        self.psc().psc() as u16
+        self.psc().psc().into()
     }
     fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value as u32))        
+        self.set_psc(Psc(0).set_psc(value))        
     }
 
     fn reload(&self) -> u16 {
-        self.arr().arr() as u16
+        self.arr().arr().into()
     }
     fn set_reload(&self, value: u16) -> &Self {
-        self.set_arr(Arr(0).set_arr(value as u32))        
+        self.set_arr(Arr(0).set_arr(value))        
     }
 }

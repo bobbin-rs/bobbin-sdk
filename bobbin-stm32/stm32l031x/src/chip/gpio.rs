@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::gpio::*;
 
 pub const GPIOA: Gpioa = Periph(0x50000000, GpioaId {});

@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 extern crate bobbin_cortexm;
 pub use bobbin_cortexm::chip::exc;
 pub use bobbin_cortexm::chip::nvic;
@@ -22,6 +23,7 @@ pub mod dmamux;
 pub mod edma;
 pub mod ftm;
 pub mod pit;
+pub mod lptmr;
 pub mod spi;
 pub mod i2c;
 pub mod uart;

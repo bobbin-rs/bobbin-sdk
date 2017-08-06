@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::wdog::*;
 
 pub const WDOG: Wdog = Periph(0x40052000, WdogId {});

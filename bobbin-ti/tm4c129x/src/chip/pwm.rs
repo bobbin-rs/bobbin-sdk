@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const PWM0: Pwm0 = Periph(0x40028000, Pwm0Id {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -938,13 +939,15 @@ impl<T> Periph<T> {
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Update PWM Generator n"]
-  #[inline] pub fn globalsync(&self, index: usize) -> u32 {
+  #[inline] pub fn globalsync(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Update PWM Generator n"]
-  #[inline] pub fn set_globalsync(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_globalsync<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -975,13 +978,15 @@ impl ::core::fmt::Debug for Ctl {
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Reset Generator n Counter"]
-  #[inline] pub fn sync(&self, index: usize) -> u32 {
+  #[inline] pub fn sync(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Reset Generator n Counter"]
-  #[inline] pub fn set_sync(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_sync<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1012,13 +1017,15 @@ impl ::core::fmt::Debug for Sync {
 pub struct Enable(pub u32);
 impl Enable {
 #[doc="MnPWMn Output Enable"]
-  #[inline] pub fn pwmen(&self, index: usize) -> u32 {
+  #[inline] pub fn pwmen(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="MnPWMn Output Enable"]
-  #[inline] pub fn set_pwmen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pwmen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1053,13 +1060,15 @@ impl ::core::fmt::Debug for Enable {
 pub struct Invert(pub u32);
 impl Invert {
 #[doc="Invert MnPWMn Signal"]
-  #[inline] pub fn pwminv(&self, index: usize) -> u32 {
+  #[inline] pub fn pwminv(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Invert MnPWMn Signal"]
-  #[inline] pub fn set_pwminv(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pwminv<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1094,13 +1103,15 @@ impl ::core::fmt::Debug for Invert {
 pub struct Fault(pub u32);
 impl Fault {
 #[doc="MnPWMn Fault"]
-  #[inline] pub fn fault(&self, index: usize) -> u32 {
+  #[inline] pub fn fault(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="MnPWMn Fault"]
-  #[inline] pub fn set_fault(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_fault<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1135,13 +1146,15 @@ impl ::core::fmt::Debug for Fault {
 pub struct Inten(pub u32);
 impl Inten {
 #[doc="PWMn Interrupt Enable"]
-  #[inline] pub fn intpwm(&self, index: usize) -> u32 {
+  #[inline] pub fn intpwm(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="PWMn Interrupt Enable"]
-  #[inline] pub fn set_intpwm(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intpwm<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1151,13 +1164,15 @@ impl Inten {
   }
 
 #[doc="Interrupt Fault 0"]
-  #[inline] pub fn intfault(&self, index: usize) -> u32 {
+  #[inline] pub fn intfault(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 16 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [16]
+     (((self.0 as u32) >> shift) & 0x1).into() // [16]
   }
 #[doc="Interrupt Fault 0"]
-  #[inline] pub fn set_intfault(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intfault<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 16 + index;
@@ -1167,11 +1182,13 @@ impl Inten {
   }
 
 #[doc="Interrupt Fault 1"]
-  #[inline] pub fn pwm_inten_intfault1(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn pwm_inten_intfault1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Interrupt Fault 1"]
-  #[inline] pub fn set_pwm_inten_intfault1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_inten_intfault1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -1179,11 +1196,13 @@ impl Inten {
   }
 
 #[doc="Interrupt Fault 2"]
-  #[inline] pub fn pwm_inten_intfault2(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn pwm_inten_intfault2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Interrupt Fault 2"]
-  #[inline] pub fn set_pwm_inten_intfault2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_inten_intfault2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -1191,11 +1210,13 @@ impl Inten {
   }
 
 #[doc="Interrupt Fault 3"]
-  #[inline] pub fn pwm_inten_intfault3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn pwm_inten_intfault3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Interrupt Fault 3"]
-  #[inline] pub fn set_pwm_inten_intfault3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_inten_intfault3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -1231,13 +1252,15 @@ impl ::core::fmt::Debug for Inten {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="PWM0 Interrupt Asserted"]
-  #[inline] pub fn intpwm(&self, index: usize) -> u32 {
+  #[inline] pub fn intpwm(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="PWM0 Interrupt Asserted"]
-  #[inline] pub fn set_intpwm(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intpwm<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1247,13 +1270,15 @@ impl Ris {
   }
 
 #[doc="Interrupt Fault PWM 0"]
-  #[inline] pub fn intfault(&self, index: usize) -> u32 {
+  #[inline] pub fn intfault(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 16 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [16]
+     (((self.0 as u32) >> shift) & 0x1).into() // [16]
   }
 #[doc="Interrupt Fault PWM 0"]
-  #[inline] pub fn set_intfault(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intfault<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 16 + index;
@@ -1288,13 +1313,15 @@ impl ::core::fmt::Debug for Ris {
 pub struct Isc(pub u32);
 impl Isc {
 #[doc="PWMn Interrupt Status"]
-  #[inline] pub fn intpwm(&self, index: usize) -> u32 {
+  #[inline] pub fn intpwm(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="PWMn Interrupt Status"]
-  #[inline] pub fn set_intpwm(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intpwm<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1304,13 +1331,15 @@ impl Isc {
   }
 
 #[doc="FAULTn Interrupt Asserted"]
-  #[inline] pub fn intfault(&self, index: usize) -> u32 {
+  #[inline] pub fn intfault(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 16 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [16]
+     (((self.0 as u32) >> shift) & 0x1).into() // [16]
   }
 #[doc="FAULTn Interrupt Asserted"]
-  #[inline] pub fn set_intfault(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_intfault<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 16 + index;
@@ -1345,13 +1374,15 @@ impl ::core::fmt::Debug for Isc {
 pub struct Status(pub u32);
 impl Status {
 #[doc="Generator n Fault Status"]
-  #[inline] pub fn fault(&self, index: usize) -> u32 {
+  #[inline] pub fn fault(&self, index: usize) -> bits::B1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Generator n Fault Status"]
-  #[inline] pub fn set_fault(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_fault<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 4);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1382,13 +1413,15 @@ impl ::core::fmt::Debug for Status {
 pub struct Faultval(pub u32);
 impl Faultval {
 #[doc="MnPWM0 Fault Value"]
-  #[inline] pub fn faultval(&self, index: usize) -> u32 {
+  #[inline] pub fn faultval(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="MnPWM0 Fault Value"]
-  #[inline] pub fn set_faultval(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_faultval<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1423,13 +1456,15 @@ impl ::core::fmt::Debug for Faultval {
 pub struct Enupd(pub u32);
 impl Enupd {
 #[doc="MnPWMn Enable Update Mode"]
-  #[inline] pub fn enupd(&self, index: usize) -> u32 {
+  #[inline] pub fn enupd(&self, index: usize) -> bits::B2 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x3 // [1:0]
+     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
   }
 #[doc="MnPWMn Enable Update Mode"]
-  #[inline] pub fn set_enupd(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_enupd<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x3) == 0);
      let shift: usize = 0 + index;
@@ -1464,11 +1499,13 @@ impl ::core::fmt::Debug for Enupd {
 pub struct ChCtl(pub u32);
 impl ChCtl {
 #[doc="PWM Block Enable"]
-  #[inline] pub fn enable(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="PWM Block Enable"]
-  #[inline] pub fn set_enable(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1476,11 +1513,13 @@ impl ChCtl {
   }
 
 #[doc="Counter Mode"]
-  #[inline] pub fn ctl_mode(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn ctl_mode(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Counter Mode"]
-  #[inline] pub fn set_ctl_mode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_mode<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1488,11 +1527,13 @@ impl ChCtl {
   }
 
 #[doc="Debug Mode"]
-  #[inline] pub fn ctl_debug(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ctl_debug(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Debug Mode"]
-  #[inline] pub fn set_ctl_debug(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_debug<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1500,11 +1541,13 @@ impl ChCtl {
   }
 
 #[doc="Load Register Update Mode"]
-  #[inline] pub fn ctl_loadupd(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn ctl_loadupd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Load Register Update Mode"]
-  #[inline] pub fn set_ctl_loadupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_loadupd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1512,11 +1555,13 @@ impl ChCtl {
   }
 
 #[doc="Comparator A Update Mode"]
-  #[inline] pub fn ctl_cmpaupd(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn ctl_cmpaupd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Comparator A Update Mode"]
-  #[inline] pub fn set_ctl_cmpaupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_cmpaupd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1524,11 +1569,13 @@ impl ChCtl {
   }
 
 #[doc="Comparator B Update Mode"]
-  #[inline] pub fn ctl_cmpbupd(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ctl_cmpbupd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Comparator B Update Mode"]
-  #[inline] pub fn set_ctl_cmpbupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_cmpbupd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1536,11 +1583,13 @@ impl ChCtl {
   }
 
 #[doc="PWMnGENA Update Mode"]
-  #[inline] pub fn ctl_genaupd(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x3 // [7:6]
+  #[inline] pub fn ctl_genaupd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 6) & 0x3).into() // [7:6]
   }
 #[doc="PWMnGENA Update Mode"]
-  #[inline] pub fn set_ctl_genaupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_genaupd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
@@ -1548,11 +1597,13 @@ impl ChCtl {
   }
 
 #[doc="PWMnGENB Update Mode"]
-  #[inline] pub fn ctl_genbupd(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn ctl_genbupd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="PWMnGENB Update Mode"]
-  #[inline] pub fn set_ctl_genbupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_genbupd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -1560,11 +1611,13 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBCTL Update Mode"]
-  #[inline] pub fn ctl_dbctlupd(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
+  #[inline] pub fn ctl_dbctlupd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 10) & 0x3).into() // [11:10]
   }
 #[doc="PWMnDBCTL Update Mode"]
-  #[inline] pub fn set_ctl_dbctlupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_dbctlupd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 10);
      self.0 |= value << 10;
@@ -1572,11 +1625,13 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBRISE Update Mode"]
-  #[inline] pub fn ctl_dbriseupd(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x3 // [13:12]
+  #[inline] pub fn ctl_dbriseupd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 12) & 0x3).into() // [13:12]
   }
 #[doc="PWMnDBRISE Update Mode"]
-  #[inline] pub fn set_ctl_dbriseupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_dbriseupd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 12);
      self.0 |= value << 12;
@@ -1584,11 +1639,13 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBFALL Update Mode"]
-  #[inline] pub fn ctl_dbfallupd(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x3 // [15:14]
+  #[inline] pub fn ctl_dbfallupd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 14) & 0x3).into() // [15:14]
   }
 #[doc="PWMnDBFALL Update Mode"]
-  #[inline] pub fn set_ctl_dbfallupd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_dbfallupd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 14);
      self.0 |= value << 14;
@@ -1596,11 +1653,13 @@ impl ChCtl {
   }
 
 #[doc="Fault Condition Source"]
-  #[inline] pub fn ctl_fltsrc(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn ctl_fltsrc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Fault Condition Source"]
-  #[inline] pub fn set_ctl_fltsrc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_fltsrc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -1608,11 +1667,13 @@ impl ChCtl {
   }
 
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn ctl_minfltper(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn ctl_minfltper(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn set_ctl_minfltper(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_minfltper<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -1620,11 +1681,13 @@ impl ChCtl {
   }
 
 #[doc="Latch Fault Input"]
-  #[inline] pub fn ctl_latch(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn ctl_latch(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Latch Fault Input"]
-  #[inline] pub fn set_ctl_latch(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ctl_latch<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -1663,11 +1726,13 @@ impl ::core::fmt::Debug for ChCtl {
 pub struct ChInten(pub u32);
 impl ChInten {
 #[doc="Interrupt for Counter=0"]
-  #[inline] pub fn inten_intcntzero(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn inten_intcntzero(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Interrupt for Counter=0"]
-  #[inline] pub fn set_inten_intcntzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcntzero<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1675,11 +1740,13 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnLOAD"]
-  #[inline] pub fn inten_intcntload(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn inten_intcntload(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Interrupt for Counter=PWMnLOAD"]
-  #[inline] pub fn set_inten_intcntload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcntload<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1687,11 +1754,13 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPA Up"]
-  #[inline] pub fn inten_intcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn inten_intcmpau(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Interrupt for Counter=PWMnCMPA Up"]
-  #[inline] pub fn set_inten_intcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcmpau<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1699,11 +1768,13 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPA Down"]
-  #[inline] pub fn inten_intcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn inten_intcmpad(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Interrupt for Counter=PWMnCMPA Down"]
-  #[inline] pub fn set_inten_intcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcmpad<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1711,11 +1782,13 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPB Up"]
-  #[inline] pub fn inten_intcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn inten_intcmpbu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Interrupt for Counter=PWMnCMPB Up"]
-  #[inline] pub fn set_inten_intcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcmpbu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1723,11 +1796,13 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPB Down"]
-  #[inline] pub fn inten_intcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn inten_intcmpbd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Interrupt for Counter=PWMnCMPB Down"]
-  #[inline] pub fn set_inten_intcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_intcmpbd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1735,11 +1810,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=0"]
-  #[inline] pub fn inten_trcntzero(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn inten_trcntzero(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Trigger for Counter=0"]
-  #[inline] pub fn set_inten_trcntzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcntzero<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1747,11 +1824,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnLOAD"]
-  #[inline] pub fn inten_trcntload(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn inten_trcntload(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Trigger for Counter=PWMnLOAD"]
-  #[inline] pub fn set_inten_trcntload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcntload<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1759,11 +1838,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPA Up"]
-  #[inline] pub fn inten_trcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn inten_trcmpau(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Trigger for Counter=PWMnCMPA Up"]
-  #[inline] pub fn set_inten_trcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcmpau<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -1771,11 +1852,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPA Down"]
-  #[inline] pub fn inten_trcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn inten_trcmpad(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Trigger for Counter=PWMnCMPA Down"]
-  #[inline] pub fn set_inten_trcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcmpad<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -1783,11 +1866,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPB Up"]
-  #[inline] pub fn inten_trcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn inten_trcmpbu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Trigger for Counter=PWMnCMPB Up"]
-  #[inline] pub fn set_inten_trcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcmpbu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -1795,11 +1880,13 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPB Down"]
-  #[inline] pub fn inten_trcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn inten_trcmpbd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Trigger for Counter=PWMnCMPB Down"]
-  #[inline] pub fn set_inten_trcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten_trcmpbd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -1836,11 +1923,13 @@ impl ::core::fmt::Debug for ChInten {
 pub struct ChRis(pub u32);
 impl ChRis {
 #[doc="Counter=0 Interrupt Status"]
-  #[inline] pub fn ris_intcntzero(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ris_intcntzero(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Counter=0 Interrupt Status"]
-  #[inline] pub fn set_ris_intcntzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcntzero<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1848,11 +1937,13 @@ impl ChRis {
   }
 
 #[doc="Counter=Load Interrupt Status"]
-  #[inline] pub fn ris_intcntload(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn ris_intcntload(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Counter=Load Interrupt Status"]
-  #[inline] pub fn set_ris_intcntload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcntload<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1860,11 +1951,13 @@ impl ChRis {
   }
 
 #[doc="Comparator A Up Interrupt Status"]
-  #[inline] pub fn ris_intcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ris_intcmpau(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Comparator A Up Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcmpau<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1872,11 +1965,13 @@ impl ChRis {
   }
 
 #[doc="Comparator A Down Interrupt Status"]
-  #[inline] pub fn ris_intcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn ris_intcmpad(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Comparator A Down Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcmpad<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1884,11 +1979,13 @@ impl ChRis {
   }
 
 #[doc="Comparator B Up Interrupt Status"]
-  #[inline] pub fn ris_intcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn ris_intcmpbu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Comparator B Up Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcmpbu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1896,11 +1993,13 @@ impl ChRis {
   }
 
 #[doc="Comparator B Down Interrupt Status"]
-  #[inline] pub fn ris_intcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ris_intcmpbd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Comparator B Down Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ris_intcmpbd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1931,11 +2030,13 @@ impl ::core::fmt::Debug for ChRis {
 pub struct ChIsc(pub u32);
 impl ChIsc {
 #[doc="Counter=0 Interrupt"]
-  #[inline] pub fn isc_intcntzero(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn isc_intcntzero(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Counter=0 Interrupt"]
-  #[inline] pub fn set_isc_intcntzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcntzero<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1943,11 +2044,13 @@ impl ChIsc {
   }
 
 #[doc="Counter=Load Interrupt"]
-  #[inline] pub fn isc_intcntload(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn isc_intcntload(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Counter=Load Interrupt"]
-  #[inline] pub fn set_isc_intcntload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcntload<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1955,11 +2058,13 @@ impl ChIsc {
   }
 
 #[doc="Comparator A Up Interrupt"]
-  #[inline] pub fn isc_intcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn isc_intcmpau(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Comparator A Up Interrupt"]
-  #[inline] pub fn set_isc_intcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcmpau<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1967,11 +2072,13 @@ impl ChIsc {
   }
 
 #[doc="Comparator A Down Interrupt"]
-  #[inline] pub fn isc_intcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn isc_intcmpad(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Comparator A Down Interrupt"]
-  #[inline] pub fn set_isc_intcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcmpad<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1979,11 +2086,13 @@ impl ChIsc {
   }
 
 #[doc="Comparator B Up Interrupt"]
-  #[inline] pub fn isc_intcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn isc_intcmpbu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Comparator B Up Interrupt"]
-  #[inline] pub fn set_isc_intcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcmpbu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1991,11 +2100,13 @@ impl ChIsc {
   }
 
 #[doc="Comparator B Down Interrupt"]
-  #[inline] pub fn isc_intcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn isc_intcmpbd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Comparator B Down Interrupt"]
-  #[inline] pub fn set_isc_intcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_isc_intcmpbd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2026,11 +2137,13 @@ impl ::core::fmt::Debug for ChIsc {
 pub struct ChLoad(pub u32);
 impl ChLoad {
 #[doc="Counter Load Value"]
-  #[inline] pub fn load(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn load(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Counter Load Value"]
-  #[inline] pub fn set_load(mut self, value: u32) -> Self {
+  #[inline] pub fn set_load<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2056,11 +2169,13 @@ impl ::core::fmt::Debug for ChLoad {
 pub struct ChCount(pub u32);
 impl ChCount {
 #[doc="Counter Value"]
-  #[inline] pub fn count(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn count(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Counter Value"]
-  #[inline] pub fn set_count(mut self, value: u32) -> Self {
+  #[inline] pub fn set_count<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2086,11 +2201,13 @@ impl ::core::fmt::Debug for ChCount {
 pub struct ChCmpa(pub u32);
 impl ChCmpa {
 #[doc="Comparator A Value"]
-  #[inline] pub fn cmpa(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn cmpa(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Comparator A Value"]
-  #[inline] pub fn set_cmpa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmpa<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2116,11 +2233,13 @@ impl ::core::fmt::Debug for ChCmpa {
 pub struct ChCmpb(pub u32);
 impl ChCmpb {
 #[doc="Comparator B Value"]
-  #[inline] pub fn cmpb(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn cmpb(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Comparator B Value"]
-  #[inline] pub fn set_cmpb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmpb<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2146,11 +2265,13 @@ impl ::core::fmt::Debug for ChCmpb {
 pub struct ChGena(pub u32);
 impl ChGena {
 #[doc="Action for Counter=0"]
-  #[inline] pub fn gena_actzero(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn gena_actzero(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Action for Counter=0"]
-  #[inline] pub fn set_gena_actzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actzero<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -2158,11 +2279,13 @@ impl ChGena {
   }
 
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn gena_actload(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
+  #[inline] pub fn gena_actload(&self) -> bits::B2 {
+     (((self.0 as u32) >> 2) & 0x3).into() // [3:2]
   }
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn set_gena_actload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actload<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
@@ -2170,11 +2293,13 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn gena_actcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn gena_actcmpau(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn set_gena_actcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actcmpau<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -2182,11 +2307,13 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn gena_actcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x3 // [7:6]
+  #[inline] pub fn gena_actcmpad(&self) -> bits::B2 {
+     (((self.0 as u32) >> 6) & 0x3).into() // [7:6]
   }
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn set_gena_actcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actcmpad<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
@@ -2194,11 +2321,13 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn gena_actcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn gena_actcmpbu(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn set_gena_actcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actcmpbu<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -2206,11 +2335,13 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn gena_actcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
+  #[inline] pub fn gena_actcmpbd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 10) & 0x3).into() // [11:10]
   }
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn set_gena_actcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gena_actcmpbd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 10);
      self.0 |= value << 10;
@@ -2241,11 +2372,13 @@ impl ::core::fmt::Debug for ChGena {
 pub struct ChGenb(pub u32);
 impl ChGenb {
 #[doc="Action for Counter=0"]
-  #[inline] pub fn genb_actzero(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn genb_actzero(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Action for Counter=0"]
-  #[inline] pub fn set_genb_actzero(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actzero<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -2253,11 +2386,13 @@ impl ChGenb {
   }
 
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn genb_actload(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
+  #[inline] pub fn genb_actload(&self) -> bits::B2 {
+     (((self.0 as u32) >> 2) & 0x3).into() // [3:2]
   }
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn set_genb_actload(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actload<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
@@ -2265,11 +2400,13 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn genb_actcmpau(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn genb_actcmpau(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn set_genb_actcmpau(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actcmpau<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -2277,11 +2414,13 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn genb_actcmpad(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x3 // [7:6]
+  #[inline] pub fn genb_actcmpad(&self) -> bits::B2 {
+     (((self.0 as u32) >> 6) & 0x3).into() // [7:6]
   }
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn set_genb_actcmpad(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actcmpad<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
@@ -2289,11 +2428,13 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn genb_actcmpbu(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn genb_actcmpbu(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn set_genb_actcmpbu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actcmpbu<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -2301,11 +2442,13 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn genb_actcmpbd(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x3 // [11:10]
+  #[inline] pub fn genb_actcmpbd(&self) -> bits::B2 {
+     (((self.0 as u32) >> 10) & 0x3).into() // [11:10]
   }
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn set_genb_actcmpbd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_genb_actcmpbd<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 10);
      self.0 |= value << 10;
@@ -2336,11 +2479,13 @@ impl ::core::fmt::Debug for ChGenb {
 pub struct ChDbctl(pub u32);
 impl ChDbctl {
 #[doc="Dead-Band Generator Enable"]
-  #[inline] pub fn dbctl_enable(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn dbctl_enable(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Dead-Band Generator Enable"]
-  #[inline] pub fn set_dbctl_enable(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbctl_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2366,11 +2511,13 @@ impl ::core::fmt::Debug for ChDbctl {
 pub struct ChDbrise(pub u32);
 impl ChDbrise {
 #[doc="Dead-Band Rise Delay"]
-  #[inline] pub fn dbrise_delay(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn dbrise_delay(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Dead-Band Rise Delay"]
-  #[inline] pub fn set_dbrise_delay(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbrise_delay<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -2396,11 +2543,13 @@ impl ::core::fmt::Debug for ChDbrise {
 pub struct ChDbfall(pub u32);
 impl ChDbfall {
 #[doc="Dead-Band Fall Delay"]
-  #[inline] pub fn dbfall_delay(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn dbfall_delay(&self) -> bits::B12 {
+     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Dead-Band Fall Delay"]
-  #[inline] pub fn set_dbfall_delay(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbfall_delay<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -2426,11 +2575,13 @@ impl ::core::fmt::Debug for ChDbfall {
 pub struct ChFltsrc0(pub u32);
 impl ChFltsrc0 {
 #[doc="Fault0 Input"]
-  #[inline] pub fn fault0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn fault0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Fault0 Input"]
-  #[inline] pub fn set_fault0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2438,11 +2589,13 @@ impl ChFltsrc0 {
   }
 
 #[doc="Fault1 Input"]
-  #[inline] pub fn fault1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn fault1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Fault1 Input"]
-  #[inline] pub fn set_fault1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2450,11 +2603,13 @@ impl ChFltsrc0 {
   }
 
 #[doc="Fault2 Input"]
-  #[inline] pub fn fault2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn fault2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Fault2 Input"]
-  #[inline] pub fn set_fault2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2462,11 +2617,13 @@ impl ChFltsrc0 {
   }
 
 #[doc="Fault3 Input"]
-  #[inline] pub fn fault3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn fault3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Fault3 Input"]
-  #[inline] pub fn set_fault3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2495,11 +2652,13 @@ impl ::core::fmt::Debug for ChFltsrc0 {
 pub struct ChFltsrc1(pub u32);
 impl ChFltsrc1 {
 #[doc="Digital Comparator 0"]
-  #[inline] pub fn dcmp0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn dcmp0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Digital Comparator 0"]
-  #[inline] pub fn set_dcmp0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2507,11 +2666,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 1"]
-  #[inline] pub fn dcmp1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn dcmp1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Digital Comparator 1"]
-  #[inline] pub fn set_dcmp1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2519,11 +2680,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 2"]
-  #[inline] pub fn dcmp2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn dcmp2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Digital Comparator 2"]
-  #[inline] pub fn set_dcmp2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2531,11 +2694,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 3"]
-  #[inline] pub fn dcmp3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn dcmp3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Digital Comparator 3"]
-  #[inline] pub fn set_dcmp3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2543,11 +2708,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 4"]
-  #[inline] pub fn dcmp4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn dcmp4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Digital Comparator 4"]
-  #[inline] pub fn set_dcmp4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2555,11 +2722,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 5"]
-  #[inline] pub fn dcmp5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dcmp5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Digital Comparator 5"]
-  #[inline] pub fn set_dcmp5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2567,11 +2736,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 6"]
-  #[inline] pub fn dcmp6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn dcmp6(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Digital Comparator 6"]
-  #[inline] pub fn set_dcmp6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp6<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2579,11 +2750,13 @@ impl ChFltsrc1 {
   }
 
 #[doc="Digital Comparator 7"]
-  #[inline] pub fn dcmp7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn dcmp7(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Digital Comparator 7"]
-  #[inline] pub fn set_dcmp7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp7<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2616,11 +2789,13 @@ impl ::core::fmt::Debug for ChFltsrc1 {
 pub struct ChMinfltper(pub u32);
 impl ChMinfltper {
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn minfltper(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn minfltper(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn set_minfltper(mut self, value: u32) -> Self {
+  #[inline] pub fn set_minfltper<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2646,11 +2821,13 @@ impl ::core::fmt::Debug for ChMinfltper {
 pub struct ChFltsen(pub u32);
 impl ChFltsen {
 #[doc="Fault0 Sense"]
-  #[inline] pub fn fault0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn fault0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Fault0 Sense"]
-  #[inline] pub fn set_fault0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2658,11 +2835,13 @@ impl ChFltsen {
   }
 
 #[doc="Fault1 Sense"]
-  #[inline] pub fn fault1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn fault1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Fault1 Sense"]
-  #[inline] pub fn set_fault1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2670,11 +2849,13 @@ impl ChFltsen {
   }
 
 #[doc="Fault2 Sense"]
-  #[inline] pub fn fault2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn fault2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Fault2 Sense"]
-  #[inline] pub fn set_fault2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2682,11 +2863,13 @@ impl ChFltsen {
   }
 
 #[doc="Fault3 Sense"]
-  #[inline] pub fn fault3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn fault3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Fault3 Sense"]
-  #[inline] pub fn set_fault3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2715,11 +2898,13 @@ impl ::core::fmt::Debug for ChFltsen {
 pub struct ChFltstat0(pub u32);
 impl ChFltstat0 {
 #[doc="Fault Input 0"]
-  #[inline] pub fn fault0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn fault0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Fault Input 0"]
-  #[inline] pub fn set_fault0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2727,11 +2912,13 @@ impl ChFltstat0 {
   }
 
 #[doc="Fault Input 1"]
-  #[inline] pub fn fault1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn fault1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Fault Input 1"]
-  #[inline] pub fn set_fault1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2739,11 +2926,13 @@ impl ChFltstat0 {
   }
 
 #[doc="Fault Input 2"]
-  #[inline] pub fn fault2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn fault2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Fault Input 2"]
-  #[inline] pub fn set_fault2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2751,11 +2940,13 @@ impl ChFltstat0 {
   }
 
 #[doc="Fault Input 3"]
-  #[inline] pub fn fault3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn fault3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Fault Input 3"]
-  #[inline] pub fn set_fault3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fault3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2784,11 +2975,13 @@ impl ::core::fmt::Debug for ChFltstat0 {
 pub struct ChFltstat1(pub u32);
 impl ChFltstat1 {
 #[doc="Digital Comparator 0 Trigger"]
-  #[inline] pub fn dcmp0(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn dcmp0(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Digital Comparator 0 Trigger"]
-  #[inline] pub fn set_dcmp0(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp0<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2796,11 +2989,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 1 Trigger"]
-  #[inline] pub fn dcmp1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn dcmp1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Digital Comparator 1 Trigger"]
-  #[inline] pub fn set_dcmp1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2808,11 +3003,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 2 Trigger"]
-  #[inline] pub fn dcmp2(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn dcmp2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Digital Comparator 2 Trigger"]
-  #[inline] pub fn set_dcmp2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2820,11 +3017,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 3 Trigger"]
-  #[inline] pub fn dcmp3(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn dcmp3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Digital Comparator 3 Trigger"]
-  #[inline] pub fn set_dcmp3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -2832,11 +3031,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 4 Trigger"]
-  #[inline] pub fn dcmp4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn dcmp4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Digital Comparator 4 Trigger"]
-  #[inline] pub fn set_dcmp4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2844,11 +3045,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 5 Trigger"]
-  #[inline] pub fn dcmp5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn dcmp5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Digital Comparator 5 Trigger"]
-  #[inline] pub fn set_dcmp5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2856,11 +3059,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 6 Trigger"]
-  #[inline] pub fn dcmp6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn dcmp6(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Digital Comparator 6 Trigger"]
-  #[inline] pub fn set_dcmp6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp6<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2868,11 +3073,13 @@ impl ChFltstat1 {
   }
 
 #[doc="Digital Comparator 7 Trigger"]
-  #[inline] pub fn dcmp7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn dcmp7(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Digital Comparator 7 Trigger"]
-  #[inline] pub fn set_dcmp7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dcmp7<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2905,11 +3112,13 @@ impl ::core::fmt::Debug for ChFltstat1 {
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Generators"]
-  #[inline] pub fn pwm_pp_gcnt(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn pwm_pp_gcnt(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Generators"]
-  #[inline] pub fn set_pwm_pp_gcnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_pp_gcnt<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -2917,11 +3126,13 @@ impl Pp {
   }
 
 #[doc="Fault Inputs (per PWM unit)"]
-  #[inline] pub fn pwm_pp_fcnt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0xf // [7:4]
+  #[inline] pub fn pwm_pp_fcnt(&self) -> bits::B4 {
+     (((self.0 as u32) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="Fault Inputs (per PWM unit)"]
-  #[inline] pub fn set_pwm_pp_fcnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_pp_fcnt<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -2929,11 +3140,13 @@ impl Pp {
   }
 
 #[doc="Extended Synchronization"]
-  #[inline] pub fn pwm_pp_esync(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn pwm_pp_esync(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Extended Synchronization"]
-  #[inline] pub fn set_pwm_pp_esync(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_pp_esync<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -2941,11 +3154,13 @@ impl Pp {
   }
 
 #[doc="Extended Fault"]
-  #[inline] pub fn pwm_pp_efault(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn pwm_pp_efault(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Extended Fault"]
-  #[inline] pub fn set_pwm_pp_efault(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_pp_efault<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -2953,11 +3168,13 @@ impl Pp {
   }
 
 #[doc="One-Shot Mode"]
-  #[inline] pub fn pwm_pp_one(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn pwm_pp_one(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="One-Shot Mode"]
-  #[inline] pub fn set_pwm_pp_one(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_pp_one<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -2987,11 +3204,13 @@ impl ::core::fmt::Debug for Pp {
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="PWM Clock Divider"]
-  #[inline] pub fn pwm_cc_pwmdiv(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn pwm_cc_pwmdiv(&self) -> bits::B3 {
+     (((self.0 as u32) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="PWM Clock Divider"]
-  #[inline] pub fn set_pwm_cc_pwmdiv(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_cc_pwmdiv<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -2999,11 +3218,13 @@ impl Cc {
   }
 
 #[doc="Use PWM Clock Divisor"]
-  #[inline] pub fn pwm_cc_usepwm(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn pwm_cc_usepwm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Use PWM Clock Divisor"]
-  #[inline] pub fn set_pwm_cc_usepwm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pwm_cc_usepwm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;

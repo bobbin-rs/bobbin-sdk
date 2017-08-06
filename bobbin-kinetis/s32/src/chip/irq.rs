@@ -379,15 +379,15 @@ impl<T> Irq<T> {
    }
 
    pub fn priority(&self) -> u8 {
-       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8
+       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)).into()
    }
 
    pub fn set_priority(&self, value: u8) {
-       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));
+       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value));
    }
 
    pub fn trigger_interrupt(&self) {
-       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));
+       NVIC.set_stir(Stir(0).set_intid(self.0));
    }
 
    pub fn handler(&self) -> Option<Handler> { unsafe { R_INTERRUPT_HANDLERS[self.0] } }
@@ -1467,10 +1467,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 147] = [
    None,
    None,
    None,
-   None,                          // IRQ 48: No Description
-   None,                          // IRQ 49: No Description
-   None,                          // IRQ 50: No Description
-   None,                          // IRQ 51: No Description
+   None,
+   None,
+   None,
+   None,
    None,
    None,
    None,

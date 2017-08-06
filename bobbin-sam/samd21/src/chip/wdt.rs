@@ -1,4 +1,5 @@
 //! Watchdog Timer
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const WDT: Wdt = Wdt(0x40001000);
 
 #[doc="Watchdog Timer"]
@@ -205,11 +206,13 @@ impl Wdt {
 pub struct Clear(pub u8);
 impl Clear {
 #[doc="Watchdog Clear"]
-  #[inline] pub fn clear(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xff // [7:0]
+  #[inline] pub fn clear(&self) -> bits::B8 {
+     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Watchdog Clear"]
-  #[inline] pub fn set_clear(mut self, value: u8) -> Self {
+  #[inline] pub fn set_clear<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -235,11 +238,13 @@ impl ::core::fmt::Debug for Clear {
 pub struct Config(pub u8);
 impl Config {
 #[doc="Time-Out Period"]
-  #[inline] pub fn per(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn per(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Time-Out Period"]
-  #[inline] pub fn set_per(mut self, value: u8) -> Self {
+  #[inline] pub fn set_per<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -247,11 +252,13 @@ impl Config {
   }
 
 #[doc="Window Mode Time-Out Period"]
-  #[inline] pub fn window(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0xf // [7:4]
+  #[inline] pub fn window(&self) -> bits::B4 {
+     (((self.0 as u8) >> 4) & 0xf).into() // [7:4]
   }
 #[doc="Window Mode Time-Out Period"]
-  #[inline] pub fn set_window(mut self, value: u8) -> Self {
+  #[inline] pub fn set_window<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 4);
      self.0 |= value << 4;
@@ -278,11 +285,13 @@ impl ::core::fmt::Debug for Config {
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Enable"]
-  #[inline] pub fn enable(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Enable"]
-  #[inline] pub fn set_enable(mut self, value: u8) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -290,11 +299,13 @@ impl Ctrl {
   }
 
 #[doc="Watchdog Timer Window Mode Enable"]
-  #[inline] pub fn wen(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn wen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Watchdog Timer Window Mode Enable"]
-  #[inline] pub fn set_wen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_wen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -302,11 +313,13 @@ impl Ctrl {
   }
 
 #[doc="Always-On"]
-  #[inline] pub fn alwayson(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn alwayson(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Always-On"]
-  #[inline] pub fn set_alwayson(mut self, value: u8) -> Self {
+  #[inline] pub fn set_alwayson<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -334,11 +347,13 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Ewctrl(pub u8);
 impl Ewctrl {
 #[doc="Early Warning Interrupt Time Offset"]
-  #[inline] pub fn ewoffset(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn ewoffset(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Early Warning Interrupt Time Offset"]
-  #[inline] pub fn set_ewoffset(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ewoffset<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -364,11 +379,13 @@ impl ::core::fmt::Debug for Ewctrl {
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Early Warning Interrupt Enable"]
-  #[inline] pub fn ew(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ew(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Early Warning Interrupt Enable"]
-  #[inline] pub fn set_ew(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ew<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -394,11 +411,13 @@ impl ::core::fmt::Debug for Intenclr {
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Early Warning Interrupt Enable"]
-  #[inline] pub fn ew(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ew(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Early Warning Interrupt Enable"]
-  #[inline] pub fn set_ew(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ew<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -424,11 +443,13 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Early Warning"]
-  #[inline] pub fn ew(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ew(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Early Warning"]
-  #[inline] pub fn set_ew(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ew<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -454,11 +475,13 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]
-  #[inline] pub fn syncbusy(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn syncbusy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Synchronization Busy"]
-  #[inline] pub fn set_syncbusy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncbusy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;

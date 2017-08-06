@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub mod sig;
 pub mod exti;
 pub mod dma;

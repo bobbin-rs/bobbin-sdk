@@ -1,4 +1,5 @@
 //! Memory Protection Unit
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const MPU: Mpu = Mpu(0xe000ed90);
 
 #[doc="Memory Protection Unit"]
@@ -309,11 +310,13 @@ impl Mpu {
 pub struct MpuType(pub u32);
 impl MpuType {
 #[doc="Indicates the number of supported MPU instruction regions. Always contains 0x00. The MPU memory map is unified and is described by the DREGION field."]
-  #[inline] pub fn iregion(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xff // [23:16]
+  #[inline] pub fn iregion(&self) -> bits::B8 {
+     (((self.0 as u32) >> 16) & 0xff).into() // [23:16]
   }
 #[doc="Indicates the number of supported MPU instruction regions. Always contains 0x00. The MPU memory map is unified and is described by the DREGION field."]
-  #[inline] pub fn set_iregion(mut self, value: u32) -> Self {
+  #[inline] pub fn set_iregion<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 16);
      self.0 |= value << 16;
@@ -321,11 +324,13 @@ impl MpuType {
   }
 
 #[doc="Indicates the number of supported MPU data regions: 0x08 = eight MPU regions."]
-  #[inline] pub fn dregion(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn dregion(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="Indicates the number of supported MPU data regions: 0x08 = eight MPU regions."]
-  #[inline] pub fn set_dregion(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dregion<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -333,11 +338,13 @@ impl MpuType {
   }
 
 #[doc="Indicates support for unified or separate instruction and date memory maps: 0 = unified."]
-  #[inline] pub fn separate(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn separate(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Indicates support for unified or separate instruction and date memory maps: 0 = unified."]
-  #[inline] pub fn set_separate(mut self, value: u32) -> Self {
+  #[inline] pub fn set_separate<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -365,11 +372,13 @@ impl ::core::fmt::Debug for MpuType {
 pub struct MpuCtrl(pub u32);
 impl MpuCtrl {
 #[doc="Enables privileged software access to the default memory map: 0 = If the MPU is enabled, disables use of the default memory map. Any memory access to a location not covered by any enabled region causes a fault. 1 = If the MPU is enabled, enables use of the default memory map as a background region for privileged software accesses. When enabled, the background region acts as if it is region number -1. Any region that is defined and enabled has priority over this default map. If the MPU is disabled, the processor ignores this bit."]
-  #[inline] pub fn privdefena(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn privdefena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Enables privileged software access to the default memory map: 0 = If the MPU is enabled, disables use of the default memory map. Any memory access to a location not covered by any enabled region causes a fault. 1 = If the MPU is enabled, enables use of the default memory map as a background region for privileged software accesses. When enabled, the background region acts as if it is region number -1. Any region that is defined and enabled has priority over this default map. If the MPU is disabled, the processor ignores this bit."]
-  #[inline] pub fn set_privdefena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_privdefena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -377,11 +386,13 @@ impl MpuCtrl {
   }
 
 #[doc="Enables the operation of MPU during hard fault, NMI, and FAULTMASK handlers. When the MPU is enabled: 0 = MPU is disabled during hard fault, NMI, and FAULTMASK handlers, regardless of the value of the ENABLE bit1 = the MPU is enabled during hard fault, NMI, and FAULTMASK handlers. When the MPU is disabled, if this bit is set to 1 the behavior is Unpredictable."]
-  #[inline] pub fn hfnmiena(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn hfnmiena(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Enables the operation of MPU during hard fault, NMI, and FAULTMASK handlers. When the MPU is enabled: 0 = MPU is disabled during hard fault, NMI, and FAULTMASK handlers, regardless of the value of the ENABLE bit1 = the MPU is enabled during hard fault, NMI, and FAULTMASK handlers. When the MPU is disabled, if this bit is set to 1 the behavior is Unpredictable."]
-  #[inline] pub fn set_hfnmiena(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hfnmiena<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -389,11 +400,13 @@ impl MpuCtrl {
   }
 
 #[doc="Enables the MPU: 0 = MPU disabled, 1 = MPU enabled."]
-  #[inline] pub fn enable(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Enables the MPU: 0 = MPU disabled, 1 = MPU enabled."]
-  #[inline] pub fn set_enable(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -421,11 +434,13 @@ impl ::core::fmt::Debug for MpuCtrl {
 pub struct MpuRnr(pub u32);
 impl MpuRnr {
 #[doc="Indicates the MPU region referenced by the MPU_RBAR and MPU_RASR registers. The MPU supports 8 memory regions, so the permitted values of this field are 0-7."]
-  #[inline] pub fn region(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn region(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Indicates the MPU region referenced by the MPU_RBAR and MPU_RASR registers. The MPU supports 8 memory regions, so the permitted values of this field are 0-7."]
-  #[inline] pub fn set_region(mut self, value: u32) -> Self {
+  #[inline] pub fn set_region<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -451,11 +466,13 @@ impl ::core::fmt::Debug for MpuRnr {
 pub struct MpuRbar(pub u32);
 impl MpuRbar {
 #[doc="Region base address field. The value of N depends on the region size."]
-  #[inline] pub fn addr(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x7ffffff // [31:5]
+  #[inline] pub fn addr(&self) -> bits::B27 {
+     (((self.0 as u32) >> 5) & 0x7ffffff).into() // [31:5]
   }
 #[doc="Region base address field. The value of N depends on the region size."]
-  #[inline] pub fn set_addr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_addr<V: Into<bits::B27>>(mut self, value: V) -> Self {
+     let value: bits::B27 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7ffffff) == 0);
      self.0 &= !(0x7ffffff << 5);
      self.0 |= value << 5;
@@ -464,12 +481,14 @@ impl MpuRbar {
 
 #[doc="MPU Region Number valid bit: 0 = MPU_RNR not changed, and the processor: updates the base address for the region specified in the MPU_RNR ignores the value of the REGION field
 1 = the processor: updates the value of the MPU_RNR to the value of the REGION field updates the base address for the region specified in the REGION field. Always reads as zero."]
-  #[inline] pub fn valid(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn valid(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="MPU Region Number valid bit: 0 = MPU_RNR not changed, and the processor: updates the base address for the region specified in the MPU_RNR ignores the value of the REGION field
 1 = the processor: updates the value of the MPU_RNR to the value of the REGION field updates the base address for the region specified in the REGION field. Always reads as zero."]
-  #[inline] pub fn set_valid(mut self, value: u32) -> Self {
+  #[inline] pub fn set_valid<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -477,11 +496,13 @@ impl MpuRbar {
   }
 
 #[doc="MPU region field: For the behavior on writes, see the description of the VALID field. On reads, returns the current region number, as specified by the RNR."]
-  #[inline] pub fn region(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn region(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="MPU region field: For the behavior on writes, see the description of the VALID field. On reads, returns the current region number, as specified by the RNR."]
-  #[inline] pub fn set_region(mut self, value: u32) -> Self {
+  #[inline] pub fn set_region<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -509,11 +530,13 @@ impl ::core::fmt::Debug for MpuRbar {
 pub struct MpuRasr(pub u32);
 impl MpuRasr {
 #[doc="Instruction access disable bit: 0 = instruction fetches enabled, 1 = instruction fetches disabled."]
-  #[inline] pub fn xn(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn xn(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="Instruction access disable bit: 0 = instruction fetches enabled, 1 = instruction fetches disabled."]
-  #[inline] pub fn set_xn(mut self, value: u32) -> Self {
+  #[inline] pub fn set_xn<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -521,11 +544,13 @@ impl MpuRasr {
   }
 
 #[doc="Access permission field."]
-  #[inline] pub fn ap(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x7 // [26:24]
+  #[inline] pub fn ap(&self) -> bits::B3 {
+     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
   }
 #[doc="Access permission field."]
-  #[inline] pub fn set_ap(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ap<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
@@ -533,11 +558,13 @@ impl MpuRasr {
   }
 
 #[doc="Memory access attribute TEX"]
-  #[inline] pub fn tex(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x7 // [21:19]
+  #[inline] pub fn tex(&self) -> bits::B3 {
+     (((self.0 as u32) >> 19) & 0x7).into() // [21:19]
   }
 #[doc="Memory access attribute TEX"]
-  #[inline] pub fn set_tex(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tex<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 19);
      self.0 |= value << 19;
@@ -545,11 +572,13 @@ impl MpuRasr {
   }
 
 #[doc="C Bit"]
-  #[inline] pub fn c(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn c(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="C Bit"]
-  #[inline] pub fn set_c(mut self, value: u32) -> Self {
+  #[inline] pub fn set_c<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -557,11 +586,13 @@ impl MpuRasr {
   }
 
 #[doc="B Bit"]
-  #[inline] pub fn b(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn b(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="B Bit"]
-  #[inline] pub fn set_b(mut self, value: u32) -> Self {
+  #[inline] pub fn set_b<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -569,11 +600,13 @@ impl MpuRasr {
   }
 
 #[doc="Sharable Bit"]
-  #[inline] pub fn s(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn s(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Sharable Bit"]
-  #[inline] pub fn set_s(mut self, value: u32) -> Self {
+  #[inline] pub fn set_s<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -581,11 +614,13 @@ impl MpuRasr {
   }
 
 #[doc="Subregion disable bits. For each bit in this field: 0 = corresponding sub-region is enabled1 = corresponding sub-region is disabled. See Subregions for more information. Region sizes of 128 bytes and less do not support subregions. When writing the attributes for such a region, write the SRD field as 0x00."]
-  #[inline] pub fn srd(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn srd(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="Subregion disable bits. For each bit in this field: 0 = corresponding sub-region is enabled1 = corresponding sub-region is disabled. See Subregions for more information. Region sizes of 128 bytes and less do not support subregions. When writing the attributes for such a region, write the SRD field as 0x00."]
-  #[inline] pub fn set_srd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_srd<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -593,11 +628,13 @@ impl MpuRasr {
   }
 
 #[doc="Specifies the size of the MPU protection region. The minimum permitted value is 3 (0b00010), see See SIZE field values for more information."]
-  #[inline] pub fn size(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1f // [5:1]
+  #[inline] pub fn size(&self) -> bits::B5 {
+     (((self.0 as u32) >> 1) & 0x1f).into() // [5:1]
   }
 #[doc="Specifies the size of the MPU protection region. The minimum permitted value is 3 (0b00010), see See SIZE field values for more information."]
-  #[inline] pub fn set_size(mut self, value: u32) -> Self {
+  #[inline] pub fn set_size<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 1);
      self.0 |= value << 1;
@@ -605,11 +642,13 @@ impl MpuRasr {
   }
 
 #[doc="Region enable bit."]
-  #[inline] pub fn enable(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Region enable bit."]
-  #[inline] pub fn set_enable(mut self, value: u32) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;

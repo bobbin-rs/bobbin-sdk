@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::tim_gen::*;
 
 pub const TIM2: Tim2 = Periph(0x40000000, Tim2Id {});

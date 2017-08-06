@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::uart0::*;
 
 pub const UART0: Uart0 = Periph(0x4006a000, Uart0Id {});

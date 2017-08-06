@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::gpio::*;
 
 pub trait LinkPort<T> {

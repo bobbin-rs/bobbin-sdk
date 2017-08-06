@@ -1,4 +1,5 @@
 //! Ethernet: Precision time protocol
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const ETHERNET_PTP: EthernetPtp = EthernetPtp(0x40028700);
 
 #[doc="Ethernet: Precision time protocol"]
@@ -261,11 +262,13 @@ impl EthernetPtp {
 pub struct Ptptscr(pub u32);
 impl Ptptscr {
 #[doc="no description available"]
-  #[inline] pub fn tse(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tse(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tse(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tse<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -273,11 +276,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsfcu(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tsfcu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsfcu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsfcu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -285,11 +290,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsptppsv2e(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn tsptppsv2e(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsptppsv2e(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsptppsv2e<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -297,11 +304,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssptpoefe(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tssptpoefe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssptpoefe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssptpoefe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -309,11 +318,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssipv6fe(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn tssipv6fe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssipv6fe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssipv6fe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -321,11 +332,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssipv4fe(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn tssipv4fe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssipv4fe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssipv4fe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -333,11 +346,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsseme(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn tsseme(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsseme(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsseme<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -345,11 +360,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssmrme(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn tssmrme(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssmrme(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssmrme<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -357,11 +374,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tscnt(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x3 // [17:16]
+  #[inline] pub fn tscnt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 16) & 0x3).into() // [17:16]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tscnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tscnt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
      self.0 |= value << 16;
@@ -369,11 +388,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tspffmae(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn tspffmae(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tspffmae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tspffmae<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -381,11 +402,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssti(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn tssti(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssti(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssti<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -393,11 +416,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsstu(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn tsstu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsstu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsstu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -405,11 +430,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsite(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tsite(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsite(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsite<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -417,11 +444,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ttsaru(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ttsaru(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ttsaru(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttsaru<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -429,11 +458,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tssarfe(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn tssarfe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tssarfe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tssarfe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -441,11 +472,13 @@ impl Ptptscr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsssr(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tsssr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsssr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsssr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -486,11 +519,13 @@ impl ::core::fmt::Debug for Ptptscr {
 pub struct Ptpssir(pub u32);
 impl Ptpssir {
 #[doc="no description available"]
-  #[inline] pub fn stssi(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn stssi(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_stssi(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stssi<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -516,11 +551,13 @@ impl ::core::fmt::Debug for Ptpssir {
 pub struct Ptptshr(pub u32);
 impl Ptptshr {
 #[doc="no description available"]
-  #[inline] pub fn sts(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn sts(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_sts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sts<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -545,11 +582,13 @@ impl ::core::fmt::Debug for Ptptshr {
 pub struct Ptptslr(pub u32);
 impl Ptptslr {
 #[doc="no description available"]
-  #[inline] pub fn stss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fffffff // [30:0]
+  #[inline] pub fn stss(&self) -> bits::B31 {
+     (((self.0 as u32) >> 0) & 0x7fffffff).into() // [30:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_stss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stss<V: Into<bits::B31>>(mut self, value: V) -> Self {
+     let value: bits::B31 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fffffff) == 0);
      self.0 &= !(0x7fffffff << 0);
      self.0 |= value << 0;
@@ -557,11 +596,13 @@ impl Ptptslr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn stpns(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn stpns(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_stpns(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stpns<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -588,11 +629,13 @@ impl ::core::fmt::Debug for Ptptslr {
 pub struct Ptptshur(pub u32);
 impl Ptptshur {
 #[doc="no description available"]
-  #[inline] pub fn tsus(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tsus(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsus(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsus<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -617,11 +660,13 @@ impl ::core::fmt::Debug for Ptptshur {
 pub struct Ptptslur(pub u32);
 impl Ptptslur {
 #[doc="no description available"]
-  #[inline] pub fn tsuss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fffffff // [30:0]
+  #[inline] pub fn tsuss(&self) -> bits::B31 {
+     (((self.0 as u32) >> 0) & 0x7fffffff).into() // [30:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsuss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsuss<V: Into<bits::B31>>(mut self, value: V) -> Self {
+     let value: bits::B31 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fffffff) == 0);
      self.0 &= !(0x7fffffff << 0);
      self.0 |= value << 0;
@@ -629,11 +674,13 @@ impl Ptptslur {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsupns(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn tsupns(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsupns(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsupns<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -660,11 +707,13 @@ impl ::core::fmt::Debug for Ptptslur {
 pub struct Ptptsar(pub u32);
 impl Ptptsar {
 #[doc="no description available"]
-  #[inline] pub fn tsa(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tsa(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsa<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -689,11 +738,13 @@ impl ::core::fmt::Debug for Ptptsar {
 pub struct Ptptthr(pub u32);
 impl Ptptthr {
 #[doc="0"]
-  #[inline] pub fn ttsh(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn ttsh(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="0"]
-  #[inline] pub fn set_ttsh(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttsh<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -718,11 +769,13 @@ impl ::core::fmt::Debug for Ptptthr {
 pub struct Ptpttlr(pub u32);
 impl Ptpttlr {
 #[doc="no description available"]
-  #[inline] pub fn ttsl(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn ttsl(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ttsl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ttsl<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -747,11 +800,13 @@ impl ::core::fmt::Debug for Ptpttlr {
 pub struct Ptptssr(pub u32);
 impl Ptptssr {
 #[doc="no description available"]
-  #[inline] pub fn tsso(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tsso(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsso(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsso<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -759,11 +814,13 @@ impl Ptptssr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsttr(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tsttr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsttr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsttr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -790,11 +847,13 @@ impl ::core::fmt::Debug for Ptptssr {
 pub struct Ptpppscr(pub u32);
 impl Ptpppscr {
 #[doc="TSSO"]
-  #[inline] pub fn tsso(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tsso(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="TSSO"]
-  #[inline] pub fn set_tsso(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsso<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -802,11 +861,13 @@ impl Ptpppscr {
   }
 
 #[doc="TSTTR"]
-  #[inline] pub fn tsttr(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tsttr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="TSTTR"]
-  #[inline] pub fn set_tsttr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsttr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;

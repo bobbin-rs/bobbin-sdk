@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const WATCHDOG0: Watchdog0 = Periph(0x40000000, Watchdog0Id {});
 pub const WATCHDOG1: Watchdog1 = Periph(0x40001000, Watchdog1Id {});
 
@@ -230,11 +231,13 @@ impl<T> Periph<T> {
 pub struct Load(pub u32);
 impl Load {
 #[doc="Watchdog Load Value"]
-  #[inline] pub fn load(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn load(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Watchdog Load Value"]
-  #[inline] pub fn set_load(mut self, value: u32) -> Self {
+  #[inline] pub fn set_load<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -259,11 +262,13 @@ impl ::core::fmt::Debug for Load {
 pub struct Value(pub u32);
 impl Value {
 #[doc="Watchdog Value"]
-  #[inline] pub fn value(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn value(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Watchdog Value"]
-  #[inline] pub fn set_value(mut self, value: u32) -> Self {
+  #[inline] pub fn set_value<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -288,11 +293,13 @@ impl ::core::fmt::Debug for Value {
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Watchdog Interrupt Enable"]
-  #[inline] pub fn inten(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn inten(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Watchdog Interrupt Enable"]
-  #[inline] pub fn set_inten(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inten<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -300,11 +307,13 @@ impl Ctl {
   }
 
 #[doc="Watchdog Reset Enable"]
-  #[inline] pub fn resen(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn resen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Watchdog Reset Enable"]
-  #[inline] pub fn set_resen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_resen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -312,11 +321,13 @@ impl Ctl {
   }
 
 #[doc="Watchdog Interrupt Type"]
-  #[inline] pub fn inttype(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn inttype(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Watchdog Interrupt Type"]
-  #[inline] pub fn set_inttype(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inttype<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -324,11 +335,13 @@ impl Ctl {
   }
 
 #[doc="Write Complete"]
-  #[inline] pub fn wrc(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn wrc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Write Complete"]
-  #[inline] pub fn set_wrc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wrc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -357,11 +370,13 @@ impl ::core::fmt::Debug for Ctl {
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Watchdog Interrupt Clear"]
-  #[inline] pub fn icr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn icr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Watchdog Interrupt Clear"]
-  #[inline] pub fn set_icr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_icr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -386,11 +401,13 @@ impl ::core::fmt::Debug for Icr {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="Watchdog Raw Interrupt Status"]
-  #[inline] pub fn wdtris(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn wdtris(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Watchdog Raw Interrupt Status"]
-  #[inline] pub fn set_wdtris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdtris<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -416,11 +433,13 @@ impl ::core::fmt::Debug for Ris {
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="Watchdog Masked Interrupt Status"]
-  #[inline] pub fn wdtmis(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn wdtmis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Watchdog Masked Interrupt Status"]
-  #[inline] pub fn set_wdtmis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdtmis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -446,11 +465,13 @@ impl ::core::fmt::Debug for Mis {
 pub struct Test(pub u32);
 impl Test {
 #[doc="Watchdog Stall Enable"]
-  #[inline] pub fn stall(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn stall(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Watchdog Stall Enable"]
-  #[inline] pub fn set_stall(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stall<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -476,11 +497,13 @@ impl ::core::fmt::Debug for Test {
 pub struct Lock(pub u32);
 impl Lock {
 #[doc="Watchdog Lock"]
-  #[inline] pub fn lock(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn lock(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Watchdog Lock"]
-  #[inline] pub fn set_lock(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lock<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

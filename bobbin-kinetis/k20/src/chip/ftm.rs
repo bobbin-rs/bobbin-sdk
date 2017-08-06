@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::ftm::*;
 
 pub const FTM0: Ftm0 = Periph(0x40038000, Ftm0Id {});

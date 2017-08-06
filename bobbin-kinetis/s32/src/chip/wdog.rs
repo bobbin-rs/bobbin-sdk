@@ -1,4 +1,5 @@
 //! Watchdog timer
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const WDOG: Wdog = Wdog(0x40052000);
 
 #[doc="Watchdog timer"]
@@ -120,11 +121,13 @@ impl Wdog {
 pub struct Cs(pub u32);
 impl Cs {
 #[doc="Stop Enable"]
-  #[inline] pub fn stop(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn stop(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Stop Enable"]
-  #[inline] pub fn set_stop(mut self, value: u32) -> Self {
+  #[inline] pub fn set_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -132,11 +135,13 @@ impl Cs {
   }
 
 #[doc="Wait Enable"]
-  #[inline] pub fn wait(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn wait(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Wait Enable"]
-  #[inline] pub fn set_wait(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wait<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -144,11 +149,13 @@ impl Cs {
   }
 
 #[doc="Debug Enable"]
-  #[inline] pub fn dbg(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn dbg(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Debug Enable"]
-  #[inline] pub fn set_dbg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbg<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -156,11 +163,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Test"]
-  #[inline] pub fn tst(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x3 // [4:3]
+  #[inline] pub fn tst(&self) -> bits::B2 {
+     (((self.0 as u32) >> 3) & 0x3).into() // [4:3]
   }
 #[doc="Watchdog Test"]
-  #[inline] pub fn set_tst(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tst<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 3);
      self.0 |= value << 3;
@@ -168,11 +177,13 @@ impl Cs {
   }
 
 #[doc="Allow updates"]
-  #[inline] pub fn update(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn update(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Allow updates"]
-  #[inline] pub fn set_update(mut self, value: u32) -> Self {
+  #[inline] pub fn set_update<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -180,11 +191,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Interrupt"]
-  #[inline] pub fn int(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn int(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Watchdog Interrupt"]
-  #[inline] pub fn set_int(mut self, value: u32) -> Self {
+  #[inline] pub fn set_int<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -192,11 +205,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Enable"]
-  #[inline] pub fn en(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn en(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Watchdog Enable"]
-  #[inline] pub fn set_en(mut self, value: u32) -> Self {
+  #[inline] pub fn set_en<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -204,11 +219,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Clock"]
-  #[inline] pub fn clk(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn clk(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="Watchdog Clock"]
-  #[inline] pub fn set_clk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_clk<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -216,11 +233,13 @@ impl Cs {
   }
 
 #[doc="Reconfiguration Success"]
-  #[inline] pub fn rcs(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn rcs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Reconfiguration Success"]
-  #[inline] pub fn set_rcs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rcs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -228,11 +247,13 @@ impl Cs {
   }
 
 #[doc="Unlock status"]
-  #[inline] pub fn ulk(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn ulk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Unlock status"]
-  #[inline] pub fn set_ulk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ulk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -240,11 +261,13 @@ impl Cs {
   }
 
 #[doc="Watchdog prescaler"]
-  #[inline] pub fn pres(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn pres(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Watchdog prescaler"]
-  #[inline] pub fn set_pres(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pres<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -252,11 +275,13 @@ impl Cs {
   }
 
 #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
-  #[inline] pub fn cmd32en(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn cmd32en(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
-  #[inline] pub fn set_cmd32en(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cmd32en<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -264,11 +289,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Interrupt Flag"]
-  #[inline] pub fn flg(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn flg(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="Watchdog Interrupt Flag"]
-  #[inline] pub fn set_flg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_flg<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -276,11 +303,13 @@ impl Cs {
   }
 
 #[doc="Watchdog Window"]
-  #[inline] pub fn win(&self) -> u32 {
-     ((self.0 as u32) >> 15) & 0x1 // [15]
+  #[inline] pub fn win(&self) -> bits::B1 {
+     (((self.0 as u32) >> 15) & 0x1).into() // [15]
   }
 #[doc="Watchdog Window"]
-  #[inline] pub fn set_win(mut self, value: u32) -> Self {
+  #[inline] pub fn set_win<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 15);
      self.0 |= value << 15;
@@ -319,11 +348,13 @@ impl ::core::fmt::Debug for Cs {
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Low byte of the Watchdog Counter"]
-  #[inline] pub fn cntlow(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn cntlow(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Low byte of the Watchdog Counter"]
-  #[inline] pub fn set_cntlow(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cntlow<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -331,11 +362,13 @@ impl Cnt {
   }
 
 #[doc="High byte of the Watchdog Counter"]
-  #[inline] pub fn cnthigh(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn cnthigh(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="High byte of the Watchdog Counter"]
-  #[inline] pub fn set_cnthigh(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cnthigh<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -362,11 +395,13 @@ impl ::core::fmt::Debug for Cnt {
 pub struct Toval(pub u32);
 impl Toval {
 #[doc="Low byte of the timeout value"]
-  #[inline] pub fn tovallow(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn tovallow(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Low byte of the timeout value"]
-  #[inline] pub fn set_tovallow(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tovallow<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -374,11 +409,13 @@ impl Toval {
   }
 
 #[doc="High byte of the timeout value"]
-  #[inline] pub fn tovalhigh(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn tovalhigh(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="High byte of the timeout value"]
-  #[inline] pub fn set_tovalhigh(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tovalhigh<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -405,11 +442,13 @@ impl ::core::fmt::Debug for Toval {
 pub struct Win(pub u32);
 impl Win {
 #[doc="Low byte of Watchdog Window"]
-  #[inline] pub fn winlow(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn winlow(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Low byte of Watchdog Window"]
-  #[inline] pub fn set_winlow(mut self, value: u32) -> Self {
+  #[inline] pub fn set_winlow<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -417,11 +456,13 @@ impl Win {
   }
 
 #[doc="High byte of Watchdog Window"]
-  #[inline] pub fn winhigh(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xff // [15:8]
+  #[inline] pub fn winhigh(&self) -> bits::B8 {
+     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="High byte of Watchdog Window"]
-  #[inline] pub fn set_winhigh(mut self, value: u32) -> Self {
+  #[inline] pub fn set_winhigh<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;

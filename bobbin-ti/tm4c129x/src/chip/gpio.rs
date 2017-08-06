@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const GPIOA: Gpioa = Periph(0x40004000, GpioaId {});
 pub const GPIOB: Gpiob = Periph(0x40005000, GpiobId {});
 pub const GPIOC: Gpioc = Periph(0x40006000, GpiocId {});
@@ -917,13 +918,15 @@ impl<T> Periph<T> {
 pub struct Data(pub u32);
 impl Data {
 #[doc="GPIO Data"]
-  #[inline] pub fn data(&self, index: usize) -> u32 {
+  #[inline] pub fn data(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Data"]
-  #[inline] pub fn set_data(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_data<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -958,13 +961,15 @@ impl ::core::fmt::Debug for Data {
 pub struct Dir(pub u32);
 impl Dir {
 #[doc="GPIO Direction"]
-  #[inline] pub fn dir(&self, index: usize) -> u32 {
+  #[inline] pub fn dir(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Direction"]
-  #[inline] pub fn set_dir(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dir<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -999,13 +1004,15 @@ impl ::core::fmt::Debug for Dir {
 pub struct Is(pub u32);
 impl Is {
 #[doc="GPIO Interrupt Sense"]
-  #[inline] pub fn is(&self, index: usize) -> u32 {
+  #[inline] pub fn is(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Interrupt Sense"]
-  #[inline] pub fn set_is(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_is<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1040,13 +1047,15 @@ impl ::core::fmt::Debug for Is {
 pub struct Ibe(pub u32);
 impl Ibe {
 #[doc="GPIO Interrupt Both Edges"]
-  #[inline] pub fn ibe(&self, index: usize) -> u32 {
+  #[inline] pub fn ibe(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Interrupt Both Edges"]
-  #[inline] pub fn set_ibe(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ibe<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1081,13 +1090,15 @@ impl ::core::fmt::Debug for Ibe {
 pub struct Iev(pub u32);
 impl Iev {
 #[doc="GPIO Interrupt Event"]
-  #[inline] pub fn iev(&self, index: usize) -> u32 {
+  #[inline] pub fn iev(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Interrupt Event"]
-  #[inline] pub fn set_iev(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_iev<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1122,13 +1133,15 @@ impl ::core::fmt::Debug for Iev {
 pub struct Im(pub u32);
 impl Im {
 #[doc="GPIO Interrupt Mask"]
-  #[inline] pub fn im(&self, index: usize) -> u32 {
+  #[inline] pub fn im(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Interrupt Mask"]
-  #[inline] pub fn set_im(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_im<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1138,11 +1151,13 @@ impl Im {
   }
 
 #[doc="GPIO uDMA Done Interrupt Mask Enable"]
-  #[inline] pub fn dmaime(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dmaime(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="GPIO uDMA Done Interrupt Mask Enable"]
-  #[inline] pub fn set_dmaime(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaime<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1176,13 +1191,15 @@ impl ::core::fmt::Debug for Im {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="GPIO Raw Interrupt Status"]
-  #[inline] pub fn ris(&self, index: usize) -> u32 {
+  #[inline] pub fn ris(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Raw Interrupt Status"]
-  #[inline] pub fn set_ris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ris<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1192,11 +1209,13 @@ impl Ris {
   }
 
 #[doc="GPIO uDMA Done Interrupt Raw Status"]
-  #[inline] pub fn dmaris(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dmaris(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="GPIO uDMA Done Interrupt Raw Status"]
-  #[inline] pub fn set_dmaris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmaris<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1230,13 +1249,15 @@ impl ::core::fmt::Debug for Ris {
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="GPIO Masked Interrupt Status"]
-  #[inline] pub fn mis(&self, index: usize) -> u32 {
+  #[inline] pub fn mis(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Masked Interrupt Status"]
-  #[inline] pub fn set_mis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_mis<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1246,11 +1267,13 @@ impl Mis {
   }
 
 #[doc="GPIO uDMA Done Interrupt Masked Status"]
-  #[inline] pub fn dmamis(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dmamis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="GPIO uDMA Done Interrupt Masked Status"]
-  #[inline] pub fn set_dmamis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmamis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1284,13 +1307,15 @@ impl ::core::fmt::Debug for Mis {
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="GPIO Interrupt Clear"]
-  #[inline] pub fn icr(&self, index: usize) -> u32 {
+  #[inline] pub fn icr(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Interrupt Clear"]
-  #[inline] pub fn set_icr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_icr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1300,11 +1325,13 @@ impl Icr {
   }
 
 #[doc="GPIO uDMA Done Interrupt Clear"]
-  #[inline] pub fn dmamic(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dmamic(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="GPIO uDMA Done Interrupt Clear"]
-  #[inline] pub fn set_dmamic(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmamic<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -1338,13 +1365,15 @@ impl ::core::fmt::Debug for Icr {
 pub struct Afsel(pub u32);
 impl Afsel {
 #[doc="GPIO Alternate Function Select"]
-  #[inline] pub fn afsel(&self, index: usize) -> u32 {
+  #[inline] pub fn afsel(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Alternate Function Select"]
-  #[inline] pub fn set_afsel(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_afsel<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1379,13 +1408,15 @@ impl ::core::fmt::Debug for Afsel {
 pub struct Dr2r(pub u32);
 impl Dr2r {
 #[doc="GPIO 2-mA Drive Enable"]
-  #[inline] pub fn drv2(&self, index: usize) -> u32 {
+  #[inline] pub fn drv2(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO 2-mA Drive Enable"]
-  #[inline] pub fn set_drv2(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv2<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1420,13 +1451,15 @@ impl ::core::fmt::Debug for Dr2r {
 pub struct Dr4r(pub u32);
 impl Dr4r {
 #[doc="GPIO 4-mA Drive Enable"]
-  #[inline] pub fn drv4(&self, index: usize) -> u32 {
+  #[inline] pub fn drv4(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO 4-mA Drive Enable"]
-  #[inline] pub fn set_drv4(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv4<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1461,13 +1494,15 @@ impl ::core::fmt::Debug for Dr4r {
 pub struct Dr8r(pub u32);
 impl Dr8r {
 #[doc="GPIO 8-mA Drive Enable"]
-  #[inline] pub fn drv8(&self, index: usize) -> u32 {
+  #[inline] pub fn drv8(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO 8-mA Drive Enable"]
-  #[inline] pub fn set_drv8(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv8<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1502,13 +1537,15 @@ impl ::core::fmt::Debug for Dr8r {
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="GPIO Open Drain Enable"]
-  #[inline] pub fn ode(&self, index: usize) -> u32 {
+  #[inline] pub fn ode(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Open Drain Enable"]
-  #[inline] pub fn set_ode(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ode<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1543,13 +1580,15 @@ impl ::core::fmt::Debug for Odr {
 pub struct Pur(pub u32);
 impl Pur {
 #[doc="GPIO Pull-Up Enable"]
-  #[inline] pub fn pue(&self, index: usize) -> u32 {
+  #[inline] pub fn pue(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Pull-Up Enable"]
-  #[inline] pub fn set_pue(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pue<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1584,13 +1623,15 @@ impl ::core::fmt::Debug for Pur {
 pub struct Pdr(pub u32);
 impl Pdr {
 #[doc="GPIO Pull-Down Enable"]
-  #[inline] pub fn pde(&self, index: usize) -> u32 {
+  #[inline] pub fn pde(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Pull-Down Enable"]
-  #[inline] pub fn set_pde(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pde<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1625,13 +1666,15 @@ impl ::core::fmt::Debug for Pdr {
 pub struct Slr(pub u32);
 impl Slr {
 #[doc="GPIO Slew Rate Limit Enable"]
-  #[inline] pub fn slr(&self, index: usize) -> u32 {
+  #[inline] pub fn slr(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Slew Rate Limit Enable"]
-  #[inline] pub fn set_slr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_slr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1666,13 +1709,15 @@ impl ::core::fmt::Debug for Slr {
 pub struct Den(pub u32);
 impl Den {
 #[doc="GPIO Digital Enable"]
-  #[inline] pub fn den(&self, index: usize) -> u32 {
+  #[inline] pub fn den(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Digital Enable"]
-  #[inline] pub fn set_den(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_den<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1707,11 +1752,13 @@ impl ::core::fmt::Debug for Den {
 pub struct Lock(pub u32);
 impl Lock {
 #[doc="GPIO Lock"]
-  #[inline] pub fn gpio_lock(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn gpio_lock(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="GPIO Lock"]
-  #[inline] pub fn set_gpio_lock(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gpio_lock<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1736,13 +1783,15 @@ impl ::core::fmt::Debug for Lock {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="GPIO Commit"]
-  #[inline] pub fn cr(&self, index: usize) -> u32 {
+  #[inline] pub fn cr(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Commit"]
-  #[inline] pub fn set_cr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1777,13 +1826,15 @@ impl ::core::fmt::Debug for Cr {
 pub struct Amsel(pub u32);
 impl Amsel {
 #[doc="GPIO Analog Mode Select"]
-  #[inline] pub fn gpioamsel(&self, index: usize) -> u32 {
+  #[inline] pub fn gpioamsel(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPIO Analog Mode Select"]
-  #[inline] pub fn set_gpioamsel(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_gpioamsel<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1818,13 +1869,15 @@ impl ::core::fmt::Debug for Amsel {
 pub struct Pctl(pub u32);
 impl Pctl {
 #[doc="GPIO Port Mux Control"]
-  #[inline] pub fn pmc(&self, index: usize) -> u32 {
+  #[inline] pub fn pmc(&self, index: usize) -> bits::B4 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
-     ((self.0 as u32) >> shift) & 0xf // [3:0]
+     (((self.0 as u32) >> shift) & 0xf).into() // [3:0]
   }
 #[doc="GPIO Port Mux Control"]
-  #[inline] pub fn set_pmc(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pmc<V: Into<bits::B4>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0xf) == 0);
      let shift: usize = 0 + (index << 2);
@@ -1859,13 +1912,15 @@ impl ::core::fmt::Debug for Pctl {
 pub struct Adcctl(pub u32);
 impl Adcctl {
 #[doc="ADC Trigger Enable"]
-  #[inline] pub fn adcen(&self, index: usize) -> u32 {
+  #[inline] pub fn adcen(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="ADC Trigger Enable"]
-  #[inline] pub fn set_adcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_adcen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1900,13 +1955,15 @@ impl ::core::fmt::Debug for Adcctl {
 pub struct Dmactl(pub u32);
 impl Dmactl {
 #[doc="uDMA Trigger Enable"]
-  #[inline] pub fn dmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn dmaen(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="uDMA Trigger Enable"]
-  #[inline] pub fn set_dmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmaen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1941,13 +1998,15 @@ impl ::core::fmt::Debug for Dmactl {
 pub struct Gpiosi(pub u32);
 impl Gpiosi {
 #[doc="Summary Interrupt"]
-  #[inline] pub fn sum(&self, index: usize) -> u32 {
+  #[inline] pub fn sum(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Summary Interrupt"]
-  #[inline] pub fn set_sum(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_sum<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -1982,13 +2041,15 @@ impl ::core::fmt::Debug for Gpiosi {
 pub struct Gpiodr12r(pub u32);
 impl Gpiodr12r {
 #[doc="12-mA Drive Enable"]
-  #[inline] pub fn drv12(&self, index: usize) -> u32 {
+  #[inline] pub fn drv12(&self, index: usize) -> bits::B1 {
      assert!(index < 8);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="12-mA Drive Enable"]
-  #[inline] pub fn set_drv12(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_drv12<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -2023,11 +2084,13 @@ impl ::core::fmt::Debug for Gpiodr12r {
 pub struct Gpiowakepen(pub u32);
 impl Gpiowakepen {
 #[doc="K[7] Wake Enable"]
-  #[inline] pub fn wakep7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn wakep7(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="K[7] Wake Enable"]
-  #[inline] pub fn set_wakep7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep7<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2035,11 +2098,13 @@ impl Gpiowakepen {
   }
 
 #[doc="K[6] Wake Enable"]
-  #[inline] pub fn wakep6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn wakep6(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="K[6] Wake Enable"]
-  #[inline] pub fn set_wakep6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep6<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2047,11 +2112,13 @@ impl Gpiowakepen {
   }
 
 #[doc="K[5] Wake Enable"]
-  #[inline] pub fn wakep5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn wakep5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="K[5] Wake Enable"]
-  #[inline] pub fn set_wakep5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2059,11 +2126,13 @@ impl Gpiowakepen {
   }
 
 #[doc="K[4] Wake Enable"]
-  #[inline] pub fn wakep4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn wakep4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="K[4] Wake Enable"]
-  #[inline] pub fn set_wakep4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakep4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2092,11 +2161,13 @@ impl ::core::fmt::Debug for Gpiowakepen {
 pub struct Gpiowakelvl(pub u32);
 impl Gpiowakelvl {
 #[doc="K[7] Wake Level"]
-  #[inline] pub fn wakelvl7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn wakelvl7(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="K[7] Wake Level"]
-  #[inline] pub fn set_wakelvl7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl7<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2104,11 +2175,13 @@ impl Gpiowakelvl {
   }
 
 #[doc="K[6] Wake Level"]
-  #[inline] pub fn wakelvl6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn wakelvl6(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="K[6] Wake Level"]
-  #[inline] pub fn set_wakelvl6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl6<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2116,11 +2189,13 @@ impl Gpiowakelvl {
   }
 
 #[doc="K[5] Wake Level"]
-  #[inline] pub fn wakelvl5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn wakelvl5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="K[5] Wake Level"]
-  #[inline] pub fn set_wakelvl5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2128,11 +2203,13 @@ impl Gpiowakelvl {
   }
 
 #[doc="K[4] Wake Level"]
-  #[inline] pub fn wakelvl4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn wakelvl4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="K[4] Wake Level"]
-  #[inline] pub fn set_wakelvl4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakelvl4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -2161,11 +2238,13 @@ impl ::core::fmt::Debug for Gpiowakelvl {
 pub struct Gpiowakestat(pub u32);
 impl Gpiowakestat {
 #[doc="K[7] Wake Status"]
-  #[inline] pub fn wakestat7(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn wakestat7(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="K[7] Wake Status"]
-  #[inline] pub fn set_wakestat7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat7<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2173,11 +2252,13 @@ impl Gpiowakestat {
   }
 
 #[doc="K[6] Wake Status"]
-  #[inline] pub fn wakestat6(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn wakestat6(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="K[6] Wake Status"]
-  #[inline] pub fn set_wakestat6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat6<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2185,11 +2266,13 @@ impl Gpiowakestat {
   }
 
 #[doc="K[5] Wake Status"]
-  #[inline] pub fn wakestat5(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn wakestat5(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="K[5] Wake Status"]
-  #[inline] pub fn set_wakestat5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat5<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2197,11 +2280,13 @@ impl Gpiowakestat {
   }
 
 #[doc="K[4] Wake Status"]
-  #[inline] pub fn wakestat4(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn wakestat4(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="K[4] Wake Status"]
-  #[inline] pub fn set_wakestat4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wakestat4<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;

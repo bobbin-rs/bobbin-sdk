@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="WWDG Peripheral"]
@@ -94,11 +95,13 @@ impl<T> Periph<T> {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Activation bit"]
-  #[inline] pub fn wdga(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn wdga(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Activation bit"]
-  #[inline] pub fn set_wdga(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdga<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -106,11 +109,13 @@ impl Cr {
   }
 
 #[doc="7-bit counter (MSB to LSB)"]
-  #[inline] pub fn t(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7f // [6:0]
+  #[inline] pub fn t(&self) -> bits::B7 {
+     (((self.0 as u32) >> 0) & 0x7f).into() // [6:0]
   }
 #[doc="7-bit counter (MSB to LSB)"]
-  #[inline] pub fn set_t(mut self, value: u32) -> Self {
+  #[inline] pub fn set_t<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
      self.0 |= value << 0;
@@ -137,11 +142,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Cfr(pub u32);
 impl Cfr {
 #[doc="Early wakeup interrupt"]
-  #[inline] pub fn ewi(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn ewi(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Early wakeup interrupt"]
-  #[inline] pub fn set_ewi(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewi<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -149,11 +156,13 @@ impl Cfr {
   }
 
 #[doc="Timer base"]
-  #[inline] pub fn wdgtb(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x3 // [8:7]
+  #[inline] pub fn wdgtb(&self) -> bits::B2 {
+     (((self.0 as u32) >> 7) & 0x3).into() // [8:7]
   }
 #[doc="Timer base"]
-  #[inline] pub fn set_wdgtb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wdgtb<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 7);
      self.0 |= value << 7;
@@ -161,11 +170,13 @@ impl Cfr {
   }
 
 #[doc="7-bit window value"]
-  #[inline] pub fn w(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7f // [6:0]
+  #[inline] pub fn w(&self) -> bits::B7 {
+     (((self.0 as u32) >> 0) & 0x7f).into() // [6:0]
   }
 #[doc="7-bit window value"]
-  #[inline] pub fn set_w(mut self, value: u32) -> Self {
+  #[inline] pub fn set_w<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
      self.0 |= value << 0;
@@ -193,11 +204,13 @@ impl ::core::fmt::Debug for Cfr {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Early wakeup interrupt flag"]
-  #[inline] pub fn ewif(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ewif(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Early wakeup interrupt flag"]
-  #[inline] pub fn set_ewif(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;

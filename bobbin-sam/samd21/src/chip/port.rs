@@ -1,4 +1,5 @@
 //! I/O Pin Controller
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const PORTA: Porta = Periph(0x41004400, PortaId {});
 pub const PORTB: Portb = Periph(0x41004480, PortbId {});
 
@@ -362,11 +363,13 @@ impl<T> Periph<T> {
 pub struct Ctrl(pub u32);
 impl Ctrl {
 #[doc="Input Sampling Mode"]
-  #[inline] pub fn sampling(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn sampling(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Input Sampling Mode"]
-  #[inline] pub fn set_sampling(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sampling<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -391,13 +394,15 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Dir(pub u32);
 impl Dir {
 #[doc="Port Data Direction"]
-  #[inline] pub fn dir(&self, index: usize) -> u32 {
+  #[inline] pub fn dir(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Direction"]
-  #[inline] pub fn set_dir(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dir<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -456,13 +461,15 @@ impl ::core::fmt::Debug for Dir {
 pub struct Dirclr(pub u32);
 impl Dirclr {
 #[doc="Port Data Direction Clear"]
-  #[inline] pub fn dirclr(&self, index: usize) -> u32 {
+  #[inline] pub fn dirclr(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Direction Clear"]
-  #[inline] pub fn set_dirclr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dirclr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -521,13 +528,15 @@ impl ::core::fmt::Debug for Dirclr {
 pub struct Dirset(pub u32);
 impl Dirset {
 #[doc="Port Data Direction Set"]
-  #[inline] pub fn dirset(&self, index: usize) -> u32 {
+  #[inline] pub fn dirset(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Direction Set"]
-  #[inline] pub fn set_dirset(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dirset<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -586,13 +595,15 @@ impl ::core::fmt::Debug for Dirset {
 pub struct Dirtgl(pub u32);
 impl Dirtgl {
 #[doc="Port Data Direction Toggle"]
-  #[inline] pub fn dirtgl(&self, index: usize) -> u32 {
+  #[inline] pub fn dirtgl(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Direction Toggle"]
-  #[inline] pub fn set_dirtgl(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dirtgl<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -651,13 +662,15 @@ impl ::core::fmt::Debug for Dirtgl {
 pub struct In(pub u32);
 impl In {
 #[doc="Port Data Input Value"]
-  #[inline] pub fn _in(&self, index: usize) -> u32 {
+  #[inline] pub fn _in(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Input Value"]
-  #[inline] pub fn set_in(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_in<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -716,13 +729,15 @@ impl ::core::fmt::Debug for In {
 pub struct Out(pub u32);
 impl Out {
 #[doc="Port Data Output Value"]
-  #[inline] pub fn out(&self, index: usize) -> u32 {
+  #[inline] pub fn out(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Output Value"]
-  #[inline] pub fn set_out(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_out<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -781,13 +796,15 @@ impl ::core::fmt::Debug for Out {
 pub struct Outclr(pub u32);
 impl Outclr {
 #[doc="Port Data Output Value Clear"]
-  #[inline] pub fn outclr(&self, index: usize) -> u32 {
+  #[inline] pub fn outclr(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Output Value Clear"]
-  #[inline] pub fn set_outclr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_outclr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -846,13 +863,15 @@ impl ::core::fmt::Debug for Outclr {
 pub struct Outset(pub u32);
 impl Outset {
 #[doc="Port Data Output Value Set"]
-  #[inline] pub fn outset(&self, index: usize) -> u32 {
+  #[inline] pub fn outset(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Output Value Set"]
-  #[inline] pub fn set_outset(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_outset<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -911,13 +930,15 @@ impl ::core::fmt::Debug for Outset {
 pub struct Outtgl(pub u32);
 impl Outtgl {
 #[doc="Port Data Output Value Toggle"]
-  #[inline] pub fn outtgl(&self, index: usize) -> u32 {
+  #[inline] pub fn outtgl(&self, index: usize) -> bits::B1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port Data Output Value Toggle"]
-  #[inline] pub fn set_outtgl(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_outtgl<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 32);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -976,11 +997,13 @@ impl ::core::fmt::Debug for Outtgl {
 pub struct Pincfg(pub u8);
 impl Pincfg {
 #[doc="Peripheral Multiplexer Enable"]
-  #[inline] pub fn pmuxen(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn pmuxen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Peripheral Multiplexer Enable"]
-  #[inline] pub fn set_pmuxen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_pmuxen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -988,11 +1011,13 @@ impl Pincfg {
   }
 
 #[doc="Input Enable"]
-  #[inline] pub fn inen(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn inen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Input Enable"]
-  #[inline] pub fn set_inen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_inen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1000,11 +1025,13 @@ impl Pincfg {
   }
 
 #[doc="Pull Enable"]
-  #[inline] pub fn pullen(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn pullen(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Pull Enable"]
-  #[inline] pub fn set_pullen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_pullen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1012,11 +1039,13 @@ impl Pincfg {
   }
 
 #[doc="Output Driver Strength Selection"]
-  #[inline] pub fn drvstr(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn drvstr(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="Output Driver Strength Selection"]
-  #[inline] pub fn set_drvstr(mut self, value: u8) -> Self {
+  #[inline] pub fn set_drvstr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -1045,13 +1074,15 @@ impl ::core::fmt::Debug for Pincfg {
 pub struct Pmux(pub u8);
 impl Pmux {
 #[doc="Peripheral Multiplexing Even"]
-  #[inline] pub fn pmux(&self, index: usize) -> u8 {
+  #[inline] pub fn pmux(&self, index: usize) -> bits::B4 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 2);
-     ((self.0 as u8) >> shift) & 0xf // [3:0]
+     (((self.0 as u8) >> shift) & 0xf).into() // [3:0]
   }
 #[doc="Peripheral Multiplexing Even"]
-  #[inline] pub fn set_pmux(mut self, index: usize, value: u8) -> Self {
+  #[inline] pub fn set_pmux<V: Into<bits::B4>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!(index < 2);
      assert!((value & !0xf) == 0);
      let shift: usize = 0 + (index << 2);
@@ -1080,11 +1111,13 @@ impl ::core::fmt::Debug for Pmux {
 pub struct Wrconfig(pub u32);
 impl Wrconfig {
 #[doc="Pin Mask for Multiple Pin Configuration"]
-  #[inline] pub fn pinmask(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn pinmask(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Pin Mask for Multiple Pin Configuration"]
-  #[inline] pub fn set_pinmask(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pinmask<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1092,11 +1125,13 @@ impl Wrconfig {
   }
 
 #[doc="Peripheral Multiplexer Enable"]
-  #[inline] pub fn pmuxen(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn pmuxen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Peripheral Multiplexer Enable"]
-  #[inline] pub fn set_pmuxen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pmuxen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -1104,11 +1139,13 @@ impl Wrconfig {
   }
 
 #[doc="Input Enable"]
-  #[inline] pub fn inen(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn inen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="Input Enable"]
-  #[inline] pub fn set_inen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -1116,11 +1153,13 @@ impl Wrconfig {
   }
 
 #[doc="Pull Enable"]
-  #[inline] pub fn pullen(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn pullen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Pull Enable"]
-  #[inline] pub fn set_pullen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pullen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -1128,11 +1167,13 @@ impl Wrconfig {
   }
 
 #[doc="Output Driver Strength Selection"]
-  #[inline] pub fn drvstr(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn drvstr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="Output Driver Strength Selection"]
-  #[inline] pub fn set_drvstr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_drvstr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -1140,11 +1181,13 @@ impl Wrconfig {
   }
 
 #[doc="Peripheral Multiplexing"]
-  #[inline] pub fn pmux(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn pmux(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Peripheral Multiplexing"]
-  #[inline] pub fn set_pmux(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pmux<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -1152,11 +1195,13 @@ impl Wrconfig {
   }
 
 #[doc="Write PMUX"]
-  #[inline] pub fn wrpmux(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn wrpmux(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="Write PMUX"]
-  #[inline] pub fn set_wrpmux(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wrpmux<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -1164,11 +1209,13 @@ impl Wrconfig {
   }
 
 #[doc="Write PINCFG"]
-  #[inline] pub fn wrpincfg(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn wrpincfg(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Write PINCFG"]
-  #[inline] pub fn set_wrpincfg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wrpincfg<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1176,11 +1223,13 @@ impl Wrconfig {
   }
 
 #[doc="Half-Word Select"]
-  #[inline] pub fn hwsel(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn hwsel(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Half-Word Select"]
-  #[inline] pub fn set_hwsel(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hwsel<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;

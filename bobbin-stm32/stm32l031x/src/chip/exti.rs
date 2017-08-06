@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use stm32_common::chip::exti::*;
 
 pub const EXTI: Exti = Periph(0x40010400, ExtiId {});

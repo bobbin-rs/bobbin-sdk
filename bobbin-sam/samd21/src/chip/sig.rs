@@ -77,22 +77,6 @@ pub const TCC1_WO_3: Tcc1Wo3 = Tcc1Wo3 {};
 pub struct Tcc1Wo3 {}
 impl Wo3 for Tcc1Wo3 {}
 
-pub const TCC1_WO_4: Tcc1Wo4 = Tcc1Wo4 {};
-pub struct Tcc1Wo4 {}
-impl Wo4 for Tcc1Wo4 {}
-
-pub const TCC1_WO_5: Tcc1Wo5 = Tcc1Wo5 {};
-pub struct Tcc1Wo5 {}
-impl Wo5 for Tcc1Wo5 {}
-
-pub const TCC1_WO_6: Tcc1Wo6 = Tcc1Wo6 {};
-pub struct Tcc1Wo6 {}
-impl Wo6 for Tcc1Wo6 {}
-
-pub const TCC1_WO_7: Tcc1Wo7 = Tcc1Wo7 {};
-pub struct Tcc1Wo7 {}
-impl Wo7 for Tcc1Wo7 {}
-
 pub const TCC2_WO_0: Tcc2Wo0 = Tcc2Wo0 {};
 pub struct Tcc2Wo0 {}
 impl Wo0 for Tcc2Wo0 {}
@@ -100,30 +84,6 @@ impl Wo0 for Tcc2Wo0 {}
 pub const TCC2_WO_1: Tcc2Wo1 = Tcc2Wo1 {};
 pub struct Tcc2Wo1 {}
 impl Wo1 for Tcc2Wo1 {}
-
-pub const TCC2_WO_2: Tcc2Wo2 = Tcc2Wo2 {};
-pub struct Tcc2Wo2 {}
-impl Wo2 for Tcc2Wo2 {}
-
-pub const TCC2_WO_3: Tcc2Wo3 = Tcc2Wo3 {};
-pub struct Tcc2Wo3 {}
-impl Wo3 for Tcc2Wo3 {}
-
-pub const TCC2_WO_4: Tcc2Wo4 = Tcc2Wo4 {};
-pub struct Tcc2Wo4 {}
-impl Wo4 for Tcc2Wo4 {}
-
-pub const TCC2_WO_5: Tcc2Wo5 = Tcc2Wo5 {};
-pub struct Tcc2Wo5 {}
-impl Wo5 for Tcc2Wo5 {}
-
-pub const TCC2_WO_6: Tcc2Wo6 = Tcc2Wo6 {};
-pub struct Tcc2Wo6 {}
-impl Wo6 for Tcc2Wo6 {}
-
-pub const TCC2_WO_7: Tcc2Wo7 = Tcc2Wo7 {};
-pub struct Tcc2Wo7 {}
-impl Wo7 for Tcc2Wo7 {}
 
 pub const TC3_WO_0: Tc3Wo0 = Tc3Wo0 {};
 pub struct Tc3Wo0 {}

@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PIT Peripheral"]
@@ -151,11 +152,13 @@ impl<T> Periph<T> {
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="Freeze"]
-  #[inline] pub fn frz(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn frz(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Freeze"]
-  #[inline] pub fn set_frz(mut self, value: u32) -> Self {
+  #[inline] pub fn set_frz<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -163,11 +166,13 @@ impl Mcr {
   }
 
 #[doc="Module Disable - (PIT section)"]
-  #[inline] pub fn mdis(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn mdis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Module Disable - (PIT section)"]
-  #[inline] pub fn set_mdis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mdis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -194,11 +199,13 @@ impl ::core::fmt::Debug for Mcr {
 pub struct Ldval(pub u32);
 impl Ldval {
 #[doc="Timer Start Value"]
-  #[inline] pub fn tsv(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tsv(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Timer Start Value"]
-  #[inline] pub fn set_tsv(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsv<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -223,11 +230,13 @@ impl ::core::fmt::Debug for Ldval {
 pub struct Cval(pub u32);
 impl Cval {
 #[doc="Current Timer Value"]
-  #[inline] pub fn tvl(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tvl(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Current Timer Value"]
-  #[inline] pub fn set_tvl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tvl<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -252,11 +261,13 @@ impl ::core::fmt::Debug for Cval {
 pub struct Tctrl(pub u32);
 impl Tctrl {
 #[doc="Timer Enable"]
-  #[inline] pub fn ten(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn ten(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Timer Enable"]
-  #[inline] pub fn set_ten(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ten<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -264,11 +275,13 @@ impl Tctrl {
   }
 
 #[doc="Timer Interrupt Enable"]
-  #[inline] pub fn tie(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Timer Interrupt Enable"]
-  #[inline] pub fn set_tie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -276,11 +289,13 @@ impl Tctrl {
   }
 
 #[doc="Chain Mode"]
-  #[inline] pub fn chn(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn chn(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Chain Mode"]
-  #[inline] pub fn set_chn(mut self, value: u32) -> Self {
+  #[inline] pub fn set_chn<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -308,11 +323,13 @@ impl ::core::fmt::Debug for Tctrl {
 pub struct Tflg(pub u32);
 impl Tflg {
 #[doc="Timer Interrupt Flag"]
-  #[inline] pub fn tif(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tif(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Timer Interrupt Flag"]
-  #[inline] pub fn set_tif(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -333,3 +350,12 @@ impl ::core::fmt::Debug for Tflg {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+#[doc="PIT Channel"]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+

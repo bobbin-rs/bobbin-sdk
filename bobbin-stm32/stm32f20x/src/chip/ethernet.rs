@@ -1,4 +1,5 @@
 //! Ethernet: media access control (MAC)
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const ETHERNET_MAC: Ethernet = Ethernet(0x40028000);
 
 #[doc="Ethernet: media access control (MAC)"]
@@ -540,11 +541,13 @@ impl Ethernet {
 pub struct Maccr(pub u32);
 impl Maccr {
 #[doc="RE"]
-  #[inline] pub fn re(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn re(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="RE"]
-  #[inline] pub fn set_re(mut self, value: u32) -> Self {
+  #[inline] pub fn set_re<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -552,11 +555,13 @@ impl Maccr {
   }
 
 #[doc="TE"]
-  #[inline] pub fn te(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn te(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="TE"]
-  #[inline] pub fn set_te(mut self, value: u32) -> Self {
+  #[inline] pub fn set_te<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -564,11 +569,13 @@ impl Maccr {
   }
 
 #[doc="DC"]
-  #[inline] pub fn dc(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn dc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="DC"]
-  #[inline] pub fn set_dc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -576,11 +583,13 @@ impl Maccr {
   }
 
 #[doc="BL"]
-  #[inline] pub fn bl(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x3 // [6:5]
+  #[inline] pub fn bl(&self) -> bits::B2 {
+     (((self.0 as u32) >> 5) & 0x3).into() // [6:5]
   }
 #[doc="BL"]
-  #[inline] pub fn set_bl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bl<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 5);
      self.0 |= value << 5;
@@ -588,11 +597,13 @@ impl Maccr {
   }
 
 #[doc="APCS"]
-  #[inline] pub fn apcs(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn apcs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="APCS"]
-  #[inline] pub fn set_apcs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_apcs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -600,11 +611,13 @@ impl Maccr {
   }
 
 #[doc="RD"]
-  #[inline] pub fn rd(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn rd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="RD"]
-  #[inline] pub fn set_rd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -612,11 +625,13 @@ impl Maccr {
   }
 
 #[doc="IPCO"]
-  #[inline] pub fn ipco(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn ipco(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="IPCO"]
-  #[inline] pub fn set_ipco(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ipco<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -624,11 +639,13 @@ impl Maccr {
   }
 
 #[doc="DM"]
-  #[inline] pub fn dm(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn dm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="DM"]
-  #[inline] pub fn set_dm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -636,11 +653,13 @@ impl Maccr {
   }
 
 #[doc="LM"]
-  #[inline] pub fn lm(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn lm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="LM"]
-  #[inline] pub fn set_lm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -648,11 +667,13 @@ impl Maccr {
   }
 
 #[doc="ROD"]
-  #[inline] pub fn rod(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn rod(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="ROD"]
-  #[inline] pub fn set_rod(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rod<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -660,11 +681,13 @@ impl Maccr {
   }
 
 #[doc="FES"]
-  #[inline] pub fn fes(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn fes(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="FES"]
-  #[inline] pub fn set_fes(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fes<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -672,11 +695,13 @@ impl Maccr {
   }
 
 #[doc="CSD"]
-  #[inline] pub fn csd(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn csd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="CSD"]
-  #[inline] pub fn set_csd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_csd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -684,11 +709,13 @@ impl Maccr {
   }
 
 #[doc="IFG"]
-  #[inline] pub fn ifg(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x7 // [19:17]
+  #[inline] pub fn ifg(&self) -> bits::B3 {
+     (((self.0 as u32) >> 17) & 0x7).into() // [19:17]
   }
 #[doc="IFG"]
-  #[inline] pub fn set_ifg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ifg<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 17);
      self.0 |= value << 17;
@@ -696,11 +723,13 @@ impl Maccr {
   }
 
 #[doc="JD"]
-  #[inline] pub fn jd(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn jd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="JD"]
-  #[inline] pub fn set_jd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -708,11 +737,13 @@ impl Maccr {
   }
 
 #[doc="WD"]
-  #[inline] pub fn wd(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn wd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="WD"]
-  #[inline] pub fn set_wd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -720,11 +751,13 @@ impl Maccr {
   }
 
 #[doc="CSTF"]
-  #[inline] pub fn cstf(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
+  #[inline] pub fn cstf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 25) & 0x1).into() // [25]
   }
 #[doc="CSTF"]
-  #[inline] pub fn set_cstf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cstf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
@@ -765,11 +798,13 @@ impl ::core::fmt::Debug for Maccr {
 pub struct Macffr(pub u32);
 impl Macffr {
 #[doc="no description available"]
-  #[inline] pub fn pm(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -777,11 +812,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn hu(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn hu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_hu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -789,11 +826,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn hm(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn hm(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_hm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -801,11 +840,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn daif(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn daif(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_daif(mut self, value: u32) -> Self {
+  #[inline] pub fn set_daif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -813,11 +854,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ram(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn ram(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ram(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ram<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -825,11 +868,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn bfd(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn bfd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_bfd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bfd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -837,11 +882,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn pcf(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn pcf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pcf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pcf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -849,11 +896,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn saif(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn saif(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_saif(mut self, value: u32) -> Self {
+  #[inline] pub fn set_saif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -861,11 +910,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn saf(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn saf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_saf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_saf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -873,11 +924,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn hpf(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn hpf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_hpf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hpf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -885,11 +938,13 @@ impl Macffr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ra(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn ra(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ra(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ra<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -925,11 +980,13 @@ impl ::core::fmt::Debug for Macffr {
 pub struct Machthr(pub u32);
 impl Machthr {
 #[doc="no description available"]
-  #[inline] pub fn hth(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn hth(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_hth(mut self, value: u32) -> Self {
+  #[inline] pub fn set_hth<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -954,11 +1011,13 @@ impl ::core::fmt::Debug for Machthr {
 pub struct Machtlr(pub u32);
 impl Machtlr {
 #[doc="no description available"]
-  #[inline] pub fn htl(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn htl(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_htl(mut self, value: u32) -> Self {
+  #[inline] pub fn set_htl<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -983,11 +1042,13 @@ impl ::core::fmt::Debug for Machtlr {
 pub struct Macmiiar(pub u32);
 impl Macmiiar {
 #[doc="no description available"]
-  #[inline] pub fn mb(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn mb(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mb<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -995,11 +1056,13 @@ impl Macmiiar {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mw(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn mw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1007,11 +1070,13 @@ impl Macmiiar {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn cr(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x7 // [4:2]
+  #[inline] pub fn cr(&self) -> bits::B3 {
+     (((self.0 as u32) >> 2) & 0x7).into() // [4:2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_cr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cr<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 2);
      self.0 |= value << 2;
@@ -1019,11 +1084,13 @@ impl Macmiiar {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mr(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1f // [10:6]
+  #[inline] pub fn mr(&self) -> bits::B5 {
+     (((self.0 as u32) >> 6) & 0x1f).into() // [10:6]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mr<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 6);
      self.0 |= value << 6;
@@ -1031,11 +1098,13 @@ impl Macmiiar {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn pa(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1f // [15:11]
+  #[inline] pub fn pa(&self) -> bits::B5 {
+     (((self.0 as u32) >> 11) & 0x1f).into() // [15:11]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pa<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 11);
      self.0 |= value << 11;
@@ -1065,11 +1134,13 @@ impl ::core::fmt::Debug for Macmiiar {
 pub struct Macmiidr(pub u32);
 impl Macmiidr {
 #[doc="no description available"]
-  #[inline] pub fn td(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn td(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_td(mut self, value: u32) -> Self {
+  #[inline] pub fn set_td<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1095,11 +1166,13 @@ impl ::core::fmt::Debug for Macmiidr {
 pub struct Macfcr(pub u32);
 impl Macfcr {
 #[doc="no description available"]
-  #[inline] pub fn fcb(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn fcb(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_fcb(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fcb<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1107,11 +1180,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tfce(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tfce(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tfce(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tfce<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1119,11 +1194,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn rfce(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn rfce(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_rfce(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rfce<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1131,11 +1208,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn upfd(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn upfd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_upfd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_upfd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1143,11 +1222,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn plt(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn plt(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_plt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_plt<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -1155,11 +1236,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn zqpd(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn zqpd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_zqpd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_zqpd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1167,11 +1250,13 @@ impl Macfcr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn pt(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn pt(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pt<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -1203,11 +1288,13 @@ impl ::core::fmt::Debug for Macfcr {
 pub struct Macvlantr(pub u32);
 impl Macvlantr {
 #[doc="no description available"]
-  #[inline] pub fn vlanti(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn vlanti(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_vlanti(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vlanti<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1215,11 +1302,13 @@ impl Macvlantr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn vlantc(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn vlantc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_vlantc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vlantc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -1246,11 +1335,13 @@ impl ::core::fmt::Debug for Macvlantr {
 pub struct Macpmtcsr(pub u32);
 impl Macpmtcsr {
 #[doc="no description available"]
-  #[inline] pub fn pd(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn pd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1258,11 +1349,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mpe(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn mpe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mpe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mpe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1270,11 +1363,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn wfe(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn wfe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_wfe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wfe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1282,11 +1377,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mpr(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn mpr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mpr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mpr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1294,11 +1391,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn wfr(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn wfr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_wfr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wfr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -1306,11 +1405,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn gu(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn gu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_gu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1318,11 +1419,13 @@ impl Macpmtcsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn wffrpr(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn wffrpr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_wffrpr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wffrpr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1354,11 +1457,13 @@ impl ::core::fmt::Debug for Macpmtcsr {
 pub struct Macdbgr(pub u32);
 impl Macdbgr {
 #[doc="CR"]
-  #[inline] pub fn cr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn cr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="CR"]
-  #[inline] pub fn set_cr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1366,11 +1471,13 @@ impl Macdbgr {
   }
 
 #[doc="CSR"]
-  #[inline] pub fn csr(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn csr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="CSR"]
-  #[inline] pub fn set_csr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_csr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1378,11 +1485,13 @@ impl Macdbgr {
   }
 
 #[doc="ROR"]
-  #[inline] pub fn ror(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn ror(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="ROR"]
-  #[inline] pub fn set_ror(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ror<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1390,11 +1499,13 @@ impl Macdbgr {
   }
 
 #[doc="MCF"]
-  #[inline] pub fn mcf(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn mcf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="MCF"]
-  #[inline] pub fn set_mcf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mcf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1402,11 +1513,13 @@ impl Macdbgr {
   }
 
 #[doc="MCP"]
-  #[inline] pub fn mcp(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn mcp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="MCP"]
-  #[inline] pub fn set_mcp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mcp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1414,11 +1527,13 @@ impl Macdbgr {
   }
 
 #[doc="MCFHP"]
-  #[inline] pub fn mcfhp(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn mcfhp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="MCFHP"]
-  #[inline] pub fn set_mcfhp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mcfhp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1449,11 +1564,13 @@ impl ::core::fmt::Debug for Macdbgr {
 pub struct Macsr(pub u32);
 impl Macsr {
 #[doc="no description available"]
-  #[inline] pub fn pmts(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn pmts(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pmts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pmts<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1461,11 +1578,13 @@ impl Macsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mmcs(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn mmcs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mmcs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mmcs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1473,11 +1592,13 @@ impl Macsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mmcrs(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn mmcrs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mmcrs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mmcrs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -1485,11 +1606,13 @@ impl Macsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mmcts(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn mmcts(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mmcts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mmcts<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -1497,11 +1620,13 @@ impl Macsr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tsts(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tsts(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tsts(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsts<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1531,11 +1656,13 @@ impl ::core::fmt::Debug for Macsr {
 pub struct Macimr(pub u32);
 impl Macimr {
 #[doc="no description available"]
-  #[inline] pub fn pmtim(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn pmtim(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_pmtim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pmtim<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1543,11 +1670,13 @@ impl Macimr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn tstim(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tstim(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_tstim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tstim<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -1574,11 +1703,13 @@ impl ::core::fmt::Debug for Macimr {
 pub struct Maca0hr(pub u32);
 impl Maca0hr {
 #[doc="MAC address0 high"]
-  #[inline] pub fn maca0h(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn maca0h(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="MAC address0 high"]
-  #[inline] pub fn set_maca0h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca0h<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1586,11 +1717,13 @@ impl Maca0hr {
   }
 
 #[doc="Always 1"]
-  #[inline] pub fn mo(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn mo(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Always 1"]
-  #[inline] pub fn set_mo(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1617,11 +1750,13 @@ impl ::core::fmt::Debug for Maca0hr {
 pub struct Maca0lr(pub u32);
 impl Maca0lr {
 #[doc="0"]
-  #[inline] pub fn maca0l(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn maca0l(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="0"]
-  #[inline] pub fn set_maca0l(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca0l<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1646,11 +1781,13 @@ impl ::core::fmt::Debug for Maca0lr {
 pub struct Maca1hr(pub u32);
 impl Maca1hr {
 #[doc="no description available"]
-  #[inline] pub fn maca1h(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn maca1h(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_maca1h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca1h<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1658,11 +1795,13 @@ impl Maca1hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mbc(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x3f // [29:24]
+  #[inline] pub fn mbc(&self) -> bits::B6 {
+     (((self.0 as u32) >> 24) & 0x3f).into() // [29:24]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mbc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mbc<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 24);
      self.0 |= value << 24;
@@ -1670,11 +1809,13 @@ impl Maca1hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn sa(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn sa(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_sa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sa<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1682,11 +1823,13 @@ impl Maca1hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ae(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn ae(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ae<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1715,11 +1858,13 @@ impl ::core::fmt::Debug for Maca1hr {
 pub struct Maca1lr(pub u32);
 impl Maca1lr {
 #[doc="no description available"]
-  #[inline] pub fn maca1lr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn maca1lr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_maca1lr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca1lr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1744,11 +1889,13 @@ impl ::core::fmt::Debug for Maca1lr {
 pub struct Maca2hr(pub u32);
 impl Maca2hr {
 #[doc="no description available"]
-  #[inline] pub fn mac2ah(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn mac2ah(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mac2ah(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mac2ah<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1756,11 +1903,13 @@ impl Maca2hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mbc(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x3f // [29:24]
+  #[inline] pub fn mbc(&self) -> bits::B6 {
+     (((self.0 as u32) >> 24) & 0x3f).into() // [29:24]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mbc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mbc<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 24);
      self.0 |= value << 24;
@@ -1768,11 +1917,13 @@ impl Maca2hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn sa(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn sa(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_sa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sa<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1780,11 +1931,13 @@ impl Maca2hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ae(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn ae(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ae<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1813,11 +1966,13 @@ impl ::core::fmt::Debug for Maca2hr {
 pub struct Maca2lr(pub u32);
 impl Maca2lr {
 #[doc="no description available"]
-  #[inline] pub fn maca2l(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7fffffff // [30:0]
+  #[inline] pub fn maca2l(&self) -> bits::B31 {
+     (((self.0 as u32) >> 0) & 0x7fffffff).into() // [30:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_maca2l(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca2l<V: Into<bits::B31>>(mut self, value: V) -> Self {
+     let value: bits::B31 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7fffffff) == 0);
      self.0 &= !(0x7fffffff << 0);
      self.0 |= value << 0;
@@ -1843,11 +1998,13 @@ impl ::core::fmt::Debug for Maca2lr {
 pub struct Maca3hr(pub u32);
 impl Maca3hr {
 #[doc="no description available"]
-  #[inline] pub fn maca3h(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn maca3h(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_maca3h(mut self, value: u32) -> Self {
+  #[inline] pub fn set_maca3h<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1855,11 +2012,13 @@ impl Maca3hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn mbc(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x3f // [29:24]
+  #[inline] pub fn mbc(&self) -> bits::B6 {
+     (((self.0 as u32) >> 24) & 0x3f).into() // [29:24]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mbc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mbc<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 24);
      self.0 |= value << 24;
@@ -1867,11 +2026,13 @@ impl Maca3hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn sa(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn sa(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_sa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sa<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -1879,11 +2040,13 @@ impl Maca3hr {
   }
 
 #[doc="no description available"]
-  #[inline] pub fn ae(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn ae(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_ae(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ae<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
@@ -1912,11 +2075,13 @@ impl ::core::fmt::Debug for Maca3hr {
 pub struct Maca3lr(pub u32);
 impl Maca3lr {
 #[doc="no description available"]
-  #[inline] pub fn mbca3l(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn mbca3l(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_mbca3l(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mbca3l<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

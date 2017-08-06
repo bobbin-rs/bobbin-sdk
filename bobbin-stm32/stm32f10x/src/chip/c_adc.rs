@@ -1,4 +1,5 @@
 //! Common ADC registers
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const C_ADC: CAdc = CAdc(0x40012300);
 
 #[doc="Common ADC registers"]
@@ -69,11 +70,13 @@ impl CAdc {
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Overrun flag of ADC3"]
-  #[inline] pub fn ovr3(&self) -> u32 {
-     ((self.0 as u32) >> 21) & 0x1 // [21]
+  #[inline] pub fn ovr3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 21) & 0x1).into() // [21]
   }
 #[doc="Overrun flag of ADC3"]
-  #[inline] pub fn set_ovr3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ovr3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
@@ -81,11 +84,13 @@ impl Csr {
   }
 
 #[doc="Regular channel Start flag of ADC 3"]
-  #[inline] pub fn strt3(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x1 // [20]
+  #[inline] pub fn strt3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 20) & 0x1).into() // [20]
   }
 #[doc="Regular channel Start flag of ADC 3"]
-  #[inline] pub fn set_strt3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_strt3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
@@ -93,11 +98,13 @@ impl Csr {
   }
 
 #[doc="Injected channel Start flag of ADC 3"]
-  #[inline] pub fn jstrt3(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn jstrt3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Injected channel Start flag of ADC 3"]
-  #[inline] pub fn set_jstrt3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jstrt3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -105,11 +112,13 @@ impl Csr {
   }
 
 #[doc="Injected channel end of conversion of ADC 3"]
-  #[inline] pub fn jeoc3(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn jeoc3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Injected channel end of conversion of ADC 3"]
-  #[inline] pub fn set_jeoc3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jeoc3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -117,11 +126,13 @@ impl Csr {
   }
 
 #[doc="End of conversion of ADC 3"]
-  #[inline] pub fn eoc3(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x1 // [17]
+  #[inline] pub fn eoc3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 17) & 0x1).into() // [17]
   }
 #[doc="End of conversion of ADC 3"]
-  #[inline] pub fn set_eoc3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eoc3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
@@ -129,11 +140,13 @@ impl Csr {
   }
 
 #[doc="Analog watchdog flag of ADC 3"]
-  #[inline] pub fn awd3(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn awd3(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Analog watchdog flag of ADC 3"]
-  #[inline] pub fn set_awd3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awd3<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -141,11 +154,13 @@ impl Csr {
   }
 
 #[doc="Overrun flag of ADC 2"]
-  #[inline] pub fn ovr2(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn ovr2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Overrun flag of ADC 2"]
-  #[inline] pub fn set_ovr2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ovr2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -153,11 +168,13 @@ impl Csr {
   }
 
 #[doc="Regular channel Start flag of ADC 2"]
-  #[inline] pub fn strt2(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn strt2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="Regular channel Start flag of ADC 2"]
-  #[inline] pub fn set_strt2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_strt2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -165,11 +182,13 @@ impl Csr {
   }
 
 #[doc="Injected channel Start flag of ADC 2"]
-  #[inline] pub fn jstrt2(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn jstrt2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="Injected channel Start flag of ADC 2"]
-  #[inline] pub fn set_jstrt2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jstrt2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -177,11 +196,13 @@ impl Csr {
   }
 
 #[doc="Injected channel end of conversion of ADC 2"]
-  #[inline] pub fn jeoc2(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn jeoc2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Injected channel end of conversion of ADC 2"]
-  #[inline] pub fn set_jeoc2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jeoc2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -189,11 +210,13 @@ impl Csr {
   }
 
 #[doc="End of conversion of ADC 2"]
-  #[inline] pub fn eoc2(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn eoc2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="End of conversion of ADC 2"]
-  #[inline] pub fn set_eoc2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eoc2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -201,11 +224,13 @@ impl Csr {
   }
 
 #[doc="Analog watchdog flag of ADC 2"]
-  #[inline] pub fn awd2(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn awd2(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Analog watchdog flag of ADC 2"]
-  #[inline] pub fn set_awd2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awd2<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -213,11 +238,13 @@ impl Csr {
   }
 
 #[doc="Overrun flag of ADC 1"]
-  #[inline] pub fn ovr1(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ovr1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Overrun flag of ADC 1"]
-  #[inline] pub fn set_ovr1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ovr1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -225,11 +252,13 @@ impl Csr {
   }
 
 #[doc="Regular channel Start flag of ADC 1"]
-  #[inline] pub fn strt1(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn strt1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Regular channel Start flag of ADC 1"]
-  #[inline] pub fn set_strt1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_strt1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -237,11 +266,13 @@ impl Csr {
   }
 
 #[doc="Injected channel Start flag of ADC 1"]
-  #[inline] pub fn jstrt1(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn jstrt1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Injected channel Start flag of ADC 1"]
-  #[inline] pub fn set_jstrt1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jstrt1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -249,11 +280,13 @@ impl Csr {
   }
 
 #[doc="Injected channel end of conversion of ADC 1"]
-  #[inline] pub fn jeoc1(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn jeoc1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Injected channel end of conversion of ADC 1"]
-  #[inline] pub fn set_jeoc1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_jeoc1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -261,11 +294,13 @@ impl Csr {
   }
 
 #[doc="End of conversion of ADC 1"]
-  #[inline] pub fn eoc1(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn eoc1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="End of conversion of ADC 1"]
-  #[inline] pub fn set_eoc1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eoc1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -273,11 +308,13 @@ impl Csr {
   }
 
 #[doc="Analog watchdog flag of ADC 1"]
-  #[inline] pub fn awd1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn awd1(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Analog watchdog flag of ADC 1"]
-  #[inline] pub fn set_awd1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_awd1<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -320,11 +357,13 @@ impl ::core::fmt::Debug for Csr {
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Temperature sensor and VREFINT enable"]
-  #[inline] pub fn tsvrefe(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn tsvrefe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Temperature sensor and VREFINT enable"]
-  #[inline] pub fn set_tsvrefe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsvrefe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -332,11 +371,13 @@ impl Ccr {
   }
 
 #[doc="VBAT enable"]
-  #[inline] pub fn vbate(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn vbate(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="VBAT enable"]
-  #[inline] pub fn set_vbate(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vbate<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -344,11 +385,13 @@ impl Ccr {
   }
 
 #[doc="ADC prescaler"]
-  #[inline] pub fn adcpre(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x3 // [17:16]
+  #[inline] pub fn adcpre(&self) -> bits::B2 {
+     (((self.0 as u32) >> 16) & 0x3).into() // [17:16]
   }
 #[doc="ADC prescaler"]
-  #[inline] pub fn set_adcpre(mut self, value: u32) -> Self {
+  #[inline] pub fn set_adcpre<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
      self.0 |= value << 16;
@@ -356,11 +399,13 @@ impl Ccr {
   }
 
 #[doc="Direct memory access mode for multi ADC mode"]
-  #[inline] pub fn dma(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x3 // [15:14]
+  #[inline] pub fn dma(&self) -> bits::B2 {
+     (((self.0 as u32) >> 14) & 0x3).into() // [15:14]
   }
 #[doc="Direct memory access mode for multi ADC mode"]
-  #[inline] pub fn set_dma(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dma<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 14);
      self.0 |= value << 14;
@@ -368,11 +413,13 @@ impl Ccr {
   }
 
 #[doc="DMA disable selection for multi-ADC mode"]
-  #[inline] pub fn dds(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn dds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="DMA disable selection for multi-ADC mode"]
-  #[inline] pub fn set_dds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -380,11 +427,13 @@ impl Ccr {
   }
 
 #[doc="Delay between 2 sampling phases"]
-  #[inline] pub fn delay(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn delay(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Delay between 2 sampling phases"]
-  #[inline] pub fn set_delay(mut self, value: u32) -> Self {
+  #[inline] pub fn set_delay<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -392,11 +441,13 @@ impl Ccr {
   }
 
 #[doc="Multi ADC mode selection"]
-  #[inline] pub fn mult(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn mult(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="Multi ADC mode selection"]
-  #[inline] pub fn set_mult(mut self, value: u32) -> Self {
+  #[inline] pub fn set_mult<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -428,11 +479,13 @@ impl ::core::fmt::Debug for Ccr {
 pub struct Cdr(pub u32);
 impl Cdr {
 #[doc="2nd data item of a pair of regular conversions"]
-  #[inline] pub fn data2(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xffff // [31:16]
+  #[inline] pub fn data2(&self) -> bits::B16 {
+     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
   }
 #[doc="2nd data item of a pair of regular conversions"]
-  #[inline] pub fn set_data2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_data2<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
@@ -440,11 +493,13 @@ impl Cdr {
   }
 
 #[doc="1st data item of a pair of regular conversions"]
-  #[inline] pub fn data1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn data1(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="1st data item of a pair of regular conversions"]
-  #[inline] pub fn set_data1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_data1<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;

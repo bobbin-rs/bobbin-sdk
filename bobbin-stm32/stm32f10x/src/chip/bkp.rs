@@ -1,4 +1,5 @@
 //! Backup registers
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const BKP: Bkp = Bkp(0x40006c04);
 
 #[doc="Backup registers"]
@@ -1227,11 +1228,13 @@ impl Bkp {
 pub struct Dr1(pub u32);
 impl Dr1 {
 #[doc="Backup data"]
-  #[inline] pub fn d1(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d1(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d1<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1257,11 +1260,13 @@ impl ::core::fmt::Debug for Dr1 {
 pub struct Dr2(pub u32);
 impl Dr2 {
 #[doc="Backup data"]
-  #[inline] pub fn d2(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d2(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d2<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1287,11 +1292,13 @@ impl ::core::fmt::Debug for Dr2 {
 pub struct Dr3(pub u32);
 impl Dr3 {
 #[doc="Backup data"]
-  #[inline] pub fn d3(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d3(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d3(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d3<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1317,11 +1324,13 @@ impl ::core::fmt::Debug for Dr3 {
 pub struct Dr4(pub u32);
 impl Dr4 {
 #[doc="Backup data"]
-  #[inline] pub fn d4(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d4(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d4(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d4<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1347,11 +1356,13 @@ impl ::core::fmt::Debug for Dr4 {
 pub struct Dr5(pub u32);
 impl Dr5 {
 #[doc="Backup data"]
-  #[inline] pub fn d5(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d5(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d5(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d5<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1377,11 +1388,13 @@ impl ::core::fmt::Debug for Dr5 {
 pub struct Dr6(pub u32);
 impl Dr6 {
 #[doc="Backup data"]
-  #[inline] pub fn d6(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d6(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d6(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d6<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1407,11 +1420,13 @@ impl ::core::fmt::Debug for Dr6 {
 pub struct Dr7(pub u32);
 impl Dr7 {
 #[doc="Backup data"]
-  #[inline] pub fn d7(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d7(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d7(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d7<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1437,11 +1452,13 @@ impl ::core::fmt::Debug for Dr7 {
 pub struct Dr8(pub u32);
 impl Dr8 {
 #[doc="Backup data"]
-  #[inline] pub fn d8(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d8(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d8(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d8<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1467,11 +1484,13 @@ impl ::core::fmt::Debug for Dr8 {
 pub struct Dr9(pub u32);
 impl Dr9 {
 #[doc="Backup data"]
-  #[inline] pub fn d9(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d9(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d9(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d9<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1497,11 +1516,13 @@ impl ::core::fmt::Debug for Dr9 {
 pub struct Dr10(pub u32);
 impl Dr10 {
 #[doc="Backup data"]
-  #[inline] pub fn d10(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d10(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d10(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d10<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1527,11 +1548,13 @@ impl ::core::fmt::Debug for Dr10 {
 pub struct Dr11(pub u32);
 impl Dr11 {
 #[doc="Backup data"]
-  #[inline] pub fn dr11(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn dr11(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_dr11(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dr11<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1557,11 +1580,13 @@ impl ::core::fmt::Debug for Dr11 {
 pub struct Dr12(pub u32);
 impl Dr12 {
 #[doc="Backup data"]
-  #[inline] pub fn dr12(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn dr12(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_dr12(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dr12<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1587,11 +1612,13 @@ impl ::core::fmt::Debug for Dr12 {
 pub struct Dr13(pub u32);
 impl Dr13 {
 #[doc="Backup data"]
-  #[inline] pub fn dr13(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn dr13(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_dr13(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dr13<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1617,11 +1644,13 @@ impl ::core::fmt::Debug for Dr13 {
 pub struct Dr14(pub u32);
 impl Dr14 {
 #[doc="Backup data"]
-  #[inline] pub fn d14(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d14(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d14(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d14<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1647,11 +1676,13 @@ impl ::core::fmt::Debug for Dr14 {
 pub struct Dr15(pub u32);
 impl Dr15 {
 #[doc="Backup data"]
-  #[inline] pub fn d15(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d15(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d15(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d15<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1677,11 +1708,13 @@ impl ::core::fmt::Debug for Dr15 {
 pub struct Dr16(pub u32);
 impl Dr16 {
 #[doc="Backup data"]
-  #[inline] pub fn d16(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d16(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d16(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d16<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1707,11 +1740,13 @@ impl ::core::fmt::Debug for Dr16 {
 pub struct Dr17(pub u32);
 impl Dr17 {
 #[doc="Backup data"]
-  #[inline] pub fn d17(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d17(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d17(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d17<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1737,11 +1772,13 @@ impl ::core::fmt::Debug for Dr17 {
 pub struct Dr18(pub u32);
 impl Dr18 {
 #[doc="Backup data"]
-  #[inline] pub fn d18(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d18(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d18(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d18<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1767,11 +1804,13 @@ impl ::core::fmt::Debug for Dr18 {
 pub struct Dr19(pub u32);
 impl Dr19 {
 #[doc="Backup data"]
-  #[inline] pub fn d19(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d19(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d19(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d19<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1797,11 +1836,13 @@ impl ::core::fmt::Debug for Dr19 {
 pub struct Dr20(pub u32);
 impl Dr20 {
 #[doc="Backup data"]
-  #[inline] pub fn d20(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d20(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d20(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d20<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1827,11 +1868,13 @@ impl ::core::fmt::Debug for Dr20 {
 pub struct Dr21(pub u32);
 impl Dr21 {
 #[doc="Backup data"]
-  #[inline] pub fn d21(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d21(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d21(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d21<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1857,11 +1900,13 @@ impl ::core::fmt::Debug for Dr21 {
 pub struct Dr22(pub u32);
 impl Dr22 {
 #[doc="Backup data"]
-  #[inline] pub fn d22(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d22(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d22(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d22<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1887,11 +1932,13 @@ impl ::core::fmt::Debug for Dr22 {
 pub struct Dr23(pub u32);
 impl Dr23 {
 #[doc="Backup data"]
-  #[inline] pub fn d23(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d23(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d23(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d23<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1917,11 +1964,13 @@ impl ::core::fmt::Debug for Dr23 {
 pub struct Dr24(pub u32);
 impl Dr24 {
 #[doc="Backup data"]
-  #[inline] pub fn d24(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d24(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d24(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d24<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1947,11 +1996,13 @@ impl ::core::fmt::Debug for Dr24 {
 pub struct Dr25(pub u32);
 impl Dr25 {
 #[doc="Backup data"]
-  #[inline] pub fn d25(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d25(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d25(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d25<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1977,11 +2028,13 @@ impl ::core::fmt::Debug for Dr25 {
 pub struct Dr26(pub u32);
 impl Dr26 {
 #[doc="Backup data"]
-  #[inline] pub fn d26(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d26(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d26(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d26<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2007,11 +2060,13 @@ impl ::core::fmt::Debug for Dr26 {
 pub struct Dr27(pub u32);
 impl Dr27 {
 #[doc="Backup data"]
-  #[inline] pub fn d27(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d27(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d27(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d27<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2037,11 +2092,13 @@ impl ::core::fmt::Debug for Dr27 {
 pub struct Dr28(pub u32);
 impl Dr28 {
 #[doc="Backup data"]
-  #[inline] pub fn d28(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d28(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d28(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d28<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2067,11 +2124,13 @@ impl ::core::fmt::Debug for Dr28 {
 pub struct Dr29(pub u32);
 impl Dr29 {
 #[doc="Backup data"]
-  #[inline] pub fn d29(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d29(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d29(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d29<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2097,11 +2156,13 @@ impl ::core::fmt::Debug for Dr29 {
 pub struct Dr30(pub u32);
 impl Dr30 {
 #[doc="Backup data"]
-  #[inline] pub fn d30(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d30(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d30(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d30<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2127,11 +2188,13 @@ impl ::core::fmt::Debug for Dr30 {
 pub struct Dr31(pub u32);
 impl Dr31 {
 #[doc="Backup data"]
-  #[inline] pub fn d31(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d31(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d31(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d31<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2157,11 +2220,13 @@ impl ::core::fmt::Debug for Dr31 {
 pub struct Dr32(pub u32);
 impl Dr32 {
 #[doc="Backup data"]
-  #[inline] pub fn d32(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d32(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d32(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d32<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2187,11 +2252,13 @@ impl ::core::fmt::Debug for Dr32 {
 pub struct Dr33(pub u32);
 impl Dr33 {
 #[doc="Backup data"]
-  #[inline] pub fn d33(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d33(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d33(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d33<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2217,11 +2284,13 @@ impl ::core::fmt::Debug for Dr33 {
 pub struct Dr34(pub u32);
 impl Dr34 {
 #[doc="Backup data"]
-  #[inline] pub fn d34(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d34(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d34(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d34<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2247,11 +2316,13 @@ impl ::core::fmt::Debug for Dr34 {
 pub struct Dr35(pub u32);
 impl Dr35 {
 #[doc="Backup data"]
-  #[inline] pub fn d35(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d35(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d35(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d35<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2277,11 +2348,13 @@ impl ::core::fmt::Debug for Dr35 {
 pub struct Dr36(pub u32);
 impl Dr36 {
 #[doc="Backup data"]
-  #[inline] pub fn d36(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d36(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d36(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d36<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2307,11 +2380,13 @@ impl ::core::fmt::Debug for Dr36 {
 pub struct Dr37(pub u32);
 impl Dr37 {
 #[doc="Backup data"]
-  #[inline] pub fn d37(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d37(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d37(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d37<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2337,11 +2412,13 @@ impl ::core::fmt::Debug for Dr37 {
 pub struct Dr38(pub u32);
 impl Dr38 {
 #[doc="Backup data"]
-  #[inline] pub fn d38(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d38(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d38(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d38<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2367,11 +2444,13 @@ impl ::core::fmt::Debug for Dr38 {
 pub struct Dr39(pub u32);
 impl Dr39 {
 #[doc="Backup data"]
-  #[inline] pub fn d39(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d39(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d39(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d39<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2397,11 +2476,13 @@ impl ::core::fmt::Debug for Dr39 {
 pub struct Dr40(pub u32);
 impl Dr40 {
 #[doc="Backup data"]
-  #[inline] pub fn d40(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d40(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d40(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d40<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2427,11 +2508,13 @@ impl ::core::fmt::Debug for Dr40 {
 pub struct Dr41(pub u32);
 impl Dr41 {
 #[doc="Backup data"]
-  #[inline] pub fn d41(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d41(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d41(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d41<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2457,11 +2540,13 @@ impl ::core::fmt::Debug for Dr41 {
 pub struct Dr42(pub u32);
 impl Dr42 {
 #[doc="Backup data"]
-  #[inline] pub fn d42(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn d42(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Backup data"]
-  #[inline] pub fn set_d42(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d42<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -2487,11 +2572,13 @@ impl ::core::fmt::Debug for Dr42 {
 pub struct Rtccr(pub u32);
 impl Rtccr {
 #[doc="Calibration value"]
-  #[inline] pub fn cal(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7f // [6:0]
+  #[inline] pub fn cal(&self) -> bits::B7 {
+     (((self.0 as u32) >> 0) & 0x7f).into() // [6:0]
   }
 #[doc="Calibration value"]
-  #[inline] pub fn set_cal(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cal<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
      self.0 |= value << 0;
@@ -2499,11 +2586,13 @@ impl Rtccr {
   }
 
 #[doc="Calibration Clock Output"]
-  #[inline] pub fn cco(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn cco(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Calibration Clock Output"]
-  #[inline] pub fn set_cco(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cco<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -2511,11 +2600,13 @@ impl Rtccr {
   }
 
 #[doc="Alarm or second output enable"]
-  #[inline] pub fn asoe(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn asoe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Alarm or second output enable"]
-  #[inline] pub fn set_asoe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_asoe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -2523,11 +2614,13 @@ impl Rtccr {
   }
 
 #[doc="Alarm or second output selection"]
-  #[inline] pub fn asos(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn asos(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Alarm or second output selection"]
-  #[inline] pub fn set_asos(mut self, value: u32) -> Self {
+  #[inline] pub fn set_asos<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -2556,11 +2649,13 @@ impl ::core::fmt::Debug for Rtccr {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Tamper pin enable"]
-  #[inline] pub fn tpe(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn tpe(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Tamper pin enable"]
-  #[inline] pub fn set_tpe(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpe<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2568,11 +2663,13 @@ impl Cr {
   }
 
 #[doc="Tamper pin active level"]
-  #[inline] pub fn tpal(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn tpal(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Tamper pin active level"]
-  #[inline] pub fn set_tpal(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpal<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2599,11 +2696,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Clear Tamper event"]
-  #[inline] pub fn cte(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn cte(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Clear Tamper event"]
-  #[inline] pub fn set_cte(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cte<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -2611,11 +2710,13 @@ impl Csr {
   }
 
 #[doc="Clear Tamper Interrupt"]
-  #[inline] pub fn cti(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cti(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Clear Tamper Interrupt"]
-  #[inline] pub fn set_cti(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cti<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -2623,11 +2724,13 @@ impl Csr {
   }
 
 #[doc="Tamper Pin interrupt enable"]
-  #[inline] pub fn tpie(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn tpie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Tamper Pin interrupt enable"]
-  #[inline] pub fn set_tpie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -2635,11 +2738,13 @@ impl Csr {
   }
 
 #[doc="Tamper Event Flag"]
-  #[inline] pub fn tef(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn tef(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Tamper Event Flag"]
-  #[inline] pub fn set_tef(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tef<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -2647,11 +2752,13 @@ impl Csr {
   }
 
 #[doc="Tamper Interrupt Flag"]
-  #[inline] pub fn tif(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tif(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Tamper Interrupt Flag"]
-  #[inline] pub fn set_tif(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tif<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;

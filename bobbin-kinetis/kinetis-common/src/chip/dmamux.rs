@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DMAMUX Peripheral"]
@@ -44,11 +45,13 @@ impl<T> Periph<T> {
 pub struct Chcfg(pub u8);
 impl Chcfg {
 #[doc="DMA Channel Source (Slot)"]
-  #[inline] pub fn source(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x3f // [5:0]
+  #[inline] pub fn source(&self) -> bits::B6 {
+     (((self.0 as u8) >> 0) & 0x3f).into() // [5:0]
   }
 #[doc="DMA Channel Source (Slot)"]
-  #[inline] pub fn set_source(mut self, value: u8) -> Self {
+  #[inline] pub fn set_source<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
@@ -56,11 +59,13 @@ impl Chcfg {
   }
 
 #[doc="DMA Channel Trigger Enable"]
-  #[inline] pub fn trig(&self) -> u8 {
-     ((self.0 as u8) >> 6) & 0x1 // [6]
+  #[inline] pub fn trig(&self) -> bits::B1 {
+     (((self.0 as u8) >> 6) & 0x1).into() // [6]
   }
 #[doc="DMA Channel Trigger Enable"]
-  #[inline] pub fn set_trig(mut self, value: u8) -> Self {
+  #[inline] pub fn set_trig<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -68,11 +73,13 @@ impl Chcfg {
   }
 
 #[doc="DMA Channel Enable"]
-  #[inline] pub fn enbl(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn enbl(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="DMA Channel Enable"]
-  #[inline] pub fn set_enbl(mut self, value: u8) -> Self {
+  #[inline] pub fn set_enbl<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;

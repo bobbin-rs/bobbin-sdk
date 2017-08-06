@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::dma::*;
 
 pub const DMA: Dma = Periph(0x40008000, DmaId {});

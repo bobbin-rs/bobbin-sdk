@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::spi::*;
 
 pub const SPI0: Spi0 = Periph(0x4002c000, Spi0Id {});

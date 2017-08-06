@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const TIMER0: Timer0 = Periph(0x40030000, Timer0Id {});
 pub const TIMER1: Timer1 = Periph(0x40031000, Timer1Id {});
 pub const TIMER2: Timer2 = Periph(0x40032000, Timer2Id {});
@@ -654,11 +655,13 @@ impl<T> Periph<T> {
 pub struct Cfg(pub u32);
 impl Cfg {
 #[doc="GPTM Configuration"]
-  #[inline] pub fn cfg(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn cfg(&self) -> bits::B3 {
+     (((self.0 as u32) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="GPTM Configuration"]
-  #[inline] pub fn set_cfg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cfg<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -684,11 +687,13 @@ impl ::core::fmt::Debug for Cfg {
 pub struct Tmr(pub u32);
 impl Tmr {
 #[doc="GPTM Timer n Mode"]
-  #[inline] pub fn tmr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn tmr(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="GPTM Timer n Mode"]
-  #[inline] pub fn set_tmr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmr<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -696,11 +701,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Capture Mode"]
-  #[inline] pub fn tcmr(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn tcmr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="GPTM Timer n Capture Mode"]
-  #[inline] pub fn set_tcmr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcmr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -708,11 +715,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Alternate Mode Select"]
-  #[inline] pub fn tams(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn tams(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM Timer n Alternate Mode Select"]
-  #[inline] pub fn set_tams(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tams<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -720,11 +729,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Count Direction"]
-  #[inline] pub fn tcdir(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tcdir(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer n Count Direction"]
-  #[inline] pub fn set_tcdir(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcdir<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -732,11 +743,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Match Interrupt Enable"]
-  #[inline] pub fn tmie(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn tmie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n Match Interrupt Enable"]
-  #[inline] pub fn set_tmie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -744,11 +757,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Wait-on-Trigger"]
-  #[inline] pub fn twot(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn twot(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="GPTM Timer n Wait-on-Trigger"]
-  #[inline] pub fn set_twot(mut self, value: u32) -> Self {
+  #[inline] pub fn set_twot<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -756,11 +771,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Snap-Shot Mode"]
-  #[inline] pub fn tsnaps(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn tsnaps(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="GPTM Timer n Snap-Shot Mode"]
-  #[inline] pub fn set_tsnaps(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tsnaps<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -768,11 +785,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Interval Load Write"]
-  #[inline] pub fn tild(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn tild(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="GPTM Timer n Interval Load Write"]
-  #[inline] pub fn set_tild(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tild<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -780,11 +799,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n PWM Interrupt Enable"]
-  #[inline] pub fn tpwmie(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn tpwmie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="GPTM Timer n PWM Interrupt Enable"]
-  #[inline] pub fn set_tpwmie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpwmie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -792,11 +813,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n Match Register Update"]
-  #[inline] pub fn tmrsu(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn tmrsu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="GPTM Timer n Match Register Update"]
-  #[inline] pub fn set_tmrsu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmrsu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -804,11 +827,13 @@ impl Tmr {
   }
 
 #[doc="GPTM Timer n PWM Legacy Operation"]
-  #[inline] pub fn tplo(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tplo(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="GPTM Timer n PWM Legacy Operation"]
-  #[inline] pub fn set_tplo(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tplo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -816,11 +841,13 @@ impl Tmr {
   }
 
 #[doc="One-shot/Periodic Interrupt Disable"]
-  #[inline] pub fn tcintd(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0x1 // [12]
+  #[inline] pub fn tcintd(&self) -> bits::B1 {
+     (((self.0 as u32) >> 12) & 0x1).into() // [12]
   }
 #[doc="One-shot/Periodic Interrupt Disable"]
-  #[inline] pub fn set_tcintd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcintd<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
@@ -828,11 +855,13 @@ impl Tmr {
   }
 
 #[doc="Timer Compare Action Select"]
-  #[inline] pub fn tcact(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x7 // [15:13]
+  #[inline] pub fn tcact(&self) -> bits::B3 {
+     (((self.0 as u32) >> 13) & 0x7).into() // [15:13]
   }
 #[doc="Timer Compare Action Select"]
-  #[inline] pub fn set_tcact(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tcact<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 13);
      self.0 |= value << 13;
@@ -870,13 +899,15 @@ impl ::core::fmt::Debug for Tmr {
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="GPTM Timer n Enable"]
-  #[inline] pub fn ten(&self, index: usize) -> u32 {
+  #[inline] pub fn ten(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM Timer n Enable"]
-  #[inline] pub fn set_ten(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ten<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -886,13 +917,15 @@ impl Ctl {
   }
 
 #[doc="GPTM Timer n Stall Enable"]
-  #[inline] pub fn tstall(&self, index: usize) -> u32 {
+  #[inline] pub fn tstall(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM Timer n Stall Enable"]
-  #[inline] pub fn set_tstall(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tstall<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -902,13 +935,15 @@ impl Ctl {
   }
 
 #[doc="GPTM Timer n Event Mode"]
-  #[inline] pub fn tevent(&self, index: usize) -> u32 {
+  #[inline] pub fn tevent(&self, index: usize) -> bits::B2 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x3 // [3:2]
+     (((self.0 as u32) >> shift) & 0x3).into() // [3:2]
   }
 #[doc="GPTM Timer n Event Mode"]
-  #[inline] pub fn set_tevent(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tevent<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x3) == 0);
      let shift: usize = 2 + (index << 3);
@@ -918,11 +953,13 @@ impl Ctl {
   }
 
 #[doc="GPTM RTC Stall Enable"]
-  #[inline] pub fn rtcen(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn rtcen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM RTC Stall Enable"]
-  #[inline] pub fn set_rtcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -930,13 +967,15 @@ impl Ctl {
   }
 
 #[doc="GPTM Timer n Output Trigger Enable"]
-  #[inline] pub fn tote(&self, index: usize) -> u32 {
+  #[inline] pub fn tote(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 5 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [5]
+     (((self.0 as u32) >> shift) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n Output Trigger Enable"]
-  #[inline] pub fn set_tote(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tote<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 5 + (index << 3);
@@ -946,13 +985,15 @@ impl Ctl {
   }
 
 #[doc="GPTM Timer n PWM Output Level"]
-  #[inline] pub fn tpwml(&self, index: usize) -> u32 {
+  #[inline] pub fn tpwml(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 6 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [6]
+     (((self.0 as u32) >> shift) & 0x1).into() // [6]
   }
 #[doc="GPTM Timer n PWM Output Level"]
-  #[inline] pub fn set_tpwml(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tpwml<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 6 + (index << 3);
@@ -990,13 +1031,15 @@ impl ::core::fmt::Debug for Ctl {
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Synchronize GPTM Timer n"]
-  #[inline] pub fn synct(&self, index: usize) -> u32 {
+  #[inline] pub fn synct(&self, index: usize) -> bits::B2 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 1);
-     ((self.0 as u32) >> shift) & 0x3 // [1:0]
+     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
   }
 #[doc="Synchronize GPTM Timer n"]
-  #[inline] pub fn set_synct(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_synct<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 1);
@@ -1031,13 +1074,15 @@ impl ::core::fmt::Debug for Sync {
 pub struct Imr(pub u32);
 impl Imr {
 #[doc="GPTM Timer n Time-Out Interrupt Mask"]
-  #[inline] pub fn ttoim(&self, index: usize) -> u32 {
+  #[inline] pub fn ttoim(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM Timer n Time-Out Interrupt Mask"]
-  #[inline] pub fn set_ttoim(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttoim<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1047,13 +1092,15 @@ impl Imr {
   }
 
 #[doc="GPTM Timer n Capture Mode Match Interrupt Mask"]
-  #[inline] pub fn cmim(&self, index: usize) -> u32 {
+  #[inline] pub fn cmim(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM Timer n Capture Mode Match Interrupt Mask"]
-  #[inline] pub fn set_cmim(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmim<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1063,13 +1110,15 @@ impl Imr {
   }
 
 #[doc="GPTM Timer n Capture Mode Event Interrupt Mask"]
-  #[inline] pub fn ceim(&self, index: usize) -> u32 {
+  #[inline] pub fn ceim(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM Timer n Capture Mode Event Interrupt Mask"]
-  #[inline] pub fn set_ceim(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ceim<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1079,11 +1128,13 @@ impl Imr {
   }
 
 #[doc="GPTM RTC Interrupt Mask"]
-  #[inline] pub fn rtcim(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtcim(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Interrupt Mask"]
-  #[inline] pub fn set_rtcim(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcim<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1091,13 +1142,15 @@ impl Imr {
   }
 
 #[doc="GPTM Timer n Match Interrupt Mask"]
-  #[inline] pub fn tmim(&self, index: usize) -> u32 {
+  #[inline] pub fn tmim(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+     (((self.0 as u32) >> shift) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer n Match Interrupt Mask"]
-  #[inline] pub fn set_tmim(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tmim<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 4 + (index << 3);
@@ -1107,13 +1160,15 @@ impl Imr {
   }
 
 #[doc="GPTM Timer n DMA Done Interrupt Mask"]
-  #[inline] pub fn dmaim(&self, index: usize) -> u32 {
+  #[inline] pub fn dmaim(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 5 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [5]
+     (((self.0 as u32) >> shift) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n DMA Done Interrupt Mask"]
-  #[inline] pub fn set_dmaim(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmaim<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 5 + (index << 3);
@@ -1151,13 +1206,15 @@ impl ::core::fmt::Debug for Imr {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
-  #[inline] pub fn ttoris(&self, index: usize) -> u32 {
+  #[inline] pub fn ttoris(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
-  #[inline] pub fn set_ttoris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttoris<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1167,13 +1224,15 @@ impl Ris {
   }
 
 #[doc="GPTM Timer n Capture Mode Match Raw Interrupt"]
-  #[inline] pub fn cmris(&self, index: usize) -> u32 {
+  #[inline] pub fn cmris(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM Timer n Capture Mode Match Raw Interrupt"]
-  #[inline] pub fn set_cmris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmris<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1183,13 +1242,15 @@ impl Ris {
   }
 
 #[doc="GPTM Timer n Capture Mode Event Raw Interrupt"]
-  #[inline] pub fn ceris(&self, index: usize) -> u32 {
+  #[inline] pub fn ceris(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM Timer n Capture Mode Event Raw Interrupt"]
-  #[inline] pub fn set_ceris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ceris<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1199,11 +1260,13 @@ impl Ris {
   }
 
 #[doc="GPTM RTC Raw Interrupt"]
-  #[inline] pub fn rtcris(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtcris(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Raw Interrupt"]
-  #[inline] pub fn set_rtcris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcris<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1211,11 +1274,13 @@ impl Ris {
   }
 
 #[doc="GPTM Timer A Match Raw Interrupt"]
-  #[inline] pub fn tamris(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tamris(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer A Match Raw Interrupt"]
-  #[inline] pub fn set_tamris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamris<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1223,13 +1288,15 @@ impl Ris {
   }
 
 #[doc="GPTM Timer n DMA Done Raw Interrupt Status"]
-  #[inline] pub fn dmaris(&self, index: usize) -> u32 {
+  #[inline] pub fn dmaris(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 5 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [5]
+     (((self.0 as u32) >> shift) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n DMA Done Raw Interrupt Status"]
-  #[inline] pub fn set_dmaris(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmaris<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 5 + (index << 3);
@@ -1239,11 +1306,13 @@ impl Ris {
   }
 
 #[doc="GPTM Timer B Match Raw Interrupt"]
-  #[inline] pub fn tbmris(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tbmris(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="GPTM Timer B Match Raw Interrupt"]
-  #[inline] pub fn set_tbmris(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tbmris<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -1279,13 +1348,15 @@ impl ::core::fmt::Debug for Ris {
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="GPTM Timer n Time-Out Masked Interrupt"]
-  #[inline] pub fn ttomis(&self, index: usize) -> u32 {
+  #[inline] pub fn ttomis(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM Timer n Time-Out Masked Interrupt"]
-  #[inline] pub fn set_ttomis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttomis<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1295,13 +1366,15 @@ impl Mis {
   }
 
 #[doc="GPTM Timer n Capture Mode Match Masked Interrupt"]
-  #[inline] pub fn cmmis(&self, index: usize) -> u32 {
+  #[inline] pub fn cmmis(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM Timer n Capture Mode Match Masked Interrupt"]
-  #[inline] pub fn set_cmmis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmmis<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1311,13 +1384,15 @@ impl Mis {
   }
 
 #[doc="GPTM Timer n Capture Mode Event Masked Interrupt"]
-  #[inline] pub fn cemis(&self, index: usize) -> u32 {
+  #[inline] pub fn cemis(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM Timer n Capture Mode Event Masked Interrupt"]
-  #[inline] pub fn set_cemis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cemis<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1327,11 +1402,13 @@ impl Mis {
   }
 
 #[doc="GPTM RTC Masked Interrupt"]
-  #[inline] pub fn rtcmis(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtcmis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Masked Interrupt"]
-  #[inline] pub fn set_rtcmis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcmis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1339,11 +1416,13 @@ impl Mis {
   }
 
 #[doc="GPTM Timer A Match Masked Interrupt"]
-  #[inline] pub fn tammis(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tammis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer A Match Masked Interrupt"]
-  #[inline] pub fn set_tammis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tammis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1351,13 +1430,15 @@ impl Mis {
   }
 
 #[doc="GPTM Timer n DMA Done Masked Interrupt"]
-  #[inline] pub fn dmamis(&self, index: usize) -> u32 {
+  #[inline] pub fn dmamis(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 5 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [5]
+     (((self.0 as u32) >> shift) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n DMA Done Masked Interrupt"]
-  #[inline] pub fn set_dmamis(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmamis<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 5 + (index << 3);
@@ -1367,11 +1448,13 @@ impl Mis {
   }
 
 #[doc="GPTM Timer B Match Masked Interrupt"]
-  #[inline] pub fn tbmmis(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tbmmis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer B Match Masked Interrupt"]
-  #[inline] pub fn set_tbmmis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tbmmis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1407,13 +1490,15 @@ impl ::core::fmt::Debug for Mis {
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
-  #[inline] pub fn ttocint(&self, index: usize) -> u32 {
+  #[inline] pub fn ttocint(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
-  #[inline] pub fn set_ttocint(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttocint<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1423,13 +1508,15 @@ impl Icr {
   }
 
 #[doc="GPTM Timer n Capture Mode Match Interrupt Clear"]
-  #[inline] pub fn cmcint(&self, index: usize) -> u32 {
+  #[inline] pub fn cmcint(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM Timer n Capture Mode Match Interrupt Clear"]
-  #[inline] pub fn set_cmcint(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmcint<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1439,13 +1526,15 @@ impl Icr {
   }
 
 #[doc="GPTM Timer n Capture Mode Event Interrupt Clear"]
-  #[inline] pub fn cecint(&self, index: usize) -> u32 {
+  #[inline] pub fn cecint(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM Timer n Capture Mode Event Interrupt Clear"]
-  #[inline] pub fn set_cecint(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cecint<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1455,11 +1544,13 @@ impl Icr {
   }
 
 #[doc="GPTM RTC Interrupt Clear"]
-  #[inline] pub fn rtccint(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtccint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Interrupt Clear"]
-  #[inline] pub fn set_rtccint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtccint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1467,11 +1558,13 @@ impl Icr {
   }
 
 #[doc="GPTM Timer A Match Interrupt Clear"]
-  #[inline] pub fn tamcint(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn tamcint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="GPTM Timer A Match Interrupt Clear"]
-  #[inline] pub fn set_tamcint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tamcint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1479,13 +1572,15 @@ impl Icr {
   }
 
 #[doc="GPTM Timer n DMA Done Interrupt Clear"]
-  #[inline] pub fn dmaint(&self, index: usize) -> u32 {
+  #[inline] pub fn dmaint(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 5 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [5]
+     (((self.0 as u32) >> shift) & 0x1).into() // [5]
   }
 #[doc="GPTM Timer n DMA Done Interrupt Clear"]
-  #[inline] pub fn set_dmaint(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_dmaint<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 5 + (index << 3);
@@ -1495,11 +1590,13 @@ impl Icr {
   }
 
 #[doc="GPTM Timer B Match Interrupt Clear"]
-  #[inline] pub fn tbmcint(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x1 // [11]
+  #[inline] pub fn tbmcint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 11) & 0x1).into() // [11]
   }
 #[doc="GPTM Timer B Match Interrupt Clear"]
-  #[inline] pub fn set_tbmcint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tbmcint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
@@ -1534,10 +1631,12 @@ impl ::core::fmt::Debug for Icr {
 #[derive(PartialEq, Eq)]
 pub struct Tilr(pub u32);
 impl Tilr {
-  #[inline] pub fn tilr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tilr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
-  #[inline] pub fn set_tilr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tilr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1561,10 +1660,12 @@ impl ::core::fmt::Debug for Tilr {
 #[derive(PartialEq, Eq)]
 pub struct Tmtchr(pub u32);
 impl Tmtchr {
-  #[inline] pub fn tmtchr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tmtchr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
-  #[inline] pub fn set_tmtchr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tmtchr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1589,11 +1690,13 @@ impl ::core::fmt::Debug for Tmtchr {
 pub struct Tpr(pub u32);
 impl Tpr {
 #[doc="GPTM Timer n Prescale"]
-  #[inline] pub fn tpsr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn tpsr(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="GPTM Timer n Prescale"]
-  #[inline] pub fn set_tpsr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpsr<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1619,11 +1722,13 @@ impl ::core::fmt::Debug for Tpr {
 pub struct Tpmr(pub u32);
 impl Tpmr {
 #[doc="GPTM Timer n Prescale Match"]
-  #[inline] pub fn tpsmr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xff // [7:0]
+  #[inline] pub fn tpsmr(&self) -> bits::B8 {
+     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="GPTM Timer n Prescale Match"]
-  #[inline] pub fn set_tpsmr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tpsmr<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -1648,10 +1753,12 @@ impl ::core::fmt::Debug for Tpmr {
 #[derive(PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
-  #[inline] pub fn tr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tr(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
-  #[inline] pub fn set_tr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tr<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1675,10 +1782,12 @@ impl ::core::fmt::Debug for Tr {
 #[derive(PartialEq, Eq)]
 pub struct Tv(pub u32);
 impl Tv {
-  #[inline] pub fn tv(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn tv(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
-  #[inline] pub fn set_tv(mut self, value: u32) -> Self {
+  #[inline] pub fn set_tv<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -1703,11 +1812,13 @@ impl ::core::fmt::Debug for Tv {
 pub struct Rtcpd(pub u32);
 impl Rtcpd {
 #[doc="RTC Predivide Counter Value"]
-  #[inline] pub fn rtcpd(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn rtcpd(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="RTC Predivide Counter Value"]
-  #[inline] pub fn set_rtcpd(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcpd<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1733,11 +1844,13 @@ impl ::core::fmt::Debug for Rtcpd {
 pub struct Tps(pub u32);
 impl Tps {
 #[doc="GPTM Timer n Prescaler Snapshot"]
-  #[inline] pub fn pss(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn pss(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="GPTM Timer n Prescaler Snapshot"]
-  #[inline] pub fn set_pss(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pss<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1763,13 +1876,15 @@ impl ::core::fmt::Debug for Tps {
 pub struct Dmaev(pub u32);
 impl Dmaev {
 #[doc="GPTM n Time-Out Event DMA Trigger Enable"]
-  #[inline] pub fn ttodmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn ttodmaen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM n Time-Out Event DMA Trigger Enable"]
-  #[inline] pub fn set_ttodmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttodmaen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1779,13 +1894,15 @@ impl Dmaev {
   }
 
 #[doc="GPTM n Capture Match Event DMA Trigger Enable"]
-  #[inline] pub fn cmdmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn cmdmaen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM n Capture Match Event DMA Trigger Enable"]
-  #[inline] pub fn set_cmdmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmdmaen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1795,13 +1912,15 @@ impl Dmaev {
   }
 
 #[doc="GPTM n Capture Event DMA Trigger Enable"]
-  #[inline] pub fn cedmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn cedmaen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM n Capture Event DMA Trigger Enable"]
-  #[inline] pub fn set_cedmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cedmaen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1811,11 +1930,13 @@ impl Dmaev {
   }
 
 #[doc="GPTM RTC Match Event DMA Trigger Enable"]
-  #[inline] pub fn rtcdmaen(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtcdmaen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Match Event DMA Trigger Enable"]
-  #[inline] pub fn set_rtcdmaen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcdmaen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1823,13 +1944,15 @@ impl Dmaev {
   }
 
 #[doc="GPTM n Mode Match Event DMA Trigger Enable"]
-  #[inline] pub fn tmdmaen(&self, index: usize) -> u32 {
+  #[inline] pub fn tmdmaen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+     (((self.0 as u32) >> shift) & 0x1).into() // [4]
   }
 #[doc="GPTM n Mode Match Event DMA Trigger Enable"]
-  #[inline] pub fn set_tmdmaen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tmdmaen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 4 + (index << 3);
@@ -1865,13 +1988,15 @@ impl ::core::fmt::Debug for Dmaev {
 pub struct Adcev(pub u32);
 impl Adcev {
 #[doc="GPTM n Time-Out Event ADC Trigger Enable"]
-  #[inline] pub fn ttoadcen(&self, index: usize) -> u32 {
+  #[inline] pub fn ttoadcen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 0 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="GPTM n Time-Out Event ADC Trigger Enable"]
-  #[inline] pub fn set_ttoadcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ttoadcen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 3);
@@ -1881,13 +2006,15 @@ impl Adcev {
   }
 
 #[doc="GPTM n Capture Match Event ADC Trigger Enable"]
-  #[inline] pub fn cmadcen(&self, index: usize) -> u32 {
+  #[inline] pub fn cmadcen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 1 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [1]
+     (((self.0 as u32) >> shift) & 0x1).into() // [1]
   }
 #[doc="GPTM n Capture Match Event ADC Trigger Enable"]
-  #[inline] pub fn set_cmadcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_cmadcen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 3);
@@ -1897,13 +2024,15 @@ impl Adcev {
   }
 
 #[doc="GPTM Capture Event ADC Trigger Enable"]
-  #[inline] pub fn ceadcen(&self, index: usize) -> u32 {
+  #[inline] pub fn ceadcen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 2 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [2]
+     (((self.0 as u32) >> shift) & 0x1).into() // [2]
   }
 #[doc="GPTM Capture Event ADC Trigger Enable"]
-  #[inline] pub fn set_ceadcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ceadcen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 3);
@@ -1913,11 +2042,13 @@ impl Adcev {
   }
 
 #[doc="GPTM RTC Match Event ADC Trigger Enable"]
-  #[inline] pub fn rtcadcen(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn rtcadcen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="GPTM RTC Match Event ADC Trigger Enable"]
-  #[inline] pub fn set_rtcadcen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rtcadcen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1925,13 +2056,15 @@ impl Adcev {
   }
 
 #[doc="GPTM n Mode Match Event ADC Trigger Enable"]
-  #[inline] pub fn tmadcen(&self, index: usize) -> u32 {
+  #[inline] pub fn tmadcen(&self, index: usize) -> bits::B1 {
      assert!(index < 2);
      let shift: usize = 4 + (index << 3);
-     ((self.0 as u32) >> shift) & 0x1 // [4]
+     (((self.0 as u32) >> shift) & 0x1).into() // [4]
   }
 #[doc="GPTM n Mode Match Event ADC Trigger Enable"]
-  #[inline] pub fn set_tmadcen(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_tmadcen<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 2);
      assert!((value & !0x1) == 0);
      let shift: usize = 4 + (index << 3);
@@ -1967,11 +2100,13 @@ impl ::core::fmt::Debug for Adcev {
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Count Size"]
-  #[inline] pub fn size(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xf // [3:0]
+  #[inline] pub fn size(&self) -> bits::B4 {
+     (((self.0 as u32) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Count Size"]
-  #[inline] pub fn set_size(mut self, value: u32) -> Self {
+  #[inline] pub fn set_size<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1979,11 +2114,13 @@ impl Pp {
   }
 
 #[doc="Chain with Other Timers"]
-  #[inline] pub fn chain(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn chain(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Chain with Other Timers"]
-  #[inline] pub fn set_chain(mut self, value: u32) -> Self {
+  #[inline] pub fn set_chain<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -1991,11 +2128,13 @@ impl Pp {
   }
 
 #[doc="Synchronize Start"]
-  #[inline] pub fn synccnt(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn synccnt(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Synchronize Start"]
-  #[inline] pub fn set_synccnt(mut self, value: u32) -> Self {
+  #[inline] pub fn set_synccnt<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -2003,11 +2142,13 @@ impl Pp {
   }
 
 #[doc="Alternate Clock Source"]
-  #[inline] pub fn altclk(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn altclk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Alternate Clock Source"]
-  #[inline] pub fn set_altclk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_altclk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -2036,11 +2177,13 @@ impl ::core::fmt::Debug for Pp {
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="Alternate Clock Source"]
-  #[inline] pub fn altclk(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn altclk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Alternate Clock Source"]
-  #[inline] pub fn set_altclk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_altclk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;

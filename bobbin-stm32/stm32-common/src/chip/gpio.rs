@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="GPIO Peripheral"]
@@ -276,13 +277,15 @@ impl<T> Periph<T> {
 pub struct Moder(pub u32);
 impl Moder {
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn moder(&self, index: usize) -> u32 {
+  #[inline] pub fn moder(&self, index: usize) -> bits::B2 {
      assert!(index < 16);
      let shift: usize = 0 + (index << 1);
-     ((self.0 as u32) >> shift) & 0x3 // [1:0]
+     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn set_moder(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_moder<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 1);
@@ -325,13 +328,15 @@ impl ::core::fmt::Debug for Moder {
 pub struct Otyper(pub u32);
 impl Otyper {
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn ot(&self, index: usize) -> u32 {
+  #[inline] pub fn ot(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn set_ot(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ot<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -374,13 +379,15 @@ impl ::core::fmt::Debug for Otyper {
 pub struct Ospeedr(pub u32);
 impl Ospeedr {
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn ospeedr(&self, index: usize) -> u32 {
+  #[inline] pub fn ospeedr(&self, index: usize) -> bits::B2 {
      assert!(index < 16);
      let shift: usize = 0 + (index << 1);
-     ((self.0 as u32) >> shift) & 0x3 // [1:0]
+     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn set_ospeedr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_ospeedr<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 1);
@@ -423,13 +430,15 @@ impl ::core::fmt::Debug for Ospeedr {
 pub struct Pupdr(pub u32);
 impl Pupdr {
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn pupdr(&self, index: usize) -> u32 {
+  #[inline] pub fn pupdr(&self, index: usize) -> bits::B2 {
      assert!(index < 16);
      let shift: usize = 0 + (index << 1);
-     ((self.0 as u32) >> shift) & 0x3 // [1:0]
+     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
-  #[inline] pub fn set_pupdr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_pupdr<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 1);
@@ -472,13 +481,15 @@ impl ::core::fmt::Debug for Pupdr {
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="Port input data (y = 0..15)"]
-  #[inline] pub fn idr(&self, index: usize) -> u32 {
+  #[inline] pub fn idr(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port input data (y = 0..15)"]
-  #[inline] pub fn set_idr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_idr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -521,13 +532,15 @@ impl ::core::fmt::Debug for Idr {
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="Port output data (y = 0..15)"]
-  #[inline] pub fn odr(&self, index: usize) -> u32 {
+  #[inline] pub fn odr(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port output data (y = 0..15)"]
-  #[inline] pub fn set_odr(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_odr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -570,13 +583,15 @@ impl ::core::fmt::Debug for Odr {
 pub struct Bsrr(pub u32);
 impl Bsrr {
 #[doc="Port x reset bit y (y = 0..15)"]
-  #[inline] pub fn br(&self, index: usize) -> u32 {
+  #[inline] pub fn br(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 16 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [16]
+     (((self.0 as u32) >> shift) & 0x1).into() // [16]
   }
 #[doc="Port x reset bit y (y = 0..15)"]
-  #[inline] pub fn set_br(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_br<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 16 + index;
@@ -586,13 +601,15 @@ impl Bsrr {
   }
 
 #[doc="Port x set bit y (y= 0..15)"]
-  #[inline] pub fn bs(&self, index: usize) -> u32 {
+  #[inline] pub fn bs(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port x set bit y (y= 0..15)"]
-  #[inline] pub fn set_bs(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_bs<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -651,11 +668,13 @@ impl ::core::fmt::Debug for Bsrr {
 pub struct Lckr(pub u32);
 impl Lckr {
 #[doc="Lock Key"]
-  #[inline] pub fn lckk(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn lckk(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Lock Key"]
-  #[inline] pub fn set_lckk(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lckk<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -663,13 +682,15 @@ impl Lckr {
   }
 
 #[doc="Port x lock bit y (y= 0..15)"]
-  #[inline] pub fn lck(&self, index: usize) -> u32 {
+  #[inline] pub fn lck(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port x lock bit y (y= 0..15)"]
-  #[inline] pub fn set_lck(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_lck<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
@@ -713,13 +734,15 @@ impl ::core::fmt::Debug for Lckr {
 pub struct Afrl(pub u32);
 impl Afrl {
 #[doc="Alternate function selection for port x bit y (y = 0..7)"]
-  #[inline] pub fn afrl(&self, index: usize) -> u32 {
+  #[inline] pub fn afrl(&self, index: usize) -> bits::B4 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
-     ((self.0 as u32) >> shift) & 0xf // [3:0]
+     (((self.0 as u32) >> shift) & 0xf).into() // [3:0]
   }
 #[doc="Alternate function selection for port x bit y (y = 0..7)"]
-  #[inline] pub fn set_afrl(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_afrl<V: Into<bits::B4>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0xf) == 0);
      let shift: usize = 0 + (index << 2);
@@ -754,13 +777,15 @@ impl ::core::fmt::Debug for Afrl {
 pub struct Afrh(pub u32);
 impl Afrh {
 #[doc="Alternate function selection for port x bit y (y = 8..15)"]
-  #[inline] pub fn afrh(&self, index: usize) -> u32 {
+  #[inline] pub fn afrh(&self, index: usize) -> bits::B4 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
-     ((self.0 as u32) >> shift) & 0xf // [3:0]
+     (((self.0 as u32) >> shift) & 0xf).into() // [3:0]
   }
 #[doc="Alternate function selection for port x bit y (y = 8..15)"]
-  #[inline] pub fn set_afrh(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_afrh<V: Into<bits::B4>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!(index < 8);
      assert!((value & !0xf) == 0);
      let shift: usize = 0 + (index << 2);
@@ -795,13 +820,15 @@ impl ::core::fmt::Debug for Afrh {
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="Port x reset bit y"]
-  #[inline] pub fn br(&self, index: usize) -> u32 {
+  #[inline] pub fn br(&self, index: usize) -> bits::B1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     ((self.0 as u32) >> shift) & 0x1 // [0]
+     (((self.0 as u32) >> shift) & 0x1).into() // [0]
   }
 #[doc="Port x reset bit y"]
-  #[inline] pub fn set_br(mut self, index: usize, value: u32) -> Self {
+  #[inline] pub fn set_br<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!(index < 16);
      assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;

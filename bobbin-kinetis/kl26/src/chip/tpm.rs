@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::tpm::*;
 
 pub const TPM0: Tpm0 = Periph(0x40038000, Tpm0Id {});

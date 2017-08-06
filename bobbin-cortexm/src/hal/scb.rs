@@ -41,10 +41,10 @@ pub fn set_dismcycint(value: bool) {
 pub fn cpuid() -> CpuId {
     let c = SCB.cpuid();
     CpuId {
-        implementer: c.implementer() as u8,
-        variant: c.variant() as u8,
-        partno: c.partno() as u16,
-        revision: c.revision() as u8,
+        implementer: c.implementer().into(),
+        variant: c.variant().into(),
+        partno: c.partno().into(),
+        revision: c.revision().into(),
     }
 }
 
@@ -83,7 +83,7 @@ pub fn isr_pending() -> bool {
 }
 
 pub fn vectpending() -> u32 {
-    SCB.icsr().vectpending()
+    SCB.icsr().vectpending().into()
 }
 
 pub fn rettobase() -> bool {
@@ -91,13 +91,13 @@ pub fn rettobase() -> bool {
 }
 
 pub fn vectactive() -> u32 {
-    SCB.icsr().vectactive()
+    SCB.icsr().vectactive().into()
 }
 
 // VTOR
 
 pub fn tbloff() -> u32 {
-    SCB.vtor().tbloff()
+    SCB.vtor().tbloff().into()
 }
 
 pub fn set_tbloff(value: u32) {
@@ -106,12 +106,12 @@ pub fn set_tbloff(value: u32) {
 
 // AIRCR
 
-pub fn vectkey() -> u16 {
-    SCB.aircr().vectkey() as u16
+pub fn vectkey() -> u8 {
+    SCB.aircr().vectkey().into()
 }
 
 pub fn set_vectkey(value: u16) {
-    SCB.with_aircr(|r| r.set_vectkey(value as u32));
+    SCB.with_aircr(|r| r.set_vectkey(value));
 }
 
 pub fn endianness() -> bool {
@@ -119,11 +119,11 @@ pub fn endianness() -> bool {
 }
 
 pub fn prigroup() -> u8 {
-    SCB.aircr().prigroup() as u8
+    SCB.aircr().prigroup().into()
 }
 
 pub fn set_prigroup(value: u8) {
-    SCB.with_aircr(|r| r.set_prigroup(value as u32));
+    SCB.with_aircr(|r| r.set_prigroup(value));
 }
 
 pub fn set_sysresetreq(value: bool) {
@@ -219,51 +219,51 @@ pub fn set_nonbasethrdena(value: bool) {
 }
 
 pub fn pri_4() -> u8 {
-    SCB.shpr1().pri_4() as u8
+    SCB.shpr1().pri_4().into()
 }
 
 pub fn set_pri_4(value: u8) {
-    SCB.with_shpr1(|r| r.set_pri_4(value as u32));
+    SCB.with_shpr1(|r| r.set_pri_4(value));
 }
 
 pub fn pri_5() -> u8 {
-    SCB.shpr1().pri_5() as u8
+    SCB.shpr1().pri_5().into()
 }
 
 pub fn set_pri_5(value: u8) {
-    SCB.with_shpr1(|r| r.set_pri_5(value as u32));
+    SCB.with_shpr1(|r| r.set_pri_5(value));
 }
 
 pub fn pri_6() -> u8 {
-    SCB.shpr1().pri_6() as u8
+    SCB.shpr1().pri_6().into()
 }
 
 pub fn set_pri_6(value: u8) {
-    SCB.with_shpr1(|r| r.set_pri_6(value as u32));
+    SCB.with_shpr1(|r| r.set_pri_6(value));
 }
 
 pub fn pri_11() -> u8 {
-    SCB.shpr2().pri_11() as u8
+    SCB.shpr2().pri_11().into()
 }
 
 pub fn set_pri_11(value: u8) {
-    SCB.with_shpr2(|r| r.set_pri_11(value as u32));
+    SCB.with_shpr2(|r| r.set_pri_11(value));
 }
 
 pub fn pri_14() -> u8 {
-    SCB.shpr3().pri_14() as u8
+    SCB.shpr3().pri_14().into()
 }
 
 pub fn set_pri_14(value: u8) {
-    SCB.with_shpr3(|r| r.set_pri_14(value as u32));
+    SCB.with_shpr3(|r| r.set_pri_14(value));
 }
 
 pub fn pri_15() -> u8 {
-    SCB.shpr3().pri_15() as u8
+    SCB.shpr3().pri_15().into()
 }
 
 pub fn set_pri_15(value: u8) {
-    SCB.with_shpr3(|r| r.set_pri_15(value as u32));
+    SCB.with_shpr3(|r| r.set_pri_15(value));
 }
 
 // Handler Priority Aliases
@@ -633,13 +633,13 @@ pub fn set_vecttbl(value: bool) {
 }
 
 pub fn memmanage_fault_address() -> u32 {
-    SCB.mmfar().address()
+    SCB.mmfar().address().into()
 }
 
 pub fn busfault_address() -> u32 {
-    SCB.bfar().address()
+    SCB.bfar().address().into()
 }
 
 pub fn auxiliary_fault_status() -> u32 {
-    SCB.afsr().impdef()
+    SCB.afsr().impdef().into()
 }

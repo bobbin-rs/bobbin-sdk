@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DMA Peripheral"]
@@ -168,11 +169,13 @@ impl<T> Periph<T> {
 pub struct Sar(pub u32);
 impl Sar {
 #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
-  #[inline] pub fn sar(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn sar(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
-  #[inline] pub fn set_sar(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sar<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -197,11 +200,13 @@ impl ::core::fmt::Debug for Sar {
 pub struct Dar(pub u32);
 impl Dar {
 #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
-  #[inline] pub fn dar(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn dar(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
-  #[inline] pub fn set_dar(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dar<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
@@ -226,11 +231,13 @@ impl ::core::fmt::Debug for Dar {
 pub struct DsrBcr(pub u32);
 impl DsrBcr {
 #[doc="This field contains the number of bytes yet to be transferred for a given block"]
-  #[inline] pub fn bcr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffff // [23:0]
+  #[inline] pub fn bcr(&self) -> bits::B24 {
+     (((self.0 as u32) >> 0) & 0xffffff).into() // [23:0]
   }
 #[doc="This field contains the number of bytes yet to be transferred for a given block"]
-  #[inline] pub fn set_bcr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bcr<V: Into<bits::B24>>(mut self, value: V) -> Self {
+     let value: bits::B24 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffff) == 0);
      self.0 &= !(0xffffff << 0);
      self.0 |= value << 0;
@@ -238,11 +245,13 @@ impl DsrBcr {
   }
 
 #[doc="Transactions Done"]
-  #[inline] pub fn done(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0x1 // [24]
+  #[inline] pub fn done(&self) -> bits::B1 {
+     (((self.0 as u32) >> 24) & 0x1).into() // [24]
   }
 #[doc="Transactions Done"]
-  #[inline] pub fn set_done(mut self, value: u32) -> Self {
+  #[inline] pub fn set_done<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
@@ -250,11 +259,13 @@ impl DsrBcr {
   }
 
 #[doc="Busy"]
-  #[inline] pub fn bsy(&self) -> u32 {
-     ((self.0 as u32) >> 25) & 0x1 // [25]
+  #[inline] pub fn bsy(&self) -> bits::B1 {
+     (((self.0 as u32) >> 25) & 0x1).into() // [25]
   }
 #[doc="Busy"]
-  #[inline] pub fn set_bsy(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bsy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
@@ -262,11 +273,13 @@ impl DsrBcr {
   }
 
 #[doc="Request"]
-  #[inline] pub fn req(&self) -> u32 {
-     ((self.0 as u32) >> 26) & 0x1 // [26]
+  #[inline] pub fn req(&self) -> bits::B1 {
+     (((self.0 as u32) >> 26) & 0x1).into() // [26]
   }
 #[doc="Request"]
-  #[inline] pub fn set_req(mut self, value: u32) -> Self {
+  #[inline] pub fn set_req<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
@@ -274,11 +287,13 @@ impl DsrBcr {
   }
 
 #[doc="Bus Error on Destination"]
-  #[inline] pub fn bed(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn bed(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="Bus Error on Destination"]
-  #[inline] pub fn set_bed(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bed<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -286,11 +301,13 @@ impl DsrBcr {
   }
 
 #[doc="Bus Error on Source"]
-  #[inline] pub fn bes(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
+  #[inline] pub fn bes(&self) -> bits::B1 {
+     (((self.0 as u32) >> 29) & 0x1).into() // [29]
   }
 #[doc="Bus Error on Source"]
-  #[inline] pub fn set_bes(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bes<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
@@ -298,11 +315,13 @@ impl DsrBcr {
   }
 
 #[doc="Configuration Error"]
-  #[inline] pub fn ce(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn ce(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Configuration Error"]
-  #[inline] pub fn set_ce(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ce<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -351,11 +370,13 @@ impl ::core::fmt::Debug for Dsr {
 pub struct Dcr(pub u32);
 impl Dcr {
 #[doc="Link Channel 2"]
-  #[inline] pub fn lch2(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3 // [1:0]
+  #[inline] pub fn lch2(&self) -> bits::B2 {
+     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
   }
 #[doc="Link Channel 2"]
-  #[inline] pub fn set_lch2(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lch2<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
@@ -363,11 +384,13 @@ impl Dcr {
   }
 
 #[doc="Link Channel 1"]
-  #[inline] pub fn lch1(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x3 // [3:2]
+  #[inline] pub fn lch1(&self) -> bits::B2 {
+     (((self.0 as u32) >> 2) & 0x3).into() // [3:2]
   }
 #[doc="Link Channel 1"]
-  #[inline] pub fn set_lch1(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lch1<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
@@ -375,11 +398,13 @@ impl Dcr {
   }
 
 #[doc="Link Channel Control"]
-  #[inline] pub fn linkcc(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn linkcc(&self) -> bits::B2 {
+     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Link Channel Control"]
-  #[inline] pub fn set_linkcc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_linkcc<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -387,11 +412,13 @@ impl Dcr {
   }
 
 #[doc="Disable Request"]
-  #[inline] pub fn d_req(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn d_req(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Disable Request"]
-  #[inline] pub fn set_d_req(mut self, value: u32) -> Self {
+  #[inline] pub fn set_d_req<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -399,11 +426,13 @@ impl Dcr {
   }
 
 #[doc="Destination Address Modulo"]
-  #[inline] pub fn dmod(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0xf // [11:8]
+  #[inline] pub fn dmod(&self) -> bits::B4 {
+     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
   }
 #[doc="Destination Address Modulo"]
-  #[inline] pub fn set_dmod(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dmod<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
@@ -411,11 +440,13 @@ impl Dcr {
   }
 
 #[doc="Source Address Modulo"]
-  #[inline] pub fn smod(&self) -> u32 {
-     ((self.0 as u32) >> 12) & 0xf // [15:12]
+  #[inline] pub fn smod(&self) -> bits::B4 {
+     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
   }
 #[doc="Source Address Modulo"]
-  #[inline] pub fn set_smod(mut self, value: u32) -> Self {
+  #[inline] pub fn set_smod<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
@@ -423,11 +454,13 @@ impl Dcr {
   }
 
 #[doc="Start Transfer"]
-  #[inline] pub fn start(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x1 // [16]
+  #[inline] pub fn start(&self) -> bits::B1 {
+     (((self.0 as u32) >> 16) & 0x1).into() // [16]
   }
 #[doc="Start Transfer"]
-  #[inline] pub fn set_start(mut self, value: u32) -> Self {
+  #[inline] pub fn set_start<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
@@ -435,11 +468,13 @@ impl Dcr {
   }
 
 #[doc="Destination Size"]
-  #[inline] pub fn dsize(&self) -> u32 {
-     ((self.0 as u32) >> 17) & 0x3 // [18:17]
+  #[inline] pub fn dsize(&self) -> bits::B2 {
+     (((self.0 as u32) >> 17) & 0x3).into() // [18:17]
   }
 #[doc="Destination Size"]
-  #[inline] pub fn set_dsize(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dsize<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 17);
      self.0 |= value << 17;
@@ -447,11 +482,13 @@ impl Dcr {
   }
 
 #[doc="Destination Increment"]
-  #[inline] pub fn dinc(&self) -> u32 {
-     ((self.0 as u32) >> 19) & 0x1 // [19]
+  #[inline] pub fn dinc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 19) & 0x1).into() // [19]
   }
 #[doc="Destination Increment"]
-  #[inline] pub fn set_dinc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dinc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
@@ -459,11 +496,13 @@ impl Dcr {
   }
 
 #[doc="Source Size"]
-  #[inline] pub fn ssize(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0x3 // [21:20]
+  #[inline] pub fn ssize(&self) -> bits::B2 {
+     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
   }
 #[doc="Source Size"]
-  #[inline] pub fn set_ssize(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ssize<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
@@ -471,11 +510,13 @@ impl Dcr {
   }
 
 #[doc="Source Increment"]
-  #[inline] pub fn sinc(&self) -> u32 {
-     ((self.0 as u32) >> 22) & 0x1 // [22]
+  #[inline] pub fn sinc(&self) -> bits::B1 {
+     (((self.0 as u32) >> 22) & 0x1).into() // [22]
   }
 #[doc="Source Increment"]
-  #[inline] pub fn set_sinc(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sinc<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
@@ -483,11 +524,13 @@ impl Dcr {
   }
 
 #[doc="Enable asynchronous DMA requests"]
-  #[inline] pub fn eadreq(&self) -> u32 {
-     ((self.0 as u32) >> 23) & 0x1 // [23]
+  #[inline] pub fn eadreq(&self) -> bits::B1 {
+     (((self.0 as u32) >> 23) & 0x1).into() // [23]
   }
 #[doc="Enable asynchronous DMA requests"]
-  #[inline] pub fn set_eadreq(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eadreq<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
@@ -495,11 +538,13 @@ impl Dcr {
   }
 
 #[doc="Auto-align"]
-  #[inline] pub fn aa(&self) -> u32 {
-     ((self.0 as u32) >> 28) & 0x1 // [28]
+  #[inline] pub fn aa(&self) -> bits::B1 {
+     (((self.0 as u32) >> 28) & 0x1).into() // [28]
   }
 #[doc="Auto-align"]
-  #[inline] pub fn set_aa(mut self, value: u32) -> Self {
+  #[inline] pub fn set_aa<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
@@ -507,11 +552,13 @@ impl Dcr {
   }
 
 #[doc="Cycle Steal"]
-  #[inline] pub fn cs(&self) -> u32 {
-     ((self.0 as u32) >> 29) & 0x1 // [29]
+  #[inline] pub fn cs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 29) & 0x1).into() // [29]
   }
 #[doc="Cycle Steal"]
-  #[inline] pub fn set_cs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
@@ -519,11 +566,13 @@ impl Dcr {
   }
 
 #[doc="Enable Peripheral Request"]
-  #[inline] pub fn erq(&self) -> u32 {
-     ((self.0 as u32) >> 30) & 0x1 // [30]
+  #[inline] pub fn erq(&self) -> bits::B1 {
+     (((self.0 as u32) >> 30) & 0x1).into() // [30]
   }
 #[doc="Enable Peripheral Request"]
-  #[inline] pub fn set_erq(mut self, value: u32) -> Self {
+  #[inline] pub fn set_erq<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
@@ -531,11 +580,13 @@ impl Dcr {
   }
 
 #[doc="Enable Interrupt on Completion of Transfer"]
-  #[inline] pub fn eint(&self) -> u32 {
-     ((self.0 as u32) >> 31) & 0x1 // [31]
+  #[inline] pub fn eint(&self) -> bits::B1 {
+     (((self.0 as u32) >> 31) & 0x1).into() // [31]
   }
 #[doc="Enable Interrupt on Completion of Transfer"]
-  #[inline] pub fn set_eint(mut self, value: u32) -> Self {
+  #[inline] pub fn set_eint<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;

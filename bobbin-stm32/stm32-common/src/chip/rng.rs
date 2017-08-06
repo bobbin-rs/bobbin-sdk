@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RNG Peripheral"]
@@ -82,11 +83,13 @@ impl<T> Periph<T> {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Interrupt enable"]
-  #[inline] pub fn ie(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn ie(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Interrupt enable"]
-  #[inline] pub fn set_ie(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ie<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -94,11 +97,13 @@ impl Cr {
   }
 
 #[doc="Random number generator enable"]
-  #[inline] pub fn rngen(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn rngen(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Random number generator enable"]
-  #[inline] pub fn set_rngen(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rngen<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -125,11 +130,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Seed error interrupt status"]
-  #[inline] pub fn seis(&self) -> u32 {
-     ((self.0 as u32) >> 6) & 0x1 // [6]
+  #[inline] pub fn seis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 6) & 0x1).into() // [6]
   }
 #[doc="Seed error interrupt status"]
-  #[inline] pub fn set_seis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_seis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
@@ -137,11 +144,13 @@ impl Sr {
   }
 
 #[doc="Clock error interrupt status"]
-  #[inline] pub fn ceis(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn ceis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Clock error interrupt status"]
-  #[inline] pub fn set_ceis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ceis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -149,11 +158,13 @@ impl Sr {
   }
 
 #[doc="Seed error current status"]
-  #[inline] pub fn secs(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn secs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Seed error current status"]
-  #[inline] pub fn set_secs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_secs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -161,11 +172,13 @@ impl Sr {
   }
 
 #[doc="Clock error current status"]
-  #[inline] pub fn cecs(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn cecs(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Clock error current status"]
-  #[inline] pub fn set_cecs(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cecs<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -173,11 +186,13 @@ impl Sr {
   }
 
 #[doc="Data ready"]
-  #[inline] pub fn drdy(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn drdy(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Data ready"]
-  #[inline] pub fn set_drdy(mut self, value: u32) -> Self {
+  #[inline] pub fn set_drdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -207,11 +222,13 @@ impl ::core::fmt::Debug for Sr {
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Random data"]
-  #[inline] pub fn rndata(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffffffff // [31:0]
+  #[inline] pub fn rndata(&self) -> bits::B32 {
+     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
   }
 #[doc="Random data"]
-  #[inline] pub fn set_rndata(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rndata<V: Into<bits::B32>>(mut self, value: V) -> Self {
+     let value: bits::B32 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;

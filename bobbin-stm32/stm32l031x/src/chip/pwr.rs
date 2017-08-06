@@ -1,4 +1,5 @@
 //! Power control
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const PWR: Pwr = Pwr(0x40007000);
 
 #[doc="Power control"]
@@ -66,11 +67,13 @@ impl Pwr {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Low-power deep sleep"]
-  #[inline] pub fn lpds(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn lpds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Low-power deep sleep"]
-  #[inline] pub fn set_lpds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lpds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -78,11 +81,13 @@ impl Cr {
   }
 
 #[doc="Power down deepsleep"]
-  #[inline] pub fn pdds(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn pdds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Power down deepsleep"]
-  #[inline] pub fn set_pdds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pdds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -90,11 +95,13 @@ impl Cr {
   }
 
 #[doc="Clear wakeup flag"]
-  #[inline] pub fn cwuf(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn cwuf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="Clear wakeup flag"]
-  #[inline] pub fn set_cwuf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cwuf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -102,11 +109,13 @@ impl Cr {
   }
 
 #[doc="Clear standby flag"]
-  #[inline] pub fn csbf(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn csbf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Clear standby flag"]
-  #[inline] pub fn set_csbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_csbf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -114,11 +123,13 @@ impl Cr {
   }
 
 #[doc="Power voltage detector enable"]
-  #[inline] pub fn pvde(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn pvde(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Power voltage detector enable"]
-  #[inline] pub fn set_pvde(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pvde<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -126,11 +137,13 @@ impl Cr {
   }
 
 #[doc="PVD level selection"]
-  #[inline] pub fn pls(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x7 // [7:5]
+  #[inline] pub fn pls(&self) -> bits::B3 {
+     (((self.0 as u32) >> 5) & 0x7).into() // [7:5]
   }
 #[doc="PVD level selection"]
-  #[inline] pub fn set_pls(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pls<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 5);
      self.0 |= value << 5;
@@ -138,11 +151,13 @@ impl Cr {
   }
 
 #[doc="Disable backup domain write protection"]
-  #[inline] pub fn dbp(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn dbp(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Disable backup domain write protection"]
-  #[inline] pub fn set_dbp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_dbp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -150,11 +165,13 @@ impl Cr {
   }
 
 #[doc="Flash power down in Stop mode"]
-  #[inline] pub fn fpds(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn fpds(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Flash power down in Stop mode"]
-  #[inline] pub fn set_fpds(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fpds<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -162,11 +179,13 @@ impl Cr {
   }
 
 #[doc="Fast wakeup"]
-  #[inline] pub fn fwu(&self) -> u32 {
-     ((self.0 as u32) >> 10) & 0x1 // [10]
+  #[inline] pub fn fwu(&self) -> bits::B1 {
+     (((self.0 as u32) >> 10) & 0x1).into() // [10]
   }
 #[doc="Fast wakeup"]
-  #[inline] pub fn set_fwu(mut self, value: u32) -> Self {
+  #[inline] pub fn set_fwu<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 10);
      self.0 |= value << 10;
@@ -174,11 +193,13 @@ impl Cr {
   }
 
 #[doc="Voltage scaling range selection"]
-  #[inline] pub fn vos(&self) -> u32 {
-     ((self.0 as u32) >> 11) & 0x3 // [12:11]
+  #[inline] pub fn vos(&self) -> bits::B2 {
+     (((self.0 as u32) >> 11) & 0x3).into() // [12:11]
   }
 #[doc="Voltage scaling range selection"]
-  #[inline] pub fn set_vos(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vos<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 11);
      self.0 |= value << 11;
@@ -186,11 +207,13 @@ impl Cr {
   }
 
 #[doc="Deep sleep mode with Flash memory kept off"]
-  #[inline] pub fn ds_ee_koff(&self) -> u32 {
-     ((self.0 as u32) >> 13) & 0x1 // [13]
+  #[inline] pub fn ds_ee_koff(&self) -> bits::B1 {
+     (((self.0 as u32) >> 13) & 0x1).into() // [13]
   }
 #[doc="Deep sleep mode with Flash memory kept off"]
-  #[inline] pub fn set_ds_ee_koff(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ds_ee_koff<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
@@ -198,11 +221,13 @@ impl Cr {
   }
 
 #[doc="Low power run mode"]
-  #[inline] pub fn lprun(&self) -> u32 {
-     ((self.0 as u32) >> 14) & 0x1 // [14]
+  #[inline] pub fn lprun(&self) -> bits::B1 {
+     (((self.0 as u32) >> 14) & 0x1).into() // [14]
   }
 #[doc="Low power run mode"]
-  #[inline] pub fn set_lprun(mut self, value: u32) -> Self {
+  #[inline] pub fn set_lprun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
@@ -239,11 +264,13 @@ impl ::core::fmt::Debug for Cr {
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Backup regulator enable"]
-  #[inline] pub fn bre(&self) -> u32 {
-     ((self.0 as u32) >> 9) & 0x1 // [9]
+  #[inline] pub fn bre(&self) -> bits::B1 {
+     (((self.0 as u32) >> 9) & 0x1).into() // [9]
   }
 #[doc="Backup regulator enable"]
-  #[inline] pub fn set_bre(mut self, value: u32) -> Self {
+  #[inline] pub fn set_bre<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 9);
      self.0 |= value << 9;
@@ -251,11 +278,13 @@ impl Csr {
   }
 
 #[doc="Enable WKUP pin"]
-  #[inline] pub fn ewup(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1 // [8]
+  #[inline] pub fn ewup(&self) -> bits::B1 {
+     (((self.0 as u32) >> 8) & 0x1).into() // [8]
   }
 #[doc="Enable WKUP pin"]
-  #[inline] pub fn set_ewup(mut self, value: u32) -> Self {
+  #[inline] pub fn set_ewup<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
@@ -263,11 +292,13 @@ impl Csr {
   }
 
 #[doc="Backup regulator ready"]
-  #[inline] pub fn brr(&self) -> u32 {
-     ((self.0 as u32) >> 3) & 0x1 // [3]
+  #[inline] pub fn brr(&self) -> bits::B1 {
+     (((self.0 as u32) >> 3) & 0x1).into() // [3]
   }
 #[doc="Backup regulator ready"]
-  #[inline] pub fn set_brr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_brr<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -275,11 +306,13 @@ impl Csr {
   }
 
 #[doc="PVD output"]
-  #[inline] pub fn pvdo(&self) -> u32 {
-     ((self.0 as u32) >> 2) & 0x1 // [2]
+  #[inline] pub fn pvdo(&self) -> bits::B1 {
+     (((self.0 as u32) >> 2) & 0x1).into() // [2]
   }
 #[doc="PVD output"]
-  #[inline] pub fn set_pvdo(mut self, value: u32) -> Self {
+  #[inline] pub fn set_pvdo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -287,11 +320,13 @@ impl Csr {
   }
 
 #[doc="Standby flag"]
-  #[inline] pub fn sbf(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0x1 // [1]
+  #[inline] pub fn sbf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 1) & 0x1).into() // [1]
   }
 #[doc="Standby flag"]
-  #[inline] pub fn set_sbf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sbf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -299,11 +334,13 @@ impl Csr {
   }
 
 #[doc="Wakeup flag"]
-  #[inline] pub fn wuf(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1 // [0]
+  #[inline] pub fn wuf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 0) & 0x1).into() // [0]
   }
 #[doc="Wakeup flag"]
-  #[inline] pub fn set_wuf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_wuf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -311,11 +348,13 @@ impl Csr {
   }
 
 #[doc="Voltage Scaling select flag"]
-  #[inline] pub fn vosf(&self) -> u32 {
-     ((self.0 as u32) >> 4) & 0x1 // [4]
+  #[inline] pub fn vosf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 4) & 0x1).into() // [4]
   }
 #[doc="Voltage Scaling select flag"]
-  #[inline] pub fn set_vosf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_vosf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -323,11 +362,13 @@ impl Csr {
   }
 
 #[doc="Regulator LP flag"]
-  #[inline] pub fn reglpf(&self) -> u32 {
-     ((self.0 as u32) >> 5) & 0x1 // [5]
+  #[inline] pub fn reglpf(&self) -> bits::B1 {
+     (((self.0 as u32) >> 5) & 0x1).into() // [5]
   }
 #[doc="Regulator LP flag"]
-  #[inline] pub fn set_reglpf(mut self, value: u32) -> Self {
+  #[inline] pub fn set_reglpf<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;

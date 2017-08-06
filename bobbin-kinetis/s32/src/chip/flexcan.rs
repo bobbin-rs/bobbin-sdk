@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::flexcan::*;
 
 pub const CAN0: Can0 = Periph(0x40024000, Can0Id {});

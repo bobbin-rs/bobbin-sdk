@@ -1,4 +1,5 @@
 //! Non-Volatile Memory Controller
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const NVMCTRL: Nvmctrl = Nvmctrl(0x41004000);
 
 #[doc="Non-Volatile Memory Controller"]
@@ -255,11 +256,13 @@ impl Nvmctrl {
 pub struct Addr(pub u32);
 impl Addr {
 #[doc="NVM Address"]
-  #[inline] pub fn addr(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x3fffff // [21:0]
+  #[inline] pub fn addr(&self) -> bits::B22 {
+     (((self.0 as u32) >> 0) & 0x3fffff).into() // [21:0]
   }
 #[doc="NVM Address"]
-  #[inline] pub fn set_addr(mut self, value: u32) -> Self {
+  #[inline] pub fn set_addr<V: Into<bits::B22>>(mut self, value: V) -> Self {
+     let value: bits::B22 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3fffff) == 0);
      self.0 &= !(0x3fffff << 0);
      self.0 |= value << 0;
@@ -285,11 +288,13 @@ impl ::core::fmt::Debug for Addr {
 pub struct Ctrla(pub u16);
 impl Ctrla {
 #[doc="Command"]
-  #[inline] pub fn cmd(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x7f // [6:0]
+  #[inline] pub fn cmd(&self) -> bits::B7 {
+     (((self.0 as u16) >> 0) & 0x7f).into() // [6:0]
   }
 #[doc="Command"]
-  #[inline] pub fn set_cmd(mut self, value: u16) -> Self {
+  #[inline] pub fn set_cmd<V: Into<bits::B7>>(mut self, value: V) -> Self {
+     let value: bits::B7 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 0);
      self.0 |= value << 0;
@@ -297,11 +302,13 @@ impl Ctrla {
   }
 
 #[doc="Command Execution"]
-  #[inline] pub fn cmdex(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0xff // [15:8]
+  #[inline] pub fn cmdex(&self) -> bits::B8 {
+     (((self.0 as u16) >> 8) & 0xff).into() // [15:8]
   }
 #[doc="Command Execution"]
-  #[inline] pub fn set_cmdex(mut self, value: u16) -> Self {
+  #[inline] pub fn set_cmdex<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
@@ -328,11 +335,13 @@ impl ::core::fmt::Debug for Ctrla {
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="NVM Read Wait States"]
-  #[inline] pub fn rws(&self) -> u32 {
-     ((self.0 as u32) >> 1) & 0xf // [4:1]
+  #[inline] pub fn rws(&self) -> bits::B4 {
+     (((self.0 as u32) >> 1) & 0xf).into() // [4:1]
   }
 #[doc="NVM Read Wait States"]
-  #[inline] pub fn set_rws(mut self, value: u32) -> Self {
+  #[inline] pub fn set_rws<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 1);
      self.0 |= value << 1;
@@ -340,11 +349,13 @@ impl Ctrlb {
   }
 
 #[doc="Manual Write"]
-  #[inline] pub fn manw(&self) -> u32 {
-     ((self.0 as u32) >> 7) & 0x1 // [7]
+  #[inline] pub fn manw(&self) -> bits::B1 {
+     (((self.0 as u32) >> 7) & 0x1).into() // [7]
   }
 #[doc="Manual Write"]
-  #[inline] pub fn set_manw(mut self, value: u32) -> Self {
+  #[inline] pub fn set_manw<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -352,11 +363,13 @@ impl Ctrlb {
   }
 
 #[doc="Power Reduction Mode during Sleep"]
-  #[inline] pub fn sleepprm(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x3 // [9:8]
+  #[inline] pub fn sleepprm(&self) -> bits::B2 {
+     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
   }
 #[doc="Power Reduction Mode during Sleep"]
-  #[inline] pub fn set_sleepprm(mut self, value: u32) -> Self {
+  #[inline] pub fn set_sleepprm<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
@@ -364,11 +377,13 @@ impl Ctrlb {
   }
 
 #[doc="NVMCTRL Read Mode"]
-  #[inline] pub fn readmode(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x3 // [17:16]
+  #[inline] pub fn readmode(&self) -> bits::B2 {
+     (((self.0 as u32) >> 16) & 0x3).into() // [17:16]
   }
 #[doc="NVMCTRL Read Mode"]
-  #[inline] pub fn set_readmode(mut self, value: u32) -> Self {
+  #[inline] pub fn set_readmode<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 16);
      self.0 |= value << 16;
@@ -376,11 +391,13 @@ impl Ctrlb {
   }
 
 #[doc="Cache Disable"]
-  #[inline] pub fn cachedis(&self) -> u32 {
-     ((self.0 as u32) >> 18) & 0x1 // [18]
+  #[inline] pub fn cachedis(&self) -> bits::B1 {
+     (((self.0 as u32) >> 18) & 0x1).into() // [18]
   }
 #[doc="Cache Disable"]
-  #[inline] pub fn set_cachedis(mut self, value: u32) -> Self {
+  #[inline] pub fn set_cachedis<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
@@ -410,11 +427,13 @@ impl ::core::fmt::Debug for Ctrlb {
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="NVM Ready Interrupt Enable"]
-  #[inline] pub fn ready(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ready(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="NVM Ready Interrupt Enable"]
-  #[inline] pub fn set_ready(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ready<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -422,11 +441,13 @@ impl Intenclr {
   }
 
 #[doc="Error Interrupt Enable"]
-  #[inline] pub fn error(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn error(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Error Interrupt Enable"]
-  #[inline] pub fn set_error(mut self, value: u8) -> Self {
+  #[inline] pub fn set_error<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -453,11 +474,13 @@ impl ::core::fmt::Debug for Intenclr {
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="NVM Ready Interrupt Enable"]
-  #[inline] pub fn ready(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ready(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="NVM Ready Interrupt Enable"]
-  #[inline] pub fn set_ready(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ready<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -465,11 +488,13 @@ impl Intenset {
   }
 
 #[doc="Error Interrupt Enable"]
-  #[inline] pub fn error(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn error(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Error Interrupt Enable"]
-  #[inline] pub fn set_error(mut self, value: u8) -> Self {
+  #[inline] pub fn set_error<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -496,11 +521,13 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="NVM Ready"]
-  #[inline] pub fn ready(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn ready(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="NVM Ready"]
-  #[inline] pub fn set_ready(mut self, value: u8) -> Self {
+  #[inline] pub fn set_ready<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -508,11 +535,13 @@ impl Intflag {
   }
 
 #[doc="Error"]
-  #[inline] pub fn error(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn error(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Error"]
-  #[inline] pub fn set_error(mut self, value: u8) -> Self {
+  #[inline] pub fn set_error<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -539,11 +568,13 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Lock(pub u16);
 impl Lock {
 #[doc="Region Lock Bits"]
-  #[inline] pub fn lock(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn lock(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Region Lock Bits"]
-  #[inline] pub fn set_lock(mut self, value: u16) -> Self {
+  #[inline] pub fn set_lock<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -569,11 +600,13 @@ impl ::core::fmt::Debug for Lock {
 pub struct Param(pub u32);
 impl Param {
 #[doc="NVM Pages"]
-  #[inline] pub fn nvmp(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn nvmp(&self) -> bits::B16 {
+     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="NVM Pages"]
-  #[inline] pub fn set_nvmp(mut self, value: u32) -> Self {
+  #[inline] pub fn set_nvmp<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -581,11 +614,13 @@ impl Param {
   }
 
 #[doc="Page Size"]
-  #[inline] pub fn psz(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0x7 // [18:16]
+  #[inline] pub fn psz(&self) -> bits::B3 {
+     (((self.0 as u32) >> 16) & 0x7).into() // [18:16]
   }
 #[doc="Page Size"]
-  #[inline] pub fn set_psz(mut self, value: u32) -> Self {
+  #[inline] pub fn set_psz<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 16);
      self.0 |= value << 16;
@@ -612,11 +647,13 @@ impl ::core::fmt::Debug for Param {
 pub struct Status(pub u16);
 impl Status {
 #[doc="Power Reduction Mode"]
-  #[inline] pub fn prm(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x1 // [0]
+  #[inline] pub fn prm(&self) -> bits::B1 {
+     (((self.0 as u16) >> 0) & 0x1).into() // [0]
   }
 #[doc="Power Reduction Mode"]
-  #[inline] pub fn set_prm(mut self, value: u16) -> Self {
+  #[inline] pub fn set_prm<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -624,11 +661,13 @@ impl Status {
   }
 
 #[doc="NVM Page Buffer Active Loading"]
-  #[inline] pub fn load(&self) -> u16 {
-     ((self.0 as u16) >> 1) & 0x1 // [1]
+  #[inline] pub fn load(&self) -> bits::B1 {
+     (((self.0 as u16) >> 1) & 0x1).into() // [1]
   }
 #[doc="NVM Page Buffer Active Loading"]
-  #[inline] pub fn set_load(mut self, value: u16) -> Self {
+  #[inline] pub fn set_load<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -636,11 +675,13 @@ impl Status {
   }
 
 #[doc="Programming Error Status"]
-  #[inline] pub fn proge(&self) -> u16 {
-     ((self.0 as u16) >> 2) & 0x1 // [2]
+  #[inline] pub fn proge(&self) -> bits::B1 {
+     (((self.0 as u16) >> 2) & 0x1).into() // [2]
   }
 #[doc="Programming Error Status"]
-  #[inline] pub fn set_proge(mut self, value: u16) -> Self {
+  #[inline] pub fn set_proge<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -648,11 +689,13 @@ impl Status {
   }
 
 #[doc="Lock Error Status"]
-  #[inline] pub fn locke(&self) -> u16 {
-     ((self.0 as u16) >> 3) & 0x1 // [3]
+  #[inline] pub fn locke(&self) -> bits::B1 {
+     (((self.0 as u16) >> 3) & 0x1).into() // [3]
   }
 #[doc="Lock Error Status"]
-  #[inline] pub fn set_locke(mut self, value: u16) -> Self {
+  #[inline] pub fn set_locke<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -660,11 +703,13 @@ impl Status {
   }
 
 #[doc="NVM Error"]
-  #[inline] pub fn nvme(&self) -> u16 {
-     ((self.0 as u16) >> 4) & 0x1 // [4]
+  #[inline] pub fn nvme(&self) -> bits::B1 {
+     (((self.0 as u16) >> 4) & 0x1).into() // [4]
   }
 #[doc="NVM Error"]
-  #[inline] pub fn set_nvme(mut self, value: u16) -> Self {
+  #[inline] pub fn set_nvme<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -672,11 +717,13 @@ impl Status {
   }
 
 #[doc="Security Bit Status"]
-  #[inline] pub fn sb(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x1 // [8]
+  #[inline] pub fn sb(&self) -> bits::B1 {
+     (((self.0 as u16) >> 8) & 0x1).into() // [8]
   }
 #[doc="Security Bit Status"]
-  #[inline] pub fn set_sb(mut self, value: u16) -> Self {
+  #[inline] pub fn set_sb<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;

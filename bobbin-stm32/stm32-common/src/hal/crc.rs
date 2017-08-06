@@ -70,6 +70,6 @@ impl<T> CrcExt for Periph<T> {
     }
 
     fn read(&self) -> u32 {
-        self.dr().dr()
+        self.dr().dr().into()
     }
 }

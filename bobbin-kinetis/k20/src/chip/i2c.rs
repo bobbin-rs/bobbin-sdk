@@ -1,3 +1,4 @@
+#[allow(unused_imports)] use bobbin_common::bits;
 pub use kinetis_common::chip::i2c::*;
 
 pub const I2C0: I2c0 = Periph(0x40066000, I2c0Id {});

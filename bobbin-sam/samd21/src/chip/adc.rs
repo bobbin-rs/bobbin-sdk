@@ -1,4 +1,5 @@
 //! Analog-to-Digital Converter
+#[allow(unused_imports)] use bobbin_common::bits;
 pub const ADC: Adc = Periph(0x42004000, AdcId {});
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -536,11 +537,13 @@ impl<T> Periph<T> {
 pub struct Avgctrl(pub u8);
 impl Avgctrl {
 #[doc="Number of Samples to be Collected"]
-  #[inline] pub fn samplenum(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn samplenum(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Number of Samples to be Collected"]
-  #[inline] pub fn set_samplenum(mut self, value: u8) -> Self {
+  #[inline] pub fn set_samplenum<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -548,11 +551,13 @@ impl Avgctrl {
   }
 
 #[doc="Adjusting Result / Division Coefficient"]
-  #[inline] pub fn adjres(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x7 // [6:4]
+  #[inline] pub fn adjres(&self) -> bits::B3 {
+     (((self.0 as u8) >> 4) & 0x7).into() // [6:4]
   }
 #[doc="Adjusting Result / Division Coefficient"]
-  #[inline] pub fn set_adjres(mut self, value: u8) -> Self {
+  #[inline] pub fn set_adjres<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 4);
      self.0 |= value << 4;
@@ -579,11 +584,13 @@ impl ::core::fmt::Debug for Avgctrl {
 pub struct Calib(pub u16);
 impl Calib {
 #[doc="Linearity Calibration Value"]
-  #[inline] pub fn linearity_cal(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xff // [7:0]
+  #[inline] pub fn linearity_cal(&self) -> bits::B8 {
+     (((self.0 as u16) >> 0) & 0xff).into() // [7:0]
   }
 #[doc="Linearity Calibration Value"]
-  #[inline] pub fn set_linearity_cal(mut self, value: u16) -> Self {
+  #[inline] pub fn set_linearity_cal<V: Into<bits::B8>>(mut self, value: V) -> Self {
+     let value: bits::B8 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
@@ -591,11 +598,13 @@ impl Calib {
   }
 
 #[doc="Bias Calibration Value"]
-  #[inline] pub fn bias_cal(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x7 // [10:8]
+  #[inline] pub fn bias_cal(&self) -> bits::B3 {
+     (((self.0 as u16) >> 8) & 0x7).into() // [10:8]
   }
 #[doc="Bias Calibration Value"]
-  #[inline] pub fn set_bias_cal(mut self, value: u16) -> Self {
+  #[inline] pub fn set_bias_cal<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
@@ -622,11 +631,13 @@ impl ::core::fmt::Debug for Calib {
 pub struct Ctrla(pub u8);
 impl Ctrla {
 #[doc="Software Reset"]
-  #[inline] pub fn swrst(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn swrst(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Software Reset"]
-  #[inline] pub fn set_swrst(mut self, value: u8) -> Self {
+  #[inline] pub fn set_swrst<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -634,11 +645,13 @@ impl Ctrla {
   }
 
 #[doc="Enable"]
-  #[inline] pub fn enable(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn enable(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Enable"]
-  #[inline] pub fn set_enable(mut self, value: u8) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -646,11 +659,13 @@ impl Ctrla {
   }
 
 #[doc="Run in Standby"]
-  #[inline] pub fn runstdby(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn runstdby(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Run in Standby"]
-  #[inline] pub fn set_runstdby(mut self, value: u8) -> Self {
+  #[inline] pub fn set_runstdby<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -678,11 +693,13 @@ impl ::core::fmt::Debug for Ctrla {
 pub struct Ctrlb(pub u16);
 impl Ctrlb {
 #[doc="Differential Mode"]
-  #[inline] pub fn diffmode(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0x1 // [0]
+  #[inline] pub fn diffmode(&self) -> bits::B1 {
+     (((self.0 as u16) >> 0) & 0x1).into() // [0]
   }
 #[doc="Differential Mode"]
-  #[inline] pub fn set_diffmode(mut self, value: u16) -> Self {
+  #[inline] pub fn set_diffmode<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -690,11 +707,13 @@ impl Ctrlb {
   }
 
 #[doc="Left-Adjusted Result"]
-  #[inline] pub fn leftadj(&self) -> u16 {
-     ((self.0 as u16) >> 1) & 0x1 // [1]
+  #[inline] pub fn leftadj(&self) -> bits::B1 {
+     (((self.0 as u16) >> 1) & 0x1).into() // [1]
   }
 #[doc="Left-Adjusted Result"]
-  #[inline] pub fn set_leftadj(mut self, value: u16) -> Self {
+  #[inline] pub fn set_leftadj<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -702,11 +721,13 @@ impl Ctrlb {
   }
 
 #[doc="Free Running Mode"]
-  #[inline] pub fn freerun(&self) -> u16 {
-     ((self.0 as u16) >> 2) & 0x1 // [2]
+  #[inline] pub fn freerun(&self) -> bits::B1 {
+     (((self.0 as u16) >> 2) & 0x1).into() // [2]
   }
 #[doc="Free Running Mode"]
-  #[inline] pub fn set_freerun(mut self, value: u16) -> Self {
+  #[inline] pub fn set_freerun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -714,11 +735,13 @@ impl Ctrlb {
   }
 
 #[doc="Digital Correction Logic Enabled"]
-  #[inline] pub fn corren(&self) -> u16 {
-     ((self.0 as u16) >> 3) & 0x1 // [3]
+  #[inline] pub fn corren(&self) -> bits::B1 {
+     (((self.0 as u16) >> 3) & 0x1).into() // [3]
   }
 #[doc="Digital Correction Logic Enabled"]
-  #[inline] pub fn set_corren(mut self, value: u16) -> Self {
+  #[inline] pub fn set_corren<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -726,11 +749,13 @@ impl Ctrlb {
   }
 
 #[doc="Conversion Result Resolution"]
-  #[inline] pub fn ressel(&self) -> u16 {
-     ((self.0 as u16) >> 4) & 0x3 // [5:4]
+  #[inline] pub fn ressel(&self) -> bits::B2 {
+     (((self.0 as u16) >> 4) & 0x3).into() // [5:4]
   }
 #[doc="Conversion Result Resolution"]
-  #[inline] pub fn set_ressel(mut self, value: u16) -> Self {
+  #[inline] pub fn set_ressel<V: Into<bits::B2>>(mut self, value: V) -> Self {
+     let value: bits::B2 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
@@ -738,11 +763,13 @@ impl Ctrlb {
   }
 
 #[doc="Prescaler Configuration"]
-  #[inline] pub fn prescaler(&self) -> u16 {
-     ((self.0 as u16) >> 8) & 0x7 // [10:8]
+  #[inline] pub fn prescaler(&self) -> bits::B3 {
+     (((self.0 as u16) >> 8) & 0x7).into() // [10:8]
   }
 #[doc="Prescaler Configuration"]
-  #[inline] pub fn set_prescaler(mut self, value: u16) -> Self {
+  #[inline] pub fn set_prescaler<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 8);
      self.0 |= value << 8;
@@ -773,11 +800,13 @@ impl ::core::fmt::Debug for Ctrlb {
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run"]
-  #[inline] pub fn dbgrun(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn dbgrun(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Debug Run"]
-  #[inline] pub fn set_dbgrun(mut self, value: u8) -> Self {
+  #[inline] pub fn set_dbgrun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -803,11 +832,13 @@ impl ::core::fmt::Debug for Dbgctrl {
 pub struct Evctrl(pub u8);
 impl Evctrl {
 #[doc="Start Conversion Event In"]
-  #[inline] pub fn startei(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn startei(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Start Conversion Event In"]
-  #[inline] pub fn set_startei(mut self, value: u8) -> Self {
+  #[inline] pub fn set_startei<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -815,11 +846,13 @@ impl Evctrl {
   }
 
 #[doc="Synchronization Event In"]
-  #[inline] pub fn syncei(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn syncei(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Synchronization Event In"]
-  #[inline] pub fn set_syncei(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncei<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -827,11 +860,13 @@ impl Evctrl {
   }
 
 #[doc="Result Ready Event Out"]
-  #[inline] pub fn resrdyeo(&self) -> u8 {
-     ((self.0 as u8) >> 4) & 0x1 // [4]
+  #[inline] pub fn resrdyeo(&self) -> bits::B1 {
+     (((self.0 as u8) >> 4) & 0x1).into() // [4]
   }
 #[doc="Result Ready Event Out"]
-  #[inline] pub fn set_resrdyeo(mut self, value: u8) -> Self {
+  #[inline] pub fn set_resrdyeo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
@@ -839,11 +874,13 @@ impl Evctrl {
   }
 
 #[doc="Window Monitor Event Out"]
-  #[inline] pub fn winmoneo(&self) -> u8 {
-     ((self.0 as u8) >> 5) & 0x1 // [5]
+  #[inline] pub fn winmoneo(&self) -> bits::B1 {
+     (((self.0 as u8) >> 5) & 0x1).into() // [5]
   }
 #[doc="Window Monitor Event Out"]
-  #[inline] pub fn set_winmoneo(mut self, value: u8) -> Self {
+  #[inline] pub fn set_winmoneo<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
@@ -872,11 +909,13 @@ impl ::core::fmt::Debug for Evctrl {
 pub struct Gaincorr(pub u16);
 impl Gaincorr {
 #[doc="Gain Correction Value"]
-  #[inline] pub fn gaincorr(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn gaincorr(&self) -> bits::B12 {
+     (((self.0 as u16) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Gain Correction Value"]
-  #[inline] pub fn set_gaincorr(mut self, value: u16) -> Self {
+  #[inline] pub fn set_gaincorr<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -902,11 +941,13 @@ impl ::core::fmt::Debug for Gaincorr {
 pub struct Inputctrl(pub u32);
 impl Inputctrl {
 #[doc="Positive Mux Input Selection"]
-  #[inline] pub fn muxpos(&self) -> u32 {
-     ((self.0 as u32) >> 0) & 0x1f // [4:0]
+  #[inline] pub fn muxpos(&self) -> bits::B5 {
+     (((self.0 as u32) >> 0) & 0x1f).into() // [4:0]
   }
 #[doc="Positive Mux Input Selection"]
-  #[inline] pub fn set_muxpos(mut self, value: u32) -> Self {
+  #[inline] pub fn set_muxpos<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
@@ -914,11 +955,13 @@ impl Inputctrl {
   }
 
 #[doc="Negative Mux Input Selection"]
-  #[inline] pub fn muxneg(&self) -> u32 {
-     ((self.0 as u32) >> 8) & 0x1f // [12:8]
+  #[inline] pub fn muxneg(&self) -> bits::B5 {
+     (((self.0 as u32) >> 8) & 0x1f).into() // [12:8]
   }
 #[doc="Negative Mux Input Selection"]
-  #[inline] pub fn set_muxneg(mut self, value: u32) -> Self {
+  #[inline] pub fn set_muxneg<V: Into<bits::B5>>(mut self, value: V) -> Self {
+     let value: bits::B5 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 8);
      self.0 |= value << 8;
@@ -926,11 +969,13 @@ impl Inputctrl {
   }
 
 #[doc="Number of Input Channels Included in Scan"]
-  #[inline] pub fn inputscan(&self) -> u32 {
-     ((self.0 as u32) >> 16) & 0xf // [19:16]
+  #[inline] pub fn inputscan(&self) -> bits::B4 {
+     (((self.0 as u32) >> 16) & 0xf).into() // [19:16]
   }
 #[doc="Number of Input Channels Included in Scan"]
-  #[inline] pub fn set_inputscan(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inputscan<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 16);
      self.0 |= value << 16;
@@ -938,11 +983,13 @@ impl Inputctrl {
   }
 
 #[doc="Positive Mux Setting Offset"]
-  #[inline] pub fn inputoffset(&self) -> u32 {
-     ((self.0 as u32) >> 20) & 0xf // [23:20]
+  #[inline] pub fn inputoffset(&self) -> bits::B4 {
+     (((self.0 as u32) >> 20) & 0xf).into() // [23:20]
   }
 #[doc="Positive Mux Setting Offset"]
-  #[inline] pub fn set_inputoffset(mut self, value: u32) -> Self {
+  #[inline] pub fn set_inputoffset<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 20);
      self.0 |= value << 20;
@@ -950,11 +997,13 @@ impl Inputctrl {
   }
 
 #[doc="Gain Factor Selection"]
-  #[inline] pub fn gain(&self) -> u32 {
-     ((self.0 as u32) >> 24) & 0xf // [27:24]
+  #[inline] pub fn gain(&self) -> bits::B4 {
+     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
   }
 #[doc="Gain Factor Selection"]
-  #[inline] pub fn set_gain(mut self, value: u32) -> Self {
+  #[inline] pub fn set_gain<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u32 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
@@ -984,11 +1033,13 @@ impl ::core::fmt::Debug for Inputctrl {
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Result Ready Interrupt Enable"]
-  #[inline] pub fn resrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn resrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Result Ready Interrupt Enable"]
-  #[inline] pub fn set_resrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_resrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -996,11 +1047,13 @@ impl Intenclr {
   }
 
 #[doc="Overrun Interrupt Enable"]
-  #[inline] pub fn overrun(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn overrun(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Overrun Interrupt Enable"]
-  #[inline] pub fn set_overrun(mut self, value: u8) -> Self {
+  #[inline] pub fn set_overrun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1008,11 +1061,13 @@ impl Intenclr {
   }
 
 #[doc="Window Monitor Interrupt Enable"]
-  #[inline] pub fn winmon(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn winmon(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Window Monitor Interrupt Enable"]
-  #[inline] pub fn set_winmon(mut self, value: u8) -> Self {
+  #[inline] pub fn set_winmon<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1020,11 +1075,13 @@ impl Intenclr {
   }
 
 #[doc="Synchronization Ready Interrupt Enable"]
-  #[inline] pub fn syncrdy(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn syncrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Synchronization Ready Interrupt Enable"]
-  #[inline] pub fn set_syncrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1053,11 +1110,13 @@ impl ::core::fmt::Debug for Intenclr {
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Result Ready Interrupt Enable"]
-  #[inline] pub fn resrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn resrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Result Ready Interrupt Enable"]
-  #[inline] pub fn set_resrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_resrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1065,11 +1124,13 @@ impl Intenset {
   }
 
 #[doc="Overrun Interrupt Enable"]
-  #[inline] pub fn overrun(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn overrun(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Overrun Interrupt Enable"]
-  #[inline] pub fn set_overrun(mut self, value: u8) -> Self {
+  #[inline] pub fn set_overrun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1077,11 +1138,13 @@ impl Intenset {
   }
 
 #[doc="Window Monitor Interrupt Enable"]
-  #[inline] pub fn winmon(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn winmon(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Window Monitor Interrupt Enable"]
-  #[inline] pub fn set_winmon(mut self, value: u8) -> Self {
+  #[inline] pub fn set_winmon<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1089,11 +1152,13 @@ impl Intenset {
   }
 
 #[doc="Synchronization Ready Interrupt Enable"]
-  #[inline] pub fn syncrdy(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn syncrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Synchronization Ready Interrupt Enable"]
-  #[inline] pub fn set_syncrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1122,11 +1187,13 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Result Ready"]
-  #[inline] pub fn resrdy(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn resrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="Result Ready"]
-  #[inline] pub fn set_resrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_resrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1134,11 +1201,13 @@ impl Intflag {
   }
 
 #[doc="Overrun"]
-  #[inline] pub fn overrun(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn overrun(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="Overrun"]
-  #[inline] pub fn set_overrun(mut self, value: u8) -> Self {
+  #[inline] pub fn set_overrun<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1146,11 +1215,13 @@ impl Intflag {
   }
 
 #[doc="Window Monitor"]
-  #[inline] pub fn winmon(&self) -> u8 {
-     ((self.0 as u8) >> 2) & 0x1 // [2]
+  #[inline] pub fn winmon(&self) -> bits::B1 {
+     (((self.0 as u8) >> 2) & 0x1).into() // [2]
   }
 #[doc="Window Monitor"]
-  #[inline] pub fn set_winmon(mut self, value: u8) -> Self {
+  #[inline] pub fn set_winmon<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
@@ -1158,11 +1229,13 @@ impl Intflag {
   }
 
 #[doc="Synchronization Ready"]
-  #[inline] pub fn syncrdy(&self) -> u8 {
-     ((self.0 as u8) >> 3) & 0x1 // [3]
+  #[inline] pub fn syncrdy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 3) & 0x1).into() // [3]
   }
 #[doc="Synchronization Ready"]
-  #[inline] pub fn set_syncrdy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncrdy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
@@ -1191,11 +1264,13 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Offsetcorr(pub u16);
 impl Offsetcorr {
 #[doc="Offset Correction Value"]
-  #[inline] pub fn offsetcorr(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xfff // [11:0]
+  #[inline] pub fn offsetcorr(&self) -> bits::B12 {
+     (((self.0 as u16) >> 0) & 0xfff).into() // [11:0]
   }
 #[doc="Offset Correction Value"]
-  #[inline] pub fn set_offsetcorr(mut self, value: u16) -> Self {
+  #[inline] pub fn set_offsetcorr<V: Into<bits::B12>>(mut self, value: V) -> Self {
+     let value: bits::B12 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
@@ -1221,11 +1296,13 @@ impl ::core::fmt::Debug for Offsetcorr {
 pub struct Refctrl(pub u8);
 impl Refctrl {
 #[doc="Reference Selection"]
-  #[inline] pub fn refsel(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0xf // [3:0]
+  #[inline] pub fn refsel(&self) -> bits::B4 {
+     (((self.0 as u8) >> 0) & 0xf).into() // [3:0]
   }
 #[doc="Reference Selection"]
-  #[inline] pub fn set_refsel(mut self, value: u8) -> Self {
+  #[inline] pub fn set_refsel<V: Into<bits::B4>>(mut self, value: V) -> Self {
+     let value: bits::B4 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 0);
      self.0 |= value << 0;
@@ -1233,11 +1310,13 @@ impl Refctrl {
   }
 
 #[doc="Reference Buffer Offset Compensation Enable"]
-  #[inline] pub fn refcomp(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn refcomp(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Reference Buffer Offset Compensation Enable"]
-  #[inline] pub fn set_refcomp(mut self, value: u8) -> Self {
+  #[inline] pub fn set_refcomp<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1264,11 +1343,13 @@ impl ::core::fmt::Debug for Refctrl {
 pub struct Result(pub u16);
 impl Result {
 #[doc="Result Conversion Value"]
-  #[inline] pub fn result(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn result(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Result Conversion Value"]
-  #[inline] pub fn set_result(mut self, value: u16) -> Self {
+  #[inline] pub fn set_result<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1294,11 +1375,13 @@ impl ::core::fmt::Debug for Result {
 pub struct Sampctrl(pub u8);
 impl Sampctrl {
 #[doc="Sampling Time Length"]
-  #[inline] pub fn samplen(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x3f // [5:0]
+  #[inline] pub fn samplen(&self) -> bits::B6 {
+     (((self.0 as u8) >> 0) & 0x3f).into() // [5:0]
   }
 #[doc="Sampling Time Length"]
-  #[inline] pub fn set_samplen(mut self, value: u8) -> Self {
+  #[inline] pub fn set_samplen<V: Into<bits::B6>>(mut self, value: V) -> Self {
+     let value: bits::B6 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
@@ -1324,11 +1407,13 @@ impl ::core::fmt::Debug for Sampctrl {
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]
-  #[inline] pub fn syncbusy(&self) -> u8 {
-     ((self.0 as u8) >> 7) & 0x1 // [7]
+  #[inline] pub fn syncbusy(&self) -> bits::B1 {
+     (((self.0 as u8) >> 7) & 0x1).into() // [7]
   }
 #[doc="Synchronization Busy"]
-  #[inline] pub fn set_syncbusy(mut self, value: u8) -> Self {
+  #[inline] pub fn set_syncbusy<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
@@ -1354,11 +1439,13 @@ impl ::core::fmt::Debug for Status {
 pub struct Swtrig(pub u8);
 impl Swtrig {
 #[doc="ADC Conversion Flush"]
-  #[inline] pub fn flush(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x1 // [0]
+  #[inline] pub fn flush(&self) -> bits::B1 {
+     (((self.0 as u8) >> 0) & 0x1).into() // [0]
   }
 #[doc="ADC Conversion Flush"]
-  #[inline] pub fn set_flush(mut self, value: u8) -> Self {
+  #[inline] pub fn set_flush<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
@@ -1366,11 +1453,13 @@ impl Swtrig {
   }
 
 #[doc="ADC Start Conversion"]
-  #[inline] pub fn start(&self) -> u8 {
-     ((self.0 as u8) >> 1) & 0x1 // [1]
+  #[inline] pub fn start(&self) -> bits::B1 {
+     (((self.0 as u8) >> 1) & 0x1).into() // [1]
   }
 #[doc="ADC Start Conversion"]
-  #[inline] pub fn set_start(mut self, value: u8) -> Self {
+  #[inline] pub fn set_start<V: Into<bits::B1>>(mut self, value: V) -> Self {
+     let value: bits::B1 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
@@ -1397,11 +1486,13 @@ impl ::core::fmt::Debug for Swtrig {
 pub struct Winctrl(pub u8);
 impl Winctrl {
 #[doc="Window Monitor Mode"]
-  #[inline] pub fn winmode(&self) -> u8 {
-     ((self.0 as u8) >> 0) & 0x7 // [2:0]
+  #[inline] pub fn winmode(&self) -> bits::B3 {
+     (((self.0 as u8) >> 0) & 0x7).into() // [2:0]
   }
 #[doc="Window Monitor Mode"]
-  #[inline] pub fn set_winmode(mut self, value: u8) -> Self {
+  #[inline] pub fn set_winmode<V: Into<bits::B3>>(mut self, value: V) -> Self {
+     let value: bits::B3 = value.into();
+     let value: u8 = value.into();
      assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
@@ -1427,11 +1518,13 @@ impl ::core::fmt::Debug for Winctrl {
 pub struct Winlt(pub u16);
 impl Winlt {
 #[doc="Window Lower Threshold"]
-  #[inline] pub fn winlt(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn winlt(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Window Lower Threshold"]
-  #[inline] pub fn set_winlt(mut self, value: u16) -> Self {
+  #[inline] pub fn set_winlt<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
@@ -1457,11 +1550,13 @@ impl ::core::fmt::Debug for Winlt {
 pub struct Winut(pub u16);
 impl Winut {
 #[doc="Window Upper Threshold"]
-  #[inline] pub fn winut(&self) -> u16 {
-     ((self.0 as u16) >> 0) & 0xffff // [15:0]
+  #[inline] pub fn winut(&self) -> bits::B16 {
+     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
   }
 #[doc="Window Upper Threshold"]
-  #[inline] pub fn set_winut(mut self, value: u16) -> Self {
+  #[inline] pub fn set_winut<V: Into<bits::B16>>(mut self, value: V) -> Self {
+     let value: bits::B16 = value.into();
+     let value: u16 = value.into();
      assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
