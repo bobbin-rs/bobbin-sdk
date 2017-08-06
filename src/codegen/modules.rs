@@ -11,6 +11,7 @@ use super::{size_type, field_getter, field_setter, field_with, field_ptr, field_
 pub struct Config {
     pub path: PathBuf,
     pub is_root: bool,
+    pub bit_types: bool,
 }
 
 impl<'a> From<&'a ArgMatches<'a>> for Config {
@@ -18,6 +19,7 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
         Config {
             path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
             is_root: matches.is_present("root"),
+            bit_types: matches.is_present("bit-types"),
         }
     }
 }
@@ -51,6 +53,10 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
     let p_mod = if cfg.is_root { 
         try!(writeln!(out, "#![no_std]"));
     };
+
+    if cfg.bit_types {
+        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    }
 
     // Generate Imports
 
@@ -315,15 +321,15 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn priority(&self) -> u8 {{"));
-    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)) as u8"));
+    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)).into()"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn set_priority(&self, value: u8) {{"));
-    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value as u32));"));
+    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value));"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn trigger_interrupt(&self) {{"));
-    try!(writeln!(out, "       NVIC.set_stir(Stir(0).set_intid(self.0 as u32));"));
+    try!(writeln!(out, "       NVIC.set_stir(Stir(0).set_intid(self.0));"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
 
@@ -594,6 +600,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             try!(writeln!(out, "//! {}", desc));
         }
     }       
+
+    if cfg.bit_types {
+        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    }
 
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -1007,6 +1017,10 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         }
     }       
 
+    if cfg.bit_types {
+        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    }
+
     if let Some(dim) = p.dim {
         for (offset, name) in p.iter_dim() {
             let p_name = name.replace("[","").replace("]","");            
@@ -1068,11 +1082,12 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     for r in p.registers.iter() {
         for f in r.fields.iter() {
             for link in f.links.iter() {
+                // FIXME: Should not be using peripheral size as return value
                 let pg_mod = link.peripheral_group.to_lowercase();
                 //let l_type = format!("super::{}::{}<super::{}::{}>", pg_mod, to_camel(&link.peripheral_group), pg_mod, to_camel(&link.peripheral));
                 let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
-                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
+                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ {}.{}().{}().into() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
                 try!(writeln!(out, "   #[inline] fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
@@ -1471,6 +1486,12 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
     } else {
         format!("[{}]", f_lo)
     };    
+    let field_type = if cfg.bit_types {
+        format!("bits::B{}", f_width)
+    } else {
+        format!("{}", size)
+    };
+
 
     if let Some(dim) = f.dim {
         let f_incr = f.dim_increment.unwrap();
@@ -1480,7 +1501,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> {} {{", f_getter, size));
+        try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> {} {{", f_getter, field_type));
         try!(writeln!(out, "     assert!(index < {});", dim));
         match f_incr {
             1 => {
@@ -1499,13 +1520,24 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
                 try!(writeln!(out, "     let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }
-        try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));
+        if cfg.bit_types {
+            try!(writeln!(out, "     (((self.0 as {}) >> shift) & 0x{:x}).into() // {}", size, f_mask, f_bits));
+        } else {
+            try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));            
+        }
         try!(writeln!(out, "  }}"));    
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        try!(writeln!(out, "  #[inline] pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, size));
+        if cfg.bit_types {
+            try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, index: usize, value: V) -> Self {{", f_setter, field_type));
+            try!(writeln!(out, "     let value: {} = value.into();", field_type));            
+            try!(writeln!(out, "     let value: {} = value.into();", size));
+        } else {
+            try!(writeln!(out, "  #[inline] pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, field_type));
+            try!(writeln!(out, "     let value: {} = value.into();", size));
+        }
         try!(writeln!(out, "     assert!(index < {});", dim));
         try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         match f_incr {
@@ -1534,14 +1566,27 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{", f_getter, size));
-        try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
+        try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
+        if cfg.bit_types {
+            try!(writeln!(out, "     (((self.0 as {}) >> {}) & 0x{:x}).into() // {}", size, f_offset, f_mask, f_bits));
+        } else {
+            try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
+        }
         try!(writeln!(out, "  }}"));    
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        try!(writeln!(out, "  #[inline] pub fn {}(mut self, value: {}) -> Self {{", f_setter, size));
+
+
+        if cfg.bit_types {
+            try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
+            try!(writeln!(out, "     let value: {} = value.into();", field_type));
+            try!(writeln!(out, "     let value: {} = value.into();", size));
+        } else {
+            try!(writeln!(out, "  #[inline] pub fn {}(mut self, value: {}) -> Self {{", f_setter, field_type));
+            try!(writeln!(out, "     let value: {} = value.into();", size));
+        }
         try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         try!(writeln!(out, "     self.0 &= !(0x{:x} << {});", f_mask, f_offset));
         try!(writeln!(out, "     self.0 |= value << {};", f_offset));

@@ -45,7 +45,9 @@ fn main() {
         .arg(Arg::with_name("panic")
             .long("panic"))
         .arg(Arg::with_name("root")
-            .long("root"))            
+            .long("root"))     
+        .arg(Arg::with_name("bit-types")
+            .long("bit-types"))
         .arg(Arg::with_name("input"))
         .arg(Arg::with_name("output"))
         .get_matches();

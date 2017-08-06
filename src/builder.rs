@@ -43,7 +43,11 @@ pub fn build_inner<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, set
     let src_dir = src_path.parent().expect("Source file name must be lib.rx or mod.rx");
     {
         let mut f_mod = try!(File::create(dst_path));
-        let cfg = codegen::modules::Config { path: PathBuf::from(dst_path), is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")) };
+        let cfg = codegen::modules::Config { 
+            path: PathBuf::from(dst_path), 
+            is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")),
+            bit_types: true,
+        };
         codegen::modules::gen_mod(&cfg, &mut f_mod, &device, dst_path.parent().expect("Destination file name must be lib.rs or mod.rs"))?;
         if in_cargo {
             println!("cargo:rerun-if-changed={}", src_path.display());
