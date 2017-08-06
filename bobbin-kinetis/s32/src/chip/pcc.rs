@@ -3689,28 +3689,26 @@ impl ::core::fmt::Debug for Pccdummy31 {
 pub struct Ftfc(pub u32);
 impl Ftfc {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -3736,28 +3734,26 @@ impl ::core::fmt::Debug for Ftfc {
 pub struct Dmamux(pub u32);
 impl Dmamux {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -3817,28 +3813,26 @@ impl ::core::fmt::Debug for Pccdummy35 {
 pub struct Flexcan0(pub u32);
 impl Flexcan0 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -3864,28 +3858,26 @@ impl ::core::fmt::Debug for Flexcan0 {
 pub struct Flexcan1(pub u32);
 impl Flexcan1 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -3911,42 +3903,39 @@ impl ::core::fmt::Debug for Flexcan1 {
 pub struct Ftm3(pub u32);
 impl Ftm3 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -3973,42 +3962,39 @@ impl ::core::fmt::Debug for Ftm3 {
 pub struct Adc1(pub u32);
 impl Adc1 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4086,28 +4072,26 @@ impl ::core::fmt::Debug for Pccdummy42 {
 pub struct Flexcan2(pub u32);
 impl Flexcan2 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4133,42 +4117,39 @@ impl ::core::fmt::Debug for Flexcan2 {
 pub struct Lpspi0(pub u32);
 impl Lpspi0 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4195,42 +4176,39 @@ impl ::core::fmt::Debug for Lpspi0 {
 pub struct Lpspi1(pub u32);
 impl Lpspi1 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4257,42 +4235,39 @@ impl ::core::fmt::Debug for Lpspi1 {
 pub struct Lpspi2(pub u32);
 impl Lpspi2 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4353,28 +4328,26 @@ impl ::core::fmt::Debug for Pccdummy48 {
 pub struct Pdb1(pub u32);
 impl Pdb1 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4400,28 +4373,26 @@ impl ::core::fmt::Debug for Pdb1 {
 pub struct Crc(pub u32);
 impl Crc {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4498,28 +4469,26 @@ impl ::core::fmt::Debug for Pccdummy53 {
 pub struct Pdb0(pub u32);
 impl Pdb0 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4545,42 +4514,39 @@ impl ::core::fmt::Debug for Pdb0 {
 pub struct Lpit(pub u32);
 impl Lpit {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4607,42 +4573,39 @@ impl ::core::fmt::Debug for Lpit {
 pub struct Ftm0(pub u32);
 impl Ftm0 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4669,42 +4632,39 @@ impl ::core::fmt::Debug for Ftm0 {
 pub struct Ftm1(pub u32);
 impl Ftm1 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4731,42 +4691,39 @@ impl ::core::fmt::Debug for Ftm1 {
 pub struct Ftm2(pub u32);
 impl Ftm2 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4793,42 +4750,39 @@ impl ::core::fmt::Debug for Ftm2 {
 pub struct Adc0(pub u32);
 impl Adc0 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4872,28 +4826,26 @@ impl ::core::fmt::Debug for Pccdummy60 {
 pub struct Rtc(pub u32);
 impl Rtc {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -4953,70 +4905,65 @@ impl ::core::fmt::Debug for Pccdummy63 {
 pub struct Lptmr0(pub u32);
 impl Lptmr0 {
 #[doc="Peripheral Clock Divider Select"]
-  #[inline] pub fn pcd(&self) -> bits::B3 {
-     (((self.0 as u32) >> 0) & 0x7).into() // [2:0]
+  #[inline] pub fn pcd(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
   }
 #[doc="Peripheral Clock Divider Select"]
-  #[inline] pub fn set_pcd<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcd<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Peripheral Clock Divider Fraction"]
-  #[inline] pub fn frac(&self) -> bits::B1 {
-     (((self.0 as u32) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn frac(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Peripheral Clock Divider Fraction"]
-  #[inline] pub fn set_frac<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_frac<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5181,28 +5128,26 @@ impl ::core::fmt::Debug for Pccdummy72 {
 pub struct Porta(pub u32);
 impl Porta {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5228,28 +5173,26 @@ impl ::core::fmt::Debug for Porta {
 pub struct Portb(pub u32);
 impl Portb {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5275,28 +5218,26 @@ impl ::core::fmt::Debug for Portb {
 pub struct Portc(pub u32);
 impl Portc {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5322,28 +5263,26 @@ impl ::core::fmt::Debug for Portc {
 pub struct Portd(pub u32);
 impl Portd {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5369,28 +5308,26 @@ impl ::core::fmt::Debug for Portd {
 pub struct Porte(pub u32);
 impl Porte {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5620,42 +5557,39 @@ impl ::core::fmt::Debug for Pccdummy89 {
 pub struct Flexio(pub u32);
 impl Flexio {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5784,28 +5718,26 @@ impl ::core::fmt::Debug for Pccdummy96 {
 pub struct Ewm(pub u32);
 impl Ewm {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -5899,42 +5831,39 @@ impl ::core::fmt::Debug for Pccdummy101 {
 pub struct Lpi2c0(pub u32);
 impl Lpi2c0 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -6012,42 +5941,39 @@ impl ::core::fmt::Debug for Pccdummy105 {
 pub struct Lpuart0(pub u32);
 impl Lpuart0 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -6074,42 +6000,39 @@ impl ::core::fmt::Debug for Lpuart0 {
 pub struct Lpuart1(pub u32);
 impl Lpuart1 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -6136,42 +6059,39 @@ impl ::core::fmt::Debug for Lpuart1 {
 pub struct Lpuart2(pub u32);
 impl Lpuart2 {
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn pcs(&self) -> bits::B3 {
-     (((self.0 as u32) >> 24) & 0x7).into() // [26:24]
+  #[inline] pub fn pcs(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
   }
 #[doc="Peripheral Clock Source Select"]
-  #[inline] pub fn set_pcs<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pcs<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self
@@ -6300,28 +6220,26 @@ impl ::core::fmt::Debug for Pccdummy114 {
 pub struct Cmp0(pub u32);
 impl Cmp0 {
 #[doc="Clock Gate Control"]
-  #[inline] pub fn cgc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn cgc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Clock Gate Control"]
-  #[inline] pub fn set_cgc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Present"]
-  #[inline] pub fn pr(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn pr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Present"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self

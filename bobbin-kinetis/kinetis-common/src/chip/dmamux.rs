@@ -45,42 +45,39 @@ impl<T> Periph<T> {
 pub struct Chcfg(pub u8);
 impl Chcfg {
 #[doc="DMA Channel Source (Slot)"]
-  #[inline] pub fn source(&self) -> bits::B6 {
-     (((self.0 as u8) >> 0) & 0x3f).into() // [5:0]
+  #[inline] pub fn source(&self) -> bits::U6 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
   }
 #[doc="DMA Channel Source (Slot)"]
-  #[inline] pub fn set_source<V: Into<bits::B6>>(mut self, value: V) -> Self {
-     let value: bits::B6 = value.into();
+  #[inline] pub fn set_source<V: Into<bits::U6>>(mut self, value: V) -> Self {
+     let value: bits::U6 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3f) == 0);
      self.0 &= !(0x3f << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="DMA Channel Trigger Enable"]
-  #[inline] pub fn trig(&self) -> bits::B1 {
-     (((self.0 as u8) >> 6) & 0x1).into() // [6]
+  #[inline] pub fn trig(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
   }
 #[doc="DMA Channel Trigger Enable"]
-  #[inline] pub fn set_trig<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_trig<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="DMA Channel Enable"]
-  #[inline] pub fn enbl(&self) -> bits::B1 {
-     (((self.0 as u8) >> 7) & 0x1).into() // [7]
+  #[inline] pub fn enbl(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
   }
 #[doc="DMA Channel Enable"]
-  #[inline] pub fn set_enbl<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_enbl<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self

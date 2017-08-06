@@ -169,14 +169,13 @@ impl<T> Periph<T> {
 pub struct Sar(pub u32);
 impl Sar {
 #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
-  #[inline] pub fn sar(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn sar(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
 #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
-  #[inline] pub fn set_sar<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_sar<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self
@@ -200,14 +199,13 @@ impl ::core::fmt::Debug for Sar {
 pub struct Dar(pub u32);
 impl Dar {
 #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
-  #[inline] pub fn dar(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn dar(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
 #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
-  #[inline] pub fn set_dar<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_dar<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self
@@ -231,98 +229,91 @@ impl ::core::fmt::Debug for Dar {
 pub struct DsrBcr(pub u32);
 impl DsrBcr {
 #[doc="This field contains the number of bytes yet to be transferred for a given block"]
-  #[inline] pub fn bcr(&self) -> bits::B24 {
-     (((self.0 as u32) >> 0) & 0xffffff).into() // [23:0]
+  #[inline] pub fn bcr(&self) -> bits::U24 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
   }
 #[doc="This field contains the number of bytes yet to be transferred for a given block"]
-  #[inline] pub fn set_bcr<V: Into<bits::B24>>(mut self, value: V) -> Self {
-     let value: bits::B24 = value.into();
+  #[inline] pub fn set_bcr<V: Into<bits::U24>>(mut self, value: V) -> Self {
+     let value: bits::U24 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffff) == 0);
      self.0 &= !(0xffffff << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Transactions Done"]
-  #[inline] pub fn done(&self) -> bits::B1 {
-     (((self.0 as u32) >> 24) & 0x1).into() // [24]
+  #[inline] pub fn done(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
   }
 #[doc="Transactions Done"]
-  #[inline] pub fn set_done<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="Busy"]
-  #[inline] pub fn bsy(&self) -> bits::B1 {
-     (((self.0 as u32) >> 25) & 0x1).into() // [25]
+  #[inline] pub fn bsy(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
   }
 #[doc="Busy"]
-  #[inline] pub fn set_bsy<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_bsy<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
      self
   }
 
 #[doc="Request"]
-  #[inline] pub fn req(&self) -> bits::B1 {
-     (((self.0 as u32) >> 26) & 0x1).into() // [26]
+  #[inline] pub fn req(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
   }
 #[doc="Request"]
-  #[inline] pub fn set_req<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
      self
   }
 
 #[doc="Bus Error on Destination"]
-  #[inline] pub fn bed(&self) -> bits::B1 {
-     (((self.0 as u32) >> 28) & 0x1).into() // [28]
+  #[inline] pub fn bed(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
   }
 #[doc="Bus Error on Destination"]
-  #[inline] pub fn set_bed<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_bed<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
      self
   }
 
 #[doc="Bus Error on Source"]
-  #[inline] pub fn bes(&self) -> bits::B1 {
-     (((self.0 as u32) >> 29) & 0x1).into() // [29]
+  #[inline] pub fn bes(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
   }
 #[doc="Bus Error on Source"]
-  #[inline] pub fn set_bes<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_bes<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
      self
   }
 
 #[doc="Configuration Error"]
-  #[inline] pub fn ce(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn ce(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Configuration Error"]
-  #[inline] pub fn set_ce<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ce<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
@@ -370,224 +361,208 @@ impl ::core::fmt::Debug for Dsr {
 pub struct Dcr(pub u32);
 impl Dcr {
 #[doc="Link Channel 2"]
-  #[inline] pub fn lch2(&self) -> bits::B2 {
-     (((self.0 as u32) >> 0) & 0x3).into() // [1:0]
+  #[inline] pub fn lch2(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
   }
 #[doc="Link Channel 2"]
-  #[inline] pub fn set_lch2<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_lch2<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Link Channel 1"]
-  #[inline] pub fn lch1(&self) -> bits::B2 {
-     (((self.0 as u32) >> 2) & 0x3).into() // [3:2]
+  #[inline] pub fn lch1(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
   }
 #[doc="Link Channel 1"]
-  #[inline] pub fn set_lch1<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_lch1<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Link Channel Control"]
-  #[inline] pub fn linkcc(&self) -> bits::B2 {
-     (((self.0 as u32) >> 4) & 0x3).into() // [5:4]
+  #[inline] pub fn linkcc(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
   }
 #[doc="Link Channel Control"]
-  #[inline] pub fn set_linkcc<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_linkcc<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="Disable Request"]
-  #[inline] pub fn d_req(&self) -> bits::B1 {
-     (((self.0 as u32) >> 7) & 0x1).into() // [7]
+  #[inline] pub fn d_req(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
   }
 #[doc="Disable Request"]
-  #[inline] pub fn set_d_req<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_d_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
 #[doc="Destination Address Modulo"]
-  #[inline] pub fn dmod(&self) -> bits::B4 {
-     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
+  #[inline] pub fn dmod(&self) -> bits::U4 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
   }
 #[doc="Destination Address Modulo"]
-  #[inline] pub fn set_dmod<V: Into<bits::B4>>(mut self, value: V) -> Self {
-     let value: bits::B4 = value.into();
+  #[inline] pub fn set_dmod<V: Into<bits::U4>>(mut self, value: V) -> Self {
+     let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="Source Address Modulo"]
-  #[inline] pub fn smod(&self) -> bits::B4 {
-     (((self.0 as u32) >> 12) & 0xf).into() // [15:12]
+  #[inline] pub fn smod(&self) -> bits::U4 {
+     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
   }
 #[doc="Source Address Modulo"]
-  #[inline] pub fn set_smod<V: Into<bits::B4>>(mut self, value: V) -> Self {
-     let value: bits::B4 = value.into();
+  #[inline] pub fn set_smod<V: Into<bits::U4>>(mut self, value: V) -> Self {
+     let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 12);
      self.0 |= value << 12;
      self
   }
 
 #[doc="Start Transfer"]
-  #[inline] pub fn start(&self) -> bits::B1 {
-     (((self.0 as u32) >> 16) & 0x1).into() // [16]
+  #[inline] pub fn start(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="Start Transfer"]
-  #[inline] pub fn set_start<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="Destination Size"]
-  #[inline] pub fn dsize(&self) -> bits::B2 {
-     (((self.0 as u32) >> 17) & 0x3).into() // [18:17]
+  #[inline] pub fn dsize(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3) as u8) } // [18:17]
   }
 #[doc="Destination Size"]
-  #[inline] pub fn set_dsize<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_dsize<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 17);
      self.0 |= value << 17;
      self
   }
 
 #[doc="Destination Increment"]
-  #[inline] pub fn dinc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 19) & 0x1).into() // [19]
+  #[inline] pub fn dinc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
   }
 #[doc="Destination Increment"]
-  #[inline] pub fn set_dinc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
      self
   }
 
 #[doc="Source Size"]
-  #[inline] pub fn ssize(&self) -> bits::B2 {
-     (((self.0 as u32) >> 20) & 0x3).into() // [21:20]
+  #[inline] pub fn ssize(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
   }
 #[doc="Source Size"]
-  #[inline] pub fn set_ssize<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_ssize<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 20);
      self.0 |= value << 20;
      self
   }
 
 #[doc="Source Increment"]
-  #[inline] pub fn sinc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 22) & 0x1).into() // [22]
+  #[inline] pub fn sinc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
   }
 #[doc="Source Increment"]
-  #[inline] pub fn set_sinc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_sinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
 #[doc="Enable asynchronous DMA requests"]
-  #[inline] pub fn eadreq(&self) -> bits::B1 {
-     (((self.0 as u32) >> 23) & 0x1).into() // [23]
+  #[inline] pub fn eadreq(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
   }
 #[doc="Enable asynchronous DMA requests"]
-  #[inline] pub fn set_eadreq<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_eadreq<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
 #[doc="Auto-align"]
-  #[inline] pub fn aa(&self) -> bits::B1 {
-     (((self.0 as u32) >> 28) & 0x1).into() // [28]
+  #[inline] pub fn aa(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
   }
 #[doc="Auto-align"]
-  #[inline] pub fn set_aa<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_aa<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
      self
   }
 
 #[doc="Cycle Steal"]
-  #[inline] pub fn cs(&self) -> bits::B1 {
-     (((self.0 as u32) >> 29) & 0x1).into() // [29]
+  #[inline] pub fn cs(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
   }
 #[doc="Cycle Steal"]
-  #[inline] pub fn set_cs<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cs<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
      self
   }
 
 #[doc="Enable Peripheral Request"]
-  #[inline] pub fn erq(&self) -> bits::B1 {
-     (((self.0 as u32) >> 30) & 0x1).into() // [30]
+  #[inline] pub fn erq(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
   }
 #[doc="Enable Peripheral Request"]
-  #[inline] pub fn set_erq<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_erq<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 30);
      self.0 |= value << 30;
      self
   }
 
 #[doc="Enable Interrupt on Completion of Transfer"]
-  #[inline] pub fn eint(&self) -> bits::B1 {
-     (((self.0 as u32) >> 31) & 0x1).into() // [31]
+  #[inline] pub fn eint(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
   }
 #[doc="Enable Interrupt on Completion of Transfer"]
-  #[inline] pub fn set_eint<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_eint<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 31);
      self.0 |= value << 31;
      self

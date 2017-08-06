@@ -17,8 +17,8 @@ pub fn count_flag() -> bool {
 
 pub fn clock_source() -> ClockSource {
     match SYSTICK.csr().clksource() {
-        B1::B0 => ClockSource::External,
-        B1::B1 => ClockSource::Internal,
+        U1::B0 => ClockSource::External,
+        U1::B1 => ClockSource::Internal,
     }
 }
 

@@ -217,13 +217,12 @@ impl Itm {
 #[derive(PartialEq, Eq)]
 pub struct Stim(pub u32);
 impl Stim {
-  #[inline] pub fn data(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn data(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
-  #[inline] pub fn set_data<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_data<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self
@@ -246,13 +245,12 @@ impl ::core::fmt::Debug for Stim {
 #[derive(PartialEq, Eq)]
 pub struct Stim16(pub u16);
 impl Stim16 {
-  #[inline] pub fn data(&self) -> bits::B16 {
-     (((self.0 as u16) >> 0) & 0xffff).into() // [15:0]
+  #[inline] pub fn data(&self) -> bits::U16 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
   }
-  #[inline] pub fn set_data<V: Into<bits::B16>>(mut self, value: V) -> Self {
-     let value: bits::B16 = value.into();
+  #[inline] pub fn set_data<V: Into<bits::U16>>(mut self, value: V) -> Self {
+     let value: bits::U16 = value.into();
      let value: u16 = value.into();
-     assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
      self
@@ -276,13 +274,12 @@ impl ::core::fmt::Debug for Stim16 {
 #[derive(PartialEq, Eq)]
 pub struct Stim8(pub u8);
 impl Stim8 {
-  #[inline] pub fn data(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn data(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
-  #[inline] pub fn set_data<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -307,17 +304,16 @@ impl ::core::fmt::Debug for Stim8 {
 pub struct Ter(pub u32);
 impl Ter {
 #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
-  #[inline] pub fn ena(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn ena(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
-  #[inline] pub fn set_ena<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ena<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -374,17 +370,16 @@ impl ::core::fmt::Debug for Ter {
 pub struct Tpr(pub u32);
 impl Tpr {
 #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
-  #[inline] pub fn tpr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn tpr(&self, index: usize) -> bits::U1 {
      assert!(index < 4);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
-  #[inline] pub fn set_tpr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tpr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -413,112 +408,104 @@ impl ::core::fmt::Debug for Tpr {
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="Set when ITM events present and being drained"]
-  #[inline] pub fn busy(&self) -> bits::B1 {
-     (((self.0 as u32) >> 23) & 0x1).into() // [23]
+  #[inline] pub fn busy(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
   }
 #[doc="Set when ITM events present and being drained"]
-  #[inline] pub fn set_busy<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
 #[doc="ATB ID for CoreSight System"]
-  #[inline] pub fn atbid(&self) -> bits::B7 {
-     (((self.0 as u32) >> 16) & 0x7f).into() // [22:16]
+  #[inline] pub fn atbid(&self) -> bits::U7 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7f) as u8) } // [22:16]
   }
 #[doc="ATB ID for CoreSight System"]
-  #[inline] pub fn set_atbid<V: Into<bits::B7>>(mut self, value: V) -> Self {
-     let value: bits::B7 = value.into();
+  #[inline] pub fn set_atbid<V: Into<bits::U7>>(mut self, value: V) -> Self {
+     let value: bits::U7 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7f) == 0);
      self.0 &= !(0x7f << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
-  #[inline] pub fn tsprescale(&self) -> bits::B2 {
-     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
+  #[inline] pub fn tsprescale(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
   }
 #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
-  #[inline] pub fn set_tsprescale<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_tsprescale<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
-  #[inline] pub fn swoena(&self) -> bits::B1 {
-     (((self.0 as u32) >> 4) & 0x1).into() // [4]
+  #[inline] pub fn swoena(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
-  #[inline] pub fn set_swoena<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_swoena<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="Enables the DWT stimulus."]
-  #[inline] pub fn dwtena(&self) -> bits::B1 {
-     (((self.0 as u32) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn dwtena(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Enables the DWT stimulus."]
-  #[inline] pub fn set_dwtena<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dwtena<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="Enables sync packets for TPIU."]
-  #[inline] pub fn syncena(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn syncena(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Enables sync packets for TPIU."]
-  #[inline] pub fn set_syncena<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_syncena<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
-  #[inline] pub fn tsena(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn tsena(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
-  #[inline] pub fn set_tsena<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tsena<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
-  #[inline] pub fn itmena(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn itmena(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
-  #[inline] pub fn set_itmena<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_itmena<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
@@ -550,14 +537,13 @@ impl ::core::fmt::Debug for Tcr {
 pub struct Lar(pub u32);
 impl Lar {
 #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
-  #[inline] pub fn access(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn access(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
 #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
-  #[inline] pub fn set_access<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_access<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self
@@ -581,42 +567,39 @@ impl ::core::fmt::Debug for Lar {
 pub struct Lsr(pub u32);
 impl Lsr {
 #[doc="You cannot implement 8-bit lock accesses."]
-  #[inline] pub fn byteacc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn byteacc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="You cannot implement 8-bit lock accesses."]
-  #[inline] pub fn set_byteacc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_byteacc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
-  #[inline] pub fn access(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn access(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
-  #[inline] pub fn set_access<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_access<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Indicates that a lock mechanism exists for this component."]
-  #[inline] pub fn present(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn present(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Indicates that a lock mechanism exists for this component."]
-  #[inline] pub fn set_present<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_present<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self

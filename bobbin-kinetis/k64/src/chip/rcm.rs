@@ -112,98 +112,91 @@ impl Rcm {
 pub struct Srs0(pub u8);
 impl Srs0 {
 #[doc="Low Leakage Wakeup Reset"]
-  #[inline] pub fn wakeup(&self) -> bits::B1 {
-     (((self.0 as u8) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn wakeup(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Low Leakage Wakeup Reset"]
-  #[inline] pub fn set_wakeup<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_wakeup<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Low-Voltage Detect Reset"]
-  #[inline] pub fn lvd(&self) -> bits::B1 {
-     (((self.0 as u8) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn lvd(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Low-Voltage Detect Reset"]
-  #[inline] pub fn set_lvd<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lvd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Loss-of-Clock Reset"]
-  #[inline] pub fn loc(&self) -> bits::B1 {
-     (((self.0 as u8) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn loc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Loss-of-Clock Reset"]
-  #[inline] pub fn set_loc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_loc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Loss-of-Lock Reset"]
-  #[inline] pub fn lol(&self) -> bits::B1 {
-     (((self.0 as u8) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn lol(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Loss-of-Lock Reset"]
-  #[inline] pub fn set_lol<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lol<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="Watchdog"]
-  #[inline] pub fn wdog(&self) -> bits::B1 {
-     (((self.0 as u8) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn wdog(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Watchdog"]
-  #[inline] pub fn set_wdog<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_wdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
 #[doc="External Reset Pin"]
-  #[inline] pub fn pin(&self) -> bits::B1 {
-     (((self.0 as u8) >> 6) & 0x1).into() // [6]
+  #[inline] pub fn pin(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
   }
 #[doc="External Reset Pin"]
-  #[inline] pub fn set_pin<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pin<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="Power-On Reset"]
-  #[inline] pub fn por(&self) -> bits::B1 {
-     (((self.0 as u8) >> 7) & 0x1).into() // [7]
+  #[inline] pub fn por(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
   }
 #[doc="Power-On Reset"]
-  #[inline] pub fn set_por<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_por<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
@@ -234,84 +227,78 @@ impl ::core::fmt::Debug for Srs0 {
 pub struct Srs1(pub u8);
 impl Srs1 {
 #[doc="JTAG Generated Reset"]
-  #[inline] pub fn jtag(&self) -> bits::B1 {
-     (((self.0 as u8) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn jtag(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="JTAG Generated Reset"]
-  #[inline] pub fn set_jtag<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_jtag<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Core Lockup"]
-  #[inline] pub fn lockup(&self) -> bits::B1 {
-     (((self.0 as u8) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn lockup(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Core Lockup"]
-  #[inline] pub fn set_lockup<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lockup<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Software"]
-  #[inline] pub fn sw(&self) -> bits::B1 {
-     (((self.0 as u8) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn sw(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Software"]
-  #[inline] pub fn set_sw<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_sw<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn mdm_ap(&self) -> bits::B1 {
-     (((self.0 as u8) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn mdm_ap(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="MDM-AP System Reset Request"]
-  #[inline] pub fn set_mdm_ap<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_mdm_ap<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="EzPort Reset"]
-  #[inline] pub fn ezpt(&self) -> bits::B1 {
-     (((self.0 as u8) >> 4) & 0x1).into() // [4]
+  #[inline] pub fn ezpt(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="EzPort Reset"]
-  #[inline] pub fn set_ezpt<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ezpt<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="Stop Mode Acknowledge Error Reset"]
-  #[inline] pub fn sackerr(&self) -> bits::B1 {
-     (((self.0 as u8) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn sackerr(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Stop Mode Acknowledge Error Reset"]
-  #[inline] pub fn set_sackerr<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_sackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
@@ -341,28 +328,26 @@ impl ::core::fmt::Debug for Srs1 {
 pub struct Rpfc(pub u8);
 impl Rpfc {
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
-  #[inline] pub fn rstfltsrw(&self) -> bits::B2 {
-     (((self.0 as u8) >> 0) & 0x3).into() // [1:0]
+  #[inline] pub fn rstfltsrw(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
   }
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
-  #[inline] pub fn set_rstfltsrw<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_rstfltsrw<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Reset Pin Filter Select in Stop Mode"]
-  #[inline] pub fn rstfltss(&self) -> bits::B1 {
-     (((self.0 as u8) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn rstfltss(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Reset Pin Filter Select in Stop Mode"]
-  #[inline] pub fn set_rstfltss<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_rstfltss<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
@@ -388,14 +373,13 @@ impl ::core::fmt::Debug for Rpfc {
 pub struct Rpfw(pub u8);
 impl Rpfw {
 #[doc="Reset Pin Filter Bus Clock Select"]
-  #[inline] pub fn rstfltsel(&self) -> bits::B5 {
-     (((self.0 as u8) >> 0) & 0x1f).into() // [4:0]
+  #[inline] pub fn rstfltsel(&self) -> bits::U5 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
   }
 #[doc="Reset Pin Filter Bus Clock Select"]
-  #[inline] pub fn set_rstfltsel<V: Into<bits::B5>>(mut self, value: V) -> Self {
-     let value: bits::B5 = value.into();
+  #[inline] pub fn set_rstfltsel<V: Into<bits::U5>>(mut self, value: V) -> Self {
+     let value: bits::U5 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1f) == 0);
      self.0 &= !(0x1f << 0);
      self.0 |= value << 0;
      self
@@ -420,14 +404,13 @@ impl ::core::fmt::Debug for Rpfw {
 pub struct Mr(pub u8);
 impl Mr {
 #[doc="EZP_MS_B pin state"]
-  #[inline] pub fn ezp_ms(&self) -> bits::B1 {
-     (((self.0 as u8) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn ezp_ms(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="EZP_MS_B pin state"]
-  #[inline] pub fn set_ezp_ms<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ezp_ms<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self

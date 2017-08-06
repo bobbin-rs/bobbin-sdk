@@ -109,28 +109,26 @@ impl Dbg {
 pub struct DbgmcuIdcode(pub u32);
 impl DbgmcuIdcode {
 #[doc="DEV_ID"]
-  #[inline] pub fn dev_id(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dev_id(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DEV_ID"]
-  #[inline] pub fn set_dev_id<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dev_id<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="REV_ID"]
-  #[inline] pub fn rev_id(&self) -> bits::B16 {
-     (((self.0 as u32) >> 16) & 0xffff).into() // [31:16]
+  #[inline] pub fn rev_id(&self) -> bits::U16 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
   }
 #[doc="REV_ID"]
-  #[inline] pub fn set_rev_id<V: Into<bits::B16>>(mut self, value: V) -> Self {
-     let value: bits::B16 = value.into();
+  #[inline] pub fn set_rev_id<V: Into<bits::U16>>(mut self, value: V) -> Self {
+     let value: bits::U16 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 16);
      self.0 |= value << 16;
      self
@@ -156,140 +154,130 @@ impl ::core::fmt::Debug for DbgmcuIdcode {
 pub struct DbgmcuCr(pub u32);
 impl DbgmcuCr {
 #[doc="DBG_SLEEP"]
-  #[inline] pub fn dbg_sleep(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn dbg_sleep(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="DBG_SLEEP"]
-  #[inline] pub fn set_dbg_sleep<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_sleep<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="DBG_STOP"]
-  #[inline] pub fn dbg_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn dbg_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="DBG_STOP"]
-  #[inline] pub fn set_dbg_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="DBG_STANDBY"]
-  #[inline] pub fn dbg_standby(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn dbg_standby(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="DBG_STANDBY"]
-  #[inline] pub fn set_dbg_standby<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_standby<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="TRACE_IOEN"]
-  #[inline] pub fn trace_ioen(&self) -> bits::B1 {
-     (((self.0 as u32) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn trace_ioen(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="TRACE_IOEN"]
-  #[inline] pub fn set_trace_ioen<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_trace_ioen<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
 #[doc="TRACE_MODE"]
-  #[inline] pub fn trace_mode(&self) -> bits::B2 {
-     (((self.0 as u32) >> 6) & 0x3).into() // [7:6]
+  #[inline] pub fn trace_mode(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="TRACE_MODE"]
-  #[inline] pub fn set_trace_mode<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_trace_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
-  #[inline] pub fn dbg_i2c2_smbus_timeout(&self) -> bits::B1 {
-     (((self.0 as u32) >> 16) & 0x1).into() // [16]
+  #[inline] pub fn dbg_i2c2_smbus_timeout(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
-  #[inline] pub fn set_dbg_i2c2_smbus_timeout<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_i2c2_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="DBG_TIM8_STOP"]
-  #[inline] pub fn dbg_tim8_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 17) & 0x1).into() // [17]
+  #[inline] pub fn dbg_tim8_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
   }
 #[doc="DBG_TIM8_STOP"]
-  #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
 #[doc="DBG_TIM5_STOP"]
-  #[inline] pub fn dbg_tim5_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 18) & 0x1).into() // [18]
+  #[inline] pub fn dbg_tim5_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
   }
 #[doc="DBG_TIM5_STOP"]
-  #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self
   }
 
 #[doc="DBG_TIM6_STOP"]
-  #[inline] pub fn dbg_tim6_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 19) & 0x1).into() // [19]
+  #[inline] pub fn dbg_tim6_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
   }
 #[doc="DBG_TIM6_STOP"]
-  #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 19);
      self.0 |= value << 19;
      self
   }
 
 #[doc="DBG_TIM7_STOP"]
-  #[inline] pub fn dbg_tim7_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 20) & 0x1).into() // [20]
+  #[inline] pub fn dbg_tim7_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
   }
 #[doc="DBG_TIM7_STOP"]
-  #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
      self
@@ -323,224 +311,208 @@ impl ::core::fmt::Debug for DbgmcuCr {
 pub struct DbgmcuApb1Fz(pub u32);
 impl DbgmcuApb1Fz {
 #[doc="DBG_TIM2_STOP"]
-  #[inline] pub fn dbg_tim2_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn dbg_tim2_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="DBG_TIM2_STOP"]
-  #[inline] pub fn set_dbg_tim2_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="DBG_TIM3 _STOP"]
-  #[inline] pub fn dbg_tim3_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn dbg_tim3_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="DBG_TIM3 _STOP"]
-  #[inline] pub fn set_dbg_tim3_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim3_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="DBG_TIM4_STOP"]
-  #[inline] pub fn dbg_tim4_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn dbg_tim4_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="DBG_TIM4_STOP"]
-  #[inline] pub fn set_dbg_tim4_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim4_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="DBG_TIM5_STOP"]
-  #[inline] pub fn dbg_tim5_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn dbg_tim5_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="DBG_TIM5_STOP"]
-  #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="DBG_TIM6_STOP"]
-  #[inline] pub fn dbg_tim6_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 4) & 0x1).into() // [4]
+  #[inline] pub fn dbg_tim6_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="DBG_TIM6_STOP"]
-  #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="DBG_TIM7_STOP"]
-  #[inline] pub fn dbg_tim7_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn dbg_tim7_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="DBG_TIM7_STOP"]
-  #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
 #[doc="DBG_TIM12_STOP"]
-  #[inline] pub fn dbg_tim12_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 6) & 0x1).into() // [6]
+  #[inline] pub fn dbg_tim12_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
   }
 #[doc="DBG_TIM12_STOP"]
-  #[inline] pub fn set_dbg_tim12_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim12_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="DBG_TIM13_STOP"]
-  #[inline] pub fn dbg_tim13_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 7) & 0x1).into() // [7]
+  #[inline] pub fn dbg_tim13_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
   }
 #[doc="DBG_TIM13_STOP"]
-  #[inline] pub fn set_dbg_tim13_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim13_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
 #[doc="DBG_TIM14_STOP"]
-  #[inline] pub fn dbg_tim14_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 8) & 0x1).into() // [8]
+  #[inline] pub fn dbg_tim14_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
   }
 #[doc="DBG_TIM14_STOP"]
-  #[inline] pub fn set_dbg_tim14_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim14_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="DBG_WWDG_STOP"]
-  #[inline] pub fn dbg_wwdg_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 11) & 0x1).into() // [11]
+  #[inline] pub fn dbg_wwdg_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
   }
 #[doc="DBG_WWDG_STOP"]
-  #[inline] pub fn set_dbg_wwdg_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_wwdg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
      self
   }
 
 #[doc="DBG_IWDEG_STOP"]
-  #[inline] pub fn dbg_iwdeg_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 12) & 0x1).into() // [12]
+  #[inline] pub fn dbg_iwdeg_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
   }
 #[doc="DBG_IWDEG_STOP"]
-  #[inline] pub fn set_dbg_iwdeg_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_iwdeg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
 #[doc="DBG_J2C1_SMBUS_TIMEOUT"]
-  #[inline] pub fn dbg_j2c1_smbus_timeout(&self) -> bits::B1 {
-     (((self.0 as u32) >> 21) & 0x1).into() // [21]
+  #[inline] pub fn dbg_j2c1_smbus_timeout(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
   }
 #[doc="DBG_J2C1_SMBUS_TIMEOUT"]
-  #[inline] pub fn set_dbg_j2c1_smbus_timeout<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_j2c1_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 21);
      self.0 |= value << 21;
      self
   }
 
 #[doc="DBG_J2C2_SMBUS_TIMEOUT"]
-  #[inline] pub fn dbg_j2c2_smbus_timeout(&self) -> bits::B1 {
-     (((self.0 as u32) >> 22) & 0x1).into() // [22]
+  #[inline] pub fn dbg_j2c2_smbus_timeout(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
   }
 #[doc="DBG_J2C2_SMBUS_TIMEOUT"]
-  #[inline] pub fn set_dbg_j2c2_smbus_timeout<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_j2c2_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
      self
   }
 
 #[doc="DBG_J2C3SMBUS_TIMEOUT"]
-  #[inline] pub fn dbg_j2c3smbus_timeout(&self) -> bits::B1 {
-     (((self.0 as u32) >> 23) & 0x1).into() // [23]
+  #[inline] pub fn dbg_j2c3smbus_timeout(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
   }
 #[doc="DBG_J2C3SMBUS_TIMEOUT"]
-  #[inline] pub fn set_dbg_j2c3smbus_timeout<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_j2c3smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 23);
      self.0 |= value << 23;
      self
   }
 
 #[doc="DBG_CAN1_STOP"]
-  #[inline] pub fn dbg_can1_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 25) & 0x1).into() // [25]
+  #[inline] pub fn dbg_can1_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
   }
 #[doc="DBG_CAN1_STOP"]
-  #[inline] pub fn set_dbg_can1_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_can1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 25);
      self.0 |= value << 25;
      self
   }
 
 #[doc="DBG_CAN2_STOP"]
-  #[inline] pub fn dbg_can2_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 26) & 0x1).into() // [26]
+  #[inline] pub fn dbg_can2_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
   }
 #[doc="DBG_CAN2_STOP"]
-  #[inline] pub fn set_dbg_can2_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_can2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 26);
      self.0 |= value << 26;
      self
@@ -580,70 +552,65 @@ impl ::core::fmt::Debug for DbgmcuApb1Fz {
 pub struct DbgmcuApb2Fz(pub u32);
 impl DbgmcuApb2Fz {
 #[doc="TIM1 counter stopped when core is halted"]
-  #[inline] pub fn dbg_tim1_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn dbg_tim1_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="TIM1 counter stopped when core is halted"]
-  #[inline] pub fn set_dbg_tim1_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="TIM8 counter stopped when core is halted"]
-  #[inline] pub fn dbg_tim8_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn dbg_tim8_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="TIM8 counter stopped when core is halted"]
-  #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="TIM9 counter stopped when core is halted"]
-  #[inline] pub fn dbg_tim9_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 16) & 0x1).into() // [16]
+  #[inline] pub fn dbg_tim9_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="TIM9 counter stopped when core is halted"]
-  #[inline] pub fn set_dbg_tim9_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim9_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="TIM10 counter stopped when core is halted"]
-  #[inline] pub fn dbg_tim10_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 17) & 0x1).into() // [17]
+  #[inline] pub fn dbg_tim10_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
   }
 #[doc="TIM10 counter stopped when core is halted"]
-  #[inline] pub fn set_dbg_tim10_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim10_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
 #[doc="TIM11 counter stopped when core is halted"]
-  #[inline] pub fn dbg_tim11_stop(&self) -> bits::B1 {
-     (((self.0 as u32) >> 18) & 0x1).into() // [18]
+  #[inline] pub fn dbg_tim11_stop(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
   }
 #[doc="TIM11 counter stopped when core is halted"]
-  #[inline] pub fn set_dbg_tim11_stop<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dbg_tim11_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self

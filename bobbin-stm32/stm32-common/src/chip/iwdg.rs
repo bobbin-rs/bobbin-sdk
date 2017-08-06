@@ -126,14 +126,13 @@ impl<T> Periph<T> {
 pub struct Kr(pub u32);
 impl Kr {
 #[doc="Key value (write only, read 0x0000)"]
-  #[inline] pub fn key(&self) -> bits::B16 {
-     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
+  #[inline] pub fn key(&self) -> bits::U16 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
   }
 #[doc="Key value (write only, read 0x0000)"]
-  #[inline] pub fn set_key<V: Into<bits::B16>>(mut self, value: V) -> Self {
-     let value: bits::B16 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U16>>(mut self, value: V) -> Self {
+     let value: bits::U16 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
      self
@@ -158,14 +157,13 @@ impl ::core::fmt::Debug for Kr {
 pub struct Pr(pub u32);
 impl Pr {
 #[doc="Prescaler divider"]
-  #[inline] pub fn pr(&self) -> bits::B3 {
-     (((self.0 as u32) >> 0) & 0x7).into() // [2:0]
+  #[inline] pub fn pr(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
   }
 #[doc="Prescaler divider"]
-  #[inline] pub fn set_pr<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 0);
      self.0 |= value << 0;
      self
@@ -190,14 +188,13 @@ impl ::core::fmt::Debug for Pr {
 pub struct Rlr(pub u32);
 impl Rlr {
 #[doc="Watchdog counter reload value"]
-  #[inline] pub fn rl(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn rl(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="Watchdog counter reload value"]
-  #[inline] pub fn set_rl<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_rl<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -222,42 +219,39 @@ impl ::core::fmt::Debug for Rlr {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Watchdog counter window value update"]
-  #[inline] pub fn wvu(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn wvu(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Watchdog counter window value update"]
-  #[inline] pub fn set_wvu<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_wvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Watchdog counter reload value update"]
-  #[inline] pub fn rvu(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn rvu(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Watchdog counter reload value update"]
-  #[inline] pub fn set_rvu<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_rvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Watchdog prescaler value update"]
-  #[inline] pub fn pvu(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn pvu(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Watchdog prescaler value update"]
-  #[inline] pub fn set_pvu<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
@@ -284,14 +278,13 @@ impl ::core::fmt::Debug for Sr {
 pub struct Winr(pub u32);
 impl Winr {
 #[doc="Watchdog counter window value"]
-  #[inline] pub fn win(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn win(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="Watchdog counter window value"]
-  #[inline] pub fn set_win<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_win<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self

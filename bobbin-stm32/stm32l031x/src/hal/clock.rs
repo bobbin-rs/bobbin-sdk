@@ -92,13 +92,13 @@ impl ClockTree for DynamicClock {
 
     fn msi(&self) -> Hz {
         match RCC.icscr().msirange() {
-            B3::B000 => Some(65536),
-            B3::B001 => Some(131072),
-            B3::B010 => Some(262144),
-            B3::B011 => Some(524288),
-            B3::B100 => Some(1048000),
-            B3::B101 => Some(2097000),
-            B3::B110 => Some(4194000),
+            U3::B000 => Some(65536),
+            U3::B001 => Some(131072),
+            U3::B010 => Some(262144),
+            U3::B011 => Some(524288),
+            U3::B100 => Some(1048000),
+            U3::B101 => Some(2097000),
+            U3::B110 => Some(4194000),
             _ => panic!("Invalid Value"),
         }
     }
@@ -115,58 +115,58 @@ impl ClockTree for DynamicClock {
         let cfgr = RCC.cfgr();
 
         let pll_mul = match RCC.cfgr().pllmul() {
-            B4::B0000 => 3,
-            B4::B0001 => 4,
-            B4::B0010 => 6,
-            B4::B0011 => 8,
-            B4::B0100 => 12,
-            B4::B0101 => 16,
-            B4::B0110 => 24,
-            B4::B0111 => 32,
-            B4::B1000 => 48,
+            U4::B0000 => 3,
+            U4::B0001 => 4,
+            U4::B0010 => 6,
+            U4::B0011 => 8,
+            U4::B0100 => 12,
+            U4::B0101 => 16,
+            U4::B0110 => 24,
+            U4::B0111 => 32,
+            U4::B1000 => 48,
             _ => panic!("Invalid Value"),
         };
         let pll_div = match RCC.cfgr().plldiv() {
-            B2::B01 => 2,
-            B2::B10 => 3,
-            B2::B11 => 4,
+            U2::B01 => 2,
+            U2::B10 => 3,
+            U2::B11 => 4,
             _ => panic!("Invalid Value"),
         };
 
         match cfgr.pllsrc() {
-            B1::B0 => self.hsi16(),
-            B1::B1 => self.hse(),
+            U1::B0 => self.hsi16(),
+            U1::B1 => self.hse(),
         }.map(|v| v * pll_mul / pll_div)
     }
 
     fn sysclk(&self) -> Hz {
         match RCC.cfgr().sws() {
-            B2::B00 => self.msi(),
-            B2::B01 => self.hsi16(),
-            B2::B10 => self.hse(),
-            B2::B11 => self.pllclk(),
+            U2::B00 => self.msi(),
+            U2::B01 => self.hsi16(),
+            U2::B10 => self.hse(),
+            U2::B11 => self.pllclk(),
         }
     }
 
     fn hclk(&self) -> Hz {
         let shift = match RCC.cfgr().hpre() {
-            B4::B0000 => 0,
-            B4::B0001 => 0,
-            B4::B0010 => 0,
-            B4::B0011 => 0,
-            B4::B0100 => 0,
-            B4::B0101 => 0,
-            B4::B0110 => 0,
-            B4::B0111 => 0,
-            B4::B1000 => 1,
-            B4::B1001 => 2,
-            B4::B1010 => 3,
-            B4::B1011 => 4,
+            U4::B0000 => 0,
+            U4::B0001 => 0,
+            U4::B0010 => 0,
+            U4::B0011 => 0,
+            U4::B0100 => 0,
+            U4::B0101 => 0,
+            U4::B0110 => 0,
+            U4::B0111 => 0,
+            U4::B1000 => 1,
+            U4::B1001 => 2,
+            U4::B1010 => 3,
+            U4::B1011 => 4,
             // NOTE: Divide by 32 is skipped
-            B4::B1100 => 6,
-            B4::B1101 => 7,
-            B4::B1110 => 8,
-            B4::B1111 => 9,
+            U4::B1100 => 6,
+            U4::B1101 => 7,
+            U4::B1110 => 8,
+            U4::B1111 => 9,
         };
         self.sysclk().map(|v| v >> shift)
     }
@@ -177,14 +177,14 @@ impl ClockTree for DynamicClock {
 
     fn pclk1(&self) -> Hz {
         let shift = match RCC.cfgr().ppre1() {
-            B3::B000 => 0,
-            B3::B001 => 0,
-            B3::B010 => 0,
-            B3::B011 => 0,
-            B3::B100 => 1,
-            B3::B101 => 2,
-            B3::B110 => 3,
-            B3::B111 => 4,
+            U3::B000 => 0,
+            U3::B001 => 0,
+            U3::B010 => 0,
+            U3::B011 => 0,
+            U3::B100 => 1,
+            U3::B101 => 2,
+            U3::B110 => 3,
+            U3::B111 => 4,
         };
         self.hclk().map(|v| v >> shift)
     }
@@ -199,10 +199,10 @@ impl ClockTree for DynamicClock {
     fn pclk2(&self) -> Hz {
         let shift = match RCC.cfgr().ppre2() {
             v if (v as u8) < 0b100  => 0,
-            B3::B100 => 1,
-            B3::B101 => 2,
-            B3::B110 => 3,
-            B3::B111 => 4,
+            U3::B100 => 1,
+            U3::B101 => 2,
+            U3::B110 => 3,
+            U3::B111 => 4,
             _ => unimplemented!(),
         };
         self.hclk().map(|v| v >> shift)
@@ -239,10 +239,10 @@ impl fmt::Debug for DynamicClock {
 impl<T: ClockTree> Clock<T> for Lpuart1 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().lpuart1sel() {
-            B2::B00 => t.pclk1(),
-            B2::B01 => t.sysclk(),
-            B2::B10 => t.hsi16(),
-            B2::B11 => t.lse(),
+            U2::B00 => t.pclk1(),
+            U2::B01 => t.sysclk(),
+            U2::B10 => t.hsi16(),
+            U2::B11 => t.lse(),
         }
     }
 }
@@ -250,10 +250,10 @@ impl<T: ClockTree> Clock<T> for Lpuart1 {
 impl<T: ClockTree> Clock<T> for Usart2 {
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().usart2sel() {
-            B2::B00 => t.pclk1(),
-            B2::B01 => t.sysclk(),
-            B2::B10 => t.hsi16(),
-            B2::B11 => t.lse(),
+            U2::B00 => t.pclk1(),
+            U2::B01 => t.sysclk(),
+            U2::B10 => t.hsi16(),
+            U2::B11 => t.lse(),
         }
     }
 }
@@ -262,10 +262,10 @@ impl<T: ClockTree> Clock<T> for Usart2 {
 impl<T: ClockTree> Clock<T> for Lptim {
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().lptim1sel() {
-            B2::B00 => t.pclk1(),
-            B2::B01 => t.lsi(),
-            B2::B10 => t.hsi16(),
-            B2::B11 => t.lse(),
+            U2::B00 => t.pclk1(),
+            U2::B01 => t.lsi(),
+            U2::B10 => t.hsi16(),
+            U2::B11 => t.lse(),
         }
     }
 }

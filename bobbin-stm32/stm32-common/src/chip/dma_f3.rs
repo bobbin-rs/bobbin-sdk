@@ -169,17 +169,16 @@ impl<T> Periph<T> {
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Channel n Global interrupt flag"]
-  #[inline] pub fn gif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn gif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 0 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Global interrupt flag"]
-  #[inline] pub fn set_gif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_gif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -187,17 +186,16 @@ impl Isr {
   }
 
 #[doc="Channel n Transfer Complete flag"]
-  #[inline] pub fn tcif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn tcif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 1 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [1]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Channel n Transfer Complete flag"]
-  #[inline] pub fn set_tcif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tcif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -205,17 +203,16 @@ impl Isr {
   }
 
 #[doc="Channel n Half Transfer Complete flag"]
-  #[inline] pub fn htif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn htif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 2 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [2]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Channel n Half Transfer Complete flag"]
-  #[inline] pub fn set_htif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_htif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -223,17 +220,16 @@ impl Isr {
   }
 
 #[doc="Channel n Transfer Error flag"]
-  #[inline] pub fn teif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn teif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 3 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [3]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Channel n Transfer Error flag"]
-  #[inline] pub fn set_teif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_teif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 3 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -286,17 +282,16 @@ impl ::core::fmt::Debug for Isr {
 pub struct Ifcr(pub u32);
 impl Ifcr {
 #[doc="Channel n Global interrupt clear"]
-  #[inline] pub fn cgif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn cgif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 0 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Global interrupt clear"]
-  #[inline] pub fn set_cgif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cgif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -304,17 +299,16 @@ impl Ifcr {
   }
 
 #[doc="Channel n Transfer Complete clear"]
-  #[inline] pub fn ctcif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn ctcif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 1 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [1]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Channel n Transfer Complete clear"]
-  #[inline] pub fn set_ctcif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ctcif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 1 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -322,17 +316,16 @@ impl Ifcr {
   }
 
 #[doc="Channel n Half Transfer clear"]
-  #[inline] pub fn chtif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn chtif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 2 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [2]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Channel n Half Transfer clear"]
-  #[inline] pub fn set_chtif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_chtif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -340,17 +333,16 @@ impl Ifcr {
   }
 
 #[doc="Channel n Transfer Error clear"]
-  #[inline] pub fn cteif(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn cteif(&self, index: usize) -> bits::U1 {
      assert!(index < 7);
      let shift: usize = 3 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x1).into() // [3]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Channel n Transfer Error clear"]
-  #[inline] pub fn set_cteif<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_cteif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
-     assert!((value & !0x1) == 0);
      let shift: usize = 3 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -403,168 +395,156 @@ impl ::core::fmt::Debug for Ifcr {
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Channel enable"]
-  #[inline] pub fn en(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn en(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Channel enable"]
-  #[inline] pub fn set_en<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Transfer complete interrupt enable"]
-  #[inline] pub fn tcie(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn tcie(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Transfer complete interrupt enable"]
-  #[inline] pub fn set_tcie<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tcie<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="Half Transfer interrupt enable"]
-  #[inline] pub fn htie(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn htie(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Half Transfer interrupt enable"]
-  #[inline] pub fn set_htie<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_htie<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="Transfer error interrupt enable"]
-  #[inline] pub fn teie(&self) -> bits::B1 {
-     (((self.0 as u32) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn teie(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Transfer error interrupt enable"]
-  #[inline] pub fn set_teie<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_teie<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="Data transfer direction"]
-  #[inline] pub fn dir(&self) -> bits::B1 {
-     (((self.0 as u32) >> 4) & 0x1).into() // [4]
+  #[inline] pub fn dir(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Data transfer direction"]
-  #[inline] pub fn set_dir<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dir<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="Circular mode"]
-  #[inline] pub fn circ(&self) -> bits::B1 {
-     (((self.0 as u32) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn circ(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Circular mode"]
-  #[inline] pub fn set_circ<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_circ<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self
   }
 
 #[doc="Peripheral increment mode"]
-  #[inline] pub fn pinc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 6) & 0x1).into() // [6]
+  #[inline] pub fn pinc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
   }
 #[doc="Peripheral increment mode"]
-  #[inline] pub fn set_pinc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="Memory increment mode"]
-  #[inline] pub fn minc(&self) -> bits::B1 {
-     (((self.0 as u32) >> 7) & 0x1).into() // [7]
+  #[inline] pub fn minc(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
   }
 #[doc="Memory increment mode"]
-  #[inline] pub fn set_minc<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_minc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 7);
      self.0 |= value << 7;
      self
   }
 
 #[doc="Peripheral size"]
-  #[inline] pub fn psize(&self) -> bits::B2 {
-     (((self.0 as u32) >> 8) & 0x3).into() // [9:8]
+  #[inline] pub fn psize(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
   }
 #[doc="Peripheral size"]
-  #[inline] pub fn set_psize<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_psize<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="Memory size"]
-  #[inline] pub fn msize(&self) -> bits::B2 {
-     (((self.0 as u32) >> 10) & 0x3).into() // [11:10]
+  #[inline] pub fn msize(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
   }
 #[doc="Memory size"]
-  #[inline] pub fn set_msize<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_msize<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 10);
      self.0 |= value << 10;
      self
   }
 
 #[doc="Channel Priority level"]
-  #[inline] pub fn pl(&self) -> bits::B2 {
-     (((self.0 as u32) >> 12) & 0x3).into() // [13:12]
+  #[inline] pub fn pl(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
   }
 #[doc="Channel Priority level"]
-  #[inline] pub fn set_pl<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_pl<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 12);
      self.0 |= value << 12;
      self
   }
 
 #[doc="Memory to memory mode"]
-  #[inline] pub fn mem2mem(&self) -> bits::B1 {
-     (((self.0 as u32) >> 14) & 0x1).into() // [14]
+  #[inline] pub fn mem2mem(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
   }
 #[doc="Memory to memory mode"]
-  #[inline] pub fn set_mem2mem<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_mem2mem<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 14);
      self.0 |= value << 14;
      self
@@ -600,14 +580,13 @@ impl ::core::fmt::Debug for Ccr {
 pub struct Cndtr(pub u32);
 impl Cndtr {
 #[doc="Number of data to transfer"]
-  #[inline] pub fn ndt(&self) -> bits::B16 {
-     (((self.0 as u32) >> 0) & 0xffff).into() // [15:0]
+  #[inline] pub fn ndt(&self) -> bits::U16 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
   }
 #[doc="Number of data to transfer"]
-  #[inline] pub fn set_ndt<V: Into<bits::B16>>(mut self, value: V) -> Self {
-     let value: bits::B16 = value.into();
+  #[inline] pub fn set_ndt<V: Into<bits::U16>>(mut self, value: V) -> Self {
+     let value: bits::U16 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffff) == 0);
      self.0 &= !(0xffff << 0);
      self.0 |= value << 0;
      self
@@ -632,14 +611,13 @@ impl ::core::fmt::Debug for Cndtr {
 pub struct Cpar(pub u32);
 impl Cpar {
 #[doc="Peripheral address"]
-  #[inline] pub fn pa(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn pa(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
 #[doc="Peripheral address"]
-  #[inline] pub fn set_pa<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_pa<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self
@@ -663,14 +641,13 @@ impl ::core::fmt::Debug for Cpar {
 pub struct Cmar(pub u32);
 impl Cmar {
 #[doc="Memory address"]
-  #[inline] pub fn ma(&self) -> bits::B32 {
-     (((self.0 as u32) >> 0) & 0xffffffff).into() // [31:0]
+  #[inline] pub fn ma(&self) -> bits::U32 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
   }
 #[doc="Memory address"]
-  #[inline] pub fn set_ma<V: Into<bits::B32>>(mut self, value: V) -> Self {
-     let value: bits::B32 = value.into();
+  #[inline] pub fn set_ma<V: Into<bits::U32>>(mut self, value: V) -> Self {
+     let value: bits::U32 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xffffffff) == 0);
      self.0 &= !(0xffffffff << 0);
      self.0 |= value << 0;
      self

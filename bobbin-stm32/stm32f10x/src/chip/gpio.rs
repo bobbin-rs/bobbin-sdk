@@ -211,17 +211,16 @@ impl<T> Periph<T> {
 pub struct Crl(pub u32);
 impl Crl {
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn mode(&self, index: usize) -> bits::B2 {
+  #[inline] pub fn mode(&self, index: usize) -> bits::U2 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn set_mode<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_mode<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
-     assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -229,17 +228,16 @@ impl Crl {
   }
 
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn cnf(&self, index: usize) -> bits::B2 {
+  #[inline] pub fn cnf(&self, index: usize) -> bits::U2 {
      assert!(index < 8);
      let shift: usize = 2 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x3).into() // [3:2]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
   }
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn set_cnf<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_cnf<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
-     assert!((value & !0x3) == 0);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -280,17 +278,16 @@ impl ::core::fmt::Debug for Crl {
 pub struct Crh(pub u32);
 impl Crh {
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn mode(&self, index: usize) -> bits::B2 {
+  #[inline] pub fn mode(&self, index: usize) -> bits::U2 {
      assert!(index < 8);
      let shift: usize = 0 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x3).into() // [1:0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn set_mode<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_mode<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
-     assert!((value & !0x3) == 0);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -298,17 +295,16 @@ impl Crh {
   }
 
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn cnf(&self, index: usize) -> bits::B2 {
+  #[inline] pub fn cnf(&self, index: usize) -> bits::U2 {
      assert!(index < 8);
      let shift: usize = 2 + (index << 2);
-     (((self.0 as u32) >> shift) & 0x3).into() // [3:2]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
   }
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn set_cnf<V: Into<bits::B2>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_cnf<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
-     assert!((value & !0x3) == 0);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -349,17 +345,16 @@ impl ::core::fmt::Debug for Crh {
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="Port input data"]
-  #[inline] pub fn idr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn idr(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port input data"]
-  #[inline] pub fn set_idr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_idr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -400,17 +395,16 @@ impl ::core::fmt::Debug for Idr {
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="Port output data"]
-  #[inline] pub fn odr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn odr(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port output data"]
-  #[inline] pub fn set_odr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_odr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -451,17 +445,16 @@ impl ::core::fmt::Debug for Odr {
 pub struct Bsrr(pub u32);
 impl Bsrr {
 #[doc="Set bit n"]
-  #[inline] pub fn bs(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn bs(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Set bit n"]
-  #[inline] pub fn set_bs<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_bs<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -469,17 +462,16 @@ impl Bsrr {
   }
 
 #[doc="Reset bit n"]
-  #[inline] pub fn br(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn br(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 16 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [16]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Reset bit n"]
-  #[inline] pub fn set_br<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_br<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -536,17 +528,16 @@ impl ::core::fmt::Debug for Bsrr {
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="Reset bit n"]
-  #[inline] pub fn br(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn br(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Reset bit n"]
-  #[inline] pub fn set_br<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_br<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -587,17 +578,16 @@ impl ::core::fmt::Debug for Brr {
 pub struct Lckr(pub u32);
 impl Lckr {
 #[doc="Port Lock bit n"]
-  #[inline] pub fn lck0(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn lck0(&self, index: usize) -> bits::U1 {
      assert!(index < 16);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Lock bit n"]
-  #[inline] pub fn set_lck0<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lck0<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -605,14 +595,13 @@ impl Lckr {
   }
 
 #[doc="Lock key"]
-  #[inline] pub fn lckk(&self) -> bits::B1 {
-     (((self.0 as u32) >> 16) & 0x1).into() // [16]
+  #[inline] pub fn lckk(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="Lock key"]
-  #[inline] pub fn set_lckk<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lckk<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self

@@ -64,10 +64,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn mode(&self) -> Mode {
         match self.port.moder().moder(self.index) {
-            B2::B00 => Mode::Input,
-            B2::B01 => Mode::Output,
-            B2::B10 => Mode::AltFn,
-            B2::B11 => Mode::Analog,
+            U2::B00 => Mode::Input,
+            U2::B01 => Mode::Output,
+            U2::B10 => Mode::AltFn,
+            U2::B11 => Mode::Analog,
         }
     }
 
@@ -80,8 +80,8 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn output_type(&self) -> OutputType {
         match self.port.otyper().ot(self.index) {
-            B1::B0 => OutputType::PushPull,
-            B1::B1 => OutputType::OpenDrain,
+            U1::B0 => OutputType::PushPull,
+            U1::B1 => OutputType::OpenDrain,
         }
     }
 
@@ -94,10 +94,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn output_speed(&self) -> OutputSpeed {
         match self.port.ospeedr().ospeedr(self.index) {
-            B2::B00 => OutputSpeed::LowSpeed,
-            B2::B01 => OutputSpeed::MediumSpeed,
-            B2::B10 => OutputSpeed::FastSpeed,
-            B2::B11 => OutputSpeed::HighSpeed,
+            U2::B00 => OutputSpeed::LowSpeed,
+            U2::B01 => OutputSpeed::MediumSpeed,
+            U2::B10 => OutputSpeed::FastSpeed,
+            U2::B11 => OutputSpeed::HighSpeed,
         }
     }
 
@@ -110,10 +110,10 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn pull(&self) -> Pull {
         match self.port.pupdr().pupdr(self.index) {
-            B2::B00 => Pull::None,
-            B2::B01 => Pull::PullUp,
-            B2::B10 => Pull::PullDown,
-            B2::B11 => Pull::Reserved,
+            U2::B00 => Pull::None,
+            U2::B01 => Pull::PullUp,
+            U2::B10 => Pull::PullDown,
+            U2::B11 => Pull::Reserved,
         }
     }
 

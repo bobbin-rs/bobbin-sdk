@@ -223,14 +223,13 @@ impl Ftfa {
 pub struct Backkey3(pub u8);
 impl Backkey3 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -255,14 +254,13 @@ impl ::core::fmt::Debug for Backkey3 {
 pub struct Backkey2(pub u8);
 impl Backkey2 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -287,14 +285,13 @@ impl ::core::fmt::Debug for Backkey2 {
 pub struct Backkey1(pub u8);
 impl Backkey1 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -319,14 +316,13 @@ impl ::core::fmt::Debug for Backkey1 {
 pub struct Backkey0(pub u8);
 impl Backkey0 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -351,14 +347,13 @@ impl ::core::fmt::Debug for Backkey0 {
 pub struct Backkey7(pub u8);
 impl Backkey7 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -383,14 +378,13 @@ impl ::core::fmt::Debug for Backkey7 {
 pub struct Backkey6(pub u8);
 impl Backkey6 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -415,14 +409,13 @@ impl ::core::fmt::Debug for Backkey6 {
 pub struct Backkey5(pub u8);
 impl Backkey5 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -447,14 +440,13 @@ impl ::core::fmt::Debug for Backkey5 {
 pub struct Backkey4(pub u8);
 impl Backkey4 {
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn key(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn key(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="Backdoor Comparison Key."]
-  #[inline] pub fn set_key<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -479,14 +471,13 @@ impl ::core::fmt::Debug for Backkey4 {
 pub struct Fprot3(pub u8);
 impl Fprot3 {
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn prot(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn prot(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn set_prot<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -511,14 +502,13 @@ impl ::core::fmt::Debug for Fprot3 {
 pub struct Fprot2(pub u8);
 impl Fprot2 {
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn prot(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn prot(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn set_prot<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -543,14 +533,13 @@ impl ::core::fmt::Debug for Fprot2 {
 pub struct Fprot1(pub u8);
 impl Fprot1 {
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn prot(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn prot(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn set_prot<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -575,14 +564,13 @@ impl ::core::fmt::Debug for Fprot1 {
 pub struct Fprot0(pub u8);
 impl Fprot0 {
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn prot(&self) -> bits::B8 {
-     (((self.0 as u8) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn prot(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="P-Flash Region Protect"]
-  #[inline] pub fn set_prot<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -607,56 +595,52 @@ impl ::core::fmt::Debug for Fprot0 {
 pub struct Fsec(pub u8);
 impl Fsec {
 #[doc="Flash Security"]
-  #[inline] pub fn sec(&self) -> bits::B2 {
-     (((self.0 as u8) >> 0) & 0x3).into() // [1:0]
+  #[inline] pub fn sec(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
   }
 #[doc="Flash Security"]
-  #[inline] pub fn set_sec<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_sec<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="Freescale Failure Analysis Access Code"]
-  #[inline] pub fn fslacc(&self) -> bits::B2 {
-     (((self.0 as u8) >> 2) & 0x3).into() // [3:2]
+  #[inline] pub fn fslacc(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
   }
 #[doc="Freescale Failure Analysis Access Code"]
-  #[inline] pub fn set_fslacc<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_fslacc<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="no description available"]
-  #[inline] pub fn meen(&self) -> bits::B2 {
-     (((self.0 as u8) >> 4) & 0x3).into() // [5:4]
+  #[inline] pub fn meen(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_meen<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_meen<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="Backdoor Key Security Enable"]
-  #[inline] pub fn keyen(&self) -> bits::B2 {
-     (((self.0 as u8) >> 6) & 0x3).into() // [7:6]
+  #[inline] pub fn keyen(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="Backdoor Key Security Enable"]
-  #[inline] pub fn set_keyen<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_keyen<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
      self
@@ -684,70 +668,65 @@ impl ::core::fmt::Debug for Fsec {
 pub struct Fopt(pub u8);
 impl Fopt {
 #[doc="no description available"]
-  #[inline] pub fn lpboot0(&self) -> bits::B1 {
-     (((self.0 as u8) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn lpboot0(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_lpboot0<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lpboot0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
   }
 
 #[doc="no description available"]
-  #[inline] pub fn nmi_dis(&self) -> bits::B1 {
-     (((self.0 as u8) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn nmi_dis(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_nmi_dis<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_nmi_dis<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="no description available"]
-  #[inline] pub fn reset_pin_cfg(&self) -> bits::B1 {
-     (((self.0 as u8) >> 3) & 0x1).into() // [3]
+  #[inline] pub fn reset_pin_cfg(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_reset_pin_cfg<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_reset_pin_cfg<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="no description available"]
-  #[inline] pub fn lpboot1(&self) -> bits::B1 {
-     (((self.0 as u8) >> 4) & 0x1).into() // [4]
+  #[inline] pub fn lpboot1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_lpboot1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_lpboot1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 4);
      self.0 |= value << 4;
      self
   }
 
 #[doc="no description available"]
-  #[inline] pub fn fast_init(&self) -> bits::B1 {
-     (((self.0 as u8) >> 5) & 0x1).into() // [5]
+  #[inline] pub fn fast_init(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="no description available"]
-  #[inline] pub fn set_fast_init<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_fast_init<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u8 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 5);
      self.0 |= value << 5;
      self

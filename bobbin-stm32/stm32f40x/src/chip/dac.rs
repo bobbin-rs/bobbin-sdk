@@ -356,224 +356,208 @@ impl Dac {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="DAC channel2 DMA underrun interrupt enable"]
-  #[inline] pub fn dmaudrie2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 29) & 0x1).into() // [29]
+  #[inline] pub fn dmaudrie2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
   }
 #[doc="DAC channel2 DMA underrun interrupt enable"]
-  #[inline] pub fn set_dmaudrie2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaudrie2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
      self
   }
 
 #[doc="DAC channel2 DMA enable"]
-  #[inline] pub fn dmaen2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 28) & 0x1).into() // [28]
+  #[inline] pub fn dmaen2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
   }
 #[doc="DAC channel2 DMA enable"]
-  #[inline] pub fn set_dmaen2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaen2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 28);
      self.0 |= value << 28;
      self
   }
 
 #[doc="DAC channel2 mask/amplitude selector"]
-  #[inline] pub fn mamp2(&self) -> bits::B4 {
-     (((self.0 as u32) >> 24) & 0xf).into() // [27:24]
+  #[inline] pub fn mamp2(&self) -> bits::U4 {
+     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
   }
 #[doc="DAC channel2 mask/amplitude selector"]
-  #[inline] pub fn set_mamp2<V: Into<bits::B4>>(mut self, value: V) -> Self {
-     let value: bits::B4 = value.into();
+  #[inline] pub fn set_mamp2<V: Into<bits::U4>>(mut self, value: V) -> Self {
+     let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 24);
      self.0 |= value << 24;
      self
   }
 
 #[doc="DAC channel2 noise/triangle wave generation enable"]
-  #[inline] pub fn wave2(&self) -> bits::B2 {
-     (((self.0 as u32) >> 22) & 0x3).into() // [23:22]
+  #[inline] pub fn wave2(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
   }
 #[doc="DAC channel2 noise/triangle wave generation enable"]
-  #[inline] pub fn set_wave2<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_wave2<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 22);
      self.0 |= value << 22;
      self
   }
 
 #[doc="DAC channel2 trigger selection"]
-  #[inline] pub fn tsel2(&self) -> bits::B3 {
-     (((self.0 as u32) >> 19) & 0x7).into() // [21:19]
+  #[inline] pub fn tsel2(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x7) as u8) } // [21:19]
   }
 #[doc="DAC channel2 trigger selection"]
-  #[inline] pub fn set_tsel2<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_tsel2<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 19);
      self.0 |= value << 19;
      self
   }
 
 #[doc="DAC channel2 trigger enable"]
-  #[inline] pub fn ten2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 18) & 0x1).into() // [18]
+  #[inline] pub fn ten2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
   }
 #[doc="DAC channel2 trigger enable"]
-  #[inline] pub fn set_ten2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ten2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 18);
      self.0 |= value << 18;
      self
   }
 
 #[doc="DAC channel2 output buffer disable"]
-  #[inline] pub fn boff2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 17) & 0x1).into() // [17]
+  #[inline] pub fn boff2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
   }
 #[doc="DAC channel2 output buffer disable"]
-  #[inline] pub fn set_boff2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_boff2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 17);
      self.0 |= value << 17;
      self
   }
 
 #[doc="DAC channel2 enable"]
-  #[inline] pub fn en2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 16) & 0x1).into() // [16]
+  #[inline] pub fn en2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="DAC channel2 enable"]
-  #[inline] pub fn set_en2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_en2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="DAC channel1 DMA Underrun Interrupt enable"]
-  #[inline] pub fn dmaudrie1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 13) & 0x1).into() // [13]
+  #[inline] pub fn dmaudrie1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
   }
 #[doc="DAC channel1 DMA Underrun Interrupt enable"]
-  #[inline] pub fn set_dmaudrie1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaudrie1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
      self
   }
 
 #[doc="DAC channel1 DMA enable"]
-  #[inline] pub fn dmaen1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 12) & 0x1).into() // [12]
+  #[inline] pub fn dmaen1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
   }
 #[doc="DAC channel1 DMA enable"]
-  #[inline] pub fn set_dmaen1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaen1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 12);
      self.0 |= value << 12;
      self
   }
 
 #[doc="DAC channel1 mask/amplitude selector"]
-  #[inline] pub fn mamp1(&self) -> bits::B4 {
-     (((self.0 as u32) >> 8) & 0xf).into() // [11:8]
+  #[inline] pub fn mamp1(&self) -> bits::U4 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
   }
 #[doc="DAC channel1 mask/amplitude selector"]
-  #[inline] pub fn set_mamp1<V: Into<bits::B4>>(mut self, value: V) -> Self {
-     let value: bits::B4 = value.into();
+  #[inline] pub fn set_mamp1<V: Into<bits::U4>>(mut self, value: V) -> Self {
+     let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xf) == 0);
      self.0 &= !(0xf << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="DAC channel1 noise/triangle wave generation enable"]
-  #[inline] pub fn wave1(&self) -> bits::B2 {
-     (((self.0 as u32) >> 6) & 0x3).into() // [7:6]
+  #[inline] pub fn wave1(&self) -> bits::U2 {
+     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="DAC channel1 noise/triangle wave generation enable"]
-  #[inline] pub fn set_wave1<V: Into<bits::B2>>(mut self, value: V) -> Self {
-     let value: bits::B2 = value.into();
+  #[inline] pub fn set_wave1<V: Into<bits::U2>>(mut self, value: V) -> Self {
+     let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x3) == 0);
      self.0 &= !(0x3 << 6);
      self.0 |= value << 6;
      self
   }
 
 #[doc="DAC channel1 trigger selection"]
-  #[inline] pub fn tsel1(&self) -> bits::B3 {
-     (((self.0 as u32) >> 3) & 0x7).into() // [5:3]
+  #[inline] pub fn tsel1(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
   }
 #[doc="DAC channel1 trigger selection"]
-  #[inline] pub fn set_tsel1<V: Into<bits::B3>>(mut self, value: V) -> Self {
-     let value: bits::B3 = value.into();
+  #[inline] pub fn set_tsel1<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x7) == 0);
      self.0 &= !(0x7 << 3);
      self.0 |= value << 3;
      self
   }
 
 #[doc="DAC channel1 trigger enable"]
-  #[inline] pub fn ten1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 2) & 0x1).into() // [2]
+  #[inline] pub fn ten1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="DAC channel1 trigger enable"]
-  #[inline] pub fn set_ten1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_ten1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 2);
      self.0 |= value << 2;
      self
   }
 
 #[doc="DAC channel1 output buffer disable"]
-  #[inline] pub fn boff1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn boff1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="DAC channel1 output buffer disable"]
-  #[inline] pub fn set_boff1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_boff1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="DAC channel1 enable"]
-  #[inline] pub fn en1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn en1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="DAC channel1 enable"]
-  #[inline] pub fn set_en1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_en1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
@@ -613,28 +597,26 @@ impl ::core::fmt::Debug for Cr {
 pub struct Swtrigr(pub u32);
 impl Swtrigr {
 #[doc="DAC channel2 software trigger"]
-  #[inline] pub fn swtrig2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 1) & 0x1).into() // [1]
+  #[inline] pub fn swtrig2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="DAC channel2 software trigger"]
-  #[inline] pub fn set_swtrig2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_swtrig2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 1);
      self.0 |= value << 1;
      self
   }
 
 #[doc="DAC channel1 software trigger"]
-  #[inline] pub fn swtrig1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 0) & 0x1).into() // [0]
+  #[inline] pub fn swtrig1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="DAC channel1 software trigger"]
-  #[inline] pub fn set_swtrig1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_swtrig1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 0);
      self.0 |= value << 0;
      self
@@ -660,14 +642,13 @@ impl ::core::fmt::Debug for Swtrigr {
 pub struct Dhr12r1(pub u32);
 impl Dhr12r1 {
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -692,14 +673,13 @@ impl ::core::fmt::Debug for Dhr12r1 {
 pub struct Dhr12l1(pub u32);
 impl Dhr12l1 {
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 4) & 0xfff).into() // [15:4]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
   }
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
      self.0 |= value << 4;
      self
@@ -724,14 +704,13 @@ impl ::core::fmt::Debug for Dhr12l1 {
 pub struct Dhr8r1(pub u32);
 impl Dhr8r1 {
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B8 {
-     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -756,14 +735,13 @@ impl ::core::fmt::Debug for Dhr8r1 {
 pub struct Dhr12r2(pub u32);
 impl Dhr12r2 {
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -788,14 +766,13 @@ impl ::core::fmt::Debug for Dhr12r2 {
 pub struct Dhr12l2(pub u32);
 impl Dhr12l2 {
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 4) & 0xfff).into() // [15:4]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
   }
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
      self.0 |= value << 4;
      self
@@ -820,14 +797,13 @@ impl ::core::fmt::Debug for Dhr12l2 {
 pub struct Dhr8r2(pub u32);
 impl Dhr8r2 {
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B8 {
-     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -852,28 +828,26 @@ impl ::core::fmt::Debug for Dhr8r2 {
 pub struct Dhr12rd(pub u32);
 impl Dhr12rd {
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 16) & 0xfff).into() // [27:16]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xfff) as u16) } // [27:16]
   }
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 16);
      self.0 |= value << 16;
      self
   }
 
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -899,28 +873,26 @@ impl ::core::fmt::Debug for Dhr12rd {
 pub struct Dhr12ld(pub u32);
 impl Dhr12ld {
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 20) & 0xfff).into() // [31:20]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xfff) as u16) } // [31:20]
   }
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 20);
      self.0 |= value << 20;
      self
   }
 
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B12 {
-     (((self.0 as u32) >> 4) & 0xfff).into() // [15:4]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
   }
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 4);
      self.0 |= value << 4;
      self
@@ -946,28 +918,26 @@ impl ::core::fmt::Debug for Dhr12ld {
 pub struct Dhr8rd(pub u32);
 impl Dhr8rd {
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::B8 {
-     (((self.0 as u32) >> 8) & 0xff).into() // [15:8]
+  #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
   }
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 8);
      self.0 |= value << 8;
      self
   }
 
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::B8 {
-     (((self.0 as u32) >> 0) & 0xff).into() // [7:0]
+  #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
   }
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::B8>>(mut self, value: V) -> Self {
-     let value: bits::B8 = value.into();
+  #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xff) == 0);
      self.0 &= !(0xff << 0);
      self.0 |= value << 0;
      self
@@ -993,14 +963,13 @@ impl ::core::fmt::Debug for Dhr8rd {
 pub struct Dor1(pub u32);
 impl Dor1 {
 #[doc="DAC channel1 data output"]
-  #[inline] pub fn dacc1dor(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dacc1dor(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DAC channel1 data output"]
-  #[inline] pub fn set_dacc1dor<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc1dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -1025,14 +994,13 @@ impl ::core::fmt::Debug for Dor1 {
 pub struct Dor2(pub u32);
 impl Dor2 {
 #[doc="DAC channel2 data output"]
-  #[inline] pub fn dacc2dor(&self) -> bits::B12 {
-     (((self.0 as u32) >> 0) & 0xfff).into() // [11:0]
+  #[inline] pub fn dacc2dor(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="DAC channel2 data output"]
-  #[inline] pub fn set_dacc2dor<V: Into<bits::B12>>(mut self, value: V) -> Self {
-     let value: bits::B12 = value.into();
+  #[inline] pub fn set_dacc2dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0xfff) == 0);
      self.0 &= !(0xfff << 0);
      self.0 |= value << 0;
      self
@@ -1057,28 +1025,26 @@ impl ::core::fmt::Debug for Dor2 {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="DAC channel2 DMA underrun flag"]
-  #[inline] pub fn dmaudr2(&self) -> bits::B1 {
-     (((self.0 as u32) >> 29) & 0x1).into() // [29]
+  #[inline] pub fn dmaudr2(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
   }
 #[doc="DAC channel2 DMA underrun flag"]
-  #[inline] pub fn set_dmaudr2<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaudr2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 29);
      self.0 |= value << 29;
      self
   }
 
 #[doc="DAC channel1 DMA underrun flag"]
-  #[inline] pub fn dmaudr1(&self) -> bits::B1 {
-     (((self.0 as u32) >> 13) & 0x1).into() // [13]
+  #[inline] pub fn dmaudr1(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
   }
 #[doc="DAC channel1 DMA underrun flag"]
-  #[inline] pub fn set_dmaudr1<V: Into<bits::B1>>(mut self, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_dmaudr1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!((value & !0x1) == 0);
      self.0 &= !(0x1 << 13);
      self.0 |= value << 13;
      self

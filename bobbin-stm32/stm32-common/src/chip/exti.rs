@@ -176,17 +176,16 @@ impl<T> Periph<T> {
 pub struct Imr(pub u32);
 impl Imr {
 #[doc="Interrupt Mask on line n = 0..32"]
-  #[inline] pub fn mr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn mr(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt Mask on line n = 0..32"]
-  #[inline] pub fn set_mr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_mr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -243,17 +242,16 @@ impl ::core::fmt::Debug for Imr {
 pub struct Emr(pub u32);
 impl Emr {
 #[doc="Event Mask on line n = 0..32"]
-  #[inline] pub fn mr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn mr(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Event Mask on line n = 0..32"]
-  #[inline] pub fn set_mr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_mr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -310,17 +308,16 @@ impl ::core::fmt::Debug for Emr {
 pub struct Rtsr(pub u32);
 impl Rtsr {
 #[doc="Rising trigger event configuration of line n = 0..32"]
-  #[inline] pub fn tr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn tr(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Rising trigger event configuration of line n = 0..32"]
-  #[inline] pub fn set_tr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -377,17 +374,16 @@ impl ::core::fmt::Debug for Rtsr {
 pub struct Ftsr(pub u32);
 impl Ftsr {
 #[doc="Falling trigger event configuration of line n = 0..32"]
-  #[inline] pub fn tr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn tr(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Falling trigger event configuration of line n = 0..32"]
-  #[inline] pub fn set_tr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_tr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -444,17 +440,16 @@ impl ::core::fmt::Debug for Ftsr {
 pub struct Swier(pub u32);
 impl Swier {
 #[doc="Software Interrupt on line n = 0..32"]
-  #[inline] pub fn swi(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn swi(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Software Interrupt on line n = 0..32"]
-  #[inline] pub fn set_swi<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_swi<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -511,17 +506,16 @@ impl ::core::fmt::Debug for Swier {
 pub struct Pr(pub u32);
 impl Pr {
 #[doc="Pending Interrupt bit n = 0..32"]
-  #[inline] pub fn pr(&self, index: usize) -> bits::B1 {
+  #[inline] pub fn pr(&self, index: usize) -> bits::U1 {
      assert!(index < 32);
      let shift: usize = 0 + index;
-     (((self.0 as u32) >> shift) & 0x1).into() // [0]
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Pending Interrupt bit n = 0..32"]
-  #[inline] pub fn set_pr<V: Into<bits::B1>>(mut self, index: usize, value: V) -> Self {
-     let value: bits::B1 = value.into();
+  #[inline] pub fn set_pr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
-     assert!((value & !0x1) == 0);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
