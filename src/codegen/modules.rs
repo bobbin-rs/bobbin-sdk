@@ -1492,6 +1492,13 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         format!("{}", size)
     };
 
+    let min_size = if f_width <= 8 {
+        "u8"
+    } else if f_width <= 16 {
+        "u16"
+    } else {
+        "u32"
+    };
 
     if let Some(dim) = f.dim {
         let f_incr = f.dim_increment.unwrap();
@@ -1521,7 +1528,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
             }
         }
         if cfg.bit_types {
-            try!(writeln!(out, "     (((self.0 as {}) >> shift) & 0x{:x}).into() // {}", size, f_mask, f_bits));
+            try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> shift) & 0x{:x}) as {}) }} // {}", f_mask, min_size, f_bits));
         } else {
             try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));            
         }
@@ -1534,12 +1541,13 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
             try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, index: usize, value: V) -> Self {{", f_setter, field_type));
             try!(writeln!(out, "     let value: {} = value.into();", field_type));            
             try!(writeln!(out, "     let value: {} = value.into();", size));
+            try!(writeln!(out, "     assert!(index < {});", dim));
         } else {
             try!(writeln!(out, "  #[inline] pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, field_type));
             try!(writeln!(out, "     let value: {} = value.into();", size));
+            try!(writeln!(out, "     assert!(index < {});", dim));
+            try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         }
-        try!(writeln!(out, "     assert!(index < {});", dim));
-        try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         match f_incr {
             1 => {
                 try!(writeln!(out, "     let shift: usize = {} + index;", f_offset));
@@ -1568,7 +1576,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         }
         try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
         if cfg.bit_types {
-            try!(writeln!(out, "     (((self.0 as {}) >> {}) & 0x{:x}).into() // {}", size, f_offset, f_mask, f_bits));
+            try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
         } else {
             try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
         }
@@ -1586,8 +1594,8 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         } else {
             try!(writeln!(out, "  #[inline] pub fn {}(mut self, value: {}) -> Self {{", f_setter, field_type));
             try!(writeln!(out, "     let value: {} = value.into();", size));
+            try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         }
-        try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
         try!(writeln!(out, "     self.0 &= !(0x{:x} << {});", f_mask, f_offset));
         try!(writeln!(out, "     self.0 |= value << {};", f_offset));
         try!(writeln!(out, "     self"));
