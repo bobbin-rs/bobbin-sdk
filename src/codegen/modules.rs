@@ -317,15 +317,15 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn is_active(&self) -> bool {{"));
-    try!(writeln!(out, "       NVIC.iabr((self.0 >> 5)).active((self.0 & 0b11111)) != 0"));
+    try!(writeln!(out, "       NVIC.iabr((self.0 >> 5)).active(self.0 & 0b11111) != 0"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn priority(&self) -> u8 {{"));
-    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)).into()"));
+    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri(self.0 & 0b1111).into()"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn set_priority(&self, value: u8) {{"));
-    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value));"));
+    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri(self.0 & 0b1111, value));"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn trigger_interrupt(&self) {{"));
@@ -1504,12 +1504,15 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         let f_incr = f.dim_increment.unwrap();
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
+        let i_type = format!("bits::R{}", dim);
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        try!(writeln!(out, "  #[inline] pub fn {}(&self, index: usize) -> {} {{", f_getter, field_type));
-        try!(writeln!(out, "     assert!(index < {});", dim));
+        try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{", f_getter, i_type, field_type));
+        // try!(writeln!(out, "     assert!(index < {});", dim));
+        try!(writeln!(out, "     let index: {} = index.into();", i_type));
+        try!(writeln!(out, "     let index: usize = index.into();"));
         match f_incr {
             1 => {
                 try!(writeln!(out, "     let shift: usize = {} + index;", f_offset));
@@ -1538,7 +1541,9 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
             try!(gen_doc(cfg, out, desc));
         }
         if cfg.bit_types {
-            try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, index: usize, value: V) -> Self {{", f_setter, field_type));
+            try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
+            try!(writeln!(out, "     let index: {} = index.into();", i_type));
+            try!(writeln!(out, "     let index: usize = index.into();"));            
             try!(writeln!(out, "     let value: {} = value.into();", field_type));            
             try!(writeln!(out, "     let value: {} = value.into();", size));
             try!(writeln!(out, "     assert!(index < {});", dim));
