@@ -8,32 +8,36 @@ pub struct Periph<T>(pub u32, pub T);
 
 impl<T> Periph<T> {
 #[doc="Get the *const pointer for the PCR register."]
-  #[inline] pub fn pcr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 32);
+  #[inline] pub fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the PCR register."]
-  #[inline] pub fn pcr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 32);
+  #[inline] pub fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
   }
 #[doc="Read the PCR register."]
-  #[inline] pub fn pcr(&self, index: usize) -> Pcr { 
-     assert!(index < 32);
+  #[inline] pub fn pcr<I: Into<bits::R32>>(&self, index: I) -> Pcr { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Pcr(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the PCR register."]
-  #[inline] pub fn set_pcr(&self, index: usize, value: Pcr) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_pcr<I: Into<bits::R32>>(&self, index: I, value: Pcr) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the PCR register."]
-  #[inline] pub fn with_pcr<F: FnOnce(Pcr) -> Pcr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_pcr<I: Into<bits::R32> + Copy, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
      let tmp = self.pcr(index);
      self.set_pcr(index, f(tmp))
   }
@@ -353,14 +357,14 @@ impl Isfr {
 #[doc="Interrupt Status Flag"]
   #[inline] pub fn isf<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt Status Flag"]
   #[inline] pub fn set_isf<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);

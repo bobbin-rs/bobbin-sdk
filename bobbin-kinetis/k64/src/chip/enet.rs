@@ -1825,63 +1825,71 @@ impl Enet {
   }
 
 #[doc="Get the *const pointer for the TCSR register."]
-  #[inline] pub fn tcsr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn tcsr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x608 + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCSR register."]
-  #[inline] pub fn tcsr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn tcsr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x608 + (index << 3)) as *mut u32
   }
 #[doc="Read the TCSR register."]
-  #[inline] pub fn tcsr(&self, index: usize) -> Tcsr { 
-     assert!(index < 4);
+  #[inline] pub fn tcsr<I: Into<bits::R4>>(&self, index: I) -> Tcsr { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         Tcsr(::core::ptr::read_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *const u32))
      }
   }
 #[doc="Write the TCSR register."]
-  #[inline] pub fn set_tcsr(&self, index: usize, value: Tcsr) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_tcsr<I: Into<bits::R4>>(&self, index: I, value: Tcsr) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCSR register."]
-  #[inline] pub fn with_tcsr<F: FnOnce(Tcsr) -> Tcsr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcsr<I: Into<bits::R4> + Copy, F: FnOnce(Tcsr) -> Tcsr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcsr(index);
      self.set_tcsr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCCR register."]
-  #[inline] pub fn tccr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn tccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x60c + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCCR register."]
-  #[inline] pub fn tccr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn tccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x60c + (index << 3)) as *mut u32
   }
 #[doc="Read the TCCR register."]
-  #[inline] pub fn tccr(&self, index: usize) -> Tccr { 
-     assert!(index < 4);
+  #[inline] pub fn tccr<I: Into<bits::R4>>(&self, index: I) -> Tccr { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         Tccr(::core::ptr::read_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *const u32))
      }
   }
 #[doc="Write the TCCR register."]
-  #[inline] pub fn set_tccr(&self, index: usize, value: Tccr) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_tccr<I: Into<bits::R4>>(&self, index: I, value: Tccr) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCCR register."]
-  #[inline] pub fn with_tccr<F: FnOnce(Tccr) -> Tccr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tccr<I: Into<bits::R4> + Copy, F: FnOnce(Tccr) -> Tccr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tccr(index);
      self.set_tccr(index, f(tmp))
   }

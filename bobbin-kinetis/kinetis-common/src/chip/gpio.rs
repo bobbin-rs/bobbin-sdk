@@ -133,14 +133,14 @@ impl Pdor {
 #[doc="Port Data Output"]
   #[inline] pub fn pdo<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Output"]
   #[inline] pub fn set_pdo<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -202,14 +202,14 @@ impl Psor {
 #[doc="Port Set Output"]
   #[inline] pub fn ptso<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Set Output"]
   #[inline] pub fn set_ptso<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -271,14 +271,14 @@ impl Pcor {
 #[doc="Port Clear Output"]
   #[inline] pub fn ptco<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Clear Output"]
   #[inline] pub fn set_ptco<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -340,14 +340,14 @@ impl Ptor {
 #[doc="Port Toggle Output"]
   #[inline] pub fn ptto<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Toggle Output"]
   #[inline] pub fn set_ptto<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -409,14 +409,14 @@ impl Pdir {
 #[doc="Port Data Input"]
   #[inline] pub fn pdi<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Input"]
   #[inline] pub fn set_pdi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -478,14 +478,14 @@ impl Pddr {
 #[doc="Port Data Direction"]
   #[inline] pub fn pdd<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Direction"]
   #[inline] pub fn set_pdd<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);

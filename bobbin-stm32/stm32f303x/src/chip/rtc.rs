@@ -423,32 +423,36 @@ impl Rtc {
   }
 
 #[doc="Get the *const pointer for the BKPR register."]
-  #[inline] pub fn bkpr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 32);
+  #[inline] pub fn bkpr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x50 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the BKPR register."]
-  #[inline] pub fn bkpr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 32);
+  #[inline] pub fn bkpr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x50 + (index << 2)) as *mut u32
   }
 #[doc="Read the BKPR register."]
-  #[inline] pub fn bkpr(&self, index: usize) -> Bkpr { 
-     assert!(index < 32);
+  #[inline] pub fn bkpr<I: Into<bits::R32>>(&self, index: I) -> Bkpr { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Bkpr(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the BKPR register."]
-  #[inline] pub fn set_bkpr(&self, index: usize, value: Bkpr) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_bkpr<I: Into<bits::R32>>(&self, index: I, value: Bkpr) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the BKPR register."]
-  #[inline] pub fn with_bkpr<F: FnOnce(Bkpr) -> Bkpr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_bkpr<I: Into<bits::R32> + Copy, F: FnOnce(Bkpr) -> Bkpr>(&self, index: I, f: F) -> &Self {
      let tmp = self.bkpr(index);
      self.set_bkpr(index, f(tmp))
   }

@@ -7,94 +7,106 @@ pub const ITM: Itm = Itm(0xe0000000);
 pub struct Itm(pub u32);
 impl Itm {
 #[doc="Get the *const pointer for the STIM register."]
-  #[inline] pub fn stim_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 32);
+  #[inline] pub fn stim_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the STIM register."]
-  #[inline] pub fn stim_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 32);
+  #[inline] pub fn stim_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
   }
 #[doc="Read the STIM register."]
-  #[inline] pub fn stim(&self, index: usize) -> Stim { 
-     assert!(index < 32);
+  #[inline] pub fn stim<I: Into<bits::R32>>(&self, index: I) -> Stim { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Stim(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the STIM register."]
-  #[inline] pub fn set_stim(&self, index: usize, value: Stim) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_stim<I: Into<bits::R32>>(&self, index: I, value: Stim) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the STIM register."]
-  #[inline] pub fn with_stim<F: FnOnce(Stim) -> Stim>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_stim<I: Into<bits::R32> + Copy, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim(index);
      self.set_stim(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the STIM16 register."]
-  #[inline] pub fn stim16_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 32);
+  #[inline] pub fn stim16_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u16 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u16
   }
 #[doc="Get the *mut pointer for the STIM16 register."]
-  #[inline] pub fn stim16_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 32);
+  #[inline] pub fn stim16_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u16
   }
 #[doc="Read the STIM16 register."]
-  #[inline] pub fn stim16(&self, index: usize) -> Stim16 { 
-     assert!(index < 32);
+  #[inline] pub fn stim16<I: Into<bits::R32>>(&self, index: I) -> Stim16 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Stim16(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u16))
      }
   }
 #[doc="Write the STIM16 register."]
-  #[inline] pub fn set_stim16(&self, index: usize, value: Stim16) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_stim16<I: Into<bits::R32>>(&self, index: I, value: Stim16) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the STIM16 register."]
-  #[inline] pub fn with_stim16<F: FnOnce(Stim16) -> Stim16>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_stim16<I: Into<bits::R32> + Copy, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim16(index);
      self.set_stim16(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the STIM8 register."]
-  #[inline] pub fn stim8_ptr(&self, index: usize) -> *const u8 { 
-     assert!(index < 32);
+  #[inline] pub fn stim8_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u8 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u8
   }
 #[doc="Get the *mut pointer for the STIM8 register."]
-  #[inline] pub fn stim8_mut(&self, index: usize) -> *mut u8 { 
-     assert!(index < 32);
+  #[inline] pub fn stim8_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u8 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u8
   }
 #[doc="Read the STIM8 register."]
-  #[inline] pub fn stim8(&self, index: usize) -> Stim8 { 
-     assert!(index < 32);
+  #[inline] pub fn stim8<I: Into<bits::R32>>(&self, index: I) -> Stim8 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Stim8(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u8))
      }
   }
 #[doc="Write the STIM8 register."]
-  #[inline] pub fn set_stim8(&self, index: usize, value: Stim8) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_stim8<I: Into<bits::R32>>(&self, index: I, value: Stim8) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u8, value.0);
      }
      self
   }
 #[doc="Modify the STIM8 register."]
-  #[inline] pub fn with_stim8<F: FnOnce(Stim8) -> Stim8>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_stim8<I: Into<bits::R32> + Copy, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim8(index);
      self.set_stim8(index, f(tmp))
   }
@@ -306,14 +318,14 @@ impl Ter {
 #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
   #[inline] pub fn ena<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
   #[inline] pub fn set_ena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -375,14 +387,14 @@ impl Tpr {
 #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
   #[inline] pub fn tpr<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
   #[inline] pub fn set_tpr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);

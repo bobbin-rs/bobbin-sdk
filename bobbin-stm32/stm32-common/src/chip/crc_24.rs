@@ -116,32 +116,36 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the DUMMY register."]
-  #[inline] pub fn dummy_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn dummy_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the DUMMY register."]
-  #[inline] pub fn dummy_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn dummy_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100 + (index << 2)) as *mut u32
   }
 #[doc="Read the DUMMY register."]
-  #[inline] pub fn dummy(&self, index: usize) -> Dummy { 
-     assert!(index < 4);
+  #[inline] pub fn dummy<I: Into<bits::R4>>(&self, index: I) -> Dummy { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         Dummy(::core::ptr::read_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the DUMMY register."]
-  #[inline] pub fn set_dummy(&self, index: usize, value: Dummy) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_dummy<I: Into<bits::R4>>(&self, index: I, value: Dummy) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the DUMMY register."]
-  #[inline] pub fn with_dummy<F: FnOnce(Dummy) -> Dummy>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_dummy<I: Into<bits::R4> + Copy, F: FnOnce(Dummy) -> Dummy>(&self, index: I, f: F) -> &Self {
      let tmp = self.dummy(index);
      self.set_dummy(index, f(tmp))
   }

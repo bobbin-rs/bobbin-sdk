@@ -557,14 +557,14 @@ impl Active {
 #[doc="Level n Channel Trigger Request Executing"]
   #[inline] pub fn lvlex<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Level n Channel Trigger Request Executing"]
   #[inline] pub fn set_lvlex<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -670,14 +670,14 @@ impl Busych {
 #[doc="Busy Channel n"]
   #[inline] pub fn busych<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Busy Channel n"]
   #[inline] pub fn set_busych<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1349,14 +1349,14 @@ impl Ctrl {
 #[doc="Priority Level n Enable"]
   #[inline] pub fn lvlen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Priority Level n Enable"]
   #[inline] pub fn set_lvlen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 4);
@@ -1539,14 +1539,14 @@ impl Intstatus {
 #[doc="Channel n Pending Interrupt"]
   #[inline] pub fn chint<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Pending Interrupt"]
   #[inline] pub fn set_chint<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1588,14 +1588,14 @@ impl Pendch {
 #[doc="Pending Channel n"]
   #[inline] pub fn pendch<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Pending Channel n"]
   #[inline] pub fn set_pendch<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1637,14 +1637,14 @@ impl Prictrl {
 #[doc="Level n Channel Priority Number"]
   #[inline] pub fn lvlpri<I: Into<bits::R4>>(&self, index: I) -> bits::U4 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="Level n Channel Priority Number"]
   #[inline] pub fn set_lvlpri<I: Into<bits::R4>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1657,14 +1657,14 @@ impl Prictrl {
 #[doc="Level 0 Round-Robin Scheduling Enable"]
   #[inline] pub fn rrlvlen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 7 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [7]
   }
 #[doc="Level 0 Round-Robin Scheduling Enable"]
   #[inline] pub fn set_rrlvlen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1702,14 +1702,14 @@ impl Swtrigctrl {
 #[doc="Channel n Software Trigger"]
   #[inline] pub fn swtrig<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Software Trigger"]
   #[inline] pub fn set_swtrig<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R12 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);

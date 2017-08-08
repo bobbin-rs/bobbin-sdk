@@ -279,14 +279,14 @@ impl Moder {
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn moder<I: Into<bits::R16>>(&self, index: I) -> bits::U2 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 1);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn set_moder<I: Into<bits::R16>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -332,14 +332,14 @@ impl Otyper {
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn ot<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn set_ot<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -385,14 +385,14 @@ impl Ospeedr {
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn ospeedr<I: Into<bits::R16>>(&self, index: I) -> bits::U2 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 1);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn set_ospeedr<I: Into<bits::R16>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -438,14 +438,14 @@ impl Pupdr {
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn pupdr<I: Into<bits::R16>>(&self, index: I) -> bits::U2 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 1);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Port x configuration bits (y = 0..15)"]
   #[inline] pub fn set_pupdr<I: Into<bits::R16>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -491,14 +491,14 @@ impl Idr {
 #[doc="Port input data (y = 0..15)"]
   #[inline] pub fn idr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port input data (y = 0..15)"]
   #[inline] pub fn set_idr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -544,14 +544,14 @@ impl Odr {
 #[doc="Port output data (y = 0..15)"]
   #[inline] pub fn odr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port output data (y = 0..15)"]
   #[inline] pub fn set_odr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -597,14 +597,14 @@ impl Bsrr {
 #[doc="Port x reset bit y (y = 0..15)"]
   #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Port x reset bit y (y = 0..15)"]
   #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -617,14 +617,14 @@ impl Bsrr {
 #[doc="Port x set bit y (y= 0..15)"]
   #[inline] pub fn bs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port x set bit y (y= 0..15)"]
   #[inline] pub fn set_bs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -699,14 +699,14 @@ impl Lckr {
 #[doc="Port x lock bit y (y= 0..15)"]
   #[inline] pub fn lck<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port x lock bit y (y= 0..15)"]
   #[inline] pub fn set_lck<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -753,14 +753,14 @@ impl Afrl {
 #[doc="Alternate function selection for port x bit y (y = 0..7)"]
   #[inline] pub fn afrl<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="Alternate function selection for port x bit y (y = 0..7)"]
   #[inline] pub fn set_afrl<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -798,14 +798,14 @@ impl Afrh {
 #[doc="Alternate function selection for port x bit y (y = 8..15)"]
   #[inline] pub fn afrh<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="Alternate function selection for port x bit y (y = 8..15)"]
   #[inline] pub fn set_afrh<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -843,14 +843,14 @@ impl Brr {
 #[doc="Port x reset bit y"]
   #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port x reset bit y"]
   #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);

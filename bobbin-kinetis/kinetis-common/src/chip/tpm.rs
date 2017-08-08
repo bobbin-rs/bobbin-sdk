@@ -89,63 +89,71 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the CSC register."]
-  #[inline] pub fn csc_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 6);
+  #[inline] pub fn csc_ptr<I: Into<bits::R6>>(&self, index: I) -> *const u32 { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0xc + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the CSC register."]
-  #[inline] pub fn csc_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 6);
+  #[inline] pub fn csc_mut<I: Into<bits::R6>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0xc + (index << 3)) as *mut u32
   }
 #[doc="Read the CSC register."]
-  #[inline] pub fn csc(&self, index: usize) -> Csc { 
-     assert!(index < 6);
+  #[inline] pub fn csc<I: Into<bits::R6>>(&self, index: I) -> Csc { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      unsafe {
         Csc(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index << 3)) as *const u32))
      }
   }
 #[doc="Write the CSC register."]
-  #[inline] pub fn set_csc(&self, index: usize, value: Csc) -> &Self {
-     assert!(index < 6);
+  #[inline] pub fn set_csc<I: Into<bits::R6>>(&self, index: I, value: Csc) -> &Self {
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index << 3)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CSC register."]
-  #[inline] pub fn with_csc<F: FnOnce(Csc) -> Csc>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_csc<I: Into<bits::R6> + Copy, F: FnOnce(Csc) -> Csc>(&self, index: I, f: F) -> &Self {
      let tmp = self.csc(index);
      self.set_csc(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CV register."]
-  #[inline] pub fn cv_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 6);
+  #[inline] pub fn cv_ptr<I: Into<bits::R6>>(&self, index: I) -> *const u32 { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x10 + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the CV register."]
-  #[inline] pub fn cv_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 6);
+  #[inline] pub fn cv_mut<I: Into<bits::R6>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x10 + (index << 3)) as *mut u32
   }
 #[doc="Read the CV register."]
-  #[inline] pub fn cv(&self, index: usize) -> Cv { 
-     assert!(index < 6);
+  #[inline] pub fn cv<I: Into<bits::R6>>(&self, index: I) -> Cv { 
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      unsafe {
         Cv(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *const u32))
      }
   }
 #[doc="Write the CV register."]
-  #[inline] pub fn set_cv(&self, index: usize, value: Cv) -> &Self {
-     assert!(index < 6);
+  #[inline] pub fn set_cv<I: Into<bits::R6>>(&self, index: I, value: Cv) -> &Self {
+     let index: bits::R6 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CV register."]
-  #[inline] pub fn with_cv<F: FnOnce(Cv) -> Cv>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_cv<I: Into<bits::R6> + Copy, F: FnOnce(Cv) -> Cv>(&self, index: I, f: F) -> &Self {
      let tmp = self.cv(index);
      self.set_cv(index, f(tmp))
   }
@@ -522,14 +530,14 @@ impl Status {
 #[doc="Channel n Flag"]
   #[inline] pub fn chf<I: Into<bits::R6>>(&self, index: I) -> bits::U1 {
      let index: bits::R6 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Flag"]
   #[inline] pub fn set_chf<I: Into<bits::R6>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R6 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 6);

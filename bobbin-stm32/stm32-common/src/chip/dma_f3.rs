@@ -39,125 +39,141 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the CCR register."]
-  #[inline] pub fn ccr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 7);
+  #[inline] pub fn ccr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x8 + (index * 20)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCR register."]
-  #[inline] pub fn ccr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 7);
+  #[inline] pub fn ccr_mut<I: Into<bits::R7>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x8 + (index * 20)) as *mut u32
   }
 #[doc="Read the CCR register."]
-  #[inline] pub fn ccr(&self, index: usize) -> Ccr { 
-     assert!(index < 7);
+  #[inline] pub fn ccr<I: Into<bits::R7>>(&self, index: I) -> Ccr { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *const u32))
      }
   }
 #[doc="Write the CCR register."]
-  #[inline] pub fn set_ccr(&self, index: usize, value: Ccr) -> &Self {
-     assert!(index < 7);
+  #[inline] pub fn set_ccr<I: Into<bits::R7>>(&self, index: I, value: Ccr) -> &Self {
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8 + (index * 20)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CCR register."]
-  #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ccr<I: Into<bits::R7> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
      let tmp = self.ccr(index);
      self.set_ccr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CNDTR register."]
-  #[inline] pub fn cndtr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cndtr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0xc + (index * 20)) as *const u32
   }
 #[doc="Get the *mut pointer for the CNDTR register."]
-  #[inline] pub fn cndtr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cndtr_mut<I: Into<bits::R7>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0xc + (index * 20)) as *mut u32
   }
 #[doc="Read the CNDTR register."]
-  #[inline] pub fn cndtr(&self, index: usize) -> Cndtr { 
-     assert!(index < 7);
+  #[inline] pub fn cndtr<I: Into<bits::R7>>(&self, index: I) -> Cndtr { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         Cndtr(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index * 20)) as *const u32))
      }
   }
 #[doc="Write the CNDTR register."]
-  #[inline] pub fn set_cndtr(&self, index: usize, value: Cndtr) -> &Self {
-     assert!(index < 7);
+  #[inline] pub fn set_cndtr<I: Into<bits::R7>>(&self, index: I, value: Cndtr) -> &Self {
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index * 20)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CNDTR register."]
-  #[inline] pub fn with_cndtr<F: FnOnce(Cndtr) -> Cndtr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_cndtr<I: Into<bits::R7> + Copy, F: FnOnce(Cndtr) -> Cndtr>(&self, index: I, f: F) -> &Self {
      let tmp = self.cndtr(index);
      self.set_cndtr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CPAR register."]
-  #[inline] pub fn cpar_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cpar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x10 + (index * 20)) as *const u32
   }
 #[doc="Get the *mut pointer for the CPAR register."]
-  #[inline] pub fn cpar_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cpar_mut<I: Into<bits::R7>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x10 + (index * 20)) as *mut u32
   }
 #[doc="Read the CPAR register."]
-  #[inline] pub fn cpar(&self, index: usize) -> Cpar { 
-     assert!(index < 7);
+  #[inline] pub fn cpar<I: Into<bits::R7>>(&self, index: I) -> Cpar { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         Cpar(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *const u32))
      }
   }
 #[doc="Write the CPAR register."]
-  #[inline] pub fn set_cpar(&self, index: usize, value: Cpar) -> &Self {
-     assert!(index < 7);
+  #[inline] pub fn set_cpar<I: Into<bits::R7>>(&self, index: I, value: Cpar) -> &Self {
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index * 20)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CPAR register."]
-  #[inline] pub fn with_cpar<F: FnOnce(Cpar) -> Cpar>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_cpar<I: Into<bits::R7> + Copy, F: FnOnce(Cpar) -> Cpar>(&self, index: I, f: F) -> &Self {
      let tmp = self.cpar(index);
      self.set_cpar(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CMAR register."]
-  #[inline] pub fn cmar_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cmar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x14 + (index * 20)) as *const u32
   }
 #[doc="Get the *mut pointer for the CMAR register."]
-  #[inline] pub fn cmar_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 7);
+  #[inline] pub fn cmar_mut<I: Into<bits::R7>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x14 + (index * 20)) as *mut u32
   }
 #[doc="Read the CMAR register."]
-  #[inline] pub fn cmar(&self, index: usize) -> Cmar { 
-     assert!(index < 7);
+  #[inline] pub fn cmar<I: Into<bits::R7>>(&self, index: I) -> Cmar { 
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         Cmar(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *const u32))
      }
   }
 #[doc="Write the CMAR register."]
-  #[inline] pub fn set_cmar(&self, index: usize, value: Cmar) -> &Self {
-     assert!(index < 7);
+  #[inline] pub fn set_cmar<I: Into<bits::R7>>(&self, index: I, value: Cmar) -> &Self {
+     let index: bits::R7 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index * 20)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CMAR register."]
-  #[inline] pub fn with_cmar<F: FnOnce(Cmar) -> Cmar>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_cmar<I: Into<bits::R7> + Copy, F: FnOnce(Cmar) -> Cmar>(&self, index: I, f: F) -> &Self {
      let tmp = self.cmar(index);
      self.set_cmar(index, f(tmp))
   }
@@ -171,14 +187,14 @@ impl Isr {
 #[doc="Channel n Global interrupt flag"]
   #[inline] pub fn gif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Global interrupt flag"]
   #[inline] pub fn set_gif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -191,14 +207,14 @@ impl Isr {
 #[doc="Channel n Transfer Complete flag"]
   #[inline] pub fn tcif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Channel n Transfer Complete flag"]
   #[inline] pub fn set_tcif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -211,14 +227,14 @@ impl Isr {
 #[doc="Channel n Half Transfer Complete flag"]
   #[inline] pub fn htif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 2 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Channel n Half Transfer Complete flag"]
   #[inline] pub fn set_htif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -231,14 +247,14 @@ impl Isr {
 #[doc="Channel n Transfer Error flag"]
   #[inline] pub fn teif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 3 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Channel n Transfer Error flag"]
   #[inline] pub fn set_teif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -296,14 +312,14 @@ impl Ifcr {
 #[doc="Channel n Global interrupt clear"]
   #[inline] pub fn cgif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Global interrupt clear"]
   #[inline] pub fn set_cgif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -316,14 +332,14 @@ impl Ifcr {
 #[doc="Channel n Transfer Complete clear"]
   #[inline] pub fn ctcif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Channel n Transfer Complete clear"]
   #[inline] pub fn set_ctcif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -336,14 +352,14 @@ impl Ifcr {
 #[doc="Channel n Half Transfer clear"]
   #[inline] pub fn chtif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 2 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Channel n Half Transfer clear"]
   #[inline] pub fn set_chtif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);
@@ -356,14 +372,14 @@ impl Ifcr {
 #[doc="Channel n Transfer Error clear"]
   #[inline] pub fn cteif<I: Into<bits::R7>>(&self, index: I) -> bits::U1 {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 3 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Channel n Transfer Error clear"]
   #[inline] pub fn set_cteif<I: Into<bits::R7>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R7 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 7);

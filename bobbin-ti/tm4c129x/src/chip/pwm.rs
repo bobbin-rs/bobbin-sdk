@@ -319,545 +319,616 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the CH_CTL register."]
-  #[inline] pub fn ch_ctl_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x40 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CTL register."]
-  #[inline] pub fn ch_ctl_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x40 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CTL register."]
-  #[inline] pub fn ch_ctl(&self, index: usize) -> ChCtl { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ctl<I: Into<bits::R4>>(&self, index: I) -> ChCtl { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChCtl(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_CTL register."]
-  #[inline] pub fn set_ch_ctl(&self, index: usize, value: ChCtl) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_ctl<I: Into<bits::R4>>(&self, index: I, value: ChCtl) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_CTL register."]
-  #[inline] pub fn with_ch_ctl<F: FnOnce(ChCtl) -> ChCtl>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_ctl<I: Into<bits::R4> + Copy, F: FnOnce(ChCtl) -> ChCtl>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_ctl(index);
      self.set_ch_ctl(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_INTEN register."]
-  #[inline] pub fn ch_inten_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_inten_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x44 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_INTEN register."]
-  #[inline] pub fn ch_inten_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_inten_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x44 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_INTEN register."]
-  #[inline] pub fn ch_inten(&self, index: usize) -> ChInten { 
-     assert!(index < 4);
+  #[inline] pub fn ch_inten<I: Into<bits::R4>>(&self, index: I) -> ChInten { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChInten(::core::ptr::read_volatile(((self.0 as usize) + 0x44 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_INTEN register."]
-  #[inline] pub fn set_ch_inten(&self, index: usize, value: ChInten) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_inten<I: Into<bits::R4>>(&self, index: I, value: ChInten) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_INTEN register."]
-  #[inline] pub fn with_ch_inten<F: FnOnce(ChInten) -> ChInten>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_inten<I: Into<bits::R4> + Copy, F: FnOnce(ChInten) -> ChInten>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_inten(index);
      self.set_ch_inten(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_RIS register."]
-  #[inline] pub fn ch_ris_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ris_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x48 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_RIS register."]
-  #[inline] pub fn ch_ris_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ris_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x48 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_RIS register."]
-  #[inline] pub fn ch_ris(&self, index: usize) -> ChRis { 
-     assert!(index < 4);
+  #[inline] pub fn ch_ris<I: Into<bits::R4>>(&self, index: I) -> ChRis { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChRis(::core::ptr::read_volatile(((self.0 as usize) + 0x48 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_RIS register."]
-  #[inline] pub fn set_ch_ris(&self, index: usize, value: ChRis) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_ris<I: Into<bits::R4>>(&self, index: I, value: ChRis) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_RIS register."]
-  #[inline] pub fn with_ch_ris<F: FnOnce(ChRis) -> ChRis>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_ris<I: Into<bits::R4> + Copy, F: FnOnce(ChRis) -> ChRis>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_ris(index);
      self.set_ch_ris(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_ISC register."]
-  #[inline] pub fn ch_isc_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_isc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x4c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_ISC register."]
-  #[inline] pub fn ch_isc_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_isc_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x4c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_ISC register."]
-  #[inline] pub fn ch_isc(&self, index: usize) -> ChIsc { 
-     assert!(index < 4);
+  #[inline] pub fn ch_isc<I: Into<bits::R4>>(&self, index: I) -> ChIsc { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChIsc(::core::ptr::read_volatile(((self.0 as usize) + 0x4c + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_ISC register."]
-  #[inline] pub fn set_ch_isc(&self, index: usize, value: ChIsc) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_isc<I: Into<bits::R4>>(&self, index: I, value: ChIsc) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_ISC register."]
-  #[inline] pub fn with_ch_isc<F: FnOnce(ChIsc) -> ChIsc>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_isc<I: Into<bits::R4> + Copy, F: FnOnce(ChIsc) -> ChIsc>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_isc(index);
      self.set_ch_isc(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_LOAD register."]
-  #[inline] pub fn ch_load_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_load_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x50 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_LOAD register."]
-  #[inline] pub fn ch_load_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_load_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x50 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_LOAD register."]
-  #[inline] pub fn ch_load(&self, index: usize) -> ChLoad { 
-     assert!(index < 4);
+  #[inline] pub fn ch_load<I: Into<bits::R4>>(&self, index: I) -> ChLoad { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChLoad(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_LOAD register."]
-  #[inline] pub fn set_ch_load(&self, index: usize, value: ChLoad) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_load<I: Into<bits::R4>>(&self, index: I, value: ChLoad) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_LOAD register."]
-  #[inline] pub fn with_ch_load<F: FnOnce(ChLoad) -> ChLoad>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_load<I: Into<bits::R4> + Copy, F: FnOnce(ChLoad) -> ChLoad>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_load(index);
      self.set_ch_load(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_COUNT register."]
-  #[inline] pub fn ch_count_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_count_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x54 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_COUNT register."]
-  #[inline] pub fn ch_count_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_count_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x54 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_COUNT register."]
-  #[inline] pub fn ch_count(&self, index: usize) -> ChCount { 
-     assert!(index < 4);
+  #[inline] pub fn ch_count<I: Into<bits::R4>>(&self, index: I) -> ChCount { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChCount(::core::ptr::read_volatile(((self.0 as usize) + 0x54 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_COUNT register."]
-  #[inline] pub fn set_ch_count(&self, index: usize, value: ChCount) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_count<I: Into<bits::R4>>(&self, index: I, value: ChCount) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x54 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_COUNT register."]
-  #[inline] pub fn with_ch_count<F: FnOnce(ChCount) -> ChCount>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_count<I: Into<bits::R4> + Copy, F: FnOnce(ChCount) -> ChCount>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_count(index);
      self.set_ch_count(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_CMPA register."]
-  #[inline] pub fn ch_cmpa_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpa_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x58 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CMPA register."]
-  #[inline] pub fn ch_cmpa_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpa_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x58 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CMPA register."]
-  #[inline] pub fn ch_cmpa(&self, index: usize) -> ChCmpa { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpa<I: Into<bits::R4>>(&self, index: I) -> ChCmpa { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChCmpa(::core::ptr::read_volatile(((self.0 as usize) + 0x58 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_CMPA register."]
-  #[inline] pub fn set_ch_cmpa(&self, index: usize, value: ChCmpa) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_cmpa<I: Into<bits::R4>>(&self, index: I, value: ChCmpa) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x58 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_CMPA register."]
-  #[inline] pub fn with_ch_cmpa<F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_cmpa<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_cmpa(index);
      self.set_ch_cmpa(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_CMPB register."]
-  #[inline] pub fn ch_cmpb_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x5c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CMPB register."]
-  #[inline] pub fn ch_cmpb_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpb_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x5c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CMPB register."]
-  #[inline] pub fn ch_cmpb(&self, index: usize) -> ChCmpb { 
-     assert!(index < 4);
+  #[inline] pub fn ch_cmpb<I: Into<bits::R4>>(&self, index: I) -> ChCmpb { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChCmpb(::core::ptr::read_volatile(((self.0 as usize) + 0x5c + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_CMPB register."]
-  #[inline] pub fn set_ch_cmpb(&self, index: usize, value: ChCmpb) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_cmpb<I: Into<bits::R4>>(&self, index: I, value: ChCmpb) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_CMPB register."]
-  #[inline] pub fn with_ch_cmpb<F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_cmpb<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_cmpb(index);
      self.set_ch_cmpb(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_GENA register."]
-  #[inline] pub fn ch_gena_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_gena_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x60 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_GENA register."]
-  #[inline] pub fn ch_gena_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_gena_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x60 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_GENA register."]
-  #[inline] pub fn ch_gena(&self, index: usize) -> ChGena { 
-     assert!(index < 4);
+  #[inline] pub fn ch_gena<I: Into<bits::R4>>(&self, index: I) -> ChGena { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChGena(::core::ptr::read_volatile(((self.0 as usize) + 0x60 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_GENA register."]
-  #[inline] pub fn set_ch_gena(&self, index: usize, value: ChGena) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_gena<I: Into<bits::R4>>(&self, index: I, value: ChGena) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_GENA register."]
-  #[inline] pub fn with_ch_gena<F: FnOnce(ChGena) -> ChGena>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_gena<I: Into<bits::R4> + Copy, F: FnOnce(ChGena) -> ChGena>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_gena(index);
      self.set_ch_gena(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_GENB register."]
-  #[inline] pub fn ch_genb_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_genb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x64 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_GENB register."]
-  #[inline] pub fn ch_genb_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_genb_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x64 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_GENB register."]
-  #[inline] pub fn ch_genb(&self, index: usize) -> ChGenb { 
-     assert!(index < 4);
+  #[inline] pub fn ch_genb<I: Into<bits::R4>>(&self, index: I) -> ChGenb { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChGenb(::core::ptr::read_volatile(((self.0 as usize) + 0x64 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_GENB register."]
-  #[inline] pub fn set_ch_genb(&self, index: usize, value: ChGenb) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_genb<I: Into<bits::R4>>(&self, index: I, value: ChGenb) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_GENB register."]
-  #[inline] pub fn with_ch_genb<F: FnOnce(ChGenb) -> ChGenb>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_genb<I: Into<bits::R4> + Copy, F: FnOnce(ChGenb) -> ChGenb>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_genb(index);
      self.set_ch_genb(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_DBCTL register."]
-  #[inline] pub fn ch_dbctl_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x68 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBCTL register."]
-  #[inline] pub fn ch_dbctl_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x68 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBCTL register."]
-  #[inline] pub fn ch_dbctl(&self, index: usize) -> ChDbctl { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbctl<I: Into<bits::R4>>(&self, index: I) -> ChDbctl { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChDbctl(::core::ptr::read_volatile(((self.0 as usize) + 0x68 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_DBCTL register."]
-  #[inline] pub fn set_ch_dbctl(&self, index: usize, value: ChDbctl) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_dbctl<I: Into<bits::R4>>(&self, index: I, value: ChDbctl) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_DBCTL register."]
-  #[inline] pub fn with_ch_dbctl<F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_dbctl<I: Into<bits::R4> + Copy, F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_dbctl(index);
      self.set_ch_dbctl(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_DBRISE register."]
-  #[inline] pub fn ch_dbrise_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbrise_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x6c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBRISE register."]
-  #[inline] pub fn ch_dbrise_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbrise_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x6c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBRISE register."]
-  #[inline] pub fn ch_dbrise(&self, index: usize) -> ChDbrise { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbrise<I: Into<bits::R4>>(&self, index: I) -> ChDbrise { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChDbrise(::core::ptr::read_volatile(((self.0 as usize) + 0x6c + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_DBRISE register."]
-  #[inline] pub fn set_ch_dbrise(&self, index: usize, value: ChDbrise) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_dbrise<I: Into<bits::R4>>(&self, index: I, value: ChDbrise) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_DBRISE register."]
-  #[inline] pub fn with_ch_dbrise<F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_dbrise<I: Into<bits::R4> + Copy, F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_dbrise(index);
      self.set_ch_dbrise(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_DBFALL register."]
-  #[inline] pub fn ch_dbfall_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbfall_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x70 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBFALL register."]
-  #[inline] pub fn ch_dbfall_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbfall_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x70 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBFALL register."]
-  #[inline] pub fn ch_dbfall(&self, index: usize) -> ChDbfall { 
-     assert!(index < 4);
+  #[inline] pub fn ch_dbfall<I: Into<bits::R4>>(&self, index: I) -> ChDbfall { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChDbfall(::core::ptr::read_volatile(((self.0 as usize) + 0x70 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_DBFALL register."]
-  #[inline] pub fn set_ch_dbfall(&self, index: usize, value: ChDbfall) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_dbfall<I: Into<bits::R4>>(&self, index: I, value: ChDbfall) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x70 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_DBFALL register."]
-  #[inline] pub fn with_ch_dbfall<F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_dbfall<I: Into<bits::R4> + Copy, F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_dbfall(index);
      self.set_ch_dbfall(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_FLTSRC0 register."]
-  #[inline] pub fn ch_fltsrc0_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x74 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSRC0 register."]
-  #[inline] pub fn ch_fltsrc0_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc0_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x74 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_FLTSRC0 register."]
-  #[inline] pub fn ch_fltsrc0(&self, index: usize) -> ChFltsrc0 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc0<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc0 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChFltsrc0(::core::ptr::read_volatile(((self.0 as usize) + 0x74 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_FLTSRC0 register."]
-  #[inline] pub fn set_ch_fltsrc0(&self, index: usize, value: ChFltsrc0) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_fltsrc0<I: Into<bits::R4>>(&self, index: I, value: ChFltsrc0) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x74 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_FLTSRC0 register."]
-  #[inline] pub fn with_ch_fltsrc0<F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_fltsrc0<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_fltsrc0(index);
      self.set_ch_fltsrc0(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_FLTSRC1 register."]
-  #[inline] pub fn ch_fltsrc1_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc1_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x78 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSRC1 register."]
-  #[inline] pub fn ch_fltsrc1_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc1_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x78 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_FLTSRC1 register."]
-  #[inline] pub fn ch_fltsrc1(&self, index: usize) -> ChFltsrc1 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsrc1<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc1 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChFltsrc1(::core::ptr::read_volatile(((self.0 as usize) + 0x78 + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_FLTSRC1 register."]
-  #[inline] pub fn set_ch_fltsrc1(&self, index: usize, value: ChFltsrc1) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_fltsrc1<I: Into<bits::R4>>(&self, index: I, value: ChFltsrc1) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x78 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_FLTSRC1 register."]
-  #[inline] pub fn with_ch_fltsrc1<F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_fltsrc1<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_fltsrc1(index);
      self.set_ch_fltsrc1(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_MINFLTPER register."]
-  #[inline] pub fn ch_minfltper_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_minfltper_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x7c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_MINFLTPER register."]
-  #[inline] pub fn ch_minfltper_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_minfltper_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x7c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_MINFLTPER register."]
-  #[inline] pub fn ch_minfltper(&self, index: usize) -> ChMinfltper { 
-     assert!(index < 4);
+  #[inline] pub fn ch_minfltper<I: Into<bits::R4>>(&self, index: I) -> ChMinfltper { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChMinfltper(::core::ptr::read_volatile(((self.0 as usize) + 0x7c + (index * 64)) as *const u32))
      }
   }
 #[doc="Write the CH_MINFLTPER register."]
-  #[inline] pub fn set_ch_minfltper(&self, index: usize, value: ChMinfltper) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_minfltper<I: Into<bits::R4>>(&self, index: I, value: ChMinfltper) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x7c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_MINFLTPER register."]
-  #[inline] pub fn with_ch_minfltper<F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_minfltper<I: Into<bits::R4> + Copy, F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_minfltper(index);
      self.set_ch_minfltper(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_FLTSEN register."]
-  #[inline] pub fn ch_fltsen_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsen_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x800 + (index * 128)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSEN register."]
-  #[inline] pub fn ch_fltsen_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsen_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x800 + (index * 128)) as *mut u32
   }
 #[doc="Read the CH_FLTSEN register."]
-  #[inline] pub fn ch_fltsen(&self, index: usize) -> ChFltsen { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltsen<I: Into<bits::R4>>(&self, index: I) -> ChFltsen { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChFltsen(::core::ptr::read_volatile(((self.0 as usize) + 0x800 + (index * 128)) as *const u32))
      }
   }
 #[doc="Write the CH_FLTSEN register."]
-  #[inline] pub fn set_ch_fltsen(&self, index: usize, value: ChFltsen) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ch_fltsen<I: Into<bits::R4>>(&self, index: I, value: ChFltsen) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x800 + (index * 128)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CH_FLTSEN register."]
-  #[inline] pub fn with_ch_fltsen<F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ch_fltsen<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: I, f: F) -> &Self {
      let tmp = self.ch_fltsen(index);
      self.set_ch_fltsen(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CH_FLTSTAT0 register."]
-  #[inline] pub fn ch_fltstat0_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltstat0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x804 + (index * 128)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSTAT0 register."]
-  #[inline] pub fn ch_fltstat0_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltstat0_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x804 + (index * 128)) as *mut u32
   }
 #[doc="Read the CH_FLTSTAT0 register."]
-  #[inline] pub fn ch_fltstat0(&self, index: usize) -> ChFltstat0 { 
-     assert!(index < 4);
+  #[inline] pub fn ch_fltstat0<I: Into<bits::R4>>(&self, index: I) -> ChFltstat0 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ChFltstat0(::core::ptr::read_volatile(((self.0 as usize) + 0x804 + (index * 128)) as *const u32))
      }
@@ -941,14 +1012,14 @@ impl Ctl {
 #[doc="Update PWM Generator n"]
   #[inline] pub fn globalsync<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Update PWM Generator n"]
   #[inline] pub fn set_globalsync<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -982,14 +1053,14 @@ impl Sync {
 #[doc="Reset Generator n Counter"]
   #[inline] pub fn sync<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Reset Generator n Counter"]
   #[inline] pub fn set_sync<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1023,14 +1094,14 @@ impl Enable {
 #[doc="MnPWMn Output Enable"]
   #[inline] pub fn pwmen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWMn Output Enable"]
   #[inline] pub fn set_pwmen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1068,14 +1139,14 @@ impl Invert {
 #[doc="Invert MnPWMn Signal"]
   #[inline] pub fn pwminv<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Invert MnPWMn Signal"]
   #[inline] pub fn set_pwminv<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1113,14 +1184,14 @@ impl Fault {
 #[doc="MnPWMn Fault"]
   #[inline] pub fn fault<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWMn Fault"]
   #[inline] pub fn set_fault<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1158,14 +1229,14 @@ impl Inten {
 #[doc="PWMn Interrupt Enable"]
   #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWMn Interrupt Enable"]
   #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1178,14 +1249,14 @@ impl Inten {
 #[doc="Interrupt Fault 0"]
   #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Interrupt Fault 0"]
   #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1265,14 +1336,14 @@ impl Ris {
 #[doc="PWM0 Interrupt Asserted"]
   #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWM0 Interrupt Asserted"]
   #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1285,14 +1356,14 @@ impl Ris {
 #[doc="Interrupt Fault PWM 0"]
   #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Interrupt Fault PWM 0"]
   #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1330,14 +1401,14 @@ impl Isc {
 #[doc="PWMn Interrupt Status"]
   #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWMn Interrupt Status"]
   #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1350,14 +1421,14 @@ impl Isc {
 #[doc="FAULTn Interrupt Asserted"]
   #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="FAULTn Interrupt Asserted"]
   #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1395,14 +1466,14 @@ impl Status {
 #[doc="Generator n Fault Status"]
   #[inline] pub fn fault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Generator n Fault Status"]
   #[inline] pub fn set_fault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1436,14 +1507,14 @@ impl Faultval {
 #[doc="MnPWM0 Fault Value"]
   #[inline] pub fn faultval<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWM0 Fault Value"]
   #[inline] pub fn set_faultval<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1481,14 +1552,14 @@ impl Enupd {
 #[doc="MnPWMn Enable Update Mode"]
   #[inline] pub fn enupd<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="MnPWMn Enable Update Mode"]
   #[inline] pub fn set_enupd<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);

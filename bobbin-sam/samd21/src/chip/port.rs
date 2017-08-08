@@ -279,63 +279,71 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the PINCFG register."]
-  #[inline] pub fn pincfg_ptr(&self, index: usize) -> *const u8 { 
-     assert!(index < 32);
+  #[inline] pub fn pincfg_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u8 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x40 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the PINCFG register."]
-  #[inline] pub fn pincfg_mut(&self, index: usize) -> *mut u8 { 
-     assert!(index < 32);
+  #[inline] pub fn pincfg_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u8 { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x40 + (index)) as *mut u8
   }
 #[doc="Read the PINCFG register."]
-  #[inline] pub fn pincfg(&self, index: usize) -> Pincfg { 
-     assert!(index < 32);
+  #[inline] pub fn pincfg<I: Into<bits::R32>>(&self, index: I) -> Pincfg { 
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         Pincfg(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index)) as *const u8))
      }
   }
 #[doc="Write the PINCFG register."]
-  #[inline] pub fn set_pincfg(&self, index: usize, value: Pincfg) -> &Self {
-     assert!(index < 32);
+  #[inline] pub fn set_pincfg<I: Into<bits::R32>>(&self, index: I, value: Pincfg) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index)) as *mut u8, value.0);
      }
      self
   }
 #[doc="Modify the PINCFG register."]
-  #[inline] pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_pincfg<I: Into<bits::R32> + Copy, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
      let tmp = self.pincfg(index);
      self.set_pincfg(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the PMUX register."]
-  #[inline] pub fn pmux_ptr(&self, index: usize) -> *const u8 { 
-     assert!(index < 16);
+  #[inline] pub fn pmux_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x30 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the PMUX register."]
-  #[inline] pub fn pmux_mut(&self, index: usize) -> *mut u8 { 
-     assert!(index < 16);
+  #[inline] pub fn pmux_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x30 + (index)) as *mut u8
   }
 #[doc="Read the PMUX register."]
-  #[inline] pub fn pmux(&self, index: usize) -> Pmux { 
-     assert!(index < 16);
+  #[inline] pub fn pmux<I: Into<bits::R16>>(&self, index: I) -> Pmux { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         Pmux(::core::ptr::read_volatile(((self.0 as usize) + 0x30 + (index)) as *const u8))
      }
   }
 #[doc="Write the PMUX register."]
-  #[inline] pub fn set_pmux(&self, index: usize, value: Pmux) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_pmux<I: Into<bits::R16>>(&self, index: I, value: Pmux) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30 + (index)) as *mut u8, value.0);
      }
      self
   }
 #[doc="Modify the PMUX register."]
-  #[inline] pub fn with_pmux<F: FnOnce(Pmux) -> Pmux>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_pmux<I: Into<bits::R16> + Copy, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
      let tmp = self.pmux(index);
      self.set_pmux(index, f(tmp))
   }
@@ -395,14 +403,14 @@ impl Dir {
 #[doc="Port Data Direction"]
   #[inline] pub fn dir<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Direction"]
   #[inline] pub fn set_dir<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -464,14 +472,14 @@ impl Dirclr {
 #[doc="Port Data Direction Clear"]
   #[inline] pub fn dirclr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Direction Clear"]
   #[inline] pub fn set_dirclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -533,14 +541,14 @@ impl Dirset {
 #[doc="Port Data Direction Set"]
   #[inline] pub fn dirset<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Direction Set"]
   #[inline] pub fn set_dirset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -602,14 +610,14 @@ impl Dirtgl {
 #[doc="Port Data Direction Toggle"]
   #[inline] pub fn dirtgl<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Direction Toggle"]
   #[inline] pub fn set_dirtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -671,14 +679,14 @@ impl In {
 #[doc="Port Data Input Value"]
   #[inline] pub fn _in<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Input Value"]
   #[inline] pub fn set_in<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -740,14 +748,14 @@ impl Out {
 #[doc="Port Data Output Value"]
   #[inline] pub fn out<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Output Value"]
   #[inline] pub fn set_out<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -809,14 +817,14 @@ impl Outclr {
 #[doc="Port Data Output Value Clear"]
   #[inline] pub fn outclr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Output Value Clear"]
   #[inline] pub fn set_outclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -878,14 +886,14 @@ impl Outset {
 #[doc="Port Data Output Value Set"]
   #[inline] pub fn outset<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Output Value Set"]
   #[inline] pub fn set_outset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -947,14 +955,14 @@ impl Outtgl {
 #[doc="Port Data Output Value Toggle"]
   #[inline] pub fn outtgl<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Port Data Output Value Toggle"]
   #[inline] pub fn set_outtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1089,14 +1097,14 @@ impl Pmux {
 #[doc="Peripheral Multiplexing Even"]
   #[inline] pub fn pmux<I: Into<bits::R2>>(&self, index: I) -> bits::U4 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="Peripheral Multiplexing Even"]
   #[inline] pub fn set_pmux<I: Into<bits::R2>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u8 = value.into();
      assert!(index < 2);

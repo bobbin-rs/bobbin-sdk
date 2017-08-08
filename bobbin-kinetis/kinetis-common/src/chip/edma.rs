@@ -301,497 +301,561 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the DCHPRI register."]
-  #[inline] pub fn dchpri_ptr(&self, index: usize) -> *const u8 { 
-     assert!(index < 16);
+  #[inline] pub fn dchpri_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the DCHPRI register."]
-  #[inline] pub fn dchpri_mut(&self, index: usize) -> *mut u8 { 
-     assert!(index < 16);
+  #[inline] pub fn dchpri_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100 + (index)) as *mut u8
   }
 #[doc="Read the DCHPRI register."]
-  #[inline] pub fn dchpri(&self, index: usize) -> Dchpri { 
-     assert!(index < 16);
+  #[inline] pub fn dchpri<I: Into<bits::R16>>(&self, index: I) -> Dchpri { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         Dchpri(::core::ptr::read_volatile(((self.0 as usize) + 0x100 + (index)) as *const u8))
      }
   }
 #[doc="Write the DCHPRI register."]
-  #[inline] pub fn set_dchpri(&self, index: usize, value: Dchpri) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_dchpri<I: Into<bits::R16>>(&self, index: I, value: Dchpri) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index)) as *mut u8, value.0);
      }
      self
   }
 #[doc="Modify the DCHPRI register."]
-  #[inline] pub fn with_dchpri<F: FnOnce(Dchpri) -> Dchpri>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_dchpri<I: Into<bits::R16> + Copy, F: FnOnce(Dchpri) -> Dchpri>(&self, index: I, f: F) -> &Self {
      let tmp = self.dchpri(index);
      self.set_dchpri(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_SADDR register."]
-  #[inline] pub fn tcd_saddr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_saddr_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1000 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_SADDR register."]
-  #[inline] pub fn tcd_saddr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_saddr_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1000 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_SADDR register."]
-  #[inline] pub fn tcd_saddr(&self, index: usize) -> TcdSaddr { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_saddr<I: Into<bits::R16>>(&self, index: I) -> TcdSaddr { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdSaddr(::core::ptr::read_volatile(((self.0 as usize) + 0x1000 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_SADDR register."]
-  #[inline] pub fn set_tcd_saddr(&self, index: usize, value: TcdSaddr) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_saddr<I: Into<bits::R16>>(&self, index: I, value: TcdSaddr) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1000 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_SADDR register."]
-  #[inline] pub fn with_tcd_saddr<F: FnOnce(TcdSaddr) -> TcdSaddr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_saddr<I: Into<bits::R16> + Copy, F: FnOnce(TcdSaddr) -> TcdSaddr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_saddr(index);
      self.set_tcd_saddr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_SOFF register."]
-  #[inline] pub fn tcd_soff_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_soff_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1004 + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_SOFF register."]
-  #[inline] pub fn tcd_soff_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_soff_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1004 + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_SOFF register."]
-  #[inline] pub fn tcd_soff(&self, index: usize) -> TcdSoff { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_soff<I: Into<bits::R16>>(&self, index: I) -> TcdSoff { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdSoff(::core::ptr::read_volatile(((self.0 as usize) + 0x1004 + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_SOFF register."]
-  #[inline] pub fn set_tcd_soff(&self, index: usize, value: TcdSoff) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_soff<I: Into<bits::R16>>(&self, index: I, value: TcdSoff) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1004 + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_SOFF register."]
-  #[inline] pub fn with_tcd_soff<F: FnOnce(TcdSoff) -> TcdSoff>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_soff<I: Into<bits::R16> + Copy, F: FnOnce(TcdSoff) -> TcdSoff>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_soff(index);
      self.set_tcd_soff(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_ATTR register."]
-  #[inline] pub fn tcd_attr_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_attr_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1006 + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_ATTR register."]
-  #[inline] pub fn tcd_attr_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_attr_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1006 + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_ATTR register."]
-  #[inline] pub fn tcd_attr(&self, index: usize) -> TcdAttr { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_attr<I: Into<bits::R16>>(&self, index: I) -> TcdAttr { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdAttr(::core::ptr::read_volatile(((self.0 as usize) + 0x1006 + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_ATTR register."]
-  #[inline] pub fn set_tcd_attr(&self, index: usize, value: TcdAttr) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_attr<I: Into<bits::R16>>(&self, index: I, value: TcdAttr) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1006 + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_ATTR register."]
-  #[inline] pub fn with_tcd_attr<F: FnOnce(TcdAttr) -> TcdAttr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_attr<I: Into<bits::R16> + Copy, F: FnOnce(TcdAttr) -> TcdAttr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_attr(index);
      self.set_tcd_attr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_NBYTES_MLNO register."]
-  #[inline] pub fn tcd_nbytes_mlno_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mlno_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_NBYTES_MLNO register."]
-  #[inline] pub fn tcd_nbytes_mlno_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mlno_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_NBYTES_MLNO register."]
-  #[inline] pub fn tcd_nbytes_mlno(&self, index: usize) -> TcdNbytesMlno { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mlno<I: Into<bits::R16>>(&self, index: I) -> TcdNbytesMlno { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdNbytesMlno(::core::ptr::read_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_NBYTES_MLNO register."]
-  #[inline] pub fn set_tcd_nbytes_mlno(&self, index: usize, value: TcdNbytesMlno) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_nbytes_mlno<I: Into<bits::R16>>(&self, index: I, value: TcdNbytesMlno) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_NBYTES_MLNO register."]
-  #[inline] pub fn with_tcd_nbytes_mlno<F: FnOnce(TcdNbytesMlno) -> TcdNbytesMlno>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_nbytes_mlno<I: Into<bits::R16> + Copy, F: FnOnce(TcdNbytesMlno) -> TcdNbytesMlno>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_nbytes_mlno(index);
      self.set_tcd_nbytes_mlno(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_NBYTES_MLOFFNO register."]
-  #[inline] pub fn tcd_nbytes_mloffno_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffno_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_NBYTES_MLOFFNO register."]
-  #[inline] pub fn tcd_nbytes_mloffno_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffno_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_NBYTES_MLOFFNO register."]
-  #[inline] pub fn tcd_nbytes_mloffno(&self, index: usize) -> TcdNbytesMloffno { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffno<I: Into<bits::R16>>(&self, index: I) -> TcdNbytesMloffno { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdNbytesMloffno(::core::ptr::read_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_NBYTES_MLOFFNO register."]
-  #[inline] pub fn set_tcd_nbytes_mloffno(&self, index: usize, value: TcdNbytesMloffno) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_nbytes_mloffno<I: Into<bits::R16>>(&self, index: I, value: TcdNbytesMloffno) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_NBYTES_MLOFFNO register."]
-  #[inline] pub fn with_tcd_nbytes_mloffno<F: FnOnce(TcdNbytesMloffno) -> TcdNbytesMloffno>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_nbytes_mloffno<I: Into<bits::R16> + Copy, F: FnOnce(TcdNbytesMloffno) -> TcdNbytesMloffno>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_nbytes_mloffno(index);
      self.set_tcd_nbytes_mloffno(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_NBYTES_MLOFFYES register."]
-  #[inline] pub fn tcd_nbytes_mloffyes_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffyes_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_NBYTES_MLOFFYES register."]
-  #[inline] pub fn tcd_nbytes_mloffyes_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffyes_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_NBYTES_MLOFFYES register."]
-  #[inline] pub fn tcd_nbytes_mloffyes(&self, index: usize) -> TcdNbytesMloffyes { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_nbytes_mloffyes<I: Into<bits::R16>>(&self, index: I) -> TcdNbytesMloffyes { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdNbytesMloffyes(::core::ptr::read_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_NBYTES_MLOFFYES register."]
-  #[inline] pub fn set_tcd_nbytes_mloffyes(&self, index: usize, value: TcdNbytesMloffyes) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_nbytes_mloffyes<I: Into<bits::R16>>(&self, index: I, value: TcdNbytesMloffyes) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1008 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_NBYTES_MLOFFYES register."]
-  #[inline] pub fn with_tcd_nbytes_mloffyes<F: FnOnce(TcdNbytesMloffyes) -> TcdNbytesMloffyes>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_nbytes_mloffyes<I: Into<bits::R16> + Copy, F: FnOnce(TcdNbytesMloffyes) -> TcdNbytesMloffyes>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_nbytes_mloffyes(index);
      self.set_tcd_nbytes_mloffyes(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_SLAST register."]
-  #[inline] pub fn tcd_slast_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_slast_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100c + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_SLAST register."]
-  #[inline] pub fn tcd_slast_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_slast_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x100c + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_SLAST register."]
-  #[inline] pub fn tcd_slast(&self, index: usize) -> TcdSlast { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_slast<I: Into<bits::R16>>(&self, index: I) -> TcdSlast { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdSlast(::core::ptr::read_volatile(((self.0 as usize) + 0x100c + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_SLAST register."]
-  #[inline] pub fn set_tcd_slast(&self, index: usize, value: TcdSlast) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_slast<I: Into<bits::R16>>(&self, index: I, value: TcdSlast) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100c + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_SLAST register."]
-  #[inline] pub fn with_tcd_slast<F: FnOnce(TcdSlast) -> TcdSlast>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_slast<I: Into<bits::R16> + Copy, F: FnOnce(TcdSlast) -> TcdSlast>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_slast(index);
      self.set_tcd_slast(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_DADDR register."]
-  #[inline] pub fn tcd_daddr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_daddr_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1010 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_DADDR register."]
-  #[inline] pub fn tcd_daddr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_daddr_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1010 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_DADDR register."]
-  #[inline] pub fn tcd_daddr(&self, index: usize) -> TcdDaddr { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_daddr<I: Into<bits::R16>>(&self, index: I) -> TcdDaddr { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdDaddr(::core::ptr::read_volatile(((self.0 as usize) + 0x1010 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_DADDR register."]
-  #[inline] pub fn set_tcd_daddr(&self, index: usize, value: TcdDaddr) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_daddr<I: Into<bits::R16>>(&self, index: I, value: TcdDaddr) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1010 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_DADDR register."]
-  #[inline] pub fn with_tcd_daddr<F: FnOnce(TcdDaddr) -> TcdDaddr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_daddr<I: Into<bits::R16> + Copy, F: FnOnce(TcdDaddr) -> TcdDaddr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_daddr(index);
      self.set_tcd_daddr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_DOFF register."]
-  #[inline] pub fn tcd_doff_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_doff_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1014 + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_DOFF register."]
-  #[inline] pub fn tcd_doff_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_doff_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1014 + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_DOFF register."]
-  #[inline] pub fn tcd_doff(&self, index: usize) -> TcdDoff { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_doff<I: Into<bits::R16>>(&self, index: I) -> TcdDoff { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdDoff(::core::ptr::read_volatile(((self.0 as usize) + 0x1014 + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_DOFF register."]
-  #[inline] pub fn set_tcd_doff(&self, index: usize, value: TcdDoff) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_doff<I: Into<bits::R16>>(&self, index: I, value: TcdDoff) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1014 + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_DOFF register."]
-  #[inline] pub fn with_tcd_doff<F: FnOnce(TcdDoff) -> TcdDoff>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_doff<I: Into<bits::R16> + Copy, F: FnOnce(TcdDoff) -> TcdDoff>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_doff(index);
      self.set_tcd_doff(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_CITER_ELINKNO register."]
-  #[inline] pub fn tcd_citer_elinkno_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkno_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1016 + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_CITER_ELINKNO register."]
-  #[inline] pub fn tcd_citer_elinkno_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkno_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1016 + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_CITER_ELINKNO register."]
-  #[inline] pub fn tcd_citer_elinkno(&self, index: usize) -> TcdCiterElinkno { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkno<I: Into<bits::R16>>(&self, index: I) -> TcdCiterElinkno { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdCiterElinkno(::core::ptr::read_volatile(((self.0 as usize) + 0x1016 + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_CITER_ELINKNO register."]
-  #[inline] pub fn set_tcd_citer_elinkno(&self, index: usize, value: TcdCiterElinkno) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_citer_elinkno<I: Into<bits::R16>>(&self, index: I, value: TcdCiterElinkno) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1016 + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_CITER_ELINKNO register."]
-  #[inline] pub fn with_tcd_citer_elinkno<F: FnOnce(TcdCiterElinkno) -> TcdCiterElinkno>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_citer_elinkno<I: Into<bits::R16> + Copy, F: FnOnce(TcdCiterElinkno) -> TcdCiterElinkno>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_citer_elinkno(index);
      self.set_tcd_citer_elinkno(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_CITER_ELINKYES register."]
-  #[inline] pub fn tcd_citer_elinkyes_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkyes_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1016 + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_CITER_ELINKYES register."]
-  #[inline] pub fn tcd_citer_elinkyes_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkyes_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1016 + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_CITER_ELINKYES register."]
-  #[inline] pub fn tcd_citer_elinkyes(&self, index: usize) -> TcdCiterElinkyes { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_citer_elinkyes<I: Into<bits::R16>>(&self, index: I) -> TcdCiterElinkyes { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdCiterElinkyes(::core::ptr::read_volatile(((self.0 as usize) + 0x1016 + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_CITER_ELINKYES register."]
-  #[inline] pub fn set_tcd_citer_elinkyes(&self, index: usize, value: TcdCiterElinkyes) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_citer_elinkyes<I: Into<bits::R16>>(&self, index: I, value: TcdCiterElinkyes) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1016 + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_CITER_ELINKYES register."]
-  #[inline] pub fn with_tcd_citer_elinkyes<F: FnOnce(TcdCiterElinkyes) -> TcdCiterElinkyes>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_citer_elinkyes<I: Into<bits::R16> + Copy, F: FnOnce(TcdCiterElinkyes) -> TcdCiterElinkyes>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_citer_elinkyes(index);
      self.set_tcd_citer_elinkyes(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_DLASTSGA register."]
-  #[inline] pub fn tcd_dlastsga_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_dlastsga_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1018 + (index * 32)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCD_DLASTSGA register."]
-  #[inline] pub fn tcd_dlastsga_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_dlastsga_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x1018 + (index * 32)) as *mut u32
   }
 #[doc="Read the TCD_DLASTSGA register."]
-  #[inline] pub fn tcd_dlastsga(&self, index: usize) -> TcdDlastsga { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_dlastsga<I: Into<bits::R16>>(&self, index: I) -> TcdDlastsga { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdDlastsga(::core::ptr::read_volatile(((self.0 as usize) + 0x1018 + (index * 32)) as *const u32))
      }
   }
 #[doc="Write the TCD_DLASTSGA register."]
-  #[inline] pub fn set_tcd_dlastsga(&self, index: usize, value: TcdDlastsga) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_dlastsga<I: Into<bits::R16>>(&self, index: I, value: TcdDlastsga) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1018 + (index * 32)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the TCD_DLASTSGA register."]
-  #[inline] pub fn with_tcd_dlastsga<F: FnOnce(TcdDlastsga) -> TcdDlastsga>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_dlastsga<I: Into<bits::R16> + Copy, F: FnOnce(TcdDlastsga) -> TcdDlastsga>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_dlastsga(index);
      self.set_tcd_dlastsga(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_CSR register."]
-  #[inline] pub fn tcd_csr_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_csr_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101c + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_CSR register."]
-  #[inline] pub fn tcd_csr_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_csr_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101c + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_CSR register."]
-  #[inline] pub fn tcd_csr(&self, index: usize) -> TcdCsr { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_csr<I: Into<bits::R16>>(&self, index: I) -> TcdCsr { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdCsr(::core::ptr::read_volatile(((self.0 as usize) + 0x101c + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_CSR register."]
-  #[inline] pub fn set_tcd_csr(&self, index: usize, value: TcdCsr) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_csr<I: Into<bits::R16>>(&self, index: I, value: TcdCsr) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x101c + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_CSR register."]
-  #[inline] pub fn with_tcd_csr<F: FnOnce(TcdCsr) -> TcdCsr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_csr<I: Into<bits::R16> + Copy, F: FnOnce(TcdCsr) -> TcdCsr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_csr(index);
      self.set_tcd_csr(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_BITER_ELINKNO register."]
-  #[inline] pub fn tcd_biter_elinkno_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkno_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101e + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_BITER_ELINKNO register."]
-  #[inline] pub fn tcd_biter_elinkno_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkno_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101e + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_BITER_ELINKNO register."]
-  #[inline] pub fn tcd_biter_elinkno(&self, index: usize) -> TcdBiterElinkno { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkno<I: Into<bits::R16>>(&self, index: I) -> TcdBiterElinkno { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdBiterElinkno(::core::ptr::read_volatile(((self.0 as usize) + 0x101e + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_BITER_ELINKNO register."]
-  #[inline] pub fn set_tcd_biter_elinkno(&self, index: usize, value: TcdBiterElinkno) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_biter_elinkno<I: Into<bits::R16>>(&self, index: I, value: TcdBiterElinkno) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x101e + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_BITER_ELINKNO register."]
-  #[inline] pub fn with_tcd_biter_elinkno<F: FnOnce(TcdBiterElinkno) -> TcdBiterElinkno>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_biter_elinkno<I: Into<bits::R16> + Copy, F: FnOnce(TcdBiterElinkno) -> TcdBiterElinkno>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_biter_elinkno(index);
      self.set_tcd_biter_elinkno(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the TCD_BITER_ELINKYES register."]
-  #[inline] pub fn tcd_biter_elinkyes_ptr(&self, index: usize) -> *const u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkyes_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101e + (index * 32)) as *const u16
   }
 #[doc="Get the *mut pointer for the TCD_BITER_ELINKYES register."]
-  #[inline] pub fn tcd_biter_elinkyes_mut(&self, index: usize) -> *mut u16 { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkyes_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u16 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x101e + (index * 32)) as *mut u16
   }
 #[doc="Read the TCD_BITER_ELINKYES register."]
-  #[inline] pub fn tcd_biter_elinkyes(&self, index: usize) -> TcdBiterElinkyes { 
-     assert!(index < 16);
+  #[inline] pub fn tcd_biter_elinkyes<I: Into<bits::R16>>(&self, index: I) -> TcdBiterElinkyes { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         TcdBiterElinkyes(::core::ptr::read_volatile(((self.0 as usize) + 0x101e + (index * 32)) as *const u16))
      }
   }
 #[doc="Write the TCD_BITER_ELINKYES register."]
-  #[inline] pub fn set_tcd_biter_elinkyes(&self, index: usize, value: TcdBiterElinkyes) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_tcd_biter_elinkyes<I: Into<bits::R16>>(&self, index: I, value: TcdBiterElinkyes) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x101e + (index * 32)) as *mut u16, value.0);
      }
      self
   }
 #[doc="Modify the TCD_BITER_ELINKYES register."]
-  #[inline] pub fn with_tcd_biter_elinkyes<F: FnOnce(TcdBiterElinkyes) -> TcdBiterElinkyes>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_tcd_biter_elinkyes<I: Into<bits::R16> + Copy, F: FnOnce(TcdBiterElinkyes) -> TcdBiterElinkyes>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcd_biter_elinkyes(index);
      self.set_tcd_biter_elinkyes(index, f(tmp))
   }
@@ -1119,14 +1183,14 @@ impl Erq {
 #[doc="Enable DMA Request n"]
   #[inline] pub fn erq<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Enable DMA Request n"]
   #[inline] pub fn set_erq<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1172,14 +1236,14 @@ impl Eei {
 #[doc="Enable Error Interrupt No"]
   #[inline] pub fn eei<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Enable Error Interrupt No"]
   #[inline] pub fn set_eei<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1697,14 +1761,14 @@ impl Int {
 #[doc="Interrupt Request n"]
   #[inline] pub fn int<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt Request n"]
   #[inline] pub fn set_int<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1750,14 +1814,14 @@ impl Err {
 #[doc="Error In Channel n"]
   #[inline] pub fn err<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Error In Channel n"]
   #[inline] pub fn set_err<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1803,14 +1867,14 @@ impl Hrs {
 #[doc="Hardware Request Status Channel n"]
   #[inline] pub fn hrs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Hardware Request Status Channel n"]
   #[inline] pub fn set_hrs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);

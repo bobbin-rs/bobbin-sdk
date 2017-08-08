@@ -159,63 +159,71 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the CCMR_OUTPUT register."]
-  #[inline] pub fn ccmr_output_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_output_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCMR_OUTPUT register."]
-  #[inline] pub fn ccmr_output_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_output_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCMR_OUTPUT register."]
-  #[inline] pub fn ccmr_output(&self, index: usize) -> CcmrOutput { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_output<I: Into<bits::R2>>(&self, index: I) -> CcmrOutput { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      unsafe {
         CcmrOutput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the CCMR_OUTPUT register."]
-  #[inline] pub fn set_ccmr_output(&self, index: usize, value: CcmrOutput) -> &Self {
-     assert!(index < 2);
+  #[inline] pub fn set_ccmr_output<I: Into<bits::R2>>(&self, index: I, value: CcmrOutput) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CCMR_OUTPUT register."]
-  #[inline] pub fn with_ccmr_output<F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ccmr_output<I: Into<bits::R2> + Copy, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
      let tmp = self.ccmr_output(index);
      self.set_ccmr_output(index, f(tmp))
   }
 
 #[doc="Get the *const pointer for the CCMR_INPUT register."]
-  #[inline] pub fn ccmr_input_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_input_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCMR_INPUT register."]
-  #[inline] pub fn ccmr_input_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_input_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCMR_INPUT register."]
-  #[inline] pub fn ccmr_input(&self, index: usize) -> CcmrInput { 
-     assert!(index < 2);
+  #[inline] pub fn ccmr_input<I: Into<bits::R2>>(&self, index: I) -> CcmrInput { 
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      unsafe {
         CcmrInput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the CCMR_INPUT register."]
-  #[inline] pub fn set_ccmr_input(&self, index: usize, value: CcmrInput) -> &Self {
-     assert!(index < 2);
+  #[inline] pub fn set_ccmr_input<I: Into<bits::R2>>(&self, index: I, value: CcmrInput) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CCMR_INPUT register."]
-  #[inline] pub fn with_ccmr_input<F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ccmr_input<I: Into<bits::R2> + Copy, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
      let tmp = self.ccmr_input(index);
      self.set_ccmr_input(index, f(tmp))
   }
@@ -383,32 +391,36 @@ impl<T> Periph<T> {
   }
 
 #[doc="Get the *const pointer for the CCR register."]
-  #[inline] pub fn ccr_ptr(&self, index: usize) -> *const u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x34 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCR register."]
-  #[inline] pub fn ccr_mut(&self, index: usize) -> *mut u32 { 
-     assert!(index < 4);
+  #[inline] pub fn ccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x34 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCR register."]
-  #[inline] pub fn ccr(&self, index: usize) -> Ccr { 
-     assert!(index < 4);
+  #[inline] pub fn ccr<I: Into<bits::R4>>(&self, index: I) -> Ccr { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *const u32))
      }
   }
 #[doc="Write the CCR register."]
-  #[inline] pub fn set_ccr(&self, index: usize, value: Ccr) -> &Self {
-     assert!(index < 4);
+  #[inline] pub fn set_ccr<I: Into<bits::R4>>(&self, index: I, value: Ccr) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
 #[doc="Modify the CCR register."]
-  #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_ccr<I: Into<bits::R4> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
      let tmp = self.ccr(index);
      self.set_ccr(index, f(tmp))
   }
@@ -861,14 +873,14 @@ impl Dier {
 #[doc="Capture/Compare n DMA request enable"]
   #[inline] pub fn ccde<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 9 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [9]
   }
 #[doc="Capture/Compare n DMA request enable"]
   #[inline] pub fn set_ccde<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -907,14 +919,14 @@ impl Dier {
 #[doc="Capture/Compare n interrupt enable"]
   #[inline] pub fn ccie<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Capture/Compare n interrupt enable"]
   #[inline] pub fn set_ccie<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -969,14 +981,14 @@ impl Sr {
 #[doc="Capture/Compare n overcapture flag"]
   #[inline] pub fn ccof<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 9 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [9]
   }
 #[doc="Capture/Compare n overcapture flag"]
   #[inline] pub fn set_ccof<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1002,14 +1014,14 @@ impl Sr {
 #[doc="Capture/compare n interrupt flag"]
   #[inline] pub fn ccif<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Capture/compare n interrupt flag"]
   #[inline] pub fn set_ccif<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1075,14 +1087,14 @@ impl Egr {
 #[doc="Capture/compare n generation"]
   #[inline] pub fn ccg<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Capture/compare n generation"]
   #[inline] pub fn set_ccg<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1131,14 +1143,14 @@ impl CcmrOutput {
 #[doc="Capture/Compare n selection"]
   #[inline] pub fn ccs<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Capture/Compare n selection"]
   #[inline] pub fn set_ccs<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1151,14 +1163,14 @@ impl CcmrOutput {
 #[doc="Output compare n fast enable"]
   #[inline] pub fn ocfe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 2 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Output compare n fast enable"]
   #[inline] pub fn set_ocfe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1171,14 +1183,14 @@ impl CcmrOutput {
 #[doc="Output compare n preload enable"]
   #[inline] pub fn ocpe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 3 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Output compare n preload enable"]
   #[inline] pub fn set_ocpe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1191,14 +1203,14 @@ impl CcmrOutput {
 #[doc="Output compare n mode"]
   #[inline] pub fn ocm<I: Into<bits::R2>>(&self, index: I) -> bits::U3 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 4 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x7) as u8) } // [6:4]
   }
 #[doc="Output compare n mode"]
   #[inline] pub fn set_ocm<I: Into<bits::R2>, V: Into<bits::U3>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U3 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1211,14 +1223,14 @@ impl CcmrOutput {
 #[doc="Output compare n clear enable"]
   #[inline] pub fn occe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 7 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [7]
   }
 #[doc="Output compare n clear enable"]
   #[inline] pub fn set_occe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1231,14 +1243,14 @@ impl CcmrOutput {
 #[doc="Output compare n mode bit 3"]
   #[inline] pub fn ocm_3<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 16 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Output compare n mode bit 3"]
   #[inline] pub fn set_ocm_3<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1280,14 +1292,14 @@ impl CcmrInput {
 #[doc="Input capture n filter"]
   #[inline] pub fn icf<I: Into<bits::R2>>(&self, index: I) -> bits::U4 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 4 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [7:4]
   }
 #[doc="Input capture n filter"]
   #[inline] pub fn set_icf<I: Into<bits::R2>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1300,14 +1312,14 @@ impl CcmrInput {
 #[doc="Input capture n prescaler"]
   #[inline] pub fn icpsc<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 2 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
   }
 #[doc="Input capture n prescaler"]
   #[inline] pub fn set_icpsc<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1320,14 +1332,14 @@ impl CcmrInput {
 #[doc="Capture/Compare n selection"]
   #[inline] pub fn ccs<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Capture/Compare n selection"]
   #[inline] pub fn set_ccs<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1363,14 +1375,14 @@ impl Ccer {
 #[doc="Capture/Compare n output enable"]
   #[inline] pub fn cce<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Capture/Compare n output enable"]
   #[inline] pub fn set_cce<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1383,14 +1395,14 @@ impl Ccer {
 #[doc="Capture/Compare n output Polarity"]
   #[inline] pub fn ccp<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 1 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Capture/Compare n output Polarity"]
   #[inline] pub fn set_ccp<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1403,14 +1415,14 @@ impl Ccer {
 #[doc="Capture/Compare n output Polarity"]
   #[inline] pub fn ccnp<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let shift: usize = 3 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Capture/Compare n output Polarity"]
   #[inline] pub fn set_ccnp<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.into();
+     let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);

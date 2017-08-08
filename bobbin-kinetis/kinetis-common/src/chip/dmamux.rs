@@ -8,32 +8,36 @@ pub struct Periph<T>(pub u32, pub T);
 
 impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CHCFG register."]
-  #[inline] pub fn chcfg_ptr(&self, index: usize) -> *const u8 { 
-     assert!(index < 16);
+  #[inline] pub fn chcfg_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the CHCFG register."]
-  #[inline] pub fn chcfg_mut(&self, index: usize) -> *mut u8 { 
-     assert!(index < 16);
+  #[inline] pub fn chcfg_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u8 { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      ((self.0 as usize) + 0x0 + (index)) as *mut u8
   }
 #[doc="Read the CHCFG register."]
-  #[inline] pub fn chcfg(&self, index: usize) -> Chcfg { 
-     assert!(index < 16);
+  #[inline] pub fn chcfg<I: Into<bits::R16>>(&self, index: I) -> Chcfg { 
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         Chcfg(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index)) as *const u8))
      }
   }
 #[doc="Write the CHCFG register."]
-  #[inline] pub fn set_chcfg(&self, index: usize, value: Chcfg) -> &Self {
-     assert!(index < 16);
+  #[inline] pub fn set_chcfg<I: Into<bits::R16>>(&self, index: I, value: Chcfg) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value();
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index)) as *mut u8, value.0);
      }
      self
   }
 #[doc="Modify the CHCFG register."]
-  #[inline] pub fn with_chcfg<F: FnOnce(Chcfg) -> Chcfg>(&self, index: usize, f: F) -> &Self {
+  #[inline] pub fn with_chcfg<I: Into<bits::R16> + Copy, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
      let tmp = self.chcfg(index);
      self.set_chcfg(index, f(tmp))
   }
