@@ -782,7 +782,6 @@ impl Waitstat {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -851,7 +850,6 @@ impl Swreq {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -920,7 +918,6 @@ impl Useburstset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -989,7 +986,6 @@ impl Useburstclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1058,7 +1054,6 @@ impl Reqmaskset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1127,7 +1122,6 @@ impl Reqmaskclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1196,7 +1190,6 @@ impl Enaset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1265,7 +1258,6 @@ impl Enaclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1334,7 +1326,6 @@ impl Altset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1403,7 +1394,6 @@ impl Altclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1472,7 +1462,6 @@ impl Prioset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1541,7 +1530,6 @@ impl Prioclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1610,7 +1598,6 @@ impl Errclr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1679,7 +1666,6 @@ impl Chasgn {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1748,7 +1734,6 @@ impl Chmap0 {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1793,7 +1778,6 @@ impl Chmap1 {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1838,7 +1822,6 @@ impl Chmap2 {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1883,7 +1866,6 @@ impl Chmap3 {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1923,7 +1905,8 @@ impl Chdesc {
       }
    }
 #[doc="Write the SRCENDP register."]
-   #[inline] pub fn set_srcendp(&mut self, value: Srcendp) -> &mut Self {
+   #[inline] pub fn set_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&self, f: F) -> &Self {
+      let value = f(Srcendp(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
       }
@@ -1932,7 +1915,10 @@ impl Chdesc {
 #[doc="Modfy the SRCENDP register."]
    #[inline] pub fn with_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.srcendp();
-      self.set_srcendp(f(tmp))
+      let value = f(Srcendp(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
+      }
    }
 
 #[doc="Read the DSTENDP register."]
@@ -1942,7 +1928,8 @@ impl Chdesc {
       }
    }
 #[doc="Write the DSTENDP register."]
-   #[inline] pub fn set_dstendp(&mut self, value: Dstendp) -> &mut Self {
+   #[inline] pub fn set_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&self, f: F) -> &Self {
+      let value = f(Dstendp(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
       }
@@ -1951,7 +1938,10 @@ impl Chdesc {
 #[doc="Modfy the DSTENDP register."]
    #[inline] pub fn with_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.dstendp();
-      self.set_dstendp(f(tmp))
+      let value = f(Dstendp(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
+      }
    }
 
 #[doc="Read the CHCTL register."]
@@ -1961,7 +1951,8 @@ impl Chdesc {
       }
    }
 #[doc="Write the CHCTL register."]
-   #[inline] pub fn set_chctl(&mut self, value: Chctl) -> &mut Self {
+   #[inline] pub fn set_chctl<F: FnOnce(Chctl) -> Chctl>(&self, f: F) -> &Self {
+      let value = f(Chctl(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
       }
@@ -1970,7 +1961,10 @@ impl Chdesc {
 #[doc="Modfy the CHCTL register."]
    #[inline] pub fn with_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &mut Self {
       let tmp = self.chctl();
-      self.set_chctl(f(tmp))
+      let value = f(Chctl(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
+      }
    }
 
 }

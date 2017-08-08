@@ -1066,7 +1066,6 @@ impl Data {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1111,7 +1110,6 @@ impl Dir {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1156,7 +1154,6 @@ impl Is {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1201,7 +1198,6 @@ impl Ibe {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1246,7 +1242,6 @@ impl Iev {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1291,7 +1286,6 @@ impl Im {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1350,7 +1344,6 @@ impl Ris {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1409,7 +1402,6 @@ impl Mis {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1468,7 +1460,6 @@ impl Icr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1527,7 +1518,6 @@ impl Afsel {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1572,7 +1562,6 @@ impl Dr2r {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1617,7 +1606,6 @@ impl Dr4r {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1662,7 +1650,6 @@ impl Dr8r {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1707,7 +1694,6 @@ impl Odr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1752,7 +1738,6 @@ impl Pur {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1797,7 +1782,6 @@ impl Pdr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1842,7 +1826,6 @@ impl Slr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1887,7 +1870,6 @@ impl Den {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1962,7 +1944,6 @@ impl Cr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2007,7 +1988,6 @@ impl Amsel {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2052,7 +2032,6 @@ impl Pctl {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -2097,7 +2076,6 @@ impl Adcctl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2142,7 +2120,6 @@ impl Dmactl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2187,7 +2164,6 @@ impl Gpiosi {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2232,7 +2208,6 @@ impl Gpiodr12r {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;

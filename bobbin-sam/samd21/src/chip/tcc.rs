@@ -1005,7 +1005,6 @@ impl Ctrla {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 24 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2553,7 +2552,6 @@ impl Intenset {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2720,7 +2718,6 @@ impl Intflag {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2770,7 +2767,6 @@ impl Patt {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2790,7 +2786,6 @@ impl Patt {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
-     assert!(index < 8);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2843,7 +2838,6 @@ impl Pattb {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2863,7 +2857,6 @@ impl Pattb {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
-     assert!(index < 8);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3160,7 +3153,6 @@ impl Status {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3180,7 +3172,6 @@ impl Status {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 24 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3343,7 +3334,6 @@ impl Syncbusy {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3402,7 +3392,6 @@ impl Syncbusy {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 19 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3497,7 +3486,6 @@ impl Wave {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3517,7 +3505,6 @@ impl Wave {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3537,7 +3524,6 @@ impl Wave {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 24 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3628,7 +3614,6 @@ impl Waveb {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3648,7 +3633,6 @@ impl Waveb {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3668,7 +3652,6 @@ impl Waveb {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 24 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -3733,7 +3716,6 @@ impl Wexctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;

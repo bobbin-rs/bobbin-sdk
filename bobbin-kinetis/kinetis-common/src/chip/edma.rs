@@ -1306,7 +1306,6 @@ impl Erq {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 16);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1359,7 +1358,6 @@ impl Eei {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 16);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1884,7 +1882,6 @@ impl Int {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 16);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1937,7 +1934,6 @@ impl Err {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 16);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1990,7 +1986,6 @@ impl Hrs {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 16);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;

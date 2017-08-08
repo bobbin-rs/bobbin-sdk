@@ -1246,7 +1246,6 @@ impl Dier {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 9 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1318,7 +1317,6 @@ impl Dier {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 1 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1753,7 +1751,6 @@ impl CcmrOutput {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 7 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1773,7 +1770,6 @@ impl CcmrOutput {
      let index: usize = index.value();
      let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 4 + (index << 3);
      self.0 &= !(0x7 << shift);
      self.0 |= value << shift;
@@ -1793,7 +1789,6 @@ impl CcmrOutput {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 3 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1813,7 +1808,6 @@ impl CcmrOutput {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 2 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1833,7 +1827,6 @@ impl CcmrOutput {
      let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 0 + (index << 3);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -1880,7 +1873,6 @@ impl CcmrInput {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 4 + (index << 3);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1900,7 +1892,6 @@ impl CcmrInput {
      let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 2 + (index << 3);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -1920,7 +1911,6 @@ impl CcmrInput {
      let index: usize = index.value();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
-     assert!(index < 2);
      let shift: usize = 0 + (index << 3);
      self.0 &= !(0x3 << shift);
      self.0 |= value << shift;
@@ -1963,7 +1953,6 @@ impl Ccer {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;

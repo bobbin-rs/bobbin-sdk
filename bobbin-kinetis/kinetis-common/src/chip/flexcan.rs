@@ -2481,7 +2481,6 @@ impl Iflag1 {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 32);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2987,7 +2986,6 @@ impl Ram {
      let index: usize = index.value();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      self.0 &= !(0xff << shift);
      self.0 |= value << shift;
@@ -3204,7 +3202,6 @@ impl Mb8d0 {
      let index: usize = index.value();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0xff << shift);
      self.0 |= value << shift;
@@ -3243,7 +3240,6 @@ impl Mb8d1 {
      let index: usize = index.value();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0xff << shift);
      self.0 |= value << shift;

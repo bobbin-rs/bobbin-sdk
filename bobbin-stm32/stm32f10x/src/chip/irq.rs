@@ -237,7 +237,7 @@ pub fn set_handler(index: usize, handler: Option<Handler>) {
   };
 }
 
-use super::nvic::{NVIC, Iser, Icer, Ispr, Icpr, Stir};
+use super::nvic::NVIC;
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Irq<T>(usize, T);
 impl<T> Irq<T> {

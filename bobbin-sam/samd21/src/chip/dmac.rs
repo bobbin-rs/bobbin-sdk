@@ -652,7 +652,6 @@ impl Active {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -765,7 +764,6 @@ impl Busych {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 12);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1444,7 +1442,6 @@ impl Ctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
-     assert!(index < 4);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1634,7 +1631,6 @@ impl Intstatus {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 12);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1683,7 +1679,6 @@ impl Pendch {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 12);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1732,7 +1727,6 @@ impl Prictrl {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -1752,7 +1746,6 @@ impl Prictrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 7 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1797,7 +1790,6 @@ impl Swtrigctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 12);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1871,7 +1863,8 @@ impl Transfer {
       }
    }
 #[doc="Write the BTCTRL register."]
-   #[inline] pub fn set_btctrl(&mut self, value: Btctrl) -> &mut Self {
+   #[inline] pub fn set_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&self, f: F) -> &Self {
+      let value = f(Btctrl(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u16, value.0);
       }
@@ -1880,7 +1873,10 @@ impl Transfer {
 #[doc="Modfy the BTCTRL register."]
    #[inline] pub fn with_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&mut self, f: F) -> &mut Self {
       let tmp = self.btctrl();
-      self.set_btctrl(f(tmp))
+      let value = f(Btctrl(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u16, value.0);
+      }
    }
 
 #[doc="Read the BTCNT register."]
@@ -1890,7 +1886,8 @@ impl Transfer {
       }
    }
 #[doc="Write the BTCNT register."]
-   #[inline] pub fn set_btcnt(&mut self, value: Btcnt) -> &mut Self {
+   #[inline] pub fn set_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&self, f: F) -> &Self {
+      let value = f(Btcnt(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut u16, value.0);
       }
@@ -1899,7 +1896,10 @@ impl Transfer {
 #[doc="Modfy the BTCNT register."]
    #[inline] pub fn with_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&mut self, f: F) -> &mut Self {
       let tmp = self.btcnt();
-      self.set_btcnt(f(tmp))
+      let value = f(Btcnt(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut u16, value.0);
+      }
    }
 
 #[doc="Read the SRCADDR register."]
@@ -1909,7 +1909,8 @@ impl Transfer {
       }
    }
 #[doc="Write the SRCADDR register."]
-   #[inline] pub fn set_srcaddr(&mut self, value: Srcaddr) -> &mut Self {
+   #[inline] pub fn set_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&self, f: F) -> &Self {
+      let value = f(Srcaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
       }
@@ -1918,7 +1919,10 @@ impl Transfer {
 #[doc="Modfy the SRCADDR register."]
    #[inline] pub fn with_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.srcaddr();
-      self.set_srcaddr(f(tmp))
+      let value = f(Srcaddr(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
+      }
    }
 
 #[doc="Read the DSTADDR register."]
@@ -1928,7 +1932,8 @@ impl Transfer {
       }
    }
 #[doc="Write the DSTADDR register."]
-   #[inline] pub fn set_dstaddr(&mut self, value: Dstaddr) -> &mut Self {
+   #[inline] pub fn set_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&self, f: F) -> &Self {
+      let value = f(Dstaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
       }
@@ -1937,7 +1942,10 @@ impl Transfer {
 #[doc="Modfy the DSTADDR register."]
    #[inline] pub fn with_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.dstaddr();
-      self.set_dstaddr(f(tmp))
+      let value = f(Dstaddr(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
+      }
    }
 
 #[doc="Read the DESCADDR register."]
@@ -1947,7 +1955,8 @@ impl Transfer {
       }
    }
 #[doc="Write the DESCADDR register."]
-   #[inline] pub fn set_descaddr(&mut self, value: Descaddr) -> &mut Self {
+   #[inline] pub fn set_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&self, f: F) -> &Self {
+      let value = f(Descaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0xc) as *mut u32, value.0);
       }
@@ -1956,7 +1965,10 @@ impl Transfer {
 #[doc="Modfy the DESCADDR register."]
    #[inline] pub fn with_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.descaddr();
-      self.set_descaddr(f(tmp))
+      let value = f(Descaddr(0));
+      unsafe {
+         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0xc) as *mut u32, value.0);
+      }
    }
 
 }

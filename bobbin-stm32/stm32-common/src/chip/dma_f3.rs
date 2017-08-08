@@ -218,7 +218,6 @@ impl Isr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -238,7 +237,6 @@ impl Isr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 1 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -258,7 +256,6 @@ impl Isr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -278,7 +275,6 @@ impl Isr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 3 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -343,7 +339,6 @@ impl Ifcr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -363,7 +358,6 @@ impl Ifcr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 1 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -383,7 +377,6 @@ impl Ifcr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 2 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -403,7 +396,6 @@ impl Ifcr {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 7);
      let shift: usize = 3 + (index << 2);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;

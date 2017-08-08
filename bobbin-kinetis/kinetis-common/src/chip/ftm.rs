@@ -907,7 +907,6 @@ impl Sc {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 16 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1210,7 +1209,6 @@ impl Status {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1499,7 +1497,6 @@ impl Outinit {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1544,7 +1541,6 @@ impl Outmask {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1589,7 +1585,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1609,7 +1604,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 1 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1629,7 +1623,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 2 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1649,7 +1642,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 3 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1669,7 +1661,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 4 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1689,7 +1680,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 5 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1709,7 +1699,6 @@ impl Combine {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 6 + (index << 3);
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -1948,7 +1937,6 @@ impl Pol {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2108,7 +2096,6 @@ impl Filter {
      let index: usize = index.value();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + (index << 2);
      self.0 &= !(0xf << shift);
      self.0 |= value << shift;
@@ -2149,7 +2136,6 @@ impl Fltctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2169,7 +2155,6 @@ impl Fltctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 4 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2430,7 +2415,6 @@ impl Fltpol {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2698,7 +2682,6 @@ impl Invctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 4);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2739,7 +2722,6 @@ impl Swoctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2759,7 +2741,6 @@ impl Swoctrl {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 8 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
@@ -2812,7 +2793,6 @@ impl Pwmload {
      let index: usize = index.value();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     assert!(index < 8);
      let shift: usize = 0 + index;
      self.0 &= !(0x1 << shift);
      self.0 |= value << shift;
