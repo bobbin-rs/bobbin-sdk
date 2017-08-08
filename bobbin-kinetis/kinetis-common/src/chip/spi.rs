@@ -74,19 +74,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CTAR register."]
   #[inline] pub fn ctar_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0xc + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CTAR register."]
   #[inline] pub fn ctar_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0xc + (index << 2)) as *mut u32
   }
 #[doc="Read the CTAR register."]
   #[inline] pub fn ctar<I: Into<bits::R2>>(&self, index: I) -> Ctar { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Ctar(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index << 2)) as *const u32))
      }
@@ -94,7 +94,7 @@ impl<T> Periph<T> {
 #[doc="Write the CTAR register."]
   #[inline] pub fn set_ctar<I: Into<bits::R2>, F: FnOnce(Ctar) -> Ctar>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Ctar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index << 2)) as *mut u32, value.0);
@@ -103,10 +103,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CTAR register."]
   #[inline] pub fn with_ctar<I: Into<bits::R2> + Copy, F: FnOnce(Ctar) -> Ctar>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ctar(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -289,19 +291,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the TXFR register."]
   #[inline] pub fn txfr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x3c + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the TXFR register."]
   #[inline] pub fn txfr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x3c + (index << 2)) as *mut u32
   }
 #[doc="Read the TXFR register."]
   #[inline] pub fn txfr<I: Into<bits::R4>>(&self, index: I) -> Txfr { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Txfr(::core::ptr::read_volatile(((self.0 as usize) + 0x3c + (index << 2)) as *const u32))
      }
@@ -310,19 +312,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the RXFR register."]
   #[inline] pub fn rxfr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x7c + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the RXFR register."]
   #[inline] pub fn rxfr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x7c + (index << 2)) as *mut u32
   }
 #[doc="Read the RXFR register."]
   #[inline] pub fn rxfr<I: Into<bits::R4>>(&self, index: I) -> Rxfr { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Rxfr(::core::ptr::read_volatile(((self.0 as usize) + 0x7c + (index << 2)) as *const u32))
      }

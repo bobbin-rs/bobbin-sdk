@@ -376,19 +376,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_CTL register."]
   #[inline] pub fn ch_ctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x40 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CTL register."]
   #[inline] pub fn ch_ctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x40 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CTL register."]
   #[inline] pub fn ch_ctl<I: Into<bits::R4>>(&self, index: I) -> ChCtl { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChCtl(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index * 64)) as *const u32))
      }
@@ -396,7 +396,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_CTL register."]
   #[inline] pub fn set_ch_ctl<I: Into<bits::R4>, F: FnOnce(ChCtl) -> ChCtl>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChCtl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index * 64)) as *mut u32, value.0);
@@ -405,10 +405,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_CTL register."]
   #[inline] pub fn with_ch_ctl<I: Into<bits::R4> + Copy, F: FnOnce(ChCtl) -> ChCtl>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_ctl(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -416,19 +418,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_INTEN register."]
   #[inline] pub fn ch_inten_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x44 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_INTEN register."]
   #[inline] pub fn ch_inten_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x44 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_INTEN register."]
   #[inline] pub fn ch_inten<I: Into<bits::R4>>(&self, index: I) -> ChInten { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChInten(::core::ptr::read_volatile(((self.0 as usize) + 0x44 + (index * 64)) as *const u32))
      }
@@ -436,7 +438,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_INTEN register."]
   #[inline] pub fn set_ch_inten<I: Into<bits::R4>, F: FnOnce(ChInten) -> ChInten>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChInten(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index * 64)) as *mut u32, value.0);
@@ -445,10 +447,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_INTEN register."]
   #[inline] pub fn with_ch_inten<I: Into<bits::R4> + Copy, F: FnOnce(ChInten) -> ChInten>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_inten(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -456,19 +460,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_RIS register."]
   #[inline] pub fn ch_ris_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x48 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_RIS register."]
   #[inline] pub fn ch_ris_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x48 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_RIS register."]
   #[inline] pub fn ch_ris<I: Into<bits::R4>>(&self, index: I) -> ChRis { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChRis(::core::ptr::read_volatile(((self.0 as usize) + 0x48 + (index * 64)) as *const u32))
      }
@@ -476,7 +480,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_RIS register."]
   #[inline] pub fn set_ch_ris<I: Into<bits::R4>, F: FnOnce(ChRis) -> ChRis>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChRis(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index * 64)) as *mut u32, value.0);
@@ -485,10 +489,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_RIS register."]
   #[inline] pub fn with_ch_ris<I: Into<bits::R4> + Copy, F: FnOnce(ChRis) -> ChRis>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_ris(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -496,19 +502,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_ISC register."]
   #[inline] pub fn ch_isc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x4c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_ISC register."]
   #[inline] pub fn ch_isc_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x4c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_ISC register."]
   #[inline] pub fn ch_isc<I: Into<bits::R4>>(&self, index: I) -> ChIsc { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChIsc(::core::ptr::read_volatile(((self.0 as usize) + 0x4c + (index * 64)) as *const u32))
      }
@@ -516,7 +522,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_ISC register."]
   #[inline] pub fn set_ch_isc<I: Into<bits::R4>, F: FnOnce(ChIsc) -> ChIsc>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChIsc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c + (index * 64)) as *mut u32, value.0);
@@ -525,10 +531,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_ISC register."]
   #[inline] pub fn with_ch_isc<I: Into<bits::R4> + Copy, F: FnOnce(ChIsc) -> ChIsc>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_isc(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -536,19 +544,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_LOAD register."]
   #[inline] pub fn ch_load_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x50 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_LOAD register."]
   #[inline] pub fn ch_load_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x50 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_LOAD register."]
   #[inline] pub fn ch_load<I: Into<bits::R4>>(&self, index: I) -> ChLoad { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChLoad(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index * 64)) as *const u32))
      }
@@ -556,7 +564,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_LOAD register."]
   #[inline] pub fn set_ch_load<I: Into<bits::R4>, F: FnOnce(ChLoad) -> ChLoad>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChLoad(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index * 64)) as *mut u32, value.0);
@@ -565,10 +573,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_LOAD register."]
   #[inline] pub fn with_ch_load<I: Into<bits::R4> + Copy, F: FnOnce(ChLoad) -> ChLoad>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_load(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -576,19 +586,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_COUNT register."]
   #[inline] pub fn ch_count_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x54 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_COUNT register."]
   #[inline] pub fn ch_count_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x54 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_COUNT register."]
   #[inline] pub fn ch_count<I: Into<bits::R4>>(&self, index: I) -> ChCount { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChCount(::core::ptr::read_volatile(((self.0 as usize) + 0x54 + (index * 64)) as *const u32))
      }
@@ -596,7 +606,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_COUNT register."]
   #[inline] pub fn set_ch_count<I: Into<bits::R4>, F: FnOnce(ChCount) -> ChCount>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChCount(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x54 + (index * 64)) as *mut u32, value.0);
@@ -605,10 +615,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_COUNT register."]
   #[inline] pub fn with_ch_count<I: Into<bits::R4> + Copy, F: FnOnce(ChCount) -> ChCount>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_count(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x54 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -616,19 +628,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_CMPA register."]
   #[inline] pub fn ch_cmpa_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x58 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CMPA register."]
   #[inline] pub fn ch_cmpa_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x58 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CMPA register."]
   #[inline] pub fn ch_cmpa<I: Into<bits::R4>>(&self, index: I) -> ChCmpa { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChCmpa(::core::ptr::read_volatile(((self.0 as usize) + 0x58 + (index * 64)) as *const u32))
      }
@@ -636,7 +648,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_CMPA register."]
   #[inline] pub fn set_ch_cmpa<I: Into<bits::R4>, F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChCmpa(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x58 + (index * 64)) as *mut u32, value.0);
@@ -645,10 +657,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_CMPA register."]
   #[inline] pub fn with_ch_cmpa<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_cmpa(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x58 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -656,19 +670,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_CMPB register."]
   #[inline] pub fn ch_cmpb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x5c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_CMPB register."]
   #[inline] pub fn ch_cmpb_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x5c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_CMPB register."]
   #[inline] pub fn ch_cmpb<I: Into<bits::R4>>(&self, index: I) -> ChCmpb { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChCmpb(::core::ptr::read_volatile(((self.0 as usize) + 0x5c + (index * 64)) as *const u32))
      }
@@ -676,7 +690,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_CMPB register."]
   #[inline] pub fn set_ch_cmpb<I: Into<bits::R4>, F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChCmpb(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index * 64)) as *mut u32, value.0);
@@ -685,10 +699,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_CMPB register."]
   #[inline] pub fn with_ch_cmpb<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_cmpb(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -696,19 +712,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_GENA register."]
   #[inline] pub fn ch_gena_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x60 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_GENA register."]
   #[inline] pub fn ch_gena_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x60 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_GENA register."]
   #[inline] pub fn ch_gena<I: Into<bits::R4>>(&self, index: I) -> ChGena { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChGena(::core::ptr::read_volatile(((self.0 as usize) + 0x60 + (index * 64)) as *const u32))
      }
@@ -716,7 +732,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_GENA register."]
   #[inline] pub fn set_ch_gena<I: Into<bits::R4>, F: FnOnce(ChGena) -> ChGena>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChGena(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60 + (index * 64)) as *mut u32, value.0);
@@ -725,10 +741,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_GENA register."]
   #[inline] pub fn with_ch_gena<I: Into<bits::R4> + Copy, F: FnOnce(ChGena) -> ChGena>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_gena(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -736,19 +754,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_GENB register."]
   #[inline] pub fn ch_genb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x64 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_GENB register."]
   #[inline] pub fn ch_genb_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x64 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_GENB register."]
   #[inline] pub fn ch_genb<I: Into<bits::R4>>(&self, index: I) -> ChGenb { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChGenb(::core::ptr::read_volatile(((self.0 as usize) + 0x64 + (index * 64)) as *const u32))
      }
@@ -756,7 +774,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_GENB register."]
   #[inline] pub fn set_ch_genb<I: Into<bits::R4>, F: FnOnce(ChGenb) -> ChGenb>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChGenb(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64 + (index * 64)) as *mut u32, value.0);
@@ -765,10 +783,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_GENB register."]
   #[inline] pub fn with_ch_genb<I: Into<bits::R4> + Copy, F: FnOnce(ChGenb) -> ChGenb>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_genb(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -776,19 +796,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_DBCTL register."]
   #[inline] pub fn ch_dbctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x68 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBCTL register."]
   #[inline] pub fn ch_dbctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x68 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBCTL register."]
   #[inline] pub fn ch_dbctl<I: Into<bits::R4>>(&self, index: I) -> ChDbctl { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChDbctl(::core::ptr::read_volatile(((self.0 as usize) + 0x68 + (index * 64)) as *const u32))
      }
@@ -796,7 +816,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_DBCTL register."]
   #[inline] pub fn set_ch_dbctl<I: Into<bits::R4>, F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChDbctl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68 + (index * 64)) as *mut u32, value.0);
@@ -805,10 +825,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_DBCTL register."]
   #[inline] pub fn with_ch_dbctl<I: Into<bits::R4> + Copy, F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_dbctl(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x68 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -816,19 +838,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_DBRISE register."]
   #[inline] pub fn ch_dbrise_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x6c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBRISE register."]
   #[inline] pub fn ch_dbrise_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x6c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBRISE register."]
   #[inline] pub fn ch_dbrise<I: Into<bits::R4>>(&self, index: I) -> ChDbrise { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChDbrise(::core::ptr::read_volatile(((self.0 as usize) + 0x6c + (index * 64)) as *const u32))
      }
@@ -836,7 +858,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_DBRISE register."]
   #[inline] pub fn set_ch_dbrise<I: Into<bits::R4>, F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChDbrise(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c + (index * 64)) as *mut u32, value.0);
@@ -845,10 +867,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_DBRISE register."]
   #[inline] pub fn with_ch_dbrise<I: Into<bits::R4> + Copy, F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_dbrise(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -856,19 +880,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_DBFALL register."]
   #[inline] pub fn ch_dbfall_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x70 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_DBFALL register."]
   #[inline] pub fn ch_dbfall_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x70 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_DBFALL register."]
   #[inline] pub fn ch_dbfall<I: Into<bits::R4>>(&self, index: I) -> ChDbfall { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChDbfall(::core::ptr::read_volatile(((self.0 as usize) + 0x70 + (index * 64)) as *const u32))
      }
@@ -876,7 +900,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_DBFALL register."]
   #[inline] pub fn set_ch_dbfall<I: Into<bits::R4>, F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChDbfall(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x70 + (index * 64)) as *mut u32, value.0);
@@ -885,10 +909,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_DBFALL register."]
   #[inline] pub fn with_ch_dbfall<I: Into<bits::R4> + Copy, F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_dbfall(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x70 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -896,19 +922,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_FLTSRC0 register."]
   #[inline] pub fn ch_fltsrc0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x74 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSRC0 register."]
   #[inline] pub fn ch_fltsrc0_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x74 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_FLTSRC0 register."]
   #[inline] pub fn ch_fltsrc0<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc0 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChFltsrc0(::core::ptr::read_volatile(((self.0 as usize) + 0x74 + (index * 64)) as *const u32))
      }
@@ -916,7 +942,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_FLTSRC0 register."]
   #[inline] pub fn set_ch_fltsrc0<I: Into<bits::R4>, F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChFltsrc0(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x74 + (index * 64)) as *mut u32, value.0);
@@ -925,10 +951,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_FLTSRC0 register."]
   #[inline] pub fn with_ch_fltsrc0<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_fltsrc0(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x74 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -936,19 +964,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_FLTSRC1 register."]
   #[inline] pub fn ch_fltsrc1_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x78 + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSRC1 register."]
   #[inline] pub fn ch_fltsrc1_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x78 + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_FLTSRC1 register."]
   #[inline] pub fn ch_fltsrc1<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc1 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChFltsrc1(::core::ptr::read_volatile(((self.0 as usize) + 0x78 + (index * 64)) as *const u32))
      }
@@ -956,7 +984,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_FLTSRC1 register."]
   #[inline] pub fn set_ch_fltsrc1<I: Into<bits::R4>, F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChFltsrc1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x78 + (index * 64)) as *mut u32, value.0);
@@ -965,10 +993,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_FLTSRC1 register."]
   #[inline] pub fn with_ch_fltsrc1<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_fltsrc1(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x78 + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -976,19 +1006,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_MINFLTPER register."]
   #[inline] pub fn ch_minfltper_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x7c + (index * 64)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_MINFLTPER register."]
   #[inline] pub fn ch_minfltper_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x7c + (index * 64)) as *mut u32
   }
 #[doc="Read the CH_MINFLTPER register."]
   #[inline] pub fn ch_minfltper<I: Into<bits::R4>>(&self, index: I) -> ChMinfltper { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChMinfltper(::core::ptr::read_volatile(((self.0 as usize) + 0x7c + (index * 64)) as *const u32))
      }
@@ -996,7 +1026,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_MINFLTPER register."]
   #[inline] pub fn set_ch_minfltper<I: Into<bits::R4>, F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChMinfltper(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x7c + (index * 64)) as *mut u32, value.0);
@@ -1005,10 +1035,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_MINFLTPER register."]
   #[inline] pub fn with_ch_minfltper<I: Into<bits::R4> + Copy, F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_minfltper(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c + (index * 64)) as *mut u32, value.0);
      }
      self
   }
@@ -1016,19 +1048,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_FLTSEN register."]
   #[inline] pub fn ch_fltsen_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x800 + (index * 128)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSEN register."]
   #[inline] pub fn ch_fltsen_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x800 + (index * 128)) as *mut u32
   }
 #[doc="Read the CH_FLTSEN register."]
   #[inline] pub fn ch_fltsen<I: Into<bits::R4>>(&self, index: I) -> ChFltsen { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChFltsen(::core::ptr::read_volatile(((self.0 as usize) + 0x800 + (index * 128)) as *const u32))
      }
@@ -1036,7 +1068,7 @@ impl<T> Periph<T> {
 #[doc="Write the CH_FLTSEN register."]
   #[inline] pub fn set_ch_fltsen<I: Into<bits::R4>, F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(ChFltsen(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x800 + (index * 128)) as *mut u32, value.0);
@@ -1045,10 +1077,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CH_FLTSEN register."]
   #[inline] pub fn with_ch_fltsen<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ch_fltsen(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x800) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x800 + (index * 128)) as *mut u32, value.0);
      }
      self
   }
@@ -1056,19 +1090,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CH_FLTSTAT0 register."]
   #[inline] pub fn ch_fltstat0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x804 + (index * 128)) as *const u32
   }
 #[doc="Get the *mut pointer for the CH_FLTSTAT0 register."]
   #[inline] pub fn ch_fltstat0_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x804 + (index * 128)) as *mut u32
   }
 #[doc="Read the CH_FLTSTAT0 register."]
   #[inline] pub fn ch_fltstat0<I: Into<bits::R4>>(&self, index: I) -> ChFltstat0 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         ChFltstat0(::core::ptr::read_volatile(((self.0 as usize) + 0x804 + (index * 128)) as *const u32))
      }

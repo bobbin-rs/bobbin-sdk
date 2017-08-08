@@ -10,19 +10,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CHCFG register."]
   #[inline] pub fn chcfg_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u8 { 
      let index: bits::R16 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the CHCFG register."]
   #[inline] pub fn chcfg_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u8 { 
      let index: bits::R16 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index)) as *mut u8
   }
 #[doc="Read the CHCFG register."]
   #[inline] pub fn chcfg<I: Into<bits::R16>>(&self, index: I) -> Chcfg { 
      let index: bits::R16 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Chcfg(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index)) as *const u8))
      }
@@ -30,7 +30,7 @@ impl<T> Periph<T> {
 #[doc="Write the CHCFG register."]
   #[inline] pub fn set_chcfg<I: Into<bits::R16>, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
      let index: bits::R16 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Chcfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index)) as *mut u8, value.0);
@@ -39,10 +39,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CHCFG register."]
   #[inline] pub fn with_chcfg<I: Into<bits::R16> + Copy, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.chcfg(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index)) as *mut u8, value.0);
      }
      self
   }

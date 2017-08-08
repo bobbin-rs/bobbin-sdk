@@ -9,19 +9,19 @@ impl Itm {
 #[doc="Get the *const pointer for the STIM register."]
   #[inline] pub fn stim_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the STIM register."]
   #[inline] pub fn stim_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
   }
 #[doc="Read the STIM register."]
   #[inline] pub fn stim<I: Into<bits::R32>>(&self, index: I) -> Stim { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Stim(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u32))
      }
@@ -29,7 +29,7 @@ impl Itm {
 #[doc="Write the STIM register."]
   #[inline] pub fn set_stim<I: Into<bits::R32>, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Stim(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
@@ -38,10 +38,12 @@ impl Itm {
   }
 #[doc="Modify the STIM register."]
   #[inline] pub fn with_stim<I: Into<bits::R32> + Copy, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.stim(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -49,19 +51,19 @@ impl Itm {
 #[doc="Get the *const pointer for the STIM16 register."]
   #[inline] pub fn stim16_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u16 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u16
   }
 #[doc="Get the *mut pointer for the STIM16 register."]
   #[inline] pub fn stim16_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u16 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u16
   }
 #[doc="Read the STIM16 register."]
   #[inline] pub fn stim16<I: Into<bits::R32>>(&self, index: I) -> Stim16 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Stim16(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u16))
      }
@@ -69,7 +71,7 @@ impl Itm {
 #[doc="Write the STIM16 register."]
   #[inline] pub fn set_stim16<I: Into<bits::R32>, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Stim16(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u16, value.0);
@@ -78,10 +80,12 @@ impl Itm {
   }
 #[doc="Modify the STIM16 register."]
   #[inline] pub fn with_stim16<I: Into<bits::R32> + Copy, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.stim16(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u16, value.0);
      }
      self
   }
@@ -89,19 +93,19 @@ impl Itm {
 #[doc="Get the *const pointer for the STIM8 register."]
   #[inline] pub fn stim8_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u8 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u8
   }
 #[doc="Get the *mut pointer for the STIM8 register."]
   #[inline] pub fn stim8_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u8 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u8
   }
 #[doc="Read the STIM8 register."]
   #[inline] pub fn stim8<I: Into<bits::R32>>(&self, index: I) -> Stim8 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Stim8(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u8))
      }
@@ -109,7 +113,7 @@ impl Itm {
 #[doc="Write the STIM8 register."]
   #[inline] pub fn set_stim8<I: Into<bits::R32>, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Stim8(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u8, value.0);
@@ -118,10 +122,12 @@ impl Itm {
   }
 #[doc="Modify the STIM8 register."]
   #[inline] pub fn with_stim8<I: Into<bits::R32> + Copy, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.stim8(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u8, value.0);
      }
      self
   }

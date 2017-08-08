@@ -92,19 +92,19 @@ impl Mode0 {
 #[doc="Get the *const pointer for the COMP register."]
   #[inline] pub fn comp_ptr<I: Into<bits::R1>>(&self, index: I) -> *const u32 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the COMP register."]
   #[inline] pub fn comp_mut<I: Into<bits::R1>>(&self, index: I) -> *mut u32 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the COMP register."]
   #[inline] pub fn comp<I: Into<bits::R1>>(&self, index: I) -> Comp { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
@@ -112,7 +112,7 @@ impl Mode0 {
 #[doc="Write the COMP register."]
   #[inline] pub fn set_comp<I: Into<bits::R1>, F: FnOnce(Comp) -> Comp>(&self, index: I, f: F) -> &Self {
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Comp(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
@@ -121,10 +121,12 @@ impl Mode0 {
   }
 #[doc="Modify the COMP register."]
   #[inline] pub fn with_comp<I: Into<bits::R1> + Copy, F: FnOnce(Comp) -> Comp>(&self, index: I, f: F) -> &Self {
+     let index: bits::R1 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.comp(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -1109,19 +1111,19 @@ impl Mode1 {
 #[doc="Get the *const pointer for the COMP register."]
   #[inline] pub fn comp_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u16 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 1)) as *const u16
   }
 #[doc="Get the *mut pointer for the COMP register."]
   #[inline] pub fn comp_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u16 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 1)) as *mut u16
   }
 #[doc="Read the COMP register."]
   #[inline] pub fn comp<I: Into<bits::R2>>(&self, index: I) -> Comp { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Comp(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *const u16))
      }
@@ -1129,7 +1131,7 @@ impl Mode1 {
 #[doc="Write the COMP register."]
   #[inline] pub fn set_comp<I: Into<bits::R2>, F: FnOnce(Comp) -> Comp>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Comp(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
@@ -1138,10 +1140,12 @@ impl Mode1 {
   }
 #[doc="Modify the COMP register."]
   #[inline] pub fn with_comp<I: Into<bits::R2> + Copy, F: FnOnce(Comp) -> Comp>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.comp(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u16, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
      }
      self
   }
@@ -2425,19 +2429,19 @@ impl Mode2 {
 #[doc="Get the *const pointer for the ALARM register."]
   #[inline] pub fn alarm_ptr<I: Into<bits::R1>>(&self, index: I) -> *const u32 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the ALARM register."]
   #[inline] pub fn alarm_mut<I: Into<bits::R1>>(&self, index: I) -> *mut u32 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 3)) as *mut u32
   }
 #[doc="Read the ALARM register."]
   #[inline] pub fn alarm<I: Into<bits::R1>>(&self, index: I) -> Alarm { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Alarm(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *const u32))
      }
@@ -2445,7 +2449,7 @@ impl Mode2 {
 #[doc="Write the ALARM register."]
   #[inline] pub fn set_alarm<I: Into<bits::R1>, F: FnOnce(Alarm) -> Alarm>(&self, index: I, f: F) -> &Self {
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Alarm(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *mut u32, value.0);
@@ -2454,10 +2458,12 @@ impl Mode2 {
   }
 #[doc="Modify the ALARM register."]
   #[inline] pub fn with_alarm<I: Into<bits::R1> + Copy, F: FnOnce(Alarm) -> Alarm>(&self, index: I, f: F) -> &Self {
+     let index: bits::R1 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.alarm(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 3)) as *mut u32, value.0);
      }
      self
   }
@@ -2465,19 +2471,19 @@ impl Mode2 {
 #[doc="Get the *const pointer for the MASK register."]
   #[inline] pub fn mask_ptr<I: Into<bits::R1>>(&self, index: I) -> *const u8 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x1c + (index << 3)) as *const u8
   }
 #[doc="Get the *mut pointer for the MASK register."]
   #[inline] pub fn mask_mut<I: Into<bits::R1>>(&self, index: I) -> *mut u8 { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x1c + (index << 3)) as *mut u8
   }
 #[doc="Read the MASK register."]
   #[inline] pub fn mask<I: Into<bits::R1>>(&self, index: I) -> Mask { 
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Mask(::core::ptr::read_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *const u8))
      }
@@ -2485,7 +2491,7 @@ impl Mode2 {
 #[doc="Write the MASK register."]
   #[inline] pub fn set_mask<I: Into<bits::R1>, F: FnOnce(Mask) -> Mask>(&self, index: I, f: F) -> &Self {
      let index: bits::R1 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Mask(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *mut u8, value.0);
@@ -2494,10 +2500,12 @@ impl Mode2 {
   }
 #[doc="Modify the MASK register."]
   #[inline] pub fn with_mask<I: Into<bits::R1> + Copy, F: FnOnce(Mask) -> Mask>(&self, index: I, f: F) -> &Self {
+     let index: bits::R1 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.mask(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u8, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c + (index << 3)) as *mut u8, value.0);
      }
      self
   }

@@ -42,16 +42,16 @@ impl<T> FtmExt for Periph<T> {
         self.with_sc(|r| r.set_tof(1))    
     }
     fn count(&self) -> u16 {
-        self.cnt().count() as u16
+        self.cnt().count().into()
     }
     fn set_count(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_count(value as u32))
+        self.set_cnt(|r| r.set_count(value as u32))
     }
     fn modulo(&self) -> u16 {
-        self._mod()._mod() as u16
+        self._mod()._mod().into()
     }
     fn set_modulo(&self, value: u16) -> &Self {
-        self.set_mod(Mod(0).set_mod(value as u32))
+        self.set_mod(|r| r.set_mod(value as u32))
     }    
 }
 
@@ -72,7 +72,7 @@ impl<P, T> FtmChExt for Channel<P, T> {
         self
     }
     fn set_value(&self, value: u16) -> &Self {
-        self.periph.set_cv(self.index, Cv(0).set_val(value as u32));
+        self.periph.set_cv(self.index, |r| r.set_val(value as u32));
         self
     }
     fn set_pwmen(&self, value: bool) -> &Self {

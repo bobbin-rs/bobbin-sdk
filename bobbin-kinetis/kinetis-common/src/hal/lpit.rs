@@ -43,17 +43,17 @@ impl<T> LpitExt for Periph<T> {
 
     fn set_ch_enabled(&self, index: usize, value: bool) -> &Self {
         if value {
-            self.set_setten(Setten(0).set_set_t_en(index, 1))
+            self.set_setten(|r| r.set_set_t_en(index, 1))
         } else {
-            self.set_clrten(Clrten(0).set_clr_t_en(index, 1))
+            self.set_clrten(|r| r.set_clr_t_en(index, 1))
         }
     }
 
     fn ch_value(&self, index: usize) -> u32 {
-        self.tval(index).tmr_val()
+        self.tval(index).tmr_val().into()
     }
     fn set_ch_value(&self, index: usize, value: u32) -> &Self {
-        self.set_tval(index, Tval(0).set_tmr_val(value))
+        self.set_tval(index, |r| r.set_tmr_val(value))
     }    
 
     fn ch_tie(&self, index: usize) -> bool {
@@ -68,6 +68,6 @@ impl<T> LpitExt for Periph<T> {
         self.msr().tif(index) != 0
     }
     fn clr_ch_tif(&self, index: usize) -> &Self {
-        self.set_msr(Msr(0).set_tif(index, 1))
+        self.set_msr(|r| r.set_tif(index, 1))
     }       
 }

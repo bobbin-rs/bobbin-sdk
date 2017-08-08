@@ -520,19 +520,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the BKPR register."]
   #[inline] pub fn bkpr_ptr<I: Into<bits::R5>>(&self, index: I) -> *const u32 { 
      let index: bits::R5 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x50 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the BKPR register."]
   #[inline] pub fn bkpr_mut<I: Into<bits::R5>>(&self, index: I) -> *mut u32 { 
      let index: bits::R5 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x50 + (index << 2)) as *mut u32
   }
 #[doc="Read the BKPR register."]
   #[inline] pub fn bkpr<I: Into<bits::R5>>(&self, index: I) -> Bkpr { 
      let index: bits::R5 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Bkpr(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *const u32))
      }
@@ -540,7 +540,7 @@ impl<T> Periph<T> {
 #[doc="Write the BKPR register."]
   #[inline] pub fn set_bkpr<I: Into<bits::R5>, F: FnOnce(Bkpr) -> Bkpr>(&self, index: I, f: F) -> &Self {
      let index: bits::R5 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Bkpr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
@@ -549,10 +549,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the BKPR register."]
   #[inline] pub fn with_bkpr<I: Into<bits::R5> + Copy, F: FnOnce(Bkpr) -> Bkpr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R5 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.bkpr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index << 2)) as *mut u32, value.0);
      }
      self
   }

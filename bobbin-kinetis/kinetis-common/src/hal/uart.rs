@@ -16,23 +16,23 @@ pub trait UartExt {
 impl<T> UartExt for Periph<T> {
     fn enable(&self, baud_divider: u16) -> &Self {
         let u = self;
-        u.set_c1(C1(0));
+        u.set_c1(|r| r);
         //Disable TX and Receive
-        u.set_c2(C2(0));
+        u.set_c2(|r| r);
         // Set baud divider
-        u.set_bdh(Bdh(0).set_sbr((baud_divider >> 8) as u8));
-        u.set_bdl(Bdl(0).set_sbr(baud_divider as u8));
+        u.set_bdh(|r| r.set_sbr((baud_divider >> 8) as u8));
+        u.set_bdl(|r| r.set_sbr(baud_divider as u8));
         
-        u.set_c3(C3(0));                       
-        u.set_c4(C4(0));
-        u.set_c5(C5(0));
+        u.set_c3(|r| r);                       
+        u.set_c4(|r| r);
+        u.set_c5(|r| r);
         // Enable Transmit and Receive
-        u.set_c2(C2(0).set_te(1).set_re(1));    
+        u.set_c2(|r| r.set_te(1).set_re(1));    
         self    
     }    
 
     fn disable(&self) -> &Self {
-        self.set_c2(C2(0).set_te(0).set_re(0))
+        self.set_c2(|r| r.set_te(0).set_re(0))
     }
 
     fn tx_empty(&self) -> bool {
@@ -54,7 +54,7 @@ impl<T> UartExt for Periph<T> {
     fn try_getc(&self) -> Option<u8> {
         let uart = self;
         if uart.s1().rdrf() != 0 {
-            Some(uart.d().rt())
+            Some(uart.d().rt().into())
         } else {
             None
         }
@@ -63,14 +63,13 @@ impl<T> UartExt for Periph<T> {
     fn getc(&self) -> u8 {
         let uart = self;
         while uart.s1().rdrf() == 0 {}
-        uart.d().rt()
-        
+        uart.d().rt().into()        
     }
 
     fn putc(&self, value: u8) {            
         let uart = self;
         while uart.s1().tdre() == 0 {}
-        uart.set_d(D(0).set_rt(value));
+        uart.set_d(|r| r.set_rt(value));
     }
 
     fn write(&self, data: &[u8]) -> usize {

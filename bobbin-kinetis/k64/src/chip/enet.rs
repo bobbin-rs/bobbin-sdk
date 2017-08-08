@@ -2022,19 +2022,19 @@ impl Enet {
 #[doc="Get the *const pointer for the TCSR register."]
   #[inline] pub fn tcsr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x608 + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCSR register."]
   #[inline] pub fn tcsr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x608 + (index << 3)) as *mut u32
   }
 #[doc="Read the TCSR register."]
   #[inline] pub fn tcsr<I: Into<bits::R4>>(&self, index: I) -> Tcsr { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Tcsr(::core::ptr::read_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *const u32))
      }
@@ -2042,7 +2042,7 @@ impl Enet {
 #[doc="Write the TCSR register."]
   #[inline] pub fn set_tcsr<I: Into<bits::R4>, F: FnOnce(Tcsr) -> Tcsr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Tcsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *mut u32, value.0);
@@ -2051,10 +2051,12 @@ impl Enet {
   }
 #[doc="Modify the TCSR register."]
   #[inline] pub fn with_tcsr<I: Into<bits::R4> + Copy, F: FnOnce(Tcsr) -> Tcsr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.tcsr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *mut u32, value.0);
      }
      self
   }
@@ -2062,19 +2064,19 @@ impl Enet {
 #[doc="Get the *const pointer for the TCCR register."]
   #[inline] pub fn tccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x60c + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the TCCR register."]
   #[inline] pub fn tccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x60c + (index << 3)) as *mut u32
   }
 #[doc="Read the TCCR register."]
   #[inline] pub fn tccr<I: Into<bits::R4>>(&self, index: I) -> Tccr { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Tccr(::core::ptr::read_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *const u32))
      }
@@ -2082,7 +2084,7 @@ impl Enet {
 #[doc="Write the TCCR register."]
   #[inline] pub fn set_tccr<I: Into<bits::R4>, F: FnOnce(Tccr) -> Tccr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Tccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *mut u32, value.0);
@@ -2091,10 +2093,12 @@ impl Enet {
   }
 #[doc="Modify the TCCR register."]
   #[inline] pub fn with_tccr<I: Into<bits::R4> + Copy, F: FnOnce(Tccr) -> Tccr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.tccr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x60c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *mut u32, value.0);
      }
      self
   }

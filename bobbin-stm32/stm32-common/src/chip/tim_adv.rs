@@ -187,19 +187,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CCMR_OUTPUT register."]
   #[inline] pub fn ccmr_output_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCMR_OUTPUT register."]
   #[inline] pub fn ccmr_output_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCMR_OUTPUT register."]
   #[inline] pub fn ccmr_output<I: Into<bits::R2>>(&self, index: I) -> CcmrOutput { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         CcmrOutput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
@@ -207,7 +207,7 @@ impl<T> Periph<T> {
 #[doc="Write the CCMR_OUTPUT register."]
   #[inline] pub fn set_ccmr_output<I: Into<bits::R2>, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(CcmrOutput(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
@@ -216,10 +216,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CCMR_OUTPUT register."]
   #[inline] pub fn with_ccmr_output<I: Into<bits::R2> + Copy, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ccmr_output(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -227,19 +229,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CCMR_INPUT register."]
   #[inline] pub fn ccmr_input_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCMR_INPUT register."]
   #[inline] pub fn ccmr_input_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCMR_INPUT register."]
   #[inline] pub fn ccmr_input<I: Into<bits::R2>>(&self, index: I) -> CcmrInput { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         CcmrInput(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
@@ -247,7 +249,7 @@ impl<T> Periph<T> {
 #[doc="Write the CCMR_INPUT register."]
   #[inline] pub fn set_ccmr_input<I: Into<bits::R2>, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(CcmrInput(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
@@ -256,10 +258,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CCMR_INPUT register."]
   #[inline] pub fn with_ccmr_input<I: Into<bits::R2> + Copy, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ccmr_input(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -427,19 +431,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CCR register."]
   #[inline] pub fn ccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x34 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CCR register."]
   #[inline] pub fn ccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x34 + (index << 2)) as *mut u32
   }
 #[doc="Read the CCR register."]
   #[inline] pub fn ccr<I: Into<bits::R4>>(&self, index: I) -> Ccr { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Ccr(::core::ptr::read_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *const u32))
      }
@@ -447,7 +451,7 @@ impl<T> Periph<T> {
 #[doc="Write the CCR register."]
   #[inline] pub fn set_ccr<I: Into<bits::R4>, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Ccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *mut u32, value.0);
@@ -456,10 +460,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CCR register."]
   #[inline] pub fn with_ccr<I: Into<bits::R4> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.ccr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34 + (index << 2)) as *mut u32, value.0);
      }
      self
   }

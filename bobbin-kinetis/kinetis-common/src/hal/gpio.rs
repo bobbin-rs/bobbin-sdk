@@ -35,15 +35,15 @@ impl<P, T> GpioExt for Pin<P, T> {
 
     fn set_output(&self, value: bool) -> &Self {
         if value {
-            self.port.set_psor(Psor(0).set_ptso(self.index, 1))
+            self.port.set_psor(|r| r.set_ptso(self.index, 1))
         } else {
-            self.port.set_pcor(Pcor(0).set_ptco(self.index, 1))
+            self.port.set_pcor(|r| r.set_ptco(self.index, 1))
         };
         self
     }
 
     fn toggle_output(&self) -> &Self {
-        self.port.set_ptor(Ptor(0).set_ptto(self.index, 1));
+        self.port.set_ptor(|r| r.set_ptto(self.index, 1));
         self
     }
 

@@ -17,16 +17,15 @@ impl<T> PitExt for Periph<T> {
 
     fn set_enabled(&self, value: bool) -> &Self {
         // MDIS = 1 to disable module
-        let value = if value { 0 } else { 1 };
-        self.with_mcr(|r| r.set_mdis(value))        
+        self.with_mcr(|r| r.set_mdis(!value))        
     }
 
     fn set_timer_enabled(&self, index: usize, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_tctrl(index, |r| r.set_ten(value))
     }
+
     fn set_load_value(&self, index: usize, value: u32) -> &Self {
-        self.set_ldval(index, Ldval(0).set_tsv(value))
+        self.set_ldval(index, |r| r.set_tsv(value))
     }    
 
     fn interrupt_flag(&self, index: usize) -> bool {        
@@ -34,6 +33,6 @@ impl<T> PitExt for Periph<T> {
     }
 
     fn clr_interrupt_flag(&self, index: usize) -> &Self {
-        self.set_tflg(index, Tflg(0).set_tif(1))
+        self.set_tflg(index, |r| r.set_tif(1))
     }    
 }

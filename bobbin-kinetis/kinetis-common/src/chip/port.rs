@@ -10,19 +10,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the PCR register."]
   #[inline] pub fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the PCR register."]
   #[inline] pub fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
   }
 #[doc="Read the PCR register."]
   #[inline] pub fn pcr<I: Into<bits::R32>>(&self, index: I) -> Pcr { 
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Pcr(::core::ptr::read_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *const u32))
      }
@@ -30,7 +30,7 @@ impl<T> Periph<T> {
 #[doc="Write the PCR register."]
   #[inline] pub fn set_pcr<I: Into<bits::R32>, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Pcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
@@ -39,10 +39,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the PCR register."]
   #[inline] pub fn with_pcr<I: Into<bits::R32> + Copy, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.pcr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
      }
      self
   }

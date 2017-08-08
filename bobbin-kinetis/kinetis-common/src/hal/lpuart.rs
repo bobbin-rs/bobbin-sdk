@@ -28,22 +28,18 @@ impl<T> LpuartExt for Periph<T> {
     }
 
     fn set_te(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ctrl(|r| r.set_te(value))
     }         
 
     fn set_re(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ctrl(|r| r.set_re(value))
     }   
 
     fn set_txfe(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_fifo(|r| r.set_txfe(value))
     }    
 
     fn set_rxfe(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_fifo(|r| r.set_rxfe(value))
     }    
 
@@ -57,11 +53,11 @@ impl<T> LpuartExt for Periph<T> {
     }
 
     fn rt(&self) -> u8 {
-        self.data().rt() as u8
+        self.data().rt().into()
     }
 
     fn set_rt(&self, value: u8) -> &Self {
-        self.set_data(Data(0).set_rt(value as u32))
+        self.set_data(|r| r.set_rt(value as u32))
     }    
 
     fn try_getc(&self) -> Option<u8> {

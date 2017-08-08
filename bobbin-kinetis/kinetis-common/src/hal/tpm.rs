@@ -54,7 +54,7 @@ impl<P, T> TpmChExt for Channel<P, T> {
         self
     }
     fn set_value(&self, value: u16) -> &Self {
-        self.periph.set_cv(self.index, Cv(0).set_val(value as u32));
+        self.periph.set_cv(self.index, |r| r.set_val(value as u32));
         self
     }
 }

@@ -60,19 +60,19 @@ impl Count8 {
 #[doc="Get the *const pointer for the CC register."]
   #[inline] pub fn cc_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u8 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index)) as *const u8
   }
 #[doc="Get the *mut pointer for the CC register."]
   #[inline] pub fn cc_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u8 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index)) as *mut u8
   }
 #[doc="Read the CC register."]
   #[inline] pub fn cc<I: Into<bits::R2>>(&self, index: I) -> Cc { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Cc(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index)) as *const u8))
      }
@@ -80,7 +80,7 @@ impl Count8 {
 #[doc="Write the CC register."]
   #[inline] pub fn set_cc<I: Into<bits::R2>, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Cc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index)) as *mut u8, value.0);
@@ -89,10 +89,12 @@ impl Count8 {
   }
 #[doc="Modify the CC register."]
   #[inline] pub fn with_cc<I: Into<bits::R2> + Copy, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.cc(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u8, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index)) as *mut u8, value.0);
      }
      self
   }
@@ -1419,19 +1421,19 @@ impl Count16 {
 #[doc="Get the *const pointer for the CC register."]
   #[inline] pub fn cc_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u16 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 1)) as *const u16
   }
 #[doc="Get the *mut pointer for the CC register."]
   #[inline] pub fn cc_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u16 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 1)) as *mut u16
   }
 #[doc="Read the CC register."]
   #[inline] pub fn cc<I: Into<bits::R2>>(&self, index: I) -> Cc { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Cc(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *const u16))
      }
@@ -1439,7 +1441,7 @@ impl Count16 {
 #[doc="Write the CC register."]
   #[inline] pub fn set_cc<I: Into<bits::R2>, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Cc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
@@ -1448,10 +1450,12 @@ impl Count16 {
   }
 #[doc="Modify the CC register."]
   #[inline] pub fn with_cc<I: Into<bits::R2> + Copy, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.cc(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u16, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 1)) as *mut u16, value.0);
      }
      self
   }
@@ -2715,19 +2719,19 @@ impl Count32 {
 #[doc="Get the *const pointer for the CC register."]
   #[inline] pub fn cc_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the CC register."]
   #[inline] pub fn cc_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
   }
 #[doc="Read the CC register."]
   #[inline] pub fn cc<I: Into<bits::R2>>(&self, index: I) -> Cc { 
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Cc(::core::ptr::read_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *const u32))
      }
@@ -2735,7 +2739,7 @@ impl Count32 {
 #[doc="Write the CC register."]
   #[inline] pub fn set_cc<I: Into<bits::R2>, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
      let index: bits::R2 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Cc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
@@ -2744,10 +2748,12 @@ impl Count32 {
   }
 #[doc="Modify the CC register."]
   #[inline] pub fn with_cc<I: Into<bits::R2> + Copy, F: FnOnce(Cc) -> Cc>(&self, index: I, f: F) -> &Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.cc(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18 + (index << 2)) as *mut u32, value.0);
      }
      self
   }

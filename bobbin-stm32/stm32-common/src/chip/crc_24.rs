@@ -138,19 +138,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the DUMMY register."]
   #[inline] pub fn dummy_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x100 + (index << 2)) as *const u32
   }
 #[doc="Get the *mut pointer for the DUMMY register."]
   #[inline] pub fn dummy_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x100 + (index << 2)) as *mut u32
   }
 #[doc="Read the DUMMY register."]
   #[inline] pub fn dummy<I: Into<bits::R4>>(&self, index: I) -> Dummy { 
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Dummy(::core::ptr::read_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *const u32))
      }
@@ -158,7 +158,7 @@ impl<T> Periph<T> {
 #[doc="Write the DUMMY register."]
   #[inline] pub fn set_dummy<I: Into<bits::R4>, F: FnOnce(Dummy) -> Dummy>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Dummy(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
@@ -167,10 +167,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the DUMMY register."]
   #[inline] pub fn with_dummy<I: Into<bits::R4> + Copy, F: FnOnce(Dummy) -> Dummy>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.dummy(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
      }
      self
   }

@@ -106,19 +106,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CSC register."]
   #[inline] pub fn csc_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0xc + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the CSC register."]
   #[inline] pub fn csc_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0xc + (index << 3)) as *mut u32
   }
 #[doc="Read the CSC register."]
   #[inline] pub fn csc<I: Into<bits::R8>>(&self, index: I) -> Csc { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Csc(::core::ptr::read_volatile(((self.0 as usize) + 0xc + (index << 3)) as *const u32))
      }
@@ -126,7 +126,7 @@ impl<T> Periph<T> {
 #[doc="Write the CSC register."]
   #[inline] pub fn set_csc<I: Into<bits::R8>, F: FnOnce(Csc) -> Csc>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Csc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index << 3)) as *mut u32, value.0);
@@ -135,10 +135,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CSC register."]
   #[inline] pub fn with_csc<I: Into<bits::R8> + Copy, F: FnOnce(Csc) -> Csc>(&self, index: I, f: F) -> &Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.csc(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc + (index << 3)) as *mut u32, value.0);
      }
      self
   }
@@ -146,19 +148,19 @@ impl<T> Periph<T> {
 #[doc="Get the *const pointer for the CV register."]
   #[inline] pub fn cv_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x10 + (index << 3)) as *const u32
   }
 #[doc="Get the *mut pointer for the CV register."]
   #[inline] pub fn cv_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      ((self.0 as usize) + 0x10 + (index << 3)) as *mut u32
   }
 #[doc="Read the CV register."]
   #[inline] pub fn cv<I: Into<bits::R8>>(&self, index: I) -> Cv { 
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      unsafe {
         Cv(::core::ptr::read_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *const u32))
      }
@@ -166,7 +168,7 @@ impl<T> Periph<T> {
 #[doc="Write the CV register."]
   #[inline] pub fn set_cv<I: Into<bits::R8>, F: FnOnce(Cv) -> Cv>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
-     let index: usize = index.value();
+     let index: usize = index.value() as usize;
      let value = f(Cv(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *mut u32, value.0);
@@ -175,10 +177,12 @@ impl<T> Periph<T> {
   }
 #[doc="Modify the CV register."]
   #[inline] pub fn with_cv<I: Into<bits::R8> + Copy, F: FnOnce(Cv) -> Cv>(&self, index: I, f: F) -> &Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.value() as usize;
      let tmp = self.cv(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10 + (index << 3)) as *mut u32, value.0);
      }
      self
   }
