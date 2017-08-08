@@ -36,7 +36,8 @@ impl Dbg {
      }
   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+     let value = f(Cr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -45,7 +46,11 @@ impl Dbg {
 #[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
-     self.set_cr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB1_FZ register."]
@@ -63,7 +68,8 @@ impl Dbg {
      }
   }
 #[doc="Write the APB1_FZ register."]
-  #[inline] pub fn set_apb1_fz(&self, value: Apb1Fz) -> &Self {
+  #[inline] pub fn set_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
+     let value = f(Apb1Fz(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -72,7 +78,11 @@ impl Dbg {
 #[doc="Modify the APB1_FZ register."]
   #[inline] pub fn with_apb1_fz<F: FnOnce(Apb1Fz) -> Apb1Fz>(&self, f: F) -> &Self {
      let tmp = self.apb1_fz();
-     self.set_apb1_fz(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB2_FZ register."]
@@ -90,7 +100,8 @@ impl Dbg {
      }
   }
 #[doc="Write the APB2_FZ register."]
-  #[inline] pub fn set_apb2_fz(&self, value: Apb2Fz) -> &Self {
+  #[inline] pub fn set_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
+     let value = f(Apb2Fz(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -99,7 +110,11 @@ impl Dbg {
 #[doc="Modify the APB2_FZ register."]
   #[inline] pub fn with_apb2_fz<F: FnOnce(Apb2Fz) -> Apb2Fz>(&self, f: F) -> &Self {
      let tmp = self.apb2_fz();
-     self.set_apb2_fz(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 }

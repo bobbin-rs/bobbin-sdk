@@ -27,9 +27,10 @@ impl Itm {
      }
   }
 #[doc="Write the STIM register."]
-  #[inline] pub fn set_stim<I: Into<bits::R32>>(&self, index: I, value: Stim) -> &Self {
+  #[inline] pub fn set_stim<I: Into<bits::R32>, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
      let index: usize = index.value();
+     let value = f(Stim(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u32, value.0);
      }
@@ -38,7 +39,11 @@ impl Itm {
 #[doc="Modify the STIM register."]
   #[inline] pub fn with_stim<I: Into<bits::R32> + Copy, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim(index);
-     self.set_stim(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the STIM16 register."]
@@ -62,9 +67,10 @@ impl Itm {
      }
   }
 #[doc="Write the STIM16 register."]
-  #[inline] pub fn set_stim16<I: Into<bits::R32>>(&self, index: I, value: Stim16) -> &Self {
+  #[inline] pub fn set_stim16<I: Into<bits::R32>, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
      let index: usize = index.value();
+     let value = f(Stim16(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u16, value.0);
      }
@@ -73,7 +79,11 @@ impl Itm {
 #[doc="Modify the STIM16 register."]
   #[inline] pub fn with_stim16<I: Into<bits::R32> + Copy, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim16(index);
-     self.set_stim16(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the STIM8 register."]
@@ -97,9 +107,10 @@ impl Itm {
      }
   }
 #[doc="Write the STIM8 register."]
-  #[inline] pub fn set_stim8<I: Into<bits::R32>>(&self, index: I, value: Stim8) -> &Self {
+  #[inline] pub fn set_stim8<I: Into<bits::R32>, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
      let index: bits::R32 = index.into();
      let index: usize = index.value();
+     let value = f(Stim8(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index << 2)) as *mut u8, value.0);
      }
@@ -108,7 +119,11 @@ impl Itm {
 #[doc="Modify the STIM8 register."]
   #[inline] pub fn with_stim8<I: Into<bits::R32> + Copy, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
      let tmp = self.stim8(index);
-     self.set_stim8(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TER register."]
@@ -126,7 +141,8 @@ impl Itm {
      }
   }
 #[doc="Write the TER register."]
-  #[inline] pub fn set_ter(&self, value: Ter) -> &Self {
+  #[inline] pub fn set_ter<F: FnOnce(Ter) -> Ter>(&self, f: F) -> &Self {
+     let value = f(Ter(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xe00) as *mut u32, value.0);
      }
@@ -135,7 +151,11 @@ impl Itm {
 #[doc="Modify the TER register."]
   #[inline] pub fn with_ter<F: FnOnce(Ter) -> Ter>(&self, f: F) -> &Self {
      let tmp = self.ter();
-     self.set_ter(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xe00) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TPR register."]
@@ -153,7 +173,8 @@ impl Itm {
      }
   }
 #[doc="Write the TPR register."]
-  #[inline] pub fn set_tpr(&self, value: Tpr) -> &Self {
+  #[inline] pub fn set_tpr<F: FnOnce(Tpr) -> Tpr>(&self, f: F) -> &Self {
+     let value = f(Tpr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xe40) as *mut u32, value.0);
      }
@@ -162,7 +183,11 @@ impl Itm {
 #[doc="Modify the TPR register."]
   #[inline] pub fn with_tpr<F: FnOnce(Tpr) -> Tpr>(&self, f: F) -> &Self {
      let tmp = self.tpr();
-     self.set_tpr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xe40) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TCR register."]
@@ -180,7 +205,8 @@ impl Itm {
      }
   }
 #[doc="Write the TCR register."]
-  #[inline] pub fn set_tcr(&self, value: Tcr) -> &Self {
+  #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
+     let value = f(Tcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xe80) as *mut u32, value.0);
      }
@@ -189,7 +215,11 @@ impl Itm {
 #[doc="Modify the TCR register."]
   #[inline] pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
      let tmp = self.tcr();
-     self.set_tcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xe80) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the LAR register."]
@@ -201,7 +231,8 @@ impl Itm {
      ((self.0 as usize) + 0xfb0) as *mut u32
   }
 #[doc="Write the LAR register."]
-  #[inline] pub fn set_lar(&self, value: Lar) -> &Self {
+  #[inline] pub fn set_lar<F: FnOnce(Lar) -> Lar>(&self, f: F) -> &Self {
+     let value = f(Lar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xfb0) as *mut u32, value.0);
      }

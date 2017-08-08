@@ -372,9 +372,9 @@ impl<T> Irq<T> {
    pub fn set_enabled(&self, value: bool) {
       if value {
          assert!(self.handler().is_some());
-         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));
+         NVIC.set_iser((self.0 >> 5), |r| r.set_setena((self.0 & 0b11111), 1));
       } else {
-         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));
+         NVIC.set_icer((self.0 >> 5), |r| r.set_clrena((self.0 & 0b11111), 1));
       }
    }
 
@@ -384,9 +384,9 @@ impl<T> Irq<T> {
 
    pub fn set_pending(&self, value: bool) {
        if value {
-           NVIC.set_ispr((self.0 >> 5), Ispr(0).set_setpend((self.0 & 0b11111), 1));
+           NVIC.set_ispr((self.0 >> 5), |r| r.set_setpend((self.0 & 0b11111), 1));
        } else {
-           NVIC.set_icpr((self.0 >> 5), Icpr(0).set_clrpend((self.0 & 0b11111), 1));
+           NVIC.set_icpr((self.0 >> 5), |r| r.set_clrpend((self.0 & 0b11111), 1));
        }
    }
 
@@ -403,7 +403,7 @@ impl<T> Irq<T> {
    }
 
    pub fn trigger_interrupt(&self) {
-       NVIC.set_stir(Stir(0).set_intid(self.0));
+       NVIC.set_stir(|r| r.set_intid(self.0));
    }
 
    pub fn handler(&self) -> Option<Handler> { unsafe { R_INTERRUPT_HANDLERS[self.0] } }

@@ -66,7 +66,8 @@ impl Rcm {
      }
   }
 #[doc="Write the RPC register."]
-  #[inline] pub fn set_rpc(&self, value: Rpc) -> &Self {
+  #[inline] pub fn set_rpc<F: FnOnce(Rpc) -> Rpc>(&self, f: F) -> &Self {
+     let value = f(Rpc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -75,7 +76,11 @@ impl Rcm {
 #[doc="Modify the RPC register."]
   #[inline] pub fn with_rpc<F: FnOnce(Rpc) -> Rpc>(&self, f: F) -> &Self {
      let tmp = self.rpc();
-     self.set_rpc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SSRS register."]
@@ -93,7 +98,8 @@ impl Rcm {
      }
   }
 #[doc="Write the SSRS register."]
-  #[inline] pub fn set_ssrs(&self, value: Ssrs) -> &Self {
+  #[inline] pub fn set_ssrs<F: FnOnce(Ssrs) -> Ssrs>(&self, f: F) -> &Self {
+     let value = f(Ssrs(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -102,7 +108,11 @@ impl Rcm {
 #[doc="Modify the SSRS register."]
   #[inline] pub fn with_ssrs<F: FnOnce(Ssrs) -> Ssrs>(&self, f: F) -> &Self {
      let tmp = self.ssrs();
-     self.set_ssrs(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SRIE register."]
@@ -120,7 +130,8 @@ impl Rcm {
      }
   }
 #[doc="Write the SRIE register."]
-  #[inline] pub fn set_srie(&self, value: Srie) -> &Self {
+  #[inline] pub fn set_srie<F: FnOnce(Srie) -> Srie>(&self, f: F) -> &Self {
+     let value = f(Srie(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -129,7 +140,11 @@ impl Rcm {
 #[doc="Modify the SRIE register."]
   #[inline] pub fn with_srie<F: FnOnce(Srie) -> Srie>(&self, f: F) -> &Self {
      let tmp = self.srie();
-     self.set_srie(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

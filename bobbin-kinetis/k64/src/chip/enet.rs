@@ -21,7 +21,8 @@ impl Enet {
      }
   }
 #[doc="Write the EIR register."]
-  #[inline] pub fn set_eir(&self, value: Eir) -> &Self {
+  #[inline] pub fn set_eir<F: FnOnce(Eir) -> Eir>(&self, f: F) -> &Self {
+     let value = f(Eir(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Enet {
 #[doc="Modify the EIR register."]
   #[inline] pub fn with_eir<F: FnOnce(Eir) -> Eir>(&self, f: F) -> &Self {
      let tmp = self.eir();
-     self.set_eir(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EIMR register."]
@@ -48,7 +53,8 @@ impl Enet {
      }
   }
 #[doc="Write the EIMR register."]
-  #[inline] pub fn set_eimr(&self, value: Eimr) -> &Self {
+  #[inline] pub fn set_eimr<F: FnOnce(Eimr) -> Eimr>(&self, f: F) -> &Self {
+     let value = f(Eimr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Enet {
 #[doc="Modify the EIMR register."]
   #[inline] pub fn with_eimr<F: FnOnce(Eimr) -> Eimr>(&self, f: F) -> &Self {
      let tmp = self.eimr();
-     self.set_eimr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RDAR register."]
@@ -75,7 +85,8 @@ impl Enet {
      }
   }
 #[doc="Write the RDAR register."]
-  #[inline] pub fn set_rdar(&self, value: Rdar) -> &Self {
+  #[inline] pub fn set_rdar<F: FnOnce(Rdar) -> Rdar>(&self, f: F) -> &Self {
+     let value = f(Rdar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Enet {
 #[doc="Modify the RDAR register."]
   #[inline] pub fn with_rdar<F: FnOnce(Rdar) -> Rdar>(&self, f: F) -> &Self {
      let tmp = self.rdar();
-     self.set_rdar(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TDAR register."]
@@ -102,7 +117,8 @@ impl Enet {
      }
   }
 #[doc="Write the TDAR register."]
-  #[inline] pub fn set_tdar(&self, value: Tdar) -> &Self {
+  #[inline] pub fn set_tdar<F: FnOnce(Tdar) -> Tdar>(&self, f: F) -> &Self {
+     let value = f(Tdar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Enet {
 #[doc="Modify the TDAR register."]
   #[inline] pub fn with_tdar<F: FnOnce(Tdar) -> Tdar>(&self, f: F) -> &Self {
      let tmp = self.tdar();
-     self.set_tdar(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ECR register."]
@@ -129,7 +149,8 @@ impl Enet {
      }
   }
 #[doc="Write the ECR register."]
-  #[inline] pub fn set_ecr(&self, value: Ecr) -> &Self {
+  #[inline] pub fn set_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
+     let value = f(Ecr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Enet {
 #[doc="Modify the ECR register."]
   #[inline] pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
      let tmp = self.ecr();
-     self.set_ecr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MMFR register."]
@@ -156,7 +181,8 @@ impl Enet {
      }
   }
 #[doc="Write the MMFR register."]
-  #[inline] pub fn set_mmfr(&self, value: Mmfr) -> &Self {
+  #[inline] pub fn set_mmfr<F: FnOnce(Mmfr) -> Mmfr>(&self, f: F) -> &Self {
+     let value = f(Mmfr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Enet {
 #[doc="Modify the MMFR register."]
   #[inline] pub fn with_mmfr<F: FnOnce(Mmfr) -> Mmfr>(&self, f: F) -> &Self {
      let tmp = self.mmfr();
-     self.set_mmfr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MSCR register."]
@@ -183,7 +213,8 @@ impl Enet {
      }
   }
 #[doc="Write the MSCR register."]
-  #[inline] pub fn set_mscr(&self, value: Mscr) -> &Self {
+  #[inline] pub fn set_mscr<F: FnOnce(Mscr) -> Mscr>(&self, f: F) -> &Self {
+     let value = f(Mscr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl Enet {
 #[doc="Modify the MSCR register."]
   #[inline] pub fn with_mscr<F: FnOnce(Mscr) -> Mscr>(&self, f: F) -> &Self {
      let tmp = self.mscr();
-     self.set_mscr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MIBC register."]
@@ -210,7 +245,8 @@ impl Enet {
      }
   }
 #[doc="Write the MIBC register."]
-  #[inline] pub fn set_mibc(&self, value: Mibc) -> &Self {
+  #[inline] pub fn set_mibc<F: FnOnce(Mibc) -> Mibc>(&self, f: F) -> &Self {
+     let value = f(Mibc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl Enet {
 #[doc="Modify the MIBC register."]
   #[inline] pub fn with_mibc<F: FnOnce(Mibc) -> Mibc>(&self, f: F) -> &Self {
      let tmp = self.mibc();
-     self.set_mibc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RCR register."]
@@ -237,7 +277,8 @@ impl Enet {
      }
   }
 #[doc="Write the RCR register."]
-  #[inline] pub fn set_rcr(&self, value: Rcr) -> &Self {
+  #[inline] pub fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
+     let value = f(Rcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl Enet {
 #[doc="Modify the RCR register."]
   #[inline] pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
      let tmp = self.rcr();
-     self.set_rcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TCR register."]
@@ -264,7 +309,8 @@ impl Enet {
      }
   }
 #[doc="Write the TCR register."]
-  #[inline] pub fn set_tcr(&self, value: Tcr) -> &Self {
+  #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
+     let value = f(Tcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc4) as *mut u32, value.0);
      }
@@ -273,7 +319,11 @@ impl Enet {
 #[doc="Modify the TCR register."]
   #[inline] pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
      let tmp = self.tcr();
-     self.set_tcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PALR register."]
@@ -291,7 +341,8 @@ impl Enet {
      }
   }
 #[doc="Write the PALR register."]
-  #[inline] pub fn set_palr(&self, value: Palr) -> &Self {
+  #[inline] pub fn set_palr<F: FnOnce(Palr) -> Palr>(&self, f: F) -> &Self {
+     let value = f(Palr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xe4) as *mut u32, value.0);
      }
@@ -300,7 +351,11 @@ impl Enet {
 #[doc="Modify the PALR register."]
   #[inline] pub fn with_palr<F: FnOnce(Palr) -> Palr>(&self, f: F) -> &Self {
      let tmp = self.palr();
-     self.set_palr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xe4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PAUR register."]
@@ -318,7 +373,8 @@ impl Enet {
      }
   }
 #[doc="Write the PAUR register."]
-  #[inline] pub fn set_paur(&self, value: Paur) -> &Self {
+  #[inline] pub fn set_paur<F: FnOnce(Paur) -> Paur>(&self, f: F) -> &Self {
+     let value = f(Paur(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xe8) as *mut u32, value.0);
      }
@@ -327,7 +383,11 @@ impl Enet {
 #[doc="Modify the PAUR register."]
   #[inline] pub fn with_paur<F: FnOnce(Paur) -> Paur>(&self, f: F) -> &Self {
      let tmp = self.paur();
-     self.set_paur(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xe8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the OPD register."]
@@ -345,7 +405,8 @@ impl Enet {
      }
   }
 #[doc="Write the OPD register."]
-  #[inline] pub fn set_opd(&self, value: Opd) -> &Self {
+  #[inline] pub fn set_opd<F: FnOnce(Opd) -> Opd>(&self, f: F) -> &Self {
+     let value = f(Opd(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xec) as *mut u32, value.0);
      }
@@ -354,7 +415,11 @@ impl Enet {
 #[doc="Modify the OPD register."]
   #[inline] pub fn with_opd<F: FnOnce(Opd) -> Opd>(&self, f: F) -> &Self {
      let tmp = self.opd();
-     self.set_opd(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xec) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the IAUR register."]
@@ -372,7 +437,8 @@ impl Enet {
      }
   }
 #[doc="Write the IAUR register."]
-  #[inline] pub fn set_iaur(&self, value: Iaur) -> &Self {
+  #[inline] pub fn set_iaur<F: FnOnce(Iaur) -> Iaur>(&self, f: F) -> &Self {
+     let value = f(Iaur(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x118) as *mut u32, value.0);
      }
@@ -381,7 +447,11 @@ impl Enet {
 #[doc="Modify the IAUR register."]
   #[inline] pub fn with_iaur<F: FnOnce(Iaur) -> Iaur>(&self, f: F) -> &Self {
      let tmp = self.iaur();
-     self.set_iaur(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x118) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the IALR register."]
@@ -399,7 +469,8 @@ impl Enet {
      }
   }
 #[doc="Write the IALR register."]
-  #[inline] pub fn set_ialr(&self, value: Ialr) -> &Self {
+  #[inline] pub fn set_ialr<F: FnOnce(Ialr) -> Ialr>(&self, f: F) -> &Self {
+     let value = f(Ialr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
      }
@@ -408,7 +479,11 @@ impl Enet {
 #[doc="Modify the IALR register."]
   #[inline] pub fn with_ialr<F: FnOnce(Ialr) -> Ialr>(&self, f: F) -> &Self {
      let tmp = self.ialr();
-     self.set_ialr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the GAUR register."]
@@ -426,7 +501,8 @@ impl Enet {
      }
   }
 #[doc="Write the GAUR register."]
-  #[inline] pub fn set_gaur(&self, value: Gaur) -> &Self {
+  #[inline] pub fn set_gaur<F: FnOnce(Gaur) -> Gaur>(&self, f: F) -> &Self {
+     let value = f(Gaur(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x120) as *mut u32, value.0);
      }
@@ -435,7 +511,11 @@ impl Enet {
 #[doc="Modify the GAUR register."]
   #[inline] pub fn with_gaur<F: FnOnce(Gaur) -> Gaur>(&self, f: F) -> &Self {
      let tmp = self.gaur();
-     self.set_gaur(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x120) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the GALR register."]
@@ -453,7 +533,8 @@ impl Enet {
      }
   }
 #[doc="Write the GALR register."]
-  #[inline] pub fn set_galr(&self, value: Galr) -> &Self {
+  #[inline] pub fn set_galr<F: FnOnce(Galr) -> Galr>(&self, f: F) -> &Self {
+     let value = f(Galr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x124) as *mut u32, value.0);
      }
@@ -462,7 +543,11 @@ impl Enet {
 #[doc="Modify the GALR register."]
   #[inline] pub fn with_galr<F: FnOnce(Galr) -> Galr>(&self, f: F) -> &Self {
      let tmp = self.galr();
-     self.set_galr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x124) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TFWR register."]
@@ -480,7 +565,8 @@ impl Enet {
      }
   }
 #[doc="Write the TFWR register."]
-  #[inline] pub fn set_tfwr(&self, value: Tfwr) -> &Self {
+  #[inline] pub fn set_tfwr<F: FnOnce(Tfwr) -> Tfwr>(&self, f: F) -> &Self {
+     let value = f(Tfwr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x144) as *mut u32, value.0);
      }
@@ -489,7 +575,11 @@ impl Enet {
 #[doc="Modify the TFWR register."]
   #[inline] pub fn with_tfwr<F: FnOnce(Tfwr) -> Tfwr>(&self, f: F) -> &Self {
      let tmp = self.tfwr();
-     self.set_tfwr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x144) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RDSR register."]
@@ -507,7 +597,8 @@ impl Enet {
      }
   }
 #[doc="Write the RDSR register."]
-  #[inline] pub fn set_rdsr(&self, value: Rdsr) -> &Self {
+  #[inline] pub fn set_rdsr<F: FnOnce(Rdsr) -> Rdsr>(&self, f: F) -> &Self {
+     let value = f(Rdsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
      }
@@ -516,7 +607,11 @@ impl Enet {
 #[doc="Modify the RDSR register."]
   #[inline] pub fn with_rdsr<F: FnOnce(Rdsr) -> Rdsr>(&self, f: F) -> &Self {
      let tmp = self.rdsr();
-     self.set_rdsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TDSR register."]
@@ -534,7 +629,8 @@ impl Enet {
      }
   }
 #[doc="Write the TDSR register."]
-  #[inline] pub fn set_tdsr(&self, value: Tdsr) -> &Self {
+  #[inline] pub fn set_tdsr<F: FnOnce(Tdsr) -> Tdsr>(&self, f: F) -> &Self {
+     let value = f(Tdsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x184) as *mut u32, value.0);
      }
@@ -543,7 +639,11 @@ impl Enet {
 #[doc="Modify the TDSR register."]
   #[inline] pub fn with_tdsr<F: FnOnce(Tdsr) -> Tdsr>(&self, f: F) -> &Self {
      let tmp = self.tdsr();
-     self.set_tdsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x184) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MRBR register."]
@@ -561,7 +661,8 @@ impl Enet {
      }
   }
 #[doc="Write the MRBR register."]
-  #[inline] pub fn set_mrbr(&self, value: Mrbr) -> &Self {
+  #[inline] pub fn set_mrbr<F: FnOnce(Mrbr) -> Mrbr>(&self, f: F) -> &Self {
+     let value = f(Mrbr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x188) as *mut u32, value.0);
      }
@@ -570,7 +671,11 @@ impl Enet {
 #[doc="Modify the MRBR register."]
   #[inline] pub fn with_mrbr<F: FnOnce(Mrbr) -> Mrbr>(&self, f: F) -> &Self {
      let tmp = self.mrbr();
-     self.set_mrbr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x188) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RSFL register."]
@@ -588,7 +693,8 @@ impl Enet {
      }
   }
 #[doc="Write the RSFL register."]
-  #[inline] pub fn set_rsfl(&self, value: Rsfl) -> &Self {
+  #[inline] pub fn set_rsfl<F: FnOnce(Rsfl) -> Rsfl>(&self, f: F) -> &Self {
+     let value = f(Rsfl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x190) as *mut u32, value.0);
      }
@@ -597,7 +703,11 @@ impl Enet {
 #[doc="Modify the RSFL register."]
   #[inline] pub fn with_rsfl<F: FnOnce(Rsfl) -> Rsfl>(&self, f: F) -> &Self {
      let tmp = self.rsfl();
-     self.set_rsfl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x190) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RSEM register."]
@@ -615,7 +725,8 @@ impl Enet {
      }
   }
 #[doc="Write the RSEM register."]
-  #[inline] pub fn set_rsem(&self, value: Rsem) -> &Self {
+  #[inline] pub fn set_rsem<F: FnOnce(Rsem) -> Rsem>(&self, f: F) -> &Self {
+     let value = f(Rsem(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x194) as *mut u32, value.0);
      }
@@ -624,7 +735,11 @@ impl Enet {
 #[doc="Modify the RSEM register."]
   #[inline] pub fn with_rsem<F: FnOnce(Rsem) -> Rsem>(&self, f: F) -> &Self {
      let tmp = self.rsem();
-     self.set_rsem(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x194) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RAEM register."]
@@ -642,7 +757,8 @@ impl Enet {
      }
   }
 #[doc="Write the RAEM register."]
-  #[inline] pub fn set_raem(&self, value: Raem) -> &Self {
+  #[inline] pub fn set_raem<F: FnOnce(Raem) -> Raem>(&self, f: F) -> &Self {
+     let value = f(Raem(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x198) as *mut u32, value.0);
      }
@@ -651,7 +767,11 @@ impl Enet {
 #[doc="Modify the RAEM register."]
   #[inline] pub fn with_raem<F: FnOnce(Raem) -> Raem>(&self, f: F) -> &Self {
      let tmp = self.raem();
-     self.set_raem(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x198) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RAFL register."]
@@ -669,7 +789,8 @@ impl Enet {
      }
   }
 #[doc="Write the RAFL register."]
-  #[inline] pub fn set_rafl(&self, value: Rafl) -> &Self {
+  #[inline] pub fn set_rafl<F: FnOnce(Rafl) -> Rafl>(&self, f: F) -> &Self {
+     let value = f(Rafl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x19c) as *mut u32, value.0);
      }
@@ -678,7 +799,11 @@ impl Enet {
 #[doc="Modify the RAFL register."]
   #[inline] pub fn with_rafl<F: FnOnce(Rafl) -> Rafl>(&self, f: F) -> &Self {
      let tmp = self.rafl();
-     self.set_rafl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x19c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TSEM register."]
@@ -696,7 +821,8 @@ impl Enet {
      }
   }
 #[doc="Write the TSEM register."]
-  #[inline] pub fn set_tsem(&self, value: Tsem) -> &Self {
+  #[inline] pub fn set_tsem<F: FnOnce(Tsem) -> Tsem>(&self, f: F) -> &Self {
+     let value = f(Tsem(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1a0) as *mut u32, value.0);
      }
@@ -705,7 +831,11 @@ impl Enet {
 #[doc="Modify the TSEM register."]
   #[inline] pub fn with_tsem<F: FnOnce(Tsem) -> Tsem>(&self, f: F) -> &Self {
      let tmp = self.tsem();
-     self.set_tsem(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TAEM register."]
@@ -723,7 +853,8 @@ impl Enet {
      }
   }
 #[doc="Write the TAEM register."]
-  #[inline] pub fn set_taem(&self, value: Taem) -> &Self {
+  #[inline] pub fn set_taem<F: FnOnce(Taem) -> Taem>(&self, f: F) -> &Self {
+     let value = f(Taem(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1a4) as *mut u32, value.0);
      }
@@ -732,7 +863,11 @@ impl Enet {
 #[doc="Modify the TAEM register."]
   #[inline] pub fn with_taem<F: FnOnce(Taem) -> Taem>(&self, f: F) -> &Self {
      let tmp = self.taem();
-     self.set_taem(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TAFL register."]
@@ -750,7 +885,8 @@ impl Enet {
      }
   }
 #[doc="Write the TAFL register."]
-  #[inline] pub fn set_tafl(&self, value: Tafl) -> &Self {
+  #[inline] pub fn set_tafl<F: FnOnce(Tafl) -> Tafl>(&self, f: F) -> &Self {
+     let value = f(Tafl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1a8) as *mut u32, value.0);
      }
@@ -759,7 +895,11 @@ impl Enet {
 #[doc="Modify the TAFL register."]
   #[inline] pub fn with_tafl<F: FnOnce(Tafl) -> Tafl>(&self, f: F) -> &Self {
      let tmp = self.tafl();
-     self.set_tafl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1a8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TIPG register."]
@@ -777,7 +917,8 @@ impl Enet {
      }
   }
 #[doc="Write the TIPG register."]
-  #[inline] pub fn set_tipg(&self, value: Tipg) -> &Self {
+  #[inline] pub fn set_tipg<F: FnOnce(Tipg) -> Tipg>(&self, f: F) -> &Self {
+     let value = f(Tipg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1ac) as *mut u32, value.0);
      }
@@ -786,7 +927,11 @@ impl Enet {
 #[doc="Modify the TIPG register."]
   #[inline] pub fn with_tipg<F: FnOnce(Tipg) -> Tipg>(&self, f: F) -> &Self {
      let tmp = self.tipg();
-     self.set_tipg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1ac) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FTRL register."]
@@ -804,7 +949,8 @@ impl Enet {
      }
   }
 #[doc="Write the FTRL register."]
-  #[inline] pub fn set_ftrl(&self, value: Ftrl) -> &Self {
+  #[inline] pub fn set_ftrl<F: FnOnce(Ftrl) -> Ftrl>(&self, f: F) -> &Self {
+     let value = f(Ftrl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1b0) as *mut u32, value.0);
      }
@@ -813,7 +959,11 @@ impl Enet {
 #[doc="Modify the FTRL register."]
   #[inline] pub fn with_ftrl<F: FnOnce(Ftrl) -> Ftrl>(&self, f: F) -> &Self {
      let tmp = self.ftrl();
-     self.set_ftrl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1b0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TACC register."]
@@ -831,7 +981,8 @@ impl Enet {
      }
   }
 #[doc="Write the TACC register."]
-  #[inline] pub fn set_tacc(&self, value: Tacc) -> &Self {
+  #[inline] pub fn set_tacc<F: FnOnce(Tacc) -> Tacc>(&self, f: F) -> &Self {
+     let value = f(Tacc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c0) as *mut u32, value.0);
      }
@@ -840,7 +991,11 @@ impl Enet {
 #[doc="Modify the TACC register."]
   #[inline] pub fn with_tacc<F: FnOnce(Tacc) -> Tacc>(&self, f: F) -> &Self {
      let tmp = self.tacc();
-     self.set_tacc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RACC register."]
@@ -858,7 +1013,8 @@ impl Enet {
      }
   }
 #[doc="Write the RACC register."]
-  #[inline] pub fn set_racc(&self, value: Racc) -> &Self {
+  #[inline] pub fn set_racc<F: FnOnce(Racc) -> Racc>(&self, f: F) -> &Self {
+     let value = f(Racc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c4) as *mut u32, value.0);
      }
@@ -867,7 +1023,11 @@ impl Enet {
 #[doc="Modify the RACC register."]
   #[inline] pub fn with_racc<F: FnOnce(Racc) -> Racc>(&self, f: F) -> &Self {
      let tmp = self.racc();
-     self.set_racc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RMON_T_PACKETS register."]
@@ -1635,7 +1795,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATCR register."]
-  #[inline] pub fn set_atcr(&self, value: Atcr) -> &Self {
+  #[inline] pub fn set_atcr<F: FnOnce(Atcr) -> Atcr>(&self, f: F) -> &Self {
+     let value = f(Atcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
      }
@@ -1644,7 +1805,11 @@ impl Enet {
 #[doc="Modify the ATCR register."]
   #[inline] pub fn with_atcr<F: FnOnce(Atcr) -> Atcr>(&self, f: F) -> &Self {
      let tmp = self.atcr();
-     self.set_atcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATVR register."]
@@ -1662,7 +1827,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATVR register."]
-  #[inline] pub fn set_atvr(&self, value: Atvr) -> &Self {
+  #[inline] pub fn set_atvr<F: FnOnce(Atvr) -> Atvr>(&self, f: F) -> &Self {
+     let value = f(Atvr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x404) as *mut u32, value.0);
      }
@@ -1671,7 +1837,11 @@ impl Enet {
 #[doc="Modify the ATVR register."]
   #[inline] pub fn with_atvr<F: FnOnce(Atvr) -> Atvr>(&self, f: F) -> &Self {
      let tmp = self.atvr();
-     self.set_atvr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x404) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATOFF register."]
@@ -1689,7 +1859,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATOFF register."]
-  #[inline] pub fn set_atoff(&self, value: Atoff) -> &Self {
+  #[inline] pub fn set_atoff<F: FnOnce(Atoff) -> Atoff>(&self, f: F) -> &Self {
+     let value = f(Atoff(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x408) as *mut u32, value.0);
      }
@@ -1698,7 +1869,11 @@ impl Enet {
 #[doc="Modify the ATOFF register."]
   #[inline] pub fn with_atoff<F: FnOnce(Atoff) -> Atoff>(&self, f: F) -> &Self {
      let tmp = self.atoff();
-     self.set_atoff(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x408) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATPER register."]
@@ -1716,7 +1891,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATPER register."]
-  #[inline] pub fn set_atper(&self, value: Atper) -> &Self {
+  #[inline] pub fn set_atper<F: FnOnce(Atper) -> Atper>(&self, f: F) -> &Self {
+     let value = f(Atper(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40c) as *mut u32, value.0);
      }
@@ -1725,7 +1901,11 @@ impl Enet {
 #[doc="Modify the ATPER register."]
   #[inline] pub fn with_atper<F: FnOnce(Atper) -> Atper>(&self, f: F) -> &Self {
      let tmp = self.atper();
-     self.set_atper(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATCOR register."]
@@ -1743,7 +1923,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATCOR register."]
-  #[inline] pub fn set_atcor(&self, value: Atcor) -> &Self {
+  #[inline] pub fn set_atcor<F: FnOnce(Atcor) -> Atcor>(&self, f: F) -> &Self {
+     let value = f(Atcor(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x410) as *mut u32, value.0);
      }
@@ -1752,7 +1933,11 @@ impl Enet {
 #[doc="Modify the ATCOR register."]
   #[inline] pub fn with_atcor<F: FnOnce(Atcor) -> Atcor>(&self, f: F) -> &Self {
      let tmp = self.atcor();
-     self.set_atcor(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x410) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATINC register."]
@@ -1770,7 +1955,8 @@ impl Enet {
      }
   }
 #[doc="Write the ATINC register."]
-  #[inline] pub fn set_atinc(&self, value: Atinc) -> &Self {
+  #[inline] pub fn set_atinc<F: FnOnce(Atinc) -> Atinc>(&self, f: F) -> &Self {
+     let value = f(Atinc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x414) as *mut u32, value.0);
      }
@@ -1779,7 +1965,11 @@ impl Enet {
 #[doc="Modify the ATINC register."]
   #[inline] pub fn with_atinc<F: FnOnce(Atinc) -> Atinc>(&self, f: F) -> &Self {
      let tmp = self.atinc();
-     self.set_atinc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x414) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATSTMP register."]
@@ -1812,7 +2002,8 @@ impl Enet {
      }
   }
 #[doc="Write the TGSR register."]
-  #[inline] pub fn set_tgsr(&self, value: Tgsr) -> &Self {
+  #[inline] pub fn set_tgsr<F: FnOnce(Tgsr) -> Tgsr>(&self, f: F) -> &Self {
+     let value = f(Tgsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
      }
@@ -1821,7 +2012,11 @@ impl Enet {
 #[doc="Modify the TGSR register."]
   #[inline] pub fn with_tgsr<F: FnOnce(Tgsr) -> Tgsr>(&self, f: F) -> &Self {
      let tmp = self.tgsr();
-     self.set_tgsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TCSR register."]
@@ -1845,9 +2040,10 @@ impl Enet {
      }
   }
 #[doc="Write the TCSR register."]
-  #[inline] pub fn set_tcsr<I: Into<bits::R4>>(&self, index: I, value: Tcsr) -> &Self {
+  #[inline] pub fn set_tcsr<I: Into<bits::R4>, F: FnOnce(Tcsr) -> Tcsr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Tcsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x608 + (index << 3)) as *mut u32, value.0);
      }
@@ -1856,7 +2052,11 @@ impl Enet {
 #[doc="Modify the TCSR register."]
   #[inline] pub fn with_tcsr<I: Into<bits::R4> + Copy, F: FnOnce(Tcsr) -> Tcsr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tcsr(index);
-     self.set_tcsr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TCCR register."]
@@ -1880,9 +2080,10 @@ impl Enet {
      }
   }
 #[doc="Write the TCCR register."]
-  #[inline] pub fn set_tccr<I: Into<bits::R4>>(&self, index: I, value: Tccr) -> &Self {
+  #[inline] pub fn set_tccr<I: Into<bits::R4>, F: FnOnce(Tccr) -> Tccr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Tccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60c + (index << 3)) as *mut u32, value.0);
      }
@@ -1891,7 +2092,11 @@ impl Enet {
 #[doc="Modify the TCCR register."]
   #[inline] pub fn with_tccr<I: Into<bits::R4> + Copy, F: FnOnce(Tccr) -> Tccr>(&self, index: I, f: F) -> &Self {
      let tmp = self.tccr(index);
-     self.set_tccr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

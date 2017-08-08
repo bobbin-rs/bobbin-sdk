@@ -1,5 +1,6 @@
 pub use ::chip::scb::*;
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct CpuId {
     pub implementer: u8,
     pub variant: u8,
@@ -59,11 +60,11 @@ pub fn pendsv() -> bool {
 }
 
 pub fn set_pendsv() {
-    SCB.set_icsr(Icsr(0).set_pendsvset(1));
+    SCB.set_icsr(|r| r.set_pendsvset(1));
 }
 
 pub fn clear_pendsv() {
-    SCB.set_icsr(Icsr(0).set_pendsvclr(1));
+    SCB.set_icsr(|r| r.set_pendsvclr(1));
 }
 
 pub fn pendst() -> bool {
@@ -71,11 +72,11 @@ pub fn pendst() -> bool {
 }
 
 pub fn set_pendst() {
-    SCB.set_icsr(Icsr(0).set_pendstset(1));
+    SCB.set_icsr(|r| r.set_pendstset(1));
 }
 
 pub fn clear_pendst() {
-    SCB.set_icsr(Icsr(0).set_pendstclr(1));
+    SCB.set_icsr(|r| r.set_pendstclr(1));
 }
 
 pub fn isr_pending() -> bool {
@@ -101,7 +102,7 @@ pub fn tbloff() -> u32 {
 }
 
 pub fn set_tbloff(value: u32) {
-    SCB.set_vtor(Vtor(0).set_tbloff(value));
+    SCB.set_vtor(|r| r.set_tbloff(value));
 }
 
 // AIRCR
@@ -127,7 +128,6 @@ pub fn set_prigroup(value: u8) {
 }
 
 pub fn set_sysresetreq(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_aircr(|r| r.set_sysresetreq(value));
 }
 
@@ -138,7 +138,6 @@ pub fn sevonpend() -> bool {
 }
 
 pub fn set_sevonpend(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_scr(|r| r.set_sevonpend(value));
 }
 
@@ -147,7 +146,6 @@ pub fn sleepdeep() -> bool {
 }
 
 pub fn set_sleepdeep(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_scr(|r| r.set_sleepdeep(value));
 }
 
@@ -156,7 +154,6 @@ pub fn sleeponexit() -> bool {
 }
 
 pub fn set_sleeponexit(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_scr(|r| r.set_sleeponexit(value));
 }
 
@@ -167,7 +164,6 @@ pub fn stkalign() -> bool {
 }
 
 pub fn set_stkalign(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ccr(|r| r.set_stkalign(value));
 }
 
@@ -176,7 +172,6 @@ pub fn bfhfnmign() -> bool {
 }
 
 pub fn set_bfhfnmign(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ccr(|r| r.set_bfhfnmign(value));
 }
 
@@ -186,7 +181,6 @@ pub fn div_0_trp() -> bool {
 }
 
 pub fn set_div_0_trp(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ccr(|r| r.set_div_0_trp(value));
 }
 
@@ -205,7 +199,6 @@ pub fn usersetmpend() -> bool {
 }
 
 pub fn set_usersetmpend(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ccr(|r| r.set_usersetmpend(value));
 }
 
@@ -214,7 +207,6 @@ pub fn nonbasethrdena() -> bool {
 }
 
 pub fn set_nonbasethrdena(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ccr(|r| r.set_nonbasethrdena(value));
 }
 
@@ -323,7 +315,6 @@ pub fn usgfaultena() -> bool {
 }
 
 pub fn set_usgfaultena(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_usgfaultena(value));
 }
 
@@ -332,7 +323,6 @@ pub fn busfaultena() -> bool {
 }
 
 pub fn set_busfaultena(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_busfaultena(value));
 }
 
@@ -341,7 +331,6 @@ pub fn memfaultena() -> bool {
 }
 
 pub fn set_memfaultena(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_memfaultena(value));
 }
 
@@ -350,7 +339,6 @@ pub fn svcallpended() -> bool {
 }
 
 pub fn set_svcallpended(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_svcallpended(value));
 }
 
@@ -359,7 +347,6 @@ pub fn busfaultpended() -> bool {
 }
 
 pub fn set_busfaultpended(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_busfaultpended(value));
 }
 
@@ -368,7 +355,6 @@ pub fn memfaultpended() -> bool {
 }
 
 pub fn set_memfaultpended(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_memfaultpended(value));
 }
 
@@ -377,7 +363,6 @@ pub fn usgfaultpended() -> bool {
 }
 
 pub fn set_usgfaultpended(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_usgfaultpended(value));
 }
 
@@ -386,7 +371,6 @@ pub fn systickact() -> bool {
 }
 
 pub fn set_systickact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_systickact(value));
 }
 
@@ -395,7 +379,6 @@ pub fn pendsvact() -> bool {
 }
 
 pub fn set_pendsvact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_pendsvact(value));
 }
 
@@ -404,7 +387,6 @@ pub fn monitoract() -> bool {
 }
 
 pub fn set_monitoract(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_monitoract(value));
 }
 
@@ -413,7 +395,6 @@ pub fn svcallact() -> bool {
 }
 
 pub fn set_svcallact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_svcallact(value));
 }
 
@@ -422,7 +403,6 @@ pub fn usgfaultact() -> bool {
 }
 
 pub fn set_usgfaultact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_usgfaultact(value));
 }
 
@@ -431,7 +411,6 @@ pub fn busfaultact() -> bool {
 }
 
 pub fn set_busfaultact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_busfaultact(value));
 }
 
@@ -440,7 +419,6 @@ pub fn memfaultact() -> bool {
 }
 
 pub fn set_memfaultact(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_shcsr(|r| r.set_memfaultact(value));
 }
 
@@ -451,7 +429,6 @@ pub fn mmarvalid() -> bool {
 }
 
 pub fn set_mmarvalid(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_mmfsr(|r| r.set_mmarvalid(value));
 }
 
@@ -460,7 +437,6 @@ pub fn mstkerr() -> bool {
 }
 
 pub fn set_mstkerr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_mmfsr(|r| r.set_mstkerr(value));
 }
 
@@ -469,7 +445,6 @@ pub fn munstkerr() -> bool {
 }
 
 pub fn set_munstkerr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_mmfsr(|r| r.set_munstkerr(value));
 }
 
@@ -478,7 +453,6 @@ pub fn daccviol() -> bool {
 }
 
 pub fn set_daccviol(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_mmfsr(|r| r.set_daccviol(value));
 }
 
@@ -487,7 +461,6 @@ pub fn iaccviol() -> bool {
 }
 
 pub fn set_iaccviol(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_mmfsr(|r| r.set_iaccviol(value));
 }
 
@@ -498,7 +471,6 @@ pub fn bfarvalid() -> bool {
 }
 
 pub fn set_bfarvalid(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_bfarvalid(value));
 }
 
@@ -507,7 +479,6 @@ pub fn stkerr() -> bool {
 }
 
 pub fn set_stkerr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_stkerr(value));
 }
 pub fn unstkerr() -> bool {
@@ -515,7 +486,6 @@ pub fn unstkerr() -> bool {
 }
 
 pub fn set_unstkerr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_unstkerr(value));
 }
 pub fn impreciserr() -> bool {
@@ -523,7 +493,6 @@ pub fn impreciserr() -> bool {
 }
 
 pub fn set_impreciserr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_impreciserr(value));
 }
 
@@ -532,7 +501,6 @@ pub fn preciserr() -> bool {
 }
 
 pub fn set_preciserr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_preciserr(value));
 }
 
@@ -541,7 +509,6 @@ pub fn ibuserr() -> bool {
 }
 
 pub fn set_ibuserr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_bfsr(|r| r.set_ibuserr(value));
 }
 
@@ -552,7 +519,6 @@ pub fn divbyzero() -> bool {
 }
 
 pub fn set_divbyzero(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_divbyzero(value));
 }
 
@@ -561,7 +527,6 @@ pub fn unaligned() -> bool {
 }
 
 pub fn set_unaligned(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_unaligned(value));
 }
 
@@ -570,7 +535,6 @@ pub fn nocp() -> bool {
 }
 
 pub fn set_nocp(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_nocp(value));
 }
 
@@ -580,7 +544,6 @@ pub fn invpc() -> bool {
 }
 
 pub fn set_invpc(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_invpc(value));
 }
 
@@ -590,7 +553,6 @@ pub fn invstate() -> bool {
 }
 
 pub fn set_invstate(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_invstate(value));
 }
 
@@ -599,7 +561,6 @@ pub fn undefinstr() -> bool {
 }
 
 pub fn set_undefinstr(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_ufsr(|r| r.set_undefinstr(value));
 }
 
@@ -610,7 +571,6 @@ pub fn debugevt() -> bool {
 }
 
 pub fn set_debugevt(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_hfsr(|r| r.set_debugevt(value));
 }
 
@@ -619,7 +579,6 @@ pub fn forced() -> bool {
 }
 
 pub fn set_forced(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_hfsr(|r| r.set_forced(value));
 }
 
@@ -628,7 +587,6 @@ pub fn vecttbl() -> bool {
 }
 
 pub fn set_vecttbl(value: bool) {
-    let value = if value { 1 } else { 0 };
     SCB.with_hfsr(|r| r.set_vecttbl(value));
 }
 

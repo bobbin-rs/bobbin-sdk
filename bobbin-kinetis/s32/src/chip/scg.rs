@@ -66,7 +66,8 @@ impl Scg {
      }
   }
 #[doc="Write the RCCR register."]
-  #[inline] pub fn set_rccr(&self, value: Rccr) -> &Self {
+  #[inline] pub fn set_rccr<F: FnOnce(Rccr) -> Rccr>(&self, f: F) -> &Self {
+     let value = f(Rccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -75,7 +76,11 @@ impl Scg {
 #[doc="Modify the RCCR register."]
   #[inline] pub fn with_rccr<F: FnOnce(Rccr) -> Rccr>(&self, f: F) -> &Self {
      let tmp = self.rccr();
-     self.set_rccr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the VCCR register."]
@@ -93,7 +98,8 @@ impl Scg {
      }
   }
 #[doc="Write the VCCR register."]
-  #[inline] pub fn set_vccr(&self, value: Vccr) -> &Self {
+  #[inline] pub fn set_vccr<F: FnOnce(Vccr) -> Vccr>(&self, f: F) -> &Self {
+     let value = f(Vccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -102,7 +108,11 @@ impl Scg {
 #[doc="Modify the VCCR register."]
   #[inline] pub fn with_vccr<F: FnOnce(Vccr) -> Vccr>(&self, f: F) -> &Self {
      let tmp = self.vccr();
-     self.set_vccr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the HCCR register."]
@@ -120,7 +130,8 @@ impl Scg {
      }
   }
 #[doc="Write the HCCR register."]
-  #[inline] pub fn set_hccr(&self, value: Hccr) -> &Self {
+  #[inline] pub fn set_hccr<F: FnOnce(Hccr) -> Hccr>(&self, f: F) -> &Self {
+     let value = f(Hccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -129,7 +140,11 @@ impl Scg {
 #[doc="Modify the HCCR register."]
   #[inline] pub fn with_hccr<F: FnOnce(Hccr) -> Hccr>(&self, f: F) -> &Self {
      let tmp = self.hccr();
-     self.set_hccr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CLKOUTCNFG register."]
@@ -147,7 +162,8 @@ impl Scg {
      }
   }
 #[doc="Write the CLKOUTCNFG register."]
-  #[inline] pub fn set_clkoutcnfg(&self, value: Clkoutcnfg) -> &Self {
+  #[inline] pub fn set_clkoutcnfg<F: FnOnce(Clkoutcnfg) -> Clkoutcnfg>(&self, f: F) -> &Self {
+     let value = f(Clkoutcnfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -156,7 +172,11 @@ impl Scg {
 #[doc="Modify the CLKOUTCNFG register."]
   #[inline] pub fn with_clkoutcnfg<F: FnOnce(Clkoutcnfg) -> Clkoutcnfg>(&self, f: F) -> &Self {
      let tmp = self.clkoutcnfg();
-     self.set_clkoutcnfg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SOSCCSR register."]
@@ -174,7 +194,8 @@ impl Scg {
      }
   }
 #[doc="Write the SOSCCSR register."]
-  #[inline] pub fn set_sosccsr(&self, value: Sosccsr) -> &Self {
+  #[inline] pub fn set_sosccsr<F: FnOnce(Sosccsr) -> Sosccsr>(&self, f: F) -> &Self {
+     let value = f(Sosccsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
      }
@@ -183,7 +204,11 @@ impl Scg {
 #[doc="Modify the SOSCCSR register."]
   #[inline] pub fn with_sosccsr<F: FnOnce(Sosccsr) -> Sosccsr>(&self, f: F) -> &Self {
      let tmp = self.sosccsr();
-     self.set_sosccsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SOSCDIV register."]
@@ -201,7 +226,8 @@ impl Scg {
      }
   }
 #[doc="Write the SOSCDIV register."]
-  #[inline] pub fn set_soscdiv(&self, value: Soscdiv) -> &Self {
+  #[inline] pub fn set_soscdiv<F: FnOnce(Soscdiv) -> Soscdiv>(&self, f: F) -> &Self {
+     let value = f(Soscdiv(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
      }
@@ -210,7 +236,11 @@ impl Scg {
 #[doc="Modify the SOSCDIV register."]
   #[inline] pub fn with_soscdiv<F: FnOnce(Soscdiv) -> Soscdiv>(&self, f: F) -> &Self {
      let tmp = self.soscdiv();
-     self.set_soscdiv(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SOSCCFG register."]
@@ -228,7 +258,8 @@ impl Scg {
      }
   }
 #[doc="Write the SOSCCFG register."]
-  #[inline] pub fn set_sosccfg(&self, value: Sosccfg) -> &Self {
+  #[inline] pub fn set_sosccfg<F: FnOnce(Sosccfg) -> Sosccfg>(&self, f: F) -> &Self {
+     let value = f(Sosccfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
      }
@@ -237,7 +268,11 @@ impl Scg {
 #[doc="Modify the SOSCCFG register."]
   #[inline] pub fn with_sosccfg<F: FnOnce(Sosccfg) -> Sosccfg>(&self, f: F) -> &Self {
      let tmp = self.sosccfg();
-     self.set_sosccfg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SIRCCSR register."]
@@ -255,7 +290,8 @@ impl Scg {
      }
   }
 #[doc="Write the SIRCCSR register."]
-  #[inline] pub fn set_sirccsr(&self, value: Sirccsr) -> &Self {
+  #[inline] pub fn set_sirccsr<F: FnOnce(Sirccsr) -> Sirccsr>(&self, f: F) -> &Self {
+     let value = f(Sirccsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x200) as *mut u32, value.0);
      }
@@ -264,7 +300,11 @@ impl Scg {
 #[doc="Modify the SIRCCSR register."]
   #[inline] pub fn with_sirccsr<F: FnOnce(Sirccsr) -> Sirccsr>(&self, f: F) -> &Self {
      let tmp = self.sirccsr();
-     self.set_sirccsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x200) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SIRCDIV register."]
@@ -282,7 +322,8 @@ impl Scg {
      }
   }
 #[doc="Write the SIRCDIV register."]
-  #[inline] pub fn set_sircdiv(&self, value: Sircdiv) -> &Self {
+  #[inline] pub fn set_sircdiv<F: FnOnce(Sircdiv) -> Sircdiv>(&self, f: F) -> &Self {
+     let value = f(Sircdiv(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x204) as *mut u32, value.0);
      }
@@ -291,7 +332,11 @@ impl Scg {
 #[doc="Modify the SIRCDIV register."]
   #[inline] pub fn with_sircdiv<F: FnOnce(Sircdiv) -> Sircdiv>(&self, f: F) -> &Self {
      let tmp = self.sircdiv();
-     self.set_sircdiv(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x204) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SIRCCFG register."]
@@ -309,7 +354,8 @@ impl Scg {
      }
   }
 #[doc="Write the SIRCCFG register."]
-  #[inline] pub fn set_sirccfg(&self, value: Sirccfg) -> &Self {
+  #[inline] pub fn set_sirccfg<F: FnOnce(Sirccfg) -> Sirccfg>(&self, f: F) -> &Self {
+     let value = f(Sirccfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x208) as *mut u32, value.0);
      }
@@ -318,7 +364,11 @@ impl Scg {
 #[doc="Modify the SIRCCFG register."]
   #[inline] pub fn with_sirccfg<F: FnOnce(Sirccfg) -> Sirccfg>(&self, f: F) -> &Self {
      let tmp = self.sirccfg();
-     self.set_sirccfg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x208) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FIRCCSR register."]
@@ -336,7 +386,8 @@ impl Scg {
      }
   }
 #[doc="Write the FIRCCSR register."]
-  #[inline] pub fn set_firccsr(&self, value: Firccsr) -> &Self {
+  #[inline] pub fn set_firccsr<F: FnOnce(Firccsr) -> Firccsr>(&self, f: F) -> &Self {
+     let value = f(Firccsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x300) as *mut u32, value.0);
      }
@@ -345,7 +396,11 @@ impl Scg {
 #[doc="Modify the FIRCCSR register."]
   #[inline] pub fn with_firccsr<F: FnOnce(Firccsr) -> Firccsr>(&self, f: F) -> &Self {
      let tmp = self.firccsr();
-     self.set_firccsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x300) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FIRCDIV register."]
@@ -363,7 +418,8 @@ impl Scg {
      }
   }
 #[doc="Write the FIRCDIV register."]
-  #[inline] pub fn set_fircdiv(&self, value: Fircdiv) -> &Self {
+  #[inline] pub fn set_fircdiv<F: FnOnce(Fircdiv) -> Fircdiv>(&self, f: F) -> &Self {
+     let value = f(Fircdiv(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x304) as *mut u32, value.0);
      }
@@ -372,7 +428,11 @@ impl Scg {
 #[doc="Modify the FIRCDIV register."]
   #[inline] pub fn with_fircdiv<F: FnOnce(Fircdiv) -> Fircdiv>(&self, f: F) -> &Self {
      let tmp = self.fircdiv();
-     self.set_fircdiv(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x304) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FIRCCFG register."]
@@ -390,7 +450,8 @@ impl Scg {
      }
   }
 #[doc="Write the FIRCCFG register."]
-  #[inline] pub fn set_firccfg(&self, value: Firccfg) -> &Self {
+  #[inline] pub fn set_firccfg<F: FnOnce(Firccfg) -> Firccfg>(&self, f: F) -> &Self {
+     let value = f(Firccfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x308) as *mut u32, value.0);
      }
@@ -399,7 +460,11 @@ impl Scg {
 #[doc="Modify the FIRCCFG register."]
   #[inline] pub fn with_firccfg<F: FnOnce(Firccfg) -> Firccfg>(&self, f: F) -> &Self {
      let tmp = self.firccfg();
-     self.set_firccfg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x308) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SPLLCSR register."]
@@ -417,7 +482,8 @@ impl Scg {
      }
   }
 #[doc="Write the SPLLCSR register."]
-  #[inline] pub fn set_spllcsr(&self, value: Spllcsr) -> &Self {
+  #[inline] pub fn set_spllcsr<F: FnOnce(Spllcsr) -> Spllcsr>(&self, f: F) -> &Self {
+     let value = f(Spllcsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x600) as *mut u32, value.0);
      }
@@ -426,7 +492,11 @@ impl Scg {
 #[doc="Modify the SPLLCSR register."]
   #[inline] pub fn with_spllcsr<F: FnOnce(Spllcsr) -> Spllcsr>(&self, f: F) -> &Self {
      let tmp = self.spllcsr();
-     self.set_spllcsr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x600) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SPLLDIV register."]
@@ -444,7 +514,8 @@ impl Scg {
      }
   }
 #[doc="Write the SPLLDIV register."]
-  #[inline] pub fn set_splldiv(&self, value: Splldiv) -> &Self {
+  #[inline] pub fn set_splldiv<F: FnOnce(Splldiv) -> Splldiv>(&self, f: F) -> &Self {
+     let value = f(Splldiv(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
      }
@@ -453,7 +524,11 @@ impl Scg {
 #[doc="Modify the SPLLDIV register."]
   #[inline] pub fn with_splldiv<F: FnOnce(Splldiv) -> Splldiv>(&self, f: F) -> &Self {
      let tmp = self.splldiv();
-     self.set_splldiv(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x604) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SPLLCFG register."]
@@ -471,7 +546,8 @@ impl Scg {
      }
   }
 #[doc="Write the SPLLCFG register."]
-  #[inline] pub fn set_spllcfg(&self, value: Spllcfg) -> &Self {
+  #[inline] pub fn set_spllcfg<F: FnOnce(Spllcfg) -> Spllcfg>(&self, f: F) -> &Self {
+     let value = f(Spllcfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
      }
@@ -480,7 +556,11 @@ impl Scg {
 #[doc="Modify the SPLLCFG register."]
   #[inline] pub fn with_spllcfg<F: FnOnce(Spllcfg) -> Spllcfg>(&self, f: F) -> &Self {
      let tmp = self.spllcfg();
-     self.set_spllcfg(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x608) as *mut u32, value.0);
+     }
+     self
   }
 
 }

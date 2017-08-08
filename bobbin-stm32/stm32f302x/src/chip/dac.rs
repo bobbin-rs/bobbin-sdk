@@ -28,7 +28,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+     let value = f(Cr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -37,7 +38,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
-     self.set_cr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SWTRIGR register."]
@@ -49,7 +54,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0x4) as *mut u32
   }
 #[doc="Write the SWTRIGR register."]
-  #[inline] pub fn set_swtrigr(&self, value: Swtrigr) -> &Self {
+  #[inline] pub fn set_swtrigr<F: FnOnce(Swtrigr) -> Swtrigr>(&self, f: F) -> &Self {
+     let value = f(Swtrigr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -71,7 +77,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12R1 register."]
-  #[inline] pub fn set_dhr12r1(&self, value: Dhr12r1) -> &Self {
+  #[inline] pub fn set_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
+     let value = f(Dhr12r1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -80,7 +87,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12R1 register."]
   #[inline] pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
      let tmp = self.dhr12r1();
-     self.set_dhr12r1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR12L1 register."]
@@ -98,7 +109,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12L1 register."]
-  #[inline] pub fn set_dhr12l1(&self, value: Dhr12l1) -> &Self {
+  #[inline] pub fn set_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
+     let value = f(Dhr12l1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -107,7 +119,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12L1 register."]
   #[inline] pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
      let tmp = self.dhr12l1();
-     self.set_dhr12l1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR8R1 register."]
@@ -125,7 +141,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR8R1 register."]
-  #[inline] pub fn set_dhr8r1(&self, value: Dhr8r1) -> &Self {
+  #[inline] pub fn set_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
+     let value = f(Dhr8r1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -134,7 +151,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR8R1 register."]
   #[inline] pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
      let tmp = self.dhr8r1();
-     self.set_dhr8r1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR12R2 register."]
@@ -152,7 +173,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12R2 register."]
-  #[inline] pub fn set_dhr12r2(&self, value: Dhr12r2) -> &Self {
+  #[inline] pub fn set_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
+     let value = f(Dhr12r2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -161,7 +183,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12R2 register."]
   #[inline] pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
      let tmp = self.dhr12r2();
-     self.set_dhr12r2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR12L2 register."]
@@ -179,7 +205,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12L2 register."]
-  #[inline] pub fn set_dhr12l2(&self, value: Dhr12l2) -> &Self {
+  #[inline] pub fn set_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
+     let value = f(Dhr12l2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -188,7 +215,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12L2 register."]
   #[inline] pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
      let tmp = self.dhr12l2();
-     self.set_dhr12l2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR8R2 register."]
@@ -206,7 +237,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR8R2 register."]
-  #[inline] pub fn set_dhr8r2(&self, value: Dhr8r2) -> &Self {
+  #[inline] pub fn set_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
+     let value = f(Dhr8r2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -215,7 +247,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR8R2 register."]
   #[inline] pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
      let tmp = self.dhr8r2();
-     self.set_dhr8r2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR12RD register."]
@@ -233,7 +269,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12RD register."]
-  #[inline] pub fn set_dhr12rd(&self, value: Dhr12rd) -> &Self {
+  #[inline] pub fn set_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
+     let value = f(Dhr12rd(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -242,7 +279,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12RD register."]
   #[inline] pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
      let tmp = self.dhr12rd();
-     self.set_dhr12rd(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR12LD register."]
@@ -260,7 +301,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR12LD register."]
-  #[inline] pub fn set_dhr12ld(&self, value: Dhr12ld) -> &Self {
+  #[inline] pub fn set_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
+     let value = f(Dhr12ld(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -269,7 +311,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR12LD register."]
   #[inline] pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
      let tmp = self.dhr12ld();
-     self.set_dhr12ld(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DHR8RD register."]
@@ -287,7 +333,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DHR8RD register."]
-  #[inline] pub fn set_dhr8rd(&self, value: Dhr8rd) -> &Self {
+  #[inline] pub fn set_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
+     let value = f(Dhr8rd(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
@@ -296,7 +343,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DHR8RD register."]
   #[inline] pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
      let tmp = self.dhr8rd();
-     self.set_dhr8rd(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DOR1 register."]
@@ -344,7 +395,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr(&self, value: Sr) -> &Self {
+  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+     let value = f(Sr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
@@ -353,7 +405,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SR register."]
   #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
-     self.set_sr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+     }
+     self
   }
 
 }

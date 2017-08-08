@@ -15,7 +15,8 @@ impl Wdt {
      ((self.0 as usize) + 0x8) as *mut u8
   }
 #[doc="Write the CLEAR register."]
-  #[inline] pub fn set_clear(&self, value: Clear) -> &Self {
+  #[inline] pub fn set_clear<F: FnOnce(Clear) -> Clear>(&self, f: F) -> &Self {
+     let value = f(Clear(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
@@ -37,7 +38,8 @@ impl Wdt {
      }
   }
 #[doc="Write the CONFIG register."]
-  #[inline] pub fn set_config(&self, value: Config) -> &Self {
+  #[inline] pub fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+     let value = f(Config(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
@@ -46,7 +48,11 @@ impl Wdt {
 #[doc="Modify the CONFIG register."]
   #[inline] pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
      let tmp = self.config();
-     self.set_config(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CTRL register."]
@@ -64,7 +70,8 @@ impl Wdt {
      }
   }
 #[doc="Write the CTRL register."]
-  #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
+  #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
+     let value = f(Ctrl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
@@ -73,7 +80,11 @@ impl Wdt {
 #[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
-     self.set_ctrl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EWCTRL register."]
@@ -91,7 +102,8 @@ impl Wdt {
      }
   }
 #[doc="Write the EWCTRL register."]
-  #[inline] pub fn set_ewctrl(&self, value: Ewctrl) -> &Self {
+  #[inline] pub fn set_ewctrl<F: FnOnce(Ewctrl) -> Ewctrl>(&self, f: F) -> &Self {
+     let value = f(Ewctrl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
@@ -100,7 +112,11 @@ impl Wdt {
 #[doc="Modify the EWCTRL register."]
   #[inline] pub fn with_ewctrl<F: FnOnce(Ewctrl) -> Ewctrl>(&self, f: F) -> &Self {
      let tmp = self.ewctrl();
-     self.set_ewctrl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTENCLR register."]
@@ -118,7 +134,8 @@ impl Wdt {
      }
   }
 #[doc="Write the INTENCLR register."]
-  #[inline] pub fn set_intenclr(&self, value: Intenclr) -> &Self {
+  #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
+     let value = f(Intenclr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
@@ -127,7 +144,11 @@ impl Wdt {
 #[doc="Modify the INTENCLR register."]
   #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
-     self.set_intenclr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTENSET register."]
@@ -145,7 +166,8 @@ impl Wdt {
      }
   }
 #[doc="Write the INTENSET register."]
-  #[inline] pub fn set_intenset(&self, value: Intenset) -> &Self {
+  #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
+     let value = f(Intenset(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
@@ -154,7 +176,11 @@ impl Wdt {
 #[doc="Modify the INTENSET register."]
   #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
-     self.set_intenset(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTFLAG register."]
@@ -172,7 +198,8 @@ impl Wdt {
      }
   }
 #[doc="Write the INTFLAG register."]
-  #[inline] pub fn set_intflag(&self, value: Intflag) -> &Self {
+  #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
+     let value = f(Intflag(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
@@ -181,7 +208,11 @@ impl Wdt {
 #[doc="Modify the INTFLAG register."]
   #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
-     self.set_intflag(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the STATUS register."]

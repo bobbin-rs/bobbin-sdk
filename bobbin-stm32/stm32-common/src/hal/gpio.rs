@@ -1,5 +1,5 @@
 use bobbin_common::bits::*;
-use chip::gpio::{self, Pin};
+use chip::gpio::Pin;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
@@ -195,11 +195,11 @@ impl<P, T> PinExt for Pin<P,T> {
 
     #[inline]
     fn set_output(&self, value: bool) -> &Self {
-        self.port.set_bsrr(
+        self.port.set_bsrr(|r|
             if value {
-                gpio::Bsrr(0).set_bs(self.index, 1)
+                r.set_bs(self.index, 1)
             } else {
-                gpio::Bsrr(0).set_br(self.index, 1)
+                r.set_br(self.index, 1)
             }
         );
         self
@@ -207,11 +207,11 @@ impl<P, T> PinExt for Pin<P,T> {
 
     #[inline]
     fn toggle_output(&self) -> &Self {
-        self.port.set_bsrr(
+        self.port.set_bsrr(|r|
             if self.port.idr().idr(self.index) == 0 {
-                gpio::Bsrr(0).set_bs(self.index, 1)
+                r.set_bs(self.index, 1)
             } else {
-                gpio::Bsrr(0).set_br(self.index, 1)
+                r.set_br(self.index, 1)
             }
         );
         self

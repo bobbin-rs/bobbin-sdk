@@ -2,6 +2,7 @@ use bobbin_common::bits::*;
 pub use ::chip::systick::*;
 pub use ::chip::exc::{Handler, EXC_SYSTICK};
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ClockSource {
     External = 0,
     Internal = 1,
@@ -45,7 +46,7 @@ pub fn reload_value() -> u32 {
 }
 
 pub fn set_reload_value(value: u32) {
-    SYSTICK.set_rvr(Rvr(0).set_reload(value));
+    SYSTICK.set_rvr(|r| r.set_reload(value));
 }
 
 pub fn current_value() -> u32 {
@@ -53,7 +54,7 @@ pub fn current_value() -> u32 {
 }
 
 pub fn set_current_value(value: u32) {
-    SYSTICK.set_cvr(Cvr(0).set_current(value));
+    SYSTICK.set_cvr(|r| r.set_current(value));
 }
 
 pub fn no_reference_clock() -> bool {

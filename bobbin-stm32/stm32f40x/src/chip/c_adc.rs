@@ -36,7 +36,8 @@ impl CAdc {
      }
   }
 #[doc="Write the CCR register."]
-  #[inline] pub fn set_ccr(&self, value: Ccr) -> &Self {
+  #[inline] pub fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
+     let value = f(Ccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -45,7 +46,11 @@ impl CAdc {
 #[doc="Modify the CCR register."]
   #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
      let tmp = self.ccr();
-     self.set_ccr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CDR register."]

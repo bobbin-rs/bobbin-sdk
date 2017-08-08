@@ -40,7 +40,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR1 register."]
-  #[inline] pub fn set_cr1(&self, value: Cr1) -> &Self {
+  #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
+     let value = f(Cr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -49,7 +50,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR1 register."]
   #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
-     self.set_cr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CR2 register."]
@@ -67,7 +72,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR2 register."]
-  #[inline] pub fn set_cr2(&self, value: Cr2) -> &Self {
+  #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
+     let value = f(Cr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -76,7 +82,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR2 register."]
   #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
-     self.set_cr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR register."]
@@ -94,7 +104,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr(&self, value: Sr) -> &Self {
+  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+     let value = f(Sr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -103,7 +114,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SR register."]
   #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
-     self.set_sr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR register."]
@@ -121,7 +136,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DR register."]
-  #[inline] pub fn set_dr(&self, value: Dr) -> &Self {
+  #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
+     let value = f(Dr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
      }
@@ -130,7 +146,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DR register."]
   #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
      let tmp = self.dr();
-     self.set_dr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u16, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR8 register."]
@@ -148,7 +168,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DR8 register."]
-  #[inline] pub fn set_dr8(&self, value: Dr8) -> &Self {
+  #[inline] pub fn set_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+     let value = f(Dr8(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
@@ -157,7 +178,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DR8 register."]
   #[inline] pub fn with_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
      let tmp = self.dr8();
-     self.set_dr8(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CRCPR register."]
@@ -175,7 +200,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CRCPR register."]
-  #[inline] pub fn set_crcpr(&self, value: Crcpr) -> &Self {
+  #[inline] pub fn set_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &Self {
+     let value = f(Crcpr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -184,7 +210,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CRCPR register."]
   #[inline] pub fn with_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &Self {
      let tmp = self.crcpr();
-     self.set_crcpr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RXCRCR register."]
@@ -232,7 +262,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the I2SCFGR register."]
-  #[inline] pub fn set_i2scfgr(&self, value: I2scfgr) -> &Self {
+  #[inline] pub fn set_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &Self {
+     let value = f(I2scfgr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -241,7 +272,11 @@ impl<T> Periph<T> {
 #[doc="Modify the I2SCFGR register."]
   #[inline] pub fn with_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &Self {
      let tmp = self.i2scfgr();
-     self.set_i2scfgr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the I2SPR register."]
@@ -259,7 +294,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the I2SPR register."]
-  #[inline] pub fn set_i2spr(&self, value: I2spr) -> &Self {
+  #[inline] pub fn set_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &Self {
+     let value = f(I2spr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -268,7 +304,11 @@ impl<T> Periph<T> {
 #[doc="Modify the I2SPR register."]
   #[inline] pub fn with_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &Self {
      let tmp = self.i2spr();
-     self.set_i2spr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 }

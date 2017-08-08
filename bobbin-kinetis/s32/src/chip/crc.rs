@@ -21,7 +21,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATA register."]
-  #[inline] pub fn set_data(&self, value: Data) -> &Self {
+  #[inline] pub fn set_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
+     let value = f(Data(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Crc {
 #[doc="Modify the DATA register."]
   #[inline] pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
      let tmp = self.data();
-     self.set_data(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATAL register."]
@@ -48,7 +53,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATAL register."]
-  #[inline] pub fn set_datal(&self, value: Datal) -> &Self {
+  #[inline] pub fn set_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Self {
+     let value = f(Datal(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
      }
@@ -57,7 +63,11 @@ impl Crc {
 #[doc="Modify the DATAL register."]
   #[inline] pub fn with_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Self {
      let tmp = self.datal();
-     self.set_datal(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u16, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATALL register."]
@@ -75,7 +85,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATALL register."]
-  #[inline] pub fn set_datall(&self, value: Datall) -> &Self {
+  #[inline] pub fn set_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Self {
+     let value = f(Datall(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
@@ -84,7 +95,11 @@ impl Crc {
 #[doc="Modify the DATALL register."]
   #[inline] pub fn with_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Self {
      let tmp = self.datall();
-     self.set_datall(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATALU register."]
@@ -102,7 +117,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATALU register."]
-  #[inline] pub fn set_datalu(&self, value: Datalu) -> &Self {
+  #[inline] pub fn set_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Self {
+     let value = f(Datalu(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
@@ -111,7 +127,11 @@ impl Crc {
 #[doc="Modify the DATALU register."]
   #[inline] pub fn with_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Self {
      let tmp = self.datalu();
-     self.set_datalu(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATAH register."]
@@ -129,7 +149,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATAH register."]
-  #[inline] pub fn set_datah(&self, value: Datah) -> &Self {
+  #[inline] pub fn set_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Self {
+     let value = f(Datah(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
      }
@@ -138,7 +159,11 @@ impl Crc {
 #[doc="Modify the DATAH register."]
   #[inline] pub fn with_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Self {
      let tmp = self.datah();
-     self.set_datah(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u16, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATAHL register."]
@@ -156,7 +181,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATAHL register."]
-  #[inline] pub fn set_datahl(&self, value: Datahl) -> &Self {
+  #[inline] pub fn set_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Self {
+     let value = f(Datahl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
@@ -165,7 +191,11 @@ impl Crc {
 #[doc="Modify the DATAHL register."]
   #[inline] pub fn with_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Self {
      let tmp = self.datahl();
-     self.set_datahl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DATAHU register."]
@@ -183,7 +213,8 @@ impl Crc {
      }
   }
 #[doc="Write the DATAHU register."]
-  #[inline] pub fn set_datahu(&self, value: Datahu) -> &Self {
+  #[inline] pub fn set_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Self {
+     let value = f(Datahu(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
@@ -192,7 +223,11 @@ impl Crc {
 #[doc="Modify the DATAHU register."]
   #[inline] pub fn with_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Self {
      let tmp = self.datahu();
-     self.set_datahu(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the GPOLY register."]
@@ -210,7 +245,8 @@ impl Crc {
      }
   }
 #[doc="Write the GPOLY register."]
-  #[inline] pub fn set_gpoly(&self, value: Gpoly) -> &Self {
+  #[inline] pub fn set_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Self {
+     let value = f(Gpoly(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl Crc {
 #[doc="Modify the GPOLY register."]
   #[inline] pub fn with_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Self {
      let tmp = self.gpoly();
-     self.set_gpoly(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CTRL register."]
@@ -237,7 +277,8 @@ impl Crc {
      }
   }
 #[doc="Write the CTRL register."]
-  #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
+  #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
+     let value = f(Ctrl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl Crc {
 #[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
-     self.set_ctrl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 }

@@ -71,29 +71,24 @@ pub trait ChannelExt {
     fn set_msize(&self, value: Size) -> &Self { self.with_ccr(|r| r.set_msize(value as u32)) }
 
     fn set_mem2mem(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccr(|r| r.set_mem2mem(value))
     }
 
 
 
     fn set_pinc(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccr(|r| r.set_pinc(value))
     }
 
     fn set_minc(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccr(|r| r.set_minc(value))
     }
 
     fn set_circ(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccr(|r| r.set_circ(value))
     }
 
     fn set_tcie(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccr(|r| r.set_tcie(value))
     }    
 
@@ -125,22 +120,22 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn clr_teif(&self) -> &Self {
-        self.periph().set_ifcr(Ifcr(0).set_cteif(self.index(), 1));
+        self.periph().set_ifcr(|r| r.set_cteif(self.index(), 1));
         self
     }      
 
     fn clr_tcif(&self) -> &Self {
-        self.periph().set_ifcr(Ifcr(0).set_ctcif(self.index(), 1));
+        self.periph().set_ifcr(|r| r.set_ctcif(self.index(), 1));
         self
     }      
 
     fn clr_htif(&self) -> &Self {
-        self.periph().set_ifcr(Ifcr(0).set_chtif(self.index(), 1));
+        self.periph().set_ifcr(|r| r.set_chtif(self.index(), 1));
         self
     }      
 
     fn clr_gif(&self) -> &Self {
-        self.periph().set_ifcr(Ifcr(0).set_cgif(self.index(), 1));
+        self.periph().set_ifcr(|r| r.set_cgif(self.index(), 1));
         self
     }      
 
@@ -148,7 +143,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self.periph().ccr(self.index)
     }
     fn set_ccr(&self, value: Ccr) -> &Self {
-        self.periph().set_ccr(self.index, value);
+        self.periph().set_ccr(self.index, |_| value);
         self
     }
     fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
@@ -161,7 +156,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_ndt(&self, value: u16) -> &Self {
-        self.periph().set_cndtr(self.index, Cndtr(0).set_ndt(value));
+        self.periph().set_cndtr(self.index, |r| r.set_ndt(value));
         self
     }
 
@@ -170,7 +165,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_pa(&self, value: u32) -> &Self {
-        self.periph().set_cpar(self.index, Cpar(0).set_pa(value));
+        self.periph().set_cpar(self.index, |r| r.set_pa(value));
         self
     }    
     
@@ -179,7 +174,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_ma(&self, value: u32) -> &Self {
-        self.periph().set_cmar(self.index, Cmar(0).set_ma(value));
+        self.periph().set_cmar(self.index, |r| r.set_ma(value));
         self
     }
 }

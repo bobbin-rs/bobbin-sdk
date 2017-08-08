@@ -21,7 +21,8 @@ impl Wdog {
      }
   }
 #[doc="Write the CS register."]
-  #[inline] pub fn set_cs(&self, value: Cs) -> &Self {
+  #[inline] pub fn set_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
+     let value = f(Cs(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Wdog {
 #[doc="Modify the CS register."]
   #[inline] pub fn with_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
      let tmp = self.cs();
-     self.set_cs(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CNT register."]
@@ -48,7 +53,8 @@ impl Wdog {
      }
   }
 #[doc="Write the CNT register."]
-  #[inline] pub fn set_cnt(&self, value: Cnt) -> &Self {
+  #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
+     let value = f(Cnt(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Wdog {
 #[doc="Modify the CNT register."]
   #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
-     self.set_cnt(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the TOVAL register."]
@@ -75,7 +85,8 @@ impl Wdog {
      }
   }
 #[doc="Write the TOVAL register."]
-  #[inline] pub fn set_toval(&self, value: Toval) -> &Self {
+  #[inline] pub fn set_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
+     let value = f(Toval(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Wdog {
 #[doc="Modify the TOVAL register."]
   #[inline] pub fn with_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
      let tmp = self.toval();
-     self.set_toval(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the WIN register."]
@@ -102,7 +117,8 @@ impl Wdog {
      }
   }
 #[doc="Write the WIN register."]
-  #[inline] pub fn set_win(&self, value: Win) -> &Self {
+  #[inline] pub fn set_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
+     let value = f(Win(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Wdog {
 #[doc="Modify the WIN register."]
   #[inline] pub fn with_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
      let tmp = self.win();
-     self.set_win(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 }

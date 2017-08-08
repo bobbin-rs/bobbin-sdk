@@ -27,9 +27,10 @@ impl Nvic {
      }
   }
 #[doc="Write the ISER register."]
-  #[inline] pub fn set_iser<I: Into<bits::R8>>(&self, index: I, value: Iser) -> &Self {
+  #[inline] pub fn set_iser<I: Into<bits::R8>, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Iser(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 2)) as *mut u32, value.0);
      }
@@ -38,7 +39,11 @@ impl Nvic {
 #[doc="Modify the ISER register."]
   #[inline] pub fn with_iser<I: Into<bits::R8> + Copy, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
      let tmp = self.iser(index);
-     self.set_iser(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ICER register."]
@@ -62,9 +67,10 @@ impl Nvic {
      }
   }
 #[doc="Write the ICER register."]
-  #[inline] pub fn set_icer<I: Into<bits::R8>>(&self, index: I, value: Icer) -> &Self {
+  #[inline] pub fn set_icer<I: Into<bits::R8>, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Icer(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x180 + (index << 2)) as *mut u32, value.0);
      }
@@ -73,7 +79,11 @@ impl Nvic {
 #[doc="Modify the ICER register."]
   #[inline] pub fn with_icer<I: Into<bits::R8> + Copy, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
      let tmp = self.icer(index);
-     self.set_icer(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x180) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ISPR register."]
@@ -97,9 +107,10 @@ impl Nvic {
      }
   }
 #[doc="Write the ISPR register."]
-  #[inline] pub fn set_ispr<I: Into<bits::R8>>(&self, index: I, value: Ispr) -> &Self {
+  #[inline] pub fn set_ispr<I: Into<bits::R8>, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Ispr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x200 + (index << 2)) as *mut u32, value.0);
      }
@@ -108,7 +119,11 @@ impl Nvic {
 #[doc="Modify the ISPR register."]
   #[inline] pub fn with_ispr<I: Into<bits::R8> + Copy, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
      let tmp = self.ispr(index);
-     self.set_ispr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x200) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ICPR register."]
@@ -132,9 +147,10 @@ impl Nvic {
      }
   }
 #[doc="Write the ICPR register."]
-  #[inline] pub fn set_icpr<I: Into<bits::R8>>(&self, index: I, value: Icpr) -> &Self {
+  #[inline] pub fn set_icpr<I: Into<bits::R8>, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Icpr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
      }
@@ -143,7 +159,11 @@ impl Nvic {
 #[doc="Modify the ICPR register."]
   #[inline] pub fn with_icpr<I: Into<bits::R8> + Copy, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
      let tmp = self.icpr(index);
-     self.set_icpr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x280) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the IABR register."]
@@ -167,9 +187,10 @@ impl Nvic {
      }
   }
 #[doc="Write the IABR register."]
-  #[inline] pub fn set_iabr<I: Into<bits::R8>>(&self, index: I, value: Iabr) -> &Self {
+  #[inline] pub fn set_iabr<I: Into<bits::R8>, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Iabr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x280 + (index << 2)) as *mut u32, value.0);
      }
@@ -178,7 +199,11 @@ impl Nvic {
 #[doc="Modify the IABR register."]
   #[inline] pub fn with_iabr<I: Into<bits::R8> + Copy, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
      let tmp = self.iabr(index);
-     self.set_iabr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x280) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the IPR register."]
@@ -202,9 +227,10 @@ impl Nvic {
      }
   }
 #[doc="Write the IPR register."]
-  #[inline] pub fn set_ipr<I: Into<bits::R8>>(&self, index: I, value: Ipr) -> &Self {
+  #[inline] pub fn set_ipr<I: Into<bits::R8>, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
      let index: bits::R8 = index.into();
      let index: usize = index.value();
+     let value = f(Ipr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x400 + (index << 2)) as *mut u32, value.0);
      }
@@ -213,7 +239,11 @@ impl Nvic {
 #[doc="Modify the IPR register."]
   #[inline] pub fn with_ipr<I: Into<bits::R8> + Copy, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
      let tmp = self.ipr(index);
-     self.set_ipr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x400) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the STIR register."]
@@ -231,7 +261,8 @@ impl Nvic {
      }
   }
 #[doc="Write the STIR register."]
-  #[inline] pub fn set_stir(&self, value: Stir) -> &Self {
+  #[inline] pub fn set_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
+     let value = f(Stir(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
      }
@@ -240,7 +271,11 @@ impl Nvic {
 #[doc="Modify the STIR register."]
   #[inline] pub fn with_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
      let tmp = self.stir();
-     self.set_stir(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xf00) as *mut u32, value.0);
+     }
+     self
   }
 
 }

@@ -25,14 +25,14 @@ impl<T> UsartExt for Periph<T> {
         // let brr = (apb_hz / baud_hz) as u16;
 
         self
-            .set_cr1(Cr1(0))
-            .set_cr2(Cr2(0))
-            .set_cr3(Cr3(0))
-            .set_brr(Brr(0)
+            .set_cr1(|r| r)
+            .set_cr2(|r| r)
+            .set_cr3(|r| r)
+            .set_brr(|r| r
                 .set_div_fraction((brr & 0b1111) as u32)
                 .set_div_mantissa(brr as u32 >> 4)
             )    
-            .set_cr1(Cr1(0)
+            .set_cr1(|r| r
                 .set_ue(1)
                 .set_re(1)
                 .set_te(1)
@@ -46,13 +46,13 @@ impl<T> UsartExt for Periph<T> {
     fn putc(&self, c: u8) {
         let u = self;
         while u.sr().txe() == 0 {}
-        u.set_dr(Dr(0).set_dr(c as u32));    
+        u.set_dr(|r| r.set_dr(c as u32));    
     }
 
     fn try_putc(&self, c: u8) -> Option<usize> {
         let u = self;
         if u.sr().txe() != 0 {
-            u.set_dr(Dr(0).set_dr(c as u32));
+            u.set_dr(|r| r.set_dr(c as u32));
             Some(1)
         } else {
             None

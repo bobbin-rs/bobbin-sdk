@@ -21,7 +21,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BCR1 register."]
-  #[inline] pub fn set_bcr1(&self, value: Bcr1) -> &Self {
+  #[inline] pub fn set_bcr1<F: FnOnce(Bcr1) -> Bcr1>(&self, f: F) -> &Self {
+     let value = f(Bcr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Fsmc {
 #[doc="Modify the BCR1 register."]
   #[inline] pub fn with_bcr1<F: FnOnce(Bcr1) -> Bcr1>(&self, f: F) -> &Self {
      let tmp = self.bcr1();
-     self.set_bcr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BTR1 register."]
@@ -48,7 +53,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BTR1 register."]
-  #[inline] pub fn set_btr1(&self, value: Btr1) -> &Self {
+  #[inline] pub fn set_btr1<F: FnOnce(Btr1) -> Btr1>(&self, f: F) -> &Self {
+     let value = f(Btr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Fsmc {
 #[doc="Modify the BTR1 register."]
   #[inline] pub fn with_btr1<F: FnOnce(Btr1) -> Btr1>(&self, f: F) -> &Self {
      let tmp = self.btr1();
-     self.set_btr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BCR2 register."]
@@ -75,7 +85,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BCR2 register."]
-  #[inline] pub fn set_bcr2(&self, value: Bcr2) -> &Self {
+  #[inline] pub fn set_bcr2<F: FnOnce(Bcr2) -> Bcr2>(&self, f: F) -> &Self {
+     let value = f(Bcr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Fsmc {
 #[doc="Modify the BCR2 register."]
   #[inline] pub fn with_bcr2<F: FnOnce(Bcr2) -> Bcr2>(&self, f: F) -> &Self {
      let tmp = self.bcr2();
-     self.set_bcr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BTR2 register."]
@@ -102,7 +117,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BTR2 register."]
-  #[inline] pub fn set_btr2(&self, value: Btr2) -> &Self {
+  #[inline] pub fn set_btr2<F: FnOnce(Btr2) -> Btr2>(&self, f: F) -> &Self {
+     let value = f(Btr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Fsmc {
 #[doc="Modify the BTR2 register."]
   #[inline] pub fn with_btr2<F: FnOnce(Btr2) -> Btr2>(&self, f: F) -> &Self {
      let tmp = self.btr2();
-     self.set_btr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BCR3 register."]
@@ -129,7 +149,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BCR3 register."]
-  #[inline] pub fn set_bcr3(&self, value: Bcr3) -> &Self {
+  #[inline] pub fn set_bcr3<F: FnOnce(Bcr3) -> Bcr3>(&self, f: F) -> &Self {
+     let value = f(Bcr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Fsmc {
 #[doc="Modify the BCR3 register."]
   #[inline] pub fn with_bcr3<F: FnOnce(Bcr3) -> Bcr3>(&self, f: F) -> &Self {
      let tmp = self.bcr3();
-     self.set_bcr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BTR3 register."]
@@ -156,7 +181,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BTR3 register."]
-  #[inline] pub fn set_btr3(&self, value: Btr3) -> &Self {
+  #[inline] pub fn set_btr3<F: FnOnce(Btr3) -> Btr3>(&self, f: F) -> &Self {
+     let value = f(Btr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Fsmc {
 #[doc="Modify the BTR3 register."]
   #[inline] pub fn with_btr3<F: FnOnce(Btr3) -> Btr3>(&self, f: F) -> &Self {
      let tmp = self.btr3();
-     self.set_btr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BCR4 register."]
@@ -183,7 +213,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BCR4 register."]
-  #[inline] pub fn set_bcr4(&self, value: Bcr4) -> &Self {
+  #[inline] pub fn set_bcr4<F: FnOnce(Bcr4) -> Bcr4>(&self, f: F) -> &Self {
+     let value = f(Bcr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl Fsmc {
 #[doc="Modify the BCR4 register."]
   #[inline] pub fn with_bcr4<F: FnOnce(Bcr4) -> Bcr4>(&self, f: F) -> &Self {
      let tmp = self.bcr4();
-     self.set_bcr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BTR4 register."]
@@ -210,7 +245,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BTR4 register."]
-  #[inline] pub fn set_btr4(&self, value: Btr4) -> &Self {
+  #[inline] pub fn set_btr4<F: FnOnce(Btr4) -> Btr4>(&self, f: F) -> &Self {
+     let value = f(Btr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl Fsmc {
 #[doc="Modify the BTR4 register."]
   #[inline] pub fn with_btr4<F: FnOnce(Btr4) -> Btr4>(&self, f: F) -> &Self {
      let tmp = self.btr4();
-     self.set_btr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PCR2 register."]
@@ -237,7 +277,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PCR2 register."]
-  #[inline] pub fn set_pcr2(&self, value: Pcr2) -> &Self {
+  #[inline] pub fn set_pcr2<F: FnOnce(Pcr2) -> Pcr2>(&self, f: F) -> &Self {
+     let value = f(Pcr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl Fsmc {
 #[doc="Modify the PCR2 register."]
   #[inline] pub fn with_pcr2<F: FnOnce(Pcr2) -> Pcr2>(&self, f: F) -> &Self {
      let tmp = self.pcr2();
-     self.set_pcr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR2 register."]
@@ -264,7 +309,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the SR2 register."]
-  #[inline] pub fn set_sr2(&self, value: Sr2) -> &Self {
+  #[inline] pub fn set_sr2<F: FnOnce(Sr2) -> Sr2>(&self, f: F) -> &Self {
+     let value = f(Sr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
@@ -273,7 +319,11 @@ impl Fsmc {
 #[doc="Modify the SR2 register."]
   #[inline] pub fn with_sr2<F: FnOnce(Sr2) -> Sr2>(&self, f: F) -> &Self {
      let tmp = self.sr2();
-     self.set_sr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PMEM2 register."]
@@ -291,7 +341,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PMEM2 register."]
-  #[inline] pub fn set_pmem2(&self, value: Pmem2) -> &Self {
+  #[inline] pub fn set_pmem2<F: FnOnce(Pmem2) -> Pmem2>(&self, f: F) -> &Self {
+     let value = f(Pmem2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
@@ -300,7 +351,11 @@ impl Fsmc {
 #[doc="Modify the PMEM2 register."]
   #[inline] pub fn with_pmem2<F: FnOnce(Pmem2) -> Pmem2>(&self, f: F) -> &Self {
      let tmp = self.pmem2();
-     self.set_pmem2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PATT2 register."]
@@ -318,7 +373,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PATT2 register."]
-  #[inline] pub fn set_patt2(&self, value: Patt2) -> &Self {
+  #[inline] pub fn set_patt2<F: FnOnce(Patt2) -> Patt2>(&self, f: F) -> &Self {
+     let value = f(Patt2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
@@ -327,7 +383,11 @@ impl Fsmc {
 #[doc="Modify the PATT2 register."]
   #[inline] pub fn with_patt2<F: FnOnce(Patt2) -> Patt2>(&self, f: F) -> &Self {
      let tmp = self.patt2();
-     self.set_patt2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ECCR2 register."]
@@ -360,7 +420,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PCR3 register."]
-  #[inline] pub fn set_pcr3(&self, value: Pcr3) -> &Self {
+  #[inline] pub fn set_pcr3<F: FnOnce(Pcr3) -> Pcr3>(&self, f: F) -> &Self {
+     let value = f(Pcr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
@@ -369,7 +430,11 @@ impl Fsmc {
 #[doc="Modify the PCR3 register."]
   #[inline] pub fn with_pcr3<F: FnOnce(Pcr3) -> Pcr3>(&self, f: F) -> &Self {
      let tmp = self.pcr3();
-     self.set_pcr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR3 register."]
@@ -387,7 +452,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the SR3 register."]
-  #[inline] pub fn set_sr3(&self, value: Sr3) -> &Self {
+  #[inline] pub fn set_sr3<F: FnOnce(Sr3) -> Sr3>(&self, f: F) -> &Self {
+     let value = f(Sr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
@@ -396,7 +462,11 @@ impl Fsmc {
 #[doc="Modify the SR3 register."]
   #[inline] pub fn with_sr3<F: FnOnce(Sr3) -> Sr3>(&self, f: F) -> &Self {
      let tmp = self.sr3();
-     self.set_sr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PMEM3 register."]
@@ -414,7 +484,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PMEM3 register."]
-  #[inline] pub fn set_pmem3(&self, value: Pmem3) -> &Self {
+  #[inline] pub fn set_pmem3<F: FnOnce(Pmem3) -> Pmem3>(&self, f: F) -> &Self {
+     let value = f(Pmem3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
      }
@@ -423,7 +494,11 @@ impl Fsmc {
 #[doc="Modify the PMEM3 register."]
   #[inline] pub fn with_pmem3<F: FnOnce(Pmem3) -> Pmem3>(&self, f: F) -> &Self {
      let tmp = self.pmem3();
-     self.set_pmem3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PATT3 register."]
@@ -441,7 +516,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PATT3 register."]
-  #[inline] pub fn set_patt3(&self, value: Patt3) -> &Self {
+  #[inline] pub fn set_patt3<F: FnOnce(Patt3) -> Patt3>(&self, f: F) -> &Self {
+     let value = f(Patt3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
      }
@@ -450,7 +526,11 @@ impl Fsmc {
 #[doc="Modify the PATT3 register."]
   #[inline] pub fn with_patt3<F: FnOnce(Patt3) -> Patt3>(&self, f: F) -> &Self {
      let tmp = self.patt3();
-     self.set_patt3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ECCR3 register."]
@@ -483,7 +563,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PCR4 register."]
-  #[inline] pub fn set_pcr4(&self, value: Pcr4) -> &Self {
+  #[inline] pub fn set_pcr4<F: FnOnce(Pcr4) -> Pcr4>(&self, f: F) -> &Self {
+     let value = f(Pcr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
@@ -492,7 +573,11 @@ impl Fsmc {
 #[doc="Modify the PCR4 register."]
   #[inline] pub fn with_pcr4<F: FnOnce(Pcr4) -> Pcr4>(&self, f: F) -> &Self {
      let tmp = self.pcr4();
-     self.set_pcr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR4 register."]
@@ -510,7 +595,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the SR4 register."]
-  #[inline] pub fn set_sr4(&self, value: Sr4) -> &Self {
+  #[inline] pub fn set_sr4<F: FnOnce(Sr4) -> Sr4>(&self, f: F) -> &Self {
+     let value = f(Sr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
      }
@@ -519,7 +605,11 @@ impl Fsmc {
 #[doc="Modify the SR4 register."]
   #[inline] pub fn with_sr4<F: FnOnce(Sr4) -> Sr4>(&self, f: F) -> &Self {
      let tmp = self.sr4();
-     self.set_sr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PMEM4 register."]
@@ -537,7 +627,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PMEM4 register."]
-  #[inline] pub fn set_pmem4(&self, value: Pmem4) -> &Self {
+  #[inline] pub fn set_pmem4<F: FnOnce(Pmem4) -> Pmem4>(&self, f: F) -> &Self {
+     let value = f(Pmem4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
      }
@@ -546,7 +637,11 @@ impl Fsmc {
 #[doc="Modify the PMEM4 register."]
   #[inline] pub fn with_pmem4<F: FnOnce(Pmem4) -> Pmem4>(&self, f: F) -> &Self {
      let tmp = self.pmem4();
-     self.set_pmem4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PATT4 register."]
@@ -564,7 +659,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PATT4 register."]
-  #[inline] pub fn set_patt4(&self, value: Patt4) -> &Self {
+  #[inline] pub fn set_patt4<F: FnOnce(Patt4) -> Patt4>(&self, f: F) -> &Self {
+     let value = f(Patt4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
      }
@@ -573,7 +669,11 @@ impl Fsmc {
 #[doc="Modify the PATT4 register."]
   #[inline] pub fn with_patt4<F: FnOnce(Patt4) -> Patt4>(&self, f: F) -> &Self {
      let tmp = self.patt4();
-     self.set_patt4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PIO4 register."]
@@ -591,7 +691,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the PIO4 register."]
-  #[inline] pub fn set_pio4(&self, value: Pio4) -> &Self {
+  #[inline] pub fn set_pio4<F: FnOnce(Pio4) -> Pio4>(&self, f: F) -> &Self {
+     let value = f(Pio4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
      }
@@ -600,7 +701,11 @@ impl Fsmc {
 #[doc="Modify the PIO4 register."]
   #[inline] pub fn with_pio4<F: FnOnce(Pio4) -> Pio4>(&self, f: F) -> &Self {
      let tmp = self.pio4();
-     self.set_pio4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BWTR1 register."]
@@ -618,7 +723,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BWTR1 register."]
-  #[inline] pub fn set_bwtr1(&self, value: Bwtr1) -> &Self {
+  #[inline] pub fn set_bwtr1<F: FnOnce(Bwtr1) -> Bwtr1>(&self, f: F) -> &Self {
+     let value = f(Bwtr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
      }
@@ -627,7 +733,11 @@ impl Fsmc {
 #[doc="Modify the BWTR1 register."]
   #[inline] pub fn with_bwtr1<F: FnOnce(Bwtr1) -> Bwtr1>(&self, f: F) -> &Self {
      let tmp = self.bwtr1();
-     self.set_bwtr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BWTR2 register."]
@@ -645,7 +755,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BWTR2 register."]
-  #[inline] pub fn set_bwtr2(&self, value: Bwtr2) -> &Self {
+  #[inline] pub fn set_bwtr2<F: FnOnce(Bwtr2) -> Bwtr2>(&self, f: F) -> &Self {
+     let value = f(Bwtr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10c) as *mut u32, value.0);
      }
@@ -654,7 +765,11 @@ impl Fsmc {
 #[doc="Modify the BWTR2 register."]
   #[inline] pub fn with_bwtr2<F: FnOnce(Bwtr2) -> Bwtr2>(&self, f: F) -> &Self {
      let tmp = self.bwtr2();
-     self.set_bwtr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BWTR3 register."]
@@ -672,7 +787,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BWTR3 register."]
-  #[inline] pub fn set_bwtr3(&self, value: Bwtr3) -> &Self {
+  #[inline] pub fn set_bwtr3<F: FnOnce(Bwtr3) -> Bwtr3>(&self, f: F) -> &Self {
+     let value = f(Bwtr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x114) as *mut u32, value.0);
      }
@@ -681,7 +797,11 @@ impl Fsmc {
 #[doc="Modify the BWTR3 register."]
   #[inline] pub fn with_bwtr3<F: FnOnce(Bwtr3) -> Bwtr3>(&self, f: F) -> &Self {
      let tmp = self.bwtr3();
-     self.set_bwtr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x114) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BWTR4 register."]
@@ -699,7 +819,8 @@ impl Fsmc {
      }
   }
 #[doc="Write the BWTR4 register."]
-  #[inline] pub fn set_bwtr4(&self, value: Bwtr4) -> &Self {
+  #[inline] pub fn set_bwtr4<F: FnOnce(Bwtr4) -> Bwtr4>(&self, f: F) -> &Self {
+     let value = f(Bwtr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
      }
@@ -708,7 +829,11 @@ impl Fsmc {
 #[doc="Modify the BWTR4 register."]
   #[inline] pub fn with_bwtr4<F: FnOnce(Bwtr4) -> Bwtr4>(&self, f: F) -> &Self {
      let tmp = self.bwtr4();
-     self.set_bwtr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x11c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

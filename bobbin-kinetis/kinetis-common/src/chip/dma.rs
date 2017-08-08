@@ -28,9 +28,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SAR register."]
-  #[inline] pub fn set_sar<I: Into<bits::R4>>(&self, index: I, value: Sar) -> &Self {
+  #[inline] pub fn set_sar<I: Into<bits::R4>, F: FnOnce(Sar) -> Sar>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Sar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x100 + (index << 4)) as *mut u32, value.0);
      }
@@ -39,7 +40,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SAR register."]
   #[inline] pub fn with_sar<I: Into<bits::R4> + Copy, F: FnOnce(Sar) -> Sar>(&self, index: I, f: F) -> &Self {
      let tmp = self.sar(index);
-     self.set_sar(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x100) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DAR register."]
@@ -63,9 +68,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DAR register."]
-  #[inline] pub fn set_dar<I: Into<bits::R4>>(&self, index: I, value: Dar) -> &Self {
+  #[inline] pub fn set_dar<I: Into<bits::R4>, F: FnOnce(Dar) -> Dar>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Dar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x104 + (index << 4)) as *mut u32, value.0);
      }
@@ -74,7 +80,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DAR register."]
   #[inline] pub fn with_dar<I: Into<bits::R4> + Copy, F: FnOnce(Dar) -> Dar>(&self, index: I, f: F) -> &Self {
      let tmp = self.dar(index);
-     self.set_dar(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x104) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DSR_BCR register."]
@@ -98,9 +108,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DSR_BCR register."]
-  #[inline] pub fn set_dsr_bcr<I: Into<bits::R4>>(&self, index: I, value: DsrBcr) -> &Self {
+  #[inline] pub fn set_dsr_bcr<I: Into<bits::R4>, F: FnOnce(DsrBcr) -> DsrBcr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(DsrBcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x108 + (index << 4)) as *mut u32, value.0);
      }
@@ -109,7 +120,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DSR_BCR register."]
   #[inline] pub fn with_dsr_bcr<I: Into<bits::R4> + Copy, F: FnOnce(DsrBcr) -> DsrBcr>(&self, index: I, f: F) -> &Self {
      let tmp = self.dsr_bcr(index);
-     self.set_dsr_bcr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x108) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DSR register."]
@@ -133,9 +148,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DSR register."]
-  #[inline] pub fn set_dsr<I: Into<bits::R4>>(&self, index: I, value: Dsr) -> &Self {
+  #[inline] pub fn set_dsr<I: Into<bits::R4>, F: FnOnce(Dsr) -> Dsr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Dsr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10b + (index << 4)) as *mut u8, value.0);
      }
@@ -144,7 +160,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DSR register."]
   #[inline] pub fn with_dsr<I: Into<bits::R4> + Copy, F: FnOnce(Dsr) -> Dsr>(&self, index: I, f: F) -> &Self {
      let tmp = self.dsr(index);
-     self.set_dsr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10b) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DCR register."]
@@ -168,9 +188,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DCR register."]
-  #[inline] pub fn set_dcr<I: Into<bits::R4>>(&self, index: I, value: Dcr) -> &Self {
+  #[inline] pub fn set_dcr<I: Into<bits::R4>, F: FnOnce(Dcr) -> Dcr>(&self, index: I, f: F) -> &Self {
      let index: bits::R4 = index.into();
      let index: usize = index.value();
+     let value = f(Dcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10c + (index << 4)) as *mut u32, value.0);
      }
@@ -179,7 +200,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DCR register."]
   #[inline] pub fn with_dcr<I: Into<bits::R4> + Copy, F: FnOnce(Dcr) -> Dcr>(&self, index: I, f: F) -> &Self {
      let tmp = self.dcr(index);
-     self.set_dcr(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

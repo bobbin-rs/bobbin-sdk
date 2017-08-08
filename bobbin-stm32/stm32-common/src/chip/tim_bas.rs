@@ -22,7 +22,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR1 register."]
-  #[inline] pub fn set_cr1(&self, value: Cr1) -> &Self {
+  #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
+     let value = f(Cr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -31,7 +32,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR1 register."]
   #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
-     self.set_cr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CR2 register."]
@@ -49,7 +54,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR2 register."]
-  #[inline] pub fn set_cr2(&self, value: Cr2) -> &Self {
+  #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
+     let value = f(Cr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -58,7 +64,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR2 register."]
   #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
-     self.set_cr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DIER register."]
@@ -76,7 +86,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the DIER register."]
-  #[inline] pub fn set_dier(&self, value: Dier) -> &Self {
+  #[inline] pub fn set_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
+     let value = f(Dier(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -85,7 +96,11 @@ impl<T> Periph<T> {
 #[doc="Modify the DIER register."]
   #[inline] pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
      let tmp = self.dier();
-     self.set_dier(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR register."]
@@ -103,7 +118,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr(&self, value: Sr) -> &Self {
+  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+     let value = f(Sr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -112,7 +128,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SR register."]
   #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
-     self.set_sr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EGR register."]
@@ -124,7 +144,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0x14) as *mut u32
   }
 #[doc="Write the EGR register."]
-  #[inline] pub fn set_egr(&self, value: Egr) -> &Self {
+  #[inline] pub fn set_egr<F: FnOnce(Egr) -> Egr>(&self, f: F) -> &Self {
+     let value = f(Egr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -146,7 +167,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CNT register."]
-  #[inline] pub fn set_cnt(&self, value: Cnt) -> &Self {
+  #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
+     let value = f(Cnt(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -155,7 +177,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CNT register."]
   #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
      let tmp = self.cnt();
-     self.set_cnt(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PSC register."]
@@ -173,7 +199,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the PSC register."]
-  #[inline] pub fn set_psc(&self, value: Psc) -> &Self {
+  #[inline] pub fn set_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
+     let value = f(Psc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
@@ -182,7 +209,11 @@ impl<T> Periph<T> {
 #[doc="Modify the PSC register."]
   #[inline] pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
      let tmp = self.psc();
-     self.set_psc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ARR register."]
@@ -200,7 +231,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the ARR register."]
-  #[inline] pub fn set_arr(&self, value: Arr) -> &Self {
+  #[inline] pub fn set_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
+     let value = f(Arr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
@@ -209,7 +241,11 @@ impl<T> Periph<T> {
 #[doc="Modify the ARR register."]
   #[inline] pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
      let tmp = self.arr();
-     self.set_arr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

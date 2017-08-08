@@ -36,12 +36,12 @@ impl<P, T> ExtiLineExt for Channel<P, T> {
     }
 
     fn trigger(&self) -> &Self {
-        self.periph.set_swier(Swier(0).set_swi(self.index, 1));
+        self.periph.set_swier(|r| r.set_swi(self.index, 1));
         self
     }   
 
     fn clr_pending(&self) -> &Self {
-        self.periph.set_pr(Pr(0).set_pr(self.index, 1));
+        self.periph.set_pr(|r| r.set_pr(self.index, 1));
         self
     }    
 }

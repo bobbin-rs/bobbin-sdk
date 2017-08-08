@@ -21,7 +21,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMABMR register."]
-  #[inline] pub fn set_dmabmr(&self, value: Dmabmr) -> &Self {
+  #[inline] pub fn set_dmabmr<F: FnOnce(Dmabmr) -> Dmabmr>(&self, f: F) -> &Self {
+     let value = f(Dmabmr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl EthernetDma {
 #[doc="Modify the DMABMR register."]
   #[inline] pub fn with_dmabmr<F: FnOnce(Dmabmr) -> Dmabmr>(&self, f: F) -> &Self {
      let tmp = self.dmabmr();
-     self.set_dmabmr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMATPDR register."]
@@ -48,7 +53,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMATPDR register."]
-  #[inline] pub fn set_dmatpdr(&self, value: Dmatpdr) -> &Self {
+  #[inline] pub fn set_dmatpdr<F: FnOnce(Dmatpdr) -> Dmatpdr>(&self, f: F) -> &Self {
+     let value = f(Dmatpdr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl EthernetDma {
 #[doc="Modify the DMATPDR register."]
   #[inline] pub fn with_dmatpdr<F: FnOnce(Dmatpdr) -> Dmatpdr>(&self, f: F) -> &Self {
      let tmp = self.dmatpdr();
-     self.set_dmatpdr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMARPDR register."]
@@ -75,7 +85,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMARPDR register."]
-  #[inline] pub fn set_dmarpdr(&self, value: Dmarpdr) -> &Self {
+  #[inline] pub fn set_dmarpdr<F: FnOnce(Dmarpdr) -> Dmarpdr>(&self, f: F) -> &Self {
+     let value = f(Dmarpdr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl EthernetDma {
 #[doc="Modify the DMARPDR register."]
   #[inline] pub fn with_dmarpdr<F: FnOnce(Dmarpdr) -> Dmarpdr>(&self, f: F) -> &Self {
      let tmp = self.dmarpdr();
-     self.set_dmarpdr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMARDLAR register."]
@@ -102,7 +117,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMARDLAR register."]
-  #[inline] pub fn set_dmardlar(&self, value: Dmardlar) -> &Self {
+  #[inline] pub fn set_dmardlar<F: FnOnce(Dmardlar) -> Dmardlar>(&self, f: F) -> &Self {
+     let value = f(Dmardlar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl EthernetDma {
 #[doc="Modify the DMARDLAR register."]
   #[inline] pub fn with_dmardlar<F: FnOnce(Dmardlar) -> Dmardlar>(&self, f: F) -> &Self {
      let tmp = self.dmardlar();
-     self.set_dmardlar(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMATDLAR register."]
@@ -129,7 +149,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMATDLAR register."]
-  #[inline] pub fn set_dmatdlar(&self, value: Dmatdlar) -> &Self {
+  #[inline] pub fn set_dmatdlar<F: FnOnce(Dmatdlar) -> Dmatdlar>(&self, f: F) -> &Self {
+     let value = f(Dmatdlar(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl EthernetDma {
 #[doc="Modify the DMATDLAR register."]
   #[inline] pub fn with_dmatdlar<F: FnOnce(Dmatdlar) -> Dmatdlar>(&self, f: F) -> &Self {
      let tmp = self.dmatdlar();
-     self.set_dmatdlar(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMASR register."]
@@ -156,7 +181,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMASR register."]
-  #[inline] pub fn set_dmasr(&self, value: Dmasr) -> &Self {
+  #[inline] pub fn set_dmasr<F: FnOnce(Dmasr) -> Dmasr>(&self, f: F) -> &Self {
+     let value = f(Dmasr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl EthernetDma {
 #[doc="Modify the DMASR register."]
   #[inline] pub fn with_dmasr<F: FnOnce(Dmasr) -> Dmasr>(&self, f: F) -> &Self {
      let tmp = self.dmasr();
-     self.set_dmasr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMAOMR register."]
@@ -183,7 +213,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMAOMR register."]
-  #[inline] pub fn set_dmaomr(&self, value: Dmaomr) -> &Self {
+  #[inline] pub fn set_dmaomr<F: FnOnce(Dmaomr) -> Dmaomr>(&self, f: F) -> &Self {
+     let value = f(Dmaomr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl EthernetDma {
 #[doc="Modify the DMAOMR register."]
   #[inline] pub fn with_dmaomr<F: FnOnce(Dmaomr) -> Dmaomr>(&self, f: F) -> &Self {
      let tmp = self.dmaomr();
-     self.set_dmaomr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMAIER register."]
@@ -210,7 +245,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMAIER register."]
-  #[inline] pub fn set_dmaier(&self, value: Dmaier) -> &Self {
+  #[inline] pub fn set_dmaier<F: FnOnce(Dmaier) -> Dmaier>(&self, f: F) -> &Self {
+     let value = f(Dmaier(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl EthernetDma {
 #[doc="Modify the DMAIER register."]
   #[inline] pub fn with_dmaier<F: FnOnce(Dmaier) -> Dmaier>(&self, f: F) -> &Self {
      let tmp = self.dmaier();
-     self.set_dmaier(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMAMFBOCR register."]
@@ -237,7 +277,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMAMFBOCR register."]
-  #[inline] pub fn set_dmamfbocr(&self, value: Dmamfbocr) -> &Self {
+  #[inline] pub fn set_dmamfbocr<F: FnOnce(Dmamfbocr) -> Dmamfbocr>(&self, f: F) -> &Self {
+     let value = f(Dmamfbocr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl EthernetDma {
 #[doc="Modify the DMAMFBOCR register."]
   #[inline] pub fn with_dmamfbocr<F: FnOnce(Dmamfbocr) -> Dmamfbocr>(&self, f: F) -> &Self {
      let tmp = self.dmamfbocr();
-     self.set_dmamfbocr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMARSWTR register."]
@@ -264,7 +309,8 @@ impl EthernetDma {
      }
   }
 #[doc="Write the DMARSWTR register."]
-  #[inline] pub fn set_dmarswtr(&self, value: Dmarswtr) -> &Self {
+  #[inline] pub fn set_dmarswtr<F: FnOnce(Dmarswtr) -> Dmarswtr>(&self, f: F) -> &Self {
+     let value = f(Dmarswtr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -273,7 +319,11 @@ impl EthernetDma {
 #[doc="Modify the DMARSWTR register."]
   #[inline] pub fn with_dmarswtr<F: FnOnce(Dmarswtr) -> Dmarswtr>(&self, f: F) -> &Self {
      let tmp = self.dmarswtr();
-     self.set_dmarswtr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DMACHTDR register."]

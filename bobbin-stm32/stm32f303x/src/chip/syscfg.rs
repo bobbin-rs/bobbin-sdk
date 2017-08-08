@@ -21,7 +21,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the CFGR1 register."]
-  #[inline] pub fn set_cfgr1(&self, value: Cfgr1) -> &Self {
+  #[inline] pub fn set_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &Self {
+     let value = f(Cfgr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Syscfg {
 #[doc="Modify the CFGR1 register."]
   #[inline] pub fn with_cfgr1<F: FnOnce(Cfgr1) -> Cfgr1>(&self, f: F) -> &Self {
      let tmp = self.cfgr1();
-     self.set_cfgr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EXTICR1 register."]
@@ -48,7 +53,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the EXTICR1 register."]
-  #[inline] pub fn set_exticr1(&self, value: Exticr1) -> &Self {
+  #[inline] pub fn set_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
+     let value = f(Exticr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Syscfg {
 #[doc="Modify the EXTICR1 register."]
   #[inline] pub fn with_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
      let tmp = self.exticr1();
-     self.set_exticr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EXTICR2 register."]
@@ -75,7 +85,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the EXTICR2 register."]
-  #[inline] pub fn set_exticr2(&self, value: Exticr2) -> &Self {
+  #[inline] pub fn set_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
+     let value = f(Exticr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Syscfg {
 #[doc="Modify the EXTICR2 register."]
   #[inline] pub fn with_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
      let tmp = self.exticr2();
-     self.set_exticr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EXTICR3 register."]
@@ -102,7 +117,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the EXTICR3 register."]
-  #[inline] pub fn set_exticr3(&self, value: Exticr3) -> &Self {
+  #[inline] pub fn set_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
+     let value = f(Exticr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Syscfg {
 #[doc="Modify the EXTICR3 register."]
   #[inline] pub fn with_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
      let tmp = self.exticr3();
-     self.set_exticr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the EXTICR4 register."]
@@ -129,7 +149,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the EXTICR4 register."]
-  #[inline] pub fn set_exticr4(&self, value: Exticr4) -> &Self {
+  #[inline] pub fn set_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
+     let value = f(Exticr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Syscfg {
 #[doc="Modify the EXTICR4 register."]
   #[inline] pub fn with_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
      let tmp = self.exticr4();
-     self.set_exticr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CFGR2 register."]
@@ -156,7 +181,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the CFGR2 register."]
-  #[inline] pub fn set_cfgr2(&self, value: Cfgr2) -> &Self {
+  #[inline] pub fn set_cfgr2<F: FnOnce(Cfgr2) -> Cfgr2>(&self, f: F) -> &Self {
+     let value = f(Cfgr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Syscfg {
 #[doc="Modify the CFGR2 register."]
   #[inline] pub fn with_cfgr2<F: FnOnce(Cfgr2) -> Cfgr2>(&self, f: F) -> &Self {
      let tmp = self.cfgr2();
-     self.set_cfgr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RCR register."]
@@ -183,7 +213,8 @@ impl Syscfg {
      }
   }
 #[doc="Write the RCR register."]
-  #[inline] pub fn set_rcr(&self, value: Rcr) -> &Self {
+  #[inline] pub fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
+     let value = f(Rcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl Syscfg {
 #[doc="Modify the RCR register."]
   #[inline] pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
      let tmp = self.rcr();
-     self.set_rcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 }

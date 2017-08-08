@@ -57,16 +57,16 @@ impl<T> CrcExt for Periph<T> {
             .set_rev_in(if cfg.rev_in { 1 } else { 0 })
             .set_polysize(cfg.polysize as u32)
         );
-        self.set_pol(Pol(0).set_pol(cfg.poly))
+        self.set_pol(|r| r.set_pol(cfg.poly))
     }
 
     fn initialize(&self, value: u32) -> &Self {
-        self.set_init(Init(0).set_init(value));
+        self.set_init(|r| r.set_init(value));
         self.with_cr(|r| r.set_reset(1))
     }
 
     fn write(&self, value: u32) -> &Self {
-        self.set_dr(Dr(0).set_dr(value))
+        self.set_dr(|r| r.set_dr(value))
     }
 
     fn read(&self) -> u32 {

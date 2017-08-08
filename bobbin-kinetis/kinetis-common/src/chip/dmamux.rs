@@ -28,9 +28,10 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CHCFG register."]
-  #[inline] pub fn set_chcfg<I: Into<bits::R16>>(&self, index: I, value: Chcfg) -> &Self {
+  #[inline] pub fn set_chcfg<I: Into<bits::R16>, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
      let index: bits::R16 = index.into();
      let index: usize = index.value();
+     let value = f(Chcfg(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0 + (index)) as *mut u8, value.0);
      }
@@ -39,7 +40,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CHCFG register."]
   #[inline] pub fn with_chcfg<I: Into<bits::R16> + Copy, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
      let tmp = self.chcfg(index);
-     self.set_chcfg(index, f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 }

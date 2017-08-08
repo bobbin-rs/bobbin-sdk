@@ -51,7 +51,8 @@ impl Rcm {
      }
   }
 #[doc="Write the RPFC register."]
-  #[inline] pub fn set_rpfc(&self, value: Rpfc) -> &Self {
+  #[inline] pub fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
+     let value = f(Rpfc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
@@ -60,7 +61,11 @@ impl Rcm {
 #[doc="Modify the RPFC register."]
   #[inline] pub fn with_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
      let tmp = self.rpfc();
-     self.set_rpfc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RPFW register."]
@@ -78,7 +83,8 @@ impl Rcm {
      }
   }
 #[doc="Write the RPFW register."]
-  #[inline] pub fn set_rpfw(&self, value: Rpfw) -> &Self {
+  #[inline] pub fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
+     let value = f(Rpfw(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
@@ -87,7 +93,11 @@ impl Rcm {
 #[doc="Modify the RPFW register."]
   #[inline] pub fn with_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
      let tmp = self.rpfw();
-     self.set_rpfw(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
+     }
+     self
   }
 
 }

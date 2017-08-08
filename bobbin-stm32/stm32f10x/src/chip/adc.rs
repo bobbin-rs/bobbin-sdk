@@ -40,7 +40,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr(&self, value: Sr) -> &Self {
+  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+     let value = f(Sr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -49,7 +50,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SR register."]
   #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
      let tmp = self.sr();
-     self.set_sr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CR1 register."]
@@ -67,7 +72,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR1 register."]
-  #[inline] pub fn set_cr1(&self, value: Cr1) -> &Self {
+  #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
+     let value = f(Cr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -76,7 +82,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR1 register."]
   #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
      let tmp = self.cr1();
-     self.set_cr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CR2 register."]
@@ -94,7 +104,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the CR2 register."]
-  #[inline] pub fn set_cr2(&self, value: Cr2) -> &Self {
+  #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
+     let value = f(Cr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -103,7 +114,11 @@ impl<T> Periph<T> {
 #[doc="Modify the CR2 register."]
   #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
      let tmp = self.cr2();
-     self.set_cr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SMPR1 register."]
@@ -121,7 +136,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SMPR1 register."]
-  #[inline] pub fn set_smpr1(&self, value: Smpr1) -> &Self {
+  #[inline] pub fn set_smpr1<F: FnOnce(Smpr1) -> Smpr1>(&self, f: F) -> &Self {
+     let value = f(Smpr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -130,7 +146,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SMPR1 register."]
   #[inline] pub fn with_smpr1<F: FnOnce(Smpr1) -> Smpr1>(&self, f: F) -> &Self {
      let tmp = self.smpr1();
-     self.set_smpr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SMPR2 register."]
@@ -148,7 +168,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SMPR2 register."]
-  #[inline] pub fn set_smpr2(&self, value: Smpr2) -> &Self {
+  #[inline] pub fn set_smpr2<F: FnOnce(Smpr2) -> Smpr2>(&self, f: F) -> &Self {
+     let value = f(Smpr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -157,7 +178,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SMPR2 register."]
   #[inline] pub fn with_smpr2<F: FnOnce(Smpr2) -> Smpr2>(&self, f: F) -> &Self {
      let tmp = self.smpr2();
-     self.set_smpr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JOFR1 register."]
@@ -175,7 +200,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the JOFR1 register."]
-  #[inline] pub fn set_jofr1(&self, value: Jofr1) -> &Self {
+  #[inline] pub fn set_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &Self {
+     let value = f(Jofr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -184,7 +210,11 @@ impl<T> Periph<T> {
 #[doc="Modify the JOFR1 register."]
   #[inline] pub fn with_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &Self {
      let tmp = self.jofr1();
-     self.set_jofr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JOFR2 register."]
@@ -202,7 +232,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the JOFR2 register."]
-  #[inline] pub fn set_jofr2(&self, value: Jofr2) -> &Self {
+  #[inline] pub fn set_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &Self {
+     let value = f(Jofr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -211,7 +242,11 @@ impl<T> Periph<T> {
 #[doc="Modify the JOFR2 register."]
   #[inline] pub fn with_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &Self {
      let tmp = self.jofr2();
-     self.set_jofr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JOFR3 register."]
@@ -229,7 +264,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the JOFR3 register."]
-  #[inline] pub fn set_jofr3(&self, value: Jofr3) -> &Self {
+  #[inline] pub fn set_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &Self {
+     let value = f(Jofr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -238,7 +274,11 @@ impl<T> Periph<T> {
 #[doc="Modify the JOFR3 register."]
   #[inline] pub fn with_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &Self {
      let tmp = self.jofr3();
-     self.set_jofr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JOFR4 register."]
@@ -256,7 +296,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the JOFR4 register."]
-  #[inline] pub fn set_jofr4(&self, value: Jofr4) -> &Self {
+  #[inline] pub fn set_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &Self {
+     let value = f(Jofr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -265,7 +306,11 @@ impl<T> Periph<T> {
 #[doc="Modify the JOFR4 register."]
   #[inline] pub fn with_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &Self {
      let tmp = self.jofr4();
-     self.set_jofr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the HTR register."]
@@ -283,7 +328,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the HTR register."]
-  #[inline] pub fn set_htr(&self, value: Htr) -> &Self {
+  #[inline] pub fn set_htr<F: FnOnce(Htr) -> Htr>(&self, f: F) -> &Self {
+     let value = f(Htr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -292,7 +338,11 @@ impl<T> Periph<T> {
 #[doc="Modify the HTR register."]
   #[inline] pub fn with_htr<F: FnOnce(Htr) -> Htr>(&self, f: F) -> &Self {
      let tmp = self.htr();
-     self.set_htr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the LTR register."]
@@ -310,7 +360,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the LTR register."]
-  #[inline] pub fn set_ltr(&self, value: Ltr) -> &Self {
+  #[inline] pub fn set_ltr<F: FnOnce(Ltr) -> Ltr>(&self, f: F) -> &Self {
+     let value = f(Ltr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
@@ -319,7 +370,11 @@ impl<T> Periph<T> {
 #[doc="Modify the LTR register."]
   #[inline] pub fn with_ltr<F: FnOnce(Ltr) -> Ltr>(&self, f: F) -> &Self {
      let tmp = self.ltr();
-     self.set_ltr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SQR1 register."]
@@ -337,7 +392,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SQR1 register."]
-  #[inline] pub fn set_sqr1(&self, value: Sqr1) -> &Self {
+  #[inline] pub fn set_sqr1<F: FnOnce(Sqr1) -> Sqr1>(&self, f: F) -> &Self {
+     let value = f(Sqr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
@@ -346,7 +402,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SQR1 register."]
   #[inline] pub fn with_sqr1<F: FnOnce(Sqr1) -> Sqr1>(&self, f: F) -> &Self {
      let tmp = self.sqr1();
-     self.set_sqr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SQR2 register."]
@@ -364,7 +424,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SQR2 register."]
-  #[inline] pub fn set_sqr2(&self, value: Sqr2) -> &Self {
+  #[inline] pub fn set_sqr2<F: FnOnce(Sqr2) -> Sqr2>(&self, f: F) -> &Self {
+     let value = f(Sqr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
@@ -373,7 +434,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SQR2 register."]
   #[inline] pub fn with_sqr2<F: FnOnce(Sqr2) -> Sqr2>(&self, f: F) -> &Self {
      let tmp = self.sqr2();
-     self.set_sqr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SQR3 register."]
@@ -391,7 +456,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the SQR3 register."]
-  #[inline] pub fn set_sqr3(&self, value: Sqr3) -> &Self {
+  #[inline] pub fn set_sqr3<F: FnOnce(Sqr3) -> Sqr3>(&self, f: F) -> &Self {
+     let value = f(Sqr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
@@ -400,7 +466,11 @@ impl<T> Periph<T> {
 #[doc="Modify the SQR3 register."]
   #[inline] pub fn with_sqr3<F: FnOnce(Sqr3) -> Sqr3>(&self, f: F) -> &Self {
      let tmp = self.sqr3();
-     self.set_sqr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JSQR register."]
@@ -418,7 +488,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the JSQR register."]
-  #[inline] pub fn set_jsqr(&self, value: Jsqr) -> &Self {
+  #[inline] pub fn set_jsqr<F: FnOnce(Jsqr) -> Jsqr>(&self, f: F) -> &Self {
+     let value = f(Jsqr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
@@ -427,7 +498,11 @@ impl<T> Periph<T> {
 #[doc="Modify the JSQR register."]
   #[inline] pub fn with_jsqr<F: FnOnce(Jsqr) -> Jsqr>(&self, f: F) -> &Self {
      let tmp = self.jsqr();
-     self.set_jsqr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the JDR1 register."]

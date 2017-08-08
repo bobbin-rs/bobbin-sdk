@@ -37,27 +37,27 @@ impl<T> TimBasExt for Periph<T> {
         self.sr().uif() != 0
     }
     fn clr_update_interrupt_flag(&self) -> &Self {
-        self.set_sr(Sr(0).set_uif(0))
+        self.set_sr(|r| r.set_uif(0))
     }
 
     fn counter(&self) -> u16 {
         self.cnt().cnt().into()
     }
     fn set_counter(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_cnt(value))        
+        self.set_cnt(|r| r.set_cnt(value))        
     }
 
     fn prescaler(&self) -> u16 {
         self.psc().psc().into()
     }
     fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value))        
+        self.set_psc(|r| r.set_psc(value))        
     }
 
     fn reload(&self) -> u16 {
         self.arr().arr().into()
     }
     fn set_reload(&self, value: u16) -> &Self {
-        self.set_arr(Arr(0).set_arr(value))        
+        self.set_arr(|r| r.set_arr(value))        
     }
 }

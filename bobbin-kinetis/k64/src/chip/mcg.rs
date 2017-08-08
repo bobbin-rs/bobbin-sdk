@@ -21,7 +21,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C1 register."]
-  #[inline] pub fn set_c1(&self, value: C1) -> &Self {
+  #[inline] pub fn set_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
+     let value = f(C1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
@@ -30,7 +31,11 @@ impl Mcg {
 #[doc="Modify the C1 register."]
   #[inline] pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
      let tmp = self.c1();
-     self.set_c1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C2 register."]
@@ -48,7 +53,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C2 register."]
-  #[inline] pub fn set_c2(&self, value: C2) -> &Self {
+  #[inline] pub fn set_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
+     let value = f(C2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
@@ -57,7 +63,11 @@ impl Mcg {
 #[doc="Modify the C2 register."]
   #[inline] pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
      let tmp = self.c2();
-     self.set_c2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C3 register."]
@@ -75,7 +85,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C3 register."]
-  #[inline] pub fn set_c3(&self, value: C3) -> &Self {
+  #[inline] pub fn set_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
+     let value = f(C3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
      }
@@ -84,7 +95,11 @@ impl Mcg {
 #[doc="Modify the C3 register."]
   #[inline] pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
      let tmp = self.c3();
-     self.set_c3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C4 register."]
@@ -102,7 +117,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C4 register."]
-  #[inline] pub fn set_c4(&self, value: C4) -> &Self {
+  #[inline] pub fn set_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
+     let value = f(C4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
      }
@@ -111,7 +127,11 @@ impl Mcg {
 #[doc="Modify the C4 register."]
   #[inline] pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
      let tmp = self.c4();
-     self.set_c4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C5 register."]
@@ -129,7 +149,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C5 register."]
-  #[inline] pub fn set_c5(&self, value: C5) -> &Self {
+  #[inline] pub fn set_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
+     let value = f(C5(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
      }
@@ -138,7 +159,11 @@ impl Mcg {
 #[doc="Modify the C5 register."]
   #[inline] pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
      let tmp = self.c5();
-     self.set_c5(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C6 register."]
@@ -156,7 +181,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C6 register."]
-  #[inline] pub fn set_c6(&self, value: C6) -> &Self {
+  #[inline] pub fn set_c6<F: FnOnce(C6) -> C6>(&self, f: F) -> &Self {
+     let value = f(C6(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
      }
@@ -165,7 +191,11 @@ impl Mcg {
 #[doc="Modify the C6 register."]
   #[inline] pub fn with_c6<F: FnOnce(C6) -> C6>(&self, f: F) -> &Self {
      let tmp = self.c6();
-     self.set_c6(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the S register."]
@@ -183,7 +213,8 @@ impl Mcg {
      }
   }
 #[doc="Write the S register."]
-  #[inline] pub fn set_s(&self, value: S) -> &Self {
+  #[inline] pub fn set_s<F: FnOnce(S) -> S>(&self, f: F) -> &Self {
+     let value = f(S(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
      }
@@ -192,7 +223,11 @@ impl Mcg {
 #[doc="Modify the S register."]
   #[inline] pub fn with_s<F: FnOnce(S) -> S>(&self, f: F) -> &Self {
      let tmp = self.s();
-     self.set_s(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SC register."]
@@ -210,7 +245,8 @@ impl Mcg {
      }
   }
 #[doc="Write the SC register."]
-  #[inline] pub fn set_sc(&self, value: Sc) -> &Self {
+  #[inline] pub fn set_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Self {
+     let value = f(Sc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
@@ -219,7 +255,11 @@ impl Mcg {
 #[doc="Modify the SC register."]
   #[inline] pub fn with_sc<F: FnOnce(Sc) -> Sc>(&self, f: F) -> &Self {
      let tmp = self.sc();
-     self.set_sc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATCVH register."]
@@ -237,7 +277,8 @@ impl Mcg {
      }
   }
 #[doc="Write the ATCVH register."]
-  #[inline] pub fn set_atcvh(&self, value: Atcvh) -> &Self {
+  #[inline] pub fn set_atcvh<F: FnOnce(Atcvh) -> Atcvh>(&self, f: F) -> &Self {
+     let value = f(Atcvh(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
@@ -246,7 +287,11 @@ impl Mcg {
 #[doc="Modify the ATCVH register."]
   #[inline] pub fn with_atcvh<F: FnOnce(Atcvh) -> Atcvh>(&self, f: F) -> &Self {
      let tmp = self.atcvh();
-     self.set_atcvh(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ATCVL register."]
@@ -264,7 +309,8 @@ impl Mcg {
      }
   }
 #[doc="Write the ATCVL register."]
-  #[inline] pub fn set_atcvl(&self, value: Atcvl) -> &Self {
+  #[inline] pub fn set_atcvl<F: FnOnce(Atcvl) -> Atcvl>(&self, f: F) -> &Self {
+     let value = f(Atcvl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
@@ -273,7 +319,11 @@ impl Mcg {
 #[doc="Modify the ATCVL register."]
   #[inline] pub fn with_atcvl<F: FnOnce(Atcvl) -> Atcvl>(&self, f: F) -> &Self {
      let tmp = self.atcvl();
-     self.set_atcvl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C7 register."]
@@ -291,7 +341,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C7 register."]
-  #[inline] pub fn set_c7(&self, value: C7) -> &Self {
+  #[inline] pub fn set_c7<F: FnOnce(C7) -> C7>(&self, f: F) -> &Self {
+     let value = f(C7(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
      }
@@ -300,7 +351,11 @@ impl Mcg {
 #[doc="Modify the C7 register."]
   #[inline] pub fn with_c7<F: FnOnce(C7) -> C7>(&self, f: F) -> &Self {
      let tmp = self.c7();
-     self.set_c7(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the C8 register."]
@@ -318,7 +373,8 @@ impl Mcg {
      }
   }
 #[doc="Write the C8 register."]
-  #[inline] pub fn set_c8(&self, value: C8) -> &Self {
+  #[inline] pub fn set_c8<F: FnOnce(C8) -> C8>(&self, f: F) -> &Self {
+     let value = f(C8(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xd) as *mut u8, value.0);
      }
@@ -327,7 +383,11 @@ impl Mcg {
 #[doc="Modify the C8 register."]
   #[inline] pub fn with_c8<F: FnOnce(C8) -> C8>(&self, f: F) -> &Self {
      let tmp = self.c8();
-     self.set_c8(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xd) as *mut u8, value.0);
+     }
+     self
   }
 
 }

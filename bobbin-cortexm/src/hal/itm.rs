@@ -30,17 +30,17 @@ pub struct Port {}
 impl Port {
     pub fn write_u8(&self, value: u8) {
         while ITM.stim(0).data() == 0 {}
-        ITM.set_stim8(0, Stim8(value));
+        ITM.set_stim8(0, |_| Stim8(value));
     }
 
     pub fn write_u16(&self, value: u16) {
         while ITM.stim(0).data() == 0 {}
-        ITM.set_stim16(0, Stim16(value));
+        ITM.set_stim16(0, |_| Stim16(value));
     }    
 
     pub fn write_u32(&self, value: u32) {
         while ITM.stim(0).data() == 0 {}
-        ITM.set_stim(0, Stim(value));
+        ITM.set_stim(0, |_| Stim(value));
     }    
 
     pub fn write(&self, value: &[u8]) {

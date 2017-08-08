@@ -195,14 +195,14 @@ impl<P, T> ChannelExt for Channel<P, T> {
     fn clr_feif(&self) -> &Self {
         let p = self.periph();
         match self.index() {
-            0 => p.set_lifcr(Lifcr(0).set_cfeif0(1)),
-            1 => p.set_lifcr(Lifcr(0).set_cfeif1(1)),
-            2 => p.set_lifcr(Lifcr(0).set_cfeif2(1)),
-            3 => p.set_lifcr(Lifcr(0).set_cfeif3(1)),
-            4 => p.set_hifcr(Hifcr(0).set_cfeif4(1)),
-            5 => p.set_hifcr(Hifcr(0).set_cfeif5(1)),
-            6 => p.set_hifcr(Hifcr(0).set_cfeif6(1)),
-            7 => p.set_hifcr(Hifcr(0).set_cfeif7(1)),           
+            0 => p.set_lifcr(|r| r.set_cfeif0(1)),
+            1 => p.set_lifcr(|r| r.set_cfeif1(1)),
+            2 => p.set_lifcr(|r| r.set_cfeif2(1)),
+            3 => p.set_lifcr(|r| r.set_cfeif3(1)),
+            4 => p.set_hifcr(|r| r.set_cfeif4(1)),
+            5 => p.set_hifcr(|r| r.set_cfeif5(1)),
+            6 => p.set_hifcr(|r| r.set_cfeif6(1)),
+            7 => p.set_hifcr(|r| r.set_cfeif7(1)),           
             _ => panic!("Invalid channel index"),
         };
         self
@@ -211,14 +211,14 @@ impl<P, T> ChannelExt for Channel<P, T> {
     fn clr_dmeif(&self) -> &Self {
         let p = self.periph();
         match self.index() {
-            0 => p.set_lifcr(Lifcr(0).set_cdmeif0(1)),
-            1 => p.set_lifcr(Lifcr(0).set_cdmeif1(1)),
-            2 => p.set_lifcr(Lifcr(0).set_cdmeif2(1)),
-            3 => p.set_lifcr(Lifcr(0).set_cdmeif3(1)),
-            4 => p.set_hifcr(Hifcr(0).set_cdmeif4(1)),
-            5 => p.set_hifcr(Hifcr(0).set_cdmeif5(1)),
-            6 => p.set_hifcr(Hifcr(0).set_cdmeif6(1)),
-            7 => p.set_hifcr(Hifcr(0).set_cdmeif7(1)),           
+            0 => p.set_lifcr(|r| r.set_cdmeif0(1)),
+            1 => p.set_lifcr(|r| r.set_cdmeif1(1)),
+            2 => p.set_lifcr(|r| r.set_cdmeif2(1)),
+            3 => p.set_lifcr(|r| r.set_cdmeif3(1)),
+            4 => p.set_hifcr(|r| r.set_cdmeif4(1)),
+            5 => p.set_hifcr(|r| r.set_cdmeif5(1)),
+            6 => p.set_hifcr(|r| r.set_cdmeif6(1)),
+            7 => p.set_hifcr(|r| r.set_cdmeif7(1)),           
             _ => panic!("Invalid channel index"),
         };
         self
@@ -227,14 +227,14 @@ impl<P, T> ChannelExt for Channel<P, T> {
     fn clr_teif(&self) -> &Self {
         let p = self.periph();
         match self.index() {
-            0 => p.set_lifcr(Lifcr(0).set_cteif0(1)),
-            1 => p.set_lifcr(Lifcr(0).set_cteif1(1)),
-            2 => p.set_lifcr(Lifcr(0).set_cteif2(1)),
-            3 => p.set_lifcr(Lifcr(0).set_cteif3(1)),
-            4 => p.set_hifcr(Hifcr(0).set_cteif4(1)),
-            5 => p.set_hifcr(Hifcr(0).set_cteif5(1)),
-            6 => p.set_hifcr(Hifcr(0).set_cteif6(1)),
-            7 => p.set_hifcr(Hifcr(0).set_cteif7(1)),           
+            0 => p.set_lifcr(|r| r.set_cteif0(1)),
+            1 => p.set_lifcr(|r| r.set_cteif1(1)),
+            2 => p.set_lifcr(|r| r.set_cteif2(1)),
+            3 => p.set_lifcr(|r| r.set_cteif3(1)),
+            4 => p.set_hifcr(|r| r.set_cteif4(1)),
+            5 => p.set_hifcr(|r| r.set_cteif5(1)),
+            6 => p.set_hifcr(|r| r.set_cteif6(1)),
+            7 => p.set_hifcr(|r| r.set_cteif7(1)),           
             _ => panic!("Invalid channel index"),
         };
         self
@@ -243,14 +243,14 @@ impl<P, T> ChannelExt for Channel<P, T> {
     fn clr_htif(&self) -> &Self {
         let p = self.periph();
         match self.index() {
-            0 => p.set_lifcr(Lifcr(0).set_chtif0(1)),
-            1 => p.set_lifcr(Lifcr(0).set_chtif1(1)),
-            2 => p.set_lifcr(Lifcr(0).set_chtif2(1)),
-            3 => p.set_lifcr(Lifcr(0).set_chtif3(1)),
-            4 => p.set_hifcr(Hifcr(0).set_chtif4(1)),
-            5 => p.set_hifcr(Hifcr(0).set_chtif5(1)),
-            6 => p.set_hifcr(Hifcr(0).set_chtif6(1)),
-            7 => p.set_hifcr(Hifcr(0).set_chtif7(1)),           
+            0 => p.set_lifcr(|r| r.set_chtif0(1)),
+            1 => p.set_lifcr(|r| r.set_chtif1(1)),
+            2 => p.set_lifcr(|r| r.set_chtif2(1)),
+            3 => p.set_lifcr(|r| r.set_chtif3(1)),
+            4 => p.set_hifcr(|r| r.set_chtif4(1)),
+            5 => p.set_hifcr(|r| r.set_chtif5(1)),
+            6 => p.set_hifcr(|r| r.set_chtif6(1)),
+            7 => p.set_hifcr(|r| r.set_chtif7(1)),           
             _ => panic!("Invalid channel index"),
         };
         self
@@ -259,14 +259,14 @@ impl<P, T> ChannelExt for Channel<P, T> {
     fn clr_tcif(&self) -> &Self {
         let p = self.periph();
         match self.index() {
-            0 => p.set_lifcr(Lifcr(0).set_ctcif0(1)),
-            1 => p.set_lifcr(Lifcr(0).set_ctcif1(1)),
-            2 => p.set_lifcr(Lifcr(0).set_ctcif2(1)),
-            3 => p.set_lifcr(Lifcr(0).set_ctcif3(1)),
-            4 => p.set_hifcr(Hifcr(0).set_ctcif4(1)),
-            5 => p.set_hifcr(Hifcr(0).set_ctcif5(1)),
-            6 => p.set_hifcr(Hifcr(0).set_ctcif6(1)),
-            7 => p.set_hifcr(Hifcr(0).set_ctcif7(1)),           
+            0 => p.set_lifcr(|r| r.set_ctcif0(1)),
+            1 => p.set_lifcr(|r| r.set_ctcif1(1)),
+            2 => p.set_lifcr(|r| r.set_ctcif2(1)),
+            3 => p.set_lifcr(|r| r.set_ctcif3(1)),
+            4 => p.set_hifcr(|r| r.set_ctcif4(1)),
+            5 => p.set_hifcr(|r| r.set_ctcif5(1)),
+            6 => p.set_hifcr(|r| r.set_ctcif6(1)),
+            7 => p.set_hifcr(|r| r.set_ctcif7(1)),           
             _ => panic!("Invalid channel index"),
         };
         self
@@ -276,7 +276,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self.periph().scr(self.index)
     }
     fn set_scr(&self, value: Scr) -> &Self {
-        self.periph().set_scr(self.index, value);
+        self.periph().set_scr(self.index, |_| value);
         self
     }
     fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Self {
@@ -289,7 +289,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_ndt(&self, value: u16) -> &Self {
-        self.periph().set_sndtr(self.index, Sndtr(0).set_ndt(value));
+        self.periph().set_sndtr(self.index, |r| r.set_ndt(value));
         self
     }
 
@@ -298,7 +298,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_pa(&self, value: u32) -> &Self {
-        self.periph().set_spar(self.index, Spar(0).set_pa(value));
+        self.periph().set_spar(self.index, |r| r.set_pa(value));
         self
     }    
     
@@ -307,7 +307,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_m0a(&self, value: u32) -> &Self {
-        self.periph().set_sm0ar(self.index, Sm0ar(0).set_m0a(value));
+        self.periph().set_sm0ar(self.index, |r| r.set_m0a(value));
         self
     }    
 
@@ -316,7 +316,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
     }
 
     fn set_m1a(&self, value: u32) -> &Self {
-        self.periph().set_sm1ar(self.index, Sm1ar(0).set_m1a(value));
+        self.periph().set_sm1ar(self.index, |r| r.set_m1a(value));
         self
     }            
 
@@ -324,7 +324,7 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self.periph().sfcr(self.index)
     }
     fn set_sfcr(&self, value: Sfcr) -> &Self {
-        self.periph().set_sfcr(self.index, value);
+        self.periph().set_sfcr(self.index, |_| value);
         self
     }
     fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, f: F) -> &Self {

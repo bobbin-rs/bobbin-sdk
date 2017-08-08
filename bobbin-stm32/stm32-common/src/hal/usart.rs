@@ -43,9 +43,10 @@ impl Config {
 }
 
 pub trait UsartExt {
-    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    fn configure(&self, cfg: Config) -> &Self;
+    // fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+    // fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+    // fn configure(&self, cfg: Config) -> &Self;
+    fn set_baud(&self, baud: u32, clock: u32) -> &Self;
     fn enable(&self) -> &Self;
     fn disable(&self) -> &Self;
     fn putc(&self, c: u8);
@@ -57,27 +58,35 @@ pub trait UsartExt {
 }
 
 impl<T> UsartExt for Periph<T> {
-    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(Config::default()))
+    // fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+    //     self.configure(f(Config::default()))
+    // }
+    // fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+    //     self.configure(f(Config {
+    //         cr1: self.cr1(),
+    //         cr2: self.cr2(),
+    //         cr3: self.cr3(),
+    //         brr: self.brr(),
+    //     }))
+    // }
+    // fn configure(&self, cfg: Config) -> &Self {        
+    //     self.set_cr1(|_| cfg.cr1);
+    //     self.set_cr2(|_| cfg.cr2);
+    //     self.set_cr3(|_| cfg.cr3);
+    //     self.set_brr(|_| cfg.brr);
+    //     self
+    // }
+    fn set_baud(&self, baud: u32, clock: u32) -> &Self {
+        let brr = clock / baud;
+        self.set_brr(|r| r
+            .set_div_fraction((brr & 0b1111) as u32)
+            .set_div_mantissa(brr as u32 >> 4)
+        )
     }
-    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(Config {
-            cr1: self.cr1(),
-            cr2: self.cr2(),
-            cr3: self.cr3(),
-            brr: self.brr(),
-        }))
-    }
-    fn configure(&self, cfg: Config) -> &Self {
-        self.set_cr1(cfg.cr1);
-        self.set_cr2(cfg.cr2);
-        self.set_cr3(cfg.cr3);
-        self.set_brr(cfg.brr);
-        self
-    }
+
     fn enable(&self) -> &Self {
         self
-            .set_cr1(Cr1(0)
+            .set_cr1(|r| r
                 .set_ue(1)
                 .set_re(1)
                 .set_te(1)
@@ -85,7 +94,7 @@ impl<T> UsartExt for Periph<T> {
     }
     fn disable(&self) -> &Self {
         self
-            .set_cr1(Cr1(0)
+            .set_cr1(|r| r
                 .set_ue(0)
                 .set_re(0)
                 .set_te(0)
@@ -95,13 +104,13 @@ impl<T> UsartExt for Periph<T> {
     fn putc(&self, c: u8) {
         let u = self;
         while u.isr().txe() == 0 {}
-        u.set_tdr(Tdr(0).set_tdr(c as u32));
+        u.set_tdr(|r| r.set_tdr(c as u32));
     }
 
     fn try_putc(&self, c: u8) -> Option<usize> {
         let u = self;
         if u.isr().txe() != 0 {
-            u.set_tdr(Tdr(0).set_tdr(c as u32));
+            u.set_tdr(|r| r.set_tdr(c as u32));
             Some(1)
         } else {
             None

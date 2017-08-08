@@ -58,11 +58,11 @@ impl<T> TimGenExt for Periph<T> {
     }
 
     fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value as u32))
+        self.set_psc(|r| r.set_psc(value as u32))
     }
 
     fn set_update_event(&self) -> &Self {
-        self.set_egr(Egr(0).set_ug(1))
+        self.set_egr(|r| r.set_ug(1))
     }
 
     fn update_interrupt_flag(&self) -> bool {
@@ -74,7 +74,7 @@ impl<T> TimGenExt for Periph<T> {
     }    
 
     fn set_auto_reload(&self, value: u32) -> &Self {
-        self.set_arr(Arr(value))
+        self.set_arr(|r| r.set_arrl(value))
     }
 
     fn delay(&self, reload: u32, prescaler: u16) {
@@ -91,7 +91,6 @@ impl<T> TimGenExt for Periph<T> {
     }    
 
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         match index {
             0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value as u32)),
             2...3 => self.with_ccmr_output(1, |r| r.set_ocpe(index - 2, value as u32)),
@@ -111,12 +110,11 @@ impl<T> TimGenExt for Periph<T> {
     }    
 
     fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_ccer(|r| r.set_cce(index, value))
     }
 
     fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
-        self.set_ccr(index, Ccr(value))
+        self.set_ccr(index, |r| r.set_ccrl(value))
     }    
 }
 

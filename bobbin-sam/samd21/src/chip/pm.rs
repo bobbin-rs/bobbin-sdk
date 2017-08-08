@@ -21,7 +21,8 @@ impl Pm {
      }
   }
 #[doc="Write the AHBMASK register."]
-  #[inline] pub fn set_ahbmask(&self, value: Ahbmask) -> &Self {
+  #[inline] pub fn set_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
+     let value = f(Ahbmask(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Pm {
 #[doc="Modify the AHBMASK register."]
   #[inline] pub fn with_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
      let tmp = self.ahbmask();
-     self.set_ahbmask(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBAMASK register."]
@@ -48,7 +53,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBAMASK register."]
-  #[inline] pub fn set_apbamask(&self, value: Apbamask) -> &Self {
+  #[inline] pub fn set_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
+     let value = f(Apbamask(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Pm {
 #[doc="Modify the APBAMASK register."]
   #[inline] pub fn with_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
      let tmp = self.apbamask();
-     self.set_apbamask(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBASEL register."]
@@ -75,7 +85,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBASEL register."]
-  #[inline] pub fn set_apbasel(&self, value: Apbasel) -> &Self {
+  #[inline] pub fn set_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
+     let value = f(Apbasel(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
      }
@@ -84,7 +95,11 @@ impl Pm {
 #[doc="Modify the APBASEL register."]
   #[inline] pub fn with_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
      let tmp = self.apbasel();
-     self.set_apbasel(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x9) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBBMASK register."]
@@ -102,7 +117,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBBMASK register."]
-  #[inline] pub fn set_apbbmask(&self, value: Apbbmask) -> &Self {
+  #[inline] pub fn set_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
+     let value = f(Apbbmask(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Pm {
 #[doc="Modify the APBBMASK register."]
   #[inline] pub fn with_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
      let tmp = self.apbbmask();
-     self.set_apbbmask(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBBSEL register."]
@@ -129,7 +149,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBBSEL register."]
-  #[inline] pub fn set_apbbsel(&self, value: Apbbsel) -> &Self {
+  #[inline] pub fn set_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
+     let value = f(Apbbsel(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
      }
@@ -138,7 +159,11 @@ impl Pm {
 #[doc="Modify the APBBSEL register."]
   #[inline] pub fn with_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
      let tmp = self.apbbsel();
-     self.set_apbbsel(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBCMASK register."]
@@ -156,7 +181,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBCMASK register."]
-  #[inline] pub fn set_apbcmask(&self, value: Apbcmask) -> &Self {
+  #[inline] pub fn set_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
+     let value = f(Apbcmask(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Pm {
 #[doc="Modify the APBCMASK register."]
   #[inline] pub fn with_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
      let tmp = self.apbcmask();
-     self.set_apbcmask(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APBCSEL register."]
@@ -183,7 +213,8 @@ impl Pm {
      }
   }
 #[doc="Write the APBCSEL register."]
-  #[inline] pub fn set_apbcsel(&self, value: Apbcsel) -> &Self {
+  #[inline] pub fn set_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
+     let value = f(Apbcsel(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
      }
@@ -192,7 +223,11 @@ impl Pm {
 #[doc="Modify the APBCSEL register."]
   #[inline] pub fn with_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
      let tmp = self.apbcsel();
-     self.set_apbcsel(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CPUSEL register."]
@@ -210,7 +245,8 @@ impl Pm {
      }
   }
 #[doc="Write the CPUSEL register."]
-  #[inline] pub fn set_cpusel(&self, value: Cpusel) -> &Self {
+  #[inline] pub fn set_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
+     let value = f(Cpusel(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
      }
@@ -219,7 +255,11 @@ impl Pm {
 #[doc="Modify the CPUSEL register."]
   #[inline] pub fn with_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
      let tmp = self.cpusel();
-     self.set_cpusel(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CTRL register."]
@@ -237,7 +277,8 @@ impl Pm {
      }
   }
 #[doc="Write the CTRL register."]
-  #[inline] pub fn set_ctrl(&self, value: Ctrl) -> &Self {
+  #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
+     let value = f(Ctrl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
      }
@@ -246,7 +287,11 @@ impl Pm {
 #[doc="Modify the CTRL register."]
   #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
      let tmp = self.ctrl();
-     self.set_ctrl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTENCLR register."]
@@ -264,7 +309,8 @@ impl Pm {
      }
   }
 #[doc="Write the INTENCLR register."]
-  #[inline] pub fn set_intenclr(&self, value: Intenclr) -> &Self {
+  #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
+     let value = f(Intenclr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u8, value.0);
      }
@@ -273,7 +319,11 @@ impl Pm {
 #[doc="Modify the INTENCLR register."]
   #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
      let tmp = self.intenclr();
-     self.set_intenclr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTENSET register."]
@@ -291,7 +341,8 @@ impl Pm {
      }
   }
 #[doc="Write the INTENSET register."]
-  #[inline] pub fn set_intenset(&self, value: Intenset) -> &Self {
+  #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
+     let value = f(Intenset(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x35) as *mut u8, value.0);
      }
@@ -300,7 +351,11 @@ impl Pm {
 #[doc="Modify the INTENSET register."]
   #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
      let tmp = self.intenset();
-     self.set_intenset(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x35) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the INTFLAG register."]
@@ -318,7 +373,8 @@ impl Pm {
      }
   }
 #[doc="Write the INTFLAG register."]
-  #[inline] pub fn set_intflag(&self, value: Intflag) -> &Self {
+  #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
+     let value = f(Intflag(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x36) as *mut u8, value.0);
      }
@@ -327,7 +383,11 @@ impl Pm {
 #[doc="Modify the INTFLAG register."]
   #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
      let tmp = self.intflag();
-     self.set_intflag(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x36) as *mut u8, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RCAUSE register."]
@@ -360,7 +420,8 @@ impl Pm {
      }
   }
 #[doc="Write the SLEEP register."]
-  #[inline] pub fn set_sleep(&self, value: Sleep) -> &Self {
+  #[inline] pub fn set_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
+     let value = f(Sleep(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
      }
@@ -369,7 +430,11 @@ impl Pm {
 #[doc="Modify the SLEEP register."]
   #[inline] pub fn with_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
      let tmp = self.sleep();
-     self.set_sleep(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1) as *mut u8, value.0);
+     }
+     self
   }
 
 }

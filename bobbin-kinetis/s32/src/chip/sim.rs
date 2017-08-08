@@ -21,7 +21,8 @@ impl Sim {
      }
   }
 #[doc="Write the CHIPCTL register."]
-  #[inline] pub fn set_chipctl(&self, value: Chipctl) -> &Self {
+  #[inline] pub fn set_chipctl<F: FnOnce(Chipctl) -> Chipctl>(&self, f: F) -> &Self {
+     let value = f(Chipctl(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Sim {
 #[doc="Modify the CHIPCTL register."]
   #[inline] pub fn with_chipctl<F: FnOnce(Chipctl) -> Chipctl>(&self, f: F) -> &Self {
      let tmp = self.chipctl();
-     self.set_chipctl(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FTMOPT0 register."]
@@ -48,7 +53,8 @@ impl Sim {
      }
   }
 #[doc="Write the FTMOPT0 register."]
-  #[inline] pub fn set_ftmopt0(&self, value: Ftmopt0) -> &Self {
+  #[inline] pub fn set_ftmopt0<F: FnOnce(Ftmopt0) -> Ftmopt0>(&self, f: F) -> &Self {
+     let value = f(Ftmopt0(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Sim {
 #[doc="Modify the FTMOPT0 register."]
   #[inline] pub fn with_ftmopt0<F: FnOnce(Ftmopt0) -> Ftmopt0>(&self, f: F) -> &Self {
      let tmp = self.ftmopt0();
-     self.set_ftmopt0(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the LPOCLKS register."]
@@ -75,7 +85,8 @@ impl Sim {
      }
   }
 #[doc="Write the LPOCLKS register."]
-  #[inline] pub fn set_lpoclks(&self, value: Lpoclks) -> &Self {
+  #[inline] pub fn set_lpoclks<F: FnOnce(Lpoclks) -> Lpoclks>(&self, f: F) -> &Self {
+     let value = f(Lpoclks(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Sim {
 #[doc="Modify the LPOCLKS register."]
   #[inline] pub fn with_lpoclks<F: FnOnce(Lpoclks) -> Lpoclks>(&self, f: F) -> &Self {
      let tmp = self.lpoclks();
-     self.set_lpoclks(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the ADCOPT register."]
@@ -102,7 +117,8 @@ impl Sim {
      }
   }
 #[doc="Write the ADCOPT register."]
-  #[inline] pub fn set_adcopt(&self, value: Adcopt) -> &Self {
+  #[inline] pub fn set_adcopt<F: FnOnce(Adcopt) -> Adcopt>(&self, f: F) -> &Self {
+     let value = f(Adcopt(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Sim {
 #[doc="Modify the ADCOPT register."]
   #[inline] pub fn with_adcopt<F: FnOnce(Adcopt) -> Adcopt>(&self, f: F) -> &Self {
      let tmp = self.adcopt();
-     self.set_adcopt(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FTMOPT1 register."]
@@ -129,7 +149,8 @@ impl Sim {
      }
   }
 #[doc="Write the FTMOPT1 register."]
-  #[inline] pub fn set_ftmopt1(&self, value: Ftmopt1) -> &Self {
+  #[inline] pub fn set_ftmopt1<F: FnOnce(Ftmopt1) -> Ftmopt1>(&self, f: F) -> &Self {
+     let value = f(Ftmopt1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Sim {
 #[doc="Modify the FTMOPT1 register."]
   #[inline] pub fn with_ftmopt1<F: FnOnce(Ftmopt1) -> Ftmopt1>(&self, f: F) -> &Self {
      let tmp = self.ftmopt1();
-     self.set_ftmopt1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MISCTRL0 register."]
@@ -156,7 +181,8 @@ impl Sim {
      }
   }
 #[doc="Write the MISCTRL0 register."]
-  #[inline] pub fn set_misctrl0(&self, value: Misctrl0) -> &Self {
+  #[inline] pub fn set_misctrl0<F: FnOnce(Misctrl0) -> Misctrl0>(&self, f: F) -> &Self {
+     let value = f(Misctrl0(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Sim {
 #[doc="Modify the MISCTRL0 register."]
   #[inline] pub fn with_misctrl0<F: FnOnce(Misctrl0) -> Misctrl0>(&self, f: F) -> &Self {
      let tmp = self.misctrl0();
-     self.set_misctrl0(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SDID register."]
@@ -198,7 +228,8 @@ impl Sim {
      }
   }
 #[doc="Write the PLATCGC register."]
-  #[inline] pub fn set_platcgc(&self, value: Platcgc) -> &Self {
+  #[inline] pub fn set_platcgc<F: FnOnce(Platcgc) -> Platcgc>(&self, f: F) -> &Self {
+     let value = f(Platcgc(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
@@ -207,7 +238,11 @@ impl Sim {
 #[doc="Modify the PLATCGC register."]
   #[inline] pub fn with_platcgc<F: FnOnce(Platcgc) -> Platcgc>(&self, f: F) -> &Self {
      let tmp = self.platcgc();
-     self.set_platcgc(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the FCFG1 register."]
@@ -225,7 +260,8 @@ impl Sim {
      }
   }
 #[doc="Write the FCFG1 register."]
-  #[inline] pub fn set_fcfg1(&self, value: Fcfg1) -> &Self {
+  #[inline] pub fn set_fcfg1<F: FnOnce(Fcfg1) -> Fcfg1>(&self, f: F) -> &Self {
+     let value = f(Fcfg1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
@@ -234,7 +270,11 @@ impl Sim {
 #[doc="Modify the FCFG1 register."]
   #[inline] pub fn with_fcfg1<F: FnOnce(Fcfg1) -> Fcfg1>(&self, f: F) -> &Self {
      let tmp = self.fcfg1();
-     self.set_fcfg1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the UIDH register."]
@@ -312,7 +352,8 @@ impl Sim {
      }
   }
 #[doc="Write the CLKDIV4 register."]
-  #[inline] pub fn set_clkdiv4(&self, value: Clkdiv4) -> &Self {
+  #[inline] pub fn set_clkdiv4<F: FnOnce(Clkdiv4) -> Clkdiv4>(&self, f: F) -> &Self {
+     let value = f(Clkdiv4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
@@ -321,7 +362,11 @@ impl Sim {
 #[doc="Modify the CLKDIV4 register."]
   #[inline] pub fn with_clkdiv4<F: FnOnce(Clkdiv4) -> Clkdiv4>(&self, f: F) -> &Self {
      let tmp = self.clkdiv4();
-     self.set_clkdiv4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the MISCTRL1 register."]
@@ -339,7 +384,8 @@ impl Sim {
      }
   }
 #[doc="Write the MISCTRL1 register."]
-  #[inline] pub fn set_misctrl1(&self, value: Misctrl1) -> &Self {
+  #[inline] pub fn set_misctrl1<F: FnOnce(Misctrl1) -> Misctrl1>(&self, f: F) -> &Self {
+     let value = f(Misctrl1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
@@ -348,7 +394,11 @@ impl Sim {
 #[doc="Modify the MISCTRL1 register."]
   #[inline] pub fn with_misctrl1<F: FnOnce(Misctrl1) -> Misctrl1>(&self, f: F) -> &Self {
      let tmp = self.misctrl1();
-     self.set_misctrl1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
+     }
+     self
   }
 
 }

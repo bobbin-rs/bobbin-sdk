@@ -16,7 +16,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0x0) as *mut u32
   }
 #[doc="Write the KR register."]
-  #[inline] pub fn set_kr(&self, value: Kr) -> &Self {
+  #[inline] pub fn set_kr<F: FnOnce(Kr) -> Kr>(&self, f: F) -> &Self {
+     let value = f(Kr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -38,7 +39,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the PR register."]
-  #[inline] pub fn set_pr(&self, value: Pr) -> &Self {
+  #[inline] pub fn set_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
+     let value = f(Pr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -47,7 +49,11 @@ impl<T> Periph<T> {
 #[doc="Modify the PR register."]
   #[inline] pub fn with_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
      let tmp = self.pr();
-     self.set_pr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RLR register."]
@@ -65,7 +71,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the RLR register."]
-  #[inline] pub fn set_rlr(&self, value: Rlr) -> &Self {
+  #[inline] pub fn set_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Self {
+     let value = f(Rlr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -74,7 +81,11 @@ impl<T> Periph<T> {
 #[doc="Modify the RLR register."]
   #[inline] pub fn with_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Self {
      let tmp = self.rlr();
-     self.set_rlr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SR register."]
@@ -107,7 +118,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the WINR register."]
-  #[inline] pub fn set_winr(&self, value: Winr) -> &Self {
+  #[inline] pub fn set_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Self {
+     let value = f(Winr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -116,7 +128,11 @@ impl<T> Periph<T> {
 #[doc="Modify the WINR register."]
   #[inline] pub fn with_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Self {
      let tmp = self.winr();
-     self.set_winr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 }

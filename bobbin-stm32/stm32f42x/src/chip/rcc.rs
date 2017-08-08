@@ -21,7 +21,8 @@ impl Rcc {
      }
   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+     let value = f(Cr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Rcc {
 #[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
-     self.set_cr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PLLCFGR register."]
@@ -48,7 +53,8 @@ impl Rcc {
      }
   }
 #[doc="Write the PLLCFGR register."]
-  #[inline] pub fn set_pllcfgr(&self, value: Pllcfgr) -> &Self {
+  #[inline] pub fn set_pllcfgr<F: FnOnce(Pllcfgr) -> Pllcfgr>(&self, f: F) -> &Self {
+     let value = f(Pllcfgr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Rcc {
 #[doc="Modify the PLLCFGR register."]
   #[inline] pub fn with_pllcfgr<F: FnOnce(Pllcfgr) -> Pllcfgr>(&self, f: F) -> &Self {
      let tmp = self.pllcfgr();
-     self.set_pllcfgr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CFGR register."]
@@ -75,7 +85,8 @@ impl Rcc {
      }
   }
 #[doc="Write the CFGR register."]
-  #[inline] pub fn set_cfgr(&self, value: Cfgr) -> &Self {
+  #[inline] pub fn set_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
+     let value = f(Cfgr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Rcc {
 #[doc="Modify the CFGR register."]
   #[inline] pub fn with_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
      let tmp = self.cfgr();
-     self.set_cfgr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CIR register."]
@@ -102,7 +117,8 @@ impl Rcc {
      }
   }
 #[doc="Write the CIR register."]
-  #[inline] pub fn set_cir(&self, value: Cir) -> &Self {
+  #[inline] pub fn set_cir<F: FnOnce(Cir) -> Cir>(&self, f: F) -> &Self {
+     let value = f(Cir(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Rcc {
 #[doc="Modify the CIR register."]
   #[inline] pub fn with_cir<F: FnOnce(Cir) -> Cir>(&self, f: F) -> &Self {
      let tmp = self.cir();
-     self.set_cir(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB1RSTR register."]
@@ -129,7 +149,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB1RSTR register."]
-  #[inline] pub fn set_ahb1rstr(&self, value: Ahb1rstr) -> &Self {
+  #[inline] pub fn set_ahb1rstr<F: FnOnce(Ahb1rstr) -> Ahb1rstr>(&self, f: F) -> &Self {
+     let value = f(Ahb1rstr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Rcc {
 #[doc="Modify the AHB1RSTR register."]
   #[inline] pub fn with_ahb1rstr<F: FnOnce(Ahb1rstr) -> Ahb1rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb1rstr();
-     self.set_ahb1rstr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB2RSTR register."]
@@ -156,7 +181,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB2RSTR register."]
-  #[inline] pub fn set_ahb2rstr(&self, value: Ahb2rstr) -> &Self {
+  #[inline] pub fn set_ahb2rstr<F: FnOnce(Ahb2rstr) -> Ahb2rstr>(&self, f: F) -> &Self {
+     let value = f(Ahb2rstr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Rcc {
 #[doc="Modify the AHB2RSTR register."]
   #[inline] pub fn with_ahb2rstr<F: FnOnce(Ahb2rstr) -> Ahb2rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb2rstr();
-     self.set_ahb2rstr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB3RSTR register."]
@@ -183,7 +213,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB3RSTR register."]
-  #[inline] pub fn set_ahb3rstr(&self, value: Ahb3rstr) -> &Self {
+  #[inline] pub fn set_ahb3rstr<F: FnOnce(Ahb3rstr) -> Ahb3rstr>(&self, f: F) -> &Self {
+     let value = f(Ahb3rstr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl Rcc {
 #[doc="Modify the AHB3RSTR register."]
   #[inline] pub fn with_ahb3rstr<F: FnOnce(Ahb3rstr) -> Ahb3rstr>(&self, f: F) -> &Self {
      let tmp = self.ahb3rstr();
-     self.set_ahb3rstr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB1RSTR register."]
@@ -210,7 +245,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB1RSTR register."]
-  #[inline] pub fn set_apb1rstr(&self, value: Apb1rstr) -> &Self {
+  #[inline] pub fn set_apb1rstr<F: FnOnce(Apb1rstr) -> Apb1rstr>(&self, f: F) -> &Self {
+     let value = f(Apb1rstr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl Rcc {
 #[doc="Modify the APB1RSTR register."]
   #[inline] pub fn with_apb1rstr<F: FnOnce(Apb1rstr) -> Apb1rstr>(&self, f: F) -> &Self {
      let tmp = self.apb1rstr();
-     self.set_apb1rstr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB2RSTR register."]
@@ -237,7 +277,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB2RSTR register."]
-  #[inline] pub fn set_apb2rstr(&self, value: Apb2rstr) -> &Self {
+  #[inline] pub fn set_apb2rstr<F: FnOnce(Apb2rstr) -> Apb2rstr>(&self, f: F) -> &Self {
+     let value = f(Apb2rstr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl Rcc {
 #[doc="Modify the APB2RSTR register."]
   #[inline] pub fn with_apb2rstr<F: FnOnce(Apb2rstr) -> Apb2rstr>(&self, f: F) -> &Self {
      let tmp = self.apb2rstr();
-     self.set_apb2rstr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB1ENR register."]
@@ -264,7 +309,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB1ENR register."]
-  #[inline] pub fn set_ahb1enr(&self, value: Ahb1enr) -> &Self {
+  #[inline] pub fn set_ahb1enr<F: FnOnce(Ahb1enr) -> Ahb1enr>(&self, f: F) -> &Self {
+     let value = f(Ahb1enr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
@@ -273,7 +319,11 @@ impl Rcc {
 #[doc="Modify the AHB1ENR register."]
   #[inline] pub fn with_ahb1enr<F: FnOnce(Ahb1enr) -> Ahb1enr>(&self, f: F) -> &Self {
      let tmp = self.ahb1enr();
-     self.set_ahb1enr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB2ENR register."]
@@ -291,7 +341,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB2ENR register."]
-  #[inline] pub fn set_ahb2enr(&self, value: Ahb2enr) -> &Self {
+  #[inline] pub fn set_ahb2enr<F: FnOnce(Ahb2enr) -> Ahb2enr>(&self, f: F) -> &Self {
+     let value = f(Ahb2enr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
      }
@@ -300,7 +351,11 @@ impl Rcc {
 #[doc="Modify the AHB2ENR register."]
   #[inline] pub fn with_ahb2enr<F: FnOnce(Ahb2enr) -> Ahb2enr>(&self, f: F) -> &Self {
      let tmp = self.ahb2enr();
-     self.set_ahb2enr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB3ENR register."]
@@ -318,7 +373,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB3ENR register."]
-  #[inline] pub fn set_ahb3enr(&self, value: Ahb3enr) -> &Self {
+  #[inline] pub fn set_ahb3enr<F: FnOnce(Ahb3enr) -> Ahb3enr>(&self, f: F) -> &Self {
+     let value = f(Ahb3enr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
      }
@@ -327,7 +383,11 @@ impl Rcc {
 #[doc="Modify the AHB3ENR register."]
   #[inline] pub fn with_ahb3enr<F: FnOnce(Ahb3enr) -> Ahb3enr>(&self, f: F) -> &Self {
      let tmp = self.ahb3enr();
-     self.set_ahb3enr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB1ENR register."]
@@ -345,7 +405,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB1ENR register."]
-  #[inline] pub fn set_apb1enr(&self, value: Apb1enr) -> &Self {
+  #[inline] pub fn set_apb1enr<F: FnOnce(Apb1enr) -> Apb1enr>(&self, f: F) -> &Self {
+     let value = f(Apb1enr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
@@ -354,7 +415,11 @@ impl Rcc {
 #[doc="Modify the APB1ENR register."]
   #[inline] pub fn with_apb1enr<F: FnOnce(Apb1enr) -> Apb1enr>(&self, f: F) -> &Self {
      let tmp = self.apb1enr();
-     self.set_apb1enr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB2ENR register."]
@@ -372,7 +437,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB2ENR register."]
-  #[inline] pub fn set_apb2enr(&self, value: Apb2enr) -> &Self {
+  #[inline] pub fn set_apb2enr<F: FnOnce(Apb2enr) -> Apb2enr>(&self, f: F) -> &Self {
+     let value = f(Apb2enr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
@@ -381,7 +447,11 @@ impl Rcc {
 #[doc="Modify the APB2ENR register."]
   #[inline] pub fn with_apb2enr<F: FnOnce(Apb2enr) -> Apb2enr>(&self, f: F) -> &Self {
      let tmp = self.apb2enr();
-     self.set_apb2enr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB1LPENR register."]
@@ -399,7 +469,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB1LPENR register."]
-  #[inline] pub fn set_ahb1lpenr(&self, value: Ahb1lpenr) -> &Self {
+  #[inline] pub fn set_ahb1lpenr<F: FnOnce(Ahb1lpenr) -> Ahb1lpenr>(&self, f: F) -> &Self {
+     let value = f(Ahb1lpenr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
@@ -408,7 +479,11 @@ impl Rcc {
 #[doc="Modify the AHB1LPENR register."]
   #[inline] pub fn with_ahb1lpenr<F: FnOnce(Ahb1lpenr) -> Ahb1lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb1lpenr();
-     self.set_ahb1lpenr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB2LPENR register."]
@@ -426,7 +501,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB2LPENR register."]
-  #[inline] pub fn set_ahb2lpenr(&self, value: Ahb2lpenr) -> &Self {
+  #[inline] pub fn set_ahb2lpenr<F: FnOnce(Ahb2lpenr) -> Ahb2lpenr>(&self, f: F) -> &Self {
+     let value = f(Ahb2lpenr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
@@ -435,7 +511,11 @@ impl Rcc {
 #[doc="Modify the AHB2LPENR register."]
   #[inline] pub fn with_ahb2lpenr<F: FnOnce(Ahb2lpenr) -> Ahb2lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb2lpenr();
-     self.set_ahb2lpenr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the AHB3LPENR register."]
@@ -453,7 +533,8 @@ impl Rcc {
      }
   }
 #[doc="Write the AHB3LPENR register."]
-  #[inline] pub fn set_ahb3lpenr(&self, value: Ahb3lpenr) -> &Self {
+  #[inline] pub fn set_ahb3lpenr<F: FnOnce(Ahb3lpenr) -> Ahb3lpenr>(&self, f: F) -> &Self {
+     let value = f(Ahb3lpenr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
@@ -462,7 +543,11 @@ impl Rcc {
 #[doc="Modify the AHB3LPENR register."]
   #[inline] pub fn with_ahb3lpenr<F: FnOnce(Ahb3lpenr) -> Ahb3lpenr>(&self, f: F) -> &Self {
      let tmp = self.ahb3lpenr();
-     self.set_ahb3lpenr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB1LPENR register."]
@@ -480,7 +565,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB1LPENR register."]
-  #[inline] pub fn set_apb1lpenr(&self, value: Apb1lpenr) -> &Self {
+  #[inline] pub fn set_apb1lpenr<F: FnOnce(Apb1lpenr) -> Apb1lpenr>(&self, f: F) -> &Self {
+     let value = f(Apb1lpenr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
@@ -489,7 +575,11 @@ impl Rcc {
 #[doc="Modify the APB1LPENR register."]
   #[inline] pub fn with_apb1lpenr<F: FnOnce(Apb1lpenr) -> Apb1lpenr>(&self, f: F) -> &Self {
      let tmp = self.apb1lpenr();
-     self.set_apb1lpenr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the APB2LPENR register."]
@@ -507,7 +597,8 @@ impl Rcc {
      }
   }
 #[doc="Write the APB2LPENR register."]
-  #[inline] pub fn set_apb2lpenr(&self, value: Apb2lpenr) -> &Self {
+  #[inline] pub fn set_apb2lpenr<F: FnOnce(Apb2lpenr) -> Apb2lpenr>(&self, f: F) -> &Self {
+     let value = f(Apb2lpenr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
@@ -516,7 +607,11 @@ impl Rcc {
 #[doc="Modify the APB2LPENR register."]
   #[inline] pub fn with_apb2lpenr<F: FnOnce(Apb2lpenr) -> Apb2lpenr>(&self, f: F) -> &Self {
      let tmp = self.apb2lpenr();
-     self.set_apb2lpenr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the BDCR register."]
@@ -534,7 +629,8 @@ impl Rcc {
      }
   }
 #[doc="Write the BDCR register."]
-  #[inline] pub fn set_bdcr(&self, value: Bdcr) -> &Self {
+  #[inline] pub fn set_bdcr<F: FnOnce(Bdcr) -> Bdcr>(&self, f: F) -> &Self {
+     let value = f(Bdcr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
      }
@@ -543,7 +639,11 @@ impl Rcc {
 #[doc="Modify the BDCR register."]
   #[inline] pub fn with_bdcr<F: FnOnce(Bdcr) -> Bdcr>(&self, f: F) -> &Self {
      let tmp = self.bdcr();
-     self.set_bdcr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CSR register."]
@@ -561,7 +661,8 @@ impl Rcc {
      }
   }
 #[doc="Write the CSR register."]
-  #[inline] pub fn set_csr(&self, value: Csr) -> &Self {
+  #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
+     let value = f(Csr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
      }
@@ -570,7 +671,11 @@ impl Rcc {
 #[doc="Modify the CSR register."]
   #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
-     self.set_csr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the SSCGR register."]
@@ -588,7 +693,8 @@ impl Rcc {
      }
   }
 #[doc="Write the SSCGR register."]
-  #[inline] pub fn set_sscgr(&self, value: Sscgr) -> &Self {
+  #[inline] pub fn set_sscgr<F: FnOnce(Sscgr) -> Sscgr>(&self, f: F) -> &Self {
+     let value = f(Sscgr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
@@ -597,7 +703,11 @@ impl Rcc {
 #[doc="Modify the SSCGR register."]
   #[inline] pub fn with_sscgr<F: FnOnce(Sscgr) -> Sscgr>(&self, f: F) -> &Self {
      let tmp = self.sscgr();
-     self.set_sscgr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PLLI2SCFGR register."]
@@ -615,7 +725,8 @@ impl Rcc {
      }
   }
 #[doc="Write the PLLI2SCFGR register."]
-  #[inline] pub fn set_plli2scfgr(&self, value: Plli2scfgr) -> &Self {
+  #[inline] pub fn set_plli2scfgr<F: FnOnce(Plli2scfgr) -> Plli2scfgr>(&self, f: F) -> &Self {
+     let value = f(Plli2scfgr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
@@ -624,7 +735,11 @@ impl Rcc {
 #[doc="Modify the PLLI2SCFGR register."]
   #[inline] pub fn with_plli2scfgr<F: FnOnce(Plli2scfgr) -> Plli2scfgr>(&self, f: F) -> &Self {
      let tmp = self.plli2scfgr();
-     self.set_plli2scfgr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
+     }
+     self
   }
 
 }

@@ -21,7 +21,6 @@ pub fn privdefena() -> bool {
 }
 
 pub fn set_privdefena(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_ctrl(|r| r.set_privdefena(value));
 }
 
@@ -30,7 +29,6 @@ pub fn hfnmiena() -> bool {
 }
 
 pub fn set_hfnmiena(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_ctrl(|r| r.set_hfnmiena(value));
 }
 
@@ -39,7 +37,6 @@ pub fn enable() -> bool {
 }
 
 pub fn set_enable(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_ctrl(|r| r.set_enable(value));
 }
 
@@ -50,7 +47,7 @@ pub fn region_number() -> u8 {
 }
 
 pub fn set_region_number(value: u8) {
-    MPU.set_mpu_rnr(MpuRnr(0).set_region(value));
+    MPU.set_mpu_rnr(|r| r.set_region(value));
 }
 
 // MPU_RBAR
@@ -87,7 +84,6 @@ pub fn region_xn() -> bool {
 }
 
 pub fn set_region_xn(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_rasr(|r| r.set_xn(value));
 }
 
@@ -112,7 +108,6 @@ pub fn region_c() -> bool {
 }
 
 pub fn set_region_c(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_rasr(|r| r.set_c(value));
 }
 
@@ -121,7 +116,6 @@ pub fn region_b() -> bool {
 }
 
 pub fn set_region_b(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_rasr(|r| r.set_b(value));
 }
 
@@ -146,6 +140,5 @@ pub fn region_enable() -> bool {
 }
 
 pub fn set_region_enable(value: bool) {
-    let value = if value { 1 } else { 0 };
     MPU.with_mpu_rasr(|r| r.set_enable(value));
 }

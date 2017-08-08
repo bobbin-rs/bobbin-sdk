@@ -21,7 +21,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR1 register."]
-  #[inline] pub fn set_dr1(&self, value: Dr1) -> &Self {
+  #[inline] pub fn set_dr1<F: FnOnce(Dr1) -> Dr1>(&self, f: F) -> &Self {
+     let value = f(Dr1(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -30,7 +31,11 @@ impl Bkp {
 #[doc="Modify the DR1 register."]
   #[inline] pub fn with_dr1<F: FnOnce(Dr1) -> Dr1>(&self, f: F) -> &Self {
      let tmp = self.dr1();
-     self.set_dr1(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR2 register."]
@@ -48,7 +53,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR2 register."]
-  #[inline] pub fn set_dr2(&self, value: Dr2) -> &Self {
+  #[inline] pub fn set_dr2<F: FnOnce(Dr2) -> Dr2>(&self, f: F) -> &Self {
+     let value = f(Dr2(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -57,7 +63,11 @@ impl Bkp {
 #[doc="Modify the DR2 register."]
   #[inline] pub fn with_dr2<F: FnOnce(Dr2) -> Dr2>(&self, f: F) -> &Self {
      let tmp = self.dr2();
-     self.set_dr2(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR3 register."]
@@ -75,7 +85,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR3 register."]
-  #[inline] pub fn set_dr3(&self, value: Dr3) -> &Self {
+  #[inline] pub fn set_dr3<F: FnOnce(Dr3) -> Dr3>(&self, f: F) -> &Self {
+     let value = f(Dr3(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -84,7 +95,11 @@ impl Bkp {
 #[doc="Modify the DR3 register."]
   #[inline] pub fn with_dr3<F: FnOnce(Dr3) -> Dr3>(&self, f: F) -> &Self {
      let tmp = self.dr3();
-     self.set_dr3(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR4 register."]
@@ -102,7 +117,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR4 register."]
-  #[inline] pub fn set_dr4(&self, value: Dr4) -> &Self {
+  #[inline] pub fn set_dr4<F: FnOnce(Dr4) -> Dr4>(&self, f: F) -> &Self {
+     let value = f(Dr4(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -111,7 +127,11 @@ impl Bkp {
 #[doc="Modify the DR4 register."]
   #[inline] pub fn with_dr4<F: FnOnce(Dr4) -> Dr4>(&self, f: F) -> &Self {
      let tmp = self.dr4();
-     self.set_dr4(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR5 register."]
@@ -129,7 +149,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR5 register."]
-  #[inline] pub fn set_dr5(&self, value: Dr5) -> &Self {
+  #[inline] pub fn set_dr5<F: FnOnce(Dr5) -> Dr5>(&self, f: F) -> &Self {
+     let value = f(Dr5(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
      }
@@ -138,7 +159,11 @@ impl Bkp {
 #[doc="Modify the DR5 register."]
   #[inline] pub fn with_dr5<F: FnOnce(Dr5) -> Dr5>(&self, f: F) -> &Self {
      let tmp = self.dr5();
-     self.set_dr5(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR6 register."]
@@ -156,7 +181,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR6 register."]
-  #[inline] pub fn set_dr6(&self, value: Dr6) -> &Self {
+  #[inline] pub fn set_dr6<F: FnOnce(Dr6) -> Dr6>(&self, f: F) -> &Self {
+     let value = f(Dr6(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -165,7 +191,11 @@ impl Bkp {
 #[doc="Modify the DR6 register."]
   #[inline] pub fn with_dr6<F: FnOnce(Dr6) -> Dr6>(&self, f: F) -> &Self {
      let tmp = self.dr6();
-     self.set_dr6(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR7 register."]
@@ -183,7 +213,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR7 register."]
-  #[inline] pub fn set_dr7(&self, value: Dr7) -> &Self {
+  #[inline] pub fn set_dr7<F: FnOnce(Dr7) -> Dr7>(&self, f: F) -> &Self {
+     let value = f(Dr7(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
      }
@@ -192,7 +223,11 @@ impl Bkp {
 #[doc="Modify the DR7 register."]
   #[inline] pub fn with_dr7<F: FnOnce(Dr7) -> Dr7>(&self, f: F) -> &Self {
      let tmp = self.dr7();
-     self.set_dr7(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR8 register."]
@@ -210,7 +245,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR8 register."]
-  #[inline] pub fn set_dr8(&self, value: Dr8) -> &Self {
+  #[inline] pub fn set_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+     let value = f(Dr8(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
      }
@@ -219,7 +255,11 @@ impl Bkp {
 #[doc="Modify the DR8 register."]
   #[inline] pub fn with_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
      let tmp = self.dr8();
-     self.set_dr8(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR9 register."]
@@ -237,7 +277,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR9 register."]
-  #[inline] pub fn set_dr9(&self, value: Dr9) -> &Self {
+  #[inline] pub fn set_dr9<F: FnOnce(Dr9) -> Dr9>(&self, f: F) -> &Self {
+     let value = f(Dr9(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
      }
@@ -246,7 +287,11 @@ impl Bkp {
 #[doc="Modify the DR9 register."]
   #[inline] pub fn with_dr9<F: FnOnce(Dr9) -> Dr9>(&self, f: F) -> &Self {
      let tmp = self.dr9();
-     self.set_dr9(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR10 register."]
@@ -264,7 +309,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR10 register."]
-  #[inline] pub fn set_dr10(&self, value: Dr10) -> &Self {
+  #[inline] pub fn set_dr10<F: FnOnce(Dr10) -> Dr10>(&self, f: F) -> &Self {
+     let value = f(Dr10(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
      }
@@ -273,7 +319,11 @@ impl Bkp {
 #[doc="Modify the DR10 register."]
   #[inline] pub fn with_dr10<F: FnOnce(Dr10) -> Dr10>(&self, f: F) -> &Self {
      let tmp = self.dr10();
-     self.set_dr10(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR11 register."]
@@ -291,7 +341,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR11 register."]
-  #[inline] pub fn set_dr11(&self, value: Dr11) -> &Self {
+  #[inline] pub fn set_dr11<F: FnOnce(Dr11) -> Dr11>(&self, f: F) -> &Self {
+     let value = f(Dr11(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
      }
@@ -300,7 +351,11 @@ impl Bkp {
 #[doc="Modify the DR11 register."]
   #[inline] pub fn with_dr11<F: FnOnce(Dr11) -> Dr11>(&self, f: F) -> &Self {
      let tmp = self.dr11();
-     self.set_dr11(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x3c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR12 register."]
@@ -318,7 +373,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR12 register."]
-  #[inline] pub fn set_dr12(&self, value: Dr12) -> &Self {
+  #[inline] pub fn set_dr12<F: FnOnce(Dr12) -> Dr12>(&self, f: F) -> &Self {
+     let value = f(Dr12(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
      }
@@ -327,7 +383,11 @@ impl Bkp {
 #[doc="Modify the DR12 register."]
   #[inline] pub fn with_dr12<F: FnOnce(Dr12) -> Dr12>(&self, f: F) -> &Self {
      let tmp = self.dr12();
-     self.set_dr12(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x40) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR13 register."]
@@ -345,7 +405,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR13 register."]
-  #[inline] pub fn set_dr13(&self, value: Dr13) -> &Self {
+  #[inline] pub fn set_dr13<F: FnOnce(Dr13) -> Dr13>(&self, f: F) -> &Self {
+     let value = f(Dr13(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
      }
@@ -354,7 +415,11 @@ impl Bkp {
 #[doc="Modify the DR13 register."]
   #[inline] pub fn with_dr13<F: FnOnce(Dr13) -> Dr13>(&self, f: F) -> &Self {
      let tmp = self.dr13();
-     self.set_dr13(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x44) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR14 register."]
@@ -372,7 +437,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR14 register."]
-  #[inline] pub fn set_dr14(&self, value: Dr14) -> &Self {
+  #[inline] pub fn set_dr14<F: FnOnce(Dr14) -> Dr14>(&self, f: F) -> &Self {
+     let value = f(Dr14(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
      }
@@ -381,7 +447,11 @@ impl Bkp {
 #[doc="Modify the DR14 register."]
   #[inline] pub fn with_dr14<F: FnOnce(Dr14) -> Dr14>(&self, f: F) -> &Self {
      let tmp = self.dr14();
-     self.set_dr14(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x48) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR15 register."]
@@ -399,7 +469,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR15 register."]
-  #[inline] pub fn set_dr15(&self, value: Dr15) -> &Self {
+  #[inline] pub fn set_dr15<F: FnOnce(Dr15) -> Dr15>(&self, f: F) -> &Self {
+     let value = f(Dr15(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
      }
@@ -408,7 +479,11 @@ impl Bkp {
 #[doc="Modify the DR15 register."]
   #[inline] pub fn with_dr15<F: FnOnce(Dr15) -> Dr15>(&self, f: F) -> &Self {
      let tmp = self.dr15();
-     self.set_dr15(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR16 register."]
@@ -426,7 +501,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR16 register."]
-  #[inline] pub fn set_dr16(&self, value: Dr16) -> &Self {
+  #[inline] pub fn set_dr16<F: FnOnce(Dr16) -> Dr16>(&self, f: F) -> &Self {
+     let value = f(Dr16(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
      }
@@ -435,7 +511,11 @@ impl Bkp {
 #[doc="Modify the DR16 register."]
   #[inline] pub fn with_dr16<F: FnOnce(Dr16) -> Dr16>(&self, f: F) -> &Self {
      let tmp = self.dr16();
-     self.set_dr16(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x50) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR17 register."]
@@ -453,7 +533,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR17 register."]
-  #[inline] pub fn set_dr17(&self, value: Dr17) -> &Self {
+  #[inline] pub fn set_dr17<F: FnOnce(Dr17) -> Dr17>(&self, f: F) -> &Self {
+     let value = f(Dr17(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
      }
@@ -462,7 +543,11 @@ impl Bkp {
 #[doc="Modify the DR17 register."]
   #[inline] pub fn with_dr17<F: FnOnce(Dr17) -> Dr17>(&self, f: F) -> &Self {
      let tmp = self.dr17();
-     self.set_dr17(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x54) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR18 register."]
@@ -480,7 +565,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR18 register."]
-  #[inline] pub fn set_dr18(&self, value: Dr18) -> &Self {
+  #[inline] pub fn set_dr18<F: FnOnce(Dr18) -> Dr18>(&self, f: F) -> &Self {
+     let value = f(Dr18(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
      }
@@ -489,7 +575,11 @@ impl Bkp {
 #[doc="Modify the DR18 register."]
   #[inline] pub fn with_dr18<F: FnOnce(Dr18) -> Dr18>(&self, f: F) -> &Self {
      let tmp = self.dr18();
-     self.set_dr18(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x58) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR19 register."]
@@ -507,7 +597,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR19 register."]
-  #[inline] pub fn set_dr19(&self, value: Dr19) -> &Self {
+  #[inline] pub fn set_dr19<F: FnOnce(Dr19) -> Dr19>(&self, f: F) -> &Self {
+     let value = f(Dr19(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
      }
@@ -516,7 +607,11 @@ impl Bkp {
 #[doc="Modify the DR19 register."]
   #[inline] pub fn with_dr19<F: FnOnce(Dr19) -> Dr19>(&self, f: F) -> &Self {
      let tmp = self.dr19();
-     self.set_dr19(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR20 register."]
@@ -534,7 +629,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR20 register."]
-  #[inline] pub fn set_dr20(&self, value: Dr20) -> &Self {
+  #[inline] pub fn set_dr20<F: FnOnce(Dr20) -> Dr20>(&self, f: F) -> &Self {
+     let value = f(Dr20(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
      }
@@ -543,7 +639,11 @@ impl Bkp {
 #[doc="Modify the DR20 register."]
   #[inline] pub fn with_dr20<F: FnOnce(Dr20) -> Dr20>(&self, f: F) -> &Self {
      let tmp = self.dr20();
-     self.set_dr20(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x60) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR21 register."]
@@ -561,7 +661,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR21 register."]
-  #[inline] pub fn set_dr21(&self, value: Dr21) -> &Self {
+  #[inline] pub fn set_dr21<F: FnOnce(Dr21) -> Dr21>(&self, f: F) -> &Self {
+     let value = f(Dr21(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
      }
@@ -570,7 +671,11 @@ impl Bkp {
 #[doc="Modify the DR21 register."]
   #[inline] pub fn with_dr21<F: FnOnce(Dr21) -> Dr21>(&self, f: F) -> &Self {
      let tmp = self.dr21();
-     self.set_dr21(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x64) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR22 register."]
@@ -588,7 +693,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR22 register."]
-  #[inline] pub fn set_dr22(&self, value: Dr22) -> &Self {
+  #[inline] pub fn set_dr22<F: FnOnce(Dr22) -> Dr22>(&self, f: F) -> &Self {
+     let value = f(Dr22(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
      }
@@ -597,7 +703,11 @@ impl Bkp {
 #[doc="Modify the DR22 register."]
   #[inline] pub fn with_dr22<F: FnOnce(Dr22) -> Dr22>(&self, f: F) -> &Self {
      let tmp = self.dr22();
-     self.set_dr22(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x68) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR23 register."]
@@ -615,7 +725,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR23 register."]
-  #[inline] pub fn set_dr23(&self, value: Dr23) -> &Self {
+  #[inline] pub fn set_dr23<F: FnOnce(Dr23) -> Dr23>(&self, f: F) -> &Self {
+     let value = f(Dr23(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
      }
@@ -624,7 +735,11 @@ impl Bkp {
 #[doc="Modify the DR23 register."]
   #[inline] pub fn with_dr23<F: FnOnce(Dr23) -> Dr23>(&self, f: F) -> &Self {
      let tmp = self.dr23();
-     self.set_dr23(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x6c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR24 register."]
@@ -642,7 +757,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR24 register."]
-  #[inline] pub fn set_dr24(&self, value: Dr24) -> &Self {
+  #[inline] pub fn set_dr24<F: FnOnce(Dr24) -> Dr24>(&self, f: F) -> &Self {
+     let value = f(Dr24(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
      }
@@ -651,7 +767,11 @@ impl Bkp {
 #[doc="Modify the DR24 register."]
   #[inline] pub fn with_dr24<F: FnOnce(Dr24) -> Dr24>(&self, f: F) -> &Self {
      let tmp = self.dr24();
-     self.set_dr24(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x70) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR25 register."]
@@ -669,7 +789,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR25 register."]
-  #[inline] pub fn set_dr25(&self, value: Dr25) -> &Self {
+  #[inline] pub fn set_dr25<F: FnOnce(Dr25) -> Dr25>(&self, f: F) -> &Self {
+     let value = f(Dr25(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
      }
@@ -678,7 +799,11 @@ impl Bkp {
 #[doc="Modify the DR25 register."]
   #[inline] pub fn with_dr25<F: FnOnce(Dr25) -> Dr25>(&self, f: F) -> &Self {
      let tmp = self.dr25();
-     self.set_dr25(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x74) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR26 register."]
@@ -696,7 +821,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR26 register."]
-  #[inline] pub fn set_dr26(&self, value: Dr26) -> &Self {
+  #[inline] pub fn set_dr26<F: FnOnce(Dr26) -> Dr26>(&self, f: F) -> &Self {
+     let value = f(Dr26(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
      }
@@ -705,7 +831,11 @@ impl Bkp {
 #[doc="Modify the DR26 register."]
   #[inline] pub fn with_dr26<F: FnOnce(Dr26) -> Dr26>(&self, f: F) -> &Self {
      let tmp = self.dr26();
-     self.set_dr26(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x78) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR27 register."]
@@ -723,7 +853,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR27 register."]
-  #[inline] pub fn set_dr27(&self, value: Dr27) -> &Self {
+  #[inline] pub fn set_dr27<F: FnOnce(Dr27) -> Dr27>(&self, f: F) -> &Self {
+     let value = f(Dr27(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
      }
@@ -732,7 +863,11 @@ impl Bkp {
 #[doc="Modify the DR27 register."]
   #[inline] pub fn with_dr27<F: FnOnce(Dr27) -> Dr27>(&self, f: F) -> &Self {
      let tmp = self.dr27();
-     self.set_dr27(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x7c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR28 register."]
@@ -750,7 +885,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR28 register."]
-  #[inline] pub fn set_dr28(&self, value: Dr28) -> &Self {
+  #[inline] pub fn set_dr28<F: FnOnce(Dr28) -> Dr28>(&self, f: F) -> &Self {
+     let value = f(Dr28(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
      }
@@ -759,7 +895,11 @@ impl Bkp {
 #[doc="Modify the DR28 register."]
   #[inline] pub fn with_dr28<F: FnOnce(Dr28) -> Dr28>(&self, f: F) -> &Self {
      let tmp = self.dr28();
-     self.set_dr28(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x80) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR29 register."]
@@ -777,7 +917,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR29 register."]
-  #[inline] pub fn set_dr29(&self, value: Dr29) -> &Self {
+  #[inline] pub fn set_dr29<F: FnOnce(Dr29) -> Dr29>(&self, f: F) -> &Self {
+     let value = f(Dr29(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
      }
@@ -786,7 +927,11 @@ impl Bkp {
 #[doc="Modify the DR29 register."]
   #[inline] pub fn with_dr29<F: FnOnce(Dr29) -> Dr29>(&self, f: F) -> &Self {
      let tmp = self.dr29();
-     self.set_dr29(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x84) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR30 register."]
@@ -804,7 +949,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR30 register."]
-  #[inline] pub fn set_dr30(&self, value: Dr30) -> &Self {
+  #[inline] pub fn set_dr30<F: FnOnce(Dr30) -> Dr30>(&self, f: F) -> &Self {
+     let value = f(Dr30(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
      }
@@ -813,7 +959,11 @@ impl Bkp {
 #[doc="Modify the DR30 register."]
   #[inline] pub fn with_dr30<F: FnOnce(Dr30) -> Dr30>(&self, f: F) -> &Self {
      let tmp = self.dr30();
-     self.set_dr30(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x88) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR31 register."]
@@ -831,7 +981,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR31 register."]
-  #[inline] pub fn set_dr31(&self, value: Dr31) -> &Self {
+  #[inline] pub fn set_dr31<F: FnOnce(Dr31) -> Dr31>(&self, f: F) -> &Self {
+     let value = f(Dr31(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
      }
@@ -840,7 +991,11 @@ impl Bkp {
 #[doc="Modify the DR31 register."]
   #[inline] pub fn with_dr31<F: FnOnce(Dr31) -> Dr31>(&self, f: F) -> &Self {
      let tmp = self.dr31();
-     self.set_dr31(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x8c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR32 register."]
@@ -858,7 +1013,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR32 register."]
-  #[inline] pub fn set_dr32(&self, value: Dr32) -> &Self {
+  #[inline] pub fn set_dr32<F: FnOnce(Dr32) -> Dr32>(&self, f: F) -> &Self {
+     let value = f(Dr32(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x90) as *mut u32, value.0);
      }
@@ -867,7 +1023,11 @@ impl Bkp {
 #[doc="Modify the DR32 register."]
   #[inline] pub fn with_dr32<F: FnOnce(Dr32) -> Dr32>(&self, f: F) -> &Self {
      let tmp = self.dr32();
-     self.set_dr32(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x90) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR33 register."]
@@ -885,7 +1045,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR33 register."]
-  #[inline] pub fn set_dr33(&self, value: Dr33) -> &Self {
+  #[inline] pub fn set_dr33<F: FnOnce(Dr33) -> Dr33>(&self, f: F) -> &Self {
+     let value = f(Dr33(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x94) as *mut u32, value.0);
      }
@@ -894,7 +1055,11 @@ impl Bkp {
 #[doc="Modify the DR33 register."]
   #[inline] pub fn with_dr33<F: FnOnce(Dr33) -> Dr33>(&self, f: F) -> &Self {
      let tmp = self.dr33();
-     self.set_dr33(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x94) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR34 register."]
@@ -912,7 +1077,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR34 register."]
-  #[inline] pub fn set_dr34(&self, value: Dr34) -> &Self {
+  #[inline] pub fn set_dr34<F: FnOnce(Dr34) -> Dr34>(&self, f: F) -> &Self {
+     let value = f(Dr34(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x98) as *mut u32, value.0);
      }
@@ -921,7 +1087,11 @@ impl Bkp {
 #[doc="Modify the DR34 register."]
   #[inline] pub fn with_dr34<F: FnOnce(Dr34) -> Dr34>(&self, f: F) -> &Self {
      let tmp = self.dr34();
-     self.set_dr34(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x98) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR35 register."]
@@ -939,7 +1109,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR35 register."]
-  #[inline] pub fn set_dr35(&self, value: Dr35) -> &Self {
+  #[inline] pub fn set_dr35<F: FnOnce(Dr35) -> Dr35>(&self, f: F) -> &Self {
+     let value = f(Dr35(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x9c) as *mut u32, value.0);
      }
@@ -948,7 +1119,11 @@ impl Bkp {
 #[doc="Modify the DR35 register."]
   #[inline] pub fn with_dr35<F: FnOnce(Dr35) -> Dr35>(&self, f: F) -> &Self {
      let tmp = self.dr35();
-     self.set_dr35(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x9c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR36 register."]
@@ -966,7 +1141,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR36 register."]
-  #[inline] pub fn set_dr36(&self, value: Dr36) -> &Self {
+  #[inline] pub fn set_dr36<F: FnOnce(Dr36) -> Dr36>(&self, f: F) -> &Self {
+     let value = f(Dr36(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
      }
@@ -975,7 +1151,11 @@ impl Bkp {
 #[doc="Modify the DR36 register."]
   #[inline] pub fn with_dr36<F: FnOnce(Dr36) -> Dr36>(&self, f: F) -> &Self {
      let tmp = self.dr36();
-     self.set_dr36(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR37 register."]
@@ -993,7 +1173,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR37 register."]
-  #[inline] pub fn set_dr37(&self, value: Dr37) -> &Self {
+  #[inline] pub fn set_dr37<F: FnOnce(Dr37) -> Dr37>(&self, f: F) -> &Self {
+     let value = f(Dr37(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
      }
@@ -1002,7 +1183,11 @@ impl Bkp {
 #[doc="Modify the DR37 register."]
   #[inline] pub fn with_dr37<F: FnOnce(Dr37) -> Dr37>(&self, f: F) -> &Self {
      let tmp = self.dr37();
-     self.set_dr37(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR38 register."]
@@ -1020,7 +1205,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR38 register."]
-  #[inline] pub fn set_dr38(&self, value: Dr38) -> &Self {
+  #[inline] pub fn set_dr38<F: FnOnce(Dr38) -> Dr38>(&self, f: F) -> &Self {
+     let value = f(Dr38(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
      }
@@ -1029,7 +1215,11 @@ impl Bkp {
 #[doc="Modify the DR38 register."]
   #[inline] pub fn with_dr38<F: FnOnce(Dr38) -> Dr38>(&self, f: F) -> &Self {
      let tmp = self.dr38();
-     self.set_dr38(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xa8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR39 register."]
@@ -1047,7 +1237,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR39 register."]
-  #[inline] pub fn set_dr39(&self, value: Dr39) -> &Self {
+  #[inline] pub fn set_dr39<F: FnOnce(Dr39) -> Dr39>(&self, f: F) -> &Self {
+     let value = f(Dr39(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
      }
@@ -1056,7 +1247,11 @@ impl Bkp {
 #[doc="Modify the DR39 register."]
   #[inline] pub fn with_dr39<F: FnOnce(Dr39) -> Dr39>(&self, f: F) -> &Self {
      let tmp = self.dr39();
-     self.set_dr39(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xac) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR40 register."]
@@ -1074,7 +1269,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR40 register."]
-  #[inline] pub fn set_dr40(&self, value: Dr40) -> &Self {
+  #[inline] pub fn set_dr40<F: FnOnce(Dr40) -> Dr40>(&self, f: F) -> &Self {
+     let value = f(Dr40(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
      }
@@ -1083,7 +1279,11 @@ impl Bkp {
 #[doc="Modify the DR40 register."]
   #[inline] pub fn with_dr40<F: FnOnce(Dr40) -> Dr40>(&self, f: F) -> &Self {
      let tmp = self.dr40();
-     self.set_dr40(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR41 register."]
@@ -1101,7 +1301,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR41 register."]
-  #[inline] pub fn set_dr41(&self, value: Dr41) -> &Self {
+  #[inline] pub fn set_dr41<F: FnOnce(Dr41) -> Dr41>(&self, f: F) -> &Self {
+     let value = f(Dr41(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb4) as *mut u32, value.0);
      }
@@ -1110,7 +1311,11 @@ impl Bkp {
 #[doc="Modify the DR41 register."]
   #[inline] pub fn with_dr41<F: FnOnce(Dr41) -> Dr41>(&self, f: F) -> &Self {
      let tmp = self.dr41();
-     self.set_dr41(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb4) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the DR42 register."]
@@ -1128,7 +1333,8 @@ impl Bkp {
      }
   }
 #[doc="Write the DR42 register."]
-  #[inline] pub fn set_dr42(&self, value: Dr42) -> &Self {
+  #[inline] pub fn set_dr42<F: FnOnce(Dr42) -> Dr42>(&self, f: F) -> &Self {
+     let value = f(Dr42(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xb8) as *mut u32, value.0);
      }
@@ -1137,7 +1343,11 @@ impl Bkp {
 #[doc="Modify the DR42 register."]
   #[inline] pub fn with_dr42<F: FnOnce(Dr42) -> Dr42>(&self, f: F) -> &Self {
      let tmp = self.dr42();
-     self.set_dr42(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xb8) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the RTCCR register."]
@@ -1155,7 +1365,8 @@ impl Bkp {
      }
   }
 #[doc="Write the RTCCR register."]
-  #[inline] pub fn set_rtccr(&self, value: Rtccr) -> &Self {
+  #[inline] pub fn set_rtccr<F: FnOnce(Rtccr) -> Rtccr>(&self, f: F) -> &Self {
+     let value = f(Rtccr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
      }
@@ -1164,7 +1375,11 @@ impl Bkp {
 #[doc="Modify the RTCCR register."]
   #[inline] pub fn with_rtccr<F: FnOnce(Rtccr) -> Rtccr>(&self, f: F) -> &Self {
      let tmp = self.rtccr();
-     self.set_rtccr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CR register."]
@@ -1182,7 +1397,8 @@ impl Bkp {
      }
   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr(&self, value: Cr) -> &Self {
+  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+     let value = f(Cr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
      }
@@ -1191,7 +1407,11 @@ impl Bkp {
 #[doc="Modify the CR register."]
   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
      let tmp = self.cr();
-     self.set_cr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x2c) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the CSR register."]
@@ -1209,7 +1429,8 @@ impl Bkp {
      }
   }
 #[doc="Write the CSR register."]
-  #[inline] pub fn set_csr(&self, value: Csr) -> &Self {
+  #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
+     let value = f(Csr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
      }
@@ -1218,7 +1439,11 @@ impl Bkp {
 #[doc="Modify the CSR register."]
   #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
      let tmp = self.csr();
-     self.set_csr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
+     }
+     self
   }
 
 }

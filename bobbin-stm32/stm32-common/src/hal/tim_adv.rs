@@ -47,7 +47,6 @@ pub trait TimAdvExt {
 
 impl<T> TimAdvExt for Periph<T> {
     fn set_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.with_cr1(|r| r.set_cen(value))
     }
 
@@ -56,11 +55,11 @@ impl<T> TimAdvExt for Periph<T> {
     }
 
     fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(Psc(0).set_psc(value as u32))
+        self.set_psc(|r| r.set_psc(value as u32))
     }
 
     fn set_update_event(&self) -> &Self {
-        self.set_egr(Egr(0).set_ug(1))
+        self.set_egr(|r| r.set_ug(1))
     }
 
     fn update_interrupt_flag(&self) -> bool {
@@ -72,7 +71,7 @@ impl<T> TimAdvExt for Periph<T> {
     }    
 
     fn set_auto_reload(&self, value: u32) -> &Self {
-        self.set_arr(Arr(value))
+        self.set_arr(|r| r.set_arr(value))
     }
 
     fn counter(&self) -> u32 {
@@ -80,7 +79,7 @@ impl<T> TimAdvExt for Periph<T> {
     }
 
     fn set_counter(&self, value: u32) -> &Self {
-        self.set_cnt(Cnt(value))
+        self.set_cnt(|r| r.set_cnt(value))
     }
     
 
@@ -132,7 +131,7 @@ impl<T> TimAdvExt for Periph<T> {
     }
 
     fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
-        self.set_ccr(index, Ccr(value))
+        self.set_ccr(index, |r| r.set_ccr(value))
     }    
 
 }

@@ -6,9 +6,9 @@ pub fn enabled(irq: usize) -> bool {
 
 pub fn set_enabled(irq: usize, value: bool) {
     if value {
-        NVIC.set_iser((irq >> 5), Iser(0).set_setena(irq, 1));
+        NVIC.set_iser((irq >> 5), |r| r.set_setena(irq, 1));
     } else {
-        NVIC.set_icer((irq >> 5), Icer(0).set_clrena(irq, 1));
+        NVIC.set_icer((irq >> 5), |r| r.set_clrena(irq, 1));
     }        
 }
 
@@ -18,9 +18,9 @@ pub fn pending(irq: usize) -> bool {
 
 pub fn set_pending(irq: usize, value: bool) {
     if value {
-        NVIC.set_ispr((irq >> 5), Ispr(0).set_setpend(irq, 1));
+        NVIC.set_ispr((irq >> 5), |r| r.set_setpend(irq, 1));
     } else {
-        NVIC.set_icpr((irq >> 5), Icpr(0).set_clrpend(irq, 1));
+        NVIC.set_icpr((irq >> 5), |r| r.set_clrpend(irq, 1));
     }        
 }
 
@@ -37,5 +37,5 @@ pub fn set_priority(irq: usize, value: u8) {
 }
 
 pub fn trigger_interrupt(irq: usize) {
-    NVIC.set_stir(Stir(0).set_intid(irq as u32));
+    NVIC.set_stir(|r| r.set_intid(irq as u32));
 }

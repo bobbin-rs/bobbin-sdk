@@ -22,7 +22,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the PDOR register."]
-  #[inline] pub fn set_pdor(&self, value: Pdor) -> &Self {
+  #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
+     let value = f(Pdor(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
      }
@@ -31,7 +32,11 @@ impl<T> Periph<T> {
 #[doc="Modify the PDOR register."]
   #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
      let tmp = self.pdor();
-     self.set_pdor(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
+     }
+     self
   }
 
 #[doc="Get the *const pointer for the PSOR register."]
@@ -43,7 +48,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0x4) as *mut u32
   }
 #[doc="Write the PSOR register."]
-  #[inline] pub fn set_psor(&self, value: Psor) -> &Self {
+  #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
+     let value = f(Psor(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
      }
@@ -59,7 +65,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0x8) as *mut u32
   }
 #[doc="Write the PCOR register."]
-  #[inline] pub fn set_pcor(&self, value: Pcor) -> &Self {
+  #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
+     let value = f(Pcor(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
      }
@@ -75,7 +82,8 @@ impl<T> Periph<T> {
      ((self.0 as usize) + 0xc) as *mut u32
   }
 #[doc="Write the PTOR register."]
-  #[inline] pub fn set_ptor(&self, value: Ptor) -> &Self {
+  #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
+     let value = f(Ptor(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
      }
@@ -112,7 +120,8 @@ impl<T> Periph<T> {
      }
   }
 #[doc="Write the PDDR register."]
-  #[inline] pub fn set_pddr(&self, value: Pddr) -> &Self {
+  #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
+     let value = f(Pddr(0));
      unsafe {
         ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
      }
@@ -121,7 +130,11 @@ impl<T> Periph<T> {
 #[doc="Modify the PDDR register."]
   #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
      let tmp = self.pddr();
-     self.set_pddr(f(tmp))
+     let value = f(tmp);
+     unsafe {
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+     }
+     self
   }
 
 }
