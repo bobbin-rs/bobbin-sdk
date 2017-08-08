@@ -1182,6 +1182,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
     if let Some(ref desc) = desc.description {
         try!(gen_doc(cfg, out, desc));
     }
+    try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
     try!(writeln!(out, "pub struct {}(pub [u8; {}]);", d_type, d_size));
     try!(writeln!(out, ""));
 
@@ -1454,7 +1455,7 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
         if let Some(ref desc) = r.description {
             try!(gen_doc(cfg, out, desc));
         }        
-        try!(writeln!(out, "#[derive(PartialEq, Eq)]"));
+        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
         try!(writeln!(out, "pub struct {}(pub {});", r_type, r_size));
         try!(writeln!(out, "impl {} {{", r_type));        
         for f in r.fields.iter() {
