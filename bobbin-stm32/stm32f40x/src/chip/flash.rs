@@ -171,7 +171,7 @@ impl Flash {
 }
 
 #[doc="Flash access control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Acr(pub u32);
 impl Acr {
 #[doc="Latency"]
@@ -272,7 +272,7 @@ impl ::core::fmt::Debug for Acr {
    }
 }
 #[doc="Flash key register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Keyr(pub u32);
 impl Keyr {
 #[doc="FPEC key"]
@@ -302,7 +302,7 @@ impl ::core::fmt::Debug for Keyr {
    }
 }
 #[doc="Flash option key register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Optkeyr(pub u32);
 impl Optkeyr {
 #[doc="Option byte key"]
@@ -332,7 +332,7 @@ impl ::core::fmt::Debug for Optkeyr {
    }
 }
 #[doc="Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="End of operation"]
@@ -447,7 +447,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Programming"]
@@ -590,7 +590,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Flash option control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Optcr(pub u32);
 impl Optcr {
 #[doc="Option lock"]

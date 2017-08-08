@@ -527,7 +527,7 @@ impl Rtc {
 }
 
 #[doc="time register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
 #[doc="AM/PM notation"]
@@ -642,7 +642,7 @@ impl ::core::fmt::Debug for Tr {
    }
 }
 #[doc="date register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Year tens in BCD format"]
@@ -757,7 +757,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Wakeup clock selection"]
@@ -1054,7 +1054,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="initialization and status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Alarm A write flag"]
@@ -1309,7 +1309,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prer(pub u32);
 impl Prer {
 #[doc="Asynchronous prescaler factor"]
@@ -1354,7 +1354,7 @@ impl ::core::fmt::Debug for Prer {
    }
 }
 #[doc="wakeup timer register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wutr(pub u32);
 impl Wutr {
 #[doc="Wakeup auto-reload value bits"]
@@ -1385,7 +1385,7 @@ impl ::core::fmt::Debug for Wutr {
    }
 }
 #[doc="alarm A register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmar(pub u32);
 impl Alrmar {
 #[doc="Alarm A date mask"]
@@ -1598,7 +1598,7 @@ impl ::core::fmt::Debug for Alrmar {
    }
 }
 #[doc="alarm B register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmbr(pub u32);
 impl Alrmbr {
 #[doc="Alarm B date mask"]
@@ -1811,7 +1811,7 @@ impl ::core::fmt::Debug for Alrmbr {
    }
 }
 #[doc="write protection register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wpr(pub u32);
 impl Wpr {
 #[doc="Write protection key"]
@@ -1842,7 +1842,7 @@ impl ::core::fmt::Debug for Wpr {
    }
 }
 #[doc="sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ssr(pub u32);
 impl Ssr {
 #[doc="Sub second value"]
@@ -1873,7 +1873,7 @@ impl ::core::fmt::Debug for Ssr {
    }
 }
 #[doc="shift control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shiftr(pub u32);
 impl Shiftr {
 #[doc="Add one second"]
@@ -1918,7 +1918,7 @@ impl ::core::fmt::Debug for Shiftr {
    }
 }
 #[doc="time stamp time register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tstr(pub u32);
 impl Tstr {
 #[doc="Second units in BCD format"]
@@ -2033,7 +2033,7 @@ impl ::core::fmt::Debug for Tstr {
    }
 }
 #[doc="time stamp date register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tsdr(pub u32);
 impl Tsdr {
 #[doc="Week day units"]
@@ -2120,7 +2120,7 @@ impl ::core::fmt::Debug for Tsdr {
    }
 }
 #[doc="timestamp sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tsssr(pub u32);
 impl Tsssr {
 #[doc="Sub second value"]
@@ -2151,7 +2151,7 @@ impl ::core::fmt::Debug for Tsssr {
    }
 }
 #[doc="calibration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Calr(pub u32);
 impl Calr {
 #[doc="Increase frequency of RTC by 488.5 ppm"]
@@ -2224,7 +2224,7 @@ impl ::core::fmt::Debug for Calr {
    }
 }
 #[doc="tamper and alternate function configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tafcr(pub u32);
 impl Tafcr {
 #[doc="Tamper 1 detection enable"]
@@ -2493,7 +2493,7 @@ impl ::core::fmt::Debug for Tafcr {
    }
 }
 #[doc="alarm A sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmassr(pub u32);
 impl Alrmassr {
 #[doc="Mask the most-significant bits starting at this bit"]
@@ -2538,7 +2538,7 @@ impl ::core::fmt::Debug for Alrmassr {
    }
 }
 #[doc="alarm B sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmbssr(pub u32);
 impl Alrmbssr {
 #[doc="Mask the most-significant bits starting at this bit"]
@@ -2583,7 +2583,7 @@ impl ::core::fmt::Debug for Alrmbssr {
    }
 }
 #[doc="backup register n"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bkpr(pub u32);
 impl Bkpr {
 #[doc="BKP"]

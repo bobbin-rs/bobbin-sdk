@@ -50,7 +50,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Channel Configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chcfg(pub u8);
 impl Chcfg {
 #[doc="DMA Channel Source (Slot)"]

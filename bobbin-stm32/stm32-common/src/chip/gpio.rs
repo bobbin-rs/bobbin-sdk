@@ -315,7 +315,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="GPIO port mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Moder(pub u32);
 impl Moder {
 #[doc="Port x configuration bits (y = 0..15)"]
@@ -367,7 +367,7 @@ impl ::core::fmt::Debug for Moder {
    }
 }
 #[doc="GPIO port output type register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Otyper(pub u32);
 impl Otyper {
 #[doc="Port x configuration bits (y = 0..15)"]
@@ -419,7 +419,7 @@ impl ::core::fmt::Debug for Otyper {
    }
 }
 #[doc="GPIO port output speed register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ospeedr(pub u32);
 impl Ospeedr {
 #[doc="Port x configuration bits (y = 0..15)"]
@@ -471,7 +471,7 @@ impl ::core::fmt::Debug for Ospeedr {
    }
 }
 #[doc="GPIO port pull-up/pull-down register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pupdr(pub u32);
 impl Pupdr {
 #[doc="Port x configuration bits (y = 0..15)"]
@@ -523,7 +523,7 @@ impl ::core::fmt::Debug for Pupdr {
    }
 }
 #[doc="GPIO port input data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="Port input data (y = 0..15)"]
@@ -575,7 +575,7 @@ impl ::core::fmt::Debug for Idr {
    }
 }
 #[doc="GPIO port output data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="Port output data (y = 0..15)"]
@@ -627,7 +627,7 @@ impl ::core::fmt::Debug for Odr {
    }
 }
 #[doc="GPIO port bit set/reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bsrr(pub u32);
 impl Bsrr {
 #[doc="Port x reset bit y (y = 0..15)"]
@@ -714,7 +714,7 @@ impl ::core::fmt::Debug for Bsrr {
    }
 }
 #[doc="GPIO port configuration lock register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lckr(pub u32);
 impl Lckr {
 #[doc="Lock Key"]
@@ -780,7 +780,7 @@ impl ::core::fmt::Debug for Lckr {
    }
 }
 #[doc="GPIO alternate function low register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Afrl(pub u32);
 impl Afrl {
 #[doc="Alternate function selection for port x bit y (y = 0..7)"]
@@ -824,7 +824,7 @@ impl ::core::fmt::Debug for Afrl {
    }
 }
 #[doc="GPIO alternate function high register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Afrh(pub u32);
 impl Afrh {
 #[doc="Alternate function selection for port x bit y (y = 8..15)"]
@@ -868,7 +868,7 @@ impl ::core::fmt::Debug for Afrh {
    }
 }
 #[doc="Port bit reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="Port x reset bit y"]

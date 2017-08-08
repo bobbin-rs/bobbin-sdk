@@ -106,7 +106,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Activation bit"]
@@ -151,7 +151,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfr(pub u32);
 impl Cfr {
 #[doc="Early wakeup interrupt"]
@@ -210,7 +210,7 @@ impl ::core::fmt::Debug for Cfr {
    }
 }
 #[doc="Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Early wakeup interrupt flag"]

@@ -683,7 +683,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="UART Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Data Transmitted or Received"]
@@ -770,7 +770,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="UART Receive Status/Error Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rsr(pub u32);
 impl Rsr {
 #[doc="UART Framing Error"]
@@ -843,7 +843,7 @@ impl ::core::fmt::Debug for Rsr {
    }
 }
 #[doc="UART Receive Status/Error Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ecr(pub u32);
 impl Ecr {
 #[doc="Error Clear"]
@@ -874,7 +874,7 @@ impl ::core::fmt::Debug for Ecr {
    }
 }
 #[doc="UART Flag"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fr(pub u32);
 impl Fr {
 #[doc="Clear To Send"]
@@ -1017,7 +1017,7 @@ impl ::core::fmt::Debug for Fr {
    }
 }
 #[doc="UART IrDA Low-Power Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ilpr(pub u32);
 impl Ilpr {
 #[doc="IrDA Low-Power Divisor"]
@@ -1048,7 +1048,7 @@ impl ::core::fmt::Debug for Ilpr {
    }
 }
 #[doc="UART Integer Baud-Rate Divisor"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ibrd(pub u32);
 impl Ibrd {
 #[doc="Integer Baud-Rate Divisor"]
@@ -1079,7 +1079,7 @@ impl ::core::fmt::Debug for Ibrd {
    }
 }
 #[doc="UART Fractional Baud-Rate Divisor"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fbrd(pub u32);
 impl Fbrd {
 #[doc="Fractional Baud-Rate Divisor"]
@@ -1110,7 +1110,7 @@ impl ::core::fmt::Debug for Fbrd {
    }
 }
 #[doc="UART Line Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lcrh(pub u32);
 impl Lcrh {
 #[doc="UART Send Break"]
@@ -1225,7 +1225,7 @@ impl ::core::fmt::Debug for Lcrh {
    }
 }
 #[doc="UART Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="UART Enable"]
@@ -1424,7 +1424,7 @@ impl ::core::fmt::Debug for Ctl {
    }
 }
 #[doc="UART Interrupt FIFO Level Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ifls(pub u32);
 impl Ifls {
 #[doc="UART Transmit Interrupt FIFO Level Select"]
@@ -1469,7 +1469,7 @@ impl ::core::fmt::Debug for Ifls {
    }
 }
 #[doc="UART Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
 #[doc="UART Ring Indicator Modem Interrupt Mask"]
@@ -1696,7 +1696,7 @@ impl ::core::fmt::Debug for Im {
    }
 }
 #[doc="UART Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
@@ -1923,7 +1923,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="UART Masked Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
@@ -2150,7 +2150,7 @@ impl ::core::fmt::Debug for Mis {
    }
 }
 #[doc="UART Interrupt Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="UART Ring Indicator Modem Interrupt Clear"]
@@ -2377,7 +2377,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="UART DMA Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
 #[doc="Receive DMA Enable"]
@@ -2436,7 +2436,7 @@ impl ::core::fmt::Debug for Dmactl {
    }
 }
 #[doc="UART 9-Bit Self Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct _9bitaddr(pub u32);
 impl _9bitaddr {
 #[doc="Self Address for 9-Bit Mode"]
@@ -2481,7 +2481,7 @@ impl ::core::fmt::Debug for _9bitaddr {
    }
 }
 #[doc="UART 9-Bit Self Address Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct _9bitamask(pub u32);
 impl _9bitamask {
 #[doc="Self Address Mask for 9-Bit Mode"]
@@ -2512,7 +2512,7 @@ impl ::core::fmt::Debug for _9bitamask {
    }
 }
 #[doc="UART Peripheral Properties"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Smart Card Support"]
@@ -2585,7 +2585,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="UART Clock Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="UART Baud Clock Source"]

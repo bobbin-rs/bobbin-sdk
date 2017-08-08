@@ -745,7 +745,7 @@ impl Rcc {
 }
 
 #[doc="clock control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="PLLI2S clock ready flag"]
@@ -930,7 +930,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="PLL configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pllcfgr(pub u32);
 impl Pllcfgr {
 #[doc="Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks"]
@@ -1017,7 +1017,7 @@ impl ::core::fmt::Debug for Pllcfgr {
    }
 }
 #[doc="clock configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
 #[doc="Microcontroller clock output 2"]
@@ -1188,7 +1188,7 @@ impl ::core::fmt::Debug for Cfgr {
    }
 }
 #[doc="clock interrupt register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cir(pub u32);
 impl Cir {
 #[doc="Clock security system interrupt clear"]
@@ -1527,7 +1527,7 @@ impl ::core::fmt::Debug for Cir {
    }
 }
 #[doc="AHB1 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb1rstr(pub u32);
 impl Ahb1rstr {
 #[doc="USB OTG HS module reset"]
@@ -1782,7 +1782,7 @@ impl ::core::fmt::Debug for Ahb1rstr {
    }
 }
 #[doc="AHB2 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb2rstr(pub u32);
 impl Ahb2rstr {
 #[doc="USB OTG FS module reset"]
@@ -1841,7 +1841,7 @@ impl ::core::fmt::Debug for Ahb2rstr {
    }
 }
 #[doc="AHB3 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb3rstr(pub u32);
 impl Ahb3rstr {
 #[doc="Flexible memory controller module reset"]
@@ -1872,7 +1872,7 @@ impl ::core::fmt::Debug for Ahb3rstr {
    }
 }
 #[doc="APB1 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1rstr(pub u32);
 impl Apb1rstr {
 #[doc="TIM2 reset"]
@@ -2239,7 +2239,7 @@ impl ::core::fmt::Debug for Apb1rstr {
    }
 }
 #[doc="APB2 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2rstr(pub u32);
 impl Apb2rstr {
 #[doc="TIM1 reset"]
@@ -2480,7 +2480,7 @@ impl ::core::fmt::Debug for Apb2rstr {
    }
 }
 #[doc="AHB1 peripheral clock register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb1enr(pub u32);
 impl Ahb1enr {
 #[doc="USB OTG HSULPI clock enable"]
@@ -2791,7 +2791,7 @@ impl ::core::fmt::Debug for Ahb1enr {
    }
 }
 #[doc="AHB2 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb2enr(pub u32);
 impl Ahb2enr {
 #[doc="USB OTG FS clock enable"]
@@ -2850,7 +2850,7 @@ impl ::core::fmt::Debug for Ahb2enr {
    }
 }
 #[doc="AHB3 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb3enr(pub u32);
 impl Ahb3enr {
 #[doc="Flexible memory controller module clock enable"]
@@ -2881,7 +2881,7 @@ impl ::core::fmt::Debug for Ahb3enr {
    }
 }
 #[doc="APB1 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
 #[doc="TIM2 clock enable"]
@@ -3248,7 +3248,7 @@ impl ::core::fmt::Debug for Apb1enr {
    }
 }
 #[doc="APB2 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2enr(pub u32);
 impl Apb2enr {
 #[doc="TIM1 clock enable"]
@@ -3517,7 +3517,7 @@ impl ::core::fmt::Debug for Apb2enr {
    }
 }
 #[doc="AHB1 peripheral clock enable in low power mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb1lpenr(pub u32);
 impl Ahb1lpenr {
 #[doc="IO port A clock enable during sleep mode"]
@@ -3898,7 +3898,7 @@ impl ::core::fmt::Debug for Ahb1lpenr {
    }
 }
 #[doc="AHB2 peripheral clock enable in low power mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb2lpenr(pub u32);
 impl Ahb2lpenr {
 #[doc="USB OTG FS clock enable during Sleep mode"]
@@ -3957,7 +3957,7 @@ impl ::core::fmt::Debug for Ahb2lpenr {
    }
 }
 #[doc="AHB3 peripheral clock enable in low power mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahb3lpenr(pub u32);
 impl Ahb3lpenr {
 #[doc="Flexible memory controller module clock enable during Sleep mode"]
@@ -3988,7 +3988,7 @@ impl ::core::fmt::Debug for Ahb3lpenr {
    }
 }
 #[doc="APB1 peripheral clock enable in low power mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1lpenr(pub u32);
 impl Apb1lpenr {
 #[doc="TIM2 clock enable during Sleep mode"]
@@ -4355,7 +4355,7 @@ impl ::core::fmt::Debug for Apb1lpenr {
    }
 }
 #[doc="APB2 peripheral clock enabled in low power mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2lpenr(pub u32);
 impl Apb2lpenr {
 #[doc="TIM1 clock enable during Sleep mode"]
@@ -4624,7 +4624,7 @@ impl ::core::fmt::Debug for Apb2lpenr {
    }
 }
 #[doc="Backup domain control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdcr(pub u32);
 impl Bdcr {
 #[doc="Backup domain software reset"]
@@ -4739,7 +4739,7 @@ impl ::core::fmt::Debug for Bdcr {
    }
 }
 #[doc="clock control & status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Low-power reset flag"]
@@ -4896,7 +4896,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="spread spectrum clock generation register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sscgr(pub u32);
 impl Sscgr {
 #[doc="Spread spectrum modulation enable"]
@@ -4969,7 +4969,7 @@ impl ::core::fmt::Debug for Sscgr {
    }
 }
 #[doc="PLLI2S configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Plli2scfgr(pub u32);
 impl Plli2scfgr {
 #[doc="PLLI2S division factor for I2S clocks"]

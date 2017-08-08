@@ -233,7 +233,7 @@ impl Wdt {
 }
 
 #[doc="Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Clear(pub u8);
 impl Clear {
 #[doc="Watchdog Clear"]
@@ -264,7 +264,7 @@ impl ::core::fmt::Debug for Clear {
    }
 }
 #[doc="Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Config(pub u8);
 impl Config {
 #[doc="Time-Out Period"]
@@ -309,7 +309,7 @@ impl ::core::fmt::Debug for Config {
    }
 }
 #[doc="Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Enable"]
@@ -368,7 +368,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="Early Warning Interrupt Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ewctrl(pub u8);
 impl Ewctrl {
 #[doc="Early Warning Interrupt Time Offset"]
@@ -399,7 +399,7 @@ impl ::core::fmt::Debug for Ewctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Early Warning Interrupt Enable"]
@@ -430,7 +430,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Early Warning Interrupt Enable"]
@@ -461,7 +461,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Early Warning"]
@@ -492,7 +492,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]

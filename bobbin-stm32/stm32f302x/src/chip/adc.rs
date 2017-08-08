@@ -813,7 +813,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="interrupt and status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="JQOVF"]
@@ -984,7 +984,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="interrupt enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
 #[doc="JQOVFIE"]
@@ -1155,7 +1155,7 @@ impl ::core::fmt::Debug for Ier {
    }
 }
 #[doc="control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="ADCAL"]
@@ -1298,7 +1298,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
 #[doc="AWDCH1CH"]
@@ -1581,7 +1581,7 @@ impl ::core::fmt::Debug for Cfgr {
    }
 }
 #[doc="sample time register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smpr1(pub u32);
 impl Smpr1 {
 #[doc="SMP9"]
@@ -1724,7 +1724,7 @@ impl ::core::fmt::Debug for Smpr1 {
    }
 }
 #[doc="sample time register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smpr2(pub u32);
 impl Smpr2 {
 #[doc="SMP18"]
@@ -1867,7 +1867,7 @@ impl ::core::fmt::Debug for Smpr2 {
    }
 }
 #[doc="watchdog threshold register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tr1(pub u32);
 impl Tr1 {
 #[doc="HT1"]
@@ -1912,7 +1912,7 @@ impl ::core::fmt::Debug for Tr1 {
    }
 }
 #[doc="watchdog threshold register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tr2(pub u32);
 impl Tr2 {
 #[doc="HT2"]
@@ -1957,7 +1957,7 @@ impl ::core::fmt::Debug for Tr2 {
    }
 }
 #[doc="watchdog threshold register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tr3(pub u32);
 impl Tr3 {
 #[doc="HT3"]
@@ -2002,7 +2002,7 @@ impl ::core::fmt::Debug for Tr3 {
    }
 }
 #[doc="regular sequence register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr1(pub u32);
 impl Sqr1 {
 #[doc="SQ4"]
@@ -2089,7 +2089,7 @@ impl ::core::fmt::Debug for Sqr1 {
    }
 }
 #[doc="regular sequence register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr2(pub u32);
 impl Sqr2 {
 #[doc="SQ9"]
@@ -2176,7 +2176,7 @@ impl ::core::fmt::Debug for Sqr2 {
    }
 }
 #[doc="regular sequence register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr3(pub u32);
 impl Sqr3 {
 #[doc="SQ14"]
@@ -2263,7 +2263,7 @@ impl ::core::fmt::Debug for Sqr3 {
    }
 }
 #[doc="regular sequence register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr4(pub u32);
 impl Sqr4 {
 #[doc="SQ16"]
@@ -2308,7 +2308,7 @@ impl ::core::fmt::Debug for Sqr4 {
    }
 }
 #[doc="regular Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="regularDATA"]
@@ -2339,7 +2339,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="injected sequence register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jsqr(pub u32);
 impl Jsqr {
 #[doc="JSQ4"]
@@ -2454,7 +2454,7 @@ impl ::core::fmt::Debug for Jsqr {
    }
 }
 #[doc="offset register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ofr1(pub u32);
 impl Ofr1 {
 #[doc="OFFSET1_EN"]
@@ -2513,7 +2513,7 @@ impl ::core::fmt::Debug for Ofr1 {
    }
 }
 #[doc="offset register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ofr2(pub u32);
 impl Ofr2 {
 #[doc="OFFSET2_EN"]
@@ -2572,7 +2572,7 @@ impl ::core::fmt::Debug for Ofr2 {
    }
 }
 #[doc="offset register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ofr3(pub u32);
 impl Ofr3 {
 #[doc="OFFSET3_EN"]
@@ -2631,7 +2631,7 @@ impl ::core::fmt::Debug for Ofr3 {
    }
 }
 #[doc="offset register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ofr4(pub u32);
 impl Ofr4 {
 #[doc="OFFSET4_EN"]
@@ -2690,7 +2690,7 @@ impl ::core::fmt::Debug for Ofr4 {
    }
 }
 #[doc="injected data register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr1(pub u32);
 impl Jdr1 {
 #[doc="JDATA1"]
@@ -2721,7 +2721,7 @@ impl ::core::fmt::Debug for Jdr1 {
    }
 }
 #[doc="injected data register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr2(pub u32);
 impl Jdr2 {
 #[doc="JDATA2"]
@@ -2752,7 +2752,7 @@ impl ::core::fmt::Debug for Jdr2 {
    }
 }
 #[doc="injected data register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr3(pub u32);
 impl Jdr3 {
 #[doc="JDATA3"]
@@ -2783,7 +2783,7 @@ impl ::core::fmt::Debug for Jdr3 {
    }
 }
 #[doc="injected data register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr4(pub u32);
 impl Jdr4 {
 #[doc="JDATA4"]
@@ -2814,7 +2814,7 @@ impl ::core::fmt::Debug for Jdr4 {
    }
 }
 #[doc="Analog Watchdog 2 Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Awd2cr(pub u32);
 impl Awd2cr {
 #[doc="AWD2CH"]
@@ -2845,7 +2845,7 @@ impl ::core::fmt::Debug for Awd2cr {
    }
 }
 #[doc="Analog Watchdog 3 Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Awd3cr(pub u32);
 impl Awd3cr {
 #[doc="AWD3CH"]
@@ -2876,7 +2876,7 @@ impl ::core::fmt::Debug for Awd3cr {
    }
 }
 #[doc="Differential Mode Selection Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Difsel(pub u32);
 impl Difsel {
 #[doc="Differential mode for channels 15 to 1"]
@@ -2921,7 +2921,7 @@ impl ::core::fmt::Debug for Difsel {
    }
 }
 #[doc="Calibration Factors"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Calfact(pub u32);
 impl Calfact {
 #[doc="CALFACT_D"]

@@ -137,7 +137,7 @@ impl Fpu {
 }
 
 #[doc="Coprocessor Access Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cpacr(pub u32);
 impl Cpacr {
 #[doc="CP10 Access privileges"]
@@ -182,7 +182,7 @@ impl ::core::fmt::Debug for Cpacr {
    }
 }
 #[doc="Floating-point Context Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fpccr(pub u32);
 impl Fpccr {
   #[inline] pub fn aspen(&self) -> bits::U1 {
@@ -307,7 +307,7 @@ impl ::core::fmt::Debug for Fpccr {
    }
 }
 #[doc="Floating-point Context Address Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fpcar(pub u32);
 impl Fpcar {
   #[inline] pub fn address(&self) -> bits::U29 {
@@ -336,7 +336,7 @@ impl ::core::fmt::Debug for Fpcar {
    }
 }
 #[doc="Floating-point Default Status Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fpdscr(pub u32);
 impl Fpdscr {
   #[inline] pub fn ahp(&self) -> bits::U1 {

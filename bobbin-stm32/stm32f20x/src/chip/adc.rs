@@ -583,7 +583,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Overrun"]
@@ -684,7 +684,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Overrun interrupt enable"]
@@ -897,7 +897,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Start conversion of regular channels"]
@@ -1082,7 +1082,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="sample time register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smpr1(pub u32);
 impl Smpr1 {
 #[doc="Sample time bits"]
@@ -1112,7 +1112,7 @@ impl ::core::fmt::Debug for Smpr1 {
    }
 }
 #[doc="sample time register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smpr2(pub u32);
 impl Smpr2 {
 #[doc="Sample time bits"]
@@ -1142,7 +1142,7 @@ impl ::core::fmt::Debug for Smpr2 {
    }
 }
 #[doc="injected channel data offset register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jofr1(pub u32);
 impl Jofr1 {
 #[doc="Data offset for injected channel x"]
@@ -1173,7 +1173,7 @@ impl ::core::fmt::Debug for Jofr1 {
    }
 }
 #[doc="injected channel data offset register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jofr2(pub u32);
 impl Jofr2 {
 #[doc="Data offset for injected channel x"]
@@ -1204,7 +1204,7 @@ impl ::core::fmt::Debug for Jofr2 {
    }
 }
 #[doc="injected channel data offset register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jofr3(pub u32);
 impl Jofr3 {
 #[doc="Data offset for injected channel x"]
@@ -1235,7 +1235,7 @@ impl ::core::fmt::Debug for Jofr3 {
    }
 }
 #[doc="injected channel data offset register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jofr4(pub u32);
 impl Jofr4 {
 #[doc="Data offset for injected channel x"]
@@ -1266,7 +1266,7 @@ impl ::core::fmt::Debug for Jofr4 {
    }
 }
 #[doc="watchdog higher threshold register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Htr(pub u32);
 impl Htr {
 #[doc="Analog watchdog higher threshold"]
@@ -1297,7 +1297,7 @@ impl ::core::fmt::Debug for Htr {
    }
 }
 #[doc="watchdog lower threshold register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ltr(pub u32);
 impl Ltr {
 #[doc="Analog watchdog lower threshold"]
@@ -1328,7 +1328,7 @@ impl ::core::fmt::Debug for Ltr {
    }
 }
 #[doc="regular sequence register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr1(pub u32);
 impl Sqr1 {
 #[doc="Regular channel sequence length"]
@@ -1415,7 +1415,7 @@ impl ::core::fmt::Debug for Sqr1 {
    }
 }
 #[doc="regular sequence register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr2(pub u32);
 impl Sqr2 {
 #[doc="12th conversion in regular sequence"]
@@ -1516,7 +1516,7 @@ impl ::core::fmt::Debug for Sqr2 {
    }
 }
 #[doc="regular sequence register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sqr3(pub u32);
 impl Sqr3 {
 #[doc="6th conversion in regular sequence"]
@@ -1617,7 +1617,7 @@ impl ::core::fmt::Debug for Sqr3 {
    }
 }
 #[doc="injected sequence register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jsqr(pub u32);
 impl Jsqr {
 #[doc="Injected sequence length"]
@@ -1704,7 +1704,7 @@ impl ::core::fmt::Debug for Jsqr {
    }
 }
 #[doc="injected data register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr1(pub u32);
 impl Jdr1 {
 #[doc="Injected data"]
@@ -1735,7 +1735,7 @@ impl ::core::fmt::Debug for Jdr1 {
    }
 }
 #[doc="injected data register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr2(pub u32);
 impl Jdr2 {
 #[doc="Injected data"]
@@ -1766,7 +1766,7 @@ impl ::core::fmt::Debug for Jdr2 {
    }
 }
 #[doc="injected data register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr3(pub u32);
 impl Jdr3 {
 #[doc="Injected data"]
@@ -1797,7 +1797,7 @@ impl ::core::fmt::Debug for Jdr3 {
    }
 }
 #[doc="injected data register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Jdr4(pub u32);
 impl Jdr4 {
 #[doc="Injected data"]
@@ -1828,7 +1828,7 @@ impl ::core::fmt::Debug for Jdr4 {
    }
 }
 #[doc="regular data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Regular data"]

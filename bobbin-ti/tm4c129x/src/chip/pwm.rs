@@ -1156,7 +1156,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="PWM Master Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Update PWM Generator n"]
@@ -1196,7 +1196,7 @@ impl ::core::fmt::Debug for Ctl {
    }
 }
 #[doc="PWM Time Base Sync"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Reset Generator n Counter"]
@@ -1236,7 +1236,7 @@ impl ::core::fmt::Debug for Sync {
    }
 }
 #[doc="PWM Output Enable"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Enable(pub u32);
 impl Enable {
 #[doc="MnPWMn Output Enable"]
@@ -1280,7 +1280,7 @@ impl ::core::fmt::Debug for Enable {
    }
 }
 #[doc="PWM Output Inversion"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Invert(pub u32);
 impl Invert {
 #[doc="Invert MnPWMn Signal"]
@@ -1324,7 +1324,7 @@ impl ::core::fmt::Debug for Invert {
    }
 }
 #[doc="PWM Output Fault"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fault(pub u32);
 impl Fault {
 #[doc="MnPWMn Fault"]
@@ -1368,7 +1368,7 @@ impl ::core::fmt::Debug for Fault {
    }
 }
 #[doc="PWM Interrupt Enable"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Inten(pub u32);
 impl Inten {
 #[doc="PWMn Interrupt Enable"]
@@ -1473,7 +1473,7 @@ impl ::core::fmt::Debug for Inten {
    }
 }
 #[doc="PWM Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="PWM0 Interrupt Asserted"]
@@ -1536,7 +1536,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="PWM Interrupt Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isc(pub u32);
 impl Isc {
 #[doc="PWMn Interrupt Status"]
@@ -1599,7 +1599,7 @@ impl ::core::fmt::Debug for Isc {
    }
 }
 #[doc="PWM Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
 #[doc="Generator n Fault Status"]
@@ -1639,7 +1639,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="PWM Fault Condition Value"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Faultval(pub u32);
 impl Faultval {
 #[doc="MnPWM0 Fault Value"]
@@ -1683,7 +1683,7 @@ impl ::core::fmt::Debug for Faultval {
    }
 }
 #[doc="PWM Enable Update"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Enupd(pub u32);
 impl Enupd {
 #[doc="MnPWMn Enable Update Mode"]
@@ -1727,7 +1727,7 @@ impl ::core::fmt::Debug for Enupd {
    }
 }
 #[doc="PWMn Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCtl(pub u32);
 impl ChCtl {
 #[doc="PWM Block Enable"]
@@ -1940,7 +1940,7 @@ impl ::core::fmt::Debug for ChCtl {
    }
 }
 #[doc="PWM0 Interrupt and Trigger Enable"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChInten(pub u32);
 impl ChInten {
 #[doc="Interrupt for Counter=0"]
@@ -2125,7 +2125,7 @@ impl ::core::fmt::Debug for ChInten {
    }
 }
 #[doc="PWM0 Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChRis(pub u32);
 impl ChRis {
 #[doc="Counter=0 Interrupt Status"]
@@ -2226,7 +2226,7 @@ impl ::core::fmt::Debug for ChRis {
    }
 }
 #[doc="PWM0 Interrupt Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChIsc(pub u32);
 impl ChIsc {
 #[doc="Counter=0 Interrupt"]
@@ -2327,7 +2327,7 @@ impl ::core::fmt::Debug for ChIsc {
    }
 }
 #[doc="PWM0 Load"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChLoad(pub u32);
 impl ChLoad {
 #[doc="Counter Load Value"]
@@ -2358,7 +2358,7 @@ impl ::core::fmt::Debug for ChLoad {
    }
 }
 #[doc="PWM0 Counter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCount(pub u32);
 impl ChCount {
 #[doc="Counter Value"]
@@ -2389,7 +2389,7 @@ impl ::core::fmt::Debug for ChCount {
    }
 }
 #[doc="PWM0 Compare A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCmpa(pub u32);
 impl ChCmpa {
 #[doc="Comparator A Value"]
@@ -2420,7 +2420,7 @@ impl ::core::fmt::Debug for ChCmpa {
    }
 }
 #[doc="PWM0 Compare B"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCmpb(pub u32);
 impl ChCmpb {
 #[doc="Comparator B Value"]
@@ -2451,7 +2451,7 @@ impl ::core::fmt::Debug for ChCmpb {
    }
 }
 #[doc="PWM0 Generator A Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChGena(pub u32);
 impl ChGena {
 #[doc="Action for Counter=0"]
@@ -2552,7 +2552,7 @@ impl ::core::fmt::Debug for ChGena {
    }
 }
 #[doc="PWM0 Generator B Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChGenb(pub u32);
 impl ChGenb {
 #[doc="Action for Counter=0"]
@@ -2653,7 +2653,7 @@ impl ::core::fmt::Debug for ChGenb {
    }
 }
 #[doc="PWM0 Dead-Band Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbctl(pub u32);
 impl ChDbctl {
 #[doc="Dead-Band Generator Enable"]
@@ -2684,7 +2684,7 @@ impl ::core::fmt::Debug for ChDbctl {
    }
 }
 #[doc="PWM0 Dead-Band Rising-Edge Delay"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbrise(pub u32);
 impl ChDbrise {
 #[doc="Dead-Band Rise Delay"]
@@ -2715,7 +2715,7 @@ impl ::core::fmt::Debug for ChDbrise {
    }
 }
 #[doc="PWM0 Dead-Band Falling-Edge-Delay"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbfall(pub u32);
 impl ChDbfall {
 #[doc="Dead-Band Fall Delay"]
@@ -2746,7 +2746,7 @@ impl ::core::fmt::Debug for ChDbfall {
    }
 }
 #[doc="PWM0 Fault Source 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsrc0(pub u32);
 impl ChFltsrc0 {
 #[doc="Fault0 Input"]
@@ -2819,7 +2819,7 @@ impl ::core::fmt::Debug for ChFltsrc0 {
    }
 }
 #[doc="PWM0 Fault Source 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsrc1(pub u32);
 impl ChFltsrc1 {
 #[doc="Digital Comparator 0"]
@@ -2948,7 +2948,7 @@ impl ::core::fmt::Debug for ChFltsrc1 {
    }
 }
 #[doc="PWM0 Minimum Fault Period"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChMinfltper(pub u32);
 impl ChMinfltper {
 #[doc="Minimum Fault Period"]
@@ -2979,7 +2979,7 @@ impl ::core::fmt::Debug for ChMinfltper {
    }
 }
 #[doc="PWM0 Fault Pin Logic Sense"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsen(pub u32);
 impl ChFltsen {
 #[doc="Fault0 Sense"]
@@ -3052,7 +3052,7 @@ impl ::core::fmt::Debug for ChFltsen {
    }
 }
 #[doc="PWM0 Fault Status 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltstat0(pub u32);
 impl ChFltstat0 {
 #[doc="Fault Input 0"]
@@ -3125,7 +3125,7 @@ impl ::core::fmt::Debug for ChFltstat0 {
    }
 }
 #[doc="PWM0 Fault Status 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltstat1(pub u32);
 impl ChFltstat1 {
 #[doc="Digital Comparator 0 Trigger"]
@@ -3254,7 +3254,7 @@ impl ::core::fmt::Debug for ChFltstat1 {
    }
 }
 #[doc="PWM Peripheral Properties"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Generators"]
@@ -3341,7 +3341,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="PWM Clock Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="PWM Clock Divider"]

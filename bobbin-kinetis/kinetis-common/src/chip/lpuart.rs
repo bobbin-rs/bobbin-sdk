@@ -360,7 +360,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Version ID Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Feature Identification Number"]
@@ -419,7 +419,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="Parameter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Transmit FIFO Size"]
@@ -464,7 +464,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="LPUART Global Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Global(pub u32);
 impl Global {
 #[doc="Software Reset"]
@@ -495,7 +495,7 @@ impl ::core::fmt::Debug for Global {
    }
 }
 #[doc="LPUART Pin Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pincfg(pub u32);
 impl Pincfg {
 #[doc="Trigger Select"]
@@ -526,7 +526,7 @@ impl ::core::fmt::Debug for Pincfg {
    }
 }
 #[doc="LPUART Baud Rate Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Baud(pub u32);
 impl Baud {
 #[doc="Baud Rate Modulo Divisor."]
@@ -739,7 +739,7 @@ impl ::core::fmt::Debug for Baud {
    }
 }
 #[doc="LPUART Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stat(pub u32);
 impl Stat {
 #[doc="Match 2 Flag"]
@@ -1008,7 +1008,7 @@ impl ::core::fmt::Debug for Stat {
    }
 }
 #[doc="LPUART Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u32);
 impl Ctrl {
 #[doc="Parity Type"]
@@ -1417,7 +1417,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="LPUART Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
 #[doc="RT"]
@@ -1518,7 +1518,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="LPUART Match Address Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Match(pub u32);
 impl Match {
 #[doc="Match Address 1"]
@@ -1563,7 +1563,7 @@ impl ::core::fmt::Debug for Match {
    }
 }
 #[doc="LPUART Modem IrDA Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Modir(pub u32);
 impl Modir {
 #[doc="Transmitter clear-to-send enable"]
@@ -1706,7 +1706,7 @@ impl ::core::fmt::Debug for Modir {
    }
 }
 #[doc="LPUART FIFO Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fifo(pub u32);
 impl Fifo {
 #[doc="Receive FIFO. Buffer Depth"]
@@ -1905,7 +1905,7 @@ impl ::core::fmt::Debug for Fifo {
    }
 }
 #[doc="LPUART Watermark Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Water(pub u32);
 impl Water {
 #[doc="Transmit Watermark"]

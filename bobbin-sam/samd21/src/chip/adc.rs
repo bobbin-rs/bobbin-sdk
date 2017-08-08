@@ -623,7 +623,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Average Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Avgctrl(pub u8);
 impl Avgctrl {
 #[doc="Number of Samples to be Collected"]
@@ -668,7 +668,7 @@ impl ::core::fmt::Debug for Avgctrl {
    }
 }
 #[doc="Calibration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Calib(pub u16);
 impl Calib {
 #[doc="Linearity Calibration Value"]
@@ -713,7 +713,7 @@ impl ::core::fmt::Debug for Calib {
    }
 }
 #[doc="Control A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u8);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -772,7 +772,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u16);
 impl Ctrlb {
 #[doc="Differential Mode"]
@@ -873,7 +873,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="Debug Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run"]
@@ -904,7 +904,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Event Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u8);
 impl Evctrl {
 #[doc="Start Conversion Event In"]
@@ -977,7 +977,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="Gain Correction"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gaincorr(pub u16);
 impl Gaincorr {
 #[doc="Gain Correction Value"]
@@ -1008,7 +1008,7 @@ impl ::core::fmt::Debug for Gaincorr {
    }
 }
 #[doc="Input Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Inputctrl(pub u32);
 impl Inputctrl {
 #[doc="Positive Mux Input Selection"]
@@ -1095,7 +1095,7 @@ impl ::core::fmt::Debug for Inputctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Result Ready Interrupt Enable"]
@@ -1168,7 +1168,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Result Ready Interrupt Enable"]
@@ -1241,7 +1241,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Result Ready"]
@@ -1314,7 +1314,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Offset Correction"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Offsetcorr(pub u16);
 impl Offsetcorr {
 #[doc="Offset Correction Value"]
@@ -1345,7 +1345,7 @@ impl ::core::fmt::Debug for Offsetcorr {
    }
 }
 #[doc="Reference Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Refctrl(pub u8);
 impl Refctrl {
 #[doc="Reference Selection"]
@@ -1390,7 +1390,7 @@ impl ::core::fmt::Debug for Refctrl {
    }
 }
 #[doc="Result"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Result(pub u16);
 impl Result {
 #[doc="Result Conversion Value"]
@@ -1421,7 +1421,7 @@ impl ::core::fmt::Debug for Result {
    }
 }
 #[doc="Sampling Time Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sampctrl(pub u8);
 impl Sampctrl {
 #[doc="Sampling Time Length"]
@@ -1452,7 +1452,7 @@ impl ::core::fmt::Debug for Sampctrl {
    }
 }
 #[doc="Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]
@@ -1483,7 +1483,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="Software Trigger"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Swtrig(pub u8);
 impl Swtrig {
 #[doc="ADC Conversion Flush"]
@@ -1528,7 +1528,7 @@ impl ::core::fmt::Debug for Swtrig {
    }
 }
 #[doc="Window Monitor Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Winctrl(pub u8);
 impl Winctrl {
 #[doc="Window Monitor Mode"]
@@ -1559,7 +1559,7 @@ impl ::core::fmt::Debug for Winctrl {
    }
 }
 #[doc="Window Monitor Lower Threshold"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Winlt(pub u16);
 impl Winlt {
 #[doc="Window Lower Threshold"]
@@ -1590,7 +1590,7 @@ impl ::core::fmt::Debug for Winlt {
    }
 }
 #[doc="Window Monitor Upper Threshold"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Winut(pub u16);
 impl Winut {
 #[doc="Window Upper Threshold"]

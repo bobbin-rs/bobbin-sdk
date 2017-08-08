@@ -394,7 +394,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="UART Baud Rate Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdh(pub u8);
 impl Bdh {
 #[doc="Baud Rate Modulo Divisor."]
@@ -467,7 +467,7 @@ impl ::core::fmt::Debug for Bdh {
    }
 }
 #[doc="UART Baud Rate Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdl(pub u8);
 impl Bdl {
 #[doc="Baud Rate Modulo Divisor"]
@@ -498,7 +498,7 @@ impl ::core::fmt::Debug for Bdl {
    }
 }
 #[doc="UART Control Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
 #[doc="Parity Type"]
@@ -627,7 +627,7 @@ impl ::core::fmt::Debug for C1 {
    }
 }
 #[doc="UART Control Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
 #[doc="Send Break"]
@@ -756,7 +756,7 @@ impl ::core::fmt::Debug for C2 {
    }
 }
 #[doc="UART Status Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct S1(pub u8);
 impl S1 {
 #[doc="Parity Error Flag"]
@@ -885,7 +885,7 @@ impl ::core::fmt::Debug for S1 {
    }
 }
 #[doc="UART Status Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct S2(pub u8);
 impl S2 {
 #[doc="Receiver Active Flag"]
@@ -1014,7 +1014,7 @@ impl ::core::fmt::Debug for S2 {
    }
 }
 #[doc="UART Control Register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C3(pub u8);
 impl C3 {
 #[doc="Parity Error Interrupt Enable"]
@@ -1143,7 +1143,7 @@ impl ::core::fmt::Debug for C3 {
    }
 }
 #[doc="UART Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct D(pub u8);
 impl D {
 #[doc="Read receive data buffer or write transmit data buffer."]
@@ -1174,7 +1174,7 @@ impl ::core::fmt::Debug for D {
    }
 }
 #[doc="UART Match Address Registers 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ma1(pub u8);
 impl Ma1 {
 #[doc="Match Address"]
@@ -1205,7 +1205,7 @@ impl ::core::fmt::Debug for Ma1 {
    }
 }
 #[doc="UART Match Address Registers 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ma2(pub u8);
 impl Ma2 {
 #[doc="Match Address"]
@@ -1236,7 +1236,7 @@ impl ::core::fmt::Debug for Ma2 {
    }
 }
 #[doc="UART Control Register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C4(pub u8);
 impl C4 {
 #[doc="Over Sampling Ratio"]
@@ -1309,7 +1309,7 @@ impl ::core::fmt::Debug for C4 {
    }
 }
 #[doc="UART Control Register 5"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C5(pub u8);
 impl C5 {
 #[doc="Resynchronization Disable"]

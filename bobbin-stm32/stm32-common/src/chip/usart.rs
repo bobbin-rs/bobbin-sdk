@@ -328,7 +328,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="End of Block interrupt enable"]
@@ -625,7 +625,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="Control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Address of the USART node"]
@@ -908,7 +908,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="Control register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr3(pub u32);
 impl Cr3 {
 #[doc="Wakeup from Stop mode interrupt enable"]
@@ -1191,7 +1191,7 @@ impl ::core::fmt::Debug for Cr3 {
    }
 }
 #[doc="Baud rate register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="mantissa of USARTDIV"]
@@ -1236,7 +1236,7 @@ impl ::core::fmt::Debug for Brr {
    }
 }
 #[doc="Guard time and prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gtpr(pub u32);
 impl Gtpr {
 #[doc="Guard time value"]
@@ -1281,7 +1281,7 @@ impl ::core::fmt::Debug for Gtpr {
    }
 }
 #[doc="Receiver timeout register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtor(pub u32);
 impl Rtor {
 #[doc="Block Length"]
@@ -1326,7 +1326,7 @@ impl ::core::fmt::Debug for Rtor {
    }
 }
 #[doc="Request register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rqr(pub u32);
 impl Rqr {
 #[doc="Transmit data flush request"]
@@ -1413,7 +1413,7 @@ impl ::core::fmt::Debug for Rqr {
    }
 }
 #[doc="Interrupt & status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Receive enable acknowledge flag"]
@@ -1738,7 +1738,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="Interrupt flag clear register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Wakeup from Stop mode clear flag"]
@@ -1923,7 +1923,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="Receive data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rdr(pub u32);
 impl Rdr {
 #[doc="Receive data value"]
@@ -1954,7 +1954,7 @@ impl ::core::fmt::Debug for Rdr {
    }
 }
 #[doc="Transmit data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tdr(pub u32);
 impl Tdr {
 #[doc="Transmit data value"]

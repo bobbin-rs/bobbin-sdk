@@ -636,7 +636,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Active Channel and Levels"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Active(pub u32);
 impl Active {
 #[doc="Level n Channel Trigger Request Executing"]
@@ -718,7 +718,7 @@ impl ::core::fmt::Debug for Active {
    }
 }
 #[doc="Descriptor Memory Section Base Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Baseaddr(pub u32);
 impl Baseaddr {
 #[doc="Descriptor Memory Base Address"]
@@ -748,7 +748,7 @@ impl ::core::fmt::Debug for Baseaddr {
    }
 }
 #[doc="Busy Channels"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Busych(pub u32);
 impl Busych {
 #[doc="Busy Channel n"]
@@ -796,7 +796,7 @@ impl ::core::fmt::Debug for Busych {
    }
 }
 #[doc="Channel Control A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chctrla(pub u8);
 impl Chctrla {
 #[doc="Channel Software Reset"]
@@ -841,7 +841,7 @@ impl ::core::fmt::Debug for Chctrla {
    }
 }
 #[doc="Channel Control B"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chctrlb(pub u32);
 impl Chctrlb {
 #[doc="Event Input Action"]
@@ -956,7 +956,7 @@ impl ::core::fmt::Debug for Chctrlb {
    }
 }
 #[doc="Channel ID"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chid(pub u8);
 impl Chid {
 #[doc="Channel ID"]
@@ -987,7 +987,7 @@ impl ::core::fmt::Debug for Chid {
    }
 }
 #[doc="Channel Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chintenclr(pub u8);
 impl Chintenclr {
 #[doc="Transfer Error Interrupt Enable"]
@@ -1046,7 +1046,7 @@ impl ::core::fmt::Debug for Chintenclr {
    }
 }
 #[doc="Channel Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chintenset(pub u8);
 impl Chintenset {
 #[doc="Transfer Error Interrupt Enable"]
@@ -1105,7 +1105,7 @@ impl ::core::fmt::Debug for Chintenset {
    }
 }
 #[doc="Channel Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chintflag(pub u8);
 impl Chintflag {
 #[doc="Transfer Error"]
@@ -1164,7 +1164,7 @@ impl ::core::fmt::Debug for Chintflag {
    }
 }
 #[doc="Channel Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Chstatus(pub u8);
 impl Chstatus {
 #[doc="Channel Pending"]
@@ -1223,7 +1223,7 @@ impl ::core::fmt::Debug for Chstatus {
    }
 }
 #[doc="CRC Checksum"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crcchksum(pub u32);
 impl Crcchksum {
 #[doc="CRC Checksum"]
@@ -1253,7 +1253,7 @@ impl ::core::fmt::Debug for Crcchksum {
    }
 }
 #[doc="CRC Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crcctrl(pub u16);
 impl Crcctrl {
 #[doc="CRC Beat Size"]
@@ -1312,7 +1312,7 @@ impl ::core::fmt::Debug for Crcctrl {
    }
 }
 #[doc="CRC Data Input"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crcdatain(pub u32);
 impl Crcdatain {
 #[doc="CRC Data Input"]
@@ -1342,7 +1342,7 @@ impl ::core::fmt::Debug for Crcdatain {
    }
 }
 #[doc="CRC Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crcstatus(pub u8);
 impl Crcstatus {
 #[doc="CRC Module Busy"]
@@ -1387,7 +1387,7 @@ impl ::core::fmt::Debug for Crcstatus {
    }
 }
 #[doc="Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u16);
 impl Ctrl {
 #[doc="Software Reset"]
@@ -1469,7 +1469,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="Debug Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run"]
@@ -1500,7 +1500,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Interrupt Pending"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intpend(pub u16);
 impl Intpend {
 #[doc="Channel ID"]
@@ -1615,7 +1615,7 @@ impl ::core::fmt::Debug for Intpend {
    }
 }
 #[doc="Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intstatus(pub u32);
 impl Intstatus {
 #[doc="Channel n Pending Interrupt"]
@@ -1663,7 +1663,7 @@ impl ::core::fmt::Debug for Intstatus {
    }
 }
 #[doc="Pending Channels"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pendch(pub u32);
 impl Pendch {
 #[doc="Pending Channel n"]
@@ -1711,7 +1711,7 @@ impl ::core::fmt::Debug for Pendch {
    }
 }
 #[doc="Priority Control 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prictrl(pub u32);
 impl Prictrl {
 #[doc="Level n Channel Priority Number"]
@@ -1774,7 +1774,7 @@ impl ::core::fmt::Debug for Prictrl {
    }
 }
 #[doc="Software Trigger Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Swtrigctrl(pub u32);
 impl Swtrigctrl {
 #[doc="Channel n Software Trigger"]
@@ -1822,7 +1822,7 @@ impl ::core::fmt::Debug for Swtrigctrl {
    }
 }
 #[doc="Write-Back Memory Section Base Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wrbaddr(pub u32);
 impl Wrbaddr {
 #[doc="Write-Back Memory Base Address"]
@@ -1853,6 +1853,7 @@ impl ::core::fmt::Debug for Wrbaddr {
 }
 
 #[doc="DMAC Block Transfer Descriptor"]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Transfer(pub [u8; 16]);
 
 impl Transfer {
@@ -1973,7 +1974,7 @@ impl Transfer {
 
 }
 #[doc="Block Transfer Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Btctrl(pub u16);
 impl Btctrl {
 #[doc="Descriptor Valid"]
@@ -2102,7 +2103,7 @@ impl ::core::fmt::Debug for Btctrl {
    }
 }
 #[doc="Block Transfer Count"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Btcnt(pub u16);
 impl Btcnt {
 #[doc="Block Transfer Count"]
@@ -2133,7 +2134,7 @@ impl ::core::fmt::Debug for Btcnt {
    }
 }
 #[doc="Block Transfer Source Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srcaddr(pub u32);
 impl Srcaddr {
 #[doc="Transfer Source Address"]
@@ -2163,7 +2164,7 @@ impl ::core::fmt::Debug for Srcaddr {
    }
 }
 #[doc="Block Transfer Source Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dstaddr(pub u32);
 impl Dstaddr {
 #[doc="Transfer Destination Address"]
@@ -2193,7 +2194,7 @@ impl ::core::fmt::Debug for Dstaddr {
    }
 }
 #[doc="Block Transfer Destination Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Descaddr(pub u32);
 impl Descaddr {
 #[doc="Next Descriptor Address"]

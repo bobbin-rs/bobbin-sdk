@@ -43,9 +43,9 @@ impl Config {
 }
 
 pub trait UsartExt {
-    // fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    // fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    // fn configure(&self, cfg: Config) -> &Self;
+    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+    fn configure(&self, cfg: Config) -> &Self;
     fn set_baud(&self, baud: u32, clock: u32) -> &Self;
     fn enable(&self) -> &Self;
     fn disable(&self) -> &Self;
@@ -58,24 +58,24 @@ pub trait UsartExt {
 }
 
 impl<T> UsartExt for Periph<T> {
-    // fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-    //     self.configure(f(Config::default()))
-    // }
-    // fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-    //     self.configure(f(Config {
-    //         cr1: self.cr1(),
-    //         cr2: self.cr2(),
-    //         cr3: self.cr3(),
-    //         brr: self.brr(),
-    //     }))
-    // }
-    // fn configure(&self, cfg: Config) -> &Self {        
-    //     self.set_cr1(|_| cfg.cr1);
-    //     self.set_cr2(|_| cfg.cr2);
-    //     self.set_cr3(|_| cfg.cr3);
-    //     self.set_brr(|_| cfg.brr);
-    //     self
-    // }
+    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+        self.configure(f(Config::default()))
+    }
+    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+        self.configure(f(Config {
+            cr1: self.cr1(),
+            cr2: self.cr2(),
+            cr3: self.cr3(),
+            brr: self.brr(),
+        }))
+    }
+    fn configure(&self, cfg: Config) -> &Self {        
+        self.set_cr1(|_| cfg.cr1);
+        self.set_cr2(|_| cfg.cr2);
+        self.set_cr3(|_| cfg.cr3);
+        self.set_brr(|_| cfg.brr);
+        self
+    }
     fn set_baud(&self, baud: u32, clock: u32) -> &Self {
         let brr = clock / baud;
         self.set_brr(|r| r

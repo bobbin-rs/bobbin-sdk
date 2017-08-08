@@ -194,7 +194,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="I2C FIFO Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fifodata(pub u32);
 impl Fifodata {
 #[doc="I2C TX FIFO Write Data Byte"]
@@ -225,7 +225,7 @@ impl ::core::fmt::Debug for Fifodata {
    }
 }
 #[doc="I2C FIFO Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fifoctl(pub u32);
 impl Fifoctl {
 #[doc="TX FIFO Trigger"]
@@ -354,7 +354,7 @@ impl ::core::fmt::Debug for Fifoctl {
    }
 }
 #[doc="I2C FIFO Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fifostatus(pub u32);
 impl Fifostatus {
 #[doc="TX FIFO Empty"]
@@ -455,7 +455,7 @@ impl ::core::fmt::Debug for Fifostatus {
    }
 }
 #[doc="I2C Peripheral Properties"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="High-Speed Capable"]
@@ -486,7 +486,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="I2C Peripheral Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pc(pub u32);
 impl Pc {
 #[doc="High-Speed Capable"]
@@ -932,7 +932,7 @@ impl Master {
 }
 
 #[doc="I2C Master Slave Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Msa(pub u32);
 impl Msa {
 #[doc="Receive not send"]
@@ -977,7 +977,7 @@ impl ::core::fmt::Debug for Msa {
    }
 }
 #[doc="I2C Master Control/Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct McsWrite(pub u32);
 impl McsWrite {
 #[doc="I2C Master Enable"]
@@ -1092,7 +1092,7 @@ impl ::core::fmt::Debug for McsWrite {
    }
 }
 #[doc="I2C Master Control/Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct McsRead(pub u32);
 impl McsRead {
 #[doc="I2C Busy"]
@@ -1249,7 +1249,7 @@ impl ::core::fmt::Debug for McsRead {
    }
 }
 #[doc="I2C Master Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mdr(pub u32);
 impl Mdr {
 #[doc="This byte contains the data transferred during a transaction"]
@@ -1280,7 +1280,7 @@ impl ::core::fmt::Debug for Mdr {
    }
 }
 #[doc="I2C Master Timer Period"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mtpr(pub u32);
 impl Mtpr {
 #[doc="Timer Period"]
@@ -1339,7 +1339,7 @@ impl ::core::fmt::Debug for Mtpr {
    }
 }
 #[doc="I2C Master Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mimr(pub u32);
 impl Mimr {
 #[doc="Master Interrupt Mask"]
@@ -1524,7 +1524,7 @@ impl ::core::fmt::Debug for Mimr {
    }
 }
 #[doc="I2C Master Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mris(pub u32);
 impl Mris {
 #[doc="Master Raw Interrupt Status"]
@@ -1709,7 +1709,7 @@ impl ::core::fmt::Debug for Mris {
    }
 }
 #[doc="I2C Master Masked Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmis(pub u32);
 impl Mmis {
 #[doc="Masked Interrupt Status"]
@@ -1894,7 +1894,7 @@ impl ::core::fmt::Debug for Mmis {
    }
 }
 #[doc="I2C Master Interrupt Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Micr(pub u32);
 impl Micr {
 #[doc="Master Interrupt Clear"]
@@ -2079,7 +2079,7 @@ impl ::core::fmt::Debug for Micr {
    }
 }
 #[doc="I2C Master Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="I2C Loopback"]
@@ -2138,7 +2138,7 @@ impl ::core::fmt::Debug for Mcr {
    }
 }
 #[doc="I2C Master Clock Low Timeout Count"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mclkocnt(pub u32);
 impl Mclkocnt {
 #[doc="I2C Master Count"]
@@ -2169,7 +2169,7 @@ impl ::core::fmt::Debug for Mclkocnt {
    }
 }
 #[doc="I2C Master Bus Monitor"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mbmon(pub u32);
 impl Mbmon {
 #[doc="I2C SCL Status"]
@@ -2214,7 +2214,7 @@ impl ::core::fmt::Debug for Mbmon {
    }
 }
 #[doc="I2C Master Burst Length"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mblen(pub u32);
 impl Mblen {
 #[doc="I2C Burst Length"]
@@ -2245,7 +2245,7 @@ impl ::core::fmt::Debug for Mblen {
    }
 }
 #[doc="I2C Master Burst Count"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mbcnt(pub u32);
 impl Mbcnt {
 #[doc="I2C Master Burst Count"]
@@ -2589,7 +2589,7 @@ impl Slave {
 }
 
 #[doc="I2C Slave Own Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Soar(pub u32);
 impl Soar {
 #[doc="I2C Slave Own Address"]
@@ -2620,7 +2620,7 @@ impl ::core::fmt::Debug for Soar {
    }
 }
 #[doc="I2C Slave Control/Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ScsrRead(pub u32);
 impl ScsrRead {
 #[doc="Receive Request"]
@@ -2749,7 +2749,7 @@ impl ::core::fmt::Debug for ScsrRead {
    }
 }
 #[doc="I2C Slave Control/Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ScsrWrite(pub u32);
 impl ScsrWrite {
 #[doc="Device Active"]
@@ -2808,7 +2808,7 @@ impl ::core::fmt::Debug for ScsrWrite {
    }
 }
 #[doc="I2C Slave Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sdr(pub u32);
 impl Sdr {
 #[doc="Data for Transfer"]
@@ -2839,7 +2839,7 @@ impl ::core::fmt::Debug for Sdr {
    }
 }
 #[doc="I2C Slave Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Simr(pub u32);
 impl Simr {
 #[doc="Data Interrupt Mask"]
@@ -2982,7 +2982,7 @@ impl ::core::fmt::Debug for Simr {
    }
 }
 #[doc="I2C Slave Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sris(pub u32);
 impl Sris {
 #[doc="Data Raw Interrupt Status"]
@@ -3125,7 +3125,7 @@ impl ::core::fmt::Debug for Sris {
    }
 }
 #[doc="I2C Slave Masked Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smis(pub u32);
 impl Smis {
 #[doc="Data Masked Interrupt Status"]
@@ -3268,7 +3268,7 @@ impl ::core::fmt::Debug for Smis {
    }
 }
 #[doc="I2C Slave Interrupt Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sicr(pub u32);
 impl Sicr {
 #[doc="Data Interrupt Clear"]
@@ -3411,7 +3411,7 @@ impl ::core::fmt::Debug for Sicr {
    }
 }
 #[doc="I2C Slave Own Address 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Soar2(pub u32);
 impl Soar2 {
 #[doc="I2C Slave Own Address 2"]
@@ -3456,7 +3456,7 @@ impl ::core::fmt::Debug for Soar2 {
    }
 }
 #[doc="I2C Slave ACK Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sackctl(pub u32);
 impl Sackctl {
 #[doc="I2C Slave ACK Override Enable"]

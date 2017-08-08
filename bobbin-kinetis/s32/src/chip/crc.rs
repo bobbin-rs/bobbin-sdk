@@ -297,7 +297,7 @@ impl Crc {
 }
 
 #[doc="CRC Data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
 #[doc="CRC Low Lower Byte"]
@@ -370,7 +370,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="CRC_DATAL register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datal(pub u16);
 impl Datal {
 #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
@@ -401,7 +401,7 @@ impl ::core::fmt::Debug for Datal {
    }
 }
 #[doc="CRC_DATALL register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datall(pub u8);
 impl Datall {
 #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
@@ -432,7 +432,7 @@ impl ::core::fmt::Debug for Datall {
    }
 }
 #[doc="CRC_DATALU register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datalu(pub u8);
 impl Datalu {
 #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
@@ -463,7 +463,7 @@ impl ::core::fmt::Debug for Datalu {
    }
 }
 #[doc="CRC_DATAH register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datah(pub u16);
 impl Datah {
 #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
@@ -494,7 +494,7 @@ impl ::core::fmt::Debug for Datah {
    }
 }
 #[doc="CRC_DATAHL register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datahl(pub u8);
 impl Datahl {
 #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
@@ -525,7 +525,7 @@ impl ::core::fmt::Debug for Datahl {
    }
 }
 #[doc="CRC_DATAHU register."]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Datahu(pub u8);
 impl Datahu {
 #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
@@ -556,7 +556,7 @@ impl ::core::fmt::Debug for Datahu {
    }
 }
 #[doc="CRC Polynomial register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpoly(pub u32);
 impl Gpoly {
 #[doc="Low Polynominal Half-word"]
@@ -601,7 +601,7 @@ impl ::core::fmt::Debug for Gpoly {
    }
 }
 #[doc="CRC Control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u32);
 impl Ctrl {
 #[doc="TCRC"]

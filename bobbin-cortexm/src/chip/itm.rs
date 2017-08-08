@@ -257,7 +257,7 @@ impl Itm {
 }
 
 #[doc="ITM Stimulus Port"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stim(pub u32);
 impl Stim {
   #[inline] pub fn data(&self) -> bits::U32 {
@@ -285,7 +285,7 @@ impl ::core::fmt::Debug for Stim {
    }
 }
 #[doc="ITM Stimulus Port - 16 Bit Access"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stim16(pub u16);
 impl Stim16 {
   #[inline] pub fn data(&self) -> bits::U16 {
@@ -314,7 +314,7 @@ impl ::core::fmt::Debug for Stim16 {
    }
 }
 #[doc="ITM Stimulus Port - 8 Bit Access"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stim8(pub u8);
 impl Stim8 {
   #[inline] pub fn data(&self) -> bits::U8 {
@@ -343,7 +343,7 @@ impl ::core::fmt::Debug for Stim8 {
    }
 }
 #[doc="Trace Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ter(pub u32);
 impl Ter {
 #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
@@ -411,7 +411,7 @@ impl ::core::fmt::Debug for Ter {
    }
 }
 #[doc="Trace Privilege Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tpr(pub u32);
 impl Tpr {
 #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
@@ -451,7 +451,7 @@ impl ::core::fmt::Debug for Tpr {
    }
 }
 #[doc="Trace Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="Set when ITM events present and being drained"]
@@ -580,7 +580,7 @@ impl ::core::fmt::Debug for Tcr {
    }
 }
 #[doc="Lock Access Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lar(pub u32);
 impl Lar {
 #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
@@ -610,7 +610,7 @@ impl ::core::fmt::Debug for Lar {
    }
 }
 #[doc="Lock Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lsr(pub u32);
 impl Lsr {
 #[doc="You cannot implement 8-bit lock accesses."]

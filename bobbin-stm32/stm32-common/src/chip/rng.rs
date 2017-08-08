@@ -89,7 +89,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Interrupt enable"]
@@ -134,7 +134,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Seed error interrupt status"]
@@ -221,7 +221,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Random data"]

@@ -251,7 +251,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Counter enable"]
@@ -352,7 +352,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Master mode selection"]
@@ -383,7 +383,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="DMA/Interrupt enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dier(pub u32);
 impl Dier {
 #[doc="Update DMA request enable"]
@@ -428,7 +428,7 @@ impl ::core::fmt::Debug for Dier {
    }
 }
 #[doc="status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Update interrupt flag"]
@@ -459,7 +459,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="event generation register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Egr(pub u32);
 impl Egr {
 #[doc="Update generation"]
@@ -490,7 +490,7 @@ impl ::core::fmt::Debug for Egr {
    }
 }
 #[doc="counter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Low counter value"]
@@ -535,7 +535,7 @@ impl ::core::fmt::Debug for Cnt {
    }
 }
 #[doc="prescaler"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Psc(pub u32);
 impl Psc {
 #[doc="Prescaler value"]
@@ -566,7 +566,7 @@ impl ::core::fmt::Debug for Psc {
    }
 }
 #[doc="auto-reload register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Arr(pub u32);
 impl Arr {
 #[doc="Low Auto-reload value"]

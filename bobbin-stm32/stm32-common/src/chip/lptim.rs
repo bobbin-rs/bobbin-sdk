@@ -217,7 +217,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Interrupt and Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Counter direction change up to down"]
@@ -332,7 +332,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="Interrupt Clear Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Direction change to down Clear Flag"]
@@ -447,7 +447,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="Interrupt Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
 #[doc="Direction change to down Interrupt Enable"]
@@ -562,7 +562,7 @@ impl ::core::fmt::Debug for Ier {
    }
 }
 #[doc="Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
 #[doc="Encoder mode enable"]
@@ -761,7 +761,7 @@ impl ::core::fmt::Debug for Cfgr {
    }
 }
 #[doc="Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Timer start in continuous mode"]
@@ -820,7 +820,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Compare Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cmp(pub u32);
 impl Cmp {
 #[doc="Compare value."]
@@ -851,7 +851,7 @@ impl ::core::fmt::Debug for Cmp {
    }
 }
 #[doc="Autoreload Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Arr(pub u32);
 impl Arr {
 #[doc="Auto reload value."]
@@ -882,7 +882,7 @@ impl ::core::fmt::Debug for Arr {
    }
 }
 #[doc="Counter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Counter value."]

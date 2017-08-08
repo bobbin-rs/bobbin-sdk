@@ -84,7 +84,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="ADC Common status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="ADDRDY_MST"]
@@ -409,7 +409,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="ADC common control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Multi ADC mode selection"]
@@ -538,7 +538,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="ADC common regular data register for dual and triple modes"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cdr(pub u32);
 impl Cdr {
 #[doc="Regular data of the slave ADC"]

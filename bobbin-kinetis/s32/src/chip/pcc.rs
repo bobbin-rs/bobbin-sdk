@@ -3721,7 +3721,7 @@ impl Pcc {
 }
 
 #[doc="PCC Reserved Register 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy0(pub u32);
 impl Pccdummy0 {
 }
@@ -3738,7 +3738,7 @@ impl ::core::fmt::Debug for Pccdummy0 {
    }
 }
 #[doc="PCC Reserved Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy1(pub u32);
 impl Pccdummy1 {
 }
@@ -3755,7 +3755,7 @@ impl ::core::fmt::Debug for Pccdummy1 {
    }
 }
 #[doc="PCC Reserved Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy2(pub u32);
 impl Pccdummy2 {
 }
@@ -3772,7 +3772,7 @@ impl ::core::fmt::Debug for Pccdummy2 {
    }
 }
 #[doc="PCC Reserved Register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy3(pub u32);
 impl Pccdummy3 {
 }
@@ -3789,7 +3789,7 @@ impl ::core::fmt::Debug for Pccdummy3 {
    }
 }
 #[doc="PCC Reserved Register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy4(pub u32);
 impl Pccdummy4 {
 }
@@ -3806,7 +3806,7 @@ impl ::core::fmt::Debug for Pccdummy4 {
    }
 }
 #[doc="PCC Reserved Register 5"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy5(pub u32);
 impl Pccdummy5 {
 }
@@ -3823,7 +3823,7 @@ impl ::core::fmt::Debug for Pccdummy5 {
    }
 }
 #[doc="PCC Reserved Register 6"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy6(pub u32);
 impl Pccdummy6 {
 }
@@ -3840,7 +3840,7 @@ impl ::core::fmt::Debug for Pccdummy6 {
    }
 }
 #[doc="PCC Reserved Register 7"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy7(pub u32);
 impl Pccdummy7 {
 }
@@ -3857,7 +3857,7 @@ impl ::core::fmt::Debug for Pccdummy7 {
    }
 }
 #[doc="PCC Reserved Register 8"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy8(pub u32);
 impl Pccdummy8 {
 }
@@ -3874,7 +3874,7 @@ impl ::core::fmt::Debug for Pccdummy8 {
    }
 }
 #[doc="PCC Reserved Register 9"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy9(pub u32);
 impl Pccdummy9 {
 }
@@ -3891,7 +3891,7 @@ impl ::core::fmt::Debug for Pccdummy9 {
    }
 }
 #[doc="PCC Reserved Register 10"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy10(pub u32);
 impl Pccdummy10 {
 }
@@ -3908,7 +3908,7 @@ impl ::core::fmt::Debug for Pccdummy10 {
    }
 }
 #[doc="PCC Reserved Register 11"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy11(pub u32);
 impl Pccdummy11 {
 }
@@ -3925,7 +3925,7 @@ impl ::core::fmt::Debug for Pccdummy11 {
    }
 }
 #[doc="PCC Reserved Register 12"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy12(pub u32);
 impl Pccdummy12 {
 }
@@ -3942,7 +3942,7 @@ impl ::core::fmt::Debug for Pccdummy12 {
    }
 }
 #[doc="PCC Reserved Register 13"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy13(pub u32);
 impl Pccdummy13 {
 }
@@ -3959,7 +3959,7 @@ impl ::core::fmt::Debug for Pccdummy13 {
    }
 }
 #[doc="PCC Reserved Register 14"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy14(pub u32);
 impl Pccdummy14 {
 }
@@ -3976,7 +3976,7 @@ impl ::core::fmt::Debug for Pccdummy14 {
    }
 }
 #[doc="PCC Reserved Register 15"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy15(pub u32);
 impl Pccdummy15 {
 }
@@ -3993,7 +3993,7 @@ impl ::core::fmt::Debug for Pccdummy15 {
    }
 }
 #[doc="PCC Reserved Register 16"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy16(pub u32);
 impl Pccdummy16 {
 }
@@ -4010,7 +4010,7 @@ impl ::core::fmt::Debug for Pccdummy16 {
    }
 }
 #[doc="PCC Reserved Register 17"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy17(pub u32);
 impl Pccdummy17 {
 }
@@ -4027,7 +4027,7 @@ impl ::core::fmt::Debug for Pccdummy17 {
    }
 }
 #[doc="PCC Reserved Register 18"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy18(pub u32);
 impl Pccdummy18 {
 }
@@ -4044,7 +4044,7 @@ impl ::core::fmt::Debug for Pccdummy18 {
    }
 }
 #[doc="PCC Reserved Register 19"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy19(pub u32);
 impl Pccdummy19 {
 }
@@ -4061,7 +4061,7 @@ impl ::core::fmt::Debug for Pccdummy19 {
    }
 }
 #[doc="PCC Reserved Register 20"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy20(pub u32);
 impl Pccdummy20 {
 }
@@ -4078,7 +4078,7 @@ impl ::core::fmt::Debug for Pccdummy20 {
    }
 }
 #[doc="PCC Reserved Register 21"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy21(pub u32);
 impl Pccdummy21 {
 }
@@ -4095,7 +4095,7 @@ impl ::core::fmt::Debug for Pccdummy21 {
    }
 }
 #[doc="PCC Reserved Register 22"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy22(pub u32);
 impl Pccdummy22 {
 }
@@ -4112,7 +4112,7 @@ impl ::core::fmt::Debug for Pccdummy22 {
    }
 }
 #[doc="PCC Reserved Register 23"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy23(pub u32);
 impl Pccdummy23 {
 }
@@ -4129,7 +4129,7 @@ impl ::core::fmt::Debug for Pccdummy23 {
    }
 }
 #[doc="PCC Reserved Register 24"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy24(pub u32);
 impl Pccdummy24 {
 }
@@ -4146,7 +4146,7 @@ impl ::core::fmt::Debug for Pccdummy24 {
    }
 }
 #[doc="PCC Reserved Register 25"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy25(pub u32);
 impl Pccdummy25 {
 }
@@ -4163,7 +4163,7 @@ impl ::core::fmt::Debug for Pccdummy25 {
    }
 }
 #[doc="PCC Reserved Register 26"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy26(pub u32);
 impl Pccdummy26 {
 }
@@ -4180,7 +4180,7 @@ impl ::core::fmt::Debug for Pccdummy26 {
    }
 }
 #[doc="PCC Reserved Register 27"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy27(pub u32);
 impl Pccdummy27 {
 }
@@ -4197,7 +4197,7 @@ impl ::core::fmt::Debug for Pccdummy27 {
    }
 }
 #[doc="PCC Reserved Register 28"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy28(pub u32);
 impl Pccdummy28 {
 }
@@ -4214,7 +4214,7 @@ impl ::core::fmt::Debug for Pccdummy28 {
    }
 }
 #[doc="PCC Reserved Register 29"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy29(pub u32);
 impl Pccdummy29 {
 }
@@ -4231,7 +4231,7 @@ impl ::core::fmt::Debug for Pccdummy29 {
    }
 }
 #[doc="PCC Reserved Register 30"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy30(pub u32);
 impl Pccdummy30 {
 }
@@ -4248,7 +4248,7 @@ impl ::core::fmt::Debug for Pccdummy30 {
    }
 }
 #[doc="PCC Reserved Register 31"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy31(pub u32);
 impl Pccdummy31 {
 }
@@ -4265,7 +4265,7 @@ impl ::core::fmt::Debug for Pccdummy31 {
    }
 }
 #[doc="PCC FTFC Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftfc(pub u32);
 impl Ftfc {
 #[doc="Clock Gate Control"]
@@ -4310,7 +4310,7 @@ impl ::core::fmt::Debug for Ftfc {
    }
 }
 #[doc="PCC DMAMUX Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmamux(pub u32);
 impl Dmamux {
 #[doc="Clock Gate Control"]
@@ -4355,7 +4355,7 @@ impl ::core::fmt::Debug for Dmamux {
    }
 }
 #[doc="PCC Reserved Register 34"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy34(pub u32);
 impl Pccdummy34 {
 }
@@ -4372,7 +4372,7 @@ impl ::core::fmt::Debug for Pccdummy34 {
    }
 }
 #[doc="PCC Reserved Register 35"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy35(pub u32);
 impl Pccdummy35 {
 }
@@ -4389,7 +4389,7 @@ impl ::core::fmt::Debug for Pccdummy35 {
    }
 }
 #[doc="PCC FlexCAN0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flexcan0(pub u32);
 impl Flexcan0 {
 #[doc="Clock Gate Control"]
@@ -4434,7 +4434,7 @@ impl ::core::fmt::Debug for Flexcan0 {
    }
 }
 #[doc="PCC FlexCAN1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flexcan1(pub u32);
 impl Flexcan1 {
 #[doc="Clock Gate Control"]
@@ -4479,7 +4479,7 @@ impl ::core::fmt::Debug for Flexcan1 {
    }
 }
 #[doc="PCC FTM3 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftm3(pub u32);
 impl Ftm3 {
 #[doc="Peripheral Clock Source Select"]
@@ -4538,7 +4538,7 @@ impl ::core::fmt::Debug for Ftm3 {
    }
 }
 #[doc="PCC ADC1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Adc1(pub u32);
 impl Adc1 {
 #[doc="Peripheral Clock Source Select"]
@@ -4597,7 +4597,7 @@ impl ::core::fmt::Debug for Adc1 {
    }
 }
 #[doc="PCC Reserved Register 40"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy40(pub u32);
 impl Pccdummy40 {
 }
@@ -4614,7 +4614,7 @@ impl ::core::fmt::Debug for Pccdummy40 {
    }
 }
 #[doc="PCC Reserved Register 41"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy41(pub u32);
 impl Pccdummy41 {
 }
@@ -4631,7 +4631,7 @@ impl ::core::fmt::Debug for Pccdummy41 {
    }
 }
 #[doc="PCC Reserved Register 42"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy42(pub u32);
 impl Pccdummy42 {
 }
@@ -4648,7 +4648,7 @@ impl ::core::fmt::Debug for Pccdummy42 {
    }
 }
 #[doc="PCC FlexCAN2 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flexcan2(pub u32);
 impl Flexcan2 {
 #[doc="Clock Gate Control"]
@@ -4693,7 +4693,7 @@ impl ::core::fmt::Debug for Flexcan2 {
    }
 }
 #[doc="PCC LPSPI0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpspi0(pub u32);
 impl Lpspi0 {
 #[doc="Peripheral Clock Source Select"]
@@ -4752,7 +4752,7 @@ impl ::core::fmt::Debug for Lpspi0 {
    }
 }
 #[doc="PCC LPSPI1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpspi1(pub u32);
 impl Lpspi1 {
 #[doc="Peripheral Clock Source Select"]
@@ -4811,7 +4811,7 @@ impl ::core::fmt::Debug for Lpspi1 {
    }
 }
 #[doc="PCC LPSPI2 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpspi2(pub u32);
 impl Lpspi2 {
 #[doc="Peripheral Clock Source Select"]
@@ -4870,7 +4870,7 @@ impl ::core::fmt::Debug for Lpspi2 {
    }
 }
 #[doc="PCC Reserved Register 47"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy47(pub u32);
 impl Pccdummy47 {
 }
@@ -4887,7 +4887,7 @@ impl ::core::fmt::Debug for Pccdummy47 {
    }
 }
 #[doc="PCC Reserved Register 48"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy48(pub u32);
 impl Pccdummy48 {
 }
@@ -4904,7 +4904,7 @@ impl ::core::fmt::Debug for Pccdummy48 {
    }
 }
 #[doc="PCC PDB1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pdb1(pub u32);
 impl Pdb1 {
 #[doc="Clock Gate Control"]
@@ -4949,7 +4949,7 @@ impl ::core::fmt::Debug for Pdb1 {
    }
 }
 #[doc="PCC CRC Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crc(pub u32);
 impl Crc {
 #[doc="Clock Gate Control"]
@@ -4994,7 +4994,7 @@ impl ::core::fmt::Debug for Crc {
    }
 }
 #[doc="PCC Reserved Register 51"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy51(pub u32);
 impl Pccdummy51 {
 }
@@ -5011,7 +5011,7 @@ impl ::core::fmt::Debug for Pccdummy51 {
    }
 }
 #[doc="PCC Reserved Register 52"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy52(pub u32);
 impl Pccdummy52 {
 }
@@ -5028,7 +5028,7 @@ impl ::core::fmt::Debug for Pccdummy52 {
    }
 }
 #[doc="PCC Reserved Register 53"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy53(pub u32);
 impl Pccdummy53 {
 }
@@ -5045,7 +5045,7 @@ impl ::core::fmt::Debug for Pccdummy53 {
    }
 }
 #[doc="PCC PDB0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pdb0(pub u32);
 impl Pdb0 {
 #[doc="Clock Gate Control"]
@@ -5090,7 +5090,7 @@ impl ::core::fmt::Debug for Pdb0 {
    }
 }
 #[doc="PCC LPIT Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpit(pub u32);
 impl Lpit {
 #[doc="Peripheral Clock Source Select"]
@@ -5149,7 +5149,7 @@ impl ::core::fmt::Debug for Lpit {
    }
 }
 #[doc="PCC FTM0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftm0(pub u32);
 impl Ftm0 {
 #[doc="Peripheral Clock Source Select"]
@@ -5208,7 +5208,7 @@ impl ::core::fmt::Debug for Ftm0 {
    }
 }
 #[doc="PCC FTM1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftm1(pub u32);
 impl Ftm1 {
 #[doc="Peripheral Clock Source Select"]
@@ -5267,7 +5267,7 @@ impl ::core::fmt::Debug for Ftm1 {
    }
 }
 #[doc="PCC FTM2 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftm2(pub u32);
 impl Ftm2 {
 #[doc="Peripheral Clock Source Select"]
@@ -5326,7 +5326,7 @@ impl ::core::fmt::Debug for Ftm2 {
    }
 }
 #[doc="PCC ADC0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Adc0(pub u32);
 impl Adc0 {
 #[doc="Peripheral Clock Source Select"]
@@ -5385,7 +5385,7 @@ impl ::core::fmt::Debug for Adc0 {
    }
 }
 #[doc="PCC Reserved Register 60"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy60(pub u32);
 impl Pccdummy60 {
 }
@@ -5402,7 +5402,7 @@ impl ::core::fmt::Debug for Pccdummy60 {
    }
 }
 #[doc="PCC RTC Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtc(pub u32);
 impl Rtc {
 #[doc="Clock Gate Control"]
@@ -5447,7 +5447,7 @@ impl ::core::fmt::Debug for Rtc {
    }
 }
 #[doc="PCC Reserved Register 62"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy62(pub u32);
 impl Pccdummy62 {
 }
@@ -5464,7 +5464,7 @@ impl ::core::fmt::Debug for Pccdummy62 {
    }
 }
 #[doc="PCC Reserved Register 63"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy63(pub u32);
 impl Pccdummy63 {
 }
@@ -5481,7 +5481,7 @@ impl ::core::fmt::Debug for Pccdummy63 {
    }
 }
 #[doc="PCC LPTMR0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lptmr0(pub u32);
 impl Lptmr0 {
 #[doc="Peripheral Clock Divider Select"]
@@ -5568,7 +5568,7 @@ impl ::core::fmt::Debug for Lptmr0 {
    }
 }
 #[doc="PCC Reserved Register 65"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy65(pub u32);
 impl Pccdummy65 {
 }
@@ -5585,7 +5585,7 @@ impl ::core::fmt::Debug for Pccdummy65 {
    }
 }
 #[doc="PCC Reserved Register 66"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy66(pub u32);
 impl Pccdummy66 {
 }
@@ -5602,7 +5602,7 @@ impl ::core::fmt::Debug for Pccdummy66 {
    }
 }
 #[doc="PCC Reserved Register 67"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy67(pub u32);
 impl Pccdummy67 {
 }
@@ -5619,7 +5619,7 @@ impl ::core::fmt::Debug for Pccdummy67 {
    }
 }
 #[doc="PCC Reserved Register 68"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy68(pub u32);
 impl Pccdummy68 {
 }
@@ -5636,7 +5636,7 @@ impl ::core::fmt::Debug for Pccdummy68 {
    }
 }
 #[doc="PCC Reserved Register 69"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy69(pub u32);
 impl Pccdummy69 {
 }
@@ -5653,7 +5653,7 @@ impl ::core::fmt::Debug for Pccdummy69 {
    }
 }
 #[doc="PCC Reserved Register 70"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy70(pub u32);
 impl Pccdummy70 {
 }
@@ -5670,7 +5670,7 @@ impl ::core::fmt::Debug for Pccdummy70 {
    }
 }
 #[doc="PCC Reserved Register 71"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy71(pub u32);
 impl Pccdummy71 {
 }
@@ -5687,7 +5687,7 @@ impl ::core::fmt::Debug for Pccdummy71 {
    }
 }
 #[doc="PCC Reserved Register 72"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy72(pub u32);
 impl Pccdummy72 {
 }
@@ -5704,7 +5704,7 @@ impl ::core::fmt::Debug for Pccdummy72 {
    }
 }
 #[doc="PCC PORTA Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Porta(pub u32);
 impl Porta {
 #[doc="Clock Gate Control"]
@@ -5749,7 +5749,7 @@ impl ::core::fmt::Debug for Porta {
    }
 }
 #[doc="PCC PORTB Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Portb(pub u32);
 impl Portb {
 #[doc="Clock Gate Control"]
@@ -5794,7 +5794,7 @@ impl ::core::fmt::Debug for Portb {
    }
 }
 #[doc="PCC PORTC Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Portc(pub u32);
 impl Portc {
 #[doc="Clock Gate Control"]
@@ -5839,7 +5839,7 @@ impl ::core::fmt::Debug for Portc {
    }
 }
 #[doc="PCC PORTD Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Portd(pub u32);
 impl Portd {
 #[doc="Clock Gate Control"]
@@ -5884,7 +5884,7 @@ impl ::core::fmt::Debug for Portd {
    }
 }
 #[doc="PCC PORTE Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Porte(pub u32);
 impl Porte {
 #[doc="Clock Gate Control"]
@@ -5929,7 +5929,7 @@ impl ::core::fmt::Debug for Porte {
    }
 }
 #[doc="PCC Reserved Register 78"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy78(pub u32);
 impl Pccdummy78 {
 }
@@ -5946,7 +5946,7 @@ impl ::core::fmt::Debug for Pccdummy78 {
    }
 }
 #[doc="PCC Reserved Register 79"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy79(pub u32);
 impl Pccdummy79 {
 }
@@ -5963,7 +5963,7 @@ impl ::core::fmt::Debug for Pccdummy79 {
    }
 }
 #[doc="PCC Reserved Register 80"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy80(pub u32);
 impl Pccdummy80 {
 }
@@ -5980,7 +5980,7 @@ impl ::core::fmt::Debug for Pccdummy80 {
    }
 }
 #[doc="PCC Reserved Register 81"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy81(pub u32);
 impl Pccdummy81 {
 }
@@ -5997,7 +5997,7 @@ impl ::core::fmt::Debug for Pccdummy81 {
    }
 }
 #[doc="PCC Reserved Register 82"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy82(pub u32);
 impl Pccdummy82 {
 }
@@ -6014,7 +6014,7 @@ impl ::core::fmt::Debug for Pccdummy82 {
    }
 }
 #[doc="PCC Reserved Register 83"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy83(pub u32);
 impl Pccdummy83 {
 }
@@ -6031,7 +6031,7 @@ impl ::core::fmt::Debug for Pccdummy83 {
    }
 }
 #[doc="PCC Reserved Register 84"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy84(pub u32);
 impl Pccdummy84 {
 }
@@ -6048,7 +6048,7 @@ impl ::core::fmt::Debug for Pccdummy84 {
    }
 }
 #[doc="PCC Reserved Register 85"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy85(pub u32);
 impl Pccdummy85 {
 }
@@ -6065,7 +6065,7 @@ impl ::core::fmt::Debug for Pccdummy85 {
    }
 }
 #[doc="PCC Reserved Register 86"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy86(pub u32);
 impl Pccdummy86 {
 }
@@ -6082,7 +6082,7 @@ impl ::core::fmt::Debug for Pccdummy86 {
    }
 }
 #[doc="PCC Reserved Register 87"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy87(pub u32);
 impl Pccdummy87 {
 }
@@ -6099,7 +6099,7 @@ impl ::core::fmt::Debug for Pccdummy87 {
    }
 }
 #[doc="PCC Reserved Register 88"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy88(pub u32);
 impl Pccdummy88 {
 }
@@ -6116,7 +6116,7 @@ impl ::core::fmt::Debug for Pccdummy88 {
    }
 }
 #[doc="PCC Reserved Register 89"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy89(pub u32);
 impl Pccdummy89 {
 }
@@ -6133,7 +6133,7 @@ impl ::core::fmt::Debug for Pccdummy89 {
    }
 }
 #[doc="PCC FlexIO Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flexio(pub u32);
 impl Flexio {
 #[doc="Peripheral Clock Source Select"]
@@ -6192,7 +6192,7 @@ impl ::core::fmt::Debug for Flexio {
    }
 }
 #[doc="PCC Reserved Register 91"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy91(pub u32);
 impl Pccdummy91 {
 }
@@ -6209,7 +6209,7 @@ impl ::core::fmt::Debug for Pccdummy91 {
    }
 }
 #[doc="PCC Reserved Register 92"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy92(pub u32);
 impl Pccdummy92 {
 }
@@ -6226,7 +6226,7 @@ impl ::core::fmt::Debug for Pccdummy92 {
    }
 }
 #[doc="PCC Reserved Register 93"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy93(pub u32);
 impl Pccdummy93 {
 }
@@ -6243,7 +6243,7 @@ impl ::core::fmt::Debug for Pccdummy93 {
    }
 }
 #[doc="PCC Reserved Register 94"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy94(pub u32);
 impl Pccdummy94 {
 }
@@ -6260,7 +6260,7 @@ impl ::core::fmt::Debug for Pccdummy94 {
    }
 }
 #[doc="PCC Reserved Register 95"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy95(pub u32);
 impl Pccdummy95 {
 }
@@ -6277,7 +6277,7 @@ impl ::core::fmt::Debug for Pccdummy95 {
    }
 }
 #[doc="PCC Reserved Register 96"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy96(pub u32);
 impl Pccdummy96 {
 }
@@ -6294,7 +6294,7 @@ impl ::core::fmt::Debug for Pccdummy96 {
    }
 }
 #[doc="PCC EWM Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ewm(pub u32);
 impl Ewm {
 #[doc="Clock Gate Control"]
@@ -6339,7 +6339,7 @@ impl ::core::fmt::Debug for Ewm {
    }
 }
 #[doc="PCC Reserved Register 98"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy98(pub u32);
 impl Pccdummy98 {
 }
@@ -6356,7 +6356,7 @@ impl ::core::fmt::Debug for Pccdummy98 {
    }
 }
 #[doc="PCC Reserved Register 99"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy99(pub u32);
 impl Pccdummy99 {
 }
@@ -6373,7 +6373,7 @@ impl ::core::fmt::Debug for Pccdummy99 {
    }
 }
 #[doc="PCC Reserved Register 100"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy100(pub u32);
 impl Pccdummy100 {
 }
@@ -6390,7 +6390,7 @@ impl ::core::fmt::Debug for Pccdummy100 {
    }
 }
 #[doc="PCC Reserved Register 101"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy101(pub u32);
 impl Pccdummy101 {
 }
@@ -6407,7 +6407,7 @@ impl ::core::fmt::Debug for Pccdummy101 {
    }
 }
 #[doc="PCC LPI2C0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpi2c0(pub u32);
 impl Lpi2c0 {
 #[doc="Peripheral Clock Source Select"]
@@ -6466,7 +6466,7 @@ impl ::core::fmt::Debug for Lpi2c0 {
    }
 }
 #[doc="PCC Reserved Register 103"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy103(pub u32);
 impl Pccdummy103 {
 }
@@ -6483,7 +6483,7 @@ impl ::core::fmt::Debug for Pccdummy103 {
    }
 }
 #[doc="PCC Reserved Register 104"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy104(pub u32);
 impl Pccdummy104 {
 }
@@ -6500,7 +6500,7 @@ impl ::core::fmt::Debug for Pccdummy104 {
    }
 }
 #[doc="PCC Reserved Register 105"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy105(pub u32);
 impl Pccdummy105 {
 }
@@ -6517,7 +6517,7 @@ impl ::core::fmt::Debug for Pccdummy105 {
    }
 }
 #[doc="PCC LPUART0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpuart0(pub u32);
 impl Lpuart0 {
 #[doc="Peripheral Clock Source Select"]
@@ -6576,7 +6576,7 @@ impl ::core::fmt::Debug for Lpuart0 {
    }
 }
 #[doc="PCC LPUART1 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpuart1(pub u32);
 impl Lpuart1 {
 #[doc="Peripheral Clock Source Select"]
@@ -6635,7 +6635,7 @@ impl ::core::fmt::Debug for Lpuart1 {
    }
 }
 #[doc="PCC LPUART2 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lpuart2(pub u32);
 impl Lpuart2 {
 #[doc="Peripheral Clock Source Select"]
@@ -6694,7 +6694,7 @@ impl ::core::fmt::Debug for Lpuart2 {
    }
 }
 #[doc="PCC Reserved Register 109"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy109(pub u32);
 impl Pccdummy109 {
 }
@@ -6711,7 +6711,7 @@ impl ::core::fmt::Debug for Pccdummy109 {
    }
 }
 #[doc="PCC Reserved Register 110"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy110(pub u32);
 impl Pccdummy110 {
 }
@@ -6728,7 +6728,7 @@ impl ::core::fmt::Debug for Pccdummy110 {
    }
 }
 #[doc="PCC Reserved Register 111"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy111(pub u32);
 impl Pccdummy111 {
 }
@@ -6745,7 +6745,7 @@ impl ::core::fmt::Debug for Pccdummy111 {
    }
 }
 #[doc="PCC Reserved Register 112"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy112(pub u32);
 impl Pccdummy112 {
 }
@@ -6762,7 +6762,7 @@ impl ::core::fmt::Debug for Pccdummy112 {
    }
 }
 #[doc="PCC Reserved Register 113"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy113(pub u32);
 impl Pccdummy113 {
 }
@@ -6779,7 +6779,7 @@ impl ::core::fmt::Debug for Pccdummy113 {
    }
 }
 #[doc="PCC Reserved Register 114"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy114(pub u32);
 impl Pccdummy114 {
 }
@@ -6796,7 +6796,7 @@ impl ::core::fmt::Debug for Pccdummy114 {
    }
 }
 #[doc="PCC CMP0 Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cmp0(pub u32);
 impl Cmp0 {
 #[doc="Clock Gate Control"]

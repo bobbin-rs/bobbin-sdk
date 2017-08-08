@@ -344,7 +344,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="low interrupt status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lisr(pub u32);
 impl Lisr {
 #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
@@ -641,7 +641,7 @@ impl ::core::fmt::Debug for Lisr {
    }
 }
 #[doc="high interrupt status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hisr(pub u32);
 impl Hisr {
 #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
@@ -938,7 +938,7 @@ impl ::core::fmt::Debug for Hisr {
    }
 }
 #[doc="low interrupt flag clear register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lifcr(pub u32);
 impl Lifcr {
 #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
@@ -1235,7 +1235,7 @@ impl ::core::fmt::Debug for Lifcr {
    }
 }
 #[doc="high interrupt flag clear register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hifcr(pub u32);
 impl Hifcr {
 #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
@@ -1532,7 +1532,7 @@ impl ::core::fmt::Debug for Hifcr {
    }
 }
 #[doc="stream x configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scr(pub u32);
 impl Scr {
 #[doc="Channel selection"]
@@ -1815,7 +1815,7 @@ impl ::core::fmt::Debug for Scr {
    }
 }
 #[doc="stream x number of data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sndtr(pub u32);
 impl Sndtr {
 #[doc="Number of data items to transfer"]
@@ -1846,7 +1846,7 @@ impl ::core::fmt::Debug for Sndtr {
    }
 }
 #[doc="stream x peripheral address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Spar(pub u32);
 impl Spar {
 #[doc="Peripheral address"]
@@ -1876,7 +1876,7 @@ impl ::core::fmt::Debug for Spar {
    }
 }
 #[doc="stream x memory 0 address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sm0ar(pub u32);
 impl Sm0ar {
 #[doc="Memory 0 address"]
@@ -1906,7 +1906,7 @@ impl ::core::fmt::Debug for Sm0ar {
    }
 }
 #[doc="stream x memory 1 address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sm1ar(pub u32);
 impl Sm1ar {
 #[doc="Memory 1 address (used in case of Double buffer mode)"]
@@ -1936,7 +1936,7 @@ impl ::core::fmt::Debug for Sm1ar {
    }
 }
 #[doc="stream x FIFO control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sfcr(pub u32);
 impl Sfcr {
 #[doc="FIFO error interrupt enable"]

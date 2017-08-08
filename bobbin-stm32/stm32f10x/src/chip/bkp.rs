@@ -1449,7 +1449,7 @@ impl Bkp {
 }
 
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr1(pub u32);
 impl Dr1 {
 #[doc="Backup data"]
@@ -1480,7 +1480,7 @@ impl ::core::fmt::Debug for Dr1 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr2(pub u32);
 impl Dr2 {
 #[doc="Backup data"]
@@ -1511,7 +1511,7 @@ impl ::core::fmt::Debug for Dr2 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr3(pub u32);
 impl Dr3 {
 #[doc="Backup data"]
@@ -1542,7 +1542,7 @@ impl ::core::fmt::Debug for Dr3 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr4(pub u32);
 impl Dr4 {
 #[doc="Backup data"]
@@ -1573,7 +1573,7 @@ impl ::core::fmt::Debug for Dr4 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr5(pub u32);
 impl Dr5 {
 #[doc="Backup data"]
@@ -1604,7 +1604,7 @@ impl ::core::fmt::Debug for Dr5 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr6(pub u32);
 impl Dr6 {
 #[doc="Backup data"]
@@ -1635,7 +1635,7 @@ impl ::core::fmt::Debug for Dr6 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr7(pub u32);
 impl Dr7 {
 #[doc="Backup data"]
@@ -1666,7 +1666,7 @@ impl ::core::fmt::Debug for Dr7 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr8(pub u32);
 impl Dr8 {
 #[doc="Backup data"]
@@ -1697,7 +1697,7 @@ impl ::core::fmt::Debug for Dr8 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr9(pub u32);
 impl Dr9 {
 #[doc="Backup data"]
@@ -1728,7 +1728,7 @@ impl ::core::fmt::Debug for Dr9 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr10(pub u32);
 impl Dr10 {
 #[doc="Backup data"]
@@ -1759,7 +1759,7 @@ impl ::core::fmt::Debug for Dr10 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr11(pub u32);
 impl Dr11 {
 #[doc="Backup data"]
@@ -1790,7 +1790,7 @@ impl ::core::fmt::Debug for Dr11 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr12(pub u32);
 impl Dr12 {
 #[doc="Backup data"]
@@ -1821,7 +1821,7 @@ impl ::core::fmt::Debug for Dr12 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr13(pub u32);
 impl Dr13 {
 #[doc="Backup data"]
@@ -1852,7 +1852,7 @@ impl ::core::fmt::Debug for Dr13 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr14(pub u32);
 impl Dr14 {
 #[doc="Backup data"]
@@ -1883,7 +1883,7 @@ impl ::core::fmt::Debug for Dr14 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr15(pub u32);
 impl Dr15 {
 #[doc="Backup data"]
@@ -1914,7 +1914,7 @@ impl ::core::fmt::Debug for Dr15 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr16(pub u32);
 impl Dr16 {
 #[doc="Backup data"]
@@ -1945,7 +1945,7 @@ impl ::core::fmt::Debug for Dr16 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr17(pub u32);
 impl Dr17 {
 #[doc="Backup data"]
@@ -1976,7 +1976,7 @@ impl ::core::fmt::Debug for Dr17 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr18(pub u32);
 impl Dr18 {
 #[doc="Backup data"]
@@ -2007,7 +2007,7 @@ impl ::core::fmt::Debug for Dr18 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr19(pub u32);
 impl Dr19 {
 #[doc="Backup data"]
@@ -2038,7 +2038,7 @@ impl ::core::fmt::Debug for Dr19 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr20(pub u32);
 impl Dr20 {
 #[doc="Backup data"]
@@ -2069,7 +2069,7 @@ impl ::core::fmt::Debug for Dr20 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr21(pub u32);
 impl Dr21 {
 #[doc="Backup data"]
@@ -2100,7 +2100,7 @@ impl ::core::fmt::Debug for Dr21 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr22(pub u32);
 impl Dr22 {
 #[doc="Backup data"]
@@ -2131,7 +2131,7 @@ impl ::core::fmt::Debug for Dr22 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr23(pub u32);
 impl Dr23 {
 #[doc="Backup data"]
@@ -2162,7 +2162,7 @@ impl ::core::fmt::Debug for Dr23 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr24(pub u32);
 impl Dr24 {
 #[doc="Backup data"]
@@ -2193,7 +2193,7 @@ impl ::core::fmt::Debug for Dr24 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr25(pub u32);
 impl Dr25 {
 #[doc="Backup data"]
@@ -2224,7 +2224,7 @@ impl ::core::fmt::Debug for Dr25 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr26(pub u32);
 impl Dr26 {
 #[doc="Backup data"]
@@ -2255,7 +2255,7 @@ impl ::core::fmt::Debug for Dr26 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr27(pub u32);
 impl Dr27 {
 #[doc="Backup data"]
@@ -2286,7 +2286,7 @@ impl ::core::fmt::Debug for Dr27 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr28(pub u32);
 impl Dr28 {
 #[doc="Backup data"]
@@ -2317,7 +2317,7 @@ impl ::core::fmt::Debug for Dr28 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr29(pub u32);
 impl Dr29 {
 #[doc="Backup data"]
@@ -2348,7 +2348,7 @@ impl ::core::fmt::Debug for Dr29 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr30(pub u32);
 impl Dr30 {
 #[doc="Backup data"]
@@ -2379,7 +2379,7 @@ impl ::core::fmt::Debug for Dr30 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr31(pub u32);
 impl Dr31 {
 #[doc="Backup data"]
@@ -2410,7 +2410,7 @@ impl ::core::fmt::Debug for Dr31 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr32(pub u32);
 impl Dr32 {
 #[doc="Backup data"]
@@ -2441,7 +2441,7 @@ impl ::core::fmt::Debug for Dr32 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr33(pub u32);
 impl Dr33 {
 #[doc="Backup data"]
@@ -2472,7 +2472,7 @@ impl ::core::fmt::Debug for Dr33 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr34(pub u32);
 impl Dr34 {
 #[doc="Backup data"]
@@ -2503,7 +2503,7 @@ impl ::core::fmt::Debug for Dr34 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr35(pub u32);
 impl Dr35 {
 #[doc="Backup data"]
@@ -2534,7 +2534,7 @@ impl ::core::fmt::Debug for Dr35 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr36(pub u32);
 impl Dr36 {
 #[doc="Backup data"]
@@ -2565,7 +2565,7 @@ impl ::core::fmt::Debug for Dr36 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr37(pub u32);
 impl Dr37 {
 #[doc="Backup data"]
@@ -2596,7 +2596,7 @@ impl ::core::fmt::Debug for Dr37 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr38(pub u32);
 impl Dr38 {
 #[doc="Backup data"]
@@ -2627,7 +2627,7 @@ impl ::core::fmt::Debug for Dr38 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr39(pub u32);
 impl Dr39 {
 #[doc="Backup data"]
@@ -2658,7 +2658,7 @@ impl ::core::fmt::Debug for Dr39 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr40(pub u32);
 impl Dr40 {
 #[doc="Backup data"]
@@ -2689,7 +2689,7 @@ impl ::core::fmt::Debug for Dr40 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr41(pub u32);
 impl Dr41 {
 #[doc="Backup data"]
@@ -2720,7 +2720,7 @@ impl ::core::fmt::Debug for Dr41 {
    }
 }
 #[doc="Backup data register (BKP_DR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr42(pub u32);
 impl Dr42 {
 #[doc="Backup data"]
@@ -2751,7 +2751,7 @@ impl ::core::fmt::Debug for Dr42 {
    }
 }
 #[doc="RTC clock calibration register (BKP_RTCCR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtccr(pub u32);
 impl Rtccr {
 #[doc="Calibration value"]
@@ -2824,7 +2824,7 @@ impl ::core::fmt::Debug for Rtccr {
    }
 }
 #[doc="Backup control register (BKP_CR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Tamper pin enable"]
@@ -2869,7 +2869,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="BKP_CSR control/status register (BKP_CSR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Clear Tamper event"]

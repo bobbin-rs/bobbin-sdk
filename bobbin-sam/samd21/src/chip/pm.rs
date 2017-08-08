@@ -440,7 +440,7 @@ impl Pm {
 }
 
 #[doc="AHB Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbmask(pub u32);
 impl Ahbmask {
 #[doc="HPB0 AHB Clock Enable"]
@@ -555,7 +555,7 @@ impl ::core::fmt::Debug for Ahbmask {
    }
 }
 #[doc="APBA Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbamask(pub u32);
 impl Apbamask {
 #[doc="PAC0 APB Clock Enable"]
@@ -670,7 +670,7 @@ impl ::core::fmt::Debug for Apbamask {
    }
 }
 #[doc="APBA Clock Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbasel(pub u8);
 impl Apbasel {
 #[doc="APBA Prescaler Selection"]
@@ -701,7 +701,7 @@ impl ::core::fmt::Debug for Apbasel {
    }
 }
 #[doc="APBB Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbbmask(pub u32);
 impl Apbbmask {
 #[doc="PAC1 APB Clock Enable"]
@@ -802,7 +802,7 @@ impl ::core::fmt::Debug for Apbbmask {
    }
 }
 #[doc="APBB Clock Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbbsel(pub u8);
 impl Apbbsel {
 #[doc="APBB Prescaler Selection"]
@@ -833,7 +833,7 @@ impl ::core::fmt::Debug for Apbbsel {
    }
 }
 #[doc="APBC Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbcmask(pub u32);
 impl Apbcmask {
 #[doc="PAC2 APB Clock Enable"]
@@ -1116,7 +1116,7 @@ impl ::core::fmt::Debug for Apbcmask {
    }
 }
 #[doc="APBC Clock Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apbcsel(pub u8);
 impl Apbcsel {
 #[doc="APBC Prescaler Selection"]
@@ -1147,7 +1147,7 @@ impl ::core::fmt::Debug for Apbcsel {
    }
 }
 #[doc="CPU Clock Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cpusel(pub u8);
 impl Cpusel {
 #[doc="CPU Prescaler Selection"]
@@ -1178,7 +1178,7 @@ impl ::core::fmt::Debug for Cpusel {
    }
 }
 #[doc="Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Clock Failure Detector Enable"]
@@ -1223,7 +1223,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Clock Ready Interrupt Enable"]
@@ -1268,7 +1268,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Clock Ready Interrupt Enable"]
@@ -1313,7 +1313,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Clock Ready"]
@@ -1358,7 +1358,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Reset Cause"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcause(pub u8);
 impl Rcause {
 #[doc="Power On Reset"]
@@ -1459,7 +1459,7 @@ impl ::core::fmt::Debug for Rcause {
    }
 }
 #[doc="Sleep Mode"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sleep(pub u8);
 impl Sleep {
 #[doc="Idle Mode Configuration"]

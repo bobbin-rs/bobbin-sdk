@@ -394,7 +394,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="I2C Address Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct A1(pub u8);
 impl A1 {
 #[doc="Address"]
@@ -425,7 +425,7 @@ impl ::core::fmt::Debug for A1 {
    }
 }
 #[doc="I2C Frequency Divider register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct F(pub u8);
 impl F {
 #[doc="ClockRate"]
@@ -470,7 +470,7 @@ impl ::core::fmt::Debug for F {
    }
 }
 #[doc="I2C Control Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
 #[doc="DMA Enable"]
@@ -599,7 +599,7 @@ impl ::core::fmt::Debug for C1 {
    }
 }
 #[doc="I2C Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct S(pub u8);
 impl S {
 #[doc="Receive Acknowledge"]
@@ -728,7 +728,7 @@ impl ::core::fmt::Debug for S {
    }
 }
 #[doc="I2C Data I/O register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct D(pub u8);
 impl D {
 #[doc="Data"]
@@ -759,7 +759,7 @@ impl ::core::fmt::Debug for D {
    }
 }
 #[doc="I2C Control Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
 #[doc="Slave Address"]
@@ -860,7 +860,7 @@ impl ::core::fmt::Debug for C2 {
    }
 }
 #[doc="I2C Programmable Input Glitch Filter register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flt(pub u8);
 impl Flt {
 #[doc="I2C Programmable Filter Factor"]
@@ -947,7 +947,7 @@ impl ::core::fmt::Debug for Flt {
    }
 }
 #[doc="I2C Range Address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ra(pub u8);
 impl Ra {
 #[doc="Range Slave Address"]
@@ -978,7 +978,7 @@ impl ::core::fmt::Debug for Ra {
    }
 }
 #[doc="I2C SMBus Control and Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smb(pub u8);
 impl Smb {
 #[doc="SHTF2 Interrupt Enable"]
@@ -1107,7 +1107,7 @@ impl ::core::fmt::Debug for Smb {
    }
 }
 #[doc="I2C Address Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct A2(pub u8);
 impl A2 {
 #[doc="SMBus Address"]
@@ -1138,7 +1138,7 @@ impl ::core::fmt::Debug for A2 {
    }
 }
 #[doc="I2C SCL Low Timeout Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Slth(pub u8);
 impl Slth {
 #[doc="Most significant byte of SCL low timeout value that determines the timeout period of SCL low."]
@@ -1169,7 +1169,7 @@ impl ::core::fmt::Debug for Slth {
    }
 }
 #[doc="I2C SCL Low Timeout Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sltl(pub u8);
 impl Sltl {
 #[doc="Least significant byte of SCL low timeout value that determines the timeout period of SCL low."]

@@ -454,7 +454,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Version ID Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Module Identification Number"]
@@ -513,7 +513,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="Parameter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Transmit FIFO Size"]
@@ -558,7 +558,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Module Enable"]
@@ -659,7 +659,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Transmit Data Flag"]
@@ -802,7 +802,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Interrupt Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
 #[doc="Transmit Data Interrupt Enable"]
@@ -931,7 +931,7 @@ impl ::core::fmt::Debug for Ier {
    }
 }
 #[doc="DMA Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Der(pub u32);
 impl Der {
 #[doc="Transmit Data DMA Enable"]
@@ -976,7 +976,7 @@ impl ::core::fmt::Debug for Der {
    }
 }
 #[doc="Configuration Register 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr0(pub u32);
 impl Cfgr0 {
 #[doc="Host Request Enable"]
@@ -1063,7 +1063,7 @@ impl ::core::fmt::Debug for Cfgr0 {
    }
 }
 #[doc="Configuration Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr1(pub u32);
 impl Cfgr1 {
 #[doc="Master Mode"]
@@ -1206,7 +1206,7 @@ impl ::core::fmt::Debug for Cfgr1 {
    }
 }
 #[doc="Data Match Register 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmr0(pub u32);
 impl Dmr0 {
 #[doc="Match 0 Value"]
@@ -1236,7 +1236,7 @@ impl ::core::fmt::Debug for Dmr0 {
    }
 }
 #[doc="Data Match Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmr1(pub u32);
 impl Dmr1 {
 #[doc="Match 1 Value"]
@@ -1266,7 +1266,7 @@ impl ::core::fmt::Debug for Dmr1 {
    }
 }
 #[doc="Clock Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="SCK Divider"]
@@ -1339,7 +1339,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="FIFO Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fcr(pub u32);
 impl Fcr {
 #[doc="Transmit FIFO Watermark"]
@@ -1384,7 +1384,7 @@ impl ::core::fmt::Debug for Fcr {
    }
 }
 #[doc="FIFO Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fsr(pub u32);
 impl Fsr {
 #[doc="Transmit FIFO Count"]
@@ -1429,7 +1429,7 @@ impl ::core::fmt::Debug for Fsr {
    }
 }
 #[doc="Transmit Command Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="Frame Size"]
@@ -1614,7 +1614,7 @@ impl ::core::fmt::Debug for Tcr {
    }
 }
 #[doc="Transmit Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tdr(pub u32);
 impl Tdr {
 #[doc="Transmit Data"]
@@ -1644,7 +1644,7 @@ impl ::core::fmt::Debug for Tdr {
    }
 }
 #[doc="Receive Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rsr(pub u32);
 impl Rsr {
 #[doc="Start Of Frame"]
@@ -1689,7 +1689,7 @@ impl ::core::fmt::Debug for Rsr {
    }
 }
 #[doc="Receive Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rdr(pub u32);
 impl Rdr {
 #[doc="Receive Data"]

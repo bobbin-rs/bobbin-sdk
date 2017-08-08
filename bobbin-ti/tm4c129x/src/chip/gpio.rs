@@ -1050,7 +1050,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="GPIO Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
 #[doc="GPIO Data"]
@@ -1094,7 +1094,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="GPIO Direction"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dir(pub u32);
 impl Dir {
 #[doc="GPIO Direction"]
@@ -1138,7 +1138,7 @@ impl ::core::fmt::Debug for Dir {
    }
 }
 #[doc="GPIO Interrupt Sense"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Is(pub u32);
 impl Is {
 #[doc="GPIO Interrupt Sense"]
@@ -1182,7 +1182,7 @@ impl ::core::fmt::Debug for Is {
    }
 }
 #[doc="GPIO Interrupt Both Edges"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ibe(pub u32);
 impl Ibe {
 #[doc="GPIO Interrupt Both Edges"]
@@ -1226,7 +1226,7 @@ impl ::core::fmt::Debug for Ibe {
    }
 }
 #[doc="GPIO Interrupt Event"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Iev(pub u32);
 impl Iev {
 #[doc="GPIO Interrupt Event"]
@@ -1270,7 +1270,7 @@ impl ::core::fmt::Debug for Iev {
    }
 }
 #[doc="GPIO Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
 #[doc="GPIO Interrupt Mask"]
@@ -1328,7 +1328,7 @@ impl ::core::fmt::Debug for Im {
    }
 }
 #[doc="GPIO Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="GPIO Raw Interrupt Status"]
@@ -1386,7 +1386,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="GPIO Masked Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="GPIO Masked Interrupt Status"]
@@ -1444,7 +1444,7 @@ impl ::core::fmt::Debug for Mis {
    }
 }
 #[doc="GPIO Interrupt Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="GPIO Interrupt Clear"]
@@ -1502,7 +1502,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="GPIO Alternate Function Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Afsel(pub u32);
 impl Afsel {
 #[doc="GPIO Alternate Function Select"]
@@ -1546,7 +1546,7 @@ impl ::core::fmt::Debug for Afsel {
    }
 }
 #[doc="GPIO 2-mA Drive Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr2r(pub u32);
 impl Dr2r {
 #[doc="GPIO 2-mA Drive Enable"]
@@ -1590,7 +1590,7 @@ impl ::core::fmt::Debug for Dr2r {
    }
 }
 #[doc="GPIO 4-mA Drive Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr4r(pub u32);
 impl Dr4r {
 #[doc="GPIO 4-mA Drive Enable"]
@@ -1634,7 +1634,7 @@ impl ::core::fmt::Debug for Dr4r {
    }
 }
 #[doc="GPIO 8-mA Drive Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr8r(pub u32);
 impl Dr8r {
 #[doc="GPIO 8-mA Drive Enable"]
@@ -1678,7 +1678,7 @@ impl ::core::fmt::Debug for Dr8r {
    }
 }
 #[doc="GPIO Open Drain Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="GPIO Open Drain Enable"]
@@ -1722,7 +1722,7 @@ impl ::core::fmt::Debug for Odr {
    }
 }
 #[doc="GPIO Pull-Up Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pur(pub u32);
 impl Pur {
 #[doc="GPIO Pull-Up Enable"]
@@ -1766,7 +1766,7 @@ impl ::core::fmt::Debug for Pur {
    }
 }
 #[doc="GPIO Pull-Down Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pdr(pub u32);
 impl Pdr {
 #[doc="GPIO Pull-Down Enable"]
@@ -1810,7 +1810,7 @@ impl ::core::fmt::Debug for Pdr {
    }
 }
 #[doc="GPIO Slew Rate Control Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Slr(pub u32);
 impl Slr {
 #[doc="GPIO Slew Rate Limit Enable"]
@@ -1854,7 +1854,7 @@ impl ::core::fmt::Debug for Slr {
    }
 }
 #[doc="GPIO Digital Enable"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Den(pub u32);
 impl Den {
 #[doc="GPIO Digital Enable"]
@@ -1898,7 +1898,7 @@ impl ::core::fmt::Debug for Den {
    }
 }
 #[doc="GPIO Lock"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Lock(pub u32);
 impl Lock {
 #[doc="GPIO Lock"]
@@ -1928,7 +1928,7 @@ impl ::core::fmt::Debug for Lock {
    }
 }
 #[doc="GPIO Commit"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="GPIO Commit"]
@@ -1972,7 +1972,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="GPIO Analog Mode Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Amsel(pub u32);
 impl Amsel {
 #[doc="GPIO Analog Mode Select"]
@@ -2016,7 +2016,7 @@ impl ::core::fmt::Debug for Amsel {
    }
 }
 #[doc="GPIO Port Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pctl(pub u32);
 impl Pctl {
 #[doc="GPIO Port Mux Control"]
@@ -2060,7 +2060,7 @@ impl ::core::fmt::Debug for Pctl {
    }
 }
 #[doc="GPIO ADC Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Adcctl(pub u32);
 impl Adcctl {
 #[doc="ADC Trigger Enable"]
@@ -2104,7 +2104,7 @@ impl ::core::fmt::Debug for Adcctl {
    }
 }
 #[doc="GPIO DMA Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
 #[doc="uDMA Trigger Enable"]
@@ -2148,7 +2148,7 @@ impl ::core::fmt::Debug for Dmactl {
    }
 }
 #[doc="GPIO Select Interrupt"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpiosi(pub u32);
 impl Gpiosi {
 #[doc="Summary Interrupt"]
@@ -2192,7 +2192,7 @@ impl ::core::fmt::Debug for Gpiosi {
    }
 }
 #[doc="GPIO 12-mA Drive Select"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpiodr12r(pub u32);
 impl Gpiodr12r {
 #[doc="12-mA Drive Enable"]
@@ -2236,7 +2236,7 @@ impl ::core::fmt::Debug for Gpiodr12r {
    }
 }
 #[doc="GPIO Wake Pin Enable"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakepen(pub u32);
 impl Gpiowakepen {
 #[doc="K[7] Wake Enable"]
@@ -2309,7 +2309,7 @@ impl ::core::fmt::Debug for Gpiowakepen {
    }
 }
 #[doc="GPIO Wake Level"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakelvl(pub u32);
 impl Gpiowakelvl {
 #[doc="K[7] Wake Level"]
@@ -2382,7 +2382,7 @@ impl ::core::fmt::Debug for Gpiowakelvl {
    }
 }
 #[doc="GPIO Wake Level"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakestat(pub u32);
 impl Gpiowakestat {
 #[doc="K[7] Wake Status"]

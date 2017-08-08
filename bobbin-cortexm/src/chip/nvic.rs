@@ -281,7 +281,7 @@ impl Nvic {
 }
 
 #[doc="Interrupt Set-Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Iser(pub u32);
 impl Iser {
 #[doc="Interrupt set-enable bits"]
@@ -349,7 +349,7 @@ impl ::core::fmt::Debug for Iser {
    }
 }
 #[doc="Interrupt Clear-Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icer(pub u32);
 impl Icer {
 #[doc="Interrupt clear-enable bits"]
@@ -417,7 +417,7 @@ impl ::core::fmt::Debug for Icer {
    }
 }
 #[doc="Interrupt Set-Pending Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ispr(pub u32);
 impl Ispr {
 #[doc="Interrupt set-pending bits"]
@@ -485,7 +485,7 @@ impl ::core::fmt::Debug for Ispr {
    }
 }
 #[doc="Interrupt Clear-Pending Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icpr(pub u32);
 impl Icpr {
 #[doc="Interrupt clear-pending bits"]
@@ -553,7 +553,7 @@ impl ::core::fmt::Debug for Icpr {
    }
 }
 #[doc="Interrupt Active Bit Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Iabr(pub u32);
 impl Iabr {
 #[doc="Interrupt clear-pending bits"]
@@ -621,7 +621,7 @@ impl ::core::fmt::Debug for Iabr {
    }
 }
 #[doc="Interrupt Priority Register x"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ipr(pub u32);
 impl Ipr {
 #[doc="Interrupt Priority"]
@@ -661,7 +661,7 @@ impl ::core::fmt::Debug for Ipr {
    }
 }
 #[doc="Software Trigger Interrupt Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stir(pub u32);
 impl Stir {
 #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]

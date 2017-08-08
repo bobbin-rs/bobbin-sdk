@@ -934,7 +934,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="UART Baud Rate Registers: High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdh(pub u8);
 impl Bdh {
 #[doc="UART Baud Rate Bits"]
@@ -1007,7 +1007,7 @@ impl ::core::fmt::Debug for Bdh {
    }
 }
 #[doc="UART Baud Rate Registers: Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdl(pub u8);
 impl Bdl {
 #[doc="UART Baud Rate Bits"]
@@ -1038,7 +1038,7 @@ impl ::core::fmt::Debug for Bdl {
    }
 }
 #[doc="UART Control Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
 #[doc="Parity Type"]
@@ -1167,7 +1167,7 @@ impl ::core::fmt::Debug for C1 {
    }
 }
 #[doc="UART Control Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
 #[doc="Send Break"]
@@ -1296,7 +1296,7 @@ impl ::core::fmt::Debug for C2 {
    }
 }
 #[doc="UART Status Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct S1(pub u8);
 impl S1 {
 #[doc="Parity Error Flag"]
@@ -1425,7 +1425,7 @@ impl ::core::fmt::Debug for S1 {
    }
 }
 #[doc="UART Status Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct S2(pub u8);
 impl S2 {
 #[doc="Receiver Active Flag"]
@@ -1554,7 +1554,7 @@ impl ::core::fmt::Debug for S2 {
    }
 }
 #[doc="UART Control Register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C3(pub u8);
 impl C3 {
 #[doc="Parity Error Interrupt Enable"]
@@ -1683,7 +1683,7 @@ impl ::core::fmt::Debug for C3 {
    }
 }
 #[doc="UART Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct D(pub u8);
 impl D {
 #[doc="Reads return the contents of the read-only receive data register and writes go to the write-only transmit data register"]
@@ -1714,7 +1714,7 @@ impl ::core::fmt::Debug for D {
    }
 }
 #[doc="UART Match Address Registers 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ma1(pub u8);
 impl Ma1 {
 #[doc="Match Address"]
@@ -1745,7 +1745,7 @@ impl ::core::fmt::Debug for Ma1 {
    }
 }
 #[doc="UART Match Address Registers 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ma2(pub u8);
 impl Ma2 {
 #[doc="Match Address"]
@@ -1776,7 +1776,7 @@ impl ::core::fmt::Debug for Ma2 {
    }
 }
 #[doc="UART Control Register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C4(pub u8);
 impl C4 {
 #[doc="Baud Rate Fine Adjust"]
@@ -1849,7 +1849,7 @@ impl ::core::fmt::Debug for C4 {
    }
 }
 #[doc="UART Control Register 5"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C5(pub u8);
 impl C5 {
 #[doc="LIN Break Detect DMA Select Bit"]
@@ -1936,7 +1936,7 @@ impl ::core::fmt::Debug for C5 {
    }
 }
 #[doc="UART Extended Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ed(pub u8);
 impl Ed {
 #[doc="The current received dataword contained in D and C3[R8] was received with a parity error."]
@@ -1981,7 +1981,7 @@ impl ::core::fmt::Debug for Ed {
    }
 }
 #[doc="UART Modem Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Modem(pub u8);
 impl Modem {
 #[doc="Transmitter clear-to-send enable"]
@@ -2054,7 +2054,7 @@ impl ::core::fmt::Debug for Modem {
    }
 }
 #[doc="UART Infrared Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ir(pub u8);
 impl Ir {
 #[doc="Transmitter narrow pulse"]
@@ -2099,7 +2099,7 @@ impl ::core::fmt::Debug for Ir {
    }
 }
 #[doc="UART FIFO Parameters"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pfifo(pub u8);
 impl Pfifo {
 #[doc="Receive FIFO. Buffer Depth"]
@@ -2172,7 +2172,7 @@ impl ::core::fmt::Debug for Pfifo {
    }
 }
 #[doc="UART FIFO Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfifo(pub u8);
 impl Cfifo {
 #[doc="Receive FIFO Underflow Interrupt Enable"]
@@ -2259,7 +2259,7 @@ impl ::core::fmt::Debug for Cfifo {
    }
 }
 #[doc="UART FIFO Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sfifo(pub u8);
 impl Sfifo {
 #[doc="Receiver Buffer Underflow Flag"]
@@ -2346,7 +2346,7 @@ impl ::core::fmt::Debug for Sfifo {
    }
 }
 #[doc="UART FIFO Transmit Watermark"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Twfifo(pub u8);
 impl Twfifo {
 #[doc="Transmit Watermark"]
@@ -2377,7 +2377,7 @@ impl ::core::fmt::Debug for Twfifo {
    }
 }
 #[doc="UART FIFO Transmit Count"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tcfifo(pub u8);
 impl Tcfifo {
 #[doc="Transmit Counter"]
@@ -2408,7 +2408,7 @@ impl ::core::fmt::Debug for Tcfifo {
    }
 }
 #[doc="UART FIFO Receive Watermark"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rwfifo(pub u8);
 impl Rwfifo {
 #[doc="Receive Watermark"]
@@ -2439,7 +2439,7 @@ impl ::core::fmt::Debug for Rwfifo {
    }
 }
 #[doc="UART FIFO Receive Count"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcfifo(pub u8);
 impl Rcfifo {
 #[doc="Receive Counter"]
@@ -2470,7 +2470,7 @@ impl ::core::fmt::Debug for Rcfifo {
    }
 }
 #[doc="UART 7816 Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct C7816(pub u8);
 impl C7816 {
 #[doc="ISO-7816 Functionality Enabled"]
@@ -2557,7 +2557,7 @@ impl ::core::fmt::Debug for C7816 {
    }
 }
 #[doc="UART 7816 Interrupt Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ie7816(pub u8);
 impl Ie7816 {
 #[doc="Receive Threshold Exceeded Interrupt Enable"]
@@ -2672,7 +2672,7 @@ impl ::core::fmt::Debug for Ie7816 {
    }
 }
 #[doc="UART 7816 Interrupt Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Is7816(pub u8);
 impl Is7816 {
 #[doc="Receive Threshold Exceeded Interrupt"]
@@ -2787,7 +2787,7 @@ impl ::core::fmt::Debug for Is7816 {
    }
 }
 #[doc="UART 7816 Wait Parameter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wp7816t0(pub u8);
 impl Wp7816t0 {
 #[doc="Wait Time Integer (C7816[TTYPE] = 0)"]
@@ -2818,7 +2818,7 @@ impl ::core::fmt::Debug for Wp7816t0 {
    }
 }
 #[doc="UART 7816 Wait Parameter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wp7816t1(pub u8);
 impl Wp7816t1 {
 #[doc="Block Wait Time Integer(C7816[TTYPE] = 1)"]
@@ -2863,7 +2863,7 @@ impl ::core::fmt::Debug for Wp7816t1 {
    }
 }
 #[doc="UART 7816 Wait N Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wn7816(pub u8);
 impl Wn7816 {
 #[doc="Guard Band N"]
@@ -2894,7 +2894,7 @@ impl ::core::fmt::Debug for Wn7816 {
    }
 }
 #[doc="UART 7816 Wait FD Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wf7816(pub u8);
 impl Wf7816 {
 #[doc="FD Multiplier"]
@@ -2925,7 +2925,7 @@ impl ::core::fmt::Debug for Wf7816 {
    }
 }
 #[doc="UART 7816 Error Threshold Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Et7816(pub u8);
 impl Et7816 {
 #[doc="Receive NACK Threshold"]
@@ -2970,7 +2970,7 @@ impl ::core::fmt::Debug for Et7816 {
    }
 }
 #[doc="UART 7816 Transmit Length Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tl7816(pub u8);
 impl Tl7816 {
 #[doc="Transmit Length"]

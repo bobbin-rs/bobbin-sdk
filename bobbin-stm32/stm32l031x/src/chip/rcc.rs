@@ -630,7 +630,7 @@ impl Rcc {
 }
 
 #[doc="Clock control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="PLL clock ready flag"]
@@ -843,7 +843,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Internal clock sources calibration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icscr(pub u32);
 impl Icscr {
 #[doc="MSI clock trimming"]
@@ -930,7 +930,7 @@ impl ::core::fmt::Debug for Icscr {
    }
 }
 #[doc="Clock recovery RC register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crrcr(pub u32);
 impl Crrcr {
 #[doc="48 MHz HSI clock calibration"]
@@ -989,7 +989,7 @@ impl ::core::fmt::Debug for Crrcr {
    }
 }
 #[doc="Clock configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
 #[doc="Microcontroller clock output prescaler"]
@@ -1160,7 +1160,7 @@ impl ::core::fmt::Debug for Cfgr {
    }
 }
 #[doc="Clock interrupt enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cier(pub u32);
 impl Cier {
 #[doc="LSE CSS interrupt flag"]
@@ -1289,7 +1289,7 @@ impl ::core::fmt::Debug for Cier {
    }
 }
 #[doc="Clock interrupt flag register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cifr(pub u32);
 impl Cifr {
 #[doc="Clock Security System Interrupt flag"]
@@ -1432,7 +1432,7 @@ impl ::core::fmt::Debug for Cifr {
    }
 }
 #[doc="Clock interrupt clear register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cicr(pub u32);
 impl Cicr {
 #[doc="Clock Security System Interrupt clear"]
@@ -1575,7 +1575,7 @@ impl ::core::fmt::Debug for Cicr {
    }
 }
 #[doc="GPIO reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ioprstr(pub u32);
 impl Ioprstr {
 #[doc="I/O port H reset"]
@@ -1648,7 +1648,7 @@ impl ::core::fmt::Debug for Ioprstr {
    }
 }
 #[doc="AHB peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbrstr(pub u32);
 impl Ahbrstr {
 #[doc="Crypto module reset"]
@@ -1749,7 +1749,7 @@ impl ::core::fmt::Debug for Ahbrstr {
    }
 }
 #[doc="APB2 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2rstr(pub u32);
 impl Apb2rstr {
 #[doc="DBG reset"]
@@ -1850,7 +1850,7 @@ impl ::core::fmt::Debug for Apb2rstr {
    }
 }
 #[doc="APB1 peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1rstr(pub u32);
 impl Apb1rstr {
 #[doc="Low power timer reset"]
@@ -2007,7 +2007,7 @@ impl ::core::fmt::Debug for Apb1rstr {
    }
 }
 #[doc="GPIO clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Iopenr(pub u32);
 impl Iopenr {
   #[inline] pub fn iopaen(&self) -> bits::U1 {
@@ -2072,7 +2072,7 @@ impl ::core::fmt::Debug for Iopenr {
    }
 }
 #[doc="AHB peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbenr(pub u32);
 impl Ahbenr {
 #[doc="Crypto clock enable bit"]
@@ -2173,7 +2173,7 @@ impl ::core::fmt::Debug for Ahbenr {
    }
 }
 #[doc="APB2 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2enr(pub u32);
 impl Apb2enr {
 #[doc="DBG clock enable bit"]
@@ -2288,7 +2288,7 @@ impl ::core::fmt::Debug for Apb2enr {
    }
 }
 #[doc="APB1 peripheral clock enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
 #[doc="Low power timer clock enable bit"]
@@ -2445,7 +2445,7 @@ impl ::core::fmt::Debug for Apb1enr {
    }
 }
 #[doc="GPIO clock enable in sleep mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Iopsmen(pub u32);
 impl Iopsmen {
 #[doc="IOPHSMEN"]
@@ -2532,7 +2532,7 @@ impl ::core::fmt::Debug for Iopsmen {
    }
 }
 #[doc="AHB peripheral clock enable in sleep mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbsmenr(pub u32);
 impl Ahbsmenr {
 #[doc="Crypto clock enable during sleep mode bit"]
@@ -2647,7 +2647,7 @@ impl ::core::fmt::Debug for Ahbsmenr {
    }
 }
 #[doc="APB2 peripheral clock enable in sleep mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2smenr(pub u32);
 impl Apb2smenr {
 #[doc="DBG clock enable during sleep mode bit"]
@@ -2748,7 +2748,7 @@ impl ::core::fmt::Debug for Apb2smenr {
    }
 }
 #[doc="APB1 peripheral clock enable in sleep mode register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1smenr(pub u32);
 impl Apb1smenr {
 #[doc="Low power timer clock enable during sleep mode bit"]
@@ -2919,7 +2919,7 @@ impl ::core::fmt::Debug for Apb1smenr {
    }
 }
 #[doc="Clock configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccipr(pub u32);
 impl Ccipr {
 #[doc="48 MHz HSI48 clock source selection bit"]
@@ -3006,7 +3006,7 @@ impl ::core::fmt::Debug for Ccipr {
    }
 }
 #[doc="Control and status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Low-power reset flag"]

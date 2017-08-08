@@ -560,7 +560,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="RTC time register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
 #[doc="AM/PM notation"]
@@ -675,7 +675,7 @@ impl ::core::fmt::Debug for Tr {
    }
 }
 #[doc="RTC date register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Year tens in BCD format"]
@@ -790,7 +790,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="RTC control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Calibration output enable"]
@@ -1087,7 +1087,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="RTC initialization and status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="RTC_TAMP2 detection flag"]
@@ -1314,7 +1314,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="RTC prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prer(pub u32);
 impl Prer {
 #[doc="Asynchronous prescaler factor"]
@@ -1359,7 +1359,7 @@ impl ::core::fmt::Debug for Prer {
    }
 }
 #[doc="RTC wakeup timer register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wutr(pub u32);
 impl Wutr {
 #[doc="Wakeup auto-reload value bits"]
@@ -1390,7 +1390,7 @@ impl ::core::fmt::Debug for Wutr {
    }
 }
 #[doc="RTC alarm A register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmar(pub u32);
 impl Alrmar {
 #[doc="Alarm A date mask"]
@@ -1603,7 +1603,7 @@ impl ::core::fmt::Debug for Alrmar {
    }
 }
 #[doc="RTC alarm B register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmbr(pub u32);
 impl Alrmbr {
 #[doc="Alarm B date mask"]
@@ -1816,7 +1816,7 @@ impl ::core::fmt::Debug for Alrmbr {
    }
 }
 #[doc="write protection register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wpr(pub u32);
 impl Wpr {
 #[doc="Write protection key"]
@@ -1847,7 +1847,7 @@ impl ::core::fmt::Debug for Wpr {
    }
 }
 #[doc="RTC sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ssr(pub u32);
 impl Ssr {
 #[doc="Sub second value"]
@@ -1878,7 +1878,7 @@ impl ::core::fmt::Debug for Ssr {
    }
 }
 #[doc="RTC shift control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shiftr(pub u32);
 impl Shiftr {
 #[doc="Add one second"]
@@ -1923,7 +1923,7 @@ impl ::core::fmt::Debug for Shiftr {
    }
 }
 #[doc="RTC timestamp time register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tstr(pub u32);
 impl Tstr {
 #[doc="AM/PM notation"]
@@ -2038,7 +2038,7 @@ impl ::core::fmt::Debug for Tstr {
    }
 }
 #[doc="RTC timestamp date register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tsdr(pub u32);
 impl Tsdr {
 #[doc="Week day units"]
@@ -2125,7 +2125,7 @@ impl ::core::fmt::Debug for Tsdr {
    }
 }
 #[doc="RTC time-stamp sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tsssr(pub u32);
 impl Tsssr {
 #[doc="Sub second value"]
@@ -2156,7 +2156,7 @@ impl ::core::fmt::Debug for Tsssr {
    }
 }
 #[doc="RTC calibration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Calr(pub u32);
 impl Calr {
 #[doc="Use an 8-second calibration cycle period"]
@@ -2229,7 +2229,7 @@ impl ::core::fmt::Debug for Calr {
    }
 }
 #[doc="RTC tamper configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tampcr(pub u32);
 impl Tampcr {
 #[doc="Tamper 2 mask flag"]
@@ -2470,7 +2470,7 @@ impl ::core::fmt::Debug for Tampcr {
    }
 }
 #[doc="RTC alarm A sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmassr(pub u32);
 impl Alrmassr {
 #[doc="Mask the most-significant bits starting at this bit"]
@@ -2515,7 +2515,7 @@ impl ::core::fmt::Debug for Alrmassr {
    }
 }
 #[doc="RTC alarm B sub second register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Alrmbssr(pub u32);
 impl Alrmbssr {
 #[doc="Mask the most-significant bits starting at this bit"]
@@ -2560,7 +2560,7 @@ impl ::core::fmt::Debug for Alrmbssr {
    }
 }
 #[doc="option register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Or(pub u32);
 impl Or {
 #[doc="RTC_ALARM on PC13 output type"]
@@ -2605,7 +2605,7 @@ impl ::core::fmt::Debug for Or {
    }
 }
 #[doc="RTC backup register n"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bkpr(pub u32);
 impl Bkpr {
 #[doc="BKP"]

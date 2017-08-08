@@ -233,7 +233,7 @@ impl Syscfg {
 }
 
 #[doc="configuration register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr1(pub u32);
 impl Cfgr1 {
 #[doc="Memory mapping selection bits"]
@@ -488,7 +488,7 @@ impl ::core::fmt::Debug for Cfgr1 {
    }
 }
 #[doc="external interrupt configuration register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr1(pub u32);
 impl Exticr1 {
 #[doc="EXTI 3 configuration bits"]
@@ -561,7 +561,7 @@ impl ::core::fmt::Debug for Exticr1 {
    }
 }
 #[doc="external interrupt configuration register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr2(pub u32);
 impl Exticr2 {
 #[doc="EXTI 7 configuration bits"]
@@ -634,7 +634,7 @@ impl ::core::fmt::Debug for Exticr2 {
    }
 }
 #[doc="external interrupt configuration register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr3(pub u32);
 impl Exticr3 {
 #[doc="EXTI 11 configuration bits"]
@@ -707,7 +707,7 @@ impl ::core::fmt::Debug for Exticr3 {
    }
 }
 #[doc="external interrupt configuration register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr4(pub u32);
 impl Exticr4 {
 #[doc="EXTI 15 configuration bits"]
@@ -780,7 +780,7 @@ impl ::core::fmt::Debug for Exticr4 {
    }
 }
 #[doc="configuration register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr2(pub u32);
 impl Cfgr2 {
 #[doc="Cortex-M0 LOCKUP bit enable bit"]
@@ -867,7 +867,7 @@ impl ::core::fmt::Debug for Cfgr2 {
    }
 }
 #[doc="CCM SRAM protection register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcr(pub u32);
 impl Rcr {
 #[doc="CCM SRAM page write protection bit"]

@@ -216,7 +216,7 @@ impl Syscfg {
 }
 
 #[doc="memory remap register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Memrm(pub u32);
 impl Memrm {
 #[doc="MEM_MODE"]
@@ -247,7 +247,7 @@ impl ::core::fmt::Debug for Memrm {
    }
 }
 #[doc="peripheral mode configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pmc(pub u32);
 impl Pmc {
 #[doc="Ethernet PHY interface selection"]
@@ -278,7 +278,7 @@ impl ::core::fmt::Debug for Pmc {
    }
 }
 #[doc="external interrupt configuration register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr1(pub u32);
 impl Exticr1 {
 #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -351,7 +351,7 @@ impl ::core::fmt::Debug for Exticr1 {
    }
 }
 #[doc="external interrupt configuration register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr2(pub u32);
 impl Exticr2 {
 #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -424,7 +424,7 @@ impl ::core::fmt::Debug for Exticr2 {
    }
 }
 #[doc="external interrupt configuration register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr3(pub u32);
 impl Exticr3 {
 #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -497,7 +497,7 @@ impl ::core::fmt::Debug for Exticr3 {
    }
 }
 #[doc="external interrupt configuration register 4"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Exticr4(pub u32);
 impl Exticr4 {
 #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -570,7 +570,7 @@ impl ::core::fmt::Debug for Exticr4 {
    }
 }
 #[doc="Compensation cell control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cmpcr(pub u32);
 impl Cmpcr {
 #[doc="READY"]

@@ -499,7 +499,7 @@ impl Count8 {
 }
 
 #[doc="COUNT8 Compare/Capture"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u8);
 impl Cc {
 #[doc="Compare/Capture Value"]
@@ -530,7 +530,7 @@ impl ::core::fmt::Debug for Cc {
    }
 }
 #[doc="COUNT8 Counter Value"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u8);
 impl Count {
 #[doc="Counter Value"]
@@ -561,7 +561,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="COUNT8 Period Value"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Per(pub u8);
 impl Per {
 #[doc="Period Value"]
@@ -592,7 +592,7 @@ impl ::core::fmt::Debug for Per {
    }
 }
 #[doc="Control A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u16);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -707,7 +707,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbclr(pub u8);
 impl Ctrlbclr {
 #[doc="Counter Direction"]
@@ -766,7 +766,7 @@ impl ::core::fmt::Debug for Ctrlbclr {
    }
 }
 #[doc="Control B Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbset(pub u8);
 impl Ctrlbset {
 #[doc="Counter Direction"]
@@ -825,7 +825,7 @@ impl ::core::fmt::Debug for Ctrlbset {
    }
 }
 #[doc="Control C"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlc(pub u8);
 impl Ctrlc {
 #[doc="Output Waveform 0 Invert Enable"]
@@ -898,7 +898,7 @@ impl ::core::fmt::Debug for Ctrlc {
    }
 }
 #[doc="Debug Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run Mode"]
@@ -929,7 +929,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Event Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Event Action"]
@@ -1030,7 +1030,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Overflow Interrupt Enable"]
@@ -1117,7 +1117,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Overflow Interrupt Enable"]
@@ -1204,7 +1204,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Overflow"]
@@ -1291,7 +1291,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Read Request"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -1350,7 +1350,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Stop"]
@@ -1826,7 +1826,7 @@ impl Count16 {
 }
 
 #[doc="COUNT16 Compare/Capture"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u16);
 impl Cc {
 #[doc="Compare/Capture Value"]
@@ -1857,7 +1857,7 @@ impl ::core::fmt::Debug for Cc {
    }
 }
 #[doc="COUNT16 Counter Value"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u16);
 impl Count {
 #[doc="Count Value"]
@@ -1888,7 +1888,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="Control A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u16);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -2003,7 +2003,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbclr(pub u8);
 impl Ctrlbclr {
 #[doc="Counter Direction"]
@@ -2062,7 +2062,7 @@ impl ::core::fmt::Debug for Ctrlbclr {
    }
 }
 #[doc="Control B Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbset(pub u8);
 impl Ctrlbset {
 #[doc="Counter Direction"]
@@ -2121,7 +2121,7 @@ impl ::core::fmt::Debug for Ctrlbset {
    }
 }
 #[doc="Control C"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlc(pub u8);
 impl Ctrlc {
 #[doc="Output Waveform 0 Invert Enable"]
@@ -2194,7 +2194,7 @@ impl ::core::fmt::Debug for Ctrlc {
    }
 }
 #[doc="Debug Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run Mode"]
@@ -2225,7 +2225,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Event Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Event Action"]
@@ -2326,7 +2326,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Overflow Interrupt Enable"]
@@ -2413,7 +2413,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Overflow Interrupt Enable"]
@@ -2500,7 +2500,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Overflow"]
@@ -2587,7 +2587,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Read Request"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -2646,7 +2646,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Stop"]
@@ -3122,7 +3122,7 @@ impl Count32 {
 }
 
 #[doc="COUNT32 Compare/Capture"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="Compare/Capture Value"]
@@ -3152,7 +3152,7 @@ impl ::core::fmt::Debug for Cc {
    }
 }
 #[doc="COUNT32 Counter Value"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u32);
 impl Count {
 #[doc="Count Value"]
@@ -3182,7 +3182,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="Control A"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u16);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -3297,7 +3297,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbclr(pub u8);
 impl Ctrlbclr {
 #[doc="Counter Direction"]
@@ -3356,7 +3356,7 @@ impl ::core::fmt::Debug for Ctrlbclr {
    }
 }
 #[doc="Control B Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbset(pub u8);
 impl Ctrlbset {
 #[doc="Counter Direction"]
@@ -3415,7 +3415,7 @@ impl ::core::fmt::Debug for Ctrlbset {
    }
 }
 #[doc="Control C"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlc(pub u8);
 impl Ctrlc {
 #[doc="Output Waveform 0 Invert Enable"]
@@ -3488,7 +3488,7 @@ impl ::core::fmt::Debug for Ctrlc {
    }
 }
 #[doc="Debug Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Run Mode"]
@@ -3519,7 +3519,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Event Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Event Action"]
@@ -3620,7 +3620,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Overflow Interrupt Enable"]
@@ -3707,7 +3707,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Overflow Interrupt Enable"]
@@ -3794,7 +3794,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Overflow"]
@@ -3881,7 +3881,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Read Request"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -3940,7 +3940,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Stop"]

@@ -56,7 +56,7 @@ impl Dbg {
 }
 
 #[doc="DBGMCU_IDCODE"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Idcode(pub u32);
 impl Idcode {
 #[doc="DEV_ID"]
@@ -101,7 +101,7 @@ impl ::core::fmt::Debug for Idcode {
    }
 }
 #[doc="DBGMCU_CR"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="DBG_SLEEP"]

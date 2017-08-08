@@ -331,7 +331,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Peripheral enable"]
@@ -642,7 +642,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="Control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Packet error checking byte"]
@@ -813,7 +813,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="Own address register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Oar1(pub u32);
 impl Oar1 {
 #[doc="Interface address"]
@@ -900,7 +900,7 @@ impl ::core::fmt::Debug for Oar1 {
    }
 }
 #[doc="Own address register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Oar2(pub u32);
 impl Oar2 {
 #[doc="Interface address"]
@@ -959,7 +959,7 @@ impl ::core::fmt::Debug for Oar2 {
    }
 }
 #[doc="Timing register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timingr(pub u32);
 impl Timingr {
 #[doc="SCL low period (master mode)"]
@@ -1046,7 +1046,7 @@ impl ::core::fmt::Debug for Timingr {
    }
 }
 #[doc="Status register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timeoutr(pub u32);
 impl Timeoutr {
 #[doc="Bus timeout A"]
@@ -1133,7 +1133,7 @@ impl ::core::fmt::Debug for Timeoutr {
    }
 }
 #[doc="Interrupt and Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Address match code (Slave mode)"]
@@ -1388,7 +1388,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="Interrupt clear register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Alert flag clear"]
@@ -1531,7 +1531,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="PEC register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pecr(pub u32);
 impl Pecr {
 #[doc="Packet error checking register"]
@@ -1562,7 +1562,7 @@ impl ::core::fmt::Debug for Pecr {
    }
 }
 #[doc="Receive data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxdr(pub u32);
 impl Rxdr {
 #[doc="8-bit receive data"]
@@ -1593,7 +1593,7 @@ impl ::core::fmt::Debug for Rxdr {
    }
 }
 #[doc="Transmit data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txdr(pub u32);
 impl Txdr {
 #[doc="8-bit transmit data"]

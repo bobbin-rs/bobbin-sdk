@@ -5545,7 +5545,7 @@ impl Sysctl {
 }
 
 #[doc="Device Identification 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Did0(pub u32);
 impl Did0 {
 #[doc="Minor Revision"]
@@ -5618,7 +5618,7 @@ impl ::core::fmt::Debug for Did0 {
    }
 }
 #[doc="Device Identification 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Did1(pub u32);
 impl Did1 {
 #[doc="Qualification Status"]
@@ -5747,7 +5747,7 @@ impl ::core::fmt::Debug for Did1 {
    }
 }
 #[doc="Power-Temp Brown Out Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptboctl(pub u32);
 impl Ptboctl {
 #[doc="VDD (VDDS) under BOR Event Action"]
@@ -5792,7 +5792,7 @@ impl ::core::fmt::Debug for Ptboctl {
    }
 }
 #[doc="Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="Brown-Out Reset Raw Interrupt Status"]
@@ -5865,7 +5865,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="Interrupt Mask Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Imc(pub u32);
 impl Imc {
 #[doc="Brown-Out Reset Interrupt Mask"]
@@ -5938,7 +5938,7 @@ impl ::core::fmt::Debug for Imc {
    }
 }
 #[doc="Masked Interrupt Status and Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Misc(pub u32);
 impl Misc {
 #[doc="BOR Masked Interrupt Status"]
@@ -6011,7 +6011,7 @@ impl ::core::fmt::Debug for Misc {
    }
 }
 #[doc="Reset Cause"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Resc(pub u32);
 impl Resc {
 #[doc="External Reset"]
@@ -6154,7 +6154,7 @@ impl ::core::fmt::Debug for Resc {
    }
 }
 #[doc="Power-Temperature Cause"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pwrtc(pub u32);
 impl Pwrtc {
 #[doc="VDD Under BOR Status"]
@@ -6199,7 +6199,7 @@ impl ::core::fmt::Debug for Pwrtc {
    }
 }
 #[doc="NMI Cause Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Nmic(pub u32);
 impl Nmic {
 #[doc="External Pin NMI"]
@@ -6300,7 +6300,7 @@ impl ::core::fmt::Debug for Nmic {
    }
 }
 #[doc="Main Oscillator Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Moscctl(pub u32);
 impl Moscctl {
 #[doc="Clock Validation for MOSC"]
@@ -6387,7 +6387,7 @@ impl ::core::fmt::Debug for Moscctl {
    }
 }
 #[doc="Run and Sleep Mode Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rsclkcfg(pub u32);
 impl Rsclkcfg {
 #[doc="PLL System Clock Divisor"]
@@ -6516,7 +6516,7 @@ impl ::core::fmt::Debug for Rsclkcfg {
    }
 }
 #[doc="Memory Timing Parameter Register 0 for Main Flash and EEPROM"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Memtim0(pub u32);
 impl Memtim0 {
 #[doc="Flash Wait State"]
@@ -6617,7 +6617,7 @@ impl ::core::fmt::Debug for Memtim0 {
    }
 }
 #[doc="Alternate Clock Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Altclkcfg(pub u32);
 impl Altclkcfg {
 #[doc="Alternate Clock Source"]
@@ -6648,7 +6648,7 @@ impl ::core::fmt::Debug for Altclkcfg {
    }
 }
 #[doc="Deep Sleep Clock Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dsclkcfg(pub u32);
 impl Dsclkcfg {
 #[doc="Deep Sleep Clock Divisor"]
@@ -6721,7 +6721,7 @@ impl ::core::fmt::Debug for Dsclkcfg {
    }
 }
 #[doc="Divisor and Source Clock Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Divsclk(pub u32);
 impl Divsclk {
 #[doc="Divisor Value"]
@@ -6780,7 +6780,7 @@ impl ::core::fmt::Debug for Divsclk {
    }
 }
 #[doc="System Properties"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sysprop(pub u32);
 impl Sysprop {
 #[doc="FPU Present"]
@@ -6811,7 +6811,7 @@ impl ::core::fmt::Debug for Sysprop {
    }
 }
 #[doc="Precision Internal Oscillator Calibration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Piosccal(pub u32);
 impl Piosccal {
 #[doc="User Trim Value"]
@@ -6884,7 +6884,7 @@ impl ::core::fmt::Debug for Piosccal {
    }
 }
 #[doc="Precision Internal Oscillator Statistics"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pioscstat(pub u32);
 impl Pioscstat {
 #[doc="Calibration Trim Value"]
@@ -6943,7 +6943,7 @@ impl ::core::fmt::Debug for Pioscstat {
    }
 }
 #[doc="PLL Frequency 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pllfreq0(pub u32);
 impl Pllfreq0 {
 #[doc="PLL M Integer Value"]
@@ -7002,7 +7002,7 @@ impl ::core::fmt::Debug for Pllfreq0 {
    }
 }
 #[doc="PLL Frequency 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pllfreq1(pub u32);
 impl Pllfreq1 {
 #[doc="PLL N Value"]
@@ -7047,7 +7047,7 @@ impl ::core::fmt::Debug for Pllfreq1 {
    }
 }
 #[doc="PLL Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pllstat(pub u32);
 impl Pllstat {
 #[doc="PLL Lock"]
@@ -7078,7 +7078,7 @@ impl ::core::fmt::Debug for Pllstat {
    }
 }
 #[doc="Sleep Power Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Slppwrcfg(pub u32);
 impl Slppwrcfg {
 #[doc="SRAM Power Modes"]
@@ -7123,7 +7123,7 @@ impl ::core::fmt::Debug for Slppwrcfg {
    }
 }
 #[doc="Deep-Sleep Power Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dslppwrcfg(pub u32);
 impl Dslppwrcfg {
 #[doc="SRAM Power Modes"]
@@ -7196,7 +7196,7 @@ impl ::core::fmt::Debug for Dslppwrcfg {
    }
 }
 #[doc="Non-Volatile Memory Information"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Nvmstat(pub u32);
 impl Nvmstat {
 #[doc="32 Word Flash Write Buffer Available"]
@@ -7227,7 +7227,7 @@ impl ::core::fmt::Debug for Nvmstat {
    }
 }
 #[doc="LDO Sleep Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ldospctl(pub u32);
 impl Ldospctl {
 #[doc="LDO Output Voltage"]
@@ -7272,7 +7272,7 @@ impl ::core::fmt::Debug for Ldospctl {
    }
 }
 #[doc="LDO Deep-Sleep Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ldodpctl(pub u32);
 impl Ldodpctl {
 #[doc="LDO Output Voltage"]
@@ -7317,7 +7317,7 @@ impl ::core::fmt::Debug for Ldodpctl {
    }
 }
 #[doc="Reset Behavior Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Resbehavctl(pub u32);
 impl Resbehavctl {
 #[doc="External RST Pin Operation"]
@@ -7390,7 +7390,7 @@ impl ::core::fmt::Debug for Resbehavctl {
    }
 }
 #[doc="Hardware System Service Request"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hssr(pub u32);
 impl Hssr {
 #[doc="Command Descriptor Pointer"]
@@ -7435,7 +7435,7 @@ impl ::core::fmt::Debug for Hssr {
    }
 }
 #[doc="USB Power Domain Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Usbpds(pub u32);
 impl Usbpds {
 #[doc="Power Domain Status"]
@@ -7480,7 +7480,7 @@ impl ::core::fmt::Debug for Usbpds {
    }
 }
 #[doc="USB Memory Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Usbmpc(pub u32);
 impl Usbmpc {
 #[doc="Memory Array Power Control"]
@@ -7511,7 +7511,7 @@ impl ::core::fmt::Debug for Usbmpc {
    }
 }
 #[doc="Ethernet MAC Power Domain Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Emacpds(pub u32);
 impl Emacpds {
 #[doc="Power Domain Status"]
@@ -7556,7 +7556,7 @@ impl ::core::fmt::Debug for Emacpds {
    }
 }
 #[doc="Ethernet MAC Memory Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Emacmpc(pub u32);
 impl Emacmpc {
 #[doc="Memory Array Power Control"]
@@ -7587,7 +7587,7 @@ impl ::core::fmt::Debug for Emacmpc {
    }
 }
 #[doc="Watchdog Timer Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppwd(pub u32);
 impl Ppwd {
 #[doc="Watchdog Timer 0 Present"]
@@ -7632,7 +7632,7 @@ impl ::core::fmt::Debug for Ppwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pptimer(pub u32);
 impl Pptimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Present"]
@@ -7761,7 +7761,7 @@ impl ::core::fmt::Debug for Pptimer {
    }
 }
 #[doc="General-Purpose Input/Output Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppgpio(pub u32);
 impl Ppgpio {
 #[doc="GPIO Port A Present"]
@@ -7988,7 +7988,7 @@ impl ::core::fmt::Debug for Ppgpio {
    }
 }
 #[doc="Micro Direct Memory Access Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppdma(pub u32);
 impl Ppdma {
 #[doc="uDMA Module Present"]
@@ -8019,7 +8019,7 @@ impl ::core::fmt::Debug for Ppdma {
    }
 }
 #[doc="EPI Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppepi(pub u32);
 impl Ppepi {
 #[doc="EPI Module Present"]
@@ -8050,7 +8050,7 @@ impl ::core::fmt::Debug for Ppepi {
    }
 }
 #[doc="Hibernation Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pphib(pub u32);
 impl Pphib {
 #[doc="Hibernation Module Present"]
@@ -8081,7 +8081,7 @@ impl ::core::fmt::Debug for Pphib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppuart(pub u32);
 impl Ppuart {
 #[doc="UART Module 0 Present"]
@@ -8210,7 +8210,7 @@ impl ::core::fmt::Debug for Ppuart {
    }
 }
 #[doc="Synchronous Serial Interface Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppssi(pub u32);
 impl Ppssi {
 #[doc="SSI Module 0 Present"]
@@ -8283,7 +8283,7 @@ impl ::core::fmt::Debug for Ppssi {
    }
 }
 #[doc="Inter-Integrated Circuit Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppi2c(pub u32);
 impl Ppi2c {
 #[doc="I2C Module 0 Present"]
@@ -8440,7 +8440,7 @@ impl ::core::fmt::Debug for Ppi2c {
    }
 }
 #[doc="Universal Serial Bus Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppusb(pub u32);
 impl Ppusb {
 #[doc="USB Module Present"]
@@ -8471,7 +8471,7 @@ impl ::core::fmt::Debug for Ppusb {
    }
 }
 #[doc="Ethernet PHY Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppephy(pub u32);
 impl Ppephy {
 #[doc="Ethernet PHY Module Present"]
@@ -8502,7 +8502,7 @@ impl ::core::fmt::Debug for Ppephy {
    }
 }
 #[doc="Controller Area Network Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppcan(pub u32);
 impl Ppcan {
 #[doc="CAN Module 0 Present"]
@@ -8547,7 +8547,7 @@ impl ::core::fmt::Debug for Ppcan {
    }
 }
 #[doc="Analog-to-Digital Converter Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppadc(pub u32);
 impl Ppadc {
 #[doc="ADC Module 0 Present"]
@@ -8592,7 +8592,7 @@ impl ::core::fmt::Debug for Ppadc {
    }
 }
 #[doc="Analog Comparator Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppacmp(pub u32);
 impl Ppacmp {
 #[doc="Analog Comparator Module Present"]
@@ -8623,7 +8623,7 @@ impl ::core::fmt::Debug for Ppacmp {
    }
 }
 #[doc="Pulse Width Modulator Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pppwm(pub u32);
 impl Pppwm {
 #[doc="PWM Module 0 Present"]
@@ -8654,7 +8654,7 @@ impl ::core::fmt::Debug for Pppwm {
    }
 }
 #[doc="Quadrature Encoder Interface Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppqei(pub u32);
 impl Ppqei {
 #[doc="QEI Module 0 Present"]
@@ -8685,7 +8685,7 @@ impl ::core::fmt::Debug for Ppqei {
    }
 }
 #[doc="Low Pin Count Interface Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pplpc(pub u32);
 impl Pplpc {
 #[doc="LPC Module Present"]
@@ -8716,7 +8716,7 @@ impl ::core::fmt::Debug for Pplpc {
    }
 }
 #[doc="Platform Environment Control Interface Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pppeci(pub u32);
 impl Pppeci {
 #[doc="PECI Module Present"]
@@ -8747,7 +8747,7 @@ impl ::core::fmt::Debug for Pppeci {
    }
 }
 #[doc="Fan Control Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppfan(pub u32);
 impl Ppfan {
 #[doc="FAN Module 0 Present"]
@@ -8778,7 +8778,7 @@ impl ::core::fmt::Debug for Ppfan {
    }
 }
 #[doc="EEPROM Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppeeprom(pub u32);
 impl Ppeeprom {
 #[doc="EEPROM Module Present"]
@@ -8809,7 +8809,7 @@ impl ::core::fmt::Debug for Ppeeprom {
    }
 }
 #[doc="32/64-Bit Wide General-Purpose Timer Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppwtimer(pub u32);
 impl Ppwtimer {
 #[doc="32/64-Bit Wide General-Purpose Timer 0 Present"]
@@ -8840,7 +8840,7 @@ impl ::core::fmt::Debug for Ppwtimer {
    }
 }
 #[doc="Remote Temperature Sensor Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pprts(pub u32);
 impl Pprts {
 #[doc="RTS Module Present"]
@@ -8871,7 +8871,7 @@ impl ::core::fmt::Debug for Pprts {
    }
 }
 #[doc="CRC and Cryptographic Modules Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppccm(pub u32);
 impl Ppccm {
 #[doc="CRC and Cryptographic Modules Present"]
@@ -8902,7 +8902,7 @@ impl ::core::fmt::Debug for Ppccm {
    }
 }
 #[doc="LCD Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pplcd(pub u32);
 impl Pplcd {
 #[doc="LCD Module Present"]
@@ -8933,7 +8933,7 @@ impl ::core::fmt::Debug for Pplcd {
    }
 }
 #[doc="1-Wire Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppowire(pub u32);
 impl Ppowire {
 #[doc="1-Wire Module Present"]
@@ -8964,7 +8964,7 @@ impl ::core::fmt::Debug for Ppowire {
    }
 }
 #[doc="Ethernet MAC Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppemac(pub u32);
 impl Ppemac {
 #[doc="Ethernet Controller Module Present"]
@@ -8995,7 +8995,7 @@ impl ::core::fmt::Debug for Ppemac {
    }
 }
 #[doc="Human Interface Master Peripheral Present"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pphim(pub u32);
 impl Pphim {
 #[doc="HIM Module Present"]
@@ -9026,7 +9026,7 @@ impl ::core::fmt::Debug for Pphim {
    }
 }
 #[doc="Watchdog Timer Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srwd(pub u32);
 impl Srwd {
 #[doc="Watchdog Timer 0 Software Reset"]
@@ -9071,7 +9071,7 @@ impl ::core::fmt::Debug for Srwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srtimer(pub u32);
 impl Srtimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Software Reset"]
@@ -9200,7 +9200,7 @@ impl ::core::fmt::Debug for Srtimer {
    }
 }
 #[doc="General-Purpose Input/Output Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srgpio(pub u32);
 impl Srgpio {
 #[doc="GPIO Port A Software Reset"]
@@ -9427,7 +9427,7 @@ impl ::core::fmt::Debug for Srgpio {
    }
 }
 #[doc="Micro Direct Memory Access Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srdma(pub u32);
 impl Srdma {
 #[doc="uDMA Module Software Reset"]
@@ -9458,7 +9458,7 @@ impl ::core::fmt::Debug for Srdma {
    }
 }
 #[doc="EPI Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srepi(pub u32);
 impl Srepi {
 #[doc="EPI Module Software Reset"]
@@ -9489,7 +9489,7 @@ impl ::core::fmt::Debug for Srepi {
    }
 }
 #[doc="Hibernation Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srhib(pub u32);
 impl Srhib {
 #[doc="Hibernation Module Software Reset"]
@@ -9520,7 +9520,7 @@ impl ::core::fmt::Debug for Srhib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sruart(pub u32);
 impl Sruart {
 #[doc="UART Module 0 Software Reset"]
@@ -9649,7 +9649,7 @@ impl ::core::fmt::Debug for Sruart {
    }
 }
 #[doc="Synchronous Serial Interface Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srssi(pub u32);
 impl Srssi {
 #[doc="SSI Module 0 Software Reset"]
@@ -9722,7 +9722,7 @@ impl ::core::fmt::Debug for Srssi {
    }
 }
 #[doc="Inter-Integrated Circuit Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sri2c(pub u32);
 impl Sri2c {
 #[doc="I2C Module 0 Software Reset"]
@@ -9879,7 +9879,7 @@ impl ::core::fmt::Debug for Sri2c {
    }
 }
 #[doc="Universal Serial Bus Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srusb(pub u32);
 impl Srusb {
 #[doc="USB Module Software Reset"]
@@ -9910,7 +9910,7 @@ impl ::core::fmt::Debug for Srusb {
    }
 }
 #[doc="Ethernet PHY Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srephy(pub u32);
 impl Srephy {
 #[doc="Ethernet PHY Module Software Reset"]
@@ -9941,7 +9941,7 @@ impl ::core::fmt::Debug for Srephy {
    }
 }
 #[doc="Controller Area Network Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srcan(pub u32);
 impl Srcan {
 #[doc="CAN Module 0 Software Reset"]
@@ -9986,7 +9986,7 @@ impl ::core::fmt::Debug for Srcan {
    }
 }
 #[doc="Analog-to-Digital Converter Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sradc(pub u32);
 impl Sradc {
 #[doc="ADC Module 0 Software Reset"]
@@ -10031,7 +10031,7 @@ impl ::core::fmt::Debug for Sradc {
    }
 }
 #[doc="Analog Comparator Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sracmp(pub u32);
 impl Sracmp {
 #[doc="Analog Comparator Module 0 Software Reset"]
@@ -10062,7 +10062,7 @@ impl ::core::fmt::Debug for Sracmp {
    }
 }
 #[doc="Pulse Width Modulator Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srpwm(pub u32);
 impl Srpwm {
 #[doc="PWM Module 0 Software Reset"]
@@ -10093,7 +10093,7 @@ impl ::core::fmt::Debug for Srpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srqei(pub u32);
 impl Srqei {
 #[doc="QEI Module 0 Software Reset"]
@@ -10124,7 +10124,7 @@ impl ::core::fmt::Debug for Srqei {
    }
 }
 #[doc="EEPROM Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sreeprom(pub u32);
 impl Sreeprom {
 #[doc="EEPROM Module Software Reset"]
@@ -10155,7 +10155,7 @@ impl ::core::fmt::Debug for Sreeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srccm(pub u32);
 impl Srccm {
 #[doc="CRC and Cryptographic Modules Software Reset"]
@@ -10186,7 +10186,7 @@ impl ::core::fmt::Debug for Srccm {
    }
 }
 #[doc="Ethernet MAC Software Reset"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sremac(pub u32);
 impl Sremac {
 #[doc="Ethernet Controller MAC Module 0 Software Reset"]
@@ -10217,7 +10217,7 @@ impl ::core::fmt::Debug for Sremac {
    }
 }
 #[doc="Watchdog Timer Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcwd(pub u32);
 impl Rcgcwd {
 #[doc="Watchdog Timer 0 Run Mode Clock Gating Control"]
@@ -10262,7 +10262,7 @@ impl ::core::fmt::Debug for Rcgcwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgctimer(pub u32);
 impl Rcgctimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control"]
@@ -10391,7 +10391,7 @@ impl ::core::fmt::Debug for Rcgctimer {
    }
 }
 #[doc="General-Purpose Input/Output Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcgpio(pub u32);
 impl Rcgcgpio {
 #[doc="GPIO Port A Run Mode Clock Gating Control"]
@@ -10618,7 +10618,7 @@ impl ::core::fmt::Debug for Rcgcgpio {
    }
 }
 #[doc="Micro Direct Memory Access Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcdma(pub u32);
 impl Rcgcdma {
 #[doc="uDMA Module Run Mode Clock Gating Control"]
@@ -10649,7 +10649,7 @@ impl ::core::fmt::Debug for Rcgcdma {
    }
 }
 #[doc="EPI Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcepi(pub u32);
 impl Rcgcepi {
 #[doc="EPI Module Run Mode Clock Gating Control"]
@@ -10680,7 +10680,7 @@ impl ::core::fmt::Debug for Rcgcepi {
    }
 }
 #[doc="Hibernation Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgchib(pub u32);
 impl Rcgchib {
 #[doc="Hibernation Module Run Mode Clock Gating Control"]
@@ -10711,7 +10711,7 @@ impl ::core::fmt::Debug for Rcgchib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcuart(pub u32);
 impl Rcgcuart {
 #[doc="UART Module 0 Run Mode Clock Gating Control"]
@@ -10840,7 +10840,7 @@ impl ::core::fmt::Debug for Rcgcuart {
    }
 }
 #[doc="Synchronous Serial Interface Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcssi(pub u32);
 impl Rcgcssi {
 #[doc="SSI Module 0 Run Mode Clock Gating Control"]
@@ -10913,7 +10913,7 @@ impl ::core::fmt::Debug for Rcgcssi {
    }
 }
 #[doc="Inter-Integrated Circuit Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgci2c(pub u32);
 impl Rcgci2c {
 #[doc="I2C Module 0 Run Mode Clock Gating Control"]
@@ -11070,7 +11070,7 @@ impl ::core::fmt::Debug for Rcgci2c {
    }
 }
 #[doc="Universal Serial Bus Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcusb(pub u32);
 impl Rcgcusb {
 #[doc="USB Module Run Mode Clock Gating Control"]
@@ -11101,7 +11101,7 @@ impl ::core::fmt::Debug for Rcgcusb {
    }
 }
 #[doc="Ethernet PHY Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcephy(pub u32);
 impl Rcgcephy {
 #[doc="Ethernet PHY Module Run Mode Clock Gating Control"]
@@ -11132,7 +11132,7 @@ impl ::core::fmt::Debug for Rcgcephy {
    }
 }
 #[doc="Controller Area Network Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgccan(pub u32);
 impl Rcgccan {
 #[doc="CAN Module 0 Run Mode Clock Gating Control"]
@@ -11177,7 +11177,7 @@ impl ::core::fmt::Debug for Rcgccan {
    }
 }
 #[doc="Analog-to-Digital Converter Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcadc(pub u32);
 impl Rcgcadc {
 #[doc="ADC Module 0 Run Mode Clock Gating Control"]
@@ -11222,7 +11222,7 @@ impl ::core::fmt::Debug for Rcgcadc {
    }
 }
 #[doc="Analog Comparator Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcacmp(pub u32);
 impl Rcgcacmp {
 #[doc="Analog Comparator Module 0 Run Mode Clock Gating Control"]
@@ -11253,7 +11253,7 @@ impl ::core::fmt::Debug for Rcgcacmp {
    }
 }
 #[doc="Pulse Width Modulator Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcpwm(pub u32);
 impl Rcgcpwm {
 #[doc="PWM Module 0 Run Mode Clock Gating Control"]
@@ -11284,7 +11284,7 @@ impl ::core::fmt::Debug for Rcgcpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcqei(pub u32);
 impl Rcgcqei {
 #[doc="QEI Module 0 Run Mode Clock Gating Control"]
@@ -11315,7 +11315,7 @@ impl ::core::fmt::Debug for Rcgcqei {
    }
 }
 #[doc="EEPROM Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgceeprom(pub u32);
 impl Rcgceeprom {
 #[doc="EEPROM Module Run Mode Clock Gating Control"]
@@ -11346,7 +11346,7 @@ impl ::core::fmt::Debug for Rcgceeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcccm(pub u32);
 impl Rcgcccm {
 #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
@@ -11377,7 +11377,7 @@ impl ::core::fmt::Debug for Rcgcccm {
    }
 }
 #[doc="Ethernet MAC Run Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcgcemac(pub u32);
 impl Rcgcemac {
 #[doc="Ethernet MAC Module 0 Run Mode Clock Gating Control"]
@@ -11408,7 +11408,7 @@ impl ::core::fmt::Debug for Rcgcemac {
    }
 }
 #[doc="Watchdog Timer Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcwd(pub u32);
 impl Scgcwd {
 #[doc="Watchdog Timer 0 Sleep Mode Clock Gating Control"]
@@ -11453,7 +11453,7 @@ impl ::core::fmt::Debug for Scgcwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgctimer(pub u32);
 impl Scgctimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Sleep Mode Clock Gating Control"]
@@ -11582,7 +11582,7 @@ impl ::core::fmt::Debug for Scgctimer {
    }
 }
 #[doc="General-Purpose Input/Output Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcgpio(pub u32);
 impl Scgcgpio {
 #[doc="GPIO Port A Sleep Mode Clock Gating Control"]
@@ -11809,7 +11809,7 @@ impl ::core::fmt::Debug for Scgcgpio {
    }
 }
 #[doc="Micro Direct Memory Access Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcdma(pub u32);
 impl Scgcdma {
 #[doc="uDMA Module Sleep Mode Clock Gating Control"]
@@ -11840,7 +11840,7 @@ impl ::core::fmt::Debug for Scgcdma {
    }
 }
 #[doc="EPI Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcepi(pub u32);
 impl Scgcepi {
 #[doc="EPI Module Sleep Mode Clock Gating Control"]
@@ -11871,7 +11871,7 @@ impl ::core::fmt::Debug for Scgcepi {
    }
 }
 #[doc="Hibernation Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgchib(pub u32);
 impl Scgchib {
 #[doc="Hibernation Module Sleep Mode Clock Gating Control"]
@@ -11902,7 +11902,7 @@ impl ::core::fmt::Debug for Scgchib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcuart(pub u32);
 impl Scgcuart {
 #[doc="UART Module 0 Sleep Mode Clock Gating Control"]
@@ -12031,7 +12031,7 @@ impl ::core::fmt::Debug for Scgcuart {
    }
 }
 #[doc="Synchronous Serial Interface Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcssi(pub u32);
 impl Scgcssi {
 #[doc="SSI Module 0 Sleep Mode Clock Gating Control"]
@@ -12104,7 +12104,7 @@ impl ::core::fmt::Debug for Scgcssi {
    }
 }
 #[doc="Inter-Integrated Circuit Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgci2c(pub u32);
 impl Scgci2c {
 #[doc="I2C Module 0 Sleep Mode Clock Gating Control"]
@@ -12261,7 +12261,7 @@ impl ::core::fmt::Debug for Scgci2c {
    }
 }
 #[doc="Universal Serial Bus Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcusb(pub u32);
 impl Scgcusb {
 #[doc="USB Module Sleep Mode Clock Gating Control"]
@@ -12292,7 +12292,7 @@ impl ::core::fmt::Debug for Scgcusb {
    }
 }
 #[doc="Ethernet PHY Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcephy(pub u32);
 impl Scgcephy {
 #[doc="PHY Module Sleep Mode Clock Gating Control"]
@@ -12323,7 +12323,7 @@ impl ::core::fmt::Debug for Scgcephy {
    }
 }
 #[doc="Controller Area Network Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgccan(pub u32);
 impl Scgccan {
 #[doc="CAN Module 0 Sleep Mode Clock Gating Control"]
@@ -12368,7 +12368,7 @@ impl ::core::fmt::Debug for Scgccan {
    }
 }
 #[doc="Analog-to-Digital Converter Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcadc(pub u32);
 impl Scgcadc {
 #[doc="ADC Module 0 Sleep Mode Clock Gating Control"]
@@ -12413,7 +12413,7 @@ impl ::core::fmt::Debug for Scgcadc {
    }
 }
 #[doc="Analog Comparator Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcacmp(pub u32);
 impl Scgcacmp {
 #[doc="Analog Comparator Module 0 Sleep Mode Clock Gating Control"]
@@ -12444,7 +12444,7 @@ impl ::core::fmt::Debug for Scgcacmp {
    }
 }
 #[doc="Pulse Width Modulator Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcpwm(pub u32);
 impl Scgcpwm {
 #[doc="PWM Module 0 Sleep Mode Clock Gating Control"]
@@ -12475,7 +12475,7 @@ impl ::core::fmt::Debug for Scgcpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcqei(pub u32);
 impl Scgcqei {
 #[doc="QEI Module 0 Sleep Mode Clock Gating Control"]
@@ -12506,7 +12506,7 @@ impl ::core::fmt::Debug for Scgcqei {
    }
 }
 #[doc="EEPROM Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgceeprom(pub u32);
 impl Scgceeprom {
 #[doc="EEPROM Module Sleep Mode Clock Gating Control"]
@@ -12537,7 +12537,7 @@ impl ::core::fmt::Debug for Scgceeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcccm(pub u32);
 impl Scgcccm {
 #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
@@ -12568,7 +12568,7 @@ impl ::core::fmt::Debug for Scgcccm {
    }
 }
 #[doc="Ethernet MAC Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scgcemac(pub u32);
 impl Scgcemac {
 #[doc="Ethernet MAC Module 0 Sleep Mode Clock Gating Control"]
@@ -12599,7 +12599,7 @@ impl ::core::fmt::Debug for Scgcemac {
    }
 }
 #[doc="Watchdog Timer Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcwd(pub u32);
 impl Dcgcwd {
 #[doc="Watchdog Timer 0 Deep-Sleep Mode Clock Gating Control"]
@@ -12644,7 +12644,7 @@ impl ::core::fmt::Debug for Dcgcwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgctimer(pub u32);
 impl Dcgctimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Deep-Sleep Mode Clock Gating Control"]
@@ -12773,7 +12773,7 @@ impl ::core::fmt::Debug for Dcgctimer {
    }
 }
 #[doc="General-Purpose Input/Output Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcgpio(pub u32);
 impl Dcgcgpio {
 #[doc="GPIO Port A Deep-Sleep Mode Clock Gating Control"]
@@ -13000,7 +13000,7 @@ impl ::core::fmt::Debug for Dcgcgpio {
    }
 }
 #[doc="Micro Direct Memory Access Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcdma(pub u32);
 impl Dcgcdma {
 #[doc="uDMA Module Deep-Sleep Mode Clock Gating Control"]
@@ -13031,7 +13031,7 @@ impl ::core::fmt::Debug for Dcgcdma {
    }
 }
 #[doc="EPI Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcepi(pub u32);
 impl Dcgcepi {
 #[doc="EPI Module Deep-Sleep Mode Clock Gating Control"]
@@ -13062,7 +13062,7 @@ impl ::core::fmt::Debug for Dcgcepi {
    }
 }
 #[doc="Hibernation Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgchib(pub u32);
 impl Dcgchib {
 #[doc="Hibernation Module Deep-Sleep Mode Clock Gating Control"]
@@ -13093,7 +13093,7 @@ impl ::core::fmt::Debug for Dcgchib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcuart(pub u32);
 impl Dcgcuart {
 #[doc="UART Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13222,7 +13222,7 @@ impl ::core::fmt::Debug for Dcgcuart {
    }
 }
 #[doc="Synchronous Serial Interface Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcssi(pub u32);
 impl Dcgcssi {
 #[doc="SSI Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13295,7 +13295,7 @@ impl ::core::fmt::Debug for Dcgcssi {
    }
 }
 #[doc="Inter-Integrated Circuit Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgci2c(pub u32);
 impl Dcgci2c {
 #[doc="I2C Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13452,7 +13452,7 @@ impl ::core::fmt::Debug for Dcgci2c {
    }
 }
 #[doc="Universal Serial Bus Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcusb(pub u32);
 impl Dcgcusb {
 #[doc="USB Module Deep-Sleep Mode Clock Gating Control"]
@@ -13483,7 +13483,7 @@ impl ::core::fmt::Debug for Dcgcusb {
    }
 }
 #[doc="Ethernet PHY Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcephy(pub u32);
 impl Dcgcephy {
 #[doc="PHY Module Deep-Sleep Mode Clock Gating Control"]
@@ -13514,7 +13514,7 @@ impl ::core::fmt::Debug for Dcgcephy {
    }
 }
 #[doc="Controller Area Network Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgccan(pub u32);
 impl Dcgccan {
 #[doc="CAN Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13559,7 +13559,7 @@ impl ::core::fmt::Debug for Dcgccan {
    }
 }
 #[doc="Analog-to-Digital Converter Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcadc(pub u32);
 impl Dcgcadc {
 #[doc="ADC Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13604,7 +13604,7 @@ impl ::core::fmt::Debug for Dcgcadc {
    }
 }
 #[doc="Analog Comparator Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcacmp(pub u32);
 impl Dcgcacmp {
 #[doc="Analog Comparator Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13635,7 +13635,7 @@ impl ::core::fmt::Debug for Dcgcacmp {
    }
 }
 #[doc="Pulse Width Modulator Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcpwm(pub u32);
 impl Dcgcpwm {
 #[doc="PWM Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13666,7 +13666,7 @@ impl ::core::fmt::Debug for Dcgcpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcqei(pub u32);
 impl Dcgcqei {
 #[doc="QEI Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13697,7 +13697,7 @@ impl ::core::fmt::Debug for Dcgcqei {
    }
 }
 #[doc="EEPROM Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgceeprom(pub u32);
 impl Dcgceeprom {
 #[doc="EEPROM Module Deep-Sleep Mode Clock Gating Control"]
@@ -13728,7 +13728,7 @@ impl ::core::fmt::Debug for Dcgceeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcccm(pub u32);
 impl Dcgcccm {
 #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
@@ -13759,7 +13759,7 @@ impl ::core::fmt::Debug for Dcgcccm {
    }
 }
 #[doc="Ethernet MAC Deep-Sleep Mode Clock Gating Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcgcemac(pub u32);
 impl Dcgcemac {
 #[doc="Ethernet MAC Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -13790,7 +13790,7 @@ impl ::core::fmt::Debug for Dcgcemac {
    }
 }
 #[doc="Watchdog Timer Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcwd(pub u32);
 impl Pcwd {
 #[doc="Watchdog Timer 0 Power Control"]
@@ -13835,7 +13835,7 @@ impl ::core::fmt::Debug for Pcwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pctimer(pub u32);
 impl Pctimer {
 #[doc="General-Purpose Timer 0 Power Control"]
@@ -13964,7 +13964,7 @@ impl ::core::fmt::Debug for Pctimer {
    }
 }
 #[doc="General-Purpose Input/Output Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcgpio(pub u32);
 impl Pcgpio {
 #[doc="GPIO Port A Power Control"]
@@ -14191,7 +14191,7 @@ impl ::core::fmt::Debug for Pcgpio {
    }
 }
 #[doc="Micro Direct Memory Access Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcdma(pub u32);
 impl Pcdma {
 #[doc="uDMA Module Power Control"]
@@ -14222,7 +14222,7 @@ impl ::core::fmt::Debug for Pcdma {
    }
 }
 #[doc="External Peripheral Interface Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcepi(pub u32);
 impl Pcepi {
 #[doc="EPI Module Power Control"]
@@ -14253,7 +14253,7 @@ impl ::core::fmt::Debug for Pcepi {
    }
 }
 #[doc="Hibernation Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pchib(pub u32);
 impl Pchib {
 #[doc="Hibernation Module Power Control"]
@@ -14284,7 +14284,7 @@ impl ::core::fmt::Debug for Pchib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcuart(pub u32);
 impl Pcuart {
 #[doc="UART Module 0 Power Control"]
@@ -14413,7 +14413,7 @@ impl ::core::fmt::Debug for Pcuart {
    }
 }
 #[doc="Synchronous Serial Interface Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcssi(pub u32);
 impl Pcssi {
 #[doc="SSI Module 0 Power Control"]
@@ -14486,7 +14486,7 @@ impl ::core::fmt::Debug for Pcssi {
    }
 }
 #[doc="Inter-Integrated Circuit Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pci2c(pub u32);
 impl Pci2c {
 #[doc="I2C Module 0 Power Control"]
@@ -14643,7 +14643,7 @@ impl ::core::fmt::Debug for Pci2c {
    }
 }
 #[doc="Universal Serial Bus Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcusb(pub u32);
 impl Pcusb {
 #[doc="USB Module Power Control"]
@@ -14674,7 +14674,7 @@ impl ::core::fmt::Debug for Pcusb {
    }
 }
 #[doc="Ethernet PHY Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcephy(pub u32);
 impl Pcephy {
 #[doc="Ethernet PHY Module Power Control"]
@@ -14705,7 +14705,7 @@ impl ::core::fmt::Debug for Pcephy {
    }
 }
 #[doc="Controller Area Network Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pccan(pub u32);
 impl Pccan {
 #[doc="CAN Module 0 Power Control"]
@@ -14750,7 +14750,7 @@ impl ::core::fmt::Debug for Pccan {
    }
 }
 #[doc="Analog-to-Digital Converter Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcadc(pub u32);
 impl Pcadc {
 #[doc="ADC Module 0 Power Control"]
@@ -14795,7 +14795,7 @@ impl ::core::fmt::Debug for Pcadc {
    }
 }
 #[doc="Analog Comparator Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcacmp(pub u32);
 impl Pcacmp {
 #[doc="Analog Comparator Module 0 Power Control"]
@@ -14826,7 +14826,7 @@ impl ::core::fmt::Debug for Pcacmp {
    }
 }
 #[doc="Pulse Width Modulator Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcpwm(pub u32);
 impl Pcpwm {
 #[doc="PWM Module 0 Power Control"]
@@ -14857,7 +14857,7 @@ impl ::core::fmt::Debug for Pcpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcqei(pub u32);
 impl Pcqei {
 #[doc="QEI Module 0 Power Control"]
@@ -14888,7 +14888,7 @@ impl ::core::fmt::Debug for Pcqei {
    }
 }
 #[doc="EEPROM Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pceeprom(pub u32);
 impl Pceeprom {
 #[doc="EEPROM Module 0 Power Control"]
@@ -14919,7 +14919,7 @@ impl ::core::fmt::Debug for Pceeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcccm(pub u32);
 impl Pcccm {
 #[doc="CRC and Cryptographic Modules Power Control"]
@@ -14950,7 +14950,7 @@ impl ::core::fmt::Debug for Pcccm {
    }
 }
 #[doc="Ethernet MAC Power Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pcemac(pub u32);
 impl Pcemac {
 #[doc="Ethernet MAC Module 0 Power Control"]
@@ -14981,7 +14981,7 @@ impl ::core::fmt::Debug for Pcemac {
    }
 }
 #[doc="Watchdog Timer Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prwd(pub u32);
 impl Prwd {
 #[doc="Watchdog Timer 0 Peripheral Ready"]
@@ -15026,7 +15026,7 @@ impl ::core::fmt::Debug for Prwd {
    }
 }
 #[doc="16/32-Bit General-Purpose Timer Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prtimer(pub u32);
 impl Prtimer {
 #[doc="16/32-Bit General-Purpose Timer 0 Peripheral Ready"]
@@ -15155,7 +15155,7 @@ impl ::core::fmt::Debug for Prtimer {
    }
 }
 #[doc="General-Purpose Input/Output Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prgpio(pub u32);
 impl Prgpio {
 #[doc="GPIO Port A Peripheral Ready"]
@@ -15382,7 +15382,7 @@ impl ::core::fmt::Debug for Prgpio {
    }
 }
 #[doc="Micro Direct Memory Access Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prdma(pub u32);
 impl Prdma {
 #[doc="uDMA Module Peripheral Ready"]
@@ -15413,7 +15413,7 @@ impl ::core::fmt::Debug for Prdma {
    }
 }
 #[doc="EPI Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prepi(pub u32);
 impl Prepi {
 #[doc="EPI Module Peripheral Ready"]
@@ -15444,7 +15444,7 @@ impl ::core::fmt::Debug for Prepi {
    }
 }
 #[doc="Hibernation Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prhib(pub u32);
 impl Prhib {
 #[doc="Hibernation Module Peripheral Ready"]
@@ -15475,7 +15475,7 @@ impl ::core::fmt::Debug for Prhib {
    }
 }
 #[doc="Universal Asynchronous Receiver/Transmitter Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pruart(pub u32);
 impl Pruart {
 #[doc="UART Module 0 Peripheral Ready"]
@@ -15604,7 +15604,7 @@ impl ::core::fmt::Debug for Pruart {
    }
 }
 #[doc="Synchronous Serial Interface Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prssi(pub u32);
 impl Prssi {
 #[doc="SSI Module 0 Peripheral Ready"]
@@ -15677,7 +15677,7 @@ impl ::core::fmt::Debug for Prssi {
    }
 }
 #[doc="Inter-Integrated Circuit Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pri2c(pub u32);
 impl Pri2c {
 #[doc="I2C Module 0 Peripheral Ready"]
@@ -15834,7 +15834,7 @@ impl ::core::fmt::Debug for Pri2c {
    }
 }
 #[doc="Universal Serial Bus Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prusb(pub u32);
 impl Prusb {
 #[doc="USB Module Peripheral Ready"]
@@ -15865,7 +15865,7 @@ impl ::core::fmt::Debug for Prusb {
    }
 }
 #[doc="Ethernet PHY Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prephy(pub u32);
 impl Prephy {
 #[doc="Ethernet PHY Module Peripheral Ready"]
@@ -15896,7 +15896,7 @@ impl ::core::fmt::Debug for Prephy {
    }
 }
 #[doc="Controller Area Network Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prcan(pub u32);
 impl Prcan {
 #[doc="CAN Module 0 Peripheral Ready"]
@@ -15941,7 +15941,7 @@ impl ::core::fmt::Debug for Prcan {
    }
 }
 #[doc="Analog-to-Digital Converter Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pradc(pub u32);
 impl Pradc {
 #[doc="ADC Module 0 Peripheral Ready"]
@@ -15986,7 +15986,7 @@ impl ::core::fmt::Debug for Pradc {
    }
 }
 #[doc="Analog Comparator Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pracmp(pub u32);
 impl Pracmp {
 #[doc="Analog Comparator Module 0 Peripheral Ready"]
@@ -16017,7 +16017,7 @@ impl ::core::fmt::Debug for Pracmp {
    }
 }
 #[doc="Pulse Width Modulator Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prpwm(pub u32);
 impl Prpwm {
 #[doc="PWM Module 0 Peripheral Ready"]
@@ -16048,7 +16048,7 @@ impl ::core::fmt::Debug for Prpwm {
    }
 }
 #[doc="Quadrature Encoder Interface Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prqei(pub u32);
 impl Prqei {
 #[doc="QEI Module 0 Peripheral Ready"]
@@ -16079,7 +16079,7 @@ impl ::core::fmt::Debug for Prqei {
    }
 }
 #[doc="EEPROM Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Preeprom(pub u32);
 impl Preeprom {
 #[doc="EEPROM Module Peripheral Ready"]
@@ -16110,7 +16110,7 @@ impl ::core::fmt::Debug for Preeprom {
    }
 }
 #[doc="CRC and Cryptographic Modules Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Prccm(pub u32);
 impl Prccm {
 #[doc="CRC and Cryptographic Modules Peripheral Ready"]
@@ -16141,7 +16141,7 @@ impl ::core::fmt::Debug for Prccm {
    }
 }
 #[doc="Ethernet MAC Peripheral Ready"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Premac(pub u32);
 impl Premac {
 #[doc="Ethernet MAC Module 0 Peripheral Ready"]

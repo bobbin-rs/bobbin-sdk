@@ -282,7 +282,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Bidirectional data mode enable"]
@@ -495,7 +495,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Tx buffer empty interrupt enable"]
@@ -610,7 +610,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="TI frame format error"]
@@ -753,7 +753,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Data register"]
@@ -784,7 +784,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="CRC polynomial register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Crcpr(pub u32);
 impl Crcpr {
 #[doc="CRC polynomial register"]
@@ -815,7 +815,7 @@ impl ::core::fmt::Debug for Crcpr {
    }
 }
 #[doc="RX CRC register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxcrcr(pub u32);
 impl Rxcrcr {
 #[doc="Rx CRC register"]
@@ -846,7 +846,7 @@ impl ::core::fmt::Debug for Rxcrcr {
    }
 }
 #[doc="TX CRC register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txcrcr(pub u32);
 impl Txcrcr {
 #[doc="Tx CRC register"]
@@ -877,7 +877,7 @@ impl ::core::fmt::Debug for Txcrcr {
    }
 }
 #[doc="I2S configuration register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct I2scfgr(pub u32);
 impl I2scfgr {
 #[doc="I2S mode selection"]
@@ -1006,7 +1006,7 @@ impl ::core::fmt::Debug for I2scfgr {
    }
 }
 #[doc="I2S prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct I2spr(pub u32);
 impl I2spr {
 #[doc="Master clock output enable"]

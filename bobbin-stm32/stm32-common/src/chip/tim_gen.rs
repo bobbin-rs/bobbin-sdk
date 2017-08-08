@@ -595,7 +595,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Counter enable"]
@@ -738,7 +738,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="TI1 selection"]
@@ -797,7 +797,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="slave mode control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Smcr(pub u32);
 impl Smcr {
 #[doc="Slave mode selection"]
@@ -940,7 +940,7 @@ impl ::core::fmt::Debug for Smcr {
    }
 }
 #[doc="DMA/Interrupt enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dier(pub u32);
 impl Dier {
 #[doc="Trigger DMA request enable"]
@@ -1059,7 +1059,7 @@ impl ::core::fmt::Debug for Dier {
    }
 }
 #[doc="status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Capture/Compare n overcapture flag"]
@@ -1150,7 +1150,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="event generation register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Egr(pub u32);
 impl Egr {
 #[doc="Trigger generation"]
@@ -1218,7 +1218,7 @@ impl ::core::fmt::Debug for Egr {
    }
 }
 #[doc="capture/compare mode register 1 (output mode)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct CcmrOutput(pub u32);
 impl CcmrOutput {
 #[doc="Capture/Compare n selection"]
@@ -1361,7 +1361,7 @@ impl ::core::fmt::Debug for CcmrOutput {
    }
 }
 #[doc="capture/compare mode register n (input mode)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct CcmrInput(pub u32);
 impl CcmrInput {
 #[doc="Input capture n filter"]
@@ -1441,7 +1441,7 @@ impl ::core::fmt::Debug for CcmrInput {
    }
 }
 #[doc="capture/compare enable register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccer(pub u32);
 impl Ccer {
 #[doc="Capture/Compare n output enable"]
@@ -1527,7 +1527,7 @@ impl ::core::fmt::Debug for Ccer {
    }
 }
 #[doc="counter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Low counter value"]
@@ -1586,7 +1586,7 @@ impl ::core::fmt::Debug for Cnt {
    }
 }
 #[doc="prescaler"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Psc(pub u32);
 impl Psc {
 #[doc="Prescaler value"]
@@ -1617,7 +1617,7 @@ impl ::core::fmt::Debug for Psc {
    }
 }
 #[doc="auto-reload register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Arr(pub u32);
 impl Arr {
 #[doc="Low Auto-reload value"]
@@ -1662,7 +1662,7 @@ impl ::core::fmt::Debug for Arr {
    }
 }
 #[doc="repetition counter register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcr(pub u32);
 impl Rcr {
 #[doc="Repetition counter value"]
@@ -1693,7 +1693,7 @@ impl ::core::fmt::Debug for Rcr {
    }
 }
 #[doc="break and dead-time register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdtr(pub u32);
 impl Bdtr {
 #[doc="Main output enable"]
@@ -1836,7 +1836,7 @@ impl ::core::fmt::Debug for Bdtr {
    }
 }
 #[doc="capture/compare register n"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Low Capture/Compare n value"]
@@ -1881,7 +1881,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="DMA control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcr(pub u32);
 impl Dcr {
 #[doc="DMA burst length"]
@@ -1926,7 +1926,7 @@ impl ::core::fmt::Debug for Dcr {
    }
 }
 #[doc="DMA address for full transfer"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmar(pub u32);
 impl Dmar {
 #[doc="DMA register for burst accesses"]
@@ -1957,7 +1957,7 @@ impl ::core::fmt::Debug for Dmar {
    }
 }
 #[doc="option register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Or(pub u32);
 impl Or {
 }

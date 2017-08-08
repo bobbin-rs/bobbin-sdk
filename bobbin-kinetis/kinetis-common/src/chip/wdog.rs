@@ -394,7 +394,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Watchdog Status and Control Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stctrlh(pub u16);
 impl Stctrlh {
 #[doc="Enables or disables the WDOG\'s operation"]
@@ -579,7 +579,7 @@ impl ::core::fmt::Debug for Stctrlh {
    }
 }
 #[doc="Watchdog Status and Control Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Stctrll(pub u16);
 impl Stctrll {
 #[doc="Interrupt flag"]
@@ -610,7 +610,7 @@ impl ::core::fmt::Debug for Stctrll {
    }
 }
 #[doc="Watchdog Time-out Value Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tovalh(pub u16);
 impl Tovalh {
 #[doc="Defines the upper 16 bits of the 32-bit time-out value for the watchdog timer"]
@@ -641,7 +641,7 @@ impl ::core::fmt::Debug for Tovalh {
    }
 }
 #[doc="Watchdog Time-out Value Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tovall(pub u16);
 impl Tovall {
 #[doc="Defines the lower 16 bits of the 32-bit time-out value for the watchdog timer"]
@@ -672,7 +672,7 @@ impl ::core::fmt::Debug for Tovall {
    }
 }
 #[doc="Watchdog Window Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Winh(pub u16);
 impl Winh {
 #[doc="Defines the upper 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
@@ -703,7 +703,7 @@ impl ::core::fmt::Debug for Winh {
    }
 }
 #[doc="Watchdog Window Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Winl(pub u16);
 impl Winl {
 #[doc="Defines the lower 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
@@ -734,7 +734,7 @@ impl ::core::fmt::Debug for Winl {
    }
 }
 #[doc="Watchdog Refresh register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Refresh(pub u16);
 impl Refresh {
 #[doc="Watchdog refresh register"]
@@ -765,7 +765,7 @@ impl ::core::fmt::Debug for Refresh {
    }
 }
 #[doc="Watchdog Unlock register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Unlock(pub u16);
 impl Unlock {
 #[doc="Writing the unlock sequence values to this register to makes the watchdog write-once registers writable again"]
@@ -796,7 +796,7 @@ impl ::core::fmt::Debug for Unlock {
    }
 }
 #[doc="Watchdog Timer Output Register High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tmrouth(pub u16);
 impl Tmrouth {
 #[doc="Shows the value of the upper 16 bits of the watchdog timer."]
@@ -827,7 +827,7 @@ impl ::core::fmt::Debug for Tmrouth {
    }
 }
 #[doc="Watchdog Timer Output Register Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Tmroutl(pub u16);
 impl Tmroutl {
 #[doc="Shows the value of the lower 16 bits of the watchdog timer."]
@@ -858,7 +858,7 @@ impl ::core::fmt::Debug for Tmroutl {
    }
 }
 #[doc="Watchdog Reset Count register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rstcnt(pub u16);
 impl Rstcnt {
 #[doc="Counts the number of times the watchdog resets the system"]
@@ -889,7 +889,7 @@ impl ::core::fmt::Debug for Rstcnt {
    }
 }
 #[doc="Watchdog Prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Presc(pub u16);
 impl Presc {
 #[doc="3-bit prescaler for the watchdog clock source"]

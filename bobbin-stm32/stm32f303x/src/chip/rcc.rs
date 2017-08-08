@@ -425,7 +425,7 @@ impl Rcc {
 }
 
 #[doc="Clock control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Internal High Speed clock enable"]
@@ -582,7 +582,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Clock configuration register (RCC_CFGR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr(pub u32);
 impl Cfgr {
 #[doc="System clock Switch"]
@@ -781,7 +781,7 @@ impl ::core::fmt::Debug for Cfgr {
    }
 }
 #[doc="Clock interrupt register (RCC_CIR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cir(pub u32);
 impl Cir {
 #[doc="LSI Ready Interrupt flag"]
@@ -1036,7 +1036,7 @@ impl ::core::fmt::Debug for Cir {
    }
 }
 #[doc="APB2 peripheral reset register (RCC_APB2RSTR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2rstr(pub u32);
 impl Apb2rstr {
 #[doc="SYSCFG and COMP reset"]
@@ -1165,7 +1165,7 @@ impl ::core::fmt::Debug for Apb2rstr {
    }
 }
 #[doc="APB1 peripheral reset register (RCC_APB1RSTR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1rstr(pub u32);
 impl Apb1rstr {
 #[doc="Timer 2 reset"]
@@ -1434,7 +1434,7 @@ impl ::core::fmt::Debug for Apb1rstr {
    }
 }
 #[doc="AHB Peripheral Clock enable register (RCC_AHBENR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbenr(pub u32);
 impl Ahbenr {
 #[doc="DMA1 clock enable"]
@@ -1675,7 +1675,7 @@ impl ::core::fmt::Debug for Ahbenr {
    }
 }
 #[doc="APB2 peripheral clock enable register (RCC_APB2ENR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb2enr(pub u32);
 impl Apb2enr {
 #[doc="SYSCFG clock enable"]
@@ -1818,7 +1818,7 @@ impl ::core::fmt::Debug for Apb2enr {
    }
 }
 #[doc="APB1 peripheral clock enable register (RCC_APB1ENR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
 #[doc="Timer 2 clock enable"]
@@ -2101,7 +2101,7 @@ impl ::core::fmt::Debug for Apb1enr {
    }
 }
 #[doc="Backup domain control register (RCC_BDCR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bdcr(pub u32);
 impl Bdcr {
 #[doc="External Low Speed oscillator enable"]
@@ -2216,7 +2216,7 @@ impl ::core::fmt::Debug for Bdcr {
    }
 }
 #[doc="Control/status register (RCC_CSR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Internal low speed oscillator enable"]
@@ -2373,7 +2373,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="AHB peripheral reset register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ahbrstr(pub u32);
 impl Ahbrstr {
 #[doc="I/O port A reset"]
@@ -2516,7 +2516,7 @@ impl ::core::fmt::Debug for Ahbrstr {
    }
 }
 #[doc="Clock configuration register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr2(pub u32);
 impl Cfgr2 {
 #[doc="PREDIV division factor"]
@@ -2575,7 +2575,7 @@ impl ::core::fmt::Debug for Cfgr2 {
    }
 }
 #[doc="Clock configuration register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr3(pub u32);
 impl Cfgr3 {
 #[doc="USART1 clock source selection"]

@@ -234,7 +234,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="Status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="CTS flag"]
@@ -391,7 +391,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Data value"]
@@ -422,7 +422,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="Baud rate register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="mantissa of USARTDIV"]
@@ -467,7 +467,7 @@ impl ::core::fmt::Debug for Brr {
    }
 }
 #[doc="Control register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Oversampling mode"]
@@ -694,7 +694,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="Control register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="LIN mode enable"]
@@ -837,7 +837,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="Control register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr3(pub u32);
 impl Cr3 {
 #[doc="One sample bit method enable"]
@@ -1022,7 +1022,7 @@ impl ::core::fmt::Debug for Cr3 {
    }
 }
 #[doc="Guard time and prescaler register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gtpr(pub u32);
 impl Gtpr {
 #[doc="Guard time value"]

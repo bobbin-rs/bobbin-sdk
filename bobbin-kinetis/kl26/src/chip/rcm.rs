@@ -103,7 +103,7 @@ impl Rcm {
 }
 
 #[doc="System Reset Status Register 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srs0(pub u8);
 impl Srs0 {
 #[doc="Low Leakage Wakeup Reset"]
@@ -218,7 +218,7 @@ impl ::core::fmt::Debug for Srs0 {
    }
 }
 #[doc="System Reset Status Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srs1(pub u8);
 impl Srs1 {
 #[doc="Core Lockup"]
@@ -291,7 +291,7 @@ impl ::core::fmt::Debug for Srs1 {
    }
 }
 #[doc="Reset Pin Filter Control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rpfc(pub u8);
 impl Rpfc {
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
@@ -336,7 +336,7 @@ impl ::core::fmt::Debug for Rpfc {
    }
 }
 #[doc="Reset Pin Filter Width register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rpfw(pub u8);
 impl Rpfw {
 #[doc="Reset Pin Filter Bus Clock Select"]

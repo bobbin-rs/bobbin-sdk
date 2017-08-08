@@ -73,7 +73,7 @@ impl Pwr {
 }
 
 #[doc="power control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Flash power down in Stop mode"]
@@ -202,7 +202,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="power control/status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Wakeup flag"]

@@ -293,7 +293,7 @@ impl EthernetPtp {
 }
 
 #[doc="Ethernet PTP time stamp control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptscr(pub u32);
 impl Ptptscr {
 #[doc="no description available"]
@@ -534,7 +534,7 @@ impl ::core::fmt::Debug for Ptptscr {
    }
 }
 #[doc="Ethernet PTP subsecond increment register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptpssir(pub u32);
 impl Ptpssir {
 #[doc="no description available"]
@@ -565,7 +565,7 @@ impl ::core::fmt::Debug for Ptpssir {
    }
 }
 #[doc="Ethernet PTP time stamp high register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptshr(pub u32);
 impl Ptptshr {
 #[doc="no description available"]
@@ -595,7 +595,7 @@ impl ::core::fmt::Debug for Ptptshr {
    }
 }
 #[doc="Ethernet PTP time stamp low register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptslr(pub u32);
 impl Ptptslr {
 #[doc="no description available"]
@@ -640,7 +640,7 @@ impl ::core::fmt::Debug for Ptptslr {
    }
 }
 #[doc="Ethernet PTP time stamp high update register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptshur(pub u32);
 impl Ptptshur {
 #[doc="no description available"]
@@ -670,7 +670,7 @@ impl ::core::fmt::Debug for Ptptshur {
    }
 }
 #[doc="Ethernet PTP time stamp low update register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptslur(pub u32);
 impl Ptptslur {
 #[doc="no description available"]
@@ -715,7 +715,7 @@ impl ::core::fmt::Debug for Ptptslur {
    }
 }
 #[doc="Ethernet PTP time stamp addend register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptsar(pub u32);
 impl Ptptsar {
 #[doc="no description available"]
@@ -745,7 +745,7 @@ impl ::core::fmt::Debug for Ptptsar {
    }
 }
 #[doc="Ethernet PTP target time high register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptthr(pub u32);
 impl Ptptthr {
 #[doc="0"]
@@ -775,7 +775,7 @@ impl ::core::fmt::Debug for Ptptthr {
    }
 }
 #[doc="Ethernet PTP target time low register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptpttlr(pub u32);
 impl Ptpttlr {
 #[doc="no description available"]
@@ -805,7 +805,7 @@ impl ::core::fmt::Debug for Ptpttlr {
    }
 }
 #[doc="Ethernet PTP time stamp status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptptssr(pub u32);
 impl Ptptssr {
 #[doc="no description available"]
@@ -850,7 +850,7 @@ impl ::core::fmt::Debug for Ptptssr {
    }
 }
 #[doc="Ethernet PTP PPS control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ptpppscr(pub u32);
 impl Ptpppscr {
 #[doc="TSSO"]

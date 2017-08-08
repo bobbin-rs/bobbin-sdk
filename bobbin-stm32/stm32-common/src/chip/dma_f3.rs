@@ -202,7 +202,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="DMA interrupt status register (DMA_ISR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="Channel n Global interrupt flag"]
@@ -323,7 +323,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="DMA interrupt flag clear register (DMA_IFCR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ifcr(pub u32);
 impl Ifcr {
 #[doc="Channel n Global interrupt clear"]
@@ -444,7 +444,7 @@ impl ::core::fmt::Debug for Ifcr {
    }
 }
 #[doc="DMA channel configuration register (DMA_CCR)"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Channel enable"]
@@ -629,7 +629,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="DMA channel n number of data register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cndtr(pub u32);
 impl Cndtr {
 #[doc="Number of data to transfer"]
@@ -660,7 +660,7 @@ impl ::core::fmt::Debug for Cndtr {
    }
 }
 #[doc="DMA channel n peripheral address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cpar(pub u32);
 impl Cpar {
 #[doc="Peripheral address"]
@@ -690,7 +690,7 @@ impl ::core::fmt::Debug for Cpar {
    }
 }
 #[doc="DMA channel n memory address register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cmar(pub u32);
 impl Cmar {
 #[doc="Memory address"]

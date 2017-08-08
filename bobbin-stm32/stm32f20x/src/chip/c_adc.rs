@@ -71,7 +71,7 @@ impl CAdc {
 }
 
 #[doc="ADC Common status register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Overrun flag of ADC3"]
@@ -340,7 +340,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="ADC common control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Temperature sensor and VREFINT enable"]
@@ -455,7 +455,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="ADC common regular data register for dual and triple modes"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cdr(pub u32);
 impl Cdr {
 #[doc="2nd data item of a pair of regular conversions"]

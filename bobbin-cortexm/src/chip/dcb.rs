@@ -137,7 +137,7 @@ impl Dcb {
 }
 
 #[doc="Debug Halting Control and Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dhcsr(pub u32);
 impl Dhcsr {
 #[doc="Debug Key. 0xA05F must be written whenever this register is written. Reads back as status bits [25:16]. If not written as Key, the write operation is ignored and no bits are written into the register."]
@@ -324,7 +324,7 @@ impl ::core::fmt::Debug for Dhcsr {
    }
 }
 #[doc="Debug Core Register Selector Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcrsr(pub u32);
 impl Dcrsr {
 #[doc="Write = 1, Read = 0"]
@@ -369,7 +369,7 @@ impl ::core::fmt::Debug for Dcrsr {
    }
 }
 #[doc="Debug Core Register Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Derdr(pub u32);
 impl Derdr {
 #[doc="This is the data value written to the register selected by the Debug Register Selector Register."]
@@ -399,7 +399,7 @@ impl ::core::fmt::Debug for Derdr {
    }
 }
 #[doc="Debug Exception and Monitor Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Demcr(pub u32);
 impl Demcr {
 #[doc="This bit must be set to 1 to enable use of the trace and debug blocks."]

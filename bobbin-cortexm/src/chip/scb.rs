@@ -617,7 +617,7 @@ impl Scb {
 }
 
 #[doc="Auxiliary Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Actlr(pub u32);
 impl Actlr {
 #[doc="When set to 1, disables IT folding."]
@@ -676,7 +676,7 @@ impl ::core::fmt::Debug for Actlr {
    }
 }
 #[doc="CPUID Base Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cpuid(pub u32);
 impl Cpuid {
 #[doc="Implementer Code"]
@@ -763,7 +763,7 @@ impl ::core::fmt::Debug for Cpuid {
    }
 }
 #[doc="Interrupt Control and State Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icsr(pub u32);
 impl Icsr {
 #[doc="NMI set-pending bit"]
@@ -906,7 +906,7 @@ impl ::core::fmt::Debug for Icsr {
    }
 }
 #[doc="Vector Table Offset Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Vtor(pub u32);
 impl Vtor {
 #[doc="Vector table base offset field. It contains bits[29:7] of the offset of the table base from the bottom of the memory map."]
@@ -937,7 +937,7 @@ impl ::core::fmt::Debug for Vtor {
    }
 }
 #[doc="Application Interrupt and Reset Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Aircr(pub u32);
 impl Aircr {
 #[doc="Register key: Reads as 0xFA05. On writes, write 0x5FA to VECTKEY, otherwise the write is ignored."]
@@ -1038,7 +1038,7 @@ impl ::core::fmt::Debug for Aircr {
    }
 }
 #[doc="System Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scr(pub u32);
 impl Scr {
 #[doc="Send Event on Pending bit"]
@@ -1097,7 +1097,7 @@ impl ::core::fmt::Debug for Scr {
    }
 }
 #[doc="Configuration and Control Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
@@ -1198,7 +1198,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="System Handler Priority Register 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shpr1(pub u32);
 impl Shpr1 {
 #[doc="Priority of system handler 6, UsageFault"]
@@ -1257,7 +1257,7 @@ impl ::core::fmt::Debug for Shpr1 {
    }
 }
 #[doc="System Handler Priority Register 2"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shpr2(pub u32);
 impl Shpr2 {
 #[doc="Priority of system handler 11, SVCall"]
@@ -1288,7 +1288,7 @@ impl ::core::fmt::Debug for Shpr2 {
    }
 }
 #[doc="System Handler Priority Register 3"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shpr3(pub u32);
 impl Shpr3 {
 #[doc="Priority of system handler 15, SysTick exception"]
@@ -1333,7 +1333,7 @@ impl ::core::fmt::Debug for Shpr3 {
    }
 }
 #[doc="System Handler Control and State Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Shcsr(pub u32);
 impl Shcsr {
 #[doc="UsageFault enable bit, set to 1 to enable"]
@@ -1546,7 +1546,7 @@ impl ::core::fmt::Debug for Shcsr {
    }
 }
 #[doc="Configurable Fault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfsr(pub u32);
 impl Cfsr {
 }
@@ -1563,7 +1563,7 @@ impl ::core::fmt::Debug for Cfsr {
    }
 }
 #[doc="MemManage Fault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmfsr(pub u8);
 impl Mmfsr {
 #[doc="MemManage Fault Address Register (MMFAR) valid flag: 0 = value in MMAR is not a valid fault address, 1 = MMAR holds a valid fault address. If a MemManage fault occurs and is escalated to a HardFault because of priority, the HardFault handler must set this bit to 0. This prevents problems on return to a stacked active MemManage fault handler whose MMAR value has been overwritten."]
@@ -1650,7 +1650,7 @@ impl ::core::fmt::Debug for Mmfsr {
    }
 }
 #[doc="BusFault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bfsr(pub u8);
 impl Bfsr {
 #[doc="BusFault Address Register (BFAR) valid flag: 0 = value in BFAR is not a valid fault address, 1 = BFAR holds a valid fault address. The processor sets this bit to 1 after a BusFault where the address is known. Other faults can set this bit to 0, such as a MemManage fault occurring later. If a BusFault occurs and is escalated to a hard fault because of priority, the hard fault handler must set this bit to 0. This prevents problems if returning to a stacked active BusFault handler whose BFAR value has been overwritten."]
@@ -1751,7 +1751,7 @@ impl ::core::fmt::Debug for Bfsr {
    }
 }
 #[doc="UsageFault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ufsr(pub u16);
 impl Ufsr {
 #[doc="Divide by zero UsageFault: 0 = no divide by zero fault, or divide by zero trapping not enabled, 1 = the processor has executed an SDIV or UDIV instruction with a divisor of 0. When the processor sets this bit to 1, the PC value stacked for the exception return points to the instruction that performed the divide by zero. Enable trapping of divide by zero by setting the DIV_0_TRP bit in the CCR to 1, see Configuration and Control Register."]
@@ -1852,7 +1852,7 @@ impl ::core::fmt::Debug for Ufsr {
    }
 }
 #[doc="HardFault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hfsr(pub u32);
 impl Hfsr {
 #[doc="Reserved for Debug use. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
@@ -1911,7 +1911,7 @@ impl ::core::fmt::Debug for Hfsr {
    }
 }
 #[doc="MemManage Fault Address Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmfar(pub u32);
 impl Mmfar {
 #[doc="When the MMARVALID bit of the MMFSR is set to 1, this field holds the address of the location that generated the MemManage fault"]
@@ -1941,7 +1941,7 @@ impl ::core::fmt::Debug for Mmfar {
    }
 }
 #[doc="BusFault Address Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Bfar(pub u32);
 impl Bfar {
 #[doc="When the BFARVALID bit of the BFSR is set to 1, this field holds the address of the location that generated the BusFault"]
@@ -1971,7 +1971,7 @@ impl ::core::fmt::Debug for Bfar {
    }
 }
 #[doc="Auxiliary Fault Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Afsr(pub u32);
 impl Afsr {
 #[doc="Implementation defined. The bits map to the AUXFAULT input signals."]

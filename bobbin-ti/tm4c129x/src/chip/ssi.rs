@@ -403,7 +403,7 @@ impl<T> Periph<T> {
 }
 
 #[doc="SSI Control 0"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr0(pub u32);
 impl Cr0 {
 #[doc="SSI Data Size Select"]
@@ -490,7 +490,7 @@ impl ::core::fmt::Debug for Cr0 {
    }
 }
 #[doc="SSI Control 1"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="SSI Loopback Mode"]
@@ -633,7 +633,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="SSI Data"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="SSI Receive/Transmit Data"]
@@ -664,7 +664,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="SSI Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="SSI Transmit FIFO Empty"]
@@ -751,7 +751,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="SSI Clock Prescale"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cpsr(pub u32);
 impl Cpsr {
 #[doc="SSI Clock Prescale Divisor"]
@@ -782,7 +782,7 @@ impl ::core::fmt::Debug for Cpsr {
    }
 }
 #[doc="SSI Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
 #[doc="SSI Receive Overrun Interrupt Mask"]
@@ -897,7 +897,7 @@ impl ::core::fmt::Debug for Im {
    }
 }
 #[doc="SSI Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="SSI Receive Overrun Raw Interrupt Status"]
@@ -1012,7 +1012,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="SSI Masked Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="SSI Receive Overrun Masked Interrupt Status"]
@@ -1127,7 +1127,7 @@ impl ::core::fmt::Debug for Mis {
    }
 }
 #[doc="SSI Interrupt Clear"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="SSI Receive Overrun Interrupt Clear"]
@@ -1214,7 +1214,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="SSI DMA Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
 #[doc="Receive DMA Enable"]
@@ -1259,7 +1259,7 @@ impl ::core::fmt::Debug for Dmactl {
    }
 }
 #[doc="SSI Peripheral Properties"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="High Speed Capability"]
@@ -1318,7 +1318,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="SSI Clock Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="SSI Baud Clock Source"]

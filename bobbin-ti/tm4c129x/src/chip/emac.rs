@@ -2155,7 +2155,7 @@ impl Emac {
 }
 
 #[doc="Ethernet MAC Configuration"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cfg(pub u32);
 impl Cfg {
 #[doc="Preamble Length for Transmit Frames"]
@@ -2452,7 +2452,7 @@ impl ::core::fmt::Debug for Cfg {
    }
 }
 #[doc="Ethernet MAC Frame Filter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Framefltr(pub u32);
 impl Framefltr {
 #[doc="Promiscuous Mode"]
@@ -2637,7 +2637,7 @@ impl ::core::fmt::Debug for Framefltr {
    }
 }
 #[doc="Ethernet MAC Hash Table High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hashtblh(pub u32);
 impl Hashtblh {
 #[doc="Hash Table High"]
@@ -2667,7 +2667,7 @@ impl ::core::fmt::Debug for Hashtblh {
    }
 }
 #[doc="Ethernet MAC Hash Table Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hashtbll(pub u32);
 impl Hashtbll {
 #[doc="Hash Table Low"]
@@ -2697,7 +2697,7 @@ impl ::core::fmt::Debug for Hashtbll {
    }
 }
 #[doc="Ethernet MAC MII Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Miiaddr(pub u32);
 impl Miiaddr {
 #[doc="MII Busy"]
@@ -2784,7 +2784,7 @@ impl ::core::fmt::Debug for Miiaddr {
    }
 }
 #[doc="Ethernet MAC MII Data Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Miidata(pub u32);
 impl Miidata {
 #[doc="MII Data"]
@@ -2815,7 +2815,7 @@ impl ::core::fmt::Debug for Miidata {
    }
 }
 #[doc="Ethernet MAC Flow Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flowctl(pub u32);
 impl Flowctl {
 #[doc="Flow Control Busy or Back-pressure Activate"]
@@ -2930,7 +2930,7 @@ impl ::core::fmt::Debug for Flowctl {
    }
 }
 #[doc="Ethernet MAC VLAN Tag"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Vlantg(pub u32);
 impl Vlantg {
 #[doc="VLAN Tag Identifier for Receive Frames"]
@@ -3017,7 +3017,7 @@ impl ::core::fmt::Debug for Vlantg {
    }
 }
 #[doc="Ethernet MAC Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
 #[doc="MAC MII Receive Protocol Engine Status"]
@@ -3202,7 +3202,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="Ethernet MAC Remote Wake-Up Frame Filter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rwuff(pub u32);
 impl Rwuff {
 #[doc="Remote Wake-Up Frame Filter"]
@@ -3232,7 +3232,7 @@ impl ::core::fmt::Debug for Rwuff {
    }
 }
 #[doc="Ethernet MAC PMT Control and Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pmtctlstat(pub u32);
 impl Pmtctlstat {
 #[doc="Power Down"]
@@ -3361,7 +3361,7 @@ impl ::core::fmt::Debug for Pmtctlstat {
    }
 }
 #[doc="Ethernet MAC Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="PMT Interrupt Status"]
@@ -3448,7 +3448,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="Ethernet MAC Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
 #[doc="PMT Interrupt Mask"]
@@ -3493,7 +3493,7 @@ impl ::core::fmt::Debug for Im {
    }
 }
 #[doc="Ethernet MAC Address 0 High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr0h(pub u32);
 impl Addr0h {
 #[doc="MAC Address0 [47:32]"]
@@ -3538,7 +3538,7 @@ impl ::core::fmt::Debug for Addr0h {
    }
 }
 #[doc="Ethernet MAC Address 0 Low Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr0l(pub u32);
 impl Addr0l {
 #[doc="MAC Address0 [31:0]"]
@@ -3568,7 +3568,7 @@ impl ::core::fmt::Debug for Addr0l {
    }
 }
 #[doc="Ethernet MAC Address 1 High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr1h(pub u32);
 impl Addr1h {
 #[doc="MAC Address1 [47:32]"]
@@ -3641,7 +3641,7 @@ impl ::core::fmt::Debug for Addr1h {
    }
 }
 #[doc="Ethernet MAC Address 1 Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr1l(pub u32);
 impl Addr1l {
 #[doc="MAC Address1 [31:0]"]
@@ -3671,7 +3671,7 @@ impl ::core::fmt::Debug for Addr1l {
    }
 }
 #[doc="Ethernet MAC Address 2 High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr2h(pub u32);
 impl Addr2h {
 #[doc="MAC Address2 [47:32]"]
@@ -3744,7 +3744,7 @@ impl ::core::fmt::Debug for Addr2h {
    }
 }
 #[doc="Ethernet MAC Address 2 Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr2l(pub u32);
 impl Addr2l {
 #[doc="MAC Address2 [31:0]"]
@@ -3774,7 +3774,7 @@ impl ::core::fmt::Debug for Addr2l {
    }
 }
 #[doc="Ethernet MAC Address 3 High"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr3h(pub u32);
 impl Addr3h {
 #[doc="MAC Address3 [47:32]"]
@@ -3847,7 +3847,7 @@ impl ::core::fmt::Debug for Addr3h {
    }
 }
 #[doc="Ethernet MAC Address 3 Low"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Addr3l(pub u32);
 impl Addr3l {
 #[doc="MAC Address3 [31:0]"]
@@ -3877,7 +3877,7 @@ impl ::core::fmt::Debug for Addr3l {
    }
 }
 #[doc="Ethernet MAC Watchdog Timeout"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wdogto(pub u32);
 impl Wdogto {
 #[doc="Watchdog Timeout"]
@@ -3922,7 +3922,7 @@ impl ::core::fmt::Debug for Wdogto {
    }
 }
 #[doc="Ethernet MAC MMC Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmcctrl(pub u32);
 impl Mmcctrl {
 #[doc="Counters Reset"]
@@ -4037,7 +4037,7 @@ impl ::core::fmt::Debug for Mmcctrl {
    }
 }
 #[doc="Ethernet MAC MMC Receive Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmcrxris(pub u32);
 impl Mmcrxris {
 #[doc="MMC Receive Good Bad Frame Counter Interrupt Status"]
@@ -4110,7 +4110,7 @@ impl ::core::fmt::Debug for Mmcrxris {
    }
 }
 #[doc="Ethernet MAC MMC Transmit Raw Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmctxris(pub u32);
 impl Mmctxris {
 #[doc="MMC Transmit Good Bad Frame Counter Interrupt Status"]
@@ -4183,7 +4183,7 @@ impl ::core::fmt::Debug for Mmctxris {
    }
 }
 #[doc="Ethernet MAC MMC Receive Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmcrxim(pub u32);
 impl Mmcrxim {
 #[doc="MMC Receive Good Bad Frame Counter Interrupt Mask"]
@@ -4256,7 +4256,7 @@ impl ::core::fmt::Debug for Mmcrxim {
    }
 }
 #[doc="Ethernet MAC MMC Transmit Interrupt Mask"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mmctxim(pub u32);
 impl Mmctxim {
 #[doc="MMC Transmit Good Bad Frame Counter Interrupt Mask"]
@@ -4329,7 +4329,7 @@ impl ::core::fmt::Debug for Mmctxim {
    }
 }
 #[doc="Ethernet MAC Transmit Frame Count for Good and Bad Frames"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txcntgb(pub u32);
 impl Txcntgb {
 #[doc="This field indicates the number of good and bad frames transmitted, exclusive of retried frames"]
@@ -4359,7 +4359,7 @@ impl ::core::fmt::Debug for Txcntgb {
    }
 }
 #[doc="Ethernet MAC Transmit Frame Count for Frames Transmitted after Single Collision"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txcntscol(pub u32);
 impl Txcntscol {
 #[doc="This field indicates the number of successfully transmitted frames after a single collision in the half-duplex mode"]
@@ -4389,7 +4389,7 @@ impl ::core::fmt::Debug for Txcntscol {
    }
 }
 #[doc="Ethernet MAC Transmit Frame Count for Frames Transmitted after Multiple Collisions"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txcntmcol(pub u32);
 impl Txcntmcol {
 #[doc="This field indicates the number of successfully transmitted frames after multiple collisions in the half-duplex mode"]
@@ -4419,7 +4419,7 @@ impl ::core::fmt::Debug for Txcntmcol {
    }
 }
 #[doc="Ethernet MAC Transmit Octet Count Good"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txoctcntg(pub u32);
 impl Txoctcntg {
 #[doc="This field indicates the number of bytes transmitted, exclusive of preamble, in good frames"]
@@ -4449,7 +4449,7 @@ impl ::core::fmt::Debug for Txoctcntg {
    }
 }
 #[doc="Ethernet MAC Receive Frame Count for Good and Bad Frames"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxcntgb(pub u32);
 impl Rxcntgb {
 #[doc="This field indicates the number of received good and bad frames"]
@@ -4479,7 +4479,7 @@ impl ::core::fmt::Debug for Rxcntgb {
    }
 }
 #[doc="Ethernet MAC Receive Frame Count for CRC Error Frames"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxcntcrcerr(pub u32);
 impl Rxcntcrcerr {
 #[doc="This field indicates the number of frames received with CRC error"]
@@ -4509,7 +4509,7 @@ impl ::core::fmt::Debug for Rxcntcrcerr {
    }
 }
 #[doc="Ethernet MAC Receive Frame Count for Alignment Error Frames"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxcntalgnerr(pub u32);
 impl Rxcntalgnerr {
 #[doc="This field indicates the number of frames received with alignment (dribble) error"]
@@ -4539,7 +4539,7 @@ impl ::core::fmt::Debug for Rxcntalgnerr {
    }
 }
 #[doc="Ethernet MAC Receive Frame Count for Good Unicast Frames"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxcntguni(pub u32);
 impl Rxcntguni {
 #[doc="This field indicates the number of received good unicast frames"]
@@ -4569,7 +4569,7 @@ impl ::core::fmt::Debug for Rxcntguni {
    }
 }
 #[doc="Ethernet MAC VLAN Tag Inclusion or Replacement"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Vlnincrep(pub u32);
 impl Vlnincrep {
 #[doc="VLAN Tag for Transmit Frames"]
@@ -4642,7 +4642,7 @@ impl ::core::fmt::Debug for Vlnincrep {
    }
 }
 #[doc="Ethernet MAC VLAN Hash Table"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Vlanhash(pub u32);
 impl Vlanhash {
 #[doc="VLAN Hash Table"]
@@ -4673,7 +4673,7 @@ impl ::core::fmt::Debug for Vlanhash {
    }
 }
 #[doc="Ethernet MAC Timestamp Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timstctrl(pub u32);
 impl Timstctrl {
 #[doc="Timestamp Enable"]
@@ -4914,7 +4914,7 @@ impl ::core::fmt::Debug for Timstctrl {
    }
 }
 #[doc="Ethernet MAC Sub-Second Increment"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Subsecinc(pub u32);
 impl Subsecinc {
 #[doc="Sub-second Increment Value"]
@@ -4945,7 +4945,7 @@ impl ::core::fmt::Debug for Subsecinc {
    }
 }
 #[doc="Ethernet MAC System Time - Seconds"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timsec(pub u32);
 impl Timsec {
 #[doc="Timestamp Second"]
@@ -4975,7 +4975,7 @@ impl ::core::fmt::Debug for Timsec {
    }
 }
 #[doc="Ethernet MAC System Time - Nanoseconds"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timnano(pub u32);
 impl Timnano {
 #[doc="Timestamp Sub-Seconds"]
@@ -5006,7 +5006,7 @@ impl ::core::fmt::Debug for Timnano {
    }
 }
 #[doc="Ethernet MAC System Time - Seconds Update"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timsecu(pub u32);
 impl Timsecu {
 #[doc="Timestamp Second"]
@@ -5036,7 +5036,7 @@ impl ::core::fmt::Debug for Timsecu {
    }
 }
 #[doc="Ethernet MAC System Time - Nanoseconds Update"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timnanou(pub u32);
 impl Timnanou {
 #[doc="Timestamp Sub-Second"]
@@ -5081,7 +5081,7 @@ impl ::core::fmt::Debug for Timnanou {
    }
 }
 #[doc="Ethernet MAC Timestamp Addend"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timadd(pub u32);
 impl Timadd {
 #[doc="Timestamp Addend Register"]
@@ -5111,7 +5111,7 @@ impl ::core::fmt::Debug for Timadd {
    }
 }
 #[doc="Ethernet MAC Target Time Seconds"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Targsec(pub u32);
 impl Targsec {
 #[doc="Target Time Seconds Register"]
@@ -5141,7 +5141,7 @@ impl ::core::fmt::Debug for Targsec {
    }
 }
 #[doc="Ethernet MAC Target Time Nanoseconds"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Targnano(pub u32);
 impl Targnano {
 #[doc="Target Timestamp Low Register"]
@@ -5186,7 +5186,7 @@ impl ::core::fmt::Debug for Targnano {
    }
 }
 #[doc="Ethernet MAC System Time-Higher Word Seconds"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hwordsec(pub u32);
 impl Hwordsec {
 #[doc="Target Timestamp Higher Word Register"]
@@ -5217,7 +5217,7 @@ impl ::core::fmt::Debug for Hwordsec {
    }
 }
 #[doc="Ethernet MAC Timestamp Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Timstat(pub u32);
 impl Timstat {
 #[doc="Timestamp Seconds Overflow"]
@@ -5262,7 +5262,7 @@ impl ::core::fmt::Debug for Timstat {
    }
 }
 #[doc="Ethernet MAC PPS Control"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ppsctrl(pub u32);
 impl Ppsctrl {
 #[doc="EN0PPS Output Frequency Control (PPSCTRL) or Command Control (PPSCMD)"]
@@ -5321,7 +5321,7 @@ impl ::core::fmt::Debug for Ppsctrl {
    }
 }
 #[doc="Ethernet MAC PPS0 Interval"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pps0intvl(pub u32);
 impl Pps0intvl {
 #[doc="PPS0 Output Signal Interval"]
@@ -5351,7 +5351,7 @@ impl ::core::fmt::Debug for Pps0intvl {
    }
 }
 #[doc="Ethernet MAC PPS0 Width"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pps0width(pub u32);
 impl Pps0width {
 #[doc="EN0PPS Output Signal Width"]
@@ -5381,7 +5381,7 @@ impl ::core::fmt::Debug for Pps0width {
    }
 }
 #[doc="Ethernet MAC DMA Bus Mode"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmabusmod(pub u32);
 impl Dmabusmod {
 #[doc="DMA Software Reset"]
@@ -5594,7 +5594,7 @@ impl ::core::fmt::Debug for Dmabusmod {
    }
 }
 #[doc="Ethernet MAC Transmit Poll Demand"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txpolld(pub u32);
 impl Txpolld {
 #[doc="Transmit Poll Demand"]
@@ -5624,7 +5624,7 @@ impl ::core::fmt::Debug for Txpolld {
    }
 }
 #[doc="Ethernet MAC Receive Poll Demand"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxpolld(pub u32);
 impl Rxpolld {
 #[doc="Receive Poll Demand"]
@@ -5654,7 +5654,7 @@ impl ::core::fmt::Debug for Rxpolld {
    }
 }
 #[doc="Ethernet MAC Receive Descriptor List Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxdladdr(pub u32);
 impl Rxdladdr {
 #[doc="Start of Receive List"]
@@ -5685,7 +5685,7 @@ impl ::core::fmt::Debug for Rxdladdr {
    }
 }
 #[doc="Ethernet MAC Transmit Descriptor List Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Txdladdr(pub u32);
 impl Txdladdr {
 #[doc="Start of Transmit List Base Address"]
@@ -5716,7 +5716,7 @@ impl ::core::fmt::Debug for Txdladdr {
    }
 }
 #[doc="Ethernet MAC DMA Interrupt Status"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmaris(pub u32);
 impl Dmaris {
 #[doc="Transmit Interrupt"]
@@ -6027,7 +6027,7 @@ impl ::core::fmt::Debug for Dmaris {
    }
 }
 #[doc="Ethernet MAC DMA Operation Mode"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmaopmode(pub u32);
 impl Dmaopmode {
 #[doc="Start or Stop Receive"]
@@ -6226,7 +6226,7 @@ impl ::core::fmt::Debug for Dmaopmode {
    }
 }
 #[doc="Ethernet MAC DMA Interrupt Mask Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dmaim(pub u32);
 impl Dmaim {
 #[doc="Transmit Interrupt Enable"]
@@ -6453,7 +6453,7 @@ impl ::core::fmt::Debug for Dmaim {
    }
 }
 #[doc="Ethernet MAC Missed Frame and Buffer Overflow Counter"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Mfboc(pub u32);
 impl Mfboc {
 #[doc="Missed Frame Counter"]
@@ -6526,7 +6526,7 @@ impl ::core::fmt::Debug for Mfboc {
    }
 }
 #[doc="Ethernet MAC Receive Interrupt Watchdog Timer"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rxintwdt(pub u32);
 impl Rxintwdt {
 #[doc="Receive Interrupt Watchdog Timer Count"]
@@ -6557,7 +6557,7 @@ impl ::core::fmt::Debug for Rxintwdt {
    }
 }
 #[doc="Ethernet MAC Current Host Transmit Descriptor"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hostxdesc(pub u32);
 impl Hostxdesc {
 #[doc="Host Transmit Descriptor Address Pointer"]
@@ -6587,7 +6587,7 @@ impl ::core::fmt::Debug for Hostxdesc {
    }
 }
 #[doc="Ethernet MAC Current Host Receive Descriptor"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hosrxdesc(pub u32);
 impl Hosrxdesc {
 #[doc="Host Receive Descriptor Address Pointer"]
@@ -6617,7 +6617,7 @@ impl ::core::fmt::Debug for Hosrxdesc {
    }
 }
 #[doc="Ethernet MAC Current Host Transmit Buffer Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hostxba(pub u32);
 impl Hostxba {
 #[doc="Host Transmit Buffer Address Pointer"]
@@ -6647,7 +6647,7 @@ impl ::core::fmt::Debug for Hostxba {
    }
 }
 #[doc="Ethernet MAC Current Host Receive Buffer Address"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Hosrxba(pub u32);
 impl Hosrxba {
 #[doc="Host Receive Buffer Address Pointer"]
@@ -6677,7 +6677,7 @@ impl ::core::fmt::Debug for Hosrxba {
    }
 }
 #[doc="Ethernet MAC Peripheral Property Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Ethernet PHY Type"]
@@ -6722,7 +6722,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="Ethernet MAC Peripheral Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pc(pub u32);
 impl Pc {
 #[doc="Ethernet PHY Hold"]
@@ -7047,7 +7047,7 @@ impl ::core::fmt::Debug for Pc {
    }
 }
 #[doc="Ethernet MAC Clock Configuration Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="LED Polarity Control"]

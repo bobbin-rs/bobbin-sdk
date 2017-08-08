@@ -150,7 +150,7 @@ impl Rcm {
 }
 
 #[doc="Version ID Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Feature Specification Number"]
@@ -209,7 +209,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="Parameter Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Existence of SRS[WAKEUP] status indication feature"]
@@ -422,7 +422,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="System Reset Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srs(pub u32);
 impl Srs {
 #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
@@ -593,7 +593,7 @@ impl ::core::fmt::Debug for Srs {
    }
 }
 #[doc="Reset Pin Control register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rpc(pub u32);
 impl Rpc {
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
@@ -652,7 +652,7 @@ impl ::core::fmt::Debug for Rpc {
    }
 }
 #[doc="Sticky System Reset Status Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ssrs(pub u32);
 impl Ssrs {
 #[doc="Sticky Low-Voltage Detect Reset"]
@@ -823,7 +823,7 @@ impl ::core::fmt::Debug for Ssrs {
    }
 }
 #[doc="System Reset Interrupt Enable Register"]
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Srie(pub u32);
 impl Srie {
 #[doc="Reset Delay Time"]
