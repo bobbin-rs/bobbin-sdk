@@ -24,20 +24,20 @@ pub extern "C" fn main() -> ! {
     // Select LSE Clock as timer source
     t.rcc_set_sel(0b00);
     t.rcc_set_enabled(true);    
-    t.set_cfgr(Cfgr(0).set_presc(0b111));
-    t.set_cr(Cr(0).set_enable(1));    
+    t.set_cfgr(|r| r.set_presc(0b111));
+    t.set_cr(|r| r.set_enable(1));    
 
-    t.set_arr(Arr(0).set_arr(50000));
+    t.set_arr(|r| r.set_arr(50000));
     while t.isr().arrok() == 0 {}
 
-    t.set_icr(Icr(0).set_arrmcf(1));
+    t.set_icr(|r| r.set_arrmcf(1));
     
-    t.set_cr(Cr(0).set_cntstrt(1).set_enable(1));
+    t.set_cr(|r| r.set_cntstrt(1).set_enable(1));
 
     let mut n = 0;
     loop {
         while t.isr().arrm() == 0 {}
-        t.set_icr(Icr(0).set_arrmcf(1));
+        t.set_icr(|r| r.set_arrmcf(1));
         LED0.toggle_output();
         if n == 4 {
             println!("tick..");
