@@ -100,8 +100,8 @@
         (offset 0x400)
         (size 0x20)
         (access read-write)
-        (dim 60)
-        (dim-increment 0x4)
+        (dim 8)
+        (dim-increment 4)
         (description "Interrupt Priority Register x")
         (field
             (name PRI)
