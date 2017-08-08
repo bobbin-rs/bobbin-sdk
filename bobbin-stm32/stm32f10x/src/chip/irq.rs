@@ -267,15 +267,15 @@ impl<T> Irq<T> {
    }
 
    pub fn is_active(&self) -> bool {
-       NVIC.iabr((self.0 >> 5)).active((self.0 & 0b11111)) != 0
+       NVIC.iabr((self.0 >> 5)).active(self.0 & 0b11111) != 0
    }
 
    pub fn priority(&self) -> u8 {
-       NVIC.ipr((self.0 >> 4)).pri((self.0 & 0b1111)).into()
+       NVIC.ipr((self.0 >> 4)).pri(self.0 & 0b1111).into()
    }
 
    pub fn set_priority(&self, value: u8) {
-       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri((self.0 & 0b1111), value));
+       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri(self.0 & 0b1111, value));
    }
 
    pub fn trigger_interrupt(&self) {

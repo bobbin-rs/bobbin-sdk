@@ -875,13 +875,16 @@ impl Ctrla {
   }
 
 #[doc="Capture Channel n Enable"]
-  #[inline] pub fn cpten(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn cpten<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 24 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
   }
 #[doc="Capture Channel n Enable"]
-  #[inline] pub fn set_cpten<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cpten<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -2420,13 +2423,16 @@ impl Intenset {
   }
 
 #[doc="Match or Capture Channel n Interrupt Enable"]
-  #[inline] pub fn mc(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn mc<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Match or Capture Channel n Interrupt Enable"]
-  #[inline] pub fn set_mc<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_mc<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -2584,13 +2590,16 @@ impl Intflag {
   }
 
 #[doc="Match or Capture n"]
-  #[inline] pub fn mc(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn mc<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Match or Capture n"]
-  #[inline] pub fn set_mc<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_mc<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -2631,13 +2640,16 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Patt(pub u16);
 impl Patt {
 #[doc="Pattern Generator n Output Enable"]
-  #[inline] pub fn pge(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pge<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Pattern Generator n Output Enable"]
-  #[inline] pub fn set_pge<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pge<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 8);
@@ -2648,13 +2660,16 @@ impl Patt {
   }
 
 #[doc="Pattern Generator n Output Value"]
-  #[inline] pub fn pgv(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pgv<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Pattern Generator n Output Value"]
-  #[inline] pub fn set_pgv<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pgv<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 8);
@@ -2698,13 +2713,16 @@ impl ::core::fmt::Debug for Patt {
 pub struct Pattb(pub u16);
 impl Pattb {
 #[doc="Pattern Generator n Output Enable Buffer"]
-  #[inline] pub fn pgeb(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pgeb<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Pattern Generator n Output Enable Buffer"]
-  #[inline] pub fn set_pgeb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pgeb<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 8);
@@ -2715,13 +2733,16 @@ impl Pattb {
   }
 
 #[doc="Pattern Generator n Output Enable"]
-  #[inline] pub fn pgvb(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pgvb<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Pattern Generator n Output Enable"]
-  #[inline] pub fn set_pgvb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pgvb<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 8);
@@ -3009,13 +3030,16 @@ impl Status {
   }
 
 #[doc="Compare Channel n Buffer Valid"]
-  #[inline] pub fn ccbv(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ccbv<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Compare Channel n Buffer Valid"]
-  #[inline] pub fn set_ccbv<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ccbv<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3026,13 +3050,16 @@ impl Status {
   }
 
 #[doc="Compare Channel n Value"]
-  #[inline] pub fn cmp(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn cmp<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 24 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
   }
 #[doc="Compare Channel n Value"]
-  #[inline] pub fn set_cmp<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cmp<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3186,13 +3213,16 @@ impl Syncbusy {
   }
 
 #[doc="Compare Channel Buffer n Busy"]
-  #[inline] pub fn cc(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn cc<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Compare Channel Buffer n Busy"]
-  #[inline] pub fn set_cc<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cc<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3242,13 +3272,16 @@ impl Syncbusy {
   }
 
 #[doc="Compare Channel Buffer n Busy"]
-  #[inline] pub fn ccb(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ccb<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 19 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [19]
   }
 #[doc="Compare Channel Buffer n Busy"]
-  #[inline] pub fn set_ccb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ccb<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3334,13 +3367,16 @@ impl Wave {
   }
 
 #[doc="Circular Channel n Enable"]
-  #[inline] pub fn ciccen(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ciccen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Circular Channel n Enable"]
-  #[inline] pub fn set_ciccen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ciccen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3351,13 +3387,16 @@ impl Wave {
   }
 
 #[doc="Channel n Polarity"]
-  #[inline] pub fn pol(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn pol<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Channel n Polarity"]
-  #[inline] pub fn set_pol<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pol<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3368,13 +3407,16 @@ impl Wave {
   }
 
 #[doc="Swap DTI Output Pair n"]
-  #[inline] pub fn swap(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn swap<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 24 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
   }
 #[doc="Swap DTI Output Pair n"]
-  #[inline] pub fn set_swap<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_swap<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3456,13 +3498,16 @@ impl Waveb {
   }
 
 #[doc="Circular Channel n Enable Buffer"]
-  #[inline] pub fn ciccenb(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ciccenb<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Circular Channel n Enable Buffer"]
-  #[inline] pub fn set_ciccenb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ciccenb<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3473,13 +3518,16 @@ impl Waveb {
   }
 
 #[doc="Channel n Polarity Buffer"]
-  #[inline] pub fn polb(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn polb<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Channel n Polarity Buffer"]
-  #[inline] pub fn set_polb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_polb<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3490,13 +3538,16 @@ impl Waveb {
   }
 
 #[doc="Swap DTI Output Pair n Buffer"]
-  #[inline] pub fn swapb(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn swapb<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 24 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
   }
 #[doc="Swap DTI Output Pair n Buffer"]
-  #[inline] pub fn set_swapb<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_swapb<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3552,13 +3603,16 @@ impl Wexctrl {
   }
 
 #[doc="Dead-time Insertion Generator n Enable"]
-  #[inline] pub fn dtien(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn dtien<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Dead-time Insertion Generator n Enable"]
-  #[inline] pub fn set_dtien<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_dtien<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);

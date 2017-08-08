@@ -1117,13 +1117,16 @@ impl ::core::fmt::Debug for Es {
 pub struct Erq(pub u32);
 impl Erq {
 #[doc="Enable DMA Request n"]
-  #[inline] pub fn erq(&self, index: usize) -> bits::U1 {
-     assert!(index < 16);
+  #[inline] pub fn erq<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Enable DMA Request n"]
-  #[inline] pub fn set_erq<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_erq<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1167,13 +1170,16 @@ impl ::core::fmt::Debug for Erq {
 pub struct Eei(pub u32);
 impl Eei {
 #[doc="Enable Error Interrupt No"]
-  #[inline] pub fn eei(&self, index: usize) -> bits::U1 {
-     assert!(index < 16);
+  #[inline] pub fn eei<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Enable Error Interrupt No"]
-  #[inline] pub fn set_eei<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_eei<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1689,13 +1695,16 @@ impl ::core::fmt::Debug for Cint {
 pub struct Int(pub u32);
 impl Int {
 #[doc="Interrupt Request n"]
-  #[inline] pub fn int(&self, index: usize) -> bits::U1 {
-     assert!(index < 16);
+  #[inline] pub fn int<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt Request n"]
-  #[inline] pub fn set_int<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_int<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1739,13 +1748,16 @@ impl ::core::fmt::Debug for Int {
 pub struct Err(pub u32);
 impl Err {
 #[doc="Error In Channel n"]
-  #[inline] pub fn err(&self, index: usize) -> bits::U1 {
-     assert!(index < 16);
+  #[inline] pub fn err<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Error In Channel n"]
-  #[inline] pub fn set_err<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_err<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);
@@ -1789,13 +1801,16 @@ impl ::core::fmt::Debug for Err {
 pub struct Hrs(pub u32);
 impl Hrs {
 #[doc="Hardware Request Status Channel n"]
-  #[inline] pub fn hrs(&self, index: usize) -> bits::U1 {
-     assert!(index < 16);
+  #[inline] pub fn hrs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Hardware Request Status Channel n"]
-  #[inline] pub fn set_hrs<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_hrs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R16 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 16);

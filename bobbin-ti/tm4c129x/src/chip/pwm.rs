@@ -939,13 +939,16 @@ impl<T> Periph<T> {
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Update PWM Generator n"]
-  #[inline] pub fn globalsync(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn globalsync<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Update PWM Generator n"]
-  #[inline] pub fn set_globalsync<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_globalsync<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -977,13 +980,16 @@ impl ::core::fmt::Debug for Ctl {
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Reset Generator n Counter"]
-  #[inline] pub fn sync(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn sync<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Reset Generator n Counter"]
-  #[inline] pub fn set_sync<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_sync<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1015,13 +1021,16 @@ impl ::core::fmt::Debug for Sync {
 pub struct Enable(pub u32);
 impl Enable {
 #[doc="MnPWMn Output Enable"]
-  #[inline] pub fn pwmen(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pwmen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWMn Output Enable"]
-  #[inline] pub fn set_pwmen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pwmen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1057,13 +1066,16 @@ impl ::core::fmt::Debug for Enable {
 pub struct Invert(pub u32);
 impl Invert {
 #[doc="Invert MnPWMn Signal"]
-  #[inline] pub fn pwminv(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pwminv<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Invert MnPWMn Signal"]
-  #[inline] pub fn set_pwminv<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pwminv<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1099,13 +1111,16 @@ impl ::core::fmt::Debug for Invert {
 pub struct Fault(pub u32);
 impl Fault {
 #[doc="MnPWMn Fault"]
-  #[inline] pub fn fault(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn fault<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWMn Fault"]
-  #[inline] pub fn set_fault<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_fault<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1141,13 +1156,16 @@ impl ::core::fmt::Debug for Fault {
 pub struct Inten(pub u32);
 impl Inten {
 #[doc="PWMn Interrupt Enable"]
-  #[inline] pub fn intpwm(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWMn Interrupt Enable"]
-  #[inline] pub fn set_intpwm<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1158,13 +1176,16 @@ impl Inten {
   }
 
 #[doc="Interrupt Fault 0"]
-  #[inline] pub fn intfault(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Interrupt Fault 0"]
-  #[inline] pub fn set_intfault<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1242,13 +1263,16 @@ impl ::core::fmt::Debug for Inten {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="PWM0 Interrupt Asserted"]
-  #[inline] pub fn intpwm(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWM0 Interrupt Asserted"]
-  #[inline] pub fn set_intpwm<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1259,13 +1283,16 @@ impl Ris {
   }
 
 #[doc="Interrupt Fault PWM 0"]
-  #[inline] pub fn intfault(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="Interrupt Fault PWM 0"]
-  #[inline] pub fn set_intfault<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1301,13 +1328,16 @@ impl ::core::fmt::Debug for Ris {
 pub struct Isc(pub u32);
 impl Isc {
 #[doc="PWMn Interrupt Status"]
-  #[inline] pub fn intpwm(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intpwm<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="PWMn Interrupt Status"]
-  #[inline] pub fn set_intpwm<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intpwm<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1318,13 +1348,16 @@ impl Isc {
   }
 
 #[doc="FAULTn Interrupt Asserted"]
-  #[inline] pub fn intfault(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn intfault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 16 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
   }
 #[doc="FAULTn Interrupt Asserted"]
-  #[inline] pub fn set_intfault<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_intfault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1360,13 +1393,16 @@ impl ::core::fmt::Debug for Isc {
 pub struct Status(pub u32);
 impl Status {
 #[doc="Generator n Fault Status"]
-  #[inline] pub fn fault(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn fault<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Generator n Fault Status"]
-  #[inline] pub fn set_fault<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_fault<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1398,13 +1434,16 @@ impl ::core::fmt::Debug for Status {
 pub struct Faultval(pub u32);
 impl Faultval {
 #[doc="MnPWM0 Fault Value"]
-  #[inline] pub fn faultval(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn faultval<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="MnPWM0 Fault Value"]
-  #[inline] pub fn set_faultval<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_faultval<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1440,13 +1479,16 @@ impl ::core::fmt::Debug for Faultval {
 pub struct Enupd(pub u32);
 impl Enupd {
 #[doc="MnPWMn Enable Update Mode"]
-  #[inline] pub fn enupd(&self, index: usize) -> bits::U2 {
-     assert!(index < 8);
+  #[inline] pub fn enupd<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="MnPWMn Enable Update Mode"]
-  #[inline] pub fn set_enupd<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_enupd<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);

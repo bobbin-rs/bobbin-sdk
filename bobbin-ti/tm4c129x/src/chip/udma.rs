@@ -688,13 +688,16 @@ impl ::core::fmt::Debug for Altbase {
 pub struct Waitstat(pub u32);
 impl Waitstat {
 #[doc="Channel [n] Wait Status"]
-  #[inline] pub fn waitreq(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn waitreq<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Wait Status"]
-  #[inline] pub fn set_waitreq<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_waitreq<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -754,13 +757,16 @@ impl ::core::fmt::Debug for Waitstat {
 pub struct Swreq(pub u32);
 impl Swreq {
 #[doc="Channel [n] Software Request"]
-  #[inline] pub fn swreq(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn swreq<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Software Request"]
-  #[inline] pub fn set_swreq<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_swreq<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -820,13 +826,16 @@ impl ::core::fmt::Debug for Swreq {
 pub struct Useburstset(pub u32);
 impl Useburstset {
 #[doc="Channel [n] Useburst Set"]
-  #[inline] pub fn set(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn set<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Useburst Set"]
-  #[inline] pub fn set_set<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -886,13 +895,16 @@ impl ::core::fmt::Debug for Useburstset {
 pub struct Useburstclr(pub u32);
 impl Useburstclr {
 #[doc="Channel [n] Useburst Clear"]
-  #[inline] pub fn clr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn clr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Useburst Clear"]
-  #[inline] pub fn set_clr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -952,13 +964,16 @@ impl ::core::fmt::Debug for Useburstclr {
 pub struct Reqmaskset(pub u32);
 impl Reqmaskset {
 #[doc="Channel [n] Request Mask Set"]
-  #[inline] pub fn set(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn set<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Request Mask Set"]
-  #[inline] pub fn set_set<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1018,13 +1033,16 @@ impl ::core::fmt::Debug for Reqmaskset {
 pub struct Reqmaskclr(pub u32);
 impl Reqmaskclr {
 #[doc="Channel [n] Request Mask Clear"]
-  #[inline] pub fn clr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn clr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Request Mask Clear"]
-  #[inline] pub fn set_clr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1084,13 +1102,16 @@ impl ::core::fmt::Debug for Reqmaskclr {
 pub struct Enaset(pub u32);
 impl Enaset {
 #[doc="Channel [n] Enable Set"]
-  #[inline] pub fn set(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn set<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Enable Set"]
-  #[inline] pub fn set_set<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1150,13 +1171,16 @@ impl ::core::fmt::Debug for Enaset {
 pub struct Enaclr(pub u32);
 impl Enaclr {
 #[doc="Clear Channel [n] Enable Clear"]
-  #[inline] pub fn clr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn clr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Clear Channel [n] Enable Clear"]
-  #[inline] pub fn set_clr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1216,13 +1240,16 @@ impl ::core::fmt::Debug for Enaclr {
 pub struct Altset(pub u32);
 impl Altset {
 #[doc="Channel [n] Alternate Set"]
-  #[inline] pub fn set(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn set<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Alternate Set"]
-  #[inline] pub fn set_set<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1282,13 +1309,16 @@ impl ::core::fmt::Debug for Altset {
 pub struct Altclr(pub u32);
 impl Altclr {
 #[doc="Channel [n] Alternate Clear"]
-  #[inline] pub fn clr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn clr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Alternate Clear"]
-  #[inline] pub fn set_clr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1348,13 +1378,16 @@ impl ::core::fmt::Debug for Altclr {
 pub struct Prioset(pub u32);
 impl Prioset {
 #[doc="Channel [n] Priority Set"]
-  #[inline] pub fn set(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn set<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Priority Set"]
-  #[inline] pub fn set_set<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1414,13 +1447,16 @@ impl ::core::fmt::Debug for Prioset {
 pub struct Prioclr(pub u32);
 impl Prioclr {
 #[doc="Channel [n] Priority Clear"]
-  #[inline] pub fn clr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn clr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Priority Clear"]
-  #[inline] pub fn set_clr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1480,13 +1516,16 @@ impl ::core::fmt::Debug for Prioclr {
 pub struct Errclr(pub u32);
 impl Errclr {
 #[doc="uDMA Bus Error Status"]
-  #[inline] pub fn errclr(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn errclr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="uDMA Bus Error Status"]
-  #[inline] pub fn set_errclr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_errclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1546,13 +1585,16 @@ impl ::core::fmt::Debug for Errclr {
 pub struct Chasgn(pub u32);
 impl Chasgn {
 #[doc="Channel [n] Assignment Select"]
-  #[inline] pub fn chasgn(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn chasgn<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel [n] Assignment Select"]
-  #[inline] pub fn set_chasgn<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chasgn<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -1612,13 +1654,16 @@ impl ::core::fmt::Debug for Chasgn {
 pub struct Chmap0(pub u32);
 impl Chmap0 {
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn chsel(&self, index: usize) -> bits::U4 {
-     assert!(index < 8);
+  #[inline] pub fn chsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn set_chsel<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1654,13 +1699,16 @@ impl ::core::fmt::Debug for Chmap0 {
 pub struct Chmap1(pub u32);
 impl Chmap1 {
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn chsel(&self, index: usize) -> bits::U4 {
-     assert!(index < 8);
+  #[inline] pub fn chsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn set_chsel<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1696,13 +1744,16 @@ impl ::core::fmt::Debug for Chmap1 {
 pub struct Chmap2(pub u32);
 impl Chmap2 {
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn chsel(&self, index: usize) -> bits::U4 {
-     assert!(index < 8);
+  #[inline] pub fn chsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn set_chsel<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1738,13 +1789,16 @@ impl ::core::fmt::Debug for Chmap2 {
 pub struct Chmap3(pub u32);
 impl Chmap3 {
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn chsel(&self, index: usize) -> bits::U4 {
-     assert!(index < 8);
+  #[inline] pub fn chsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="uDMA Channel n Source Select"]
-  #[inline] pub fn set_chsel<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);

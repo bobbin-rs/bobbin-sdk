@@ -351,13 +351,16 @@ impl ::core::fmt::Debug for Gpchr {
 pub struct Isfr(pub u32);
 impl Isfr {
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn isf(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn isf<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt Status Flag"]
-  #[inline] pub fn set_isf<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_isf<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);

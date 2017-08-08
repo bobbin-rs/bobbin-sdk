@@ -520,13 +520,16 @@ impl ::core::fmt::Debug for Cv {
 pub struct Status(pub u32);
 impl Status {
 #[doc="Channel n Flag"]
-  #[inline] pub fn chf(&self, index: usize) -> bits::U1 {
-     assert!(index < 6);
+  #[inline] pub fn chf<I: Into<bits::R6>>(&self, index: I) -> bits::U1 {
+     let index: bits::R6 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Flag"]
-  #[inline] pub fn set_chf<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chf<I: Into<bits::R6>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R6 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 6);

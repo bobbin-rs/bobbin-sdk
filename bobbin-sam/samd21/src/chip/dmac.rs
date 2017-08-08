@@ -555,13 +555,16 @@ impl<T> Periph<T> {
 pub struct Active(pub u32);
 impl Active {
 #[doc="Level n Channel Trigger Request Executing"]
-  #[inline] pub fn lvlex(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn lvlex<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Level n Channel Trigger Request Executing"]
-  #[inline] pub fn set_lvlex<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_lvlex<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -665,13 +668,16 @@ impl ::core::fmt::Debug for Baseaddr {
 pub struct Busych(pub u32);
 impl Busych {
 #[doc="Busy Channel n"]
-  #[inline] pub fn busych(&self, index: usize) -> bits::U1 {
-     assert!(index < 12);
+  #[inline] pub fn busych<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Busy Channel n"]
-  #[inline] pub fn set_busych<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_busych<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1341,13 +1347,16 @@ impl Ctrl {
   }
 
 #[doc="Priority Level n Enable"]
-  #[inline] pub fn lvlen(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn lvlen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 8 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
   }
 #[doc="Priority Level n Enable"]
-  #[inline] pub fn set_lvlen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_lvlen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u16 = value.into();
      assert!(index < 4);
@@ -1528,13 +1537,16 @@ impl ::core::fmt::Debug for Intpend {
 pub struct Intstatus(pub u32);
 impl Intstatus {
 #[doc="Channel n Pending Interrupt"]
-  #[inline] pub fn chint(&self, index: usize) -> bits::U1 {
-     assert!(index < 12);
+  #[inline] pub fn chint<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Pending Interrupt"]
-  #[inline] pub fn set_chint<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_chint<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1574,13 +1586,16 @@ impl ::core::fmt::Debug for Intstatus {
 pub struct Pendch(pub u32);
 impl Pendch {
 #[doc="Pending Channel n"]
-  #[inline] pub fn pendch(&self, index: usize) -> bits::U1 {
-     assert!(index < 12);
+  #[inline] pub fn pendch<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Pending Channel n"]
-  #[inline] pub fn set_pendch<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pendch<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);
@@ -1620,13 +1635,16 @@ impl ::core::fmt::Debug for Pendch {
 pub struct Prictrl(pub u32);
 impl Prictrl {
 #[doc="Level n Channel Priority Number"]
-  #[inline] pub fn lvlpri(&self, index: usize) -> bits::U4 {
-     assert!(index < 4);
+  #[inline] pub fn lvlpri<I: Into<bits::R4>>(&self, index: I) -> bits::U4 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="Level n Channel Priority Number"]
-  #[inline] pub fn set_lvlpri<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_lvlpri<I: Into<bits::R4>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1637,13 +1655,16 @@ impl Prictrl {
   }
 
 #[doc="Level 0 Round-Robin Scheduling Enable"]
-  #[inline] pub fn rrlvlen(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn rrlvlen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 7 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [7]
   }
 #[doc="Level 0 Round-Robin Scheduling Enable"]
-  #[inline] pub fn set_rrlvlen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_rrlvlen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1679,13 +1700,16 @@ impl ::core::fmt::Debug for Prictrl {
 pub struct Swtrigctrl(pub u32);
 impl Swtrigctrl {
 #[doc="Channel n Software Trigger"]
-  #[inline] pub fn swtrig(&self, index: usize) -> bits::U1 {
-     assert!(index < 12);
+  #[inline] pub fn swtrig<I: Into<bits::R12>>(&self, index: I) -> bits::U1 {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Software Trigger"]
-  #[inline] pub fn set_swtrig<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_swtrig<I: Into<bits::R12>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R12 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 12);

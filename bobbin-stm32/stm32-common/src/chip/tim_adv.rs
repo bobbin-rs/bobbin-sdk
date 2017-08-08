@@ -1121,13 +1121,16 @@ impl Dier {
   }
 
 #[doc="Capture/Compare n DMA request enable"]
-  #[inline] pub fn ccde(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ccde<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 9 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [9]
   }
 #[doc="Capture/Compare n DMA request enable"]
-  #[inline] pub fn set_ccde<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ccde<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1190,13 +1193,16 @@ impl Dier {
   }
 
 #[doc="Capture/Compare n interrupt enable"]
-  #[inline] pub fn ccie(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn ccie<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 1 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
   }
 #[doc="Capture/Compare n interrupt enable"]
-  #[inline] pub fn set_ccie<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ccie<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -1622,13 +1628,16 @@ impl ::core::fmt::Debug for Egr {
 pub struct CcmrOutput(pub u32);
 impl CcmrOutput {
 #[doc="Output Compare n clear enable"]
-  #[inline] pub fn occe(&self, index: usize) -> bits::U1 {
-     assert!(index < 2);
+  #[inline] pub fn occe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 7 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [7]
   }
 #[doc="Output Compare n clear enable"]
-  #[inline] pub fn set_occe<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_occe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1639,13 +1648,16 @@ impl CcmrOutput {
   }
 
 #[doc="Output Compare n mode"]
-  #[inline] pub fn ocm(&self, index: usize) -> bits::U3 {
-     assert!(index < 2);
+  #[inline] pub fn ocm<I: Into<bits::R2>>(&self, index: I) -> bits::U3 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 4 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x7) as u8) } // [6:4]
   }
 #[doc="Output Compare n mode"]
-  #[inline] pub fn set_ocm<V: Into<bits::U3>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ocm<I: Into<bits::R2>, V: Into<bits::U3>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U3 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1656,13 +1668,16 @@ impl CcmrOutput {
   }
 
 #[doc="Output Compare n preload enable"]
-  #[inline] pub fn ocpe(&self, index: usize) -> bits::U1 {
-     assert!(index < 2);
+  #[inline] pub fn ocpe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 3 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
   }
 #[doc="Output Compare n preload enable"]
-  #[inline] pub fn set_ocpe<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ocpe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1673,13 +1688,16 @@ impl CcmrOutput {
   }
 
 #[doc="Output Compare n fast enable"]
-  #[inline] pub fn ocfe(&self, index: usize) -> bits::U1 {
-     assert!(index < 2);
+  #[inline] pub fn ocfe<I: Into<bits::R2>>(&self, index: I) -> bits::U1 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 2 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
   }
 #[doc="Output Compare n fast enable"]
-  #[inline] pub fn set_ocfe<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ocfe<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1690,13 +1708,16 @@ impl CcmrOutput {
   }
 
 #[doc="Capture/Compare n selection"]
-  #[inline] pub fn ccs(&self, index: usize) -> bits::U2 {
-     assert!(index < 2);
+  #[inline] pub fn ccs<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Capture/Compare n selection"]
-  #[inline] pub fn set_ccs<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ccs<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1734,13 +1755,16 @@ impl ::core::fmt::Debug for CcmrOutput {
 pub struct CcmrInput(pub u32);
 impl CcmrInput {
 #[doc="Input capture 1 filter"]
-  #[inline] pub fn icf(&self, index: usize) -> bits::U4 {
-     assert!(index < 2);
+  #[inline] pub fn icf<I: Into<bits::R2>>(&self, index: I) -> bits::U4 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 4 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [7:4]
   }
 #[doc="Input capture 1 filter"]
-  #[inline] pub fn set_icf<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_icf<I: Into<bits::R2>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1751,13 +1775,16 @@ impl CcmrInput {
   }
 
 #[doc="Input capture 1 prescaler"]
-  #[inline] pub fn icpcs(&self, index: usize) -> bits::U2 {
-     assert!(index < 2);
+  #[inline] pub fn icpcs<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 2 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
   }
 #[doc="Input capture 1 prescaler"]
-  #[inline] pub fn set_icpcs<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_icpcs<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1768,13 +1795,16 @@ impl CcmrInput {
   }
 
 #[doc="Capture/Compare 1 selection"]
-  #[inline] pub fn cc1s(&self, index: usize) -> bits::U2 {
-     assert!(index < 2);
+  #[inline] pub fn cc1s<I: Into<bits::R2>>(&self, index: I) -> bits::U2 {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
   }
 #[doc="Capture/Compare 1 selection"]
-  #[inline] pub fn set_cc1s<V: Into<bits::U2>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cc1s<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R2 = index.into();
+     let index: usize = index.into();
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      assert!(index < 2);
@@ -1808,13 +1838,16 @@ impl ::core::fmt::Debug for CcmrInput {
 pub struct Ccer(pub u32);
 impl Ccer {
 #[doc="Capture/Compare n output enable"]
-  #[inline] pub fn cce(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn cce<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Capture/Compare n output enable"]
-  #[inline] pub fn set_cce<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cce<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);

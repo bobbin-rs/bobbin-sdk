@@ -1,6 +1,6 @@
 #![no_std]
 
-pub extern crate bit_types as bits;
+pub extern crate bobbin_bits as bits;
 
 pub struct Pin<T, P>(T, P, usize);
 

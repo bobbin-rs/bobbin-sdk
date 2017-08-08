@@ -918,13 +918,16 @@ impl<T> Periph<T> {
 pub struct Data(pub u32);
 impl Data {
 #[doc="GPIO Data"]
-  #[inline] pub fn data(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn data<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Data"]
-  #[inline] pub fn set_data<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_data<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -960,13 +963,16 @@ impl ::core::fmt::Debug for Data {
 pub struct Dir(pub u32);
 impl Dir {
 #[doc="GPIO Direction"]
-  #[inline] pub fn dir(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn dir<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Direction"]
-  #[inline] pub fn set_dir<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_dir<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1002,13 +1008,16 @@ impl ::core::fmt::Debug for Dir {
 pub struct Is(pub u32);
 impl Is {
 #[doc="GPIO Interrupt Sense"]
-  #[inline] pub fn is(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn is<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Interrupt Sense"]
-  #[inline] pub fn set_is<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_is<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1044,13 +1053,16 @@ impl ::core::fmt::Debug for Is {
 pub struct Ibe(pub u32);
 impl Ibe {
 #[doc="GPIO Interrupt Both Edges"]
-  #[inline] pub fn ibe(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn ibe<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Interrupt Both Edges"]
-  #[inline] pub fn set_ibe<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ibe<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1086,13 +1098,16 @@ impl ::core::fmt::Debug for Ibe {
 pub struct Iev(pub u32);
 impl Iev {
 #[doc="GPIO Interrupt Event"]
-  #[inline] pub fn iev(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn iev<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Interrupt Event"]
-  #[inline] pub fn set_iev<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_iev<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1128,13 +1143,16 @@ impl ::core::fmt::Debug for Iev {
 pub struct Im(pub u32);
 impl Im {
 #[doc="GPIO Interrupt Mask"]
-  #[inline] pub fn im(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn im<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Interrupt Mask"]
-  #[inline] pub fn set_im<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_im<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1184,13 +1202,16 @@ impl ::core::fmt::Debug for Im {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="GPIO Raw Interrupt Status"]
-  #[inline] pub fn ris(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn ris<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Raw Interrupt Status"]
-  #[inline] pub fn set_ris<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ris<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1240,13 +1261,16 @@ impl ::core::fmt::Debug for Ris {
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="GPIO Masked Interrupt Status"]
-  #[inline] pub fn mis(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn mis<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Masked Interrupt Status"]
-  #[inline] pub fn set_mis<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_mis<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1296,13 +1320,16 @@ impl ::core::fmt::Debug for Mis {
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="GPIO Interrupt Clear"]
-  #[inline] pub fn icr(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn icr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Interrupt Clear"]
-  #[inline] pub fn set_icr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_icr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1352,13 +1379,16 @@ impl ::core::fmt::Debug for Icr {
 pub struct Afsel(pub u32);
 impl Afsel {
 #[doc="GPIO Alternate Function Select"]
-  #[inline] pub fn afsel(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn afsel<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Alternate Function Select"]
-  #[inline] pub fn set_afsel<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_afsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1394,13 +1424,16 @@ impl ::core::fmt::Debug for Afsel {
 pub struct Dr2r(pub u32);
 impl Dr2r {
 #[doc="GPIO 2-mA Drive Enable"]
-  #[inline] pub fn drv2(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn drv2<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO 2-mA Drive Enable"]
-  #[inline] pub fn set_drv2<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_drv2<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1436,13 +1469,16 @@ impl ::core::fmt::Debug for Dr2r {
 pub struct Dr4r(pub u32);
 impl Dr4r {
 #[doc="GPIO 4-mA Drive Enable"]
-  #[inline] pub fn drv4(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn drv4<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO 4-mA Drive Enable"]
-  #[inline] pub fn set_drv4<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_drv4<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1478,13 +1514,16 @@ impl ::core::fmt::Debug for Dr4r {
 pub struct Dr8r(pub u32);
 impl Dr8r {
 #[doc="GPIO 8-mA Drive Enable"]
-  #[inline] pub fn drv8(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn drv8<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO 8-mA Drive Enable"]
-  #[inline] pub fn set_drv8<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_drv8<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1520,13 +1559,16 @@ impl ::core::fmt::Debug for Dr8r {
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="GPIO Open Drain Enable"]
-  #[inline] pub fn ode(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn ode<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Open Drain Enable"]
-  #[inline] pub fn set_ode<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_ode<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1562,13 +1604,16 @@ impl ::core::fmt::Debug for Odr {
 pub struct Pur(pub u32);
 impl Pur {
 #[doc="GPIO Pull-Up Enable"]
-  #[inline] pub fn pue(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pue<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Pull-Up Enable"]
-  #[inline] pub fn set_pue<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pue<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1604,13 +1649,16 @@ impl ::core::fmt::Debug for Pur {
 pub struct Pdr(pub u32);
 impl Pdr {
 #[doc="GPIO Pull-Down Enable"]
-  #[inline] pub fn pde(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn pde<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Pull-Down Enable"]
-  #[inline] pub fn set_pde<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pde<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1646,13 +1694,16 @@ impl ::core::fmt::Debug for Pdr {
 pub struct Slr(pub u32);
 impl Slr {
 #[doc="GPIO Slew Rate Limit Enable"]
-  #[inline] pub fn slr(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn slr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Slew Rate Limit Enable"]
-  #[inline] pub fn set_slr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_slr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1688,13 +1739,16 @@ impl ::core::fmt::Debug for Slr {
 pub struct Den(pub u32);
 impl Den {
 #[doc="GPIO Digital Enable"]
-  #[inline] pub fn den(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn den<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Digital Enable"]
-  #[inline] pub fn set_den<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_den<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1760,13 +1814,16 @@ impl ::core::fmt::Debug for Lock {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="GPIO Commit"]
-  #[inline] pub fn cr(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn cr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Commit"]
-  #[inline] pub fn set_cr<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_cr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1802,13 +1859,16 @@ impl ::core::fmt::Debug for Cr {
 pub struct Amsel(pub u32);
 impl Amsel {
 #[doc="GPIO Analog Mode Select"]
-  #[inline] pub fn gpioamsel(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn gpioamsel<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="GPIO Analog Mode Select"]
-  #[inline] pub fn set_gpioamsel<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_gpioamsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1844,13 +1904,16 @@ impl ::core::fmt::Debug for Amsel {
 pub struct Pctl(pub u32);
 impl Pctl {
 #[doc="GPIO Port Mux Control"]
-  #[inline] pub fn pmc(&self, index: usize) -> bits::U4 {
-     assert!(index < 8);
+  #[inline] pub fn pmc<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 2);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
   }
 #[doc="GPIO Port Mux Control"]
-  #[inline] pub fn set_pmc<V: Into<bits::U4>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_pmc<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1886,13 +1949,16 @@ impl ::core::fmt::Debug for Pctl {
 pub struct Adcctl(pub u32);
 impl Adcctl {
 #[doc="ADC Trigger Enable"]
-  #[inline] pub fn adcen(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn adcen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="ADC Trigger Enable"]
-  #[inline] pub fn set_adcen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_adcen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1928,13 +1994,16 @@ impl ::core::fmt::Debug for Adcctl {
 pub struct Dmactl(pub u32);
 impl Dmactl {
 #[doc="uDMA Trigger Enable"]
-  #[inline] pub fn dmaen(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn dmaen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="uDMA Trigger Enable"]
-  #[inline] pub fn set_dmaen<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_dmaen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -1970,13 +2039,16 @@ impl ::core::fmt::Debug for Dmactl {
 pub struct Gpiosi(pub u32);
 impl Gpiosi {
 #[doc="Summary Interrupt"]
-  #[inline] pub fn sum(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn sum<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Summary Interrupt"]
-  #[inline] pub fn set_sum<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_sum<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);
@@ -2012,13 +2084,16 @@ impl ::core::fmt::Debug for Gpiosi {
 pub struct Gpiodr12r(pub u32);
 impl Gpiodr12r {
 #[doc="12-mA Drive Enable"]
-  #[inline] pub fn drv12(&self, index: usize) -> bits::U1 {
-     assert!(index < 8);
+  #[inline] pub fn drv12<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="12-mA Drive Enable"]
-  #[inline] pub fn set_drv12<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_drv12<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 8);

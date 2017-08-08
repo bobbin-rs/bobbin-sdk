@@ -436,13 +436,16 @@ impl ::core::fmt::Debug for Mcr {
 pub struct Msr(pub u32);
 impl Msr {
 #[doc="Channel n Timer Interrupt Flag"]
-  #[inline] pub fn tif(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn tif<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Timer Interrupt Flag"]
-  #[inline] pub fn set_tif<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_tif<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -474,13 +477,16 @@ impl ::core::fmt::Debug for Msr {
 pub struct Mier(pub u32);
 impl Mier {
 #[doc="Channel n Timer Interrupt Enable"]
-  #[inline] pub fn tie(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn tie<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Channel n Timer Interrupt Enable"]
-  #[inline] pub fn set_tie<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_tie<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -512,13 +518,16 @@ impl ::core::fmt::Debug for Mier {
 pub struct Setten(pub u32);
 impl Setten {
 #[doc="Set Timer n Enable"]
-  #[inline] pub fn set_t_en(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn set_t_en<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Set Timer n Enable"]
-  #[inline] pub fn set_set_t_en<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_set_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -550,13 +559,16 @@ impl ::core::fmt::Debug for Setten {
 pub struct Clrten(pub u32);
 impl Clrten {
 #[doc="Clear Timer n Enable"]
-  #[inline] pub fn clr_t_en(&self, index: usize) -> bits::U1 {
-     assert!(index < 4);
+  #[inline] pub fn clr_t_en<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Clear Timer n Enable"]
-  #[inline] pub fn set_clr_t_en<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_clr_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);

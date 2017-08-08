@@ -2290,13 +2290,16 @@ impl ::core::fmt::Debug for Imask1 {
 pub struct Iflag1(pub u32);
 impl Iflag1 {
 #[doc="Buffer MB Interrupt"]
-  #[inline] pub fn bufi(&self, index: usize) -> bits::U1 {
-     assert!(index < 32);
+  #[inline] pub fn bufi<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
   }
 #[doc="Buffer MB Interrupt"]
-  #[inline] pub fn set_bufi<V: Into<bits::U1>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_bufi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R32 = index.into();
+     let index: usize = index.into();
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      assert!(index < 32);
@@ -2793,13 +2796,16 @@ impl ::core::fmt::Debug for Cbt {
 pub struct Ram(pub u32);
 impl Ram {
 #[doc="Data byte 3 of Rx/Tx frame."]
-  #[inline] pub fn byte(&self, index: usize) -> bits::U8 {
-     assert!(index < 4);
+  #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + (index << 3);
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
   }
 #[doc="Data byte 3 of Rx/Tx frame."]
-  #[inline] pub fn set_byte<V: Into<bits::U8>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3008,12 +3014,15 @@ impl ::core::fmt::Debug for Mb8h1 {
 #[derive(PartialEq, Eq)]
 pub struct Mb8d0(pub u32);
 impl Mb8d0 {
-  #[inline] pub fn byte(&self, index: usize) -> bits::U8 {
-     assert!(index < 4);
+  #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
   }
-  #[inline] pub fn set_byte<V: Into<bits::U8>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
@@ -3044,12 +3053,15 @@ impl ::core::fmt::Debug for Mb8d0 {
 #[derive(PartialEq, Eq)]
 pub struct Mb8d1(pub u32);
 impl Mb8d1 {
-  #[inline] pub fn byte(&self, index: usize) -> bits::U8 {
-     assert!(index < 4);
+  #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let shift: usize = 0 + index;
      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
   }
-  #[inline] pub fn set_byte<V: Into<bits::U8>>(mut self, index: usize, value: V) -> Self {
+  #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.into();
      let value: bits::U8 = value.into();
      let value: u32 = value.into();
      assert!(index < 4);
