@@ -298,9 +298,9 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "   pub fn set_enabled(&self, value: bool) {{"));
     try!(writeln!(out, "      if value {{"));
     try!(writeln!(out, "         assert!(self.handler().is_some());"));
-    try!(writeln!(out, "         NVIC.set_iser((self.0 >> 5), Iser(0).set_setena((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "         NVIC.set_iser((self.0 >> 5), |r| r.set_setena((self.0 & 0b11111), 1));"));
     try!(writeln!(out, "      }} else {{"));
-    try!(writeln!(out, "         NVIC.set_icer((self.0 >> 5), Icer(0).set_clrena((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "         NVIC.set_icer((self.0 >> 5), |r| r.set_clrena((self.0 & 0b11111), 1));"));
     try!(writeln!(out, "      }}"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
@@ -310,9 +310,9 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn set_pending(&self, value: bool) {{"));
     try!(writeln!(out, "       if value {{"));
-    try!(writeln!(out, "           NVIC.set_ispr((self.0 >> 5), Ispr(0).set_setpend((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "           NVIC.set_ispr((self.0 >> 5), |r| r.set_setpend((self.0 & 0b11111), 1));"));
     try!(writeln!(out, "       }} else {{"));
-    try!(writeln!(out, "           NVIC.set_icpr((self.0 >> 5), Icpr(0).set_clrpend((self.0 & 0b11111), 1));"));
+    try!(writeln!(out, "           NVIC.set_icpr((self.0 >> 5), |r| r.set_clrpend((self.0 & 0b11111), 1));"));
     try!(writeln!(out, "       }}"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
@@ -329,7 +329,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "   pub fn trigger_interrupt(&self) {{"));
-    try!(writeln!(out, "       NVIC.set_stir(Stir(0).set_intid(self.0));"));
+    try!(writeln!(out, "       NVIC.set_stir(|r| r.set_intid(self.0));"));
     try!(writeln!(out, "   }}"));
     try!(writeln!(out, ""));
 
@@ -1355,9 +1355,10 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I, value: {}) -> &Self {{", r_setter, i_type, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let index: {} = index.into();", i_type));
                 try!(writeln!(out, "     let index: usize = index.value();"));
+                try!(writeln!(out, "     let value = f({}(0));", r_type));
                 try!(writeln!(out, "     unsafe {{"));
                 try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
                 try!(writeln!(out, "     }}"));
@@ -1368,7 +1369,11 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let tmp = self.{}(index);", r_getter));
-                try!(writeln!(out, "     self.{}(index, f(tmp))", r_setter));
+                try!(writeln!(out, "     let value = f(tmp);"));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));            
             }            
         } else {
@@ -1391,19 +1396,36 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}(&self, value: {}) -> &Self {{", r_setter, r_type));
+                try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "     let value = f({}(0));", r_type));
                 try!(writeln!(out, "     unsafe {{"));
                 try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
-                try!(writeln!(out, "  }}"));
+                try!(writeln!(out, "  }}"));                
+                // try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
+                // try!(writeln!(out, "  #[inline] pub fn {}(&self, value: {}) -> &Self {{", r_setter, r_type));
+                // try!(writeln!(out, "     unsafe {{"));
+                // try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                // try!(writeln!(out, "     }}"));
+                // try!(writeln!(out, "     self"));
+                // try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let tmp = self.{}();", r_getter));
-                try!(writeln!(out, "     self.{}(f(tmp))", r_setter));
+                try!(writeln!(out, "     let value = f(tmp);"));
+                try!(writeln!(out, "     unsafe {{"));
+                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "     }}"));
+                try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));            
+                // try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
+                // try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                // try!(writeln!(out, "     let tmp = self.{}();", r_getter));
+                // try!(writeln!(out, "     self.{}(f(tmp))", r_setter));
+                // try!(writeln!(out, "  }}"));            
             }
         }
         try!(writeln!(out, ""));
