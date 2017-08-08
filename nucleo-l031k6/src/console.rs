@@ -21,7 +21,7 @@ pub fn init() {
     USART_RX.mode_rx(&USART);
 
     // Set Baud and Enable USART
-    USART.with_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    USART.set_baud(USART_BAUD, USART.clock(&CLK).unwrap());
     // USART.with_config(|c| c.set_baud(USART_BAUD, 32_000_000));
     USART.enable();
 }
@@ -31,7 +31,7 @@ pub fn disable() {
 }
 
 pub fn reinit() {
-    USART.with_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
+    USART.set_baud(USART_BAUD, USART.clock(&CLK).unwrap());
     USART.enable();
 }
 
