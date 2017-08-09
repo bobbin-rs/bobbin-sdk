@@ -1,4 +1,5 @@
 use bobbin_common::bits::*;
+pub use bobbin_common::clock::*;
 
 use ::chip::rcc::RCC;
 // use ::chip::pwr::PWR;
@@ -50,8 +51,6 @@ pub fn init_pll() {
 pub const HSI16: Hz = Some(16_000_000);
 pub const LSI: Hz = Some(37_000);
 
-pub type Hz = Option<u32>;
-
 pub trait ClockTree {
     fn hsi16(&self) -> Hz;
     fn lsi(&self) -> Hz;
@@ -61,7 +60,6 @@ pub trait ClockTree {
     fn pllclk(&self) -> Hz;
     fn sysclk(&self) -> Hz;
     fn hclk(&self) -> Hz;
-    fn systick(&self) -> Hz;
     fn pclk1(&self) -> Hz;
     fn tim_pclk1(&self) -> Hz;
     fn pclk2(&self) -> Hz;
@@ -171,10 +169,6 @@ impl ClockTree for DynamicClock {
         self.sysclk().map(|v| v >> shift)
     }
 
-    fn systick(&self) -> Hz {
-        self.hclk().map(|v| v >> 3)
-    }
-
     fn pclk1(&self) -> Hz {
         let shift = match RCC.cfgr().ppre1() {
             U3::B000 => 0,
@@ -213,6 +207,12 @@ impl ClockTree for DynamicClock {
             v if (v as u8) < 0b100  => self.pclk2(),
             _ => self.pclk2().map(|v| v << 1),
         }
+    }    
+}
+
+impl Systick for DynamicClock {
+    fn systick(&self) -> Hz {
+        self.hclk().map(|v| v >> 3)
     }    
 }
 

@@ -83,6 +83,7 @@ pub mod lpit {
 
 pub mod ftm {
     pub use chip::ftm::*;
+    pub use bobbin_common::timer::*;
     pub use kinetis_common::hal::ftm::*;
     pub use super::pcc::{PccEnabled, PccClockSource};
 }

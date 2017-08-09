@@ -298,3 +298,7 @@ impl_clock!(Lpuart0, lpuart0);
 impl_clock!(Lpuart1, lpuart1);
 impl_clock!(Lpuart2, lpuart2);
 impl_clock!(Lpit0, lpit);
+impl_clock!(Ftm0, ftm0);
+impl_clock!(Ftm1, ftm1);
+impl_clock!(Ftm2, ftm2);
+impl_clock!(Ftm3, ftm3);

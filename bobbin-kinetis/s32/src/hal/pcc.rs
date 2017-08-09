@@ -1,5 +1,6 @@
 use ::chip::pcc::*;
 
+#[derive(Debug)]
 pub enum ClockSource {
     Disabled = 0b000,
     SOSCDIV2 = 0b001,

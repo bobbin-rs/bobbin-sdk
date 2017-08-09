@@ -6,6 +6,7 @@ pub mod lpuart;
 pub mod ftm;
 pub mod tpm;
 pub mod pit;
+pub mod lptmr;
 pub mod port;
 pub mod uart;
 pub mod uart0;

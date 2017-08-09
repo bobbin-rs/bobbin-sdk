@@ -4,6 +4,8 @@ use chip::osc::OSC;
 use chip::mcg::{self, MCG};
 use chip::uart::*;
 use chip::pit::*;
+use chip::ftm::*;
+use chip::lptmr::*;
 
 use core::fmt;
 // use hal::mcg::MCG;
@@ -222,6 +224,10 @@ pub trait ClockTree {
     fn bus(&self) -> Hz;
     fn flexbus(&self) -> Hz;
     fn flash(&self) -> Hz;
+    fn mcgirclk(&self) -> Hz;
+    fn erclk32k(&self) -> Hz;
+    fn lpo(&self) -> Hz;
+    fn oscerclk(&self) -> Hz;
 }
 
 pub struct DynamicClock {
@@ -245,14 +251,6 @@ impl DynamicClock {
             IRC32K
         }
     }
-
-    pub fn mcgirclk(&self) -> Hz {
-        if MCG.c1().irclken() != 0 {
-            self.ircclk()
-        } else {
-            None
-        }
-    }        
 
     pub fn oscselclk(&self) -> Hz {
         match MCG.c7().oscsel() {
@@ -337,21 +335,10 @@ impl DynamicClock {
         }
     }        
 
-    pub fn oscerclk(&self) -> Hz {
-        if OSC.cr().erclken() != 0 {
-            self.oscclk()
-        } else {
-            None
-        }
-    }
-
     pub fn osc32kclk(&self) -> Hz {
         // Only handling case when external clock is used
         None
     }
-    pub fn erclk32k(&self) -> Hz {
-        unimplemented!()
-    }    
 
     pub fn rtc32k(&self) -> Hz {
         // RTC_CR[OSCE]
@@ -360,9 +347,6 @@ impl DynamicClock {
 
     pub fn rtc(&self) -> Hz {
         unimplemented!()
-    }
-    pub fn lpo(&self) -> Hz { 
-        LPO 
     }
 }
 
@@ -385,7 +369,31 @@ impl ClockTree for DynamicClock {
     fn flash(&self) -> Hz {
         let outdiv4: u32 = SIM.clkdiv1().outdiv4().into();
         self.mcgoutclk().map(|v| v / (outdiv4 + 1))
-    }          
+    }     
+
+    fn mcgirclk(&self) -> Hz {
+        if MCG.c1().irclken() != 0 {
+            self.ircclk()
+        } else {
+            None
+        }
+    }        
+
+    fn oscerclk(&self) -> Hz {
+        if OSC.cr().erclken() != 0 {
+            self.oscclk()
+        } else {
+            None
+        }
+    }
+
+    fn erclk32k(&self) -> Hz {
+        unimplemented!()
+    }   
+
+    fn lpo(&self) -> Hz { 
+        LPO 
+    }    
 }
 
 
@@ -429,3 +437,40 @@ impl<T: ClockTree> Clock<T> for Pit {
         t.bus()
     }
 }
+
+impl<T: ClockTree> Clock<T> for Ftm0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Ftm1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Ftm2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.system()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Lptmr0 {
+    fn clock(&self, t: &T) -> Hz {
+        match self.psr().pcs() {
+            U2::B00 => t.mcgirclk(),
+            U2::B01 => t.lpo(),
+            U2::B10 => t.erclk32k(),
+            U2::B11 => t.oscerclk(),
+        }
+    }
+}
+
+// impl<T: ClockTree> Clock<T> for Ftm3 {
+//     fn clock(&self, t: &T) -> Hz {
+//         t.bus()
+//     }
+// }

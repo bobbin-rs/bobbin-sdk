@@ -1,3 +1,4 @@
+pub use bobbin_common::digital::*;
 use chip::gpio::*;
 
 pub enum Dir {
@@ -10,10 +11,10 @@ pub trait GpioExt {
     fn set_dir_input(&self) -> &Self;
     fn set_dir_output(&self) -> &Self;
 
-    fn output(&self) -> bool;
-    fn set_output(&self, value: bool) -> &Self;
-    fn toggle_output(&self) -> &Self;
-    fn input(&self) -> bool;
+    // fn output(&self) -> bool;
+    // fn set_output(&self, value: bool) -> &Self;
+    // fn toggle_output(&self) -> &Self;
+    // fn input(&self) -> bool;
 }
 
 impl<P, T> GpioExt for Pin<P, T> {
@@ -27,8 +28,9 @@ impl<P, T> GpioExt for Pin<P, T> {
     fn set_dir_output(&self) -> &Self {
         self.set_dir(Dir::Out)
     }
-    
+}
 
+impl<P, T> DigitalOutput for Pin<P, T> {
     fn output(&self) -> bool {
         self.port.pdor().pdo(self.index) != 0
     }
@@ -46,7 +48,8 @@ impl<P, T> GpioExt for Pin<P, T> {
         self.port.set_ptor(|r| r.set_ptto(self.index, 1));
         self
     }
-
+}
+impl<P, T> DigitalInput for Pin<P, T> {
     fn input(&self) -> bool {
         self.port.pdir().pdi(self.index) != 0
     }

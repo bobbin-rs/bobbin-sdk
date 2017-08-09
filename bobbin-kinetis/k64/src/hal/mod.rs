@@ -86,6 +86,12 @@ pub mod pit {
     pub use super::sim::SimEnabled;
 }
 
+pub mod lptmr {
+    pub use chip::lptmr::*;
+    pub use kinetis_common::hal::lptmr::*;
+    pub use super::sim::SimEnabled;
+}
+
 pub mod edma {
     pub use chip::edma::*;
     pub use kinetis_common::hal::edma::*;

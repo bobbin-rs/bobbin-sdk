@@ -1,3 +1,4 @@
+pub use bobbin_common::timer::*;
 pub use ::chip::tim_gen::*;
 
 pub enum Direction {
@@ -33,14 +34,14 @@ pub const CH3: usize = 2;
 pub const CH4: usize = 3;
 
 pub trait TimGenExt {
-    fn set_enabled(&self, value: bool) -> &Self;
+    // fn set_enabled(&self, value: bool) -> &Self;
     fn set_direction(&self, value: Direction) -> &Self;
-    fn set_prescaler(&self, value: u16) -> &Self;
+    // fn set_prescaler(&self, value: u16) -> &Self;
     fn set_update_event(&self) -> &Self;
     fn update_interrupt_flag(&self) -> bool;
     fn clr_update_interrupt_flag(&self) -> &Self;
     fn set_auto_reload(&self, value: u32) -> &Self;
-    fn delay(&self, reload: u32, prescaler: u16);
+    // fn delay(&self, reload: u32, prescaler: u16);
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self;
     fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self;
     fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self;
@@ -48,18 +49,18 @@ pub trait TimGenExt {
 }
 
 impl<T> TimGenExt for Periph<T> {
-    fn set_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_cr1(|r| r.set_cen(value))
-    }
+    // fn set_enabled(&self, value: bool) -> &Self {
+    //     let value = if value { 1 } else { 0 };
+    //     self.with_cr1(|r| r.set_cen(value))
+    // }
 
     fn set_direction(&self, value: Direction) -> &Self {
         self.with_cr1(|r| r.set_dir(value as u32))
     }
 
-    fn set_prescaler(&self, value: u16) -> &Self {
-        self.set_psc(|r| r.set_psc(value as u32))
-    }
+    // fn set_prescaler(&self, value: u16) -> &Self {
+    //     self.set_psc(Psc(0).set_psc(value as u32))
+    // }
 
     fn set_update_event(&self) -> &Self {
         self.set_egr(|r| r.set_ug(1))
@@ -77,18 +78,18 @@ impl<T> TimGenExt for Periph<T> {
         self.set_arr(|r| r.set_arrl(value))
     }
 
-    fn delay(&self, reload: u32, prescaler: u16) {
-        self
-            .set_prescaler(prescaler)
-            .set_update_event()
-            .clr_update_interrupt_flag()
-            .set_auto_reload(reload)
-            .set_enabled(true);
-        while self.update_interrupt_flag() == false {}
-        self
-            .clr_update_interrupt_flag()
-            .set_enabled(false);
-    }    
+    // fn delay(&self, reload: u32, prescaler: u16) {
+    //     self
+    //         .set_prescaler(prescaler)
+    //         .set_update_event()
+    //         .clr_update_interrupt_flag()
+    //         .set_auto_reload(reload)
+    //         .set_enabled(true);
+    //     while self.update_interrupt_flag() == false {}
+    //     self
+    //         .clr_update_interrupt_flag()
+    //         .set_enabled(false);
+    // }    
 
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
         match index {
@@ -136,5 +137,126 @@ impl<P, T> TimGenChExt for Channel<P, T> {
     fn set_capture_compare(&self, value: u32) -> &Self {
         self.periph().set_capture_compare(self.index(), value);
         self
+    }
+}
+
+impl<T> SetCounter<u16> for Periph<T> {
+    fn set_counter(&self, value: u16) -> &Self {
+        self.set_cnt(|r| r.set_cntl(value))
+    }    
+}
+
+impl<T> Prescale<u16> for Periph<T> {
+    fn prescale(&self) -> u16 {
+        self.psc().psc().value() + 1
+    }
+
+    fn set_prescale(&self, value: u16) -> &Self {
+        self
+            .set_psc(|r| r.set_psc((value - 1) as u32))
+            .set_egr(|r| r.set_ug(1))
+    }    
+}
+
+impl<T> Start<u16> for Periph<T> {
+    fn start(&self, value: u16) -> &Self {
+        self.start_up(value)
+    }
+}
+
+impl<T> StartUp<u16> for Periph<T> {
+    fn start_up(&self, value: u16) -> &Self {
+        self
+            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_egr(|r| r.set_ug(1))
+            .with_cr1(|r| r.set_dir(0).set_opm(0).set_cen(1))
+    }
+}
+
+impl<T> StartUpOnce<u16> for Periph<T> {
+    fn start_up_once(&self, value: u16) -> &Self {
+        self
+            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_egr(|r| r.set_ug(1))
+            .with_cr1(|r| r.set_dir(0).set_opm(1).set_cen(1))
+    }
+}
+
+impl<T> StartDown<u16> for Periph<T> {
+    fn start_down(&self, value: u16) -> &Self {
+        self
+            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_egr(|r| r.set_ug(1))
+            .with_cr1(|r| r.set_dir(1).set_opm(0).set_cen(1))
+    }
+}
+
+impl<T> StartDownOnce<u16> for Periph<T> {
+    fn start_down_once(&self, value: u16) -> &Self {
+        self
+            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_egr(|r| r.set_ug(1))
+            .with_cr1(|r| r.set_dir(1).set_opm(1).set_cen(1))
+    }
+}
+
+impl<T> Delay<u16> for Periph<T> {
+    fn delay(&self, value: u16) -> &Self {
+        self
+            .start(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+            .stop()
+    }
+}
+
+impl<T> Timer<u16> for Periph<T> {
+
+    fn stop(&self) -> &Self {
+        self.with_cr1(|r| r.set_cen(0))
+    }
+
+    fn running(&self) -> bool {
+        self.cr1().cen() != 0
+    }
+
+    fn period(&self) -> u16 {
+        self.arr().arrl().value() + 1
+    }
+    
+    fn set_period(&self, value: u16) -> &Self {
+        self.set_arr(|r| r.set_arrl((value - 1 )))
+    }
+
+    fn counter(&self) -> u16 {
+        self.cnt().cntl().value()
+    }
+
+    fn timeout_flag(&self) -> bool {
+        self.sr().uif() != 0
+    }
+
+    fn clr_timeout_flag(&self) -> &Self {
+        self.with_sr(|r| r.set_uif(0))
+    }
+}
+
+impl<P, T> Compare<u16> for Channel<P, T> {
+    fn compare(&self) -> u16 {
+        self.periph().ccr(self.index).ccrl().value()
+    }
+    fn set_compare(&self, value: u16) -> &Self {
+        self.periph()
+            .set_ccr(self.index, |r| r.set_ccrl(value))
+            .set_egr(|r| r.set_ug(1));
+        self
+    }
+
+    fn compare_flag(&self) -> bool {
+        self.periph().sr().ccif(self.index()) != 0
+    }
+    fn clr_compare_flag(&self) -> &Self {
+        self.periph().with_sr(|r| r.set_ccif(self.index(), 0));
+        self    
     }
 }
