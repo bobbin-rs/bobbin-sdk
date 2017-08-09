@@ -5,7 +5,7 @@
 extern crate evb_s32k144 as board;
 
 use board::hal::port::GpioPin;
-use board::hal::gpio::GpioExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

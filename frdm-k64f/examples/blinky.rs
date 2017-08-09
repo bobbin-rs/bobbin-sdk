@@ -4,7 +4,7 @@
 extern crate frdm_k64f as board;
 
 use board::hal::port::GpioPin;
-use board::hal::gpio::GpioExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

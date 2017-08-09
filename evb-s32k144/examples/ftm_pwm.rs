@@ -26,7 +26,8 @@ pub extern "C" fn main() -> ! {
 
     t0.pcc_set_enabled(true);
     t0.pcc_set_clock_source(pcc::ClockSource::SPLLDIV2);
-    t0.set_prescale(Prescale::Div64);
+    // t0.set_prescale(Prescale::Div64);
+    t0.set_prescale(64);
     t0.set_modulo(2048);
     t0.set_count(0);
 

@@ -15,8 +15,8 @@ pub extern "C" fn main() -> ! {
     sw2.set_irqc(board::hal::port::InterruptConfig::IrqEitherEdge);
     sw3.set_irqc(board::hal::port::InterruptConfig::IrqEitherEdge);
 
-    let led0 = board::led::led_blue();
-    let led1 = board::led::led_red();
+    let led0 = board::led::LED0;
+    let led1 = board::led::LED1;
     led0.set(true);
     led1.set(true);
     loop {
