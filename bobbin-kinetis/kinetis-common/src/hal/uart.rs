@@ -1,3 +1,4 @@
+pub use bobbin_common::serial::*;
 use chip::uart::*;
 
 pub trait UartExt {
@@ -7,10 +8,10 @@ pub trait UartExt {
     fn tx_complete(&self) -> bool;
     fn rx_full(&self) -> bool;
     fn idle(&self) -> bool;
-    fn try_getc(&self) -> Option<u8>;
-    fn getc(&self) -> u8;
-    fn putc(&self, value: u8);
-    fn write(&self, data: &[u8]) -> usize;
+    // fn try_getc(&self) -> Option<u8>;
+    // fn getc(&self) -> u8;
+    // fn putc(&self, value: u8);
+    // fn write(&self, data: &[u8]) -> usize;
 }
 
 impl<T> UartExt for Periph<T> {
@@ -51,31 +52,51 @@ impl<T> UartExt for Periph<T> {
         self.s1().idle() != 0
     }        
 
-    fn try_getc(&self) -> Option<u8> {
-        let uart = self;
-        if uart.s1().rdrf() != 0 {
-            Some(uart.d().rt().into())
-        } else {
-            None
-        }
+    // fn try_getc(&self) -> Option<u8> {
+    //     let uart = self;
+    //     if uart.s1().rdrf() != 0 {
+    //         Some(uart.d().rt().into())
+    //     } else {
+    //         None
+    //     }
+    // }
+
+    // fn getc(&self) -> u8 {
+    //     let uart = self;
+    //     while uart.s1().rdrf() == 0 {}
+    //     uart.d().rt().into()        
+    // }
+
+    // fn putc(&self, value: u8) {            
+    //     let uart = self;
+    //     while uart.s1().tdre() == 0 {}
+    //     uart.set_d(|r| r.set_rt(value));
+    // }
+
+    // fn write(&self, data: &[u8]) -> usize {
+    //     for i in 0..data.len() {
+    //         self.putc(data[i]);
+    //     }
+    //     data.len()
+    // }        
+}
+
+impl<T> SerialTx<u8> for Periph<T> {    
+    fn can_tx(&self) -> bool {
+        self.tx_empty()
     }
 
-    fn getc(&self) -> u8 {
-        let uart = self;
-        while uart.s1().rdrf() == 0 {}
-        uart.d().rt().into()        
+    fn tx(&self, c: u8) -> &Self {
+        self.set_d(|r| r.set_rt(c))
+    }
+}
+
+impl<T> SerialRx<u8> for Periph<T> {
+    fn can_rx(&self) -> bool {
+        self.rx_full()
     }
 
-    fn putc(&self, value: u8) {            
-        let uart = self;
-        while uart.s1().tdre() == 0 {}
-        uart.set_d(|r| r.set_rt(value));
+    fn rx(&self) -> u8 {
+        self.d().rt().value()
     }
-
-    fn write(&self, data: &[u8]) -> usize {
-        for i in 0..data.len() {
-            self.putc(data[i]);
-        }
-        data.len()
-    }        
 }

@@ -5,6 +5,7 @@ pub mod clock;
 pub mod timer;
 pub mod digital;
 pub mod analog;
+pub mod serial;
 
 pub struct Pin<T, P>(T, P, usize);
 

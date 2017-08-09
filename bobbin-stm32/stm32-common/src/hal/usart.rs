@@ -1,3 +1,4 @@
+pub use bobbin_common::serial::*;
 use core::fmt::{self, Write};
 use chip::usart::*;
 
@@ -49,12 +50,12 @@ pub trait UsartExt {
     fn set_baud(&self, baud: u32, clock: u32) -> &Self;
     fn enable(&self) -> &Self;
     fn disable(&self) -> &Self;
-    fn putc(&self, c: u8);
-    fn try_putc(&self, c: u8) -> Option<usize>;
-    fn getc(&self) -> u8;
-    fn try_getc(&self) -> Option<u8>;
-    fn write(&self, buf: &[u8]) -> usize;
-    fn read(&self, buf: &mut [u8]) -> usize;
+    // fn putc(&self, c: u8);
+    // fn try_putc(&self, c: u8) -> Option<usize>;
+    // fn getc(&self) -> u8;
+    // fn try_getc(&self) -> Option<u8>;
+    // fn write(&self, buf: &[u8]) -> usize;
+    // fn read(&self, buf: &mut [u8]) -> usize;
 }
 
 impl<T> UsartExt for Periph<T> {
@@ -101,53 +102,53 @@ impl<T> UsartExt for Periph<T> {
             )      
     }
 
-    fn putc(&self, c: u8) {
-        let u = self;
-        while u.isr().txe() == 0 {}
-        u.set_tdr(|r| r.set_tdr(c as u32));
-    }
+    // fn putc(&self, c: u8) {
+    //     let u = self;
+    //     while u.isr().txe() == 0 {}
+    //     u.set_tdr(|r| r.set_tdr(c as u32));
+    // }
 
-    fn try_putc(&self, c: u8) -> Option<usize> {
-        let u = self;
-        if u.isr().txe() != 0 {
-            u.set_tdr(|r| r.set_tdr(c as u32));
-            Some(1)
-        } else {
-            None
-        }            
-    }
+    // fn try_putc(&self, c: u8) -> Option<usize> {
+    //     let u = self;
+    //     if u.isr().txe() != 0 {
+    //         u.set_tdr(|r| r.set_tdr(c as u32));
+    //         Some(1)
+    //     } else {
+    //         None
+    //     }            
+    // }
 
-    fn try_getc(&self) -> Option<u8> {
-        let u = self;
-        if u.isr().rxne() != 0 {
-            Some(u.rdr().rdr().into())
-        } else {
-            None
-        }
-    }
+    // fn try_getc(&self) -> Option<u8> {
+    //     let u = self;
+    //     if u.isr().rxne() != 0 {
+    //         Some(u.rdr().rdr().into())
+    //     } else {
+    //         None
+    //     }
+    // }
 
-    fn getc(&self) -> u8 {
-        let u = self;
-        while u.isr().rxne() == 0 {}
-        u.rdr().rdr().into()         
-    }
+    // fn getc(&self) -> u8 {
+    //     let u = self;
+    //     while u.isr().rxne() == 0 {}
+    //     u.rdr().rdr().into()         
+    // }
 
-    fn write(&self, buf: &[u8]) -> usize {
-        for b in buf.iter() {
-            self.putc(*b)
-        }
-        buf.len()
-    }
+    // fn write(&self, buf: &[u8]) -> usize {
+    //     for b in buf.iter() {
+    //         self.putc(*b)
+    //     }
+    //     buf.len()
+    // }
 
-    fn read(&self, buf: &mut [u8]) -> usize {
-        if buf.len() == 0 { return 0; }
-        if let Some(c) = self.try_getc() {
-            buf[0] = c;
-            1
-        } else {
-            0
-        }
-    }
+    // fn read(&self, buf: &mut [u8]) -> usize {
+    //     if buf.len() == 0 { return 0; }
+    //     if let Some(c) = self.try_getc() {
+    //         buf[0] = c;
+    //         1
+    //     } else {
+    //         0
+    //     }
+    // }
 }
 
 impl<T> Write for Periph<T> {
@@ -156,5 +157,26 @@ impl<T> Write for Periph<T> {
             self.putc(byte);
         }
         Ok(())
+    }
+}
+
+
+impl<T> SerialTx<u8> for Periph<T> {    
+    fn can_tx(&self) -> bool {
+        self.isr().txe() != 0
+    }
+
+    fn tx(&self, c: u8) -> &Self {
+        self.set_tdr(|r| r.set_tdr(c))
+    }
+}
+
+impl<T> SerialRx<u8> for Periph<T> {
+    fn can_rx(&self) -> bool {
+        self.isr().rxne() != 0
+    }
+
+    fn rx(&self) -> u8 {
+        self.rdr().rdr().value() as u8
     }
 }

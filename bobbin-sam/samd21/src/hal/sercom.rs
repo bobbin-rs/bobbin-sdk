@@ -1,3 +1,4 @@
+pub use bobbin_common::serial::*;
 pub use chip::sercom::*;
 pub use super::pm::PmEnabled;
 
@@ -20,9 +21,7 @@ pub trait Usart {
     fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self;
     fn set_baud(&self, baud: u16) -> &Self;
     fn set_enabled(&self, bool) -> &Self;
-    fn write(&self, buf: &[u8]) -> &Self;
-    fn putc(&self, c: u8) -> &Self;
-    fn try_getc(&self) -> Option<u8>;
+    // fn write(&self, buf: &[u8]) -> &Self;
 }
 
 impl<T> Usart for Periph<T> {
@@ -90,26 +89,31 @@ impl<T> Usart for Periph<T> {
         self
     }
 
-    fn write(&self, buf: &[u8]) -> &Self {
-        for b in buf.iter() {
-            self.putc(*b);
-        }
-        self
+    // fn write(&self, buf: &[u8]) -> &Self {
+    //     for b in buf.iter() {
+    //         self.putc(*b);
+    //     }
+    //     self
+    // }
+}
+
+impl<T> SerialTx<u8> for Periph<T> {    
+    fn can_tx(&self) -> bool {
+        self.usart().intflag().dre() != 0
     }
 
-    fn putc(&self, c: u8) -> &Self {
-        let s = self.usart();
-        while s.intflag().dre() == 0 {}
-        s.set_data(|r| r.set_data(c));
+    fn tx(&self, c: u8) -> &Self {
+        self.usart().set_data(|r| r.set_data(c));
         self
     }
+}
 
-    fn try_getc(&self) -> Option<u8> {
-        let s = self.usart();
-        if s.intflag().rxc() != 0 {
-            Some(s.data().data().value() as u8)
-        } else {
-            None
-        }
-    }    
+impl<T> SerialRx<u8> for Periph<T> {
+    fn can_rx(&self) -> bool {
+        self.usart().intflag().rxc() != 0
+    }
+
+    fn rx(&self) -> u8 {
+        self.usart().data().data().value() as u8
+    }
 }

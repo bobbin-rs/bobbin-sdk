@@ -1,3 +1,4 @@
+pub use bobbin_common::serial::*;
 use core::fmt::{self, Write};
 
 use chip::lpuart::*;
@@ -14,9 +15,9 @@ pub trait LpuartExt {
     fn tdre(&self) -> bool;
     fn rt(&self) -> u8;
     fn set_rt(&self, value: u8) -> &Self;
-    fn try_getc(&self) -> Option<u8>;
-    fn putc(&self, c: u8) -> &Self;
-    fn write(&self, buf: &[u8]) -> &Self;
+    // fn try_getc(&self) -> Option<u8>;
+    // fn putc(&self, c: u8) -> &Self;
+    // fn write(&self, buf: &[u8]) -> &Self;
 }
 
 impl<T> LpuartExt for Periph<T> {
@@ -60,25 +61,25 @@ impl<T> LpuartExt for Periph<T> {
         self.set_data(|r| r.set_rt(value as u32))
     }    
 
-    fn try_getc(&self) -> Option<u8> {
-        if self.rdrf() {
-            Some(self.rt())
-        } else {
-            None
-        }
-    }
+    // fn try_getc(&self) -> Option<u8> {
+    //     if self.rdrf() {
+    //         Some(self.rt())
+    //     } else {
+    //         None
+    //     }
+    // }
 
-    fn putc(&self, c: u8) -> &Self {
-        while !self.tdre() {}
-        self.set_rt(c)
-    }
+    // fn putc(&self, c: u8) -> &Self {
+    //     while !self.tdre() {}
+    //     self.set_rt(c)
+    // }
 
-    fn write(&self, buf: &[u8]) -> &Self {
-        for b in buf.iter() {
-            self.putc(*b);
-        }
-        self
-    }
+    // fn write(&self, buf: &[u8]) -> &Self {
+    //     for b in buf.iter() {
+    //         self.putc(*b);
+    //     }
+    //     self
+    // }
 }
 
 impl<T> Write for Periph<T> {
@@ -87,5 +88,25 @@ impl<T> Write for Periph<T> {
             self.putc(byte);
         }
         Ok(())
+    }
+}
+
+impl<T> SerialTx<u8> for Periph<T> {    
+    fn can_tx(&self) -> bool {
+        self.tdre()
+    }
+
+    fn tx(&self, c: u8) -> &Self {
+        self.set_rt(c)
+    }
+}
+
+impl<T> SerialRx<u8> for Periph<T> {
+    fn can_rx(&self) -> bool {
+        self.rdrf()
+    }
+
+    fn rx(&self) -> u8 {
+        self.rt()
     }
 }
