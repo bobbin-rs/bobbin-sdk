@@ -4,7 +4,7 @@
 extern crate frdm_kl26z as board;
 
 use board::hal::port::GpioPin;
-use board::hal::gpio::GpioExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -17,7 +17,7 @@ pub extern "C" fn main() -> ! {
         if btn0.input() {
             board::delay(500);
         } else {
-            board::delay(250);            
+            board::delay(100);            
         }        
     }
 }

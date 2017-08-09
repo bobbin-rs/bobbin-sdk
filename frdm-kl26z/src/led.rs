@@ -1,5 +1,5 @@
 use hal::port::*;
-use hal::gpio::GpioExt;
+use hal::gpio::{GpioExt, DigitalOutput};
 
 pub const LED0: Pte29 = PTE29;
 pub const LED1: Pte31 = PTE31;

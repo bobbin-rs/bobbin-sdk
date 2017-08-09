@@ -26,13 +26,13 @@ pub extern "C" fn main() -> ! {
 
     d.sim_set_enabled(true);
 
-    d.set_sar(ch.index(), Sar(src.as_ptr() as u32));    
-    d.set_dar(ch.index(), Dar(dst.as_mut_ptr() as u32));
-    d.set_dsr_bcr(ch.index(), DsrBcr(0).set_bcr(src.len() as u32));
+    d.set_sar(ch.index(), |r| r.set_sar(src.as_ptr() as u32));    
+    d.set_dar(ch.index(), |r| r.set_dar(dst.as_mut_ptr() as u32));
+    d.set_dsr_bcr(ch.index(), |r| r.set_bcr(src.len() as u32));
     println!("SAR: {:?}", d.sar(ch.index()));
     println!("DAR: {:?}", d.dar(ch.index()));
     println!("BSR_BCR: {:?}", d.dsr_bcr(ch.index()));    
-    d.set_dcr(ch.index(), Dcr(0)
+    d.set_dcr(ch.index(), |r| r
         .set_sinc(1)
         .set_ssize(0b01)
         .set_smod(0b0000)
