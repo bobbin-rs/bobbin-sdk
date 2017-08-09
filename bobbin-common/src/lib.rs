@@ -1,13 +1,10 @@
 #![no_std]
 
-<<<<<<< HEAD
 pub extern crate bobbin_bits as bits;
-=======
 pub mod clock;
 pub mod timer;
 pub mod digital;
 pub mod analog;
->>>>>>> common-traits
 
 pub struct Pin<T, P>(T, P, usize);
 

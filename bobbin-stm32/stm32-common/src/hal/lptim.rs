@@ -57,32 +57,33 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn period(&self) -> u16 {
-        (self.arr().arr() + 1) as u16
+        self.arr().arr().value() + 1
     }
     
     fn set_period(&self, value: u16) -> &Self {
         self
             .set_enabled(true)
-            .set_arr(Arr(0).set_arr((value - 1) as u32));
+            .set_arr(|r| r.set_arr((value - 1)));
         while self.isr().arrok() == 0 {}            
         self
     }
 
     fn counter(&self) -> u16 {
-        self.cnt().cnt() as u16
+        self.cnt().cnt().value()
     }
 
     fn timeout_flag(&self) -> bool {
         self.isr().arrm() != 0
     }
+
     fn clr_timeout_flag(&self) -> &Self {
-        self.set_icr(Icr(0).set_arrmcf(1))
+        self.set_icr(|r| r.set_arrmcf(1))
     }
 }
 
 impl<T> Prescale<u16> for Periph<T> {
     fn prescale(&self) -> u16 {
-        1 << self.cfgr().presc()
+        1 << self.cfgr().presc().value()
     }
     fn set_prescale(&self, value: u16) -> &Self {
         let shift = match value {
@@ -102,12 +103,13 @@ impl<T> Prescale<u16> for Periph<T> {
 
 impl<T> Compare<u16> for Periph<T> {
     fn compare(&self) -> u16 {
-        self.cmp().cmp() as u16
+        self.cmp().cmp().value()
     }
+
     fn set_compare(&self, value: u16) -> &Self {
         self
             .set_enabled(true)
-            .set_cmp(Cmp(0).set_cmp(value as u32));
+            .set_cmp(|r| r.set_cmp(value));
         while self.isr().cmpok() == 0 {}
         self
         
@@ -116,7 +118,8 @@ impl<T> Compare<u16> for Periph<T> {
     fn compare_flag(&self) -> bool {
         self.isr().cmpm() != 0
     }
+
     fn clr_compare_flag(&self) -> &Self {
-        self.set_icr(Icr(0).set_cmpmcf(1))
+        self.set_icr(|r| r.set_cmpmcf(1))
     }
 }

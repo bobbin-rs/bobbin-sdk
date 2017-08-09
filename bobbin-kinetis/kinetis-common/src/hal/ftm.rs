@@ -74,10 +74,10 @@ impl<P, T> FtmChExt for Channel<P, T> {
         self
     }
     fn value(&self) -> u16 {
-        self.periph.cv(self.index).val() as u16
+        self.periph.cv(self.index).val().value()
     }
     fn set_value(&self, value: u16) -> &Self {
-        self.periph.set_cv(self.index, |r| r.set_val(value as u32));
+        self.periph.set_cv(self.index, |r| r.set_val(value));
         self
     }
     fn set_pwmen(&self, value: bool) -> &Self {
@@ -114,7 +114,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn period(&self) -> u16 {
-        (self.modulo() as u16) + 1
+        self.modulo() + 1
     }
 
     fn set_period(&self, value: u16) -> &Self {
@@ -122,7 +122,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn counter(&self) -> u16 {
-        self.cnt().count() as u16
+        self.cnt().count().value()
     }    
 
     fn timeout_flag(&self) -> bool {
@@ -136,13 +136,13 @@ impl<T> Timer<u16> for Periph<T> {
 
 impl<T> SetCounter<u16> for Periph<T> {
     fn set_counter(&self, value: u16) -> &Self {
-        self.set_cnt(Cnt(0).set_count(value as u32))
+        self.set_cnt(|r| r.set_count(value))
     }
 }
 
 impl<T> Prescale<u16> for Periph<T> {
     fn prescale(&self) -> u16 {
-        1u16 << self.sc().ps()
+        1u16 << self.sc().ps().value()
     }
 
     fn set_prescale(&self, value: u16) -> &Self {
@@ -163,10 +163,10 @@ impl<T> Prescale<u16> for Periph<T> {
 
 impl<P, T> Compare<u16> for Channel<P, T> {
     fn compare(&self) -> u16 {
-        self.periph().cv(self.index).val() as u16
+        self.periph().cv(self.index).val().value()
     }
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_cv(self.index, Cv(0).set_val(value as u32));
+        self.periph().set_cv(self.index, |r| r.set_val(value));
         self
     }
 

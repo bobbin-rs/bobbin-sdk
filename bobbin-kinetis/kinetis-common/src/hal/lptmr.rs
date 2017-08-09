@@ -2,7 +2,7 @@ pub use bobbin_common::timer::*;
 pub use chip::lptmr::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(u32)]
+#[repr(u8)]
 pub enum PrescalerClock {
     McgIrClk = 0b00,
     Lpo = 0b01,
@@ -23,7 +23,7 @@ impl<T> LptmrExt for Periph<T> {
     }
 
     fn set_pcs(&self, value: PrescalerClock) -> &Self {
-        self.with_psr(|r| r.set_pcs(value as u32))
+        self.with_psr(|r| r.set_pcs(value as u8))
     }
 }
 
@@ -70,15 +70,15 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn period(&self) -> u16 {
-        self.cmr().compare() as u16
+        self.cmr().compare().value()
     }
     
     fn set_period(&self, value: u16) -> &Self {    
-        self.set_cmr(Cmr(0).set_compare(value as u32))
+        self.set_cmr(|r| r.set_compare(value as u32))
     }
 
     fn counter(&self) -> u16 {
-        self.cnr().counter() as u16
+        self.cnr().counter().value()
     }
 
     fn timeout_flag(&self) -> bool {

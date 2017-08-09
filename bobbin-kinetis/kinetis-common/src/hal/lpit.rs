@@ -163,3 +163,13 @@ impl<P, T> SetCounter<u32> for Channel<P, T> {
         self
     }
 }
+
+impl<P, T> Delay<u32> for Channel<P, T> {
+    fn delay(&self, value: u32) -> &Self {
+        self
+            .start(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+            .stop()
+    }
+}

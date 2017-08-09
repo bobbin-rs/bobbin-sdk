@@ -1,4 +1,5 @@
-use chip::scg::{self, SCG};
+use bobbin_common::bits::*;
+use chip::scg::SCG;
 use chip::pcc::PCC;
 use chip::lpuart::*;
 use chip::lpit::*;
@@ -49,22 +50,20 @@ pub fn init() {
     // Setup SOSC
 
     // Set SOSC Output Dividers
-    SCG.set_soscdiv(scg::Soscdiv(0)
+    SCG.set_soscdiv(|r| r
         .set_soscdiv1(0b001) // Divide by 1
         .set_soscdiv2(0b001) // Divide by 1
     );
 
     // Set SOSC Configuration
-    SCG.set_sosccfg(scg::Sosccfg(0)
+    SCG.set_sosccfg(|r| r
         .set_range(0b11) // High Speed Range
         .set_hgo(0) // Low Gain
         .set_erefs(1) // Use Internal Reference Clock
     );
 
     // Enable SOSC
-    SCG.set_sosccsr(scg::Sosccsr(0)
-        .set_soscen(1)
-    );
+    SCG.set_sosccsr(|r| r.set_soscen(1));
 
     // Wait for SOSC Valid
     while SCG.sosccsr().soscvld() == 0 {}
@@ -75,13 +74,13 @@ pub fn init() {
     SCG.with_spllcsr(|r| r.set_spllen(0));
 
     // Set PLL Output Dividers
-    SCG.set_splldiv(scg::Splldiv(0)
+    SCG.set_splldiv(|r| r
         .set_splldiv1(0b010) // Divide by 2
         .set_splldiv2(0b011) // Divide by 4
     );
 
     // Set PLL Configuration
-    SCG.set_spllcfg(scg::Spllcfg(0)
+    SCG.set_spllcfg(|r| r
         .set_prediv(0b000) // Divide by 1
         .set_mult(0b11000) // Multiply by 40
     );
@@ -93,7 +92,7 @@ pub fn init() {
     while SCG.spllcsr().spllvld() == 0 {}
 
     // Switch to SPLL and set multipliers
-    SCG.set_rccr(scg::Rccr(0)
+    SCG.set_rccr(|r| r
         .set_scs(0b0110)
         .set_divcore(0b0001)
         .set_divbus(0b0001)
@@ -137,8 +136,8 @@ impl DynamicClock {
     fn firc_clk(&self) -> Hz { FIRC }
     fn spll_clk(&self) -> Hz {
         let spllcfg = SCG.spllcfg();
-        let div = spllcfg.prediv() + 1;
-        let mul = spllcfg.mult() + 16;
+        let div = spllcfg.prediv().into_u32() + 1;
+        let mul = spllcfg.mult().into_u32() + 16;
         self.sosc_clk().map(|v| (v * mul / div) >> 1)
     }
     fn sosc_clk(&self) -> Hz {
@@ -149,15 +148,15 @@ impl DynamicClock {
 impl ClockTree for DynamicClock {
     fn prediv_sys_clk(&self) -> Hz {
         match SCG.csr().scs() {
-            0b0001 => self.sosc_clk(),
-            0b0010 => self.sirc_clk(),
-            0b0011 => self.firc_clk(),
-            0b0110 => self.spll_clk(),
-            _ => unimplemented!(),
+            U4::B0001 => self.sosc_clk(),
+            U4::B0010 => self.sirc_clk(),
+            U4::B0011 => self.firc_clk(),
+            U4::B0110 => self.spll_clk(),
+            _ => panic!("Invalid value for SCG_CSR[SCS]"),
         }
     }
     fn core_clk(&self) -> Hz {
-        self.prediv_sys_clk().map(|v| v / (1 + SCG.csr().divcore()))
+        self.prediv_sys_clk().map(|v| v / (1 + SCG.csr().divcore().into_u32()))
     }
 
     fn sys_clk(&self) -> Hz {
@@ -165,64 +164,64 @@ impl ClockTree for DynamicClock {
     }
 
     fn bus_clk(&self) -> Hz {
-        self.core_clk().map(|v| v / (1 + SCG.csr().divbus()))
+        self.core_clk().map(|v| v / (1 + SCG.csr().divbus().into_u32()))
     }
 
     fn flash_clk(&self) -> Hz {
-        self.core_clk().map(|v| v / (1 + SCG.csr().divslow()))
+        self.core_clk().map(|v| v / (1 + SCG.csr().divslow().into_u32()))
     }
     
     fn splldiv1_clk(&self) -> Hz {
-        match SCG.splldiv().splldiv1() {
+        match SCG.splldiv().splldiv1().into_u32() {
             0 => None,
             div @ _ => self.spll_clk().map(|v| v >> (div - 1))
         }    
     }
 
     fn splldiv2_clk(&self) -> Hz {
-        match SCG.splldiv().splldiv2() {
+        match SCG.splldiv().splldiv2().into_u32() {
             0 => None,
             div @ _ => self.spll_clk().map(|v| v >> (div - 1))
         }    
     }    
 
     fn fircdiv1_clk(&self) -> Hz {
-        match SCG.fircdiv().fircdiv1() {
+        match SCG.fircdiv().fircdiv1().into_u32() {
             0 => None,
             div @ _ => self.firc_clk().map(|v| v >> (div - 1))
         }    
     }
 
     fn fircdiv2_clk(&self) -> Hz {
-        match SCG.fircdiv().fircdiv2() {
+        match SCG.fircdiv().fircdiv2().into_u32() {
             0 => None,
             div @ _ => self.firc_clk().map(|v| v >> (div - 1))
         }     
     }        
 
     fn sircdiv1_clk(&self) -> Hz {
-        match SCG.sircdiv().sircdiv1() {
+        match SCG.sircdiv().sircdiv1().into_u32() {
             0 => None,
             div @ _ => self.sirc_clk().map(|v| v >> (div - 1))
         }    
     }
 
     fn sircdiv2_clk(&self) -> Hz {
-        match SCG.sircdiv().sircdiv2() {
+        match SCG.sircdiv().sircdiv2().into_u32() {
             0 => None,
             div @ _ => self.sirc_clk().map(|v| v >> (div - 1))
         }    
     }     
 
     fn soscdiv1_clk(&self) -> Hz {
-        match SCG.soscdiv().soscdiv1() {
+        match SCG.soscdiv().soscdiv1().into_u32() {
             0 => None,
             div @ _ => self.sosc_clk().map(|v| v >> (div - 1))
         }    
     }
 
     fn soscdiv2_clk(&self) -> Hz {
-        match SCG.soscdiv().soscdiv2() {
+        match SCG.soscdiv().soscdiv2().into_u32() {
             0 => None,
             div @ _ => self.sosc_clk().map(|v| v >> (div - 1))
         }    
@@ -281,12 +280,12 @@ macro_rules! impl_clock {
                     None
                 } else {
                     match cfg.pcs() {
-                        0b000 => None,
-                        0b001 => t.soscdiv2_clk(),
-                        0b010 => t.sircdiv2_clk(),
-                        0b011 => t.fircdiv2_clk(),
-                        0b110 => t.splldiv2_clk(),
-                        _ => unimplemented!(),
+                        U3::B000 => None,
+                        U3::B001 => t.soscdiv2_clk(),
+                        U3::B010 => t.sircdiv2_clk(),
+                        U3::B011 => t.fircdiv2_clk(),
+                        U3::B110 => t.splldiv2_clk(),
+                        _ => panic!("Invalid value for PCC_CFG[SCS]"),
                     }
                 }
             }
