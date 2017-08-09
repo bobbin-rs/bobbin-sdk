@@ -32,24 +32,25 @@ pub extern "C" fn main() -> ! {
         ptr      
     };
     let desc: &mut Chdesc = unsafe { mem::transmute(ptr) };
+    let desc_addr = desc as *const _ as u32;
 
     let ch = UDMA_CH0;
     let d = ch.periph();
 
     println!("Configuring DMA");
     d.sysctl_set_enabled(true);
-    d.set_cfg(Cfg(0).set_masten(1));
-    d.set_ctlbase(Ctlbase(0).set_addr((desc as *const _ as u32) >> 10));
+    d.set_cfg(|r| r.set_masten(1));
+    d.set_ctlbase(|r| r.set_addr(desc_addr >> 10));
 
-    d.set_prioset(Prioset(0).set_set(ch.index(), 1));
-    d.set_altclr(Altclr(0).set_clr(ch.index(), 1));
-    d.set_useburstclr(Useburstclr(0).set_clr(ch.index(), 1));
-    d.set_reqmaskclr(Reqmaskclr(0).set_clr(ch.index(), 1));
+    d.set_prioset(|r| r.set_set(ch.index(), 1));
+    d.set_altclr(|r| r.set_clr(ch.index(), 1));
+    d.set_useburstclr(|r| r.set_clr(ch.index(), 1));
+    d.set_reqmaskclr(|r| r.set_clr(ch.index(), 1));
     unsafe {
-        desc.set_srcendp(Srcendp(src.as_ptr().offset(src.len() as isize) as u32));
-        desc.set_dstendp(Dstendp(dst.as_mut_ptr().offset(src.len() as isize)as u32));
+        desc.set_srcendp(|_| Srcendp(src.as_ptr().offset(src.len() as isize) as u32));
+        desc.set_dstendp(|_| Dstendp(dst.as_mut_ptr().offset(src.len() as isize)as u32));
     }
-    desc.set_chctl(Chctl(0)
+    desc.set_chctl(|r| r
         .set_dstinc(0x0)
         .set_dstsize(0x0)
         .set_srcinc(0x0)
@@ -62,8 +63,8 @@ pub extern "C" fn main() -> ! {
     println!("   DSTENDP: {:?}", desc.dstendp());
     println!("   CHCTL:   {:?}", desc.chctl());
 
-    d.set_enaset(Enaset(0).set_set(ch.index(), 1));
-    d.set_swreq(Swreq(0).set_swreq(ch.index(), 1));
+    d.set_enaset(|r| r.set_set(ch.index(), 1));
+    d.set_swreq(|r| r.set_swreq(ch.index(), 1));
     println!("Starting DMA Transfer");
 
     println!("STAT: {:?}", d.stat());

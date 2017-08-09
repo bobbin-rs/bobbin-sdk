@@ -36,10 +36,10 @@ pub extern "C" fn main() -> ! {
     // ■ Write the PWMENABLE register with a value of 0x0000.0003.
     
     led0.mode_pwm(&ch);
-    pwm.set_ch_gena(ch.index(), ChGena(0x008c));
-    pwm.set_ch_load(ch.index(), ChLoad(2000));
-    pwm.set_ch_cmpa(ch.index(), ChCmpa(0));
-    pwm.set_ch_ctl(ch.index(), ChCtl(0x0001));
+    pwm.set_ch_gena(ch.index(), |_| ChGena(0x008c));
+    pwm.set_ch_load(ch.index(), |_| ChLoad(2000));
+    pwm.set_ch_cmpa(ch.index(), |_| ChCmpa(0));
+    pwm.set_ch_ctl(ch.index(), |_| ChCtl(0x0001));
     pwm.with_enable(|r| r.set_pwmen(ch.index(), 1));
     
 
@@ -51,7 +51,7 @@ pub extern "C" fn main() -> ! {
     let mut dir: bool = true;
 
     loop {        
-        pwm.set_ch_cmpa(ch.index(), ChCmpa(i));
+        pwm.set_ch_cmpa(ch.index(), |_| ChCmpa(i));
         
         if i == max - step { dir = false } else if i == 0 { dir = true }
         if dir {
