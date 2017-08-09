@@ -1,3 +1,4 @@
+pub use bobbin_common::digital::*;
 pub use chip::port::*;
 use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
 use chip::sig::{SignalWo0, SignalWo1, SignalWo2, SignalWo3, SignalWo4, SignalWo5, SignalWo6, SignalWo7};
@@ -14,10 +15,6 @@ pub trait PinExt {
     fn set_mode_input(&self) -> &Self;
     fn set_mode_output(&self) -> &Self;
     fn set_mode_pmux(&self, value: usize) -> &Self;
-    fn output(&self) -> bool;
-    fn set_output(&self, bool) -> &Self;
-    fn toggle_output(&self) -> &Self;
-    fn input(&self) -> bool;
 }
 
 impl<P, T> PinExt for Pin<P, T> {
@@ -62,7 +59,15 @@ impl<P, T> PinExt for Pin<P, T> {
     fn set_mode_pmux(&self, value: usize) -> &Self {
         self.set_pmux_enabled(true).set_pmux(value)
     }
+}
 
+impl<P, T> DigitalInput for Pin<P, T> {
+    fn input(&self) -> bool {
+        self.port._in()._in(self.index) != 0
+    }
+}
+
+impl<P, T> DigitalOutput for Pin<P, T> {
     fn output(&self) -> bool {
         self.port.out().out(self.index) != 0
     }
@@ -77,13 +82,9 @@ impl<P, T> PinExt for Pin<P, T> {
     }
     fn toggle_output(&self) -> &Self {
         self.set_output(!self.output())
-    }
-
-    fn input(&self) -> bool {
-        self.port._in()._in(self.index) != 0
-    }
-
+    }    
 }
+
 
 pub trait ModePad0<T, S> {
     fn mode_pad_0(&self, _: &S) -> &Self;

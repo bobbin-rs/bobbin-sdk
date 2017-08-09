@@ -1,3 +1,4 @@
+pub use bobbin_common::digital::*;
 pub use chip::gpio::*;
 pub use super::sysctl::SysctlEnabled;
 use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm};
@@ -66,10 +67,6 @@ pub trait GpioExt {
     fn mode_altfn(&self, value: usize) -> &Self;
     fn pull_up(&self) -> &Self;
     fn pull_down(&self) -> &Self;
-    fn input(&self) -> bool;
-    fn output(&self) -> bool;
-    fn set_output(&self, value: bool) -> &Self;
-    fn toggle_output(&self) -> &Self;
 }
 
 impl<P, T> GpioExt for Pin<P, T> {
@@ -150,11 +147,15 @@ impl<P, T> GpioExt for Pin<P, T> {
     fn pull_down(&self) -> &Self {
         self.set_pulldown_select(true)
     }
-    
+}
+
+impl<P, T> DigitalInput for Pin<P, T> {        
     fn input(&self) -> bool {            
         self.port.data().data(self.index) != 0
     }           
+}
 
+impl<P, T> DigitalOutput for Pin<P, T> {        
     fn output(&self) -> bool {
         self.port.data().data(self.index) != 0
     }   
@@ -169,4 +170,3 @@ impl<P, T> GpioExt for Pin<P, T> {
         self.set_output(!self.output())
     }
 }
-
