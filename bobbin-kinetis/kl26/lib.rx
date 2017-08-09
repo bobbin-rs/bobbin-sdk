@@ -203,7 +203,24 @@
             (interrupt
                 (name PIT)
                 (value 22)
+            )            
+            (channel
+                (name PIT_CH0)
+                (index 0)
             )
+            (channel
+                (name PIT_CH1)
+                (index 1)
+            )
+            (channel
+                (name PIT_CH2)
+                (index 2)
+            )
+            (channel
+                (name PIT_CH3)
+                (index 3)
+            )            
+
         )
     )
     (peripheral-group    
