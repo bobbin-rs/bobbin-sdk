@@ -4,7 +4,7 @@
 extern crate teensy_lc as board;
 
 use board::hal::port::GpioPin;
-use board::hal::gpio::GpioExt;
+use board::hal::gpio::DigitalOutput;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
