@@ -15,7 +15,7 @@ pub trait TccChExt {
 
 impl<P, T> TccChExt for Channel<P, T> {
     fn cc(&self) -> u32 {
-        self.periph.cc(self.index).cc()
+        self.periph.cc(self.index).cc().value()
     }
     fn set_cc(&self, value: u32) -> &Self {
         self.periph.with_cc(self.index, |r| r.set_cc(value));
@@ -24,15 +24,8 @@ impl<P, T> TccChExt for Channel<P, T> {
 }
 
 impl<T> Timer<u16> for Periph<T> {
-    fn start(&self, value: u16) -> &Self {        
-        self.set_period(value);        
-        self.with_wave(|r| r.set_wavegen(0x0));
-        self.with_ctrla(|r| r.set_enable(0x1));
-        self.set_ctrlbset(Ctrlbset(0).set_cmd(0x1));
-        self
-    }
     fn stop(&self) -> &Self {
-        self.set_ctrlbset(Ctrlbset(0).set_cmd(0x2));
+        self.set_ctrlbset(|r| r.set_cmd(0x2));
         self.with_ctrla(|r| r.set_enable(0x0));
         self
     }
@@ -41,15 +34,17 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn period(&self) -> u16 {
-        self.per().per() as u16
+        // Discard excess bits
+        self.per().per().value() as u16
     }
 
     fn set_period(&self, value: u16) -> &Self {
-        self.set_per(Per(0).set_per(value as u32))        
+        self.set_per(|r| r.set_per(value))        
     }
 
     fn counter(&self) -> u16 {
-        self.count().count() as u16
+        // Discard excess bits
+        self.count().count().value() as u16
     }
 
     fn timeout_flag(&self) -> bool {
@@ -57,15 +52,24 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn clr_timeout_flag(&self) -> &Self {
-        self.set_intflag(Intflag(0).set_ovf(1));
+        self.set_intflag(|r| r.set_ovf(1));
         self
     }    
+}
+impl<T> Start<u16> for Periph<T> {
+    fn start(&self, value: u16) -> &Self {        
+        self.set_period(value);        
+        self.with_wave(|r| r.set_wavegen(0x0));
+        self.with_ctrla(|r| r.set_enable(0x1));
+        self.set_ctrlbset(|r| r.set_cmd(0x1));
+        self
+    }
 }
 
 
 impl<T> Prescale<u16> for Periph<T> {
     fn prescale(&self) -> u16 {
-        1 << self.ctrla().prescaler() 
+        1 << self.ctrla().prescaler().value() 
     }
     fn set_prescale(&self, value: u16) -> &Self {
         let shift = match value {
@@ -88,7 +92,7 @@ impl<T> Prescale<u16> for Periph<T> {
 
 impl<T> SetCounter<u16> for Periph<T> {
     fn set_counter(&self, value: u16) -> &Self {
-        self.set_count(Count(0).set_count(value as u32));
+        self.set_count(|r| r.set_count(value));
         self
     }
 }
@@ -96,11 +100,12 @@ impl<T> SetCounter<u16> for Periph<T> {
 
 impl<P, T> Compare<u16> for Channel<P, T> {
     fn compare(&self) -> u16 {
-        self.periph().cc(self.index()).cc() as u16
+        // Discard Excess Bits
+        self.periph().cc(self.index()).cc().value() as u16
     }
 
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_cc(self.index(), Cc(0).set_cc(value as u32));        
+        self.periph().set_cc(self.index(), |r| r.set_cc(value));
         self
     }
 
@@ -109,7 +114,7 @@ impl<P, T> Compare<u16> for Channel<P, T> {
     }
 
     fn clr_compare_flag(&self) -> &Self {
-        self.periph().set_intflag(Intflag(0).set_mc(self.index(), 1));
+        self.periph().set_intflag(|r| r.set_mc(self.index(), 1));
         self
     }
 

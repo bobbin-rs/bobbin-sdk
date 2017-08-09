@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 use ::chip::{gclk, sysctrl, nvmctrl, pm};
 use ::chip::sysctrl::SYSCTRL;
 use ::chip::gclk::GCLK;
@@ -35,7 +36,7 @@ pub fn run_48mhz() {
     pm::PM.with_apbamask(|r| r.set_gclk(1));
 
     // Enable XOSC32K clock (External on-board 32.768Hz oscillator), will be used as DFLL48M reference.
-    sysctrl::SYSCTRL.set_xosc32k(sysctrl::Xosc32k(0)
+    sysctrl::SYSCTRL.set_xosc32k(|r| r
         .set_startup(0x6)
         .set_en32k(1)
         .set_xtalen(1)
@@ -52,20 +53,20 @@ pub fn run_48mhz() {
     * CTRL.SWRST and STATUS.SYNCBUSY will both be cleared when the reset is complete, as described in chapter 13.8.1
     */
 
-    gclk::GCLK.set_ctrl(gclk::Ctrl(0).set_swrst(1));
+    gclk::GCLK.set_ctrl(|r| r.set_swrst(1));
 
     // Wait for reset to complete
 
     while gclk::GCLK.ctrl().swrst() != 0 && gclk::GCLK.status().syncbusy() != 0 {}
 
     // Put XOSC32K as source of Generic Clock Generator 1
-    gclk::GCLK.set_gendiv(gclk::Gendiv(0).set_id(0x1));
+    gclk::GCLK.set_gendiv(|r| r.set_id(0x1));
 
     // Wait for register sync
     while gclk::GCLK.status().syncbusy() != 0 {}
 
     // Write Generic Clock Generator 1 configuration 
-    gclk::GCLK.set_genctrl(gclk::Genctrl(0)
+    gclk::GCLK.set_genctrl(|r| r
         .set_id(0x01) // XOSC32K
         .set_src(0x05) // XOSC32K
         .set_genen(1)
@@ -75,7 +76,7 @@ pub fn run_48mhz() {
     while gclk::GCLK.status().syncbusy() != 0 {}
 
     // Put Generic Clock Generator 1 as source for Generic Clock Multiplexer 0 (DFLL48M reference)
-    gclk::GCLK.set_clkctrl(gclk::Clkctrl(0)
+    gclk::GCLK.set_clkctrl(|r| r
         .set_id(0x00) // DFLL48M
         .set_gen(0x1) // Clock Generator 1 is source
         .set_clken(1)
@@ -94,7 +95,7 @@ pub fn run_48mhz() {
     // Wait for synchronization
     while sysctrl::SYSCTRL.pclksr().dfllrdy() == 0 {}
 
-    sysctrl::SYSCTRL.set_dfllmul(sysctrl::Dfllmul(0)
+    sysctrl::SYSCTRL.set_dfllmul(|r| r
         .set_cstep(31) // coarse step 31, half of the max value
         .set_fstep(511) // fine step 511, half of the max value
         .set_mul(VARIANT_MCK / VARIANT_MAINOSC)
@@ -125,14 +126,14 @@ pub fn run_48mhz() {
     while sysctrl::SYSCTRL.pclksr().dfllrdy() == 0 {}
 
     // Switch Generic Clock Generator 0 to DFLL48M. CPU will run at 48MHz.
-    gclk::GCLK.set_gendiv(gclk::Gendiv(0).set_id(0x0));
+    gclk::GCLK.set_gendiv(|r| r.set_id(0x0));
 
     // Wait for register sync
     while gclk::GCLK.status().syncbusy() != 0 {}
 
     // Write Generic Clock Generator 0 configuration
 
-    gclk::GCLK.set_genctrl(gclk::Genctrl(0)
+    gclk::GCLK.set_genctrl(|r| r
         .set_id(0x00)
         .set_src(0x07) // DFLL48M
         .set_idc(1)
@@ -145,12 +146,12 @@ pub fn run_48mhz() {
     // Write Generic Clock Generator 2 configuration
     // 1.024 kHz output for RTC
 
-    gclk::GCLK.set_gendiv(gclk::Gendiv(0)
+    gclk::GCLK.set_gendiv(|r| r
         .set_id(0x002)
         .set_div(4) // 2^5 == 32
     );
 
-    gclk::GCLK.set_genctrl(gclk::Genctrl(0)
+    gclk::GCLK.set_genctrl(|r| r
         .set_id(0x02)
         .set_src(0x05) // XOSC32K        
         .set_divsel(1) // Exponentiate Divider
@@ -161,7 +162,7 @@ pub fn run_48mhz() {
     // 8Mhz output for ADC
 
 
-    gclk::GCLK.set_genctrl(gclk::Genctrl(0)
+    gclk::GCLK.set_genctrl(|r| r
         .set_id(0x03)
         .set_src(0x06) // OSC8M            
         .set_genen(1)
@@ -170,10 +171,10 @@ pub fn run_48mhz() {
     // Now that all system clocks are configured, we can set CPU and APBx BUS clocks.
     // These values are normally the ones present after Reset.
 
-    pm::PM.set_cpusel(pm::Cpusel(0).set_cpudiv(0x0)); // DIV1
-    pm::PM.set_apbasel(pm::Apbasel(0).set_apbadiv(0x0)); // DIV1
-    pm::PM.set_apbbsel(pm::Apbbsel(0).set_apbbdiv(0x0)); // DIV1
-    pm::PM.set_apbcsel(pm::Apbcsel(0).set_apbcdiv(0x0)); // DIV1
+    pm::PM.set_cpusel(|r| r.set_cpudiv(0x0)); // DIV1
+    pm::PM.set_apbasel(|r| r.set_apbadiv(0x0)); // DIV1
+    pm::PM.set_apbbsel(|r| r.set_apbbdiv(0x0)); // DIV1
+    pm::PM.set_apbcsel(|r| r.set_apbcdiv(0x0)); // DIV1
         
 }
 
@@ -298,25 +299,25 @@ impl DynamicClock {
     }
 
     pub fn osc8m(&self) -> Hz {
-        OSC8M.map(|v| v >> SYSCTRL.osc8m().presc())
+        OSC8M.map(|v| v >> SYSCTRL.osc8m().presc().into_u32())
     }
 
     pub fn dfll(&self) -> Hz {
-        OSC32K.map(|v| v * SYSCTRL.dfllmul().mul())
+        OSC32K.map(|v| v * SYSCTRL.dfllmul().mul().into_u32())
     }  
 
     // DPLL
 
     pub fn dpll_mul(&self) -> u32 {
-        SYSCTRL.dpllratio().ldr()
+        SYSCTRL.dpllratio().ldr().into()
     }
 
     pub fn dpll_mul_frac(&self) -> u32 {
-        SYSCTRL.dpllratio().ldrfrac()
+        SYSCTRL.dpllratio().ldrfrac().into()
     }
 
     pub fn dpll_div(&self) -> u32 {
-        SYSCTRL.dpllctrlb().div()
+        SYSCTRL.dpllctrlb().div().into()
     }
 
     pub fn dpll_divider_enable(&self) -> bool {
@@ -333,13 +334,13 @@ impl DynamicClock {
 
     pub fn dpll(&self) -> Hz {
         let ctrlb = SYSCTRL.dpllctrlb();
-        let dpll_div = ctrlb.div();
-        let dpll_mul = SYSCTRL.dpllratio().ldr();
+        let dpll_div = ctrlb.div().into_u32();
+        let dpll_mul = SYSCTRL.dpllratio().ldr().into_u32();
         let clk = match ctrlb.refclk() {
-            0 => self.xosc32k(),
-            1 => self.xosc(),
-            2 => self.clockmux(ClockMux::Dpll),
-            _ => unimplemented!(),
+            U2::B00 => self.xosc32k(),
+            U2::B01 => self.xosc(),
+            U2::B10 => self.clockmux(ClockMux::Dpll),
+            U2::B11 => panic!("Invalid value for CTRLB_REFCLK"),
         };
         if dpll_div != 0 {
             clk.map(|v| v * dpll_mul / dpll_div)
@@ -351,18 +352,18 @@ impl DynamicClock {
     // Clock and Generator Access
 
     pub fn clockmux_ctrl(&self, id: u8) -> gclk::Clkctrl {
-        GCLK.set_clkctrl_id(gclk::ClkctrlId(0).set_id(id));
+        GCLK.set_clkctrl_id(|r| r.set_id(id));
         GCLK.clkctrl()
     }
     
     pub fn generator_ctrl(&self, id: u8) -> gclk::Genctrl {
-        GCLK.set_genctrl_id(gclk::GenctrlId(0).set_id(id));
+        GCLK.set_genctrl_id(|r| r.set_id(id));
         GCLK.genctrl()
     }    
 
     pub fn generator_div(&self, id: u8) -> u16 {
-        GCLK.set_gendiv_id(gclk::GendivId(0).set_id(id));
-        GCLK.gendiv().div() as u16
+        GCLK.set_gendiv_id(|r| r.set_id(id));
+        GCLK.gendiv().div().value()
     }
 
     pub fn source(&self, id: u8) -> Hz {

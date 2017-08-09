@@ -111,6 +111,7 @@ impl<T> Periph<T> {
 }
 #[doc="I2C Master Mode Cluster"]
 pub mod i2cm {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2C Master Mode Peripheral"]
    pub struct I2cm(pub u32);
@@ -1315,6 +1316,7 @@ impl ::core::fmt::Debug for Syncbusy {
 // End of i2cm
 #[doc="I2C Slave Mode Cluster"]
 pub mod i2cs {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2C Slave Mode Peripheral"]
    pub struct I2cs(pub u32);
@@ -2428,6 +2430,7 @@ impl ::core::fmt::Debug for Syncbusy {
 // End of i2cs
 #[doc="SPI Mode Cluster"]
 pub mod spi {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SPI Mode Peripheral"]
    pub struct Spi(pub u32);
@@ -3534,6 +3537,7 @@ impl ::core::fmt::Debug for Syncbusy {
 // End of spi
 #[doc="USART Mode Cluster"]
 pub mod usart {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="USART Mode Peripheral"]
    pub struct Usart(pub u32);

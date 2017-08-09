@@ -1906,7 +1906,7 @@ impl Chdesc {
       }
    }
 #[doc="Write the SRCENDP register."]
-   #[inline] pub fn set_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&self, f: F) -> &Self {
+   #[inline] pub fn set_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &Self {
       let value = f(Srcendp(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
@@ -1916,10 +1916,11 @@ impl Chdesc {
 #[doc="Modfy the SRCENDP register."]
    #[inline] pub fn with_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.srcendp();
-      let value = f(Srcendp(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u32, value.0);
       }
+     self
    }
 
 #[doc="Read the DSTENDP register."]
@@ -1929,7 +1930,7 @@ impl Chdesc {
       }
    }
 #[doc="Write the DSTENDP register."]
-   #[inline] pub fn set_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&self, f: F) -> &Self {
+   #[inline] pub fn set_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &Self {
       let value = f(Dstendp(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
@@ -1939,10 +1940,11 @@ impl Chdesc {
 #[doc="Modfy the DSTENDP register."]
    #[inline] pub fn with_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &mut Self {
       let tmp = self.dstendp();
-      let value = f(Dstendp(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
       }
+     self
    }
 
 #[doc="Read the CHCTL register."]
@@ -1952,7 +1954,7 @@ impl Chdesc {
       }
    }
 #[doc="Write the CHCTL register."]
-   #[inline] pub fn set_chctl<F: FnOnce(Chctl) -> Chctl>(&self, f: F) -> &Self {
+   #[inline] pub fn set_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &Self {
       let value = f(Chctl(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
@@ -1962,10 +1964,11 @@ impl Chdesc {
 #[doc="Modfy the CHCTL register."]
    #[inline] pub fn with_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &mut Self {
       let tmp = self.chctl();
-      let value = f(Chctl(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
       }
+     self
    }
 
 }

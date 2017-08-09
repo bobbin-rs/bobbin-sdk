@@ -34,12 +34,12 @@ impl<P, T> PinExt for Pin<P, T> {
     }
 
     fn set_dir_output(&self) -> &Self {
-        self.port.set_dirset(Dirset(0).set_dirset(self.index, 1));
+        self.port.set_dirset(|r| r.set_dirset(self.index, 1));
         self
     }
 
     fn set_dir_input(&self) -> &Self {
-        self.port.set_dirclr(Dirclr(0).set_dirclr(self.index, 1));
+        self.port.set_dirclr(|r| r.set_dirclr(self.index, 1));
         self
     }
 
@@ -69,9 +69,9 @@ impl<P, T> PinExt for Pin<P, T> {
     
     fn set_output(&self, value: bool) -> &Self {
         if value {
-            self.port.set_outset(Outset(0).set_outset(self.index, 1))
+            self.port.set_outset(|r| r.set_outset(self.index, 1))
         } else {
-            self.port.set_outclr(Outclr(0).set_outclr(self.index, 1))
+            self.port.set_outclr(|r| r.set_outclr(self.index, 1))
         };
         self
     }

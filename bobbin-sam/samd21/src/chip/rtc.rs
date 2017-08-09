@@ -21,6 +21,7 @@ impl Rtc {
 }
 #[doc="32-bit Counter with Single 32-bit Compare Cluster"]
 pub mod mode0 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="32-bit Counter with Single 32-bit Compare Peripheral"]
    pub struct Mode0(pub u32);
@@ -1040,6 +1041,7 @@ impl ::core::fmt::Debug for Status {
 // End of mode0
 #[doc="16-bit Counter with Two 16-bit Compares Cluster"]
 pub mod mode1 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="16-bit Counter with Two 16-bit Compares Peripheral"]
    pub struct Mode1(pub u32);
@@ -2166,6 +2168,7 @@ impl ::core::fmt::Debug for Status {
 // End of mode1
 #[doc="Clock/Calendar with Alarm Cluster"]
 pub mod mode2 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="Clock/Calendar with Alarm Peripheral"]
    pub struct Mode2(pub u32);

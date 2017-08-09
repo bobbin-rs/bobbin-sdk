@@ -54,7 +54,7 @@ impl<T> Usart for Periph<T> {
 
         // Update the UART pad settings, mode and data order settings
 
-        s.set_ctrla(usart::Ctrla(0)
+        s.set_ctrla(|r| r
             .set_txpo(tx_pad as u32)
             .set_rxpo(rx_pad as u32)
             .set_mode(0x1)
@@ -66,7 +66,7 @@ impl<T> Usart for Periph<T> {
 
         // Enable transmit and receive and set data size to 8 bits
 
-        s.set_ctrlb(usart::Ctrlb(0)
+        s.set_ctrlb(|r| r
             .set_rxen(1)
             .set_txen(1)
             .set_chsize(0)
@@ -79,13 +79,12 @@ impl<T> Usart for Periph<T> {
 
     fn set_baud(&self, value: u16) -> &Self {
         let s = self.usart();
-        s.set_baud(usart::Baud(value));
+        s.set_baud(|_| usart::Baud(value));
         while s.syncbusy().enable() != 0 {}
         self
     }
 
     fn set_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         let s = self.usart();
         s.with_ctrla(|r| r.set_enable(value));
         self
@@ -101,14 +100,14 @@ impl<T> Usart for Periph<T> {
     fn putc(&self, c: u8) -> &Self {
         let s = self.usart();
         while s.intflag().dre() == 0 {}
-        s.set_data(usart::Data(0).set_data(c as u16));
+        s.set_data(|r| r.set_data(c));
         self
     }
 
     fn try_getc(&self) -> Option<u8> {
         let s = self.usart();
         if s.intflag().rxc() != 0 {
-            Some(s.data().data() as u8)
+            Some(s.data().data().value() as u8)
         } else {
             None
         }

@@ -53,6 +53,7 @@ impl<T> Periph<T> {
 }
 #[doc="8-bit Counter Mode Cluster"]
 pub mod count8 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="8-bit Counter Mode Peripheral"]
    pub struct Count8(pub u32);
@@ -1414,6 +1415,7 @@ impl ::core::fmt::Debug for Status {
 // End of count8
 #[doc="16-bit Counter Mode Cluster"]
 pub mod count16 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="16-bit Counter Mode Peripheral"]
    pub struct Count16(pub u32);
@@ -2712,6 +2714,7 @@ impl ::core::fmt::Debug for Status {
 // End of count16
 #[doc="32-bit Counter Mode Cluster"]
 pub mod count32 {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="32-bit Counter Mode Peripheral"]
    pub struct Count32(pub u32);

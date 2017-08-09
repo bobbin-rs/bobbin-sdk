@@ -2,7 +2,7 @@
 
 pub use ::chip::gclk::*;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ClockSource {
     XOSC = 0x00,
     GCLKIN = 0x01,
@@ -15,7 +15,7 @@ pub enum ClockSource {
     FDPLL96M = 0x08,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum GenericClockGen {
     GClkGen0 = 0x0,
     GClkGen1 = 0x1,
@@ -28,7 +28,7 @@ pub enum GenericClockGen {
     GClkGen8 = 0x8,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum GenericClock {
     DFLL48M_REF = 0x00,
     DPLL = 0x01,
@@ -69,12 +69,14 @@ pub enum GenericClock {
     I2S_1 = 0x26,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct ClockConfig {
     write_lock: bool,
     clk_gen: GenericClockGen,
     enabled: bool,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct ClockGenConfig {
     run_in_standby: bool,
     divide_selection: DivideSelection,
@@ -86,18 +88,19 @@ pub struct ClockGenConfig {
     division_factor: u16,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum DivideSelection {
     Divide, // Divide by DivFactor
     DivideExp, // Divide by 2^(DivFactor + 1)
 }
 
 pub fn reset() {
-    GCLK.set_ctrl(Ctrl(0).set_swrst(1));
+    GCLK.set_ctrl(|r| r.set_swrst(1));
     while GCLK.ctrl().swrst() != 0 {}
 }
 
 pub fn configure_clk(clk: GenericClock, cfg: ClockConfig) {    
-    GCLK.set_clkctrl(Clkctrl(0)
+    GCLK.set_clkctrl(|r| r
         .set_id(clk as u16)
         .set_wrtlock(bool2u16(cfg.write_lock))
         .set_gen(cfg.clk_gen as u16)
@@ -107,7 +110,7 @@ pub fn configure_clk(clk: GenericClock, cfg: ClockConfig) {
 
 /// Configure and enable a Generic Clock
 pub fn set_clk(clk: GenericClock, clk_gen: GenericClockGen) {
-    GCLK.set_clkctrl(Clkctrl(0)
+    GCLK.set_clkctrl(|r| r
         .set_id(clk as u16)
         .set_gen(clk_gen as u16)
         .set_clken(1));
@@ -115,8 +118,8 @@ pub fn set_clk(clk: GenericClock, clk_gen: GenericClockGen) {
 }
 
 pub fn configure_clkgen(clk_gen: GenericClockGen, cfg: ClockGenConfig) {
-    GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(cfg.division_factor as u32));
-    GCLK.set_genctrl(Genctrl(0)
+    GCLK.set_gendiv(|r| r.set_id(clk_gen as u32).set_div(cfg.division_factor as u32));
+    GCLK.set_genctrl(|r| r
         .set_id(clk_gen as u32)
         .set_runstdby(bool2u32(cfg.run_in_standby))
         .set_divsel(cfg.divide_selection as u32)
@@ -131,8 +134,8 @@ pub fn configure_clkgen(clk_gen: GenericClockGen, cfg: ClockGenConfig) {
 
 /// Configure and enable a Generic Clock using defaults
 pub fn set_clockgen(clk_gen: GenericClockGen, clk_src: ClockSource, div_selection: DivideSelection, div_factor: u32) {
-    GCLK.set_gendiv(Gendiv(0).set_id(clk_gen as u32).set_div(div_factor as u32));
-    GCLK.set_genctrl(Genctrl(0)
+    GCLK.set_gendiv(|r| r.set_id(clk_gen as u32).set_div(div_factor as u32));
+    GCLK.set_genctrl(|r| r
         .set_id(clk_gen as u32)
         .set_divsel(div_selection as u32)
         .set_src(clk_src as u32)

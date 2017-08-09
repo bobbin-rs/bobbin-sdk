@@ -525,6 +525,7 @@ impl<T> Periph<T> {
    }
 }
 pub mod master {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Master(pub u32);
 impl Master {
@@ -2278,6 +2279,7 @@ impl ::core::fmt::Debug for Mbcnt {
 }
 // End of master
 pub mod slave {
+#[allow(unused_imports)] use bobbin_common::bits;
    #[derive(Clone, Copy, PartialEq, Eq)]
    pub struct Slave(pub u32);
 impl Slave {

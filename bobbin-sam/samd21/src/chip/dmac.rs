@@ -1864,7 +1864,7 @@ impl Transfer {
       }
    }
 #[doc="Write the BTCTRL register."]
-   #[inline] pub fn set_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&self, f: F) -> &Self {
+   #[inline] pub fn set_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&mut self, f: F) -> &Self {
       let value = f(Btctrl(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u16, value.0);
@@ -1874,10 +1874,11 @@ impl Transfer {
 #[doc="Modfy the BTCTRL register."]
    #[inline] pub fn with_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&mut self, f: F) -> &mut Self {
       let tmp = self.btctrl();
-      let value = f(Btctrl(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut u16, value.0);
       }
+     self
    }
 
 #[doc="Read the BTCNT register."]
@@ -1887,7 +1888,7 @@ impl Transfer {
       }
    }
 #[doc="Write the BTCNT register."]
-   #[inline] pub fn set_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&self, f: F) -> &Self {
+   #[inline] pub fn set_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&mut self, f: F) -> &Self {
       let value = f(Btcnt(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut u16, value.0);
@@ -1897,10 +1898,11 @@ impl Transfer {
 #[doc="Modfy the BTCNT register."]
    #[inline] pub fn with_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&mut self, f: F) -> &mut Self {
       let tmp = self.btcnt();
-      let value = f(Btcnt(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut u16, value.0);
       }
+     self
    }
 
 #[doc="Read the SRCADDR register."]
@@ -1910,7 +1912,7 @@ impl Transfer {
       }
    }
 #[doc="Write the SRCADDR register."]
-   #[inline] pub fn set_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&mut self, f: F) -> &Self {
       let value = f(Srcaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
@@ -1920,10 +1922,11 @@ impl Transfer {
 #[doc="Modfy the SRCADDR register."]
    #[inline] pub fn with_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.srcaddr();
-      let value = f(Srcaddr(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut u32, value.0);
       }
+     self
    }
 
 #[doc="Read the DSTADDR register."]
@@ -1933,7 +1936,7 @@ impl Transfer {
       }
    }
 #[doc="Write the DSTADDR register."]
-   #[inline] pub fn set_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&mut self, f: F) -> &Self {
       let value = f(Dstaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
@@ -1943,10 +1946,11 @@ impl Transfer {
 #[doc="Modfy the DSTADDR register."]
    #[inline] pub fn with_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.dstaddr();
-      let value = f(Dstaddr(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut u32, value.0);
       }
+     self
    }
 
 #[doc="Read the DESCADDR register."]
@@ -1956,7 +1960,7 @@ impl Transfer {
       }
    }
 #[doc="Write the DESCADDR register."]
-   #[inline] pub fn set_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&mut self, f: F) -> &Self {
       let value = f(Descaddr(0));
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0xc) as *mut u32, value.0);
@@ -1966,10 +1970,11 @@ impl Transfer {
 #[doc="Modfy the DESCADDR register."]
    #[inline] pub fn with_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&mut self, f: F) -> &mut Self {
       let tmp = self.descaddr();
-      let value = f(Descaddr(0));
+      let value = f(tmp);
       unsafe {
          ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0xc) as *mut u32, value.0);
       }
+     self
    }
 
 }
