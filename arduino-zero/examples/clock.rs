@@ -5,7 +5,7 @@
 #[macro_use]
 extern crate arduino_zero as board;
 
-use board::hal::clock::{self, Clock};
+use board::hal::clock::Clock;
 use board::hal::sercom::SERCOM5;
 
 #[no_mangle]

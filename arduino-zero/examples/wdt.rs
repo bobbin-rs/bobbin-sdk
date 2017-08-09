@@ -21,7 +21,7 @@ pub extern "C" fn main() -> ! {
     for i in 0..5 {
         // Refresh Watchdog
         println!("{}", i);
-        w.set_clear(Clear(0).set_clear(0xA5));
+        w.set_clear(|r| r.set_clear(0xA5));
         board::delay(500);
     }
     println!("Waiting for watchdog timeout...");

@@ -30,7 +30,7 @@ pub extern "C" fn main() -> ! {
     dma.pm_set_enabled(true);
     
     println!("Resetting DMA");
-    dma.set_ctrl(dmac::Ctrl(0).set_swrst(1));
+    dma.set_ctrl(|r| r.set_swrst(1));
 
     let mut buf = [0u8; 1024];
     let ptr = unsafe {
@@ -43,24 +43,26 @@ pub extern "C" fn main() -> ! {
     println!("ptr: {:08x}", ptr as u32);        
     let desc: &mut Transfer = unsafe { mem::transmute(ptr) };
     let wb: &mut Transfer = unsafe { mem::transmute(ptr.offset(16))};
+    let desc_addr = desc as *mut Transfer as u32;
+    let wb_addr = wb as *mut Transfer as u32;
+    
     println!("desc: {:p}", desc);
     println!("wb: {:p}", wb);
     {
         // SRCADDR / DSTADDR must be the ending values after a transfer
         unsafe {
-            desc.set_srcaddr(Srcaddr(src.as_ptr().offset(src.len() as isize) as u32));
-            desc.set_dstaddr(Dstaddr(dst.as_mut_ptr().offset(dst.len() as isize) as u32));
+            desc.set_srcaddr(|_| Srcaddr(src.as_ptr().offset(src.len() as isize) as u32));
+            desc.set_dstaddr(|_| Dstaddr(dst.as_mut_ptr().offset(dst.len() as isize) as u32));
         }
-        desc.set_btcnt(Btcnt(src.len() as u16));
+        desc.set_btcnt(|_| Btcnt(src.len() as u16));
         desc.with_btctrl(|r| r.set_dstinc(1).set_srcinc(1).set_valid(1));
-
     }    
 
 
     // Set Descriptor Base
-    dma.set_baseaddr(Baseaddr(desc as *mut Transfer as u32));
+    dma.set_baseaddr(|_| Baseaddr(desc_addr));
     // Set Writeback Base
-    dma.set_wrbaddr(Wrbaddr(wb as *mut Transfer as u32));
+    dma.set_wrbaddr(|_| Wrbaddr(wb_addr));
 
     // Set Priority Level 0 Enabled
     dma.with_ctrl(|r| r.set_lvlen(0, 1));
@@ -86,12 +88,12 @@ pub extern "C" fn main() -> ! {
 
 
     // Set Channel ID
-    dma.set_chid(Chid(0).set_id(ch.index() as u8));
+    dma.set_chid(|r| r.set_id(ch.index() as u8));
     println!("Resetting channel");
-    dma.set_chctrla(Chctrla(0).set_swrst(1));
+    dma.set_chctrla(|r| r.set_swrst(1));
 
-    dma.set_chid(Chid(0).set_id(ch.index() as u8));
-    dma.set_chctrlb(Chctrlb(0).set_trigact(0x3));
+    dma.set_chid(|r| r.set_id(ch.index() as u8));
+    dma.set_chctrlb(|r| r.set_trigact(0x3));
 
     println!("CHID:          {:?}", dma.chid());
     println!("CHCTRLA:       {:?}", dma.chctrla());
@@ -102,13 +104,13 @@ pub extern "C" fn main() -> ! {
 
     println!("Enabling Channel");
     // Set Channel Enabled
-    dma.set_chid(Chid(0).set_id(ch.index() as u8));
-    dma.set_chctrla(Chctrla(0).set_enable(1));
+    dma.set_chid(|r| r.set_id(ch.index() as u8));
+    dma.set_chctrla(|r| r.set_enable(1));
     println!("CHINTFLAG:     {:?}", dma.chintflag());
     println!("CHSTATUS:      {:?}", dma.chstatus());
 
     println!("Triggering Channel");
-    dma.set_swtrigctrl(Swtrigctrl(0).set_swtrig(ch.index(), 1));
+    dma.set_swtrigctrl(|r| r.set_swtrig(ch.index(), 1));
     println!("CHINTFLAG:     {:?}", dma.chintflag());
     println!("CHSTATUS:      {:?}", dma.chstatus());
 

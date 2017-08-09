@@ -23,16 +23,18 @@ pub extern "C" fn main() -> ! {
 
     gclk::set_clk(gclk::GenericClock::TCC0_TCC1, gclk::GenericClockGen::GClkGen3);
 
-
+    println!("Clock Set");
     tcc.with_per(|r| r.set_per(2000));
-    tcc.with_cc(ch.index(), |r| r.set_cc(0));
+    println!("Period Set");
+    tcc.with_cc(ch.index(), |r| r.set_cc(1));
+    println!("CC Set");
     tcc.with_wave(|r| r.set_wavegen(0x02));
     tcc.with_ctrla(|r| r.set_cpten(ch.index(), 1).set_enable(1));
 
     println!("Setup Complete");
 
     let max = 2000;
-    let step = 20;
+    let step = 40;
     let mut i: u32 = step; 
     let mut dir: bool = true;
     loop {        
@@ -44,6 +46,6 @@ pub extern "C" fn main() -> ! {
         } else {
             i -= step;
         }
-        board::delay(10);
+        board::delay(1);
     }
 }

@@ -13,7 +13,7 @@ pub fn init() {
     SERCOM_TX.port().pm_set_enabled(true);
     // Set GCLK_GEN0 as source for SERCOM
 
-    gclk::GCLK.set_clkctrl(gclk::Clkctrl(0)
+    gclk::GCLK.set_clkctrl(|r| r
         .set_id(0x14 + 5)
         .set_gen(0x0)
         .set_clken(1)
