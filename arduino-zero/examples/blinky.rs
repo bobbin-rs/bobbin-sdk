@@ -4,7 +4,7 @@
 
 extern crate arduino_zero as board;
 
-use board::hal::port::PinExt;
+use board::hal::port::DigitalOutput;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

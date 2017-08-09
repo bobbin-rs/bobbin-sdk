@@ -3,7 +3,7 @@
 
 extern crate ek_tm4c1294xl as board;
 
-use board::hal::gpio::GpioExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
