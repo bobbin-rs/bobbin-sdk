@@ -166,7 +166,7 @@ impl<T> Start<u16> for Periph<T> {
 impl<T> StartUp<u16> for Periph<T> {
     fn start_up(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl(value))
+            .set_arr(|r| r.set_arrl(value - 1))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(0).set_opm(0).set_cen(1))
     }
@@ -175,7 +175,7 @@ impl<T> StartUp<u16> for Periph<T> {
 impl<T> StartUpOnce<u16> for Periph<T> {
     fn start_up_once(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl(value))
+            .set_arr(|r| r.set_arrl(value - 1))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(0).set_opm(1).set_cen(1))
     }
@@ -184,7 +184,7 @@ impl<T> StartUpOnce<u16> for Periph<T> {
 impl<T> StartDown<u16> for Periph<T> {
     fn start_down(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl(value))
+            .set_arr(|r| r.set_arrl(value - 1))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(1).set_opm(0).set_cen(1))
     }
@@ -193,7 +193,7 @@ impl<T> StartDown<u16> for Periph<T> {
 impl<T> StartDownOnce<u16> for Periph<T> {
     fn start_down_once(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl(value))
+            .set_arr(|r| r.set_arrl(value - 1))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(1).set_opm(1).set_cen(1))
     }
@@ -224,7 +224,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
     
     fn set_period(&self, value: u16) -> &Self {
-        self.set_arr(|r| r.set_arrl(value))
+        self.set_arr(|r| r.set_arrl((value - 1 )))
     }
 
     fn counter(&self) -> u16 {
