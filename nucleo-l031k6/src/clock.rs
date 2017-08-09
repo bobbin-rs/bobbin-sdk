@@ -1,5 +1,5 @@
 // use chip::flash::FLASH;
-use hal::clock::{self, DynamicClock};
+pub use hal::clock::*;
 
 pub const CLK: DynamicClock = DynamicClock {
     hse_osc: Some(8_000_000),
@@ -12,7 +12,7 @@ pub const CLK: DynamicClock = DynamicClock {
 // AHB = 32MHz
 
 pub fn init() {
-    clock::init_pll();
+    init_pll()
     // // (1) Set one wait state in Latency bit of FLASH_ACR 
     // FLASH.with_acr(|r| r.set_latency(1));
 

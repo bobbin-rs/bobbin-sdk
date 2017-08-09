@@ -18,11 +18,11 @@ pub extern "C" fn main() -> ! {
 
     let t = ch.periph();
     t.rcc_set_enabled(true);
-    t.set_auto_reload(2000);
+    t.set_period(2000);
 
     ch.set_output_compare_mode(OcMode::Pwm1);
     ch.set_capture_compare_enabled(true);
-    ch.set_capture_compare(0);
+    ch.set_compare(0);
 
     t.set_enabled(true);
 
@@ -30,11 +30,11 @@ pub extern "C" fn main() -> ! {
 
     let max = 2000;
     let step = 20;
-    let mut i: u32 = step; 
+    let mut i: u16 = step; 
     let mut dir: bool = true;
     loop {        
         //t.set_capture_compare(ch.index(), i as u32);
-        ch.set_capture_compare(i);
+        ch.set_compare(i);
         
         if i == max { dir = false } else if i == 0 { dir = true }
         if dir {

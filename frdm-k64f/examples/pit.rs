@@ -4,7 +4,9 @@
 #[macro_use]
 extern crate frdm_k64f as board;
 
-use board::hal::{sim, pit};
+use board::hal::pit::*;
+use board::hal::clock::*;
+use board::clock::CLK;
 
 // Assume PIT bus clock is 60Mhz
 
@@ -12,18 +14,15 @@ use board::hal::{sim, pit};
 pub extern "C" fn main() -> ! {
     board::init();
     
-    sim::set_pit_enabled(true);
-    pit::set_enabled(true);
-    let t0 = pit::timer(0);
+    let t0 = PIT;
+    let ch = PIT_CH0;
 
-    t0.set_load_value(60_000_000);
-    t0.clr_interrupt_flag();
-    t0.set_enabled(true);
-    let mut i = 0u32;
+    t0.sim_set_enabled(true);
+
+    let period = t0.clock(&CLK).unwrap();
+
     loop {
-        println!("Tick {}", i);
-        while t0.interrupt_flag() == false {}
-        t0.clr_interrupt_flag();
-        i = i.wrapping_add(1);
+        ch.delay(period);
+        println!("tick");
     }
 }

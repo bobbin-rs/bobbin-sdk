@@ -4,40 +4,44 @@
 #[macro_use]
 extern crate frdm_k64f as board;
 
-use board::hal::port::*;
-use board::hal::gpio::GpioExt;
 use board::hal::ftm::*;
+use board::hal::clock::Clock;
+use board::clock::CLK;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     
-    let led0 = board::led::LED0.gpio_pin();
-
-    println!("FTM Test");
-    
-
+    println!("FTM Test");    
     let ch = FTM0_CH2;
     let t0 = ch.periph();
 
-    t0.sim_set_enabled(true);
-    t0.set_prescale(Prescale::Div128);
-    t0.set_modulo(8192 * 2);
-    t0.set_clock(ClockSource::SystemClk);
+    t0
+        .sim_set_enabled(true);
 
-    println!("Clock Enabled");
+    println!("t0: {:?}", t0.clock(&CLK));
+    let prescale = 128;
+    let period = (t0.clock(&CLK).unwrap() / prescale) / 1000;
 
-    let mut n = 0;    
+    println!("{} / {}", period, prescale);
+
+    t0.set_prescale(prescale as u16);
+
+    let mut i = 0;
     loop {
-        while !t0.timer_overflow() {}
-        t0.clr_timer_overflow();
-        if n == 1_000_000 {
-            led0.toggle_output();
-            n = 0;
+        for _ in 0..1000 {
+            t0.delay(period as u16);
         }
-
-        n += 1;
-        //board::delay(1000);
+        println!("tick {}", i);
+        i += 1;
     }
 
+
+    // t0.start(period as u16);
+    // loop {
+    //     println!("{} - Wait Compare", t0.counter());
+    //     ch.clr_compare_flag().wait_compare_flag();
+    //     println!("{} - Wait Timeout", t0.counter());
+    //     t0.clr_timeout_flag().wait_timeout_flag();
+    // }
 }
