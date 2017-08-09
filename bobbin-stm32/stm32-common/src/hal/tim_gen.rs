@@ -34,7 +34,7 @@ pub const CH3: usize = 2;
 pub const CH4: usize = 3;
 
 pub trait TimGenExt {
-    // fn set_enabled(&self, value: bool) -> &Self;
+    fn set_enabled(&self, value: bool) -> &Self;
     fn set_direction(&self, value: Direction) -> &Self;
     // fn set_prescaler(&self, value: u16) -> &Self;
     fn set_update_event(&self) -> &Self;
@@ -49,10 +49,9 @@ pub trait TimGenExt {
 }
 
 impl<T> TimGenExt for Periph<T> {
-    // fn set_enabled(&self, value: bool) -> &Self {
-    //     let value = if value { 1 } else { 0 };
-    //     self.with_cr1(|r| r.set_cen(value))
-    // }
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.with_cr1(|r| r.set_cen(value))
+    }
 
     fn set_direction(&self, value: Direction) -> &Self {
         self.with_cr1(|r| r.set_dir(value as u32))
