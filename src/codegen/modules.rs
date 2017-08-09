@@ -1160,6 +1160,10 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
+        if cfg.bit_types {
+            try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+        }
+        
         try!(writeln!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
             try!(gen_doc(cfg, out, &format!("{} Peripheral", desc)));
@@ -1257,7 +1261,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
                 try!(writeln!(out, "     unsafe {{"));
                 try!(writeln!(out, "        ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
                 try!(writeln!(out, "     }}"));
-
+                try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));            
             }            
         } else {
@@ -1279,7 +1283,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
                 // try!(writeln!(out, "   #[inline] pub fn {}(&mut self, value: {}) -> &mut Self {{", r_setter, r_type));
-                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "      let value = f({}(0));", r_type));
                 try!(writeln!(out, "      unsafe {{"));
                 try!(writeln!(out, "         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
@@ -1291,10 +1295,11 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
                 try!(gen_doc(cfg, out, &format!("Modfy the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &mut Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "      let tmp = self.{}();", r_getter));
-                try!(writeln!(out, "      let value = f({}(0));", r_type));
+                try!(writeln!(out, "      let value = f(tmp);"));
                 try!(writeln!(out, "      unsafe {{"));
                 try!(writeln!(out, "         ::core::ptr::write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "      }}"));
+                try!(writeln!(out, "     self"));
                 try!(writeln!(out, "   }}"));            
             }
         }
