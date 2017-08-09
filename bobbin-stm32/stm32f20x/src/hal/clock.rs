@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 use ::chip::rcc::{self, RCC, En};
 use ::chip::flash;
 use ::chip::pwr;
@@ -132,35 +133,40 @@ impl ClockTree for DynamicClock {
     fn pllclk(&self) -> Hz {
         let cfgr = RCC.pllcfgr();
         let vco = match cfgr.pllsrc() {
-            0b0 => self.hsi(),
-            0b1 => self.hse(),
-            _ => unimplemented!(),
-        }.map(|v| v * cfgr.plln() / cfgr.pllm());
-        vco.map(|v| v / (2 * (cfgr.pllp() + 1)))
+            U1::B0 => self.hsi(),
+            U1::B1 => self.hse(),
+        }.map(|v| v * cfgr.plln().into_u32() / cfgr.pllm().into_u32());
+        vco.map(|v| v / (2 * (cfgr.pllp().into_u32() + 1)))
     }
 
     fn sysclk(&self) -> Hz {
         match RCC.cfgr().sws() {
-            0b00 => self.hsi(),
-            0b01 => self.hse(),
-            0b10 => self.pllclk(),
-            _ => unimplemented!(),
+            U2::B00 => self.hsi(),
+            U2::B01 => self.hse(),
+            U2::B10 => self.pllclk(),
+            U2::B11 => panic!("Invalid value for RCC_CFGR[SWS]"),
         }
     }
 
     fn hclk(&self) -> Hz {
         let shift = match RCC.cfgr().hpre() {
-            0b0000 ... 0b111 => 0,
-            0b1000 => 1,
-            0b1001 => 2,
-            0b1010 => 3,
-            0b1011 => 4,
+            U4::B0000 => 0,
+            U4::B0001 => 0,
+            U4::B0010 => 0,
+            U4::B0011 => 0,
+            U4::B0100 => 0,
+            U4::B0101 => 0,
+            U4::B0110 => 0,
+            U4::B0111 => 0,
+            U4::B1000 => 1,
+            U4::B1001 => 2,
+            U4::B1010 => 3,
+            U4::B1011 => 4,
             // NOTE: Divide by 32 is skipped
-            0b1100 => 6,
-            0b1101 => 7,
-            0b1110 => 8,
-            0b1111 => 9,
-            _ => unimplemented!(),
+            U4::B1100 => 6,
+            U4::B1101 => 7,
+            U4::B1110 => 8,
+            U4::B1111 => 9,
         };
         self.sysclk().map(|v| v >> shift)
     }    
@@ -171,38 +177,42 @@ impl ClockTree for DynamicClock {
 
     fn pclk1(&self) -> Hz {
         let shift = match RCC.cfgr().ppre1() {
-            0b000 ... 0b011 => 0,
-            0b100 => 1,
-            0b101 => 2,
-            0b110 => 3,
-            0b111 => 4,
-            _ => unimplemented!(),
+            U3::B000 => 0,
+            U3::B001 => 0,
+            U3::B010 => 0,
+            U3::B011 => 0,            
+            U3::B100 => 1,
+            U3::B101 => 2,
+            U3::B110 => 3,
+            U3::B111 => 4,
         };
         self.hclk().map(|v| v >> shift)
     }
 
     fn tim_pclk1(&self) -> Hz {
         match RCC.cfgr().ppre1() {
-            0b000 ... 0b011 => self.pclk1(),
+            U3::B000 | U3::B001 | U3::B010 | U3::B011 => self.pclk1(),
             _ => self.pclk1().map(|v| v << 1),
         }
     }
 
     fn pclk2(&self) -> Hz {
         let shift = match RCC.cfgr().ppre2() {
-            0b000 ... 0b011 => 0,
-            0b100 => 1,
-            0b101 => 2,
-            0b110 => 3,
-            0b111 => 4,
-            _ => unimplemented!(),
+            U3::B000 => 0,
+            U3::B001 => 0,
+            U3::B010 => 0,
+            U3::B011 => 0,            
+            U3::B100 => 1,
+            U3::B101 => 2,
+            U3::B110 => 3,
+            U3::B111 => 4,
         };
         self.hclk().map(|v| v >> shift)
     }
 
     fn tim_pclk2(&self) -> Hz {
         match RCC.cfgr().ppre2() {
-            0b000 ... 0b011 => self.pclk2(),
+            U3::B000 | U3::B001 | U3::B010 | U3::B011 => self.pclk2(),
             _ => self.pclk2().map(|v| v << 1),
         }
     }    

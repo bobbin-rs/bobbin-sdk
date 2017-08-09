@@ -58,7 +58,7 @@ impl<T> TimGenExt for Periph<T> {
     }
 
     // fn set_prescaler(&self, value: u16) -> &Self {
-    //     self.set_psc(Psc(0).set_psc(value as u32))
+    //     self.set_psc(Psc(0).set_psc(value))
     // }
 
     fn set_update_event(&self) -> &Self {
@@ -92,8 +92,8 @@ impl<T> TimGenExt for Periph<T> {
 
     fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
         match index {
-            0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value as u32)),
-            2...3 => self.with_ccmr_output(1, |r| r.set_ocpe(index - 2, value as u32)),
+            0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value)),
+            2...3 => self.with_ccmr_output(1, |r| r.set_ocpe(index - 2, value)),
             _ => panic!("Invalid channel index"),
         }
     }    
@@ -152,7 +152,7 @@ impl<T> Prescale<u16> for Periph<T> {
 
     fn set_prescale(&self, value: u16) -> &Self {
         self
-            .set_psc(|r| r.set_psc((value - 1) as u32))
+            .set_psc(|r| r.set_psc(value - 1))
             .set_egr(|r| r.set_ug(1))
     }    
 }
@@ -166,7 +166,7 @@ impl<T> Start<u16> for Periph<T> {
 impl<T> StartUp<u16> for Periph<T> {
     fn start_up(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_arr(|r| r.set_arrl(value))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(0).set_opm(0).set_cen(1))
     }
@@ -175,7 +175,7 @@ impl<T> StartUp<u16> for Periph<T> {
 impl<T> StartUpOnce<u16> for Periph<T> {
     fn start_up_once(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_arr(|r| r.set_arrl(value))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(0).set_opm(1).set_cen(1))
     }
@@ -184,7 +184,7 @@ impl<T> StartUpOnce<u16> for Periph<T> {
 impl<T> StartDown<u16> for Periph<T> {
     fn start_down(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_arr(|r| r.set_arrl(value))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(1).set_opm(0).set_cen(1))
     }
@@ -193,7 +193,7 @@ impl<T> StartDown<u16> for Periph<T> {
 impl<T> StartDownOnce<u16> for Periph<T> {
     fn start_down_once(&self, value: u16) -> &Self {
         self
-            .set_arr(|r| r.set_arrl((value - 1) as u32))
+            .set_arr(|r| r.set_arrl(value))
             .set_egr(|r| r.set_ug(1))
             .with_cr1(|r| r.set_dir(1).set_opm(1).set_cen(1))
     }
@@ -224,7 +224,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
     
     fn set_period(&self, value: u16) -> &Self {
-        self.set_arr(|r| r.set_arrl((value - 1 )))
+        self.set_arr(|r| r.set_arrl(value))
     }
 
     fn counter(&self) -> u16 {
