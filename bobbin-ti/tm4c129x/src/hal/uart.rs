@@ -56,11 +56,11 @@ impl<T> UartExt for Periph<T> {
     }
 
     fn data(&self) -> u8 {
-        self.dr().data() as u8
+        self.dr().data().value()
     }
 
     fn set_data(&self, value: u8) -> &Self {  
-        self.set_dr(Dr(0).set_data(value as u32))
+        self.set_dr(|r| r.set_data(value))
     }
     
     fn rxfe(&self) -> bool {

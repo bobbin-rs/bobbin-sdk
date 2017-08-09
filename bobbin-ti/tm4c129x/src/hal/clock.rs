@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 use ::chip::sysctl::*;
 use ::chip::uart::*;
 use ::chip::timer::*;
@@ -62,11 +63,11 @@ impl DynamicClock {
     // Internal Clocks
     pub fn oscclk(&self) -> Hz {
         match SYSCTL.rsclkcfg().oscsrc() {
-            0 => self.piosc(),
-            2 => self.lfiosc(),
-            3 => self.mosc(),
-            4 => self.rtcosc(),
-            _ => unimplemented!(),
+            U4::B0000 => self.piosc(),
+            U4::B0010 => self.lfiosc(),
+            U4::B0011 => self.mosc(),
+            U4::B0100 => self.rtcosc(),
+            _ => panic!("Invalid value for RSCLKCFG[OSCSRC]"),
         }
     }
 
@@ -78,13 +79,13 @@ impl DynamicClock {
         let rsclkcfg = SYSCTL.rsclkcfg();
         let pllfreq0 = SYSCTL.pllfreq0();
         let pllfreq1 = SYSCTL.pllfreq1();
-        let (q, n) = (pllfreq1.q(), pllfreq1.n());
+        let (q, n) = (pllfreq1.q().into_u32(), pllfreq1.n().into_u32());
         let f_in = match rsclkcfg.pllsrc() {
-            0 => self.piosc(),
-            3 => self.mosc(),
-            _ => unimplemented!(),
+            U4::B0000 => self.piosc(),
+            U4::B0011 => self.mosc(),
+            _ => panic!("Invalid value for RSCLKCFG[PLLSRC]")
         }.map(|v| v / ((q + 1)  * (n + 1)));
-        let mdiv = pllfreq0.mint() + pllfreq0.mfrac() / 1024;
+        let mdiv = pllfreq0.mint().into_u32() + pllfreq0.mfrac().into_u32() / 1024;
         f_in.map(|v| v * mdiv)
     }
 }
@@ -93,9 +94,9 @@ impl ClockTree for DynamicClock {
     fn sysclk(&self) -> Hz {
         let rsclkcfg = SYSCTL.rsclkcfg();
         if rsclkcfg.usepll() == 0 {
-            self.oscclk().map(|v| v / (SYSCTL.rsclkcfg().osysdiv() + 1))    
+            self.oscclk().map(|v| v / (SYSCTL.rsclkcfg().osysdiv().into_u32() + 1))    
         } else {
-            self.vco().map(|v| v / (SYSCTL.rsclkcfg().psysdiv() + 1))
+            self.vco().map(|v| v / (SYSCTL.rsclkcfg().psysdiv().into_u32() + 1))
         }
     }
 }

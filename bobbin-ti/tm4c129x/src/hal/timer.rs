@@ -1,11 +1,13 @@
 pub use chip::timer::*;
 pub use super::sysctl::SysctlEnabled;
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Dir {
     Down = 0,
     Up = 1,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Mode {
     OneShot = 1,
     Periodic = 2,
@@ -21,19 +23,19 @@ impl<T> TimerExt for Periph<T> {
         // disable timer a        
         self.with_ctl(|r| r.set_ten(0, 0));
         // set 32 bit mode
-        self.set_cfg(Cfg(0x0));
+        self.set_cfg(|r| r);
         // set timer a mode = one-shot
-        self.set_tmr(0, Tmr(0).set_tmr(0x01));        
+        self.set_tmr(0, |r| r.set_tmr(0x01));        
         // set timer a load register
-        self.set_tilr(0, Tilr(0).set_tilr(value));
+        self.set_tilr(0, |r| r.set_tilr(value));
         // clear timeout interrupt
-        self.set_icr(Icr(0).set_ttocint(0, 1));
+        self.set_icr(|r| r.set_ttocint(0, 1));
         // enable timer a
         self.with_ctl(|r| r.set_ten(0, 1));        
         // wait for timer a timeout
         while self.ris().ttoris(0) == 0 {}
         // clear timeout interrupt
-        self.set_icr(Icr(0).set_ttocint(0, 1));
+        self.set_icr(|r| r.set_ttocint(0, 1));
         self
     }
 }
@@ -67,7 +69,7 @@ impl<P, T> TimerChExt for Channel<P, T> {
         self.periph.tmr(self.index)
     }
     fn set_tmr(&self, value: Tmr) -> &Self {
-        self.periph.set_tmr(self.index, value);
+        self.periph.set_tmr(self.index, |_| value);
         self
     }
     fn with_tmr<F: FnOnce(Tmr) -> Tmr>(&self, f: F) -> &Self {
@@ -83,41 +85,40 @@ impl<P, T> TimerChExt for Channel<P, T> {
         self
     }
     fn reload(&self) -> u32 {
-        self.periph.tilr(self.index).tilr()
+        self.periph.tilr(self.index).tilr().value()
     }
     fn set_reload(&self, value: u32) -> &Self {
-        self.periph.set_tilr(self.index, Tilr(value));
+        self.periph.set_tilr(self.index, |_| Tilr(value));
         self
     }
 
     fn prescale(&self) -> u8 {
-        self.periph.tpr(self.index).tpsr() as u8
+        self.periph.tpr(self.index).tpsr().value()
     }
 
     fn set_prescale(&self, value: u8) -> &Self {
-        self.periph.set_tpr(self.index, Tpr(0).set_tpsr(value as u32));
+        self.periph.set_tpr(self.index, |r| r.set_tpsr(value));
         self
     }
 
     fn compare(&self) -> u32 {
-        self.periph.tmtchr(self.index).tmtchr()
+        self.periph.tmtchr(self.index).tmtchr().value()
     }
     fn set_compare(&self, value: u32) -> &Self {
-        self.periph.set_tmtchr(self.index, Tmtchr(value));
+        self.periph.set_tmtchr(self.index, |_| Tmtchr(value));
         self
     }    
     fn value(&self) -> u32 {
-        self.periph.tv(self.index).tv()
+        self.periph.tv(self.index).tv().value()
     }
     fn set_value(&self, value: u32) -> &Self {
-        self.periph.set_tv(self.index, Tv(value));
+        self.periph.set_tv(self.index, |_| Tv(value));
         self
     }        
     fn match_dmaen(&self) -> bool {
         self.periph.dmaev().tmdmaen(self.index) != 0
     }
     fn set_match_dmaen(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         self.periph.with_dmaev(|r| r.set_tmdmaen(self.index, value));
         self
     }
@@ -127,23 +128,23 @@ impl<P, T> TimerChExt for Channel<P, T> {
     }
     #[inline]
     fn clr_timeout_flag(&self) -> &Self {
-        self.periph.set_icr(Icr(0).set_ttocint(self.index, 1));
+        self.periph.set_icr(|r| r.set_ttocint(self.index, 1));
         self
     }
     #[inline]
     fn match_flag(&self) -> bool {
         match self.index {
             0 => self.periph.ris().tamris() != 0,
-            1 => self.periph.ris().tbmris() != 0,
-            _ => unimplemented!(),
+            1 => self.periph.ris().tbmris() != 0,            
+            _ => panic!("Invalid channel index"),
         }
     }
     #[inline]
     fn clr_match_flag(&self) -> &Self {
         match self.index {
-            0 => self.periph.set_icr(Icr(0).set_tamcint(1)),
-            1 => self.periph.set_icr(Icr(0).set_tbmcint(1)),
-            _ => unimplemented!(),
+            0 => self.periph.set_icr(|r| r.set_tamcint(1)),
+            1 => self.periph.set_icr(|r| r.set_tbmcint(1)),
+            _ => panic!("Invalid channel index"),
         };
         self
     }   
@@ -151,7 +152,7 @@ impl<P, T> TimerChExt for Channel<P, T> {
         self.periph.ris().dmaris(self.index) != 0
     }
     fn clr_dma_done_flag(&self) -> &Self {
-        self.periph.set_icr(Icr(0).set_dmaint(self.index, 1));
+        self.periph.set_icr(|r| r.set_dmaint(self.index, 1));
         self
     }       
 }
