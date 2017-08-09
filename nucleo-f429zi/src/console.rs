@@ -63,9 +63,9 @@ impl Write for Console {
         let usart = USART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                usart.putc(b'\r')
+                usart.putc(b'\r');
             }
-            usart.putc(byte)
+            usart.putc(byte);
         }
         Ok(())
     }
@@ -82,8 +82,8 @@ pub fn write_str(s: &str) {
 }
 
 #[doc(hidden)]
-pub fn write(buf: &[u8]) -> usize {
-    USART.write(buf)
+pub fn write(buf: &[u8]) {
+    USART.write(buf);
 }
 
 pub fn try_getc() -> Option<u8> {

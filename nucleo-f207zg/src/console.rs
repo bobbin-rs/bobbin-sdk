@@ -63,9 +63,9 @@ impl Write for Console {
         let usart = USART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                usart.putc(b'\r')
+                usart.putc(b'\r');
             }
-            usart.putc(byte)
+            usart.putc(byte);
         }
         Ok(())
     }

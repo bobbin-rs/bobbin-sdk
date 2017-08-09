@@ -67,9 +67,9 @@ impl Write for Console {
         let uart = UART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                uart.putc(b'\r')
+                uart.putc(b'\r');
             }
-            uart.putc(byte)
+            uart.putc(byte);
         }
         Ok(())
     }
@@ -86,8 +86,8 @@ pub fn write_str(s: &str) {
 }
 
 #[doc(hidden)]
-pub fn write(buf: &[u8]) -> usize {
-    UART.write(buf)
+pub fn write(buf: &[u8]) {
+    UART.write(buf);
 }
 
 pub fn try_getc() -> Option<u8> {

@@ -72,9 +72,9 @@ impl Write for Console {
         let uart = UART;
         for byte in s.as_bytes().iter().cloned() {
             if byte == b'\n' {
-                uart.putc(b'\r')
+                uart.putc(b'\r');
             }
-            uart.putc(byte)
+            uart.putc(byte);
         }
         Ok(())
     }
