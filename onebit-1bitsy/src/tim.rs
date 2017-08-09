@@ -21,7 +21,9 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {    
-    TIM.delay(ms << 1, TIM_PRESCALE);    
+    TIM
+        .set_prescale(TIM_PRESCALE)
+        .delay((ms << 1) as u16));   
 }
 
 

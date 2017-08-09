@@ -53,7 +53,7 @@ impl HandleWwdg for EwiHandler {
     fn handle_wwdg(&self) {
         println!("EWI!");
         if WWDG.sr().ewif() != 0 {
-            WWDG.set_sr(Sr(0).set_ewif(0));
+            WWDG.set_sr(|r| r.set_ewif(0));
         }        
     }
 }
