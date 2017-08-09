@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 pub use ::chip::sim::*;
 
 pub trait SimEnabled {
@@ -57,15 +58,14 @@ pub trait SimExt {
 
 impl SimExt for Sim {
     fn cop_reset(&self) -> &Self {
-        self.set_srvcop(Srvcop(0).set_srvcop(0x55));
-        self.set_srvcop(Srvcop(0).set_srvcop(0xAA));
+        self.set_srvcop(|r| r.set_srvcop(0x55));
+        self.set_srvcop(|r| r.set_srvcop(0xAA));
         self
     }
     fn cop_source(&self) -> CopSource {
         match self.copc().copclks() {
-            0 => CopSource::Khz,
-            1 => CopSource::Bus,
-            _ => unimplemented!()
+            U1::B0 => CopSource::Khz,
+            U1::B1 => CopSource::Bus,
         }
     }
     fn cop_set_source(&self, value: CopSource) -> &Self {
@@ -80,11 +80,10 @@ impl SimExt for Sim {
     }
     fn cop_timeout(&self) -> CopTimeout {
         match self.copc().copt() {
-            0b00 => CopTimeout::Disabled,
-            0b01 => CopTimeout::Short,
-            0b10 => CopTimeout::Medium,
-            0b11 => CopTimeout::Long,
-            _ => unimplemented!()
+            U2::B00 => CopTimeout::Disabled,
+            U2::B01 => CopTimeout::Short,
+            U2::B10 => CopTimeout::Medium,
+            U2::B11 => CopTimeout::Long,
         }
     }
     fn cop_set_timeout(&self, value: CopTimeout) -> &Self {
