@@ -61,7 +61,7 @@ impl<T> Timer<T> {
     }
     fn start(&self, reload: u32, prescaler: u16) {
         self.periph
-            .set_prescaler(prescaler)
+            .set_prescale(prescaler)
             .set_update_event()
             .clr_update_interrupt_flag()
             .with_dier(|r| r.set_uie(1))

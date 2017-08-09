@@ -38,7 +38,6 @@ pub extern "C" fn main() -> ! {
 
     println!("Starting DMA Transfer");
     ch.clr_tcif().set_enabled(true);
-
     //while !ch.tcif() {}
     while !dma_test.done() {}
     for i in 0..1024 {

@@ -3,7 +3,7 @@
 
 extern crate nucleo_f429zi as board;
 
-use board::hal::gpio::PinExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
