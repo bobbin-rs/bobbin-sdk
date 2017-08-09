@@ -2,7 +2,7 @@
 #![no_main]
 
 extern crate nucleo_f303ze as board;
-use board::hal::gpio::PinExt;
+use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
