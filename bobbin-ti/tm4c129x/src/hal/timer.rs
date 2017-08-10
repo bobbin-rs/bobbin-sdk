@@ -1,3 +1,4 @@
+pub use bobbin_common::timer::*;
 pub use chip::timer::*;
 pub use super::sysctl::SysctlEnabled;
 
@@ -14,31 +15,7 @@ pub enum Mode {
     Capture = 3,
 }
 
-pub trait TimerExt {
-    fn delay(&self, value: u32) -> &Self;
-}
-
-impl<T> TimerExt for Periph<T> {    
-    fn delay(&self, value: u32) -> &Self {
-        // disable timer a        
-        self.with_ctl(|r| r.set_ten(0, 0));
-        // set 32 bit mode
-        self.set_cfg(|r| r);
-        // set timer a mode = one-shot
-        self.set_tmr(0, |r| r.set_tmr(0x01));        
-        // set timer a load register
-        self.set_tilr(0, |r| r.set_tilr(value));
-        // clear timeout interrupt
-        self.set_icr(|r| r.set_ttocint(0, 1));
-        // enable timer a
-        self.with_ctl(|r| r.set_ten(0, 1));        
-        // wait for timer a timeout
-        while self.ris().ttoris(0) == 0 {}
-        // clear timeout interrupt
-        self.set_icr(|r| r.set_ttocint(0, 1));
-        self
-    }
-}
+// NOTE: Uses timer in Mode 0, 32 bit timer configuration.
 
 pub trait TimerChExt {
     fn tmr(&self) -> Tmr;
@@ -155,4 +132,146 @@ impl<P, T> TimerChExt for Channel<P, T> {
         self.periph.set_icr(|r| r.set_dmaint(self.index, 1));
         self
     }       
+}
+
+
+impl<T> Delay<u32> for Periph<T> {    
+    fn delay(&self, value: u32) -> &Self {
+        self
+            .start_down_once(value)
+            .clr_timeout_flag()
+            .wait_timeout_flag()
+    }
+}
+
+impl<T> Timer<u32> for Periph<T> {
+    fn stop(&self) -> &Self {
+        self.with_ctl(|r| r.set_ten(0, 0))
+    }
+    fn running(&self) -> bool {
+        self.ctl().ten(0) != 0
+    }
+
+    fn period(&self) -> u32 {
+        self.tilr(0).tilr().value()
+    }
+    fn set_period(&self, value: u32) -> &Self {
+        self.set_tilr(0, |r| r.set_tilr(value))
+    }
+
+    fn counter(&self) -> u32 {
+        self.tv(0).tv().value()
+    }
+
+    fn timeout_flag(&self) -> bool {
+        self.ris().ttoris(0) != 0
+    }
+    fn clr_timeout_flag(&self) -> &Self {
+        self.set_icr(|r| r.set_ttocint(0, 1))
+    }
+}
+
+
+impl<T> Start<u32> for Periph<T> {
+    fn start(&self, value: u32) -> &Self {
+        self.start_down(value)
+    }
+}
+
+impl<T> StartDown<u32> for Periph<T> {
+    fn start_down(&self, value: u32) -> &Self {    
+        // disable timer a        
+        self.with_ctl(|r| r.set_ten(0, 0));
+        // set 32 bit mode
+        self.set_cfg(|r| r);
+        // set timer a mode = repeat
+        self.set_tmr(0, |r| r.set_tcdir(0).set_tmr(0x02));
+        // set timer a load register
+        self.set_tilr(0, |r| r.set_tilr(value));
+        // enable timer a
+        self.with_ctl(|r| r.set_ten(0, 1));
+        self
+    }
+}
+
+impl<T> StartUp<u32> for Periph<T> {
+    fn start_up(&self, value: u32) -> &Self {
+        // disable timer a        
+        self.with_ctl(|r| r.set_ten(0, 0));
+        // set 32 bit mode
+        self.set_cfg(|r| r);
+        // set timer a mode = repeat
+        self.set_tmr(0, |r| r.set_tcdir(1).set_tmr(0x02));
+        // set timer a load register
+        self.set_tilr(0, |r| r.set_tilr(value));
+        // enable timer a
+        self.with_ctl(|r| r.set_ten(0, 1));        
+        self
+    }
+}
+
+impl<T> StartDownOnce<u32> for Periph<T> {
+    fn start_down_once(&self, value: u32) -> &Self {
+        // disable timer a        
+        self.with_ctl(|r| r.set_ten(0, 0));
+        // set 32 bit mode
+        self.set_cfg(|r| r);
+        // set timer a mode = one-shot
+        self.set_tmr(0, |r| r.set_tcdir(0).set_tmr(0x01));        
+        // set timer a load register
+        self.set_tilr(0, |r| r.set_tilr(value));
+        // enable timer a
+        self.with_ctl(|r| r.set_ten(0, 1));               
+        self
+    }
+}
+
+impl<T> StartUpOnce<u32> for Periph<T> {
+    fn start_up_once(&self, value: u32) -> &Self {
+        // disable timer a        
+        self.with_ctl(|r| r.set_ten(0, 0));
+        // set 32 bit mode
+        self.set_cfg(|r| r);
+        // set timer a mode = one-shot
+        self.set_tmr(0, |r| r.set_tcdir(1).set_tmr(0x01));        
+        // set timer a load register
+        self.set_tilr(0, |r| r.set_tilr(value));
+        // enable timer a
+        self.with_ctl(|r| r.set_ten(0, 1));         
+        self
+    }
+}
+
+impl<T> Prescale<u8> for Periph<T> {
+    fn prescale(&self) -> u8 {
+        self.tpr(0).tpsr().value()
+    }
+    fn set_prescale(&self, value: u8) -> &Self {
+        self.set_tpr(0, |r| r.set_tpsr(value))
+    }
+}
+
+impl<T> SetCounter<u32> for Periph<T> {
+    fn set_counter(&self, value: u32) -> &Self {
+        self.set_tv(0, |r| r.set_tv(value))
+    }
+}
+
+impl<T> Compare<u32> for Periph<T> {
+    fn compare(&self) -> u32 {
+        self.tmtchr(0).tmtchr().value()
+    }
+
+    fn set_compare(&self, value: u32) -> &Self {
+        self.set_tmtchr(0, |r| r.set_tmtchr(value))
+    }
+
+    fn compare_flag(&self) -> bool {
+        self.ris().tamris() != 0
+    }
+
+    fn clr_compare_flag(&self) -> &Self {
+        self.set_icr(|r| r.set_tamcint(1))
+    }
+
 }
