@@ -9,6 +9,7 @@ pub mod tcc;
 pub mod sercom;
 pub mod dmac;
 pub mod wdt;
+pub mod adc;
 
 // pub mod port;
 // pub mod usart;
