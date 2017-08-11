@@ -2,10 +2,31 @@ pub use bobbin_common::timer::*;
 pub use chip::tcc::*;
 pub use super::pm::PmEnabled;
 
+// Review for register synchronization
+
 pub trait TccExt {
+    fn mode_up(&self) -> &Self;
+    fn mode_down(&self) -> &Self;
+    fn mode_continuous(&self) -> &Self;
+    fn mode_oneshot(&self) -> &Self;
 }
 
 impl<T> TccExt for Periph<T> {
+    fn mode_up(&self) -> &Self {
+        self.set_ctrlbclr(|r| r.set_dir(1))
+    }
+
+    fn mode_down(&self) -> &Self {
+        self.set_ctrlbset(|r| r.set_dir(1))
+    }
+
+    fn mode_continuous(&self) -> &Self {
+        self.set_ctrlbset(|r| r.set_oneshot(1))
+    }
+
+    fn mode_oneshot(&self) -> &Self {
+        self.set_ctrlbset(|r| r.set_oneshot(1))
+    }        
 }
 
 pub trait TccChExt {
@@ -39,7 +60,9 @@ impl<T> Timer<u16> for Periph<T> {
     }
 
     fn set_period(&self, value: u16) -> &Self {
-        self.set_per(|r| r.set_per(value))        
+        self.set_per(|r| r.set_per(value));
+        while self.syncbusy().per() != 0 {}
+        self
     }
 
     fn counter(&self) -> u16 {
@@ -56,6 +79,7 @@ impl<T> Timer<u16> for Periph<T> {
         self
     }    
 }
+
 impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {        
         self.set_period(value);        
@@ -63,6 +87,57 @@ impl<T> Start<u16> for Periph<T> {
         self.with_ctrla(|r| r.set_enable(0x1));
         self.set_ctrlbset(|r| r.set_cmd(0x1));
         self
+    }
+}
+
+impl<T> StartUp<u16> for Periph<T> {
+    fn start_up(&self, value: u16) -> &Self {        
+        self
+            .set_period(value)
+            .with_wave(|r| r.set_wavegen(0x0))
+            .mode_up()
+            .mode_continuous()
+            .with_ctrla(|r| r.set_enable(0x1))
+            .set_ctrlbset(|r| r.set_cmd(0x1))
+    }
+}
+
+
+impl<T> StartDown<u16> for Periph<T> {
+    fn start_down(&self, value: u16) -> &Self {        
+        self
+            .set_period(value)
+            .with_wave(|r| r.set_wavegen(0x0))
+            .mode_down()
+            .mode_continuous()
+            .with_ctrla(|r| r.set_enable(0x1))
+            .set_ctrlbset(|r| r.set_cmd(0x1))
+    }
+}
+
+
+impl<T> StartUpOnce<u16> for Periph<T> {
+    fn start_up_once(&self, value: u16) -> &Self {        
+        self
+            .set_period(value)
+            .with_wave(|r| r.set_wavegen(0x0))
+            .mode_up()
+            .mode_oneshot()
+            .with_ctrla(|r| r.set_enable(0x1))
+            .set_ctrlbset(|r| r.set_cmd(0x1))
+    }
+}
+
+
+impl<T> StartDownOnce<u16> for Periph<T> {
+    fn start_down_once(&self, value: u16) -> &Self {        
+        self
+            .set_period(value)
+            .with_wave(|r| r.set_wavegen(0x0))
+            .mode_down()
+            .mode_oneshot()
+            .with_ctrla(|r| r.set_enable(0x1))
+            .set_ctrlbset(|r| r.set_cmd(0x1))
     }
 }
 
@@ -118,4 +193,57 @@ impl<P, T> Compare<u16> for Channel<P, T> {
         self
     }
 
+}
+
+impl<P, T> PwmUpLow<u16> for Channel<P, T> {
+    // Up Counting PWM, (Counter < Compare) => Output Low
+    fn pwm_up_low(&self, compare: u16, period: u16) -> &Self {
+        self.set_compare(compare);
+        self.periph()
+            .set_period(period)
+            .with_wave(|r| r.set_pol(self.index(), 0).set_wavegen(0x02))
+            .mode_up()
+            .with_ctrla(|r| r.set_enable(0x1));
+        self
+    }
+}
+
+impl<P, T> PwmDownLow<u16> for Channel<P, T> {
+    // Down Counting PWM, (Counter < Compare) => Output Low
+    fn pwm_down_low(&self, compare: u16, period: u16) -> &Self {
+        self.set_compare(compare);
+        self.periph()
+            .set_period(period)
+            .with_wave(|r| r.set_pol(self.index(), 0).set_wavegen(0x02))
+            .mode_down()
+            .with_ctrla(|r| r.set_enable(0x1));
+        self
+    }
+}
+
+impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
+    // Up Counting PWM, (Counter < Compare) => Output High
+    fn pwm_up_high(&self, compare: u16, period: u16) -> &Self {
+        self.set_compare(compare);
+        self.periph()
+            .set_period(period)
+            .with_wave(|r| r.set_pol(self.index(), 1).set_wavegen(0x02))            
+            .mode_up()
+            .with_ctrla(|r| r.set_enable(0x1));
+        self
+    }
+}
+
+
+impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
+    // Down Counting PWM, (Counter < Compare) => Output High
+    fn pwm_down_high(&self, compare: u16, period: u16) -> &Self {
+        self.set_compare(compare);
+        self.periph()
+            .set_period(period)
+            .with_wave(|r| r.set_pol(self.index(), 1).set_wavegen(0x02))
+            .mode_down()
+            .with_ctrla(|r| r.set_enable(0x1));
+        self
+    }
 }
