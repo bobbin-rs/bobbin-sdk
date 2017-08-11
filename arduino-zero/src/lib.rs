@@ -9,7 +9,7 @@ extern crate r0;
 pub mod console;
 
 extern crate samd21;
-pub use samd21::{chip, hal};
+pub use samd21::{common, chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
@@ -19,6 +19,7 @@ pub mod led;
 // // pub mod btn;
 // pub mod pin;
 pub mod tim;
+pub mod adc;
 // pub mod usart;
 
 pub use tim::delay;
