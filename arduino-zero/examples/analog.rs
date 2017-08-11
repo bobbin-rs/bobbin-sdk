@@ -13,7 +13,6 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("Analog Test");
     adc::init();
-    println!("Setting Pin Mode");
     let a = adc::A0;
     a.set_mode_analog();
     println!("Reading A0");
