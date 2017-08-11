@@ -259,3 +259,51 @@ impl<P, T> Compare<u16> for Channel<P, T> {
         self    
     }
 }
+
+impl<P, T> PwmUpHigh<u16> for Channel<P, T> {    
+    // Up Counting PWM, (Counter < Compare) => Output High
+    fn pwm_up_high(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_output_compare_mode(OcMode::Pwm1)
+            .set_capture_compare_enabled(true)
+            .set_compare(compare);
+        self.periph().start_up(period);
+        self
+    }
+}
+
+impl<P, T> PwmUpLow<u16> for Channel<P, T> {    
+    // Up Counting PWM, (Counter < Compare) => Output High
+    fn pwm_up_low(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_output_compare_mode(OcMode::Pwm2)
+            .set_capture_compare_enabled(true)
+            .set_compare(compare);
+        self.periph().start_up(period);
+        self
+    }
+}
+
+impl<P, T> PwmDownHigh<u16> for Channel<P, T> {    
+    // Down Counting PWM, (Counter < Compare) => Output High
+    fn pwm_down_high(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_output_compare_mode(OcMode::Pwm1)
+            .set_capture_compare_enabled(true)
+            .set_compare(compare);
+        self.periph().start_down(period);
+        self
+    }
+}
+
+impl<P, T> PwmDownLow<u16> for Channel<P, T> {    
+    // Down Counting PWM, (Counter < Compare) => Output High
+    fn pwm_down_low(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_output_compare_mode(OcMode::Pwm2)
+            .set_capture_compare_enabled(true)
+            .set_compare(compare);
+        self.periph().start_down(period);
+        self
+    }
+}

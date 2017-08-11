@@ -1443,45 +1443,6 @@ impl Inten {
      self
   }
 
-#[doc="Interrupt Fault 1"]
-  #[inline] pub fn pwm_inten_intfault1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-  }
-#[doc="Interrupt Fault 1"]
-  #[inline] pub fn set_pwm_inten_intfault1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
-
-#[doc="Interrupt Fault 2"]
-  #[inline] pub fn pwm_inten_intfault2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-  }
-#[doc="Interrupt Fault 2"]
-  #[inline] pub fn set_pwm_inten_intfault2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
-
-#[doc="Interrupt Fault 3"]
-  #[inline] pub fn pwm_inten_intfault3(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
-  }
-#[doc="Interrupt Fault 3"]
-  #[inline] pub fn set_pwm_inten_intfault3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 19);
-     self.0 |= value << 19;
-     self
-  }
-
 }
 impl ::core::fmt::Display for Inten {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1499,9 +1460,6 @@ impl ::core::fmt::Debug for Inten {
       if self.intfault(1) != 0 { try!(write!(f, " intfault[1]"))}
       if self.intfault(2) != 0 { try!(write!(f, " intfault[2]"))}
       if self.intfault(3) != 0 { try!(write!(f, " intfault[3]"))}
-      if self.pwm_inten_intfault1() != 0 { try!(write!(f, " pwm_inten_intfault1"))}
-      if self.pwm_inten_intfault2() != 0 { try!(write!(f, " pwm_inten_intfault2"))}
-      if self.pwm_inten_intfault3() != 0 { try!(write!(f, " pwm_inten_intfault3"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1778,11 +1736,11 @@ impl ChCtl {
   }
 
 #[doc="Counter Mode"]
-  #[inline] pub fn ctl_mode(&self) -> bits::U1 {
+  #[inline] pub fn mode(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Counter Mode"]
-  #[inline] pub fn set_ctl_mode<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_mode<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 1);
@@ -1791,11 +1749,11 @@ impl ChCtl {
   }
 
 #[doc="Debug Mode"]
-  #[inline] pub fn ctl_debug(&self) -> bits::U1 {
+  #[inline] pub fn debug(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Debug Mode"]
-  #[inline] pub fn set_ctl_debug<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_debug<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 2);
@@ -1804,11 +1762,11 @@ impl ChCtl {
   }
 
 #[doc="Load Register Update Mode"]
-  #[inline] pub fn ctl_loadupd(&self) -> bits::U1 {
+  #[inline] pub fn loadupd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Load Register Update Mode"]
-  #[inline] pub fn set_ctl_loadupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_loadupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 3);
@@ -1817,11 +1775,11 @@ impl ChCtl {
   }
 
 #[doc="Comparator A Update Mode"]
-  #[inline] pub fn ctl_cmpaupd(&self) -> bits::U1 {
+  #[inline] pub fn cmpaupd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Comparator A Update Mode"]
-  #[inline] pub fn set_ctl_cmpaupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_cmpaupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 4);
@@ -1830,11 +1788,11 @@ impl ChCtl {
   }
 
 #[doc="Comparator B Update Mode"]
-  #[inline] pub fn ctl_cmpbupd(&self) -> bits::U1 {
+  #[inline] pub fn cmpbupd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Comparator B Update Mode"]
-  #[inline] pub fn set_ctl_cmpbupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_cmpbupd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 5);
@@ -1843,11 +1801,11 @@ impl ChCtl {
   }
 
 #[doc="PWMnGENA Update Mode"]
-  #[inline] pub fn ctl_genaupd(&self) -> bits::U2 {
+  #[inline] pub fn genaupd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="PWMnGENA Update Mode"]
-  #[inline] pub fn set_ctl_genaupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_genaupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 6);
@@ -1856,11 +1814,11 @@ impl ChCtl {
   }
 
 #[doc="PWMnGENB Update Mode"]
-  #[inline] pub fn ctl_genbupd(&self) -> bits::U2 {
+  #[inline] pub fn genbupd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
   }
 #[doc="PWMnGENB Update Mode"]
-  #[inline] pub fn set_ctl_genbupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_genbupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 8);
@@ -1869,11 +1827,11 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBCTL Update Mode"]
-  #[inline] pub fn ctl_dbctlupd(&self) -> bits::U2 {
+  #[inline] pub fn dbctlupd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
   }
 #[doc="PWMnDBCTL Update Mode"]
-  #[inline] pub fn set_ctl_dbctlupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_dbctlupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 10);
@@ -1882,11 +1840,11 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBRISE Update Mode"]
-  #[inline] pub fn ctl_dbriseupd(&self) -> bits::U2 {
+  #[inline] pub fn dbriseupd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
   }
 #[doc="PWMnDBRISE Update Mode"]
-  #[inline] pub fn set_ctl_dbriseupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_dbriseupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 12);
@@ -1895,11 +1853,11 @@ impl ChCtl {
   }
 
 #[doc="PWMnDBFALL Update Mode"]
-  #[inline] pub fn ctl_dbfallupd(&self) -> bits::U2 {
+  #[inline] pub fn dbfallupd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
   }
 #[doc="PWMnDBFALL Update Mode"]
-  #[inline] pub fn set_ctl_dbfallupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_dbfallupd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 14);
@@ -1908,11 +1866,11 @@ impl ChCtl {
   }
 
 #[doc="Fault Condition Source"]
-  #[inline] pub fn ctl_fltsrc(&self) -> bits::U1 {
+  #[inline] pub fn fltsrc(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
   }
 #[doc="Fault Condition Source"]
-  #[inline] pub fn set_ctl_fltsrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_fltsrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 16);
@@ -1921,11 +1879,11 @@ impl ChCtl {
   }
 
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn ctl_minfltper(&self) -> bits::U1 {
+  #[inline] pub fn minfltper(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
   }
 #[doc="Minimum Fault Period"]
-  #[inline] pub fn set_ctl_minfltper<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_minfltper<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 17);
@@ -1934,11 +1892,11 @@ impl ChCtl {
   }
 
 #[doc="Latch Fault Input"]
-  #[inline] pub fn ctl_latch(&self) -> bits::U1 {
+  #[inline] pub fn latch(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
   }
 #[doc="Latch Fault Input"]
-  #[inline] pub fn set_ctl_latch<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_latch<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 18);
@@ -1956,33 +1914,33 @@ impl ::core::fmt::Debug for ChCtl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.enable() != 0 { try!(write!(f, " enable"))}
-      if self.ctl_mode() != 0 { try!(write!(f, " ctl_mode"))}
-      if self.ctl_debug() != 0 { try!(write!(f, " ctl_debug"))}
-      if self.ctl_loadupd() != 0 { try!(write!(f, " ctl_loadupd"))}
-      if self.ctl_cmpaupd() != 0 { try!(write!(f, " ctl_cmpaupd"))}
-      if self.ctl_cmpbupd() != 0 { try!(write!(f, " ctl_cmpbupd"))}
-      if self.ctl_genaupd() != 0 { try!(write!(f, " ctl_genaupd=0x{:x}", self.ctl_genaupd()))}
-      if self.ctl_genbupd() != 0 { try!(write!(f, " ctl_genbupd=0x{:x}", self.ctl_genbupd()))}
-      if self.ctl_dbctlupd() != 0 { try!(write!(f, " ctl_dbctlupd=0x{:x}", self.ctl_dbctlupd()))}
-      if self.ctl_dbriseupd() != 0 { try!(write!(f, " ctl_dbriseupd=0x{:x}", self.ctl_dbriseupd()))}
-      if self.ctl_dbfallupd() != 0 { try!(write!(f, " ctl_dbfallupd=0x{:x}", self.ctl_dbfallupd()))}
-      if self.ctl_fltsrc() != 0 { try!(write!(f, " ctl_fltsrc"))}
-      if self.ctl_minfltper() != 0 { try!(write!(f, " ctl_minfltper"))}
-      if self.ctl_latch() != 0 { try!(write!(f, " ctl_latch"))}
+      if self.mode() != 0 { try!(write!(f, " mode"))}
+      if self.debug() != 0 { try!(write!(f, " debug"))}
+      if self.loadupd() != 0 { try!(write!(f, " loadupd"))}
+      if self.cmpaupd() != 0 { try!(write!(f, " cmpaupd"))}
+      if self.cmpbupd() != 0 { try!(write!(f, " cmpbupd"))}
+      if self.genaupd() != 0 { try!(write!(f, " genaupd=0x{:x}", self.genaupd()))}
+      if self.genbupd() != 0 { try!(write!(f, " genbupd=0x{:x}", self.genbupd()))}
+      if self.dbctlupd() != 0 { try!(write!(f, " dbctlupd=0x{:x}", self.dbctlupd()))}
+      if self.dbriseupd() != 0 { try!(write!(f, " dbriseupd=0x{:x}", self.dbriseupd()))}
+      if self.dbfallupd() != 0 { try!(write!(f, " dbfallupd=0x{:x}", self.dbfallupd()))}
+      if self.fltsrc() != 0 { try!(write!(f, " fltsrc"))}
+      if self.minfltper() != 0 { try!(write!(f, " minfltper"))}
+      if self.latch() != 0 { try!(write!(f, " latch"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Interrupt and Trigger Enable"]
+#[doc="PWM Interrupt and Trigger Enable"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChInten(pub u32);
 impl ChInten {
 #[doc="Interrupt for Counter=0"]
-  #[inline] pub fn inten_intcntzero(&self) -> bits::U1 {
+  #[inline] pub fn intcntzero(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Interrupt for Counter=0"]
-  #[inline] pub fn set_inten_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 0);
@@ -1991,11 +1949,11 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnLOAD"]
-  #[inline] pub fn inten_intcntload(&self) -> bits::U1 {
+  #[inline] pub fn intcntload(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Interrupt for Counter=PWMnLOAD"]
-  #[inline] pub fn set_inten_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 1);
@@ -2004,11 +1962,11 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPA Up"]
-  #[inline] pub fn inten_intcmpau(&self) -> bits::U1 {
+  #[inline] pub fn intcmpau(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Interrupt for Counter=PWMnCMPA Up"]
-  #[inline] pub fn set_inten_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 2);
@@ -2017,11 +1975,11 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPA Down"]
-  #[inline] pub fn inten_intcmpad(&self) -> bits::U1 {
+  #[inline] pub fn intcmpad(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Interrupt for Counter=PWMnCMPA Down"]
-  #[inline] pub fn set_inten_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 3);
@@ -2030,11 +1988,11 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPB Up"]
-  #[inline] pub fn inten_intcmpbu(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbu(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Interrupt for Counter=PWMnCMPB Up"]
-  #[inline] pub fn set_inten_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 4);
@@ -2043,11 +2001,11 @@ impl ChInten {
   }
 
 #[doc="Interrupt for Counter=PWMnCMPB Down"]
-  #[inline] pub fn inten_intcmpbd(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Interrupt for Counter=PWMnCMPB Down"]
-  #[inline] pub fn set_inten_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 5);
@@ -2056,11 +2014,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=0"]
-  #[inline] pub fn inten_trcntzero(&self) -> bits::U1 {
+  #[inline] pub fn trcntzero(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
   }
 #[doc="Trigger for Counter=0"]
-  #[inline] pub fn set_inten_trcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 8);
@@ -2069,11 +2027,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnLOAD"]
-  #[inline] pub fn inten_trcntload(&self) -> bits::U1 {
+  #[inline] pub fn trcntload(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
   }
 #[doc="Trigger for Counter=PWMnLOAD"]
-  #[inline] pub fn set_inten_trcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 9);
@@ -2082,11 +2040,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPA Up"]
-  #[inline] pub fn inten_trcmpau(&self) -> bits::U1 {
+  #[inline] pub fn trcmpau(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
   }
 #[doc="Trigger for Counter=PWMnCMPA Up"]
-  #[inline] pub fn set_inten_trcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 10);
@@ -2095,11 +2053,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPA Down"]
-  #[inline] pub fn inten_trcmpad(&self) -> bits::U1 {
+  #[inline] pub fn trcmpad(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
   }
 #[doc="Trigger for Counter=PWMnCMPA Down"]
-  #[inline] pub fn set_inten_trcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 11);
@@ -2108,11 +2066,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPB Up"]
-  #[inline] pub fn inten_trcmpbu(&self) -> bits::U1 {
+  #[inline] pub fn trcmpbu(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
   }
 #[doc="Trigger for Counter=PWMnCMPB Up"]
-  #[inline] pub fn set_inten_trcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 12);
@@ -2121,11 +2079,11 @@ impl ChInten {
   }
 
 #[doc="Trigger for Counter=PWMnCMPB Down"]
-  #[inline] pub fn inten_trcmpbd(&self) -> bits::U1 {
+  #[inline] pub fn trcmpbd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
   }
 #[doc="Trigger for Counter=PWMnCMPB Down"]
-  #[inline] pub fn set_inten_trcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_trcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 13);
@@ -2142,32 +2100,32 @@ impl ::core::fmt::Display for ChInten {
 impl ::core::fmt::Debug for ChInten {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.inten_intcntzero() != 0 { try!(write!(f, " inten_intcntzero"))}
-      if self.inten_intcntload() != 0 { try!(write!(f, " inten_intcntload"))}
-      if self.inten_intcmpau() != 0 { try!(write!(f, " inten_intcmpau"))}
-      if self.inten_intcmpad() != 0 { try!(write!(f, " inten_intcmpad"))}
-      if self.inten_intcmpbu() != 0 { try!(write!(f, " inten_intcmpbu"))}
-      if self.inten_intcmpbd() != 0 { try!(write!(f, " inten_intcmpbd"))}
-      if self.inten_trcntzero() != 0 { try!(write!(f, " inten_trcntzero"))}
-      if self.inten_trcntload() != 0 { try!(write!(f, " inten_trcntload"))}
-      if self.inten_trcmpau() != 0 { try!(write!(f, " inten_trcmpau"))}
-      if self.inten_trcmpad() != 0 { try!(write!(f, " inten_trcmpad"))}
-      if self.inten_trcmpbu() != 0 { try!(write!(f, " inten_trcmpbu"))}
-      if self.inten_trcmpbd() != 0 { try!(write!(f, " inten_trcmpbd"))}
+      if self.intcntzero() != 0 { try!(write!(f, " intcntzero"))}
+      if self.intcntload() != 0 { try!(write!(f, " intcntload"))}
+      if self.intcmpau() != 0 { try!(write!(f, " intcmpau"))}
+      if self.intcmpad() != 0 { try!(write!(f, " intcmpad"))}
+      if self.intcmpbu() != 0 { try!(write!(f, " intcmpbu"))}
+      if self.intcmpbd() != 0 { try!(write!(f, " intcmpbd"))}
+      if self.trcntzero() != 0 { try!(write!(f, " trcntzero"))}
+      if self.trcntload() != 0 { try!(write!(f, " trcntload"))}
+      if self.trcmpau() != 0 { try!(write!(f, " trcmpau"))}
+      if self.trcmpad() != 0 { try!(write!(f, " trcmpad"))}
+      if self.trcmpbu() != 0 { try!(write!(f, " trcmpbu"))}
+      if self.trcmpbd() != 0 { try!(write!(f, " trcmpbd"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Raw Interrupt Status"]
+#[doc="PWM Raw Interrupt Status"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChRis(pub u32);
 impl ChRis {
 #[doc="Counter=0 Interrupt Status"]
-  #[inline] pub fn ris_intcntzero(&self) -> bits::U1 {
+  #[inline] pub fn intcntzero(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Counter=0 Interrupt Status"]
-  #[inline] pub fn set_ris_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 0);
@@ -2176,11 +2134,11 @@ impl ChRis {
   }
 
 #[doc="Counter=Load Interrupt Status"]
-  #[inline] pub fn ris_intcntload(&self) -> bits::U1 {
+  #[inline] pub fn intcntload(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Counter=Load Interrupt Status"]
-  #[inline] pub fn set_ris_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 1);
@@ -2189,11 +2147,11 @@ impl ChRis {
   }
 
 #[doc="Comparator A Up Interrupt Status"]
-  #[inline] pub fn ris_intcmpau(&self) -> bits::U1 {
+  #[inline] pub fn intcmpau(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Comparator A Up Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 2);
@@ -2202,11 +2160,11 @@ impl ChRis {
   }
 
 #[doc="Comparator A Down Interrupt Status"]
-  #[inline] pub fn ris_intcmpad(&self) -> bits::U1 {
+  #[inline] pub fn intcmpad(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Comparator A Down Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 3);
@@ -2215,11 +2173,11 @@ impl ChRis {
   }
 
 #[doc="Comparator B Up Interrupt Status"]
-  #[inline] pub fn ris_intcmpbu(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbu(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Comparator B Up Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 4);
@@ -2228,11 +2186,11 @@ impl ChRis {
   }
 
 #[doc="Comparator B Down Interrupt Status"]
-  #[inline] pub fn ris_intcmpbd(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Comparator B Down Interrupt Status"]
-  #[inline] pub fn set_ris_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 5);
@@ -2249,26 +2207,26 @@ impl ::core::fmt::Display for ChRis {
 impl ::core::fmt::Debug for ChRis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.ris_intcntzero() != 0 { try!(write!(f, " ris_intcntzero"))}
-      if self.ris_intcntload() != 0 { try!(write!(f, " ris_intcntload"))}
-      if self.ris_intcmpau() != 0 { try!(write!(f, " ris_intcmpau"))}
-      if self.ris_intcmpad() != 0 { try!(write!(f, " ris_intcmpad"))}
-      if self.ris_intcmpbu() != 0 { try!(write!(f, " ris_intcmpbu"))}
-      if self.ris_intcmpbd() != 0 { try!(write!(f, " ris_intcmpbd"))}
+      if self.intcntzero() != 0 { try!(write!(f, " intcntzero"))}
+      if self.intcntload() != 0 { try!(write!(f, " intcntload"))}
+      if self.intcmpau() != 0 { try!(write!(f, " intcmpau"))}
+      if self.intcmpad() != 0 { try!(write!(f, " intcmpad"))}
+      if self.intcmpbu() != 0 { try!(write!(f, " intcmpbu"))}
+      if self.intcmpbd() != 0 { try!(write!(f, " intcmpbd"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Interrupt Status and Clear"]
+#[doc="PWM Interrupt Status and Clear"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChIsc(pub u32);
 impl ChIsc {
 #[doc="Counter=0 Interrupt"]
-  #[inline] pub fn isc_intcntzero(&self) -> bits::U1 {
+  #[inline] pub fn intcntzero(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Counter=0 Interrupt"]
-  #[inline] pub fn set_isc_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntzero<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 0);
@@ -2277,11 +2235,11 @@ impl ChIsc {
   }
 
 #[doc="Counter=Load Interrupt"]
-  #[inline] pub fn isc_intcntload(&self) -> bits::U1 {
+  #[inline] pub fn intcntload(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
   }
 #[doc="Counter=Load Interrupt"]
-  #[inline] pub fn set_isc_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcntload<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 1);
@@ -2290,11 +2248,11 @@ impl ChIsc {
   }
 
 #[doc="Comparator A Up Interrupt"]
-  #[inline] pub fn isc_intcmpau(&self) -> bits::U1 {
+  #[inline] pub fn intcmpau(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
   }
 #[doc="Comparator A Up Interrupt"]
-  #[inline] pub fn set_isc_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpau<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 2);
@@ -2303,11 +2261,11 @@ impl ChIsc {
   }
 
 #[doc="Comparator A Down Interrupt"]
-  #[inline] pub fn isc_intcmpad(&self) -> bits::U1 {
+  #[inline] pub fn intcmpad(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
   }
 #[doc="Comparator A Down Interrupt"]
-  #[inline] pub fn set_isc_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpad<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 3);
@@ -2316,11 +2274,11 @@ impl ChIsc {
   }
 
 #[doc="Comparator B Up Interrupt"]
-  #[inline] pub fn isc_intcmpbu(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbu(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
   }
 #[doc="Comparator B Up Interrupt"]
-  #[inline] pub fn set_isc_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbu<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 4);
@@ -2329,11 +2287,11 @@ impl ChIsc {
   }
 
 #[doc="Comparator B Down Interrupt"]
-  #[inline] pub fn isc_intcmpbd(&self) -> bits::U1 {
+  #[inline] pub fn intcmpbd(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
   }
 #[doc="Comparator B Down Interrupt"]
-  #[inline] pub fn set_isc_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_intcmpbd<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 5);
@@ -2350,17 +2308,17 @@ impl ::core::fmt::Display for ChIsc {
 impl ::core::fmt::Debug for ChIsc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.isc_intcntzero() != 0 { try!(write!(f, " isc_intcntzero"))}
-      if self.isc_intcntload() != 0 { try!(write!(f, " isc_intcntload"))}
-      if self.isc_intcmpau() != 0 { try!(write!(f, " isc_intcmpau"))}
-      if self.isc_intcmpad() != 0 { try!(write!(f, " isc_intcmpad"))}
-      if self.isc_intcmpbu() != 0 { try!(write!(f, " isc_intcmpbu"))}
-      if self.isc_intcmpbd() != 0 { try!(write!(f, " isc_intcmpbd"))}
+      if self.intcntzero() != 0 { try!(write!(f, " intcntzero"))}
+      if self.intcntload() != 0 { try!(write!(f, " intcntload"))}
+      if self.intcmpau() != 0 { try!(write!(f, " intcmpau"))}
+      if self.intcmpad() != 0 { try!(write!(f, " intcmpad"))}
+      if self.intcmpbu() != 0 { try!(write!(f, " intcmpbu"))}
+      if self.intcmpbd() != 0 { try!(write!(f, " intcmpbd"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Load"]
+#[doc="PWM Load"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChLoad(pub u32);
 impl ChLoad {
@@ -2391,7 +2349,7 @@ impl ::core::fmt::Debug for ChLoad {
       Ok(())
    }
 }
-#[doc="PWM0 Counter"]
+#[doc="PWM Counter"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCount(pub u32);
 impl ChCount {
@@ -2422,7 +2380,7 @@ impl ::core::fmt::Debug for ChCount {
       Ok(())
    }
 }
-#[doc="PWM0 Compare A"]
+#[doc="PWM Compare A"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCmpa(pub u32);
 impl ChCmpa {
@@ -2453,7 +2411,7 @@ impl ::core::fmt::Debug for ChCmpa {
       Ok(())
    }
 }
-#[doc="PWM0 Compare B"]
+#[doc="PWM Compare B"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChCmpb(pub u32);
 impl ChCmpb {
@@ -2484,16 +2442,16 @@ impl ::core::fmt::Debug for ChCmpb {
       Ok(())
    }
 }
-#[doc="PWM0 Generator A Control"]
+#[doc="PWM Generator A Control"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChGena(pub u32);
 impl ChGena {
 #[doc="Action for Counter=0"]
-  #[inline] pub fn gena_actzero(&self) -> bits::U2 {
+  #[inline] pub fn actzero(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
   }
 #[doc="Action for Counter=0"]
-  #[inline] pub fn set_gena_actzero<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actzero<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 0);
@@ -2502,11 +2460,11 @@ impl ChGena {
   }
 
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn gena_actload(&self) -> bits::U2 {
+  #[inline] pub fn actload(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
   }
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn set_gena_actload<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actload<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 2);
@@ -2515,11 +2473,11 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn gena_actcmpau(&self) -> bits::U2 {
+  #[inline] pub fn actcmpau(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
   }
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn set_gena_actcmpau<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpau<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 4);
@@ -2528,11 +2486,11 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn gena_actcmpad(&self) -> bits::U2 {
+  #[inline] pub fn actcmpad(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn set_gena_actcmpad<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpad<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 6);
@@ -2541,11 +2499,11 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn gena_actcmpbu(&self) -> bits::U2 {
+  #[inline] pub fn actcmpbu(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
   }
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn set_gena_actcmpbu<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpbu<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 8);
@@ -2554,11 +2512,11 @@ impl ChGena {
   }
 
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn gena_actcmpbd(&self) -> bits::U2 {
+  #[inline] pub fn actcmpbd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
   }
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn set_gena_actcmpbd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpbd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 10);
@@ -2575,26 +2533,26 @@ impl ::core::fmt::Display for ChGena {
 impl ::core::fmt::Debug for ChGena {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.gena_actzero() != 0 { try!(write!(f, " gena_actzero=0x{:x}", self.gena_actzero()))}
-      if self.gena_actload() != 0 { try!(write!(f, " gena_actload=0x{:x}", self.gena_actload()))}
-      if self.gena_actcmpau() != 0 { try!(write!(f, " gena_actcmpau=0x{:x}", self.gena_actcmpau()))}
-      if self.gena_actcmpad() != 0 { try!(write!(f, " gena_actcmpad=0x{:x}", self.gena_actcmpad()))}
-      if self.gena_actcmpbu() != 0 { try!(write!(f, " gena_actcmpbu=0x{:x}", self.gena_actcmpbu()))}
-      if self.gena_actcmpbd() != 0 { try!(write!(f, " gena_actcmpbd=0x{:x}", self.gena_actcmpbd()))}
+      if self.actzero() != 0 { try!(write!(f, " actzero=0x{:x}", self.actzero()))}
+      if self.actload() != 0 { try!(write!(f, " actload=0x{:x}", self.actload()))}
+      if self.actcmpau() != 0 { try!(write!(f, " actcmpau=0x{:x}", self.actcmpau()))}
+      if self.actcmpad() != 0 { try!(write!(f, " actcmpad=0x{:x}", self.actcmpad()))}
+      if self.actcmpbu() != 0 { try!(write!(f, " actcmpbu=0x{:x}", self.actcmpbu()))}
+      if self.actcmpbd() != 0 { try!(write!(f, " actcmpbd=0x{:x}", self.actcmpbd()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Generator B Control"]
+#[doc="PWM Generator B Control"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChGenb(pub u32);
 impl ChGenb {
 #[doc="Action for Counter=0"]
-  #[inline] pub fn genb_actzero(&self) -> bits::U2 {
+  #[inline] pub fn actzero(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
   }
 #[doc="Action for Counter=0"]
-  #[inline] pub fn set_genb_actzero<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actzero<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 0);
@@ -2603,11 +2561,11 @@ impl ChGenb {
   }
 
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn genb_actload(&self) -> bits::U2 {
+  #[inline] pub fn actload(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
   }
 #[doc="Action for Counter=LOAD"]
-  #[inline] pub fn set_genb_actload<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actload<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 2);
@@ -2616,11 +2574,11 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn genb_actcmpau(&self) -> bits::U2 {
+  #[inline] pub fn actcmpau(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
   }
 #[doc="Action for Comparator A Up"]
-  #[inline] pub fn set_genb_actcmpau<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpau<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 4);
@@ -2629,11 +2587,11 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn genb_actcmpad(&self) -> bits::U2 {
+  #[inline] pub fn actcmpad(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
   }
 #[doc="Action for Comparator A Down"]
-  #[inline] pub fn set_genb_actcmpad<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpad<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 6);
@@ -2642,11 +2600,11 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn genb_actcmpbu(&self) -> bits::U2 {
+  #[inline] pub fn actcmpbu(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
   }
 #[doc="Action for Comparator B Up"]
-  #[inline] pub fn set_genb_actcmpbu<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpbu<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 8);
@@ -2655,11 +2613,11 @@ impl ChGenb {
   }
 
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn genb_actcmpbd(&self) -> bits::U2 {
+  #[inline] pub fn actcmpbd(&self) -> bits::U2 {
      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
   }
 #[doc="Action for Comparator B Down"]
-  #[inline] pub fn set_genb_actcmpbd<V: Into<bits::U2>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_actcmpbd<V: Into<bits::U2>>(mut self, value: V) -> Self {
      let value: bits::U2 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x3 << 10);
@@ -2676,26 +2634,26 @@ impl ::core::fmt::Display for ChGenb {
 impl ::core::fmt::Debug for ChGenb {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.genb_actzero() != 0 { try!(write!(f, " genb_actzero=0x{:x}", self.genb_actzero()))}
-      if self.genb_actload() != 0 { try!(write!(f, " genb_actload=0x{:x}", self.genb_actload()))}
-      if self.genb_actcmpau() != 0 { try!(write!(f, " genb_actcmpau=0x{:x}", self.genb_actcmpau()))}
-      if self.genb_actcmpad() != 0 { try!(write!(f, " genb_actcmpad=0x{:x}", self.genb_actcmpad()))}
-      if self.genb_actcmpbu() != 0 { try!(write!(f, " genb_actcmpbu=0x{:x}", self.genb_actcmpbu()))}
-      if self.genb_actcmpbd() != 0 { try!(write!(f, " genb_actcmpbd=0x{:x}", self.genb_actcmpbd()))}
+      if self.actzero() != 0 { try!(write!(f, " actzero=0x{:x}", self.actzero()))}
+      if self.actload() != 0 { try!(write!(f, " actload=0x{:x}", self.actload()))}
+      if self.actcmpau() != 0 { try!(write!(f, " actcmpau=0x{:x}", self.actcmpau()))}
+      if self.actcmpad() != 0 { try!(write!(f, " actcmpad=0x{:x}", self.actcmpad()))}
+      if self.actcmpbu() != 0 { try!(write!(f, " actcmpbu=0x{:x}", self.actcmpbu()))}
+      if self.actcmpbd() != 0 { try!(write!(f, " actcmpbd=0x{:x}", self.actcmpbd()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Dead-Band Control"]
+#[doc="PWM Dead-Band Control"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbctl(pub u32);
 impl ChDbctl {
 #[doc="Dead-Band Generator Enable"]
-  #[inline] pub fn dbctl_enable(&self) -> bits::U1 {
+  #[inline] pub fn enable(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
   }
 #[doc="Dead-Band Generator Enable"]
-  #[inline] pub fn set_dbctl_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 0);
@@ -2712,21 +2670,21 @@ impl ::core::fmt::Display for ChDbctl {
 impl ::core::fmt::Debug for ChDbctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.dbctl_enable() != 0 { try!(write!(f, " dbctl_enable"))}
+      if self.enable() != 0 { try!(write!(f, " enable"))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Dead-Band Rising-Edge Delay"]
+#[doc="PWM Dead-Band Rising-Edge Delay"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbrise(pub u32);
 impl ChDbrise {
 #[doc="Dead-Band Rise Delay"]
-  #[inline] pub fn dbrise_delay(&self) -> bits::U12 {
+  #[inline] pub fn delay(&self) -> bits::U12 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="Dead-Band Rise Delay"]
-  #[inline] pub fn set_dbrise_delay<V: Into<bits::U12>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_delay<V: Into<bits::U12>>(mut self, value: V) -> Self {
      let value: bits::U12 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0xfff << 0);
@@ -2743,21 +2701,21 @@ impl ::core::fmt::Display for ChDbrise {
 impl ::core::fmt::Debug for ChDbrise {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.dbrise_delay() != 0 { try!(write!(f, " dbrise_delay=0x{:x}", self.dbrise_delay()))}
+      if self.delay() != 0 { try!(write!(f, " delay=0x{:x}", self.delay()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Dead-Band Falling-Edge-Delay"]
+#[doc="PWM Dead-Band Falling-Edge-Delay"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChDbfall(pub u32);
 impl ChDbfall {
 #[doc="Dead-Band Fall Delay"]
-  #[inline] pub fn dbfall_delay(&self) -> bits::U12 {
+  #[inline] pub fn delay(&self) -> bits::U12 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="Dead-Band Fall Delay"]
-  #[inline] pub fn set_dbfall_delay<V: Into<bits::U12>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_delay<V: Into<bits::U12>>(mut self, value: V) -> Self {
      let value: bits::U12 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0xfff << 0);
@@ -2774,12 +2732,12 @@ impl ::core::fmt::Display for ChDbfall {
 impl ::core::fmt::Debug for ChDbfall {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.dbfall_delay() != 0 { try!(write!(f, " dbfall_delay=0x{:x}", self.dbfall_delay()))}
+      if self.delay() != 0 { try!(write!(f, " delay=0x{:x}", self.delay()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
-#[doc="PWM0 Fault Source 0"]
+#[doc="PWM Fault Source 0"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsrc0(pub u32);
 impl ChFltsrc0 {
@@ -2852,7 +2810,7 @@ impl ::core::fmt::Debug for ChFltsrc0 {
       Ok(())
    }
 }
-#[doc="PWM0 Fault Source 1"]
+#[doc="PWM Fault Source 1"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsrc1(pub u32);
 impl ChFltsrc1 {
@@ -2981,7 +2939,7 @@ impl ::core::fmt::Debug for ChFltsrc1 {
       Ok(())
    }
 }
-#[doc="PWM0 Minimum Fault Period"]
+#[doc="PWM Minimum Fault Period"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChMinfltper(pub u32);
 impl ChMinfltper {
@@ -3012,7 +2970,7 @@ impl ::core::fmt::Debug for ChMinfltper {
       Ok(())
    }
 }
-#[doc="PWM0 Fault Pin Logic Sense"]
+#[doc="PWM Fault Pin Logic Sense"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltsen(pub u32);
 impl ChFltsen {
@@ -3085,7 +3043,7 @@ impl ::core::fmt::Debug for ChFltsen {
       Ok(())
    }
 }
-#[doc="PWM0 Fault Status 0"]
+#[doc="PWM Fault Status 0"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltstat0(pub u32);
 impl ChFltstat0 {
@@ -3158,7 +3116,7 @@ impl ::core::fmt::Debug for ChFltstat0 {
       Ok(())
    }
 }
-#[doc="PWM0 Fault Status 1"]
+#[doc="PWM Fault Status 1"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ChFltstat1(pub u32);
 impl ChFltstat1 {
@@ -3292,11 +3250,11 @@ impl ::core::fmt::Debug for ChFltstat1 {
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Generators"]
-  #[inline] pub fn pwm_pp_gcnt(&self) -> bits::U4 {
+  #[inline] pub fn gcnt(&self) -> bits::U4 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
   }
 #[doc="Generators"]
-  #[inline] pub fn set_pwm_pp_gcnt<V: Into<bits::U4>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_gcnt<V: Into<bits::U4>>(mut self, value: V) -> Self {
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0xf << 0);
@@ -3305,11 +3263,11 @@ impl Pp {
   }
 
 #[doc="Fault Inputs (per PWM unit)"]
-  #[inline] pub fn pwm_pp_fcnt(&self) -> bits::U4 {
+  #[inline] pub fn fcnt(&self) -> bits::U4 {
      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
   }
 #[doc="Fault Inputs (per PWM unit)"]
-  #[inline] pub fn set_pwm_pp_fcnt<V: Into<bits::U4>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_fcnt<V: Into<bits::U4>>(mut self, value: V) -> Self {
      let value: bits::U4 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0xf << 4);
@@ -3318,11 +3276,11 @@ impl Pp {
   }
 
 #[doc="Extended Synchronization"]
-  #[inline] pub fn pwm_pp_esync(&self) -> bits::U1 {
+  #[inline] pub fn esync(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
   }
 #[doc="Extended Synchronization"]
-  #[inline] pub fn set_pwm_pp_esync<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_esync<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 8);
@@ -3331,11 +3289,11 @@ impl Pp {
   }
 
 #[doc="Extended Fault"]
-  #[inline] pub fn pwm_pp_efault(&self) -> bits::U1 {
+  #[inline] pub fn efault(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
   }
 #[doc="Extended Fault"]
-  #[inline] pub fn set_pwm_pp_efault<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_efault<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 9);
@@ -3344,11 +3302,11 @@ impl Pp {
   }
 
 #[doc="One-Shot Mode"]
-  #[inline] pub fn pwm_pp_one(&self) -> bits::U1 {
+  #[inline] pub fn one(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
   }
 #[doc="One-Shot Mode"]
-  #[inline] pub fn set_pwm_pp_one<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_one<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 10);
@@ -3365,11 +3323,11 @@ impl ::core::fmt::Display for Pp {
 impl ::core::fmt::Debug for Pp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.pwm_pp_gcnt() != 0 { try!(write!(f, " pwm_pp_gcnt=0x{:x}", self.pwm_pp_gcnt()))}
-      if self.pwm_pp_fcnt() != 0 { try!(write!(f, " pwm_pp_fcnt=0x{:x}", self.pwm_pp_fcnt()))}
-      if self.pwm_pp_esync() != 0 { try!(write!(f, " pwm_pp_esync"))}
-      if self.pwm_pp_efault() != 0 { try!(write!(f, " pwm_pp_efault"))}
-      if self.pwm_pp_one() != 0 { try!(write!(f, " pwm_pp_one"))}
+      if self.gcnt() != 0 { try!(write!(f, " gcnt=0x{:x}", self.gcnt()))}
+      if self.fcnt() != 0 { try!(write!(f, " fcnt=0x{:x}", self.fcnt()))}
+      if self.esync() != 0 { try!(write!(f, " esync"))}
+      if self.efault() != 0 { try!(write!(f, " efault"))}
+      if self.one() != 0 { try!(write!(f, " one"))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -3379,11 +3337,11 @@ impl ::core::fmt::Debug for Pp {
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="PWM Clock Divider"]
-  #[inline] pub fn pwm_cc_pwmdiv(&self) -> bits::U3 {
+  #[inline] pub fn pwmdiv(&self) -> bits::U3 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
   }
 #[doc="PWM Clock Divider"]
-  #[inline] pub fn set_pwm_cc_pwmdiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_pwmdiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
      let value: bits::U3 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x7 << 0);
@@ -3392,11 +3350,11 @@ impl Cc {
   }
 
 #[doc="Use PWM Clock Divisor"]
-  #[inline] pub fn pwm_cc_usepwm(&self) -> bits::U1 {
+  #[inline] pub fn usepwm(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
   }
 #[doc="Use PWM Clock Divisor"]
-  #[inline] pub fn set_pwm_cc_usepwm<V: Into<bits::U1>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_usepwm<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 8);
@@ -3413,8 +3371,8 @@ impl ::core::fmt::Display for Cc {
 impl ::core::fmt::Debug for Cc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.pwm_cc_pwmdiv() != 0 { try!(write!(f, " pwm_cc_pwmdiv=0x{:x}", self.pwm_cc_pwmdiv()))}
-      if self.pwm_cc_usepwm() != 0 { try!(write!(f, " pwm_cc_usepwm"))}
+      if self.pwmdiv() != 0 { try!(write!(f, " pwmdiv=0x{:x}", self.pwmdiv()))}
+      if self.usepwm() != 0 { try!(write!(f, " usepwm"))}
       try!(write!(f, "]"));
       Ok(())
    }

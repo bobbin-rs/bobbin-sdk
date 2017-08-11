@@ -66,3 +66,23 @@ pub trait Compare<T> {
         self
     }
 }
+
+pub trait PwmUpLow<T> {
+    // Up Counting PWM, (Counter < Compare) => Output Low
+    fn pwm_up_low(&self, compare: T, period: T) -> &Self;
+}
+
+pub trait PwmUpHigh<T> {
+    // Up Counting PWM, (Counter < Compare) => Output High
+    fn pwm_up_high(&self, compare: T, period: T) -> &Self;
+}
+
+pub trait PwmDownLow<T> {
+    // Down Counting PWM, (Counter < Compare) => Output Low
+    fn pwm_down_low(&self, compare: T, period: T) -> &Self;
+}
+
+pub trait PwmDownHigh<T> {
+    // Down Counting PWM, (Counter < Compare) => Output High
+    fn pwm_down_high(&self, compare: T, period: T) -> &Self;
+}
