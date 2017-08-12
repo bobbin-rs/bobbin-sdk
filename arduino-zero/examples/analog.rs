@@ -5,20 +5,26 @@
 #[macro_use]
 extern crate arduino_zero as board;
 
-use board::hal::port::PinExt;
-use board::adc::{self, AnalogInput};
+use board::pin;
+use board::hal::port::Ain;
+use board::hal::adc::{self, AnalogRead};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Analog Test");
     adc::init();
-    let a = adc::A0;
-    a.set_mode_analog();
-    println!("Reading A0");
+    let a0 = pin::A0;
+    let a1 = pin::A1;
+
+    let ch0 = adc::ADC_CH0;
+    let ch2 = adc::ADC_CH2;
+
+    a0.mode_ain(&ch0);
+    a1.mode_ain(&ch2);
+
     loop {
-        let v = a.analog_input();
-        println!("v: {}", v);
+        println!("{}, {}", ch0.analog_read(), ch2.analog_read());
         board::delay(500);
     }
 
