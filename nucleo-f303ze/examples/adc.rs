@@ -14,15 +14,22 @@ pub extern "C" fn main() -> ! {
     println!("ADC Test");
     
     let a0 = A0;    
+    let a1 = A1;
+
     let ch1 = ADC1_CH1;
-    let adc = ch1.periph();
+    let ch2 = ADC1_CH2;
+    
 
     a0.mode_adc_in(&ch1);
+    a1.mode_adc_in(&ch2);
+
+    let adc = ch1.periph();
     adc
         .rcc_set_enabled(true)
         .init()
         .set_sequence_channel(1, 1)
-        .set_sequence_length(1);
+        .set_sequence_channel(2, 2)
+        .set_sequence_length(2);
 
     println!("Initialization Complete");
 
@@ -30,7 +37,10 @@ pub extern "C" fn main() -> ! {
         adc.start();
 
         while !adc.end_of_conversion() {}
-        println!("{}", adc.data());
+        let v0 = adc.data();
+        while !adc.end_of_conversion() {}
+        let v1 = adc.data();
+        println!("{} {}", v0, v1);
         board::delay(1_000);
     }
 }
