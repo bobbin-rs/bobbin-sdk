@@ -20,8 +20,11 @@ pub trait AdcExt {
     fn end_of_conversion(&self) -> bool;
     fn set_continuous(&self, value: bool) -> &Self;
     fn set_resolution(&self, value: Resolution) -> &Self;
+    fn sequence_length(&self) -> usize;
     fn set_sequence_length(&self, length: usize) -> &Self;
     fn set_sequence_channel(&self, sequence: usize, channel: usize) -> &Self;
+    fn set_sequence(&self, channels: &[usize]) -> &Self;
+    fn read_sequence(&self, out: &mut[u16]) -> &Self;
 }
 
 impl<T> AdcExt for Periph<T> {
@@ -100,6 +103,10 @@ impl<T> AdcExt for Periph<T> {
         self.with_cfgr(|r| r.set_res(value as u32))
     }    
 
+    fn sequence_length(&self) -> usize {
+        self.sqr1().l().into_usize() + 1
+    }
+
     fn set_sequence_length(&self, length: usize) -> &Self {
         assert!(length > 0 && length <= 16, "length must be 1..16");
         self.with_sqr1(|r| r.set_l((length - 1) as u32))
@@ -128,5 +135,37 @@ impl<T> AdcExt for Periph<T> {
             16 => self.with_sqr4(|r| r.set_sq16(channel)),
             _ => unimplemented!()
         }
+    }
+
+    fn set_sequence(&self, channels: &[usize]) -> &Self {
+        for (i, c) in channels.iter().enumerate() {
+            self.set_sequence_channel(i + 1, *c);
+        }
+        self.set_sequence_length(channels.len())        
+    }
+
+    fn read_sequence(&self, out: &mut [u16]) -> &Self {
+        assert!(out.len() == self.sequence_length());
+        self.start();
+        let mut i = 0;
+        for c in out.iter_mut() {
+            while !self.end_of_conversion() {}
+            *c = self.data();
+        }
+        self
+    }
+}
+
+pub trait AdcChExt {
+    fn read(&self) -> u16;
+}
+
+impl<P, T> AdcChExt for Channel<P, T> {
+    fn read(&self) -> u16 {
+        let mut out = [0u16];
+        self.periph()
+            .set_sequence(&[self.index()])
+            .read_sequence(&mut out);
+        out[0]            
     }
 }
