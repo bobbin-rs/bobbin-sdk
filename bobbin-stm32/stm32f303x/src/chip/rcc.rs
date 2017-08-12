@@ -2898,6 +2898,26 @@ impl En for super::gpio::Gpiog {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_iopgen(value)); }
 }
 
+impl En for super::adc::Adc1 {
+   #[inline] fn en(&self) -> u32 { RCC.ahbenr().adc12en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_adc12en(value)); }
+}
+
+impl En for super::adc::Adc2 {
+   #[inline] fn en(&self) -> u32 { RCC.ahbenr().adc12en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_adc12en(value)); }
+}
+
+impl En for super::adc::Adc3 {
+   #[inline] fn en(&self) -> u32 { RCC.ahbenr().adc34en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_adc34en(value)); }
+}
+
+impl En for super::adc::Adc4 {
+   #[inline] fn en(&self) -> u32 { RCC.ahbenr().adc34en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_adc34en(value)); }
+}
+
 impl En for super::syscfg::Syscfg {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().syscfgen().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }

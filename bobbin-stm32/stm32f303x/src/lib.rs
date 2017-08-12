@@ -1,5 +1,6 @@
 #![no_std]
 #![feature(compiler_builtins_lib)]
+#![feature(asm)]
 
 extern crate compiler_builtins;
 extern crate bobbin_common;
