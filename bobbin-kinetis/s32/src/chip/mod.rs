@@ -28,3 +28,4 @@ pub mod port;
 pub mod gpio;
 pub mod lpuart;
 pub mod lpspi;
+pub mod adc;

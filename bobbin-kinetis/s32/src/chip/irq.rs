@@ -86,6 +86,8 @@ pub const IRQ_LPUART2_RXTX: IrqLpuart2Rxtx = Irq(35, Lpuart2RxtxId {});
 pub const IRQ_LPSPI0: IrqLpspi0 = Irq(26, Lpspi0Id {});
 pub const IRQ_LPSPI1: IrqLpspi1 = Irq(27, Lpspi1Id {});
 pub const IRQ_LPSPI2: IrqLpspi2 = Irq(28, Lpspi2Id {});
+pub const IRQ_ADC0: IrqAdc0 = Irq(39, Adc0Id {});
+pub const IRQ_ADC1: IrqAdc1 = Irq(40, Adc1Id {});
 
 pub type IrqDmaError = Irq<DmaErrorId>;
 pub type IrqDma0 = Irq<Dma0Id>;
@@ -170,6 +172,8 @@ pub type IrqLpuart2Rxtx = Irq<Lpuart2RxtxId>;
 pub type IrqLpspi0 = Irq<Lpspi0Id>;
 pub type IrqLpspi1 = Irq<Lpspi1Id>;
 pub type IrqLpspi2 = Irq<Lpspi2Id>;
+pub type IrqAdc0 = Irq<Adc0Id>;
+pub type IrqAdc1 = Irq<Adc1Id>;
 
 #[doc(hidden)]
 pub struct DmaErrorId {} // IRQ 16
@@ -337,6 +341,10 @@ pub struct Lpspi0Id {} // IRQ 26
 pub struct Lpspi1Id {} // IRQ 27
 #[doc(hidden)]
 pub struct Lpspi2Id {} // IRQ 28
+#[doc(hidden)]
+pub struct Adc0Id {} // IRQ 39
+#[doc(hidden)]
+pub struct Adc1Id {} // IRQ 40
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {
   unsafe { 
@@ -1416,6 +1424,30 @@ impl RegisterHandler for IrqLpspi2 {
    }
 }
 
+impl RegisterHandler for IrqAdc0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(39, Some(wrapper::<F>));
+       IrqGuard::new(39)
+   }
+}
+
+impl RegisterHandler for IrqAdc1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(40, Some(wrapper::<F>));
+       IrqGuard::new(40)
+   }
+}
+
 #[link_section = ".vector.interrupts"]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 147] = [
@@ -1458,8 +1490,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 147] = [
    None,
    None,
    None,
-   None,
-   None,
+   None,                          // IRQ 39: No Description
+   None,                          // IRQ 40: No Description
    None,
    None,
    None,
