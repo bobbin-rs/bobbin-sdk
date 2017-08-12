@@ -27,20 +27,12 @@ pub extern "C" fn main() -> ! {
     adc
         .rcc_set_enabled(true)
         .init()
-        .set_sequence_channel(1, 1)
-        .set_sequence_channel(2, 2)
-        .set_sequence_length(2);
-
-    println!("Initialization Complete");
-
-    loop {
-        adc.start();
-
-        while !adc.end_of_conversion() {}
-        let v0 = adc.data();
-        while !adc.end_of_conversion() {}
-        let v1 = adc.data();
-        println!("{} {}", v0, v1);
+        .set_sequence(&[ch1.index(), ch2.index()]);        
+    
+    loop {        
+        let mut data = [0u16; 2];
+        adc.read_sequence(&mut data);
+        println!("{:?}", data);
         board::delay(1_000);
     }
 }
