@@ -590,12 +590,16 @@
             (bit-offset 28)
             (bit-width 1)
             (description "ADC1 and ADC2 clock enable")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC1))
+            (link (name EN) (peripheral-group ADC) (peripheral ADC2))
         )
         (field
             (name ADC34EN)
             (bit-offset 29)
             (bit-width 1)
             (description "ADC3 and ADC4 clock enable")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC3))
+            (link (name EN) (peripheral-group ADC) (peripheral ADC4))
         )
     )
     (register
