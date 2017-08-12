@@ -2,6 +2,8 @@
 
 pub trait Signal<T> {}
 
+pub trait Ain {}
+pub trait SignalAin<T> {}
 pub trait Wo0 {}
 pub trait SignalWo0<T> {}
 pub trait Wo1 {}
@@ -28,6 +30,86 @@ pub trait Pad2 {}
 pub trait SignalPad2<T> {}
 pub trait Pad3 {}
 pub trait SignalPad3<T> {}
+
+pub const AIN_0: Ain0 = Ain0 {};
+pub struct Ain0 {}
+impl Ain for Ain0 {}
+
+pub const AIN_1: Ain1 = Ain1 {};
+pub struct Ain1 {}
+impl Ain for Ain1 {}
+
+pub const AIN_2: Ain2 = Ain2 {};
+pub struct Ain2 {}
+impl Ain for Ain2 {}
+
+pub const AIN_3: Ain3 = Ain3 {};
+pub struct Ain3 {}
+impl Ain for Ain3 {}
+
+pub const AIN_4: Ain4 = Ain4 {};
+pub struct Ain4 {}
+impl Ain for Ain4 {}
+
+pub const AIN_5: Ain5 = Ain5 {};
+pub struct Ain5 {}
+impl Ain for Ain5 {}
+
+pub const AIN_6: Ain6 = Ain6 {};
+pub struct Ain6 {}
+impl Ain for Ain6 {}
+
+pub const AIN_7: Ain7 = Ain7 {};
+pub struct Ain7 {}
+impl Ain for Ain7 {}
+
+pub const AIN_8: Ain8 = Ain8 {};
+pub struct Ain8 {}
+impl Ain for Ain8 {}
+
+pub const AIN_9: Ain9 = Ain9 {};
+pub struct Ain9 {}
+impl Ain for Ain9 {}
+
+pub const AIN_10: Ain10 = Ain10 {};
+pub struct Ain10 {}
+impl Ain for Ain10 {}
+
+pub const AIN_11: Ain11 = Ain11 {};
+pub struct Ain11 {}
+impl Ain for Ain11 {}
+
+pub const AIN_12: Ain12 = Ain12 {};
+pub struct Ain12 {}
+impl Ain for Ain12 {}
+
+pub const AIN_13: Ain13 = Ain13 {};
+pub struct Ain13 {}
+impl Ain for Ain13 {}
+
+pub const AIN_14: Ain14 = Ain14 {};
+pub struct Ain14 {}
+impl Ain for Ain14 {}
+
+pub const AIN_15: Ain15 = Ain15 {};
+pub struct Ain15 {}
+impl Ain for Ain15 {}
+
+pub const AIN_16: Ain16 = Ain16 {};
+pub struct Ain16 {}
+impl Ain for Ain16 {}
+
+pub const AIN_17: Ain17 = Ain17 {};
+pub struct Ain17 {}
+impl Ain for Ain17 {}
+
+pub const AIN_18: Ain18 = Ain18 {};
+pub struct Ain18 {}
+impl Ain for Ain18 {}
+
+pub const AIN_19: Ain19 = Ain19 {};
+pub struct Ain19 {}
+impl Ain for Ain19 {}
 
 pub const TCC0_WO_0: Tcc0Wo0 = Tcc0Wo0 {};
 pub struct Tcc0Wo0 {}
@@ -214,9 +296,6 @@ pub struct Extint1 {}
 pub const EXTINT_2: Extint2 = Extint2 {};
 pub struct Extint2 {}
 
-pub const AIN_0: Ain0 = Ain0 {};
-pub struct Ain0 {}
-
 pub const Y_0: Y0 = Y0 {};
 pub struct Y0 {}
 
@@ -235,9 +314,6 @@ pub struct Vrefadac {}
 pub const VREFA: Vrefa = Vrefa {};
 pub struct Vrefa {}
 
-pub const AIN_1: Ain1 = Ain1 {};
-pub struct Ain1 {}
-
 pub const Y_1: Y1 = Y1 {};
 pub struct Y1 {}
 
@@ -247,17 +323,11 @@ pub struct Extint4 {}
 pub const VREFB: Vrefb = Vrefb {};
 pub struct Vrefb {}
 
-pub const AIN_4: Ain4 = Ain4 {};
-pub struct Ain4 {}
-
 pub const Y_2: Y2 = Y2 {};
 pub struct Y2 {}
 
 pub const EXTINT_5: Extint5 = Extint5 {};
 pub struct Extint5 {}
-
-pub const AIN_5: Ain5 = Ain5 {};
-pub struct Ain5 {}
 
 pub const Y_3: Y3 = Y3 {};
 pub struct Y3 {}
@@ -265,23 +335,11 @@ pub struct Y3 {}
 pub const EXTINT_6: Extint6 = Extint6 {};
 pub struct Extint6 {}
 
-pub const AIN_6: Ain6 = Ain6 {};
-pub struct Ain6 {}
-
-pub const AIN_2: Ain2 = Ain2 {};
-pub struct Ain2 {}
-
 pub const Y_4: Y4 = Y4 {};
 pub struct Y4 {}
 
 pub const EXTINT_7: Extint7 = Extint7 {};
 pub struct Extint7 {}
-
-pub const AIN_7: Ain7 = Ain7 {};
-pub struct Ain7 {}
-
-pub const AIN_3: Ain3 = Ain3 {};
-pub struct Ain3 {}
 
 pub const Y_5: Y5 = Y5 {};
 pub struct Y5 {}
@@ -292,9 +350,6 @@ pub struct I2sSd0 {}
 pub const NMI: Nmi = Nmi {};
 pub struct Nmi {}
 
-pub const AIN_16: Ain16 = Ain16 {};
-pub struct Ain16 {}
-
 pub const X_0: X0 = X0 {};
 pub struct X0 {}
 
@@ -304,9 +359,6 @@ pub struct I2sSd1 {}
 pub const EXTINT_9: Extint9 = Extint9 {};
 pub struct Extint9 {}
 
-pub const AIN_17: Ain17 = Ain17 {};
-pub struct Ain17 {}
-
 pub const X_1: X1 = X1 {};
 pub struct X1 {}
 
@@ -315,9 +367,6 @@ pub struct I2sMck0 {}
 
 pub const EXTINT_10: Extint10 = Extint10 {};
 pub struct Extint10 {}
-
-pub const AIN_18: Ain18 = Ain18 {};
-pub struct Ain18 {}
 
 pub const X_2: X2 = X2 {};
 pub struct X2 {}
@@ -330,9 +379,6 @@ pub struct GclkIo4 {}
 
 pub const EXTINT_11: Extint11 = Extint11 {};
 pub struct Extint11 {}
-
-pub const AIN_19: Ain19 = Ain19 {};
-pub struct Ain19 {}
 
 pub const X_3: X3 = X3 {};
 pub struct X3 {}
@@ -427,20 +473,11 @@ pub struct Swclk {}
 pub const SWDIO: Swdio = Swdio {};
 pub struct Swdio {}
 
-pub const AIN_8: Ain8 = Ain8 {};
-pub struct Ain8 {}
-
 pub const Y_6: Y6 = Y6 {};
 pub struct Y6 {}
 
-pub const AIN_9: Ain9 = Ain9 {};
-pub struct Ain9 {}
-
 pub const Y_7: Y7 = Y7 {};
 pub struct Y7 {}
-
-pub const AIN_10: Ain10 = Ain10 {};
-pub struct Ain10 {}
 
 pub const Y_8: Y8 = Y8 {};
 pub struct Y8 {}
@@ -448,35 +485,20 @@ pub struct Y8 {}
 pub const TC6_WO_0: Tc6Wo0 = Tc6Wo0 {};
 pub struct Tc6Wo0 {}
 
-pub const AIN_11: Ain11 = Ain11 {};
-pub struct Ain11 {}
-
 pub const Y_9: Y9 = Y9 {};
 pub struct Y9 {}
 
 pub const TC6_WO_1: Tc6Wo1 = Tc6Wo1 {};
 pub struct Tc6Wo1 {}
 
-pub const AIN_12: Ain12 = Ain12 {};
-pub struct Ain12 {}
-
 pub const Y_10: Y10 = Y10 {};
 pub struct Y10 {}
-
-pub const AIN_13: Ain13 = Ain13 {};
-pub struct Ain13 {}
 
 pub const Y_11: Y11 = Y11 {};
 pub struct Y11 {}
 
-pub const AIN_14: Ain14 = Ain14 {};
-pub struct Ain14 {}
-
 pub const Y_12: Y12 = Y12 {};
 pub struct Y12 {}
-
-pub const AIN_15: Ain15 = Ain15 {};
-pub struct Ain15 {}
 
 pub const Y_13: Y13 = Y13 {};
 pub struct Y13 {}

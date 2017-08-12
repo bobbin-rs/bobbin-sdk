@@ -11,6 +11,46 @@ pub struct Periph<T>(pub u32, pub T);
 pub struct AdcId {}
 pub type Adc = Periph<AdcId>;
 
+impl super::sig::Signal<super::sig::Ain0> for AdcCh0 {}
+impl super::sig::SignalAin<super::sig::Ain0> for AdcCh0 {}
+impl super::sig::Signal<super::sig::Ain1> for AdcCh1 {}
+impl super::sig::SignalAin<super::sig::Ain1> for AdcCh1 {}
+impl super::sig::Signal<super::sig::Ain2> for AdcCh2 {}
+impl super::sig::SignalAin<super::sig::Ain2> for AdcCh2 {}
+impl super::sig::Signal<super::sig::Ain3> for AdcCh3 {}
+impl super::sig::SignalAin<super::sig::Ain3> for AdcCh3 {}
+impl super::sig::Signal<super::sig::Ain4> for AdcCh4 {}
+impl super::sig::SignalAin<super::sig::Ain4> for AdcCh4 {}
+impl super::sig::Signal<super::sig::Ain5> for AdcCh5 {}
+impl super::sig::SignalAin<super::sig::Ain5> for AdcCh5 {}
+impl super::sig::Signal<super::sig::Ain6> for AdcCh6 {}
+impl super::sig::SignalAin<super::sig::Ain6> for AdcCh6 {}
+impl super::sig::Signal<super::sig::Ain7> for AdcCh7 {}
+impl super::sig::SignalAin<super::sig::Ain7> for AdcCh7 {}
+impl super::sig::Signal<super::sig::Ain8> for AdcCh8 {}
+impl super::sig::SignalAin<super::sig::Ain8> for AdcCh8 {}
+impl super::sig::Signal<super::sig::Ain9> for AdcCh9 {}
+impl super::sig::SignalAin<super::sig::Ain9> for AdcCh9 {}
+impl super::sig::Signal<super::sig::Ain10> for AdcCh10 {}
+impl super::sig::SignalAin<super::sig::Ain10> for AdcCh10 {}
+impl super::sig::Signal<super::sig::Ain11> for AdcCh11 {}
+impl super::sig::SignalAin<super::sig::Ain11> for AdcCh11 {}
+impl super::sig::Signal<super::sig::Ain12> for AdcCh12 {}
+impl super::sig::SignalAin<super::sig::Ain12> for AdcCh12 {}
+impl super::sig::Signal<super::sig::Ain13> for AdcCh13 {}
+impl super::sig::SignalAin<super::sig::Ain13> for AdcCh13 {}
+impl super::sig::Signal<super::sig::Ain14> for AdcCh14 {}
+impl super::sig::SignalAin<super::sig::Ain14> for AdcCh14 {}
+impl super::sig::Signal<super::sig::Ain15> for AdcCh15 {}
+impl super::sig::SignalAin<super::sig::Ain15> for AdcCh15 {}
+impl super::sig::Signal<super::sig::Ain16> for AdcCh16 {}
+impl super::sig::SignalAin<super::sig::Ain16> for AdcCh16 {}
+impl super::sig::Signal<super::sig::Ain17> for AdcCh17 {}
+impl super::sig::SignalAin<super::sig::Ain17> for AdcCh17 {}
+impl super::sig::Signal<super::sig::Ain18> for AdcCh18 {}
+impl super::sig::SignalAin<super::sig::Ain18> for AdcCh18 {}
+impl super::sig::Signal<super::sig::Ain19> for AdcCh19 {}
+impl super::sig::SignalAin<super::sig::Ain19> for AdcCh19 {}
 
 
 impl<T> Periph<T> {
@@ -1620,3 +1660,132 @@ impl ::core::fmt::Debug for Winut {
       Ok(())
    }
 }
+#[derive(Clone, Copy, PartialEq)]
+#[doc="ADC Channel"]
+pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
+
+impl<P,T> Channel<P,T> {
+   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
+   #[inline] pub fn index(&self) -> usize { self.index }
+}
+
+pub const ADC_CH0: Channel<AdcCh0Id, AdcId> = Channel { periph: ADC, index: 0, id: AdcCh0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh0Id {}
+pub type AdcCh0 = Channel<AdcCh0Id, AdcId>;
+
+pub const ADC_CH1: Channel<AdcCh1Id, AdcId> = Channel { periph: ADC, index: 1, id: AdcCh1Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh1Id {}
+pub type AdcCh1 = Channel<AdcCh1Id, AdcId>;
+
+pub const ADC_CH2: Channel<AdcCh2Id, AdcId> = Channel { periph: ADC, index: 2, id: AdcCh2Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh2Id {}
+pub type AdcCh2 = Channel<AdcCh2Id, AdcId>;
+
+pub const ADC_CH3: Channel<AdcCh3Id, AdcId> = Channel { periph: ADC, index: 3, id: AdcCh3Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh3Id {}
+pub type AdcCh3 = Channel<AdcCh3Id, AdcId>;
+
+pub const ADC_CH4: Channel<AdcCh4Id, AdcId> = Channel { periph: ADC, index: 4, id: AdcCh4Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh4Id {}
+pub type AdcCh4 = Channel<AdcCh4Id, AdcId>;
+
+pub const ADC_CH5: Channel<AdcCh5Id, AdcId> = Channel { periph: ADC, index: 5, id: AdcCh5Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh5Id {}
+pub type AdcCh5 = Channel<AdcCh5Id, AdcId>;
+
+pub const ADC_CH6: Channel<AdcCh6Id, AdcId> = Channel { periph: ADC, index: 6, id: AdcCh6Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh6Id {}
+pub type AdcCh6 = Channel<AdcCh6Id, AdcId>;
+
+pub const ADC_CH7: Channel<AdcCh7Id, AdcId> = Channel { periph: ADC, index: 7, id: AdcCh7Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh7Id {}
+pub type AdcCh7 = Channel<AdcCh7Id, AdcId>;
+
+pub const ADC_CH8: Channel<AdcCh8Id, AdcId> = Channel { periph: ADC, index: 8, id: AdcCh8Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh8Id {}
+pub type AdcCh8 = Channel<AdcCh8Id, AdcId>;
+
+pub const ADC_CH9: Channel<AdcCh9Id, AdcId> = Channel { periph: ADC, index: 9, id: AdcCh9Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh9Id {}
+pub type AdcCh9 = Channel<AdcCh9Id, AdcId>;
+
+pub const ADC_CH10: Channel<AdcCh10Id, AdcId> = Channel { periph: ADC, index: 10, id: AdcCh10Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh10Id {}
+pub type AdcCh10 = Channel<AdcCh10Id, AdcId>;
+
+pub const ADC_CH11: Channel<AdcCh11Id, AdcId> = Channel { periph: ADC, index: 11, id: AdcCh11Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh11Id {}
+pub type AdcCh11 = Channel<AdcCh11Id, AdcId>;
+
+pub const ADC_CH12: Channel<AdcCh12Id, AdcId> = Channel { periph: ADC, index: 12, id: AdcCh12Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh12Id {}
+pub type AdcCh12 = Channel<AdcCh12Id, AdcId>;
+
+pub const ADC_CH13: Channel<AdcCh13Id, AdcId> = Channel { periph: ADC, index: 13, id: AdcCh13Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh13Id {}
+pub type AdcCh13 = Channel<AdcCh13Id, AdcId>;
+
+pub const ADC_CH14: Channel<AdcCh14Id, AdcId> = Channel { periph: ADC, index: 14, id: AdcCh14Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh14Id {}
+pub type AdcCh14 = Channel<AdcCh14Id, AdcId>;
+
+pub const ADC_CH15: Channel<AdcCh15Id, AdcId> = Channel { periph: ADC, index: 15, id: AdcCh15Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh15Id {}
+pub type AdcCh15 = Channel<AdcCh15Id, AdcId>;
+
+pub const ADC_CH16: Channel<AdcCh16Id, AdcId> = Channel { periph: ADC, index: 16, id: AdcCh16Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh16Id {}
+pub type AdcCh16 = Channel<AdcCh16Id, AdcId>;
+
+pub const ADC_CH17: Channel<AdcCh17Id, AdcId> = Channel { periph: ADC, index: 17, id: AdcCh17Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh17Id {}
+pub type AdcCh17 = Channel<AdcCh17Id, AdcId>;
+
+pub const ADC_CH18: Channel<AdcCh18Id, AdcId> = Channel { periph: ADC, index: 18, id: AdcCh18Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh18Id {}
+pub type AdcCh18 = Channel<AdcCh18Id, AdcId>;
+
+pub const ADC_CH19: Channel<AdcCh19Id, AdcId> = Channel { periph: ADC, index: 19, id: AdcCh19Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct AdcCh19Id {}
+pub type AdcCh19 = Channel<AdcCh19Id, AdcId>;
+

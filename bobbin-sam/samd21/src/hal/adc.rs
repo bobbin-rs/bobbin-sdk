@@ -1,32 +1,11 @@
+pub use bobbin_common::analog::AnalogRead;
 pub use chip::adc::*;
 pub use super::pm::PmEnabled;
 
 pub use ::chip::adc::*;
-use ::chip::port::*;
 use ::hal::gclk;
 
-pub trait AdcChannel {
-    fn adc_channel(&self) -> u8; 
-}
-
-macro_rules! impl_adc_channel {
-    ($p:ty, $c:expr) => (
-        impl AdcChannel for $p {
-            fn adc_channel(&self) -> u8 {
-                $c
-            }
-        }        
-    )
-}
-
-impl_adc_channel!(Pa02, 0);
-impl_adc_channel!(Pb08, 2);
-impl_adc_channel!(Pb09, 3);
-impl_adc_channel!(Pa04, 4);
-impl_adc_channel!(Pa05, 5);
-impl_adc_channel!(Pb02, 10);
-
-pub fn init_adc() {
+pub fn init() {
     // Enable ADC Bus Clock
     ADC.pm_set_enabled(true);
     
@@ -120,8 +99,8 @@ pub fn read(channel: u8) -> u16 {
     result.result().value()
 }
 
-// impl<T> AnalogInput<u16> for T where T: AdcChannel {
-//     fn analog_input(&self) -> u16 {
-//         read(self.adc_channel())
-//     }
-// }
+impl<P, T> AnalogRead<u16> for Channel<P, T> {
+    fn analog_read(&self) -> u16 {
+        read(self.index() as u8)
+    }
+}

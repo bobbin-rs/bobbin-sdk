@@ -1,11 +1,11 @@
 pub use bobbin_common::analog::*;
 pub use bobbin_common::digital::*;
 pub use chip::port::*;
-use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
-use chip::sig::{SignalWo0, SignalWo1, SignalWo2, SignalWo3, SignalWo4, SignalWo5, SignalWo6, SignalWo7};
+// use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
+// use chip::sig::{SignalWo0, SignalWo1, SignalWo2, SignalWo3, SignalWo4, SignalWo5, SignalWo6, SignalWo7};
+use chip::sig::*;
 pub use super::pm::PmEnabled;
 
-use hal::adc::{self, AdcChannel};
 use chip::port::Pin;
 
 pub trait PinExt {
@@ -16,7 +16,6 @@ pub trait PinExt {
     fn set_pmux(&self, value: usize) -> &Self;
     fn set_mode_input(&self) -> &Self;
     fn set_mode_output(&self) -> &Self;
-    fn set_mode_analog(&self) -> &Self;
     fn set_mode_pmux(&self, value: usize) -> &Self;
 }
 
@@ -59,10 +58,6 @@ impl<P, T> PinExt for Pin<P, T> {
         self.set_dir_output().set_pmux(0)
     }
 
-    fn set_mode_analog(&self) -> &Self {
-        self.set_dir_input().set_pmux(1)
-    }
-
     fn set_mode_pmux(&self, value: usize) -> &Self {
         self.set_pmux_enabled(true).set_pmux(value)
     }
@@ -91,24 +86,6 @@ impl<P, T> DigitalOutput for Pin<P, T> {
         self.set_output(!self.output())
     }    
 }
-
-macro_rules! impl_analog_input {
-    ($t:ty) => (
-        impl AnalogInput<u16> for $t {
-            fn analog_input(&self) -> u16 {
-                adc::read(self.adc_channel())
-            }
-        }        
-    )
-}
-
-
-impl_analog_input!(Pa02);
-impl_analog_input!(Pb08);
-impl_analog_input!(Pb09);
-impl_analog_input!(Pa04);
-impl_analog_input!(Pa05);
-impl_analog_input!(Pb02);
 
 pub trait ModePad0<T, S> {
     fn mode_pad_0(&self, _: &S) -> &Self;
@@ -237,6 +214,18 @@ impl<P, O, S, T> ModeWo6<T, S> for Pin<P, O> where S: SignalWo6<T>, P: AltFn<T> 
 
 impl<P, O, S, T> ModeWo7<T, S> for Pin<P, O> where S: SignalWo7<T>, P: AltFn<T> {
     fn mode_wo_7(&self, _: &S) -> &Self {
+        self.set_mode_pmux(self.id.alt_fn());
+        self
+    }
+}
+
+
+pub trait Ain<T, S> {
+    fn mode_ain(&self, _: &S) -> &Self;
+}
+
+impl<P, O, S, T> Ain<T, S> for Pin<P, O> where S: SignalAin<T>, P: AltFn<T> {
+    fn mode_ain(&self, _: &S) -> &Self {
         self.set_mode_pmux(self.id.alt_fn());
         self
     }

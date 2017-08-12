@@ -1,7 +1,7 @@
-pub trait AnalogInput<T> {
-    fn analog_input(&self) -> T;
+pub trait AnalogRead<T> {
+    fn analog_read(&self) -> T;
 }
 
-pub trait AnalogOutput<T> {
-    fn analog_output(&self, T) -> &Self;    
+pub trait AnalogWrite<T> {
+    fn analog_write(&self, T) -> &Self;    
 }
