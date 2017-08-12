@@ -17,8 +17,8 @@ pub use s32::{chip, hal};
 pub mod exceptions;
 pub mod lang_items;
 
+pub mod pin;
 pub mod clock;
-//pub mod pin;
 pub mod led;
 pub mod btn;
 pub mod tim;
