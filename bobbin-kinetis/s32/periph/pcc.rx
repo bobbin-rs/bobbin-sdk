@@ -591,6 +591,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group ADC) (peripheral ADC1))
             (value
                 (value "#000")
                 (name "000")
@@ -638,6 +639,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group ADC) (peripheral ADC1))
             (value
                 (value "#0")
                 (name "0")
@@ -1564,13 +1566,14 @@
         (access read-write)
         (reset-value 0x80000000)
         (reset-mask 0xffffffff)
-        (description "PCC ADC0 Register")
+        (description "PCC ADC0 Register")        
         (field
             (name PCS)
             (bit-offset 24)
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group ADC) (peripheral ADC0))
             (value
                 (value "#000")
                 (name "000")
@@ -1618,6 +1621,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group ADC) (peripheral ADC0))
             (value
                 (value "#0")
                 (name "0")
