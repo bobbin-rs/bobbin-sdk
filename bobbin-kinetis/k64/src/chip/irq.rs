@@ -52,6 +52,8 @@ pub const IRQ_PORTB: IrqPortb = Irq(60, PortbId {});
 pub const IRQ_PORTC: IrqPortc = Irq(61, PortcId {});
 pub const IRQ_PORTD: IrqPortd = Irq(62, PortdId {});
 pub const IRQ_PORTE: IrqPorte = Irq(63, PorteId {});
+pub const IRQ_ADC0: IrqAdc0 = Irq(39, Adc0Id {});
+pub const IRQ_ADC1: IrqAdc1 = Irq(73, Adc1Id {});
 
 pub type IrqWdog = Irq<WdogId>;
 pub type IrqDmaError = Irq<DmaErrorId>;
@@ -102,6 +104,8 @@ pub type IrqPortb = Irq<PortbId>;
 pub type IrqPortc = Irq<PortcId>;
 pub type IrqPortd = Irq<PortdId>;
 pub type IrqPorte = Irq<PorteId>;
+pub type IrqAdc0 = Irq<Adc0Id>;
+pub type IrqAdc1 = Irq<Adc1Id>;
 
 #[doc(hidden)]
 pub struct WdogId {} // IRQ 22
@@ -201,6 +205,10 @@ pub struct PortcId {} // IRQ 61
 pub struct PortdId {} // IRQ 62
 #[doc(hidden)]
 pub struct PorteId {} // IRQ 63
+#[doc(hidden)]
+pub struct Adc0Id {} // IRQ 39
+#[doc(hidden)]
+pub struct Adc1Id {} // IRQ 73
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {
   unsafe { 
@@ -872,6 +880,30 @@ impl RegisterHandler for IrqPorte {
    }
 }
 
+impl RegisterHandler for IrqAdc0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(39, Some(wrapper::<F>));
+       IrqGuard::new(39)
+   }
+}
+
+impl RegisterHandler for IrqAdc1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(73, Some(wrapper::<F>));
+       IrqGuard::new(73)
+   }
+}
+
 #[link_section = ".vector.interrupts"]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
@@ -914,7 +946,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,                          // IRQ 36: No Description
    None,                          // IRQ 37: No Description
    None,                          // IRQ 38: No Description
-   None,
+   None,                          // IRQ 39: No Description
    None,
    None,
    None,                          // IRQ 42: No Description
@@ -948,7 +980,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
    None,
    None,
    None,
-   None,
+   None,                          // IRQ 73: No Description
    None,
    None,
    None,

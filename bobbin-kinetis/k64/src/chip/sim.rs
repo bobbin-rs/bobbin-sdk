@@ -2694,6 +2694,11 @@ impl En for super::spi::Spi2 {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc3(|r| r.set_spi2(value)); }
 }
 
+impl En for super::adc::Adc1 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc3().adc1().into() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc3(|r| r.set_adc1(value)); }
+}
+
 impl En for super::i2c::I2c0 {
    #[inline] fn en(&self) -> u32 { SIM.scgc4().i2c0().into() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_i2c0(value)); }
@@ -2787,6 +2792,11 @@ impl En for super::ftm::Ftm1 {
 impl En for super::ftm::Ftm2 {
    #[inline] fn en(&self) -> u32 { SIM.scgc6().ftm2().into() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_ftm2(value)); }
+}
+
+impl En for super::adc::Adc0 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().adc0().into() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_adc0(value)); }
 }
 
 impl En for super::edma::Dma {
