@@ -1,7 +1,7 @@
 pub use bobbin_common::digital::*;
 pub use chip::gpio::*;
 pub use super::sysctl::SysctlEnabled;
-use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm};
+use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm, SignalAin};
 
 pub enum Dir {
     In = 0,
@@ -24,6 +24,9 @@ pub trait ModePwm<T, S> {
     fn mode_pwm(&self, _: &S) -> &Self;
 }
 
+pub trait ModeAin<T, S> {
+    fn mode_ain(&self, _: &S) -> &Self;
+}
 
 impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
     fn mode_tx(&self, _: &S) -> &Self {
@@ -49,6 +52,14 @@ impl<P, O, S, T> ModeCcp<T, S> for Pin<P, O> where S: SignalCcp<T>, P: AltFn<T> 
 impl<P, O, S, T> ModePwm<T, S> for Pin<P, O> where S: SignalPwm<T>, P: AltFn<T> {
     fn mode_pwm(&self, _: &S) -> &Self {
         self.mode_altfn(self.id.alt_fn());
+        self
+    }
+}
+
+impl<P, O, S, T> ModeAin<T, S> for Pin<P, O> where S: SignalAin<T>, P: AltFn<T> {
+    fn mode_ain(&self, _: &S) -> &Self {
+        self.mode_altfn(self.id.alt_fn());        
+        self.set_digital_enable(false).set_analog_select(true);
         self
     }
 }
@@ -170,3 +181,4 @@ impl<P, T> DigitalOutput for Pin<P, T> {
         self.set_output(!self.output())
     }
 }
+

@@ -16369,6 +16369,16 @@ impl Rcgc for super::uart::Uart7 {
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcuart(|r| r.set_r7(value)); }
 }
 
+impl Rcgc for super::adc::Adc0 {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcadc().r0().into() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcadc(|r| r.set_r0(value)); }
+}
+
+impl Rcgc for super::adc::Adc1 {
+   #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcadc().r1().into() }
+   #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcadc(|r| r.set_r1(value)); }
+}
+
 impl Rcgc for super::pwm::Pwm0 {
    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcpwm().r0().into() }
    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcpwm(|r| r.set_r0(value)); }

@@ -13,6 +13,7 @@ pub mod irq;
 pub mod sig;
 pub mod sysctl;
 pub mod emac;
+pub mod adc;
 pub mod watchdog;
 pub mod udma;
 pub mod pwm;
