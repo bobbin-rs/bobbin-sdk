@@ -36,7 +36,6 @@ pub const IRQ_TIM1_TRG_COM: IrqTim1TrgCom = Irq(26, Tim1TrgComId {});
 pub const IRQ_TIM1_CC: IrqTim1Cc = Irq(27, Tim1CcId {});
 pub const IRQ_ADC: IrqAdc = Irq(18, AdcId {});
 pub const IRQ_ADC2: IrqAdc2 = Irq(18, Adc2Id {});
-pub const IRQ_ADC3: IrqAdc3 = Irq(18, Adc3Id {});
 pub const IRQ_SPI1_IRQ: IrqSpi1Irq = Irq(35, Spi1IrqId {});
 pub const IRQ_SPI2_IRQ: IrqSpi2Irq = Irq(36, Spi2IrqId {});
 pub const IRQ_SPI3_IRQ: IrqSpi3Irq = Irq(51, Spi3IrqId {});
@@ -93,7 +92,6 @@ pub type IrqTim1TrgCom = Irq<Tim1TrgComId>;
 pub type IrqTim1Cc = Irq<Tim1CcId>;
 pub type IrqAdc = Irq<AdcId>;
 pub type IrqAdc2 = Irq<Adc2Id>;
-pub type IrqAdc3 = Irq<Adc3Id>;
 pub type IrqSpi1Irq = Irq<Spi1IrqId>;
 pub type IrqSpi2Irq = Irq<Spi2IrqId>;
 pub type IrqSpi3Irq = Irq<Spi3IrqId>;
@@ -183,8 +181,6 @@ pub struct Tim1CcId {} // IRQ 27
 pub struct AdcId {} // IRQ 18
 #[doc(hidden)]
 pub struct Adc2Id {} // IRQ 18
-#[doc(hidden)]
-pub struct Adc3Id {} // IRQ 18
 #[doc(hidden)]
 pub struct Spi1IrqId {} // IRQ 35
 #[doc(hidden)]
@@ -708,18 +704,6 @@ impl RegisterHandler for IrqAdc2 {
    }
 }
 
-impl RegisterHandler for IrqAdc3 {
-   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleInterrupt>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
-       }
-       set_handler(18, Some(wrapper::<F>));
-       IrqGuard::new(18)
-   }
-}
-
 impl RegisterHandler for IrqSpi1Irq {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
@@ -1005,7 +989,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 68] = [
    None,
    None,
    None,
-   None,                          // IRQ 18: ADC3 global interrupts
+   None,                          // IRQ 18: ADC2 global interrupts
    None,
    None,
    None,

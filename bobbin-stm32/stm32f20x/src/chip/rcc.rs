@@ -5230,6 +5230,16 @@ impl En for super::usart_f24::Usart6 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart6en(value)); }
 }
 
+impl En for super::adc::Adc1 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().adc1en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_adc1en(value)); }
+}
+
+impl En for super::adc::Adc2 {
+   #[inline] fn en(&self) -> u32 { RCC.apb2enr().adc2en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_adc2en(value)); }
+}
+
 impl En for super::spi::Spi1 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }

@@ -3,6 +3,7 @@ pub use bobbin_cortexm::hal::*;
 pub mod rcc;
 pub mod clock;
 pub mod power;
+pub mod adc;
 
 pub mod dma {
     pub use chip::dma::*;
