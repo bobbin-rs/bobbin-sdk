@@ -22,3 +22,4 @@ pub mod port;
 pub mod gpio;
 pub mod uart0;
 pub mod uart;
+pub mod adc;

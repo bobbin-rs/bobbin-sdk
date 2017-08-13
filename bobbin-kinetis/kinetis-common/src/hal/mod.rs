@@ -14,3 +14,4 @@ pub mod dma;
 pub mod edma;
 pub mod dmamux;
 pub mod wdog;
+pub mod adc;

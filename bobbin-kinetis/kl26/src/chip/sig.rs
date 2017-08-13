@@ -8,6 +8,70 @@ pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
 pub trait SignalRx<T> {}
+pub trait AdcDp0 {}
+pub trait SignalAdcDp0<T> {}
+pub trait AdcDp1 {}
+pub trait SignalAdcDp1<T> {}
+pub trait AdcDp2 {}
+pub trait SignalAdcDp2<T> {}
+pub trait AdcDp3 {}
+pub trait SignalAdcDp3<T> {}
+pub trait AdcDm0 {}
+pub trait SignalAdcDm0<T> {}
+pub trait AdcDm1 {}
+pub trait SignalAdcDm1<T> {}
+pub trait AdcDm2 {}
+pub trait SignalAdcDm2<T> {}
+pub trait AdcDm3 {}
+pub trait SignalAdcDm3<T> {}
+pub trait AdcSe4a {}
+pub trait SignalAdcSe4a<T> {}
+pub trait AdcSe5a {}
+pub trait SignalAdcSe5a<T> {}
+pub trait AdcSe6a {}
+pub trait SignalAdcSe6a<T> {}
+pub trait AdcSe7a {}
+pub trait SignalAdcSe7a<T> {}
+pub trait AdcSe4b {}
+pub trait SignalAdcSe4b<T> {}
+pub trait AdcSe5b {}
+pub trait SignalAdcSe5b<T> {}
+pub trait AdcSe6b {}
+pub trait SignalAdcSe6b<T> {}
+pub trait AdcSe7b {}
+pub trait SignalAdcSe7b<T> {}
+pub trait AdcSe8 {}
+pub trait SignalAdcSe8<T> {}
+pub trait AdcSe9 {}
+pub trait SignalAdcSe9<T> {}
+pub trait AdcSe10 {}
+pub trait SignalAdcSe10<T> {}
+pub trait AdcSe11 {}
+pub trait SignalAdcSe11<T> {}
+pub trait AdcSe12 {}
+pub trait SignalAdcSe12<T> {}
+pub trait AdcSe13 {}
+pub trait SignalAdcSe13<T> {}
+pub trait AdcSe14 {}
+pub trait SignalAdcSe14<T> {}
+pub trait AdcSe15 {}
+pub trait SignalAdcSe15<T> {}
+pub trait AdcSe16 {}
+pub trait SignalAdcSe16<T> {}
+pub trait AdcSe17 {}
+pub trait SignalAdcSe17<T> {}
+pub trait AdcSe18 {}
+pub trait SignalAdcSe18<T> {}
+pub trait AdcSe19 {}
+pub trait SignalAdcSe19<T> {}
+pub trait AdcSe20 {}
+pub trait SignalAdcSe20<T> {}
+pub trait AdcSe21 {}
+pub trait SignalAdcSe21<T> {}
+pub trait AdcSe22 {}
+pub trait SignalAdcSe22<T> {}
+pub trait AdcSe23 {}
+pub trait SignalAdcSe23<T> {}
 
 pub const TPM0_CH0: Tpm0Ch0 = Tpm0Ch0 {};
 pub struct Tpm0Ch0 {}
@@ -105,6 +169,134 @@ pub const UART2_RX: Uart2Rx = Uart2Rx {};
 pub struct Uart2Rx {}
 impl Rx for Uart2Rx {}
 
+pub const ADC0_DP0: Adc0Dp0 = Adc0Dp0 {};
+pub struct Adc0Dp0 {}
+impl AdcDp0 for Adc0Dp0 {}
+
+pub const ADC0_DP1: Adc0Dp1 = Adc0Dp1 {};
+pub struct Adc0Dp1 {}
+impl AdcDp1 for Adc0Dp1 {}
+
+pub const ADC0_DP2: Adc0Dp2 = Adc0Dp2 {};
+pub struct Adc0Dp2 {}
+impl AdcDp2 for Adc0Dp2 {}
+
+pub const ADC0_DP3: Adc0Dp3 = Adc0Dp3 {};
+pub struct Adc0Dp3 {}
+impl AdcDp3 for Adc0Dp3 {}
+
+pub const ADC0_DM0: Adc0Dm0 = Adc0Dm0 {};
+pub struct Adc0Dm0 {}
+impl AdcDm0 for Adc0Dm0 {}
+
+pub const ADC0_DM1: Adc0Dm1 = Adc0Dm1 {};
+pub struct Adc0Dm1 {}
+impl AdcDm1 for Adc0Dm1 {}
+
+pub const ADC0_DM2: Adc0Dm2 = Adc0Dm2 {};
+pub struct Adc0Dm2 {}
+impl AdcDm2 for Adc0Dm2 {}
+
+pub const ADC0_DM3: Adc0Dm3 = Adc0Dm3 {};
+pub struct Adc0Dm3 {}
+impl AdcDm3 for Adc0Dm3 {}
+
+pub const ADC0_SE4A: Adc0Se4a = Adc0Se4a {};
+pub struct Adc0Se4a {}
+impl AdcSe4a for Adc0Se4a {}
+
+pub const ADC0_SE5A: Adc0Se5a = Adc0Se5a {};
+pub struct Adc0Se5a {}
+impl AdcSe5a for Adc0Se5a {}
+
+pub const ADC0_SE6A: Adc0Se6a = Adc0Se6a {};
+pub struct Adc0Se6a {}
+impl AdcSe6a for Adc0Se6a {}
+
+pub const ADC0_SE7A: Adc0Se7a = Adc0Se7a {};
+pub struct Adc0Se7a {}
+impl AdcSe7a for Adc0Se7a {}
+
+pub const ADC0_SE4B: Adc0Se4b = Adc0Se4b {};
+pub struct Adc0Se4b {}
+impl AdcSe4b for Adc0Se4b {}
+
+pub const ADC0_SE5B: Adc0Se5b = Adc0Se5b {};
+pub struct Adc0Se5b {}
+impl AdcSe5b for Adc0Se5b {}
+
+pub const ADC0_SE6B: Adc0Se6b = Adc0Se6b {};
+pub struct Adc0Se6b {}
+impl AdcSe6b for Adc0Se6b {}
+
+pub const ADC0_SE7B: Adc0Se7b = Adc0Se7b {};
+pub struct Adc0Se7b {}
+impl AdcSe7b for Adc0Se7b {}
+
+pub const ADC0_SE8: Adc0Se8 = Adc0Se8 {};
+pub struct Adc0Se8 {}
+impl AdcSe8 for Adc0Se8 {}
+
+pub const ADC0_SE9: Adc0Se9 = Adc0Se9 {};
+pub struct Adc0Se9 {}
+impl AdcSe9 for Adc0Se9 {}
+
+pub const ADC0_SE10: Adc0Se10 = Adc0Se10 {};
+pub struct Adc0Se10 {}
+impl AdcSe10 for Adc0Se10 {}
+
+pub const ADC0_SE11: Adc0Se11 = Adc0Se11 {};
+pub struct Adc0Se11 {}
+impl AdcSe11 for Adc0Se11 {}
+
+pub const ADC0_SE12: Adc0Se12 = Adc0Se12 {};
+pub struct Adc0Se12 {}
+impl AdcSe12 for Adc0Se12 {}
+
+pub const ADC0_SE13: Adc0Se13 = Adc0Se13 {};
+pub struct Adc0Se13 {}
+impl AdcSe13 for Adc0Se13 {}
+
+pub const ADC0_SE14: Adc0Se14 = Adc0Se14 {};
+pub struct Adc0Se14 {}
+impl AdcSe14 for Adc0Se14 {}
+
+pub const ADC0_SE15: Adc0Se15 = Adc0Se15 {};
+pub struct Adc0Se15 {}
+impl AdcSe15 for Adc0Se15 {}
+
+pub const ADC0_SE16: Adc0Se16 = Adc0Se16 {};
+pub struct Adc0Se16 {}
+impl AdcSe16 for Adc0Se16 {}
+
+pub const ADC0_SE17: Adc0Se17 = Adc0Se17 {};
+pub struct Adc0Se17 {}
+impl AdcSe17 for Adc0Se17 {}
+
+pub const ADC0_SE18: Adc0Se18 = Adc0Se18 {};
+pub struct Adc0Se18 {}
+impl AdcSe18 for Adc0Se18 {}
+
+pub const ADC0_SE19: Adc0Se19 = Adc0Se19 {};
+pub struct Adc0Se19 {}
+impl AdcSe19 for Adc0Se19 {}
+
+pub const ADC0_SE20: Adc0Se20 = Adc0Se20 {};
+pub struct Adc0Se20 {}
+impl AdcSe20 for Adc0Se20 {}
+
+pub const ADC0_SE21: Adc0Se21 = Adc0Se21 {};
+pub struct Adc0Se21 {}
+impl AdcSe21 for Adc0Se21 {}
+
+pub const ADC0_SE22: Adc0Se22 = Adc0Se22 {};
+pub struct Adc0Se22 {}
+impl AdcSe22 for Adc0Se22 {}
+
+pub const ADC0_SE23: Adc0Se23 = Adc0Se23 {};
+pub struct Adc0Se23 {}
+impl AdcSe23 for Adc0Se23 {}
+
 pub const TSI0_CH1: Tsi0Ch1 = Tsi0Ch1 {};
 pub struct Tsi0Ch1 {}
 
@@ -198,9 +390,6 @@ pub struct Pta20 {}
 pub const RESET_B: ResetB = ResetB {};
 pub struct ResetB {}
 
-pub const ADC0_SE8: Adc0Se8 = Adc0Se8 {};
-pub struct Adc0Se8 {}
-
 pub const TSI0_CH0: Tsi0Ch0 = Tsi0Ch0 {};
 pub struct Tsi0Ch0 {}
 
@@ -209,9 +398,6 @@ pub struct Ptb0 {}
 
 pub const I2C0_SCL: I2c0Scl = I2c0Scl {};
 pub struct I2c0Scl {}
-
-pub const ADC0_SE9: Adc0Se9 = Adc0Se9 {};
-pub struct Adc0Se9 {}
 
 pub const TSI0_CH6: Tsi0Ch6 = Tsi0Ch6 {};
 pub struct Tsi0Ch6 {}
@@ -222,17 +408,11 @@ pub struct Ptb1 {}
 pub const I2C0_SDA: I2c0Sda = I2c0Sda {};
 pub struct I2c0Sda {}
 
-pub const ADC0_SE12: Adc0Se12 = Adc0Se12 {};
-pub struct Adc0Se12 {}
-
 pub const TSI0_CH7: Tsi0Ch7 = Tsi0Ch7 {};
 pub struct Tsi0Ch7 {}
 
 pub const PTB2: Ptb2 = Ptb2 {};
 pub struct Ptb2 {}
-
-pub const ADC0_SE13: Adc0Se13 = Adc0Se13 {};
-pub struct Adc0Se13 {}
 
 pub const TSI0_CH8: Tsi0Ch8 = Tsi0Ch8 {};
 pub struct Tsi0Ch8 {}
@@ -270,9 +450,6 @@ pub struct Tsi0Ch12 {}
 pub const PTB19: Ptb19 = Ptb19 {};
 pub struct Ptb19 {}
 
-pub const ADC0_SE14: Adc0Se14 = Adc0Se14 {};
-pub struct Adc0Se14 {}
-
 pub const TSI0_CH13: Tsi0Ch13 = Tsi0Ch13 {};
 pub struct Tsi0Ch13 {}
 
@@ -288,17 +465,11 @@ pub struct AudiousbSofOut {}
 pub const CMP0_OUT: Cmp0Out = Cmp0Out {};
 pub struct Cmp0Out {}
 
-pub const ADC0_SE15: Adc0Se15 = Adc0Se15 {};
-pub struct Adc0Se15 {}
-
 pub const TSI0_CH14: Tsi0Ch14 = Tsi0Ch14 {};
 pub struct Tsi0Ch14 {}
 
 pub const PTC1: Ptc1 = Ptc1 {};
 pub struct Ptc1 {}
-
-pub const ADC0_SE11: Adc0Se11 = Adc0Se11 {};
-pub struct Adc0Se11 {}
 
 pub const TSI0_CH15: Tsi0Ch15 = Tsi0Ch15 {};
 pub struct Tsi0Ch15 {}
@@ -378,9 +549,6 @@ pub struct Ptc11 {}
 pub const PTD0: Ptd0 = Ptd0 {};
 pub struct Ptd0 {}
 
-pub const ADC0_SE5B: Adc0Se5b = Adc0Se5b {};
-pub struct Adc0Se5b {}
-
 pub const PTD1: Ptd1 = Ptd1 {};
 pub struct Ptd1 {}
 
@@ -396,17 +564,11 @@ pub struct Ptd4 {}
 pub const SPI1_PCS0: Spi1Pcs0 = Spi1Pcs0 {};
 pub struct Spi1Pcs0 {}
 
-pub const ADC0_SE6B: Adc0Se6b = Adc0Se6b {};
-pub struct Adc0Se6b {}
-
 pub const PTD5: Ptd5 = Ptd5 {};
 pub struct Ptd5 {}
 
 pub const SPI1_SCK: Spi1Sck = Spi1Sck {};
 pub struct Spi1Sck {}
-
-pub const ADC0_SE7B: Adc0Se7b = Adc0Se7b {};
-pub struct Adc0Se7b {}
 
 pub const PTD6: Ptd6 = Ptd6 {};
 pub struct Ptd6 {}
@@ -423,38 +585,20 @@ pub struct RtcClkout {}
 pub const PTE1: Pte1 = Pte1 {};
 pub struct Pte1 {}
 
-pub const ADC0_DP0: Adc0Dp0 = Adc0Dp0 {};
-pub struct Adc0Dp0 {}
-
 pub const ADC0_SE0: Adc0Se0 = Adc0Se0 {};
 pub struct Adc0Se0 {}
 
 pub const PTE20: Pte20 = Pte20 {};
 pub struct Pte20 {}
 
-pub const ADC0_DM0: Adc0Dm0 = Adc0Dm0 {};
-pub struct Adc0Dm0 {}
-
-pub const ADC0_SE4A: Adc0Se4a = Adc0Se4a {};
-pub struct Adc0Se4a {}
-
 pub const PTE21: Pte21 = Pte21 {};
 pub struct Pte21 {}
-
-pub const ADC0_DP3: Adc0Dp3 = Adc0Dp3 {};
-pub struct Adc0Dp3 {}
 
 pub const ADC0_SE3: Adc0Se3 = Adc0Se3 {};
 pub struct Adc0Se3 {}
 
 pub const PTE22: Pte22 = Pte22 {};
 pub struct Pte22 {}
-
-pub const ADC0_DM3: Adc0Dm3 = Adc0Dm3 {};
-pub struct Adc0Dm3 {}
-
-pub const ADC0_SE7A: Adc0Se7a = Adc0Se7a {};
-pub struct Adc0Se7a {}
 
 pub const PTE23: Pte23 = Pte23 {};
 pub struct Pte23 {}
@@ -468,17 +612,11 @@ pub struct Pte25 {}
 pub const CMP0_IN5: Cmp0In5 = Cmp0In5 {};
 pub struct Cmp0In5 {}
 
-pub const ADC0_SE4B: Adc0Se4b = Adc0Se4b {};
-pub struct Adc0Se4b {}
-
 pub const PTE29: Pte29 = Pte29 {};
 pub struct Pte29 {}
 
 pub const DAC0_OUT: Dac0Out = Dac0Out {};
 pub struct Dac0Out {}
-
-pub const ADC0_SE23: Adc0Se23 = Adc0Se23 {};
-pub struct Adc0Se23 {}
 
 pub const CMP0_IN4: Cmp0In4 = Cmp0In4 {};
 pub struct Cmp0In4 {}

@@ -2023,6 +2023,11 @@ impl En for super::tpm::Tpm2 {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_tpm2(value)); }
 }
 
+impl En for super::adc::Adc0 {
+   #[inline] fn en(&self) -> u32 { SIM.scgc6().adc0().into() }
+   #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_adc0(value)); }
+}
+
 impl En for super::dma::Dma {
    #[inline] fn en(&self) -> u32 { SIM.scgc7().dma().into() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc7(|r| r.set_dma(value)); }

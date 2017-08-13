@@ -18,3 +18,4 @@ pub mod i2c;
 pub mod dmamux;
 pub mod dma;
 pub mod edma;
+pub mod adc;

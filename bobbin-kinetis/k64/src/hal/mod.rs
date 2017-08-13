@@ -4,7 +4,6 @@ pub use bobbin_cortexm::hal::*;
 
 pub mod sim;
 pub mod clock;
-pub mod adc;
 
 pub mod port {
     pub use chip::port::*;    
@@ -157,6 +156,12 @@ pub mod edma {
 pub mod dmamux {
     pub use chip::dmamux::*;
     pub use kinetis_common::hal::dmamux::*;
+    pub use super::sim::SimEnabled;
+}
+
+pub mod adc {
+    pub use chip::adc::*;
+    pub use kinetis_common::hal::adc::*;
     pub use super::sim::SimEnabled;
 }
 

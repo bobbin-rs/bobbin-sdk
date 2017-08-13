@@ -17,6 +17,7 @@ pub const IRQ_PORTD: IrqPortd = Irq(31, PortdId {});
 pub const IRQ_UART0: IrqUart0 = Irq(12, Uart0Id {});
 pub const IRQ_UART1: IrqUart1 = Irq(13, Uart1Id {});
 pub const IRQ_UART2: IrqUart2 = Irq(14, Uart2Id {});
+pub const IRQ_ADC0: IrqAdc0 = Irq(39, Adc0Id {});
 
 pub type IrqDma0 = Irq<Dma0Id>;
 pub type IrqDma1 = Irq<Dma1Id>;
@@ -32,6 +33,7 @@ pub type IrqPortd = Irq<PortdId>;
 pub type IrqUart0 = Irq<Uart0Id>;
 pub type IrqUart1 = Irq<Uart1Id>;
 pub type IrqUart2 = Irq<Uart2Id>;
+pub type IrqAdc0 = Irq<Adc0Id>;
 
 #[doc(hidden)]
 pub struct Dma0Id {} // IRQ 0
@@ -61,6 +63,8 @@ pub struct Uart0Id {} // IRQ 12
 pub struct Uart1Id {} // IRQ 13
 #[doc(hidden)]
 pub struct Uart2Id {} // IRQ 14
+#[doc(hidden)]
+pub struct Adc0Id {} // IRQ 39
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {
   unsafe { 
@@ -312,6 +316,18 @@ impl RegisterHandler for IrqUart2 {
    }
 }
 
+impl RegisterHandler for IrqAdc0 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(39, Some(wrapper::<F>));
+       IrqGuard::new(39)
+   }
+}
+
 #[link_section = ".vector.interrupts"]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 48] = [
@@ -354,7 +370,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 48] = [
    None,
    None,
    None,
-   None,
+   None,                          // IRQ 39: No Description
    None,
    None,
    None,

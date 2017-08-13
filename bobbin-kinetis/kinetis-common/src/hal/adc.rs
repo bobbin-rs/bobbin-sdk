@@ -1,6 +1,5 @@
 use bobbin_common::bits::*;
 pub use chip::adc::*;
-pub use super::sim::SimEnabled;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]
