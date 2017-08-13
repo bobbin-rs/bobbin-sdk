@@ -680,12 +680,14 @@
             (bit-offset 9)
             (bit-width 1)
             (description "ADC 1 interface clock enable")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC1))
         )
         (field
             (name ADC2EN)
             (bit-offset 10)
             (bit-width 1)
             (description "ADC 2 interface clock enable")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC2))
         )
         (field
             (name TIM1EN)
