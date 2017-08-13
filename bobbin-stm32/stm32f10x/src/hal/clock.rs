@@ -1,3 +1,4 @@
+use bobbin_common::bits::*;
 use ::chip::rcc::RCC;
 use ::chip::pwr::PWR;
 use ::chip::usart::*;
@@ -75,9 +76,8 @@ impl ClockTree {
 
     pub fn hsi_rdy(&self) -> bool {
         match RCC.cr().hsirdy() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -88,9 +88,8 @@ impl ClockTree {
 
     pub fn hsi_on(&self) -> bool {
         match RCC.cr().hsion() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -106,9 +105,8 @@ impl ClockTree {
 
     pub fn hse_rdy(&self) -> bool {
         match RCC.cr().hserdy() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -120,9 +118,8 @@ impl ClockTree {
 
     pub fn hse_on(&self) -> bool {
         match RCC.cr().hseon() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -143,9 +140,8 @@ impl ClockTree {
 
     pub fn lsi_rdy(&self) -> bool {
         match RCC.csr().lsirdy() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -157,9 +153,8 @@ impl ClockTree {
 
     pub fn lsi_on(&self) -> bool {
         match RCC.csr().lsion() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -175,9 +170,8 @@ impl ClockTree {
 
     pub fn lse_rdy(&self) -> bool {
         match RCC.bdcr().lserdy() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -188,9 +182,8 @@ impl ClockTree {
 
     pub fn lse_on(&self) -> bool {
         match RCC.bdcr().lseon() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -207,9 +200,8 @@ impl ClockTree {
 
     pub fn pll_src(&self) -> PllSrc {
         match RCC.cfgr().pllsrc() {
-            0b0 => PllSrc::HsiDiv2,
-            0b1 => PllSrc::Hse,
-            _ => unimplemented!(),
+            U1::B0 => PllSrc::HsiDiv2,
+            U1::B1 => PllSrc::Hse,
         }
     }
 
@@ -219,7 +211,7 @@ impl ClockTree {
     }
 
     pub fn pll_mul(&self) -> u32 {
-        match RCC.cfgr().pllmul() {
+        match RCC.cfgr().pllmul().into_u8() {
             0b0000 => 2,
             0b0001 => 3,
             0b0010 => 4,
@@ -265,9 +257,8 @@ impl ClockTree {
 
     pub fn pll_rdy(&self) -> bool {
         match RCC.cr().pllrdy() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -278,42 +269,37 @@ impl ClockTree {
 
     pub fn pll_on(&self) -> bool {
         match RCC.cr().pllon() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
     pub fn set_pll_on(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
         RCC.with_cr(|r| r.set_pllon(value) );
         self
     }
 
     pub fn pllclk(&self) -> Hz {
         match RCC.cr().pllrdy() {
-            0b0 => None,
-            0b1 => match RCC.cfgr().pllsrc() {
-                0b0 => self.hsi().map(|v| v >> 1),
-                0b1 => {
+            U1::B0 => None,
+            U1::B1 => match RCC.cfgr().pllsrc() {
+                U1::B0 => self.hsi().map(|v| v >> 1),
+                U1::B1 => {
                     match RCC.cfgr().pllxtpre() {
-                        0b0 => self.hse(),
-                        0b1 => self.hse().map(|v| v >> 1),
-                        _ => unimplemented!(),
+                        U1::B0 => self.hse(),
+                        U1::B1 => self.hse().map(|v| v >> 1),
                     }    
                 },
-                _ => unimplemented!(),
             }.map(|v| v * self.pll_mul()),
-            _ => unimplemented!(),
         }
     }
 
     pub fn sysclk_src(&self) -> SysClockSrc {
         match RCC.cfgr().sws() {
-            0b00 => SysClockSrc::Hsi,
-            0b01 => SysClockSrc::Hse,
-            0b10 => SysClockSrc::Pll,
-            _ => unimplemented!()
+            U2::B00 => SysClockSrc::Hsi,
+            U2::B01 => SysClockSrc::Hse,
+            U2::B10 => SysClockSrc::Pll,
+            U2::B11 => panic!("Invalid value for RCC_CFGR[SWS]"),            
         }
     }
 
@@ -341,7 +327,7 @@ impl ClockTree {
     }
 
     pub fn hclk_pre(&self) -> HPre {
-        match RCC.cfgr().hpre() {
+        match RCC.cfgr().hpre().into_u8() {
             0b0000 ... 0b0111 => HPre::Div1,
             0b1000 => HPre::Div2,
             0b1001 => HPre::Div4,
@@ -362,7 +348,7 @@ impl ClockTree {
 
     pub fn hclk(&self) -> Hz {
         // Note: Divide by 32 is skipped
-        let hclk_shift = match RCC.cfgr().hpre() {
+        let hclk_shift = match RCC.cfgr().hpre().into_u8() {
             0b0000 ... 0b0111 => 0,
             0b1000 => 1,
             0b1001 => 2,
@@ -378,7 +364,7 @@ impl ClockTree {
     }
 
     pub fn pclk1_pre(&self) -> PPre1 {
-        match RCC.cfgr().ppre1() {
+        match RCC.cfgr().ppre1().into_u8() {
             0b000 ... 0b011 => PPre1::Div1,
             0b100 => PPre1::Div2,
             0b101 => PPre1::Div4,
@@ -394,7 +380,7 @@ impl ClockTree {
     }       
 
     pub fn pclk1(&self) -> Hz {
-        let ppre1_shift = match RCC.cfgr().ppre1() {
+        let ppre1_shift = match RCC.cfgr().ppre1().into_u8() {
             0b000 ... 0b011 => 0,
             0b100 => 1,
             0b101 => 2,
@@ -406,7 +392,7 @@ impl ClockTree {
     }
 
     pub fn pclk2_pre(&self) -> PPre2 {
-        match RCC.cfgr().ppre2() {
+        match RCC.cfgr().ppre2().into_u8() {
             0b000 ... 0b011 => PPre2::Div1,
             0b100 => PPre2::Div2,
             0b101 => PPre2::Div4,
@@ -422,7 +408,7 @@ impl ClockTree {
     }       
 
     pub fn pclk2(&self) -> Hz {
-        let ppre2_shift = match RCC.cfgr().ppre2() {
+        let ppre2_shift = match RCC.cfgr().ppre2().into_u8() {
             0b000 ... 0b011 => 0,
             0b100 => 1,
             0b101 => 2,
@@ -434,7 +420,7 @@ impl ClockTree {
     }
 
     pub fn timclk_apb1(&self) -> Hz {
-        let timclk_shift = match RCC.cfgr().ppre1() {
+        let timclk_shift = match RCC.cfgr().ppre1().into_u8() {
             0b000 ... 0b011 => 0,
             0b100 ... 0b111 => 1,
             _ => unimplemented!(),
@@ -443,7 +429,7 @@ impl ClockTree {
     }
 
     pub fn timclk_apb2(&self) -> Hz {
-        let timclk_shift = match RCC.cfgr().ppre2() {
+        let timclk_shift = match RCC.cfgr().ppre2().into_u8() {
             0b000 ... 0b011 => 0,
             0b100 ... 0b111 => 1,
             _ => unimplemented!(),
@@ -453,11 +439,10 @@ impl ClockTree {
 
     pub fn adcclk(&self) -> Hz {
         let adc_div = match RCC.cfgr().adcpre() {
-            0b00 => 2,
-            0b01 => 4,
-            0b10 => 6,
-            0b11 => 8,
-            _ => unimplemented!(),
+            U2::B00 => 2,
+            U2::B01 => 4,
+            U2::B10 => 6,
+            U2::B11 => 8,            
         };
         self.pclk2().map(|v| v >> adc_div)
     }
@@ -468,9 +453,8 @@ impl ClockTree {
 
     pub fn rtc_enabled(&self) -> bool {
         match RCC.bdcr().rtcen() {
-            0b0 => false,
-            0b1 => true,
-            _ => unimplemented!(),
+            U1::B0 => false,
+            U1::B1 => true,
         }
     }
 
@@ -487,21 +471,19 @@ impl ClockTree {
 
     pub fn rtcclk_sel(&self) -> RtcSel {
         match RCC.bdcr().rtcsel() {
-            0b00 => RtcSel::None,
-            0b01 => RtcSel::Lse,
-            0b10 => RtcSel::Lsi,
-            0b11 => RtcSel::HseDiv128,
-            _ => unimplemented!(),
+            U2::B00 => RtcSel::None,
+            U2::B01 => RtcSel::Lse,
+            U2::B10 => RtcSel::Lsi,
+            U2::B11 => RtcSel::HseDiv128,            
         }
     }
 
     pub fn rtcclk(&self) -> Hz {
         match RCC.bdcr().rtcsel() {
-            0b00 => None,
-            0b01 => self.lse(),
-            0b10 => self.lsi(),
-            0b11 => self.hse().map(|v| v >> 7),
-            _ => unimplemented!(),
+            U2::B00 => None,
+            U2::B01 => self.lse(),
+            U2::B10 => self.lsi(),
+            U2::B11 => self.hse().map(|v| v >> 7),            
         }
     }
 

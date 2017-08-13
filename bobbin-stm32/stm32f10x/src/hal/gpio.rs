@@ -58,25 +58,21 @@ impl<P, T> PinExt for Pin<P,T> {
 
     #[inline]
     fn set_output(&self, value: bool) -> &Self {
-        self.port.set_bsrr(
-            if value {
-                Bsrr(0).set_bs(self.index, 1)
-            } else {
-                Bsrr(0).set_br(self.index, 1)
-            }
-        );
+        if value {
+            self.port.set_bsrr(|r| r.set_bs(self.index, 1))
+        } else {
+            self.port.set_bsrr(|r| r.set_br(self.index, 1))
+        };
         self
     }
 
     #[inline]
     fn toggle_output(&self) -> &Self {
-        self.port.set_bsrr(
-            if self.port.idr().idr(self.index) == 0 {
-                Bsrr(0).set_bs(self.index, 1)
-            } else {
-                Bsrr(0).set_br(self.index, 1)
-            }
-        );
+        if self.port.idr().idr(self.index) == 0 {
+            self.port.set_bsrr(|r| r.set_bs(self.index, 1))
+        } else {
+            self.port.set_bsrr(|r| r.set_br(self.index, 1))
+        };
         self
     }    
 }
