@@ -2835,12 +2835,14 @@
             (bit-offset 0)
             (bit-width 1)
             (description "ADC Module 0 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group ADC) (peripheral ADC0))
         )
         (field
             (name R1)
             (bit-offset 1)
             (bit-width 1)
             (description "ADC Module 1 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group ADC) (peripheral ADC1))
         )
     )
     (register

@@ -21,6 +21,98 @@
     (peripheral (include "periph/emac.rx"))
     
     (peripheral-group
+        (name ADC)
+        (prototype "periph/adc.rx")
+        (has-channels)
+        (peripheral
+            (name ADC0)
+            (address 0x40038000)
+            (description "Register map for ADC0 peripheral")
+
+            (channel (name ADC0_CH0) (index 0) (signal (name AIN0) (type AIN)))
+            (channel (name ADC0_CH1) (index 1) (signal (name AIN1) (type AIN)))
+            (channel (name ADC0_CH2) (index 2) (signal (name AIN2) (type AIN)))
+            (channel (name ADC0_CH3) (index 3) (signal (name AIN3) (type AIN)))
+            (channel (name ADC0_CH4) (index 4) (signal (name AIN4) (type AIN)))
+            (channel (name ADC0_CH5) (index 5) (signal (name AIN5) (type AIN)))
+            (channel (name ADC0_CH6) (index 6) (signal (name AIN6) (type AIN)))
+            (channel (name ADC0_CH7) (index 7) (signal (name AIN7) (type AIN)))
+            (channel (name ADC0_CH8) (index 8) (signal (name AIN8) (type AIN)))
+            (channel (name ADC0_CH9) (index 9) (signal (name AIN9) (type AIN)))
+            (channel (name ADC0_CH10) (index 10) (signal (name AIN10) (type AIN)))
+            (channel (name ADC0_CH11) (index 11) (signal (name AIN11) (type AIN)))
+            (channel (name ADC0_CH12) (index 12) (signal (name AIN12) (type AIN)))
+            (channel (name ADC0_CH13) (index 13) (signal (name AIN13) (type AIN)))
+            (channel (name ADC0_CH14) (index 14) (signal (name AIN14) (type AIN)))
+            (channel (name ADC0_CH15) (index 15) (signal (name AIN15) (type AIN)))
+            (channel (name ADC0_CH16) (index 16) (signal (name AIN16) (type AIN)))
+            (channel (name ADC0_CH17) (index 17) (signal (name AIN17) (type AIN)))
+            (channel (name ADC0_CH18) (index 18) (signal (name AIN18) (type AIN)))
+            (channel (name ADC0_CH19) (index 19) (signal (name AIN19) (type AIN)))
+
+            (interrupt
+                (name ADC0SS0)
+                (value 14)
+            )
+            (interrupt
+                (name ADC0SS1)
+                (value 15)
+            )
+            (interrupt
+                (name ADC0SS2)
+                (value 16)
+            )
+            (interrupt
+                (name ADC0SS3)
+                (value 17)
+            )
+            
+        )
+        (peripheral
+            (name ADC1)
+            (address 0x40039000)
+
+            (channel (name ADC1_CH0) (index 0) (signal (name AIN0) (type AIN)))
+            (channel (name ADC1_CH1) (index 1) (signal (name AIN1) (type AIN)))
+            (channel (name ADC1_CH2) (index 2) (signal (name AIN2) (type AIN)))
+            (channel (name ADC1_CH3) (index 3) (signal (name AIN3) (type AIN)))
+            (channel (name ADC1_CH4) (index 4) (signal (name AIN4) (type AIN)))
+            (channel (name ADC1_CH5) (index 5) (signal (name AIN5) (type AIN)))
+            (channel (name ADC1_CH6) (index 6) (signal (name AIN6) (type AIN)))
+            (channel (name ADC1_CH7) (index 7) (signal (name AIN7) (type AIN)))
+            (channel (name ADC1_CH8) (index 8) (signal (name AIN8) (type AIN)))
+            (channel (name ADC1_CH9) (index 9) (signal (name AIN9) (type AIN)))
+            (channel (name ADC1_CH10) (index 10) (signal (name AIN10) (type AIN)))
+            (channel (name ADC1_CH11) (index 11) (signal (name AIN11) (type AIN)))
+            (channel (name ADC1_CH12) (index 12) (signal (name AIN12) (type AIN)))
+            (channel (name ADC1_CH13) (index 13) (signal (name AIN13) (type AIN)))
+            (channel (name ADC1_CH14) (index 14) (signal (name AIN14) (type AIN)))
+            (channel (name ADC1_CH15) (index 15) (signal (name AIN15) (type AIN)))
+            (channel (name ADC1_CH16) (index 16) (signal (name AIN16) (type AIN)))
+            (channel (name ADC1_CH17) (index 17) (signal (name AIN17) (type AIN)))
+            (channel (name ADC1_CH18) (index 18) (signal (name AIN18) (type AIN)))
+            (channel (name ADC1_CH19) (index 19) (signal (name AIN19) (type AIN)))
+
+            (interrupt
+                (name ADC1SS0)
+                (value 46)
+            )
+            (interrupt
+                (name ADC1SS1)
+                (value 47)
+            )
+            (interrupt
+                (name ADC1SS2)
+                (value 48)
+            )
+            (interrupt
+                (name ADC1SS3)
+                (value 49)
+            )
+        )
+    )
+    
+    (peripheral-group
         (name WATCHDOG)
         (prototype "periph/watchdog.rx")
         (peripheral
