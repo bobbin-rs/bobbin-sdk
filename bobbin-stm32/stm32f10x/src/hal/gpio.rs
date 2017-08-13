@@ -1,3 +1,4 @@
+pub use bobbin_common::digital::*;
 pub use chip::gpio::*;
 pub use super::rcc::RccEnabled;
 
@@ -7,9 +8,6 @@ pub trait PinExt {
     fn mode_input(&self) -> &Self;
     fn mode_output(&self) -> &Self;
     fn mode_altfn(&self) -> &Self;
-    fn output(&self) -> bool;
-    fn set_output(&self, value: bool) -> &Self;
-    fn toggle_output(&self) -> &Self;
 }
 
 impl<P, T> PinExt for Pin<P,T> {
@@ -50,7 +48,9 @@ impl<P, T> PinExt for Pin<P,T> {
         }
         self
     }    
+}
 
+impl<P, T> DigitalOutput for Pin<P, T> {
     #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0
@@ -68,11 +68,17 @@ impl<P, T> PinExt for Pin<P,T> {
 
     #[inline]
     fn toggle_output(&self) -> &Self {
-        if self.port.idr().idr(self.index) == 0 {
+        if self.port.odr().odr(self.index) == 0 {
             self.port.set_bsrr(|r| r.set_bs(self.index, 1))
         } else {
             self.port.set_bsrr(|r| r.set_br(self.index, 1))
         };
         self
     }    
+}
+
+impl<P, T> DigitalInput for Pin<P, T> {
+    fn input(&self) -> bool {
+        self.port.idr().idr(self.index) != 0
+    }
 }
