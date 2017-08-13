@@ -546,20 +546,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
             for s in p.signals.iter() {
                 let s_const = s.name.to_uppercase();
                 let s_type = to_camel(&s.name);
-                try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
-                try!(writeln!(out, "pub struct {} {{}}", s_type));
-                for st in s.types.iter() {
-                    let st_type = to_camel(&st);
-                    try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
-                }                
-                try!(writeln!(out, ""));
-                signals.insert(s_type);
-            }
-            for ch in p.channels.iter() {
-                let ch_type = to_camel(&ch.name);
-                for s in ch.signals.iter() {
-                    let s_const = s.name.to_uppercase();
-                    let s_type = to_camel(&s.name);
+                if !signals.contains(&s_type) {
                     try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                     try!(writeln!(out, "pub struct {} {{}}", s_type));
                     for st in s.types.iter() {
@@ -568,6 +555,23 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     }                
                     try!(writeln!(out, ""));
                     signals.insert(s_type);
+                }
+            }
+            for ch in p.channels.iter() {
+                let ch_type = to_camel(&ch.name);
+                for s in ch.signals.iter() {
+                    let s_const = s.name.to_uppercase();
+                    let s_type = to_camel(&s.name);
+                    if !signals.contains(&s_type) {
+                        try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                        try!(writeln!(out, "pub struct {} {{}}", s_type));
+                        for st in s.types.iter() {
+                            let st_type = to_camel(&st);
+                            try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
+                        }                
+                        try!(writeln!(out, ""));
+                        signals.insert(s_type);
+                    }
                 }                
             }
         }
