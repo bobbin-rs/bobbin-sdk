@@ -18,7 +18,6 @@ pub extern "C" fn main() -> ! {
 
     //let b = BTN0; // PC13
     let line = EXTI_LINE13;
-    SYSCFG.rcc_set_enabled(true);
     SYSCFG.set_exti(line.index(), Source::GpioC);
     
     line.set_interrupt_mask(true);

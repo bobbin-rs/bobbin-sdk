@@ -12,7 +12,7 @@ pub extern "C" fn main() -> ! {
     println!("Running CRC Test");
 
     CRC.rcc_set_enabled(true);
-    CRC.configure(Config::default()).initialize(0x1234);
+    CRC.reset();
 
     let mut i = 0;
     loop {
@@ -22,4 +22,5 @@ pub extern "C" fn main() -> ! {
         board::delay(1_000);
     }
 }
+
 
