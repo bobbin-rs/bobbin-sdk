@@ -79,4 +79,9 @@
         (has-channels)
         (prototype "periph/edma.rx")
     )
+    (peripheral-group
+        (name ADC)
+        (has-channels)
+        (prototype "periph/adc.rx")
+    )    
 )

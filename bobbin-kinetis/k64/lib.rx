@@ -1391,8 +1391,7 @@
 
     (peripheral-group
         (name ADC)
-        (prototype "periph/adc.rx")
-        (has-channels)
+        (module (name kinetis_common::chip::adc::*))
         (peripheral
             (name ADC0)
             (address 0x4003b000)

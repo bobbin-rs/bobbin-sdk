@@ -664,4 +664,59 @@
             )
         )        
     )
+
+    (peripheral-group
+        (name ADC)
+        (module (name kinetis_common::chip::adc::*))
+        (peripheral
+            (name ADC0)
+            (address 0x4003b000)
+            (description "Analog-to-Digital Converter")
+
+            (signal (name ADC0_DP0) (type ADC_DP0))
+            (signal (name ADC0_DP1) (type ADC_DP1))
+            (signal (name ADC0_DP2) (type ADC_DP2))
+            (signal (name ADC0_DP3) (type ADC_DP3))
+
+            (signal (name ADC0_DM0) (type ADC_DM0))
+            (signal (name ADC0_DM1) (type ADC_DM1))
+            (signal (name ADC0_DM2) (type ADC_DM2))
+            (signal (name ADC0_DM3) (type ADC_DM3))
+
+            (signal (name ADC0_SE4a) (type ADC_SE4a))
+            (signal (name ADC0_SE5a) (type ADC_SE5a))
+            (signal (name ADC0_SE6a) (type ADC_SE6a))
+            (signal (name ADC0_SE7a) (type ADC_SE7a))
+
+            (signal (name ADC0_SE4b) (type ADC_SE4b))
+            (signal (name ADC0_SE5b) (type ADC_SE5b))
+            (signal (name ADC0_SE6b) (type ADC_SE6b))
+            (signal (name ADC0_SE7b) (type ADC_SE7b))
+
+            (signal (name ADC0_SE8) (type ADC_SE8))
+            (signal (name ADC0_SE9) (type ADC_SE9))
+            (signal (name ADC0_SE10) (type ADC_SE10))
+            (signal (name ADC0_SE11) (type ADC_SE11))
+            (signal (name ADC0_SE12) (type ADC_SE12))
+            (signal (name ADC0_SE13) (type ADC_SE13))
+            (signal (name ADC0_SE14) (type ADC_SE14))
+            (signal (name ADC0_SE15) (type ADC_SE15))
+            (signal (name ADC0_SE16) (type ADC_SE16))
+            (signal (name ADC0_SE17) (type ADC_SE17))
+            (signal (name ADC0_SE18) (type ADC_SE18))
+            (signal (name ADC0_SE19) (type ADC_SE19))
+            (signal (name ADC0_SE20) (type ADC_SE20))
+            (signal (name ADC0_SE21) (type ADC_SE21))
+            (signal (name ADC0_SE22) (type ADC_SE22))
+            (signal (name ADC0_SE23) (type ADC_SE23))
+
+            (channel (name ADC0_CH0) (index 0))
+            (channel (name ADC0_CH1) (index 1))
+
+            (interrupt
+                (name ADC0)
+                (value 39)
+            )        
+        )
+    )        
 )

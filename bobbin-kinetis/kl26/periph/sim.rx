@@ -1272,6 +1272,7 @@
             (bit-width 1)
             (access read-write)
             (description "ADC0 Clock Gate Control")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC0))
             (value
                 (value "#0")
                 (name "0")
