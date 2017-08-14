@@ -1866,6 +1866,19 @@ impl Dr {
      self
   }
 
+#[doc="Regular data (12 bit)"]
+  #[inline] pub fn data_12(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+  }
+#[doc="Regular data (12 bit)"]
+  #[inline] pub fn set_data_12<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0xfff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1876,6 +1889,7 @@ impl ::core::fmt::Debug for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.data() != 0 { try!(write!(f, " data=0x{:x}", self.data()))}
+      if self.data_12() != 0 { try!(write!(f, " data_12=0x{:x}", self.data_12()))}
       try!(write!(f, "]"));
       Ok(())
    }

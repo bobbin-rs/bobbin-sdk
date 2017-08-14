@@ -1,3 +1,5 @@
+use bobbin_common::bits::*;
+pub use bobbin_common::analog::AnalogRead;
 pub use ::chip::adc::*;
 
 pub enum Resolution {
@@ -110,5 +112,14 @@ impl<P, T> AdcChExt for Channel<P, T> {
 
     fn read(&self) -> u16 {
         self.periph().data()
+    }
+}
+
+impl<P, T> AnalogRead<U12> for Channel<P, T> {
+    fn analog_read(&self) -> U12 {
+        self
+            .start()
+            .wait()
+            .periph().dr().data_12()
     }
 }
