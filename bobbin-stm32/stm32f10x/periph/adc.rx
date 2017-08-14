@@ -574,5 +574,11 @@
             (bit-width 16)
             (description "Regular data")
         )
+        (field
+            (name DATA_12)
+            (bit-offset 0)
+            (bit-width 12)
+            (description "Regular data (12 bit)")
+        )        
     )
 )
