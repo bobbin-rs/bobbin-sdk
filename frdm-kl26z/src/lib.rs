@@ -7,7 +7,7 @@ extern crate r0;
 
 
 extern crate kl26;
-pub use kl26::{chip, hal};
+pub use kl26::{common, chip, hal};
 
 #[macro_use]
 pub mod console;

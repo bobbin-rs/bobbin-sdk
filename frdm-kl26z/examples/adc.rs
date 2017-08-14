@@ -4,6 +4,7 @@
 #[macro_use]
 extern crate frdm_kl26z as board;
 
+use board::common::bits::*;
 use board::pin::*;
 use board::hal::port::*;
 use board::hal::adc::*;
@@ -12,16 +13,16 @@ use board::hal::adc::*;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("ADC Test");
-   
-    let adc0 = ADC0;
-    let ch0 = ADC0_CH0;
 
-    let a0 = A0; // PTB0 / ADC0_SE8
+    let a0 = A0; // PTB0 / ADC0_SE8   
+    let adc0 = ADC0;
+    let ch8 = ADC0_CH8;
+    let ch16 = ADC0_TEMP;
 
     println!("Setting up pins");
 
     a0.port().sim_set_enabled(true);
-    a0.mode_adc_se8(&adc0);
+    a0.mode_adc(&ch8);
 
     println!("Setting up ADC");
 
@@ -33,14 +34,17 @@ pub extern "C" fn main() -> ! {
 
     loop {
         // Read Temperature Sensor on AD26 (value ~ 55)
-        ch0.set_input_channel(26.into());        
-        while !ch0.conversion_complete() {}
-        let v0 = ch0.result();
+        let v0: u8 = ch16.analog_read();
+        // ch0.set_input_channel(26.into());        
+        // while !ch0.conversion_complete() {}
+        // let v0 = ch0.result();
 
         // Read A0 on AD8
-        ch0.set_input_channel(8.into());        
-        while !ch0.conversion_complete() {}
-        let v1 = ch0.result();
+        let v1: U16 = ch8.analog_read();
+
+        // ch0.set_input_channel(8.into());        
+        // while !ch0.conversion_complete() {}
+        // let v1 = ch0.result();
 
         println!("{} {}", v0, v1);
         board::delay(1000);
