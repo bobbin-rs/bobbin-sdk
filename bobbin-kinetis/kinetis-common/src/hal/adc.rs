@@ -1,5 +1,6 @@
 use bobbin_common::bits::*;
 pub use chip::adc::*;
+pub use bobbin_common::analog::AnalogRead;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]
@@ -16,6 +17,7 @@ pub enum Resolution {
     Bits8 = 0x00,
     Bits12 = 0x01,
     Bits10 = 0x02,
+    Bits16 = 0x03,
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -227,33 +229,75 @@ impl<T> AdcExt for Periph<T> {
 }
 
 pub trait AdcChExt {
-    fn interrupt_enabled(&self) -> bool;
-    fn set_interrupt_enabled(&self, value: bool) -> &Self;
-    fn input_channel(&self) -> U5;
-    fn set_input_channel(&self, value: U5) -> &Self;
-    fn conversion_complete(&self) -> bool;
-    fn result(&self) -> u16;
+    fn start(&self) -> &Self;
+    fn complete(&self) -> bool;
+    fn wait(&self) -> &Self {
+        while !self.complete() {}
+        self
+    }
+    fn read(&self) -> u16;
 }
 
 impl<P, T> AdcChExt for Channel<P, T> {
-    fn interrupt_enabled(&self) -> bool {
-        self.periph.sc1(self.index).aien() != 0
-    }
-    fn set_interrupt_enabled(&self, value: bool) -> &Self {
-        self.periph.with_sc1(self.index, |r| r.set_aien(value));
+    fn start(&self) -> &Self {
+        self.periph.with_sc1(0, |r| r.set_adch(self.index as u8));
         self
     }
-    fn input_channel(&self) -> U5 {
-        self.periph.sc1(self.index).adch()
+
+    fn complete(&self) -> bool {
+        self.periph.sc1(0).coco() != 0
     }
-    fn set_input_channel(&self, value: U5) -> &Self {
-        self.periph.with_sc1(self.index, |r| r.set_adch(value));
-        self
-    }
-    fn conversion_complete(&self) -> bool {
-        self.periph.sc1(self.index).coco() != 0
-    }
-    fn result(&self) -> u16 {
-        self.periph.r(self.index).d().into()
+
+    fn read(&self) -> u16 {
+        self.periph.r(0).d16().into()
     }
 }
+
+impl<P, T> AnalogRead<u8> for Channel<P, T> {
+    fn analog_read(&self) -> u8 {
+        self.periph.set_resolution(Resolution::Bits8);
+        self.start().wait();
+        self.periph.r(0).d8().into()
+    }
+}
+
+impl<P, T> AnalogRead<u16> for Channel<P, T> {
+    fn analog_read(&self) -> u16 {
+        self.periph.set_resolution(Resolution::Bits16);
+        self.start().wait();
+        self.periph.r(0).d16().into()
+    }
+}
+
+impl<P, T> AnalogRead<U8> for Channel<P, T> {
+    fn analog_read(&self) -> U8 {
+        self.periph.set_resolution(Resolution::Bits8);
+        self.start().wait();
+        self.periph.r(0).d8()
+    }
+}
+
+impl<P, T> AnalogRead<U10> for Channel<P, T> {
+    fn analog_read(&self) -> U10 {
+        self.periph.set_resolution(Resolution::Bits10);
+        self.start().wait();
+        self.periph.r(0).d10()
+    }
+}
+
+impl<P, T> AnalogRead<U12> for Channel<P, T> {
+    fn analog_read(&self) -> U12 {
+        self.periph.set_resolution(Resolution::Bits12);
+        self.start().wait();
+        self.periph.r(0).d12()
+    }
+}
+
+impl<P, T> AnalogRead<U16> for Channel<P, T> {
+    fn analog_read(&self) -> U16 {
+        self.periph.set_resolution(Resolution::Bits16);
+        self.start().wait();
+        self.periph.r(0).d16()
+    }
+}
+

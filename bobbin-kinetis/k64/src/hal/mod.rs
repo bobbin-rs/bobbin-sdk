@@ -10,7 +10,7 @@ pub mod port {
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
     use chip::gpio;
-    use chip::sig::{SignalTx, SignalRx, SignalFtm};
+    use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 
     pub trait GpioPin<PIN_ID, GPIO_ID> {
         fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
@@ -39,6 +39,10 @@ pub mod port {
         fn mode_ftm(&self, _: &S) -> &Self;
     }
 
+    pub trait ModeAdc<T, S> {
+        fn mode_adc(&self, _: &S) -> &Self;
+    }
+
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
         fn mode_tx(&self, _: &S) -> &Self {
             self.set_mux(self.id.alt_fn());
@@ -60,59 +64,66 @@ pub mod port {
         }
     }        
 
-    macro_rules! impl_adc {
-        ($mode:ident, $fn:ident, $sig:ident) => (
-            use chip::sig::$sig;
-
-            pub trait $mode<T, S> {
-                fn $fn(&self, _: &S) -> &Self;
-            }            
-
-            impl<P, O, S, T> $mode<T, S> for Pin<P, O> where S: $sig<T>, P: AltFn<T> {
-                fn $fn(&self, _: &S) -> &Self {
-                    self.set_mux(self.id.alt_fn());
-                    self
-                }
-            }                        
-        )
+    impl<P, O, S, T> ModeAdc<T, S> for Pin<P, O> where S: SignalAdc<T>, P: AltFn<T> {
+        fn mode_adc(&self, _: &S) -> &Self {
+            self.set_mux(self.id.alt_fn());
+            self
+        }
     }
 
-    impl_adc!(ModeAdcDp0, mode_adc_dp0, SignalAdcDp0);
-    impl_adc!(ModeAdcDp1, mode_adc_dp1, SignalAdcDp1);
-    impl_adc!(ModeAdcDp2, mode_adc_dp2, SignalAdcDp2);
-    impl_adc!(ModeAdcDp3, mode_adc_dp3, SignalAdcDp3);
+    // macro_rules! impl_adc {
+    //     ($mode:ident, $fn:ident, $sig:ident) => (
+    //         use chip::sig::$sig;
 
-    impl_adc!(ModeAdcDm0, mode_adc_dm0, SignalAdcDm0);
-    impl_adc!(ModeAdcDm1, mode_adc_dm1, SignalAdcDm1);
-    impl_adc!(ModeAdcDm2, mode_adc_dm2, SignalAdcDm2);
-    impl_adc!(ModeAdcDm3, mode_adc_dm3, SignalAdcDm3);
+    //         pub trait $mode<T, S> {
+    //             fn $fn(&self, _: &S) -> &Self;
+    //         }            
 
-    impl_adc!(ModeAdcSe4a, mode_adc_se4a, SignalAdcSe4a);
-    impl_adc!(ModeAdcSe5a, mode_adc_se5a, SignalAdcSe5a);
-    impl_adc!(ModeAdcSe6a, mode_adc_se6a, SignalAdcSe6a);
-    impl_adc!(ModeAdcSe7a, mode_adc_se7a, SignalAdcSe7a);
+    //         impl<P, O, S, T> $mode<T, S> for Pin<P, O> where S: $sig<T>, P: AltFn<T> {
+    //             fn $fn(&self, _: &S) -> &Self {
+    //                 self.set_mux(self.id.alt_fn());
+    //                 self
+    //             }
+    //         }                        
+    //     )
+    // }
 
-    impl_adc!(ModeAdcSe4b, mode_adc_se4b, SignalAdcSe4b);
-    impl_adc!(ModeAdcSe5b, mode_adc_se5b, SignalAdcSe5b);
-    impl_adc!(ModeAdcSe6b, mode_adc_se6b, SignalAdcSe6b);
-    impl_adc!(ModeAdcSe7b, mode_adc_se7b, SignalAdcSe7b);
+    // impl_adc!(ModeAdcDp0, mode_adc_dp0, SignalAdcDp0);
+    // impl_adc!(ModeAdcDp1, mode_adc_dp1, SignalAdcDp1);
+    // impl_adc!(ModeAdcDp2, mode_adc_dp2, SignalAdcDp2);
+    // impl_adc!(ModeAdcDp3, mode_adc_dp3, SignalAdcDp3);
 
-    impl_adc!(ModeAdcSe8, mode_adc_se8, SignalAdcSe8);
-    impl_adc!(ModeAdcSe9, mode_adc_se9, SignalAdcSe9);
-    impl_adc!(ModeAdcSe10, mode_adc_se10, SignalAdcSe10);
-    impl_adc!(ModeAdcSe11, mode_adc_se11, SignalAdcSe11);
-    impl_adc!(ModeAdcSe12, mode_adc_se12, SignalAdcSe12);
-    impl_adc!(ModeAdcSe13, mode_adc_se13, SignalAdcSe13);
-    impl_adc!(ModeAdcSe14, mode_adc_se14, SignalAdcSe14);
-    impl_adc!(ModeAdcSe15, mode_adc_se15, SignalAdcSe15);
-    impl_adc!(ModeAdcSe16, mode_adc_se16, SignalAdcSe16);
-    impl_adc!(ModeAdcSe17, mode_adc_se17, SignalAdcSe17);
-    impl_adc!(ModeAdcSe18, mode_adc_se18, SignalAdcSe18);
-    impl_adc!(ModeAdcSe19, mode_adc_se19, SignalAdcSe19);
-    impl_adc!(ModeAdcSe20, mode_adc_se20, SignalAdcSe20);
-    impl_adc!(ModeAdcSe21, mode_adc_se21, SignalAdcSe21);
-    impl_adc!(ModeAdcSe22, mode_adc_se22, SignalAdcSe22);
-    impl_adc!(ModeAdcSe23, mode_adc_se23, SignalAdcSe23);
+    // impl_adc!(ModeAdcDm0, mode_adc_dm0, SignalAdcDm0);
+    // impl_adc!(ModeAdcDm1, mode_adc_dm1, SignalAdcDm1);
+    // impl_adc!(ModeAdcDm2, mode_adc_dm2, SignalAdcDm2);
+    // impl_adc!(ModeAdcDm3, mode_adc_dm3, SignalAdcDm3);
+
+    // impl_adc!(ModeAdcSe4a, mode_adc_se4a, SignalAdcSe4a);
+    // impl_adc!(ModeAdcSe5a, mode_adc_se5a, SignalAdcSe5a);
+    // impl_adc!(ModeAdcSe6a, mode_adc_se6a, SignalAdcSe6a);
+    // impl_adc!(ModeAdcSe7a, mode_adc_se7a, SignalAdcSe7a);
+
+    // impl_adc!(ModeAdcSe4b, mode_adc_se4b, SignalAdcSe4b);
+    // impl_adc!(ModeAdcSe5b, mode_adc_se5b, SignalAdcSe5b);
+    // impl_adc!(ModeAdcSe6b, mode_adc_se6b, SignalAdcSe6b);
+    // impl_adc!(ModeAdcSe7b, mode_adc_se7b, SignalAdcSe7b);
+
+    // impl_adc!(ModeAdcSe8, mode_adc_se8, SignalAdcSe8);
+    // impl_adc!(ModeAdcSe9, mode_adc_se9, SignalAdcSe9);
+    // impl_adc!(ModeAdcSe10, mode_adc_se10, SignalAdcSe10);
+    // impl_adc!(ModeAdcSe11, mode_adc_se11, SignalAdcSe11);
+    // impl_adc!(ModeAdcSe12, mode_adc_se12, SignalAdcSe12);
+    // impl_adc!(ModeAdcSe13, mode_adc_se13, SignalAdcSe13);
+    // impl_adc!(ModeAdcSe14, mode_adc_se14, SignalAdcSe14);
+    // impl_adc!(ModeAdcSe15, mode_adc_se15, SignalAdcSe15);
+    // impl_adc!(ModeAdcSe16, mode_adc_se16, SignalAdcSe16);
+    // impl_adc!(ModeAdcSe17, mode_adc_se17, SignalAdcSe17);
+    // impl_adc!(ModeAdcSe18, mode_adc_se18, SignalAdcSe18);
+    // impl_adc!(ModeAdcSe19, mode_adc_se19, SignalAdcSe19);
+    // impl_adc!(ModeAdcSe20, mode_adc_se20, SignalAdcSe20);
+    // impl_adc!(ModeAdcSe21, mode_adc_se21, SignalAdcSe21);
+    // impl_adc!(ModeAdcSe22, mode_adc_se22, SignalAdcSe22);
+    // impl_adc!(ModeAdcSe23, mode_adc_se23, SignalAdcSe23);
 
 }
 

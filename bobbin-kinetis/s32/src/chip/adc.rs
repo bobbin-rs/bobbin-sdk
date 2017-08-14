@@ -2243,6 +2243,30 @@ pub const ADC0_CH15: Channel<Adc0Ch15Id, Adc0Id> = Channel { periph: ADC0, index
 pub struct Adc0Ch15Id {}
 pub type Adc0Ch15 = Channel<Adc0Ch15Id, Adc0Id>;
 
+pub const ADC0_IN0: Channel<Adc0In0Id, Adc0Id> = Channel { periph: ADC0, index: 21, id: Adc0In0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc0In0Id {}
+pub type Adc0In0 = Channel<Adc0In0Id, Adc0Id>;
+
+pub const ADC0_BANDGAP: Channel<Adc0BandgapId, Adc0Id> = Channel { periph: ADC0, index: 27, id: Adc0BandgapId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc0BandgapId {}
+pub type Adc0Bandgap = Channel<Adc0BandgapId, Adc0Id>;
+
+pub const ADC0_REFSH: Channel<Adc0RefshId, Adc0Id> = Channel { periph: ADC0, index: 29, id: Adc0RefshId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc0RefshId {}
+pub type Adc0Refsh = Channel<Adc0RefshId, Adc0Id>;
+
+pub const ADC0_REFSL: Channel<Adc0RefslId, Adc0Id> = Channel { periph: ADC0, index: 30, id: Adc0RefslId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc0RefslId {}
+pub type Adc0Refsl = Channel<Adc0RefslId, Adc0Id>;
+
 pub const ADC1_CH0: Channel<Adc1Ch0Id, Adc1Id> = Channel { periph: ADC1, index: 0, id: Adc1Ch0Id {} }; 
 #[derive(Clone, Copy, PartialEq)]
 #[doc(hidden)]
@@ -2338,4 +2362,28 @@ pub const ADC1_CH15: Channel<Adc1Ch15Id, Adc1Id> = Channel { periph: ADC1, index
 #[doc(hidden)]
 pub struct Adc1Ch15Id {}
 pub type Adc1Ch15 = Channel<Adc1Ch15Id, Adc1Id>;
+
+pub const ADC1_IN0: Channel<Adc1In0Id, Adc1Id> = Channel { periph: ADC1, index: 21, id: Adc1In0Id {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc1In0Id {}
+pub type Adc1In0 = Channel<Adc1In0Id, Adc1Id>;
+
+pub const ADC1_BANDGAP: Channel<Adc1BandgapId, Adc1Id> = Channel { periph: ADC1, index: 27, id: Adc1BandgapId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc1BandgapId {}
+pub type Adc1Bandgap = Channel<Adc1BandgapId, Adc1Id>;
+
+pub const ADC1_REFSH: Channel<Adc1RefshId, Adc1Id> = Channel { periph: ADC1, index: 29, id: Adc1RefshId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc1RefshId {}
+pub type Adc1Refsh = Channel<Adc1RefshId, Adc1Id>;
+
+pub const ADC1_REFSL: Channel<Adc1RefslId, Adc1Id> = Channel { periph: ADC1, index: 30, id: Adc1RefslId {} }; 
+#[derive(Clone, Copy, PartialEq)]
+#[doc(hidden)]
+pub struct Adc1RefslId {}
+pub type Adc1Refsl = Channel<Adc1RefslId, Adc1Id>;
 
