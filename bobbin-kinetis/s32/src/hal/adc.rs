@@ -228,33 +228,26 @@ impl<T> AdcExt for Periph<T> {
 }
 
 pub trait AdcChExt {
-    fn interrupt_enabled(&self) -> bool;
-    fn set_interrupt_enabled(&self, value: bool) -> &Self;
-    fn input_channel(&self) -> U5;
-    fn set_input_channel(&self, value: U5) -> &Self;
-    fn conversion_complete(&self) -> bool;
-    fn result(&self) -> u16;
+    fn start(&self) -> &Self;
+    fn complete(&self) -> bool;
+    fn wait(&self) -> &Self {
+        while !self.complete() {}
+        self
+    }
+    fn read(&self) -> u16;
 }
 
 impl<P, T> AdcChExt for Channel<P, T> {
-    fn interrupt_enabled(&self) -> bool {
-        self.periph.sc1(self.index).aien() != 0
-    }
-    fn set_interrupt_enabled(&self, value: bool) -> &Self {
-        self.periph.with_sc1(self.index, |r| r.set_aien(value));
+    fn start(&self) -> &Self {
+        self.periph.with_sc1(0, |r| r.set_adch(self.index as u8));
         self
     }
-    fn input_channel(&self) -> U5 {
-        self.periph.sc1(self.index).adch()
+
+    fn complete(&self) -> bool {
+        self.periph.sc1(0).coco() != 0
     }
-    fn set_input_channel(&self, value: U5) -> &Self {
-        self.periph.with_sc1(self.index, |r| r.set_adch(value));
-        self
-    }
-    fn conversion_complete(&self) -> bool {
-        self.periph.sc1(self.index).coco() != 0
-    }
-    fn result(&self) -> u16 {
-        self.periph.r(self.index).d().into()
+
+    fn read(&self) -> u16 {
+        self.periph.r(0).d().into()
     }
 }
