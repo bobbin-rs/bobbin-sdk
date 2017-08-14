@@ -8,6 +8,7 @@ pub trait PinExt {
     fn mode_input(&self) -> &Self;
     fn mode_output(&self) -> &Self;
     fn mode_altfn(&self) -> &Self;
+    fn mode_analog(&self) -> &Self;
 }
 
 impl<P, T> PinExt for Pin<P,T> {
@@ -44,6 +45,18 @@ impl<P, T> PinExt for Pin<P,T> {
             },
             _ => {
                 self.port.with_crh(|r| r.set_cnf(self.index - 8, 0b10).set_mode(self.index - 8, 0b01));
+            }
+        }
+        self
+    }
+    #[inline]
+    fn mode_analog(&self) -> &Self {
+        match self.index {
+            0 ... 8 => {
+                self.port.with_crl(|r| r.set_cnf(self.index, 0).set_mode(self.index, 0));
+            },
+            _ => {
+                self.port.with_crh(|r| r.set_cnf(self.index - 8, 0).set_mode(self.index - 8, 0));
             }
         }
         self
