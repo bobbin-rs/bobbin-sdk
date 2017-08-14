@@ -8,7 +8,7 @@ extern crate r0;
 extern crate log;
 
 extern crate s32;
-pub use s32::{chip, hal};
+pub use s32::{common, chip, hal};
 
 #[macro_use] pub mod itm;
 #[macro_use] pub mod console;
