@@ -9,7 +9,7 @@ extern crate r0;
 extern crate log;
 
 extern crate k64;
-pub use k64::{chip, hal};
+pub use k64::{common, chip, hal};
 
 #[macro_use]
 pub mod console;

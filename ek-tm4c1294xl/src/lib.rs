@@ -13,7 +13,7 @@ extern crate log;
 #[macro_use] pub mod logger;
 
 extern crate tm4c129x;
-pub use tm4c129x::{chip, hal};
+pub use tm4c129x::{common, chip, hal};
 
 pub mod exceptions;
 pub mod lang_items;
