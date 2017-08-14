@@ -19,21 +19,22 @@ pub extern "C" fn main() -> ! {
     let p0 = POT0; // PTC14 = ADC0_SE12
 
     let adc0 = ADC0;
-    let ch0 = ADC0_CH0;
+    let ch0 = ADC0_CH12;
 
     let adc1 = ADC1;
-    let ch1 = ADC1_CH0;
+    let ch1 = ADC1_CH6;
+    let ch2 = ADC1_CH7;
 
     println!("Setting up Pins");
 
     p0.port().pcc_set_enabled(true);
-    p0.mode_adc_in_12(&adc0);
+    p0.mode_adc(&ch0);
 
     a0.port().pcc_set_enabled(true);
-    a0.mode_adc_in_6(&adc1);
+    a0.mode_adc(&ch1);
 
     a1.port().pcc_set_enabled(true);
-    a1.mode_adc_in_7(&adc1);
+    a1.mode_adc(&ch2);
 
     println!("Setting up ADCs");
 
@@ -51,20 +52,9 @@ pub extern "C" fn main() -> ! {
     println!("Initialization Complete");
 
     loop {
-        ch0.set_input_channel(12.into());
-        while !ch0.conversion_complete() {}
-        let v0 = ch0.result();
-
-        ch1.set_input_channel(6.into());        
-        while !ch1.conversion_complete() {}
-        let v1 = ch1.result();
-
-        ch1.set_input_channel(7.into());
-        while !ch1.conversion_complete() {}
-        let v2 = ch1.result();
-        
-
-        println!("{} {} {}", v0, v1, v2);
+        let v0 = ch0.start().wait().read();
+        let v1 = ch1.start().wait().read();
+        println!("{} {}", v0, v1);
         board::delay(1000);
     }
 }
