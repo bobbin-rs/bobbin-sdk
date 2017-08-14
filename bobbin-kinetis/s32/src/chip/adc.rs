@@ -1170,6 +1170,45 @@ impl R {
      self
   }
 
+#[doc="Data result (12 bit)"]
+  #[inline] pub fn d12(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+  }
+#[doc="Data result (12 bit)"]
+  #[inline] pub fn set_d12<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0xfff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Data result (10 bit)"]
+  #[inline] pub fn d10(&self) -> bits::U10 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
+  }
+#[doc="Data result (10 bit)"]
+  #[inline] pub fn set_d10<V: Into<bits::U10>>(mut self, value: V) -> Self {
+     let value: bits::U10 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0x3ff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Data result (8 bit)"]
+  #[inline] pub fn d8(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+  }
+#[doc="Data result (8 bit)"]
+  #[inline] pub fn set_d8<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0xff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
 }
 impl ::core::fmt::Display for R {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1180,6 +1219,9 @@ impl ::core::fmt::Debug for R {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.d() != 0 { try!(write!(f, " d=0x{:x}", self.d()))}
+      if self.d12() != 0 { try!(write!(f, " d12=0x{:x}", self.d12()))}
+      if self.d10() != 0 { try!(write!(f, " d10=0x{:x}", self.d10()))}
+      if self.d8() != 0 { try!(write!(f, " d8=0x{:x}", self.d8()))}
       try!(write!(f, "]"));
       Ok(())
    }
