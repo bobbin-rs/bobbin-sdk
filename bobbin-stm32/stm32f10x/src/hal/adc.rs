@@ -11,6 +11,7 @@ pub trait AdcExt {
     fn set_enabled(&self, value: bool) -> &Self;
     fn set_sequence_channel(&self, sequence: u8, channel: u8) -> &Self;
     fn set_sequence_length(&self, length: u8) -> &Self;
+    fn calibrate(&self) -> &Self;
     fn start(&self) -> &Self;
     fn complete(&self) -> bool;
     fn data(&self) -> u16;
@@ -65,6 +66,12 @@ impl<T> AdcExt for Periph<T> {
     //     self.with_cr1(|r| r.set_res(value as u32))
     // }
 
+    fn calibrate(&self) -> &Self {
+        self.with_cr2(|r| r.set_cal(true));
+        while self.cr2().cal() == 1 {}
+        self
+    }
+
     #[inline]
     fn complete(&self) -> bool {
         self.sr().eoc() != 0
@@ -76,5 +83,32 @@ impl<T> AdcExt for Periph<T> {
     }
 }
 
+pub trait AdcChExt {
+    fn start(&self) -> &Self;
+    fn complete(&self) -> bool;
+    fn wait(&self) -> &Self;
+    fn read(&self) -> u16;
+}
 
+impl<P, T> AdcChExt for Channel<P, T> {
+    fn start(&self) -> &Self {
+        self.periph()
+            .set_sequence_channel(1, self.index() as u8)
+            .set_sequence_length(1)
+            .start();
+        self
+    }
 
+    fn complete(&self) -> bool {
+        self.periph().complete()
+    }
+
+    fn wait(&self) -> &Self {
+        while !self.periph().complete() {}
+        self
+    }
+
+    fn read(&self) -> u16 {
+        self.periph().data()
+    }
+}
