@@ -1448,6 +1448,10 @@
             (channel (name ADC0_CH22) (index 22) (signal (name ADC0_SE22) (type ADC)))
             (channel (name ADC0_CH23) (index 23) (signal (name ADC0_SE23) (type ADC)))
 
+            (channel (name ADC0_TEMP) (index 26))
+            (channel (name ADC0_BANDGAP) (index 27))
+            (channel (name ADC0_REFSH) (index 29))
+            (channel (name ADC0_REFSL) (index 30))
 
             (interrupt
                 (name ADC0)
@@ -1510,6 +1514,11 @@
             (channel (name ADC1_CH22) (index 22) (signal (name ADC1_SE22) (type ADC)))
             (channel (name ADC1_CH23) (index 23) (signal (name ADC1_SE23) (type ADC)))
             
+            (channel (name ADC1_TEMP) (index 26))
+            (channel (name ADC1_BANDGAP) (index 27))
+            (channel (name ADC1_REFSH) (index 29))
+            (channel (name ADC1_REFSL) (index 30))
+
             (interrupt
                 (name ADC1)
                 (value 73)
