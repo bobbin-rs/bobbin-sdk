@@ -20,8 +20,8 @@ pub extern "C" fn main() -> ! {
     let ch2 = ADC1_CH1;
     let adc = ADC1;
 
-    a0.mode_altfn();
-    a1.mode_altfn();
+    a0.mode_analog();
+    a1.mode_analog();
 
     adc
         .rcc_set_enabled(true)
