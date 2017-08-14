@@ -29,8 +29,8 @@ pub extern "C" fn main() -> ! {
         .calibrate();
     
     loop {        
-        let v0 = ch1.start().wait().read();
-        let v1 = ch2.start().wait().read();
+        let v0 = ch1.analog_read();
+        let v1 = ch2.analog_read();
         println!("{} {}", v0, v1);
         board::delay(1_000);
     }
