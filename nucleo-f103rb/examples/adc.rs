@@ -18,27 +18,20 @@ pub extern "C" fn main() -> ! {
 
     let ch1 = ADC1_CH0;
     let ch2 = ADC1_CH1;
-    let adc = ADC1;
+    let adc = ch1.periph();
 
     a0.mode_analog();
     a1.mode_analog();
 
     adc
         .rcc_set_enabled(true)
-        .set_enabled(true);
-
-    println!("Calibrating...");
-    adc.with_cr2(|r| r.set_cal(true));
-    while adc.cr2().cal() == 1 {}
-    println!("Calibration Complete");
-
-    adc.set_sequence_channel(1, 0);
-    adc.set_sequence_length(1);
+        .set_enabled(true)
+        .calibrate();
     
     loop {        
-        adc.start();
-        while !adc.complete() {}
-        println!("{}", adc.data());
+        let v0 = ch1.start().wait().read();
+        let v1 = ch2.start().wait().read();
+        println!("{} {}", v0, v1);
         board::delay(1_000);
     }
 }
