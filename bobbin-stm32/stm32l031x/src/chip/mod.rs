@@ -28,3 +28,4 @@ pub mod gpio;
 pub mod usart;
 pub mod lpuart;
 pub mod spi;
+pub mod adc;

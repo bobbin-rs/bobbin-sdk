@@ -20,3 +20,4 @@ pub mod wwdg;
 pub mod adc_f1;
 pub mod adc_f24;
 pub mod adc_f3;
+pub mod adc_l0;

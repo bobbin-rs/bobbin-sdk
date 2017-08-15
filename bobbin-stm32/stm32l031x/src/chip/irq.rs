@@ -48,6 +48,7 @@ pub const IRQ_TIM22: IrqTim22 = Irq(22, Tim22Id {});
 pub const IRQ_USART2: IrqUsart2 = Irq(28, Usart2Id {});
 pub const IRQ_LPUART1: IrqLpuart1 = Irq(29, Lpuart1Id {});
 pub const IRQ_SPI1: IrqSpi1 = Irq(25, Spi1Id {});
+pub const IRQ_ADC1: IrqAdc1 = Irq(12, Adc1Id {});
 
 pub type IrqWwdg = Irq<WwdgId>;
 pub type IrqRtc = Irq<RtcId>;
@@ -94,6 +95,7 @@ pub type IrqTim22 = Irq<Tim22Id>;
 pub type IrqUsart2 = Irq<Usart2Id>;
 pub type IrqLpuart1 = Irq<Lpuart1Id>;
 pub type IrqSpi1 = Irq<Spi1Id>;
+pub type IrqAdc1 = Irq<Adc1Id>;
 
 #[doc(hidden)]
 pub struct WwdgId {} // IRQ 0
@@ -185,6 +187,8 @@ pub struct Usart2Id {} // IRQ 28
 pub struct Lpuart1Id {} // IRQ 29
 #[doc(hidden)]
 pub struct Spi1Id {} // IRQ 25
+#[doc(hidden)]
+pub struct Adc1Id {} // IRQ 12
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {
   unsafe { 
@@ -808,6 +812,18 @@ impl RegisterHandler for IrqSpi1 {
    }
 }
 
+impl RegisterHandler for IrqAdc1 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(12, Some(wrapper::<F>));
+       IrqGuard::new(12)
+   }
+}
+
 #[link_section = ".vector.interrupts"]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 30] = [
@@ -823,7 +839,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 30] = [
    None,
    None,
    None,
-   None,
+   None,                          // IRQ 12: ADC 1
    None,                          // IRQ 13: LPTIMER1 interrupt through EXTI29
    None,
    None,                          // IRQ 15: TIM2 global interrupt
