@@ -1,6 +1,6 @@
 use bobbin_common::bits::*;
 pub use bobbin_common::analog::AnalogRead;
-pub use ::chip::adc::*;
+pub use ::chip::adc_f124::*;
 
 pub enum Resolution {
     Bits12 = 0b00,

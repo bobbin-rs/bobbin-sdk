@@ -5,6 +5,7 @@ use ::chip::usart::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
 use ::chip::tim_bas::*;
+use ::chip::adc::*;
 use ::chip::rcc::En;
 
 use core::fmt;
@@ -108,6 +109,7 @@ pub trait ClockTree {
     fn tim_pclk1(&self) -> Hz;
     fn pclk2(&self) -> Hz;
     fn tim_pclk2(&self) -> Hz;
+    fn adc12(&self) -> Hz;    
 }
 
 pub trait Clock<T: ClockTree> {
@@ -221,7 +223,28 @@ impl ClockTree for DynamicClock {
             _ => self.pclk2().map(|v| v << 1),
         }
     }    
+
+    fn adc12(&self) -> Hz {
+        let div = match RCC.cfgr2().adc12pres() as u8 {
+            0b00000 ... 0b01111 => return None,
+            0b10000 => 1,
+            0b10001 => 2,
+            0b10010 => 4,
+            0b10011 => 6,
+            0b10100 => 8,
+            0b10101 => 10,
+            0b10110 => 12,
+            0b10111 => 16,
+            0b11000 => 32,
+            0b11001 => 64,
+            0b11010 => 128,
+            0b11011 => 256,
+            _ => 256,
+        };
+        self.pllclk().map(|v| v / div)
+    }
 }
+
 
 impl fmt::Debug for DynamicClock {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -237,6 +260,7 @@ impl fmt::Debug for DynamicClock {
         write!(f, " TIM_PCLK1={:?}", self.tim_pclk1())?;
         write!(f, " PCLK2={:?}", self.pclk2())?;
         write!(f, " TIM_PCLK2={:?}", self.tim_pclk2())?;
+        write!(f, " ADC12={:?}", self.adc12())?;
         write!(f, "]")?;
         Ok(())
     }
@@ -351,5 +375,11 @@ impl<T: ClockTree> Clock<T> for Tim17 {
         } else {
             None
         }
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Adc1 {
+    fn clock(&self, t: &T) -> Hz {
+        t.adc12()
     }
 }

@@ -3,7 +3,7 @@ pub use bobbin_cortexm::hal::*;
 pub mod rcc;
 pub mod clock;
 pub mod power;
-pub mod adc;
+pub mod gpio;
 
 pub mod dma {
     pub use chip::dma::*;
@@ -12,7 +12,11 @@ pub mod dma {
 
 }
 
-pub mod gpio;
+pub mod adc {
+    pub use chip::adc::*;
+    pub use stm32_common::hal::adc_f124::*;
+    pub use super::rcc::RccEnabled;
+}
 
 pub mod usart {
     pub use chip::usart::*;

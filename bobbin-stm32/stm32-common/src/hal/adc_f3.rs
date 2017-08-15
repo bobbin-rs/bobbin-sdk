@@ -1,6 +1,6 @@
-pub use chip::adc::*;
-pub use chip::c_adc;
-pub use super::rcc::RccEnabled;
+use bobbin_common::bits::*;
+pub use bobbin_common::analog::AnalogRead;
+pub use ::chip::adc_f3::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Resolution {
@@ -28,15 +28,6 @@ pub trait AdcExt {
 }
 
 impl<T> AdcExt for Periph<T> {
-    // fn c_adc(&self) -> CAdc {
-    //     match self.adc {
-    //         ADC1 => C_ADC12,
-    //         ADC2 => C_ADC12,
-    //         ADC3 => C_ADC34,
-    //         ADC4 => C_ADC34,
-    //         _ => unimplemented!()
-    //     }
-    // }        
     fn init(&self) -> &Self {
         
         self.with_cr(|r| r.set_aden(0));
@@ -45,13 +36,7 @@ impl<T> AdcExt for Periph<T> {
         // Enable Analog Voltage Regulator
         self.with_cr(|r| r.set_advregen(0b00));
         self.with_cr(|r| r.set_advregen(0b01));
-        for _ in 0..10000 { 
-            unsafe { asm!("nop") }
-        }
-
-        // Use HCLK/1 Clock Mode
-        c_adc::C_ADC12.with_ccr(|r| r.set_ckmode(0b01));
-
+        
         // Calibrate
         self.with_cr(|r| r.set_adcaldif(0));
         self.with_cr(|r| r.set_adcal(1));
@@ -61,18 +46,12 @@ impl<T> AdcExt for Periph<T> {
         self.with_cr(|r| r.set_aden(1));
 
         // Wait until ADC is ready
-        let mut n = 10_000_000;
-        while self.isr().adrdy() == 0 {
-            if n == 0 {
-                panic!("ADC Timeout - CR {:?} CFGR {:?} ISR {:?}", self.cr(), self.cfgr(), self.isr());
-            }
-            n -= 1;
-        }
+        while self.isr().adrdy() == 0 {}
         self
     }
 
     fn data(&self) -> u16 {
-        self.dr().regulardata().value()
+        self.dr().data().value()
     }
 
     fn start(&self) -> &Self {
@@ -156,15 +135,81 @@ impl<T> AdcExt for Periph<T> {
 }
 
 pub trait AdcChExt {
+    fn start(&self) -> &Self;
+    fn complete(&self) -> bool;
+    fn wait(&self) -> &Self;
     fn read(&self) -> u16;
 }
 
 impl<P, T> AdcChExt for Channel<P, T> {
-    fn read(&self) -> u16 {
-        let mut out = [0u16];
+    fn start(&self) -> &Self {
         self.periph()
-            .set_sequence(&[self.index()])
-            .read_sequence(&mut out);
-        out[0]            
+            .set_sequence_channel(1, self.index())
+            .set_sequence_length(1)
+            .start();
+        self
     }
+
+    fn complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }
+
+    fn wait(&self) -> &Self {
+        while !self.periph().end_of_conversion() {}
+        self
+    }
+
+    fn read(&self) -> u16 {
+        self.periph().data()
+    }
+}
+
+impl<P, T> AnalogRead<U12> for Channel<P, T> {
+    fn analog_read(&self) -> U12 {
+        self.periph.set_resolution(Resolution::Bits12);
+        self
+            .start()
+            .wait()
+            .periph().dr().data_12()
+    }
+}
+
+impl<P, T> AnalogRead<U10> for Channel<P, T> {
+    fn analog_read(&self) -> U10 {
+        self.periph.set_resolution(Resolution::Bits10);
+        self
+            .start()
+            .wait()
+            .periph().dr().data_10()
+    }
+}
+
+impl<P, T> AnalogRead<U8> for Channel<P, T> {
+    fn analog_read(&self) -> U8 {
+        self.periph.set_resolution(Resolution::Bits8);
+        self
+            .start()
+            .wait()
+            .periph().dr().data_8()
+    }
+}
+
+impl<P, T> AnalogRead<U6> for Channel<P, T> {
+    fn analog_read(&self) -> U6 {
+        self.periph.set_resolution(Resolution::Bits6);
+        self
+            .start()
+            .wait()
+            .periph().dr().data_6()
+    }
+}
+
+impl<P, T> AnalogRead<u8> for Channel<P, T> {
+    fn analog_read(&self) -> u8 {
+        self.periph.set_resolution(Resolution::Bits8);
+        self
+            .start()
+            .wait()
+            .periph().dr().data_8().into()
+    }    
 }

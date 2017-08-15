@@ -2,7 +2,6 @@ pub use bobbin_cortexm::hal::*;
 
 pub mod rcc;
 pub mod clock;
-pub mod adc;
 // pub mod iwdg;
 // pub mod wwdg;
 // pub mod crc;
@@ -16,11 +15,18 @@ pub mod dma {
     pub use super::rcc::RccEnabled;
 }
 
+pub mod adc {
+    pub use chip::adc::*;
+    pub use stm32_common::hal::adc_f3::*;
+    pub use super::rcc::RccEnabled;
+}
+
+
 pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
     pub use super::rcc::RccEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalTim, SignalAdcIn};
+    use chip::sig::{SignalTx, SignalRx, SignalTim, SignalAdc};
 
     pub trait ModeTx<T, S> {
         fn mode_tx(&self, _: &S) -> &Self;
@@ -34,8 +40,8 @@ pub mod gpio {
         fn mode_tim(&self, _: &S) -> &Self;
     }    
 
-    pub trait ModeAdcIn<T, S> {
-        fn mode_adc_in(&self, _: &S) -> &Self;
+    pub trait ModeAdc<T, S> {
+        fn mode_adc(&self, _: &S) -> &Self;
     }        
 
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
@@ -59,9 +65,9 @@ pub mod gpio {
         }
     } 
 
-    impl<P, O, S, T> ModeAdcIn<T, S> for Pin<P, O> where S: SignalAdcIn<T>, P: AltFn<T> {
-        fn mode_adc_in(&self, _: &S) -> &Self {
-            self.mode_altfn(self.id.alt_fn()).mode_analog();
+    impl<P, O, S, T> ModeAdc<T, S> for Pin<P, O> where S: SignalAdc<T>, P: AltFn<T> {
+        fn mode_adc(&self, _: &S) -> &Self {
+            self.mode_altfn(self.id.alt_fn()).mode_analog().pull_none();
             self
         }
     }           

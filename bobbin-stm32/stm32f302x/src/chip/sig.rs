@@ -12,6 +12,8 @@ pub trait Rts {}
 pub trait SignalRts<T> {}
 pub trait Ck {}
 pub trait SignalCk<T> {}
+pub trait Adc {}
+pub trait SignalAdc<T> {}
 pub trait Tim {}
 pub trait SignalTim<T> {}
 pub trait Timn {}
@@ -116,6 +118,66 @@ impl Rts for Uart5Rts {}
 pub const UART5_CK: Uart5Ck = Uart5Ck {};
 pub struct Uart5Ck {}
 impl Ck for Uart5Ck {}
+
+pub const ADC1_IN1: Adc1In1 = Adc1In1 {};
+pub struct Adc1In1 {}
+impl Adc for Adc1In1 {}
+
+pub const ADC1_IN2: Adc1In2 = Adc1In2 {};
+pub struct Adc1In2 {}
+impl Adc for Adc1In2 {}
+
+pub const ADC1_IN3: Adc1In3 = Adc1In3 {};
+pub struct Adc1In3 {}
+impl Adc for Adc1In3 {}
+
+pub const ADC1_IN4: Adc1In4 = Adc1In4 {};
+pub struct Adc1In4 {}
+impl Adc for Adc1In4 {}
+
+pub const ADC1_IN5: Adc1In5 = Adc1In5 {};
+pub struct Adc1In5 {}
+impl Adc for Adc1In5 {}
+
+pub const ADC1_IN6: Adc1In6 = Adc1In6 {};
+pub struct Adc1In6 {}
+impl Adc for Adc1In6 {}
+
+pub const ADC1_IN7: Adc1In7 = Adc1In7 {};
+pub struct Adc1In7 {}
+impl Adc for Adc1In7 {}
+
+pub const ADC1_IN8: Adc1In8 = Adc1In8 {};
+pub struct Adc1In8 {}
+impl Adc for Adc1In8 {}
+
+pub const ADC1_IN9: Adc1In9 = Adc1In9 {};
+pub struct Adc1In9 {}
+impl Adc for Adc1In9 {}
+
+pub const ADC1_IN10: Adc1In10 = Adc1In10 {};
+pub struct Adc1In10 {}
+impl Adc for Adc1In10 {}
+
+pub const ADC1_IN11: Adc1In11 = Adc1In11 {};
+pub struct Adc1In11 {}
+impl Adc for Adc1In11 {}
+
+pub const ADC1_IN12: Adc1In12 = Adc1In12 {};
+pub struct Adc1In12 {}
+impl Adc for Adc1In12 {}
+
+pub const ADC1_IN13: Adc1In13 = Adc1In13 {};
+pub struct Adc1In13 {}
+impl Adc for Adc1In13 {}
+
+pub const ADC1_IN14: Adc1In14 = Adc1In14 {};
+pub struct Adc1In14 {}
+impl Adc for Adc1In14 {}
+
+pub const ADC1_IN15: Adc1In15 = Adc1In15 {};
+pub struct Adc1In15 {}
+impl Adc for Adc1In15 {}
 
 pub const TIM2_CH1: Tim2Ch1 = Tim2Ch1 {};
 pub struct Tim2Ch1 {}

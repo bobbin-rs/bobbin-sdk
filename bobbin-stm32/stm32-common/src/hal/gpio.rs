@@ -49,6 +49,7 @@ pub trait PinExt {
     fn mode_altfn(&self, usize) -> &Self;
     fn mode_analog(&self) -> &Self;
 
+    fn pull_none(&self) -> &Self;
     fn pull_up(&self) -> &Self;
     fn pull_down(&self) -> &Self;
 
@@ -161,6 +162,11 @@ impl<P, T> PinExt for Pin<P,T> {
     #[inline]
     fn mode_analog(&self) -> &Self {
         self.set_mode(Mode::Analog)
+    }
+
+    #[inline]
+    fn pull_none(&self) -> &Self {
+        self.set_pull(Pull::None)
     }
 
     #[inline]

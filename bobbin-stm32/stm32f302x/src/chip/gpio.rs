@@ -39,6 +39,10 @@ pub const PA0: Pin<Pa0Id, GpioaId> = Pin { port: GPIOA, index: 0, id: Pa0Id {} }
 #[doc(hidden)]
 pub struct Pa0Id {}
 pub type Pa0 = Pin<Pa0Id, GpioaId>;
+impl AltFn<super::sig::Adc1In1> for Pa0Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim2Ch1> for Pa0Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -64,6 +68,10 @@ pub const PA1: Pin<Pa1Id, GpioaId> = Pin { port: GPIOA, index: 1, id: Pa1Id {} }
 #[doc(hidden)]
 pub struct Pa1Id {}
 pub type Pa1 = Pin<Pa1Id, GpioaId>;
+impl AltFn<super::sig::Adc1In2> for Pa1Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::RtcRefin> for Pa1Id {
    #[inline] fn alt_fn(&self) -> usize { 0 }
 }
@@ -93,6 +101,10 @@ pub const PA2: Pin<Pa2Id, GpioaId> = Pin { port: GPIOA, index: 2, id: Pa2Id {} }
 #[doc(hidden)]
 pub struct Pa2Id {}
 pub type Pa2 = Pin<Pa2Id, GpioaId>;
+impl AltFn<super::sig::Adc1In3> for Pa2Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim2Ch3> for Pa2Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -122,6 +134,10 @@ pub const PA3: Pin<Pa3Id, GpioaId> = Pin { port: GPIOA, index: 3, id: Pa3Id {} }
 #[doc(hidden)]
 pub struct Pa3Id {}
 pub type Pa3 = Pin<Pa3Id, GpioaId>;
+impl AltFn<super::sig::Adc1In4> for Pa3Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim2Ch4> for Pa3Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -147,6 +163,10 @@ pub const PA4: Pin<Pa4Id, GpioaId> = Pin { port: GPIOA, index: 4, id: Pa4Id {} }
 #[doc(hidden)]
 pub struct Pa4Id {}
 pub type Pa4 = Pin<Pa4Id, GpioaId>;
+impl AltFn<super::sig::Adc1In5> for Pa4Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::TscG2Io1> for Pa4Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
@@ -193,6 +213,10 @@ pub const PA6: Pin<Pa6Id, GpioaId> = Pin { port: GPIOA, index: 6, id: Pa6Id {} }
 #[doc(hidden)]
 pub struct Pa6Id {}
 pub type Pa6 = Pin<Pa6Id, GpioaId>;
+impl AltFn<super::sig::Adc1In10> for Pa6Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim16Ch1> for Pa6Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -214,6 +238,10 @@ pub const PA7: Pin<Pa7Id, GpioaId> = Pin { port: GPIOA, index: 7, id: Pa7Id {} }
 #[doc(hidden)]
 pub struct Pa7Id {}
 pub type Pa7 = Pin<Pa7Id, GpioaId>;
+impl AltFn<super::sig::Adc1In15> for Pa7Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim17Ch1> for Pa7Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -539,6 +567,10 @@ pub const PB0: Pin<Pb0Id, GpiobId> = Pin { port: GPIOB, index: 0, id: Pb0Id {} }
 #[doc(hidden)]
 pub struct Pb0Id {}
 pub type Pb0 = Pin<Pb0Id, GpiobId>;
+impl AltFn<super::sig::Adc1In11> for Pb0Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::TscG3Io2> for Pb0Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
@@ -556,6 +588,10 @@ pub const PB1: Pin<Pb1Id, GpiobId> = Pin { port: GPIOB, index: 1, id: Pb1Id {} }
 #[doc(hidden)]
 pub struct Pb1Id {}
 pub type Pb1 = Pin<Pb1Id, GpiobId>;
+impl AltFn<super::sig::Adc1In12> for Pb1Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::TscG3Io3> for Pb1Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }
@@ -838,6 +874,10 @@ pub const PB11: Pin<Pb11Id, GpiobId> = Pin { port: GPIOB, index: 11, id: Pb11Id 
 #[doc(hidden)]
 pub struct Pb11Id {}
 pub type Pb11 = Pin<Pb11Id, GpiobId>;
+impl AltFn<super::sig::Adc1In11> for Pb11Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::Tim2Ch4> for Pb11Id {
    #[inline] fn alt_fn(&self) -> usize { 1 }
 }
@@ -892,6 +932,10 @@ pub const PB13: Pin<Pb13Id, GpiobId> = Pin { port: GPIOB, index: 13, id: Pb13Id 
 #[doc(hidden)]
 pub struct Pb13Id {}
 pub type Pb13 = Pin<Pb13Id, GpiobId>;
+impl AltFn<super::sig::Adc1In13> for Pb13Id {
+   #[inline] fn alt_fn(&self) -> usize { 0 }
+}
+
 impl AltFn<super::sig::TscG6Io3> for Pb13Id {
    #[inline] fn alt_fn(&self) -> usize { 3 }
 }

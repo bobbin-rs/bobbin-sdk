@@ -2799,6 +2799,11 @@ impl En for super::gpio::Gpiof {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_iopfen(value)); }
 }
 
+impl En for super::adc::Adc1 {
+   #[inline] fn en(&self) -> u32 { RCC.ahbenr().adc12en().into() }
+   #[inline] fn set_en(&self, value: u32) { RCC.with_ahbenr(|r| r.set_adc12en(value)); }
+}
+
 impl En for super::syscfg::Syscfg {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().syscfgen().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
