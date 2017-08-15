@@ -587,6 +587,7 @@
             (bit-offset 28)
             (bit-width 1)
             (description "ADC1 and ADC2 clock enable")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC1))
         )
         (field
             (name ADC34EN)

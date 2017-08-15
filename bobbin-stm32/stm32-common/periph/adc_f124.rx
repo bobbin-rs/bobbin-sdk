@@ -205,6 +205,18 @@
             (description "Direct memory access mode (for single ADC mode)")
         )
         (field
+            (name RSTCAL)
+            (bit-offset 3)
+            (bit-width 1)
+            (description "Reset Calibration")
+        )
+        (field
+            (name CAL)
+            (bit-offset 2)
+            (bit-width 1)
+            (description "A/D Calibration")
+        )
+        (field
             (name CONT)
             (bit-offset 1)
             (bit-width 1)
@@ -562,5 +574,11 @@
             (bit-width 16)
             (description "Regular data")
         )
+        (field
+            (name DATA_12)
+            (bit-offset 0)
+            (bit-width 12)
+            (description "Regular data (12 bit)")
+        )        
     )
 )

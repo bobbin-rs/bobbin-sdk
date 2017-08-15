@@ -74,5 +74,14 @@
         (name WWDG)
         (prototype "periph/wwdg.rx")
     )        
-    
+    (peripheral-group
+        (name ADC_F124)
+        (has-channels)
+        (prototype "periph/adc_f124.rx")
+    )    
+    (peripheral-group
+        (name ADC_F3)
+        (has-channels)
+        (prototype "periph/adc_f3.rx")
+    )
 )

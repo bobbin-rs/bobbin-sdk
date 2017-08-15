@@ -628,7 +628,7 @@
     (peripheral (include "periph/c_adc.rx"))
     (peripheral-group    
         (name ADC)
-        (prototype "periph/adc.rx")
+        (module (name stm32_common::chip::adc_f124::*))
         (peripheral 
             (name ADC1)
             (address 0x40012000)
