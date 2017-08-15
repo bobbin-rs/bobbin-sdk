@@ -6,7 +6,7 @@
 extern crate log;
 
 #[macro_use]
-extern crate nucleo_f303ze as board;
+extern crate nucleo_f303re as board;
 
 use board::logger;
 

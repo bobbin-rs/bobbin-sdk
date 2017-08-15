@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate nucleo_f303ze as board;
+extern crate nucleo_f303re as board;
 
 use board::chip::usart::*;
 use board::chip::tim_gen::*;

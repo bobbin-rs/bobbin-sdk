@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate nucleo_f303ze as board;
+extern crate nucleo_f303re as board;
 use board::hal::gpio::{DigitalInput, DigitalOutput};
 
 #[no_mangle]
