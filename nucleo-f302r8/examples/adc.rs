@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate nucleo_f303ze as board;
+extern crate nucleo_f302r8 as board;
 
 use board::common::bits::*;
 use board::pin::*;
@@ -21,7 +21,6 @@ pub extern "C" fn main() -> ! {
 
     let ch1 = ADC1_CH1;
     let ch2 = ADC1_CH2;
-    
 
     a0.mode_adc(&ch1);
     a1.mode_adc(&ch2);
