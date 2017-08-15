@@ -1,5 +1,5 @@
 use hal::port::*;
-use hal::gpio::GpioExt;
+use hal::gpio::{GpioExt, DigitalOutput};
 
 pub const LED0: Ptc5 = PTC5; // Red
 

@@ -1,6 +1,6 @@
 use chip::sim::SIM;
-use chip::osc::{self, OSC};
-use chip::mcg::{self, MCG};
+use chip::osc::OSC;
+use chip::mcg::MCG;
 
 pub const CLOCK: ClockDevice = ClockDevice::Clock0;
 
@@ -76,7 +76,7 @@ pub fn set_mode_fbe() {
 
     // FRDIV = 0x4 - Divide Factor 512
 
-    MCG.set_c1(mcg::C1(0).set_clks(0x02).set_frdiv(0x04).set_irclken(1));
+    MCG.set_c1(|r| r.set_clks(0x02).set_frdiv(0x04).set_irclken(1));
 
     // LOREC0=0: Interrupt request is generated on a loss of OSC0 external reference clock.
     // RANGE0=2: Very high frequency range selected for the crystal oscillator.
@@ -86,13 +86,13 @@ pub fn set_mode_fbe() {
     // IRCS=0: Slow internal reference clock selected.
     //MCG_C2 = (MCG_C2_RANGE0(0x02) | MCG_C2_EREFS0_MASK);                                                   
 
-    MCG.set_c2(mcg::C2(0).set_range(0x02).set_erefs(1));
+    MCG.set_c2(|r| r.set_range(0x02).set_erefs(1));
 
     // DMX32=0: Reference Range 31.25–39.0625 kHz / FLL Factor 640 / DCO Range 20–25 MHz
     // DRST_DRS=0: Encoding 0 — Low range (reset default).
     //MCG_C4 &= (uint8_t)~(uint8_t)((MCG_C4_DMX32_MASK | MCG_C4_DRST_DRS(0x03)));
 
-    MCG.set_c4(mcg::C4(0).set_dmx32(0).set_drst_drs(0x3));
+    MCG.set_c4(|r| r.set_dmx32(0).set_drst_drs(0x3));
 
     // PLLCLKEN0=0: MCGPLLCLK is inactive.
     // PLLSTEN0=0: MCGPLLCLK is disabled in any of the Stop modes.
@@ -101,7 +101,7 @@ pub fn set_mode_fbe() {
 
     // PLL Divide by 4
 
-    MCG.set_c5(mcg::C5(0).set_prdiv0(0x03));
+    MCG.set_c5(|r| r.set_prdiv0(0x03));
 
     // LOLIE0=0: No interrupt request is generated on loss of lock.
     // PLLS=0: FLL is selected.
@@ -109,7 +109,7 @@ pub fn set_mode_fbe() {
     // VDIV0=0: Multiply Factor 24
     //MCG_C6 = 0x00U;
 
-    MCG.set_c6(mcg::C6(0).set_vdiv0(0b00110));
+    MCG.set_c6(|r| r.set_vdiv0(0b00110));
 
     /* Wait until the source of the FLL reference clock is the external reference clock. */
     //while((MCG_S & MCG_S_IREFST_MASK) != 0x00U) {}
@@ -137,25 +137,25 @@ pub fn set_mode_pbe() {
     /* MCG_C1: CLKS=2,FRDIV=3,IREFS=0,IRCLKEN=1,IREFSTEN=0 */
     //MCG_C1 = (MCG_C1_CLKS(0x02) | MCG_C1_FRDIV(0x03) | MCG_C1_IRCLKEN_MASK);                                                   
     
-    m.set_c1(mcg::C1(0).set_clks(0x2).set_frdiv(0x3).set_irefs(0).set_irclken(1).set_irefsten(0));
+    m.set_c1(|r| r.set_clks(0x2).set_frdiv(0x3).set_irefs(0).set_irclken(1).set_irefsten(0));
 
 
     /* MCG_C2: LOCRE0=0,??=0,RANGE0=2,HGO0=0,EREFS0=1,LP=0,IRCS=0 */
     //MCG_C2 = (MCG_C2_RANGE0(0x02) | MCG_C2_EREFS0_MASK);                                                   
 
-    m.set_c2(mcg::C2(0).set_range(0x2).set_erefs(1));
+    m.set_c2(|r| r.set_range(0x2).set_erefs(1));
 
     /* MCG_C5: ??=0,PLLCLKEN0=0,PLLSTEN0=0,PRDIV0=1 */
     //MCG_C5 = MCG_C5_PRDIV0(0x01);                    
 
     // PLL Divide by 4
 
-    m.set_c5(mcg::C5(0).set_prdiv0(0x3));
+    m.set_c5(|r| r.set_prdiv0(0x3));
 
     /* MCG_C6: LOLIE0=0,PLLS=1,CME0=0,VDIV0=0 */
     //MCG_C6 = MCG_C6_PLLS_MASK;
 
-    m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b00110));
+    m.set_c6(|r| r.set_plls(1).set_vdiv0(0b00110));
     
     /* Wait until external reference clock is selected as MCG output */
     //while((MCG_S & 0x0CU) != 0x08U) {}
@@ -177,32 +177,32 @@ pub fn set_mode_pee() {
     /* OSC0_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
     // OSC0_CR = OSC_CR_ERCLKEN_MASK;                                                   
 
-    o.set_cr(osc::Cr(0).set_erclken(1));
+    o.set_cr(|r| r.set_erclken(1));
 
     /* MCG_C1: CLKS=0,FRDIV=3,IREFS=0,IRCLKEN=1,IREFSTEN=0 */
     // MCG_C1 = (MCG_C1_FRDIV(0x03) | MCG_C1_IRCLKEN_MASK);    
 
-    m.set_c1(mcg::C1(0).set_frdiv(0x3).set_irclken(1));
+    m.set_c1(|r| r.set_frdiv(0x3).set_irclken(1));
 
 
     /* MCG_C2: LOCRE0=0,??=0,RANGE0=2,HGO0=0,EREFS0=1,LP=0,IRCS=0 */
     // MCG_C2 = (MCG_C2_RANGE0(0x02) | MCG_C2_EREFS0_MASK);
 
-    // m.set_c2(mcg::C2(0).set_range(0x02).set_erefs(1));        
+    // m.set_c2(|r| r.set_range(0x02).set_erefs(1));        
     // *** NOTE: External Reference must be set to use Ethernet ***
-    m.set_c2(mcg::C2(0).set_range(0x02).set_erefs(1));
+    m.set_c2(|r| r.set_range(0x02).set_erefs(1));
 
     /* MCG_C5: ??=0,PLLCLKEN0=0,PLLSTEN0=0,PRDIV0=1 */
     
     // PRDIV0 = 0x3 (Divide by 4)
-    m.set_c5(mcg::C5(0).set_prdiv0(0x3));
+    m.set_c5(|r| r.set_prdiv0(0x3));
 
     /* MCG_C6: LOLIE0=0,PLLS=1,CME0=0,VDIV0=0 */
     // MCG_C6 = MCG_C6_PLLS_MASK;
 
     // VDIV = 0b00110 (Multiply Factor 30)
 
-    m.set_c6(mcg::C6(0).set_plls(1).set_vdiv0(0b00110));
+    m.set_c6(|r| r.set_plls(1).set_vdiv0(0b00110));
     
     /* Wait until output of the PLL is selected */
     // while((MCG_S & 0x0CU) != 0x0CU) {}
