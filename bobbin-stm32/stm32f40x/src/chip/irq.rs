@@ -65,9 +65,9 @@ pub const IRQ_I2C1_ER: IrqI2c1Er = Irq(32, I2c1ErId {});
 pub const IRQ_USART1: IrqUsart1 = Irq(37, Usart1Id {});
 pub const IRQ_USART2: IrqUsart2 = Irq(38, Usart2Id {});
 pub const IRQ_USART3: IrqUsart3 = Irq(39, Usart3Id {});
+pub const IRQ_UART4: IrqUart4 = Irq(52, Uart4Id {});
+pub const IRQ_UART5: IrqUart5 = Irq(53, Uart5Id {});
 pub const IRQ_USART6: IrqUsart6 = Irq(71, Usart6Id {});
-pub const IRQ_UART4_IRQ: IrqUart4Irq = Irq(52, Uart4IrqId {});
-pub const IRQ_UART5_IRQ: IrqUart5Irq = Irq(53, Uart5IrqId {});
 pub const IRQ_DMA1_STREAM0: IrqDma1Stream0 = Irq(11, Dma1Stream0Id {});
 pub const IRQ_DMA1_STREAM1: IrqDma1Stream1 = Irq(12, Dma1Stream1Id {});
 pub const IRQ_DMA1_STREAM2: IrqDma1Stream2 = Irq(13, Dma1Stream2Id {});
@@ -147,9 +147,9 @@ pub type IrqI2c1Er = Irq<I2c1ErId>;
 pub type IrqUsart1 = Irq<Usart1Id>;
 pub type IrqUsart2 = Irq<Usart2Id>;
 pub type IrqUsart3 = Irq<Usart3Id>;
+pub type IrqUart4 = Irq<Uart4Id>;
+pub type IrqUart5 = Irq<Uart5Id>;
 pub type IrqUsart6 = Irq<Usart6Id>;
-pub type IrqUart4Irq = Irq<Uart4IrqId>;
-pub type IrqUart5Irq = Irq<Uart5IrqId>;
 pub type IrqDma1Stream0 = Irq<Dma1Stream0Id>;
 pub type IrqDma1Stream1 = Irq<Dma1Stream1Id>;
 pub type IrqDma1Stream2 = Irq<Dma1Stream2Id>;
@@ -292,11 +292,11 @@ pub struct Usart2Id {} // IRQ 38
 #[doc(hidden)]
 pub struct Usart3Id {} // IRQ 39
 #[doc(hidden)]
+pub struct Uart4Id {} // IRQ 52
+#[doc(hidden)]
+pub struct Uart5Id {} // IRQ 53
+#[doc(hidden)]
 pub struct Usart6Id {} // IRQ 71
-#[doc(hidden)]
-pub struct Uart4IrqId {} // IRQ 52
-#[doc(hidden)]
-pub struct Uart5IrqId {} // IRQ 53
 #[doc(hidden)]
 pub struct Dma1Stream0Id {} // IRQ 11
 #[doc(hidden)]
@@ -1156,19 +1156,7 @@ impl RegisterHandler for IrqUsart3 {
    }
 }
 
-impl RegisterHandler for IrqUsart6 {
-   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleInterrupt>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
-       }
-       set_handler(71, Some(wrapper::<F>));
-       IrqGuard::new(71)
-   }
-}
-
-impl RegisterHandler for IrqUart4Irq {
+impl RegisterHandler for IrqUart4 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -1180,7 +1168,7 @@ impl RegisterHandler for IrqUart4Irq {
    }
 }
 
-impl RegisterHandler for IrqUart5Irq {
+impl RegisterHandler for IrqUart5 {
    fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
        static mut HANDLER: Option<usize> = None;
        unsafe { HANDLER = Some(f as *const F as usize) }
@@ -1189,6 +1177,18 @@ impl RegisterHandler for IrqUart5Irq {
        }
        set_handler(53, Some(wrapper::<F>));
        IrqGuard::new(53)
+   }
+}
+
+impl RegisterHandler for IrqUsart6 {
+   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleInterrupt>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_interrupt() }
+       }
+       set_handler(71, Some(wrapper::<F>));
+       IrqGuard::new(71)
    }
 }
 
@@ -1411,9 +1411,9 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,
    None,
    None,
-   None,                          // IRQ 24: TIM1 Break interrupt and TIM9 global interrupt
-   None,                          // IRQ 25: TIM1 Update interrupt and TIM10 global interrupt
-   None,                          // IRQ 26: TIM1 Trigger and Commutation interrupts and TIM11 global interrupt
+   None,                          // IRQ 24: TIM1 Break interrupt
+   None,                          // IRQ 25: TIM1 Update interrupt
+   None,                          // IRQ 26: TIM1 Trigger and Commutation interrupts
    None,                          // IRQ 27: TIM1 Capture Compare interrupt
    None,                          // IRQ 28: TIM2 global interrupt
    None,                          // IRQ 29: TIM3 global interrupt

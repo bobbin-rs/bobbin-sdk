@@ -4,6 +4,8 @@ pub trait Signal<T> {}
 
 pub trait Tim {}
 pub trait SignalTim<T> {}
+pub trait Adc {}
+pub trait SignalAdc<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -143,6 +145,198 @@ pub const TIM8_CH4: Tim8Ch4 = Tim8Ch4 {};
 pub struct Tim8Ch4 {}
 impl Tim for Tim8Ch4 {}
 
+pub const ADC1_IN0: Adc1In0 = Adc1In0 {};
+pub struct Adc1In0 {}
+impl Adc for Adc1In0 {}
+
+pub const ADC1_IN1: Adc1In1 = Adc1In1 {};
+pub struct Adc1In1 {}
+impl Adc for Adc1In1 {}
+
+pub const ADC1_IN2: Adc1In2 = Adc1In2 {};
+pub struct Adc1In2 {}
+impl Adc for Adc1In2 {}
+
+pub const ADC1_IN3: Adc1In3 = Adc1In3 {};
+pub struct Adc1In3 {}
+impl Adc for Adc1In3 {}
+
+pub const ADC1_IN4: Adc1In4 = Adc1In4 {};
+pub struct Adc1In4 {}
+impl Adc for Adc1In4 {}
+
+pub const ADC1_IN5: Adc1In5 = Adc1In5 {};
+pub struct Adc1In5 {}
+impl Adc for Adc1In5 {}
+
+pub const ADC1_IN6: Adc1In6 = Adc1In6 {};
+pub struct Adc1In6 {}
+impl Adc for Adc1In6 {}
+
+pub const ADC1_IN7: Adc1In7 = Adc1In7 {};
+pub struct Adc1In7 {}
+impl Adc for Adc1In7 {}
+
+pub const ADC1_IN8: Adc1In8 = Adc1In8 {};
+pub struct Adc1In8 {}
+impl Adc for Adc1In8 {}
+
+pub const ADC1_IN9: Adc1In9 = Adc1In9 {};
+pub struct Adc1In9 {}
+impl Adc for Adc1In9 {}
+
+pub const ADC1_IN10: Adc1In10 = Adc1In10 {};
+pub struct Adc1In10 {}
+impl Adc for Adc1In10 {}
+
+pub const ADC1_IN11: Adc1In11 = Adc1In11 {};
+pub struct Adc1In11 {}
+impl Adc for Adc1In11 {}
+
+pub const ADC1_IN12: Adc1In12 = Adc1In12 {};
+pub struct Adc1In12 {}
+impl Adc for Adc1In12 {}
+
+pub const ADC1_IN13: Adc1In13 = Adc1In13 {};
+pub struct Adc1In13 {}
+impl Adc for Adc1In13 {}
+
+pub const ADC1_IN14: Adc1In14 = Adc1In14 {};
+pub struct Adc1In14 {}
+impl Adc for Adc1In14 {}
+
+pub const ADC1_IN15: Adc1In15 = Adc1In15 {};
+pub struct Adc1In15 {}
+impl Adc for Adc1In15 {}
+
+pub const ADC2_IN0: Adc2In0 = Adc2In0 {};
+pub struct Adc2In0 {}
+impl Adc for Adc2In0 {}
+
+pub const ADC2_IN1: Adc2In1 = Adc2In1 {};
+pub struct Adc2In1 {}
+impl Adc for Adc2In1 {}
+
+pub const ADC2_IN2: Adc2In2 = Adc2In2 {};
+pub struct Adc2In2 {}
+impl Adc for Adc2In2 {}
+
+pub const ADC2_IN3: Adc2In3 = Adc2In3 {};
+pub struct Adc2In3 {}
+impl Adc for Adc2In3 {}
+
+pub const ADC2_IN4: Adc2In4 = Adc2In4 {};
+pub struct Adc2In4 {}
+impl Adc for Adc2In4 {}
+
+pub const ADC2_IN5: Adc2In5 = Adc2In5 {};
+pub struct Adc2In5 {}
+impl Adc for Adc2In5 {}
+
+pub const ADC2_IN6: Adc2In6 = Adc2In6 {};
+pub struct Adc2In6 {}
+impl Adc for Adc2In6 {}
+
+pub const ADC2_IN7: Adc2In7 = Adc2In7 {};
+pub struct Adc2In7 {}
+impl Adc for Adc2In7 {}
+
+pub const ADC2_IN8: Adc2In8 = Adc2In8 {};
+pub struct Adc2In8 {}
+impl Adc for Adc2In8 {}
+
+pub const ADC2_IN9: Adc2In9 = Adc2In9 {};
+pub struct Adc2In9 {}
+impl Adc for Adc2In9 {}
+
+pub const ADC2_IN10: Adc2In10 = Adc2In10 {};
+pub struct Adc2In10 {}
+impl Adc for Adc2In10 {}
+
+pub const ADC2_IN11: Adc2In11 = Adc2In11 {};
+pub struct Adc2In11 {}
+impl Adc for Adc2In11 {}
+
+pub const ADC2_IN12: Adc2In12 = Adc2In12 {};
+pub struct Adc2In12 {}
+impl Adc for Adc2In12 {}
+
+pub const ADC2_IN13: Adc2In13 = Adc2In13 {};
+pub struct Adc2In13 {}
+impl Adc for Adc2In13 {}
+
+pub const ADC2_IN14: Adc2In14 = Adc2In14 {};
+pub struct Adc2In14 {}
+impl Adc for Adc2In14 {}
+
+pub const ADC2_IN15: Adc2In15 = Adc2In15 {};
+pub struct Adc2In15 {}
+impl Adc for Adc2In15 {}
+
+pub const ADC3_IN0: Adc3In0 = Adc3In0 {};
+pub struct Adc3In0 {}
+impl Adc for Adc3In0 {}
+
+pub const ADC3_IN1: Adc3In1 = Adc3In1 {};
+pub struct Adc3In1 {}
+impl Adc for Adc3In1 {}
+
+pub const ADC3_IN2: Adc3In2 = Adc3In2 {};
+pub struct Adc3In2 {}
+impl Adc for Adc3In2 {}
+
+pub const ADC3_IN3: Adc3In3 = Adc3In3 {};
+pub struct Adc3In3 {}
+impl Adc for Adc3In3 {}
+
+pub const ADC3_IN4: Adc3In4 = Adc3In4 {};
+pub struct Adc3In4 {}
+impl Adc for Adc3In4 {}
+
+pub const ADC3_IN5: Adc3In5 = Adc3In5 {};
+pub struct Adc3In5 {}
+impl Adc for Adc3In5 {}
+
+pub const ADC3_IN6: Adc3In6 = Adc3In6 {};
+pub struct Adc3In6 {}
+impl Adc for Adc3In6 {}
+
+pub const ADC3_IN7: Adc3In7 = Adc3In7 {};
+pub struct Adc3In7 {}
+impl Adc for Adc3In7 {}
+
+pub const ADC3_IN8: Adc3In8 = Adc3In8 {};
+pub struct Adc3In8 {}
+impl Adc for Adc3In8 {}
+
+pub const ADC3_IN9: Adc3In9 = Adc3In9 {};
+pub struct Adc3In9 {}
+impl Adc for Adc3In9 {}
+
+pub const ADC3_IN10: Adc3In10 = Adc3In10 {};
+pub struct Adc3In10 {}
+impl Adc for Adc3In10 {}
+
+pub const ADC3_IN11: Adc3In11 = Adc3In11 {};
+pub struct Adc3In11 {}
+impl Adc for Adc3In11 {}
+
+pub const ADC3_IN12: Adc3In12 = Adc3In12 {};
+pub struct Adc3In12 {}
+impl Adc for Adc3In12 {}
+
+pub const ADC3_IN13: Adc3In13 = Adc3In13 {};
+pub struct Adc3In13 {}
+impl Adc for Adc3In13 {}
+
+pub const ADC3_IN14: Adc3In14 = Adc3In14 {};
+pub struct Adc3In14 {}
+impl Adc for Adc3In14 {}
+
+pub const ADC3_IN15: Adc3In15 = Adc3In15 {};
+pub struct Adc3In15 {}
+impl Adc for Adc3In15 {}
+
 pub const USART1_TX: Usart1Tx = Usart1Tx {};
 pub struct Usart1Tx {}
 impl Tx for Usart1Tx {}
@@ -203,6 +397,46 @@ pub const USART3_CK: Usart3Ck = Usart3Ck {};
 pub struct Usart3Ck {}
 impl Ck for Usart3Ck {}
 
+pub const UART4_TX: Uart4Tx = Uart4Tx {};
+pub struct Uart4Tx {}
+impl Tx for Uart4Tx {}
+
+pub const UART4_RX: Uart4Rx = Uart4Rx {};
+pub struct Uart4Rx {}
+impl Rx for Uart4Rx {}
+
+pub const UART4_CTS: Uart4Cts = Uart4Cts {};
+pub struct Uart4Cts {}
+impl Cts for Uart4Cts {}
+
+pub const UART4_RTS: Uart4Rts = Uart4Rts {};
+pub struct Uart4Rts {}
+impl Rts for Uart4Rts {}
+
+pub const UART4_CK: Uart4Ck = Uart4Ck {};
+pub struct Uart4Ck {}
+impl Ck for Uart4Ck {}
+
+pub const UART5_TX: Uart5Tx = Uart5Tx {};
+pub struct Uart5Tx {}
+impl Tx for Uart5Tx {}
+
+pub const UART5_RX: Uart5Rx = Uart5Rx {};
+pub struct Uart5Rx {}
+impl Rx for Uart5Rx {}
+
+pub const UART5_CTS: Uart5Cts = Uart5Cts {};
+pub struct Uart5Cts {}
+impl Cts for Uart5Cts {}
+
+pub const UART5_RTS: Uart5Rts = Uart5Rts {};
+pub struct Uart5Rts {}
+impl Rts for Uart5Rts {}
+
+pub const UART5_CK: Uart5Ck = Uart5Ck {};
+pub struct Uart5Ck {}
+impl Ck for Uart5Ck {}
+
 pub const USART6_TX: Usart6Tx = Usart6Tx {};
 pub struct Usart6Tx {}
 impl Tx for Usart6Tx {}
@@ -223,63 +457,17 @@ pub const USART6_CK: Usart6Ck = Usart6Ck {};
 pub struct Usart6Ck {}
 impl Ck for Usart6Ck {}
 
-pub const USART4_TX: Usart4Tx = Usart4Tx {};
-pub struct Usart4Tx {}
-impl Tx for Usart4Tx {}
-
-pub const USART4_RX: Usart4Rx = Usart4Rx {};
-pub struct Usart4Rx {}
-impl Rx for Usart4Rx {}
-
-pub const USART4_CTS: Usart4Cts = Usart4Cts {};
-pub struct Usart4Cts {}
-impl Cts for Usart4Cts {}
-
-pub const USART4_RTS: Usart4Rts = Usart4Rts {};
-pub struct Usart4Rts {}
-impl Rts for Usart4Rts {}
-
-pub const USART4_CK: Usart4Ck = Usart4Ck {};
-pub struct Usart4Ck {}
-impl Ck for Usart4Ck {}
-
-pub const USART5_TX: Usart5Tx = Usart5Tx {};
-pub struct Usart5Tx {}
-impl Tx for Usart5Tx {}
-
-pub const USART5_RX: Usart5Rx = Usart5Rx {};
-pub struct Usart5Rx {}
-impl Rx for Usart5Rx {}
-
-pub const USART5_CTS: Usart5Cts = Usart5Cts {};
-pub struct Usart5Cts {}
-impl Cts for Usart5Cts {}
-
-pub const USART5_RTS: Usart5Rts = Usart5Rts {};
-pub struct Usart5Rts {}
-impl Rts for Usart5Rts {}
-
-pub const USART5_CK: Usart5Ck = Usart5Ck {};
-pub struct Usart5Ck {}
-impl Ck for Usart5Ck {}
-
-pub const TIM2_CH1_ETR: Tim2Ch1Etr = Tim2Ch1Etr {};
-pub struct Tim2Ch1Etr {}
+pub const TIM2_ETR: Tim2Etr = Tim2Etr {};
+pub struct Tim2Etr {}
 
 pub const TIM8_ETR: Tim8Etr = Tim8Etr {};
 pub struct Tim8Etr {}
-
-pub const UART4_TX: Uart4Tx = Uart4Tx {};
-pub struct Uart4Tx {}
 
 pub const ETH_MII_CRS: EthMiiCrs = EthMiiCrs {};
 pub struct EthMiiCrs {}
 
 pub const EVENTOUT: Eventout = Eventout {};
 pub struct Eventout {}
-
-pub const UART4_RX: Uart4Rx = Uart4Rx {};
-pub struct Uart4Rx {}
 
 pub const ETH_MII_RX_CLK: EthMiiRxClk = EthMiiRxClk {};
 pub struct EthMiiRxClk {}
@@ -329,8 +517,8 @@ pub struct Tim8Bkin {}
 pub const SPI1_MISO: Spi1Miso = Spi1Miso {};
 pub struct Spi1Miso {}
 
-pub const DCMI_PIXCK: DcmiPixck = DcmiPixck {};
-pub struct DcmiPixck {}
+pub const DCMI_PXCLK: DcmiPxclk = DcmiPxclk {};
+pub struct DcmiPxclk {}
 
 pub const TIM1_CH1N: Tim1Ch1n = Tim1Ch1n {};
 pub struct Tim1Ch1n {}
@@ -394,9 +582,6 @@ pub struct Swclk {}
 
 pub const JTDI: Jtdi = Jtdi {};
 pub struct Jtdi {}
-
-pub const TIM2_ETR: Tim2Etr = Tim2Etr {};
-pub struct Tim2Etr {}
 
 pub const TIM1_CH2N: Tim1Ch2n = Tim1Ch2n {};
 pub struct Tim1Ch2n {}
@@ -650,9 +835,6 @@ pub struct SdioD3 {}
 pub const DCMI_D4: DcmiD4 = DcmiD4 {};
 pub struct DcmiD4 {}
 
-pub const UART5_TX: Uart5Tx = Uart5Tx {};
-pub struct Uart5Tx {}
-
 pub const SDIO_CK: SdioCk = SdioCk {};
 pub struct SdioCk {}
 
@@ -667,9 +849,6 @@ pub struct FsmcD3 {}
 
 pub const TIM3_ETR: Tim3Etr = Tim3Etr {};
 pub struct Tim3Etr {}
-
-pub const UART5_RX: Uart5Rx = Uart5Rx {};
-pub struct Uart5Rx {}
 
 pub const SDIO_CMD: SdioCmd = SdioCmd {};
 pub struct SdioCmd {}

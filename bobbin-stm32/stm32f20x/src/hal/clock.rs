@@ -6,6 +6,7 @@ use ::chip::usart_f24::*;
 use ::chip::tim_bas::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
+use ::chip::c_adc::*;
 
 use core::fmt;
 
@@ -110,6 +111,7 @@ pub trait ClockTree {
     fn tim_pclk1(&self) -> Hz;
     fn pclk2(&self) -> Hz;
     fn tim_pclk2(&self) -> Hz;
+    fn adcclk(&self) -> Hz;
 }
 
 pub trait Clock<T: ClockTree> {
@@ -216,7 +218,15 @@ impl ClockTree for DynamicClock {
             _ => self.pclk2().map(|v| v << 1),
         }
     }    
-    
+    fn adcclk(&self) -> Hz {
+        let div = match C_ADC.ccr().adcpre() {
+            U2::B00 => 2,
+            U2::B01 => 4,
+            U2::B10 => 6,
+            U2::B11 => 7,
+        };
+        self.pclk2().map(|v| v / div)
+    }
 }
 impl fmt::Debug for DynamicClock {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -235,6 +245,7 @@ impl fmt::Debug for DynamicClock {
         write!(f, " TIM_PCLK2={:?}", self.tim_pclk2())?;
         write!(f, " PCLK2={:?}", self.pclk2())?;
         write!(f, " TIM_PCLK2={:?}", self.tim_pclk2())?;
+        write!(f, " ADCCLK={:?}", self.adcclk())?;
         write!(f, "]")?;
         Ok(())
     }

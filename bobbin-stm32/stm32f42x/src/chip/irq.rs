@@ -1443,9 +1443,9 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,
    None,
    None,
-   None,                          // IRQ 24: TIM1 Break interrupt and TIM9 global interrupt
-   None,                          // IRQ 25: TIM1 Update interrupt and TIM10 global interrupt
-   None,                          // IRQ 26: TIM1 Trigger and Commutation interrupts and TIM11 global interrupt
+   None,                          // IRQ 24: TIM1 Break interrupt
+   None,                          // IRQ 25: TIM1 Update interrupt
+   None,                          // IRQ 26: TIM1 Trigger and Commutation interrupts
    None,                          // IRQ 27: TIM1 Capture Compare interrupt
    None,                          // IRQ 28: TIM2 global interrupt
    None,                          // IRQ 29: TIM3 global interrupt
@@ -1473,7 +1473,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
    None,                          // IRQ 51: SPI3 global interrupt
    None,                          // IRQ 52: UART4 global interrupt
    None,                          // IRQ 53: UART5 global interrupt
-   None,                          // IRQ 54: TIM6 global interrupt, DAC1 and DAC2 underrun error interrupt
+   None,                          // IRQ 54: TIM6 global interrupt
    None,                          // IRQ 55: TIM7 global interrupt
    None,
    None,

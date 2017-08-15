@@ -4,6 +4,8 @@ pub trait Signal<T> {}
 
 pub trait Tim {}
 pub trait SignalTim<T> {}
+pub trait Adc {}
+pub trait SignalAdc<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -62,6 +64,198 @@ impl Tim for Tim4Ch3 {}
 pub const TIM4_CH4: Tim4Ch4 = Tim4Ch4 {};
 pub struct Tim4Ch4 {}
 impl Tim for Tim4Ch4 {}
+
+pub const ADC1_IN0: Adc1In0 = Adc1In0 {};
+pub struct Adc1In0 {}
+impl Adc for Adc1In0 {}
+
+pub const ADC1_IN1: Adc1In1 = Adc1In1 {};
+pub struct Adc1In1 {}
+impl Adc for Adc1In1 {}
+
+pub const ADC1_IN2: Adc1In2 = Adc1In2 {};
+pub struct Adc1In2 {}
+impl Adc for Adc1In2 {}
+
+pub const ADC1_IN3: Adc1In3 = Adc1In3 {};
+pub struct Adc1In3 {}
+impl Adc for Adc1In3 {}
+
+pub const ADC1_IN4: Adc1In4 = Adc1In4 {};
+pub struct Adc1In4 {}
+impl Adc for Adc1In4 {}
+
+pub const ADC1_IN5: Adc1In5 = Adc1In5 {};
+pub struct Adc1In5 {}
+impl Adc for Adc1In5 {}
+
+pub const ADC1_IN6: Adc1In6 = Adc1In6 {};
+pub struct Adc1In6 {}
+impl Adc for Adc1In6 {}
+
+pub const ADC1_IN7: Adc1In7 = Adc1In7 {};
+pub struct Adc1In7 {}
+impl Adc for Adc1In7 {}
+
+pub const ADC1_IN8: Adc1In8 = Adc1In8 {};
+pub struct Adc1In8 {}
+impl Adc for Adc1In8 {}
+
+pub const ADC1_IN9: Adc1In9 = Adc1In9 {};
+pub struct Adc1In9 {}
+impl Adc for Adc1In9 {}
+
+pub const ADC1_IN10: Adc1In10 = Adc1In10 {};
+pub struct Adc1In10 {}
+impl Adc for Adc1In10 {}
+
+pub const ADC1_IN11: Adc1In11 = Adc1In11 {};
+pub struct Adc1In11 {}
+impl Adc for Adc1In11 {}
+
+pub const ADC1_IN12: Adc1In12 = Adc1In12 {};
+pub struct Adc1In12 {}
+impl Adc for Adc1In12 {}
+
+pub const ADC1_IN13: Adc1In13 = Adc1In13 {};
+pub struct Adc1In13 {}
+impl Adc for Adc1In13 {}
+
+pub const ADC1_IN14: Adc1In14 = Adc1In14 {};
+pub struct Adc1In14 {}
+impl Adc for Adc1In14 {}
+
+pub const ADC1_IN15: Adc1In15 = Adc1In15 {};
+pub struct Adc1In15 {}
+impl Adc for Adc1In15 {}
+
+pub const ADC2_IN0: Adc2In0 = Adc2In0 {};
+pub struct Adc2In0 {}
+impl Adc for Adc2In0 {}
+
+pub const ADC2_IN1: Adc2In1 = Adc2In1 {};
+pub struct Adc2In1 {}
+impl Adc for Adc2In1 {}
+
+pub const ADC2_IN2: Adc2In2 = Adc2In2 {};
+pub struct Adc2In2 {}
+impl Adc for Adc2In2 {}
+
+pub const ADC2_IN3: Adc2In3 = Adc2In3 {};
+pub struct Adc2In3 {}
+impl Adc for Adc2In3 {}
+
+pub const ADC2_IN4: Adc2In4 = Adc2In4 {};
+pub struct Adc2In4 {}
+impl Adc for Adc2In4 {}
+
+pub const ADC2_IN5: Adc2In5 = Adc2In5 {};
+pub struct Adc2In5 {}
+impl Adc for Adc2In5 {}
+
+pub const ADC2_IN6: Adc2In6 = Adc2In6 {};
+pub struct Adc2In6 {}
+impl Adc for Adc2In6 {}
+
+pub const ADC2_IN7: Adc2In7 = Adc2In7 {};
+pub struct Adc2In7 {}
+impl Adc for Adc2In7 {}
+
+pub const ADC2_IN8: Adc2In8 = Adc2In8 {};
+pub struct Adc2In8 {}
+impl Adc for Adc2In8 {}
+
+pub const ADC2_IN9: Adc2In9 = Adc2In9 {};
+pub struct Adc2In9 {}
+impl Adc for Adc2In9 {}
+
+pub const ADC2_IN10: Adc2In10 = Adc2In10 {};
+pub struct Adc2In10 {}
+impl Adc for Adc2In10 {}
+
+pub const ADC2_IN11: Adc2In11 = Adc2In11 {};
+pub struct Adc2In11 {}
+impl Adc for Adc2In11 {}
+
+pub const ADC2_IN12: Adc2In12 = Adc2In12 {};
+pub struct Adc2In12 {}
+impl Adc for Adc2In12 {}
+
+pub const ADC2_IN13: Adc2In13 = Adc2In13 {};
+pub struct Adc2In13 {}
+impl Adc for Adc2In13 {}
+
+pub const ADC2_IN14: Adc2In14 = Adc2In14 {};
+pub struct Adc2In14 {}
+impl Adc for Adc2In14 {}
+
+pub const ADC2_IN15: Adc2In15 = Adc2In15 {};
+pub struct Adc2In15 {}
+impl Adc for Adc2In15 {}
+
+pub const ADC3_IN0: Adc3In0 = Adc3In0 {};
+pub struct Adc3In0 {}
+impl Adc for Adc3In0 {}
+
+pub const ADC3_IN1: Adc3In1 = Adc3In1 {};
+pub struct Adc3In1 {}
+impl Adc for Adc3In1 {}
+
+pub const ADC3_IN2: Adc3In2 = Adc3In2 {};
+pub struct Adc3In2 {}
+impl Adc for Adc3In2 {}
+
+pub const ADC3_IN3: Adc3In3 = Adc3In3 {};
+pub struct Adc3In3 {}
+impl Adc for Adc3In3 {}
+
+pub const ADC3_IN4: Adc3In4 = Adc3In4 {};
+pub struct Adc3In4 {}
+impl Adc for Adc3In4 {}
+
+pub const ADC3_IN5: Adc3In5 = Adc3In5 {};
+pub struct Adc3In5 {}
+impl Adc for Adc3In5 {}
+
+pub const ADC3_IN6: Adc3In6 = Adc3In6 {};
+pub struct Adc3In6 {}
+impl Adc for Adc3In6 {}
+
+pub const ADC3_IN7: Adc3In7 = Adc3In7 {};
+pub struct Adc3In7 {}
+impl Adc for Adc3In7 {}
+
+pub const ADC3_IN8: Adc3In8 = Adc3In8 {};
+pub struct Adc3In8 {}
+impl Adc for Adc3In8 {}
+
+pub const ADC3_IN9: Adc3In9 = Adc3In9 {};
+pub struct Adc3In9 {}
+impl Adc for Adc3In9 {}
+
+pub const ADC3_IN10: Adc3In10 = Adc3In10 {};
+pub struct Adc3In10 {}
+impl Adc for Adc3In10 {}
+
+pub const ADC3_IN11: Adc3In11 = Adc3In11 {};
+pub struct Adc3In11 {}
+impl Adc for Adc3In11 {}
+
+pub const ADC3_IN12: Adc3In12 = Adc3In12 {};
+pub struct Adc3In12 {}
+impl Adc for Adc3In12 {}
+
+pub const ADC3_IN13: Adc3In13 = Adc3In13 {};
+pub struct Adc3In13 {}
+impl Adc for Adc3In13 {}
+
+pub const ADC3_IN14: Adc3In14 = Adc3In14 {};
+pub struct Adc3In14 {}
+impl Adc for Adc3In14 {}
+
+pub const ADC3_IN15: Adc3In15 = Adc3In15 {};
+pub struct Adc3In15 {}
+impl Adc for Adc3In15 {}
 
 pub const USART1_TX: Usart1Tx = Usart1Tx {};
 pub struct Usart1Tx {}

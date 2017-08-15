@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::bits;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="ADC_F124 Peripheral"]
+#[doc="ADC_F1 Peripheral"]
 pub struct Periph<T>(pub u32, pub T); 
 
 
@@ -167,130 +167,44 @@ impl<T> Periph<T> {
      self
   }
 
-#[doc="Get the *const pointer for the JOFR1 register."]
-  #[inline] pub fn jofr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x14) as *const u32
+#[doc="Get the *const pointer for the JOFR register."]
+  #[inline] pub fn jofr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     ((self.0 as usize) + 0x14 + (index << 2)) as *const u32
   }
-#[doc="Get the *mut pointer for the JOFR1 register."]
-  #[inline] pub fn jofr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x14) as *mut u32
+#[doc="Get the *mut pointer for the JOFR register."]
+  #[inline] pub fn jofr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     ((self.0 as usize) + 0x14 + (index << 2)) as *mut u32
   }
-#[doc="Read the JOFR1 register."]
-  #[inline] pub fn jofr1(&self) -> Jofr1 { 
+#[doc="Read the JOFR register."]
+  #[inline] pub fn jofr<I: Into<bits::R4>>(&self, index: I) -> Jofr { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      unsafe {
-        Jofr1(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
+        Jofr(::core::ptr::read_volatile(((self.0 as usize) + 0x14 + (index << 2)) as *const u32))
      }
   }
-#[doc="Write the JOFR1 register."]
-  #[inline] pub fn set_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &Self {
-     let value = f(Jofr1(0));
+#[doc="Write the JOFR register."]
+  #[inline] pub fn set_jofr<I: Into<bits::R4>, F: FnOnce(Jofr) -> Jofr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     let value = f(Jofr(0));
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
-#[doc="Modify the JOFR1 register."]
-  #[inline] pub fn with_jofr1<F: FnOnce(Jofr1) -> Jofr1>(&self, f: F) -> &Self {
-     let tmp = self.jofr1();
+#[doc="Modify the JOFR register."]
+  #[inline] pub fn with_jofr<I: Into<bits::R4> + Copy, F: FnOnce(Jofr) -> Jofr>(&self, index: I, f: F) -> &Self {
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     let tmp = self.jofr(index);
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
-
-#[doc="Get the *const pointer for the JOFR2 register."]
-  #[inline] pub fn jofr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
-  }
-#[doc="Get the *mut pointer for the JOFR2 register."]
-  #[inline] pub fn jofr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
-  }
-#[doc="Read the JOFR2 register."]
-  #[inline] pub fn jofr2(&self) -> Jofr2 { 
-     unsafe {
-        Jofr2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }
-  }
-#[doc="Write the JOFR2 register."]
-  #[inline] pub fn set_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &Self {
-     let value = f(Jofr2(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
-#[doc="Modify the JOFR2 register."]
-  #[inline] pub fn with_jofr2<F: FnOnce(Jofr2) -> Jofr2>(&self, f: F) -> &Self {
-     let tmp = self.jofr2();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
-
-#[doc="Get the *const pointer for the JOFR3 register."]
-  #[inline] pub fn jofr3_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
-#[doc="Get the *mut pointer for the JOFR3 register."]
-  #[inline] pub fn jofr3_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
-#[doc="Read the JOFR3 register."]
-  #[inline] pub fn jofr3(&self) -> Jofr3 { 
-     unsafe {
-        Jofr3(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
-#[doc="Write the JOFR3 register."]
-  #[inline] pub fn set_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &Self {
-     let value = f(Jofr3(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
-#[doc="Modify the JOFR3 register."]
-  #[inline] pub fn with_jofr3<F: FnOnce(Jofr3) -> Jofr3>(&self, f: F) -> &Self {
-     let tmp = self.jofr3();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
-
-#[doc="Get the *const pointer for the JOFR4 register."]
-  #[inline] pub fn jofr4_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x20) as *const u32
-  }
-#[doc="Get the *mut pointer for the JOFR4 register."]
-  #[inline] pub fn jofr4_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x20) as *mut u32
-  }
-#[doc="Read the JOFR4 register."]
-  #[inline] pub fn jofr4(&self) -> Jofr4 { 
-     unsafe {
-        Jofr4(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }
-  }
-#[doc="Write the JOFR4 register."]
-  #[inline] pub fn set_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &Self {
-     let value = f(Jofr4(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
-#[doc="Modify the JOFR4 register."]
-  #[inline] pub fn with_jofr4<F: FnOnce(Jofr4) -> Jofr4>(&self, f: F) -> &Self {
-     let tmp = self.jofr4();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0x14 + (index << 2)) as *mut u32, value.0);
      }
      self
   }
@@ -487,63 +401,24 @@ impl<T> Periph<T> {
      self
   }
 
-#[doc="Get the *const pointer for the JDR1 register."]
-  #[inline] pub fn jdr1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x3c) as *const u32
+#[doc="Get the *const pointer for the JDR register."]
+  #[inline] pub fn jdr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     ((self.0 as usize) + 0x3c + (index << 2)) as *const u32
   }
-#[doc="Get the *mut pointer for the JDR1 register."]
-  #[inline] pub fn jdr1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x3c) as *mut u32
+#[doc="Get the *mut pointer for the JDR register."]
+  #[inline] pub fn jdr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
+     ((self.0 as usize) + 0x3c + (index << 2)) as *mut u32
   }
-#[doc="Read the JDR1 register."]
-  #[inline] pub fn jdr1(&self) -> Jdr1 { 
+#[doc="Read the JDR register."]
+  #[inline] pub fn jdr<I: Into<bits::R4>>(&self, index: I) -> Jdr { 
+     let index: bits::R4 = index.into();
+     let index: usize = index.value() as usize;
      unsafe {
-        Jdr1(::core::ptr::read_volatile(((self.0 as usize) + 0x3c) as *const u32))
-     }
-  }
-
-#[doc="Get the *const pointer for the JDR2 register."]
-  #[inline] pub fn jdr2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x40) as *const u32
-  }
-#[doc="Get the *mut pointer for the JDR2 register."]
-  #[inline] pub fn jdr2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x40) as *mut u32
-  }
-#[doc="Read the JDR2 register."]
-  #[inline] pub fn jdr2(&self) -> Jdr2 { 
-     unsafe {
-        Jdr2(::core::ptr::read_volatile(((self.0 as usize) + 0x40) as *const u32))
-     }
-  }
-
-#[doc="Get the *const pointer for the JDR3 register."]
-  #[inline] pub fn jdr3_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x44) as *const u32
-  }
-#[doc="Get the *mut pointer for the JDR3 register."]
-  #[inline] pub fn jdr3_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x44) as *mut u32
-  }
-#[doc="Read the JDR3 register."]
-  #[inline] pub fn jdr3(&self) -> Jdr3 { 
-     unsafe {
-        Jdr3(::core::ptr::read_volatile(((self.0 as usize) + 0x44) as *const u32))
-     }
-  }
-
-#[doc="Get the *const pointer for the JDR4 register."]
-  #[inline] pub fn jdr4_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x48) as *const u32
-  }
-#[doc="Get the *mut pointer for the JDR4 register."]
-  #[inline] pub fn jdr4_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x48) as *mut u32
-  }
-#[doc="Read the JDR4 register."]
-  #[inline] pub fn jdr4(&self) -> Jdr4 { 
-     unsafe {
-        Jdr4(::core::ptr::read_volatile(((self.0 as usize) + 0x48) as *const u32))
+        Jdr(::core::ptr::read_volatile(((self.0 as usize) + 0x3c + (index << 2)) as *const u32))
      }
   }
 
@@ -669,32 +544,6 @@ impl ::core::fmt::Debug for Sr {
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
-#[doc="Overrun interrupt enable"]
-  #[inline] pub fn ovrie(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-  }
-#[doc="Overrun interrupt enable"]
-  #[inline] pub fn set_ovrie<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 26);
-     self.0 |= value << 26;
-     self
-  }
-
-#[doc="Resolution"]
-  #[inline] pub fn res(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
-  }
-#[doc="Resolution"]
-  #[inline] pub fn set_res<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 24);
-     self.0 |= value << 24;
-     self
-  }
-
 #[doc="Analog watchdog enable on regular channels"]
   #[inline] pub fn awden(&self) -> bits::U1 {
      unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
@@ -718,6 +567,19 @@ impl Cr1 {
      let value: u32 = value.into();
      self.0 &= !(0x1 << 22);
      self.0 |= value << 22;
+     self
+  }
+
+#[doc="Dual mode selection"]
+  #[inline] pub fn dualmod(&self) -> bits::U4 {
+     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
+  }
+#[doc="Dual mode selection"]
+  #[inline] pub fn set_dualmod<V: Into<bits::U4>>(mut self, value: V) -> Self {
+     let value: bits::U4 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0xf << 16);
+     self.0 |= value << 16;
      self
   }
 
@@ -860,10 +722,9 @@ impl ::core::fmt::Display for Cr1 {
 impl ::core::fmt::Debug for Cr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.ovrie() != 0 { try!(write!(f, " ovrie"))}
-      if self.res() != 0 { try!(write!(f, " res=0x{:x}", self.res()))}
       if self.awden() != 0 { try!(write!(f, " awden"))}
       if self.jawden() != 0 { try!(write!(f, " jawden"))}
+      if self.dualmod() != 0 { try!(write!(f, " dualmod=0x{:x}", self.dualmod()))}
       if self.discnum() != 0 { try!(write!(f, " discnum=0x{:x}", self.discnum()))}
       if self.jdiscen() != 0 { try!(write!(f, " jdiscen"))}
       if self.discen() != 0 { try!(write!(f, " discen"))}
@@ -882,51 +743,25 @@ impl ::core::fmt::Debug for Cr1 {
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
+#[doc="Temperature sensor and Vrefint enable"]
+  #[inline] pub fn tsvrefe(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
+  }
+#[doc="Temperature sensor and Vrefint enable"]
+  #[inline] pub fn set_tsvrefe<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0x1 << 23);
+     self.0 |= value << 23;
+     self
+  }
+
 #[doc="Start conversion of regular channels"]
   #[inline] pub fn swstart(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
+     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
   }
 #[doc="Start conversion of regular channels"]
   #[inline] pub fn set_swstart<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 30);
-     self.0 |= value << 30;
-     self
-  }
-
-#[doc="External trigger enable for regular channels"]
-  #[inline] pub fn exten(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
-  }
-#[doc="External trigger enable for regular channels"]
-  #[inline] pub fn set_exten<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 28);
-     self.0 |= value << 28;
-     self
-  }
-
-#[doc="External event select for regular group"]
-  #[inline] pub fn extsel(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
-  }
-#[doc="External event select for regular group"]
-  #[inline] pub fn set_extsel<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
-
-#[doc="Start conversion of injected channels"]
-  #[inline] pub fn jswstart(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
-  }
-#[doc="Start conversion of injected channels"]
-  #[inline] pub fn set_jswstart<V: Into<bits::U1>>(mut self, value: V) -> Self {
      let value: bits::U1 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0x1 << 22);
@@ -934,29 +769,68 @@ impl Cr2 {
      self
   }
 
-#[doc="External trigger enable for injected channels"]
-  #[inline] pub fn jexten(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
+#[doc="Start conversion of injected channels"]
+  #[inline] pub fn jswstart(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
   }
-#[doc="External trigger enable for injected channels"]
-  #[inline] pub fn set_jexten<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
+#[doc="Start conversion of injected channels"]
+  #[inline] pub fn set_jswstart<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
      let value: u32 = value.into();
-     self.0 &= !(0x3 << 20);
+     self.0 &= !(0x1 << 21);
+     self.0 |= value << 21;
+     self
+  }
+
+#[doc="External trigger conversion mode for regular channels"]
+  #[inline] pub fn exttrig(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
+  }
+#[doc="External trigger conversion mode for regular channels"]
+  #[inline] pub fn set_exttrig<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0x1 << 20);
      self.0 |= value << 20;
      self
   }
 
+#[doc="External event select for regular group"]
+  #[inline] pub fn extsel(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x7) as u8) } // [19:17]
+  }
+#[doc="External event select for regular group"]
+  #[inline] pub fn set_extsel<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0x7 << 17);
+     self.0 |= value << 17;
+     self
+  }
+
+#[doc="External trigger conversion mode for injected channels"]
+  #[inline] pub fn jexttrig(&self) -> bits::U1 {
+     unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
+  }
+#[doc="External trigger conversion mode for injected channels"]
+  #[inline] pub fn set_jexttrig<V: Into<bits::U1>>(mut self, value: V) -> Self {
+     let value: bits::U1 = value.into();
+     let value: u32 = value.into();
+     self.0 &= !(0x1 << 15);
+     self.0 |= value << 15;
+     self
+  }
+
 #[doc="External event select for injected group"]
-  #[inline] pub fn jextsel(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
+  #[inline] pub fn jextsel(&self) -> bits::U3 {
+     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x7) as u8) } // [14:12]
   }
 #[doc="External event select for injected group"]
-  #[inline] pub fn set_jextsel<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
+  #[inline] pub fn set_jextsel<V: Into<bits::U3>>(mut self, value: V) -> Self {
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     self.0 &= !(0xf << 16);
-     self.0 |= value << 16;
+     self.0 &= !(0x7 << 12);
+     self.0 |= value << 12;
      self
   }
 
@@ -970,32 +844,6 @@ impl Cr2 {
      let value: u32 = value.into();
      self.0 &= !(0x1 << 11);
      self.0 |= value << 11;
-     self
-  }
-
-#[doc="End of conversion selection"]
-  #[inline] pub fn eocs(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
-  }
-#[doc="End of conversion selection"]
-  #[inline] pub fn set_eocs<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 10);
-     self.0 |= value << 10;
-     self
-  }
-
-#[doc="DMA disable selection (for single ADC mode)"]
-  #[inline] pub fn dds(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-  }
-#[doc="DMA disable selection (for single ADC mode)"]
-  #[inline] pub fn set_dds<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
      self
   }
 
@@ -1073,15 +921,14 @@ impl ::core::fmt::Display for Cr2 {
 impl ::core::fmt::Debug for Cr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.tsvrefe() != 0 { try!(write!(f, " tsvrefe"))}
       if self.swstart() != 0 { try!(write!(f, " swstart"))}
-      if self.exten() != 0 { try!(write!(f, " exten=0x{:x}", self.exten()))}
-      if self.extsel() != 0 { try!(write!(f, " extsel=0x{:x}", self.extsel()))}
       if self.jswstart() != 0 { try!(write!(f, " jswstart"))}
-      if self.jexten() != 0 { try!(write!(f, " jexten=0x{:x}", self.jexten()))}
+      if self.exttrig() != 0 { try!(write!(f, " exttrig"))}
+      if self.extsel() != 0 { try!(write!(f, " extsel=0x{:x}", self.extsel()))}
+      if self.jexttrig() != 0 { try!(write!(f, " jexttrig"))}
       if self.jextsel() != 0 { try!(write!(f, " jextsel=0x{:x}", self.jextsel()))}
       if self.align() != 0 { try!(write!(f, " align"))}
-      if self.eocs() != 0 { try!(write!(f, " eocs"))}
-      if self.dds() != 0 { try!(write!(f, " dds"))}
       if self.dma() != 0 { try!(write!(f, " dma"))}
       if self.rstcal() != 0 { try!(write!(f, " rstcal"))}
       if self.cal() != 0 { try!(write!(f, " cal"))}
@@ -1096,15 +943,21 @@ impl ::core::fmt::Debug for Cr2 {
 pub struct Smpr1(pub u32);
 impl Smpr1 {
 #[doc="Sample time bits"]
-  #[inline] pub fn smpx_x(&self) -> bits::U32 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
+  #[inline] pub fn smp<I: Into<bits::R8>>(&self, index: I) -> bits::U3 {
+     let index: bits::R8 = index.into();
+     let index: usize = index.value();
+     let shift: usize = 0 + (index * 3);
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x7) as u8) } // [2:0]
   }
 #[doc="Sample time bits"]
-  #[inline] pub fn set_smpx_x<V: Into<bits::U32>>(mut self, value: V) -> Self {
-     let value: bits::U32 = value.into();
+  #[inline] pub fn set_smp<I: Into<bits::R8>, V: Into<bits::U3>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R8 = index.into();
+     let index: usize = index.value();
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index * 3);
+     self.0 &= !(0x7 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1117,6 +970,14 @@ impl ::core::fmt::Display for Smpr1 {
 impl ::core::fmt::Debug for Smpr1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.smp(0) != 0 { try!(write!(f, " smp[0]=0x{:x}", self.smp(0)))}
+      if self.smp(1) != 0 { try!(write!(f, " smp[1]=0x{:x}", self.smp(1)))}
+      if self.smp(2) != 0 { try!(write!(f, " smp[2]=0x{:x}", self.smp(2)))}
+      if self.smp(3) != 0 { try!(write!(f, " smp[3]=0x{:x}", self.smp(3)))}
+      if self.smp(4) != 0 { try!(write!(f, " smp[4]=0x{:x}", self.smp(4)))}
+      if self.smp(5) != 0 { try!(write!(f, " smp[5]=0x{:x}", self.smp(5)))}
+      if self.smp(6) != 0 { try!(write!(f, " smp[6]=0x{:x}", self.smp(6)))}
+      if self.smp(7) != 0 { try!(write!(f, " smp[7]=0x{:x}", self.smp(7)))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1126,15 +987,21 @@ impl ::core::fmt::Debug for Smpr1 {
 pub struct Smpr2(pub u32);
 impl Smpr2 {
 #[doc="Sample time bits"]
-  #[inline] pub fn smpx_x(&self) -> bits::U32 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
+  #[inline] pub fn smp<I: Into<bits::R9>>(&self, index: I) -> bits::U3 {
+     let index: bits::R9 = index.into();
+     let index: usize = index.value();
+     let shift: usize = 0 + (index * 3);
+     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x7) as u8) } // [2:0]
   }
 #[doc="Sample time bits"]
-  #[inline] pub fn set_smpx_x<V: Into<bits::U32>>(mut self, value: V) -> Self {
-     let value: bits::U32 = value.into();
+  #[inline] pub fn set_smp<I: Into<bits::R9>, V: Into<bits::U3>>(mut self, index: I, value: V) -> Self {
+     let index: bits::R9 = index.into();
+     let index: usize = index.value();
+     let value: bits::U3 = value.into();
      let value: u32 = value.into();
-     self.0 &= !(0xffffffff << 0);
-     self.0 |= value << 0;
+     let shift: usize = 0 + (index * 3);
+     self.0 &= !(0x7 << shift);
+     self.0 |= value << shift;
      self
   }
 
@@ -1147,20 +1014,29 @@ impl ::core::fmt::Display for Smpr2 {
 impl ::core::fmt::Debug for Smpr2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
+      if self.smp(0) != 0 { try!(write!(f, " smp[0]=0x{:x}", self.smp(0)))}
+      if self.smp(1) != 0 { try!(write!(f, " smp[1]=0x{:x}", self.smp(1)))}
+      if self.smp(2) != 0 { try!(write!(f, " smp[2]=0x{:x}", self.smp(2)))}
+      if self.smp(3) != 0 { try!(write!(f, " smp[3]=0x{:x}", self.smp(3)))}
+      if self.smp(4) != 0 { try!(write!(f, " smp[4]=0x{:x}", self.smp(4)))}
+      if self.smp(5) != 0 { try!(write!(f, " smp[5]=0x{:x}", self.smp(5)))}
+      if self.smp(6) != 0 { try!(write!(f, " smp[6]=0x{:x}", self.smp(6)))}
+      if self.smp(7) != 0 { try!(write!(f, " smp[7]=0x{:x}", self.smp(7)))}
+      if self.smp(8) != 0 { try!(write!(f, " smp[8]=0x{:x}", self.smp(8)))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[doc="injected channel data offset register x"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jofr1(pub u32);
-impl Jofr1 {
+pub struct Jofr(pub u32);
+impl Jofr {
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset1(&self) -> bits::U12 {
+  #[inline] pub fn joffset(&self) -> bits::U12 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
   }
 #[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset1<V: Into<bits::U12>>(mut self, value: V) -> Self {
+  #[inline] pub fn set_joffset<V: Into<bits::U12>>(mut self, value: V) -> Self {
      let value: bits::U12 = value.into();
      let value: u32 = value.into();
      self.0 &= !(0xfff << 0);
@@ -1169,108 +1045,15 @@ impl Jofr1 {
   }
 
 }
-impl ::core::fmt::Display for Jofr1 {
+impl ::core::fmt::Display for Jofr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Jofr1 {
+impl ::core::fmt::Debug for Jofr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
-      if self.joffset1() != 0 { try!(write!(f, " joffset1=0x{:x}", self.joffset1()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected channel data offset register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jofr2(pub u32);
-impl Jofr2 {
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset2(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset2<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jofr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jofr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.joffset2() != 0 { try!(write!(f, " joffset2=0x{:x}", self.joffset2()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected channel data offset register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jofr3(pub u32);
-impl Jofr3 {
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset3(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset3<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jofr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jofr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.joffset3() != 0 { try!(write!(f, " joffset3=0x{:x}", self.joffset3()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected channel data offset register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jofr4(pub u32);
-impl Jofr4 {
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn joffset4(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
-#[doc="Data offset for injected channel x"]
-  #[inline] pub fn set_joffset4<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jofr4 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jofr4 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.joffset4() != 0 { try!(write!(f, " joffset4=0x{:x}", self.joffset4()))}
+      if self.joffset() != 0 { try!(write!(f, " joffset=0x{:x}", self.joffset()))}
       try!(write!(f, "]"));
       Ok(())
    }
@@ -1715,8 +1498,8 @@ impl ::core::fmt::Debug for Jsqr {
 }
 #[doc="injected data register x"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jdr1(pub u32);
-impl Jdr1 {
+pub struct Jdr(pub u32);
+impl Jdr {
 #[doc="Injected data"]
   #[inline] pub fn jdata(&self) -> bits::U16 {
      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
@@ -1731,105 +1514,12 @@ impl Jdr1 {
   }
 
 }
-impl ::core::fmt::Display for Jdr1 {
+impl ::core::fmt::Display for Jdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
-impl ::core::fmt::Debug for Jdr1 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.jdata() != 0 { try!(write!(f, " jdata=0x{:x}", self.jdata()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected data register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jdr2(pub u32);
-impl Jdr2 {
-#[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> bits::U16 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-  }
-#[doc="Injected data"]
-  #[inline] pub fn set_jdata<V: Into<bits::U16>>(mut self, value: V) -> Self {
-     let value: bits::U16 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jdr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jdr2 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.jdata() != 0 { try!(write!(f, " jdata=0x{:x}", self.jdata()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected data register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jdr3(pub u32);
-impl Jdr3 {
-#[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> bits::U16 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-  }
-#[doc="Injected data"]
-  #[inline] pub fn set_jdata<V: Into<bits::U16>>(mut self, value: V) -> Self {
-     let value: bits::U16 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jdr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jdr3 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-      try!(write!(f, "[0x{:08x}", self.0));
-      if self.jdata() != 0 { try!(write!(f, " jdata=0x{:x}", self.jdata()))}
-      try!(write!(f, "]"));
-      Ok(())
-   }
-}
-#[doc="injected data register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Jdr4(pub u32);
-impl Jdr4 {
-#[doc="Injected data"]
-  #[inline] pub fn jdata(&self) -> bits::U16 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-  }
-#[doc="Injected data"]
-  #[inline] pub fn set_jdata<V: Into<bits::U16>>(mut self, value: V) -> Self {
-     let value: bits::U16 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xffff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-}
-impl ::core::fmt::Display for Jdr4 {
-   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-       self.0.fmt(f)
-   }
-}
-impl ::core::fmt::Debug for Jdr4 {
+impl ::core::fmt::Debug for Jdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.jdata() != 0 { try!(write!(f, " jdata=0x{:x}", self.jdata()))}
@@ -1867,45 +1557,6 @@ impl Dr {
      self
   }
 
-#[doc="Regular data (10 bit)"]
-  #[inline] pub fn data_10(&self) -> bits::U10 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
-  }
-#[doc="Regular data (10 bit)"]
-  #[inline] pub fn set_data_10<V: Into<bits::U10>>(mut self, value: V) -> Self {
-     let value: bits::U10 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3ff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="Regular data (8 bit)"]
-  #[inline] pub fn data_8(&self) -> bits::U8 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-  }
-#[doc="Regular data (8 bit)"]
-  #[inline] pub fn set_data_8<V: Into<bits::U8>>(mut self, value: V) -> Self {
-     let value: bits::U8 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
-
-#[doc="Regular data (6 bit)"]
-  #[inline] pub fn data_6(&self) -> bits::U6 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
-  }
-#[doc="Regular data (6 bit)"]
-  #[inline] pub fn set_data_6<V: Into<bits::U6>>(mut self, value: V) -> Self {
-     let value: bits::U6 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3f << 0);
-     self.0 |= value << 0;
-     self
-  }
-
 }
 impl ::core::fmt::Display for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1917,15 +1568,12 @@ impl ::core::fmt::Debug for Dr {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.data() != 0 { try!(write!(f, " data=0x{:x}", self.data()))}
       if self.data_12() != 0 { try!(write!(f, " data_12=0x{:x}", self.data_12()))}
-      if self.data_10() != 0 { try!(write!(f, " data_10=0x{:x}", self.data_10()))}
-      if self.data_8() != 0 { try!(write!(f, " data_8=0x{:x}", self.data_8()))}
-      if self.data_6() != 0 { try!(write!(f, " data_6=0x{:x}", self.data_6()))}
       try!(write!(f, "]"));
       Ok(())
    }
 }
 #[derive(Clone, Copy, PartialEq)]
-#[doc="ADC_F124 Channel"]
+#[doc="ADC_F1 Channel"]
 pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
 
 impl<P,T> Channel<P,T> {

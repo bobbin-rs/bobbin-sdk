@@ -12,11 +12,17 @@ pub mod dma {
 
 }
 
+pub mod adc {
+    pub use chip::adc::*;
+    pub use stm32_common::hal::adc_f24::*;
+    pub use super::rcc::RccEnabled;
+}
+
 pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
     pub use super::rcc::RccEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalTim};
+    use chip::sig::{SignalTx, SignalRx, SignalTim, SignalAdc};
 
     pub trait ModeTx<T, S> {
         fn mode_tx(&self, _: &S) -> &Self;
@@ -29,6 +35,10 @@ pub mod gpio {
     pub trait ModeTim<T, S> {
         fn mode_tim(&self, _: &S) -> &Self;
     }    
+
+    pub trait ModeAdc<T, S> {
+        fn mode_adc(&self, _: &S) -> &Self;
+    }        
 
     impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
         fn mode_tx(&self, _: &S) -> &Self {
@@ -50,6 +60,13 @@ pub mod gpio {
             self
         }
     }
+
+    impl<P, O, S, T> ModeAdc<T, S> for Pin<P, O> where S: SignalAdc<T>, P: AltFn<T> {
+        fn mode_adc(&self, _: &S) -> &Self {
+            self.mode_altfn(self.id.alt_fn()).mode_analog();
+            self
+        }
+    }        
 }
 
 pub mod usart {

@@ -283,7 +283,7 @@ impl ClockTree for DynamicClock {
             U2::B10 => 6,
             U2::B11 => 8,            
         };
-        self.pclk2().map(|v| v >> adc_div)
+        self.pclk2().map(|v| v / adc_div)
     }
 
     fn systick(&self) -> Hz {

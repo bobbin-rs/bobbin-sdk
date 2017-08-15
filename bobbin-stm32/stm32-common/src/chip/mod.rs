@@ -17,5 +17,6 @@ pub mod rng;
 pub mod rtc;
 pub mod iwdg;
 pub mod wwdg;
-pub mod adc_f124;
+pub mod adc_f1;
+pub mod adc_f24;
 pub mod adc_f3;

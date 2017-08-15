@@ -364,6 +364,22 @@ impl RegisterTimHandler for Tim10 {
    }
 }
 
+impl IrqTim<super::irq::Tim11Id> for Tim11 {
+   fn irq_tim(&self) -> super::irq::IrqTim11 { super::irq::IRQ_TIM11 }
+}
+
+impl RegisterTimHandler for Tim11 {
+   fn register_tim_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleTim>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandleTim>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_tim() }
+       }
+       super::irq::set_handler(26, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(26)
+   }
+}
+
 impl IrqTim<super::irq::Tim12Id> for Tim12 {
    fn irq_tim(&self) -> super::irq::IrqTim12 { super::irq::IRQ_TIM12 }
 }
