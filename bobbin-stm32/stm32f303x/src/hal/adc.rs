@@ -147,7 +147,6 @@ impl<T> AdcExt for Periph<T> {
     fn read_sequence(&self, out: &mut [u16]) -> &Self {
         assert!(out.len() == self.sequence_length());
         self.start();
-        let mut i = 0;
         for c in out.iter_mut() {
             while !self.end_of_conversion() {}
             *c = self.data();
