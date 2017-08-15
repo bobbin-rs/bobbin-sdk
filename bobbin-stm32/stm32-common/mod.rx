@@ -89,4 +89,9 @@
         (has-channels)
         (prototype "periph/adc_f3.rx")
     )
+    (peripheral-group
+        (name ADC_L0)
+        (has-channels)
+        (prototype "periph/adc_l0.rx")
+    )    
 )

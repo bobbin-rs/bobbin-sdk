@@ -759,6 +759,7 @@
             (bit-offset 9)
             (bit-width 1)
             (description "ADC clock enable bit")
+            (link (name EN) (peripheral-group ADC) (peripheral ADC1))
         )
         (field
             (name MIFIEN)
