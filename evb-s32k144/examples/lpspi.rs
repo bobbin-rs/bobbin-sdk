@@ -4,17 +4,33 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
-use board::hal::lpspi;
+use board::hal::lpspi::*;
 use board::uja1169::Mode;
+use board::hal::pcc::*;
+use board::hal::port::*;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("LPSPI Test");
 
-    let l1 = board::spi::lpspi1();
+    // let _sck = pin::ptb14().into_altfn(3);
+    // let _miso = pin::ptb15().into_altfn(3);
+    // let _mosi = pin::ptb16().into_altfn(3);
+    // let _cs3 = pin::ptb17().into_altfn(3);    
+    // pcc::set_lpspi_enabled(LPSPI1, true, pcc::Source::SPLLDIV2);
+
+    PTB14.port().pcc_set_enabled(true);
+    PTB14.set_mux(3);
+    PTB15.set_mux(3);
+    PTB16.set_mux(3);
+    PTB17.set_mux(3);
+
+    let l1 = LPSPI1;
+    l1.pcc_set_clock_source(ClockSource::SPLLDIV2).pcc_set_enabled(true);
     l1.set_enabled(false);    
     
-    l1.configure(lpspi::Config::default()
+    l1.configure(Config::default()
         .master(true)
         .sckpcs(4)
         .pcssck(9)

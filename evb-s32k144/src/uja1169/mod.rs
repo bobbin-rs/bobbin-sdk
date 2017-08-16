@@ -9,15 +9,15 @@ pub enum Mode {
     Normal =  0b111
 }
 
-pub struct Uja1169 {
-    target: lpspi::Target,
+pub struct Uja1169<T> {
+    target: lpspi::Target<T>,
 }
 
-pub fn device(target: lpspi::Target) -> Uja1169 {
+pub fn device<T>(target: lpspi::Target<T>) -> Uja1169<T> {
     Uja1169 { target: target }
 }
 
-impl Uja1169 {    
+impl<T> Uja1169<T> {    
     pub fn reg(&self) -> registers::Registers<Self> {
         registers::Registers::new(self)
     }
@@ -78,7 +78,7 @@ impl Uja1169 {
     }
 }
 
-impl registers::ReadWrite for Uja1169 {
+impl<T> registers::ReadWrite for Uja1169<T> {
     fn read(&self, index: u8) -> u8 {
         self.read_register(index)
     }
