@@ -3,6 +3,11 @@ name = "evb-s32k144"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
 [dependencies]
 s32 = { path = "../../bobbin-mcu/bobbin-kinetis/s32"}
 r0 = "0.1.0"

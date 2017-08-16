@@ -3,6 +3,11 @@ name = "nucleo-f103rb"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
 [dependencies]
 stm32f10x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f10x"}
 r0 = "0.1.0"

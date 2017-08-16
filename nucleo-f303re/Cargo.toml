@@ -3,6 +3,11 @@ name = "nucleo-f303re"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
 [dependencies]
 stm32f303x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f303x"}
 r0 = "0.1.0"
