@@ -6,6 +6,7 @@ pub mod clock;
 pub mod pcc;
 pub mod wdog;
 pub mod adc;
+pub mod lpspi;
 
 pub mod port {
     pub use chip::port::*;    
@@ -72,39 +73,6 @@ pub mod port {
             self
         }
     }         
-
-    // macro_rules! impl_adc_in {
-    //     ($mode:ident, $fn:ident, $sig:ident) => (
-    //         pub trait $mode<T, S> {
-    //             fn $fn(&self, _: &S) -> &Self;
-    //         }            
-
-    //         impl<P, O, S, T> $mode<T, S> for Pin<P, O> where S: $sig<T>, P: AltFn<T> {
-    //             fn $fn(&self, _: &S) -> &Self {
-    //                 self.set_mux(self.id.alt_fn());
-    //                 self
-    //             }
-    //         }                        
-    //     )
-    // }
-
-    // impl_adc_in!(ModeAdcIn0, mode_adc_in_0, SignalAdcIn0);
-    // impl_adc_in!(ModeAdcIn1, mode_adc_in_1, SignalAdcIn1);
-    // impl_adc_in!(ModeAdcIn2, mode_adc_in_2, SignalAdcIn2);
-    // impl_adc_in!(ModeAdcIn3, mode_adc_in_3, SignalAdcIn3);
-    // impl_adc_in!(ModeAdcIn4, mode_adc_in_4, SignalAdcIn4);
-    // impl_adc_in!(ModeAdcIn5, mode_adc_in_5, SignalAdcIn5);
-    // impl_adc_in!(ModeAdcIn6, mode_adc_in_6, SignalAdcIn6);
-    // impl_adc_in!(ModeAdcIn7, mode_adc_in_7, SignalAdcIn7);
-    // impl_adc_in!(ModeAdcIn8, mode_adc_in_8, SignalAdcIn8);
-    // impl_adc_in!(ModeAdcIn9, mode_adc_in_9, SignalAdcIn9);
-    // impl_adc_in!(ModeAdcIn10, mode_adc_in_10, SignalAdcIn10);
-    // impl_adc_in!(ModeAdcIn11, mode_adc_in_11, SignalAdcIn11);
-    // impl_adc_in!(ModeAdcIn12, mode_adc_in_12, SignalAdcIn12);
-    // impl_adc_in!(ModeAdcIn13, mode_adc_in_13, SignalAdcIn13);
-    // impl_adc_in!(ModeAdcIn14, mode_adc_in_14, SignalAdcIn14);
-    // impl_adc_in!(ModeAdcIn15, mode_adc_in_15, SignalAdcIn15);
-
 }
 
 pub mod gpio {
