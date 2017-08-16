@@ -9,6 +9,7 @@ pub trait AdcExt {
     fn calibrate(&self) -> &Self;
     fn start(&self) -> &Self;
     fn complete(&self) -> bool;
+    fn clr_complete(&self) -> &Self;
     fn data(&self) -> u16;
 }
 
@@ -73,19 +74,18 @@ impl<T> AdcExt for Periph<T> {
     }
 
     #[inline]
+    fn clr_complete(&self) -> &Self {
+        self.with_sr(|r| r.set_eoc(0))
+    }
+
+    #[inline]
     fn data(&self) -> u16 {
         self.dr().data().value()
     }
 }
 
-pub trait AdcChExt {
-    fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn wait(&self) -> &Self;
-    fn read(&self) -> u16;
-}
 
-impl<P, T> AdcChExt for Channel<P, T> {
+impl<P, T> AnalogRead<U12> for Channel<P, T> {
     fn start(&self) -> &Self {
         self.periph()
             .set_sequence_channel(1, self.index() as u8)
@@ -94,25 +94,16 @@ impl<P, T> AdcChExt for Channel<P, T> {
         self
     }
 
-    fn complete(&self) -> bool {
+    fn is_complete(&self) -> bool {
         self.periph().complete()
     }
 
-    fn wait(&self) -> &Self {
-        while !self.periph().complete() {}
+    fn clr_complete(&self) -> &Self {
+        self.periph().clr_complete();
         self
     }
 
-    fn read(&self) -> u16 {
-        self.periph().data()
-    }
-}
-
-impl<P, T> AnalogRead<U12> for Channel<P, T> {
-    fn analog_read(&self) -> U12 {
-        self
-            .start()
-            .wait()
-            .periph().dr().data_12()
-    }
+    fn read(&self) -> U12 {
+        self.periph().data_12()
+    } 
 }

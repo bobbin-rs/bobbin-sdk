@@ -83,6 +83,10 @@ impl<T> AdcExt for Periph<T> {
         self.sr().eoc() != 0
     }
 
+    fn clr_complete(&self) -> &Se;f {
+        self.with_sr(|r| r.set_eoc(0))
+    }
+
     #[inline]
     fn data(&self) -> u16 {
         self.dr().data().value()
@@ -91,35 +95,37 @@ impl<T> AdcExt for Periph<T> {
 
 pub trait AdcChExt {
     fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn wait(&self) -> &Self;
-    fn read(&self) -> u16;
+    // fn complete(&self) -> bool;
+    // fn wait(&self) -> &Self;
+    // fn read(&self) -> u16;
 }
 
 impl<P, T> AdcChExt for Channel<P, T> {
-    fn start(&self) -> &Self {
-        self.periph()
+    fn start_resolution(&self, value: Resolution) -> &Self {
+        self.periph
+            .set_resolution(value);
             .set_sequence_channel(1, self.index() as u8)
             .set_sequence_length(1)
             .start();
         self
     }
 
-    fn complete(&self) -> bool {
-        self.periph().complete()
-    }
+    // fn complete(&self) -> bool {
+    //     self.periph().complete()
+    // }
 
-    fn wait(&self) -> &Self {
-        while !self.periph().complete() {}
-        self
-    }
+    // fn wait(&self) -> &Self {
+    //     while !self.periph().complete() {}
+    //     self
+    // }
 
-    fn read(&self) -> u16 {
-        self.periph().data()
-    }
+    // fn read(&self) -> u16 {
+    //     self.periph().data()
+    // }
 }
 
 impl<P, T> AnalogRead<U12> for Channel<P, T> {
+    fn start(&self) -> U12
     fn analog_read(&self) -> U12 {
         self.periph.set_resolution(Resolution::Bits12);
         self
