@@ -1,9 +1,19 @@
+use bobbin_common::bits::*;
 pub use bobbin_common::analog::AnalogRead;
 pub use chip::adc::*;
 pub use super::pm::PmEnabled;
 
 pub use ::chip::adc::*;
 use ::hal::gclk;
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[repr(u8)]
+pub enum Resolution {
+    Bits12 = 0x0,
+    Bits16 = 0x1,
+    Bits10 = 0x2,
+    Bits8 = 0x3,
+}
 
 pub fn init() {
     // Enable ADC Bus Clock
@@ -99,8 +109,112 @@ pub fn read(channel: u8) -> u16 {
     result.result().value()
 }
 
-impl<P, T> AnalogRead<u16> for Channel<P, T> {
-    fn analog_read(&self) -> u16 {
-        read(self.index() as u8)
+pub trait AdcExt {
+    fn wait_busy(&self) -> &Self;
+    fn enabled(&self) -> bool;
+    fn set_enabled(&self, value: bool) -> &Self;
+    fn resolution(&self) -> Resolution;
+    fn set_resolution(&self, value: Resolution) -> &Self;
+    fn muxpos(&self) -> U5;
+    fn set_muxpos(&self, value: U5) -> &Self;
+    fn muxneg(&self) -> U5;
+    fn set_muxneg(&self, value: U5) -> &Self;
+    fn result_ready(&self) -> bool;
+    fn clr_result_ready(&self) -> &Self;
+    fn wait_result_ready(&self) -> &Self;
+    fn trigger(&self) -> &Self;
+    fn result_16(&self) -> U16;
+    fn result_12(&self) -> U12;
+    fn result_10(&self) -> U10;
+    fn result_8(&self) -> U8;
+}
+
+impl<T> AdcExt for Periph<T> {    
+    fn wait_busy(&self) -> &Self {
+        while self.status().syncbusy() != 0 {}
+        self
+    }
+    fn enabled(&self) -> bool {
+        self.ctrla().enable() != 0
+    }
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.with_ctrla(|r| r.set_enable(value))
+    }
+    fn resolution(&self) -> Resolution {
+        match self.ctrlb().ressel() {
+            U2::B00 => Resolution::Bits12,
+            U2::B01 => Resolution::Bits16,
+            U2::B10 => Resolution::Bits10,
+            U2::B11 => Resolution::Bits8,
+        }
+    }
+
+    fn set_resolution(&self, value: Resolution) -> &Self {
+        self.with_ctrlb(|r| r.set_ressel(value as u8))
+    }
+    fn muxpos(&self) -> U5 {
+        self.inputctrl().muxpos()
+    }
+    fn set_muxpos(&self, value: U5) -> &Self {
+        self.with_inputctrl(|r| r.set_muxpos(value))
+    }
+    fn muxneg(&self) -> U5 {
+        self.inputctrl().muxneg()
+    }
+    fn set_muxneg(&self, value: U5) -> &Self {
+        self.with_inputctrl(|r| r.set_muxneg(value))
+    }
+    fn result_ready(&self) -> bool {
+        self.intflag().resrdy() != 0
+    }
+    fn clr_result_ready(&self) -> &Self {
+        self.set_intflag(|r| r.set_resrdy(1))
+    }
+    fn wait_result_ready(&self) -> &Self {
+        while !self.result_ready() {}
+        self
+    }
+    fn trigger(&self) -> &Self {
+        self.set_swtrig(|r| r.set_start(1))
+    }
+    fn result_16(&self) -> U16 {
+        self.result().result_16()
+    }
+    fn result_12(&self) -> U12 {
+        self.result().result_12()
+    }
+    fn result_10(&self) -> U10 {
+        self.result().result_10()
+    }
+    fn result_8(&self) -> U8 {
+        self.result().result_8()
     }
 }
+
+macro_rules! impl_analog_read {
+    ($t:ty, $res:expr, $meth:ident) => (
+        impl<P, T> AnalogRead<$t> for Channel<P, T> {
+            fn start(&self) -> &Self {
+                // Clear the Data Ready flag
+                self.periph
+                    .set_resolution($res)
+                    .set_muxpos(self.index().into())
+                    .clr_result_ready()
+                    .trigger();
+                self
+            }
+
+            fn is_complete(&self) -> bool {
+                self.periph.result_ready()
+            }
+
+            fn read(&self) -> $t {
+                self.periph.$meth()
+            }
+        }
+    )
+}
+
+impl_analog_read!(U8, Resolution::Bits8, result_8);
+impl_analog_read!(U10, Resolution::Bits10, result_10);
+impl_analog_read!(U12, Resolution::Bits12, result_12);

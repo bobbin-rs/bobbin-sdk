@@ -1446,6 +1446,58 @@ impl Result {
      self
   }
 
+#[doc="Result Conversion Value (16 bits)"]
+  #[inline] pub fn result_16(&self) -> bits::U16 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+  }
+#[doc="Result Conversion Value (16 bits)"]
+  #[inline] pub fn set_result_16<V: Into<bits::U16>>(mut self, value: V) -> Self {
+     let value: bits::U16 = value.into();
+     let value: u16 = value.into();
+     self.0 &= !(0xffff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Result Conversion Value (12 bits)"]
+  #[inline] pub fn result_12(&self) -> bits::U12 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+  }
+#[doc="Result Conversion Value (12 bits)"]
+  #[inline] pub fn set_result_12<V: Into<bits::U12>>(mut self, value: V) -> Self {
+     let value: bits::U12 = value.into();
+     let value: u16 = value.into();
+     self.0 &= !(0xfff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Result Conversion Value (10 bits)"]
+  #[inline] pub fn result_10(&self) -> bits::U10 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
+  }
+#[doc="Result Conversion Value (10 bits)"]
+  #[inline] pub fn set_result_10<V: Into<bits::U10>>(mut self, value: V) -> Self {
+     let value: bits::U10 = value.into();
+     let value: u16 = value.into();
+     self.0 &= !(0x3ff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
+#[doc="Result Conversion Value (8 bits)"]
+  #[inline] pub fn result_8(&self) -> bits::U8 {
+     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+  }
+#[doc="Result Conversion Value (8 bits)"]
+  #[inline] pub fn set_result_8<V: Into<bits::U8>>(mut self, value: V) -> Self {
+     let value: bits::U8 = value.into();
+     let value: u16 = value.into();
+     self.0 &= !(0xff << 0);
+     self.0 |= value << 0;
+     self
+  }
+
 }
 impl ::core::fmt::Display for Result {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
@@ -1456,6 +1508,10 @@ impl ::core::fmt::Debug for Result {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
       if self.result() != 0 { try!(write!(f, " result=0x{:x}", self.result()))}
+      if self.result_16() != 0 { try!(write!(f, " result_16=0x{:x}", self.result_16()))}
+      if self.result_12() != 0 { try!(write!(f, " result_12=0x{:x}", self.result_12()))}
+      if self.result_10() != 0 { try!(write!(f, " result_10=0x{:x}", self.result_10()))}
+      if self.result_8() != 0 { try!(write!(f, " result_8=0x{:x}", self.result_8()))}
       try!(write!(f, "]"));
       Ok(())
    }
