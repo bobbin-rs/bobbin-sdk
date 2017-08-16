@@ -109,22 +109,21 @@ pub trait AdcExt {
     fn set_dma_enabled(&self, value: bool) -> &Self;
     fn voltage_reference(&self) -> VoltageReference;
     fn set_voltage_reference(&self, value: VoltageReference) -> &Self;
-    fn continuous_conversion(&self) -> bool;
+    fn continuous_conversion(&self) -> bool;    
     fn set_continuous_conversion(&self, value: bool) -> &Self;
     fn calibration_active(&self) -> bool;
     fn set_calibration_active(&self, value: bool) -> &Self;
+    fn conversion_complete(&self, index: usize) -> bool;
+    fn wait_conversion_complete(&self, index: usize) -> &Self;
+    fn channel_input(&self, index: usize) -> U5;
+    fn set_channel_input(&self, index: usize, value: U5) -> &Self;
+    fn read_12(&self, index: usize) -> U12;
+    fn read_10(&self, index: usize) -> U10;
+    fn read_8(&self, index: usize) -> U8;
 }
 
 impl<T> AdcExt for Periph<T> {
     fn init(&self) -> &Self {
-        // ADC_HAL_SetClockDivide(base, config->clockDivide);
-        // ADC_HAL_SetSampleTime(base, config->sampleTime);
-        // ADC_HAL_SetResolution(base, config->resolution);
-        // ADC_HAL_SetInputClock(base, config->inputClock);
-        // ADC_HAL_SetTriggerMode(base, config->trigger);
-        // ADC_HAL_SetDMAEnableFlag(base, config->dmaEnable);
-        // ADC_HAL_SetVoltageReference(base, config->voltageRef);
-        // ADC_HAL_SetContinuousConvFlag(base, config->continuousConvEnable);
         self
     }
 
@@ -226,61 +225,59 @@ impl<T> AdcExt for Periph<T> {
     fn set_calibration_active(&self, value: bool) -> &Self {
         self.with_sc3(|r| r.set_cal(value))
     }
-}
 
-pub trait AdcChExt {
-    fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn wait(&self) -> &Self {
-        while !self.complete() {}
-        self
+    fn conversion_complete(&self, index: usize) -> bool {
+        self.sc1(index).coco() != 0
     }
-    fn read(&self) -> u16;
-}
 
-impl<P, T> AdcChExt for Channel<P, T> {
-    fn start(&self) -> &Self {
-        self.periph.with_sc1(0, |r| r.set_adch(self.index as u8));
+    fn wait_conversion_complete(&self, index: usize) -> &Self {
+        while self.sc1(index).coco() == 0 {}
         self
     }
 
-    fn complete(&self) -> bool {
-        self.periph.sc1(0).coco() != 0
+    fn channel_input(&self, index: usize) -> U5 {
+        self.sc1(index).adch()
     }
 
-    fn read(&self) -> u16 {
-        self.periph.r(0).d().into()
+    fn set_channel_input(&self, index: usize, value: U5) -> &Self {
+        self.with_sc1(index, |r| r.set_adch(value))
+    }
+
+    fn read_12(&self, index: usize) -> U12 {
+        self.r(index).d12()
+    }
+
+    fn read_10(&self, index: usize) -> U10 {
+        self.r(index).d10()
+    }
+
+    fn read_8(&self, index: usize) -> U8 {
+        self.r(index).d8()
     }
 }
 
-impl<P, T> AnalogRead<u8> for Channel<P, T> {
-    fn analog_read(&self) -> u8 {
-        self.periph.set_resolution(Resolution::Bits8);
-        self.start().wait();
-        self.periph.r(0).d8().into()
-    }
+macro_rules! impl_analog_read {
+    ($t:ty, $res:expr, $read:ident) => (
+        impl<P, T> AnalogRead<$t> for Channel<P, T> {
+            fn start(&self) -> &Self {
+                self.periph
+                    .set_resolution($res)
+                    .set_channel_input(0, self.index.into());
+                self        
+            }
+
+            fn is_complete(&self) -> bool {
+                self.periph.conversion_complete(0)
+            }
+
+            fn read(&self) -> $t {
+                self.periph.$read(0).into()
+            }
+        }
+
+    )
 }
 
-impl<P, T> AnalogRead<U8> for Channel<P, T> {
-    fn analog_read(&self) -> U8 {
-        self.periph.set_resolution(Resolution::Bits8);
-        self.start().wait();
-        self.periph.r(0).d8()
-    }
-}
-
-impl<P, T> AnalogRead<U10> for Channel<P, T> {
-    fn analog_read(&self) -> U10 {
-        self.periph.set_resolution(Resolution::Bits10);
-        self.start().wait();
-        self.periph.r(0).d10()
-    }
-}
-
-impl<P, T> AnalogRead<U12> for Channel<P, T> {
-    fn analog_read(&self) -> U12 {
-        self.periph.set_resolution(Resolution::Bits12);
-        self.start().wait();
-        self.periph.r(0).d12()
-    }
-}
+impl_analog_read!(U8, Resolution::Bits8, read_8);
+impl_analog_read!(U10, Resolution::Bits10, read_10);
+impl_analog_read!(U12, Resolution::Bits12, read_12);
