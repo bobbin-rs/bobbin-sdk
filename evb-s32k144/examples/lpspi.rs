@@ -21,18 +21,16 @@ pub extern "C" fn main() -> ! {
 
     pub const SPI: Lpspi1 = LPSPI1;
 
-    // let _sck = pin::ptb14().into_altfn(3);
-    // let _miso = pin::ptb15().into_altfn(3);
-    // let _mosi = pin::ptb16().into_altfn(3);
-    // let _cs3 = pin::ptb17().into_altfn(3);    
-    // pcc::set_lpspi_enabled(LPSPI1, true, pcc::Source::SPLLDIV2);
-
     SCK.port().pcc_set_enabled(true);
     SCK.mode_spi_sck(&SPI);
+
     MISO.port().pcc_set_enabled(true);
     MISO.mode_spi_sout(&SPI);
+
     MOSI.port().pcc_set_enabled(true);
     MOSI.mode_spi_sin(&SPI);
+
+    PCS3.port().pcc_set_enabled(true);
     PCS3.mode_spi_pcs3(&SPI);
 
     let l1 = SPI;
@@ -53,18 +51,17 @@ pub extern "C" fn main() -> ! {
         .prescale(2)
         .pcs(3)
         .framesz(15);
-    // unsafe {
-    //     let s = l1.lpspi;
-    //     println!("CR:     {:?}", s.cr());
-    //     println!("SR:     {:?}", s.sr());
-    //     println!("CFGR0:  {:?}", s.cfgr0());
-    //     println!("CFGR1:  {:?}", s.cfgr1());
-    //     println!("CCR:    {:?}", s.ccr());
-    //     println!("FCR:    {:?}", s.fcr());
-    //     println!("FSR:    {:?}", s.fsr());
-    //     println!("TCR:    {:?}", s.tcr());
-    //     println!("RSR:    {:?}", s.rsr());
-    // }    
+
+    // let s = l1;
+    // println!("CR:     {:?}", s.cr());
+    // println!("SR:     {:?}", s.sr());
+    // println!("CFGR0:  {:?}", s.cfgr0());
+    // println!("CFGR1:  {:?}", s.cfgr1());
+    // println!("CCR:    {:?}", s.ccr());
+    // println!("FCR:    {:?}", s.fcr());
+    // println!("FSR:    {:?}", s.fsr());
+    // println!("TCR:    {:?}", s.tcr());
+    // println!("RSR:    {:?}", s.rsr());
 
     let u = board::uja1169::device(t);
     let r = u.reg();
