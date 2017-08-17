@@ -12,6 +12,20 @@ pub trait Cts {}
 pub trait SignalCts<T> {}
 pub trait Rts {}
 pub trait SignalRts<T> {}
+pub trait SpiSck {}
+pub trait SignalSpiSck<T> {}
+pub trait SpiSout {}
+pub trait SignalSpiSout<T> {}
+pub trait SpiSin {}
+pub trait SignalSpiSin<T> {}
+pub trait SpiPcs0 {}
+pub trait SignalSpiPcs0<T> {}
+pub trait SpiPcs1 {}
+pub trait SignalSpiPcs1<T> {}
+pub trait SpiPcs2 {}
+pub trait SignalSpiPcs2<T> {}
+pub trait SpiPcs3 {}
+pub trait SignalSpiPcs3<T> {}
 pub trait Adc {}
 pub trait SignalAdc<T> {}
 
@@ -190,6 +204,90 @@ impl Cts for Lpuart2Cts {}
 pub const LPUART2_RTS: Lpuart2Rts = Lpuart2Rts {};
 pub struct Lpuart2Rts {}
 impl Rts for Lpuart2Rts {}
+
+pub const LPSPI0_SCK: Lpspi0Sck = Lpspi0Sck {};
+pub struct Lpspi0Sck {}
+impl SpiSck for Lpspi0Sck {}
+
+pub const LPSPI0_SOUT: Lpspi0Sout = Lpspi0Sout {};
+pub struct Lpspi0Sout {}
+impl SpiSout for Lpspi0Sout {}
+
+pub const LPSPI0_SIN: Lpspi0Sin = Lpspi0Sin {};
+pub struct Lpspi0Sin {}
+impl SpiSin for Lpspi0Sin {}
+
+pub const LPSPI0_PCS0: Lpspi0Pcs0 = Lpspi0Pcs0 {};
+pub struct Lpspi0Pcs0 {}
+impl SpiPcs0 for Lpspi0Pcs0 {}
+
+pub const LPSPI0_PCS1: Lpspi0Pcs1 = Lpspi0Pcs1 {};
+pub struct Lpspi0Pcs1 {}
+impl SpiPcs1 for Lpspi0Pcs1 {}
+
+pub const LPSPI0_PCS2: Lpspi0Pcs2 = Lpspi0Pcs2 {};
+pub struct Lpspi0Pcs2 {}
+impl SpiPcs2 for Lpspi0Pcs2 {}
+
+pub const LPSPI0_PCS3: Lpspi0Pcs3 = Lpspi0Pcs3 {};
+pub struct Lpspi0Pcs3 {}
+impl SpiPcs3 for Lpspi0Pcs3 {}
+
+pub const LPSPI1_SCK: Lpspi1Sck = Lpspi1Sck {};
+pub struct Lpspi1Sck {}
+impl SpiSck for Lpspi1Sck {}
+
+pub const LPSPI1_SOUT: Lpspi1Sout = Lpspi1Sout {};
+pub struct Lpspi1Sout {}
+impl SpiSout for Lpspi1Sout {}
+
+pub const LPSPI1_SIN: Lpspi1Sin = Lpspi1Sin {};
+pub struct Lpspi1Sin {}
+impl SpiSin for Lpspi1Sin {}
+
+pub const LPSPI1_PCS0: Lpspi1Pcs0 = Lpspi1Pcs0 {};
+pub struct Lpspi1Pcs0 {}
+impl SpiPcs0 for Lpspi1Pcs0 {}
+
+pub const LPSPI1_PCS1: Lpspi1Pcs1 = Lpspi1Pcs1 {};
+pub struct Lpspi1Pcs1 {}
+impl SpiPcs1 for Lpspi1Pcs1 {}
+
+pub const LPSPI1_PCS2: Lpspi1Pcs2 = Lpspi1Pcs2 {};
+pub struct Lpspi1Pcs2 {}
+impl SpiPcs2 for Lpspi1Pcs2 {}
+
+pub const LPSPI1_PCS3: Lpspi1Pcs3 = Lpspi1Pcs3 {};
+pub struct Lpspi1Pcs3 {}
+impl SpiPcs3 for Lpspi1Pcs3 {}
+
+pub const LPSPI2_SCK: Lpspi2Sck = Lpspi2Sck {};
+pub struct Lpspi2Sck {}
+impl SpiSck for Lpspi2Sck {}
+
+pub const LPSPI2_SOUT: Lpspi2Sout = Lpspi2Sout {};
+pub struct Lpspi2Sout {}
+impl SpiSout for Lpspi2Sout {}
+
+pub const LPSPI2_SIN: Lpspi2Sin = Lpspi2Sin {};
+pub struct Lpspi2Sin {}
+impl SpiSin for Lpspi2Sin {}
+
+pub const LPSPI2_PCS0: Lpspi2Pcs0 = Lpspi2Pcs0 {};
+pub struct Lpspi2Pcs0 {}
+impl SpiPcs0 for Lpspi2Pcs0 {}
+
+pub const LPSPI2_PCS1: Lpspi2Pcs1 = Lpspi2Pcs1 {};
+pub struct Lpspi2Pcs1 {}
+impl SpiPcs1 for Lpspi2Pcs1 {}
+
+pub const LPSPI2_PCS2: Lpspi2Pcs2 = Lpspi2Pcs2 {};
+pub struct Lpspi2Pcs2 {}
+impl SpiPcs2 for Lpspi2Pcs2 {}
+
+pub const LPSPI2_PCS3: Lpspi2Pcs3 = Lpspi2Pcs3 {};
+pub struct Lpspi2Pcs3 {}
+impl SpiPcs3 for Lpspi2Pcs3 {}
 
 pub const ADC0_SE0: Adc0Se0 = Adc0Se0 {};
 pub struct Adc0Se0 {}
@@ -406,9 +504,6 @@ pub struct Pta6 {}
 pub const FTM0_FLT1: Ftm0Flt1 = Ftm0Flt1 {};
 pub struct Ftm0Flt1 {}
 
-pub const LPSPI1_PCS1: Lpspi1Pcs1 = Lpspi1Pcs1 {};
-pub struct Lpspi1Pcs1 {}
-
 pub const PTA7: Pta7 = Pta7 {};
 pub struct Pta7 {}
 
@@ -421,9 +516,6 @@ pub struct RtcClkin {}
 pub const PTA8: Pta8 = Pta8 {};
 pub struct Pta8 {}
 
-pub const LPSPI2_SOUT: Lpspi2Sout = Lpspi2Sout {};
-pub struct Lpspi2Sout {}
-
 pub const FXIO_D6: FxioD6 = FxioD6 {};
 pub struct FxioD6 {}
 
@@ -432,9 +524,6 @@ pub struct Ftm3Flt3 {}
 
 pub const PTA9: Pta9 = Pta9 {};
 pub struct Pta9 {}
-
-pub const LPSPI2_PCS0: Lpspi2Pcs0 = Lpspi2Pcs0 {};
-pub struct Lpspi2Pcs0 {}
 
 pub const FXIO_D7: FxioD7 = FxioD7 {};
 pub struct FxioD7 {}
@@ -496,17 +585,8 @@ pub struct Ftm1Flt0 {}
 pub const PTA15: Pta15 = Pta15 {};
 pub struct Pta15 {}
 
-pub const LPSPI0_PCS3: Lpspi0Pcs3 = Lpspi0Pcs3 {};
-pub struct Lpspi0Pcs3 {}
-
-pub const LPSPI2_PCS3: Lpspi2Pcs3 = Lpspi2Pcs3 {};
-pub struct Lpspi2Pcs3 {}
-
 pub const PTA16: Pta16 = Pta16 {};
 pub struct Pta16 {}
-
-pub const LPSPI1_PCS2: Lpspi1Pcs2 = Lpspi1Pcs2 {};
-pub struct Lpspi1Pcs2 {}
 
 pub const PTA17: Pta17 = Pta17 {};
 pub struct Pta17 {}
@@ -517,9 +597,6 @@ pub struct Ftm3Flt0 {}
 pub const PTB0: Ptb0 = Ptb0 {};
 pub struct Ptb0 {}
 
-pub const LPSPI0_PCS0: Lpspi0Pcs0 = Lpspi0Pcs0 {};
-pub struct Lpspi0Pcs0 {}
-
 pub const LPTMR0_ALT3: Lptmr0Alt3 = Lptmr0Alt3 {};
 pub struct Lptmr0Alt3 {}
 
@@ -528,9 +605,6 @@ pub struct Can0Rx {}
 
 pub const PTB1: Ptb1 = Ptb1 {};
 pub struct Ptb1 {}
-
-pub const LPSPI0_SOUT: Lpspi0Sout = Lpspi0Sout {};
-pub struct Lpspi0Sout {}
 
 pub const TCLK0: Tclk0 = Tclk0 {};
 pub struct Tclk0 {}
@@ -541,9 +615,6 @@ pub struct Can0Tx {}
 pub const PTB2: Ptb2 = Ptb2 {};
 pub struct Ptb2 {}
 
-pub const LPSPI0_SCK: Lpspi0Sck = Lpspi0Sck {};
-pub struct Lpspi0Sck {}
-
 pub const FTM1_QD_PHB: Ftm1QdPhb = Ftm1QdPhb {};
 pub struct Ftm1QdPhb {}
 
@@ -552,9 +623,6 @@ pub struct TrgmuxIn3 {}
 
 pub const PTB3: Ptb3 = Ptb3 {};
 pub struct Ptb3 {}
-
-pub const LPSPI0_SIN: Lpspi0Sin = Lpspi0Sin {};
-pub struct Lpspi0Sin {}
 
 pub const TRGMUX_IN2: TrgmuxIn2 = TrgmuxIn2 {};
 pub struct TrgmuxIn2 {}
@@ -567,9 +635,6 @@ pub struct TrgmuxIn1 {}
 
 pub const PTB5: Ptb5 = Ptb5 {};
 pub struct Ptb5 {}
-
-pub const LPSPI0_PCS1: Lpspi0Pcs1 = Lpspi0Pcs1 {};
-pub struct Lpspi0Pcs1 {}
 
 pub const CLKOUT: Clkout = Clkout {};
 pub struct Clkout {}
@@ -619,32 +684,17 @@ pub struct Can2Tx {}
 pub const PTB14: Ptb14 = Ptb14 {};
 pub struct Ptb14 {}
 
-pub const LPSPI1_SCK: Lpspi1Sck = Lpspi1Sck {};
-pub struct Lpspi1Sck {}
-
 pub const PTB15: Ptb15 = Ptb15 {};
 pub struct Ptb15 {}
-
-pub const LPSPI1_SIN: Lpspi1Sin = Lpspi1Sin {};
-pub struct Lpspi1Sin {}
 
 pub const PTB16: Ptb16 = Ptb16 {};
 pub struct Ptb16 {}
 
-pub const LPSPI1_SOUT: Lpspi1Sout = Lpspi1Sout {};
-pub struct Lpspi1Sout {}
-
 pub const PTB17: Ptb17 = Ptb17 {};
 pub struct Ptb17 {}
 
-pub const LPSPI1_PCS3: Lpspi1Pcs3 = Lpspi1Pcs3 {};
-pub struct Lpspi1Pcs3 {}
-
 pub const PTC0: Ptc0 = Ptc0 {};
 pub struct Ptc0 {}
-
-pub const LPSPI2_SIN: Lpspi2Sin = Lpspi2Sin {};
-pub struct Lpspi2Sin {}
 
 pub const PTC1: Ptc1 = Ptc1 {};
 pub struct Ptc1 {}
@@ -724,9 +774,6 @@ pub struct TrgmuxIn9 {}
 pub const PTC15: Ptc15 = Ptc15 {};
 pub struct Ptc15 {}
 
-pub const LPSPI2_SCK: Lpspi2Sck = Lpspi2Sck {};
-pub struct Lpspi2Sck {}
-
 pub const TRGMUX_IN8: TrgmuxIn8 = TrgmuxIn8 {};
 pub struct TrgmuxIn8 {}
 
@@ -759,9 +806,6 @@ pub struct TrgmuxIn5 {}
 
 pub const PTD3: Ptd3 = Ptd3 {};
 pub struct Ptd3 {}
-
-pub const LPSPI1_PCS0: Lpspi1Pcs0 = Lpspi1Pcs0 {};
-pub struct Lpspi1Pcs0 {}
 
 pub const TRGMUX_IN4: TrgmuxIn4 = TrgmuxIn4 {};
 pub struct TrgmuxIn4 {}
@@ -865,9 +909,6 @@ pub struct Tclk2 {}
 pub const PTE6: Pte6 = Pte6 {};
 pub struct Pte6 {}
 
-pub const LPSPI0_PCS2: Lpspi0Pcs2 = Lpspi0Pcs2 {};
-pub struct Lpspi0Pcs2 {}
-
 pub const PTE7: Pte7 = Pte7 {};
 pub struct Pte7 {}
 
@@ -882,9 +923,6 @@ pub struct Pte9 {}
 
 pub const PTE10: Pte10 = Pte10 {};
 pub struct Pte10 {}
-
-pub const LPSPI2_PCS1: Lpspi2Pcs1 = Lpspi2Pcs1 {};
-pub struct Lpspi2Pcs1 {}
 
 pub const TRGMUX_OUT4: TrgmuxOut4 = TrgmuxOut4 {};
 pub struct TrgmuxOut4 {}
@@ -903,9 +941,6 @@ pub struct Pte12 {}
 
 pub const PTE13: Pte13 = Pte13 {};
 pub struct Pte13 {}
-
-pub const LPSPI2_PCS2: Lpspi2Pcs2 = Lpspi2Pcs2 {};
-pub struct Lpspi2Pcs2 {}
 
 pub const PTE14: Pte14 = Pte14 {};
 pub struct Pte14 {}

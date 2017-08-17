@@ -213,7 +213,7 @@ impl<T> Target<T> {
     }        
 
     pub fn send(&self, data: u16) -> &Self {
-        self.configure();
+        // self.configure();
 
         while self.periph.sr().tdf() == 0 {}
         self.periph.set_tdr(|r| r.set_data(data));            
@@ -221,7 +221,7 @@ impl<T> Target<T> {
     }
 
     pub fn recv(&self) -> u16 {
-        self.configure();
+        // self.configure();
         while self.periph.sr().rdf() == 0 {}
         self.periph.rdr().data().into()
     }
