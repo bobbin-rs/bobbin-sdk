@@ -1265,6 +1265,15 @@
             (name LPSPI0)
             (address 0x4002c000)
             (description "The LPSPI Memory Map/Register Definition can be found here.")
+
+            (signal (name LPSPI0_SCK) (type SPI_SCK))
+            (signal (name LPSPI0_SOUT) (type SPI_SOUT))
+            (signal (name LPSPI0_SIN) (type SPI_SIN))
+            (signal (name LPSPI0_PCS0) (type SPI_PCS0))
+            (signal (name LPSPI0_PCS1) (type SPI_PCS1))
+            (signal (name LPSPI0_PCS2) (type SPI_PCS2))
+            (signal (name LPSPI0_PCS3) (type SPI_PCS3))
+
             (interrupt
                 (name LPSPI0)
                 (value 26)
@@ -1274,6 +1283,15 @@
             (name LPSPI1)
             (address 0x4002d000)
             (description "The LPSPI Memory Map/Register Definition can be found here.")
+
+            (signal (name LPSPI1_SCK) (type SPI_SCK))
+            (signal (name LPSPI1_SOUT) (type SPI_SOUT))
+            (signal (name LPSPI1_SIN) (type SPI_SIN))
+            (signal (name LPSPI1_PCS0) (type SPI_PCS0))
+            (signal (name LPSPI1_PCS1) (type SPI_PCS1))
+            (signal (name LPSPI1_PCS2) (type SPI_PCS2))
+            (signal (name LPSPI1_PCS3) (type SPI_PCS3))
+
             (interrupt
                 (name LPSPI1)
                 (value 27)
@@ -1283,6 +1301,15 @@
             (name LPSPI2)
             (address 0x4002e000)
             (description "The LPSPI Memory Map/Register Definition can be found here.")
+
+            (signal (name LPSPI2_SCK) (type SPI_SCK))
+            (signal (name LPSPI2_SOUT) (type SPI_SOUT))
+            (signal (name LPSPI2_SIN) (type SPI_SIN))
+            (signal (name LPSPI2_PCS0) (type SPI_PCS0))
+            (signal (name LPSPI2_PCS1) (type SPI_PCS1))
+            (signal (name LPSPI2_PCS2) (type SPI_PCS2))
+            (signal (name LPSPI2_PCS3) (type SPI_PCS3))
+
             (interrupt
                 (name LPSPI2)
                 (value 28)
