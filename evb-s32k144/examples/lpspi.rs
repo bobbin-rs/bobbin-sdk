@@ -14,19 +14,28 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("LPSPI Test");
 
+    pub const SCK: Ptb14 = PTB14;
+    pub const MOSI: Ptb15 = PTB15;
+    pub const MISO: Ptb16 = PTB16;
+    pub const PCS3: Ptb17 = PTB17;
+
+    pub const SPI: Lpspi1 = LPSPI1;
+
     // let _sck = pin::ptb14().into_altfn(3);
     // let _miso = pin::ptb15().into_altfn(3);
     // let _mosi = pin::ptb16().into_altfn(3);
     // let _cs3 = pin::ptb17().into_altfn(3);    
     // pcc::set_lpspi_enabled(LPSPI1, true, pcc::Source::SPLLDIV2);
 
-    PTB14.port().pcc_set_enabled(true);
-    PTB14.set_mux(3);
-    PTB15.set_mux(3);
-    PTB16.set_mux(3);
-    PTB17.set_mux(3);
+    SCK.port().pcc_set_enabled(true);
+    SCK.mode_spi_sck(&SPI);
+    MISO.port().pcc_set_enabled(true);
+    MISO.mode_spi_sout(&SPI);
+    MOSI.port().pcc_set_enabled(true);
+    MOSI.mode_spi_sin(&SPI);
+    PCS3.mode_spi_pcs3(&SPI);
 
-    let l1 = LPSPI1;
+    let l1 = SPI;
     l1.pcc_set_clock_source(ClockSource::SPLLDIV2).pcc_set_enabled(true);
     l1.set_enabled(false);    
     
