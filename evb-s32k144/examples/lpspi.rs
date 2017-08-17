@@ -9,6 +9,14 @@ use board::uja1169::Mode;
 use board::hal::pcc::*;
 use board::hal::port::*;
 
+// NOTE: Board must be powered by 12V to use UJA1169
+// Without power, all registers will read 0xff
+
+// SPLLDIV2 = 40MHz
+// Prescale = Divide by 4 => 10MHz
+// SCKDIV = 8 => Divide by 10 => 1MHz
+
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
@@ -52,6 +60,9 @@ pub extern "C" fn main() -> ! {
         .pcs(3)
         .framesz(15);
 
+
+    t.configure();
+
     // let s = l1;
     // println!("CR:     {:?}", s.cr());
     // println!("SR:     {:?}", s.sr());
@@ -62,9 +73,16 @@ pub extern "C" fn main() -> ! {
     // println!("FSR:    {:?}", s.fsr());
     // println!("TCR:    {:?}", s.tcr());
     // println!("RSR:    {:?}", s.rsr());
-
+    // println!("");
     let u = board::uja1169::device(t);
     let r = u.reg();
+
+    let ids = r.ids().ids();
+    if ids == 0xff {
+        println!("*** IDS = 0xff, device may not have 12v power. ***");
+        loop {}
+    }
+
     println!("ids:    {:?}", r.ids());
     println!("mc:     {:?}", r.mc());
     println!("ms:     {:?}", r.ms());
