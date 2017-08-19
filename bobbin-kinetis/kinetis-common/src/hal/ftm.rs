@@ -27,6 +27,7 @@ pub trait FtmExt {
     fn set_count(&self, value: u16) -> &Self;
     fn modulo(&self) -> u16;
     fn set_modulo(&self, value: u16) -> &Self;
+    fn set_center(&self, value: bool) -> &Self;
 }
 
 impl<T> FtmExt for Periph<T> {
@@ -54,6 +55,9 @@ impl<T> FtmExt for Periph<T> {
     fn set_modulo(&self, value: u16) -> &Self {
         self.set_mod(|r| r.set_mod(value as u32))
     }    
+    fn set_center(&self, value: bool) -> &Self {
+        self.with_sc(|r| r.set_cpwms(value))
+    }
 }
 
 pub trait FtmChExt {
@@ -91,6 +95,7 @@ impl<T> Start<u16> for Periph<T> {
     fn start(&self, value: u16) -> &Self {
         self
             .set_modulo(value - 1)
+            .set_center(false)
             .set_clock(ClockSource::SystemClk)
     }
 }
@@ -177,5 +182,73 @@ impl<P, T> Compare<u16> for Channel<P, T> {
     fn clr_compare_flag(&self) -> &Self {
         self.periph().with_csc(self.index(), |r| r.set_chf(0));
         self    
+    }
+}
+
+impl<P, T> PwmLow<u16> for Channel<P, T> {
+    // PWM, (Counter < Compare) => Output Low
+    fn pwm_low(&self, compare: u16, period: u16) -> &Self {
+        self.pwm_up_low(compare, period)
+    }
+}
+
+impl<P, T> PwmHigh<u16> for Channel<P, T> {
+    // PWM, (Counter < Compare) => Output High
+    fn pwm_high(&self, compare: u16, period: u16) -> &Self {
+        self.pwm_up_high(compare, period)
+    }
+}
+
+impl<P, T> PwmUpLow<u16> for Channel<P, T> {
+    // Up Counting PWM, (Counter < Compare) => Output Low
+    fn pwm_up_low(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1))
+            .set_value(compare);
+        self.periph.start(period);
+        self
+    }
+}
+
+impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
+    // Up Counting PWM, (Counter < Compare) => Output High
+    fn pwm_up_high(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(1).set_elsa(0))
+            .set_value(compare);
+        self.periph.start(period);
+        self
+    }
+}
+
+impl<P, T> PwmCenterLow<u16> for Channel<P, T> {
+    // Center Aligned PWM, (Counter < Compare) => Output Low
+    fn pwm_center_low(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1))
+            .set_value(compare);
+        self.periph
+            .set_modulo(period - 1)
+            .set_center(true)
+            .set_clock(ClockSource::SystemClk);
+        self
+    }
+}
+
+impl<P, T> PwmCenterHigh<u16> for Channel<P, T> {
+    // Center Aligned PWM, (Counter < Compare) => Output High
+    fn pwm_center_high(&self, compare: u16, period: u16) -> &Self {
+        self
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(1).set_elsa(0))
+            .set_value(compare);
+        self.periph
+            .set_modulo(period - 1)
+            .set_center(true)
+            .set_clock(ClockSource::SystemClk);
+        self
     }
 }
