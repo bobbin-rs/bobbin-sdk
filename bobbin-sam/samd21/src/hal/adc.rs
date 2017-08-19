@@ -197,8 +197,10 @@ macro_rules! impl_analog_read {
             fn start(&self) -> &Self {
                 // Clear the Data Ready flag
                 self.periph
+                    .set_enabled(false)
                     .set_resolution($res)
                     .set_muxpos(self.index().into())
+                    .set_enabled(true)
                     .clr_result_ready()
                     .trigger();
                 self
