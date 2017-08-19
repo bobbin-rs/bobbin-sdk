@@ -5,6 +5,7 @@
 #[macro_use]
 extern crate arduino_zero as board;
 
+use board::common::bits::*;
 use board::pin;
 use board::hal::port::Ain;
 use board::hal::adc::{self, AnalogRead};
@@ -24,7 +25,9 @@ pub extern "C" fn main() -> ! {
     a1.mode_ain(&ch2);
 
     loop {
-        println!("{}, {}", ch0.analog_read(), ch2.analog_read());
+        let v0: U12 = ch0.analog_read();
+        let v1: U8 = ch2.analog_read();
+        println!("{}, {}", v0, v1);
         board::delay(500);
     }
 
