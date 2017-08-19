@@ -27,9 +27,12 @@ pub extern "C" fn main() -> ! {
         .pcc_set_enabled(true)
         .set_prescale(64);
 
-    ch.pwm_high(0, 2048);
 
-    println!("PWM Enabled");
+    // LED is active low, use pwm_low
+
+    ch.pwm_low(0, 2048);
+
+    println!("PWM Enabled, Pauses at Zero");
 
         
     let max = 2000u16;
