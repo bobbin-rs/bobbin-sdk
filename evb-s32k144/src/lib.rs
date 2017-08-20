@@ -21,6 +21,7 @@ pub mod pin;
 pub mod clock;
 pub mod led;
 pub mod btn;
+pub mod pot;
 pub mod tim;
 //pub mod serial;
 //pub mod can;
@@ -39,6 +40,7 @@ pub fn init() {
     clock::init();
     led::init();
     btn::init();
+    pot::init();
     tim::init();
     console::init();
 }

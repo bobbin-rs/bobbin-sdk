@@ -1,6 +1,6 @@
 use chip::port::*;
 
-pub const POT0: Ptc14 = PTC14;
+// pub const POT0: Ptc14 = PTC14;
 
 pub const A0: Ptd4 = PTD4;
 pub const A1: Ptb12 = PTB12;

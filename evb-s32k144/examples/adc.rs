@@ -17,7 +17,7 @@ pub extern "C" fn main() -> ! {
 
     // let a0 = A0; // ADC1_SE6
     // let a1 = A1; // ADC1_SE7
-    let p0 = POT0; // PTC14 = ADC0_SE12
+    let p0 = PTC14; // PTC14 = ADC0_SE12
 
     let adc0 = ADC0;
     let ch0 = ADC0_CH12;
