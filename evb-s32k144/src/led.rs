@@ -107,6 +107,37 @@ where ftm::Channel<TIMCH, TIM>: PwmLow<u16>
     }
 }
 
+pub const LED_RGB: LedRgb = LedRgb { led_b: LED_PWM0, led_r: LED_PWM1, led_g: LED_PWM2 };
+
+pub struct LedRgb {
+    pub led_b: LedPwm0,
+    pub led_r: LedPwm1,
+    pub led_g: LedPwm2,
+}
+
+impl LedRgb {
+    pub fn init(&self) -> &Self {
+        self.led_b.init();
+        self.led_r.init();
+        self.led_g.init();
+        self
+    }
+
+    pub fn start(&self) -> &Self {
+        self.led_b.start();
+        self.led_r.start();
+        self.led_g.start();
+        self
+    }
+
+    pub fn set(&self, color: (u16, u16, u16)) -> &Self {
+        self.led_r.set(color.0);
+        self.led_g.set(color.1);
+        self.led_b.set(color.2);
+        self
+    }
+}
+
 pub fn init() {
     LED0.init();
     LED1.init();

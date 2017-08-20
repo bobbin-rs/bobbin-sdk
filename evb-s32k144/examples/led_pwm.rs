@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
-use board::led::LedPwmSet;
+// use board::led::LedPwmSet;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -13,23 +13,16 @@ pub extern "C" fn main() -> ! {
 
     println!("PWM Test");
 
-    let led0 = board::led::LED_PWM0;
-    let led1 = board::led::LED_PWM1;
-    let led2 = board::led::LED_PWM2;
-    led0.init();
-    led1.init();
-    led2.init();
-    led0.start();
-    led1.start();
-    led2.start();
+    let led = board::led::LED_RGB;
+    led.init();
+    led.start();
+
     let max = 1000u16;
     let step = 10u16;
     let mut i: u16 = step; 
     let mut dir: bool = true;
     loop {       
-        led0.set(i);
-        led1.set(1000-i);
-        // led2.set(i + 500 % 1000);
+        led.set((i, 1000-i, 0));
         
         if i == max { dir = false } else if i == 0 { dir = true; board::delay(1000); }
         if dir {
