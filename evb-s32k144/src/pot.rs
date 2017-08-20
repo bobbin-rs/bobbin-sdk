@@ -42,6 +42,19 @@ impl AnalogRead<U8> for Pot0 {
     }
 }
 
+impl AnalogRead<U10> for Pot0 {
+    fn start(&self) -> &Self {
+        <Adc0Ch12 as AnalogRead<U10>>::start(&self.adc_ch());
+        self
+    }
+    fn is_complete(&self) -> bool {
+        <Adc0Ch12 as AnalogRead<U10>>::is_complete(&self.adc_ch())
+    }
+    fn read(&self) -> U10 {
+        self.adc_ch().read()
+    }
+}
+
 pub fn init() {
     POT0.init();    
 }
