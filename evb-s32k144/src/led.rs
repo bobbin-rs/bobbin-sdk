@@ -2,7 +2,7 @@
 use common::timer::*;
 use hal::port::*;
 use hal::gpio::{self, GpioExt, DigitalOutput};
-use hal::ftm;
+use hal::ftm::{self, FtmExt, FtmChExt};
 use chip::sig;
 use chip::pcc::{Cgc, Pcs};
 use hal::pcc::{self, PccClockSource};
@@ -107,33 +107,68 @@ where ftm::Channel<TIMCH, TIM>: PwmLow<u16>
     }
 }
 
-pub const LED_RGB: LedRgb = LedRgb { led_b: LED_PWM0, led_r: LED_PWM1, led_g: LED_PWM2 };
+pub const LED_RGB: LedRgb = LedRgb {
+    port: PORTD,
+    pin_r: PTD15,
+    pin_g: PTD16,
+    pin_b: PTD0,
+    tim: ftm::FTM0,
+    tim_r: ftm::FTM0_CH0,
+    tim_g: ftm::FTM0_CH1,
+    tim_b: ftm::FTM0_CH2,
+};
 
 pub struct LedRgb {
-    pub led_b: LedPwm0,
-    pub led_r: LedPwm1,
-    pub led_g: LedPwm2,
+    pub port: Portd,
+    pub pin_r: Ptd15,
+    pub pin_g: Ptd16,
+    pub pin_b: Ptd0,
+    pub tim: ftm::Ftm0,
+    pub tim_r: ftm::Ftm0Ch0,
+    pub tim_g: ftm::Ftm0Ch1,
+    pub tim_b: ftm::Ftm0Ch2,
 }
 
 impl LedRgb {
     pub fn init(&self) -> &Self {
-        self.led_b.init();
-        self.led_r.init();
-        self.led_g.init();
+        self.port.pcc_set_enabled(true);
+        self.pin_r.mode_ftm(&self.tim_r);
+        self.pin_g.mode_ftm(&self.tim_g);
+        self.pin_b.mode_ftm(&self.tim_b);
+
+        self.tim
+            .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
+            .pcc_set_enabled(true)
+            .set_prescale(64)
+            .set_period(1024);
+
+        self.tim_r
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1))
+            .set_value(0);
+
+        self.tim_g
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1))
+            .set_value(0);
+
+        self.tim_b
+            .set_pwmen(true)
+            .with_csc(|r| r.set_msb(1).set_msa(0).set_elsb(0).set_elsa(1))
+            .set_value(0);
+
         self
     }
 
     pub fn start(&self) -> &Self {
-        self.led_b.start();
-        self.led_r.start();
-        self.led_g.start();
+        self.tim.set_clock(ftm::ClockSource::SystemClk);
         self
     }
 
     pub fn set(&self, color: (u16, u16, u16)) -> &Self {
-        self.led_r.set(color.0);
-        self.led_g.set(color.1);
-        self.led_b.set(color.2);
+        self.tim_r.set_compare(color.0);
+        self.tim_g.set_compare(color.1);
+        self.tim_b.set_compare(color.2);
         self
     }
 }
@@ -141,16 +176,5 @@ impl LedRgb {
 pub fn init() {
     LED0.init();
     LED1.init();
-    LED2.init();
-    // LED0.port().pcc_enable();
-    // LED0.gpio_pin().set_dir_output().set_output(true);
-    // LED0.set_mux_gpio();
-
-    // LED1.port().pcc_enable();
-    // LED1.gpio_pin().set_dir_output().set_output(true);
-    // LED1.set_mux_gpio();
-
-    // LED2.port().pcc_enable();
-    // LED2.gpio_pin().set_dir_output().set_output(true);
-    // LED2.set_mux_gpio();        
+    LED2.init();       
 }
