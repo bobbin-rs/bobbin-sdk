@@ -529,6 +529,7 @@
             (interrupt
                 (name PORTA)
                 (value 59)
+                (type PORT)
             )
             (pin (name PTA0) (index 0)
                 (altfn 0 ADC0_SE0)
@@ -671,6 +672,7 @@
             (interrupt
                 (name PORTB)
                 (value 60)
+                (type PORT)
             )
             (pin (name PTB0) (index 0)
                 (altfn 0 ADC0_SE4)
@@ -797,6 +799,7 @@
             (interrupt
                 (name PORTC)
                 (value 61)
+                (type PORT)
             )
             (pin (name PTC0) (index 0)
                 (altfn 0 ADC0_SE8)
@@ -930,6 +933,7 @@
             (interrupt
                 (name PORTD)
                 (value 62)
+                (type PORT)
             )
             (pin (name PTD0) (index 0)
                 (altfn 1 PTD0)
