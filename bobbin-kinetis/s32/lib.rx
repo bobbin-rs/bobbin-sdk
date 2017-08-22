@@ -53,6 +53,7 @@
                 (interrupt
                     (name DMA0)
                     (value 0)
+                    (type DMA)
                 )
             )
             (channel
@@ -61,6 +62,7 @@
                 (interrupt
                     (name DMA1)
                     (value 1)
+                    (type DMA)
                 )
             )
             (channel
@@ -69,6 +71,7 @@
                 (interrupt
                     (name DMA2)
                     (value 2)
+                    (type DMA)
                 )
             )
             (channel
@@ -77,6 +80,7 @@
                 (interrupt
                     (name DMA3)
                     (value 3)
+                    (type DMA)
                 )
             )
             (channel
@@ -85,6 +89,7 @@
                 (interrupt
                     (name DMA4)
                     (value 4)
+                    (type DMA)
                 )
             )
             (channel
@@ -93,6 +98,7 @@
                 (interrupt
                     (name DMA5)
                     (value 5)
+                    (type DMA)
                 )
             )
             (channel
@@ -101,6 +107,7 @@
                 (interrupt
                     (name DMA6)
                     (value 6)
+                    (type DMA)
                 )
             )
             (channel
@@ -109,6 +116,7 @@
                 (interrupt
                     (name DMA7)
                     (value 7)
+                    (type DMA)
                 )
             )
             (channel
@@ -117,6 +125,7 @@
                 (interrupt
                     (name DMA8)
                     (value 8)
+                    (type DMA)
                 )
             )
             (channel
@@ -125,6 +134,7 @@
                 (interrupt
                     (name DMA9)
                     (value 9)
+                    (type DMA)
                 )
             )
             (channel
@@ -133,6 +143,7 @@
                 (interrupt
                     (name DMA10)
                     (value 10)
+                    (type DMA)
                 )
             )
             (channel
@@ -141,6 +152,7 @@
                 (interrupt
                     (name DMA11)
                     (value 11)
+                    (type DMA)
                 )
             )
             (channel
@@ -149,6 +161,7 @@
                 (interrupt
                     (name DMA12)
                     (value 12)
+                    (type DMA)
                 )
             )
             (channel
@@ -157,6 +170,7 @@
                 (interrupt
                     (name DMA13)
                     (value 13)
+                    (type DMA)
                 )
             )
             (channel
@@ -165,6 +179,7 @@
                 (interrupt
                     (name DMA14)
                     (value 14)
+                    (type DMA)
                 )
             )
             (channel
@@ -173,11 +188,13 @@
                 (interrupt
                     (name DMA15)
                     (value 15)
+                    (type DMA)
                 )
             )
             (interrupt
                 (name DMA_Error)
                 (value 16)
+                (type DMA_ERROR)
             )        
         )
     )
@@ -464,22 +481,27 @@
             (interrupt
                 (name CAN0_ORed)
                 (value 78)
+                (type CAN)
             )
             (interrupt
                 (name CAN0_Error)
                 (value 79)
+                (type CAN_ERROR)
             )
             (interrupt
                 (name CAN0_Wake_Up)
                 (value 80)
+                (type CAN_WAKE_UP)
             )
             (interrupt
                 (name CAN0_ORed_0_15_MB)
                 (value 81)
+                (type CAN_0_15)
             )
             (interrupt
                 (name CAN0_ORed_16_31_MB)
                 (value 82)
+                (type CAN_16_31)
             )        
         )
         (peripheral    
@@ -489,14 +511,17 @@
             (interrupt
                 (name CAN1_ORed)
                 (value 85)
+                (type CAN)
             )
             (interrupt
                 (name CAN1_Error)
                 (value 86)
+                (type CAN_ERROR)
             )
             (interrupt
                 (name CAN1_ORed_0_15_MB)
                 (value 88)
+                (type CAN_0_15)
             )
         )
         (peripheral
@@ -506,14 +531,17 @@
             (interrupt
                 (name CAN2_ORed)
                 (value 92)
+                (type CAN)
             )
             (interrupt
                 (name CAN2_Error)
                 (value 93)
+                (type CAN_ERROR)
             )
             (interrupt
                 (name CAN2_ORed_0_15_MB)
                 (value 95)
+                (type CAN_0_15)
             )                    
         )
     )
@@ -1231,6 +1259,7 @@
             (interrupt
                 (name LPUART0_RxTx)
                 (value 31)
+                (type LPUART_RXTX)
             )
         )
 
@@ -1245,6 +1274,7 @@
             (interrupt
                 (name LPUART1_RxTx)
                 (value 33)
+                (type LPUART_RXTX)
             )        
         )
         (peripheral
@@ -1258,6 +1288,7 @@
             (interrupt
                 (name LPUART2_RxTx)
                 (value 35)
+                (type LPUART_RXTX)
             )        
         )   
     )
@@ -1281,6 +1312,7 @@
             (interrupt
                 (name LPSPI0)
                 (value 26)
+                (type LPSPI)
             )
         )
         (peripheral
@@ -1299,6 +1331,7 @@
             (interrupt
                 (name LPSPI1)
                 (value 27)
+                (type LPSPI)
             )
         )
         (peripheral
@@ -1317,6 +1350,7 @@
             (interrupt
                 (name LPSPI2)
                 (value 28)
+                (type LPSPI)
             )
         )
     )
@@ -1354,6 +1388,7 @@
             (interrupt
                 (name ADC0)
                 (value 39)
+                (type ADC)
             )        
         )
         (peripheral
@@ -1386,6 +1421,7 @@
             (interrupt
                 (name ADC1)
                 (value 40)
+                (type ADC)
             )
         )
     )

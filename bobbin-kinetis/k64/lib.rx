@@ -37,6 +37,7 @@
             (interrupt
                 (name WDOG)
                 (value 22)
+                (type WDOG)
             )
         )
     )
@@ -63,6 +64,7 @@
                 (interrupt
                     (name DMA0)
                     (value 0)
+                    (type DMA)
                 )
             )
             (channel
@@ -71,6 +73,7 @@
                 (interrupt
                     (name DMA1)
                     (value 1)
+                    (type DMA)
                 )
             )
             (channel
@@ -79,6 +82,7 @@
                 (interrupt
                     (name DMA2)
                     (value 2)
+                    (type DMA)
                 )
             )
             (channel
@@ -87,6 +91,7 @@
                 (interrupt
                     (name DMA3)
                     (value 3)
+                    (type DMA)
                 )
             )
             (channel
@@ -95,6 +100,7 @@
                 (interrupt
                     (name DMA4)
                     (value 4)
+                    (type DMA)
                 )
             )
             (channel
@@ -103,6 +109,7 @@
                 (interrupt
                     (name DMA5)
                     (value 5)
+                    (type DMA)
                 )
             )
             (channel
@@ -111,6 +118,7 @@
                 (interrupt
                     (name DMA6)
                     (value 6)
+                    (type DMA)
                 )
             )
             (channel
@@ -119,6 +127,7 @@
                 (interrupt
                     (name DMA7)
                     (value 7)
+                    (type DMA)
                 )
             )
             (channel
@@ -127,6 +136,7 @@
                 (interrupt
                     (name DMA8)
                     (value 8)
+                    (type DMA)
                 )
             )
             (channel
@@ -135,6 +145,7 @@
                 (interrupt
                     (name DMA9)
                     (value 9)
+                    (type DMA)
                 )
             )
             (channel
@@ -143,6 +154,7 @@
                 (interrupt
                     (name DMA10)
                     (value 10)
+                    (type DMA)
                 )
             )
             (channel
@@ -151,6 +163,7 @@
                 (interrupt
                     (name DMA11)
                     (value 11)
+                    (type DMA)
                 )
             )
             (channel
@@ -159,6 +172,7 @@
                 (interrupt
                     (name DMA12)
                     (value 12)
+                    (type DMA)
                 )
             )
             (channel
@@ -167,6 +181,7 @@
                 (interrupt
                     (name DMA13)
                     (value 13)
+                    (type DMA)
                 )
             )
             (channel
@@ -175,6 +190,7 @@
                 (interrupt
                     (name DMA14)
                     (value 14)
+                    (type DMA)
                 )
             )
             (channel
@@ -183,11 +199,13 @@
                 (interrupt
                     (name DMA15)
                     (value 15)
+                    (type DMA)
                 )
             )
             (interrupt
                 (name DMA_Error)
                 (value 16)
+                (type DMA_ERROR)
             )        
         )
     )
@@ -242,6 +260,7 @@
             (interrupt
                 (name FTM0)
                 (value 42)
+                (type FTM)
             )
         )
         (peripheral
@@ -291,6 +310,7 @@
             (interrupt
                 (name FTM1)
                 (value 43)
+                (type FTM)
             )        
         )
         (peripheral
@@ -340,6 +360,7 @@
             (interrupt
                 (name FTM2)
                 (value 44)
+                (type FTM)
             )        
         )
     )
@@ -357,6 +378,7 @@
                 (interrupt
                     (name PIT0)
                     (value 48)
+                    (type PIT)
                 )
             )
             (channel
@@ -365,6 +387,7 @@
                 (interrupt
                     (name PIT1)
                     (value 49)
+                    (type PIT)
                 )
             )
             (channel
@@ -373,6 +396,7 @@
                 (interrupt
                     (name PIT2)
                     (value 50)
+                    (type PIT)
                 )
             )
             (channel
@@ -381,6 +405,7 @@
                 (interrupt
                     (name PIT3)
                     (value 51)
+                    (type PIT)
                 )
             )
         )
@@ -396,6 +421,7 @@
             (interrupt
                 (name LPTMR0)
                 (value 58)
+                (type LPTMR)
             )
         )
     )
@@ -410,6 +436,7 @@
             (interrupt
                 (name SPI0)
                 (value 26)
+                (type SPI)
             )
         )
         (peripheral
@@ -419,6 +446,7 @@
             (interrupt
                 (name SPI1)
                 (value 27)
+                (type SPI)
             )
         )
         (peripheral
@@ -428,6 +456,7 @@
             (interrupt
                 (name SPI2)
                 (value 65)
+                (type SPI)
             )
         )
 
@@ -469,14 +498,17 @@
             (interrupt
                 (name UART0_LON)
                 (value 30)
+                (type UART_LON)
             )
             (interrupt
                 (name UART0_RX_TX)
                 (value 31)
+                (type UART_RX_TX)
             )
             (interrupt
                 (name UART0_ERR)
                 (value 32)
+                (type UART_ERR)
             )        
         )
         (peripheral
@@ -488,10 +520,12 @@
             (interrupt
                 (name UART1_RX_TX)
                 (value 33)
+                (type UART_RX_TX)
             )
             (interrupt
                 (name UART1_ERR)
                 (value 34)
+                (type UART_ERR)
             )
         )
         (peripheral
@@ -502,11 +536,13 @@
             (signal (name UART2_RX) (type RX))
             (interrupt
                 (name UART2_RX_TX)
+                (type UART_RX_TX)
                 (value 35)
             )
             (interrupt
                 (name UART2_ERR)
                 (value 36)
+                (type UART_ERR)
             )
         )
         (peripheral
@@ -518,10 +554,12 @@
             (interrupt
                 (name UART3_RX_TX)
                 (value 37)
+                (type UART_RX_TX)
             )
             (interrupt
                 (name UART3_ERR)
                 (value 38)
+                (type UART_ERR)
             )
         )
         (peripheral
@@ -533,10 +571,12 @@
             (interrupt
                 (name UART4_RX_TX)
                 (value 66)
+                (type UART_RX_TX)
             )
             (interrupt
                 (name UART4_ERR)
                 (value 67)
+                (type UART_ERR)
             )
         )
         (peripheral
@@ -548,10 +588,12 @@
             (interrupt
                 (name UART5_RX_TX)
                 (value 68)
+                (type UART_RX_TX)
             )
             (interrupt
                 (name UART5_ERR)
                 (value 69)
+                (type UART_ERR)
             )
         )
     )
@@ -601,6 +643,7 @@
             (interrupt
                 (name PORTA)
                 (value 59)
+                (type PORT)
             )        
             (pin (name PTA0) (index 0)
                 (altfn 1 PTA0)
@@ -796,6 +839,7 @@
             (interrupt
                 (name PORTB)
                 (value 60)
+                (type PORT)
             )
             (pin (name PTB0) (index 0)
                 (altfn 0 ADC0_SE8)
@@ -962,6 +1006,7 @@
             (interrupt
                 (name PORTC)
                 (value 61)
+                (type PORT)
             )        
             (pin (name PTC0) (index 0)
                 (altfn 0 ADC0_SE14)
@@ -1129,6 +1174,7 @@
             (interrupt
                 (name PORTD)
                 (value 62)
+                (type PORT)
             )        
             (pin (name PTD0) (index 0)
                 (altfn 1 PTD0)
@@ -1259,6 +1305,7 @@
             (interrupt
                 (name PORTE)
                 (value 63)
+                (type PORT)
             )        
             (pin (name PTE0) (index 0)
                 (altfn 0 ADC1_SE4a)
@@ -1456,6 +1503,7 @@
             (interrupt
                 (name ADC0)
                 (value 39)
+                (type ADC)
             )        
         )
         (peripheral
@@ -1522,6 +1570,7 @@
             (interrupt
                 (name ADC1)
                 (value 73)
+                (type ADC)
             )
         )
     )    
