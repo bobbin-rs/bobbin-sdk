@@ -2203,3 +2203,79 @@ impl AltFn<super::sig::TrgmuxOut7> for Pte16Id {
    #[inline] fn alt_fn(&self) -> usize { 7 }
 }
 
+pub trait IrqPort<T> {
+   fn irq_port(&self) -> super::irq::Irq<T>;
+}
+
+pub trait RegisterPortHandler {
+   fn register_port_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandlePort>(&self, f: &F) -> super::irq::IrqGuard<'a>;
+}
+
+pub trait HandlePort {
+   fn handle_port(&self);
+}
+
+impl IrqPort<super::irq::PortaId> for Porta {
+   fn irq_port(&self) -> super::irq::IrqPorta { super::irq::IRQ_PORTA }
+}
+
+impl RegisterPortHandler for Porta {
+   fn register_port_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandlePort>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandlePort>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_port() }
+       }
+       super::irq::set_handler(59, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(59)
+   }
+}
+
+impl IrqPort<super::irq::PortbId> for Portb {
+   fn irq_port(&self) -> super::irq::IrqPortb { super::irq::IRQ_PORTB }
+}
+
+impl RegisterPortHandler for Portb {
+   fn register_port_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandlePort>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandlePort>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_port() }
+       }
+       super::irq::set_handler(60, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(60)
+   }
+}
+
+impl IrqPort<super::irq::PortcId> for Portc {
+   fn irq_port(&self) -> super::irq::IrqPortc { super::irq::IRQ_PORTC }
+}
+
+impl RegisterPortHandler for Portc {
+   fn register_port_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandlePort>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandlePort>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_port() }
+       }
+       super::irq::set_handler(61, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(61)
+   }
+}
+
+impl IrqPort<super::irq::PortdId> for Portd {
+   fn irq_port(&self) -> super::irq::IrqPortd { super::irq::IRQ_PORTD }
+}
+
+impl RegisterPortHandler for Portd {
+   fn register_port_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandlePort>(&self, f: &F) -> super::irq::IrqGuard<'a> {
+       static mut HANDLER: Option<usize> = None;
+       unsafe { HANDLER = Some(f as *const F as usize) }
+       extern "C" fn wrapper<W: HandlePort>() {
+          unsafe { (*(HANDLER.unwrap() as *const W)).handle_port() }
+       }
+       super::irq::set_handler(62, Some(wrapper::<F>));
+       super::irq::IrqGuard::new(62)
+   }
+}
+
