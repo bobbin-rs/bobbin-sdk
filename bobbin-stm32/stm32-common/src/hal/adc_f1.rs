@@ -10,6 +10,7 @@ pub trait AdcExt {
     fn start(&self) -> &Self;
     fn complete(&self) -> bool;
     fn data(&self) -> u16;
+    fn start_single(&self, channel: usize) -> &Self;
 }
 
 impl<T> AdcExt for Periph<T> {
@@ -76,43 +77,56 @@ impl<T> AdcExt for Periph<T> {
     fn data(&self) -> u16 {
         self.dr().data().value()
     }
-}
 
-pub trait AdcChExt {
-    fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn wait(&self) -> &Self;
-    fn read(&self) -> u16;
-}
-
-impl<P, T> AdcChExt for Channel<P, T> {
-    fn start(&self) -> &Self {
-        self.periph()
-            .set_sequence_channel(1, self.index() as u8)
+    fn start_single(&self, channel: usize) -> &Self {
+        self
+            .set_sequence_channel(1, channel as u8)
             .set_sequence_length(1)
-            .start();
+            .start()
+    }
+}
+
+// pub trait AdcChExt {
+//     fn start(&self) -> &Self;
+//     fn complete(&self) -> bool;
+//     fn wait(&self) -> &Self;
+//     fn read(&self) -> u16;
+// }
+
+// impl<P, T> AdcChExt for Channel<P, T> {
+//     fn start(&self) -> &Self {
+//         self.periph()
+//             .set_sequence_channel(1, self.index() as u8)
+//             .set_sequence_length(1)
+//             .start();
+//         self
+//     }
+
+//     fn complete(&self) -> bool {
+//         self.periph().complete()
+//     }
+
+//     fn wait(&self) -> &Self {
+//         while !self.periph().complete() {}
+//         self
+//     }
+
+//     fn read(&self) -> u16 {
+//         self.periph().data()
+//     }
+// }
+
+impl<P, T> AnalogRead<U12> for Channel<P, T> {
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index());
         self
     }
 
-    fn complete(&self) -> bool {
+    fn is_complete(&self) -> bool {
         self.periph().complete()
     }
 
-    fn wait(&self) -> &Self {
-        while !self.periph().complete() {}
-        self
-    }
-
-    fn read(&self) -> u16 {
-        self.periph().data()
-    }
-}
-
-impl<P, T> AnalogRead<U12> for Channel<P, T> {
-    fn analog_read(&self) -> U12 {
-        self
-            .start()
-            .wait()
-            .periph().dr().data_12()
+    fn read(&self) -> U12 {
+        self.periph().dr().data_12()
     }
 }

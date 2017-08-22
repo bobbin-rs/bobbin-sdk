@@ -16,8 +16,9 @@ pub trait AdcExt {
     fn set_sequence_length(&self, length: u8) -> &Self;
     fn calibrate(&self) -> &Self;
     fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
+    fn end_of_conversion(&self) -> bool;
     fn data(&self) -> u16;
+    fn start_single(&self, channel: usize, value: Resolution) -> &Self;
 }
 
 impl<T> AdcExt for Periph<T> {
@@ -79,7 +80,7 @@ impl<T> AdcExt for Periph<T> {
     }
 
     #[inline]
-    fn complete(&self) -> bool {
+    fn end_of_conversion(&self) -> bool {
         self.sr().eoc() != 0
     }
 
@@ -87,84 +88,117 @@ impl<T> AdcExt for Periph<T> {
     fn data(&self) -> u16 {
         self.dr().data().value()
     }
-}
 
-pub trait AdcChExt {
-    fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn wait(&self) -> &Self;
-    fn read(&self) -> u16;
-}
-
-impl<P, T> AdcChExt for Channel<P, T> {
-    fn start(&self) -> &Self {
-        self.periph()
-            .set_sequence_channel(1, self.index() as u8)
+    fn start_single(&self, channel: usize, value: Resolution) -> &Self {
+        self
+            .set_resolution(value)
+            .set_sequence_channel(1, channel as u8)
             .set_sequence_length(1)
-            .start();
-        self
-    }
-
-    fn complete(&self) -> bool {
-        self.periph().complete()
-    }
-
-    fn wait(&self) -> &Self {
-        while !self.periph().complete() {}
-        self
-    }
-
-    fn read(&self) -> u16 {
-        self.periph().data()
-    }
+            .start()
+    }    
 }
+
+// pub trait AdcChExt {
+//     fn start(&self) -> &Self;
+//     fn complete(&self) -> bool;
+//     fn wait(&self) -> &Self;
+//     fn read(&self) -> u16;
+// }
+
+// impl<P, T> AdcChExt for Channel<P, T> {
+//     fn start(&self) -> &Self {
+//         self.periph()
+//             .set_sequence_channel(1, self.index() as u8)
+//             .set_sequence_length(1)
+//             .start();
+//         self
+//     }
+
+//     fn complete(&self) -> bool {
+//         self.periph().complete()
+//     }
+
+//     fn wait(&self) -> &Self {
+//         while !self.periph().complete() {}
+//         self
+//     }
+
+//     fn read(&self) -> u16 {
+//         self.periph().data()
+//     }
+// }
 
 impl<P, T> AnalogRead<U12> for Channel<P, T> {
-    fn analog_read(&self) -> U12 {
-        self.periph.set_resolution(Resolution::Bits12);
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index, Resolution::Bits12);
         self
-            .start()
-            .wait()
-            .periph().dr().data_12()
     }
+
+    fn is_complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }    
+
+    fn read(&self) -> U12 {
+        self.periph().dr().data_12()
+    }    
 }
 
 impl<P, T> AnalogRead<U10> for Channel<P, T> {
-    fn analog_read(&self) -> U10 {
-        self.periph.set_resolution(Resolution::Bits10);
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index, Resolution::Bits10);
         self
-            .start()
-            .wait()
-            .periph().dr().data_10()
     }
+
+    fn is_complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }    
+
+    fn read(&self) -> U10 {
+        self.periph().dr().data_10()
+    }    
 }
 
 impl<P, T> AnalogRead<U8> for Channel<P, T> {
-    fn analog_read(&self) -> U8 {
-        self.periph.set_resolution(Resolution::Bits8);
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index, Resolution::Bits8);
         self
-            .start()
-            .wait()
-            .periph().dr().data_8()
     }
+
+    fn is_complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }    
+
+    fn read(&self) -> U8 {
+        self.periph().dr().data_8()
+    }    
 }
 
 impl<P, T> AnalogRead<U6> for Channel<P, T> {
-    fn analog_read(&self) -> U6 {
-        self.periph.set_resolution(Resolution::Bits6);
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index, Resolution::Bits6);
         self
-            .start()
-            .wait()
-            .periph().dr().data_6()
     }
+
+    fn is_complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }    
+
+    fn read(&self) -> U6 {
+        self.periph().dr().data_6()
+    }    
 }
 
 impl<P, T> AnalogRead<u8> for Channel<P, T> {
-    fn analog_read(&self) -> u8 {
-        self.periph.set_resolution(Resolution::Bits8);
+    fn start(&self) -> &Self {
+        self.periph().start_single(self.index, Resolution::Bits8);
         self
-            .start()
-            .wait()
-            .periph().dr().data_8().value()
     }
+
+    fn is_complete(&self) -> bool {
+        self.periph().end_of_conversion()
+    }    
+
+    fn read(&self) -> u8 {
+        self.periph().dr().data_8().value()
+    }    
 }
