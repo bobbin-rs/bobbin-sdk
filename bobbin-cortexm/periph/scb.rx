@@ -189,7 +189,7 @@
     )
     (register
         (name SCR)
-        (offset 0xd0c)
+        (offset 0xd10)
         (size 0x20)
         (description "System Control Register")
         (field
