@@ -10,6 +10,6 @@ pub fn init() {
     BTN0.gpio_pin().set_dir_input();
 
     BTN1.port().pcc_enable();
-    BTN0.set_mux_gpio();
+    BTN1.set_mux_gpio();
     BTN1.gpio_pin().set_dir_input();
 }
