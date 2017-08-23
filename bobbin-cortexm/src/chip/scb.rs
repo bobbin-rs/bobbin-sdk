@@ -168,23 +168,23 @@ impl Scb {
 
 #[doc="Get the *const pointer for the SCR register."]
   #[inline] pub fn scr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xd0c) as *const u32
+     ((self.0 as usize) + 0xd10) as *const u32
   }
 #[doc="Get the *mut pointer for the SCR register."]
   #[inline] pub fn scr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xd0c) as *mut u32
+     ((self.0 as usize) + 0xd10) as *mut u32
   }
 #[doc="Read the SCR register."]
   #[inline] pub fn scr(&self) -> Scr { 
      unsafe {
-        Scr(::core::ptr::read_volatile(((self.0 as usize) + 0xd0c) as *const u32))
+        Scr(::core::ptr::read_volatile(((self.0 as usize) + 0xd10) as *const u32))
      }
   }
 #[doc="Write the SCR register."]
   #[inline] pub fn set_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Self {
      let value = f(Scr(0));
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xd10) as *mut u32, value.0);
      }
      self
   }
@@ -193,7 +193,7 @@ impl Scb {
      let tmp = self.scr();
      let value = f(tmp);
      unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xd0c) as *mut u32, value.0);
+        ::core::ptr::write_volatile(((self.0 as usize) + 0xd10) as *mut u32, value.0);
      }
      self
   }
