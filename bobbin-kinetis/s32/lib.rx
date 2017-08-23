@@ -30,6 +30,8 @@
     (peripheral (include "periph/rcm.rx"))
     (peripheral (include "periph/wdog.rx"))
     (peripheral (include "periph/crc.rx"))
+    (peripheral (include "periph/rtc.rx"))
+    (peripheral (include "periph/smc.rx"))
 
     (peripheral-group
         (name DMAMUX)

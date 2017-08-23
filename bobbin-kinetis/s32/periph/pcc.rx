@@ -1674,6 +1674,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group RTC) (peripheral RTC))
             (value
                 (value "#0")
                 (name "0")
