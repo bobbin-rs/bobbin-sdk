@@ -19,6 +19,8 @@ pub mod pcc;
 pub mod rcm;
 pub mod wdog;
 pub mod crc;
+pub mod rtc;
+pub mod smc;
 pub mod dmamux;
 pub mod dma;
 pub mod ftm;

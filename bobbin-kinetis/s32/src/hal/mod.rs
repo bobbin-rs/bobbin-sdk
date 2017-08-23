@@ -45,3 +45,8 @@ pub mod dma {
     pub use chip::dma::*;
     pub use kinetis_common::hal::dma::*;
 }
+
+pub mod rtc {
+    pub use chip::rtc::*;
+    pub use super::pcc::PccEnabled;
+}

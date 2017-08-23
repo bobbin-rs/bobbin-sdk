@@ -6997,6 +6997,11 @@ impl Cgc for super::adc::Adc0 {
    #[inline] fn set_cgc(&self, value: u32) { PCC.with_adc0(|r| r.set_cgc(value)); }
 }
 
+impl Cgc for super::rtc::Rtc {
+   #[inline] fn cgc(&self) -> u32 { PCC.rtc().cgc().into() }
+   #[inline] fn set_cgc(&self, value: u32) { PCC.with_rtc(|r| r.set_cgc(value)); }
+}
+
 impl Cgc for super::port::Porta {
    #[inline] fn cgc(&self) -> u32 { PCC.porta().cgc().into() }
    #[inline] fn set_cgc(&self, value: u32) { PCC.with_porta(|r| r.set_cgc(value)); }
