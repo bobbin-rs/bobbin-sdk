@@ -52,7 +52,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "#![no_std]"));
     };
 
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
 
     // Generate Imports
 
@@ -403,6 +403,10 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 }
 
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+
+    let pg_type = format!("{}Periph", to_camel(&pg.name));
+    let p_trait = pg_type.clone();
+    
     let mut link_traits = HashSet::new();
 
     if let Some(ref desc) = pg.description {
@@ -412,7 +416,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+    try!(writeln!(out, ""));
 
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -446,8 +451,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }
 
-    let pg_type = "Periph";
-    let p_impl_type = format!("{}<T>", pg_type);
+    let p_impl_type = format!("{}", &pg_type);
     let mut p_count = 0;
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
@@ -460,28 +464,29 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         p_count += 1;
         let p_name = p.name.to_uppercase();
         let p_type = to_camel(&p.name);
-        let p_id = format!("{}Id", p_type);
-        try!(writeln!(out, "pub const {}: {} = {}(0x{:08x}, {} {{}});", p_name, p_type, pg_type, p.address, p_id));
+        // let p_id = format!("{}Id", p_type);
+        // try!(writeln!(out, "pub const {}: {} = {}(0x{:08x}, {} {{}});", p_name, p_type, pg_type, p.address, p_id));
+        try!(writeln!(out, "periph!({p_trait}, {p_name}, {p_type}, 0x{p_addr:08x});", p_trait=p_trait, p_name=p_name, p_type=p_type, p_addr=p.address));
         
     }
     try!(writeln!(out, ""));
     
-    if pg.modules.len() == 0 {
-        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-        try!(gen_doc(cfg, out, &format!("{} Peripheral", pg.name.to_uppercase())));
-        try!(writeln!(out, "pub struct {}<T>(pub u32, pub T); ", pg_type));
-        try!(writeln!(out, ""));        
-    }
+    // if pg.modules.len() == 0 {
+    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
+    //     try!(gen_doc(cfg, out, &format!("{} Peripheral", pg.name.to_uppercase())));
+    //     try!(writeln!(out, "pub struct {}<T>(pub u32, pub T); ", pg_type));
+    //     try!(writeln!(out, ""));        
+    // }
 
-    for p in pg.peripherals.iter() {
-        let p_type = to_camel(&p.name);
-        let p_id = format!("{}Id", p_type);
-        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-        try!(writeln!(out, "#[doc(hidden)]"));
-        try!(writeln!(out, "pub struct {} {{}}", p_id));
-        try!(writeln!(out, "pub type {} = Periph<{}>;", p_type, p_id));
-    }
-    try!(writeln!(out, ""));
+    // for p in pg.peripherals.iter() {
+    //     let p_type = to_camel(&p.name);
+    //     let p_id = format!("{}Id", p_type);
+    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
+    //     try!(writeln!(out, "#[doc(hidden)]"));
+    //     try!(writeln!(out, "pub struct {} {{}}", p_id));
+    //     try!(writeln!(out, "pub type {} = Periph<{}>;", p_type, p_id));
+    // }
+    // try!(writeln!(out, ""));
 
     for p in pg.peripherals.iter() {
         let p_type = to_camel(&p.name);
@@ -538,15 +543,15 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     };
 
     if p0.registers.len() > 0 {
-        try!(gen_registers(cfg, out, &p_impl_type, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_registers(cfg, out, &p_trait, &p0.registers[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
     if p0.clusters.len() > 0 {
-        try!(gen_clusters(cfg, out, &p_impl_type, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
+        try!(gen_clusters(cfg, out, &p_trait, &p0.clusters[..], p0.size.or(Some(32)), p0.access.or(Some(Access::ReadWrite))));
     }
 
     if p0.descriptors.len() > 0 {
         for desc in p0.descriptors.iter() {
-            try!(gen_descriptor(cfg, out, &p_impl_type, &desc));
+            try!(gen_descriptor(cfg, out, &p_trait, &desc));
         }
     }
 
@@ -555,24 +560,24 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         pin_count += p.pins.len();
     }
 
-    if pg.has_pins {
-        // Generate Pin Impl
-        try!(gen_doc(cfg, out, &format!("{} Pin", pg.name.to_uppercase())));
-        try!(writeln!(out, "pub struct Pin<P, T> {{ pub port: {}<T>, pub index: usize, pub id: P }}",pg_type));
-        try!(writeln!(out, ""));
+    // if pg.has_pins {
+    //     // Generate Pin Impl
+    //     try!(gen_doc(cfg, out, &format!("{} Pin", pg.name.to_uppercase())));
+    //     try!(writeln!(out, "pub struct Pin<P, T> {{ pub port: {}<T>, pub index: usize, pub id: P }}",pg_type));
+    //     try!(writeln!(out, ""));
 
-        try!(writeln!(out, "impl<P,T> Pin<P,T> {{"));
-        try!(writeln!(out, "   #[inline] pub fn port(&self) -> &Periph<T> {{ &self.port }}"));
-        try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
-        try!(writeln!(out, "}}"));
+    //     try!(writeln!(out, "impl<P,T> Pin<P,T> {{"));
+    //     try!(writeln!(out, "   #[inline] pub fn port(&self) -> &Periph<T> {{ &self.port }}"));
+    //     try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
+    //     try!(writeln!(out, "}}"));
 
-        // Generate AltFn Trait
+    //     // Generate AltFn Trait
 
-        try!(writeln!(out, "pub trait AltFn<T> {{"));
-        try!(writeln!(out, "   fn alt_fn(&self) -> usize;"));
-        try!(writeln!(out, "}}"));
-        try!(writeln!(out, ""));
-    }
+    //     try!(writeln!(out, "pub trait AltFn<T> {{"));
+    //     try!(writeln!(out, "   fn alt_fn(&self) -> usize;"));
+    //     try!(writeln!(out, "}}"));
+    //     try!(writeln!(out, ""));
+    // }
 
 
     if pin_count > 0 {       
@@ -584,40 +589,57 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let pin_name = pin.name.to_uppercase();                
                 let pin_type = to_camel(&pin.name);
                 let pin_id = format!("{}Id", pin_type);
-                try!(writeln!(out, "pub const {}: Pin<{}, {}> = Pin {{ port: {}, index: {}, id: {} {{}} }}; ", 
-                    pin_name, pin_id, p_id, p_name, pin.index.unwrap(), pin_id));                
 
-                try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-                try!(writeln!(out, "#[doc(hidden)]"));
-                try!(writeln!(out, "pub struct {} {{}}", pin_id));
-                try!(writeln!(out, "pub type {} = Pin<{}, {}>;", pin_type, pin_id, p_id));
+                try!(writeln!(out, "pin!({pin_name}, {pin_type}, {p_name}, {p_type}, {index});",
+                    pin_name=pin_name,
+                    pin_type=pin_type,
+                    p_name=p_name,
+                    p_type=p_type,
+                    index=pin.index.unwrap(),
+                ));
+
+                // try!(writeln!(out, "pub const {}: Pin<{}, {}> = Pin {{ port: {}, index: {}, id: {} {{}} }}; ", 
+                //     pin_name, pin_id, p_id, p_name, pin.index.unwrap(), pin_id));                
+
+                // try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
+                // try!(writeln!(out, "#[doc(hidden)]"));
+                // try!(writeln!(out, "pub struct {} {{}}", pin_id));
+                // try!(writeln!(out, "pub type {} = Pin<{}, {}>;", pin_type, pin_id, p_id));
                 for af in pin.altfns.iter() {
-                    let s_type = to_camel(&af.signal);
-                    try!(writeln!(out, "impl AltFn<super::sig::{}> for {} {{", s_type, pin_id));
-                    try!(writeln!(out, "   #[inline] fn alt_fn(&self) -> usize {{ {} }}", af.index));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
+                    let s_type = format!("super::sig::{}", to_camel(&af.signal));
+
+                    try!(writeln!(out, "   alt_fn!({pin_type}, {s_type}, {s_index});", 
+                        pin_type=pin_type,
+                        s_type=s_type,
+                        s_index=af.index,
+                    ));
+
+                    // try!(writeln!(out, "impl AltFn<super::sig::{}> for {} {{", s_type, pin_id));
+                    // try!(writeln!(out, "   #[inline] fn alt_fn(&self) -> usize {{ {} }}", af.index));
+                    // try!(writeln!(out, "}}"));
+                    // try!(writeln!(out, ""));
                 }
+                try!(writeln!(out, ""));
             }        
         }       
     }
 
     // Generate Peripheral Group Channels
 
-    if pg.has_channels {
-        // Generate Channel Impl
+    // if pg.has_channels {
+    //     // Generate Channel Impl
 
-        try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-        try!(gen_doc(cfg, out, &format!("{} Channel", pg.name.to_uppercase())));        
-        try!(writeln!(out, "pub struct Channel<P, T> {{ pub periph: Periph<T>, pub index: usize, pub id: P }}"));
-        try!(writeln!(out, ""));
+    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
+    //     try!(gen_doc(cfg, out, &format!("{} Channel", pg.name.to_uppercase())));        
+    //     try!(writeln!(out, "pub struct Channel<P, T> {{ pub periph: Periph<T>, pub index: usize, pub id: P }}"));
+    //     try!(writeln!(out, ""));
 
-        try!(writeln!(out, "impl<P,T> Channel<P,T> {{"));
-        try!(writeln!(out, "   #[inline] pub fn periph(&self) -> &Periph<T> {{ &self.periph }}"));
-        try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
-        try!(writeln!(out, "}}"));        
-        try!(writeln!(out, ""));
-    }
+    //     try!(writeln!(out, "impl<P,T> Channel<P,T> {{"));
+    //     try!(writeln!(out, "   #[inline] pub fn periph(&self) -> &Periph<T> {{ &self.periph }}"));
+    //     try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
+    //     try!(writeln!(out, "}}"));        
+    //     try!(writeln!(out, ""));
+    // }
 
     for p in pg.peripherals.iter() {
         let p_name = p.name.to_uppercase();
@@ -627,14 +649,24 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let ch_name = ch.name.to_uppercase();                
             let ch_type = to_camel(&ch.name);
             let ch_id = format!("{}Id", ch_type);
-            try!(writeln!(out, "pub const {}: Channel<{}, {}> = Channel {{ periph: {}, index: {}, id: {} {{}} }}; ", 
-                ch_name, ch_id, p_id, p_name, ch.index.unwrap(), ch_id));
+            
+            try!(writeln!(out, "channel!({ch_name}, {ch_type}, {p_name}, {p_type}, {ch_index});",
+                ch_name=ch_name,
+                ch_type=ch_type,
+                p_name=p_name,
+                p_type=p_type,
+                ch_index=ch.index.unwrap(),
+            ));
 
-            try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-            try!(writeln!(out, "#[doc(hidden)]"));            
-            try!(writeln!(out, "pub struct {} {{}}", ch_id));
-            try!(writeln!(out, "pub type {} = Channel<{}, {}>;", ch_type, ch_id, p_id));
-            try!(writeln!(out, ""));
+
+            // try!(writeln!(out, "pub const {}: Channel<{}, {}> = Channel {{ periph: {}, index: {}, id: {} {{}} }}; ", 
+            //     ch_name, ch_id, p_id, p_name, ch.index.unwrap(), ch_id));
+
+            // try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
+            // try!(writeln!(out, "#[doc(hidden)]"));            
+            // try!(writeln!(out, "pub struct {} {{}}", ch_id));
+            // try!(writeln!(out, "pub type {} = Channel<{}, {}>;", ch_type, ch_id, p_id));
+            // try!(writeln!(out, ""));
         }        
     }
 
@@ -763,6 +795,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
 pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
+    let p_trait = format!("{}Periph", p_type);
 
     if let Some(ref desc) = p.description {
         let desc = desc.trim();
@@ -771,17 +804,19 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+    try!(writeln!(out, ""));
 
     if let Some(dim) = p.dim {
-        for (offset, name) in p.iter_dim() {
-            let p_name = name.replace("[","").replace("]","");            
-            try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p_name, p_type, p_type, offset));    
-        }
-        try!(writeln!(out, ""));
-
+        unimplemented!()
+        // for (offset, name) in p.iter_dim() {
+        //     let p_name = name.replace("[","").replace("]","");            
+        //     try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p_name, p_type, p_type, offset));    
+        // }
+        // try!(writeln!(out, ""));
     } else {
-        try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p.name, p_type, p_type, p.address));    
+        try!(writeln!(out, "periph!({p_trait}, {p_name}, {p_type}, 0x{p_addr:08x});", p_trait=p_trait, p_name=p.name, p_type=p_type, p_addr=p.address));
+        // try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p.name, p_type, p_type, p.address));    
     }
     try!(writeln!(out, ""));
     
@@ -789,15 +824,15 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         try!(gen_doc(cfg, out, desc));
     }
     
-    try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));    
-    try!(writeln!(out, "pub struct {}(pub u32);", p_type));    
+    // try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));    
+    // try!(writeln!(out, "pub struct {}(pub u32);", p_type));    
 
     if p.registers.len() > 0 {
-        try!(gen_registers(cfg, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
+        try!(gen_registers(cfg, out, &p_trait, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
 
     if p.clusters.len() > 0 {
-        try!(gen_clusters(cfg, out, &p_type, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
+        try!(gen_clusters(cfg, out, &p_trait, &p.clusters[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
     }
 
     // Generate Links
@@ -865,18 +900,6 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     Ok(())
 }
 
-pub fn gen_peripheral_enum<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
-    let p_name = to_camel(&p.name);
-    try!(writeln!(out, "pub enum {} {{", p_name));
-    try!(writeln!(out, "  {} = 0x{:08x}, ", p_name, p.address));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-
-    try!(gen_registers(cfg, out, &p_name, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
-
-    Ok(())
-}
-
 pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters: &[Cluster], size: Option<u64>, access: Option<Access>) -> Result<()> {
     if p_type.contains("<T>") {
         try!(writeln!(out, "impl<T> {} {{", p_type));
@@ -903,7 +926,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
+        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
         
         try!(writeln!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
@@ -1060,12 +1083,13 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
 }
 
 pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
-    if p_type.contains("<T>") {
-        try!(writeln!(out, "impl<T> {} {{", p_type));
-    } else {
-        try!(writeln!(out, "impl {} {{", p_type));
-    }
-        
+    // if p_type.contains("<T>") {
+    //     try!(writeln!(out, "impl<T> {} : Base {{", p_type));
+    // } else {
+    //     try!(writeln!(out, "impl {} : Base {{", p_type));
+    // }
+    try!(writeln!(out, "pub trait {} : Base {{", p_type));        
+
     for r in regs.iter() {  
         let r_type = format!("{}", to_camel(&r.name));
         let r_ptr = field_ptr(&r.name);
@@ -1102,97 +1126,97 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             };
 
             try!(gen_doc(cfg, out, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_size));
+            try!(writeln!(out, "  #[inline] fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_size));
             try!(writeln!(out, "     let index: {} = index.into();", i_type));
             try!(writeln!(out, "     let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "     self.addr(0x{:x} + {})", r_offset, r_shift));;
             try!(writeln!(out, "  }}"));
 
             try!(gen_doc(cfg, out, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_size));
+            try!(writeln!(out, "  #[inline] fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_size));
             try!(writeln!(out, "     let index: {} = index.into();", i_type));
             try!(writeln!(out, "     let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "     self.addr(0x{:x} + {})", r_offset, r_shift));
             try!(writeln!(out, "  }}"));
 
 
             if r_access.is_readable() {
                 try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
+                try!(writeln!(out, "  #[inline] fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
                 try!(writeln!(out, "     let index: {} = index.into();", i_type));
                 try!(writeln!(out, "     let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
+                try!(writeln!(out, "        {}(::core::ptr::read_volatile((self.base() + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let index: {} = index.into();", i_type));
                 try!(writeln!(out, "     let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "     let value = f({}(0));", r_type));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "        ::core::ptr::write_volatile((self.base() + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let index: {} = index.into();", i_type));
                 try!(writeln!(out, "     let index: usize = index.value() as usize;"));                
                 try!(writeln!(out, "     let tmp = self.{}(index);", r_getter));
                 try!(writeln!(out, "     let value = f(tmp);"));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "        ::core::ptr::write_volatile((self.base() + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));            
             }            
         } else {
             try!(gen_doc(cfg, out, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
-            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *const {}", r_offset, r_size));
+            try!(writeln!(out, "  #[inline] fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
+            try!(writeln!(out, "     self.addr(0x{:x})", r_offset));
             try!(writeln!(out, "  }}"));
             try!(gen_doc(cfg, out, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
-            try!(writeln!(out, "     ((self.0 as usize) + 0x{:x}) as *mut {}", r_offset, r_size));
+            try!(writeln!(out, "  #[inline] fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
+            try!(writeln!(out, "     self.addr(0x{:x})", r_offset));
             try!(writeln!(out, "  }}"));
             
             if r_access.is_readable() {
                 try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "  #[inline] fn {}(&self) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        {}(::core::ptr::read_volatile(((self.0 as usize) + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "        {}(::core::ptr::read_volatile((self.base() + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "  }}"));
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let value = f({}(0));", r_type));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "        ::core::ptr::write_volatile((self.base() + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));                
                 // try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
                 // try!(writeln!(out, "  #[inline] pub fn {}(&self, value: {}) -> &Self {{", r_setter, r_type));
                 // try!(writeln!(out, "     unsafe {{"));
-                // try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                // try!(writeln!(out, "        ::core::ptr::write_volatile((self.base() + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 // try!(writeln!(out, "     }}"));
                 // try!(writeln!(out, "     self"));
                 // try!(writeln!(out, "  }}"));
             }
             if r_access.is_readable() && r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let tmp = self.{}();", r_getter));
                 try!(writeln!(out, "     let value = f(tmp);"));
                 try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "        ::core::ptr::write_volatile((self.base() + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
                 try!(writeln!(out, "  }}"));               
