@@ -1,36 +1,16 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::port::*;
 
 pub trait LinkGpio<T> {
    fn gpio(&self) -> T;
 }
 
-pub const PORTA: Porta = Periph(0x40049000, PortaId {});
-pub const PORTB: Portb = Periph(0x4004a000, PortbId {});
-pub const PORTC: Portc = Periph(0x4004b000, PortcId {});
-pub const PORTD: Portd = Periph(0x4004c000, PortdId {});
-pub const PORTE: Porte = Periph(0x4004d000, PorteId {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PortaId {}
-pub type Porta = Periph<PortaId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PortbId {}
-pub type Portb = Periph<PortbId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PortcId {}
-pub type Portc = Periph<PortcId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PortdId {}
-pub type Portd = Periph<PortdId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PorteId {}
-pub type Porte = Periph<PorteId>;
+periph!(PortPeriph, PORTA, Porta, 0x40049000);
+periph!(PortPeriph, PORTB, Portb, 0x4004a000);
+periph!(PortPeriph, PORTC, Portc, 0x4004b000);
+periph!(PortPeriph, PORTD, Portd, 0x4004c000);
+periph!(PortPeriph, PORTE, Porte, 0x4004d000);
 
 impl LinkGpio<super::gpio::Periph<super::gpio::GpioaId>> for Porta {
    fn gpio(&self) -> super::gpio::Periph<super::gpio::GpioaId> { super::gpio::GPIOA }
@@ -58,2673 +38,747 @@ impl LinkGpio<super::gpio::Periph<super::gpio::GpioeId>> for Porte {
 
 
 
-pub const PTA0: Pin<Pta0Id, PortaId> = Pin { port: PORTA, index: 0, id: Pta0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta0Id {}
-pub type Pta0 = Pin<Pta0Id, PortaId>;
-impl AltFn<super::sig::Pta0> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart0CtsB> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0ColB> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm0Ch5> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::JtagTclk> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::SwdClk> for Pta0Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA1: Pin<Pta1Id, PortaId> = Pin { port: PORTA, index: 1, id: Pta1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta1Id {}
-pub type Pta1 = Pin<Pta1Id, PortaId>;
-impl AltFn<super::sig::Pta1> for Pta1Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart0Rx> for Pta1Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm0Ch6> for Pta1Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::JtagTdi> for Pta1Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA2: Pin<Pta2Id, PortaId> = Pin { port: PORTA, index: 2, id: Pta2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta2Id {}
-pub type Pta2 = Pin<Pta2Id, PortaId>;
-impl AltFn<super::sig::Pta2> for Pta2Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart0Tx> for Pta2Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm0Ch7> for Pta2Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::JtagTdo> for Pta2Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::TraceSwo> for Pta2Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA3: Pin<Pta3Id, PortaId> = Pin { port: PORTA, index: 3, id: Pta3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta3Id {}
-pub type Pta3 = Pin<Pta3Id, PortaId>;
-impl AltFn<super::sig::Pta3> for Pta3Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart0RtsB> for Pta3Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm0Ch0> for Pta3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::JtagTms> for Pta3Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-impl AltFn<super::sig::SwdDio> for Pta3Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA4: Pin<Pta4Id, PortaId> = Pin { port: PORTA, index: 4, id: Pta4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta4Id {}
-pub type Pta4 = Pin<Pta4Id, PortaId>;
-impl AltFn<super::sig::Pta4> for Pta4Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm0Ch1> for Pta4Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::NmiB> for Pta4Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA5: Pin<Pta5Id, PortaId> = Pin { port: PORTA, index: 5, id: Pta5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta5Id {}
-pub type Pta5 = Pin<Pta5Id, PortaId>;
-impl AltFn<super::sig::Pta5> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::UsbClkin> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm0Ch2> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Rxer> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Rxer> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Cmp2Out> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0TxBclk> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::JtagTrstB> for Pta5Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA6: Pin<Pta6Id, PortaId> = Pin { port: PORTA, index: 6, id: Pta6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta6Id {}
-pub type Pta6 = Pin<Pta6Id, PortaId>;
-impl AltFn<super::sig::Pta6> for Pta6Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm0Ch3> for Pta6Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Clkout> for Pta6Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::TraceClkout> for Pta6Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA7: Pin<Pta7Id, PortaId> = Pin { port: PORTA, index: 7, id: Pta7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta7Id {}
-pub type Pta7 = Pin<Pta7Id, PortaId>;
-impl AltFn<super::sig::Adc0Se10> for Pta7Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta7> for Pta7Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm0Ch4> for Pta7Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::TraceD3> for Pta7Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA8: Pin<Pta8Id, PortaId> = Pin { port: PORTA, index: 8, id: Pta8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta8Id {}
-pub type Pta8 = Pin<Pta8Id, PortaId>;
-impl AltFn<super::sig::Adc0Se11> for Pta8Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta8> for Pta8Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm1Ch0> for Pta8Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm1QdPha> for Pta8Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::TraceD2> for Pta8Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA9: Pin<Pta9Id, PortaId> = Pin { port: PORTA, index: 9, id: Pta9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta9Id {}
-pub type Pta9 = Pin<Pta9Id, PortaId>;
-impl AltFn<super::sig::Pta9> for Pta9Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm1Ch1> for Pta9Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Mii0Rxd3> for Pta9Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1QdPhb> for Pta9Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::TraceD1> for Pta9Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA10: Pin<Pta10Id, PortaId> = Pin { port: PORTA, index: 10, id: Pta10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta10Id {}
-pub type Pta10 = Pin<Pta10Id, PortaId>;
-impl AltFn<super::sig::Pta10> for Pta10Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm2Ch0> for Pta10Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Mii0Rxd2> for Pta10Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm2QdPha> for Pta10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::TraceD0> for Pta10Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA11: Pin<Pta11Id, PortaId> = Pin { port: PORTA, index: 11, id: Pta11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta11Id {}
-pub type Pta11 = Pin<Pta11Id, PortaId>;
-impl AltFn<super::sig::Pta11> for Pta11Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm2Ch1> for Pta11Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Mii0Rxclk> for Pta11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2c2Sda> for Pta11Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm2QdPhb> for Pta11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA12: Pin<Pta12Id, PortaId> = Pin { port: PORTA, index: 12, id: Pta12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta12Id {}
-pub type Pta12 = Pin<Pta12Id, PortaId>;
-impl AltFn<super::sig::Cmp2In0> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta12> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Can0Tx> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch0> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Rxd1> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Rxd1> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2c2Scl> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0Txd0> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Ftm1QdPha> for Pta12Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA13: Pin<Pta13Id, PortaId> = Pin { port: PORTA, index: 13, id: Pta13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta13Id {}
-pub type Pta13 = Pin<Pta13Id, PortaId>;
-impl AltFn<super::sig::Cmp2In1> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta13> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Can0Rx> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch1> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Rxd0> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Rxd0> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2c2Sda> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0TxFs> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Ftm1QdPhb> for Pta13Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA14: Pin<Pta14Id, PortaId> = Pin { port: PORTA, index: 14, id: Pta14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta14Id {}
-pub type Pta14 = Pin<Pta14Id, PortaId>;
-impl AltFn<super::sig::Pta14> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs0> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Tx> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0CrsDv> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Rxdv> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2c2Scl> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0RxBclk> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::I2s0Txd1> for Pta14Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA15: Pin<Pta15Id, PortaId> = Pin { port: PORTA, index: 15, id: Pta15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta15Id {}
-pub type Pta15 = Pin<Pta15Id, PortaId>;
-impl AltFn<super::sig::Pta15> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sck> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Rx> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Txen> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Txen> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2s0Rxd0> for Pta15Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA16: Pin<Pta16Id, PortaId> = Pin { port: PORTA, index: 16, id: Pta16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta16Id {}
-pub type Pta16 = Pin<Pta16Id, PortaId>;
-impl AltFn<super::sig::Pta16> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sout> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0CtsB> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Uart0ColB> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Txd0> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Txd0> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2s0RxFs> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::I2s0Rxd1> for Pta16Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTA17: Pin<Pta17Id, PortaId> = Pin { port: PORTA, index: 17, id: Pta17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta17Id {}
-pub type Pta17 = Pin<Pta17Id, PortaId>;
-impl AltFn<super::sig::Adc1Se17> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta17> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sin> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0RtsB> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Txd1> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Txd1> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::I2s0Mclk> for Pta17Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA18: Pin<Pta18Id, PortaId> = Pin { port: PORTA, index: 18, id: Pta18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta18Id {}
-pub type Pta18 = Pin<Pta18Id, PortaId>;
-impl AltFn<super::sig::Extal0> for Pta18Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta18> for Pta18Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm0Flt2> for Pta18Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FtmClkin0> for Pta18Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-pub const PTA19: Pin<Pta19Id, PortaId> = Pin { port: PORTA, index: 19, id: Pta19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta19Id {}
-pub type Pta19 = Pin<Pta19Id, PortaId>;
-impl AltFn<super::sig::Xtal0> for Pta19Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pta19> for Pta19Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm1Flt0> for Pta19Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FtmClkin1> for Pta19Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Lptmr0Alt1> for Pta19Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA24: Pin<Pta24Id, PortaId> = Pin { port: PORTA, index: 24, id: Pta24Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta24Id {}
-pub type Pta24 = Pin<Pta24Id, PortaId>;
-impl AltFn<super::sig::Pta24> for Pta24Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Txd2> for Pta24Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA29> for Pta24Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA25: Pin<Pta25Id, PortaId> = Pin { port: PORTA, index: 25, id: Pta25Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta25Id {}
-pub type Pta25 = Pin<Pta25Id, PortaId>;
-impl AltFn<super::sig::Pta25> for Pta25Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Txclk> for Pta25Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA28> for Pta25Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA26: Pin<Pta26Id, PortaId> = Pin { port: PORTA, index: 26, id: Pta26Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta26Id {}
-pub type Pta26 = Pin<Pta26Id, PortaId>;
-impl AltFn<super::sig::Pta26> for Pta26Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Txd3> for Pta26Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA27> for Pta26Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA27: Pin<Pta27Id, PortaId> = Pin { port: PORTA, index: 27, id: Pta27Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta27Id {}
-pub type Pta27 = Pin<Pta27Id, PortaId>;
-impl AltFn<super::sig::Pta27> for Pta27Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Crs> for Pta27Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA26> for Pta27Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA28: Pin<Pta28Id, PortaId> = Pin { port: PORTA, index: 28, id: Pta28Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta28Id {}
-pub type Pta28 = Pin<Pta28Id, PortaId>;
-impl AltFn<super::sig::Pta28> for Pta28Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Txer> for Pta28Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA25> for Pta28Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTA29: Pin<Pta29Id, PortaId> = Pin { port: PORTA, index: 29, id: Pta29Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pta29Id {}
-pub type Pta29 = Pin<Pta29Id, PortaId>;
-impl AltFn<super::sig::Pta29> for Pta29Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Mii0Col> for Pta29Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA24> for Pta29Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB0: Pin<Ptb0Id, PortbId> = Pin { port: PORTB, index: 0, id: Ptb0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb0Id {}
-pub type Ptb0 = Pin<Ptb0Id, PortbId>;
-impl AltFn<super::sig::Adc0Se8> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Adc1Se8> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb0> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Scl> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch0> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Mdio> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Mdio> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1QdPha> for Ptb0Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB1: Pin<Ptb1Id, PortbId> = Pin { port: PORTB, index: 1, id: Ptb1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb1Id {}
-pub type Ptb1 = Pin<Ptb1Id, PortbId>;
-impl AltFn<super::sig::Adc0Se9> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Adc1Se9> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb1> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Sda> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch1> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Rmii0Mdc> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Mii0Mdc> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1QdPhb> for Ptb1Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB2: Pin<Ptb2Id, PortbId> = Pin { port: PORTB, index: 2, id: Ptb2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb2Id {}
-pub type Ptb2 = Pin<Ptb2Id, PortbId>;
-impl AltFn<super::sig::Adc0Se12> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb2> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Scl> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0RtsB> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr0> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm0Flt3> for Ptb2Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB3: Pin<Ptb3Id, PortbId> = Pin { port: PORTB, index: 3, id: Ptb3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb3Id {}
-pub type Ptb3 = Pin<Ptb3Id, PortbId>;
-impl AltFn<super::sig::Adc0Se13> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb3> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Sda> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0CtsB> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Uart0ColB> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr1> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm0Flt0> for Ptb3Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB4: Pin<Ptb4Id, PortbId> = Pin { port: PORTB, index: 4, id: Ptb4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb4Id {}
-pub type Ptb4 = Pin<Ptb4Id, PortbId>;
-impl AltFn<super::sig::Adc1Se10> for Ptb4Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb4> for Ptb4Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr2> for Ptb4Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1Flt0> for Ptb4Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB5: Pin<Ptb5Id, PortbId> = Pin { port: PORTB, index: 5, id: Ptb5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb5Id {}
-pub type Ptb5 = Pin<Ptb5Id, PortbId>;
-impl AltFn<super::sig::Adc1Se11> for Ptb5Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb5> for Ptb5Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr3> for Ptb5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm2Flt0> for Ptb5Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB6: Pin<Ptb6Id, PortbId> = Pin { port: PORTB, index: 6, id: Ptb6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb6Id {}
-pub type Ptb6 = Pin<Ptb6Id, PortbId>;
-impl AltFn<super::sig::Adc1Se12> for Ptb6Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb6> for Ptb6Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::FbAd23> for Ptb6Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTB7: Pin<Ptb7Id, PortbId> = Pin { port: PORTB, index: 7, id: Ptb7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb7Id {}
-pub type Ptb7 = Pin<Ptb7Id, PortbId>;
-impl AltFn<super::sig::Adc1Se13> for Ptb7Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb7> for Ptb7Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::FbAd22> for Ptb7Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTB8: Pin<Ptb8Id, PortbId> = Pin { port: PORTB, index: 8, id: Ptb8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb8Id {}
-pub type Ptb8 = Pin<Ptb8Id, PortbId>;
-impl AltFn<super::sig::Ptb8> for Ptb8Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3RtsB> for Ptb8Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd21> for Ptb8Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTB9: Pin<Ptb9Id, PortbId> = Pin { port: PORTB, index: 9, id: Ptb9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb9Id {}
-pub type Ptb9 = Pin<Ptb9Id, PortbId>;
-impl AltFn<super::sig::Ptb9> for Ptb9Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs1> for Ptb9Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3CtsB> for Ptb9Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd20> for Ptb9Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTB10: Pin<Ptb10Id, PortbId> = Pin { port: PORTB, index: 10, id: Ptb10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb10Id {}
-pub type Ptb10 = Pin<Ptb10Id, PortbId>;
-impl AltFn<super::sig::Adc1Se14> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb10> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs0> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3Rx> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd19> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm0Flt1> for Ptb10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB11: Pin<Ptb11Id, PortbId> = Pin { port: PORTB, index: 11, id: Ptb11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb11Id {}
-pub type Ptb11 = Pin<Ptb11Id, PortbId>;
-impl AltFn<super::sig::Adc1Se15> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptb11> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sck> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3Tx> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd18> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm0Flt2> for Ptb11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB12: Pin<Ptb12Id, PortbId> = Pin { port: PORTB, index: 12, id: Ptb12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb12Id {}
-pub type Ptb12 = Pin<Ptb12Id, PortbId>;
-impl AltFn<super::sig::Ptb12> for Ptb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3RtsB> for Ptb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch0> for Ptb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch4> for Ptb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1QdPha> for Ptb12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB13: Pin<Ptb13Id, PortbId> = Pin { port: PORTB, index: 13, id: Ptb13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb13Id {}
-pub type Ptb13 = Pin<Ptb13Id, PortbId>;
-impl AltFn<super::sig::Ptb13> for Ptb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3CtsB> for Ptb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm1Ch1> for Ptb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch5> for Ptb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm1QdPhb> for Ptb13Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB16: Pin<Ptb16Id, PortbId> = Pin { port: PORTB, index: 16, id: Ptb16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb16Id {}
-pub type Ptb16 = Pin<Ptb16Id, PortbId>;
-impl AltFn<super::sig::Ptb16> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sout> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Rx> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FtmClkin0> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd17> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmIn> for Ptb16Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB17: Pin<Ptb17Id, PortbId> = Pin { port: PORTB, index: 17, id: Ptb17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb17Id {}
-pub type Ptb17 = Pin<Ptb17Id, PortbId>;
-impl AltFn<super::sig::Ptb17> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sin> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Tx> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FtmClkin1> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd16> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmOutB> for Ptb17Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB18: Pin<Ptb18Id, PortbId> = Pin { port: PORTB, index: 18, id: Ptb18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb18Id {}
-pub type Ptb18 = Pin<Ptb18Id, PortbId>;
-impl AltFn<super::sig::Ptb18> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Can0Tx> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm2Ch0> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0TxBclk> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd15> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm2QdPha> for Ptb18Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB19: Pin<Ptb19Id, PortbId> = Pin { port: PORTB, index: 19, id: Ptb19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb19Id {}
-pub type Ptb19 = Pin<Ptb19Id, PortbId>;
-impl AltFn<super::sig::Ptb19> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Can0Rx> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm2Ch1> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0TxFs> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbOeB> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm2QdPhb> for Ptb19Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB20: Pin<Ptb20Id, PortbId> = Pin { port: PORTB, index: 20, id: Ptb20Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb20Id {}
-pub type Ptb20 = Pin<Ptb20Id, PortbId>;
-impl AltFn<super::sig::Ptb20> for Ptb20Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Pcs0> for Ptb20Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::FbAd31> for Ptb20Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Cmp0Out> for Ptb20Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB21: Pin<Ptb21Id, PortbId> = Pin { port: PORTB, index: 21, id: Ptb21Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb21Id {}
-pub type Ptb21 = Pin<Ptb21Id, PortbId>;
-impl AltFn<super::sig::Ptb21> for Ptb21Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sck> for Ptb21Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::FbAd30> for Ptb21Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Cmp1Out> for Ptb21Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB22: Pin<Ptb22Id, PortbId> = Pin { port: PORTB, index: 22, id: Ptb22Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb22Id {}
-pub type Ptb22 = Pin<Ptb22Id, PortbId>;
-impl AltFn<super::sig::Ptb22> for Ptb22Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sout> for Ptb22Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::FbAd29> for Ptb22Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Cmp2Out> for Ptb22Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTB23: Pin<Ptb23Id, PortbId> = Pin { port: PORTB, index: 23, id: Ptb23Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptb23Id {}
-pub type Ptb23 = Pin<Ptb23Id, PortbId>;
-impl AltFn<super::sig::Ptb23> for Ptb23Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sin> for Ptb23Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Spi0Pcs5> for Ptb23Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd28> for Ptb23Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC0: Pin<Ptc0Id, PortcId> = Pin { port: PORTC, index: 0, id: Ptc0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc0Id {}
-pub type Ptc0 = Pin<Ptc0Id, PortcId>;
-impl AltFn<super::sig::Adc0Se14> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc0> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs4> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Pdb0Extrg> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::UsbSofOut> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd14> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0Txd1> for Ptc0Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC1: Pin<Ptc1Id, PortcId> = Pin { port: PORTC, index: 1, id: Ptc1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc1Id {}
-pub type Ptc1 = Pin<Ptc1Id, PortcId>;
-impl AltFn<super::sig::Adc0Se15> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc1> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs3> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1RtsB> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch0> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd13> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0Txd0> for Ptc1Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC2: Pin<Ptc2Id, PortcId> = Pin { port: PORTC, index: 2, id: Ptc2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc2Id {}
-pub type Ptc2 = Pin<Ptc2Id, PortcId>;
-impl AltFn<super::sig::Adc0Se4b> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Cmp1In0> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc2> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs2> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1CtsB> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch1> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd12> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0TxFs> for Ptc2Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC3: Pin<Ptc3Id, PortcId> = Pin { port: PORTC, index: 3, id: Ptc3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc3Id {}
-pub type Ptc3 = Pin<Ptc3Id, PortcId>;
-impl AltFn<super::sig::Cmp1In1> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc3> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs1> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1Rx> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch2> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Clkout> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0TxBclk> for Ptc3Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC4: Pin<Ptc4Id, PortcId> = Pin { port: PORTC, index: 4, id: Ptc4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc4Id {}
-pub type Ptc4 = Pin<Ptc4Id, PortcId>;
-impl AltFn<super::sig::Ptc4> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs0> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1Tx> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch3> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd11> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Cmp1Out> for Ptc4Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC5: Pin<Ptc5Id, PortcId> = Pin { port: PORTC, index: 5, id: Ptc5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc5Id {}
-pub type Ptc5 = Pin<Ptc5Id, PortcId>;
-impl AltFn<super::sig::Ptc5> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sck> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Lptmr0Alt2> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Rxd0> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd10> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Cmp0Out> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Ftm0Ch2> for Ptc5Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTC6: Pin<Ptc6Id, PortcId> = Pin { port: PORTC, index: 6, id: Ptc6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc6Id {}
-pub type Ptc6 = Pin<Ptc6Id, PortcId>;
-impl AltFn<super::sig::Cmp0In0> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc6> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sout> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Pdb0Extrg> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxBclk> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd9> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2s0Mclk> for Ptc6Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC7: Pin<Ptc7Id, PortcId> = Pin { port: PORTC, index: 7, id: Ptc7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc7Id {}
-pub type Ptc7 = Pin<Ptc7Id, PortcId>;
-impl AltFn<super::sig::Cmp0In1> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc7> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sin> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::UsbSofOut> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxFs> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd8> for Ptc7Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC8: Pin<Ptc8Id, PortcId> = Pin { port: PORTC, index: 8, id: Ptc8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc8Id {}
-pub type Ptc8 = Pin<Ptc8Id, PortcId>;
-impl AltFn<super::sig::Adc1Se4b> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Cmp0In2> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc8> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm3Ch4> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Mclk> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd7> for Ptc8Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC9: Pin<Ptc9Id, PortcId> = Pin { port: PORTC, index: 9, id: Ptc9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc9Id {}
-pub type Ptc9 = Pin<Ptc9Id, PortcId>;
-impl AltFn<super::sig::Adc1Se5b> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Cmp0In3> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc9> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Ftm3Ch5> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxBclk> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd6> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm2Flt0> for Ptc9Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC10: Pin<Ptc10Id, PortcId> = Pin { port: PORTC, index: 10, id: Ptc10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc10Id {}
-pub type Ptc10 = Pin<Ptc10Id, PortcId>;
-impl AltFn<super::sig::Adc1Se6b> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc10> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c1Scl> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm3Ch6> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxFs> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd5> for Ptc10Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC11: Pin<Ptc11Id, PortcId> = Pin { port: PORTC, index: 11, id: Ptc11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc11Id {}
-pub type Ptc11 = Pin<Ptc11Id, PortcId>;
-impl AltFn<super::sig::Adc1Se7b> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptc11> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c1Sda> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm3Ch7> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Rxd1> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbRwB> for Ptc11Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC12: Pin<Ptc12Id, PortcId> = Pin { port: PORTC, index: 12, id: Ptc12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc12Id {}
-pub type Ptc12 = Pin<Ptc12Id, PortcId>;
-impl AltFn<super::sig::Ptc12> for Ptc12Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4RtsB> for Ptc12Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd27> for Ptc12Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm3Flt0> for Ptc12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTC13: Pin<Ptc13Id, PortcId> = Pin { port: PORTC, index: 13, id: Ptc13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc13Id {}
-pub type Ptc13 = Pin<Ptc13Id, PortcId>;
-impl AltFn<super::sig::Ptc13> for Ptc13Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4CtsB> for Ptc13Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd26> for Ptc13Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC14: Pin<Ptc14Id, PortcId> = Pin { port: PORTC, index: 14, id: Ptc14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc14Id {}
-pub type Ptc14 = Pin<Ptc14Id, PortcId>;
-impl AltFn<super::sig::Ptc14> for Ptc14Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4Rx> for Ptc14Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd25> for Ptc14Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC15: Pin<Ptc15Id, PortcId> = Pin { port: PORTC, index: 15, id: Ptc15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc15Id {}
-pub type Ptc15 = Pin<Ptc15Id, PortcId>;
-impl AltFn<super::sig::Ptc15> for Ptc15Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4Tx> for Ptc15Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbAd24> for Ptc15Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC16: Pin<Ptc16Id, PortcId> = Pin { port: PORTC, index: 16, id: Ptc16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc16Id {}
-pub type Ptc16 = Pin<Ptc16Id, PortcId>;
-impl AltFn<super::sig::Ptc16> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3Rx> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr0> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbCs5B> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbTsiz1> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbBe2316Bls158B> for Ptc16Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC17: Pin<Ptc17Id, PortcId> = Pin { port: PORTC, index: 17, id: Ptc17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc17Id {}
-pub type Ptc17 = Pin<Ptc17Id, PortcId>;
-impl AltFn<super::sig::Ptc17> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3Tx> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr1> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbCs4B> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbTsiz0> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbBe3124Bls70B> for Ptc17Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC18: Pin<Ptc18Id, PortcId> = Pin { port: PORTC, index: 18, id: Ptc18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc18Id {}
-pub type Ptc18 = Pin<Ptc18Id, PortcId>;
-impl AltFn<super::sig::Ptc18> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3RtsB> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr2> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbTbstB> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbCs2B> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbBe158Bls2316B> for Ptc18Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTC19: Pin<Ptc19Id, PortcId> = Pin { port: PORTC, index: 19, id: Ptc19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptc19Id {}
-pub type Ptc19 = Pin<Ptc19Id, PortcId>;
-impl AltFn<super::sig::Ptc19> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3CtsB> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Enet01588Tmr3> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbCs3B> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbBe70Bls3124B> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbTaB> for Ptc19Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD0: Pin<Ptd0Id, PortdId> = Pin { port: PORTD, index: 0, id: Ptd0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd0Id {}
-pub type Ptd0 = Pin<Ptd0Id, PortdId>;
-impl AltFn<super::sig::Ptd0> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs0> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart2RtsB> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm3Ch0> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAle> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbCs1B> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::FbTsB> for Ptd0Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTD1: Pin<Ptd1Id, PortdId> = Pin { port: PORTD, index: 1, id: Ptd1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd1Id {}
-pub type Ptd1 = Pin<Ptd1Id, PortdId>;
-impl AltFn<super::sig::Adc0Se5b> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptd1> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sck> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart2CtsB> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm3Ch1> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbCs0B> for Ptd1Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTD2: Pin<Ptd2Id, PortdId> = Pin { port: PORTD, index: 2, id: Ptd2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd2Id {}
-pub type Ptd2 = Pin<Ptd2Id, PortdId>;
-impl AltFn<super::sig::Ptd2> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sout> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart2Rx> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm3Ch2> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd4> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2c0Scl> for Ptd2Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD3: Pin<Ptd3Id, PortdId> = Pin { port: PORTD, index: 3, id: Ptd3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd3Id {}
-pub type Ptd3 = Pin<Ptd3Id, PortdId>;
-impl AltFn<super::sig::Ptd3> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Sin> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart2Tx> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm3Ch3> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd3> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2c0Sda> for Ptd3Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD4: Pin<Ptd4Id, PortdId> = Pin { port: PORTD, index: 4, id: Ptd4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd4Id {}
-pub type Ptd4 = Pin<Ptd4Id, PortdId>;
-impl AltFn<super::sig::Ptd4> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs1> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0RtsB> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch4> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd2> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmIn> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi1Pcs0> for Ptd4Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD5: Pin<Ptd5Id, PortdId> = Pin { port: PORTD, index: 5, id: Ptd5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd5Id {}
-pub type Ptd5 = Pin<Ptd5Id, PortdId>;
-impl AltFn<super::sig::Adc0Se6b> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptd5> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs2> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0CtsB> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Uart0ColB> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch5> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd1> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmOutB> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi1Sck> for Ptd5Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD6: Pin<Ptd6Id, PortdId> = Pin { port: PORTD, index: 6, id: Ptd6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd6Id {}
-pub type Ptd6 = Pin<Ptd6Id, PortdId>;
-impl AltFn<super::sig::Adc0Se7b> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Ptd6> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi0Pcs3> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Rx> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch6> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbAd0> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Ftm0Flt0> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi1Sout> for Ptd6Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD7: Pin<Ptd7Id, PortdId> = Pin { port: PORTD, index: 7, id: Ptd7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd7Id {}
-pub type Ptd7 = Pin<Ptd7Id, PortdId>;
-impl AltFn<super::sig::Ptd7> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::CmtIro> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart0Tx> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Ftm0Ch7> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm0Flt1> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi1Sin> for Ptd7Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTD8: Pin<Ptd8Id, PortdId> = Pin { port: PORTD, index: 8, id: Ptd8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd8Id {}
-pub type Ptd8 = Pin<Ptd8Id, PortdId>;
-impl AltFn<super::sig::Ptd8> for Ptd8Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Scl> for Ptd8Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart5Rx> for Ptd8Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbA16> for Ptd8Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD9: Pin<Ptd9Id, PortdId> = Pin { port: PORTD, index: 9, id: Ptd9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd9Id {}
-pub type Ptd9 = Pin<Ptd9Id, PortdId>;
-impl AltFn<super::sig::Ptd9> for Ptd9Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2c0Sda> for Ptd9Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart5Tx> for Ptd9Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbA17> for Ptd9Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD10: Pin<Ptd10Id, PortdId> = Pin { port: PORTD, index: 10, id: Ptd10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd10Id {}
-pub type Ptd10 = Pin<Ptd10Id, PortdId>;
-impl AltFn<super::sig::Ptd10> for Ptd10Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart5RtsB> for Ptd10Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::FbA18> for Ptd10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD11: Pin<Ptd11Id, PortdId> = Pin { port: PORTD, index: 11, id: Ptd11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd11Id {}
-pub type Ptd11 = Pin<Ptd11Id, PortdId>;
-impl AltFn<super::sig::Ptd11> for Ptd11Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Pcs0> for Ptd11Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart5CtsB> for Ptd11Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0Clkin> for Ptd11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA19> for Ptd11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD12: Pin<Ptd12Id, PortdId> = Pin { port: PORTD, index: 12, id: Ptd12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd12Id {}
-pub type Ptd12 = Pin<Ptd12Id, PortdId>;
-impl AltFn<super::sig::Ptd12> for Ptd12Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sck> for Ptd12Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Ftm3Flt0> for Ptd12Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0D4> for Ptd12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA20> for Ptd12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD13: Pin<Ptd13Id, PortdId> = Pin { port: PORTD, index: 13, id: Ptd13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd13Id {}
-pub type Ptd13 = Pin<Ptd13Id, PortdId>;
-impl AltFn<super::sig::Ptd13> for Ptd13Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sout> for Ptd13Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Sdhc0D5> for Ptd13Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA21> for Ptd13Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD14: Pin<Ptd14Id, PortdId> = Pin { port: PORTD, index: 14, id: Ptd14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd14Id {}
-pub type Ptd14 = Pin<Ptd14Id, PortdId>;
-impl AltFn<super::sig::Ptd14> for Ptd14Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Sin> for Ptd14Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Sdhc0D6> for Ptd14Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA22> for Ptd14Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTD15: Pin<Ptd15Id, PortdId> = Pin { port: PORTD, index: 15, id: Ptd15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ptd15Id {}
-pub type Ptd15 = Pin<Ptd15Id, PortdId>;
-impl AltFn<super::sig::Ptd15> for Ptd15Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi2Pcs1> for Ptd15Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Sdhc0D7> for Ptd15Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::FbA23> for Ptd15Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE0: Pin<Pte0Id, PorteId> = Pin { port: PORTE, index: 0, id: Pte0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte0Id {}
-pub type Pte0 = Pin<Pte0Id, PorteId>;
-impl AltFn<super::sig::Adc1Se4a> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte0> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs1> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1Tx> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0D1> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::TraceClkout> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2c1Sda> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::RtcClkout> for Pte0Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTE1: Pin<Pte1Id, PorteId> = Pin { port: PORTE, index: 1, id: Pte1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte1Id {}
-pub type Pte1 = Pin<Pte1Id, PorteId>;
-impl AltFn<super::sig::Adc1Se5a> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte1> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sout> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1Rx> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0D0> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::TraceD3> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::I2c1Scl> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::Spi1Sin> for Pte1Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTE2: Pin<Pte2Id, PorteId> = Pin { port: PORTE, index: 2, id: Pte2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte2Id {}
-pub type Pte2 = Pin<Pte2Id, PorteId>;
-impl AltFn<super::sig::Adc0Dp2> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Adc1Se6a> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte2> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sck> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1CtsB> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0Dclk> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::TraceD2> for Pte2Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTE3: Pin<Pte3Id, PorteId> = Pin { port: PORTE, index: 3, id: Pte3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte3Id {}
-pub type Pte3 = Pin<Pte3Id, PorteId>;
-impl AltFn<super::sig::Adc0Dm2> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Adc1Se7a> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte3> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Sin> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart1RtsB> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0Cmd> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::TraceD1> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::Spi1Sout> for Pte3Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTE4: Pin<Pte4Id, PorteId> = Pin { port: PORTE, index: 4, id: Pte4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte4Id {}
-pub type Pte4 = Pin<Pte4Id, PorteId>;
-impl AltFn<super::sig::Pte4> for Pte4Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs0> for Pte4Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3Tx> for Pte4Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0D3> for Pte4Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::TraceD0> for Pte4Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-pub const PTE5: Pin<Pte5Id, PorteId> = Pin { port: PORTE, index: 5, id: Pte5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte5Id {}
-pub type Pte5 = Pin<Pte5Id, PorteId>;
-impl AltFn<super::sig::Pte5> for Pte5Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs2> for Pte5Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3Rx> for Pte5Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::Sdhc0D2> for Pte5Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch0> for Pte5Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE6: Pin<Pte6Id, PorteId> = Pin { port: PORTE, index: 6, id: Pte6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte6Id {}
-pub type Pte6 = Pin<Pte6Id, PorteId>;
-impl AltFn<super::sig::Pte6> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Spi1Pcs3> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart3CtsB> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Mclk> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch1> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::UsbSofOut> for Pte6Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTE7: Pin<Pte7Id, PorteId> = Pin { port: PORTE, index: 7, id: Pte7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte7Id {}
-pub type Pte7 = Pin<Pte7Id, PorteId>;
-impl AltFn<super::sig::Pte7> for Pte7Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart3RtsB> for Pte7Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Rxd0> for Pte7Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch2> for Pte7Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE8: Pin<Pte8Id, PorteId> = Pin { port: PORTE, index: 8, id: Pte8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte8Id {}
-pub type Pte8 = Pin<Pte8Id, PorteId>;
-impl AltFn<super::sig::Pte8> for Pte8Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2s0Rxd1> for Pte8Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart5Tx> for Pte8Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxFs> for Pte8Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch3> for Pte8Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE9: Pin<Pte9Id, PorteId> = Pin { port: PORTE, index: 9, id: Pte9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte9Id {}
-pub type Pte9 = Pin<Pte9Id, PorteId>;
-impl AltFn<super::sig::Pte9> for Pte9Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2s0Txd1> for Pte9Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart5Rx> for Pte9Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0RxBclk> for Pte9Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch4> for Pte9Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE10: Pin<Pte10Id, PorteId> = Pin { port: PORTE, index: 10, id: Pte10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte10Id {}
-pub type Pte10 = Pin<Pte10Id, PorteId>;
-impl AltFn<super::sig::Pte10> for Pte10Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart5CtsB> for Pte10Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0Txd0> for Pte10Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch5> for Pte10Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE11: Pin<Pte11Id, PorteId> = Pin { port: PORTE, index: 11, id: Pte11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte11Id {}
-pub type Pte11 = Pin<Pte11Id, PorteId>;
-impl AltFn<super::sig::Pte11> for Pte11Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart5RtsB> for Pte11Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2s0TxFs> for Pte11Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch6> for Pte11Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE12: Pin<Pte12Id, PorteId> = Pin { port: PORTE, index: 12, id: Pte12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte12Id {}
-pub type Pte12 = Pin<Pte12Id, PorteId>;
-impl AltFn<super::sig::Pte12> for Pte12Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::I2s0TxBclk> for Pte12Id {
-   #[inline] fn alt_fn(&self) -> usize { 4 }
-}
-
-impl AltFn<super::sig::Ftm3Ch7> for Pte12Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE24: Pin<Pte24Id, PorteId> = Pin { port: PORTE, index: 24, id: Pte24Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte24Id {}
-pub type Pte24 = Pin<Pte24Id, PorteId>;
-impl AltFn<super::sig::Adc0Se17> for Pte24Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte24> for Pte24Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4Tx> for Pte24Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2c0Scl> for Pte24Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmOutB> for Pte24Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE25: Pin<Pte25Id, PorteId> = Pin { port: PORTE, index: 25, id: Pte25Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte25Id {}
-pub type Pte25 = Pin<Pte25Id, PorteId>;
-impl AltFn<super::sig::Adc0Se18> for Pte25Id {
-   #[inline] fn alt_fn(&self) -> usize { 0 }
-}
-
-impl AltFn<super::sig::Pte25> for Pte25Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4Rx> for Pte25Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::I2c0Sda> for Pte25Id {
-   #[inline] fn alt_fn(&self) -> usize { 5 }
-}
-
-impl AltFn<super::sig::EwmIn> for Pte25Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-pub const PTE26: Pin<Pte26Id, PorteId> = Pin { port: PORTE, index: 26, id: Pte26Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte26Id {}
-pub type Pte26 = Pin<Pte26Id, PorteId>;
-impl AltFn<super::sig::Pte26> for Pte26Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Enet1588Clkin> for Pte26Id {
-   #[inline] fn alt_fn(&self) -> usize { 2 }
-}
-
-impl AltFn<super::sig::Uart4CtsB> for Pte26Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-impl AltFn<super::sig::RtcClkout> for Pte26Id {
-   #[inline] fn alt_fn(&self) -> usize { 6 }
-}
-
-impl AltFn<super::sig::UsbClkin> for Pte26Id {
-   #[inline] fn alt_fn(&self) -> usize { 7 }
-}
-
-pub const PTE27: Pin<Pte27Id, PorteId> = Pin { port: PORTE, index: 27, id: Pte27Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte27Id {}
-pub type Pte27 = Pin<Pte27Id, PorteId>;
-impl AltFn<super::sig::Pte27> for Pte27Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
-
-impl AltFn<super::sig::Uart4RtsB> for Pte27Id {
-   #[inline] fn alt_fn(&self) -> usize { 3 }
-}
-
-pub const PTE28: Pin<Pte28Id, PorteId> = Pin { port: PORTE, index: 28, id: Pte28Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pte28Id {}
-pub type Pte28 = Pin<Pte28Id, PorteId>;
-impl AltFn<super::sig::Pte28> for Pte28Id {
-   #[inline] fn alt_fn(&self) -> usize { 1 }
-}
+pin!(PTA0, Pta0, PORTA, Porta, 0);
+   alt_fn!(Pta0, super::sig::Pta0, 1);
+   alt_fn!(Pta0, super::sig::Uart0CtsB, 2);
+   alt_fn!(Pta0, super::sig::Uart0ColB, 2);
+   alt_fn!(Pta0, super::sig::Ftm0Ch5, 3);
+   alt_fn!(Pta0, super::sig::JtagTclk, 7);
+   alt_fn!(Pta0, super::sig::SwdClk, 7);
+
+pin!(PTA1, Pta1, PORTA, Porta, 1);
+   alt_fn!(Pta1, super::sig::Pta1, 1);
+   alt_fn!(Pta1, super::sig::Uart0Rx, 2);
+   alt_fn!(Pta1, super::sig::Ftm0Ch6, 3);
+   alt_fn!(Pta1, super::sig::JtagTdi, 7);
+
+pin!(PTA2, Pta2, PORTA, Porta, 2);
+   alt_fn!(Pta2, super::sig::Pta2, 1);
+   alt_fn!(Pta2, super::sig::Uart0Tx, 2);
+   alt_fn!(Pta2, super::sig::Ftm0Ch7, 3);
+   alt_fn!(Pta2, super::sig::JtagTdo, 7);
+   alt_fn!(Pta2, super::sig::TraceSwo, 7);
+
+pin!(PTA3, Pta3, PORTA, Porta, 3);
+   alt_fn!(Pta3, super::sig::Pta3, 1);
+   alt_fn!(Pta3, super::sig::Uart0RtsB, 2);
+   alt_fn!(Pta3, super::sig::Ftm0Ch0, 3);
+   alt_fn!(Pta3, super::sig::JtagTms, 7);
+   alt_fn!(Pta3, super::sig::SwdDio, 7);
+
+pin!(PTA4, Pta4, PORTA, Porta, 4);
+   alt_fn!(Pta4, super::sig::Pta4, 1);
+   alt_fn!(Pta4, super::sig::Ftm0Ch1, 3);
+   alt_fn!(Pta4, super::sig::NmiB, 7);
+
+pin!(PTA5, Pta5, PORTA, Porta, 5);
+   alt_fn!(Pta5, super::sig::Pta5, 1);
+   alt_fn!(Pta5, super::sig::UsbClkin, 2);
+   alt_fn!(Pta5, super::sig::Ftm0Ch2, 3);
+   alt_fn!(Pta5, super::sig::Rmii0Rxer, 4);
+   alt_fn!(Pta5, super::sig::Mii0Rxer, 4);
+   alt_fn!(Pta5, super::sig::Cmp2Out, 5);
+   alt_fn!(Pta5, super::sig::I2s0TxBclk, 6);
+   alt_fn!(Pta5, super::sig::JtagTrstB, 7);
+
+pin!(PTA6, Pta6, PORTA, Porta, 6);
+   alt_fn!(Pta6, super::sig::Pta6, 1);
+   alt_fn!(Pta6, super::sig::Ftm0Ch3, 3);
+   alt_fn!(Pta6, super::sig::Clkout, 5);
+   alt_fn!(Pta6, super::sig::TraceClkout, 7);
+
+pin!(PTA7, Pta7, PORTA, Porta, 7);
+   alt_fn!(Pta7, super::sig::Adc0Se10, 0);
+   alt_fn!(Pta7, super::sig::Pta7, 1);
+   alt_fn!(Pta7, super::sig::Ftm0Ch4, 3);
+   alt_fn!(Pta7, super::sig::TraceD3, 7);
+
+pin!(PTA8, Pta8, PORTA, Porta, 8);
+   alt_fn!(Pta8, super::sig::Adc0Se11, 0);
+   alt_fn!(Pta8, super::sig::Pta8, 1);
+   alt_fn!(Pta8, super::sig::Ftm1Ch0, 3);
+   alt_fn!(Pta8, super::sig::Ftm1QdPha, 6);
+   alt_fn!(Pta8, super::sig::TraceD2, 7);
+
+pin!(PTA9, Pta9, PORTA, Porta, 9);
+   alt_fn!(Pta9, super::sig::Pta9, 1);
+   alt_fn!(Pta9, super::sig::Ftm1Ch1, 3);
+   alt_fn!(Pta9, super::sig::Mii0Rxd3, 4);
+   alt_fn!(Pta9, super::sig::Ftm1QdPhb, 6);
+   alt_fn!(Pta9, super::sig::TraceD1, 7);
+
+pin!(PTA10, Pta10, PORTA, Porta, 10);
+   alt_fn!(Pta10, super::sig::Pta10, 1);
+   alt_fn!(Pta10, super::sig::Ftm2Ch0, 3);
+   alt_fn!(Pta10, super::sig::Mii0Rxd2, 4);
+   alt_fn!(Pta10, super::sig::Ftm2QdPha, 6);
+   alt_fn!(Pta10, super::sig::TraceD0, 7);
+
+pin!(PTA11, Pta11, PORTA, Porta, 11);
+   alt_fn!(Pta11, super::sig::Pta11, 1);
+   alt_fn!(Pta11, super::sig::Ftm2Ch1, 3);
+   alt_fn!(Pta11, super::sig::Mii0Rxclk, 4);
+   alt_fn!(Pta11, super::sig::I2c2Sda, 5);
+   alt_fn!(Pta11, super::sig::Ftm2QdPhb, 6);
+
+pin!(PTA12, Pta12, PORTA, Porta, 12);
+   alt_fn!(Pta12, super::sig::Cmp2In0, 0);
+   alt_fn!(Pta12, super::sig::Pta12, 1);
+   alt_fn!(Pta12, super::sig::Can0Tx, 2);
+   alt_fn!(Pta12, super::sig::Ftm1Ch0, 3);
+   alt_fn!(Pta12, super::sig::Rmii0Rxd1, 4);
+   alt_fn!(Pta12, super::sig::Mii0Rxd1, 4);
+   alt_fn!(Pta12, super::sig::I2c2Scl, 5);
+   alt_fn!(Pta12, super::sig::I2s0Txd0, 6);
+   alt_fn!(Pta12, super::sig::Ftm1QdPha, 7);
+
+pin!(PTA13, Pta13, PORTA, Porta, 13);
+   alt_fn!(Pta13, super::sig::Cmp2In1, 0);
+   alt_fn!(Pta13, super::sig::Pta13, 1);
+   alt_fn!(Pta13, super::sig::Can0Rx, 2);
+   alt_fn!(Pta13, super::sig::Ftm1Ch1, 3);
+   alt_fn!(Pta13, super::sig::Rmii0Rxd0, 4);
+   alt_fn!(Pta13, super::sig::Mii0Rxd0, 4);
+   alt_fn!(Pta13, super::sig::I2c2Sda, 5);
+   alt_fn!(Pta13, super::sig::I2s0TxFs, 6);
+   alt_fn!(Pta13, super::sig::Ftm1QdPhb, 7);
+
+pin!(PTA14, Pta14, PORTA, Porta, 14);
+   alt_fn!(Pta14, super::sig::Pta14, 1);
+   alt_fn!(Pta14, super::sig::Spi0Pcs0, 2);
+   alt_fn!(Pta14, super::sig::Uart0Tx, 3);
+   alt_fn!(Pta14, super::sig::Rmii0CrsDv, 4);
+   alt_fn!(Pta14, super::sig::Mii0Rxdv, 4);
+   alt_fn!(Pta14, super::sig::I2c2Scl, 5);
+   alt_fn!(Pta14, super::sig::I2s0RxBclk, 6);
+   alt_fn!(Pta14, super::sig::I2s0Txd1, 7);
+
+pin!(PTA15, Pta15, PORTA, Porta, 15);
+   alt_fn!(Pta15, super::sig::Pta15, 1);
+   alt_fn!(Pta15, super::sig::Spi0Sck, 2);
+   alt_fn!(Pta15, super::sig::Uart0Rx, 3);
+   alt_fn!(Pta15, super::sig::Rmii0Txen, 4);
+   alt_fn!(Pta15, super::sig::Mii0Txen, 4);
+   alt_fn!(Pta15, super::sig::I2s0Rxd0, 6);
+
+pin!(PTA16, Pta16, PORTA, Porta, 16);
+   alt_fn!(Pta16, super::sig::Pta16, 1);
+   alt_fn!(Pta16, super::sig::Spi0Sout, 2);
+   alt_fn!(Pta16, super::sig::Uart0CtsB, 3);
+   alt_fn!(Pta16, super::sig::Uart0ColB, 3);
+   alt_fn!(Pta16, super::sig::Rmii0Txd0, 4);
+   alt_fn!(Pta16, super::sig::Mii0Txd0, 4);
+   alt_fn!(Pta16, super::sig::I2s0RxFs, 6);
+   alt_fn!(Pta16, super::sig::I2s0Rxd1, 7);
+
+pin!(PTA17, Pta17, PORTA, Porta, 17);
+   alt_fn!(Pta17, super::sig::Adc1Se17, 0);
+   alt_fn!(Pta17, super::sig::Pta17, 1);
+   alt_fn!(Pta17, super::sig::Spi0Sin, 2);
+   alt_fn!(Pta17, super::sig::Uart0RtsB, 3);
+   alt_fn!(Pta17, super::sig::Rmii0Txd1, 4);
+   alt_fn!(Pta17, super::sig::Mii0Txd1, 4);
+   alt_fn!(Pta17, super::sig::I2s0Mclk, 6);
+
+pin!(PTA18, Pta18, PORTA, Porta, 18);
+   alt_fn!(Pta18, super::sig::Extal0, 0);
+   alt_fn!(Pta18, super::sig::Pta18, 1);
+   alt_fn!(Pta18, super::sig::Ftm0Flt2, 3);
+   alt_fn!(Pta18, super::sig::FtmClkin0, 4);
+
+pin!(PTA19, Pta19, PORTA, Porta, 19);
+   alt_fn!(Pta19, super::sig::Xtal0, 0);
+   alt_fn!(Pta19, super::sig::Pta19, 1);
+   alt_fn!(Pta19, super::sig::Ftm1Flt0, 3);
+   alt_fn!(Pta19, super::sig::FtmClkin1, 4);
+   alt_fn!(Pta19, super::sig::Lptmr0Alt1, 6);
+
+pin!(PTA24, Pta24, PORTA, Porta, 24);
+   alt_fn!(Pta24, super::sig::Pta24, 1);
+   alt_fn!(Pta24, super::sig::Mii0Txd2, 4);
+   alt_fn!(Pta24, super::sig::FbA29, 6);
+
+pin!(PTA25, Pta25, PORTA, Porta, 25);
+   alt_fn!(Pta25, super::sig::Pta25, 1);
+   alt_fn!(Pta25, super::sig::Mii0Txclk, 4);
+   alt_fn!(Pta25, super::sig::FbA28, 6);
+
+pin!(PTA26, Pta26, PORTA, Porta, 26);
+   alt_fn!(Pta26, super::sig::Pta26, 1);
+   alt_fn!(Pta26, super::sig::Mii0Txd3, 4);
+   alt_fn!(Pta26, super::sig::FbA27, 6);
+
+pin!(PTA27, Pta27, PORTA, Porta, 27);
+   alt_fn!(Pta27, super::sig::Pta27, 1);
+   alt_fn!(Pta27, super::sig::Mii0Crs, 4);
+   alt_fn!(Pta27, super::sig::FbA26, 6);
+
+pin!(PTA28, Pta28, PORTA, Porta, 28);
+   alt_fn!(Pta28, super::sig::Pta28, 1);
+   alt_fn!(Pta28, super::sig::Mii0Txer, 4);
+   alt_fn!(Pta28, super::sig::FbA25, 6);
+
+pin!(PTA29, Pta29, PORTA, Porta, 29);
+   alt_fn!(Pta29, super::sig::Pta29, 1);
+   alt_fn!(Pta29, super::sig::Mii0Col, 4);
+   alt_fn!(Pta29, super::sig::FbA24, 6);
+
+pin!(PTB0, Ptb0, PORTB, Portb, 0);
+   alt_fn!(Ptb0, super::sig::Adc0Se8, 0);
+   alt_fn!(Ptb0, super::sig::Adc1Se8, 0);
+   alt_fn!(Ptb0, super::sig::Ptb0, 1);
+   alt_fn!(Ptb0, super::sig::I2c0Scl, 2);
+   alt_fn!(Ptb0, super::sig::Ftm1Ch0, 3);
+   alt_fn!(Ptb0, super::sig::Rmii0Mdio, 4);
+   alt_fn!(Ptb0, super::sig::Mii0Mdio, 4);
+   alt_fn!(Ptb0, super::sig::Ftm1QdPha, 6);
+
+pin!(PTB1, Ptb1, PORTB, Portb, 1);
+   alt_fn!(Ptb1, super::sig::Adc0Se9, 0);
+   alt_fn!(Ptb1, super::sig::Adc1Se9, 0);
+   alt_fn!(Ptb1, super::sig::Ptb1, 1);
+   alt_fn!(Ptb1, super::sig::I2c0Sda, 2);
+   alt_fn!(Ptb1, super::sig::Ftm1Ch1, 3);
+   alt_fn!(Ptb1, super::sig::Rmii0Mdc, 4);
+   alt_fn!(Ptb1, super::sig::Mii0Mdc, 4);
+   alt_fn!(Ptb1, super::sig::Ftm1QdPhb, 6);
+
+pin!(PTB2, Ptb2, PORTB, Portb, 2);
+   alt_fn!(Ptb2, super::sig::Adc0Se12, 0);
+   alt_fn!(Ptb2, super::sig::Ptb2, 1);
+   alt_fn!(Ptb2, super::sig::I2c0Scl, 2);
+   alt_fn!(Ptb2, super::sig::Uart0RtsB, 3);
+   alt_fn!(Ptb2, super::sig::Enet01588Tmr0, 4);
+   alt_fn!(Ptb2, super::sig::Ftm0Flt3, 6);
+
+pin!(PTB3, Ptb3, PORTB, Portb, 3);
+   alt_fn!(Ptb3, super::sig::Adc0Se13, 0);
+   alt_fn!(Ptb3, super::sig::Ptb3, 1);
+   alt_fn!(Ptb3, super::sig::I2c0Sda, 2);
+   alt_fn!(Ptb3, super::sig::Uart0CtsB, 3);
+   alt_fn!(Ptb3, super::sig::Uart0ColB, 3);
+   alt_fn!(Ptb3, super::sig::Enet01588Tmr1, 4);
+   alt_fn!(Ptb3, super::sig::Ftm0Flt0, 6);
+
+pin!(PTB4, Ptb4, PORTB, Portb, 4);
+   alt_fn!(Ptb4, super::sig::Adc1Se10, 0);
+   alt_fn!(Ptb4, super::sig::Ptb4, 1);
+   alt_fn!(Ptb4, super::sig::Enet01588Tmr2, 4);
+   alt_fn!(Ptb4, super::sig::Ftm1Flt0, 6);
+
+pin!(PTB5, Ptb5, PORTB, Portb, 5);
+   alt_fn!(Ptb5, super::sig::Adc1Se11, 0);
+   alt_fn!(Ptb5, super::sig::Ptb5, 1);
+   alt_fn!(Ptb5, super::sig::Enet01588Tmr3, 4);
+   alt_fn!(Ptb5, super::sig::Ftm2Flt0, 6);
+
+pin!(PTB6, Ptb6, PORTB, Portb, 6);
+   alt_fn!(Ptb6, super::sig::Adc1Se12, 0);
+   alt_fn!(Ptb6, super::sig::Ptb6, 1);
+   alt_fn!(Ptb6, super::sig::FbAd23, 5);
+
+pin!(PTB7, Ptb7, PORTB, Portb, 7);
+   alt_fn!(Ptb7, super::sig::Adc1Se13, 0);
+   alt_fn!(Ptb7, super::sig::Ptb7, 1);
+   alt_fn!(Ptb7, super::sig::FbAd22, 5);
+
+pin!(PTB8, Ptb8, PORTB, Portb, 8);
+   alt_fn!(Ptb8, super::sig::Ptb8, 1);
+   alt_fn!(Ptb8, super::sig::Uart3RtsB, 3);
+   alt_fn!(Ptb8, super::sig::FbAd21, 5);
+
+pin!(PTB9, Ptb9, PORTB, Portb, 9);
+   alt_fn!(Ptb9, super::sig::Ptb9, 1);
+   alt_fn!(Ptb9, super::sig::Spi1Pcs1, 2);
+   alt_fn!(Ptb9, super::sig::Uart3CtsB, 3);
+   alt_fn!(Ptb9, super::sig::FbAd20, 5);
+
+pin!(PTB10, Ptb10, PORTB, Portb, 10);
+   alt_fn!(Ptb10, super::sig::Adc1Se14, 0);
+   alt_fn!(Ptb10, super::sig::Ptb10, 1);
+   alt_fn!(Ptb10, super::sig::Spi1Pcs0, 2);
+   alt_fn!(Ptb10, super::sig::Uart3Rx, 3);
+   alt_fn!(Ptb10, super::sig::FbAd19, 5);
+   alt_fn!(Ptb10, super::sig::Ftm0Flt1, 6);
+
+pin!(PTB11, Ptb11, PORTB, Portb, 11);
+   alt_fn!(Ptb11, super::sig::Adc1Se15, 0);
+   alt_fn!(Ptb11, super::sig::Ptb11, 1);
+   alt_fn!(Ptb11, super::sig::Spi1Sck, 2);
+   alt_fn!(Ptb11, super::sig::Uart3Tx, 3);
+   alt_fn!(Ptb11, super::sig::FbAd18, 5);
+   alt_fn!(Ptb11, super::sig::Ftm0Flt2, 6);
+
+pin!(PTB12, Ptb12, PORTB, Portb, 12);
+   alt_fn!(Ptb12, super::sig::Ptb12, 1);
+   alt_fn!(Ptb12, super::sig::Uart3RtsB, 2);
+   alt_fn!(Ptb12, super::sig::Ftm1Ch0, 3);
+   alt_fn!(Ptb12, super::sig::Ftm0Ch4, 4);
+   alt_fn!(Ptb12, super::sig::Ftm1QdPha, 6);
+
+pin!(PTB13, Ptb13, PORTB, Portb, 13);
+   alt_fn!(Ptb13, super::sig::Ptb13, 1);
+   alt_fn!(Ptb13, super::sig::Uart3CtsB, 2);
+   alt_fn!(Ptb13, super::sig::Ftm1Ch1, 3);
+   alt_fn!(Ptb13, super::sig::Ftm0Ch5, 4);
+   alt_fn!(Ptb13, super::sig::Ftm1QdPhb, 6);
+
+pin!(PTB16, Ptb16, PORTB, Portb, 16);
+   alt_fn!(Ptb16, super::sig::Ptb16, 1);
+   alt_fn!(Ptb16, super::sig::Spi1Sout, 2);
+   alt_fn!(Ptb16, super::sig::Uart0Rx, 3);
+   alt_fn!(Ptb16, super::sig::FtmClkin0, 4);
+   alt_fn!(Ptb16, super::sig::FbAd17, 5);
+   alt_fn!(Ptb16, super::sig::EwmIn, 6);
+
+pin!(PTB17, Ptb17, PORTB, Portb, 17);
+   alt_fn!(Ptb17, super::sig::Ptb17, 1);
+   alt_fn!(Ptb17, super::sig::Spi1Sin, 2);
+   alt_fn!(Ptb17, super::sig::Uart0Tx, 3);
+   alt_fn!(Ptb17, super::sig::FtmClkin1, 4);
+   alt_fn!(Ptb17, super::sig::FbAd16, 5);
+   alt_fn!(Ptb17, super::sig::EwmOutB, 6);
+
+pin!(PTB18, Ptb18, PORTB, Portb, 18);
+   alt_fn!(Ptb18, super::sig::Ptb18, 1);
+   alt_fn!(Ptb18, super::sig::Can0Tx, 2);
+   alt_fn!(Ptb18, super::sig::Ftm2Ch0, 3);
+   alt_fn!(Ptb18, super::sig::I2s0TxBclk, 4);
+   alt_fn!(Ptb18, super::sig::FbAd15, 5);
+   alt_fn!(Ptb18, super::sig::Ftm2QdPha, 6);
+
+pin!(PTB19, Ptb19, PORTB, Portb, 19);
+   alt_fn!(Ptb19, super::sig::Ptb19, 1);
+   alt_fn!(Ptb19, super::sig::Can0Rx, 2);
+   alt_fn!(Ptb19, super::sig::Ftm2Ch1, 3);
+   alt_fn!(Ptb19, super::sig::I2s0TxFs, 4);
+   alt_fn!(Ptb19, super::sig::FbOeB, 5);
+   alt_fn!(Ptb19, super::sig::Ftm2QdPhb, 6);
+
+pin!(PTB20, Ptb20, PORTB, Portb, 20);
+   alt_fn!(Ptb20, super::sig::Ptb20, 1);
+   alt_fn!(Ptb20, super::sig::Spi2Pcs0, 2);
+   alt_fn!(Ptb20, super::sig::FbAd31, 5);
+   alt_fn!(Ptb20, super::sig::Cmp0Out, 6);
+
+pin!(PTB21, Ptb21, PORTB, Portb, 21);
+   alt_fn!(Ptb21, super::sig::Ptb21, 1);
+   alt_fn!(Ptb21, super::sig::Spi2Sck, 2);
+   alt_fn!(Ptb21, super::sig::FbAd30, 5);
+   alt_fn!(Ptb21, super::sig::Cmp1Out, 6);
+
+pin!(PTB22, Ptb22, PORTB, Portb, 22);
+   alt_fn!(Ptb22, super::sig::Ptb22, 1);
+   alt_fn!(Ptb22, super::sig::Spi2Sout, 2);
+   alt_fn!(Ptb22, super::sig::FbAd29, 5);
+   alt_fn!(Ptb22, super::sig::Cmp2Out, 6);
+
+pin!(PTB23, Ptb23, PORTB, Portb, 23);
+   alt_fn!(Ptb23, super::sig::Ptb23, 1);
+   alt_fn!(Ptb23, super::sig::Spi2Sin, 2);
+   alt_fn!(Ptb23, super::sig::Spi0Pcs5, 3);
+   alt_fn!(Ptb23, super::sig::FbAd28, 5);
+
+pin!(PTC0, Ptc0, PORTC, Portc, 0);
+   alt_fn!(Ptc0, super::sig::Adc0Se14, 0);
+   alt_fn!(Ptc0, super::sig::Ptc0, 1);
+   alt_fn!(Ptc0, super::sig::Spi0Pcs4, 2);
+   alt_fn!(Ptc0, super::sig::Pdb0Extrg, 3);
+   alt_fn!(Ptc0, super::sig::UsbSofOut, 4);
+   alt_fn!(Ptc0, super::sig::FbAd14, 5);
+   alt_fn!(Ptc0, super::sig::I2s0Txd1, 6);
+
+pin!(PTC1, Ptc1, PORTC, Portc, 1);
+   alt_fn!(Ptc1, super::sig::Adc0Se15, 0);
+   alt_fn!(Ptc1, super::sig::Ptc1, 1);
+   alt_fn!(Ptc1, super::sig::Spi0Pcs3, 2);
+   alt_fn!(Ptc1, super::sig::Uart1RtsB, 3);
+   alt_fn!(Ptc1, super::sig::Ftm0Ch0, 4);
+   alt_fn!(Ptc1, super::sig::FbAd13, 5);
+   alt_fn!(Ptc1, super::sig::I2s0Txd0, 6);
+
+pin!(PTC2, Ptc2, PORTC, Portc, 2);
+   alt_fn!(Ptc2, super::sig::Adc0Se4b, 0);
+   alt_fn!(Ptc2, super::sig::Cmp1In0, 0);
+   alt_fn!(Ptc2, super::sig::Ptc2, 1);
+   alt_fn!(Ptc2, super::sig::Spi0Pcs2, 2);
+   alt_fn!(Ptc2, super::sig::Uart1CtsB, 3);
+   alt_fn!(Ptc2, super::sig::Ftm0Ch1, 4);
+   alt_fn!(Ptc2, super::sig::FbAd12, 5);
+   alt_fn!(Ptc2, super::sig::I2s0TxFs, 6);
+
+pin!(PTC3, Ptc3, PORTC, Portc, 3);
+   alt_fn!(Ptc3, super::sig::Cmp1In1, 0);
+   alt_fn!(Ptc3, super::sig::Ptc3, 1);
+   alt_fn!(Ptc3, super::sig::Spi0Pcs1, 2);
+   alt_fn!(Ptc3, super::sig::Uart1Rx, 3);
+   alt_fn!(Ptc3, super::sig::Ftm0Ch2, 4);
+   alt_fn!(Ptc3, super::sig::Clkout, 5);
+   alt_fn!(Ptc3, super::sig::I2s0TxBclk, 6);
+
+pin!(PTC4, Ptc4, PORTC, Portc, 4);
+   alt_fn!(Ptc4, super::sig::Ptc4, 1);
+   alt_fn!(Ptc4, super::sig::Spi0Pcs0, 2);
+   alt_fn!(Ptc4, super::sig::Uart1Tx, 3);
+   alt_fn!(Ptc4, super::sig::Ftm0Ch3, 4);
+   alt_fn!(Ptc4, super::sig::FbAd11, 5);
+   alt_fn!(Ptc4, super::sig::Cmp1Out, 6);
+
+pin!(PTC5, Ptc5, PORTC, Portc, 5);
+   alt_fn!(Ptc5, super::sig::Ptc5, 1);
+   alt_fn!(Ptc5, super::sig::Spi0Sck, 2);
+   alt_fn!(Ptc5, super::sig::Lptmr0Alt2, 3);
+   alt_fn!(Ptc5, super::sig::I2s0Rxd0, 4);
+   alt_fn!(Ptc5, super::sig::FbAd10, 5);
+   alt_fn!(Ptc5, super::sig::Cmp0Out, 6);
+   alt_fn!(Ptc5, super::sig::Ftm0Ch2, 7);
+
+pin!(PTC6, Ptc6, PORTC, Portc, 6);
+   alt_fn!(Ptc6, super::sig::Cmp0In0, 0);
+   alt_fn!(Ptc6, super::sig::Ptc6, 1);
+   alt_fn!(Ptc6, super::sig::Spi0Sout, 2);
+   alt_fn!(Ptc6, super::sig::Pdb0Extrg, 3);
+   alt_fn!(Ptc6, super::sig::I2s0RxBclk, 4);
+   alt_fn!(Ptc6, super::sig::FbAd9, 5);
+   alt_fn!(Ptc6, super::sig::I2s0Mclk, 6);
+
+pin!(PTC7, Ptc7, PORTC, Portc, 7);
+   alt_fn!(Ptc7, super::sig::Cmp0In1, 0);
+   alt_fn!(Ptc7, super::sig::Ptc7, 1);
+   alt_fn!(Ptc7, super::sig::Spi0Sin, 2);
+   alt_fn!(Ptc7, super::sig::UsbSofOut, 3);
+   alt_fn!(Ptc7, super::sig::I2s0RxFs, 4);
+   alt_fn!(Ptc7, super::sig::FbAd8, 5);
+
+pin!(PTC8, Ptc8, PORTC, Portc, 8);
+   alt_fn!(Ptc8, super::sig::Adc1Se4b, 0);
+   alt_fn!(Ptc8, super::sig::Cmp0In2, 0);
+   alt_fn!(Ptc8, super::sig::Ptc8, 1);
+   alt_fn!(Ptc8, super::sig::Ftm3Ch4, 3);
+   alt_fn!(Ptc8, super::sig::I2s0Mclk, 4);
+   alt_fn!(Ptc8, super::sig::FbAd7, 5);
+
+pin!(PTC9, Ptc9, PORTC, Portc, 9);
+   alt_fn!(Ptc9, super::sig::Adc1Se5b, 0);
+   alt_fn!(Ptc9, super::sig::Cmp0In3, 0);
+   alt_fn!(Ptc9, super::sig::Ptc9, 1);
+   alt_fn!(Ptc9, super::sig::Ftm3Ch5, 3);
+   alt_fn!(Ptc9, super::sig::I2s0RxBclk, 4);
+   alt_fn!(Ptc9, super::sig::FbAd6, 5);
+   alt_fn!(Ptc9, super::sig::Ftm2Flt0, 6);
+
+pin!(PTC10, Ptc10, PORTC, Portc, 10);
+   alt_fn!(Ptc10, super::sig::Adc1Se6b, 0);
+   alt_fn!(Ptc10, super::sig::Ptc10, 1);
+   alt_fn!(Ptc10, super::sig::I2c1Scl, 2);
+   alt_fn!(Ptc10, super::sig::Ftm3Ch6, 3);
+   alt_fn!(Ptc10, super::sig::I2s0RxFs, 4);
+   alt_fn!(Ptc10, super::sig::FbAd5, 5);
+
+pin!(PTC11, Ptc11, PORTC, Portc, 11);
+   alt_fn!(Ptc11, super::sig::Adc1Se7b, 0);
+   alt_fn!(Ptc11, super::sig::Ptc11, 1);
+   alt_fn!(Ptc11, super::sig::I2c1Sda, 2);
+   alt_fn!(Ptc11, super::sig::Ftm3Ch7, 3);
+   alt_fn!(Ptc11, super::sig::I2s0Rxd1, 4);
+   alt_fn!(Ptc11, super::sig::FbRwB, 5);
+
+pin!(PTC12, Ptc12, PORTC, Portc, 12);
+   alt_fn!(Ptc12, super::sig::Ptc12, 1);
+   alt_fn!(Ptc12, super::sig::Uart4RtsB, 3);
+   alt_fn!(Ptc12, super::sig::FbAd27, 5);
+   alt_fn!(Ptc12, super::sig::Ftm3Flt0, 6);
+
+pin!(PTC13, Ptc13, PORTC, Portc, 13);
+   alt_fn!(Ptc13, super::sig::Ptc13, 1);
+   alt_fn!(Ptc13, super::sig::Uart4CtsB, 3);
+   alt_fn!(Ptc13, super::sig::FbAd26, 5);
+
+pin!(PTC14, Ptc14, PORTC, Portc, 14);
+   alt_fn!(Ptc14, super::sig::Ptc14, 1);
+   alt_fn!(Ptc14, super::sig::Uart4Rx, 3);
+   alt_fn!(Ptc14, super::sig::FbAd25, 5);
+
+pin!(PTC15, Ptc15, PORTC, Portc, 15);
+   alt_fn!(Ptc15, super::sig::Ptc15, 1);
+   alt_fn!(Ptc15, super::sig::Uart4Tx, 3);
+   alt_fn!(Ptc15, super::sig::FbAd24, 5);
+
+pin!(PTC16, Ptc16, PORTC, Portc, 16);
+   alt_fn!(Ptc16, super::sig::Ptc16, 1);
+   alt_fn!(Ptc16, super::sig::Uart3Rx, 3);
+   alt_fn!(Ptc16, super::sig::Enet01588Tmr0, 4);
+   alt_fn!(Ptc16, super::sig::FbCs5B, 5);
+   alt_fn!(Ptc16, super::sig::FbTsiz1, 5);
+   alt_fn!(Ptc16, super::sig::FbBe2316Bls158B, 5);
+
+pin!(PTC17, Ptc17, PORTC, Portc, 17);
+   alt_fn!(Ptc17, super::sig::Ptc17, 1);
+   alt_fn!(Ptc17, super::sig::Uart3Tx, 3);
+   alt_fn!(Ptc17, super::sig::Enet01588Tmr1, 4);
+   alt_fn!(Ptc17, super::sig::FbCs4B, 5);
+   alt_fn!(Ptc17, super::sig::FbTsiz0, 5);
+   alt_fn!(Ptc17, super::sig::FbBe3124Bls70B, 5);
+
+pin!(PTC18, Ptc18, PORTC, Portc, 18);
+   alt_fn!(Ptc18, super::sig::Ptc18, 1);
+   alt_fn!(Ptc18, super::sig::Uart3RtsB, 3);
+   alt_fn!(Ptc18, super::sig::Enet01588Tmr2, 4);
+   alt_fn!(Ptc18, super::sig::FbTbstB, 5);
+   alt_fn!(Ptc18, super::sig::FbCs2B, 5);
+   alt_fn!(Ptc18, super::sig::FbBe158Bls2316B, 5);
+
+pin!(PTC19, Ptc19, PORTC, Portc, 19);
+   alt_fn!(Ptc19, super::sig::Ptc19, 1);
+   alt_fn!(Ptc19, super::sig::Uart3CtsB, 3);
+   alt_fn!(Ptc19, super::sig::Enet01588Tmr3, 4);
+   alt_fn!(Ptc19, super::sig::FbCs3B, 5);
+   alt_fn!(Ptc19, super::sig::FbBe70Bls3124B, 5);
+   alt_fn!(Ptc19, super::sig::FbTaB, 6);
+
+pin!(PTD0, Ptd0, PORTD, Portd, 0);
+   alt_fn!(Ptd0, super::sig::Ptd0, 1);
+   alt_fn!(Ptd0, super::sig::Spi0Pcs0, 2);
+   alt_fn!(Ptd0, super::sig::Uart2RtsB, 3);
+   alt_fn!(Ptd0, super::sig::Ftm3Ch0, 4);
+   alt_fn!(Ptd0, super::sig::FbAle, 5);
+   alt_fn!(Ptd0, super::sig::FbCs1B, 5);
+   alt_fn!(Ptd0, super::sig::FbTsB, 5);
+
+pin!(PTD1, Ptd1, PORTD, Portd, 1);
+   alt_fn!(Ptd1, super::sig::Adc0Se5b, 0);
+   alt_fn!(Ptd1, super::sig::Ptd1, 1);
+   alt_fn!(Ptd1, super::sig::Spi0Sck, 2);
+   alt_fn!(Ptd1, super::sig::Uart2CtsB, 3);
+   alt_fn!(Ptd1, super::sig::Ftm3Ch1, 4);
+   alt_fn!(Ptd1, super::sig::FbCs0B, 5);
+
+pin!(PTD2, Ptd2, PORTD, Portd, 2);
+   alt_fn!(Ptd2, super::sig::Ptd2, 1);
+   alt_fn!(Ptd2, super::sig::Spi0Sout, 2);
+   alt_fn!(Ptd2, super::sig::Uart2Rx, 3);
+   alt_fn!(Ptd2, super::sig::Ftm3Ch2, 4);
+   alt_fn!(Ptd2, super::sig::FbAd4, 5);
+   alt_fn!(Ptd2, super::sig::I2c0Scl, 7);
+
+pin!(PTD3, Ptd3, PORTD, Portd, 3);
+   alt_fn!(Ptd3, super::sig::Ptd3, 1);
+   alt_fn!(Ptd3, super::sig::Spi0Sin, 2);
+   alt_fn!(Ptd3, super::sig::Uart2Tx, 3);
+   alt_fn!(Ptd3, super::sig::Ftm3Ch3, 4);
+   alt_fn!(Ptd3, super::sig::FbAd3, 5);
+   alt_fn!(Ptd3, super::sig::I2c0Sda, 7);
+
+pin!(PTD4, Ptd4, PORTD, Portd, 4);
+   alt_fn!(Ptd4, super::sig::Ptd4, 1);
+   alt_fn!(Ptd4, super::sig::Spi0Pcs1, 2);
+   alt_fn!(Ptd4, super::sig::Uart0RtsB, 3);
+   alt_fn!(Ptd4, super::sig::Ftm0Ch4, 4);
+   alt_fn!(Ptd4, super::sig::FbAd2, 5);
+   alt_fn!(Ptd4, super::sig::EwmIn, 6);
+   alt_fn!(Ptd4, super::sig::Spi1Pcs0, 7);
+
+pin!(PTD5, Ptd5, PORTD, Portd, 5);
+   alt_fn!(Ptd5, super::sig::Adc0Se6b, 0);
+   alt_fn!(Ptd5, super::sig::Ptd5, 1);
+   alt_fn!(Ptd5, super::sig::Spi0Pcs2, 2);
+   alt_fn!(Ptd5, super::sig::Uart0CtsB, 3);
+   alt_fn!(Ptd5, super::sig::Uart0ColB, 3);
+   alt_fn!(Ptd5, super::sig::Ftm0Ch5, 4);
+   alt_fn!(Ptd5, super::sig::FbAd1, 5);
+   alt_fn!(Ptd5, super::sig::EwmOutB, 6);
+   alt_fn!(Ptd5, super::sig::Spi1Sck, 7);
+
+pin!(PTD6, Ptd6, PORTD, Portd, 6);
+   alt_fn!(Ptd6, super::sig::Adc0Se7b, 0);
+   alt_fn!(Ptd6, super::sig::Ptd6, 1);
+   alt_fn!(Ptd6, super::sig::Spi0Pcs3, 2);
+   alt_fn!(Ptd6, super::sig::Uart0Rx, 3);
+   alt_fn!(Ptd6, super::sig::Ftm0Ch6, 4);
+   alt_fn!(Ptd6, super::sig::FbAd0, 5);
+   alt_fn!(Ptd6, super::sig::Ftm0Flt0, 6);
+   alt_fn!(Ptd6, super::sig::Spi1Sout, 7);
+
+pin!(PTD7, Ptd7, PORTD, Portd, 7);
+   alt_fn!(Ptd7, super::sig::Ptd7, 1);
+   alt_fn!(Ptd7, super::sig::CmtIro, 2);
+   alt_fn!(Ptd7, super::sig::Uart0Tx, 3);
+   alt_fn!(Ptd7, super::sig::Ftm0Ch7, 4);
+   alt_fn!(Ptd7, super::sig::Ftm0Flt1, 6);
+   alt_fn!(Ptd7, super::sig::Spi1Sin, 7);
+
+pin!(PTD8, Ptd8, PORTD, Portd, 8);
+   alt_fn!(Ptd8, super::sig::Ptd8, 1);
+   alt_fn!(Ptd8, super::sig::I2c0Scl, 2);
+   alt_fn!(Ptd8, super::sig::Uart5Rx, 3);
+   alt_fn!(Ptd8, super::sig::FbA16, 6);
+
+pin!(PTD9, Ptd9, PORTD, Portd, 9);
+   alt_fn!(Ptd9, super::sig::Ptd9, 1);
+   alt_fn!(Ptd9, super::sig::I2c0Sda, 2);
+   alt_fn!(Ptd9, super::sig::Uart5Tx, 3);
+   alt_fn!(Ptd9, super::sig::FbA17, 6);
+
+pin!(PTD10, Ptd10, PORTD, Portd, 10);
+   alt_fn!(Ptd10, super::sig::Ptd10, 1);
+   alt_fn!(Ptd10, super::sig::Uart5RtsB, 3);
+   alt_fn!(Ptd10, super::sig::FbA18, 6);
+
+pin!(PTD11, Ptd11, PORTD, Portd, 11);
+   alt_fn!(Ptd11, super::sig::Ptd11, 1);
+   alt_fn!(Ptd11, super::sig::Spi2Pcs0, 2);
+   alt_fn!(Ptd11, super::sig::Uart5CtsB, 3);
+   alt_fn!(Ptd11, super::sig::Sdhc0Clkin, 4);
+   alt_fn!(Ptd11, super::sig::FbA19, 6);
+
+pin!(PTD12, Ptd12, PORTD, Portd, 12);
+   alt_fn!(Ptd12, super::sig::Ptd12, 1);
+   alt_fn!(Ptd12, super::sig::Spi2Sck, 2);
+   alt_fn!(Ptd12, super::sig::Ftm3Flt0, 3);
+   alt_fn!(Ptd12, super::sig::Sdhc0D4, 4);
+   alt_fn!(Ptd12, super::sig::FbA20, 6);
+
+pin!(PTD13, Ptd13, PORTD, Portd, 13);
+   alt_fn!(Ptd13, super::sig::Ptd13, 1);
+   alt_fn!(Ptd13, super::sig::Spi2Sout, 2);
+   alt_fn!(Ptd13, super::sig::Sdhc0D5, 4);
+   alt_fn!(Ptd13, super::sig::FbA21, 6);
+
+pin!(PTD14, Ptd14, PORTD, Portd, 14);
+   alt_fn!(Ptd14, super::sig::Ptd14, 1);
+   alt_fn!(Ptd14, super::sig::Spi2Sin, 2);
+   alt_fn!(Ptd14, super::sig::Sdhc0D6, 4);
+   alt_fn!(Ptd14, super::sig::FbA22, 6);
+
+pin!(PTD15, Ptd15, PORTD, Portd, 15);
+   alt_fn!(Ptd15, super::sig::Ptd15, 1);
+   alt_fn!(Ptd15, super::sig::Spi2Pcs1, 2);
+   alt_fn!(Ptd15, super::sig::Sdhc0D7, 4);
+   alt_fn!(Ptd15, super::sig::FbA23, 6);
+
+pin!(PTE0, Pte0, PORTE, Porte, 0);
+   alt_fn!(Pte0, super::sig::Adc1Se4a, 0);
+   alt_fn!(Pte0, super::sig::Pte0, 1);
+   alt_fn!(Pte0, super::sig::Spi1Pcs1, 2);
+   alt_fn!(Pte0, super::sig::Uart1Tx, 3);
+   alt_fn!(Pte0, super::sig::Sdhc0D1, 4);
+   alt_fn!(Pte0, super::sig::TraceClkout, 5);
+   alt_fn!(Pte0, super::sig::I2c1Sda, 6);
+   alt_fn!(Pte0, super::sig::RtcClkout, 7);
+
+pin!(PTE1, Pte1, PORTE, Porte, 1);
+   alt_fn!(Pte1, super::sig::Adc1Se5a, 0);
+   alt_fn!(Pte1, super::sig::Pte1, 1);
+   alt_fn!(Pte1, super::sig::Spi1Sout, 2);
+   alt_fn!(Pte1, super::sig::Uart1Rx, 3);
+   alt_fn!(Pte1, super::sig::Sdhc0D0, 4);
+   alt_fn!(Pte1, super::sig::TraceD3, 5);
+   alt_fn!(Pte1, super::sig::I2c1Scl, 6);
+   alt_fn!(Pte1, super::sig::Spi1Sin, 7);
+
+pin!(PTE2, Pte2, PORTE, Porte, 2);
+   alt_fn!(Pte2, super::sig::Adc0Dp2, 0);
+   alt_fn!(Pte2, super::sig::Adc1Se6a, 0);
+   alt_fn!(Pte2, super::sig::Pte2, 1);
+   alt_fn!(Pte2, super::sig::Spi1Sck, 2);
+   alt_fn!(Pte2, super::sig::Uart1CtsB, 3);
+   alt_fn!(Pte2, super::sig::Sdhc0Dclk, 4);
+   alt_fn!(Pte2, super::sig::TraceD2, 5);
+
+pin!(PTE3, Pte3, PORTE, Porte, 3);
+   alt_fn!(Pte3, super::sig::Adc0Dm2, 0);
+   alt_fn!(Pte3, super::sig::Adc1Se7a, 0);
+   alt_fn!(Pte3, super::sig::Pte3, 1);
+   alt_fn!(Pte3, super::sig::Spi1Sin, 2);
+   alt_fn!(Pte3, super::sig::Uart1RtsB, 3);
+   alt_fn!(Pte3, super::sig::Sdhc0Cmd, 4);
+   alt_fn!(Pte3, super::sig::TraceD1, 5);
+   alt_fn!(Pte3, super::sig::Spi1Sout, 7);
+
+pin!(PTE4, Pte4, PORTE, Porte, 4);
+   alt_fn!(Pte4, super::sig::Pte4, 1);
+   alt_fn!(Pte4, super::sig::Spi1Pcs0, 2);
+   alt_fn!(Pte4, super::sig::Uart3Tx, 3);
+   alt_fn!(Pte4, super::sig::Sdhc0D3, 4);
+   alt_fn!(Pte4, super::sig::TraceD0, 5);
+
+pin!(PTE5, Pte5, PORTE, Porte, 5);
+   alt_fn!(Pte5, super::sig::Pte5, 1);
+   alt_fn!(Pte5, super::sig::Spi1Pcs2, 2);
+   alt_fn!(Pte5, super::sig::Uart3Rx, 3);
+   alt_fn!(Pte5, super::sig::Sdhc0D2, 4);
+   alt_fn!(Pte5, super::sig::Ftm3Ch0, 6);
+
+pin!(PTE6, Pte6, PORTE, Porte, 6);
+   alt_fn!(Pte6, super::sig::Pte6, 1);
+   alt_fn!(Pte6, super::sig::Spi1Pcs3, 2);
+   alt_fn!(Pte6, super::sig::Uart3CtsB, 3);
+   alt_fn!(Pte6, super::sig::I2s0Mclk, 4);
+   alt_fn!(Pte6, super::sig::Ftm3Ch1, 6);
+   alt_fn!(Pte6, super::sig::UsbSofOut, 7);
+
+pin!(PTE7, Pte7, PORTE, Porte, 7);
+   alt_fn!(Pte7, super::sig::Pte7, 1);
+   alt_fn!(Pte7, super::sig::Uart3RtsB, 3);
+   alt_fn!(Pte7, super::sig::I2s0Rxd0, 4);
+   alt_fn!(Pte7, super::sig::Ftm3Ch2, 6);
+
+pin!(PTE8, Pte8, PORTE, Porte, 8);
+   alt_fn!(Pte8, super::sig::Pte8, 1);
+   alt_fn!(Pte8, super::sig::I2s0Rxd1, 2);
+   alt_fn!(Pte8, super::sig::Uart5Tx, 3);
+   alt_fn!(Pte8, super::sig::I2s0RxFs, 4);
+   alt_fn!(Pte8, super::sig::Ftm3Ch3, 6);
+
+pin!(PTE9, Pte9, PORTE, Porte, 9);
+   alt_fn!(Pte9, super::sig::Pte9, 1);
+   alt_fn!(Pte9, super::sig::I2s0Txd1, 2);
+   alt_fn!(Pte9, super::sig::Uart5Rx, 3);
+   alt_fn!(Pte9, super::sig::I2s0RxBclk, 4);
+   alt_fn!(Pte9, super::sig::Ftm3Ch4, 6);
+
+pin!(PTE10, Pte10, PORTE, Porte, 10);
+   alt_fn!(Pte10, super::sig::Pte10, 1);
+   alt_fn!(Pte10, super::sig::Uart5CtsB, 3);
+   alt_fn!(Pte10, super::sig::I2s0Txd0, 4);
+   alt_fn!(Pte10, super::sig::Ftm3Ch5, 6);
+
+pin!(PTE11, Pte11, PORTE, Porte, 11);
+   alt_fn!(Pte11, super::sig::Pte11, 1);
+   alt_fn!(Pte11, super::sig::Uart5RtsB, 3);
+   alt_fn!(Pte11, super::sig::I2s0TxFs, 4);
+   alt_fn!(Pte11, super::sig::Ftm3Ch6, 6);
+
+pin!(PTE12, Pte12, PORTE, Porte, 12);
+   alt_fn!(Pte12, super::sig::Pte12, 1);
+   alt_fn!(Pte12, super::sig::I2s0TxBclk, 4);
+   alt_fn!(Pte12, super::sig::Ftm3Ch7, 6);
+
+pin!(PTE24, Pte24, PORTE, Porte, 24);
+   alt_fn!(Pte24, super::sig::Adc0Se17, 0);
+   alt_fn!(Pte24, super::sig::Pte24, 1);
+   alt_fn!(Pte24, super::sig::Uart4Tx, 3);
+   alt_fn!(Pte24, super::sig::I2c0Scl, 5);
+   alt_fn!(Pte24, super::sig::EwmOutB, 6);
+
+pin!(PTE25, Pte25, PORTE, Porte, 25);
+   alt_fn!(Pte25, super::sig::Adc0Se18, 0);
+   alt_fn!(Pte25, super::sig::Pte25, 1);
+   alt_fn!(Pte25, super::sig::Uart4Rx, 3);
+   alt_fn!(Pte25, super::sig::I2c0Sda, 5);
+   alt_fn!(Pte25, super::sig::EwmIn, 6);
+
+pin!(PTE26, Pte26, PORTE, Porte, 26);
+   alt_fn!(Pte26, super::sig::Pte26, 1);
+   alt_fn!(Pte26, super::sig::Enet1588Clkin, 2);
+   alt_fn!(Pte26, super::sig::Uart4CtsB, 3);
+   alt_fn!(Pte26, super::sig::RtcClkout, 6);
+   alt_fn!(Pte26, super::sig::UsbClkin, 7);
+
+pin!(PTE27, Pte27, PORTE, Porte, 27);
+   alt_fn!(Pte27, super::sig::Pte27, 1);
+   alt_fn!(Pte27, super::sig::Uart4RtsB, 3);
+
+pin!(PTE28, Pte28, PORTE, Porte, 28);
+   alt_fn!(Pte28, super::sig::Pte28, 1);
 

@@ -1,37 +1,13 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::uart::*;
 
-pub const UART0: Uart0 = Periph(0x4006a000, Uart0Id {});
-pub const UART1: Uart1 = Periph(0x4006b000, Uart1Id {});
-pub const UART2: Uart2 = Periph(0x4006c000, Uart2Id {});
-pub const UART3: Uart3 = Periph(0x4006d000, Uart3Id {});
-pub const UART4: Uart4 = Periph(0x400ea000, Uart4Id {});
-pub const UART5: Uart5 = Periph(0x400eb000, Uart5Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart0Id {}
-pub type Uart0 = Periph<Uart0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart1Id {}
-pub type Uart1 = Periph<Uart1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart2Id {}
-pub type Uart2 = Periph<Uart2Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart3Id {}
-pub type Uart3 = Periph<Uart3Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart4Id {}
-pub type Uart4 = Periph<Uart4Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart5Id {}
-pub type Uart5 = Periph<Uart5Id>;
+periph!(UartPeriph, UART0, Uart0, 0x4006a000);
+periph!(UartPeriph, UART1, Uart1, 0x4006b000);
+periph!(UartPeriph, UART2, Uart2, 0x4006c000);
+periph!(UartPeriph, UART3, Uart3, 0x4006d000);
+periph!(UartPeriph, UART4, Uart4, 0x400ea000);
+periph!(UartPeriph, UART5, Uart5, 0x400eb000);
 
 impl super::sig::Signal<super::sig::Uart0Tx> for Uart0 {}
 impl super::sig::SignalTx<super::sig::Uart0Tx> for Uart0 {}

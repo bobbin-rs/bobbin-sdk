@@ -1,27 +1,11 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::ftm::*;
 
-pub const FTM0: Ftm0 = Periph(0x40038000, Ftm0Id {});
-pub const FTM1: Ftm1 = Periph(0x40039000, Ftm1Id {});
-pub const FTM2: Ftm2 = Periph(0x4003a000, Ftm2Id {});
-pub const FTM3: Ftm3 = Periph(0x40026000, Ftm3Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Ftm0Id {}
-pub type Ftm0 = Periph<Ftm0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Ftm1Id {}
-pub type Ftm1 = Periph<Ftm1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Ftm2Id {}
-pub type Ftm2 = Periph<Ftm2Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Ftm3Id {}
-pub type Ftm3 = Periph<Ftm3Id>;
+periph!(FtmPeriph, FTM0, Ftm0, 0x40038000);
+periph!(FtmPeriph, FTM1, Ftm1, 0x40039000);
+periph!(FtmPeriph, FTM2, Ftm2, 0x4003a000);
+periph!(FtmPeriph, FTM3, Ftm3, 0x40026000);
 
 impl super::sig::Signal<super::sig::Ftm0Ch0> for Ftm0Ch0 {}
 impl super::sig::SignalFtm<super::sig::Ftm0Ch0> for Ftm0Ch0 {}
@@ -92,195 +76,35 @@ impl super::sig::Signal<super::sig::Ftm3Ch7> for Ftm3Ch7 {}
 impl super::sig::SignalFtm<super::sig::Ftm3Ch7> for Ftm3Ch7 {}
 
 
-pub const FTM0_CH0: Channel<Ftm0Ch0Id, Ftm0Id> = Channel { periph: FTM0, index: 0, id: Ftm0Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch0Id {}
-pub type Ftm0Ch0 = Channel<Ftm0Ch0Id, Ftm0Id>;
-
-pub const FTM0_CH1: Channel<Ftm0Ch1Id, Ftm0Id> = Channel { periph: FTM0, index: 1, id: Ftm0Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch1Id {}
-pub type Ftm0Ch1 = Channel<Ftm0Ch1Id, Ftm0Id>;
-
-pub const FTM0_CH2: Channel<Ftm0Ch2Id, Ftm0Id> = Channel { periph: FTM0, index: 2, id: Ftm0Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch2Id {}
-pub type Ftm0Ch2 = Channel<Ftm0Ch2Id, Ftm0Id>;
-
-pub const FTM0_CH3: Channel<Ftm0Ch3Id, Ftm0Id> = Channel { periph: FTM0, index: 3, id: Ftm0Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch3Id {}
-pub type Ftm0Ch3 = Channel<Ftm0Ch3Id, Ftm0Id>;
-
-pub const FTM0_CH4: Channel<Ftm0Ch4Id, Ftm0Id> = Channel { periph: FTM0, index: 4, id: Ftm0Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch4Id {}
-pub type Ftm0Ch4 = Channel<Ftm0Ch4Id, Ftm0Id>;
-
-pub const FTM0_CH5: Channel<Ftm0Ch5Id, Ftm0Id> = Channel { periph: FTM0, index: 5, id: Ftm0Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch5Id {}
-pub type Ftm0Ch5 = Channel<Ftm0Ch5Id, Ftm0Id>;
-
-pub const FTM0_CH6: Channel<Ftm0Ch6Id, Ftm0Id> = Channel { periph: FTM0, index: 6, id: Ftm0Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch6Id {}
-pub type Ftm0Ch6 = Channel<Ftm0Ch6Id, Ftm0Id>;
-
-pub const FTM0_CH7: Channel<Ftm0Ch7Id, Ftm0Id> = Channel { periph: FTM0, index: 7, id: Ftm0Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm0Ch7Id {}
-pub type Ftm0Ch7 = Channel<Ftm0Ch7Id, Ftm0Id>;
-
-pub const FTM1_CH0: Channel<Ftm1Ch0Id, Ftm1Id> = Channel { periph: FTM1, index: 0, id: Ftm1Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch0Id {}
-pub type Ftm1Ch0 = Channel<Ftm1Ch0Id, Ftm1Id>;
-
-pub const FTM1_CH1: Channel<Ftm1Ch1Id, Ftm1Id> = Channel { periph: FTM1, index: 1, id: Ftm1Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch1Id {}
-pub type Ftm1Ch1 = Channel<Ftm1Ch1Id, Ftm1Id>;
-
-pub const FTM1_CH2: Channel<Ftm1Ch2Id, Ftm1Id> = Channel { periph: FTM1, index: 2, id: Ftm1Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch2Id {}
-pub type Ftm1Ch2 = Channel<Ftm1Ch2Id, Ftm1Id>;
-
-pub const FTM1_CH3: Channel<Ftm1Ch3Id, Ftm1Id> = Channel { periph: FTM1, index: 3, id: Ftm1Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch3Id {}
-pub type Ftm1Ch3 = Channel<Ftm1Ch3Id, Ftm1Id>;
-
-pub const FTM1_CH4: Channel<Ftm1Ch4Id, Ftm1Id> = Channel { periph: FTM1, index: 4, id: Ftm1Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch4Id {}
-pub type Ftm1Ch4 = Channel<Ftm1Ch4Id, Ftm1Id>;
-
-pub const FTM1_CH5: Channel<Ftm1Ch5Id, Ftm1Id> = Channel { periph: FTM1, index: 5, id: Ftm1Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch5Id {}
-pub type Ftm1Ch5 = Channel<Ftm1Ch5Id, Ftm1Id>;
-
-pub const FTM1_CH6: Channel<Ftm1Ch6Id, Ftm1Id> = Channel { periph: FTM1, index: 6, id: Ftm1Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch6Id {}
-pub type Ftm1Ch6 = Channel<Ftm1Ch6Id, Ftm1Id>;
-
-pub const FTM1_CH7: Channel<Ftm1Ch7Id, Ftm1Id> = Channel { periph: FTM1, index: 7, id: Ftm1Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm1Ch7Id {}
-pub type Ftm1Ch7 = Channel<Ftm1Ch7Id, Ftm1Id>;
-
-pub const FTM2_CH0: Channel<Ftm2Ch0Id, Ftm2Id> = Channel { periph: FTM2, index: 0, id: Ftm2Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch0Id {}
-pub type Ftm2Ch0 = Channel<Ftm2Ch0Id, Ftm2Id>;
-
-pub const FTM2_CH1: Channel<Ftm2Ch1Id, Ftm2Id> = Channel { periph: FTM2, index: 1, id: Ftm2Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch1Id {}
-pub type Ftm2Ch1 = Channel<Ftm2Ch1Id, Ftm2Id>;
-
-pub const FTM2_CH2: Channel<Ftm2Ch2Id, Ftm2Id> = Channel { periph: FTM2, index: 2, id: Ftm2Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch2Id {}
-pub type Ftm2Ch2 = Channel<Ftm2Ch2Id, Ftm2Id>;
-
-pub const FTM2_CH3: Channel<Ftm2Ch3Id, Ftm2Id> = Channel { periph: FTM2, index: 3, id: Ftm2Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch3Id {}
-pub type Ftm2Ch3 = Channel<Ftm2Ch3Id, Ftm2Id>;
-
-pub const FTM2_CH4: Channel<Ftm2Ch4Id, Ftm2Id> = Channel { periph: FTM2, index: 4, id: Ftm2Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch4Id {}
-pub type Ftm2Ch4 = Channel<Ftm2Ch4Id, Ftm2Id>;
-
-pub const FTM2_CH5: Channel<Ftm2Ch5Id, Ftm2Id> = Channel { periph: FTM2, index: 5, id: Ftm2Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch5Id {}
-pub type Ftm2Ch5 = Channel<Ftm2Ch5Id, Ftm2Id>;
-
-pub const FTM2_CH6: Channel<Ftm2Ch6Id, Ftm2Id> = Channel { periph: FTM2, index: 6, id: Ftm2Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch6Id {}
-pub type Ftm2Ch6 = Channel<Ftm2Ch6Id, Ftm2Id>;
-
-pub const FTM2_CH7: Channel<Ftm2Ch7Id, Ftm2Id> = Channel { periph: FTM2, index: 7, id: Ftm2Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm2Ch7Id {}
-pub type Ftm2Ch7 = Channel<Ftm2Ch7Id, Ftm2Id>;
-
-pub const FTM3_CH0: Channel<Ftm3Ch0Id, Ftm3Id> = Channel { periph: FTM3, index: 0, id: Ftm3Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch0Id {}
-pub type Ftm3Ch0 = Channel<Ftm3Ch0Id, Ftm3Id>;
-
-pub const FTM3_CH1: Channel<Ftm3Ch1Id, Ftm3Id> = Channel { periph: FTM3, index: 1, id: Ftm3Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch1Id {}
-pub type Ftm3Ch1 = Channel<Ftm3Ch1Id, Ftm3Id>;
-
-pub const FTM3_CH2: Channel<Ftm3Ch2Id, Ftm3Id> = Channel { periph: FTM3, index: 2, id: Ftm3Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch2Id {}
-pub type Ftm3Ch2 = Channel<Ftm3Ch2Id, Ftm3Id>;
-
-pub const FTM3_CH3: Channel<Ftm3Ch3Id, Ftm3Id> = Channel { periph: FTM3, index: 3, id: Ftm3Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch3Id {}
-pub type Ftm3Ch3 = Channel<Ftm3Ch3Id, Ftm3Id>;
-
-pub const FTM3_CH4: Channel<Ftm3Ch4Id, Ftm3Id> = Channel { periph: FTM3, index: 4, id: Ftm3Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch4Id {}
-pub type Ftm3Ch4 = Channel<Ftm3Ch4Id, Ftm3Id>;
-
-pub const FTM3_CH5: Channel<Ftm3Ch5Id, Ftm3Id> = Channel { periph: FTM3, index: 5, id: Ftm3Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch5Id {}
-pub type Ftm3Ch5 = Channel<Ftm3Ch5Id, Ftm3Id>;
-
-pub const FTM3_CH6: Channel<Ftm3Ch6Id, Ftm3Id> = Channel { periph: FTM3, index: 6, id: Ftm3Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch6Id {}
-pub type Ftm3Ch6 = Channel<Ftm3Ch6Id, Ftm3Id>;
-
-pub const FTM3_CH7: Channel<Ftm3Ch7Id, Ftm3Id> = Channel { periph: FTM3, index: 7, id: Ftm3Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Ftm3Ch7Id {}
-pub type Ftm3Ch7 = Channel<Ftm3Ch7Id, Ftm3Id>;
-
+channel!(FTM0_CH0, Ftm0Ch0, FTM0, Ftm0, 0);
+channel!(FTM0_CH1, Ftm0Ch1, FTM0, Ftm0, 1);
+channel!(FTM0_CH2, Ftm0Ch2, FTM0, Ftm0, 2);
+channel!(FTM0_CH3, Ftm0Ch3, FTM0, Ftm0, 3);
+channel!(FTM0_CH4, Ftm0Ch4, FTM0, Ftm0, 4);
+channel!(FTM0_CH5, Ftm0Ch5, FTM0, Ftm0, 5);
+channel!(FTM0_CH6, Ftm0Ch6, FTM0, Ftm0, 6);
+channel!(FTM0_CH7, Ftm0Ch7, FTM0, Ftm0, 7);
+channel!(FTM1_CH0, Ftm1Ch0, FTM1, Ftm1, 0);
+channel!(FTM1_CH1, Ftm1Ch1, FTM1, Ftm1, 1);
+channel!(FTM1_CH2, Ftm1Ch2, FTM1, Ftm1, 2);
+channel!(FTM1_CH3, Ftm1Ch3, FTM1, Ftm1, 3);
+channel!(FTM1_CH4, Ftm1Ch4, FTM1, Ftm1, 4);
+channel!(FTM1_CH5, Ftm1Ch5, FTM1, Ftm1, 5);
+channel!(FTM1_CH6, Ftm1Ch6, FTM1, Ftm1, 6);
+channel!(FTM1_CH7, Ftm1Ch7, FTM1, Ftm1, 7);
+channel!(FTM2_CH0, Ftm2Ch0, FTM2, Ftm2, 0);
+channel!(FTM2_CH1, Ftm2Ch1, FTM2, Ftm2, 1);
+channel!(FTM2_CH2, Ftm2Ch2, FTM2, Ftm2, 2);
+channel!(FTM2_CH3, Ftm2Ch3, FTM2, Ftm2, 3);
+channel!(FTM2_CH4, Ftm2Ch4, FTM2, Ftm2, 4);
+channel!(FTM2_CH5, Ftm2Ch5, FTM2, Ftm2, 5);
+channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, 6);
+channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, 7);
+channel!(FTM3_CH0, Ftm3Ch0, FTM3, Ftm3, 0);
+channel!(FTM3_CH1, Ftm3Ch1, FTM3, Ftm3, 1);
+channel!(FTM3_CH2, Ftm3Ch2, FTM3, Ftm3, 2);
+channel!(FTM3_CH3, Ftm3Ch3, FTM3, Ftm3, 3);
+channel!(FTM3_CH4, Ftm3Ch4, FTM3, Ftm3, 4);
+channel!(FTM3_CH5, Ftm3Ch5, FTM3, Ftm3, 5);
+channel!(FTM3_CH6, Ftm3Ch6, FTM3, Ftm3, 6);
+channel!(FTM3_CH7, Ftm3Ch7, FTM3, Ftm3, 7);

@@ -1,19 +1,7 @@
-#[allow(unused_imports)] use bobbin_common::bits;
-pub const ADC0: Adc0 = Periph(0x40038000, Adc0Id {});
-pub const ADC1: Adc1 = Periph(0x40039000, Adc1Id {});
+#[allow(unused_imports)] use bobbin_common::*;
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="ADC Peripheral"]
-pub struct Periph<T>(pub u32, pub T); 
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Adc0Id {}
-pub type Adc0 = Periph<Adc0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Adc1Id {}
-pub type Adc1 = Periph<Adc1Id>;
+periph!(AdcPeriph, ADC0, Adc0, 0x40038000);
+periph!(AdcPeriph, ADC1, Adc1, 0x40039000);
 
 impl super::sig::Signal<super::sig::Ain0> for Adc0Ch0 {}
 impl super::sig::SignalAin<super::sig::Ain0> for Adc0Ch0 {}
@@ -98,987 +86,1041 @@ impl super::sig::Signal<super::sig::Ain19> for Adc1Ch19 {}
 impl super::sig::SignalAin<super::sig::Ain19> for Adc1Ch19 {}
 
 
-impl<T> Periph<T> {
+pub trait AdcPeriph : Base {
 #[doc="Get the *const pointer for the ACTSS register."]
-  #[inline] pub fn actss_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x0) as *const u32
-  }
+   #[inline] fn actss_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Get the *mut pointer for the ACTSS register."]
-  #[inline] pub fn actss_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x0) as *mut u32
-  }
+   #[inline] fn actss_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Read the ACTSS register."]
-  #[inline] pub fn actss(&self) -> Actss { 
-     unsafe {
-        Actss(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }
-  }
+   #[inline] fn actss(&self) -> Actss { 
+      unsafe {
+         Actss(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      }
+   }
 #[doc="Write the ACTSS register."]
-  #[inline] pub fn set_actss<F: FnOnce(Actss) -> Actss>(&self, f: F) -> &Self {
-     let value = f(Actss(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_actss<F: FnOnce(Actss) -> Actss>(&self, f: F) -> &Self {
+      let value = f(Actss(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the ACTSS register."]
-  #[inline] pub fn with_actss<F: FnOnce(Actss) -> Actss>(&self, f: F) -> &Self {
-     let tmp = self.actss();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_actss<F: FnOnce(Actss) -> Actss>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Actss(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the RIS register."]
-  #[inline] pub fn ris_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
-  }
+   #[inline] fn ris_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Get the *mut pointer for the RIS register."]
-  #[inline] pub fn ris_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
-  }
+   #[inline] fn ris_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Read the RIS register."]
-  #[inline] pub fn ris(&self) -> Ris { 
-     unsafe {
-        Ris(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }
-  }
+   #[inline] fn ris(&self) -> Ris { 
+      unsafe {
+         Ris(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      }
+   }
 #[doc="Write the RIS register."]
-  #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
-     let value = f(Ris(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
+      let value = f(Ris(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the RIS register."]
-  #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
-     let tmp = self.ris();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Ris(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the IM register."]
-  #[inline] pub fn im_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
+   #[inline] fn im_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Get the *mut pointer for the IM register."]
-  #[inline] pub fn im_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
+   #[inline] fn im_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Read the IM register."]
-  #[inline] pub fn im(&self) -> Im { 
-     unsafe {
-        Im(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
+   #[inline] fn im(&self) -> Im { 
+      unsafe {
+         Im(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      }
+   }
 #[doc="Write the IM register."]
-  #[inline] pub fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
-     let value = f(Im(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
+      let value = f(Im(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the IM register."]
-  #[inline] pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
-     let tmp = self.im();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Im(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the ISC register."]
-  #[inline] pub fn isc_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xc) as *const u32
-  }
+   #[inline] fn isc_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Get the *mut pointer for the ISC register."]
-  #[inline] pub fn isc_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xc) as *mut u32
-  }
+   #[inline] fn isc_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Read the ISC register."]
-  #[inline] pub fn isc(&self) -> Isc { 
-     unsafe {
-        Isc(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }
-  }
+   #[inline] fn isc(&self) -> Isc { 
+      unsafe {
+         Isc(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      }
+   }
 #[doc="Write the ISC register."]
-  #[inline] pub fn set_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
-     let value = f(Isc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
+      let value = f(Isc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the ISC register."]
-  #[inline] pub fn with_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
-     let tmp = self.isc();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Isc(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the OSTAT register."]
-  #[inline] pub fn ostat_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x10) as *const u32
-  }
+   #[inline] fn ostat_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Get the *mut pointer for the OSTAT register."]
-  #[inline] pub fn ostat_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x10) as *mut u32
-  }
+   #[inline] fn ostat_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Read the OSTAT register."]
-  #[inline] pub fn ostat(&self) -> Ostat { 
-     unsafe {
-        Ostat(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }
-  }
+   #[inline] fn ostat(&self) -> Ostat { 
+      unsafe {
+         Ostat(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+      }
+   }
 #[doc="Write the OSTAT register."]
-  #[inline] pub fn set_ostat<F: FnOnce(Ostat) -> Ostat>(&self, f: F) -> &Self {
-     let value = f(Ostat(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ostat<F: FnOnce(Ostat) -> Ostat>(&self, f: F) -> &Self {
+      let value = f(Ostat(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the OSTAT register."]
-  #[inline] pub fn with_ostat<F: FnOnce(Ostat) -> Ostat>(&self, f: F) -> &Self {
-     let tmp = self.ostat();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ostat<F: FnOnce(Ostat) -> Ostat>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Ostat(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the EMUX register."]
-  #[inline] pub fn emux_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x14) as *const u32
-  }
+   #[inline] fn emux_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Get the *mut pointer for the EMUX register."]
-  #[inline] pub fn emux_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x14) as *mut u32
-  }
+   #[inline] fn emux_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Read the EMUX register."]
-  #[inline] pub fn emux(&self) -> Emux { 
-     unsafe {
-        Emux(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }
-  }
+   #[inline] fn emux(&self) -> Emux { 
+      unsafe {
+         Emux(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+      }
+   }
 #[doc="Write the EMUX register."]
-  #[inline] pub fn set_emux<F: FnOnce(Emux) -> Emux>(&self, f: F) -> &Self {
-     let value = f(Emux(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_emux<F: FnOnce(Emux) -> Emux>(&self, f: F) -> &Self {
+      let value = f(Emux(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the EMUX register."]
-  #[inline] pub fn with_emux<F: FnOnce(Emux) -> Emux>(&self, f: F) -> &Self {
-     let tmp = self.emux();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_emux<F: FnOnce(Emux) -> Emux>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Emux(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the USTAT register."]
-  #[inline] pub fn ustat_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
-  }
+   #[inline] fn ustat_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Get the *mut pointer for the USTAT register."]
-  #[inline] pub fn ustat_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
-  }
+   #[inline] fn ustat_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Read the USTAT register."]
-  #[inline] pub fn ustat(&self) -> Ustat { 
-     unsafe {
-        Ustat(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }
-  }
+   #[inline] fn ustat(&self) -> Ustat { 
+      unsafe {
+         Ustat(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      }
+   }
 #[doc="Write the USTAT register."]
-  #[inline] pub fn set_ustat<F: FnOnce(Ustat) -> Ustat>(&self, f: F) -> &Self {
-     let value = f(Ustat(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ustat<F: FnOnce(Ustat) -> Ustat>(&self, f: F) -> &Self {
+      let value = f(Ustat(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the USTAT register."]
-  #[inline] pub fn with_ustat<F: FnOnce(Ustat) -> Ustat>(&self, f: F) -> &Self {
-     let tmp = self.ustat();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ustat<F: FnOnce(Ustat) -> Ustat>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Ustat(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the TSSEL register."]
-  #[inline] pub fn tssel_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
+   #[inline] fn tssel_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x1c)
+   }
 #[doc="Get the *mut pointer for the TSSEL register."]
-  #[inline] pub fn tssel_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
+   #[inline] fn tssel_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x1c)
+   }
 #[doc="Read the TSSEL register."]
-  #[inline] pub fn tssel(&self) -> Tssel { 
-     unsafe {
-        Tssel(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
+   #[inline] fn tssel(&self) -> Tssel { 
+      unsafe {
+         Tssel(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
+      }
+   }
 #[doc="Write the TSSEL register."]
-  #[inline] pub fn set_tssel<F: FnOnce(Tssel) -> Tssel>(&self, f: F) -> &Self {
-     let value = f(Tssel(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_tssel<F: FnOnce(Tssel) -> Tssel>(&self, f: F) -> &Self {
+      let value = f(Tssel(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the TSSEL register."]
-  #[inline] pub fn with_tssel<F: FnOnce(Tssel) -> Tssel>(&self, f: F) -> &Self {
-     let tmp = self.tssel();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_tssel<F: FnOnce(Tssel) -> Tssel>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Tssel(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSPRI register."]
-  #[inline] pub fn sspri_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x20) as *const u32
-  }
+   #[inline] fn sspri_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x20)
+   }
 #[doc="Get the *mut pointer for the SSPRI register."]
-  #[inline] pub fn sspri_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x20) as *mut u32
-  }
+   #[inline] fn sspri_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x20)
+   }
 #[doc="Read the SSPRI register."]
-  #[inline] pub fn sspri(&self) -> Sspri { 
-     unsafe {
-        Sspri(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }
-  }
+   #[inline] fn sspri(&self) -> Sspri { 
+      unsafe {
+         Sspri(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
+      }
+   }
 #[doc="Write the SSPRI register."]
-  #[inline] pub fn set_sspri<F: FnOnce(Sspri) -> Sspri>(&self, f: F) -> &Self {
-     let value = f(Sspri(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_sspri<F: FnOnce(Sspri) -> Sspri>(&self, f: F) -> &Self {
+      let value = f(Sspri(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSPRI register."]
-  #[inline] pub fn with_sspri<F: FnOnce(Sspri) -> Sspri>(&self, f: F) -> &Self {
-     let tmp = self.sspri();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_sspri<F: FnOnce(Sspri) -> Sspri>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Sspri(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SPC register."]
-  #[inline] pub fn spc_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x24) as *const u32
-  }
+   #[inline] fn spc_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x24)
+   }
 #[doc="Get the *mut pointer for the SPC register."]
-  #[inline] pub fn spc_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x24) as *mut u32
-  }
+   #[inline] fn spc_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x24)
+   }
 #[doc="Read the SPC register."]
-  #[inline] pub fn spc(&self) -> Spc { 
-     unsafe {
-        Spc(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
-     }
-  }
+   #[inline] fn spc(&self) -> Spc { 
+      unsafe {
+         Spc(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
+      }
+   }
 #[doc="Write the SPC register."]
-  #[inline] pub fn set_spc<F: FnOnce(Spc) -> Spc>(&self, f: F) -> &Self {
-     let value = f(Spc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_spc<F: FnOnce(Spc) -> Spc>(&self, f: F) -> &Self {
+      let value = f(Spc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SPC register."]
-  #[inline] pub fn with_spc<F: FnOnce(Spc) -> Spc>(&self, f: F) -> &Self {
-     let tmp = self.spc();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_spc<F: FnOnce(Spc) -> Spc>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Spc(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the PSSI register."]
-  #[inline] pub fn pssi_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x28) as *const u32
-  }
+   #[inline] fn pssi_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x28)
+   }
 #[doc="Get the *mut pointer for the PSSI register."]
-  #[inline] pub fn pssi_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x28) as *mut u32
-  }
+   #[inline] fn pssi_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x28)
+   }
 #[doc="Read the PSSI register."]
-  #[inline] pub fn pssi(&self) -> Pssi { 
-     unsafe {
-        Pssi(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
-     }
-  }
+   #[inline] fn pssi(&self) -> Pssi { 
+      unsafe {
+         Pssi(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
+      }
+   }
 #[doc="Write the PSSI register."]
-  #[inline] pub fn set_pssi<F: FnOnce(Pssi) -> Pssi>(&self, f: F) -> &Self {
-     let value = f(Pssi(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_pssi<F: FnOnce(Pssi) -> Pssi>(&self, f: F) -> &Self {
+      let value = f(Pssi(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the PSSI register."]
-  #[inline] pub fn with_pssi<F: FnOnce(Pssi) -> Pssi>(&self, f: F) -> &Self {
-     let tmp = self.pssi();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_pssi<F: FnOnce(Pssi) -> Pssi>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Pssi(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SAC register."]
-  #[inline] pub fn sac_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x30) as *const u32
-  }
+   #[inline] fn sac_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x30)
+   }
 #[doc="Get the *mut pointer for the SAC register."]
-  #[inline] pub fn sac_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x30) as *mut u32
-  }
+   #[inline] fn sac_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x30)
+   }
 #[doc="Read the SAC register."]
-  #[inline] pub fn sac(&self) -> Sac { 
-     unsafe {
-        Sac(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
-     }
-  }
+   #[inline] fn sac(&self) -> Sac { 
+      unsafe {
+         Sac(::core::ptr::read_volatile((self.base() + 0x30) as *const u32))
+      }
+   }
 #[doc="Write the SAC register."]
-  #[inline] pub fn set_sac<F: FnOnce(Sac) -> Sac>(&self, f: F) -> &Self {
-     let value = f(Sac(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_sac<F: FnOnce(Sac) -> Sac>(&self, f: F) -> &Self {
+      let value = f(Sac(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x30) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SAC register."]
-  #[inline] pub fn with_sac<F: FnOnce(Sac) -> Sac>(&self, f: F) -> &Self {
-     let tmp = self.sac();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x30) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_sac<F: FnOnce(Sac) -> Sac>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Sac(::core::ptr::read_volatile((self.base() + 0x30) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x30) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DCISC register."]
-  #[inline] pub fn dcisc_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x34) as *const u32
-  }
+   #[inline] fn dcisc_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x34)
+   }
 #[doc="Get the *mut pointer for the DCISC register."]
-  #[inline] pub fn dcisc_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x34) as *mut u32
-  }
+   #[inline] fn dcisc_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x34)
+   }
 #[doc="Read the DCISC register."]
-  #[inline] pub fn dcisc(&self) -> Dcisc { 
-     unsafe {
-        Dcisc(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
-     }
-  }
+   #[inline] fn dcisc(&self) -> Dcisc { 
+      unsafe {
+         Dcisc(::core::ptr::read_volatile((self.base() + 0x34) as *const u32))
+      }
+   }
 #[doc="Write the DCISC register."]
-  #[inline] pub fn set_dcisc<F: FnOnce(Dcisc) -> Dcisc>(&self, f: F) -> &Self {
-     let value = f(Dcisc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dcisc<F: FnOnce(Dcisc) -> Dcisc>(&self, f: F) -> &Self {
+      let value = f(Dcisc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x34) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DCISC register."]
-  #[inline] pub fn with_dcisc<F: FnOnce(Dcisc) -> Dcisc>(&self, f: F) -> &Self {
-     let tmp = self.dcisc();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dcisc<F: FnOnce(Dcisc) -> Dcisc>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dcisc(::core::ptr::read_volatile((self.base() + 0x34) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x34) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the CTL register."]
-  #[inline] pub fn ctl_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x38) as *const u32
-  }
+   #[inline] fn ctl_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x38)
+   }
 #[doc="Get the *mut pointer for the CTL register."]
-  #[inline] pub fn ctl_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x38) as *mut u32
-  }
+   #[inline] fn ctl_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x38)
+   }
 #[doc="Read the CTL register."]
-  #[inline] pub fn ctl(&self) -> Ctl { 
-     unsafe {
-        Ctl(::core::ptr::read_volatile(((self.0 as usize) + 0x38) as *const u32))
-     }
-  }
+   #[inline] fn ctl(&self) -> Ctl { 
+      unsafe {
+         Ctl(::core::ptr::read_volatile((self.base() + 0x38) as *const u32))
+      }
+   }
 #[doc="Write the CTL register."]
-  #[inline] pub fn set_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
-     let value = f(Ctl(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
+      let value = f(Ctl(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x38) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CTL register."]
-  #[inline] pub fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
-     let tmp = self.ctl();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x38) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Ctl(::core::ptr::read_volatile((self.base() + 0x38) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x38) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSMUX register."]
-  #[inline] pub fn ssmux_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x40 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssmux_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x40 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSMUX register."]
-  #[inline] pub fn ssmux_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x40 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssmux_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x40 + (index * 32))
+   }
 #[doc="Read the SSMUX register."]
-  #[inline] pub fn ssmux<I: Into<bits::R4>>(&self, index: I) -> Ssmux { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssmux(::core::ptr::read_volatile(((self.0 as usize) + 0x40 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssmux<I: Into<bits::R4>>(&self, index: I) -> Ssmux { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssmux(::core::ptr::read_volatile((self.base() + 0x40 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSMUX register."]
-  #[inline] pub fn set_ssmux<I: Into<bits::R4>, F: FnOnce(Ssmux) -> Ssmux>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssmux(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssmux<I: Into<bits::R4>, F: FnOnce(Ssmux) -> Ssmux>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssmux(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x40 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSMUX register."]
-  #[inline] pub fn with_ssmux<I: Into<bits::R4> + Copy, F: FnOnce(Ssmux) -> Ssmux>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssmux(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x40 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssmux<I: Into<bits::R4> + Copy, F: FnOnce(Ssmux) -> Ssmux>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssmux(::core::ptr::read_volatile((self.base() + 0x40 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x40 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSCTL register."]
-  #[inline] pub fn ssctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x44 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x44 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSCTL register."]
-  #[inline] pub fn ssctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x44 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x44 + (index * 32))
+   }
 #[doc="Read the SSCTL register."]
-  #[inline] pub fn ssctl<I: Into<bits::R4>>(&self, index: I) -> Ssctl { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssctl(::core::ptr::read_volatile(((self.0 as usize) + 0x44 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssctl<I: Into<bits::R4>>(&self, index: I) -> Ssctl { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssctl(::core::ptr::read_volatile((self.base() + 0x44 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSCTL register."]
-  #[inline] pub fn set_ssctl<I: Into<bits::R4>, F: FnOnce(Ssctl) -> Ssctl>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssctl(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssctl<I: Into<bits::R4>, F: FnOnce(Ssctl) -> Ssctl>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssctl(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x44 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSCTL register."]
-  #[inline] pub fn with_ssctl<I: Into<bits::R4> + Copy, F: FnOnce(Ssctl) -> Ssctl>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssctl(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x44 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssctl<I: Into<bits::R4> + Copy, F: FnOnce(Ssctl) -> Ssctl>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssctl(::core::ptr::read_volatile((self.base() + 0x44 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x44 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSFIFO register."]
-  #[inline] pub fn ssfifo_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x48 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssfifo_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x48 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSFIFO register."]
-  #[inline] pub fn ssfifo_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x48 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssfifo_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x48 + (index * 32))
+   }
 #[doc="Read the SSFIFO register."]
-  #[inline] pub fn ssfifo<I: Into<bits::R4>>(&self, index: I) -> Ssfifo { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssfifo(::core::ptr::read_volatile(((self.0 as usize) + 0x48 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssfifo<I: Into<bits::R4>>(&self, index: I) -> Ssfifo { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssfifo(::core::ptr::read_volatile((self.base() + 0x48 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSFIFO register."]
-  #[inline] pub fn set_ssfifo<I: Into<bits::R4>, F: FnOnce(Ssfifo) -> Ssfifo>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssfifo(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssfifo<I: Into<bits::R4>, F: FnOnce(Ssfifo) -> Ssfifo>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssfifo(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x48 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSFIFO register."]
-  #[inline] pub fn with_ssfifo<I: Into<bits::R4> + Copy, F: FnOnce(Ssfifo) -> Ssfifo>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssfifo(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x48 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssfifo<I: Into<bits::R4> + Copy, F: FnOnce(Ssfifo) -> Ssfifo>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssfifo(::core::ptr::read_volatile((self.base() + 0x48 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x48 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSFSTAT register."]
-  #[inline] pub fn ssfstat_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x4c + (index * 32)) as *const u32
-  }
+   #[inline] fn ssfstat_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x4c + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSFSTAT register."]
-  #[inline] pub fn ssfstat_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x4c + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssfstat_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x4c + (index * 32))
+   }
 #[doc="Read the SSFSTAT register."]
-  #[inline] pub fn ssfstat<I: Into<bits::R4>>(&self, index: I) -> Ssfstat { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssfstat(::core::ptr::read_volatile(((self.0 as usize) + 0x4c + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssfstat<I: Into<bits::R4>>(&self, index: I) -> Ssfstat { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssfstat(::core::ptr::read_volatile((self.base() + 0x4c + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSFSTAT register."]
-  #[inline] pub fn set_ssfstat<I: Into<bits::R4>, F: FnOnce(Ssfstat) -> Ssfstat>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssfstat(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssfstat<I: Into<bits::R4>, F: FnOnce(Ssfstat) -> Ssfstat>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssfstat(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4c + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSFSTAT register."]
-  #[inline] pub fn with_ssfstat<I: Into<bits::R4> + Copy, F: FnOnce(Ssfstat) -> Ssfstat>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssfstat(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4c + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssfstat<I: Into<bits::R4> + Copy, F: FnOnce(Ssfstat) -> Ssfstat>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssfstat(::core::ptr::read_volatile((self.base() + 0x4c + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4c + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSOP register."]
-  #[inline] pub fn ssop_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x50 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssop_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x50 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSOP register."]
-  #[inline] pub fn ssop_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x50 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssop_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x50 + (index * 32))
+   }
 #[doc="Read the SSOP register."]
-  #[inline] pub fn ssop<I: Into<bits::R4>>(&self, index: I) -> Ssop { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssop(::core::ptr::read_volatile(((self.0 as usize) + 0x50 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssop<I: Into<bits::R4>>(&self, index: I) -> Ssop { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssop(::core::ptr::read_volatile((self.base() + 0x50 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSOP register."]
-  #[inline] pub fn set_ssop<I: Into<bits::R4>, F: FnOnce(Ssop) -> Ssop>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssop(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssop<I: Into<bits::R4>, F: FnOnce(Ssop) -> Ssop>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssop(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x50 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSOP register."]
-  #[inline] pub fn with_ssop<I: Into<bits::R4> + Copy, F: FnOnce(Ssop) -> Ssop>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssop(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x50 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssop<I: Into<bits::R4> + Copy, F: FnOnce(Ssop) -> Ssop>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssop(::core::ptr::read_volatile((self.base() + 0x50 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x50 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSDC register."]
-  #[inline] pub fn ssdc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x54 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssdc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x54 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSDC register."]
-  #[inline] pub fn ssdc_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x54 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssdc_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x54 + (index * 32))
+   }
 #[doc="Read the SSDC register."]
-  #[inline] pub fn ssdc<I: Into<bits::R4>>(&self, index: I) -> Ssdc { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssdc(::core::ptr::read_volatile(((self.0 as usize) + 0x54 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssdc<I: Into<bits::R4>>(&self, index: I) -> Ssdc { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssdc(::core::ptr::read_volatile((self.base() + 0x54 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSDC register."]
-  #[inline] pub fn set_ssdc<I: Into<bits::R4>, F: FnOnce(Ssdc) -> Ssdc>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssdc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x54 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssdc<I: Into<bits::R4>, F: FnOnce(Ssdc) -> Ssdc>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssdc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x54 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSDC register."]
-  #[inline] pub fn with_ssdc<I: Into<bits::R4> + Copy, F: FnOnce(Ssdc) -> Ssdc>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssdc(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x54 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssdc<I: Into<bits::R4> + Copy, F: FnOnce(Ssdc) -> Ssdc>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssdc(::core::ptr::read_volatile((self.base() + 0x54 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x54 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSEMUX register."]
-  #[inline] pub fn ssemux_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x58 + (index * 32)) as *const u32
-  }
+   #[inline] fn ssemux_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x58 + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSEMUX register."]
-  #[inline] pub fn ssemux_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x58 + (index * 32)) as *mut u32
-  }
+   #[inline] fn ssemux_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x58 + (index * 32))
+   }
 #[doc="Read the SSEMUX register."]
-  #[inline] pub fn ssemux<I: Into<bits::R4>>(&self, index: I) -> Ssemux { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Ssemux(::core::ptr::read_volatile(((self.0 as usize) + 0x58 + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn ssemux<I: Into<bits::R4>>(&self, index: I) -> Ssemux { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Ssemux(::core::ptr::read_volatile((self.base() + 0x58 + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSEMUX register."]
-  #[inline] pub fn set_ssemux<I: Into<bits::R4>, F: FnOnce(Ssemux) -> Ssemux>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Ssemux(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x58 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_ssemux<I: Into<bits::R4>, F: FnOnce(Ssemux) -> Ssemux>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Ssemux(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x58 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSEMUX register."]
-  #[inline] pub fn with_ssemux<I: Into<bits::R4> + Copy, F: FnOnce(Ssemux) -> Ssemux>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.ssemux(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x58 + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_ssemux<I: Into<bits::R4> + Copy, F: FnOnce(Ssemux) -> Ssemux>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Ssemux(::core::ptr::read_volatile((self.base() + 0x58 + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x58 + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SSTSH register."]
-  #[inline] pub fn sstsh_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x5c + (index * 32)) as *const u32
-  }
+   #[inline] fn sstsh_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x5c + (index * 32))
+   }
 #[doc="Get the *mut pointer for the SSTSH register."]
-  #[inline] pub fn sstsh_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0x5c + (index * 32)) as *mut u32
-  }
+   #[inline] fn sstsh_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0x5c + (index * 32))
+   }
 #[doc="Read the SSTSH register."]
-  #[inline] pub fn sstsh<I: Into<bits::R4>>(&self, index: I) -> Sstsh { 
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Sstsh(::core::ptr::read_volatile(((self.0 as usize) + 0x5c + (index * 32)) as *const u32))
-     }
-  }
+   #[inline] fn sstsh<I: Into<bits::R4>>(&self, index: I) -> Sstsh { 
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Sstsh(::core::ptr::read_volatile((self.base() + 0x5c + (index * 32)) as *const u32))
+      }
+   }
 #[doc="Write the SSTSH register."]
-  #[inline] pub fn set_sstsh<I: Into<bits::R4>, F: FnOnce(Sstsh) -> Sstsh>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Sstsh(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_sstsh<I: Into<bits::R4>, F: FnOnce(Sstsh) -> Sstsh>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Sstsh(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x5c + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SSTSH register."]
-  #[inline] pub fn with_sstsh<I: Into<bits::R4> + Copy, F: FnOnce(Sstsh) -> Sstsh>(&self, index: I, f: F) -> &Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.sstsh(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x5c + (index * 32)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_sstsh<I: Into<bits::R4> + Copy, F: FnOnce(Sstsh) -> Sstsh>(&self, index: I, f: F) -> &Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Sstsh(::core::ptr::read_volatile((self.base() + 0x5c + (index * 32)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x5c + (index * 32)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DCRIC register."]
-  #[inline] pub fn dcric_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xd00) as *const u32
-  }
+   #[inline] fn dcric_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xd00)
+   }
 #[doc="Get the *mut pointer for the DCRIC register."]
-  #[inline] pub fn dcric_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xd00) as *mut u32
-  }
+   #[inline] fn dcric_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xd00)
+   }
 #[doc="Write the DCRIC register."]
-  #[inline] pub fn set_dcric<F: FnOnce(Dcric) -> Dcric>(&self, f: F) -> &Self {
-     let value = f(Dcric(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xd00) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dcric<F: FnOnce(Dcric) -> Dcric>(&self, f: F) -> &Self {
+      let value = f(Dcric(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xd00) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DCCTL register."]
-  #[inline] pub fn dcctl_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0xe00 + (index << 2)) as *const u32
-  }
+   #[inline] fn dcctl_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0xe00 + (index << 2))
+   }
 #[doc="Get the *mut pointer for the DCCTL register."]
-  #[inline] pub fn dcctl_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0xe00 + (index << 2)) as *mut u32
-  }
+   #[inline] fn dcctl_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0xe00 + (index << 2))
+   }
 #[doc="Read the DCCTL register."]
-  #[inline] pub fn dcctl<I: Into<bits::R8>>(&self, index: I) -> Dcctl { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Dcctl(::core::ptr::read_volatile(((self.0 as usize) + 0xe00 + (index << 2)) as *const u32))
-     }
-  }
+   #[inline] fn dcctl<I: Into<bits::R8>>(&self, index: I) -> Dcctl { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Dcctl(::core::ptr::read_volatile((self.base() + 0xe00 + (index << 2)) as *const u32))
+      }
+   }
 #[doc="Write the DCCTL register."]
-  #[inline] pub fn set_dcctl<I: Into<bits::R8>, F: FnOnce(Dcctl) -> Dcctl>(&self, index: I, f: F) -> &Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Dcctl(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xe00 + (index << 2)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dcctl<I: Into<bits::R8>, F: FnOnce(Dcctl) -> Dcctl>(&self, index: I, f: F) -> &Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Dcctl(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xe00 + (index << 2)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DCCTL register."]
-  #[inline] pub fn with_dcctl<I: Into<bits::R8> + Copy, F: FnOnce(Dcctl) -> Dcctl>(&self, index: I, f: F) -> &Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.dcctl(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xe00 + (index << 2)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dcctl<I: Into<bits::R8> + Copy, F: FnOnce(Dcctl) -> Dcctl>(&self, index: I, f: F) -> &Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Dcctl(::core::ptr::read_volatile((self.base() + 0xe00 + (index << 2)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xe00 + (index << 2)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DCCMP register."]
-  #[inline] pub fn dccmp_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0xe40 + (index << 2)) as *const u32
-  }
+   #[inline] fn dccmp_ptr<I: Into<bits::R8>>(&self, index: I) -> *const u32 { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0xe40 + (index << 2))
+   }
 #[doc="Get the *mut pointer for the DCCMP register."]
-  #[inline] pub fn dccmp_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     ((self.0 as usize) + 0xe40 + (index << 2)) as *mut u32
-  }
+   #[inline] fn dccmp_mut<I: Into<bits::R8>>(&self, index: I) -> *mut u32 { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      <Self as Base>::addr(&self, 0xe40 + (index << 2))
+   }
 #[doc="Read the DCCMP register."]
-  #[inline] pub fn dccmp<I: Into<bits::R8>>(&self, index: I) -> Dccmp { 
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     unsafe {
-        Dccmp(::core::ptr::read_volatile(((self.0 as usize) + 0xe40 + (index << 2)) as *const u32))
-     }
-  }
+   #[inline] fn dccmp<I: Into<bits::R8>>(&self, index: I) -> Dccmp { 
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      unsafe {
+         Dccmp(::core::ptr::read_volatile((self.base() + 0xe40 + (index << 2)) as *const u32))
+      }
+   }
 #[doc="Write the DCCMP register."]
-  #[inline] pub fn set_dccmp<I: Into<bits::R8>, F: FnOnce(Dccmp) -> Dccmp>(&self, index: I, f: F) -> &Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     let value = f(Dccmp(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xe40 + (index << 2)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dccmp<I: Into<bits::R8>, F: FnOnce(Dccmp) -> Dccmp>(&self, index: I, f: F) -> &Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      let value = f(Dccmp(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xe40 + (index << 2)) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DCCMP register."]
-  #[inline] pub fn with_dccmp<I: Into<bits::R8> + Copy, F: FnOnce(Dccmp) -> Dccmp>(&self, index: I, f: F) -> &Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value() as usize;
-     let tmp = self.dccmp(index);
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xe40 + (index << 2)) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dccmp<I: Into<bits::R8> + Copy, F: FnOnce(Dccmp) -> Dccmp>(&self, index: I, f: F) -> &Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value() as usize;
+      let tmp = unsafe {
+         Dccmp(::core::ptr::read_volatile((self.base() + 0xe40 + (index << 2)) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xe40 + (index << 2)) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the PP register."]
-  #[inline] pub fn pp_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xfc0) as *const u32
-  }
+   #[inline] fn pp_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xfc0)
+   }
 #[doc="Get the *mut pointer for the PP register."]
-  #[inline] pub fn pp_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xfc0) as *mut u32
-  }
+   #[inline] fn pp_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xfc0)
+   }
 #[doc="Read the PP register."]
-  #[inline] pub fn pp(&self) -> Pp { 
-     unsafe {
-        Pp(::core::ptr::read_volatile(((self.0 as usize) + 0xfc0) as *const u32))
-     }
-  }
+   #[inline] fn pp(&self) -> Pp { 
+      unsafe {
+         Pp(::core::ptr::read_volatile((self.base() + 0xfc0) as *const u32))
+      }
+   }
 #[doc="Write the PP register."]
-  #[inline] pub fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
-     let value = f(Pp(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
+      let value = f(Pp(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc0) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the PP register."]
-  #[inline] pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
-     let tmp = self.pp();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Pp(::core::ptr::read_volatile((self.base() + 0xfc0) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc0) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the PC register."]
-  #[inline] pub fn pc_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xfc4) as *const u32
-  }
+   #[inline] fn pc_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xfc4)
+   }
 #[doc="Get the *mut pointer for the PC register."]
-  #[inline] pub fn pc_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xfc4) as *mut u32
-  }
+   #[inline] fn pc_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xfc4)
+   }
 #[doc="Read the PC register."]
-  #[inline] pub fn pc(&self) -> Pc { 
-     unsafe {
-        Pc(::core::ptr::read_volatile(((self.0 as usize) + 0xfc4) as *const u32))
-     }
-  }
+   #[inline] fn pc(&self) -> Pc { 
+      unsafe {
+         Pc(::core::ptr::read_volatile((self.base() + 0xfc4) as *const u32))
+      }
+   }
 #[doc="Write the PC register."]
-  #[inline] pub fn set_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
-     let value = f(Pc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
+      let value = f(Pc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc4) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the PC register."]
-  #[inline] pub fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
-     let tmp = self.pc();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Pc(::core::ptr::read_volatile((self.base() + 0xfc4) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc4) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the CC register."]
-  #[inline] pub fn cc_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xfc8) as *const u32
-  }
+   #[inline] fn cc_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xfc8)
+   }
 #[doc="Get the *mut pointer for the CC register."]
-  #[inline] pub fn cc_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xfc8) as *mut u32
-  }
+   #[inline] fn cc_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xfc8)
+   }
 #[doc="Read the CC register."]
-  #[inline] pub fn cc(&self) -> Cc { 
-     unsafe {
-        Cc(::core::ptr::read_volatile(((self.0 as usize) + 0xfc8) as *const u32))
-     }
-  }
+   #[inline] fn cc(&self) -> Cc { 
+      unsafe {
+         Cc(::core::ptr::read_volatile((self.base() + 0xfc8) as *const u32))
+      }
+   }
 #[doc="Write the CC register."]
-  #[inline] pub fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
-     let value = f(Cc(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
+      let value = f(Cc(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc8) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CC register."]
-  #[inline] pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
-     let tmp = self.cc();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xfc8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Cc(::core::ptr::read_volatile((self.base() + 0xfc8) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xfc8) as *mut u32, value.0);
+      }
+      self
+   }
 
 }
 
@@ -1087,55 +1129,55 @@ impl<T> Periph<T> {
 pub struct Actss(pub u32);
 impl Actss {
 #[doc="ADC SS Enable"]
-  #[inline] pub fn asen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn asen<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="ADC SS Enable"]
-  #[inline] pub fn set_asen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_asen<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="ADC SS DMA Enable"]
-  #[inline] pub fn aden<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 8 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
-  }
+   #[inline] pub fn aden<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 8 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
+   }
 #[doc="ADC SS DMA Enable"]
-  #[inline] pub fn set_aden<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 8 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_aden<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 8 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="ADC Busy"]
-  #[inline] pub fn busy(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn busy(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+   }
 #[doc="ADC Busy"]
-  #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Actss {
@@ -1164,55 +1206,55 @@ impl ::core::fmt::Debug for Actss {
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="SS Raw Interrupt Status"]
-  #[inline] pub fn inr<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn inr<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS Raw Interrupt Status"]
-  #[inline] pub fn set_inr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_inr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="SS DMA Raw Interrupt Status"]
-  #[inline] pub fn dmainr<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 8 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
-  }
+   #[inline] pub fn dmainr<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 8 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
+   }
 #[doc="SS DMA Raw Interrupt Status"]
-  #[inline] pub fn set_dmainr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 8 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dmainr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 8 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Digital Comparator Raw Interrupt Status"]
-  #[inline] pub fn inrdc(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn inrdc(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+   }
 #[doc="Digital Comparator Raw Interrupt Status"]
-  #[inline] pub fn set_inrdc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_inrdc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ris {
@@ -1241,61 +1283,61 @@ impl ::core::fmt::Debug for Ris {
 pub struct Im(pub u32);
 impl Im {
 #[doc="SS Interrupt Mask"]
-  #[inline] pub fn mask<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn mask<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS Interrupt Mask"]
-  #[inline] pub fn set_mask<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_mask<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="SS DMA Interrupt Mask"]
-  #[inline] pub fn dmamask<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 8 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
-  }
+   #[inline] pub fn dmamask<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 8 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
+   }
 #[doc="SS DMA Interrupt Mask"]
-  #[inline] pub fn set_dmamask<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 8 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dmamask<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 8 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Digital Comparator Interrupt on SS"]
-  #[inline] pub fn dconss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 16 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn dconss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 16 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
+   }
 #[doc="Digital Comparator Interrupt on SS"]
-  #[inline] pub fn set_dconss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 16 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dconss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 16 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Im {
@@ -1327,61 +1369,61 @@ impl ::core::fmt::Debug for Im {
 pub struct Isc(pub u32);
 impl Isc {
 #[doc="SS Interrupt Status and Clear"]
-  #[inline] pub fn _in<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn _in<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS Interrupt Status and Clear"]
-  #[inline] pub fn set_in<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_in<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="SS DMA Interrupt Status and Clear"]
-  #[inline] pub fn dmain<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 8 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
-  }
+   #[inline] pub fn dmain<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 8 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [8]
+   }
 #[doc="SS DMA Interrupt Status and Clear"]
-  #[inline] pub fn set_dmain<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 8 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dmain<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 8 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Digital Comparator Interrupt Status on SS"]
-  #[inline] pub fn dcinss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 16 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn dcinss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 16 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
+   }
 #[doc="Digital Comparator Interrupt Status on SS"]
-  #[inline] pub fn set_dcinss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 16 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dcinss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 16 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Isc {
@@ -1413,23 +1455,23 @@ impl ::core::fmt::Debug for Isc {
 pub struct Ostat(pub u32);
 impl Ostat {
 #[doc="SS FIFO Overflow"]
-  #[inline] pub fn ov<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn ov<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS FIFO Overflow"]
-  #[inline] pub fn set_ov<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ov<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ostat {
@@ -1453,23 +1495,23 @@ impl ::core::fmt::Debug for Ostat {
 pub struct Emux(pub u32);
 impl Emux {
 #[doc="SS Trigger Select"]
-  #[inline] pub fn em<I: Into<bits::R4>>(&self, index: I) -> bits::U4 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn em<I: Into<bits::R4>>(&self, index: I) -> bits::U4 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
+   }
 #[doc="SS Trigger Select"]
-  #[inline] pub fn set_em<I: Into<bits::R4>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0xf << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_em<I: Into<bits::R4>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0xf << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Emux {
@@ -1493,23 +1535,23 @@ impl ::core::fmt::Debug for Emux {
 pub struct Ustat(pub u32);
 impl Ustat {
 #[doc="SS FIFO Underflow"]
-  #[inline] pub fn uv<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn uv<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS FIFO Underflow"]
-  #[inline] pub fn set_uv<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_uv<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ustat {
@@ -1533,23 +1575,23 @@ impl ::core::fmt::Debug for Ustat {
 pub struct Tssel(pub u32);
 impl Tssel {
 #[doc="Generator PWM Module Trigger Select"]
-  #[inline] pub fn ps<I: Into<bits::R4>>(&self, index: I) -> bits::U2 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 4 + (index << 3);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [5:4]
-  }
+   #[inline] pub fn ps<I: Into<bits::R4>>(&self, index: I) -> bits::U2 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 4 + (index << 3);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [5:4]
+   }
 #[doc="Generator PWM Module Trigger Select"]
-  #[inline] pub fn set_ps<I: Into<bits::R4>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 4 + (index << 3);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ps<I: Into<bits::R4>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 4 + (index << 3);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Tssel {
@@ -1573,23 +1615,23 @@ impl ::core::fmt::Debug for Tssel {
 pub struct Sspri(pub u32);
 impl Sspri {
 #[doc="SS Priority"]
-  #[inline] pub fn ss<I: Into<bits::R4>>(&self, index: I) -> bits::U2 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
-  }
+   #[inline] pub fn ss<I: Into<bits::R4>>(&self, index: I) -> bits::U2 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
+   }
 #[doc="SS Priority"]
-  #[inline] pub fn set_ss<I: Into<bits::R4>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ss<I: Into<bits::R4>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Sspri {
@@ -1613,17 +1655,17 @@ impl ::core::fmt::Debug for Sspri {
 pub struct Spc(pub u32);
 impl Spc {
 #[doc="Phase Difference"]
-  #[inline] pub fn phase(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn phase(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+   }
 #[doc="Phase Difference"]
-  #[inline] pub fn set_phase<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_phase<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Spc {
@@ -1644,49 +1686,49 @@ impl ::core::fmt::Debug for Spc {
 pub struct Pssi(pub u32);
 impl Pssi {
 #[doc="SS Initiate"]
-  #[inline] pub fn ss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn ss<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="SS Initiate"]
-  #[inline] pub fn set_ss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R4 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ss<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R4 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Synchronize Wait"]
-  #[inline] pub fn syncwait(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-  }
+   #[inline] pub fn syncwait(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
+   }
 #[doc="Synchronize Wait"]
-  #[inline] pub fn set_syncwait<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 27);
-     self.0 |= value << 27;
-     self
-  }
+   #[inline] pub fn set_syncwait<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 27);
+      self.0 |= value << 27;
+      self
+   }
 
 #[doc="Global Synchronize"]
-  #[inline] pub fn gsync(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
-  }
+   #[inline] pub fn gsync(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
+   }
 #[doc="Global Synchronize"]
-  #[inline] pub fn set_gsync<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 31);
-     self.0 |= value << 31;
-     self
-  }
+   #[inline] pub fn set_gsync<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 31);
+      self.0 |= value << 31;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Pssi {
@@ -1712,17 +1754,17 @@ impl ::core::fmt::Debug for Pssi {
 pub struct Sac(pub u32);
 impl Sac {
 #[doc="Hardware Averaging Control"]
-  #[inline] pub fn avg(&self) -> bits::U3 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
-  }
+   #[inline] pub fn avg(&self) -> bits::U3 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
+   }
 #[doc="Hardware Averaging Control"]
-  #[inline] pub fn set_avg<V: Into<bits::U3>>(mut self, value: V) -> Self {
-     let value: bits::U3 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x7 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_avg<V: Into<bits::U3>>(mut self, value: V) -> Self {
+      let value: bits::U3 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x7 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Sac {
@@ -1743,23 +1785,23 @@ impl ::core::fmt::Debug for Sac {
 pub struct Dcisc(pub u32);
 impl Dcisc {
 #[doc="Digital Comparator Interrupt Status and Clear"]
-  #[inline] pub fn dcint<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn dcint<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Digital Comparator Interrupt Status and Clear"]
-  #[inline] pub fn set_dcint<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dcint<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dcisc {
@@ -1787,30 +1829,30 @@ impl ::core::fmt::Debug for Dcisc {
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Voltage Reference Select"]
-  #[inline] pub fn vref(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn vref(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+   }
 #[doc="Voltage Reference Select"]
-  #[inline] pub fn set_vref<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_vref<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 #[doc="Dither Mode Enable"]
-  #[inline] pub fn dither(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-  }
+   #[inline] pub fn dither(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+   }
 #[doc="Dither Mode Enable"]
-  #[inline] pub fn set_dither<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 6);
-     self.0 |= value << 6;
-     self
-  }
+   #[inline] pub fn set_dither<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 6);
+      self.0 |= value << 6;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ctl {
@@ -1832,23 +1874,23 @@ impl ::core::fmt::Debug for Ctl {
 pub struct Ssmux(pub u32);
 impl Ssmux {
 #[doc="1st Sample Input Select"]
-  #[inline] pub fn mux<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn mux<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
+   }
 #[doc="1st Sample Input Select"]
-  #[inline] pub fn set_mux<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0xf << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_mux<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0xf << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssmux {
@@ -1876,80 +1918,80 @@ impl ::core::fmt::Debug for Ssmux {
 pub struct Ssctl(pub u32);
 impl Ssctl {
 #[doc="Sample Differential Input Select"]
-  #[inline] pub fn d<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn d<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Sample Differential Input Select"]
-  #[inline] pub fn set_d<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_d<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Sample is End of Sequence"]
-  #[inline] pub fn end<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 1 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
-  }
+   #[inline] pub fn end<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 1 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
+   }
 #[doc="Sample is End of Sequence"]
-  #[inline] pub fn set_end<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 1 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_end<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 1 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Sample Interrupt Enable"]
-  #[inline] pub fn ie<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 2 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
-  }
+   #[inline] pub fn ie<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 2 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
+   }
 #[doc="Sample Interrupt Enable"]
-  #[inline] pub fn set_ie<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 2 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ie<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 2 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Sample Temp Sensor Select"]
-  #[inline] pub fn ts<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 3 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
-  }
+   #[inline] pub fn ts<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 3 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [3]
+   }
 #[doc="Sample Temp Sensor Select"]
-  #[inline] pub fn set_ts<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 3 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_ts<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 3 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssctl {
@@ -2001,17 +2043,17 @@ impl ::core::fmt::Debug for Ssctl {
 pub struct Ssfifo(pub u32);
 impl Ssfifo {
 #[doc="Conversion Result Data"]
-  #[inline] pub fn data(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn data(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="Conversion Result Data"]
-  #[inline] pub fn set_data<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_data<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssfifo {
@@ -2032,56 +2074,56 @@ impl ::core::fmt::Debug for Ssfifo {
 pub struct Ssfstat(pub u32);
 impl Ssfstat {
 #[doc="FIFO Tail Pointer"]
-  #[inline] pub fn tptr(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn tptr(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+   }
 #[doc="FIFO Tail Pointer"]
-  #[inline] pub fn set_tptr<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_tptr<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 #[doc="FIFO Head Pointer"]
-  #[inline] pub fn hptr(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
-  }
+   #[inline] pub fn hptr(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
+   }
 #[doc="FIFO Head Pointer"]
-  #[inline] pub fn set_hptr<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_hptr<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 #[doc="FIFO Empty"]
-  #[inline] pub fn empty(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-  }
+   #[inline] pub fn empty(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
+   }
 #[doc="FIFO Empty"]
-  #[inline] pub fn set_empty<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 8);
-     self.0 |= value << 8;
-     self
-  }
+   #[inline] pub fn set_empty<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 8);
+      self.0 |= value << 8;
+      self
+   }
 
 #[doc="FIFO Full"]
-  #[inline] pub fn full(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-  }
+   #[inline] pub fn full(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+   }
 #[doc="FIFO Full"]
-  #[inline] pub fn set_full<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
+   #[inline] pub fn set_full<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 12);
+      self.0 |= value << 12;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssfstat {
@@ -2105,23 +2147,23 @@ impl ::core::fmt::Debug for Ssfstat {
 pub struct Ssop(pub u32);
 impl Ssop {
 #[doc="Sample Digital Comparator Operation"]
-  #[inline] pub fn sdcop<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn sdcop<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Sample Digital Comparator Operation"]
-  #[inline] pub fn set_sdcop<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_sdcop<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssop {
@@ -2149,23 +2191,23 @@ impl ::core::fmt::Debug for Ssop {
 pub struct Ssdc(pub u32);
 impl Ssdc {
 #[doc="Sample Digital Comparator Select"]
-  #[inline] pub fn sdcsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn sdcsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
+   }
 #[doc="Sample Digital Comparator Select"]
-  #[inline] pub fn set_sdcsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0xf << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_sdcsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0xf << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssdc {
@@ -2193,23 +2235,23 @@ impl ::core::fmt::Debug for Ssdc {
 pub struct Ssemux(pub u32);
 impl Ssemux {
 #[doc="Sample Input Select (Upper Bit)"]
-  #[inline] pub fn emux<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn emux<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Sample Input Select (Upper Bit)"]
-  #[inline] pub fn set_emux<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_emux<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Ssemux {
@@ -2237,23 +2279,23 @@ impl ::core::fmt::Debug for Ssemux {
 pub struct Sstsh(pub u32);
 impl Sstsh {
 #[doc="Sample and Hold Period Select"]
-  #[inline] pub fn tsh<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn tsh<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
+   }
 #[doc="Sample and Hold Period Select"]
-  #[inline] pub fn set_tsh<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0xf << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_tsh<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0xf << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Sstsh {
@@ -2281,42 +2323,42 @@ impl ::core::fmt::Debug for Sstsh {
 pub struct Dcric(pub u32);
 impl Dcric {
 #[doc="Digital Comparator Interrupt"]
-  #[inline] pub fn dcint<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn dcint<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Digital Comparator Interrupt"]
-  #[inline] pub fn set_dcint<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dcint<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Digital Comparator Trigger"]
-  #[inline] pub fn dctrig<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 16 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn dctrig<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 16 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
+   }
 #[doc="Digital Comparator Trigger"]
-  #[inline] pub fn set_dctrig<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 16 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_dctrig<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 16 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dcric {
@@ -2352,82 +2394,82 @@ impl ::core::fmt::Debug for Dcric {
 pub struct Dcctl(pub u32);
 impl Dcctl {
 #[doc="Comparison Interrupt Mode"]
-  #[inline] pub fn cim(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
-  }
+   #[inline] pub fn cim(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+   }
 #[doc="Comparison Interrupt Mode"]
-  #[inline] pub fn set_cim<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_cim<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 #[doc="Comparison Interrupt Condition"]
-  #[inline] pub fn cic(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
-  }
+   #[inline] pub fn cic(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
+   }
 #[doc="Comparison Interrupt Condition"]
-  #[inline] pub fn set_cic<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 2);
-     self.0 |= value << 2;
-     self
-  }
+   #[inline] pub fn set_cic<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 2);
+      self.0 |= value << 2;
+      self
+   }
 
 #[doc="Comparison Interrupt Enable"]
-  #[inline] pub fn cie(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-  }
+   #[inline] pub fn cie(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+   }
 #[doc="Comparison Interrupt Enable"]
-  #[inline] pub fn set_cie<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_cie<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 #[doc="Comparison Trigger Mode"]
-  #[inline] pub fn ctm(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
-  }
+   #[inline] pub fn ctm(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
+   }
 #[doc="Comparison Trigger Mode"]
-  #[inline] pub fn set_ctm<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 8);
-     self.0 |= value << 8;
-     self
-  }
+   #[inline] pub fn set_ctm<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 8);
+      self.0 |= value << 8;
+      self
+   }
 
 #[doc="Comparison Trigger Condition"]
-  #[inline] pub fn ctc(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
-  }
+   #[inline] pub fn ctc(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
+   }
 #[doc="Comparison Trigger Condition"]
-  #[inline] pub fn set_ctc<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 10);
-     self.0 |= value << 10;
-     self
-  }
+   #[inline] pub fn set_ctc<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 10);
+      self.0 |= value << 10;
+      self
+   }
 
 #[doc="Comparison Trigger Enable"]
-  #[inline] pub fn cte(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-  }
+   #[inline] pub fn cte(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+   }
 #[doc="Comparison Trigger Enable"]
-  #[inline] pub fn set_cte<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
+   #[inline] pub fn set_cte<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 12);
+      self.0 |= value << 12;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dcctl {
@@ -2453,23 +2495,23 @@ impl ::core::fmt::Debug for Dcctl {
 pub struct Dccmp(pub u32);
 impl Dccmp {
 #[doc="Compare"]
-  #[inline] pub fn comp<I: Into<bits::R2>>(&self, index: I) -> bits::U12 {
-     let index: bits::R2 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index * 16);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn comp<I: Into<bits::R2>>(&self, index: I) -> bits::U12 {
+      let index: bits::R2 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index * 16);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="Compare"]
-  #[inline] pub fn set_comp<I: Into<bits::R2>, V: Into<bits::U12>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R2 = index.into();
-     let index: usize = index.value();
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index * 16);
-     self.0 &= !(0xfff << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_comp<I: Into<bits::R2>, V: Into<bits::U12>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R2 = index.into();
+      let index: usize = index.value();
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index * 16);
+      self.0 &= !(0xfff << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dccmp {
@@ -2491,95 +2533,95 @@ impl ::core::fmt::Debug for Dccmp {
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Maximum Conversion Rate"]
-  #[inline] pub fn mcr(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn mcr(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+   }
 #[doc="Maximum Conversion Rate"]
-  #[inline] pub fn set_mcr<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_mcr<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 #[doc="ADC Channel Count"]
-  #[inline] pub fn ch(&self) -> bits::U6 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3f) as u8) } // [9:4]
-  }
+   #[inline] pub fn ch(&self) -> bits::U6 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3f) as u8) } // [9:4]
+   }
 #[doc="ADC Channel Count"]
-  #[inline] pub fn set_ch<V: Into<bits::U6>>(mut self, value: V) -> Self {
-     let value: bits::U6 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3f << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_ch<V: Into<bits::U6>>(mut self, value: V) -> Self {
+      let value: bits::U6 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3f << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 #[doc="Digital Comparator Count"]
-  #[inline] pub fn dc(&self) -> bits::U6 {
-     unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3f) as u8) } // [15:10]
-  }
+   #[inline] pub fn dc(&self) -> bits::U6 {
+      unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3f) as u8) } // [15:10]
+   }
 #[doc="Digital Comparator Count"]
-  #[inline] pub fn set_dc<V: Into<bits::U6>>(mut self, value: V) -> Self {
-     let value: bits::U6 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3f << 10);
-     self.0 |= value << 10;
-     self
-  }
+   #[inline] pub fn set_dc<V: Into<bits::U6>>(mut self, value: V) -> Self {
+      let value: bits::U6 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3f << 10);
+      self.0 |= value << 10;
+      self
+   }
 
 #[doc="ADC Architecture"]
-  #[inline] pub fn _type(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-  }
+   #[inline] pub fn _type(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
+   }
 #[doc="ADC Architecture"]
-  #[inline] pub fn set_type<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_type<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 #[doc="Resolution"]
-  #[inline] pub fn rsl(&self) -> bits::U5 {
-     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1f) as u8) } // [22:18]
-  }
+   #[inline] pub fn rsl(&self) -> bits::U5 {
+      unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1f) as u8) } // [22:18]
+   }
 #[doc="Resolution"]
-  #[inline] pub fn set_rsl<V: Into<bits::U5>>(mut self, value: V) -> Self {
-     let value: bits::U5 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1f << 18);
-     self.0 |= value << 18;
-     self
-  }
+   #[inline] pub fn set_rsl<V: Into<bits::U5>>(mut self, value: V) -> Self {
+      let value: bits::U5 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1f << 18);
+      self.0 |= value << 18;
+      self
+   }
 
 #[doc="Temperature Sensor"]
-  #[inline] pub fn ts(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
-  }
+   #[inline] pub fn ts(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
+   }
 #[doc="Temperature Sensor"]
-  #[inline] pub fn set_ts<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 23);
-     self.0 |= value << 23;
-     self
-  }
+   #[inline] pub fn set_ts<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 23);
+      self.0 |= value << 23;
+      self
+   }
 
 #[doc="Application-Programmable Sample-and-Hold Time"]
-  #[inline] pub fn apsht(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-  }
+   #[inline] pub fn apsht(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
+   }
 #[doc="Application-Programmable Sample-and-Hold Time"]
-  #[inline] pub fn set_apsht<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 24);
-     self.0 |= value << 24;
-     self
-  }
+   #[inline] pub fn set_apsht<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 24);
+      self.0 |= value << 24;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Pp {
@@ -2606,17 +2648,17 @@ impl ::core::fmt::Debug for Pp {
 pub struct Pc(pub u32);
 impl Pc {
 #[doc="Conversion Rate"]
-  #[inline] pub fn mcr(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn mcr(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+   }
 #[doc="Conversion Rate"]
-  #[inline] pub fn set_mcr<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_mcr<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Pc {
@@ -2637,30 +2679,30 @@ impl ::core::fmt::Debug for Pc {
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="ADC Clock Source"]
-  #[inline] pub fn cs(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-  }
+   #[inline] pub fn cs(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+   }
 #[doc="ADC Clock Source"]
-  #[inline] pub fn set_cs<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_cs<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 #[doc="PLL VCO Clock Divisor"]
-  #[inline] pub fn clkdiv(&self) -> bits::U6 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3f) as u8) } // [9:4]
-  }
+   #[inline] pub fn clkdiv(&self) -> bits::U6 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3f) as u8) } // [9:4]
+   }
 #[doc="PLL VCO Clock Divisor"]
-  #[inline] pub fn set_clkdiv<V: Into<bits::U6>>(mut self, value: V) -> Self {
-     let value: bits::U6 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3f << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_clkdiv<V: Into<bits::U6>>(mut self, value: V) -> Self {
+      let value: bits::U6 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3f << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Cc {
@@ -2677,252 +2719,43 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
-#[derive(Clone, Copy, PartialEq)]
-#[doc="ADC Channel"]
-pub struct Channel<P, T> { pub periph: Periph<T>, pub index: usize, pub id: P }
-
-impl<P,T> Channel<P,T> {
-   #[inline] pub fn periph(&self) -> &Periph<T> { &self.periph }
-   #[inline] pub fn index(&self) -> usize { self.index }
-}
-
-pub const ADC0_CH0: Channel<Adc0Ch0Id, Adc0Id> = Channel { periph: ADC0, index: 0, id: Adc0Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch0Id {}
-pub type Adc0Ch0 = Channel<Adc0Ch0Id, Adc0Id>;
-
-pub const ADC0_CH1: Channel<Adc0Ch1Id, Adc0Id> = Channel { periph: ADC0, index: 1, id: Adc0Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch1Id {}
-pub type Adc0Ch1 = Channel<Adc0Ch1Id, Adc0Id>;
-
-pub const ADC0_CH2: Channel<Adc0Ch2Id, Adc0Id> = Channel { periph: ADC0, index: 2, id: Adc0Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch2Id {}
-pub type Adc0Ch2 = Channel<Adc0Ch2Id, Adc0Id>;
-
-pub const ADC0_CH3: Channel<Adc0Ch3Id, Adc0Id> = Channel { periph: ADC0, index: 3, id: Adc0Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch3Id {}
-pub type Adc0Ch3 = Channel<Adc0Ch3Id, Adc0Id>;
-
-pub const ADC0_CH4: Channel<Adc0Ch4Id, Adc0Id> = Channel { periph: ADC0, index: 4, id: Adc0Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch4Id {}
-pub type Adc0Ch4 = Channel<Adc0Ch4Id, Adc0Id>;
-
-pub const ADC0_CH5: Channel<Adc0Ch5Id, Adc0Id> = Channel { periph: ADC0, index: 5, id: Adc0Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch5Id {}
-pub type Adc0Ch5 = Channel<Adc0Ch5Id, Adc0Id>;
-
-pub const ADC0_CH6: Channel<Adc0Ch6Id, Adc0Id> = Channel { periph: ADC0, index: 6, id: Adc0Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch6Id {}
-pub type Adc0Ch6 = Channel<Adc0Ch6Id, Adc0Id>;
-
-pub const ADC0_CH7: Channel<Adc0Ch7Id, Adc0Id> = Channel { periph: ADC0, index: 7, id: Adc0Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch7Id {}
-pub type Adc0Ch7 = Channel<Adc0Ch7Id, Adc0Id>;
-
-pub const ADC0_CH8: Channel<Adc0Ch8Id, Adc0Id> = Channel { periph: ADC0, index: 8, id: Adc0Ch8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch8Id {}
-pub type Adc0Ch8 = Channel<Adc0Ch8Id, Adc0Id>;
-
-pub const ADC0_CH9: Channel<Adc0Ch9Id, Adc0Id> = Channel { periph: ADC0, index: 9, id: Adc0Ch9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch9Id {}
-pub type Adc0Ch9 = Channel<Adc0Ch9Id, Adc0Id>;
-
-pub const ADC0_CH10: Channel<Adc0Ch10Id, Adc0Id> = Channel { periph: ADC0, index: 10, id: Adc0Ch10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch10Id {}
-pub type Adc0Ch10 = Channel<Adc0Ch10Id, Adc0Id>;
-
-pub const ADC0_CH11: Channel<Adc0Ch11Id, Adc0Id> = Channel { periph: ADC0, index: 11, id: Adc0Ch11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch11Id {}
-pub type Adc0Ch11 = Channel<Adc0Ch11Id, Adc0Id>;
-
-pub const ADC0_CH12: Channel<Adc0Ch12Id, Adc0Id> = Channel { periph: ADC0, index: 12, id: Adc0Ch12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch12Id {}
-pub type Adc0Ch12 = Channel<Adc0Ch12Id, Adc0Id>;
-
-pub const ADC0_CH13: Channel<Adc0Ch13Id, Adc0Id> = Channel { periph: ADC0, index: 13, id: Adc0Ch13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch13Id {}
-pub type Adc0Ch13 = Channel<Adc0Ch13Id, Adc0Id>;
-
-pub const ADC0_CH14: Channel<Adc0Ch14Id, Adc0Id> = Channel { periph: ADC0, index: 14, id: Adc0Ch14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch14Id {}
-pub type Adc0Ch14 = Channel<Adc0Ch14Id, Adc0Id>;
-
-pub const ADC0_CH15: Channel<Adc0Ch15Id, Adc0Id> = Channel { periph: ADC0, index: 15, id: Adc0Ch15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch15Id {}
-pub type Adc0Ch15 = Channel<Adc0Ch15Id, Adc0Id>;
-
-pub const ADC0_CH16: Channel<Adc0Ch16Id, Adc0Id> = Channel { periph: ADC0, index: 16, id: Adc0Ch16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch16Id {}
-pub type Adc0Ch16 = Channel<Adc0Ch16Id, Adc0Id>;
-
-pub const ADC0_CH17: Channel<Adc0Ch17Id, Adc0Id> = Channel { periph: ADC0, index: 17, id: Adc0Ch17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch17Id {}
-pub type Adc0Ch17 = Channel<Adc0Ch17Id, Adc0Id>;
-
-pub const ADC0_CH18: Channel<Adc0Ch18Id, Adc0Id> = Channel { periph: ADC0, index: 18, id: Adc0Ch18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch18Id {}
-pub type Adc0Ch18 = Channel<Adc0Ch18Id, Adc0Id>;
-
-pub const ADC0_CH19: Channel<Adc0Ch19Id, Adc0Id> = Channel { periph: ADC0, index: 19, id: Adc0Ch19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc0Ch19Id {}
-pub type Adc0Ch19 = Channel<Adc0Ch19Id, Adc0Id>;
-
-pub const ADC1_CH0: Channel<Adc1Ch0Id, Adc1Id> = Channel { periph: ADC1, index: 0, id: Adc1Ch0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch0Id {}
-pub type Adc1Ch0 = Channel<Adc1Ch0Id, Adc1Id>;
-
-pub const ADC1_CH1: Channel<Adc1Ch1Id, Adc1Id> = Channel { periph: ADC1, index: 1, id: Adc1Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch1Id {}
-pub type Adc1Ch1 = Channel<Adc1Ch1Id, Adc1Id>;
-
-pub const ADC1_CH2: Channel<Adc1Ch2Id, Adc1Id> = Channel { periph: ADC1, index: 2, id: Adc1Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch2Id {}
-pub type Adc1Ch2 = Channel<Adc1Ch2Id, Adc1Id>;
-
-pub const ADC1_CH3: Channel<Adc1Ch3Id, Adc1Id> = Channel { periph: ADC1, index: 3, id: Adc1Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch3Id {}
-pub type Adc1Ch3 = Channel<Adc1Ch3Id, Adc1Id>;
-
-pub const ADC1_CH4: Channel<Adc1Ch4Id, Adc1Id> = Channel { periph: ADC1, index: 4, id: Adc1Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch4Id {}
-pub type Adc1Ch4 = Channel<Adc1Ch4Id, Adc1Id>;
-
-pub const ADC1_CH5: Channel<Adc1Ch5Id, Adc1Id> = Channel { periph: ADC1, index: 5, id: Adc1Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch5Id {}
-pub type Adc1Ch5 = Channel<Adc1Ch5Id, Adc1Id>;
-
-pub const ADC1_CH6: Channel<Adc1Ch6Id, Adc1Id> = Channel { periph: ADC1, index: 6, id: Adc1Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch6Id {}
-pub type Adc1Ch6 = Channel<Adc1Ch6Id, Adc1Id>;
-
-pub const ADC1_CH7: Channel<Adc1Ch7Id, Adc1Id> = Channel { periph: ADC1, index: 7, id: Adc1Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch7Id {}
-pub type Adc1Ch7 = Channel<Adc1Ch7Id, Adc1Id>;
-
-pub const ADC1_CH8: Channel<Adc1Ch8Id, Adc1Id> = Channel { periph: ADC1, index: 8, id: Adc1Ch8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch8Id {}
-pub type Adc1Ch8 = Channel<Adc1Ch8Id, Adc1Id>;
-
-pub const ADC1_CH9: Channel<Adc1Ch9Id, Adc1Id> = Channel { periph: ADC1, index: 9, id: Adc1Ch9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch9Id {}
-pub type Adc1Ch9 = Channel<Adc1Ch9Id, Adc1Id>;
-
-pub const ADC1_CH10: Channel<Adc1Ch10Id, Adc1Id> = Channel { periph: ADC1, index: 10, id: Adc1Ch10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch10Id {}
-pub type Adc1Ch10 = Channel<Adc1Ch10Id, Adc1Id>;
-
-pub const ADC1_CH11: Channel<Adc1Ch11Id, Adc1Id> = Channel { periph: ADC1, index: 11, id: Adc1Ch11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch11Id {}
-pub type Adc1Ch11 = Channel<Adc1Ch11Id, Adc1Id>;
-
-pub const ADC1_CH12: Channel<Adc1Ch12Id, Adc1Id> = Channel { periph: ADC1, index: 12, id: Adc1Ch12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch12Id {}
-pub type Adc1Ch12 = Channel<Adc1Ch12Id, Adc1Id>;
-
-pub const ADC1_CH13: Channel<Adc1Ch13Id, Adc1Id> = Channel { periph: ADC1, index: 13, id: Adc1Ch13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch13Id {}
-pub type Adc1Ch13 = Channel<Adc1Ch13Id, Adc1Id>;
-
-pub const ADC1_CH14: Channel<Adc1Ch14Id, Adc1Id> = Channel { periph: ADC1, index: 14, id: Adc1Ch14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch14Id {}
-pub type Adc1Ch14 = Channel<Adc1Ch14Id, Adc1Id>;
-
-pub const ADC1_CH15: Channel<Adc1Ch15Id, Adc1Id> = Channel { periph: ADC1, index: 15, id: Adc1Ch15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch15Id {}
-pub type Adc1Ch15 = Channel<Adc1Ch15Id, Adc1Id>;
-
-pub const ADC1_CH16: Channel<Adc1Ch16Id, Adc1Id> = Channel { periph: ADC1, index: 16, id: Adc1Ch16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch16Id {}
-pub type Adc1Ch16 = Channel<Adc1Ch16Id, Adc1Id>;
-
-pub const ADC1_CH17: Channel<Adc1Ch17Id, Adc1Id> = Channel { periph: ADC1, index: 17, id: Adc1Ch17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch17Id {}
-pub type Adc1Ch17 = Channel<Adc1Ch17Id, Adc1Id>;
-
-pub const ADC1_CH18: Channel<Adc1Ch18Id, Adc1Id> = Channel { periph: ADC1, index: 18, id: Adc1Ch18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch18Id {}
-pub type Adc1Ch18 = Channel<Adc1Ch18Id, Adc1Id>;
-
-pub const ADC1_CH19: Channel<Adc1Ch19Id, Adc1Id> = Channel { periph: ADC1, index: 19, id: Adc1Ch19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Adc1Ch19Id {}
-pub type Adc1Ch19 = Channel<Adc1Ch19Id, Adc1Id>;
-
+channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, 0);
+channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, 1);
+channel!(ADC0_CH2, Adc0Ch2, ADC0, Adc0, 2);
+channel!(ADC0_CH3, Adc0Ch3, ADC0, Adc0, 3);
+channel!(ADC0_CH4, Adc0Ch4, ADC0, Adc0, 4);
+channel!(ADC0_CH5, Adc0Ch5, ADC0, Adc0, 5);
+channel!(ADC0_CH6, Adc0Ch6, ADC0, Adc0, 6);
+channel!(ADC0_CH7, Adc0Ch7, ADC0, Adc0, 7);
+channel!(ADC0_CH8, Adc0Ch8, ADC0, Adc0, 8);
+channel!(ADC0_CH9, Adc0Ch9, ADC0, Adc0, 9);
+channel!(ADC0_CH10, Adc0Ch10, ADC0, Adc0, 10);
+channel!(ADC0_CH11, Adc0Ch11, ADC0, Adc0, 11);
+channel!(ADC0_CH12, Adc0Ch12, ADC0, Adc0, 12);
+channel!(ADC0_CH13, Adc0Ch13, ADC0, Adc0, 13);
+channel!(ADC0_CH14, Adc0Ch14, ADC0, Adc0, 14);
+channel!(ADC0_CH15, Adc0Ch15, ADC0, Adc0, 15);
+channel!(ADC0_CH16, Adc0Ch16, ADC0, Adc0, 16);
+channel!(ADC0_CH17, Adc0Ch17, ADC0, Adc0, 17);
+channel!(ADC0_CH18, Adc0Ch18, ADC0, Adc0, 18);
+channel!(ADC0_CH19, Adc0Ch19, ADC0, Adc0, 19);
+channel!(ADC1_CH0, Adc1Ch0, ADC1, Adc1, 0);
+channel!(ADC1_CH1, Adc1Ch1, ADC1, Adc1, 1);
+channel!(ADC1_CH2, Adc1Ch2, ADC1, Adc1, 2);
+channel!(ADC1_CH3, Adc1Ch3, ADC1, Adc1, 3);
+channel!(ADC1_CH4, Adc1Ch4, ADC1, Adc1, 4);
+channel!(ADC1_CH5, Adc1Ch5, ADC1, Adc1, 5);
+channel!(ADC1_CH6, Adc1Ch6, ADC1, Adc1, 6);
+channel!(ADC1_CH7, Adc1Ch7, ADC1, Adc1, 7);
+channel!(ADC1_CH8, Adc1Ch8, ADC1, Adc1, 8);
+channel!(ADC1_CH9, Adc1Ch9, ADC1, Adc1, 9);
+channel!(ADC1_CH10, Adc1Ch10, ADC1, Adc1, 10);
+channel!(ADC1_CH11, Adc1Ch11, ADC1, Adc1, 11);
+channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, 12);
+channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, 13);
+channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, 14);
+channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, 15);
+channel!(ADC1_CH16, Adc1Ch16, ADC1, Adc1, 16);
+channel!(ADC1_CH17, Adc1Ch17, ADC1, Adc1, 17);
+channel!(ADC1_CH18, Adc1Ch18, ADC1, Adc1, 18);
+channel!(ADC1_CH19, Adc1Ch19, ADC1, Adc1, 19);

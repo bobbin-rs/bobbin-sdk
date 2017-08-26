@@ -1,107 +1,109 @@
-#[allow(unused_imports)] use bobbin_common::bits;
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="WWDG Peripheral"]
-pub struct Periph<T>(pub u32, pub T); 
+#[allow(unused_imports)] use bobbin_common::*;
 
 
 
-impl<T> Periph<T> {
+pub trait WwdgPeriph : Base {
 #[doc="Get the *const pointer for the CR register."]
-  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x0) as *const u32
-  }
+   #[inline] fn cr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Get the *mut pointer for the CR register."]
-  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x0) as *mut u32
-  }
+   #[inline] fn cr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Read the CR register."]
-  #[inline] pub fn cr(&self) -> Cr { 
-     unsafe {
-        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }
-  }
+   #[inline] fn cr(&self) -> Cr { 
+      unsafe {
+         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      }
+   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-     let value = f(Cr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+      let value = f(Cr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CR register."]
-  #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-     let tmp = self.cr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the CFR register."]
-  #[inline] pub fn cfr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
-  }
+   #[inline] fn cfr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Get the *mut pointer for the CFR register."]
-  #[inline] pub fn cfr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
-  }
+   #[inline] fn cfr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Read the CFR register."]
-  #[inline] pub fn cfr(&self) -> Cfr { 
-     unsafe {
-        Cfr(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }
-  }
+   #[inline] fn cfr(&self) -> Cfr { 
+      unsafe {
+         Cfr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      }
+   }
 #[doc="Write the CFR register."]
-  #[inline] pub fn set_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
-     let value = f(Cfr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
+      let value = f(Cfr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CFR register."]
-  #[inline] pub fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
-     let tmp = self.cfr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Cfr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SR register."]
-  #[inline] pub fn sr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
+   #[inline] fn sr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Get the *mut pointer for the SR register."]
-  #[inline] pub fn sr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
+   #[inline] fn sr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Read the SR register."]
-  #[inline] pub fn sr(&self) -> Sr { 
-     unsafe {
-        Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
+   #[inline] fn sr(&self) -> Sr { 
+      unsafe {
+         Sr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      }
+   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-     let value = f(Sr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+      let value = f(Sr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SR register."]
-  #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-     let tmp = self.sr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Sr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 
 }
 
@@ -110,30 +112,30 @@ impl<T> Periph<T> {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Activation bit"]
-  #[inline] pub fn wdga(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-  }
+   #[inline] pub fn wdga(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+   }
 #[doc="Activation bit"]
-  #[inline] pub fn set_wdga<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 7);
-     self.0 |= value << 7;
-     self
-  }
+   #[inline] pub fn set_wdga<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 7);
+      self.0 |= value << 7;
+      self
+   }
 
 #[doc="7-bit counter (MSB to LSB)"]
-  #[inline] pub fn t(&self) -> bits::U7 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
-  }
+   #[inline] pub fn t(&self) -> bits::U7 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
+   }
 #[doc="7-bit counter (MSB to LSB)"]
-  #[inline] pub fn set_t<V: Into<bits::U7>>(mut self, value: V) -> Self {
-     let value: bits::U7 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x7f << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_t<V: Into<bits::U7>>(mut self, value: V) -> Self {
+      let value: bits::U7 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x7f << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Cr {
@@ -155,43 +157,43 @@ impl ::core::fmt::Debug for Cr {
 pub struct Cfr(pub u32);
 impl Cfr {
 #[doc="Early wakeup interrupt"]
-  #[inline] pub fn ewi(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-  }
+   #[inline] pub fn ewi(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
+   }
 #[doc="Early wakeup interrupt"]
-  #[inline] pub fn set_ewi<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 9);
-     self.0 |= value << 9;
-     self
-  }
+   #[inline] pub fn set_ewi<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 9);
+      self.0 |= value << 9;
+      self
+   }
 
 #[doc="Timer base"]
-  #[inline] pub fn wdgtb(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x3) as u8) } // [8:7]
-  }
+   #[inline] pub fn wdgtb(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x3) as u8) } // [8:7]
+   }
 #[doc="Timer base"]
-  #[inline] pub fn set_wdgtb<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 7);
-     self.0 |= value << 7;
-     self
-  }
+   #[inline] pub fn set_wdgtb<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 7);
+      self.0 |= value << 7;
+      self
+   }
 
 #[doc="7-bit window value"]
-  #[inline] pub fn w(&self) -> bits::U7 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
-  }
+   #[inline] pub fn w(&self) -> bits::U7 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
+   }
 #[doc="7-bit window value"]
-  #[inline] pub fn set_w<V: Into<bits::U7>>(mut self, value: V) -> Self {
-     let value: bits::U7 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x7f << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_w<V: Into<bits::U7>>(mut self, value: V) -> Self {
+      let value: bits::U7 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x7f << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Cfr {
@@ -214,17 +216,17 @@ impl ::core::fmt::Debug for Cfr {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Early wakeup interrupt flag"]
-  #[inline] pub fn ewif(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn ewif(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+   }
 #[doc="Early wakeup interrupt flag"]
-  #[inline] pub fn set_ewif<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_ewif<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Sr {

@@ -1,12 +1,8 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::usart::*;
 
-pub const USART2: Usart2 = Periph(0x40004400, Usart2Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Usart2Id {}
-pub type Usart2 = Periph<Usart2Id>;
+periph!(UsartPeriph, USART2, Usart2, 0x40004400);
 
 impl super::sig::Signal<super::sig::Usart2Tx> for Usart2 {}
 impl super::sig::SignalTx<super::sig::Usart2Tx> for Usart2 {}

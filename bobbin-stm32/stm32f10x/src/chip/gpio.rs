@@ -1,44 +1,12 @@
-#[allow(unused_imports)] use bobbin_common::bits;
-pub const GPIOA: Gpioa = Periph(0x40010800, GpioaId {});
-pub const GPIOB: Gpiob = Periph(0x40010c00, GpiobId {});
-pub const GPIOC: Gpioc = Periph(0x40011000, GpiocId {});
-pub const GPIOD: Gpiod = Periph(0x40011400, GpiodId {});
-pub const GPIOE: Gpioe = Periph(0x40011800, GpioeId {});
-pub const GPIOF: Gpiof = Periph(0x40011c00, GpiofId {});
-pub const GPIOG: Gpiog = Periph(0x40012000, GpiogId {});
+#[allow(unused_imports)] use bobbin_common::*;
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="GPIO Peripheral"]
-pub struct Periph<T>(pub u32, pub T); 
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpioaId {}
-pub type Gpioa = Periph<GpioaId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpiobId {}
-pub type Gpiob = Periph<GpiobId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpiocId {}
-pub type Gpioc = Periph<GpiocId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpiodId {}
-pub type Gpiod = Periph<GpiodId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpioeId {}
-pub type Gpioe = Periph<GpioeId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpiofId {}
-pub type Gpiof = Periph<GpiofId>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct GpiogId {}
-pub type Gpiog = Periph<GpiogId>;
+periph!(GpioPeriph, GPIOA, Gpioa, 0x40010800);
+periph!(GpioPeriph, GPIOB, Gpiob, 0x40010c00);
+periph!(GpioPeriph, GPIOC, Gpioc, 0x40011000);
+periph!(GpioPeriph, GPIOD, Gpiod, 0x40011400);
+periph!(GpioPeriph, GPIOE, Gpioe, 0x40011800);
+periph!(GpioPeriph, GPIOF, Gpiof, 0x40011c00);
+periph!(GpioPeriph, GPIOG, Gpiog, 0x40012000);
 
 
 
@@ -48,183 +16,191 @@ pub type Gpiog = Periph<GpiogId>;
 
 
 
-impl<T> Periph<T> {
+pub trait GpioPeriph : Base {
 #[doc="Get the *const pointer for the CRL register."]
-  #[inline] pub fn crl_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x0) as *const u32
-  }
+   #[inline] fn crl_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Get the *mut pointer for the CRL register."]
-  #[inline] pub fn crl_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x0) as *mut u32
-  }
+   #[inline] fn crl_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Read the CRL register."]
-  #[inline] pub fn crl(&self) -> Crl { 
-     unsafe {
-        Crl(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }
-  }
+   #[inline] fn crl(&self) -> Crl { 
+      unsafe {
+         Crl(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      }
+   }
 #[doc="Write the CRL register."]
-  #[inline] pub fn set_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
-     let value = f(Crl(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
+      let value = f(Crl(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CRL register."]
-  #[inline] pub fn with_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
-     let tmp = self.crl();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Crl(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the CRH register."]
-  #[inline] pub fn crh_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
-  }
+   #[inline] fn crh_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Get the *mut pointer for the CRH register."]
-  #[inline] pub fn crh_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
-  }
+   #[inline] fn crh_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Read the CRH register."]
-  #[inline] pub fn crh(&self) -> Crh { 
-     unsafe {
-        Crh(::core::ptr::read_volatile(((self.0 as usize) + 0x4) as *const u32))
-     }
-  }
+   #[inline] fn crh(&self) -> Crh { 
+      unsafe {
+         Crh(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      }
+   }
 #[doc="Write the CRH register."]
-  #[inline] pub fn set_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
-     let value = f(Crh(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
+      let value = f(Crh(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CRH register."]
-  #[inline] pub fn with_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
-     let tmp = self.crh();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Crh(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the IDR register."]
-  #[inline] pub fn idr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
+   #[inline] fn idr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Get the *mut pointer for the IDR register."]
-  #[inline] pub fn idr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
+   #[inline] fn idr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Read the IDR register."]
-  #[inline] pub fn idr(&self) -> Idr { 
-     unsafe {
-        Idr(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
+   #[inline] fn idr(&self) -> Idr { 
+      unsafe {
+         Idr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      }
+   }
 
 #[doc="Get the *const pointer for the ODR register."]
-  #[inline] pub fn odr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xc) as *const u32
-  }
+   #[inline] fn odr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Get the *mut pointer for the ODR register."]
-  #[inline] pub fn odr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xc) as *mut u32
-  }
+   #[inline] fn odr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Read the ODR register."]
-  #[inline] pub fn odr(&self) -> Odr { 
-     unsafe {
-        Odr(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }
-  }
+   #[inline] fn odr(&self) -> Odr { 
+      unsafe {
+         Odr(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      }
+   }
 #[doc="Write the ODR register."]
-  #[inline] pub fn set_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
-     let value = f(Odr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
+      let value = f(Odr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the ODR register."]
-  #[inline] pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
-     let tmp = self.odr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Odr(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the BSRR register."]
-  #[inline] pub fn bsrr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x10) as *const u32
-  }
+   #[inline] fn bsrr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Get the *mut pointer for the BSRR register."]
-  #[inline] pub fn bsrr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x10) as *mut u32
-  }
+   #[inline] fn bsrr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Write the BSRR register."]
-  #[inline] pub fn set_bsrr<F: FnOnce(Bsrr) -> Bsrr>(&self, f: F) -> &Self {
-     let value = f(Bsrr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_bsrr<F: FnOnce(Bsrr) -> Bsrr>(&self, f: F) -> &Self {
+      let value = f(Bsrr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the BRR register."]
-  #[inline] pub fn brr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x14) as *const u32
-  }
+   #[inline] fn brr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Get the *mut pointer for the BRR register."]
-  #[inline] pub fn brr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x14) as *mut u32
-  }
+   #[inline] fn brr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Write the BRR register."]
-  #[inline] pub fn set_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
-     let value = f(Brr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
+      let value = f(Brr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the LCKR register."]
-  #[inline] pub fn lckr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
-  }
+   #[inline] fn lckr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Get the *mut pointer for the LCKR register."]
-  #[inline] pub fn lckr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
-  }
+   #[inline] fn lckr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Read the LCKR register."]
-  #[inline] pub fn lckr(&self) -> Lckr { 
-     unsafe {
-        Lckr(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }
-  }
+   #[inline] fn lckr(&self) -> Lckr { 
+      unsafe {
+         Lckr(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      }
+   }
 #[doc="Write the LCKR register."]
-  #[inline] pub fn set_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
-     let value = f(Lckr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
+      let value = f(Lckr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the LCKR register."]
-  #[inline] pub fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
-     let tmp = self.lckr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Lckr(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 
 }
 
@@ -233,42 +209,42 @@ impl<T> Periph<T> {
 pub struct Crl(pub u32);
 impl Crl {
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
-  }
+   #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
+   }
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 2 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
-  }
+   #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 2 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
+   }
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 2 + (index << 2);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 2 + (index << 2);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Crl {
@@ -304,42 +280,42 @@ impl ::core::fmt::Debug for Crl {
 pub struct Crh(pub u32);
 impl Crh {
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
-  }
+   #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
+   }
 #[doc="Port n.m mode bits"]
-  #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + (index << 2);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + (index << 2);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 2 + (index << 2);
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
-  }
+   #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 2 + (index << 2);
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
+   }
 #[doc="Port n.m configuration bits"]
-  #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R8 = index.into();
-     let index: usize = index.value();
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 2 + (index << 2);
-     self.0 &= !(0x3 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R8 = index.into();
+      let index: usize = index.value();
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 2 + (index << 2);
+      self.0 &= !(0x3 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Crh {
@@ -375,23 +351,23 @@ impl ::core::fmt::Debug for Crh {
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="Port input data"]
-  #[inline] pub fn idr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn idr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Port input data"]
-  #[inline] pub fn set_idr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_idr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Idr {
@@ -427,23 +403,23 @@ impl ::core::fmt::Debug for Idr {
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="Port output data"]
-  #[inline] pub fn odr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn odr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Port output data"]
-  #[inline] pub fn set_odr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_odr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Odr {
@@ -479,42 +455,42 @@ impl ::core::fmt::Debug for Odr {
 pub struct Bsrr(pub u32);
 impl Bsrr {
 #[doc="Set bit n"]
-  #[inline] pub fn bs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn bs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Set bit n"]
-  #[inline] pub fn set_bs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_bs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Reset bit n"]
-  #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 16 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 16 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
+   }
 #[doc="Reset bit n"]
-  #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 16 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 16 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Bsrr {
@@ -566,23 +542,23 @@ impl ::core::fmt::Debug for Bsrr {
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="Reset bit n"]
-  #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Reset bit n"]
-  #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Brr {
@@ -618,36 +594,36 @@ impl ::core::fmt::Debug for Brr {
 pub struct Lckr(pub u32);
 impl Lckr {
 #[doc="Port Lock bit n"]
-  #[inline] pub fn lck0<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let shift: usize = 0 + index;
-     unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn lck0<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let shift: usize = 0 + index;
+      unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+   }
 #[doc="Port Lock bit n"]
-  #[inline] pub fn set_lck0<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-     let index: bits::R16 = index.into();
-     let index: usize = index.value();
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     let shift: usize = 0 + index;
-     self.0 &= !(0x1 << shift);
-     self.0 |= value << shift;
-     self
-  }
+   #[inline] pub fn set_lck0<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+      let index: bits::R16 = index.into();
+      let index: usize = index.value();
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      let shift: usize = 0 + index;
+      self.0 &= !(0x1 << shift);
+      self.0 |= value << shift;
+      self
+   }
 
 #[doc="Lock key"]
-  #[inline] pub fn lckk(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn lckk(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+   }
 #[doc="Lock key"]
-  #[inline] pub fn set_lckk<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_lckk<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Lckr {
@@ -679,574 +655,227 @@ impl ::core::fmt::Debug for Lckr {
       Ok(())
    }
 }
-#[doc="GPIO Pin"]
-pub struct Pin<P, T> { pub port: Periph<T>, pub index: usize, pub id: P }
+pin!(PA0, Pa0, GPIOA, Gpioa, 0);
 
-impl<P,T> Pin<P,T> {
-   #[inline] pub fn port(&self) -> &Periph<T> { &self.port }
-   #[inline] pub fn index(&self) -> usize { self.index }
-}
-pub trait AltFn<T> {
-   fn alt_fn(&self) -> usize;
-}
+pin!(PA1, Pa1, GPIOA, Gpioa, 1);
 
-pub const PA0: Pin<Pa0Id, GpioaId> = Pin { port: GPIOA, index: 0, id: Pa0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa0Id {}
-pub type Pa0 = Pin<Pa0Id, GpioaId>;
-pub const PA1: Pin<Pa1Id, GpioaId> = Pin { port: GPIOA, index: 1, id: Pa1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa1Id {}
-pub type Pa1 = Pin<Pa1Id, GpioaId>;
-pub const PA2: Pin<Pa2Id, GpioaId> = Pin { port: GPIOA, index: 2, id: Pa2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa2Id {}
-pub type Pa2 = Pin<Pa2Id, GpioaId>;
-pub const PA3: Pin<Pa3Id, GpioaId> = Pin { port: GPIOA, index: 3, id: Pa3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa3Id {}
-pub type Pa3 = Pin<Pa3Id, GpioaId>;
-pub const PA4: Pin<Pa4Id, GpioaId> = Pin { port: GPIOA, index: 4, id: Pa4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa4Id {}
-pub type Pa4 = Pin<Pa4Id, GpioaId>;
-pub const PA5: Pin<Pa5Id, GpioaId> = Pin { port: GPIOA, index: 5, id: Pa5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa5Id {}
-pub type Pa5 = Pin<Pa5Id, GpioaId>;
-pub const PA6: Pin<Pa6Id, GpioaId> = Pin { port: GPIOA, index: 6, id: Pa6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa6Id {}
-pub type Pa6 = Pin<Pa6Id, GpioaId>;
-pub const PA7: Pin<Pa7Id, GpioaId> = Pin { port: GPIOA, index: 7, id: Pa7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa7Id {}
-pub type Pa7 = Pin<Pa7Id, GpioaId>;
-pub const PA8: Pin<Pa8Id, GpioaId> = Pin { port: GPIOA, index: 8, id: Pa8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa8Id {}
-pub type Pa8 = Pin<Pa8Id, GpioaId>;
-pub const PA9: Pin<Pa9Id, GpioaId> = Pin { port: GPIOA, index: 9, id: Pa9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa9Id {}
-pub type Pa9 = Pin<Pa9Id, GpioaId>;
-pub const PA10: Pin<Pa10Id, GpioaId> = Pin { port: GPIOA, index: 10, id: Pa10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa10Id {}
-pub type Pa10 = Pin<Pa10Id, GpioaId>;
-pub const PA11: Pin<Pa11Id, GpioaId> = Pin { port: GPIOA, index: 11, id: Pa11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa11Id {}
-pub type Pa11 = Pin<Pa11Id, GpioaId>;
-pub const PA12: Pin<Pa12Id, GpioaId> = Pin { port: GPIOA, index: 12, id: Pa12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa12Id {}
-pub type Pa12 = Pin<Pa12Id, GpioaId>;
-pub const PA13: Pin<Pa13Id, GpioaId> = Pin { port: GPIOA, index: 13, id: Pa13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa13Id {}
-pub type Pa13 = Pin<Pa13Id, GpioaId>;
-pub const PA14: Pin<Pa14Id, GpioaId> = Pin { port: GPIOA, index: 14, id: Pa14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa14Id {}
-pub type Pa14 = Pin<Pa14Id, GpioaId>;
-pub const PA15: Pin<Pa15Id, GpioaId> = Pin { port: GPIOA, index: 15, id: Pa15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pa15Id {}
-pub type Pa15 = Pin<Pa15Id, GpioaId>;
-pub const PB0: Pin<Pb0Id, GpiobId> = Pin { port: GPIOB, index: 0, id: Pb0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb0Id {}
-pub type Pb0 = Pin<Pb0Id, GpiobId>;
-pub const PB1: Pin<Pb1Id, GpiobId> = Pin { port: GPIOB, index: 1, id: Pb1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb1Id {}
-pub type Pb1 = Pin<Pb1Id, GpiobId>;
-pub const PB2: Pin<Pb2Id, GpiobId> = Pin { port: GPIOB, index: 2, id: Pb2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb2Id {}
-pub type Pb2 = Pin<Pb2Id, GpiobId>;
-pub const PB3: Pin<Pb3Id, GpiobId> = Pin { port: GPIOB, index: 3, id: Pb3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb3Id {}
-pub type Pb3 = Pin<Pb3Id, GpiobId>;
-pub const PB4: Pin<Pb4Id, GpiobId> = Pin { port: GPIOB, index: 4, id: Pb4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb4Id {}
-pub type Pb4 = Pin<Pb4Id, GpiobId>;
-pub const PB5: Pin<Pb5Id, GpiobId> = Pin { port: GPIOB, index: 5, id: Pb5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb5Id {}
-pub type Pb5 = Pin<Pb5Id, GpiobId>;
-pub const PB6: Pin<Pb6Id, GpiobId> = Pin { port: GPIOB, index: 6, id: Pb6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb6Id {}
-pub type Pb6 = Pin<Pb6Id, GpiobId>;
-pub const PB7: Pin<Pb7Id, GpiobId> = Pin { port: GPIOB, index: 7, id: Pb7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb7Id {}
-pub type Pb7 = Pin<Pb7Id, GpiobId>;
-pub const PB8: Pin<Pb8Id, GpiobId> = Pin { port: GPIOB, index: 8, id: Pb8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb8Id {}
-pub type Pb8 = Pin<Pb8Id, GpiobId>;
-pub const PB9: Pin<Pb9Id, GpiobId> = Pin { port: GPIOB, index: 9, id: Pb9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb9Id {}
-pub type Pb9 = Pin<Pb9Id, GpiobId>;
-pub const PB10: Pin<Pb10Id, GpiobId> = Pin { port: GPIOB, index: 10, id: Pb10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb10Id {}
-pub type Pb10 = Pin<Pb10Id, GpiobId>;
-pub const PB11: Pin<Pb11Id, GpiobId> = Pin { port: GPIOB, index: 11, id: Pb11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb11Id {}
-pub type Pb11 = Pin<Pb11Id, GpiobId>;
-pub const PB12: Pin<Pb12Id, GpiobId> = Pin { port: GPIOB, index: 12, id: Pb12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb12Id {}
-pub type Pb12 = Pin<Pb12Id, GpiobId>;
-pub const PB13: Pin<Pb13Id, GpiobId> = Pin { port: GPIOB, index: 13, id: Pb13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb13Id {}
-pub type Pb13 = Pin<Pb13Id, GpiobId>;
-pub const PB14: Pin<Pb14Id, GpiobId> = Pin { port: GPIOB, index: 14, id: Pb14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb14Id {}
-pub type Pb14 = Pin<Pb14Id, GpiobId>;
-pub const PB15: Pin<Pb15Id, GpiobId> = Pin { port: GPIOB, index: 15, id: Pb15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pb15Id {}
-pub type Pb15 = Pin<Pb15Id, GpiobId>;
-pub const PC0: Pin<Pc0Id, GpiocId> = Pin { port: GPIOC, index: 0, id: Pc0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc0Id {}
-pub type Pc0 = Pin<Pc0Id, GpiocId>;
-pub const PC1: Pin<Pc1Id, GpiocId> = Pin { port: GPIOC, index: 1, id: Pc1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc1Id {}
-pub type Pc1 = Pin<Pc1Id, GpiocId>;
-pub const PC2: Pin<Pc2Id, GpiocId> = Pin { port: GPIOC, index: 2, id: Pc2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc2Id {}
-pub type Pc2 = Pin<Pc2Id, GpiocId>;
-pub const PC3: Pin<Pc3Id, GpiocId> = Pin { port: GPIOC, index: 3, id: Pc3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc3Id {}
-pub type Pc3 = Pin<Pc3Id, GpiocId>;
-pub const PC4: Pin<Pc4Id, GpiocId> = Pin { port: GPIOC, index: 4, id: Pc4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc4Id {}
-pub type Pc4 = Pin<Pc4Id, GpiocId>;
-pub const PC5: Pin<Pc5Id, GpiocId> = Pin { port: GPIOC, index: 5, id: Pc5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc5Id {}
-pub type Pc5 = Pin<Pc5Id, GpiocId>;
-pub const PC6: Pin<Pc6Id, GpiocId> = Pin { port: GPIOC, index: 6, id: Pc6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc6Id {}
-pub type Pc6 = Pin<Pc6Id, GpiocId>;
-pub const PC7: Pin<Pc7Id, GpiocId> = Pin { port: GPIOC, index: 7, id: Pc7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc7Id {}
-pub type Pc7 = Pin<Pc7Id, GpiocId>;
-pub const PC8: Pin<Pc8Id, GpiocId> = Pin { port: GPIOC, index: 8, id: Pc8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc8Id {}
-pub type Pc8 = Pin<Pc8Id, GpiocId>;
-pub const PC9: Pin<Pc9Id, GpiocId> = Pin { port: GPIOC, index: 9, id: Pc9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc9Id {}
-pub type Pc9 = Pin<Pc9Id, GpiocId>;
-pub const PC10: Pin<Pc10Id, GpiocId> = Pin { port: GPIOC, index: 10, id: Pc10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc10Id {}
-pub type Pc10 = Pin<Pc10Id, GpiocId>;
-pub const PC11: Pin<Pc11Id, GpiocId> = Pin { port: GPIOC, index: 11, id: Pc11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc11Id {}
-pub type Pc11 = Pin<Pc11Id, GpiocId>;
-pub const PC12: Pin<Pc12Id, GpiocId> = Pin { port: GPIOC, index: 12, id: Pc12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc12Id {}
-pub type Pc12 = Pin<Pc12Id, GpiocId>;
-pub const PC13: Pin<Pc13Id, GpiocId> = Pin { port: GPIOC, index: 13, id: Pc13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc13Id {}
-pub type Pc13 = Pin<Pc13Id, GpiocId>;
-pub const PC14: Pin<Pc14Id, GpiocId> = Pin { port: GPIOC, index: 14, id: Pc14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc14Id {}
-pub type Pc14 = Pin<Pc14Id, GpiocId>;
-pub const PC15: Pin<Pc15Id, GpiocId> = Pin { port: GPIOC, index: 15, id: Pc15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pc15Id {}
-pub type Pc15 = Pin<Pc15Id, GpiocId>;
-pub const PD0: Pin<Pd0Id, GpiodId> = Pin { port: GPIOD, index: 0, id: Pd0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd0Id {}
-pub type Pd0 = Pin<Pd0Id, GpiodId>;
-pub const PD1: Pin<Pd1Id, GpiodId> = Pin { port: GPIOD, index: 1, id: Pd1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd1Id {}
-pub type Pd1 = Pin<Pd1Id, GpiodId>;
-pub const PD2: Pin<Pd2Id, GpiodId> = Pin { port: GPIOD, index: 2, id: Pd2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd2Id {}
-pub type Pd2 = Pin<Pd2Id, GpiodId>;
-pub const PD3: Pin<Pd3Id, GpiodId> = Pin { port: GPIOD, index: 3, id: Pd3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd3Id {}
-pub type Pd3 = Pin<Pd3Id, GpiodId>;
-pub const PD4: Pin<Pd4Id, GpiodId> = Pin { port: GPIOD, index: 4, id: Pd4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd4Id {}
-pub type Pd4 = Pin<Pd4Id, GpiodId>;
-pub const PD5: Pin<Pd5Id, GpiodId> = Pin { port: GPIOD, index: 5, id: Pd5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd5Id {}
-pub type Pd5 = Pin<Pd5Id, GpiodId>;
-pub const PD6: Pin<Pd6Id, GpiodId> = Pin { port: GPIOD, index: 6, id: Pd6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd6Id {}
-pub type Pd6 = Pin<Pd6Id, GpiodId>;
-pub const PD7: Pin<Pd7Id, GpiodId> = Pin { port: GPIOD, index: 7, id: Pd7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd7Id {}
-pub type Pd7 = Pin<Pd7Id, GpiodId>;
-pub const PD8: Pin<Pd8Id, GpiodId> = Pin { port: GPIOD, index: 8, id: Pd8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd8Id {}
-pub type Pd8 = Pin<Pd8Id, GpiodId>;
-pub const PD9: Pin<Pd9Id, GpiodId> = Pin { port: GPIOD, index: 9, id: Pd9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd9Id {}
-pub type Pd9 = Pin<Pd9Id, GpiodId>;
-pub const PD10: Pin<Pd10Id, GpiodId> = Pin { port: GPIOD, index: 10, id: Pd10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd10Id {}
-pub type Pd10 = Pin<Pd10Id, GpiodId>;
-pub const PD11: Pin<Pd11Id, GpiodId> = Pin { port: GPIOD, index: 11, id: Pd11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd11Id {}
-pub type Pd11 = Pin<Pd11Id, GpiodId>;
-pub const PD12: Pin<Pd12Id, GpiodId> = Pin { port: GPIOD, index: 12, id: Pd12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd12Id {}
-pub type Pd12 = Pin<Pd12Id, GpiodId>;
-pub const PD13: Pin<Pd13Id, GpiodId> = Pin { port: GPIOD, index: 13, id: Pd13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd13Id {}
-pub type Pd13 = Pin<Pd13Id, GpiodId>;
-pub const PD14: Pin<Pd14Id, GpiodId> = Pin { port: GPIOD, index: 14, id: Pd14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd14Id {}
-pub type Pd14 = Pin<Pd14Id, GpiodId>;
-pub const PD15: Pin<Pd15Id, GpiodId> = Pin { port: GPIOD, index: 15, id: Pd15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pd15Id {}
-pub type Pd15 = Pin<Pd15Id, GpiodId>;
-pub const PE0: Pin<Pe0Id, GpioeId> = Pin { port: GPIOE, index: 0, id: Pe0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe0Id {}
-pub type Pe0 = Pin<Pe0Id, GpioeId>;
-pub const PE1: Pin<Pe1Id, GpioeId> = Pin { port: GPIOE, index: 1, id: Pe1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe1Id {}
-pub type Pe1 = Pin<Pe1Id, GpioeId>;
-pub const PE2: Pin<Pe2Id, GpioeId> = Pin { port: GPIOE, index: 2, id: Pe2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe2Id {}
-pub type Pe2 = Pin<Pe2Id, GpioeId>;
-pub const PE3: Pin<Pe3Id, GpioeId> = Pin { port: GPIOE, index: 3, id: Pe3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe3Id {}
-pub type Pe3 = Pin<Pe3Id, GpioeId>;
-pub const PE4: Pin<Pe4Id, GpioeId> = Pin { port: GPIOE, index: 4, id: Pe4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe4Id {}
-pub type Pe4 = Pin<Pe4Id, GpioeId>;
-pub const PE5: Pin<Pe5Id, GpioeId> = Pin { port: GPIOE, index: 5, id: Pe5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe5Id {}
-pub type Pe5 = Pin<Pe5Id, GpioeId>;
-pub const PE6: Pin<Pe6Id, GpioeId> = Pin { port: GPIOE, index: 6, id: Pe6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe6Id {}
-pub type Pe6 = Pin<Pe6Id, GpioeId>;
-pub const PE7: Pin<Pe7Id, GpioeId> = Pin { port: GPIOE, index: 7, id: Pe7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe7Id {}
-pub type Pe7 = Pin<Pe7Id, GpioeId>;
-pub const PE8: Pin<Pe8Id, GpioeId> = Pin { port: GPIOE, index: 8, id: Pe8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe8Id {}
-pub type Pe8 = Pin<Pe8Id, GpioeId>;
-pub const PE9: Pin<Pe9Id, GpioeId> = Pin { port: GPIOE, index: 9, id: Pe9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe9Id {}
-pub type Pe9 = Pin<Pe9Id, GpioeId>;
-pub const PE10: Pin<Pe10Id, GpioeId> = Pin { port: GPIOE, index: 10, id: Pe10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe10Id {}
-pub type Pe10 = Pin<Pe10Id, GpioeId>;
-pub const PE11: Pin<Pe11Id, GpioeId> = Pin { port: GPIOE, index: 11, id: Pe11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe11Id {}
-pub type Pe11 = Pin<Pe11Id, GpioeId>;
-pub const PE12: Pin<Pe12Id, GpioeId> = Pin { port: GPIOE, index: 12, id: Pe12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe12Id {}
-pub type Pe12 = Pin<Pe12Id, GpioeId>;
-pub const PE13: Pin<Pe13Id, GpioeId> = Pin { port: GPIOE, index: 13, id: Pe13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe13Id {}
-pub type Pe13 = Pin<Pe13Id, GpioeId>;
-pub const PE14: Pin<Pe14Id, GpioeId> = Pin { port: GPIOE, index: 14, id: Pe14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe14Id {}
-pub type Pe14 = Pin<Pe14Id, GpioeId>;
-pub const PE15: Pin<Pe15Id, GpioeId> = Pin { port: GPIOE, index: 15, id: Pe15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pe15Id {}
-pub type Pe15 = Pin<Pe15Id, GpioeId>;
-pub const PF0: Pin<Pf0Id, GpiofId> = Pin { port: GPIOF, index: 0, id: Pf0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf0Id {}
-pub type Pf0 = Pin<Pf0Id, GpiofId>;
-pub const PF1: Pin<Pf1Id, GpiofId> = Pin { port: GPIOF, index: 1, id: Pf1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf1Id {}
-pub type Pf1 = Pin<Pf1Id, GpiofId>;
-pub const PF2: Pin<Pf2Id, GpiofId> = Pin { port: GPIOF, index: 2, id: Pf2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf2Id {}
-pub type Pf2 = Pin<Pf2Id, GpiofId>;
-pub const PF3: Pin<Pf3Id, GpiofId> = Pin { port: GPIOF, index: 3, id: Pf3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf3Id {}
-pub type Pf3 = Pin<Pf3Id, GpiofId>;
-pub const PF4: Pin<Pf4Id, GpiofId> = Pin { port: GPIOF, index: 4, id: Pf4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf4Id {}
-pub type Pf4 = Pin<Pf4Id, GpiofId>;
-pub const PF5: Pin<Pf5Id, GpiofId> = Pin { port: GPIOF, index: 5, id: Pf5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf5Id {}
-pub type Pf5 = Pin<Pf5Id, GpiofId>;
-pub const PF6: Pin<Pf6Id, GpiofId> = Pin { port: GPIOF, index: 6, id: Pf6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf6Id {}
-pub type Pf6 = Pin<Pf6Id, GpiofId>;
-pub const PF7: Pin<Pf7Id, GpiofId> = Pin { port: GPIOF, index: 7, id: Pf7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf7Id {}
-pub type Pf7 = Pin<Pf7Id, GpiofId>;
-pub const PF8: Pin<Pf8Id, GpiofId> = Pin { port: GPIOF, index: 8, id: Pf8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf8Id {}
-pub type Pf8 = Pin<Pf8Id, GpiofId>;
-pub const PF9: Pin<Pf9Id, GpiofId> = Pin { port: GPIOF, index: 9, id: Pf9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf9Id {}
-pub type Pf9 = Pin<Pf9Id, GpiofId>;
-pub const PF10: Pin<Pf10Id, GpiofId> = Pin { port: GPIOF, index: 10, id: Pf10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf10Id {}
-pub type Pf10 = Pin<Pf10Id, GpiofId>;
-pub const PF11: Pin<Pf11Id, GpiofId> = Pin { port: GPIOF, index: 11, id: Pf11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf11Id {}
-pub type Pf11 = Pin<Pf11Id, GpiofId>;
-pub const PF12: Pin<Pf12Id, GpiofId> = Pin { port: GPIOF, index: 12, id: Pf12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf12Id {}
-pub type Pf12 = Pin<Pf12Id, GpiofId>;
-pub const PF13: Pin<Pf13Id, GpiofId> = Pin { port: GPIOF, index: 13, id: Pf13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf13Id {}
-pub type Pf13 = Pin<Pf13Id, GpiofId>;
-pub const PF14: Pin<Pf14Id, GpiofId> = Pin { port: GPIOF, index: 14, id: Pf14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf14Id {}
-pub type Pf14 = Pin<Pf14Id, GpiofId>;
-pub const PF15: Pin<Pf15Id, GpiofId> = Pin { port: GPIOF, index: 15, id: Pf15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pf15Id {}
-pub type Pf15 = Pin<Pf15Id, GpiofId>;
-pub const PG0: Pin<Pg0Id, GpiogId> = Pin { port: GPIOG, index: 0, id: Pg0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg0Id {}
-pub type Pg0 = Pin<Pg0Id, GpiogId>;
-pub const PG1: Pin<Pg1Id, GpiogId> = Pin { port: GPIOG, index: 1, id: Pg1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg1Id {}
-pub type Pg1 = Pin<Pg1Id, GpiogId>;
-pub const PG2: Pin<Pg2Id, GpiogId> = Pin { port: GPIOG, index: 2, id: Pg2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg2Id {}
-pub type Pg2 = Pin<Pg2Id, GpiogId>;
-pub const PG3: Pin<Pg3Id, GpiogId> = Pin { port: GPIOG, index: 3, id: Pg3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg3Id {}
-pub type Pg3 = Pin<Pg3Id, GpiogId>;
-pub const PG4: Pin<Pg4Id, GpiogId> = Pin { port: GPIOG, index: 4, id: Pg4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg4Id {}
-pub type Pg4 = Pin<Pg4Id, GpiogId>;
-pub const PG5: Pin<Pg5Id, GpiogId> = Pin { port: GPIOG, index: 5, id: Pg5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg5Id {}
-pub type Pg5 = Pin<Pg5Id, GpiogId>;
-pub const PG6: Pin<Pg6Id, GpiogId> = Pin { port: GPIOG, index: 6, id: Pg6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg6Id {}
-pub type Pg6 = Pin<Pg6Id, GpiogId>;
-pub const PG7: Pin<Pg7Id, GpiogId> = Pin { port: GPIOG, index: 7, id: Pg7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg7Id {}
-pub type Pg7 = Pin<Pg7Id, GpiogId>;
-pub const PG8: Pin<Pg8Id, GpiogId> = Pin { port: GPIOG, index: 8, id: Pg8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg8Id {}
-pub type Pg8 = Pin<Pg8Id, GpiogId>;
-pub const PG9: Pin<Pg9Id, GpiogId> = Pin { port: GPIOG, index: 9, id: Pg9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg9Id {}
-pub type Pg9 = Pin<Pg9Id, GpiogId>;
-pub const PG10: Pin<Pg10Id, GpiogId> = Pin { port: GPIOG, index: 10, id: Pg10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg10Id {}
-pub type Pg10 = Pin<Pg10Id, GpiogId>;
-pub const PG11: Pin<Pg11Id, GpiogId> = Pin { port: GPIOG, index: 11, id: Pg11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg11Id {}
-pub type Pg11 = Pin<Pg11Id, GpiogId>;
-pub const PG12: Pin<Pg12Id, GpiogId> = Pin { port: GPIOG, index: 12, id: Pg12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg12Id {}
-pub type Pg12 = Pin<Pg12Id, GpiogId>;
-pub const PG13: Pin<Pg13Id, GpiogId> = Pin { port: GPIOG, index: 13, id: Pg13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg13Id {}
-pub type Pg13 = Pin<Pg13Id, GpiogId>;
-pub const PG14: Pin<Pg14Id, GpiogId> = Pin { port: GPIOG, index: 14, id: Pg14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg14Id {}
-pub type Pg14 = Pin<Pg14Id, GpiogId>;
-pub const PG15: Pin<Pg15Id, GpiogId> = Pin { port: GPIOG, index: 15, id: Pg15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Pg15Id {}
-pub type Pg15 = Pin<Pg15Id, GpiogId>;
+pin!(PA2, Pa2, GPIOA, Gpioa, 2);
+
+pin!(PA3, Pa3, GPIOA, Gpioa, 3);
+
+pin!(PA4, Pa4, GPIOA, Gpioa, 4);
+
+pin!(PA5, Pa5, GPIOA, Gpioa, 5);
+
+pin!(PA6, Pa6, GPIOA, Gpioa, 6);
+
+pin!(PA7, Pa7, GPIOA, Gpioa, 7);
+
+pin!(PA8, Pa8, GPIOA, Gpioa, 8);
+
+pin!(PA9, Pa9, GPIOA, Gpioa, 9);
+
+pin!(PA10, Pa10, GPIOA, Gpioa, 10);
+
+pin!(PA11, Pa11, GPIOA, Gpioa, 11);
+
+pin!(PA12, Pa12, GPIOA, Gpioa, 12);
+
+pin!(PA13, Pa13, GPIOA, Gpioa, 13);
+
+pin!(PA14, Pa14, GPIOA, Gpioa, 14);
+
+pin!(PA15, Pa15, GPIOA, Gpioa, 15);
+
+pin!(PB0, Pb0, GPIOB, Gpiob, 0);
+
+pin!(PB1, Pb1, GPIOB, Gpiob, 1);
+
+pin!(PB2, Pb2, GPIOB, Gpiob, 2);
+
+pin!(PB3, Pb3, GPIOB, Gpiob, 3);
+
+pin!(PB4, Pb4, GPIOB, Gpiob, 4);
+
+pin!(PB5, Pb5, GPIOB, Gpiob, 5);
+
+pin!(PB6, Pb6, GPIOB, Gpiob, 6);
+
+pin!(PB7, Pb7, GPIOB, Gpiob, 7);
+
+pin!(PB8, Pb8, GPIOB, Gpiob, 8);
+
+pin!(PB9, Pb9, GPIOB, Gpiob, 9);
+
+pin!(PB10, Pb10, GPIOB, Gpiob, 10);
+
+pin!(PB11, Pb11, GPIOB, Gpiob, 11);
+
+pin!(PB12, Pb12, GPIOB, Gpiob, 12);
+
+pin!(PB13, Pb13, GPIOB, Gpiob, 13);
+
+pin!(PB14, Pb14, GPIOB, Gpiob, 14);
+
+pin!(PB15, Pb15, GPIOB, Gpiob, 15);
+
+pin!(PC0, Pc0, GPIOC, Gpioc, 0);
+
+pin!(PC1, Pc1, GPIOC, Gpioc, 1);
+
+pin!(PC2, Pc2, GPIOC, Gpioc, 2);
+
+pin!(PC3, Pc3, GPIOC, Gpioc, 3);
+
+pin!(PC4, Pc4, GPIOC, Gpioc, 4);
+
+pin!(PC5, Pc5, GPIOC, Gpioc, 5);
+
+pin!(PC6, Pc6, GPIOC, Gpioc, 6);
+
+pin!(PC7, Pc7, GPIOC, Gpioc, 7);
+
+pin!(PC8, Pc8, GPIOC, Gpioc, 8);
+
+pin!(PC9, Pc9, GPIOC, Gpioc, 9);
+
+pin!(PC10, Pc10, GPIOC, Gpioc, 10);
+
+pin!(PC11, Pc11, GPIOC, Gpioc, 11);
+
+pin!(PC12, Pc12, GPIOC, Gpioc, 12);
+
+pin!(PC13, Pc13, GPIOC, Gpioc, 13);
+
+pin!(PC14, Pc14, GPIOC, Gpioc, 14);
+
+pin!(PC15, Pc15, GPIOC, Gpioc, 15);
+
+pin!(PD0, Pd0, GPIOD, Gpiod, 0);
+
+pin!(PD1, Pd1, GPIOD, Gpiod, 1);
+
+pin!(PD2, Pd2, GPIOD, Gpiod, 2);
+
+pin!(PD3, Pd3, GPIOD, Gpiod, 3);
+
+pin!(PD4, Pd4, GPIOD, Gpiod, 4);
+
+pin!(PD5, Pd5, GPIOD, Gpiod, 5);
+
+pin!(PD6, Pd6, GPIOD, Gpiod, 6);
+
+pin!(PD7, Pd7, GPIOD, Gpiod, 7);
+
+pin!(PD8, Pd8, GPIOD, Gpiod, 8);
+
+pin!(PD9, Pd9, GPIOD, Gpiod, 9);
+
+pin!(PD10, Pd10, GPIOD, Gpiod, 10);
+
+pin!(PD11, Pd11, GPIOD, Gpiod, 11);
+
+pin!(PD12, Pd12, GPIOD, Gpiod, 12);
+
+pin!(PD13, Pd13, GPIOD, Gpiod, 13);
+
+pin!(PD14, Pd14, GPIOD, Gpiod, 14);
+
+pin!(PD15, Pd15, GPIOD, Gpiod, 15);
+
+pin!(PE0, Pe0, GPIOE, Gpioe, 0);
+
+pin!(PE1, Pe1, GPIOE, Gpioe, 1);
+
+pin!(PE2, Pe2, GPIOE, Gpioe, 2);
+
+pin!(PE3, Pe3, GPIOE, Gpioe, 3);
+
+pin!(PE4, Pe4, GPIOE, Gpioe, 4);
+
+pin!(PE5, Pe5, GPIOE, Gpioe, 5);
+
+pin!(PE6, Pe6, GPIOE, Gpioe, 6);
+
+pin!(PE7, Pe7, GPIOE, Gpioe, 7);
+
+pin!(PE8, Pe8, GPIOE, Gpioe, 8);
+
+pin!(PE9, Pe9, GPIOE, Gpioe, 9);
+
+pin!(PE10, Pe10, GPIOE, Gpioe, 10);
+
+pin!(PE11, Pe11, GPIOE, Gpioe, 11);
+
+pin!(PE12, Pe12, GPIOE, Gpioe, 12);
+
+pin!(PE13, Pe13, GPIOE, Gpioe, 13);
+
+pin!(PE14, Pe14, GPIOE, Gpioe, 14);
+
+pin!(PE15, Pe15, GPIOE, Gpioe, 15);
+
+pin!(PF0, Pf0, GPIOF, Gpiof, 0);
+
+pin!(PF1, Pf1, GPIOF, Gpiof, 1);
+
+pin!(PF2, Pf2, GPIOF, Gpiof, 2);
+
+pin!(PF3, Pf3, GPIOF, Gpiof, 3);
+
+pin!(PF4, Pf4, GPIOF, Gpiof, 4);
+
+pin!(PF5, Pf5, GPIOF, Gpiof, 5);
+
+pin!(PF6, Pf6, GPIOF, Gpiof, 6);
+
+pin!(PF7, Pf7, GPIOF, Gpiof, 7);
+
+pin!(PF8, Pf8, GPIOF, Gpiof, 8);
+
+pin!(PF9, Pf9, GPIOF, Gpiof, 9);
+
+pin!(PF10, Pf10, GPIOF, Gpiof, 10);
+
+pin!(PF11, Pf11, GPIOF, Gpiof, 11);
+
+pin!(PF12, Pf12, GPIOF, Gpiof, 12);
+
+pin!(PF13, Pf13, GPIOF, Gpiof, 13);
+
+pin!(PF14, Pf14, GPIOF, Gpiof, 14);
+
+pin!(PF15, Pf15, GPIOF, Gpiof, 15);
+
+pin!(PG0, Pg0, GPIOG, Gpiog, 0);
+
+pin!(PG1, Pg1, GPIOG, Gpiog, 1);
+
+pin!(PG2, Pg2, GPIOG, Gpiog, 2);
+
+pin!(PG3, Pg3, GPIOG, Gpiog, 3);
+
+pin!(PG4, Pg4, GPIOG, Gpiog, 4);
+
+pin!(PG5, Pg5, GPIOG, Gpiog, 5);
+
+pin!(PG6, Pg6, GPIOG, Gpiog, 6);
+
+pin!(PG7, Pg7, GPIOG, Gpiog, 7);
+
+pin!(PG8, Pg8, GPIOG, Gpiog, 8);
+
+pin!(PG9, Pg9, GPIOG, Gpiog, 9);
+
+pin!(PG10, Pg10, GPIOG, Gpiog, 10);
+
+pin!(PG11, Pg11, GPIOG, Gpiog, 11);
+
+pin!(PG12, Pg12, GPIOG, Gpiog, 12);
+
+pin!(PG13, Pg13, GPIOG, Gpiog, 13);
+
+pin!(PG14, Pg14, GPIOG, Gpiog, 14);
+
+pin!(PG15, Pg15, GPIOG, Gpiog, 15);
+

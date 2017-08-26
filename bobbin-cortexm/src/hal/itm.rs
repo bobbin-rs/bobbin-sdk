@@ -1,6 +1,6 @@
 use core::fmt::{self, Arguments, Write};
 
-use chip::itm::{ITM, Stim, Stim16, Stim8};    
+use chip::itm::*;
 
 /// Macro for sending `print!`-formatted messages to the ITM (Instrumentation
 /// Trace Macrocell).

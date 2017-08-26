@@ -1,90 +1,22 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::dma_f3::*;
 
-pub const DMA1: Dma1 = Periph(0x40020000, Dma1Id {});
-pub const DMA2: Dma2 = Periph(0x40020400, Dma2Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Dma1Id {}
-pub type Dma1 = Periph<Dma1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Dma2Id {}
-pub type Dma2 = Periph<Dma2Id>;
+periph!(DmaPeriph, DMA1, Dma1, 0x40020000);
+periph!(DmaPeriph, DMA2, Dma2, 0x40020400);
 
 
 
 
-pub const DMA1_CH1: Channel<Dma1Ch1Id, Dma1Id> = Channel { periph: DMA1, index: 0, id: Dma1Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch1Id {}
-pub type Dma1Ch1 = Channel<Dma1Ch1Id, Dma1Id>;
-
-pub const DMA1_CH2: Channel<Dma1Ch2Id, Dma1Id> = Channel { periph: DMA1, index: 1, id: Dma1Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch2Id {}
-pub type Dma1Ch2 = Channel<Dma1Ch2Id, Dma1Id>;
-
-pub const DMA1_CH3: Channel<Dma1Ch3Id, Dma1Id> = Channel { periph: DMA1, index: 2, id: Dma1Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch3Id {}
-pub type Dma1Ch3 = Channel<Dma1Ch3Id, Dma1Id>;
-
-pub const DMA1_CH4: Channel<Dma1Ch4Id, Dma1Id> = Channel { periph: DMA1, index: 3, id: Dma1Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch4Id {}
-pub type Dma1Ch4 = Channel<Dma1Ch4Id, Dma1Id>;
-
-pub const DMA1_CH5: Channel<Dma1Ch5Id, Dma1Id> = Channel { periph: DMA1, index: 4, id: Dma1Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch5Id {}
-pub type Dma1Ch5 = Channel<Dma1Ch5Id, Dma1Id>;
-
-pub const DMA1_CH6: Channel<Dma1Ch6Id, Dma1Id> = Channel { periph: DMA1, index: 5, id: Dma1Ch6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch6Id {}
-pub type Dma1Ch6 = Channel<Dma1Ch6Id, Dma1Id>;
-
-pub const DMA1_CH7: Channel<Dma1Ch7Id, Dma1Id> = Channel { periph: DMA1, index: 6, id: Dma1Ch7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma1Ch7Id {}
-pub type Dma1Ch7 = Channel<Dma1Ch7Id, Dma1Id>;
-
-pub const DMA2_CH1: Channel<Dma2Ch1Id, Dma2Id> = Channel { periph: DMA2, index: 0, id: Dma2Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma2Ch1Id {}
-pub type Dma2Ch1 = Channel<Dma2Ch1Id, Dma2Id>;
-
-pub const DMA2_CH2: Channel<Dma2Ch2Id, Dma2Id> = Channel { periph: DMA2, index: 1, id: Dma2Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma2Ch2Id {}
-pub type Dma2Ch2 = Channel<Dma2Ch2Id, Dma2Id>;
-
-pub const DMA2_CH3: Channel<Dma2Ch3Id, Dma2Id> = Channel { periph: DMA2, index: 2, id: Dma2Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma2Ch3Id {}
-pub type Dma2Ch3 = Channel<Dma2Ch3Id, Dma2Id>;
-
-pub const DMA2_CH4: Channel<Dma2Ch4Id, Dma2Id> = Channel { periph: DMA2, index: 3, id: Dma2Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma2Ch4Id {}
-pub type Dma2Ch4 = Channel<Dma2Ch4Id, Dma2Id>;
-
-pub const DMA2_CH5: Channel<Dma2Ch5Id, Dma2Id> = Channel { periph: DMA2, index: 4, id: Dma2Ch5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Dma2Ch5Id {}
-pub type Dma2Ch5 = Channel<Dma2Ch5Id, Dma2Id>;
-
+channel!(DMA1_CH1, Dma1Ch1, DMA1, Dma1, 0);
+channel!(DMA1_CH2, Dma1Ch2, DMA1, Dma1, 1);
+channel!(DMA1_CH3, Dma1Ch3, DMA1, Dma1, 2);
+channel!(DMA1_CH4, Dma1Ch4, DMA1, Dma1, 3);
+channel!(DMA1_CH5, Dma1Ch5, DMA1, Dma1, 4);
+channel!(DMA1_CH6, Dma1Ch6, DMA1, Dma1, 5);
+channel!(DMA1_CH7, Dma1Ch7, DMA1, Dma1, 6);
+channel!(DMA2_CH1, Dma2Ch1, DMA2, Dma2, 0);
+channel!(DMA2_CH2, Dma2Ch2, DMA2, Dma2, 1);
+channel!(DMA2_CH3, Dma2Ch3, DMA2, Dma2, 2);
+channel!(DMA2_CH4, Dma2Ch4, DMA2, Dma2, 3);
+channel!(DMA2_CH5, Dma2Ch5, DMA2, Dma2, 4);

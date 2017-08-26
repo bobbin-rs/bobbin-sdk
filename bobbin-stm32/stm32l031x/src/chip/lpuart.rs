@@ -1,12 +1,8 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::lpuart::*;
 
-pub const LPUART1: Lpuart1 = Periph(0x40004800, Lpuart1Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpuart1Id {}
-pub type Lpuart1 = Periph<Lpuart1Id>;
+periph!(LpuartPeriph, LPUART1, Lpuart1, 0x40004800);
 
 impl super::sig::Signal<super::sig::Lpuart1Tx> for Lpuart1 {}
 impl super::sig::SignalTx<super::sig::Lpuart1Tx> for Lpuart1 {}

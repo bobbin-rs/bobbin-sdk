@@ -1,17 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::uart::*;
 
-pub const UART1: Uart1 = Periph(0x4006b000, Uart1Id {});
-pub const UART2: Uart2 = Periph(0x4006c000, Uart2Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart1Id {}
-pub type Uart1 = Periph<Uart1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Uart2Id {}
-pub type Uart2 = Periph<Uart2Id>;
+periph!(UartPeriph, UART1, Uart1, 0x4006b000);
+periph!(UartPeriph, UART2, Uart2, 0x4006c000);
 
 impl super::sig::Signal<super::sig::Uart1Tx> for Uart1 {}
 impl super::sig::SignalTx<super::sig::Uart1Tx> for Uart1 {}

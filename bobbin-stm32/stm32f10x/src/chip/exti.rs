@@ -1,150 +1,31 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::exti::*;
 
-pub const EXTI: Exti = Periph(0x40010400, ExtiId {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct ExtiId {}
-pub type Exti = Periph<ExtiId>;
+periph!(ExtiPeriph, EXTI, Exti, 0x40010400);
 
 
 
-pub const EXTI_LINE0: Channel<ExtiLine0Id, ExtiId> = Channel { periph: EXTI, index: 0, id: ExtiLine0Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine0Id {}
-pub type ExtiLine0 = Channel<ExtiLine0Id, ExtiId>;
-
-pub const EXTI_LINE1: Channel<ExtiLine1Id, ExtiId> = Channel { periph: EXTI, index: 1, id: ExtiLine1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine1Id {}
-pub type ExtiLine1 = Channel<ExtiLine1Id, ExtiId>;
-
-pub const EXTI_LINE2: Channel<ExtiLine2Id, ExtiId> = Channel { periph: EXTI, index: 2, id: ExtiLine2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine2Id {}
-pub type ExtiLine2 = Channel<ExtiLine2Id, ExtiId>;
-
-pub const EXTI_LINE3: Channel<ExtiLine3Id, ExtiId> = Channel { periph: EXTI, index: 3, id: ExtiLine3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine3Id {}
-pub type ExtiLine3 = Channel<ExtiLine3Id, ExtiId>;
-
-pub const EXTI_LINE4: Channel<ExtiLine4Id, ExtiId> = Channel { periph: EXTI, index: 4, id: ExtiLine4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine4Id {}
-pub type ExtiLine4 = Channel<ExtiLine4Id, ExtiId>;
-
-pub const EXTI_LINE5: Channel<ExtiLine5Id, ExtiId> = Channel { periph: EXTI, index: 5, id: ExtiLine5Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine5Id {}
-pub type ExtiLine5 = Channel<ExtiLine5Id, ExtiId>;
-
-pub const EXTI_LINE6: Channel<ExtiLine6Id, ExtiId> = Channel { periph: EXTI, index: 6, id: ExtiLine6Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine6Id {}
-pub type ExtiLine6 = Channel<ExtiLine6Id, ExtiId>;
-
-pub const EXTI_LINE7: Channel<ExtiLine7Id, ExtiId> = Channel { periph: EXTI, index: 7, id: ExtiLine7Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine7Id {}
-pub type ExtiLine7 = Channel<ExtiLine7Id, ExtiId>;
-
-pub const EXTI_LINE8: Channel<ExtiLine8Id, ExtiId> = Channel { periph: EXTI, index: 8, id: ExtiLine8Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine8Id {}
-pub type ExtiLine8 = Channel<ExtiLine8Id, ExtiId>;
-
-pub const EXTI_LINE9: Channel<ExtiLine9Id, ExtiId> = Channel { periph: EXTI, index: 9, id: ExtiLine9Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine9Id {}
-pub type ExtiLine9 = Channel<ExtiLine9Id, ExtiId>;
-
-pub const EXTI_LINE10: Channel<ExtiLine10Id, ExtiId> = Channel { periph: EXTI, index: 10, id: ExtiLine10Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine10Id {}
-pub type ExtiLine10 = Channel<ExtiLine10Id, ExtiId>;
-
-pub const EXTI_LINE11: Channel<ExtiLine11Id, ExtiId> = Channel { periph: EXTI, index: 11, id: ExtiLine11Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine11Id {}
-pub type ExtiLine11 = Channel<ExtiLine11Id, ExtiId>;
-
-pub const EXTI_LINE12: Channel<ExtiLine12Id, ExtiId> = Channel { periph: EXTI, index: 12, id: ExtiLine12Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine12Id {}
-pub type ExtiLine12 = Channel<ExtiLine12Id, ExtiId>;
-
-pub const EXTI_LINE13: Channel<ExtiLine13Id, ExtiId> = Channel { periph: EXTI, index: 13, id: ExtiLine13Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine13Id {}
-pub type ExtiLine13 = Channel<ExtiLine13Id, ExtiId>;
-
-pub const EXTI_LINE14: Channel<ExtiLine14Id, ExtiId> = Channel { periph: EXTI, index: 14, id: ExtiLine14Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine14Id {}
-pub type ExtiLine14 = Channel<ExtiLine14Id, ExtiId>;
-
-pub const EXTI_LINE15: Channel<ExtiLine15Id, ExtiId> = Channel { periph: EXTI, index: 15, id: ExtiLine15Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine15Id {}
-pub type ExtiLine15 = Channel<ExtiLine15Id, ExtiId>;
-
-pub const EXTI_LINE16: Channel<ExtiLine16Id, ExtiId> = Channel { periph: EXTI, index: 16, id: ExtiLine16Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine16Id {}
-pub type ExtiLine16 = Channel<ExtiLine16Id, ExtiId>;
-
-pub const EXTI_LINE17: Channel<ExtiLine17Id, ExtiId> = Channel { periph: EXTI, index: 17, id: ExtiLine17Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine17Id {}
-pub type ExtiLine17 = Channel<ExtiLine17Id, ExtiId>;
-
-pub const EXTI_LINE18: Channel<ExtiLine18Id, ExtiId> = Channel { periph: EXTI, index: 18, id: ExtiLine18Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine18Id {}
-pub type ExtiLine18 = Channel<ExtiLine18Id, ExtiId>;
-
-pub const EXTI_LINE19: Channel<ExtiLine19Id, ExtiId> = Channel { periph: EXTI, index: 19, id: ExtiLine19Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine19Id {}
-pub type ExtiLine19 = Channel<ExtiLine19Id, ExtiId>;
-
-pub const EXTI_LINE20: Channel<ExtiLine20Id, ExtiId> = Channel { periph: EXTI, index: 20, id: ExtiLine20Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine20Id {}
-pub type ExtiLine20 = Channel<ExtiLine20Id, ExtiId>;
-
-pub const EXTI_LINE21: Channel<ExtiLine21Id, ExtiId> = Channel { periph: EXTI, index: 21, id: ExtiLine21Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine21Id {}
-pub type ExtiLine21 = Channel<ExtiLine21Id, ExtiId>;
-
-pub const EXTI_LINE22: Channel<ExtiLine22Id, ExtiId> = Channel { periph: EXTI, index: 22, id: ExtiLine22Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct ExtiLine22Id {}
-pub type ExtiLine22 = Channel<ExtiLine22Id, ExtiId>;
-
+channel!(EXTI_LINE0, ExtiLine0, EXTI, Exti, 0);
+channel!(EXTI_LINE1, ExtiLine1, EXTI, Exti, 1);
+channel!(EXTI_LINE2, ExtiLine2, EXTI, Exti, 2);
+channel!(EXTI_LINE3, ExtiLine3, EXTI, Exti, 3);
+channel!(EXTI_LINE4, ExtiLine4, EXTI, Exti, 4);
+channel!(EXTI_LINE5, ExtiLine5, EXTI, Exti, 5);
+channel!(EXTI_LINE6, ExtiLine6, EXTI, Exti, 6);
+channel!(EXTI_LINE7, ExtiLine7, EXTI, Exti, 7);
+channel!(EXTI_LINE8, ExtiLine8, EXTI, Exti, 8);
+channel!(EXTI_LINE9, ExtiLine9, EXTI, Exti, 9);
+channel!(EXTI_LINE10, ExtiLine10, EXTI, Exti, 10);
+channel!(EXTI_LINE11, ExtiLine11, EXTI, Exti, 11);
+channel!(EXTI_LINE12, ExtiLine12, EXTI, Exti, 12);
+channel!(EXTI_LINE13, ExtiLine13, EXTI, Exti, 13);
+channel!(EXTI_LINE14, ExtiLine14, EXTI, Exti, 14);
+channel!(EXTI_LINE15, ExtiLine15, EXTI, Exti, 15);
+channel!(EXTI_LINE16, ExtiLine16, EXTI, Exti, 16);
+channel!(EXTI_LINE17, ExtiLine17, EXTI, Exti, 17);
+channel!(EXTI_LINE18, ExtiLine18, EXTI, Exti, 18);
+channel!(EXTI_LINE19, ExtiLine19, EXTI, Exti, 19);
+channel!(EXTI_LINE20, ExtiLine20, EXTI, Exti, 20);
+channel!(EXTI_LINE21, ExtiLine21, EXTI, Exti, 21);
+channel!(EXTI_LINE22, ExtiLine22, EXTI, Exti, 22);

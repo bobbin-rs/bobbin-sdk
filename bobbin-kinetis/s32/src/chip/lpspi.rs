@@ -1,22 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::lpspi::*;
 
-pub const LPSPI0: Lpspi0 = Periph(0x4002c000, Lpspi0Id {});
-pub const LPSPI1: Lpspi1 = Periph(0x4002d000, Lpspi1Id {});
-pub const LPSPI2: Lpspi2 = Periph(0x4002e000, Lpspi2Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi0Id {}
-pub type Lpspi0 = Periph<Lpspi0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi1Id {}
-pub type Lpspi1 = Periph<Lpspi1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi2Id {}
-pub type Lpspi2 = Periph<Lpspi2Id>;
+periph!(LpspiPeriph, LPSPI0, Lpspi0, 0x4002c000);
+periph!(LpspiPeriph, LPSPI1, Lpspi1, 0x4002d000);
+periph!(LpspiPeriph, LPSPI2, Lpspi2, 0x4002e000);
 
 impl super::sig::Signal<super::sig::Lpspi0Sck> for Lpspi0 {}
 impl super::sig::SignalSpiSck<super::sig::Lpspi0Sck> for Lpspi0 {}

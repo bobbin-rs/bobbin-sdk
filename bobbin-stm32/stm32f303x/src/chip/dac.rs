@@ -1,416 +1,430 @@
-#[allow(unused_imports)] use bobbin_common::bits;
-pub const DAC: Dac = Periph(0x40007400, DacId {});
+#[allow(unused_imports)] use bobbin_common::*;
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="DAC Peripheral"]
-pub struct Periph<T>(pub u32, pub T); 
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct DacId {}
-pub type Dac = Periph<DacId>;
+periph!(DacPeriph, DAC, Dac, 0x40007400);
 
 
 
-impl<T> Periph<T> {
+pub trait DacPeriph : Base {
 #[doc="Get the *const pointer for the CR register."]
-  #[inline] pub fn cr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x0) as *const u32
-  }
+   #[inline] fn cr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Get the *mut pointer for the CR register."]
-  #[inline] pub fn cr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x0) as *mut u32
-  }
+   #[inline] fn cr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x0)
+   }
 #[doc="Read the CR register."]
-  #[inline] pub fn cr(&self) -> Cr { 
-     unsafe {
-        Cr(::core::ptr::read_volatile(((self.0 as usize) + 0x0) as *const u32))
-     }
-  }
+   #[inline] fn cr(&self) -> Cr { 
+      unsafe {
+         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      }
+   }
 #[doc="Write the CR register."]
-  #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-     let value = f(Cr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+      let value = f(Cr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the CR register."]
-  #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-     let tmp = self.cr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x0) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the SWTRIGR register."]
-  #[inline] pub fn swtrigr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x4) as *const u32
-  }
+   #[inline] fn swtrigr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Get the *mut pointer for the SWTRIGR register."]
-  #[inline] pub fn swtrigr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x4) as *mut u32
-  }
+   #[inline] fn swtrigr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x4)
+   }
 #[doc="Write the SWTRIGR register."]
-  #[inline] pub fn set_swtrigr<F: FnOnce(Swtrigr) -> Swtrigr>(&self, f: F) -> &Self {
-     let value = f(Swtrigr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x4) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_swtrigr<F: FnOnce(Swtrigr) -> Swtrigr>(&self, f: F) -> &Self {
+      let value = f(Swtrigr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12R1 register."]
-  #[inline] pub fn dhr12r1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x8) as *const u32
-  }
+   #[inline] fn dhr12r1_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Get the *mut pointer for the DHR12R1 register."]
-  #[inline] pub fn dhr12r1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x8) as *mut u32
-  }
+   #[inline] fn dhr12r1_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x8)
+   }
 #[doc="Read the DHR12R1 register."]
-  #[inline] pub fn dhr12r1(&self) -> Dhr12r1 { 
-     unsafe {
-        Dhr12r1(::core::ptr::read_volatile(((self.0 as usize) + 0x8) as *const u32))
-     }
-  }
+   #[inline] fn dhr12r1(&self) -> Dhr12r1 { 
+      unsafe {
+         Dhr12r1(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      }
+   }
 #[doc="Write the DHR12R1 register."]
-  #[inline] pub fn set_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
-     let value = f(Dhr12r1(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
+      let value = f(Dhr12r1(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12R1 register."]
-  #[inline] pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
-     let tmp = self.dhr12r1();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x8) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12r1(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12L1 register."]
-  #[inline] pub fn dhr12l1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0xc) as *const u32
-  }
+   #[inline] fn dhr12l1_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Get the *mut pointer for the DHR12L1 register."]
-  #[inline] pub fn dhr12l1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0xc) as *mut u32
-  }
+   #[inline] fn dhr12l1_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0xc)
+   }
 #[doc="Read the DHR12L1 register."]
-  #[inline] pub fn dhr12l1(&self) -> Dhr12l1 { 
-     unsafe {
-        Dhr12l1(::core::ptr::read_volatile(((self.0 as usize) + 0xc) as *const u32))
-     }
-  }
+   #[inline] fn dhr12l1(&self) -> Dhr12l1 { 
+      unsafe {
+         Dhr12l1(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      }
+   }
 #[doc="Write the DHR12L1 register."]
-  #[inline] pub fn set_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
-     let value = f(Dhr12l1(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
+      let value = f(Dhr12l1(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12L1 register."]
-  #[inline] pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
-     let tmp = self.dhr12l1();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0xc) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12l1(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR8R1 register."]
-  #[inline] pub fn dhr8r1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x10) as *const u32
-  }
+   #[inline] fn dhr8r1_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Get the *mut pointer for the DHR8R1 register."]
-  #[inline] pub fn dhr8r1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x10) as *mut u32
-  }
+   #[inline] fn dhr8r1_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x10)
+   }
 #[doc="Read the DHR8R1 register."]
-  #[inline] pub fn dhr8r1(&self) -> Dhr8r1 { 
-     unsafe {
-        Dhr8r1(::core::ptr::read_volatile(((self.0 as usize) + 0x10) as *const u32))
-     }
-  }
+   #[inline] fn dhr8r1(&self) -> Dhr8r1 { 
+      unsafe {
+         Dhr8r1(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+      }
+   }
 #[doc="Write the DHR8R1 register."]
-  #[inline] pub fn set_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
-     let value = f(Dhr8r1(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
+      let value = f(Dhr8r1(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR8R1 register."]
-  #[inline] pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
-     let tmp = self.dhr8r1();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x10) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr8r1(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12R2 register."]
-  #[inline] pub fn dhr12r2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x14) as *const u32
-  }
+   #[inline] fn dhr12r2_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Get the *mut pointer for the DHR12R2 register."]
-  #[inline] pub fn dhr12r2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x14) as *mut u32
-  }
+   #[inline] fn dhr12r2_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x14)
+   }
 #[doc="Read the DHR12R2 register."]
-  #[inline] pub fn dhr12r2(&self) -> Dhr12r2 { 
-     unsafe {
-        Dhr12r2(::core::ptr::read_volatile(((self.0 as usize) + 0x14) as *const u32))
-     }
-  }
+   #[inline] fn dhr12r2(&self) -> Dhr12r2 { 
+      unsafe {
+         Dhr12r2(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+      }
+   }
 #[doc="Write the DHR12R2 register."]
-  #[inline] pub fn set_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
-     let value = f(Dhr12r2(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
+      let value = f(Dhr12r2(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12R2 register."]
-  #[inline] pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
-     let tmp = self.dhr12r2();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x14) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12r2(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12L2 register."]
-  #[inline] pub fn dhr12l2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x18) as *const u32
-  }
+   #[inline] fn dhr12l2_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Get the *mut pointer for the DHR12L2 register."]
-  #[inline] pub fn dhr12l2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x18) as *mut u32
-  }
+   #[inline] fn dhr12l2_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x18)
+   }
 #[doc="Read the DHR12L2 register."]
-  #[inline] pub fn dhr12l2(&self) -> Dhr12l2 { 
-     unsafe {
-        Dhr12l2(::core::ptr::read_volatile(((self.0 as usize) + 0x18) as *const u32))
-     }
-  }
+   #[inline] fn dhr12l2(&self) -> Dhr12l2 { 
+      unsafe {
+         Dhr12l2(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      }
+   }
 #[doc="Write the DHR12L2 register."]
-  #[inline] pub fn set_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
-     let value = f(Dhr12l2(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
+      let value = f(Dhr12l2(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12L2 register."]
-  #[inline] pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
-     let tmp = self.dhr12l2();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x18) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12l2(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR8R2 register."]
-  #[inline] pub fn dhr8r2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x1c) as *const u32
-  }
+   #[inline] fn dhr8r2_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x1c)
+   }
 #[doc="Get the *mut pointer for the DHR8R2 register."]
-  #[inline] pub fn dhr8r2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x1c) as *mut u32
-  }
+   #[inline] fn dhr8r2_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x1c)
+   }
 #[doc="Read the DHR8R2 register."]
-  #[inline] pub fn dhr8r2(&self) -> Dhr8r2 { 
-     unsafe {
-        Dhr8r2(::core::ptr::read_volatile(((self.0 as usize) + 0x1c) as *const u32))
-     }
-  }
+   #[inline] fn dhr8r2(&self) -> Dhr8r2 { 
+      unsafe {
+         Dhr8r2(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
+      }
+   }
 #[doc="Write the DHR8R2 register."]
-  #[inline] pub fn set_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
-     let value = f(Dhr8r2(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
+      let value = f(Dhr8r2(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR8R2 register."]
-  #[inline] pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
-     let tmp = self.dhr8r2();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x1c) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr8r2(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12RD register."]
-  #[inline] pub fn dhr12rd_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x20) as *const u32
-  }
+   #[inline] fn dhr12rd_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x20)
+   }
 #[doc="Get the *mut pointer for the DHR12RD register."]
-  #[inline] pub fn dhr12rd_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x20) as *mut u32
-  }
+   #[inline] fn dhr12rd_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x20)
+   }
 #[doc="Read the DHR12RD register."]
-  #[inline] pub fn dhr12rd(&self) -> Dhr12rd { 
-     unsafe {
-        Dhr12rd(::core::ptr::read_volatile(((self.0 as usize) + 0x20) as *const u32))
-     }
-  }
+   #[inline] fn dhr12rd(&self) -> Dhr12rd { 
+      unsafe {
+         Dhr12rd(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
+      }
+   }
 #[doc="Write the DHR12RD register."]
-  #[inline] pub fn set_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
-     let value = f(Dhr12rd(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
+      let value = f(Dhr12rd(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12RD register."]
-  #[inline] pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
-     let tmp = self.dhr12rd();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x20) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12rd(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR12LD register."]
-  #[inline] pub fn dhr12ld_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x24) as *const u32
-  }
+   #[inline] fn dhr12ld_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x24)
+   }
 #[doc="Get the *mut pointer for the DHR12LD register."]
-  #[inline] pub fn dhr12ld_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x24) as *mut u32
-  }
+   #[inline] fn dhr12ld_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x24)
+   }
 #[doc="Read the DHR12LD register."]
-  #[inline] pub fn dhr12ld(&self) -> Dhr12ld { 
-     unsafe {
-        Dhr12ld(::core::ptr::read_volatile(((self.0 as usize) + 0x24) as *const u32))
-     }
-  }
+   #[inline] fn dhr12ld(&self) -> Dhr12ld { 
+      unsafe {
+         Dhr12ld(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
+      }
+   }
 #[doc="Write the DHR12LD register."]
-  #[inline] pub fn set_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
-     let value = f(Dhr12ld(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
+      let value = f(Dhr12ld(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR12LD register."]
-  #[inline] pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
-     let tmp = self.dhr12ld();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x24) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr12ld(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DHR8RD register."]
-  #[inline] pub fn dhr8rd_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x28) as *const u32
-  }
+   #[inline] fn dhr8rd_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x28)
+   }
 #[doc="Get the *mut pointer for the DHR8RD register."]
-  #[inline] pub fn dhr8rd_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x28) as *mut u32
-  }
+   #[inline] fn dhr8rd_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x28)
+   }
 #[doc="Read the DHR8RD register."]
-  #[inline] pub fn dhr8rd(&self) -> Dhr8rd { 
-     unsafe {
-        Dhr8rd(::core::ptr::read_volatile(((self.0 as usize) + 0x28) as *const u32))
-     }
-  }
+   #[inline] fn dhr8rd(&self) -> Dhr8rd { 
+      unsafe {
+         Dhr8rd(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
+      }
+   }
 #[doc="Write the DHR8RD register."]
-  #[inline] pub fn set_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
-     let value = f(Dhr8rd(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
+      let value = f(Dhr8rd(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the DHR8RD register."]
-  #[inline] pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
-     let tmp = self.dhr8rd();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x28) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Dhr8rd(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+      }
+      self
+   }
 
 #[doc="Get the *const pointer for the DOR1 register."]
-  #[inline] pub fn dor1_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x2c) as *const u32
-  }
+   #[inline] fn dor1_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x2c)
+   }
 #[doc="Get the *mut pointer for the DOR1 register."]
-  #[inline] pub fn dor1_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x2c) as *mut u32
-  }
+   #[inline] fn dor1_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x2c)
+   }
 #[doc="Read the DOR1 register."]
-  #[inline] pub fn dor1(&self) -> Dor1 { 
-     unsafe {
-        Dor1(::core::ptr::read_volatile(((self.0 as usize) + 0x2c) as *const u32))
-     }
-  }
+   #[inline] fn dor1(&self) -> Dor1 { 
+      unsafe {
+         Dor1(::core::ptr::read_volatile((self.base() + 0x2c) as *const u32))
+      }
+   }
 
 #[doc="Get the *const pointer for the DOR2 register."]
-  #[inline] pub fn dor2_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x30) as *const u32
-  }
+   #[inline] fn dor2_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x30)
+   }
 #[doc="Get the *mut pointer for the DOR2 register."]
-  #[inline] pub fn dor2_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x30) as *mut u32
-  }
+   #[inline] fn dor2_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x30)
+   }
 #[doc="Read the DOR2 register."]
-  #[inline] pub fn dor2(&self) -> Dor2 { 
-     unsafe {
-        Dor2(::core::ptr::read_volatile(((self.0 as usize) + 0x30) as *const u32))
-     }
-  }
+   #[inline] fn dor2(&self) -> Dor2 { 
+      unsafe {
+         Dor2(::core::ptr::read_volatile((self.base() + 0x30) as *const u32))
+      }
+   }
 
 #[doc="Get the *const pointer for the SR register."]
-  #[inline] pub fn sr_ptr(&self) -> *const u32 { 
-     ((self.0 as usize) + 0x34) as *const u32
-  }
+   #[inline] fn sr_ptr(&self) -> *const u32 { 
+       <Self as Base>::addr(&self, 0x34)
+   }
 #[doc="Get the *mut pointer for the SR register."]
-  #[inline] pub fn sr_mut(&self) -> *mut u32 { 
-     ((self.0 as usize) + 0x34) as *mut u32
-  }
+   #[inline] fn sr_mut(&self) -> *mut u32 { 
+       <Self as Base>::addr(&self, 0x34)
+   }
 #[doc="Read the SR register."]
-  #[inline] pub fn sr(&self) -> Sr { 
-     unsafe {
-        Sr(::core::ptr::read_volatile(((self.0 as usize) + 0x34) as *const u32))
-     }
-  }
+   #[inline] fn sr(&self) -> Sr { 
+      unsafe {
+         Sr(::core::ptr::read_volatile((self.base() + 0x34) as *const u32))
+      }
+   }
 #[doc="Write the SR register."]
-  #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-     let value = f(Sr(0));
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+      let value = f(Sr(0));
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x34) as *mut u32, value.0);
+      }
+      self
+   }
 #[doc="Modify the SR register."]
-  #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-     let tmp = self.sr();
-     let value = f(tmp);
-     unsafe {
-        ::core::ptr::write_volatile(((self.0 as usize) + 0x34) as *mut u32, value.0);
-     }
-     self
-  }
+   #[inline] fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+      let tmp = unsafe {
+         Sr(::core::ptr::read_volatile((self.base() + 0x34) as *const u32))
+      };
+      let value = f(tmp);
+      unsafe {
+         ::core::ptr::write_volatile((self.base() + 0x34) as *mut u32, value.0);
+      }
+      self
+   }
 
 }
 
@@ -419,212 +433,212 @@ impl<T> Periph<T> {
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="DAC channel2 DMA underrun interrupt enable"]
-  #[inline] pub fn dmaudrie2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-  }
+   #[inline] pub fn dmaudrie2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
+   }
 #[doc="DAC channel2 DMA underrun interrupt enable"]
-  #[inline] pub fn set_dmaudrie2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 29);
-     self.0 |= value << 29;
-     self
-  }
+   #[inline] pub fn set_dmaudrie2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 29);
+      self.0 |= value << 29;
+      self
+   }
 
 #[doc="DAC channel2 DMA enable"]
-  #[inline] pub fn dmaen2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-  }
+   #[inline] pub fn dmaen2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
+   }
 #[doc="DAC channel2 DMA enable"]
-  #[inline] pub fn set_dmaen2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 28);
-     self.0 |= value << 28;
-     self
-  }
+   #[inline] pub fn set_dmaen2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 28);
+      self.0 |= value << 28;
+      self
+   }
 
 #[doc="DAC channel2 mask/amplitude selector"]
-  #[inline] pub fn mamp2(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
-  }
+   #[inline] pub fn mamp2(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
+   }
 #[doc="DAC channel2 mask/amplitude selector"]
-  #[inline] pub fn set_mamp2<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 24);
-     self.0 |= value << 24;
-     self
-  }
+   #[inline] pub fn set_mamp2<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 24);
+      self.0 |= value << 24;
+      self
+   }
 
 #[doc="DAC channel2 noise/triangle wave generation enable"]
-  #[inline] pub fn wave2(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
-  }
+   #[inline] pub fn wave2(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
+   }
 #[doc="DAC channel2 noise/triangle wave generation enable"]
-  #[inline] pub fn set_wave2<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 22);
-     self.0 |= value << 22;
-     self
-  }
+   #[inline] pub fn set_wave2<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 22);
+      self.0 |= value << 22;
+      self
+   }
 
 #[doc="DAC channel2 trigger selection"]
-  #[inline] pub fn tsel2(&self) -> bits::U3 {
-     unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x7) as u8) } // [21:19]
-  }
+   #[inline] pub fn tsel2(&self) -> bits::U3 {
+      unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x7) as u8) } // [21:19]
+   }
 #[doc="DAC channel2 trigger selection"]
-  #[inline] pub fn set_tsel2<V: Into<bits::U3>>(mut self, value: V) -> Self {
-     let value: bits::U3 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x7 << 19);
-     self.0 |= value << 19;
-     self
-  }
+   #[inline] pub fn set_tsel2<V: Into<bits::U3>>(mut self, value: V) -> Self {
+      let value: bits::U3 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x7 << 19);
+      self.0 |= value << 19;
+      self
+   }
 
 #[doc="DAC channel2 trigger enable"]
-  #[inline] pub fn ten2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-  }
+   #[inline] pub fn ten2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
+   }
 #[doc="DAC channel2 trigger enable"]
-  #[inline] pub fn set_ten2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 18);
-     self.0 |= value << 18;
-     self
-  }
+   #[inline] pub fn set_ten2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 18);
+      self.0 |= value << 18;
+      self
+   }
 
 #[doc="DAC channel2 output buffer disable"]
-  #[inline] pub fn boff2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-  }
+   #[inline] pub fn boff2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
+   }
 #[doc="DAC channel2 output buffer disable"]
-  #[inline] pub fn set_boff2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 17);
-     self.0 |= value << 17;
-     self
-  }
+   #[inline] pub fn set_boff2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 17);
+      self.0 |= value << 17;
+      self
+   }
 
 #[doc="DAC channel2 enable"]
-  #[inline] pub fn en2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-  }
+   #[inline] pub fn en2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+   }
 #[doc="DAC channel2 enable"]
-  #[inline] pub fn set_en2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_en2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 #[doc="DAC channel1 DMA Underrun Interrupt enable"]
-  #[inline] pub fn dmaudrie1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-  }
+   #[inline] pub fn dmaudrie1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+   }
 #[doc="DAC channel1 DMA Underrun Interrupt enable"]
-  #[inline] pub fn set_dmaudrie1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
+   #[inline] pub fn set_dmaudrie1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 13);
+      self.0 |= value << 13;
+      self
+   }
 
 #[doc="DAC channel1 DMA enable"]
-  #[inline] pub fn dmaen1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-  }
+   #[inline] pub fn dmaen1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+   }
 #[doc="DAC channel1 DMA enable"]
-  #[inline] pub fn set_dmaen1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 12);
-     self.0 |= value << 12;
-     self
-  }
+   #[inline] pub fn set_dmaen1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 12);
+      self.0 |= value << 12;
+      self
+   }
 
 #[doc="DAC channel1 mask/amplitude selector"]
-  #[inline] pub fn mamp1(&self) -> bits::U4 {
-     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-  }
+   #[inline] pub fn mamp1(&self) -> bits::U4 {
+      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
+   }
 #[doc="DAC channel1 mask/amplitude selector"]
-  #[inline] pub fn set_mamp1<V: Into<bits::U4>>(mut self, value: V) -> Self {
-     let value: bits::U4 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xf << 8);
-     self.0 |= value << 8;
-     self
-  }
+   #[inline] pub fn set_mamp1<V: Into<bits::U4>>(mut self, value: V) -> Self {
+      let value: bits::U4 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xf << 8);
+      self.0 |= value << 8;
+      self
+   }
 
 #[doc="DAC channel1 noise/triangle wave generation enable"]
-  #[inline] pub fn wave1(&self) -> bits::U2 {
-     unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
-  }
+   #[inline] pub fn wave1(&self) -> bits::U2 {
+      unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
+   }
 #[doc="DAC channel1 noise/triangle wave generation enable"]
-  #[inline] pub fn set_wave1<V: Into<bits::U2>>(mut self, value: V) -> Self {
-     let value: bits::U2 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x3 << 6);
-     self.0 |= value << 6;
-     self
-  }
+   #[inline] pub fn set_wave1<V: Into<bits::U2>>(mut self, value: V) -> Self {
+      let value: bits::U2 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x3 << 6);
+      self.0 |= value << 6;
+      self
+   }
 
 #[doc="DAC channel1 trigger selection"]
-  #[inline] pub fn tsel1(&self) -> bits::U3 {
-     unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
-  }
+   #[inline] pub fn tsel1(&self) -> bits::U3 {
+      unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
+   }
 #[doc="DAC channel1 trigger selection"]
-  #[inline] pub fn set_tsel1<V: Into<bits::U3>>(mut self, value: V) -> Self {
-     let value: bits::U3 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x7 << 3);
-     self.0 |= value << 3;
-     self
-  }
+   #[inline] pub fn set_tsel1<V: Into<bits::U3>>(mut self, value: V) -> Self {
+      let value: bits::U3 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x7 << 3);
+      self.0 |= value << 3;
+      self
+   }
 
 #[doc="DAC channel1 trigger enable"]
-  #[inline] pub fn ten1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-  }
+   #[inline] pub fn ten1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+   }
 #[doc="DAC channel1 trigger enable"]
-  #[inline] pub fn set_ten1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 2);
-     self.0 |= value << 2;
-     self
-  }
+   #[inline] pub fn set_ten1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 2);
+      self.0 |= value << 2;
+      self
+   }
 
 #[doc="DAC channel1 output buffer disable"]
-  #[inline] pub fn boff1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-  }
+   #[inline] pub fn boff1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+   }
 #[doc="DAC channel1 output buffer disable"]
-  #[inline] pub fn set_boff1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
+   #[inline] pub fn set_boff1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 1);
+      self.0 |= value << 1;
+      self
+   }
 
 #[doc="DAC channel1 enable"]
-  #[inline] pub fn en1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn en1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+   }
 #[doc="DAC channel1 enable"]
-  #[inline] pub fn set_en1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_en1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Cr {
@@ -660,30 +674,30 @@ impl ::core::fmt::Debug for Cr {
 pub struct Swtrigr(pub u32);
 impl Swtrigr {
 #[doc="DAC channel2 software trigger"]
-  #[inline] pub fn swtrig2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-  }
+   #[inline] pub fn swtrig2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+   }
 #[doc="DAC channel2 software trigger"]
-  #[inline] pub fn set_swtrig2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 1);
-     self.0 |= value << 1;
-     self
-  }
+   #[inline] pub fn set_swtrig2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 1);
+      self.0 |= value << 1;
+      self
+   }
 
 #[doc="DAC channel1 software trigger"]
-  #[inline] pub fn swtrig1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-  }
+   #[inline] pub fn swtrig1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+   }
 #[doc="DAC channel1 software trigger"]
-  #[inline] pub fn set_swtrig1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_swtrig1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Swtrigr {
@@ -705,17 +719,17 @@ impl ::core::fmt::Debug for Swtrigr {
 pub struct Dhr12r1(pub u32);
 impl Dhr12r1 {
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12r1 {
@@ -736,17 +750,17 @@ impl ::core::fmt::Debug for Dhr12r1 {
 pub struct Dhr12l1(pub u32);
 impl Dhr12l1 {
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
+   }
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12l1 {
@@ -767,17 +781,17 @@ impl ::core::fmt::Debug for Dhr12l1 {
 pub struct Dhr8r1(pub u32);
 impl Dhr8r1 {
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+   }
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
-     let value: bits::U8 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+      let value: bits::U8 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr8r1 {
@@ -798,17 +812,17 @@ impl ::core::fmt::Debug for Dhr8r1 {
 pub struct Dhr12r2(pub u32);
 impl Dhr12r2 {
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12r2 {
@@ -829,17 +843,17 @@ impl ::core::fmt::Debug for Dhr12r2 {
 pub struct Dhr12l2(pub u32);
 impl Dhr12l2 {
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
+   }
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12l2 {
@@ -860,17 +874,17 @@ impl ::core::fmt::Debug for Dhr12l2 {
 pub struct Dhr8r2(pub u32);
 impl Dhr8r2 {
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+   }
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
-     let value: bits::U8 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+      let value: bits::U8 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr8r2 {
@@ -891,30 +905,30 @@ impl ::core::fmt::Debug for Dhr8r2 {
 pub struct Dhr12rd(pub u32);
 impl Dhr12rd {
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xfff) as u16) } // [27:16]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xfff) as u16) } // [27:16]
+   }
 #[doc="DAC channel2 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 16);
-     self.0 |= value << 16;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 16);
+      self.0 |= value << 16;
+      self
+   }
 
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="DAC channel1 12-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12rd {
@@ -936,30 +950,30 @@ impl ::core::fmt::Debug for Dhr12rd {
 pub struct Dhr12ld(pub u32);
 impl Dhr12ld {
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xfff) as u16) } // [31:20]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xfff) as u16) } // [31:20]
+   }
 #[doc="DAC channel2 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 20);
-     self.0 |= value << 20;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 20);
+      self.0 |= value << 20;
+      self
+   }
 
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xfff) as u16) } // [15:4]
+   }
 #[doc="DAC channel1 12-bit left-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 4);
-     self.0 |= value << 4;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 4);
+      self.0 |= value << 4;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr12ld {
@@ -981,30 +995,30 @@ impl ::core::fmt::Debug for Dhr12ld {
 pub struct Dhr8rd(pub u32);
 impl Dhr8rd {
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
-     unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-  }
+   #[inline] pub fn dacc2dhr(&self) -> bits::U8 {
+      unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
+   }
 #[doc="DAC channel2 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
-     let value: bits::U8 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xff << 8);
-     self.0 |= value << 8;
-     self
-  }
+   #[inline] pub fn set_dacc2dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+      let value: bits::U8 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xff << 8);
+      self.0 |= value << 8;
+      self
+   }
 
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-  }
+   #[inline] pub fn dacc1dhr(&self) -> bits::U8 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+   }
 #[doc="DAC channel1 8-bit right-aligned data"]
-  #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
-     let value: bits::U8 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc1dhr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+      let value: bits::U8 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dhr8rd {
@@ -1026,17 +1040,17 @@ impl ::core::fmt::Debug for Dhr8rd {
 pub struct Dor1(pub u32);
 impl Dor1 {
 #[doc="DAC channel1 data output"]
-  #[inline] pub fn dacc1dor(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn dacc1dor(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="DAC channel1 data output"]
-  #[inline] pub fn set_dacc1dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc1dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dor1 {
@@ -1057,17 +1071,17 @@ impl ::core::fmt::Debug for Dor1 {
 pub struct Dor2(pub u32);
 impl Dor2 {
 #[doc="DAC channel2 data output"]
-  #[inline] pub fn dacc2dor(&self) -> bits::U12 {
-     unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
-  }
+   #[inline] pub fn dacc2dor(&self) -> bits::U12 {
+      unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
+   }
 #[doc="DAC channel2 data output"]
-  #[inline] pub fn set_dacc2dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
-     let value: bits::U12 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0xfff << 0);
-     self.0 |= value << 0;
-     self
-  }
+   #[inline] pub fn set_dacc2dor<V: Into<bits::U12>>(mut self, value: V) -> Self {
+      let value: bits::U12 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0xfff << 0);
+      self.0 |= value << 0;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Dor2 {
@@ -1088,30 +1102,30 @@ impl ::core::fmt::Debug for Dor2 {
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="DAC channel2 DMA underrun flag"]
-  #[inline] pub fn dmaudr2(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-  }
+   #[inline] pub fn dmaudr2(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
+   }
 #[doc="DAC channel2 DMA underrun flag"]
-  #[inline] pub fn set_dmaudr2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 29);
-     self.0 |= value << 29;
-     self
-  }
+   #[inline] pub fn set_dmaudr2<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 29);
+      self.0 |= value << 29;
+      self
+   }
 
 #[doc="DAC channel1 DMA underrun flag"]
-  #[inline] pub fn dmaudr1(&self) -> bits::U1 {
-     unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-  }
+   #[inline] pub fn dmaudr1(&self) -> bits::U1 {
+      unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+   }
 #[doc="DAC channel1 DMA underrun flag"]
-  #[inline] pub fn set_dmaudr1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-     let value: bits::U1 = value.into();
-     let value: u32 = value.into();
-     self.0 &= !(0x1 << 13);
-     self.0 |= value << 13;
-     self
-  }
+   #[inline] pub fn set_dmaudr1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+      let value: bits::U1 = value.into();
+      let value: u32 = value.into();
+      self.0 &= !(0x1 << 13);
+      self.0 |= value << 13;
+      self
+   }
 
 }
 impl ::core::fmt::Display for Sr {
