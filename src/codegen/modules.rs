@@ -197,79 +197,79 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         }
     }
 
-    try!(writeln!(out, "use ::core::marker::PhantomData;"));
+    // try!(writeln!(out, "use ::core::marker::PhantomData;"));
     try!(writeln!(out, "pub type Handler = extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
 
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for irq in p.interrupts.iter() {
-                let irq_type = format!("Irq{}", to_camel(&irq.name));
-                let irq_id = format!("{}Id", to_camel(&irq.name));
+    // for pg in d.peripheral_groups.iter() {
+    //     for p in pg.peripherals.iter() {
+    //         for irq in p.interrupts.iter() {
+    //             let irq_type = format!("Irq{}", to_camel(&irq.name));
+    //             let irq_id = format!("{}Id", to_camel(&irq.name));
 
-                let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-                try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
-                    irq.name.to_uppercase(), 
-                    irq_type,
-                    irq.value,
-                    irq_id,                
-                ));
-            }
-            for ch in p.channels.iter() {
-                for irq in ch.interrupts.iter() {
-                    let irq_type = format!("Irq{}", to_camel(&irq.name));
-                    let irq_id = format!("{}Id", to_camel(&irq.name));
+    //             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //             try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
+    //                 irq.name.to_uppercase(), 
+    //                 irq_type,
+    //                 irq.value,
+    //                 irq_id,                
+    //             ));
+    //         }
+    //         for ch in p.channels.iter() {
+    //             for irq in ch.interrupts.iter() {
+    //                 let irq_type = format!("Irq{}", to_camel(&irq.name));
+    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
 
-                    let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-                    try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
-                        irq.name.to_uppercase(), 
-                        irq_type,
-                        irq.value,
-                        irq_id,                
-                    ));
-                }                
-            }
+    //                 let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //                 try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
+    //                     irq.name.to_uppercase(), 
+    //                     irq_type,
+    //                     irq.value,
+    //                     irq_id,                
+    //                 ));
+    //             }                
+    //         }
 
-        }
-    }
-    try!(writeln!(out, ""));
+    //     }
+    // }
+    // try!(writeln!(out, ""));
 
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for irq in p.interrupts.iter() {
-                let irq_type = format!("Irq{}", to_camel(&irq.name));
-                let irq_id = format!("{}Id", to_camel(&irq.name));
-                try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
-            }
-            for ch in p.channels.iter() {
-                for irq in ch.interrupts.iter() {
-                    let irq_type = format!("Irq{}", to_camel(&irq.name));
-                    let irq_id = format!("{}Id", to_camel(&irq.name));
-                    try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
-                }                
-            }
-        }
-    }
+    // for pg in d.peripheral_groups.iter() {
+    //     for p in pg.peripherals.iter() {
+    //         for irq in p.interrupts.iter() {
+    //             let irq_type = format!("Irq{}", to_camel(&irq.name));
+    //             let irq_id = format!("{}Id", to_camel(&irq.name));
+    //             try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+    //         }
+    //         for ch in p.channels.iter() {
+    //             for irq in ch.interrupts.iter() {
+    //                 let irq_type = format!("Irq{}", to_camel(&irq.name));
+    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
+    //                 try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
+    //             }                
+    //         }
+    //     }
+    // }
     
-    try!(writeln!(out, ""));    
+    // try!(writeln!(out, ""));    
 
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for irq in p.interrupts.iter() {
-                let irq_id = format!("{}Id", to_camel(&irq.name));
-                try!(writeln!(out, "#[doc(hidden)]"));
-                try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
-            }
-            for ch in p.channels.iter() {
-                for irq in ch.interrupts.iter() {
-                    let irq_id = format!("{}Id", to_camel(&irq.name));
-                    try!(writeln!(out, "#[doc(hidden)]"));
-                    try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
-                }                
-            }
-        }
-    }
+    // for pg in d.peripheral_groups.iter() {
+    //     for p in pg.peripherals.iter() {
+    //         for irq in p.interrupts.iter() {
+    //             let irq_id = format!("{}Id", to_camel(&irq.name));
+    //             try!(writeln!(out, "#[doc(hidden)]"));
+    //             try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+    //         }
+    //         for ch in p.channels.iter() {
+    //             for irq in ch.interrupts.iter() {
+    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
+    //                 try!(writeln!(out, "#[doc(hidden)]"));
+    //                 try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
+    //             }                
+    //         }
+    //     }
+    // }
     
     try!(writeln!(out, ""));    
     
@@ -282,187 +282,6 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));    
 
-    // try!(writeln!(out, "use super::nvic::{{NVIC, Iser, Icer, Ispr, Icpr, Stir}};"));
-    try!(writeln!(out, "use super::nvic::NVIC;"));
-
-    try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-    try!(writeln!(out, "pub struct Irq<T>(usize, T);"));
-    try!(writeln!(out, "impl<T> Irq<T> {{"));
-    try!(writeln!(out, "   pub fn index(&self) -> usize {{ self.0 }}"));
-    try!(writeln!(out, ""));    
-    try!(writeln!(out, "   pub fn is_enabled(&self) -> bool {{ NVIC.iser((self.0 >> 5)).setena((self.0 & 0b11111)) != 0 }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn set_enabled(&self, value: bool) {{"));
-    try!(writeln!(out, "      if value {{"));
-    try!(writeln!(out, "         assert!(self.handler().is_some());"));
-    try!(writeln!(out, "         NVIC.set_iser((self.0 >> 5), |r| r.set_setena((self.0 & 0b11111), 1));"));
-    try!(writeln!(out, "      }} else {{"));
-    try!(writeln!(out, "         NVIC.set_icer((self.0 >> 5), |r| r.set_clrena((self.0 & 0b11111), 1));"));
-    try!(writeln!(out, "      }}"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn is_pending(&self) -> bool {{"));
-    try!(writeln!(out, "       NVIC.ispr((self.0 >> 5)).setpend((self.0 & 0b11111)) != 0"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn set_pending(&self, value: bool) {{"));
-    try!(writeln!(out, "       if value {{"));
-    try!(writeln!(out, "           NVIC.set_ispr((self.0 >> 5), |r| r.set_setpend((self.0 & 0b11111), 1));"));
-    try!(writeln!(out, "       }} else {{"));
-    try!(writeln!(out, "           NVIC.set_icpr((self.0 >> 5), |r| r.set_clrpend((self.0 & 0b11111), 1));"));
-    try!(writeln!(out, "       }}"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn is_active(&self) -> bool {{"));
-    try!(writeln!(out, "       NVIC.iabr((self.0 >> 5)).active(self.0 & 0b11111) != 0"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn priority(&self) -> u8 {{"));
-    try!(writeln!(out, "       NVIC.ipr((self.0 >> 4)).pri(self.0 & 0b1111).into()"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn set_priority(&self, value: u8) {{"));
-    try!(writeln!(out, "       NVIC.with_ipr((self.0 >> 4), |r| r.set_pri(self.0 & 0b1111, value));"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "   pub fn trigger_interrupt(&self) {{"));
-    try!(writeln!(out, "       NVIC.set_stir(|r| r.set_intid(self.0));"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, ""));
-
-    try!(writeln!(out, "   pub fn handler(&self) -> Option<Handler> {{ unsafe {{ R_INTERRUPT_HANDLERS[self.0] }} }}"));
-    try!(writeln!(out, ""));
-
-    // TODO: Assert that NVIC is disabled before setting handler to None
-    try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "      unsafe {{ assert!(R_INTERRUPT_HANDLERS[self.0].is_some() != handler.is_some()); }};"));
-    try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-
-    // try!(writeln!(out, "impl Irq {{"));
-    // try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
-    // try!(writeln!(out, "      unsafe {{ R_INTERRUPT_HANDLERS[self.0] = handler }};"));
-    // try!(writeln!(out, "   }}"));
-    // try!(writeln!(out, "}}"));
-    // try!(writeln!(out, ""));    
-
-    try!(writeln!(out, "pub struct IrqHandle {{}}"));
-    try!(writeln!(out, "pub struct IrqGuard<'a>(usize, PhantomData<&'a IrqHandle>);"));
-    try!(writeln!(out, "impl<'a> IrqGuard<'a> {{"));
-    try!(writeln!(out, "   pub fn new(index: usize) -> Self {{"));
-    try!(writeln!(out, "      IrqGuard(index, PhantomData)"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, "impl<'a> Drop for IrqGuard<'a> {{"));
-    try!(writeln!(out, "   fn drop(&mut self) {{"));
-    try!(writeln!(out, "      set_handler(self.0, None)"));
-    try!(writeln!(out, "   }}"));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "pub trait RegisterHandler {{"));
-    try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a>;"));;
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-
-    try!(writeln!(out, "pub trait HandleInterrupt {{"));
-    try!(writeln!(out, "   fn handle_interrupt(&self);"));;
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for irq in p.interrupts.iter() {
-                let irq_const = irq.name.to_uppercase();
-                let irq_id = format!("Irq{}", to_camel(&irq.name));
-                try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
-                try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
-                try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
-                try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
-                try!(writeln!(out, "       }}"));
-                try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
-                try!(writeln!(out, "       IrqGuard::new({})", irq.value));
-                try!(writeln!(out, "   }}"));
-                try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
-            }
-            for ch in p.channels.iter() {
-                for irq in ch.interrupts.iter() {
-                    let irq_const = irq.name.to_uppercase();
-                    let irq_id = format!("Irq{}", to_camel(&irq.name));
-                    try!(writeln!(out, "impl RegisterHandler for {} {{", irq_id));
-                    try!(writeln!(out, "   fn register_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleInterrupt>(&self, f: &F) -> IrqGuard<'a> {{"));;          
-                    try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                    try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                    try!(writeln!(out, "       extern \"C\" fn wrapper<W: HandleInterrupt>() {{"));
-                    try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).handle_interrupt() }}"));
-                    try!(writeln!(out, "       }}"));
-                    try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
-                    try!(writeln!(out, "       IrqGuard::new({})", irq.value));
-                    try!(writeln!(out, "   }}"));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
-                }                
-            }
-        }
-    }
-
-
-    // let mut interrupt_types = HashSet::new();
-    // 
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         for irq in p.interrupts.iter() {
-    //             for itype in irq.types.iter() {
-    //                 if !interrupt_types.contains(&itype) {
-    //                     let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-    //                     let itype_trait = format!("Handle{}", to_camel(itype));
-    //                     let itype_meth = format!("handle_{}", itype.to_lowercase());
-    //                     try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-    //                     try!(writeln!(out, "   fn register_{}_handler<'a, F: {}>(&self, f: &F) -> IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
-    //                     try!(writeln!(out, "}}"));        
-    //                     try!(writeln!(out, ""));                
-    //                     try!(writeln!(out, "pub trait {} {{", itype_trait));    
-    //                     try!(writeln!(out, "   fn {}(&self);", itype_meth));
-    //                     try!(writeln!(out, "}}"));
-    //                     try!(writeln!(out, ""));
-    //                     interrupt_types.insert(itype);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         let p_type = format!("::{}::{}", pg.name.to_lowercase(), to_camel(&p.name));
-    //         for irq in p.interrupts.iter() {
-    //             for itype in irq.types.iter() {
-    //                 let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-    //                 let itype_trait = format!("Handle{}", to_camel(itype));
-    //                 let itype_meth = format!("handle_{}", itype.to_lowercase());
-    //                 try!(writeln!(out, "impl {} for {} {{", itype_rtrait, p_type));
-    //                 try!(writeln!(out, "   fn register_{}_handler<'a, F: {}>(&self, f: &F) -> IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
-    //                 try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-    //                 try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-    //                 try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
-    //                 try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
-    //                 try!(writeln!(out, "       }}"));
-    //                 try!(writeln!(out, "       set_handler({}, Some(wrapper::<F>));", irq.value));
-    //                 try!(writeln!(out, "       IrqGuard::new({})", irq.value));
-    //                 try!(writeln!(out, "   }}"));
-    //                 try!(writeln!(out, "}}"));                        
-    //             }
-    //         }
-    //     }
-    // }    
-
-
     try!(writeln!(out,"#[link_section = \".vector.interrupts\"]"));
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static mut INTERRUPT_HANDLERS: [Option<Handler>; {}] = [", interrupts.len()));
@@ -470,7 +289,6 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            // try!(writeln!(out, "   {:30} // {}", format!("Some(_{}),", irq.name.to_lowercase()), desc));
             try!(writeln!(out, "   {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
         } else {
             try!(writeln!(out, "   None,"));
@@ -486,14 +304,6 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
          interrupts.len(), interrupts.len()));
     try!(writeln!(out,""));    
 
-    // try!(writeln!(out, "extern \"C\" {{"));
-    // for irq in interrupts.iter() {
-    //     if let &Some(irq) = irq {
-    //         let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-    //         try!(writeln!(out, "   {:30} // {}", format!("pub fn _{}();", irq.name.to_lowercase()), desc));
-    //     }      
-    // }
-    // try!(writeln!(out,"}}"));    
     Ok(())
 }
 
@@ -625,7 +435,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let l_trait = format!("Link{}<T>", to_camel(&l.name));
             let l_getter = field_getter(&l.name);
             let pg_mod = l.peripheral_group.to_lowercase();
-            //let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
 
             if !link_traits.contains(&l_trait) {
                 try!(writeln!(out, "pub trait {} {{", l_trait));
@@ -634,20 +443,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, ""));
                 link_traits.insert(l_trait);
             }
-
-            // let l_trait = format!("{}Link", to_camel(&l.name));
-            // let l_getter = field_getter(&l.name);
-            // let pg_mod = l.peripheral_group.to_lowercase();
-            // //let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
-            // let l_type = format!("{}<{}>", pg_type, p_type);
-
-            // if !link_traits.contains(&l_trait) {
-            //     try!(writeln!(out, "pub trait {} {{", l_trait));
-            //     try!(writeln!(out, "   fn {}(&self) -> &{};", l_getter, l_type));
-            //     try!(writeln!(out, "}}"));
-            //     try!(writeln!(out, ""));
-            //     link_traits.insert(l_trait);
-            // }
         }
     }
 
@@ -670,8 +465,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         
     }
     try!(writeln!(out, ""));
-
-    // if p_count == 0 {
+    
     if pg.modules.len() == 0 {
         try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
         try!(gen_doc(cfg, out, &format!("{} Peripheral", pg.name.to_uppercase())));
@@ -737,23 +531,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }    
     try!(writeln!(out, ""));
 
-    // Generate peripheral list
-
-    // if pg.peripherals.len() > 0 {
-    //     try!(writeln!(out, "pub const {}: [{}; {}] = [", pg.name.to_uppercase(), p_type, count));
-    //     for p in pg.peripherals.iter() {
-    //         let p_name = p.name.to_uppercase();
-    //         try!(writeln!(out, "   {},", p_name));
-    //         count += 1;
-    //     }    
-    //     try!(writeln!(out, "];"));
-    //     try!(writeln!(out, ""));
-    // }
-    
-    // if pg.modules.len() == 0 {
-    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-    //     try!(writeln!(out, "pub struct {}(pub u32);", p_impl_type));    
-    // }
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
     } else {
@@ -778,8 +555,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         pin_count += p.pins.len();
     }
 
-    //if pg.has_pins && pin_count == 0 {
-    //if pg.has_pins && (pg.modules.len() > 0 || pin_count > 0) {
     if pg.has_pins {
         // Generate Pin Impl
         try!(gen_doc(cfg, out, &format!("{} Pin", pg.name.to_uppercase())));
@@ -824,27 +599,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     try!(writeln!(out, ""));
                 }
             }        
-        }    
-
-        // // Generate AltFn Traits
-
-        // for p in pg.peripherals.iter() {
-        //     let p_name = p.name.to_uppercase();
-        //     for pin in p.pins.iter() {
-        //         for af in pin.altfns.iter() {
-        //             let af_trait = format!("Af{}", to_camel(&af.signal));
-        //             let af_fn = format!("af_{}", af.signal.to_lowercase());
-
-        //             if !traits.contains(&af_trait) {
-        //                 try!(writeln!(out, "pub trait {} {{", af_trait));
-        //                 try!(writeln!(out, "   fn {}(&self) -> usize;", af_fn));
-        //                 try!(writeln!(out, "}}"));
-        //                 try!(writeln!(out, ""));   
-        //                 traits.insert(af_trait);
-        //             }           
-        //         }
-        //     }
-        // }        
+        }       
     }
 
     // Generate Peripheral Group Channels
@@ -886,120 +641,120 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     // Generate Peripheral Group Interrupts
 
-    let mut interrupt_types = HashSet::new();
+    // let mut interrupt_types = HashSet::new();
 
-    for p in pg.peripherals.iter() {
-        for irq in p.interrupts.iter() {
-            for itype in irq.types.iter() {
-                if !interrupt_types.contains(&itype) {
-                    let itype_itrait = format!("Irq{}", to_camel(itype));
-                    let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                    let itype_trait = format!("Handle{}", to_camel(itype));
-                    let itype_meth = format!("handle_{}", itype.to_lowercase());
-                    try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                    try!(writeln!(out, "   fn irq_{}(&self) -> super::irq::Irq<T>;", itype.to_lowercase()));
-                    try!(writeln!(out, "}}"));        
-                    try!(writeln!(out, ""));                
-                    try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-                    try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
-                    try!(writeln!(out, "}}"));        
-                    try!(writeln!(out, ""));                
-                    try!(writeln!(out, "pub trait {} {{", itype_trait));    
-                    try!(writeln!(out, "   fn {}(&self);", itype_meth));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
-                    interrupt_types.insert(itype);
-                }
-            }
-        }
-        for ch in p.channels.iter() {
-            for irq in ch.interrupts.iter() {
-                for itype in irq.types.iter() {
-                    if !interrupt_types.contains(&itype) {
-                        let itype_itrait = format!("Irq{}", to_camel(itype));
-                        let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                        let itype_trait = format!("Handle{}", to_camel(itype));
-                        let itype_meth = format!("handle_{}", itype.to_lowercase());
-                        try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                        try!(writeln!(out, "   fn irq_{}(&self) -> super::irq::Irq<T>;", itype.to_lowercase()));
-                        try!(writeln!(out, "}}"));        
-                        try!(writeln!(out, ""));                
-                        try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-                        try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
-                        try!(writeln!(out, "}}"));        
-                        try!(writeln!(out, ""));                
-                        try!(writeln!(out, "pub trait {} {{", itype_trait));    
-                        try!(writeln!(out, "   fn {}(&self);", itype_meth));
-                        try!(writeln!(out, "}}"));
-                        try!(writeln!(out, ""));
-                        interrupt_types.insert(itype);
-                    }
-                }
-            }
-        }
-    }
+    // for p in pg.peripherals.iter() {
+    //     for irq in p.interrupts.iter() {
+    //         for itype in irq.types.iter() {
+    //             if !interrupt_types.contains(&itype) {
+    //                 let itype_itrait = format!("Irq{}", to_camel(itype));
+    //                 let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+    //                 let itype_trait = format!("Handle{}", to_camel(itype));
+    //                 let itype_meth = format!("handle_{}", itype.to_lowercase());
+    //                 try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
+    //                 try!(writeln!(out, "   fn irq_{}(&self) -> super::irq::Irq<T>;", itype.to_lowercase()));
+    //                 try!(writeln!(out, "}}"));        
+    //                 try!(writeln!(out, ""));                
+    //                 try!(writeln!(out, "pub trait {} {{", itype_rtrait));
+    //                 try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
+    //                 try!(writeln!(out, "}}"));        
+    //                 try!(writeln!(out, ""));                
+    //                 try!(writeln!(out, "pub trait {} {{", itype_trait));    
+    //                 try!(writeln!(out, "   fn {}(&self);", itype_meth));
+    //                 try!(writeln!(out, "}}"));
+    //                 try!(writeln!(out, ""));
+    //                 interrupt_types.insert(itype);
+    //             }
+    //         }
+    //     }
+    //     for ch in p.channels.iter() {
+    //         for irq in ch.interrupts.iter() {
+    //             for itype in irq.types.iter() {
+    //                 if !interrupt_types.contains(&itype) {
+    //                     let itype_itrait = format!("Irq{}", to_camel(itype));
+    //                     let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+    //                     let itype_trait = format!("Handle{}", to_camel(itype));
+    //                     let itype_meth = format!("handle_{}", itype.to_lowercase());
+    //                     try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
+    //                     try!(writeln!(out, "   fn irq_{}(&self) -> super::irq::Irq<T>;", itype.to_lowercase()));
+    //                     try!(writeln!(out, "}}"));        
+    //                     try!(writeln!(out, ""));                
+    //                     try!(writeln!(out, "pub trait {} {{", itype_rtrait));
+    //                     try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
+    //                     try!(writeln!(out, "}}"));        
+    //                     try!(writeln!(out, ""));                
+    //                     try!(writeln!(out, "pub trait {} {{", itype_trait));    
+    //                     try!(writeln!(out, "   fn {}(&self);", itype_meth));
+    //                     try!(writeln!(out, "}}"));
+    //                     try!(writeln!(out, ""));
+    //                     interrupt_types.insert(itype);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
-    for p in pg.peripherals.iter() {
-        let p_type = to_camel(&p.name);            
+    // for p in pg.peripherals.iter() {
+    //     let p_type = to_camel(&p.name);            
 
-        for irq in p.interrupts.iter() {
-            let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
+    //     for irq in p.interrupts.iter() {
+    //         let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
                         
-            for itype in irq.types.iter() {
-                let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
-                let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                let itype_trait = format!("Handle{}", to_camel(itype));
-                let itype_meth = format!("handle_{}", itype.to_lowercase());
-                try!(writeln!(out, "impl {} for {} {{", itype_itrait, p_type));
-                try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
-                try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
+    //         for itype in irq.types.iter() {
+    //             let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
+    //             let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+    //             let itype_trait = format!("Handle{}", to_camel(itype));
+    //             let itype_meth = format!("handle_{}", itype.to_lowercase());
+    //             try!(writeln!(out, "impl {} for {} {{", itype_itrait, p_type));
+    //             try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
+    //             try!(writeln!(out, "}}"));
+    //             try!(writeln!(out, ""));
 
-                try!(writeln!(out, "impl {} for {} {{", itype_rtrait, p_type));
-                try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
-                try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
-                try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
-                try!(writeln!(out, "       }}"));
-                try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
-                try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
-                try!(writeln!(out, "   }}"));
-                try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
-            }
-        }
-        for ch in p.channels.iter() {
-            let ch_type = to_camel(&ch.name);
-            for irq in ch.interrupts.iter() {
-                let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
+    //             try!(writeln!(out, "impl {} for {} {{", itype_rtrait, p_type));
+    //             try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
+    //             try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+    //             try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+    //             try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
+    //             try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
+    //             try!(writeln!(out, "       }}"));
+    //             try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
+    //             try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
+    //             try!(writeln!(out, "   }}"));
+    //             try!(writeln!(out, "}}"));
+    //             try!(writeln!(out, ""));
+    //         }
+    //     }
+    //     for ch in p.channels.iter() {
+    //         let ch_type = to_camel(&ch.name);
+    //         for irq in ch.interrupts.iter() {
+    //             let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
                             
-                for itype in irq.types.iter() {
-                    let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
-                    let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                    let itype_trait = format!("Handle{}", to_camel(itype));
-                    let itype_meth = format!("handle_{}", itype.to_lowercase());
-                    try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
-                    try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
+    //             for itype in irq.types.iter() {
+    //                 let itype_itrait = format!("Irq{}<super::irq::{}Id>", to_camel(itype), to_camel(&irq.name));
+    //                 let itype_rtrait = format!("Register{}Handler", to_camel(itype));
+    //                 let itype_trait = format!("Handle{}", to_camel(itype));
+    //                 let itype_meth = format!("handle_{}", itype.to_lowercase());
+    //                 try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
+    //                 try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
+    //                 try!(writeln!(out, "}}"));
+    //                 try!(writeln!(out, ""));
 
-                    try!(writeln!(out, "impl {} for {} {{", itype_rtrait, ch_type));
-                    try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
-                    try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                    try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                    try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
-                    try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
-                    try!(writeln!(out, "       }}"));
-                    try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
-                    try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
-                    try!(writeln!(out, "   }}"));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
-                }
-            }            
-        }
-    }
+    //                 try!(writeln!(out, "impl {} for {} {{", itype_rtrait, ch_type));
+    //                 try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
+    //                 try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
+    //                 try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
+    //                 try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
+    //                 try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
+    //                 try!(writeln!(out, "       }}"));
+    //                 try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
+    //                 try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
+    //                 try!(writeln!(out, "   }}"));
+    //                 try!(writeln!(out, "}}"));
+    //                 try!(writeln!(out, ""));
+    //             }
+    //         }            
+    //     }
+    // }
 
 
 
@@ -1024,14 +779,6 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
             try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p_name, p_type, p_type, offset));    
         }
         try!(writeln!(out, ""));
-
-        // let p_arr = p.group_name.as_ref().unwrap().to_uppercase();
-        // try!(writeln!(out, "pub const {}: [{}; {}] = [", p_arr, p_type, dim));
-        // for (offset, name) in p.iter_dim() {
-        //     let p_name = name.replace("[","").replace("]","");            
-        //     try!(writeln!(out, "   {},", p_name));
-        // }
-        // try!(writeln!(out, "];"));
 
     } else {
         try!(writeln!(out, "pub const {}: {} = {}(0x{:08x});", p.name, p_type, p_type, p.address));    
@@ -1448,12 +1195,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "        ::core::ptr::write_volatile(((self.0 as usize) + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
                 try!(writeln!(out, "     }}"));
                 try!(writeln!(out, "     self"));
-                try!(writeln!(out, "  }}"));            
-                // try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                // try!(writeln!(out, "  #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
-                // try!(writeln!(out, "     let tmp = self.{}();", r_getter));
-                // try!(writeln!(out, "     self.{}(f(tmp))", r_setter));
-                // try!(writeln!(out, "  }}"));            
+                try!(writeln!(out, "  }}"));               
             }
         }
         try!(writeln!(out, ""));
