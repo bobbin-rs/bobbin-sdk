@@ -1060,31 +1060,3 @@ impl ::core::fmt::Debug for I2spr {
       Ok(())
    }
 }
-pub trait IrqSpi<T> {
-   fn irq_spi(&self) -> super::irq::Irq<T>;
-}
-
-pub trait RegisterSpiHandler {
-   fn register_spi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleSpi>(&self, f: &F) -> super::irq::IrqGuard<'a>;
-}
-
-pub trait HandleSpi {
-   fn handle_spi(&self);
-}
-
-impl IrqSpi<super::irq::Spi1Id> for Spi1 {
-   fn irq_spi(&self) -> super::irq::IrqSpi1 { super::irq::IRQ_SPI1 }
-}
-
-impl RegisterSpiHandler for Spi1 {
-   fn register_spi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleSpi>(&self, f: &F) -> super::irq::IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleSpi>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_spi() }
-       }
-       super::irq::set_handler(25, Some(wrapper::<F>));
-       super::irq::IrqGuard::new(25)
-   }
-}
-
