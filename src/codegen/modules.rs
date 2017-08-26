@@ -11,7 +11,6 @@ use super::{size_type, field_getter, field_setter, field_with, field_ptr, field_
 pub struct Config {
     pub path: PathBuf,
     pub is_root: bool,
-    pub bit_types: bool,
 }
 
 impl<'a> From<&'a ArgMatches<'a>> for Config {
@@ -19,7 +18,6 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
         Config {
             path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
             is_root: matches.is_present("root"),
-            bit_types: matches.is_present("bit-types"),
         }
     }
 }
@@ -54,9 +52,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "#![no_std]"));
     };
 
-    if cfg.bit_types {
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
-    }
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
 
     // Generate Imports
 
@@ -606,9 +602,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }       
 
-    if cfg.bit_types {
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
-    }
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
 
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
@@ -1022,9 +1016,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         }
     }       
 
-    if cfg.bit_types {
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
-    }
+    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
 
     if let Some(dim) = p.dim {
         for (offset, name) in p.iter_dim() {
@@ -1164,9 +1156,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        if cfg.bit_types {
-            try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
-        }
+        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::bits;"));
         
         try!(writeln!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
@@ -1554,11 +1544,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
     } else {
         format!("[{}]", f_lo)
     };    
-    let field_type = if cfg.bit_types {
-        format!("bits::U{}", f_width)
-    } else {
-        format!("{}", size)
-    };
+    let field_type = format!("bits::U{}", f_width);
 
     let min_size = if f_width <= 8 {
         "u8"
@@ -1598,29 +1584,19 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
                 try!(writeln!(out, "     let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }
-        if cfg.bit_types {
-            try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> shift) & 0x{:x}) as {}) }} // {}", f_mask, min_size, f_bits));
-        } else {
-            try!(writeln!(out, "     ((self.0 as {}) >> shift) & 0x{:x} // {}", size, f_mask, f_bits));            
-        }
+        try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> shift) & 0x{:x}) as {}) }} // {}", f_mask, min_size, f_bits));
         try!(writeln!(out, "  }}"));    
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, desc));
         }
-        if cfg.bit_types {
-            try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
-            try!(writeln!(out, "     let index: {} = index.into();", i_type));
-            try!(writeln!(out, "     let index: usize = index.value();"));            
-            try!(writeln!(out, "     let value: {} = value.into();", field_type));            
-            try!(writeln!(out, "     let value: {} = value.into();", size));
-            // try!(writeln!(out, "     assert!(index < {});", dim));
-        } else {
-            try!(writeln!(out, "  #[inline] pub fn {}(mut self, index: usize, value: {}) -> Self {{", f_setter, field_type));
-            try!(writeln!(out, "     let value: {} = value.into();", size));
-            try!(writeln!(out, "     assert!(index < {});", dim));
-            try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
-        }
+
+        try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
+        try!(writeln!(out, "     let index: {} = index.into();", i_type));
+        try!(writeln!(out, "     let index: usize = index.value();"));            
+        try!(writeln!(out, "     let value: {} = value.into();", field_type));            
+        try!(writeln!(out, "     let value: {} = value.into();", size));
+        // try!(writeln!(out, "     assert!(index < {});", dim));
         match f_incr {
             1 => {
                 try!(writeln!(out, "     let shift: usize = {} + index;", f_offset));
@@ -1648,11 +1624,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
             try!(gen_doc(cfg, out, desc));
         }
         try!(writeln!(out, "  #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
-        if cfg.bit_types {
-            try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
-        } else {
-            try!(writeln!(out, "     ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits));
-        }
+        try!(writeln!(out, "     unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
         try!(writeln!(out, "  }}"));    
 
         if let Some(ref desc) = f.description {
@@ -1660,15 +1632,9 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
         }
 
 
-        if cfg.bit_types {
-            try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
-            try!(writeln!(out, "     let value: {} = value.into();", field_type));
-            try!(writeln!(out, "     let value: {} = value.into();", size));
-        } else {
-            try!(writeln!(out, "  #[inline] pub fn {}(mut self, value: {}) -> Self {{", f_setter, field_type));
-            try!(writeln!(out, "     let value: {} = value.into();", size));
-            try!(writeln!(out, "     assert!((value & !0x{:x}) == 0);", f_mask));
-        }
+        try!(writeln!(out, "  #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
+        try!(writeln!(out, "     let value: {} = value.into();", field_type));
+        try!(writeln!(out, "     let value: {} = value.into();", size));
         try!(writeln!(out, "     self.0 &= !(0x{:x} << {});", f_mask, f_offset));
         try!(writeln!(out, "     self.0 |= value << {};", f_offset));
         try!(writeln!(out, "     self"));
