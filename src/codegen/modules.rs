@@ -353,13 +353,13 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                 let s_const = s.name.to_uppercase();
                 let s_type = to_camel(&s.name);
                 if !signals.contains(&s_type) {
-                    try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                    // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                     try!(writeln!(out, "pub struct {} {{}}", s_type));
-                    for st in s.types.iter() {
-                        let st_type = to_camel(&st);
-                        try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
-                    }                
-                    try!(writeln!(out, ""));
+                    // for st in s.types.iter() {
+                    //     let st_type = to_camel(&st);
+                    //     try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
+                    // }                
+                    // try!(writeln!(out, ""));
                     signals.insert(s_type);
                 }
             }
@@ -369,13 +369,13 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     let s_const = s.name.to_uppercase();
                     let s_type = to_camel(&s.name);
                     if !signals.contains(&s_type) {
-                        try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                        // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
-                        for st in s.types.iter() {
-                            let st_type = to_camel(&st);
-                            try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
-                        }                
-                        try!(writeln!(out, ""));
+                        // for st in s.types.iter() {
+                        //     let st_type = to_camel(&st);
+                        //     try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
+                        // }                
+                        // try!(writeln!(out, ""));
                         signals.insert(s_type);
                     }
                 }                
@@ -389,9 +389,9 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     let s_const = af.signal.to_uppercase();
                     let s_type = to_camel(&af.signal);
                     if !signals.contains(&s_type) {
-                        try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
+                        // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
-                        try!(writeln!(out, ""));
+                        // try!(writeln!(out, ""));
                         signals.insert(s_type);
                     }
                 }
