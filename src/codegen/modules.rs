@@ -403,9 +403,19 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 }
 
 pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
-    let pg_type = format!("{}Periph", to_camel(&pg.name));
-    let pin_type = format!("{}Pin", to_camel(&pg.name));
-    let ch_type = format!("{}Ch", to_camel(&pg.name));
+    let pg_name = if let Some(ref prototype) = pg.prototype {
+        if let Some(ref name) = prototype.group_name {
+            format!("{}", name)
+        } else {
+            format!("{}", pg.name)
+        }
+    } else {
+        format!("{}", pg.name)
+    };
+
+    let pg_type = format!("{}Periph", to_camel(&pg_name));
+    let pin_type = format!("{}Pin", to_camel(&pg_name));
+    let ch_type = format!("{}Ch", to_camel(&pg_name));
     let p_trait = pg_type.clone();
     
     let mut link_traits = HashSet::new();
@@ -419,6 +429,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
     try!(writeln!(out, ""));
+
+    try!(writeln!(out, "// {:?}", pg));
 
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
