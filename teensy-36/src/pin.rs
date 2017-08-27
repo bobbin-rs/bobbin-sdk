@@ -5,8 +5,8 @@ use hal::port;
 macro_rules! pindef {
     ($id:ident, $pin:expr) => {
         pub fn $id() -> port::PinUnknown { 
-            sim::set_port_enabled($pin.port(), true);
-            port::pin($pin.port(), $pin.index())
+            sim::set_port_enabled($pin.port, true);
+            port::pin($pin.port, $pin.index)
         }
     }
 }

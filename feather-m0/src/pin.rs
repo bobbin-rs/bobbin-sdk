@@ -4,7 +4,7 @@ use hal::port;
 macro_rules! pindef {
     ($id:ident, $pin:expr) => {
         pub fn $id() -> port::PinUnknown { 
-            port::pin($pin.port(), $pin.index())
+            port::pin($pin.port, $pin.index)
         }
     }
 }

@@ -4,10 +4,10 @@ pub const BTN0: Pj0 = PJ0;
 pub const BTN1: Pj1 = PJ1;
 
 pub fn init() {
-    BTN0.port().sysctl_enable();
+    BTN0.port.sysctl_enable();
     BTN0.mode_input().pull_up();
 
-    BTN1.port().sysctl_enable();
+    BTN1.port.sysctl_enable();
     BTN1.mode_input().pull_up();
 }
 

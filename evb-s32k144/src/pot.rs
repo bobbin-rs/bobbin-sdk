@@ -14,7 +14,7 @@ pub struct Pot0 {}
 
 impl Pot0 {
     fn init(&self) -> &Self {
-        self.pin().port().pcc_set_enabled(true);
+        self.pin().port.pcc_set_enabled(true);
         self.pin().mode_adc(&self.adc_ch());
         self.adc_ch().periph()
             .pcc_set_clock_source(ClockSource::SPLLDIV2)

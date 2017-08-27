@@ -17,8 +17,8 @@ pub const USART_BAUD: u32 = 115_200;
 pub fn init() {
     // Enable Clocks
     USART.rcc_enable();
-    USART_TX.port().rcc_enable();
-    USART_RX.port().rcc_enable();
+    USART_TX.port.rcc_enable();
+    USART_RX.port.rcc_enable();
 
     // Set Pin Configuration
     USART_TX.mode_tx(&USART);

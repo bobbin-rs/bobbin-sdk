@@ -13,8 +13,8 @@ pub const USART_BAUD: u32 = 115_200;
 pub fn init() {
     // Enable Clocks
     USART.rcc_enable();
-    USART_TX.port().rcc_enable();
-    USART_RX.port().rcc_enable();
+    USART_TX.port.rcc_enable();
+    USART_RX.port.rcc_enable();
 
     AFIO.rcc_enable();
     AFIO.with_mapr(|r| r.set_usart1_remap(1));

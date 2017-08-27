@@ -5,8 +5,8 @@ use hal::gpio;
 macro_rules! pindef {
     ($id:ident, $pin:expr) => {
         pub fn $id() -> gpio::PinUnknown { 
-            sysctl::set_gpio_enabled($pin.port(), true);
-            gpio::pin($pin.port(), $pin.index())
+            sysctl::set_gpio_enabled($pin.port, true);
+            gpio::pin($pin.port, $pin.index)
         }
     }
 }

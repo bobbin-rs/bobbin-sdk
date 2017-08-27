@@ -23,8 +23,8 @@ pub fn init() {
     UART.sim_set_src(0x1);
     // sim_src(0x1);
     
-    UART_TX.port().sim_enable();
-    UART_RX.port().sim_enable();
+    UART_TX.port.sim_enable();
+    UART_RX.port.sim_enable();
 
     // Set Pin Configuration
     UART_TX.mode_tx(&UART);
