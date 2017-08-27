@@ -75,7 +75,7 @@ pub trait Channel<T> {
 }
 
 pub trait AltFn<T> {
-    fn alt_fn(&self) -> u8;
+    fn alt_fn(&self) -> usize;
 }
 
 pub trait Irq<T> {
@@ -156,7 +156,7 @@ macro_rules! channel {
 macro_rules! alt_fn {
     ($ty:ty, $sig:ty, $num:expr) => (
         impl AltFn<$sig> for $ty {
-            fn alt_fn(&self) -> u8 { $num }
+            fn alt_fn(&self) -> usize { $num }
         }
         
     )

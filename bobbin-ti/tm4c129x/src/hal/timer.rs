@@ -1,4 +1,5 @@
 pub use bobbin_common::timer::*;
+pub use bobbin_common::Channel;
 pub use chip::timer::*;
 pub use super::sysctl::SysctlEnabled;
 
@@ -17,95 +18,95 @@ pub enum Mode {
 
 // NOTE: Uses timer in Mode 0, 32 bit timer configuration.
 
-impl Channel<TimerPeriph> {
+impl TimerCh {
     pub fn tmr(&self) -> Tmr {
-        self.periph().tmr(self.index())
+        self.0.tmr(self.1)
     }
     pub fn set_tmr(&self, value: Tmr) -> &Self {
-        self.periph().set_tmr(self.index(), |_| value);
+        self.0.set_tmr(self.1, |_| value);
         self
     }
     pub fn with_tmr<F: FnOnce(Tmr) -> Tmr>(&self, f: F) -> &Self {
-        self.periph().with_tmr(self.index(), f);
+        self.0.with_tmr(self.1, f);
         self
     }
     pub fn enabled(&self) -> bool {
-        self.periph().ctl().ten(self.index()) != 0
+        self.0.ctl().ten(self.1) != 0
     }
     pub fn set_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
-        self.periph().with_ctl(|r| r.set_ten(self.index(), value));
+        self.0.with_ctl(|r| r.set_ten(self.1, value));
         self
     }
     pub fn reload(&self) -> u32 {
-        self.periph().tilr(self.index()).tilr().value()
+        self.0.tilr(self.1).tilr().value()
     }
     pub fn set_reload(&self, value: u32) -> &Self {
-        self.periph().set_tilr(self.index(), |_| Tilr(value));
+        self.0.set_tilr(self.1, |_| Tilr(value));
         self
     }
 
     pub fn prescale(&self) -> u8 {
-        self.periph().tpr(self.index()).tpsr().value()
+        self.0.tpr(self.1).tpsr().value()
     }
 
     pub fn set_prescale(&self, value: u8) -> &Self {
-        self.periph().set_tpr(self.index(), |r| r.set_tpsr(value));
+        self.0.set_tpr(self.1, |r| r.set_tpsr(value));
         self
     }
 
     pub fn compare(&self) -> u32 {
-        self.periph().tmtchr(self.index()).tmtchr().value()
+        self.0.tmtchr(self.1).tmtchr().value()
     }
     pub fn set_compare(&self, value: u32) -> &Self {
-        self.periph().set_tmtchr(self.index(), |_| Tmtchr(value));
+        self.0.set_tmtchr(self.1, |_| Tmtchr(value));
         self
     }    
     pub fn value(&self) -> u32 {
-        self.periph().tv(self.index()).tv().value()
+        self.0.tv(self.1).tv().value()
     }
     pub fn set_value(&self, value: u32) -> &Self {
-        self.periph().set_tv(self.index(), |_| Tv(value));
+        self.0.set_tv(self.1, |_| Tv(value));
         self
     }        
     pub fn match_dmaen(&self) -> bool {
-        self.periph().dmaev().tmdmaen(self.index()) != 0
+        self.0.dmaev().tmdmaen(self.1) != 0
     }
     pub fn set_match_dmaen(&self, value: bool) -> &Self {
-        self.periph().with_dmaev(|r| r.set_tmdmaen(self.index(), value));
+        self.0.with_dmaev(|r| r.set_tmdmaen(self.1, value));
         self
     }
     #[inline]
     pub fn timeout_flag(&self) -> bool {
-        self.periph().ris().ttoris(self.index()) != 0
+        self.0.ris().ttoris(self.1) != 0
     }
     #[inline]
     pub fn clr_timeout_flag(&self) -> &Self {
-        self.periph().set_icr(|r| r.set_ttocint(self.index(), 1));
+        self.0.set_icr(|r| r.set_ttocint(self.1, 1));
         self
     }
     #[inline]
     pub fn match_flag(&self) -> bool {
-        match self.index() {
-            0 => self.periph().ris().tamris() != 0,
-            1 => self.periph().ris().tbmris() != 0,            
+        match self.1 {
+            0 => self.0.ris().tamris() != 0,
+            1 => self.0.ris().tbmris() != 0,            
             _ => panic!("Invalid channel index"),
         }
     }
     #[inline]
     pub fn clr_match_flag(&self) -> &Self {
-        match self.index() {
-            0 => { self.periph().set_icr(|r| r.set_tamcint(1)); },
-            1 => { self.periph().set_icr(|r| r.set_tbmcint(1)); },
+        match self.1 {
+            0 => { self.0.set_icr(|r| r.set_tamcint(1)); },
+            1 => { self.0.set_icr(|r| r.set_tbmcint(1)); },
             _ => panic!("Invalid channel index"),
         };
         self
     }   
     pub fn dma_done_flag(&self) -> bool {
-        self.periph().ris().dmaris(self.index()) != 0
+        self.0.ris().dmaris(self.1) != 0
     }
     pub fn clr_dma_done_flag(&self) -> &Self {
-        self.periph().set_icr(|r| r.set_dmaint(self.index(), 1));
+        self.0.set_icr(|r| r.set_dmaint(self.1, 1));
         self
     }       
 }
