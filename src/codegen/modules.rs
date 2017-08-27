@@ -430,8 +430,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
     try!(writeln!(out, ""));
 
-    try!(writeln!(out, "// {:?}", pg));
-
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
             if let Some(ref use_as) = m._as {
