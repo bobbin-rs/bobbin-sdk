@@ -2,18 +2,9 @@ pub use bobbin_common::serial::*;
 use core::fmt::{self, Write};
 use chip::usart_f24::*;
 
-pub trait UsartExt {
-    fn enable(&self, brr: u32) -> &Self;
-    fn disable(&self) -> &Self;
-    // fn putc(&self, c: u8);
-    // fn try_putc(&self, c: u8) -> Option<usize>;
-    // fn getc(&self) -> u8;
-    // fn try_getc(&self) -> Option<u8>;
-    // fn write(&self, buf: &[u8]) -> usize;
-}
 
-impl<T> UsartExt for Periph<T> {
-    fn enable(&self, brr: u32) -> &Self {
+impl UsartPeriph {
+    pub fn enable(&self, brr: u32) -> &Self {
         // 29.5.4 - USART baud rate generation
         // In case of oversampling by 16, the equation is: Baud = Fck / USARTDIV
         // In case of oversampling by 8, the equation is: Baud = 2 * Fck / USARTDIV
@@ -40,7 +31,7 @@ impl<T> UsartExt for Periph<T> {
             )        
     }
 
-    fn disable(&self) -> &Self {
+    pub fn disable(&self) -> &Self {
         self.with_cr1(|r| r.set_ue(0).set_re(0).set_te(0))
     }
 
@@ -83,7 +74,7 @@ impl<T> UsartExt for Periph<T> {
     // }    
 }
 
-impl<T> Write for Periph<T> {
+impl Write for UsartPeriph {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
             self.putc(byte);
@@ -93,7 +84,7 @@ impl<T> Write for Periph<T> {
 }
 
 
-impl<T> SerialTx<u8> for Periph<T> {    
+impl SerialTx<u8> for UsartPeriph {    
     fn can_tx(&self) -> bool {
         self.sr().txe() != 0
     }
@@ -103,7 +94,7 @@ impl<T> SerialTx<u8> for Periph<T> {
     }
 }
 
-impl<T> SerialRx<u8> for Periph<T> {
+impl SerialRx<u8> for UsartPeriph {
     fn can_rx(&self) -> bool {
         self.sr().rxne() != 0
     }

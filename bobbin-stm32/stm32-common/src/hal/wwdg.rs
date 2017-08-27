@@ -19,14 +19,8 @@ pub struct Config {
 }
 
 
-pub trait WwdgExt {
-    fn configure(&self, cfg: Config) -> &Self;
-    fn activate(&self, u32) -> &Self;
-    fn refresh(&self, u32) -> &Self;
-}
-
-impl<T> WwdgExt for Periph<T> {
-    fn configure(&self, cfg: Config) -> &Self {
+impl WwdgPeriph {
+    pub fn configure(&self, cfg: Config) -> &Self {
         self.set_cfr(|r| r
             .set_ewi(if cfg.early_wake_interrupt { 1 } else { 0 })
             .set_wdgtb(cfg.time_base as u32)
@@ -34,11 +28,11 @@ impl<T> WwdgExt for Periph<T> {
         )
     }
 
-    fn activate(&self, t: u32) -> &Self {
+    pub fn activate(&self, t: u32) -> &Self {
         self.set_cr(|r| r.set_wdga(1).set_t(t))
     }
 
-    fn refresh(&self, t: u32) -> &Self {
+    pub fn refresh(&self, t: u32) -> &Self {
         self.set_cr(|r| r.set_t(t))
     }    
 }

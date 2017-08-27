@@ -118,7 +118,7 @@ macro_rules! periph {
 macro_rules! pin {
     ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
         pub const $id: $ty = $ty {};     
-        pub const $base_id: $base_type = $base_type($base_port, $index);
+        pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
         pub struct $ty {}
         impl Pin<$port_type> for $ty {
             fn port(&self) -> $port_type { $port_id }
@@ -137,7 +137,7 @@ macro_rules! pin {
 macro_rules! channel {
     ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $index:expr) => (
         pub const $id: $ty = $ty {};     
-        pub const $base_id: $base_type = $base_type($base_periph, $index);
+        pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
         pub struct $ty {}
         impl Channel<$periph_type> for $ty {
             fn periph(&self) -> $periph_type { $periph_id }

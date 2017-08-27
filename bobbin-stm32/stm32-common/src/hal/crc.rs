@@ -43,15 +43,8 @@ impl Config {
     }
 }
 
-pub trait CrcExt {
-    fn configure(&self, cfg: Config) -> &Self;
-    fn initialize(&self, value: u32) -> &Self;
-    fn write(&self, value: u32) -> &Self;
-    fn read(&self) -> u32;
-}
-
-impl<T> CrcExt for Periph<T> {
-    fn configure(&self, cfg: Config) -> &Self {
+impl CrcPeriph {
+    pub fn configure(&self, cfg: Config) -> &Self {
         self.with_cr(|r| r
             .set_rev_out(if cfg.rev_out { 1 } else { 0 })
             .set_rev_in(if cfg.rev_in { 1 } else { 0 })
@@ -60,16 +53,16 @@ impl<T> CrcExt for Periph<T> {
         self.set_pol(|r| r.set_pol(cfg.poly))
     }
 
-    fn initialize(&self, value: u32) -> &Self {
+    pub fn initialize(&self, value: u32) -> &Self {
         self.set_init(|r| r.set_init(value));
         self.with_cr(|r| r.set_reset(1))
     }
 
-    fn write(&self, value: u32) -> &Self {
+    pub fn write(&self, value: u32) -> &Self {
         self.set_dr(|r| r.set_dr(value))
     }
 
-    fn read(&self) -> u32 {
+    pub fn read(&self) -> u32 {
         self.dr().dr().into()
     }
 }

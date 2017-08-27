@@ -43,26 +43,26 @@ impl Config {
     }
 }
 
-pub trait UsartExt {
-    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-    fn configure(&self, cfg: Config) -> &Self;
-    fn set_baud(&self, baud: u32, clock: u32) -> &Self;
-    fn enable(&self) -> &Self;
-    fn disable(&self) -> &Self;
-    // fn putc(&self, c: u8);
-    // fn try_putc(&self, c: u8) -> Option<usize>;
-    // fn getc(&self) -> u8;
-    // fn try_getc(&self) -> Option<u8>;
-    // fn write(&self, buf: &[u8]) -> usize;
-    // fn read(&self, buf: &mut [u8]) -> usize;
-}
+// pub trait UsartExt {
+//     fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+//     fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
+//     fn configure(&self, cfg: Config) -> &Self;
+//     fn set_baud(&self, baud: u32, clock: u32) -> &Self;
+//     fn enable(&self) -> &Self;
+//     fn disable(&self) -> &Self;
+//     // fn putc(&self, c: u8);
+//     // fn try_putc(&self, c: u8) -> Option<usize>;
+//     // fn getc(&self) -> u8;
+//     // fn try_getc(&self) -> Option<u8>;
+//     // fn write(&self, buf: &[u8]) -> usize;
+//     // fn read(&self, buf: &mut [u8]) -> usize;
+// }
 
-impl<T> UsartExt for Periph<T> {
-    fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+impl UsartPeriph {
+    pub fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
         self.configure(f(Config::default()))
     }
-    fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+    pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
         self.configure(f(Config {
             cr1: self.cr1(),
             cr2: self.cr2(),
@@ -70,14 +70,14 @@ impl<T> UsartExt for Periph<T> {
             brr: self.brr(),
         }))
     }
-    fn configure(&self, cfg: Config) -> &Self {        
+    pub fn configure(&self, cfg: Config) -> &Self {        
         self.set_cr1(|_| cfg.cr1);
         self.set_cr2(|_| cfg.cr2);
         self.set_cr3(|_| cfg.cr3);
         self.set_brr(|_| cfg.brr);
         self
     }
-    fn set_baud(&self, baud: u32, clock: u32) -> &Self {
+    pub fn set_baud(&self, baud: u32, clock: u32) -> &Self {
         let brr = clock / baud;
         self.set_brr(|r| r
             .set_div_fraction((brr & 0b1111) as u32)
@@ -85,7 +85,7 @@ impl<T> UsartExt for Periph<T> {
         )
     }
 
-    fn enable(&self) -> &Self {
+    pub fn enable(&self) -> &Self {
         self
             .set_cr1(|r| r
                 .set_ue(1)
@@ -93,7 +93,7 @@ impl<T> UsartExt for Periph<T> {
                 .set_te(1)
             )        
     }
-    fn disable(&self) -> &Self {
+    pub fn disable(&self) -> &Self {
         self
             .set_cr1(|r| r
                 .set_ue(0)
@@ -151,7 +151,7 @@ impl<T> UsartExt for Periph<T> {
     // }
 }
 
-impl<T> Write for Periph<T> {
+impl Write for UsartPeriph {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
             self.putc(byte);
@@ -161,7 +161,7 @@ impl<T> Write for Periph<T> {
 }
 
 
-impl<T> SerialTx<u8> for Periph<T> {    
+impl SerialTx<u8> for UsartPeriph {    
     fn can_tx(&self) -> bool {
         self.isr().txe() != 0
     }
@@ -171,7 +171,7 @@ impl<T> SerialTx<u8> for Periph<T> {
     }
 }
 
-impl<T> SerialRx<u8> for Periph<T> {
+impl SerialRx<u8> for UsartPeriph {
     fn can_rx(&self) -> bool {
         self.isr().rxne() != 0
     }
