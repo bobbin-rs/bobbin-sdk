@@ -560,6 +560,15 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         pin_count += p.pins.len();
     }
 
+    if pg.has_pins {
+        try!(writeln!(out, "pub trait Pin<T> {{"));
+        try!(writeln!(out, "   fn periph(&self) -> T;"));
+        try!(writeln!(out, "   fn index(&self) -> usize;"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+    }
+
+
     // if pg.has_pins {
     //     // Generate Pin Impl
     //     try!(gen_doc(cfg, out, &format!("{} Pin", pg.name.to_uppercase())));
@@ -625,6 +634,15 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
 
     // Generate Peripheral Group Channels
+
+    if pg.has_channels {
+        try!(writeln!(out, "pub trait Channel<T> {{"));
+        try!(writeln!(out, "   fn periph(&self) -> T;"));
+        try!(writeln!(out, "   fn index(&self) -> usize;"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+    }
+
 
     // if pg.has_channels {
     //     // Generate Channel Impl
@@ -921,8 +939,12 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
     // }
     // try!(writeln!(out, "}}"));
 
-    try!(writeln!(out, "pub trait {} : Base {{}}", p_type));
-    try!(writeln!(out, ""));
+    // Find the right place to generate the main periph trait if not already created
+
+    // if clusters.len() > 0 {
+    //     try!(writeln!(out, "pub trait {} : Base {{}} //cluster ", p_type));
+    //     try!(writeln!(out, ""));
+    // }
 
     for c in clusters.iter() {        
         let c_type = format!("{}Periph", to_camel(&c.name));
