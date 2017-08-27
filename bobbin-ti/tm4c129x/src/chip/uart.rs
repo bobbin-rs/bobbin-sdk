@@ -1,13 +1,13 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_UART0, UartPeriph, UART0, Uart0, 0x4000c000);
-periph!(_UART1, UartPeriph, UART1, Uart1, 0x4000d000);
-periph!(_UART2, UartPeriph, UART2, Uart2, 0x4000e000);
-periph!(_UART3, UartPeriph, UART3, Uart3, 0x4000f000);
-periph!(_UART4, UartPeriph, UART4, Uart4, 0x40010000);
-periph!(_UART5, UartPeriph, UART5, Uart5, 0x40011000);
-periph!(_UART6, UartPeriph, UART6, Uart6, 0x40012000);
-periph!(_UART7, UartPeriph, UART7, Uart7, 0x40013000);
+periph!( UART0, Uart0, _UART0, UartPeriph, 0x4000c000);
+periph!( UART1, Uart1, _UART1, UartPeriph, 0x4000d000);
+periph!( UART2, Uart2, _UART2, UartPeriph, 0x4000e000);
+periph!( UART3, Uart3, _UART3, UartPeriph, 0x4000f000);
+periph!( UART4, Uart4, _UART4, UartPeriph, 0x40010000);
+periph!( UART5, Uart5, _UART5, UartPeriph, 0x40011000);
+periph!( UART6, Uart6, _UART6, UartPeriph, 0x40012000);
+periph!( UART7, Uart7, _UART7, UartPeriph, 0x40013000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="UART Peripheral"]

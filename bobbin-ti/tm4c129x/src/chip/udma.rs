@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_UDMA, UdmaPeriph, UDMA, Udma, 0x400ff000);
+periph!( UDMA, Udma, _UDMA, UdmaPeriph, 0x400ff000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="UDMA Peripheral"]
@@ -2185,40 +2185,36 @@ impl ::core::fmt::Debug for Chctl {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(UDMA_CH0, UdmaCh0, UDMA, Udma, 0);
-channel!(UDMA_CH1, UdmaCh1, UDMA, Udma, 1);
-channel!(UDMA_CH2, UdmaCh2, UDMA, Udma, 2);
-channel!(UDMA_CH3, UdmaCh3, UDMA, Udma, 3);
-channel!(UDMA_CH4, UdmaCh4, UDMA, Udma, 4);
-channel!(UDMA_CH5, UdmaCh5, UDMA, Udma, 5);
-channel!(UDMA_CH6, UdmaCh6, UDMA, Udma, 6);
-channel!(UDMA_CH7, UdmaCh7, UDMA, Udma, 7);
-channel!(UDMA_CH8, UdmaCh8, UDMA, Udma, 8);
-channel!(UDMA_CH9, UdmaCh9, UDMA, Udma, 9);
-channel!(UDMA_CH10, UdmaCh10, UDMA, Udma, 10);
-channel!(UDMA_CH11, UdmaCh11, UDMA, Udma, 11);
-channel!(UDMA_CH12, UdmaCh12, UDMA, Udma, 12);
-channel!(UDMA_CH13, UdmaCh13, UDMA, Udma, 13);
-channel!(UDMA_CH14, UdmaCh14, UDMA, Udma, 14);
-channel!(UDMA_CH15, UdmaCh15, UDMA, Udma, 15);
-channel!(UDMA_CH16, UdmaCh16, UDMA, Udma, 16);
-channel!(UDMA_CH17, UdmaCh17, UDMA, Udma, 17);
-channel!(UDMA_CH18, UdmaCh18, UDMA, Udma, 18);
-channel!(UDMA_CH19, UdmaCh19, UDMA, Udma, 19);
-channel!(UDMA_CH20, UdmaCh20, UDMA, Udma, 20);
-channel!(UDMA_CH21, UdmaCh21, UDMA, Udma, 21);
-channel!(UDMA_CH22, UdmaCh22, UDMA, Udma, 22);
-channel!(UDMA_CH23, UdmaCh23, UDMA, Udma, 23);
-channel!(UDMA_CH24, UdmaCh24, UDMA, Udma, 24);
-channel!(UDMA_CH25, UdmaCh25, UDMA, Udma, 25);
-channel!(UDMA_CH26, UdmaCh26, UDMA, Udma, 26);
-channel!(UDMA_CH27, UdmaCh27, UDMA, Udma, 27);
-channel!(UDMA_CH28, UdmaCh28, UDMA, Udma, 28);
-channel!(UDMA_CH29, UdmaCh29, UDMA, Udma, 29);
-channel!(UDMA_CH30, UdmaCh30, UDMA, Udma, 30);
-channel!(UDMA_CH31, UdmaCh31, UDMA, Udma, 31);
+pub struct UdmaCh(pub UdmaPeriph, pub usize);
+channel!(UDMA_CH0, UdmaCh0, UDMA, Udma, _UDMA_CH0, UdmaCh, _UDMA, 0);
+channel!(UDMA_CH1, UdmaCh1, UDMA, Udma, _UDMA_CH1, UdmaCh, _UDMA, 1);
+channel!(UDMA_CH2, UdmaCh2, UDMA, Udma, _UDMA_CH2, UdmaCh, _UDMA, 2);
+channel!(UDMA_CH3, UdmaCh3, UDMA, Udma, _UDMA_CH3, UdmaCh, _UDMA, 3);
+channel!(UDMA_CH4, UdmaCh4, UDMA, Udma, _UDMA_CH4, UdmaCh, _UDMA, 4);
+channel!(UDMA_CH5, UdmaCh5, UDMA, Udma, _UDMA_CH5, UdmaCh, _UDMA, 5);
+channel!(UDMA_CH6, UdmaCh6, UDMA, Udma, _UDMA_CH6, UdmaCh, _UDMA, 6);
+channel!(UDMA_CH7, UdmaCh7, UDMA, Udma, _UDMA_CH7, UdmaCh, _UDMA, 7);
+channel!(UDMA_CH8, UdmaCh8, UDMA, Udma, _UDMA_CH8, UdmaCh, _UDMA, 8);
+channel!(UDMA_CH9, UdmaCh9, UDMA, Udma, _UDMA_CH9, UdmaCh, _UDMA, 9);
+channel!(UDMA_CH10, UdmaCh10, UDMA, Udma, _UDMA_CH10, UdmaCh, _UDMA, 10);
+channel!(UDMA_CH11, UdmaCh11, UDMA, Udma, _UDMA_CH11, UdmaCh, _UDMA, 11);
+channel!(UDMA_CH12, UdmaCh12, UDMA, Udma, _UDMA_CH12, UdmaCh, _UDMA, 12);
+channel!(UDMA_CH13, UdmaCh13, UDMA, Udma, _UDMA_CH13, UdmaCh, _UDMA, 13);
+channel!(UDMA_CH14, UdmaCh14, UDMA, Udma, _UDMA_CH14, UdmaCh, _UDMA, 14);
+channel!(UDMA_CH15, UdmaCh15, UDMA, Udma, _UDMA_CH15, UdmaCh, _UDMA, 15);
+channel!(UDMA_CH16, UdmaCh16, UDMA, Udma, _UDMA_CH16, UdmaCh, _UDMA, 16);
+channel!(UDMA_CH17, UdmaCh17, UDMA, Udma, _UDMA_CH17, UdmaCh, _UDMA, 17);
+channel!(UDMA_CH18, UdmaCh18, UDMA, Udma, _UDMA_CH18, UdmaCh, _UDMA, 18);
+channel!(UDMA_CH19, UdmaCh19, UDMA, Udma, _UDMA_CH19, UdmaCh, _UDMA, 19);
+channel!(UDMA_CH20, UdmaCh20, UDMA, Udma, _UDMA_CH20, UdmaCh, _UDMA, 20);
+channel!(UDMA_CH21, UdmaCh21, UDMA, Udma, _UDMA_CH21, UdmaCh, _UDMA, 21);
+channel!(UDMA_CH22, UdmaCh22, UDMA, Udma, _UDMA_CH22, UdmaCh, _UDMA, 22);
+channel!(UDMA_CH23, UdmaCh23, UDMA, Udma, _UDMA_CH23, UdmaCh, _UDMA, 23);
+channel!(UDMA_CH24, UdmaCh24, UDMA, Udma, _UDMA_CH24, UdmaCh, _UDMA, 24);
+channel!(UDMA_CH25, UdmaCh25, UDMA, Udma, _UDMA_CH25, UdmaCh, _UDMA, 25);
+channel!(UDMA_CH26, UdmaCh26, UDMA, Udma, _UDMA_CH26, UdmaCh, _UDMA, 26);
+channel!(UDMA_CH27, UdmaCh27, UDMA, Udma, _UDMA_CH27, UdmaCh, _UDMA, 27);
+channel!(UDMA_CH28, UdmaCh28, UDMA, Udma, _UDMA_CH28, UdmaCh, _UDMA, 28);
+channel!(UDMA_CH29, UdmaCh29, UDMA, Udma, _UDMA_CH29, UdmaCh, _UDMA, 29);
+channel!(UDMA_CH30, UdmaCh30, UDMA, Udma, _UDMA_CH30, UdmaCh, _UDMA, 30);
+channel!(UDMA_CH31, UdmaCh31, UDMA, Udma, _UDMA_CH31, UdmaCh, _UDMA, 31);

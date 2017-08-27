@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::adc_f3::*;
 
-periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x50000000);
+periph!( ADC1, Adc1, _ADC1, AdcPeriph, 0x50000000);
 
 impl super::sig::Signal<super::sig::Adc1In1> for Adc1Ch1 {}
 impl super::sig::SignalAdc<super::sig::Adc1In1> for Adc1Ch1 {}
@@ -36,21 +36,21 @@ impl super::sig::Signal<super::sig::Adc1In15> for Adc1Ch15 {}
 impl super::sig::SignalAdc<super::sig::Adc1In15> for Adc1Ch15 {}
 
 
-channel!(ADC1_CH1, Adc1Ch1, ADC1, Adc1, 1);
-channel!(ADC1_CH2, Adc1Ch2, ADC1, Adc1, 2);
-channel!(ADC1_CH3, Adc1Ch3, ADC1, Adc1, 3);
-channel!(ADC1_CH4, Adc1Ch4, ADC1, Adc1, 4);
-channel!(ADC1_CH5, Adc1Ch5, ADC1, Adc1, 5);
-channel!(ADC1_CH6, Adc1Ch6, ADC1, Adc1, 6);
-channel!(ADC1_CH7, Adc1Ch7, ADC1, Adc1, 7);
-channel!(ADC1_CH8, Adc1Ch8, ADC1, Adc1, 8);
-channel!(ADC1_CH9, Adc1Ch9, ADC1, Adc1, 9);
-channel!(ADC1_CH10, Adc1Ch10, ADC1, Adc1, 10);
-channel!(ADC1_CH11, Adc1Ch11, ADC1, Adc1, 11);
-channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, 12);
-channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, 13);
-channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, 14);
-channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, 15);
-channel!(ADC1_TEMP, Adc1Temp, ADC1, Adc1, 16);
-channel!(ADC1_REFINT, Adc1Refint, ADC1, Adc1, 18);
-channel!(ADC1_BAT, Adc1Bat, ADC1, Adc1, 17);
+channel!(ADC1_CH1, Adc1Ch1, ADC1, Adc1, _ADC1_CH1, AdcCh, _ADC1, 1);
+channel!(ADC1_CH2, Adc1Ch2, ADC1, Adc1, _ADC1_CH2, AdcCh, _ADC1, 2);
+channel!(ADC1_CH3, Adc1Ch3, ADC1, Adc1, _ADC1_CH3, AdcCh, _ADC1, 3);
+channel!(ADC1_CH4, Adc1Ch4, ADC1, Adc1, _ADC1_CH4, AdcCh, _ADC1, 4);
+channel!(ADC1_CH5, Adc1Ch5, ADC1, Adc1, _ADC1_CH5, AdcCh, _ADC1, 5);
+channel!(ADC1_CH6, Adc1Ch6, ADC1, Adc1, _ADC1_CH6, AdcCh, _ADC1, 6);
+channel!(ADC1_CH7, Adc1Ch7, ADC1, Adc1, _ADC1_CH7, AdcCh, _ADC1, 7);
+channel!(ADC1_CH8, Adc1Ch8, ADC1, Adc1, _ADC1_CH8, AdcCh, _ADC1, 8);
+channel!(ADC1_CH9, Adc1Ch9, ADC1, Adc1, _ADC1_CH9, AdcCh, _ADC1, 9);
+channel!(ADC1_CH10, Adc1Ch10, ADC1, Adc1, _ADC1_CH10, AdcCh, _ADC1, 10);
+channel!(ADC1_CH11, Adc1Ch11, ADC1, Adc1, _ADC1_CH11, AdcCh, _ADC1, 11);
+channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, _ADC1_CH12, AdcCh, _ADC1, 12);
+channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, _ADC1_CH13, AdcCh, _ADC1, 13);
+channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, _ADC1_CH14, AdcCh, _ADC1, 14);
+channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, _ADC1_CH15, AdcCh, _ADC1, 15);
+channel!(ADC1_TEMP, Adc1Temp, ADC1, Adc1, _ADC1_TEMP, AdcCh, _ADC1, 16);
+channel!(ADC1_REFINT, Adc1Refint, ADC1, Adc1, _ADC1_REFINT, AdcCh, _ADC1, 18);
+channel!(ADC1_BAT, Adc1Bat, ADC1, Adc1, _ADC1_BAT, AdcCh, _ADC1, 17);

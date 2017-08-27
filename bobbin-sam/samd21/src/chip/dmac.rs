@@ -1,7 +1,7 @@
 //! Direct Memory Access Controller
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_DMAC, DmacPeriph, DMAC, Dmac, 0x41004800);
+periph!( DMAC, Dmac, _DMAC, DmacPeriph, 0x41004800);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DMAC Peripheral"]
@@ -2224,20 +2224,16 @@ impl ::core::fmt::Debug for Descaddr {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(DMAC_CH0, DmacCh0, DMAC, Dmac, 0);
-channel!(DMAC_CH1, DmacCh1, DMAC, Dmac, 1);
-channel!(DMAC_CH2, DmacCh2, DMAC, Dmac, 2);
-channel!(DMAC_CH3, DmacCh3, DMAC, Dmac, 3);
-channel!(DMAC_CH4, DmacCh4, DMAC, Dmac, 4);
-channel!(DMAC_CH5, DmacCh5, DMAC, Dmac, 5);
-channel!(DMAC_CH6, DmacCh6, DMAC, Dmac, 6);
-channel!(DMAC_CH7, DmacCh7, DMAC, Dmac, 7);
-channel!(DMAC_CH8, DmacCh8, DMAC, Dmac, 8);
-channel!(DMAC_CH9, DmacCh9, DMAC, Dmac, 9);
-channel!(DMAC_CH10, DmacCh10, DMAC, Dmac, 10);
-channel!(DMAC_CH11, DmacCh11, DMAC, Dmac, 11);
+pub struct DmacCh(pub DmacPeriph, pub usize);
+channel!(DMAC_CH0, DmacCh0, DMAC, Dmac, _DMAC_CH0, DmacCh, _DMAC, 0);
+channel!(DMAC_CH1, DmacCh1, DMAC, Dmac, _DMAC_CH1, DmacCh, _DMAC, 1);
+channel!(DMAC_CH2, DmacCh2, DMAC, Dmac, _DMAC_CH2, DmacCh, _DMAC, 2);
+channel!(DMAC_CH3, DmacCh3, DMAC, Dmac, _DMAC_CH3, DmacCh, _DMAC, 3);
+channel!(DMAC_CH4, DmacCh4, DMAC, Dmac, _DMAC_CH4, DmacCh, _DMAC, 4);
+channel!(DMAC_CH5, DmacCh5, DMAC, Dmac, _DMAC_CH5, DmacCh, _DMAC, 5);
+channel!(DMAC_CH6, DmacCh6, DMAC, Dmac, _DMAC_CH6, DmacCh, _DMAC, 6);
+channel!(DMAC_CH7, DmacCh7, DMAC, Dmac, _DMAC_CH7, DmacCh, _DMAC, 7);
+channel!(DMAC_CH8, DmacCh8, DMAC, Dmac, _DMAC_CH8, DmacCh, _DMAC, 8);
+channel!(DMAC_CH9, DmacCh9, DMAC, Dmac, _DMAC_CH9, DmacCh, _DMAC, 9);
+channel!(DMAC_CH10, DmacCh10, DMAC, Dmac, _DMAC_CH10, DmacCh, _DMAC, 10);
+channel!(DMAC_CH11, DmacCh11, DMAC, Dmac, _DMAC_CH11, DmacCh, _DMAC, 11);

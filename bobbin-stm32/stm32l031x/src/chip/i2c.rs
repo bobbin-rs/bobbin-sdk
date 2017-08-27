@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_I2C1, I2cPeriph, I2C1, I2c1, 0x40005400);
+periph!( I2C1, I2c1, _I2C1, I2cPeriph, 0x40005400);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2C Peripheral"]

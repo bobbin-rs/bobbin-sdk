@@ -432,8 +432,4 @@ impl ::core::fmt::Debug for Isfr {
       Ok(())
    }
 }
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct PortPin(pub PortPeriph, pub usize);

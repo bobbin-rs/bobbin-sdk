@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_PWM0, PwmPeriph, PWM0, Pwm0, 0x40028000);
+periph!( PWM0, Pwm0, _PWM0, PwmPeriph, 0x40028000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PWM Peripheral"]
@@ -3373,12 +3373,8 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(PWM0_CH0, Pwm0Ch0, PWM0, Pwm0, 0);
-channel!(PWM0_CH1, Pwm0Ch1, PWM0, Pwm0, 1);
-channel!(PWM0_CH2, Pwm0Ch2, PWM0, Pwm0, 2);
-channel!(PWM0_CH3, Pwm0Ch3, PWM0, Pwm0, 3);
+pub struct PwmCh(pub PwmPeriph, pub usize);
+channel!(PWM0_CH0, Pwm0Ch0, PWM0, Pwm0, _PWM0_CH0, PwmCh, _PWM0, 0);
+channel!(PWM0_CH1, Pwm0Ch1, PWM0, Pwm0, _PWM0_CH1, PwmCh, _PWM0, 1);
+channel!(PWM0_CH2, Pwm0Ch2, PWM0, Pwm0, _PWM0_CH2, PwmCh, _PWM0, 2);
+channel!(PWM0_CH3, Pwm0Ch3, PWM0, Pwm0, _PWM0_CH3, PwmCh, _PWM0, 3);

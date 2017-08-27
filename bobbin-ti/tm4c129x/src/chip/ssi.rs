@@ -1,9 +1,9 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_SSI0, SsiPeriph, SSI0, Ssi0, 0x40008000);
-periph!(_SSI1, SsiPeriph, SSI1, Ssi1, 0x40009000);
-periph!(_SSI2, SsiPeriph, SSI2, Ssi2, 0x4000a000);
-periph!(_SSI3, SsiPeriph, SSI3, Ssi3, 0x4000b000);
+periph!( SSI0, Ssi0, _SSI0, SsiPeriph, 0x40008000);
+periph!( SSI1, Ssi1, _SSI1, SsiPeriph, 0x40009000);
+periph!( SSI2, Ssi2, _SSI2, SsiPeriph, 0x4000a000);
+periph!( SSI3, Ssi3, _SSI3, SsiPeriph, 0x4000b000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SSI Peripheral"]

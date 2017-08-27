@@ -64,15 +64,15 @@ pub trait Base {
     }
 }
 
-// pub trait Pin<T> {
-//     fn periph(&self) -> T;
-//     fn index(&self) -> usize;
-// }
+pub trait Pin<T> {
+    fn port(&self) -> T;
+    fn index(&self) -> usize;
+}
 
-// pub trait Channel<T> {
-//     fn periph(&self) -> T;
-//     fn index(&self) -> usize;
-// }
+pub trait Channel<T> {
+    fn periph(&self) -> T;
+    fn index(&self) -> usize;
+}
 
 pub trait AltFn<T> {
     fn alt_fn(&self) -> u8;
@@ -98,7 +98,7 @@ pub trait WrapHandleIrq {
 
 #[macro_export]
 macro_rules! periph {
-    ($pid:ident, $pty:ident, $id:ident, $ty:ident, $base:expr) => (
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $pid: $pty = $pty($base);
         pub struct $ty {}
@@ -116,28 +116,40 @@ macro_rules! periph {
 
 #[macro_export]
 macro_rules! pin {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $index:expr) => (
-        pub const $id: $ty = $ty {};
+    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $base_id: $base_type = $base_type($base_port, $index);
         pub struct $ty {}
-        impl Pin<$pty> for $ty {
-            fn port(&self) -> $pty { $pid }
+        impl Pin<$port_type> for $ty {
+            fn port(&self) -> $port_type { $port_id }
             fn index(&self) -> usize { $index }
         }
-        
+        impl Deref for $ty {
+            type Target = $base_type;
+            fn deref(&self) -> &$base_type {
+                &$base_id
+            }
+        }
     )
 }
 
 #[macro_export]
 macro_rules! channel {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $index:expr) => (
-        pub const $id: $ty = $ty {};
+    ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $index:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $base_id: $base_type = $base_type($base_periph, $index);
         pub struct $ty {}
-        impl Channel<$pty> for $ty {
-            fn periph(&self) -> $pty { $pid }
+        impl Channel<$periph_type> for $ty {
+            fn periph(&self) -> $periph_type { $periph_id }
             fn index(&self) -> usize { $index }
         }
-        
-    )
+        impl Deref for $ty {
+            type Target = $base_type;
+            fn deref(&self) -> &$base_type {
+                &$base_id
+            }
+        }
+    )    
 }
 
 #[macro_export]

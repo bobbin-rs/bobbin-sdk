@@ -1,29 +1,29 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_GPIOA, GpioPeriph, GPIOA, Gpioa, 0x40004000);
-periph!(_GPIOB, GpioPeriph, GPIOB, Gpiob, 0x40005000);
-periph!(_GPIOC, GpioPeriph, GPIOC, Gpioc, 0x40006000);
-periph!(_GPIOD, GpioPeriph, GPIOD, Gpiod, 0x40007000);
-periph!(_GPIOE, GpioPeriph, GPIOE, Gpioe, 0x40024000);
-periph!(_GPIOF, GpioPeriph, GPIOF, Gpiof, 0x40025000);
-periph!(_GPIOG, GpioPeriph, GPIOG, Gpiog, 0x40026000);
-periph!(_GPIOH, GpioPeriph, GPIOH, Gpioh, 0x40027000);
-periph!(_GPIOJ, GpioPeriph, GPIOJ, Gpioj, 0x4003d000);
-periph!(_GPIOA_AHB, GpioPeriph, GPIOA_AHB, GpioaAhb, 0x40058000);
-periph!(_GPIOB_AHB, GpioPeriph, GPIOB_AHB, GpiobAhb, 0x40059000);
-periph!(_GPIOC_AHB, GpioPeriph, GPIOC_AHB, GpiocAhb, 0x4005a000);
-periph!(_GPIOD_AHB, GpioPeriph, GPIOD_AHB, GpiodAhb, 0x4005b000);
-periph!(_GPIOE_AHB, GpioPeriph, GPIOE_AHB, GpioeAhb, 0x4005c000);
-periph!(_GPIOF_AHB, GpioPeriph, GPIOF_AHB, GpiofAhb, 0x4005d000);
-periph!(_GPIOG_AHB, GpioPeriph, GPIOG_AHB, GpiogAhb, 0x4005e000);
-periph!(_GPIOH_AHB, GpioPeriph, GPIOH_AHB, GpiohAhb, 0x4005f000);
-periph!(_GPIOJ_AHB, GpioPeriph, GPIOJ_AHB, GpiojAhb, 0x40060000);
-periph!(_GPIOK, GpioPeriph, GPIOK, Gpiok, 0x40061000);
-periph!(_GPIOL, GpioPeriph, GPIOL, Gpiol, 0x40062000);
-periph!(_GPIOM, GpioPeriph, GPIOM, Gpiom, 0x40063000);
-periph!(_GPION, GpioPeriph, GPION, Gpion, 0x40064000);
-periph!(_GPIOP, GpioPeriph, GPIOP, Gpiop, 0x40065000);
-periph!(_GPIOQ, GpioPeriph, GPIOQ, Gpioq, 0x40066000);
+periph!( GPIOA, Gpioa, _GPIOA, GpioPeriph, 0x40004000);
+periph!( GPIOB, Gpiob, _GPIOB, GpioPeriph, 0x40005000);
+periph!( GPIOC, Gpioc, _GPIOC, GpioPeriph, 0x40006000);
+periph!( GPIOD, Gpiod, _GPIOD, GpioPeriph, 0x40007000);
+periph!( GPIOE, Gpioe, _GPIOE, GpioPeriph, 0x40024000);
+periph!( GPIOF, Gpiof, _GPIOF, GpioPeriph, 0x40025000);
+periph!( GPIOG, Gpiog, _GPIOG, GpioPeriph, 0x40026000);
+periph!( GPIOH, Gpioh, _GPIOH, GpioPeriph, 0x40027000);
+periph!( GPIOJ, Gpioj, _GPIOJ, GpioPeriph, 0x4003d000);
+periph!( GPIOA_AHB, GpioaAhb, _GPIOA_AHB, GpioPeriph, 0x40058000);
+periph!( GPIOB_AHB, GpiobAhb, _GPIOB_AHB, GpioPeriph, 0x40059000);
+periph!( GPIOC_AHB, GpiocAhb, _GPIOC_AHB, GpioPeriph, 0x4005a000);
+periph!( GPIOD_AHB, GpiodAhb, _GPIOD_AHB, GpioPeriph, 0x4005b000);
+periph!( GPIOE_AHB, GpioeAhb, _GPIOE_AHB, GpioPeriph, 0x4005c000);
+periph!( GPIOF_AHB, GpiofAhb, _GPIOF_AHB, GpioPeriph, 0x4005d000);
+periph!( GPIOG_AHB, GpiogAhb, _GPIOG_AHB, GpioPeriph, 0x4005e000);
+periph!( GPIOH_AHB, GpiohAhb, _GPIOH_AHB, GpioPeriph, 0x4005f000);
+periph!( GPIOJ_AHB, GpiojAhb, _GPIOJ_AHB, GpioPeriph, 0x40060000);
+periph!( GPIOK, Gpiok, _GPIOK, GpioPeriph, 0x40061000);
+periph!( GPIOL, Gpiol, _GPIOL, GpioPeriph, 0x40062000);
+periph!( GPIOM, Gpiom, _GPIOM, GpioPeriph, 0x40063000);
+periph!( GPION, Gpion, _GPION, GpioPeriph, 0x40064000);
+periph!( GPIOP, Gpiop, _GPIOP, GpioPeriph, 0x40065000);
+periph!( GPIOQ, Gpioq, _GPIOQ, GpioPeriph, 0x40066000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="GPIO Peripheral"]
@@ -2358,48 +2358,44 @@ impl ::core::fmt::Debug for Gpiowakestat {
       Ok(())
    }
 }
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-pin!(PA0, Pa0, GPIOA, Gpioa, 0);
+pub struct GpioPin(pub GpioPeriph, pub usize);
+pin!(PA0, Pa0, GPIOA, Gpioa, _PA0, GpioPin, _GPIOA, 0);
    alt_fn!(Pa0, super::sig::U0rx, 1);
    alt_fn!(Pa0, super::sig::I2c9scl, 2);
    alt_fn!(Pa0, super::sig::T0ccp0, 3);
    alt_fn!(Pa0, super::sig::Can0rx, 7);
 
-pin!(PA1, Pa1, GPIOA, Gpioa, 1);
+pin!(PA1, Pa1, GPIOA, Gpioa, _PA1, GpioPin, _GPIOA, 1);
    alt_fn!(Pa1, super::sig::U0tx, 1);
    alt_fn!(Pa1, super::sig::I2c9sda, 2);
    alt_fn!(Pa1, super::sig::T0ccp1, 3);
    alt_fn!(Pa1, super::sig::Can0tx, 7);
 
-pin!(PA2, Pa2, GPIOA, Gpioa, 2);
+pin!(PA2, Pa2, GPIOA, Gpioa, _PA2, GpioPin, _GPIOA, 2);
    alt_fn!(Pa2, super::sig::U4rx, 1);
    alt_fn!(Pa2, super::sig::I2c8scl, 2);
    alt_fn!(Pa2, super::sig::T1ccp0, 3);
    alt_fn!(Pa2, super::sig::Ssi0clk, 15);
 
-pin!(PA3, Pa3, GPIOA, Gpioa, 3);
+pin!(PA3, Pa3, GPIOA, Gpioa, _PA3, GpioPin, _GPIOA, 3);
    alt_fn!(Pa3, super::sig::U4tx, 1);
    alt_fn!(Pa3, super::sig::I2c8sda, 2);
    alt_fn!(Pa3, super::sig::T1ccp1, 3);
    alt_fn!(Pa3, super::sig::Ssi0fss, 15);
 
-pin!(PA4, Pa4, GPIOA, Gpioa, 4);
+pin!(PA4, Pa4, GPIOA, Gpioa, _PA4, GpioPin, _GPIOA, 4);
    alt_fn!(Pa4, super::sig::U3rx, 1);
    alt_fn!(Pa4, super::sig::I2c7scl, 2);
    alt_fn!(Pa4, super::sig::T2ccp0, 3);
    alt_fn!(Pa4, super::sig::Ssi0xdat0, 15);
 
-pin!(PA5, Pa5, GPIOA, Gpioa, 5);
+pin!(PA5, Pa5, GPIOA, Gpioa, _PA5, GpioPin, _GPIOA, 5);
    alt_fn!(Pa5, super::sig::U3tx, 1);
    alt_fn!(Pa5, super::sig::I2c7sda, 2);
    alt_fn!(Pa5, super::sig::T2ccp1, 3);
    alt_fn!(Pa5, super::sig::Ssi0xdat1, 15);
 
-pin!(PA6, Pa6, GPIOA, Gpioa, 6);
+pin!(PA6, Pa6, GPIOA, Gpioa, _PA6, GpioPin, _GPIOA, 6);
    alt_fn!(Pa6, super::sig::U2rx, 1);
    alt_fn!(Pa6, super::sig::I2c6scl, 2);
    alt_fn!(Pa6, super::sig::T3ccp0, 3);
@@ -2407,7 +2403,7 @@ pin!(PA6, Pa6, GPIOA, Gpioa, 6);
    alt_fn!(Pa6, super::sig::Ssi0xdat2, 13);
    alt_fn!(Pa6, super::sig::Epi0s8, 15);
 
-pin!(PA7, Pa7, GPIOA, Gpioa, 7);
+pin!(PA7, Pa7, GPIOA, Gpioa, _PA7, GpioPin, _GPIOA, 7);
    alt_fn!(Pa7, super::sig::U2tx, 1);
    alt_fn!(Pa7, super::sig::I2c6sda, 2);
    alt_fn!(Pa7, super::sig::T3ccp1, 3);
@@ -2416,127 +2412,127 @@ pin!(PA7, Pa7, GPIOA, Gpioa, 7);
    alt_fn!(Pa7, super::sig::Ssi0xdat3, 13);
    alt_fn!(Pa7, super::sig::Epi0s9, 15);
 
-pin!(PB0, Pb0, GPIOB, Gpiob, 0);
+pin!(PB0, Pb0, GPIOB, Gpiob, _PB0, GpioPin, _GPIOB, 0);
    alt_fn!(Pb0, super::sig::Usb0id, 0);
    alt_fn!(Pb0, super::sig::U1rx, 1);
    alt_fn!(Pb0, super::sig::I2c5scl, 2);
    alt_fn!(Pb0, super::sig::T4ccp0, 3);
    alt_fn!(Pb0, super::sig::Can1rx, 7);
 
-pin!(PB1, Pb1, GPIOB, Gpiob, 1);
+pin!(PB1, Pb1, GPIOB, Gpiob, _PB1, GpioPin, _GPIOB, 1);
    alt_fn!(Pb1, super::sig::Usb0vbus, 0);
    alt_fn!(Pb1, super::sig::U1tx, 1);
    alt_fn!(Pb1, super::sig::I2c5sda, 2);
    alt_fn!(Pb1, super::sig::T4ccp1, 3);
    alt_fn!(Pb1, super::sig::Can1tx, 7);
 
-pin!(PB2, Pb2, GPIOB, Gpiob, 2);
+pin!(PB2, Pb2, GPIOB, Gpiob, _PB2, GpioPin, _GPIOB, 2);
    alt_fn!(Pb2, super::sig::I2c0scl, 2);
    alt_fn!(Pb2, super::sig::T5ccp0, 3);
    alt_fn!(Pb2, super::sig::Usb0stp, 14);
    alt_fn!(Pb2, super::sig::Epi0s27, 15);
 
-pin!(PB3, Pb3, GPIOB, Gpiob, 3);
+pin!(PB3, Pb3, GPIOB, Gpiob, _PB3, GpioPin, _GPIOB, 3);
    alt_fn!(Pb3, super::sig::I2c0sda, 2);
    alt_fn!(Pb3, super::sig::T5ccp1, 3);
    alt_fn!(Pb3, super::sig::Usb0clk, 14);
    alt_fn!(Pb3, super::sig::Epi0s28, 15);
 
-pin!(PB4, Pb4, GPIOB, Gpiob, 4);
+pin!(PB4, Pb4, GPIOB, Gpiob, _PB4, GpioPin, _GPIOB, 4);
    alt_fn!(Pb4, super::sig::Ain10, 0);
    alt_fn!(Pb4, super::sig::U0cts, 1);
    alt_fn!(Pb4, super::sig::I2c5scl, 2);
    alt_fn!(Pb4, super::sig::Ssi1fss, 15);
 
-pin!(PB5, Pb5, GPIOB, Gpiob, 5);
+pin!(PB5, Pb5, GPIOB, Gpiob, _PB5, GpioPin, _GPIOB, 5);
    alt_fn!(Pb5, super::sig::Ain11, 0);
    alt_fn!(Pb5, super::sig::U0rts, 1);
    alt_fn!(Pb5, super::sig::I2c5sda, 2);
    alt_fn!(Pb5, super::sig::Ssi1clk, 15);
 
-pin!(PC0, Pc0, GPIOC, Gpioc, 0);
+pin!(PC0, Pc0, GPIOC, Gpioc, _PC0, GpioPin, _GPIOC, 0);
    alt_fn!(Pc0, super::sig::Tck, 1);
    alt_fn!(Pc0, super::sig::Swclk, 1);
 
-pin!(PC1, Pc1, GPIOC, Gpioc, 1);
+pin!(PC1, Pc1, GPIOC, Gpioc, _PC1, GpioPin, _GPIOC, 1);
    alt_fn!(Pc1, super::sig::Tms, 1);
    alt_fn!(Pc1, super::sig::Swdio, 1);
 
-pin!(PC2, Pc2, GPIOC, Gpioc, 2);
+pin!(PC2, Pc2, GPIOC, Gpioc, _PC2, GpioPin, _GPIOC, 2);
    alt_fn!(Pc2, super::sig::Tdi, 1);
 
-pin!(PC3, Pc3, GPIOC, Gpioc, 3);
+pin!(PC3, Pc3, GPIOC, Gpioc, _PC3, GpioPin, _GPIOC, 3);
    alt_fn!(Pc3, super::sig::Tdo, 1);
    alt_fn!(Pc3, super::sig::Swo, 1);
 
-pin!(PC4, Pc4, GPIOC, Gpioc, 4);
+pin!(PC4, Pc4, GPIOC, Gpioc, _PC4, GpioPin, _GPIOC, 4);
    alt_fn!(Pc4, super::sig::C1Neg, 0);
    alt_fn!(Pc4, super::sig::U7rx, 1);
    alt_fn!(Pc4, super::sig::Epi0s7, 15);
 
-pin!(PC5, Pc5, GPIOC, Gpioc, 5);
+pin!(PC5, Pc5, GPIOC, Gpioc, _PC5, GpioPin, _GPIOC, 5);
    alt_fn!(Pc5, super::sig::C1Pos, 0);
    alt_fn!(Pc5, super::sig::U7tx, 1);
    alt_fn!(Pc5, super::sig::Rtcclk, 7);
    alt_fn!(Pc5, super::sig::Epi0s6, 15);
 
-pin!(PC6, Pc6, GPIOC, Gpioc, 6);
+pin!(PC6, Pc6, GPIOC, Gpioc, _PC6, GpioPin, _GPIOC, 6);
    alt_fn!(Pc6, super::sig::C0Neg, 0);
    alt_fn!(Pc6, super::sig::U5rx, 1);
    alt_fn!(Pc6, super::sig::Epi0s5, 15);
 
-pin!(PC7, Pc7, GPIOC, Gpioc, 7);
+pin!(PC7, Pc7, GPIOC, Gpioc, _PC7, GpioPin, _GPIOC, 7);
    alt_fn!(Pc7, super::sig::C0Pos, 0);
    alt_fn!(Pc7, super::sig::U5tx, 1);
    alt_fn!(Pc7, super::sig::Epi0s4, 15);
 
-pin!(PD0, Pd0, GPIOD, Gpiod, 0);
+pin!(PD0, Pd0, GPIOD, Gpiod, _PD0, GpioPin, _GPIOD, 0);
    alt_fn!(Pd0, super::sig::Ain15, 0);
    alt_fn!(Pd0, super::sig::I2c7scl, 2);
    alt_fn!(Pd0, super::sig::T0ccp0, 3);
    alt_fn!(Pd0, super::sig::C0o, 5);
    alt_fn!(Pd0, super::sig::Ssi2xdat1, 15);
 
-pin!(PD1, Pd1, GPIOD, Gpiod, 1);
+pin!(PD1, Pd1, GPIOD, Gpiod, _PD1, GpioPin, _GPIOD, 1);
    alt_fn!(Pd1, super::sig::Ain14, 0);
    alt_fn!(Pd1, super::sig::I2c7sda, 2);
    alt_fn!(Pd1, super::sig::T0ccp1, 3);
    alt_fn!(Pd1, super::sig::C1o, 5);
    alt_fn!(Pd1, super::sig::Ssi2xdat0, 15);
 
-pin!(PD2, Pd2, GPIOD, Gpiod, 2);
+pin!(PD2, Pd2, GPIOD, Gpiod, _PD2, GpioPin, _GPIOD, 2);
    alt_fn!(Pd2, super::sig::Ain13, 0);
    alt_fn!(Pd2, super::sig::I2c8scl, 2);
    alt_fn!(Pd2, super::sig::T1ccp0, 3);
    alt_fn!(Pd2, super::sig::C2o, 5);
    alt_fn!(Pd2, super::sig::Ssi2fss, 15);
 
-pin!(PD3, Pd3, GPIOD, Gpiod, 3);
+pin!(PD3, Pd3, GPIOD, Gpiod, _PD3, GpioPin, _GPIOD, 3);
    alt_fn!(Pd3, super::sig::Ain12, 0);
    alt_fn!(Pd3, super::sig::I2c8sda, 2);
    alt_fn!(Pd3, super::sig::T1ccp1, 3);
    alt_fn!(Pd3, super::sig::Ssi2clk, 15);
 
-pin!(PD4, Pd4, GPIOD, Gpiod, 4);
+pin!(PD4, Pd4, GPIOD, Gpiod, _PD4, GpioPin, _GPIOD, 4);
    alt_fn!(Pd4, super::sig::Ain7, 0);
    alt_fn!(Pd4, super::sig::U2rx, 1);
    alt_fn!(Pd4, super::sig::T3ccp0, 3);
    alt_fn!(Pd4, super::sig::Ssi1xdat2, 15);
 
-pin!(PD5, Pd5, GPIOD, Gpiod, 5);
+pin!(PD5, Pd5, GPIOD, Gpiod, _PD5, GpioPin, _GPIOD, 5);
    alt_fn!(Pd5, super::sig::Ain6, 0);
    alt_fn!(Pd5, super::sig::U2tx, 1);
    alt_fn!(Pd5, super::sig::T3ccp1, 3);
    alt_fn!(Pd5, super::sig::Ssi1xdat3, 15);
 
-pin!(PD6, Pd6, GPIOD, Gpiod, 6);
+pin!(PD6, Pd6, GPIOD, Gpiod, _PD6, GpioPin, _GPIOD, 6);
    alt_fn!(Pd6, super::sig::Ain5, 0);
    alt_fn!(Pd6, super::sig::U2rts, 1);
    alt_fn!(Pd6, super::sig::T4ccp0, 3);
    alt_fn!(Pd6, super::sig::Usb0epen, 5);
    alt_fn!(Pd6, super::sig::Ssi2xdat3, 15);
 
-pin!(PD7, Pd7, GPIOD, Gpiod, 7);
+pin!(PD7, Pd7, GPIOD, Gpiod, _PD7, GpioPin, _GPIOD, 7);
    alt_fn!(Pd7, super::sig::Ain4, 0);
    alt_fn!(Pd7, super::sig::U2cts, 1);
    alt_fn!(Pd7, super::sig::T4ccp1, 3);
@@ -2544,293 +2540,293 @@ pin!(PD7, Pd7, GPIOD, Gpiod, 7);
    alt_fn!(Pd7, super::sig::Nmi, 8);
    alt_fn!(Pd7, super::sig::Ssi2xdat2, 15);
 
-pin!(PE0, Pe0, GPIOE, Gpioe, 0);
+pin!(PE0, Pe0, GPIOE, Gpioe, _PE0, GpioPin, _GPIOE, 0);
    alt_fn!(Pe0, super::sig::Ain3, 0);
    alt_fn!(Pe0, super::sig::U1rts, 1);
 
-pin!(PE1, Pe1, GPIOE, Gpioe, 1);
+pin!(PE1, Pe1, GPIOE, Gpioe, _PE1, GpioPin, _GPIOE, 1);
    alt_fn!(Pe1, super::sig::Ain2, 0);
    alt_fn!(Pe1, super::sig::U1dsr, 1);
 
-pin!(PE2, Pe2, GPIOE, Gpioe, 2);
+pin!(PE2, Pe2, GPIOE, Gpioe, _PE2, GpioPin, _GPIOE, 2);
    alt_fn!(Pe2, super::sig::Ain1, 0);
    alt_fn!(Pe2, super::sig::U1dcd, 1);
 
-pin!(PE3, Pe3, GPIOE, Gpioe, 3);
+pin!(PE3, Pe3, GPIOE, Gpioe, _PE3, GpioPin, _GPIOE, 3);
    alt_fn!(Pe3, super::sig::Ain0, 0);
    alt_fn!(Pe3, super::sig::U1dtr, 1);
 
-pin!(PE4, Pe4, GPIOE, Gpioe, 4);
+pin!(PE4, Pe4, GPIOE, Gpioe, _PE4, GpioPin, _GPIOE, 4);
    alt_fn!(Pe4, super::sig::Ain9, 0);
    alt_fn!(Pe4, super::sig::U1ri, 1);
    alt_fn!(Pe4, super::sig::Ssi1xdat0, 15);
 
-pin!(PE5, Pe5, GPIOE, Gpioe, 5);
+pin!(PE5, Pe5, GPIOE, Gpioe, _PE5, GpioPin, _GPIOE, 5);
    alt_fn!(Pe5, super::sig::Ain8, 0);
    alt_fn!(Pe5, super::sig::Ssi1xdat1, 15);
 
-pin!(PF0, Pf0, GPIOF, Gpiof, 0);
+pin!(PF0, Pf0, GPIOF, Gpiof, _PF0, GpioPin, _GPIOF, 0);
    alt_fn!(Pf0, super::sig::En0led0, 5);
    alt_fn!(Pf0, super::sig::M0pwm0, 6);
    alt_fn!(Pf0, super::sig::Ssi3xdat1, 14);
    alt_fn!(Pf0, super::sig::Trd2, 15);
 
-pin!(PF1, Pf1, GPIOF, Gpiof, 1);
+pin!(PF1, Pf1, GPIOF, Gpiof, _PF1, GpioPin, _GPIOF, 1);
    alt_fn!(Pf1, super::sig::En0led2, 5);
    alt_fn!(Pf1, super::sig::M0pwm1, 6);
    alt_fn!(Pf1, super::sig::Ssi3xdat0, 14);
    alt_fn!(Pf1, super::sig::Trd1, 15);
 
-pin!(PF2, Pf2, GPIOF, Gpiof, 2);
+pin!(PF2, Pf2, GPIOF, Gpiof, _PF2, GpioPin, _GPIOF, 2);
    alt_fn!(Pf2, super::sig::M0pwm2, 6);
    alt_fn!(Pf2, super::sig::Ssi3fss, 14);
    alt_fn!(Pf2, super::sig::Trd0, 15);
 
-pin!(PF3, Pf3, GPIOF, Gpiof, 3);
+pin!(PF3, Pf3, GPIOF, Gpiof, _PF3, GpioPin, _GPIOF, 3);
    alt_fn!(Pf3, super::sig::M0pwm3, 6);
    alt_fn!(Pf3, super::sig::Ssi3clk, 14);
    alt_fn!(Pf3, super::sig::Trclk, 15);
 
-pin!(PF4, Pf4, GPIOF, Gpiof, 4);
+pin!(PF4, Pf4, GPIOF, Gpiof, _PF4, GpioPin, _GPIOF, 4);
    alt_fn!(Pf4, super::sig::En0led1, 5);
    alt_fn!(Pf4, super::sig::M0fault0, 6);
    alt_fn!(Pf4, super::sig::Ssi3xdat2, 14);
    alt_fn!(Pf4, super::sig::Trd3, 15);
 
-pin!(PG0, Pg0, GPIOG, Gpiog, 0);
+pin!(PG0, Pg0, GPIOG, Gpiog, _PG0, GpioPin, _GPIOG, 0);
    alt_fn!(Pg0, super::sig::I2c1scl, 2);
    alt_fn!(Pg0, super::sig::En0pps, 5);
    alt_fn!(Pg0, super::sig::M0pwm4, 6);
    alt_fn!(Pg0, super::sig::Epi0s11, 15);
 
-pin!(PG1, Pg1, GPIOG, Gpiog, 1);
+pin!(PG1, Pg1, GPIOG, Gpiog, _PG1, GpioPin, _GPIOG, 1);
    alt_fn!(Pg1, super::sig::I2c1sda, 2);
    alt_fn!(Pg1, super::sig::M0pwm5, 6);
    alt_fn!(Pg1, super::sig::Epi0s10, 15);
 
-pin!(PH0, Ph0, GPIOH, Gpioh, 0);
+pin!(PH0, Ph0, GPIOH, Gpioh, _PH0, GpioPin, _GPIOH, 0);
    alt_fn!(Ph0, super::sig::U0rts, 1);
    alt_fn!(Ph0, super::sig::Epi0s0, 15);
 
-pin!(PH1, Ph1, GPIOH, Gpioh, 1);
+pin!(PH1, Ph1, GPIOH, Gpioh, _PH1, GpioPin, _GPIOH, 1);
    alt_fn!(Ph1, super::sig::U0cts, 1);
    alt_fn!(Ph1, super::sig::Epi0s1, 15);
 
-pin!(PH2, Ph2, GPIOH, Gpioh, 2);
+pin!(PH2, Ph2, GPIOH, Gpioh, _PH2, GpioPin, _GPIOH, 2);
    alt_fn!(Ph2, super::sig::U0dcd, 1);
    alt_fn!(Ph2, super::sig::Epi0s2, 15);
 
-pin!(PH3, Ph3, GPIOH, Gpioh, 3);
+pin!(PH3, Ph3, GPIOH, Gpioh, _PH3, GpioPin, _GPIOH, 3);
    alt_fn!(Ph3, super::sig::U0dsr, 1);
    alt_fn!(Ph3, super::sig::Epi0s3, 15);
 
-pin!(PJ0, Pj0, GPIOJ, Gpioj, 0);
+pin!(PJ0, Pj0, GPIOJ, Gpioj, _PJ0, GpioPin, _GPIOJ, 0);
    alt_fn!(Pj0, super::sig::U3rx, 1);
    alt_fn!(Pj0, super::sig::En0pps, 5);
 
-pin!(PJ1, Pj1, GPIOJ, Gpioj, 1);
+pin!(PJ1, Pj1, GPIOJ, Gpioj, _PJ1, GpioPin, _GPIOJ, 1);
    alt_fn!(Pj1, super::sig::U3tx, 1);
 
-pin!(PK0, Pk0, GPIOK, Gpiok, 0);
+pin!(PK0, Pk0, GPIOK, Gpiok, _PK0, GpioPin, _GPIOK, 0);
    alt_fn!(Pk0, super::sig::Ain16, 0);
    alt_fn!(Pk0, super::sig::U4rx, 1);
    alt_fn!(Pk0, super::sig::Epi0s0, 15);
 
-pin!(PK1, Pk1, GPIOK, Gpiok, 1);
+pin!(PK1, Pk1, GPIOK, Gpiok, _PK1, GpioPin, _GPIOK, 1);
    alt_fn!(Pk1, super::sig::Ain17, 0);
    alt_fn!(Pk1, super::sig::U4tx, 1);
    alt_fn!(Pk1, super::sig::Epi0s1, 15);
 
-pin!(PK2, Pk2, GPIOK, Gpiok, 2);
+pin!(PK2, Pk2, GPIOK, Gpiok, _PK2, GpioPin, _GPIOK, 2);
    alt_fn!(Pk2, super::sig::Ain18, 0);
    alt_fn!(Pk2, super::sig::U4rts, 1);
    alt_fn!(Pk2, super::sig::Epi0s2, 15);
 
-pin!(PK3, Pk3, GPIOK, Gpiok, 3);
+pin!(PK3, Pk3, GPIOK, Gpiok, _PK3, GpioPin, _GPIOK, 3);
    alt_fn!(Pk3, super::sig::Ain19, 0);
    alt_fn!(Pk3, super::sig::U4cts, 1);
    alt_fn!(Pk3, super::sig::Epi0s3, 15);
 
-pin!(PK4, Pk4, GPIOK, Gpiok, 4);
+pin!(PK4, Pk4, GPIOK, Gpiok, _PK4, GpioPin, _GPIOK, 4);
    alt_fn!(Pk4, super::sig::I2c3scl, 2);
    alt_fn!(Pk4, super::sig::En0led0, 5);
    alt_fn!(Pk4, super::sig::M0pwm6, 6);
    alt_fn!(Pk4, super::sig::Epi0s32, 15);
 
-pin!(PK5, Pk5, GPIOK, Gpiok, 5);
+pin!(PK5, Pk5, GPIOK, Gpiok, _PK5, GpioPin, _GPIOK, 5);
    alt_fn!(Pk5, super::sig::I2c3sda, 2);
    alt_fn!(Pk5, super::sig::En0led2, 5);
    alt_fn!(Pk5, super::sig::M0pwm7, 6);
    alt_fn!(Pk5, super::sig::Epi0s31, 15);
 
-pin!(PK6, Pk6, GPIOK, Gpiok, 6);
+pin!(PK6, Pk6, GPIOK, Gpiok, _PK6, GpioPin, _GPIOK, 6);
    alt_fn!(Pk6, super::sig::I2c4scl, 2);
    alt_fn!(Pk6, super::sig::En0led1, 5);
    alt_fn!(Pk6, super::sig::M0fault1, 6);
    alt_fn!(Pk6, super::sig::Epi0s25, 15);
 
-pin!(PK7, Pk7, GPIOK, Gpiok, 7);
+pin!(PK7, Pk7, GPIOK, Gpiok, _PK7, GpioPin, _GPIOK, 7);
    alt_fn!(Pk7, super::sig::U0ri, 1);
    alt_fn!(Pk7, super::sig::I2c4sda, 2);
    alt_fn!(Pk7, super::sig::Rtcclk, 5);
    alt_fn!(Pk7, super::sig::M0fault2, 6);
    alt_fn!(Pk7, super::sig::Epi0s24, 15);
 
-pin!(PL0, Pl0, GPIOL, Gpiol, 0);
+pin!(PL0, Pl0, GPIOL, Gpiol, _PL0, GpioPin, _GPIOL, 0);
    alt_fn!(Pl0, super::sig::I2c2sda, 2);
    alt_fn!(Pl0, super::sig::M0fault3, 6);
    alt_fn!(Pl0, super::sig::Usb0d0, 14);
    alt_fn!(Pl0, super::sig::Epi0s16, 15);
 
-pin!(PL1, Pl1, GPIOL, Gpiol, 1);
+pin!(PL1, Pl1, GPIOL, Gpiol, _PL1, GpioPin, _GPIOL, 1);
    alt_fn!(Pl1, super::sig::I2c2scl, 2);
    alt_fn!(Pl1, super::sig::Pha0, 6);
    alt_fn!(Pl1, super::sig::Usb0d1, 14);
    alt_fn!(Pl1, super::sig::Epi0s17, 15);
 
-pin!(PL2, Pl2, GPIOL, Gpiol, 2);
+pin!(PL2, Pl2, GPIOL, Gpiol, _PL2, GpioPin, _GPIOL, 2);
    alt_fn!(Pl2, super::sig::C0o, 5);
    alt_fn!(Pl2, super::sig::Phb0, 6);
    alt_fn!(Pl2, super::sig::Usb0d2, 14);
    alt_fn!(Pl2, super::sig::Epi0s18, 15);
 
-pin!(PL3, Pl3, GPIOL, Gpiol, 3);
+pin!(PL3, Pl3, GPIOL, Gpiol, _PL3, GpioPin, _GPIOL, 3);
    alt_fn!(Pl3, super::sig::C1o, 5);
    alt_fn!(Pl3, super::sig::Idx0, 6);
    alt_fn!(Pl3, super::sig::Usb0d3, 14);
    alt_fn!(Pl3, super::sig::Epi0s19, 15);
 
-pin!(PL4, Pl4, GPIOL, Gpiol, 4);
+pin!(PL4, Pl4, GPIOL, Gpiol, _PL4, GpioPin, _GPIOL, 4);
    alt_fn!(Pl4, super::sig::T0ccp0, 3);
    alt_fn!(Pl4, super::sig::Usb0d4, 14);
    alt_fn!(Pl4, super::sig::Epi0s26, 15);
 
-pin!(PL5, Pl5, GPIOL, Gpiol, 5);
+pin!(PL5, Pl5, GPIOL, Gpiol, _PL5, GpioPin, _GPIOL, 5);
    alt_fn!(Pl5, super::sig::T0ccp1, 3);
    alt_fn!(Pl5, super::sig::Usb0d5, 14);
    alt_fn!(Pl5, super::sig::Epi0s33, 15);
 
-pin!(PL6, Pl6, GPIOL, Gpiol, 6);
+pin!(PL6, Pl6, GPIOL, Gpiol, _PL6, GpioPin, _GPIOL, 6);
    alt_fn!(Pl6, super::sig::Usb0dp, 0);
    alt_fn!(Pl6, super::sig::T1ccp0, 3);
 
-pin!(PL7, Pl7, GPIOL, Gpiol, 7);
+pin!(PL7, Pl7, GPIOL, Gpiol, _PL7, GpioPin, _GPIOL, 7);
    alt_fn!(Pl7, super::sig::Usb0dm, 0);
    alt_fn!(Pl7, super::sig::T1ccp1, 3);
 
-pin!(PM0, Pm0, GPIOM, Gpiom, 0);
+pin!(PM0, Pm0, GPIOM, Gpiom, _PM0, GpioPin, _GPIOM, 0);
    alt_fn!(Pm0, super::sig::T2ccp0, 3);
    alt_fn!(Pm0, super::sig::Epi0s15, 15);
 
-pin!(PM1, Pm1, GPIOM, Gpiom, 1);
+pin!(PM1, Pm1, GPIOM, Gpiom, _PM1, GpioPin, _GPIOM, 1);
    alt_fn!(Pm1, super::sig::T2ccp1, 3);
    alt_fn!(Pm1, super::sig::Epi0s14, 15);
 
-pin!(PM2, Pm2, GPIOM, Gpiom, 2);
+pin!(PM2, Pm2, GPIOM, Gpiom, _PM2, GpioPin, _GPIOM, 2);
    alt_fn!(Pm2, super::sig::T3ccp0, 3);
    alt_fn!(Pm2, super::sig::Epi0s13, 15);
 
-pin!(PM3, Pm3, GPIOM, Gpiom, 3);
+pin!(PM3, Pm3, GPIOM, Gpiom, _PM3, GpioPin, _GPIOM, 3);
    alt_fn!(Pm3, super::sig::T3ccp1, 3);
    alt_fn!(Pm3, super::sig::Epi0s12, 15);
 
-pin!(PM4, Pm4, GPIOM, Gpiom, 4);
+pin!(PM4, Pm4, GPIOM, Gpiom, _PM4, GpioPin, _GPIOM, 4);
    alt_fn!(Pm4, super::sig::Tmpr3, 0);
    alt_fn!(Pm4, super::sig::U0cts, 1);
    alt_fn!(Pm4, super::sig::T4ccp0, 3);
 
-pin!(PM5, Pm5, GPIOM, Gpiom, 5);
+pin!(PM5, Pm5, GPIOM, Gpiom, _PM5, GpioPin, _GPIOM, 5);
    alt_fn!(Pm5, super::sig::Tmpr2, 0);
    alt_fn!(Pm5, super::sig::U0dcd, 1);
    alt_fn!(Pm5, super::sig::T4ccp1, 3);
 
-pin!(PM6, Pm6, GPIOM, Gpiom, 6);
+pin!(PM6, Pm6, GPIOM, Gpiom, _PM6, GpioPin, _GPIOM, 6);
    alt_fn!(Pm6, super::sig::Tmpr1, 0);
    alt_fn!(Pm6, super::sig::U0dsr, 1);
    alt_fn!(Pm6, super::sig::T5ccp0, 3);
 
-pin!(PM7, Pm7, GPIOM, Gpiom, 7);
+pin!(PM7, Pm7, GPIOM, Gpiom, _PM7, GpioPin, _GPIOM, 7);
    alt_fn!(Pm7, super::sig::Tmpr0, 0);
    alt_fn!(Pm7, super::sig::U0ri, 1);
    alt_fn!(Pm7, super::sig::T5ccp1, 3);
 
-pin!(PN0, Pn0, GPION, Gpion, 0);
+pin!(PN0, Pn0, GPION, Gpion, _PN0, GpioPin, _GPION, 0);
    alt_fn!(Pn0, super::sig::U1rts, 1);
 
-pin!(PN1, Pn1, GPION, Gpion, 1);
+pin!(PN1, Pn1, GPION, Gpion, _PN1, GpioPin, _GPION, 1);
    alt_fn!(Pn1, super::sig::U1cts, 1);
 
-pin!(PN2, Pn2, GPION, Gpion, 2);
+pin!(PN2, Pn2, GPION, Gpion, _PN2, GpioPin, _GPION, 2);
    alt_fn!(Pn2, super::sig::U1dcd, 1);
    alt_fn!(Pn2, super::sig::U2rts, 2);
    alt_fn!(Pn2, super::sig::Epi0s29, 15);
 
-pin!(PN3, Pn3, GPION, Gpion, 3);
+pin!(PN3, Pn3, GPION, Gpion, _PN3, GpioPin, _GPION, 3);
    alt_fn!(Pn3, super::sig::U1dsr, 1);
    alt_fn!(Pn3, super::sig::U2cts, 2);
    alt_fn!(Pn3, super::sig::Epi0s30, 15);
 
-pin!(PN4, Pn4, GPION, Gpion, 4);
+pin!(PN4, Pn4, GPION, Gpion, _PN4, GpioPin, _GPION, 4);
    alt_fn!(Pn4, super::sig::U1dtr, 1);
    alt_fn!(Pn4, super::sig::U3rts, 2);
    alt_fn!(Pn4, super::sig::I2c2sda, 3);
    alt_fn!(Pn4, super::sig::Epi0s34, 15);
 
-pin!(PN5, Pn5, GPION, Gpion, 5);
+pin!(PN5, Pn5, GPION, Gpion, _PN5, GpioPin, _GPION, 5);
    alt_fn!(Pn5, super::sig::U1ri, 1);
    alt_fn!(Pn5, super::sig::U3cts, 2);
    alt_fn!(Pn5, super::sig::I2c2scl, 3);
    alt_fn!(Pn5, super::sig::Epi0s35, 15);
 
-pin!(PP0, Pp0, GPIOP, Gpiop, 0);
+pin!(PP0, Pp0, GPIOP, Gpiop, _PP0, GpioPin, _GPIOP, 0);
    alt_fn!(Pp0, super::sig::C2Pos, 0);
    alt_fn!(Pp0, super::sig::U6rx, 1);
    alt_fn!(Pp0, super::sig::Ssi3xdat, 15);
 
-pin!(PP1, Pp1, GPIOP, Gpiop, 1);
+pin!(PP1, Pp1, GPIOP, Gpiop, _PP1, GpioPin, _GPIOP, 1);
    alt_fn!(Pp1, super::sig::C2Neg, 0);
    alt_fn!(Pp1, super::sig::U6tx, 1);
    alt_fn!(Pp1, super::sig::Ssi3xdat, 15);
 
-pin!(PP2, Pp2, GPIOP, Gpiop, 2);
+pin!(PP2, Pp2, GPIOP, Gpiop, _PP2, GpioPin, _GPIOP, 2);
    alt_fn!(Pp2, super::sig::U0dtr, 1);
    alt_fn!(Pp2, super::sig::Usb0nxt, 14);
    alt_fn!(Pp2, super::sig::Epi0s29, 15);
 
-pin!(PP3, Pp3, GPIOP, Gpiop, 3);
+pin!(PP3, Pp3, GPIOP, Gpiop, _PP3, GpioPin, _GPIOP, 3);
    alt_fn!(Pp3, super::sig::U1cts, 1);
    alt_fn!(Pp3, super::sig::U0dcd, 2);
    alt_fn!(Pp3, super::sig::Rtcclk, 7);
    alt_fn!(Pp3, super::sig::Usb0dir, 14);
    alt_fn!(Pp3, super::sig::Epi0s30, 15);
 
-pin!(PP4, Pp4, GPIOP, Gpiop, 4);
+pin!(PP4, Pp4, GPIOP, Gpiop, _PP4, GpioPin, _GPIOP, 4);
    alt_fn!(Pp4, super::sig::U3rts, 1);
    alt_fn!(Pp4, super::sig::U0dsr, 2);
    alt_fn!(Pp4, super::sig::Usb0d7, 14);
 
-pin!(PP5, Pp5, GPIOP, Gpiop, 5);
+pin!(PP5, Pp5, GPIOP, Gpiop, _PP5, GpioPin, _GPIOP, 5);
    alt_fn!(Pp5, super::sig::U3cts, 1);
    alt_fn!(Pp5, super::sig::I2c2scl, 2);
    alt_fn!(Pp5, super::sig::Usb0d6, 14);
 
-pin!(PQ0, Pq0, GPIOQ, Gpioq, 0);
+pin!(PQ0, Pq0, GPIOQ, Gpioq, _PQ0, GpioPin, _GPIOQ, 0);
    alt_fn!(Pq0, super::sig::Ssi3clk, 14);
    alt_fn!(Pq0, super::sig::Epi0s20, 15);
 
-pin!(PQ1, Pq1, GPIOQ, Gpioq, 1);
+pin!(PQ1, Pq1, GPIOQ, Gpioq, _PQ1, GpioPin, _GPIOQ, 1);
    alt_fn!(Pq1, super::sig::Ssi3fss, 14);
    alt_fn!(Pq1, super::sig::Epi0s21, 15);
 
-pin!(PQ2, Pq2, GPIOQ, Gpioq, 2);
+pin!(PQ2, Pq2, GPIOQ, Gpioq, _PQ2, GpioPin, _GPIOQ, 2);
    alt_fn!(Pq2, super::sig::Ssi3xdat0, 14);
    alt_fn!(Pq2, super::sig::Epi0s22, 15);
 
-pin!(PQ3, Pq3, GPIOQ, Gpioq, 3);
+pin!(PQ3, Pq3, GPIOQ, Gpioq, _PQ3, GpioPin, _GPIOQ, 3);
    alt_fn!(Pq3, super::sig::Ssi3xdat1, 14);
    alt_fn!(Pq3, super::sig::Epi0s23, 15);
 
-pin!(PQ4, Pq4, GPIOQ, Gpioq, 4);
+pin!(PQ4, Pq4, GPIOQ, Gpioq, _PQ4, GpioPin, _GPIOQ, 4);
    alt_fn!(Pq4, super::sig::U1rx, 1);
    alt_fn!(Pq4, super::sig::Divsclk, 7);
 

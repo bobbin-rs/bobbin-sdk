@@ -383,8 +383,4 @@ impl ::core::fmt::Debug for Tflg {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct PitCh(pub PitPeriph, pub usize);

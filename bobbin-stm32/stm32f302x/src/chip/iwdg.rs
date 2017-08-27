@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::iwdg::*;
 
-periph!(_IWDG, IwdgPeriph, IWDG, Iwdg, 0x40003000);
+periph!( IWDG, Iwdg, _IWDG, IwdgPeriph, 0x40003000);
 
 
 

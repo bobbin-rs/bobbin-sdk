@@ -1,9 +1,9 @@
 //! Timer/Counter for Control Applications
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_TCC0, TccPeriph, TCC0, Tcc0, 0x42002000);
-periph!(_TCC1, TccPeriph, TCC1, Tcc1, 0x42002400);
-periph!(_TCC2, TccPeriph, TCC2, Tcc2, 0x42002800);
+periph!( TCC0, Tcc0, _TCC0, TccPeriph, 0x42002000);
+periph!( TCC1, Tcc1, _TCC1, TccPeriph, 0x42002400);
+periph!( TCC2, Tcc2, _TCC2, TccPeriph, 0x42002800);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TCC Peripheral"]
@@ -3760,16 +3760,12 @@ impl ::core::fmt::Debug for Wexctrl {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(TCC0_CH0, Tcc0Ch0, TCC0, Tcc0, 0);
-channel!(TCC0_CH1, Tcc0Ch1, TCC0, Tcc0, 1);
-channel!(TCC0_CH2, Tcc0Ch2, TCC0, Tcc0, 2);
-channel!(TCC0_CH3, Tcc0Ch3, TCC0, Tcc0, 3);
-channel!(TCC1_CH0, Tcc1Ch0, TCC1, Tcc1, 0);
-channel!(TCC1_CH1, Tcc1Ch1, TCC1, Tcc1, 1);
-channel!(TCC2_CH0, Tcc2Ch0, TCC2, Tcc2, 0);
-channel!(TCC2_CH1, Tcc2Ch1, TCC2, Tcc2, 1);
+pub struct TccCh(pub TccPeriph, pub usize);
+channel!(TCC0_CH0, Tcc0Ch0, TCC0, Tcc0, _TCC0_CH0, TccCh, _TCC0, 0);
+channel!(TCC0_CH1, Tcc0Ch1, TCC0, Tcc0, _TCC0_CH1, TccCh, _TCC0, 1);
+channel!(TCC0_CH2, Tcc0Ch2, TCC0, Tcc0, _TCC0_CH2, TccCh, _TCC0, 2);
+channel!(TCC0_CH3, Tcc0Ch3, TCC0, Tcc0, _TCC0_CH3, TccCh, _TCC0, 3);
+channel!(TCC1_CH0, Tcc1Ch0, TCC1, Tcc1, _TCC1_CH0, TccCh, _TCC1, 0);
+channel!(TCC1_CH1, Tcc1Ch1, TCC1, Tcc1, _TCC1_CH1, TccCh, _TCC1, 1);
+channel!(TCC2_CH0, Tcc2Ch0, TCC2, Tcc2, _TCC2_CH0, TccCh, _TCC2, 0);
+channel!(TCC2_CH1, Tcc2Ch1, TCC2, Tcc2, _TCC2_CH1, TccCh, _TCC2, 1);

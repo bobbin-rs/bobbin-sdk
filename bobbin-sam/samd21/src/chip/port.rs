@@ -1,8 +1,8 @@
 //! I/O Pin Controller
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_PORTA, PortPeriph, PORTA, Porta, 0x41004400);
-periph!(_PORTB, PortPeriph, PORTB, Portb, 0x41004480);
+periph!( PORTA, Porta, _PORTA, PortPeriph, 0x41004400);
+periph!( PORTB, Portb, _PORTB, PortPeriph, 0x41004480);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PORT Peripheral"]
@@ -1314,28 +1314,24 @@ impl ::core::fmt::Debug for Wrconfig {
       Ok(())
    }
 }
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-pin!(PA00, Pa00, PORTA, Porta, 0);
+pub struct PortPin(pub PortPeriph, pub usize);
+pin!(PA00, Pa00, PORTA, Porta, _PA00, PortPin, _PORTA, 0);
    alt_fn!(Pa00, super::sig::Extint0, 0);
    alt_fn!(Pa00, super::sig::Sercom1Pad0, 3);
    alt_fn!(Pa00, super::sig::Tcc2Wo0, 4);
 
-pin!(PA01, Pa01, PORTA, Porta, 1);
+pin!(PA01, Pa01, PORTA, Porta, _PA01, PortPin, _PORTA, 1);
    alt_fn!(Pa01, super::sig::Extint1, 0);
    alt_fn!(Pa01, super::sig::Sercom1Pad1, 3);
    alt_fn!(Pa01, super::sig::Tcc2Wo1, 4);
 
-pin!(PA02, Pa02, PORTA, Porta, 2);
+pin!(PA02, Pa02, PORTA, Porta, _PA02, PortPin, _PORTA, 2);
    alt_fn!(Pa02, super::sig::Extint2, 0);
    alt_fn!(Pa02, super::sig::Ain0, 1);
    alt_fn!(Pa02, super::sig::Y0, 1);
    alt_fn!(Pa02, super::sig::Vout, 1);
 
-pin!(PA03, Pa03, PORTA, Porta, 3);
+pin!(PA03, Pa03, PORTA, Porta, _PA03, PortPin, _PORTA, 3);
    alt_fn!(Pa03, super::sig::Extint3, 0);
    alt_fn!(Pa03, super::sig::Adc, 1);
    alt_fn!(Pa03, super::sig::Vrefadac, 1);
@@ -1343,7 +1339,7 @@ pin!(PA03, Pa03, PORTA, Porta, 3);
    alt_fn!(Pa03, super::sig::Ain1, 1);
    alt_fn!(Pa03, super::sig::Y1, 1);
 
-pin!(PA04, Pa04, PORTA, Porta, 4);
+pin!(PA04, Pa04, PORTA, Porta, _PA04, PortPin, _PORTA, 4);
    alt_fn!(Pa04, super::sig::Extint4, 0);
    alt_fn!(Pa04, super::sig::Adc, 1);
    alt_fn!(Pa04, super::sig::Vrefb, 1);
@@ -1353,7 +1349,7 @@ pin!(PA04, Pa04, PORTA, Porta, 4);
    alt_fn!(Pa04, super::sig::Sercom0Pad0, 3);
    alt_fn!(Pa04, super::sig::Tcc0Wo0, 4);
 
-pin!(PA05, Pa05, PORTA, Porta, 5);
+pin!(PA05, Pa05, PORTA, Porta, _PA05, PortPin, _PORTA, 5);
    alt_fn!(Pa05, super::sig::Extint5, 0);
    alt_fn!(Pa05, super::sig::Ain5, 1);
    alt_fn!(Pa05, super::sig::Ain1, 1);
@@ -1361,7 +1357,7 @@ pin!(PA05, Pa05, PORTA, Porta, 5);
    alt_fn!(Pa05, super::sig::Sercom0Pad1, 3);
    alt_fn!(Pa05, super::sig::Tcc0Wo1, 4);
 
-pin!(PA06, Pa06, PORTA, Porta, 6);
+pin!(PA06, Pa06, PORTA, Porta, _PA06, PortPin, _PORTA, 6);
    alt_fn!(Pa06, super::sig::Extint6, 0);
    alt_fn!(Pa06, super::sig::Ain6, 1);
    alt_fn!(Pa06, super::sig::Ain2, 1);
@@ -1369,7 +1365,7 @@ pin!(PA06, Pa06, PORTA, Porta, 6);
    alt_fn!(Pa06, super::sig::Sercom0Pad2, 3);
    alt_fn!(Pa06, super::sig::Tcc1Wo0, 4);
 
-pin!(PA07, Pa07, PORTA, Porta, 7);
+pin!(PA07, Pa07, PORTA, Porta, _PA07, PortPin, _PORTA, 7);
    alt_fn!(Pa07, super::sig::Extint7, 0);
    alt_fn!(Pa07, super::sig::Ain7, 1);
    alt_fn!(Pa07, super::sig::Ain3, 1);
@@ -1378,7 +1374,7 @@ pin!(PA07, Pa07, PORTA, Porta, 7);
    alt_fn!(Pa07, super::sig::Tcc1Wo1, 4);
    alt_fn!(Pa07, super::sig::I2sSd0, 6);
 
-pin!(PA08, Pa08, PORTA, Porta, 8);
+pin!(PA08, Pa08, PORTA, Porta, _PA08, PortPin, _PORTA, 8);
    alt_fn!(Pa08, super::sig::Nmi, 0);
    alt_fn!(Pa08, super::sig::Ain16, 1);
    alt_fn!(Pa08, super::sig::X0, 1);
@@ -1388,7 +1384,7 @@ pin!(PA08, Pa08, PORTA, Porta, 8);
    alt_fn!(Pa08, super::sig::Tcc1Wo2, 5);
    alt_fn!(Pa08, super::sig::I2sSd1, 6);
 
-pin!(PA09, Pa09, PORTA, Porta, 9);
+pin!(PA09, Pa09, PORTA, Porta, _PA09, PortPin, _PORTA, 9);
    alt_fn!(Pa09, super::sig::Extint9, 0);
    alt_fn!(Pa09, super::sig::Ain17, 1);
    alt_fn!(Pa09, super::sig::X1, 1);
@@ -1398,7 +1394,7 @@ pin!(PA09, Pa09, PORTA, Porta, 9);
    alt_fn!(Pa09, super::sig::Tcc1Wo3, 5);
    alt_fn!(Pa09, super::sig::I2sMck0, 6);
 
-pin!(PA10, Pa10, PORTA, Porta, 10);
+pin!(PA10, Pa10, PORTA, Porta, _PA10, PortPin, _PORTA, 10);
    alt_fn!(Pa10, super::sig::Extint10, 0);
    alt_fn!(Pa10, super::sig::Ain18, 1);
    alt_fn!(Pa10, super::sig::X2, 1);
@@ -1409,7 +1405,7 @@ pin!(PA10, Pa10, PORTA, Porta, 10);
    alt_fn!(Pa10, super::sig::I2sSck0, 6);
    alt_fn!(Pa10, super::sig::GclkIo4, 7);
 
-pin!(PA11, Pa11, PORTA, Porta, 11);
+pin!(PA11, Pa11, PORTA, Porta, _PA11, PortPin, _PORTA, 11);
    alt_fn!(Pa11, super::sig::Extint11, 0);
    alt_fn!(Pa11, super::sig::Ain19, 1);
    alt_fn!(Pa11, super::sig::X3, 1);
@@ -1420,7 +1416,7 @@ pin!(PA11, Pa11, PORTA, Porta, 11);
    alt_fn!(Pa11, super::sig::I2sFs0, 6);
    alt_fn!(Pa11, super::sig::GclkIo5, 7);
 
-pin!(PA12, Pa12, PORTA, Porta, 12);
+pin!(PA12, Pa12, PORTA, Porta, _PA12, PortPin, _PORTA, 12);
    alt_fn!(Pa12, super::sig::Extint12, 0);
    alt_fn!(Pa12, super::sig::Sercom2Pad0, 2);
    alt_fn!(Pa12, super::sig::Sercom4Pad0, 3);
@@ -1428,7 +1424,7 @@ pin!(PA12, Pa12, PORTA, Porta, 12);
    alt_fn!(Pa12, super::sig::Tcc0Wo6, 5);
    alt_fn!(Pa12, super::sig::AcCmp0, 7);
 
-pin!(PA13, Pa13, PORTA, Porta, 13);
+pin!(PA13, Pa13, PORTA, Porta, _PA13, PortPin, _PORTA, 13);
    alt_fn!(Pa13, super::sig::Extint13, 0);
    alt_fn!(Pa13, super::sig::Sercom2Pad1, 2);
    alt_fn!(Pa13, super::sig::Sercom4Pad1, 3);
@@ -1436,7 +1432,7 @@ pin!(PA13, Pa13, PORTA, Porta, 13);
    alt_fn!(Pa13, super::sig::Tcc0Wo7, 5);
    alt_fn!(Pa13, super::sig::AcCmp1, 7);
 
-pin!(PA14, Pa14, PORTA, Porta, 14);
+pin!(PA14, Pa14, PORTA, Porta, _PA14, PortPin, _PORTA, 14);
    alt_fn!(Pa14, super::sig::Extint14, 0);
    alt_fn!(Pa14, super::sig::Sercom2Pad2, 2);
    alt_fn!(Pa14, super::sig::Sercom4Pad2, 3);
@@ -1444,7 +1440,7 @@ pin!(PA14, Pa14, PORTA, Porta, 14);
    alt_fn!(Pa14, super::sig::Tcc0Wo4, 5);
    alt_fn!(Pa14, super::sig::GclkIo0, 7);
 
-pin!(PA15, Pa15, PORTA, Porta, 15);
+pin!(PA15, Pa15, PORTA, Porta, _PA15, PortPin, _PORTA, 15);
    alt_fn!(Pa15, super::sig::Extint15, 0);
    alt_fn!(Pa15, super::sig::Sercom2Pad3, 2);
    alt_fn!(Pa15, super::sig::Sercom4Pad3, 3);
@@ -1452,7 +1448,7 @@ pin!(PA15, Pa15, PORTA, Porta, 15);
    alt_fn!(Pa15, super::sig::Tcc0Wo5, 5);
    alt_fn!(Pa15, super::sig::GclkIo1, 7);
 
-pin!(PA16, Pa16, PORTA, Porta, 16);
+pin!(PA16, Pa16, PORTA, Porta, _PA16, PortPin, _PORTA, 16);
    alt_fn!(Pa16, super::sig::Extint0, 0);
    alt_fn!(Pa16, super::sig::X4, 1);
    alt_fn!(Pa16, super::sig::Sercom1Pad0, 2);
@@ -1461,7 +1457,7 @@ pin!(PA16, Pa16, PORTA, Porta, 16);
    alt_fn!(Pa16, super::sig::Tcc0Wo6, 5);
    alt_fn!(Pa16, super::sig::GclkIo2, 7);
 
-pin!(PA17, Pa17, PORTA, Porta, 17);
+pin!(PA17, Pa17, PORTA, Porta, _PA17, PortPin, _PORTA, 17);
    alt_fn!(Pa17, super::sig::Extint1, 0);
    alt_fn!(Pa17, super::sig::X5, 1);
    alt_fn!(Pa17, super::sig::Sercom1Pad1, 2);
@@ -1470,7 +1466,7 @@ pin!(PA17, Pa17, PORTA, Porta, 17);
    alt_fn!(Pa17, super::sig::Tcc0Wo7, 5);
    alt_fn!(Pa17, super::sig::GclkIo3, 7);
 
-pin!(PA18, Pa18, PORTA, Porta, 18);
+pin!(PA18, Pa18, PORTA, Porta, _PA18, PortPin, _PORTA, 18);
    alt_fn!(Pa18, super::sig::Extint2, 0);
    alt_fn!(Pa18, super::sig::X6, 1);
    alt_fn!(Pa18, super::sig::Sercom1Pad2, 2);
@@ -1479,7 +1475,7 @@ pin!(PA18, Pa18, PORTA, Porta, 18);
    alt_fn!(Pa18, super::sig::Tcc0Wo2, 5);
    alt_fn!(Pa18, super::sig::AcCmp0, 7);
 
-pin!(PA19, Pa19, PORTA, Porta, 19);
+pin!(PA19, Pa19, PORTA, Porta, _PA19, PortPin, _PORTA, 19);
    alt_fn!(Pa19, super::sig::Extint3, 0);
    alt_fn!(Pa19, super::sig::X7, 1);
    alt_fn!(Pa19, super::sig::Sercom1Pad3, 2);
@@ -1489,7 +1485,7 @@ pin!(PA19, Pa19, PORTA, Porta, 19);
    alt_fn!(Pa19, super::sig::I2sSd0, 6);
    alt_fn!(Pa19, super::sig::AcCmp1, 7);
 
-pin!(PA20, Pa20, PORTA, Porta, 20);
+pin!(PA20, Pa20, PORTA, Porta, _PA20, PortPin, _PORTA, 20);
    alt_fn!(Pa20, super::sig::Extint4, 0);
    alt_fn!(Pa20, super::sig::X8, 1);
    alt_fn!(Pa20, super::sig::Sercom5Pad2, 2);
@@ -1499,7 +1495,7 @@ pin!(PA20, Pa20, PORTA, Porta, 20);
    alt_fn!(Pa20, super::sig::I2sSck0, 6);
    alt_fn!(Pa20, super::sig::GclkIo4, 7);
 
-pin!(PA21, Pa21, PORTA, Porta, 21);
+pin!(PA21, Pa21, PORTA, Porta, _PA21, PortPin, _PORTA, 21);
    alt_fn!(Pa21, super::sig::Extint5, 0);
    alt_fn!(Pa21, super::sig::X9, 1);
    alt_fn!(Pa21, super::sig::Sercom5Pad3, 2);
@@ -1509,7 +1505,7 @@ pin!(PA21, Pa21, PORTA, Porta, 21);
    alt_fn!(Pa21, super::sig::I2sFs0, 6);
    alt_fn!(Pa21, super::sig::GclkIo5, 7);
 
-pin!(PA22, Pa22, PORTA, Porta, 22);
+pin!(PA22, Pa22, PORTA, Porta, _PA22, PortPin, _PORTA, 22);
    alt_fn!(Pa22, super::sig::Extint6, 0);
    alt_fn!(Pa22, super::sig::X10, 1);
    alt_fn!(Pa22, super::sig::Sercom3Pad0, 2);
@@ -1518,7 +1514,7 @@ pin!(PA22, Pa22, PORTA, Porta, 22);
    alt_fn!(Pa22, super::sig::Tcc0Wo4, 5);
    alt_fn!(Pa22, super::sig::GclkIo6, 7);
 
-pin!(PA23, Pa23, PORTA, Porta, 23);
+pin!(PA23, Pa23, PORTA, Porta, _PA23, PortPin, _PORTA, 23);
    alt_fn!(Pa23, super::sig::Extint7, 0);
    alt_fn!(Pa23, super::sig::X11, 1);
    alt_fn!(Pa23, super::sig::Sercom3Pad1, 2);
@@ -1528,7 +1524,7 @@ pin!(PA23, Pa23, PORTA, Porta, 23);
    alt_fn!(Pa23, super::sig::UsbSof1khz, 6);
    alt_fn!(Pa23, super::sig::GclkIo7, 7);
 
-pin!(PA24, Pa24, PORTA, Porta, 24);
+pin!(PA24, Pa24, PORTA, Porta, _PA24, PortPin, _PORTA, 24);
    alt_fn!(Pa24, super::sig::Extint12, 0);
    alt_fn!(Pa24, super::sig::Sercom3Pad2, 2);
    alt_fn!(Pa24, super::sig::Sercom5Pad2, 3);
@@ -1536,7 +1532,7 @@ pin!(PA24, Pa24, PORTA, Porta, 24);
    alt_fn!(Pa24, super::sig::Tcc1Wo2, 5);
    alt_fn!(Pa24, super::sig::UsbDm, 6);
 
-pin!(PA25, Pa25, PORTA, Porta, 25);
+pin!(PA25, Pa25, PORTA, Porta, _PA25, PortPin, _PORTA, 25);
    alt_fn!(Pa25, super::sig::Extint13, 0);
    alt_fn!(Pa25, super::sig::Sercom3Pad3, 2);
    alt_fn!(Pa25, super::sig::Sercom5Pad3, 3);
@@ -1544,90 +1540,90 @@ pin!(PA25, Pa25, PORTA, Porta, 25);
    alt_fn!(Pa25, super::sig::Tcc1Wo3, 5);
    alt_fn!(Pa25, super::sig::UsbDp, 6);
 
-pin!(PA27, Pa27, PORTA, Porta, 27);
+pin!(PA27, Pa27, PORTA, Porta, _PA27, PortPin, _PORTA, 27);
    alt_fn!(Pa27, super::sig::Extint15, 0);
    alt_fn!(Pa27, super::sig::GclkIo0, 7);
 
-pin!(PA28, Pa28, PORTA, Porta, 28);
+pin!(PA28, Pa28, PORTA, Porta, _PA28, PortPin, _PORTA, 28);
    alt_fn!(Pa28, super::sig::Extint8, 0);
    alt_fn!(Pa28, super::sig::GclkIo0, 7);
 
-pin!(PA30, Pa30, PORTA, Porta, 30);
+pin!(PA30, Pa30, PORTA, Porta, _PA30, PortPin, _PORTA, 30);
    alt_fn!(Pa30, super::sig::Extint10, 0);
    alt_fn!(Pa30, super::sig::Sercom1Pad2, 3);
    alt_fn!(Pa30, super::sig::Tcc1Wo0, 4);
    alt_fn!(Pa30, super::sig::Swclk, 6);
    alt_fn!(Pa30, super::sig::GclkIo0, 7);
 
-pin!(PA31, Pa31, PORTA, Porta, 31);
+pin!(PA31, Pa31, PORTA, Porta, _PA31, PortPin, _PORTA, 31);
    alt_fn!(Pa31, super::sig::Extint11, 0);
    alt_fn!(Pa31, super::sig::Sercom1Pad3, 3);
    alt_fn!(Pa31, super::sig::Tcc1Wo1, 4);
    alt_fn!(Pa31, super::sig::Swdio, 6);
 
-pin!(PB00, Pb00, PORTB, Portb, 0);
+pin!(PB00, Pb00, PORTB, Portb, _PB00, PortPin, _PORTB, 0);
    alt_fn!(Pb00, super::sig::Extint0, 0);
    alt_fn!(Pb00, super::sig::Ain8, 1);
    alt_fn!(Pb00, super::sig::Y6, 1);
    alt_fn!(Pb00, super::sig::Sercom5Pad2, 3);
    alt_fn!(Pb00, super::sig::Tc7Wo0, 4);
 
-pin!(PB01, Pb01, PORTB, Portb, 1);
+pin!(PB01, Pb01, PORTB, Portb, _PB01, PortPin, _PORTB, 1);
    alt_fn!(Pb01, super::sig::Extint1, 0);
    alt_fn!(Pb01, super::sig::Ain9, 1);
    alt_fn!(Pb01, super::sig::Y7, 1);
    alt_fn!(Pb01, super::sig::Sercom5Pad3, 3);
    alt_fn!(Pb01, super::sig::Tc7Wo1, 4);
 
-pin!(PB02, Pb02, PORTB, Portb, 2);
+pin!(PB02, Pb02, PORTB, Portb, _PB02, PortPin, _PORTB, 2);
    alt_fn!(Pb02, super::sig::Extint2, 0);
    alt_fn!(Pb02, super::sig::Ain10, 1);
    alt_fn!(Pb02, super::sig::Y8, 1);
    alt_fn!(Pb02, super::sig::Sercom5Pad0, 3);
    alt_fn!(Pb02, super::sig::Tc6Wo0, 4);
 
-pin!(PB03, Pb03, PORTB, Portb, 3);
+pin!(PB03, Pb03, PORTB, Portb, _PB03, PortPin, _PORTB, 3);
    alt_fn!(Pb03, super::sig::Extint3, 0);
    alt_fn!(Pb03, super::sig::Ain11, 1);
    alt_fn!(Pb03, super::sig::Y9, 1);
    alt_fn!(Pb03, super::sig::Sercom5Pad1, 3);
    alt_fn!(Pb03, super::sig::Tc6Wo1, 4);
 
-pin!(PB04, Pb04, PORTB, Portb, 4);
+pin!(PB04, Pb04, PORTB, Portb, _PB04, PortPin, _PORTB, 4);
    alt_fn!(Pb04, super::sig::Extint4, 0);
    alt_fn!(Pb04, super::sig::Ain12, 1);
    alt_fn!(Pb04, super::sig::Y10, 1);
 
-pin!(PB05, Pb05, PORTB, Portb, 5);
+pin!(PB05, Pb05, PORTB, Portb, _PB05, PortPin, _PORTB, 5);
    alt_fn!(Pb05, super::sig::Extint5, 0);
    alt_fn!(Pb05, super::sig::Ain13, 1);
    alt_fn!(Pb05, super::sig::Y11, 1);
 
-pin!(PB06, Pb06, PORTB, Portb, 6);
+pin!(PB06, Pb06, PORTB, Portb, _PB06, PortPin, _PORTB, 6);
    alt_fn!(Pb06, super::sig::Extint6, 0);
    alt_fn!(Pb06, super::sig::Ain14, 1);
    alt_fn!(Pb06, super::sig::Y12, 1);
 
-pin!(PB07, Pb07, PORTB, Portb, 7);
+pin!(PB07, Pb07, PORTB, Portb, _PB07, PortPin, _PORTB, 7);
    alt_fn!(Pb07, super::sig::Extint7, 0);
    alt_fn!(Pb07, super::sig::Ain15, 1);
    alt_fn!(Pb07, super::sig::Y13, 1);
 
-pin!(PB08, Pb08, PORTB, Portb, 8);
+pin!(PB08, Pb08, PORTB, Portb, _PB08, PortPin, _PORTB, 8);
    alt_fn!(Pb08, super::sig::Extint8, 0);
    alt_fn!(Pb08, super::sig::Ain2, 1);
    alt_fn!(Pb08, super::sig::Y14, 1);
    alt_fn!(Pb08, super::sig::Sercom4Pad0, 3);
    alt_fn!(Pb08, super::sig::Tc4Wo0, 4);
 
-pin!(PB09, Pb09, PORTB, Portb, 9);
+pin!(PB09, Pb09, PORTB, Portb, _PB09, PortPin, _PORTB, 9);
    alt_fn!(Pb09, super::sig::Extint9, 0);
    alt_fn!(Pb09, super::sig::Ain3, 1);
    alt_fn!(Pb09, super::sig::Y15, 1);
    alt_fn!(Pb09, super::sig::Sercom4Pad1, 3);
    alt_fn!(Pb09, super::sig::Tc4Wo1, 4);
 
-pin!(PB10, Pb10, PORTB, Portb, 10);
+pin!(PB10, Pb10, PORTB, Portb, _PB10, PortPin, _PORTB, 10);
    alt_fn!(Pb10, super::sig::Extint10, 0);
    alt_fn!(Pb10, super::sig::Sercom4Pad2, 3);
    alt_fn!(Pb10, super::sig::Tc5Wo0, 4);
@@ -1635,7 +1631,7 @@ pin!(PB10, Pb10, PORTB, Portb, 10);
    alt_fn!(Pb10, super::sig::I2sMck1, 6);
    alt_fn!(Pb10, super::sig::GclkIo4, 7);
 
-pin!(PB11, Pb11, PORTB, Portb, 11);
+pin!(PB11, Pb11, PORTB, Portb, _PB11, PortPin, _PORTB, 11);
    alt_fn!(Pb11, super::sig::Extint11, 0);
    alt_fn!(Pb11, super::sig::Sercom4Pad3, 3);
    alt_fn!(Pb11, super::sig::Tc5Wo1, 4);
@@ -1643,7 +1639,7 @@ pin!(PB11, Pb11, PORTB, Portb, 11);
    alt_fn!(Pb11, super::sig::I2sSck1, 6);
    alt_fn!(Pb11, super::sig::GclkIo5, 7);
 
-pin!(PB12, Pb12, PORTB, Portb, 12);
+pin!(PB12, Pb12, PORTB, Portb, _PB12, PortPin, _PORTB, 12);
    alt_fn!(Pb12, super::sig::Extint12, 0);
    alt_fn!(Pb12, super::sig::X12, 1);
    alt_fn!(Pb12, super::sig::Sercom4Pad0, 2);
@@ -1652,7 +1648,7 @@ pin!(PB12, Pb12, PORTB, Portb, 12);
    alt_fn!(Pb12, super::sig::I2sFs1, 6);
    alt_fn!(Pb12, super::sig::GclkIo6, 7);
 
-pin!(PB13, Pb13, PORTB, Portb, 13);
+pin!(PB13, Pb13, PORTB, Portb, _PB13, PortPin, _PORTB, 13);
    alt_fn!(Pb13, super::sig::Extint13, 0);
    alt_fn!(Pb13, super::sig::X13, 1);
    alt_fn!(Pb13, super::sig::Sercom4Pad1, 2);
@@ -1660,21 +1656,21 @@ pin!(PB13, Pb13, PORTB, Portb, 13);
    alt_fn!(Pb13, super::sig::Tcc0Wo7, 5);
    alt_fn!(Pb13, super::sig::GclkIo7, 7);
 
-pin!(PB14, Pb14, PORTB, Portb, 14);
+pin!(PB14, Pb14, PORTB, Portb, _PB14, PortPin, _PORTB, 14);
    alt_fn!(Pb14, super::sig::Extint14, 0);
    alt_fn!(Pb14, super::sig::X14, 1);
    alt_fn!(Pb14, super::sig::Sercom4Pad2, 2);
    alt_fn!(Pb14, super::sig::Tc5Wo0, 4);
    alt_fn!(Pb14, super::sig::GclkIo0, 7);
 
-pin!(PB15, Pb15, PORTB, Portb, 15);
+pin!(PB15, Pb15, PORTB, Portb, _PB15, PortPin, _PORTB, 15);
    alt_fn!(Pb15, super::sig::Extint15, 0);
    alt_fn!(Pb15, super::sig::X15, 1);
    alt_fn!(Pb15, super::sig::Sercom4Pad3, 2);
    alt_fn!(Pb15, super::sig::Tc5Wo1, 4);
    alt_fn!(Pb15, super::sig::GclkIo1, 7);
 
-pin!(PB16, Pb16, PORTB, Portb, 16);
+pin!(PB16, Pb16, PORTB, Portb, _PB16, PortPin, _PORTB, 16);
    alt_fn!(Pb16, super::sig::Extint0, 0);
    alt_fn!(Pb16, super::sig::Sercom5Pad0, 2);
    alt_fn!(Pb16, super::sig::Tc6Wo0, 4);
@@ -1682,7 +1678,7 @@ pin!(PB16, Pb16, PORTB, Portb, 16);
    alt_fn!(Pb16, super::sig::I2sSd1, 6);
    alt_fn!(Pb16, super::sig::GclkIo2, 7);
 
-pin!(PB17, Pb17, PORTB, Portb, 17);
+pin!(PB17, Pb17, PORTB, Portb, _PB17, PortPin, _PORTB, 17);
    alt_fn!(Pb17, super::sig::Extint1, 0);
    alt_fn!(Pb17, super::sig::Sercom5Pad1, 2);
    alt_fn!(Pb17, super::sig::Tc6Wo1, 4);
@@ -1690,25 +1686,25 @@ pin!(PB17, Pb17, PORTB, Portb, 17);
    alt_fn!(Pb17, super::sig::I2sMck0, 6);
    alt_fn!(Pb17, super::sig::GclkIo3, 7);
 
-pin!(PB22, Pb22, PORTB, Portb, 22);
+pin!(PB22, Pb22, PORTB, Portb, _PB22, PortPin, _PORTB, 22);
    alt_fn!(Pb22, super::sig::Extint6, 0);
    alt_fn!(Pb22, super::sig::Sercom5Pad2, 3);
    alt_fn!(Pb22, super::sig::Tc7Wo0, 4);
    alt_fn!(Pb22, super::sig::GclkIo0, 7);
 
-pin!(PB23, Pb23, PORTB, Portb, 23);
+pin!(PB23, Pb23, PORTB, Portb, _PB23, PortPin, _PORTB, 23);
    alt_fn!(Pb23, super::sig::Extint7, 0);
    alt_fn!(Pb23, super::sig::Sercom5Pad3, 3);
    alt_fn!(Pb23, super::sig::Tc7Wo1, 4);
    alt_fn!(Pb23, super::sig::GclkIo1, 7);
 
-pin!(PB30, Pb30, PORTB, Portb, 30);
+pin!(PB30, Pb30, PORTB, Portb, _PB30, PortPin, _PORTB, 30);
    alt_fn!(Pb30, super::sig::Extint14, 0);
    alt_fn!(Pb30, super::sig::Sercom5Pad0, 3);
    alt_fn!(Pb30, super::sig::Tcc0Wo0, 4);
    alt_fn!(Pb30, super::sig::Tcc1Wo2, 5);
 
-pin!(PB31, Pb31, PORTB, Portb, 31);
+pin!(PB31, Pb31, PORTB, Portb, _PB31, PortPin, _PORTB, 31);
    alt_fn!(Pb31, super::sig::Extint15, 0);
    alt_fn!(Pb31, super::sig::Sercom5Pad1, 3);
    alt_fn!(Pb31, super::sig::Tcc0Wo1, 4);

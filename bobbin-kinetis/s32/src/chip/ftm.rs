@@ -2,10 +2,10 @@
 
 pub use kinetis_common::chip::ftm::*;
 
-periph!(_FTM0, FtmPeriph, FTM0, Ftm0, 0x40038000);
-periph!(_FTM1, FtmPeriph, FTM1, Ftm1, 0x40039000);
-periph!(_FTM2, FtmPeriph, FTM2, Ftm2, 0x4003a000);
-periph!(_FTM3, FtmPeriph, FTM3, Ftm3, 0x40026000);
+periph!( FTM0, Ftm0, _FTM0, FtmPeriph, 0x40038000);
+periph!( FTM1, Ftm1, _FTM1, FtmPeriph, 0x40039000);
+periph!( FTM2, Ftm2, _FTM2, FtmPeriph, 0x4003a000);
+periph!( FTM3, Ftm3, _FTM3, FtmPeriph, 0x40026000);
 
 impl super::sig::Signal<super::sig::Ftm0Ch0> for Ftm0Ch0 {}
 impl super::sig::SignalFtm<super::sig::Ftm0Ch0> for Ftm0Ch0 {}
@@ -76,35 +76,35 @@ impl super::sig::Signal<super::sig::Ftm3Ch7> for Ftm3Ch7 {}
 impl super::sig::SignalFtm<super::sig::Ftm3Ch7> for Ftm3Ch7 {}
 
 
-channel!(FTM0_CH0, Ftm0Ch0, FTM0, Ftm0, 0);
-channel!(FTM0_CH1, Ftm0Ch1, FTM0, Ftm0, 1);
-channel!(FTM0_CH2, Ftm0Ch2, FTM0, Ftm0, 2);
-channel!(FTM0_CH3, Ftm0Ch3, FTM0, Ftm0, 3);
-channel!(FTM0_CH4, Ftm0Ch4, FTM0, Ftm0, 4);
-channel!(FTM0_CH5, Ftm0Ch5, FTM0, Ftm0, 5);
-channel!(FTM0_CH6, Ftm0Ch6, FTM0, Ftm0, 6);
-channel!(FTM0_CH7, Ftm0Ch7, FTM0, Ftm0, 7);
-channel!(FTM1_CH0, Ftm1Ch0, FTM1, Ftm1, 0);
-channel!(FTM1_CH1, Ftm1Ch1, FTM1, Ftm1, 1);
-channel!(FTM1_CH2, Ftm1Ch2, FTM1, Ftm1, 2);
-channel!(FTM1_CH3, Ftm1Ch3, FTM1, Ftm1, 3);
-channel!(FTM1_CH4, Ftm1Ch4, FTM1, Ftm1, 4);
-channel!(FTM1_CH5, Ftm1Ch5, FTM1, Ftm1, 5);
-channel!(FTM1_CH6, Ftm1Ch6, FTM1, Ftm1, 6);
-channel!(FTM1_CH7, Ftm1Ch7, FTM1, Ftm1, 7);
-channel!(FTM2_CH0, Ftm2Ch0, FTM2, Ftm2, 0);
-channel!(FTM2_CH1, Ftm2Ch1, FTM2, Ftm2, 1);
-channel!(FTM2_CH2, Ftm2Ch2, FTM2, Ftm2, 2);
-channel!(FTM2_CH3, Ftm2Ch3, FTM2, Ftm2, 3);
-channel!(FTM2_CH4, Ftm2Ch4, FTM2, Ftm2, 4);
-channel!(FTM2_CH5, Ftm2Ch5, FTM2, Ftm2, 5);
-channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, 6);
-channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, 7);
-channel!(FTM3_CH0, Ftm3Ch0, FTM3, Ftm3, 0);
-channel!(FTM3_CH1, Ftm3Ch1, FTM3, Ftm3, 1);
-channel!(FTM3_CH2, Ftm3Ch2, FTM3, Ftm3, 2);
-channel!(FTM3_CH3, Ftm3Ch3, FTM3, Ftm3, 3);
-channel!(FTM3_CH4, Ftm3Ch4, FTM3, Ftm3, 4);
-channel!(FTM3_CH5, Ftm3Ch5, FTM3, Ftm3, 5);
-channel!(FTM3_CH6, Ftm3Ch6, FTM3, Ftm3, 6);
-channel!(FTM3_CH7, Ftm3Ch7, FTM3, Ftm3, 7);
+channel!(FTM0_CH0, Ftm0Ch0, FTM0, Ftm0, _FTM0_CH0, FtmCh, _FTM0, 0);
+channel!(FTM0_CH1, Ftm0Ch1, FTM0, Ftm0, _FTM0_CH1, FtmCh, _FTM0, 1);
+channel!(FTM0_CH2, Ftm0Ch2, FTM0, Ftm0, _FTM0_CH2, FtmCh, _FTM0, 2);
+channel!(FTM0_CH3, Ftm0Ch3, FTM0, Ftm0, _FTM0_CH3, FtmCh, _FTM0, 3);
+channel!(FTM0_CH4, Ftm0Ch4, FTM0, Ftm0, _FTM0_CH4, FtmCh, _FTM0, 4);
+channel!(FTM0_CH5, Ftm0Ch5, FTM0, Ftm0, _FTM0_CH5, FtmCh, _FTM0, 5);
+channel!(FTM0_CH6, Ftm0Ch6, FTM0, Ftm0, _FTM0_CH6, FtmCh, _FTM0, 6);
+channel!(FTM0_CH7, Ftm0Ch7, FTM0, Ftm0, _FTM0_CH7, FtmCh, _FTM0, 7);
+channel!(FTM1_CH0, Ftm1Ch0, FTM1, Ftm1, _FTM1_CH0, FtmCh, _FTM1, 0);
+channel!(FTM1_CH1, Ftm1Ch1, FTM1, Ftm1, _FTM1_CH1, FtmCh, _FTM1, 1);
+channel!(FTM1_CH2, Ftm1Ch2, FTM1, Ftm1, _FTM1_CH2, FtmCh, _FTM1, 2);
+channel!(FTM1_CH3, Ftm1Ch3, FTM1, Ftm1, _FTM1_CH3, FtmCh, _FTM1, 3);
+channel!(FTM1_CH4, Ftm1Ch4, FTM1, Ftm1, _FTM1_CH4, FtmCh, _FTM1, 4);
+channel!(FTM1_CH5, Ftm1Ch5, FTM1, Ftm1, _FTM1_CH5, FtmCh, _FTM1, 5);
+channel!(FTM1_CH6, Ftm1Ch6, FTM1, Ftm1, _FTM1_CH6, FtmCh, _FTM1, 6);
+channel!(FTM1_CH7, Ftm1Ch7, FTM1, Ftm1, _FTM1_CH7, FtmCh, _FTM1, 7);
+channel!(FTM2_CH0, Ftm2Ch0, FTM2, Ftm2, _FTM2_CH0, FtmCh, _FTM2, 0);
+channel!(FTM2_CH1, Ftm2Ch1, FTM2, Ftm2, _FTM2_CH1, FtmCh, _FTM2, 1);
+channel!(FTM2_CH2, Ftm2Ch2, FTM2, Ftm2, _FTM2_CH2, FtmCh, _FTM2, 2);
+channel!(FTM2_CH3, Ftm2Ch3, FTM2, Ftm2, _FTM2_CH3, FtmCh, _FTM2, 3);
+channel!(FTM2_CH4, Ftm2Ch4, FTM2, Ftm2, _FTM2_CH4, FtmCh, _FTM2, 4);
+channel!(FTM2_CH5, Ftm2Ch5, FTM2, Ftm2, _FTM2_CH5, FtmCh, _FTM2, 5);
+channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, _FTM2_CH6, FtmCh, _FTM2, 6);
+channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, _FTM2_CH7, FtmCh, _FTM2, 7);
+channel!(FTM3_CH0, Ftm3Ch0, FTM3, Ftm3, _FTM3_CH0, FtmCh, _FTM3, 0);
+channel!(FTM3_CH1, Ftm3Ch1, FTM3, Ftm3, _FTM3_CH1, FtmCh, _FTM3, 1);
+channel!(FTM3_CH2, Ftm3Ch2, FTM3, Ftm3, _FTM3_CH2, FtmCh, _FTM3, 2);
+channel!(FTM3_CH3, Ftm3Ch3, FTM3, Ftm3, _FTM3_CH3, FtmCh, _FTM3, 3);
+channel!(FTM3_CH4, Ftm3Ch4, FTM3, Ftm3, _FTM3_CH4, FtmCh, _FTM3, 4);
+channel!(FTM3_CH5, Ftm3Ch5, FTM3, Ftm3, _FTM3_CH5, FtmCh, _FTM3, 5);
+channel!(FTM3_CH6, Ftm3Ch6, FTM3, Ftm3, _FTM3_CH6, FtmCh, _FTM3, 6);
+channel!(FTM3_CH7, Ftm3Ch7, FTM3, Ftm3, _FTM3_CH7, FtmCh, _FTM3, 7);

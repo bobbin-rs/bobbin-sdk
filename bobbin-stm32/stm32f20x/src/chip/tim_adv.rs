@@ -2,8 +2,8 @@
 
 pub use stm32_common::chip::tim_adv::*;
 
-periph!(_TIM1, TimAdvPeriph, TIM1, Tim1, 0x40010000);
-periph!(_TIM8, TimAdvPeriph, TIM8, Tim8, 0x40010400);
+periph!( TIM1, Tim1, _TIM1, TimAdvPeriph, 0x40010000);
+periph!( TIM8, Tim8, _TIM8, TimAdvPeriph, 0x40010400);
 
 
 

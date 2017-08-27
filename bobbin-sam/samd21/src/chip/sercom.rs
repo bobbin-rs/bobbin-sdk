@@ -1,12 +1,12 @@
 //! Serial Communication Interface
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_SERCOM0, SercomPeriph, SERCOM0, Sercom0, 0x42000800);
-periph!(_SERCOM1, SercomPeriph, SERCOM1, Sercom1, 0x42000c00);
-periph!(_SERCOM2, SercomPeriph, SERCOM2, Sercom2, 0x42001000);
-periph!(_SERCOM3, SercomPeriph, SERCOM3, Sercom3, 0x42001400);
-periph!(_SERCOM4, SercomPeriph, SERCOM4, Sercom4, 0x42001800);
-periph!(_SERCOM5, SercomPeriph, SERCOM5, Sercom5, 0x42001c00);
+periph!( SERCOM0, Sercom0, _SERCOM0, SercomPeriph, 0x42000800);
+periph!( SERCOM1, Sercom1, _SERCOM1, SercomPeriph, 0x42000c00);
+periph!( SERCOM2, Sercom2, _SERCOM2, SercomPeriph, 0x42001000);
+periph!( SERCOM3, Sercom3, _SERCOM3, SercomPeriph, 0x42001400);
+periph!( SERCOM4, Sercom4, _SERCOM4, SercomPeriph, 0x42001800);
+periph!( SERCOM5, Sercom5, _SERCOM5, SercomPeriph, 0x42001c00);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SERCOM Peripheral"]

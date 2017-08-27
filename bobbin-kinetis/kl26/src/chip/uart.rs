@@ -2,8 +2,8 @@
 
 pub use kinetis_common::chip::uart::*;
 
-periph!(_UART1, UartPeriph, UART1, Uart1, 0x4006b000);
-periph!(_UART2, UartPeriph, UART2, Uart2, 0x4006c000);
+periph!( UART1, Uart1, _UART1, UartPeriph, 0x4006b000);
+periph!( UART2, Uart2, _UART2, UartPeriph, 0x4006c000);
 
 impl super::sig::Signal<super::sig::Uart1Tx> for Uart1 {}
 impl super::sig::SignalTx<super::sig::Uart1Tx> for Uart1 {}

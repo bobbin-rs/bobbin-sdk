@@ -2,9 +2,9 @@
 
 pub use kinetis_common::chip::lpuart::*;
 
-periph!(_LPUART0, LpuartPeriph, LPUART0, Lpuart0, 0x4006a000);
-periph!(_LPUART1, LpuartPeriph, LPUART1, Lpuart1, 0x4006b000);
-periph!(_LPUART2, LpuartPeriph, LPUART2, Lpuart2, 0x4006c000);
+periph!( LPUART0, Lpuart0, _LPUART0, LpuartPeriph, 0x4006a000);
+periph!( LPUART1, Lpuart1, _LPUART1, LpuartPeriph, 0x4006b000);
+periph!( LPUART2, Lpuart2, _LPUART2, LpuartPeriph, 0x4006c000);
 
 impl super::sig::Signal<super::sig::Lpuart0Tx> for Lpuart0 {}
 impl super::sig::SignalTx<super::sig::Lpuart0Tx> for Lpuart0 {}

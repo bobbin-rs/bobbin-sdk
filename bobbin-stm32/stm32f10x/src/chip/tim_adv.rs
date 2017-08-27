@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::tim_adv::*;
 
-periph!(_TIM1, TimAdvPeriph, TIM1, Tim1, 0x40012c00);
+periph!( TIM1, Tim1, _TIM1, TimAdvPeriph, 0x40012c00);
 
 
 

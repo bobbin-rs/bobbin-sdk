@@ -609,8 +609,4 @@ impl ::core::fmt::Debug for Pr {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct ExtiCh(pub ExtiPeriph, pub usize);

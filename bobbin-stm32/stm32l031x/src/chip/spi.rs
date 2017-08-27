@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_SPI1, SpiPeriph, SPI1, Spi1, 0x40013000);
+periph!( SPI1, Spi1, _SPI1, SpiPeriph, 0x40013000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SPI Peripheral"]

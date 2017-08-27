@@ -2,9 +2,9 @@
 
 pub use kinetis_common::chip::lpspi::*;
 
-periph!(_LPSPI0, LpspiPeriph, LPSPI0, Lpspi0, 0x4002c000);
-periph!(_LPSPI1, LpspiPeriph, LPSPI1, Lpspi1, 0x4002d000);
-periph!(_LPSPI2, LpspiPeriph, LPSPI2, Lpspi2, 0x4002e000);
+periph!( LPSPI0, Lpspi0, _LPSPI0, LpspiPeriph, 0x4002c000);
+periph!( LPSPI1, Lpspi1, _LPSPI1, LpspiPeriph, 0x4002d000);
+periph!( LPSPI2, Lpspi2, _LPSPI2, LpspiPeriph, 0x4002e000);
 
 impl super::sig::Signal<super::sig::Lpspi0Sck> for Lpspi0 {}
 impl super::sig::SignalSpiSck<super::sig::Lpspi0Sck> for Lpspi0 {}

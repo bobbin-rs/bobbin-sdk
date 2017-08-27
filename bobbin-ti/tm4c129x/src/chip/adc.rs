@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_ADC0, AdcPeriph, ADC0, Adc0, 0x40038000);
-periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x40039000);
+periph!( ADC0, Adc0, _ADC0, AdcPeriph, 0x40038000);
+periph!( ADC1, Adc1, _ADC1, AdcPeriph, 0x40039000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC Peripheral"]
@@ -2669,48 +2669,44 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, 0);
-channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, 1);
-channel!(ADC0_CH2, Adc0Ch2, ADC0, Adc0, 2);
-channel!(ADC0_CH3, Adc0Ch3, ADC0, Adc0, 3);
-channel!(ADC0_CH4, Adc0Ch4, ADC0, Adc0, 4);
-channel!(ADC0_CH5, Adc0Ch5, ADC0, Adc0, 5);
-channel!(ADC0_CH6, Adc0Ch6, ADC0, Adc0, 6);
-channel!(ADC0_CH7, Adc0Ch7, ADC0, Adc0, 7);
-channel!(ADC0_CH8, Adc0Ch8, ADC0, Adc0, 8);
-channel!(ADC0_CH9, Adc0Ch9, ADC0, Adc0, 9);
-channel!(ADC0_CH10, Adc0Ch10, ADC0, Adc0, 10);
-channel!(ADC0_CH11, Adc0Ch11, ADC0, Adc0, 11);
-channel!(ADC0_CH12, Adc0Ch12, ADC0, Adc0, 12);
-channel!(ADC0_CH13, Adc0Ch13, ADC0, Adc0, 13);
-channel!(ADC0_CH14, Adc0Ch14, ADC0, Adc0, 14);
-channel!(ADC0_CH15, Adc0Ch15, ADC0, Adc0, 15);
-channel!(ADC0_CH16, Adc0Ch16, ADC0, Adc0, 16);
-channel!(ADC0_CH17, Adc0Ch17, ADC0, Adc0, 17);
-channel!(ADC0_CH18, Adc0Ch18, ADC0, Adc0, 18);
-channel!(ADC0_CH19, Adc0Ch19, ADC0, Adc0, 19);
-channel!(ADC1_CH0, Adc1Ch0, ADC1, Adc1, 0);
-channel!(ADC1_CH1, Adc1Ch1, ADC1, Adc1, 1);
-channel!(ADC1_CH2, Adc1Ch2, ADC1, Adc1, 2);
-channel!(ADC1_CH3, Adc1Ch3, ADC1, Adc1, 3);
-channel!(ADC1_CH4, Adc1Ch4, ADC1, Adc1, 4);
-channel!(ADC1_CH5, Adc1Ch5, ADC1, Adc1, 5);
-channel!(ADC1_CH6, Adc1Ch6, ADC1, Adc1, 6);
-channel!(ADC1_CH7, Adc1Ch7, ADC1, Adc1, 7);
-channel!(ADC1_CH8, Adc1Ch8, ADC1, Adc1, 8);
-channel!(ADC1_CH9, Adc1Ch9, ADC1, Adc1, 9);
-channel!(ADC1_CH10, Adc1Ch10, ADC1, Adc1, 10);
-channel!(ADC1_CH11, Adc1Ch11, ADC1, Adc1, 11);
-channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, 12);
-channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, 13);
-channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, 14);
-channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, 15);
-channel!(ADC1_CH16, Adc1Ch16, ADC1, Adc1, 16);
-channel!(ADC1_CH17, Adc1Ch17, ADC1, Adc1, 17);
-channel!(ADC1_CH18, Adc1Ch18, ADC1, Adc1, 18);
-channel!(ADC1_CH19, Adc1Ch19, ADC1, Adc1, 19);
+pub struct AdcCh(pub AdcPeriph, pub usize);
+channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, _ADC0_CH0, AdcCh, _ADC0, 0);
+channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, _ADC0_CH1, AdcCh, _ADC0, 1);
+channel!(ADC0_CH2, Adc0Ch2, ADC0, Adc0, _ADC0_CH2, AdcCh, _ADC0, 2);
+channel!(ADC0_CH3, Adc0Ch3, ADC0, Adc0, _ADC0_CH3, AdcCh, _ADC0, 3);
+channel!(ADC0_CH4, Adc0Ch4, ADC0, Adc0, _ADC0_CH4, AdcCh, _ADC0, 4);
+channel!(ADC0_CH5, Adc0Ch5, ADC0, Adc0, _ADC0_CH5, AdcCh, _ADC0, 5);
+channel!(ADC0_CH6, Adc0Ch6, ADC0, Adc0, _ADC0_CH6, AdcCh, _ADC0, 6);
+channel!(ADC0_CH7, Adc0Ch7, ADC0, Adc0, _ADC0_CH7, AdcCh, _ADC0, 7);
+channel!(ADC0_CH8, Adc0Ch8, ADC0, Adc0, _ADC0_CH8, AdcCh, _ADC0, 8);
+channel!(ADC0_CH9, Adc0Ch9, ADC0, Adc0, _ADC0_CH9, AdcCh, _ADC0, 9);
+channel!(ADC0_CH10, Adc0Ch10, ADC0, Adc0, _ADC0_CH10, AdcCh, _ADC0, 10);
+channel!(ADC0_CH11, Adc0Ch11, ADC0, Adc0, _ADC0_CH11, AdcCh, _ADC0, 11);
+channel!(ADC0_CH12, Adc0Ch12, ADC0, Adc0, _ADC0_CH12, AdcCh, _ADC0, 12);
+channel!(ADC0_CH13, Adc0Ch13, ADC0, Adc0, _ADC0_CH13, AdcCh, _ADC0, 13);
+channel!(ADC0_CH14, Adc0Ch14, ADC0, Adc0, _ADC0_CH14, AdcCh, _ADC0, 14);
+channel!(ADC0_CH15, Adc0Ch15, ADC0, Adc0, _ADC0_CH15, AdcCh, _ADC0, 15);
+channel!(ADC0_CH16, Adc0Ch16, ADC0, Adc0, _ADC0_CH16, AdcCh, _ADC0, 16);
+channel!(ADC0_CH17, Adc0Ch17, ADC0, Adc0, _ADC0_CH17, AdcCh, _ADC0, 17);
+channel!(ADC0_CH18, Adc0Ch18, ADC0, Adc0, _ADC0_CH18, AdcCh, _ADC0, 18);
+channel!(ADC0_CH19, Adc0Ch19, ADC0, Adc0, _ADC0_CH19, AdcCh, _ADC0, 19);
+channel!(ADC1_CH0, Adc1Ch0, ADC1, Adc1, _ADC1_CH0, AdcCh, _ADC1, 0);
+channel!(ADC1_CH1, Adc1Ch1, ADC1, Adc1, _ADC1_CH1, AdcCh, _ADC1, 1);
+channel!(ADC1_CH2, Adc1Ch2, ADC1, Adc1, _ADC1_CH2, AdcCh, _ADC1, 2);
+channel!(ADC1_CH3, Adc1Ch3, ADC1, Adc1, _ADC1_CH3, AdcCh, _ADC1, 3);
+channel!(ADC1_CH4, Adc1Ch4, ADC1, Adc1, _ADC1_CH4, AdcCh, _ADC1, 4);
+channel!(ADC1_CH5, Adc1Ch5, ADC1, Adc1, _ADC1_CH5, AdcCh, _ADC1, 5);
+channel!(ADC1_CH6, Adc1Ch6, ADC1, Adc1, _ADC1_CH6, AdcCh, _ADC1, 6);
+channel!(ADC1_CH7, Adc1Ch7, ADC1, Adc1, _ADC1_CH7, AdcCh, _ADC1, 7);
+channel!(ADC1_CH8, Adc1Ch8, ADC1, Adc1, _ADC1_CH8, AdcCh, _ADC1, 8);
+channel!(ADC1_CH9, Adc1Ch9, ADC1, Adc1, _ADC1_CH9, AdcCh, _ADC1, 9);
+channel!(ADC1_CH10, Adc1Ch10, ADC1, Adc1, _ADC1_CH10, AdcCh, _ADC1, 10);
+channel!(ADC1_CH11, Adc1Ch11, ADC1, Adc1, _ADC1_CH11, AdcCh, _ADC1, 11);
+channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, _ADC1_CH12, AdcCh, _ADC1, 12);
+channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, _ADC1_CH13, AdcCh, _ADC1, 13);
+channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, _ADC1_CH14, AdcCh, _ADC1, 14);
+channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, _ADC1_CH15, AdcCh, _ADC1, 15);
+channel!(ADC1_CH16, Adc1Ch16, ADC1, Adc1, _ADC1_CH16, AdcCh, _ADC1, 16);
+channel!(ADC1_CH17, Adc1Ch17, ADC1, Adc1, _ADC1_CH17, AdcCh, _ADC1, 17);
+channel!(ADC1_CH18, Adc1Ch18, ADC1, Adc1, _ADC1_CH18, AdcCh, _ADC1, 18);
+channel!(ADC1_CH19, Adc1Ch19, ADC1, Adc1, _ADC1_CH19, AdcCh, _ADC1, 19);

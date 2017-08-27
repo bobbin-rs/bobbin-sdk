@@ -2,9 +2,9 @@
 
 pub use kinetis_common::chip::spi::*;
 
-periph!(_SPI0, SpiPeriph, SPI0, Spi0, 0x4002c000);
-periph!(_SPI1, SpiPeriph, SPI1, Spi1, 0x4002d000);
-periph!(_SPI2, SpiPeriph, SPI2, Spi2, 0x400ac000);
+periph!( SPI0, Spi0, _SPI0, SpiPeriph, 0x4002c000);
+periph!( SPI1, Spi1, _SPI1, SpiPeriph, 0x4002d000);
+periph!( SPI2, Spi2, _SPI2, SpiPeriph, 0x400ac000);
 
 
 

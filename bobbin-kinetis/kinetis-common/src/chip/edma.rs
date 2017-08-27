@@ -2894,8 +2894,4 @@ impl ::core::fmt::Debug for TcdBiterElinkyes {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct EdmaCh(pub EdmaPeriph, pub usize);

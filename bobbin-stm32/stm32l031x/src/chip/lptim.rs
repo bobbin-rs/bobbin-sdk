@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::lptim::*;
 
-periph!(_LPTIM, LptimPeriph, LPTIM, Lptim, 0x40007c00);
+periph!( LPTIM, Lptim, _LPTIM, LptimPeriph, 0x40007c00);
 
 
 

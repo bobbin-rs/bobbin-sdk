@@ -1,9 +1,9 @@
 //! Timer/Counter
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_TC3, TcPeriph, TC3, Tc3, 0x42002c00);
-periph!(_TC4, TcPeriph, TC4, Tc4, 0x42003000);
-periph!(_TC5, TcPeriph, TC5, Tc5, 0x42003400);
+periph!( TC3, Tc3, _TC3, TcPeriph, 0x42002c00);
+periph!( TC4, Tc4, _TC4, TcPeriph, 0x42003000);
+periph!( TC5, Tc5, _TC5, TcPeriph, 0x42003400);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TC Peripheral"]
@@ -3997,14 +3997,10 @@ impl ::core::fmt::Debug for Status {
 }
 }
 // End of count32
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(TC3_CH0, Tc3Ch0, TC3, Tc3, 0);
-channel!(TC3_CH1, Tc3Ch1, TC3, Tc3, 1);
-channel!(TC4_CH0, Tc4Ch0, TC4, Tc4, 0);
-channel!(TC4_CH1, Tc4Ch1, TC4, Tc4, 1);
-channel!(TC5_CH0, Tc5Ch0, TC5, Tc5, 0);
-channel!(TC5_CH1, Tc5Ch1, TC5, Tc5, 1);
+pub struct TcCh(pub TcPeriph, pub usize);
+channel!(TC3_CH0, Tc3Ch0, TC3, Tc3, _TC3_CH0, TcCh, _TC3, 0);
+channel!(TC3_CH1, Tc3Ch1, TC3, Tc3, _TC3_CH1, TcCh, _TC3, 1);
+channel!(TC4_CH0, Tc4Ch0, TC4, Tc4, _TC4_CH0, TcCh, _TC4, 0);
+channel!(TC4_CH1, Tc4Ch1, TC4, Tc4, _TC4_CH1, TcCh, _TC4, 1);
+channel!(TC5_CH0, Tc5Ch0, TC5, Tc5, _TC5_CH0, TcCh, _TC5, 0);
+channel!(TC5_CH1, Tc5Ch1, TC5, Tc5, _TC5_CH1, TcCh, _TC5, 1);

@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::lpuart::*;
 
-periph!(_LPUART1, LpuartPeriph, LPUART1, Lpuart1, 0x40004800);
+periph!( LPUART1, Lpuart1, _LPUART1, LpuartPeriph, 0x40004800);
 
 impl super::sig::Signal<super::sig::Lpuart1Tx> for Lpuart1 {}
 impl super::sig::SignalTx<super::sig::Lpuart1Tx> for Lpuart1 {}

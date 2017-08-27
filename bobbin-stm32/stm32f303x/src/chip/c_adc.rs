@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_C_ADC12, CAdcPeriph, C_ADC12, CAdc12, 0x50000300);
-periph!(_C_ADC34, CAdcPeriph, C_ADC34, CAdc34, 0x50000700);
+periph!( C_ADC12, CAdc12, _C_ADC12, CAdcPeriph, 0x50000300);
+periph!( C_ADC34, CAdc34, _C_ADC34, CAdcPeriph, 0x50000700);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="C_ADC Peripheral"]

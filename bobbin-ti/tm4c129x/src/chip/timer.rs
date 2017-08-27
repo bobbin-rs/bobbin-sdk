@@ -1,13 +1,13 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_TIMER0, TimerPeriph, TIMER0, Timer0, 0x40030000);
-periph!(_TIMER1, TimerPeriph, TIMER1, Timer1, 0x40031000);
-periph!(_TIMER2, TimerPeriph, TIMER2, Timer2, 0x40032000);
-periph!(_TIMER3, TimerPeriph, TIMER3, Timer3, 0x40033000);
-periph!(_TIMER4, TimerPeriph, TIMER4, Timer4, 0x40034000);
-periph!(_TIMER5, TimerPeriph, TIMER5, Timer5, 0x40035000);
-periph!(_TIMER6, TimerPeriph, TIMER6, Timer6, 0x400e0000);
-periph!(_TIMER7, TimerPeriph, TIMER7, Timer7, 0x400e1000);
+periph!( TIMER0, Timer0, _TIMER0, TimerPeriph, 0x40030000);
+periph!( TIMER1, Timer1, _TIMER1, TimerPeriph, 0x40031000);
+periph!( TIMER2, Timer2, _TIMER2, TimerPeriph, 0x40032000);
+periph!( TIMER3, Timer3, _TIMER3, TimerPeriph, 0x40033000);
+periph!( TIMER4, Timer4, _TIMER4, TimerPeriph, 0x40034000);
+periph!( TIMER5, Timer5, _TIMER5, TimerPeriph, 0x40035000);
+periph!( TIMER6, Timer6, _TIMER6, TimerPeriph, 0x400e0000);
+periph!( TIMER7, Timer7, _TIMER7, TimerPeriph, 0x400e1000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TIMER Peripheral"]
@@ -2307,24 +2307,20 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(TIMER0A, Timer0a, TIMER0, Timer0, 0);
-channel!(TIMER0B, Timer0b, TIMER0, Timer0, 1);
-channel!(TIMER1A, Timer1a, TIMER1, Timer1, 0);
-channel!(TIMER1B, Timer1b, TIMER1, Timer1, 1);
-channel!(TIMER2A, Timer2a, TIMER2, Timer2, 0);
-channel!(TIMER2B, Timer2b, TIMER2, Timer2, 1);
-channel!(TIMER3A, Timer3a, TIMER3, Timer3, 0);
-channel!(TIMER3B, Timer3b, TIMER3, Timer3, 1);
-channel!(TIMER4A, Timer4a, TIMER4, Timer4, 0);
-channel!(TIMER4B, Timer4b, TIMER4, Timer4, 1);
-channel!(TIMER5A, Timer5a, TIMER5, Timer5, 0);
-channel!(TIMER5B, Timer5b, TIMER5, Timer5, 1);
-channel!(TIMER6A, Timer6a, TIMER6, Timer6, 0);
-channel!(TIMER6B, Timer6b, TIMER6, Timer6, 1);
-channel!(TIMER7A, Timer7a, TIMER7, Timer7, 0);
-channel!(TIMER7B, Timer7b, TIMER7, Timer7, 1);
+pub struct TimerCh(pub TimerPeriph, pub usize);
+channel!(TIMER0A, Timer0a, TIMER0, Timer0, _TIMER0A, TimerCh, _TIMER0, 0);
+channel!(TIMER0B, Timer0b, TIMER0, Timer0, _TIMER0B, TimerCh, _TIMER0, 1);
+channel!(TIMER1A, Timer1a, TIMER1, Timer1, _TIMER1A, TimerCh, _TIMER1, 0);
+channel!(TIMER1B, Timer1b, TIMER1, Timer1, _TIMER1B, TimerCh, _TIMER1, 1);
+channel!(TIMER2A, Timer2a, TIMER2, Timer2, _TIMER2A, TimerCh, _TIMER2, 0);
+channel!(TIMER2B, Timer2b, TIMER2, Timer2, _TIMER2B, TimerCh, _TIMER2, 1);
+channel!(TIMER3A, Timer3a, TIMER3, Timer3, _TIMER3A, TimerCh, _TIMER3, 0);
+channel!(TIMER3B, Timer3b, TIMER3, Timer3, _TIMER3B, TimerCh, _TIMER3, 1);
+channel!(TIMER4A, Timer4a, TIMER4, Timer4, _TIMER4A, TimerCh, _TIMER4, 0);
+channel!(TIMER4B, Timer4b, TIMER4, Timer4, _TIMER4B, TimerCh, _TIMER4, 1);
+channel!(TIMER5A, Timer5a, TIMER5, Timer5, _TIMER5A, TimerCh, _TIMER5, 0);
+channel!(TIMER5B, Timer5b, TIMER5, Timer5, _TIMER5B, TimerCh, _TIMER5, 1);
+channel!(TIMER6A, Timer6a, TIMER6, Timer6, _TIMER6A, TimerCh, _TIMER6, 0);
+channel!(TIMER6B, Timer6b, TIMER6, Timer6, _TIMER6B, TimerCh, _TIMER6, 1);
+channel!(TIMER7A, Timer7a, TIMER7, Timer7, _TIMER7A, TimerCh, _TIMER7, 0);
+channel!(TIMER7B, Timer7b, TIMER7, Timer7, _TIMER7B, TimerCh, _TIMER7, 1);

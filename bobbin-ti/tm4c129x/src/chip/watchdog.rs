@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_WATCHDOG0, WatchdogPeriph, WATCHDOG0, Watchdog0, 0x40000000);
-periph!(_WATCHDOG1, WatchdogPeriph, WATCHDOG1, Watchdog1, 0x40001000);
+periph!( WATCHDOG0, Watchdog0, _WATCHDOG0, WatchdogPeriph, 0x40000000);
+periph!( WATCHDOG1, Watchdog1, _WATCHDOG1, WatchdogPeriph, 0x40001000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="WATCHDOG Peripheral"]

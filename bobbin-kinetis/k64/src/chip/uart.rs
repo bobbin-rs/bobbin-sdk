@@ -2,12 +2,12 @@
 
 pub use kinetis_common::chip::uart::*;
 
-periph!(_UART0, UartPeriph, UART0, Uart0, 0x4006a000);
-periph!(_UART1, UartPeriph, UART1, Uart1, 0x4006b000);
-periph!(_UART2, UartPeriph, UART2, Uart2, 0x4006c000);
-periph!(_UART3, UartPeriph, UART3, Uart3, 0x4006d000);
-periph!(_UART4, UartPeriph, UART4, Uart4, 0x400ea000);
-periph!(_UART5, UartPeriph, UART5, Uart5, 0x400eb000);
+periph!( UART0, Uart0, _UART0, UartPeriph, 0x4006a000);
+periph!( UART1, Uart1, _UART1, UartPeriph, 0x4006b000);
+periph!( UART2, Uart2, _UART2, UartPeriph, 0x4006c000);
+periph!( UART3, Uart3, _UART3, UartPeriph, 0x4006d000);
+periph!( UART4, Uart4, _UART4, UartPeriph, 0x400ea000);
+periph!( UART5, Uart5, _UART5, UartPeriph, 0x400eb000);
 
 impl super::sig::Signal<super::sig::Uart0Tx> for Uart0 {}
 impl super::sig::SignalTx<super::sig::Uart0Tx> for Uart0 {}

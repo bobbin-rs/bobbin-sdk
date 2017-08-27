@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::crc_24::*;
 
-periph!(_CRC, CrcPeriph, CRC, Crc, 0x40023000);
+periph!( CRC, Crc, _CRC, CrcPeriph, 0x40023000);
 
 
 

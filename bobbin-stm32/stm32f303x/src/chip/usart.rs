@@ -2,11 +2,11 @@
 
 pub use stm32_common::chip::usart::*;
 
-periph!(_USART1, UsartPeriph, USART1, Usart1, 0x40013800);
-periph!(_USART2, UsartPeriph, USART2, Usart2, 0x40004400);
-periph!(_USART3, UsartPeriph, USART3, Usart3, 0x40004800);
-periph!(_UART4, UsartPeriph, UART4, Uart4, 0x40004c00);
-periph!(_UART5, UsartPeriph, UART5, Uart5, 0x40005000);
+periph!( USART1, Usart1, _USART1, UsartPeriph, 0x40013800);
+periph!( USART2, Usart2, _USART2, UsartPeriph, 0x40004400);
+periph!( USART3, Usart3, _USART3, UsartPeriph, 0x40004800);
+periph!( UART4, Uart4, _UART4, UsartPeriph, 0x40004c00);
+periph!( UART5, Uart5, _UART5, UsartPeriph, 0x40005000);
 
 impl super::sig::Signal<super::sig::Usart1Tx> for Usart1 {}
 impl super::sig::SignalTx<super::sig::Usart1Tx> for Usart1 {}

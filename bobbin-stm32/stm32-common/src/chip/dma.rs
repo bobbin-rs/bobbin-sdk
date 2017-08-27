@@ -2020,8 +2020,4 @@ impl ::core::fmt::Debug for Sfcr {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct DmaCh(pub DmaPeriph, pub usize);

@@ -1,13 +1,13 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_SPI1, SpiPeriph, SPI1, Spi1, 0x40013000);
-periph!(_SPI2, SpiPeriph, SPI2, Spi2, 0x40003800);
-periph!(_SPI3, SpiPeriph, SPI3, Spi3, 0x40003c00);
-periph!(_I2S2EXT, SpiPeriph, I2S2EXT, I2s2ext, 0x40003400);
-periph!(_I2S3EXT, SpiPeriph, I2S3EXT, I2s3ext, 0x40004000);
-periph!(_SPI4, SpiPeriph, SPI4, Spi4, 0x40013400);
-periph!(_SPI5, SpiPeriph, SPI5, Spi5, 0x40015000);
-periph!(_SPI6, SpiPeriph, SPI6, Spi6, 0x40015400);
+periph!( SPI1, Spi1, _SPI1, SpiPeriph, 0x40013000);
+periph!( SPI2, Spi2, _SPI2, SpiPeriph, 0x40003800);
+periph!( SPI3, Spi3, _SPI3, SpiPeriph, 0x40003c00);
+periph!( I2S2EXT, I2s2ext, _I2S2EXT, SpiPeriph, 0x40003400);
+periph!( I2S3EXT, I2s3ext, _I2S3EXT, SpiPeriph, 0x40004000);
+periph!( SPI4, Spi4, _SPI4, SpiPeriph, 0x40013400);
+periph!( SPI5, Spi5, _SPI5, SpiPeriph, 0x40015000);
+periph!( SPI6, Spi6, _SPI6, SpiPeriph, 0x40015400);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SPI Peripheral"]

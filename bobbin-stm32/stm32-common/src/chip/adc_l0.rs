@@ -1325,8 +1325,4 @@ impl ::core::fmt::Debug for Ccr {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct AdcL0Ch(pub AdcL0Periph, pub usize);

@@ -1,7 +1,7 @@
 //! Analog-to-Digital Converter
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_ADC, AdcPeriph, ADC, Adc, 0x42004000);
+periph!( ADC, Adc, _ADC, AdcPeriph, 0x42004000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC Peripheral"]
@@ -1712,28 +1712,24 @@ impl ::core::fmt::Debug for Winut {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
-channel!(ADC_CH0, AdcCh0, ADC, Adc, 0);
-channel!(ADC_CH1, AdcCh1, ADC, Adc, 1);
-channel!(ADC_CH2, AdcCh2, ADC, Adc, 2);
-channel!(ADC_CH3, AdcCh3, ADC, Adc, 3);
-channel!(ADC_CH4, AdcCh4, ADC, Adc, 4);
-channel!(ADC_CH5, AdcCh5, ADC, Adc, 5);
-channel!(ADC_CH6, AdcCh6, ADC, Adc, 6);
-channel!(ADC_CH7, AdcCh7, ADC, Adc, 7);
-channel!(ADC_CH8, AdcCh8, ADC, Adc, 8);
-channel!(ADC_CH9, AdcCh9, ADC, Adc, 9);
-channel!(ADC_CH10, AdcCh10, ADC, Adc, 10);
-channel!(ADC_CH11, AdcCh11, ADC, Adc, 11);
-channel!(ADC_CH12, AdcCh12, ADC, Adc, 12);
-channel!(ADC_CH13, AdcCh13, ADC, Adc, 13);
-channel!(ADC_CH14, AdcCh14, ADC, Adc, 14);
-channel!(ADC_CH15, AdcCh15, ADC, Adc, 15);
-channel!(ADC_CH16, AdcCh16, ADC, Adc, 16);
-channel!(ADC_CH17, AdcCh17, ADC, Adc, 17);
-channel!(ADC_CH18, AdcCh18, ADC, Adc, 18);
-channel!(ADC_CH19, AdcCh19, ADC, Adc, 19);
+pub struct AdcCh(pub AdcPeriph, pub usize);
+channel!(ADC_CH0, AdcCh0, ADC, Adc, _ADC_CH0, AdcCh, _ADC, 0);
+channel!(ADC_CH1, AdcCh1, ADC, Adc, _ADC_CH1, AdcCh, _ADC, 1);
+channel!(ADC_CH2, AdcCh2, ADC, Adc, _ADC_CH2, AdcCh, _ADC, 2);
+channel!(ADC_CH3, AdcCh3, ADC, Adc, _ADC_CH3, AdcCh, _ADC, 3);
+channel!(ADC_CH4, AdcCh4, ADC, Adc, _ADC_CH4, AdcCh, _ADC, 4);
+channel!(ADC_CH5, AdcCh5, ADC, Adc, _ADC_CH5, AdcCh, _ADC, 5);
+channel!(ADC_CH6, AdcCh6, ADC, Adc, _ADC_CH6, AdcCh, _ADC, 6);
+channel!(ADC_CH7, AdcCh7, ADC, Adc, _ADC_CH7, AdcCh, _ADC, 7);
+channel!(ADC_CH8, AdcCh8, ADC, Adc, _ADC_CH8, AdcCh, _ADC, 8);
+channel!(ADC_CH9, AdcCh9, ADC, Adc, _ADC_CH9, AdcCh, _ADC, 9);
+channel!(ADC_CH10, AdcCh10, ADC, Adc, _ADC_CH10, AdcCh, _ADC, 10);
+channel!(ADC_CH11, AdcCh11, ADC, Adc, _ADC_CH11, AdcCh, _ADC, 11);
+channel!(ADC_CH12, AdcCh12, ADC, Adc, _ADC_CH12, AdcCh, _ADC, 12);
+channel!(ADC_CH13, AdcCh13, ADC, Adc, _ADC_CH13, AdcCh, _ADC, 13);
+channel!(ADC_CH14, AdcCh14, ADC, Adc, _ADC_CH14, AdcCh, _ADC, 14);
+channel!(ADC_CH15, AdcCh15, ADC, Adc, _ADC_CH15, AdcCh, _ADC, 15);
+channel!(ADC_CH16, AdcCh16, ADC, Adc, _ADC_CH16, AdcCh, _ADC, 16);
+channel!(ADC_CH17, AdcCh17, ADC, Adc, _ADC_CH17, AdcCh, _ADC, 17);
+channel!(ADC_CH18, AdcCh18, ADC, Adc, _ADC_CH18, AdcCh, _ADC, 18);
+channel!(ADC_CH19, AdcCh19, ADC, Adc, _ADC_CH19, AdcCh, _ADC, 19);

@@ -727,8 +727,4 @@ impl ::core::fmt::Debug for Cmar {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct DmaF3Ch(pub DmaF3Periph, pub usize);

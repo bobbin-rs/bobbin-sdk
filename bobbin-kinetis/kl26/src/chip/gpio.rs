@@ -6,11 +6,11 @@ pub trait LinkPort<T> {
    fn port(&self) -> T;
 }
 
-periph!(_GPIOA, GpioPeriph, GPIOA, Gpioa, 0x400ff000);
-periph!(_GPIOB, GpioPeriph, GPIOB, Gpiob, 0x400ff040);
-periph!(_GPIOC, GpioPeriph, GPIOC, Gpioc, 0x400ff080);
-periph!(_GPIOD, GpioPeriph, GPIOD, Gpiod, 0x400ff0c0);
-periph!(_GPIOE, GpioPeriph, GPIOE, Gpioe, 0x400ff100);
+periph!( GPIOA, Gpioa, _GPIOA, GpioPeriph, 0x400ff000);
+periph!( GPIOB, Gpiob, _GPIOB, GpioPeriph, 0x400ff040);
+periph!( GPIOC, Gpioc, _GPIOC, GpioPeriph, 0x400ff080);
+periph!( GPIOD, Gpiod, _GPIOD, GpioPeriph, 0x400ff0c0);
+periph!( GPIOE, Gpioe, _GPIOE, GpioPeriph, 0x400ff100);
 
 impl LinkPort<super::port::Periph<super::port::PortaId>> for Gpioa {
    fn port(&self) -> super::port::Periph<super::port::PortaId> { super::port::PORTA }

@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(_DAC, DacPeriph, DAC, Dac, 0x40007400);
+periph!( DAC, Dac, _DAC, DacPeriph, 0x40007400);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DAC Peripheral"]

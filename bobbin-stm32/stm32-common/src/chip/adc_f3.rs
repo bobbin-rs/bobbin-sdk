@@ -3011,8 +3011,4 @@ impl ::core::fmt::Debug for Calfact {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct AdcF3Ch(pub AdcF3Periph, pub usize);

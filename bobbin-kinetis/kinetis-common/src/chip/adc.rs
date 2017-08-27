@@ -1866,8 +1866,4 @@ impl ::core::fmt::Debug for Clm0 {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct AdcCh(pub AdcPeriph, pub usize);

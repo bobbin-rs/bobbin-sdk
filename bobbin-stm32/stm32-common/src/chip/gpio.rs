@@ -919,8 +919,4 @@ impl ::core::fmt::Debug for Brr {
       Ok(())
    }
 }
-pub trait Pin<T> {
-   fn port(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct GpioPin(pub GpioPeriph, pub usize);

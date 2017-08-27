@@ -2,7 +2,7 @@
 
 pub use kinetis_common::chip::lptmr::*;
 
-periph!(_LPTMR0, LptmrPeriph, LPTMR0, Lptmr0, 0x40040000);
+periph!( LPTMR0, Lptmr0, _LPTMR0, LptmrPeriph, 0x40040000);
 
 
 

@@ -1572,8 +1572,4 @@ impl ::core::fmt::Debug for Dr {
       Ok(())
    }
 }
-pub trait Channel<T> {
-   fn periph(&self) -> T;
-   fn index(&self) -> usize;
-}
-
+pub struct AdcF1Ch(pub AdcF1Periph, pub usize);
