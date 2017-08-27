@@ -2,7 +2,7 @@
 
 pub use kinetis_common::chip::lpit::*;
 
-periph!(LpitPeriph, LPIT0, Lpit0, 0x40037000);
+periph!(_LPIT0, LpitPeriph, LPIT0, Lpit0, 0x40037000);
 
 
 

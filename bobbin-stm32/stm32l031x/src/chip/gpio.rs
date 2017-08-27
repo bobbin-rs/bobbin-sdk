@@ -2,10 +2,10 @@
 
 pub use stm32_common::chip::gpio::*;
 
-periph!(GpioPeriph, GPIOA, Gpioa, 0x50000000);
-periph!(GpioPeriph, GPIOB, Gpiob, 0x50000400);
-periph!(GpioPeriph, GPIOC, Gpioc, 0x50000800);
-periph!(GpioPeriph, GPIOH, Gpioh, 0x50001c00);
+periph!(_GPIOA, GpioPeriph, GPIOA, Gpioa, 0x50000000);
+periph!(_GPIOB, GpioPeriph, GPIOB, Gpiob, 0x50000400);
+periph!(_GPIOC, GpioPeriph, GPIOC, Gpioc, 0x50000800);
+periph!(_GPIOH, GpioPeriph, GPIOH, Gpioh, 0x50001c00);
 
 
 

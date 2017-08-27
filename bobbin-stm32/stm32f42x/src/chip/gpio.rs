@@ -2,17 +2,17 @@
 
 pub use stm32_common::chip::gpio::*;
 
-periph!(GpioPeriph, GPIOA, Gpioa, 0x40020000);
-periph!(GpioPeriph, GPIOB, Gpiob, 0x40020400);
-periph!(GpioPeriph, GPIOC, Gpioc, 0x40020800);
-periph!(GpioPeriph, GPIOD, Gpiod, 0x40020c00);
-periph!(GpioPeriph, GPIOE, Gpioe, 0x40021000);
-periph!(GpioPeriph, GPIOF, Gpiof, 0x40021400);
-periph!(GpioPeriph, GPIOG, Gpiog, 0x40021800);
-periph!(GpioPeriph, GPIOH, Gpioh, 0x40021c00);
-periph!(GpioPeriph, GPIOI, Gpioi, 0x40022000);
-periph!(GpioPeriph, GPIOJ, Gpioj, 0x40022400);
-periph!(GpioPeriph, GPIOK, Gpiok, 0x40022800);
+periph!(_GPIOA, GpioPeriph, GPIOA, Gpioa, 0x40020000);
+periph!(_GPIOB, GpioPeriph, GPIOB, Gpiob, 0x40020400);
+periph!(_GPIOC, GpioPeriph, GPIOC, Gpioc, 0x40020800);
+periph!(_GPIOD, GpioPeriph, GPIOD, Gpiod, 0x40020c00);
+periph!(_GPIOE, GpioPeriph, GPIOE, Gpioe, 0x40021000);
+periph!(_GPIOF, GpioPeriph, GPIOF, Gpiof, 0x40021400);
+periph!(_GPIOG, GpioPeriph, GPIOG, Gpiog, 0x40021800);
+periph!(_GPIOH, GpioPeriph, GPIOH, Gpioh, 0x40021c00);
+periph!(_GPIOI, GpioPeriph, GPIOI, Gpioi, 0x40022000);
+periph!(_GPIOJ, GpioPeriph, GPIOJ, Gpioj, 0x40022400);
+periph!(_GPIOK, GpioPeriph, GPIOK, Gpiok, 0x40022800);
 
 
 

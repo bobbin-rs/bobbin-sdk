@@ -2,14 +2,14 @@
 
 pub use stm32_common::chip::usart_f24::*;
 
-periph!(UsartF24Periph, USART1, Usart1, 0x40011000);
-periph!(UsartF24Periph, USART2, Usart2, 0x40004400);
-periph!(UsartF24Periph, USART3, Usart3, 0x40004800);
-periph!(UsartF24Periph, UART4, Uart4, 0x40004c00);
-periph!(UsartF24Periph, UART5, Uart5, 0x40005000);
-periph!(UsartF24Periph, USART6, Usart6, 0x40011400);
-periph!(UsartF24Periph, UART7, Uart7, 0x40007800);
-periph!(UsartF24Periph, UART8, Uart8, 0x40007c00);
+periph!(_USART1, UsartF24Periph, USART1, Usart1, 0x40011000);
+periph!(_USART2, UsartF24Periph, USART2, Usart2, 0x40004400);
+periph!(_USART3, UsartF24Periph, USART3, Usart3, 0x40004800);
+periph!(_UART4, UsartF24Periph, UART4, Uart4, 0x40004c00);
+periph!(_UART5, UsartF24Periph, UART5, Uart5, 0x40005000);
+periph!(_USART6, UsartF24Periph, USART6, Usart6, 0x40011400);
+periph!(_UART7, UsartF24Periph, UART7, Uart7, 0x40007800);
+periph!(_UART8, UsartF24Periph, UART8, Uart8, 0x40007c00);
 
 impl super::sig::Signal<super::sig::Usart1Tx> for Usart1 {}
 impl super::sig::SignalTx<super::sig::Usart1Tx> for Usart1 {}

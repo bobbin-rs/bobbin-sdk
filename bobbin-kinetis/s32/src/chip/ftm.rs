@@ -2,10 +2,10 @@
 
 pub use kinetis_common::chip::ftm::*;
 
-periph!(FtmPeriph, FTM0, Ftm0, 0x40038000);
-periph!(FtmPeriph, FTM1, Ftm1, 0x40039000);
-periph!(FtmPeriph, FTM2, Ftm2, 0x4003a000);
-periph!(FtmPeriph, FTM3, Ftm3, 0x40026000);
+periph!(_FTM0, FtmPeriph, FTM0, Ftm0, 0x40038000);
+periph!(_FTM1, FtmPeriph, FTM1, Ftm1, 0x40039000);
+periph!(_FTM2, FtmPeriph, FTM2, Ftm2, 0x4003a000);
+periph!(_FTM3, FtmPeriph, FTM3, Ftm3, 0x40026000);
 
 impl super::sig::Signal<super::sig::Ftm0Ch0> for Ftm0Ch0 {}
 impl super::sig::SignalFtm<super::sig::Ftm0Ch0> for Ftm0Ch0 {}

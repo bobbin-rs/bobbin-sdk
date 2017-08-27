@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::exti::*;
 
-periph!(ExtiPeriph, EXTI, Exti, 0x40013c00);
+periph!(_EXTI, ExtiPeriph, EXTI, Exti, 0x40013c00);
 
 
 

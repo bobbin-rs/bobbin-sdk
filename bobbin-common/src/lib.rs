@@ -11,6 +11,7 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 
+pub use core::ops::Deref;
 
 #[cfg(not(test))] use core::ptr::{read_volatile, write_volatile};
 
@@ -97,13 +98,19 @@ pub trait WrapHandleIrq {
 
 #[macro_export]
 macro_rules! periph {
-    ($pty:ty, $id:ident, $ty:ident, $base:expr) => (
-        pub const $id: $ty = $ty {};
+    ($pid:ident, $pty:ident, $id:ident, $ty:ident, $base:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $pid: $pty = $pty($base);
         pub struct $ty {}
-        impl $pty for $ty {}
-        impl Base for $ty {
-            fn base(&self) -> usize { $base }            
-        }        
+        impl Deref for $ty {
+            type Target = $pty;
+            fn deref(&self) -> &$pty {
+                &$pid
+            }
+        }
+    );
+    ($id:ident, $ty:ident, $base:expr) => (    
+        pub const $id: $ty = $ty($base);
     )
 }
 
@@ -113,7 +120,7 @@ macro_rules! pin {
         pub const $id: $ty = $ty {};
         pub struct $ty {}
         impl Pin<$pty> for $ty {
-            fn periph(&self) -> $pty { $pid }
+            fn port(&self) -> $pty { $pid }
             fn index(&self) -> usize { $index }
         }
         

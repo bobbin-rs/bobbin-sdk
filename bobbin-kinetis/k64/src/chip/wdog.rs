@@ -2,7 +2,7 @@
 
 pub use kinetis_common::chip::wdog::*;
 
-periph!(WdogPeriph, WDOG, Wdog, 0x40052000);
+periph!(_WDOG, WdogPeriph, WDOG, Wdog, 0x40052000);
 
 
 

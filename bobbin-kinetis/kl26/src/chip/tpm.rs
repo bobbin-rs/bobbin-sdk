@@ -2,9 +2,9 @@
 
 pub use kinetis_common::chip::tpm::*;
 
-periph!(TpmPeriph, TPM0, Tpm0, 0x40038000);
-periph!(TpmPeriph, TPM1, Tpm1, 0x40039000);
-periph!(TpmPeriph, TPM2, Tpm2, 0x4003a000);
+periph!(_TPM0, TpmPeriph, TPM0, Tpm0, 0x40038000);
+periph!(_TPM1, TpmPeriph, TPM1, Tpm1, 0x40039000);
+periph!(_TPM2, TpmPeriph, TPM2, Tpm2, 0x4003a000);
 
 impl super::sig::Signal<super::sig::Tpm0Ch0> for Tpm0Ch0 {}
 impl super::sig::SignalTpm<super::sig::Tpm0Ch0> for Tpm0Ch0 {}

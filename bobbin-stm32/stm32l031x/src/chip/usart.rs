@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::usart::*;
 
-periph!(UsartPeriph, USART2, Usart2, 0x40004400);
+periph!(_USART2, UsartPeriph, USART2, Usart2, 0x40004400);
 
 impl super::sig::Signal<super::sig::Usart2Tx> for Usart2 {}
 impl super::sig::SignalTx<super::sig::Usart2Tx> for Usart2 {}

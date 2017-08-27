@@ -2,16 +2,16 @@
 
 pub use stm32_common::chip::tim_gen::*;
 
-periph!(TimGenPeriph, TIM2, Tim2, 0x40000000);
-periph!(TimGenPeriph, TIM3, Tim3, 0x40000400);
-periph!(TimGenPeriph, TIM4, Tim4, 0x40000800);
-periph!(TimGenPeriph, TIM5, Tim5, 0x40000c00);
-periph!(TimGenPeriph, TIM9, Tim9, 0x40014000);
-periph!(TimGenPeriph, TIM10, Tim10, 0x40014400);
-periph!(TimGenPeriph, TIM11, Tim11, 0x40014800);
-periph!(TimGenPeriph, TIM12, Tim12, 0x40001800);
-periph!(TimGenPeriph, TIM13, Tim13, 0x40001c00);
-periph!(TimGenPeriph, TIM14, Tim14, 0x40002000);
+periph!(_TIM2, TimGenPeriph, TIM2, Tim2, 0x40000000);
+periph!(_TIM3, TimGenPeriph, TIM3, Tim3, 0x40000400);
+periph!(_TIM4, TimGenPeriph, TIM4, Tim4, 0x40000800);
+periph!(_TIM5, TimGenPeriph, TIM5, Tim5, 0x40000c00);
+periph!(_TIM9, TimGenPeriph, TIM9, Tim9, 0x40014000);
+periph!(_TIM10, TimGenPeriph, TIM10, Tim10, 0x40014400);
+periph!(_TIM11, TimGenPeriph, TIM11, Tim11, 0x40014800);
+periph!(_TIM12, TimGenPeriph, TIM12, Tim12, 0x40001800);
+periph!(_TIM13, TimGenPeriph, TIM13, Tim13, 0x40001c00);
+periph!(_TIM14, TimGenPeriph, TIM14, Tim14, 0x40002000);
 
 impl super::sig::Signal<super::sig::Tim2Ch1> for Tim2Ch1 {}
 impl super::sig::SignalTim<super::sig::Tim2Ch1> for Tim2Ch1 {}

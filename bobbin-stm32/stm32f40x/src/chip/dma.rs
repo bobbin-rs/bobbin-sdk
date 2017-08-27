@@ -2,8 +2,8 @@
 
 pub use stm32_common::chip::dma::*;
 
-periph!(DmaPeriph, DMA1, Dma1, 0x40026000);
-periph!(DmaPeriph, DMA2, Dma2, 0x40026400);
+periph!(_DMA1, DmaPeriph, DMA1, Dma1, 0x40026000);
+periph!(_DMA2, DmaPeriph, DMA2, Dma2, 0x40026400);
 
 
 

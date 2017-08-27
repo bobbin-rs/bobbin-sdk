@@ -1,40 +1,40 @@
 //! Oscillator
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(OscPeriph, OSC, Osc, 0x40065000);
+periph!(OSC, Osc, 0x40065000);
 
 #[doc="Oscillator"]
-pub trait OscPeriph : Base {
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Osc(pub usize);
+impl Osc {
 #[doc="Get the *const pointer for the CR register."]
-   #[inline] fn cr_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn cr_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x0) as *const u8
    }
 #[doc="Get the *mut pointer for the CR register."]
-   #[inline] fn cr_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn cr_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x0) as *mut u8
    }
 #[doc="Read the CR register."]
-   #[inline] fn cr(&self) -> Cr { 
+   #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
-         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u8))
+         Cr(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 #[doc="Write the CR register."]
-   #[inline] fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }
 #[doc="Modify the CR register."]
-   #[inline] fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Cr(::core::ptr::read_volatile((self.base() + 0x0) as *const u8))
-      };
+   #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
+      let tmp = self.cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }

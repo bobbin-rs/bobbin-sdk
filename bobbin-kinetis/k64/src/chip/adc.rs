@@ -2,8 +2,8 @@
 
 pub use kinetis_common::chip::adc::*;
 
-periph!(AdcPeriph, ADC0, Adc0, 0x4003b000);
-periph!(AdcPeriph, ADC1, Adc1, 0x400bb000);
+periph!(_ADC0, AdcPeriph, ADC0, Adc0, 0x4003b000);
+periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x400bb000);
 
 impl super::sig::Signal<super::sig::Adc0Dp0> for Adc0Ch0 {}
 impl super::sig::SignalAdc<super::sig::Adc0Dp0> for Adc0Ch0 {}

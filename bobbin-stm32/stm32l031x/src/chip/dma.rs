@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::dma_f3::*;
 
-periph!(DmaPeriph, DMA1, Dma1, 0x40020000);
+periph!(_DMA1, DmaPeriph, DMA1, Dma1, 0x40020000);
 
 
 

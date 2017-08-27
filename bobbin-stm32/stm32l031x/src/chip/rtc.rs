@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::rtc::*;
 
-periph!(RtcPeriph, RTC, Rtc, 0x40002800);
+periph!(_RTC, RtcPeriph, RTC, Rtc, 0x40002800);
 
 
 

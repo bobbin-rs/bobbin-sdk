@@ -2,9 +2,9 @@
 
 pub use stm32_common::chip::adc_f24::*;
 
-periph!(AdcPeriph, ADC1, Adc1, 0x40012000);
-periph!(AdcPeriph, ADC2, Adc2, 0x40012100);
-periph!(AdcPeriph, ADC3, Adc3, 0x40012200);
+periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x40012000);
+periph!(_ADC2, AdcPeriph, ADC2, Adc2, 0x40012100);
+periph!(_ADC3, AdcPeriph, ADC3, Adc3, 0x40012200);
 
 impl super::sig::Signal<super::sig::Adc1In0> for Adc1Ch0 {}
 impl super::sig::SignalAdc<super::sig::Adc1In0> for Adc1Ch0 {}

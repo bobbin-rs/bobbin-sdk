@@ -2,7 +2,7 @@
 
 pub use kinetis_common::chip::dmamux::*;
 
-periph!(DmamuxPeriph, DMAMUX, Dmamux, 0x40021000);
+periph!(_DMAMUX, DmamuxPeriph, DMAMUX, Dmamux, 0x40021000);
 
 
 

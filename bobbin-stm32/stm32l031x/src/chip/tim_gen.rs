@@ -2,9 +2,9 @@
 
 pub use stm32_common::chip::tim_gen::*;
 
-periph!(TimGenPeriph, TIM2, Tim2, 0x40000000);
-periph!(TimGenPeriph, TIM21, Tim21, 0x40010800);
-periph!(TimGenPeriph, TIM22, Tim22, 0x40011400);
+periph!(_TIM2, TimGenPeriph, TIM2, Tim2, 0x40000000);
+periph!(_TIM21, TimGenPeriph, TIM21, Tim21, 0x40010800);
+periph!(_TIM22, TimGenPeriph, TIM22, Tim22, 0x40011400);
 
 impl super::sig::Signal<super::sig::Tim2Etr> for Tim2 {}
 impl super::sig::SignalEtr<super::sig::Tim2Etr> for Tim2 {}

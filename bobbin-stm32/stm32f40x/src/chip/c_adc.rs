@@ -1,71 +1,71 @@
 //! Common ADC registers
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(CAdcPeriph, C_ADC, CAdc, 0x40012300);
+periph!(C_ADC, CAdc, 0x40012300);
 
 #[doc="Common ADC registers"]
-pub trait CAdcPeriph : Base {
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct CAdc(pub usize);
+impl CAdc {
 #[doc="Get the *const pointer for the CSR register."]
-   #[inline] fn csr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn csr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x0) as *const u32
    }
 #[doc="Get the *mut pointer for the CSR register."]
-   #[inline] fn csr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn csr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x0) as *mut u32
    }
 #[doc="Read the CSR register."]
-   #[inline] fn csr(&self) -> Csr { 
+   #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
-         Csr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+         Csr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
 #[doc="Get the *const pointer for the CCR register."]
-   #[inline] fn ccr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn ccr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4) as *const u32
    }
 #[doc="Get the *mut pointer for the CCR register."]
-   #[inline] fn ccr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn ccr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4) as *mut u32
    }
 #[doc="Read the CCR register."]
-   #[inline] fn ccr(&self) -> Ccr { 
+   #[inline] pub fn ccr(&self) -> Ccr { 
       unsafe {
-         Ccr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+         Ccr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CCR register."]
-   #[inline] fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
       let value = f(Ccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCR register."]
-   #[inline] fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Ccr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
-      };
+   #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
+      let tmp = self.ccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CDR register."]
-   #[inline] fn cdr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn cdr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x8) as *const u32
    }
 #[doc="Get the *mut pointer for the CDR register."]
-   #[inline] fn cdr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn cdr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x8) as *mut u32
    }
 #[doc="Read the CDR register."]
-   #[inline] fn cdr(&self) -> Cdr { 
+   #[inline] pub fn cdr(&self) -> Cdr { 
       unsafe {
-         Cdr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+         Cdr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 

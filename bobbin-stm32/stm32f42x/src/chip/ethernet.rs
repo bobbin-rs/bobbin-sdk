@@ -1,667 +1,631 @@
 //! Ethernet: media access control (MAC)
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(EthernetPeriph, ETHERNET_MAC, Ethernet, 0x40028000);
+periph!(ETHERNET_MAC, Ethernet, 0x40028000);
 
 #[doc="Ethernet: media access control (MAC)"]
-pub trait EthernetPeriph : Base {
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Ethernet(pub usize);
+impl Ethernet {
 #[doc="Get the *const pointer for the MACCR register."]
-   #[inline] fn maccr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn maccr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x0) as *const u32
    }
 #[doc="Get the *mut pointer for the MACCR register."]
-   #[inline] fn maccr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn maccr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x0) as *mut u32
    }
 #[doc="Read the MACCR register."]
-   #[inline] fn maccr(&self) -> Maccr { 
+   #[inline] pub fn maccr(&self) -> Maccr { 
       unsafe {
-         Maccr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+         Maccr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the MACCR register."]
-   #[inline] fn set_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
       let value = f(Maccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACCR register."]
-   #[inline] fn with_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maccr(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
-      };
+   #[inline] pub fn with_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
+      let tmp = self.maccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACFFR register."]
-   #[inline] fn macffr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn macffr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4) as *const u32
    }
 #[doc="Get the *mut pointer for the MACFFR register."]
-   #[inline] fn macffr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn macffr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4) as *mut u32
    }
 #[doc="Read the MACFFR register."]
-   #[inline] fn macffr(&self) -> Macffr { 
+   #[inline] pub fn macffr(&self) -> Macffr { 
       unsafe {
-         Macffr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+         Macffr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the MACFFR register."]
-   #[inline] fn set_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
       let value = f(Macffr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACFFR register."]
-   #[inline] fn with_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macffr(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
-      };
+   #[inline] pub fn with_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
+      let tmp = self.macffr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACHTHR register."]
-   #[inline] fn machthr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn machthr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x8) as *const u32
    }
 #[doc="Get the *mut pointer for the MACHTHR register."]
-   #[inline] fn machthr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn machthr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x8) as *mut u32
    }
 #[doc="Read the MACHTHR register."]
-   #[inline] fn machthr(&self) -> Machthr { 
+   #[inline] pub fn machthr(&self) -> Machthr { 
       unsafe {
-         Machthr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+         Machthr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the MACHTHR register."]
-   #[inline] fn set_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
       let value = f(Machthr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACHTHR register."]
-   #[inline] fn with_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Machthr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
-      };
+   #[inline] pub fn with_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
+      let tmp = self.machthr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACHTLR register."]
-   #[inline] fn machtlr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn machtlr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0xc) as *const u32
    }
 #[doc="Get the *mut pointer for the MACHTLR register."]
-   #[inline] fn machtlr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn machtlr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0xc) as *mut u32
    }
 #[doc="Read the MACHTLR register."]
-   #[inline] fn machtlr(&self) -> Machtlr { 
+   #[inline] pub fn machtlr(&self) -> Machtlr { 
       unsafe {
-         Machtlr(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+         Machtlr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the MACHTLR register."]
-   #[inline] fn set_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
       let value = f(Machtlr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACHTLR register."]
-   #[inline] fn with_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Machtlr(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
-      };
+   #[inline] pub fn with_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
+      let tmp = self.machtlr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACMIIAR register."]
-   #[inline] fn macmiiar_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn macmiiar_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x10) as *const u32
    }
 #[doc="Get the *mut pointer for the MACMIIAR register."]
-   #[inline] fn macmiiar_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn macmiiar_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x10) as *mut u32
    }
 #[doc="Read the MACMIIAR register."]
-   #[inline] fn macmiiar(&self) -> Macmiiar { 
+   #[inline] pub fn macmiiar(&self) -> Macmiiar { 
       unsafe {
-         Macmiiar(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+         Macmiiar(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the MACMIIAR register."]
-   #[inline] fn set_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
       let value = f(Macmiiar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACMIIAR register."]
-   #[inline] fn with_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macmiiar(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
-      };
+   #[inline] pub fn with_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
+      let tmp = self.macmiiar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACMIIDR register."]
-   #[inline] fn macmiidr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn macmiidr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x14) as *const u32
    }
 #[doc="Get the *mut pointer for the MACMIIDR register."]
-   #[inline] fn macmiidr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn macmiidr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x14) as *mut u32
    }
 #[doc="Read the MACMIIDR register."]
-   #[inline] fn macmiidr(&self) -> Macmiidr { 
+   #[inline] pub fn macmiidr(&self) -> Macmiidr { 
       unsafe {
-         Macmiidr(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+         Macmiidr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the MACMIIDR register."]
-   #[inline] fn set_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
       let value = f(Macmiidr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACMIIDR register."]
-   #[inline] fn with_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macmiidr(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
-      };
+   #[inline] pub fn with_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
+      let tmp = self.macmiidr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACFCR register."]
-   #[inline] fn macfcr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x18)
+   #[inline] pub fn macfcr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x18) as *const u32
    }
 #[doc="Get the *mut pointer for the MACFCR register."]
-   #[inline] fn macfcr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x18)
+   #[inline] pub fn macfcr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x18) as *mut u32
    }
 #[doc="Read the MACFCR register."]
-   #[inline] fn macfcr(&self) -> Macfcr { 
+   #[inline] pub fn macfcr(&self) -> Macfcr { 
       unsafe {
-         Macfcr(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
+         Macfcr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the MACFCR register."]
-   #[inline] fn set_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
       let value = f(Macfcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACFCR register."]
-   #[inline] fn with_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macfcr(::core::ptr::read_volatile((self.base() + 0x18) as *const u32))
-      };
+   #[inline] pub fn with_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
+      let tmp = self.macfcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACVLANTR register."]
-   #[inline] fn macvlantr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x1c)
+   #[inline] pub fn macvlantr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x1c) as *const u32
    }
 #[doc="Get the *mut pointer for the MACVLANTR register."]
-   #[inline] fn macvlantr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x1c)
+   #[inline] pub fn macvlantr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x1c) as *mut u32
    }
 #[doc="Read the MACVLANTR register."]
-   #[inline] fn macvlantr(&self) -> Macvlantr { 
+   #[inline] pub fn macvlantr(&self) -> Macvlantr { 
       unsafe {
-         Macvlantr(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
+         Macvlantr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the MACVLANTR register."]
-   #[inline] fn set_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
       let value = f(Macvlantr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACVLANTR register."]
-   #[inline] fn with_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macvlantr(::core::ptr::read_volatile((self.base() + 0x1c) as *const u32))
-      };
+   #[inline] pub fn with_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
+      let tmp = self.macvlantr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x1c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACPMTCSR register."]
-   #[inline] fn macpmtcsr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x2c)
+   #[inline] pub fn macpmtcsr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x2c) as *const u32
    }
 #[doc="Get the *mut pointer for the MACPMTCSR register."]
-   #[inline] fn macpmtcsr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x2c)
+   #[inline] pub fn macpmtcsr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x2c) as *mut u32
    }
 #[doc="Read the MACPMTCSR register."]
-   #[inline] fn macpmtcsr(&self) -> Macpmtcsr { 
+   #[inline] pub fn macpmtcsr(&self) -> Macpmtcsr { 
       unsafe {
-         Macpmtcsr(::core::ptr::read_volatile((self.base() + 0x2c) as *const u32))
+         Macpmtcsr(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the MACPMTCSR register."]
-   #[inline] fn set_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
       let value = f(Macpmtcsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x2c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACPMTCSR register."]
-   #[inline] fn with_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macpmtcsr(::core::ptr::read_volatile((self.base() + 0x2c) as *const u32))
-      };
+   #[inline] pub fn with_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
+      let tmp = self.macpmtcsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x2c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACDBGR register."]
-   #[inline] fn macdbgr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x34)
+   #[inline] pub fn macdbgr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x34) as *const u32
    }
 #[doc="Get the *mut pointer for the MACDBGR register."]
-   #[inline] fn macdbgr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x34)
+   #[inline] pub fn macdbgr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x34) as *mut u32
    }
 #[doc="Read the MACDBGR register."]
-   #[inline] fn macdbgr(&self) -> Macdbgr { 
+   #[inline] pub fn macdbgr(&self) -> Macdbgr { 
       unsafe {
-         Macdbgr(::core::ptr::read_volatile((self.base() + 0x34) as *const u32))
+         Macdbgr(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 
 #[doc="Get the *const pointer for the MACSR register."]
-   #[inline] fn macsr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x38)
+   #[inline] pub fn macsr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x38) as *const u32
    }
 #[doc="Get the *mut pointer for the MACSR register."]
-   #[inline] fn macsr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x38)
+   #[inline] pub fn macsr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x38) as *mut u32
    }
 #[doc="Read the MACSR register."]
-   #[inline] fn macsr(&self) -> Macsr { 
+   #[inline] pub fn macsr(&self) -> Macsr { 
       unsafe {
-         Macsr(::core::ptr::read_volatile((self.base() + 0x38) as *const u32))
+         Macsr(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the MACSR register."]
-   #[inline] fn set_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
       let value = f(Macsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x38) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACSR register."]
-   #[inline] fn with_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macsr(::core::ptr::read_volatile((self.base() + 0x38) as *const u32))
-      };
+   #[inline] pub fn with_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
+      let tmp = self.macsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x38) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACIMR register."]
-   #[inline] fn macimr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x3c)
+   #[inline] pub fn macimr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x3c) as *const u32
    }
 #[doc="Get the *mut pointer for the MACIMR register."]
-   #[inline] fn macimr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x3c)
+   #[inline] pub fn macimr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x3c) as *mut u32
    }
 #[doc="Read the MACIMR register."]
-   #[inline] fn macimr(&self) -> Macimr { 
+   #[inline] pub fn macimr(&self) -> Macimr { 
       unsafe {
-         Macimr(::core::ptr::read_volatile((self.base() + 0x3c) as *const u32))
+         Macimr(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the MACIMR register."]
-   #[inline] fn set_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
       let value = f(Macimr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x3c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACIMR register."]
-   #[inline] fn with_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Macimr(::core::ptr::read_volatile((self.base() + 0x3c) as *const u32))
-      };
+   #[inline] pub fn with_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
+      let tmp = self.macimr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x3c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA0HR register."]
-   #[inline] fn maca0hr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x40)
+   #[inline] pub fn maca0hr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x40) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA0HR register."]
-   #[inline] fn maca0hr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x40)
+   #[inline] pub fn maca0hr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x40) as *mut u32
    }
 #[doc="Read the MACA0HR register."]
-   #[inline] fn maca0hr(&self) -> Maca0hr { 
+   #[inline] pub fn maca0hr(&self) -> Maca0hr { 
       unsafe {
-         Maca0hr(::core::ptr::read_volatile((self.base() + 0x40) as *const u32))
+         Maca0hr(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the MACA0HR register."]
-   #[inline] fn set_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
       let value = f(Maca0hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x40) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA0HR register."]
-   #[inline] fn with_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca0hr(::core::ptr::read_volatile((self.base() + 0x40) as *const u32))
-      };
+   #[inline] pub fn with_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
+      let tmp = self.maca0hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x40) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA0LR register."]
-   #[inline] fn maca0lr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x44)
+   #[inline] pub fn maca0lr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x44) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA0LR register."]
-   #[inline] fn maca0lr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x44)
+   #[inline] pub fn maca0lr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x44) as *mut u32
    }
 #[doc="Read the MACA0LR register."]
-   #[inline] fn maca0lr(&self) -> Maca0lr { 
+   #[inline] pub fn maca0lr(&self) -> Maca0lr { 
       unsafe {
-         Maca0lr(::core::ptr::read_volatile((self.base() + 0x44) as *const u32))
+         Maca0lr(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the MACA0LR register."]
-   #[inline] fn set_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
       let value = f(Maca0lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x44) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA0LR register."]
-   #[inline] fn with_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca0lr(::core::ptr::read_volatile((self.base() + 0x44) as *const u32))
-      };
+   #[inline] pub fn with_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
+      let tmp = self.maca0lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x44) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA1HR register."]
-   #[inline] fn maca1hr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x48)
+   #[inline] pub fn maca1hr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x48) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA1HR register."]
-   #[inline] fn maca1hr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x48)
+   #[inline] pub fn maca1hr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x48) as *mut u32
    }
 #[doc="Read the MACA1HR register."]
-   #[inline] fn maca1hr(&self) -> Maca1hr { 
+   #[inline] pub fn maca1hr(&self) -> Maca1hr { 
       unsafe {
-         Maca1hr(::core::ptr::read_volatile((self.base() + 0x48) as *const u32))
+         Maca1hr(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the MACA1HR register."]
-   #[inline] fn set_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
       let value = f(Maca1hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x48) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA1HR register."]
-   #[inline] fn with_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca1hr(::core::ptr::read_volatile((self.base() + 0x48) as *const u32))
-      };
+   #[inline] pub fn with_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
+      let tmp = self.maca1hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x48) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA1LR register."]
-   #[inline] fn maca1lr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4c)
+   #[inline] pub fn maca1lr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4c) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA1LR register."]
-   #[inline] fn maca1lr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4c)
+   #[inline] pub fn maca1lr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4c) as *mut u32
    }
 #[doc="Read the MACA1LR register."]
-   #[inline] fn maca1lr(&self) -> Maca1lr { 
+   #[inline] pub fn maca1lr(&self) -> Maca1lr { 
       unsafe {
-         Maca1lr(::core::ptr::read_volatile((self.base() + 0x4c) as *const u32))
+         Maca1lr(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the MACA1LR register."]
-   #[inline] fn set_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
       let value = f(Maca1lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA1LR register."]
-   #[inline] fn with_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca1lr(::core::ptr::read_volatile((self.base() + 0x4c) as *const u32))
-      };
+   #[inline] pub fn with_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
+      let tmp = self.maca1lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA2HR register."]
-   #[inline] fn maca2hr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x50)
+   #[inline] pub fn maca2hr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x50) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA2HR register."]
-   #[inline] fn maca2hr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x50)
+   #[inline] pub fn maca2hr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x50) as *mut u32
    }
 #[doc="Read the MACA2HR register."]
-   #[inline] fn maca2hr(&self) -> Maca2hr { 
+   #[inline] pub fn maca2hr(&self) -> Maca2hr { 
       unsafe {
-         Maca2hr(::core::ptr::read_volatile((self.base() + 0x50) as *const u32))
+         Maca2hr(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the MACA2HR register."]
-   #[inline] fn set_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
       let value = f(Maca2hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x50) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA2HR register."]
-   #[inline] fn with_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca2hr(::core::ptr::read_volatile((self.base() + 0x50) as *const u32))
-      };
+   #[inline] pub fn with_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
+      let tmp = self.maca2hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x50) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA2LR register."]
-   #[inline] fn maca2lr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x54)
+   #[inline] pub fn maca2lr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x54) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA2LR register."]
-   #[inline] fn maca2lr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x54)
+   #[inline] pub fn maca2lr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x54) as *mut u32
    }
 #[doc="Read the MACA2LR register."]
-   #[inline] fn maca2lr(&self) -> Maca2lr { 
+   #[inline] pub fn maca2lr(&self) -> Maca2lr { 
       unsafe {
-         Maca2lr(::core::ptr::read_volatile((self.base() + 0x54) as *const u32))
+         Maca2lr(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the MACA2LR register."]
-   #[inline] fn set_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
       let value = f(Maca2lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x54) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA2LR register."]
-   #[inline] fn with_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca2lr(::core::ptr::read_volatile((self.base() + 0x54) as *const u32))
-      };
+   #[inline] pub fn with_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
+      let tmp = self.maca2lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x54) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA3HR register."]
-   #[inline] fn maca3hr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x58)
+   #[inline] pub fn maca3hr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x58) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA3HR register."]
-   #[inline] fn maca3hr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x58)
+   #[inline] pub fn maca3hr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x58) as *mut u32
    }
 #[doc="Read the MACA3HR register."]
-   #[inline] fn maca3hr(&self) -> Maca3hr { 
+   #[inline] pub fn maca3hr(&self) -> Maca3hr { 
       unsafe {
-         Maca3hr(::core::ptr::read_volatile((self.base() + 0x58) as *const u32))
+         Maca3hr(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the MACA3HR register."]
-   #[inline] fn set_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
       let value = f(Maca3hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x58) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA3HR register."]
-   #[inline] fn with_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca3hr(::core::ptr::read_volatile((self.base() + 0x58) as *const u32))
-      };
+   #[inline] pub fn with_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
+      let tmp = self.maca3hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x58) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MACA3LR register."]
-   #[inline] fn maca3lr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x5c)
+   #[inline] pub fn maca3lr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x5c) as *const u32
    }
 #[doc="Get the *mut pointer for the MACA3LR register."]
-   #[inline] fn maca3lr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x5c)
+   #[inline] pub fn maca3lr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x5c) as *mut u32
    }
 #[doc="Read the MACA3LR register."]
-   #[inline] fn maca3lr(&self) -> Maca3lr { 
+   #[inline] pub fn maca3lr(&self) -> Maca3lr { 
       unsafe {
-         Maca3lr(::core::ptr::read_volatile((self.base() + 0x5c) as *const u32))
+         Maca3lr(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the MACA3LR register."]
-   #[inline] fn set_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
       let value = f(Maca3lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the MACA3LR register."]
-   #[inline] fn with_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Maca3lr(::core::ptr::read_volatile((self.base() + 0x5c) as *const u32))
-      };
+   #[inline] pub fn with_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
+      let tmp = self.maca3lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }

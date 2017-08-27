@@ -2,7 +2,7 @@
 
 pub use kinetis_common::chip::edma::*;
 
-periph!(EdmaPeriph, DMA, Dma, 0x40008000);
+periph!(_DMA, EdmaPeriph, DMA, Dma, 0x40008000);
 
 
 

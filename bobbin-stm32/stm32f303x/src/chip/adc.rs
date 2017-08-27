@@ -2,10 +2,10 @@
 
 pub use stm32_common::chip::adc_f3::*;
 
-periph!(AdcPeriph, ADC1, Adc1, 0x50000000);
-periph!(AdcPeriph, ADC2, Adc2, 0x50000100);
-periph!(AdcPeriph, ADC3, Adc3, 0x50000400);
-periph!(AdcPeriph, ADC4, Adc4, 0x50000500);
+periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x50000000);
+periph!(_ADC2, AdcPeriph, ADC2, Adc2, 0x50000100);
+periph!(_ADC3, AdcPeriph, ADC3, Adc3, 0x50000400);
+periph!(_ADC4, AdcPeriph, ADC4, Adc4, 0x50000500);
 
 impl super::sig::Signal<super::sig::Adc1In1> for Adc1Ch1 {}
 impl super::sig::SignalAdc<super::sig::Adc1In1> for Adc1Ch1 {}

@@ -2,7 +2,7 @@
 
 pub use stm32_common::chip::adc_l0::*;
 
-periph!(AdcPeriph, ADC1, Adc1, 0x40012400);
+periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x40012400);
 
 impl super::sig::Signal<super::sig::Adc1In0> for Adc1Ch0 {}
 impl super::sig::SignalAdc<super::sig::Adc1In0> for Adc1Ch0 {}

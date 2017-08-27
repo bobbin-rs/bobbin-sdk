@@ -1,731 +1,695 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="TIM_ADV Peripheral"]
+pub struct TimAdvPeriph(pub usize); 
 
-pub trait TimAdvPeriph : Base {
+
+impl TimAdvPeriph {
 #[doc="Get the *const pointer for the CR1 register."]
-   #[inline] fn cr1_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn cr1_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x0) as *const u32
    }
 #[doc="Get the *mut pointer for the CR1 register."]
-   #[inline] fn cr1_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn cr1_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x0) as *mut u32
    }
 #[doc="Read the CR1 register."]
-   #[inline] fn cr1(&self) -> Cr1 { 
+   #[inline] pub fn cr1(&self) -> Cr1 { 
       unsafe {
-         Cr1(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+         Cr1(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR1 register."]
-   #[inline] fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
+   #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
       let value = f(Cr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CR1 register."]
-   #[inline] fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Cr1(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
-      };
+   #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
+      let tmp = self.cr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CR2 register."]
-   #[inline] fn cr2_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn cr2_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4) as *const u32
    }
 #[doc="Get the *mut pointer for the CR2 register."]
-   #[inline] fn cr2_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn cr2_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4) as *mut u32
    }
 #[doc="Read the CR2 register."]
-   #[inline] fn cr2(&self) -> Cr2 { 
+   #[inline] pub fn cr2(&self) -> Cr2 { 
       unsafe {
-         Cr2(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
+         Cr2(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR2 register."]
-   #[inline] fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
+   #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
       let value = f(Cr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CR2 register."]
-   #[inline] fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Cr2(::core::ptr::read_volatile((self.base() + 0x4) as *const u32))
-      };
+   #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
+      let tmp = self.cr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the SMCR register."]
-   #[inline] fn smcr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn smcr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x8) as *const u32
    }
 #[doc="Get the *mut pointer for the SMCR register."]
-   #[inline] fn smcr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn smcr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x8) as *mut u32
    }
 #[doc="Read the SMCR register."]
-   #[inline] fn smcr(&self) -> Smcr { 
+   #[inline] pub fn smcr(&self) -> Smcr { 
       unsafe {
-         Smcr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
+         Smcr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the SMCR register."]
-   #[inline] fn set_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
       let value = f(Smcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the SMCR register."]
-   #[inline] fn with_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Smcr(::core::ptr::read_volatile((self.base() + 0x8) as *const u32))
-      };
+   #[inline] pub fn with_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
+      let tmp = self.smcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the DIER register."]
-   #[inline] fn dier_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn dier_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0xc) as *const u32
    }
 #[doc="Get the *mut pointer for the DIER register."]
-   #[inline] fn dier_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn dier_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0xc) as *mut u32
    }
 #[doc="Read the DIER register."]
-   #[inline] fn dier(&self) -> Dier { 
+   #[inline] pub fn dier(&self) -> Dier { 
       unsafe {
-         Dier(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
+         Dier(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the DIER register."]
-   #[inline] fn set_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
+   #[inline] pub fn set_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
       let value = f(Dier(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the DIER register."]
-   #[inline] fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Dier(::core::ptr::read_volatile((self.base() + 0xc) as *const u32))
-      };
+   #[inline] pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
+      let tmp = self.dier();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the SR register."]
-   #[inline] fn sr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn sr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x10) as *const u32
    }
 #[doc="Get the *mut pointer for the SR register."]
-   #[inline] fn sr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn sr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x10) as *mut u32
    }
 #[doc="Read the SR register."]
-   #[inline] fn sr(&self) -> Sr { 
+   #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
-         Sr(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+         Sr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the SR register."]
-   #[inline] fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the SR register."]
-   #[inline] fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Sr(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
-      };
+   #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
+      let tmp = self.sr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x10) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the EGR register."]
-   #[inline] fn egr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn egr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x14) as *const u32
    }
 #[doc="Get the *mut pointer for the EGR register."]
-   #[inline] fn egr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn egr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x14) as *mut u32
    }
 #[doc="Write the EGR register."]
-   #[inline] fn set_egr<F: FnOnce(Egr) -> Egr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_egr<F: FnOnce(Egr) -> Egr>(&self, f: F) -> &Self {
       let value = f(Egr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCMR_OUTPUT register."]
-   #[inline] fn ccmr_output_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
+   #[inline] pub fn ccmr_output_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x18 + (index << 2))
+      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
    }
 #[doc="Get the *mut pointer for the CCMR_OUTPUT register."]
-   #[inline] fn ccmr_output_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
+   #[inline] pub fn ccmr_output_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x18 + (index << 2))
+      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
    }
 #[doc="Read the CCMR_OUTPUT register."]
-   #[inline] fn ccmr_output<I: Into<bits::R2>>(&self, index: I) -> CcmrOutput { 
+   #[inline] pub fn ccmr_output<I: Into<bits::R2>>(&self, index: I) -> CcmrOutput { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         CcmrOutput(::core::ptr::read_volatile((self.base() + 0x18 + (index << 2)) as *const u32))
+         CcmrOutput(::core::ptr::read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CCMR_OUTPUT register."]
-   #[inline] fn set_ccmr_output<I: Into<bits::R2>, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn set_ccmr_output<I: Into<bits::R2>, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       let value = f(CcmrOutput(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCMR_OUTPUT register."]
-   #[inline] fn with_ccmr_output<I: Into<bits::R2> + Copy, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn with_ccmr_output<I: Into<bits::R2> + Copy, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      let tmp = unsafe {
-         CcmrOutput(::core::ptr::read_volatile((self.base() + 0x18 + (index << 2)) as *const u32))
-      };
+      let tmp = self.ccmr_output(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCMR_INPUT register."]
-   #[inline] fn ccmr_input_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
+   #[inline] pub fn ccmr_input_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x18 + (index << 2))
+      ((self.0 as usize) + 0x18 + (index << 2)) as *const u32
    }
 #[doc="Get the *mut pointer for the CCMR_INPUT register."]
-   #[inline] fn ccmr_input_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
+   #[inline] pub fn ccmr_input_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x18 + (index << 2))
+      ((self.0 as usize) + 0x18 + (index << 2)) as *mut u32
    }
 #[doc="Read the CCMR_INPUT register."]
-   #[inline] fn ccmr_input<I: Into<bits::R2>>(&self, index: I) -> CcmrInput { 
+   #[inline] pub fn ccmr_input<I: Into<bits::R2>>(&self, index: I) -> CcmrInput { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         CcmrInput(::core::ptr::read_volatile((self.base() + 0x18 + (index << 2)) as *const u32))
+         CcmrInput(::core::ptr::read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CCMR_INPUT register."]
-   #[inline] fn set_ccmr_input<I: Into<bits::R2>, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn set_ccmr_input<I: Into<bits::R2>, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       let value = f(CcmrInput(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCMR_INPUT register."]
-   #[inline] fn with_ccmr_input<I: Into<bits::R2> + Copy, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn with_ccmr_input<I: Into<bits::R2> + Copy, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
-      let tmp = unsafe {
-         CcmrInput(::core::ptr::read_volatile((self.base() + 0x18 + (index << 2)) as *const u32))
-      };
+      let tmp = self.ccmr_input(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x18 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCER register."]
-   #[inline] fn ccer_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x20)
+   #[inline] pub fn ccer_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x20) as *const u32
    }
 #[doc="Get the *mut pointer for the CCER register."]
-   #[inline] fn ccer_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x20)
+   #[inline] pub fn ccer_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x20) as *mut u32
    }
 #[doc="Read the CCER register."]
-   #[inline] fn ccer(&self) -> Ccer { 
+   #[inline] pub fn ccer(&self) -> Ccer { 
       unsafe {
-         Ccer(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
+         Ccer(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the CCER register."]
-   #[inline] fn set_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
       let value = f(Ccer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCER register."]
-   #[inline] fn with_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Ccer(::core::ptr::read_volatile((self.base() + 0x20) as *const u32))
-      };
+   #[inline] pub fn with_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
+      let tmp = self.ccer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x20) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CNT register."]
-   #[inline] fn cnt_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x24)
+   #[inline] pub fn cnt_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x24) as *const u32
    }
 #[doc="Get the *mut pointer for the CNT register."]
-   #[inline] fn cnt_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x24)
+   #[inline] pub fn cnt_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x24) as *mut u32
    }
 #[doc="Read the CNT register."]
-   #[inline] fn cnt(&self) -> Cnt { 
+   #[inline] pub fn cnt(&self) -> Cnt { 
       unsafe {
-         Cnt(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
+         Cnt(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the CNT register."]
-   #[inline] fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
+   #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
       let value = f(Cnt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CNT register."]
-   #[inline] fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Cnt(::core::ptr::read_volatile((self.base() + 0x24) as *const u32))
-      };
+   #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
+      let tmp = self.cnt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x24) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the PSC register."]
-   #[inline] fn psc_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x28)
+   #[inline] pub fn psc_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x28) as *const u32
    }
 #[doc="Get the *mut pointer for the PSC register."]
-   #[inline] fn psc_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x28)
+   #[inline] pub fn psc_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x28) as *mut u32
    }
 #[doc="Read the PSC register."]
-   #[inline] fn psc(&self) -> Psc { 
+   #[inline] pub fn psc(&self) -> Psc { 
       unsafe {
-         Psc(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
+         Psc(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the PSC register."]
-   #[inline] fn set_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
+   #[inline] pub fn set_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
       let value = f(Psc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the PSC register."]
-   #[inline] fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Psc(::core::ptr::read_volatile((self.base() + 0x28) as *const u32))
-      };
+   #[inline] pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
+      let tmp = self.psc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x28) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the ARR register."]
-   #[inline] fn arr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x2c)
+   #[inline] pub fn arr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x2c) as *const u32
    }
 #[doc="Get the *mut pointer for the ARR register."]
-   #[inline] fn arr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x2c)
+   #[inline] pub fn arr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x2c) as *mut u32
    }
 #[doc="Read the ARR register."]
-   #[inline] fn arr(&self) -> Arr { 
+   #[inline] pub fn arr(&self) -> Arr { 
       unsafe {
-         Arr(::core::ptr::read_volatile((self.base() + 0x2c) as *const u32))
+         Arr(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the ARR register."]
-   #[inline] fn set_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
       let value = f(Arr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x2c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the ARR register."]
-   #[inline] fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Arr(::core::ptr::read_volatile((self.base() + 0x2c) as *const u32))
-      };
+   #[inline] pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
+      let tmp = self.arr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x2c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the RCR register."]
-   #[inline] fn rcr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x30)
+   #[inline] pub fn rcr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x30) as *const u32
    }
 #[doc="Get the *mut pointer for the RCR register."]
-   #[inline] fn rcr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x30)
+   #[inline] pub fn rcr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x30) as *mut u32
    }
 #[doc="Read the RCR register."]
-   #[inline] fn rcr(&self) -> Rcr { 
+   #[inline] pub fn rcr(&self) -> Rcr { 
       unsafe {
-         Rcr(::core::ptr::read_volatile((self.base() + 0x30) as *const u32))
+         Rcr(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the RCR register."]
-   #[inline] fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
       let value = f(Rcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x30) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the RCR register."]
-   #[inline] fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Rcr(::core::ptr::read_volatile((self.base() + 0x30) as *const u32))
-      };
+   #[inline] pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
+      let tmp = self.rcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x30) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCR register."]
-   #[inline] fn ccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
+   #[inline] pub fn ccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x34 + (index << 2))
+      ((self.0 as usize) + 0x34 + (index << 2)) as *const u32
    }
 #[doc="Get the *mut pointer for the CCR register."]
-   #[inline] fn ccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
+   #[inline] pub fn ccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x34 + (index << 2))
+      ((self.0 as usize) + 0x34 + (index << 2)) as *mut u32
    }
 #[doc="Read the CCR register."]
-   #[inline] fn ccr<I: Into<bits::R4>>(&self, index: I) -> Ccr { 
+   #[inline] pub fn ccr<I: Into<bits::R4>>(&self, index: I) -> Ccr { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Ccr(::core::ptr::read_volatile((self.base() + 0x34 + (index << 2)) as *const u32))
+         Ccr(::core::ptr::read_volatile((self.0 + 0x34 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CCR register."]
-   #[inline] fn set_ccr<I: Into<bits::R4>, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn set_ccr<I: Into<bits::R4>, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       let value = f(Ccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x34 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x34 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCR register."]
-   #[inline] fn with_ccr<I: Into<bits::R4> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn with_ccr<I: Into<bits::R4> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
-      let tmp = unsafe {
-         Ccr(::core::ptr::read_volatile((self.base() + 0x34 + (index << 2)) as *const u32))
-      };
+      let tmp = self.ccr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x34 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x34 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the BDTR register."]
-   #[inline] fn bdtr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x44)
+   #[inline] pub fn bdtr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x44) as *const u32
    }
 #[doc="Get the *mut pointer for the BDTR register."]
-   #[inline] fn bdtr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x44)
+   #[inline] pub fn bdtr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x44) as *mut u32
    }
 #[doc="Read the BDTR register."]
-   #[inline] fn bdtr(&self) -> Bdtr { 
+   #[inline] pub fn bdtr(&self) -> Bdtr { 
       unsafe {
-         Bdtr(::core::ptr::read_volatile((self.base() + 0x44) as *const u32))
+         Bdtr(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the BDTR register."]
-   #[inline] fn set_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
       let value = f(Bdtr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x44) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the BDTR register."]
-   #[inline] fn with_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Bdtr(::core::ptr::read_volatile((self.base() + 0x44) as *const u32))
-      };
+   #[inline] pub fn with_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
+      let tmp = self.bdtr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x44) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the DCR register."]
-   #[inline] fn dcr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x48)
+   #[inline] pub fn dcr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x48) as *const u32
    }
 #[doc="Get the *mut pointer for the DCR register."]
-   #[inline] fn dcr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x48)
+   #[inline] pub fn dcr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x48) as *mut u32
    }
 #[doc="Read the DCR register."]
-   #[inline] fn dcr(&self) -> Dcr { 
+   #[inline] pub fn dcr(&self) -> Dcr { 
       unsafe {
-         Dcr(::core::ptr::read_volatile((self.base() + 0x48) as *const u32))
+         Dcr(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the DCR register."]
-   #[inline] fn set_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
       let value = f(Dcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x48) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the DCR register."]
-   #[inline] fn with_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Dcr(::core::ptr::read_volatile((self.base() + 0x48) as *const u32))
-      };
+   #[inline] pub fn with_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
+      let tmp = self.dcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x48) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the DMAR register."]
-   #[inline] fn dmar_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4c)
+   #[inline] pub fn dmar_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4c) as *const u32
    }
 #[doc="Get the *mut pointer for the DMAR register."]
-   #[inline] fn dmar_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4c)
+   #[inline] pub fn dmar_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4c) as *mut u32
    }
 #[doc="Read the DMAR register."]
-   #[inline] fn dmar(&self) -> Dmar { 
+   #[inline] pub fn dmar(&self) -> Dmar { 
       unsafe {
-         Dmar(::core::ptr::read_volatile((self.base() + 0x4c) as *const u32))
+         Dmar(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the DMAR register."]
-   #[inline] fn set_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
+   #[inline] pub fn set_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
       let value = f(Dmar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the DMAR register."]
-   #[inline] fn with_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Dmar(::core::ptr::read_volatile((self.base() + 0x4c) as *const u32))
-      };
+   #[inline] pub fn with_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
+      let tmp = self.dmar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCMR3_OUTPUT register."]
-   #[inline] fn ccmr3_output_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x54)
+   #[inline] pub fn ccmr3_output_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x54) as *const u32
    }
 #[doc="Get the *mut pointer for the CCMR3_OUTPUT register."]
-   #[inline] fn ccmr3_output_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x54)
+   #[inline] pub fn ccmr3_output_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x54) as *mut u32
    }
 #[doc="Read the CCMR3_OUTPUT register."]
-   #[inline] fn ccmr3_output(&self) -> Ccmr3Output { 
+   #[inline] pub fn ccmr3_output(&self) -> Ccmr3Output { 
       unsafe {
-         Ccmr3Output(::core::ptr::read_volatile((self.base() + 0x54) as *const u32))
+         Ccmr3Output(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the CCMR3_OUTPUT register."]
-   #[inline] fn set_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
       let value = f(Ccmr3Output(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x54) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCMR3_OUTPUT register."]
-   #[inline] fn with_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Ccmr3Output(::core::ptr::read_volatile((self.base() + 0x54) as *const u32))
-      };
+   #[inline] pub fn with_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
+      let tmp = self.ccmr3_output();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x54) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCR5 register."]
-   #[inline] fn ccr5_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x58)
+   #[inline] pub fn ccr5_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x58) as *const u32
    }
 #[doc="Get the *mut pointer for the CCR5 register."]
-   #[inline] fn ccr5_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x58)
+   #[inline] pub fn ccr5_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x58) as *mut u32
    }
 #[doc="Read the CCR5 register."]
-   #[inline] fn ccr5(&self) -> Ccr5 { 
+   #[inline] pub fn ccr5(&self) -> Ccr5 { 
       unsafe {
-         Ccr5(::core::ptr::read_volatile((self.base() + 0x58) as *const u32))
+         Ccr5(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the CCR5 register."]
-   #[inline] fn set_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
       let value = f(Ccr5(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x58) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCR5 register."]
-   #[inline] fn with_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Ccr5(::core::ptr::read_volatile((self.base() + 0x58) as *const u32))
-      };
+   #[inline] pub fn with_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
+      let tmp = self.ccr5();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x58) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the CCR6 register."]
-   #[inline] fn ccr6_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x5c)
+   #[inline] pub fn ccr6_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x5c) as *const u32
    }
 #[doc="Get the *mut pointer for the CCR6 register."]
-   #[inline] fn ccr6_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x5c)
+   #[inline] pub fn ccr6_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x5c) as *mut u32
    }
 #[doc="Read the CCR6 register."]
-   #[inline] fn ccr6(&self) -> Ccr6 { 
+   #[inline] pub fn ccr6(&self) -> Ccr6 { 
       unsafe {
-         Ccr6(::core::ptr::read_volatile((self.base() + 0x5c) as *const u32))
+         Ccr6(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the CCR6 register."]
-   #[inline] fn set_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
       let value = f(Ccr6(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the CCR6 register."]
-   #[inline] fn with_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Ccr6(::core::ptr::read_volatile((self.base() + 0x5c) as *const u32))
-      };
+   #[inline] pub fn with_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
+      let tmp = self.ccr6();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5c) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the OR register."]
-   #[inline] fn or_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x60)
+   #[inline] pub fn or_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x60) as *const u32
    }
 #[doc="Get the *mut pointer for the OR register."]
-   #[inline] fn or_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x60)
+   #[inline] pub fn or_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x60) as *mut u32
    }
 #[doc="Read the OR register."]
-   #[inline] fn or(&self) -> Or { 
+   #[inline] pub fn or(&self) -> Or { 
       unsafe {
-         Or(::core::ptr::read_volatile((self.base() + 0x60) as *const u32))
+         Or(::core::ptr::read_volatile((self.0 + 0x60) as *const u32))
       }
    }
 #[doc="Write the OR register."]
-   #[inline] fn set_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
+   #[inline] pub fn set_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
       let value = f(Or(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x60) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the OR register."]
-   #[inline] fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Or(::core::ptr::read_volatile((self.base() + 0x60) as *const u32))
-      };
+   #[inline] pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
+      let tmp = self.or();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x60) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }

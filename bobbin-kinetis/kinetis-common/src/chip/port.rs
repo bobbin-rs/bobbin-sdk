@@ -1,116 +1,116 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="PORT Peripheral"]
+pub struct PortPeriph(pub usize); 
 
-pub trait PortPeriph : Base {
+
+impl PortPeriph {
 #[doc="Get the *const pointer for the PCR register."]
-   #[inline] fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
+   #[inline] pub fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const u32 { 
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x0 + (index << 2))
+      ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
    }
 #[doc="Get the *mut pointer for the PCR register."]
-   #[inline] fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
+   #[inline] pub fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut u32 { 
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
-      <Self as Base>::addr(&self, 0x0 + (index << 2))
+      ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
    }
 #[doc="Read the PCR register."]
-   #[inline] fn pcr<I: Into<bits::R32>>(&self, index: I) -> Pcr { 
+   #[inline] pub fn pcr<I: Into<bits::R32>>(&self, index: I) -> Pcr { 
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Pcr(::core::ptr::read_volatile((self.base() + 0x0 + (index << 2)) as *const u32))
+         Pcr(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the PCR register."]
-   #[inline] fn set_pcr<I: Into<bits::R32>, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn set_pcr<I: Into<bits::R32>, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       let value = f(Pcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the PCR register."]
-   #[inline] fn with_pcr<I: Into<bits::R32> + Copy, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
+   #[inline] pub fn with_pcr<I: Into<bits::R32> + Copy, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
-      let tmp = unsafe {
-         Pcr(::core::ptr::read_volatile((self.base() + 0x0 + (index << 2)) as *const u32))
-      };
+      let tmp = self.pcr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0 + (index << 2)) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the GPCLR register."]
-   #[inline] fn gpclr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x80)
+   #[inline] pub fn gpclr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x80) as *const u32
    }
 #[doc="Get the *mut pointer for the GPCLR register."]
-   #[inline] fn gpclr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x80)
+   #[inline] pub fn gpclr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x80) as *mut u32
    }
 #[doc="Write the GPCLR register."]
-   #[inline] fn set_gpclr<F: FnOnce(Gpclr) -> Gpclr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_gpclr<F: FnOnce(Gpclr) -> Gpclr>(&self, f: F) -> &Self {
       let value = f(Gpclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x80) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the GPCHR register."]
-   #[inline] fn gpchr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x84)
+   #[inline] pub fn gpchr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x84) as *const u32
    }
 #[doc="Get the *mut pointer for the GPCHR register."]
-   #[inline] fn gpchr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x84)
+   #[inline] pub fn gpchr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x84) as *mut u32
    }
 #[doc="Write the GPCHR register."]
-   #[inline] fn set_gpchr<F: FnOnce(Gpchr) -> Gpchr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_gpchr<F: FnOnce(Gpchr) -> Gpchr>(&self, f: F) -> &Self {
       let value = f(Gpchr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x84) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the ISFR register."]
-   #[inline] fn isfr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0xa0)
+   #[inline] pub fn isfr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0xa0) as *const u32
    }
 #[doc="Get the *mut pointer for the ISFR register."]
-   #[inline] fn isfr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0xa0)
+   #[inline] pub fn isfr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0xa0) as *mut u32
    }
 #[doc="Read the ISFR register."]
-   #[inline] fn isfr(&self) -> Isfr { 
+   #[inline] pub fn isfr(&self) -> Isfr { 
       unsafe {
-         Isfr(::core::ptr::read_volatile((self.base() + 0xa0) as *const u32))
+         Isfr(::core::ptr::read_volatile((self.0 + 0xa0) as *const u32))
       }
    }
 #[doc="Write the ISFR register."]
-   #[inline] fn set_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
       let value = f(Isfr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xa0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the ISFR register."]
-   #[inline] fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Isfr(::core::ptr::read_volatile((self.base() + 0xa0) as *const u32))
-      };
+   #[inline] pub fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
+      let tmp = self.isfr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xa0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }
@@ -433,7 +433,7 @@ impl ::core::fmt::Debug for Isfr {
    }
 }
 pub trait Pin<T> {
-   fn periph(&self) -> T;
+   fn port(&self) -> T;
    fn index(&self) -> usize;
 }
 

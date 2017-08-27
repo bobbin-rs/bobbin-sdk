@@ -2,8 +2,8 @@ pub use bobbin_common::serial::*;
 pub use chip::uart::*;
 pub use super::sysctl::SysctlEnabled;
 
-pub trait UartExt : UartPeriph {
-    fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
+impl UartPeriph {
+    pub fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
         let baud_div = ((8 * sysclk_hz) / baud_hz) + 1;
         let baud_int = baud_div / 64;
         let baud_frac = baud_div % 64;
@@ -16,15 +16,15 @@ pub trait UartExt : UartPeriph {
         self
     }
 
-    fn enable(&self) -> &Self {
+    pub fn enable(&self) -> &Self {
         self.with_ctl(|r| r.set_uarten(1))        
     }
 
-    fn disable(&self) -> &Self {
+    pub fn disable(&self) -> &Self {
         self.with_ctl(|r| r.set_uarten(0))
     }
 
-    // fn try_getc(&self) -> Option<u8> {
+    // pub fn try_getc(&self) -> Option<u8> {
     //     if !self.rxfe() {
     //         Some(self.data())
     //     } else {
@@ -32,36 +32,36 @@ pub trait UartExt : UartPeriph {
     //     }        
     // }
 
-    // fn putc(&self, c: u8) {
+    // pub fn putc(&self, c: u8) {
     //     while self.txff() {}
     //     self.set_data(c);
     // }
 
-    // fn write(&self, buf: &[u8]) {
+    // pub fn write(&self, buf: &[u8]) {
     //     for b in buf.iter() {
     //         self.putc(*b)
     //     }
     // }
 
-    fn data(&self) -> u8 {
+    pub fn data(&self) -> u8 {
         self.dr().data().value()
     }
 
-    fn set_data(&self, value: u8) -> &Self {  
+    pub fn set_data(&self, value: u8) -> &Self {  
         self.set_dr(|r| r.set_data(value))
     }
     
-    fn rxfe(&self) -> bool {
+    pub fn rxfe(&self) -> bool {
         self.fr().rxfe() != 0
     }
 
-    fn txff(&self) -> bool {
+    pub fn txff(&self) -> bool {
         self.fr().txff() != 0
     }        
 }
 
 
-impl SerialTx<u8> for UartPeriph {    
+impl SerialTx<u8> for UartPeriph  {
     fn can_tx(&self) -> bool {
         !self.txff()
     }

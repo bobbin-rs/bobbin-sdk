@@ -2,8 +2,8 @@
 
 pub use stm32_common::chip::adc_f1::*;
 
-periph!(AdcPeriph, ADC1, Adc1, 0x40012400);
-periph!(AdcPeriph, ADC2, Adc2, 0x40012800);
+periph!(_ADC1, AdcPeriph, ADC1, Adc1, 0x40012400);
+periph!(_ADC2, AdcPeriph, ADC2, Adc2, 0x40012800);
 
 
 

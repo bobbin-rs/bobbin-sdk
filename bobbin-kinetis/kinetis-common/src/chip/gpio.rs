@@ -1,138 +1,138 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+#[doc="GPIO Peripheral"]
+pub struct GpioPeriph(pub usize); 
 
-pub trait GpioPeriph : Base {
+
+impl GpioPeriph {
 #[doc="Get the *const pointer for the PDOR register."]
-   #[inline] fn pdor_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn pdor_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x0) as *const u32
    }
 #[doc="Get the *mut pointer for the PDOR register."]
-   #[inline] fn pdor_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn pdor_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x0) as *mut u32
    }
 #[doc="Read the PDOR register."]
-   #[inline] fn pdor(&self) -> Pdor { 
+   #[inline] pub fn pdor(&self) -> Pdor { 
       unsafe {
-         Pdor(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
+         Pdor(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the PDOR register."]
-   #[inline] fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
+   #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
       let value = f(Pdor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the PDOR register."]
-   #[inline] fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Pdor(::core::ptr::read_volatile((self.base() + 0x0) as *const u32))
-      };
+   #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
+      let tmp = self.pdor();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x0) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the PSOR register."]
-   #[inline] fn psor_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn psor_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x4) as *const u32
    }
 #[doc="Get the *mut pointer for the PSOR register."]
-   #[inline] fn psor_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn psor_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x4) as *mut u32
    }
 #[doc="Write the PSOR register."]
-   #[inline] fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
+   #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
       let value = f(Psor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the PCOR register."]
-   #[inline] fn pcor_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn pcor_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x8) as *const u32
    }
 #[doc="Get the *mut pointer for the PCOR register."]
-   #[inline] fn pcor_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x8)
+   #[inline] pub fn pcor_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x8) as *mut u32
    }
 #[doc="Write the PCOR register."]
-   #[inline] fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
+   #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
       let value = f(Pcor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x8) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the PTOR register."]
-   #[inline] fn ptor_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn ptor_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0xc) as *const u32
    }
 #[doc="Get the *mut pointer for the PTOR register."]
-   #[inline] fn ptor_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0xc)
+   #[inline] pub fn ptor_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0xc) as *mut u32
    }
 #[doc="Write the PTOR register."]
-   #[inline] fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
+   #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
       let value = f(Ptor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0xc) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the PDIR register."]
-   #[inline] fn pdir_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn pdir_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x10) as *const u32
    }
 #[doc="Get the *mut pointer for the PDIR register."]
-   #[inline] fn pdir_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x10)
+   #[inline] pub fn pdir_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x10) as *mut u32
    }
 #[doc="Read the PDIR register."]
-   #[inline] fn pdir(&self) -> Pdir { 
+   #[inline] pub fn pdir(&self) -> Pdir { 
       unsafe {
-         Pdir(::core::ptr::read_volatile((self.base() + 0x10) as *const u32))
+         Pdir(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 
 #[doc="Get the *const pointer for the PDDR register."]
-   #[inline] fn pddr_ptr(&self) -> *const u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn pddr_ptr(&self) -> *const u32 { 
+      ((self.0 as usize) + 0x14) as *const u32
    }
 #[doc="Get the *mut pointer for the PDDR register."]
-   #[inline] fn pddr_mut(&self) -> *mut u32 { 
-       <Self as Base>::addr(&self, 0x14)
+   #[inline] pub fn pddr_mut(&self) -> *mut u32 { 
+      ((self.0 as usize) + 0x14) as *mut u32
    }
 #[doc="Read the PDDR register."]
-   #[inline] fn pddr(&self) -> Pddr { 
+   #[inline] pub fn pddr(&self) -> Pddr { 
       unsafe {
-         Pddr(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
+         Pddr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the PDDR register."]
-   #[inline] fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
+   #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
       let value = f(Pddr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
 #[doc="Modify the PDDR register."]
-   #[inline] fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Pddr(::core::ptr::read_volatile((self.base() + 0x14) as *const u32))
-      };
+   #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
+      let tmp = self.pddr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x14) as *mut u32, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -548,7 +548,7 @@ impl ::core::fmt::Debug for Pddr {
    }
 }
 pub trait Pin<T> {
-   fn periph(&self) -> T;
+   fn port(&self) -> T;
    fn index(&self) -> usize;
 }
 

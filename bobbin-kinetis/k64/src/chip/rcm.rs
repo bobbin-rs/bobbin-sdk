@@ -1,120 +1,118 @@
 //! Reset Control Module
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(RcmPeriph, RCM, Rcm, 0x4007f000);
+periph!(RCM, Rcm, 0x4007f000);
 
 #[doc="Reset Control Module"]
-pub trait RcmPeriph : Base {
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Rcm(pub usize);
+impl Rcm {
 #[doc="Get the *const pointer for the SRS0 register."]
-   #[inline] fn srs0_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn srs0_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x0) as *const u8
    }
 #[doc="Get the *mut pointer for the SRS0 register."]
-   #[inline] fn srs0_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x0)
+   #[inline] pub fn srs0_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x0) as *mut u8
    }
 #[doc="Read the SRS0 register."]
-   #[inline] fn srs0(&self) -> Srs0 { 
+   #[inline] pub fn srs0(&self) -> Srs0 { 
       unsafe {
-         Srs0(::core::ptr::read_volatile((self.base() + 0x0) as *const u8))
+         Srs0(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 
 #[doc="Get the *const pointer for the SRS1 register."]
-   #[inline] fn srs1_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x1)
+   #[inline] pub fn srs1_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x1) as *const u8
    }
 #[doc="Get the *mut pointer for the SRS1 register."]
-   #[inline] fn srs1_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x1)
+   #[inline] pub fn srs1_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x1) as *mut u8
    }
 #[doc="Read the SRS1 register."]
-   #[inline] fn srs1(&self) -> Srs1 { 
+   #[inline] pub fn srs1(&self) -> Srs1 { 
       unsafe {
-         Srs1(::core::ptr::read_volatile((self.base() + 0x1) as *const u8))
+         Srs1(::core::ptr::read_volatile((self.0 + 0x1) as *const u8))
       }
    }
 
 #[doc="Get the *const pointer for the RPFC register."]
-   #[inline] fn rpfc_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn rpfc_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x4) as *const u8
    }
 #[doc="Get the *mut pointer for the RPFC register."]
-   #[inline] fn rpfc_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x4)
+   #[inline] pub fn rpfc_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x4) as *mut u8
    }
 #[doc="Read the RPFC register."]
-   #[inline] fn rpfc(&self) -> Rpfc { 
+   #[inline] pub fn rpfc(&self) -> Rpfc { 
       unsafe {
-         Rpfc(::core::ptr::read_volatile((self.base() + 0x4) as *const u8))
+         Rpfc(::core::ptr::read_volatile((self.0 + 0x4) as *const u8))
       }
    }
 #[doc="Write the RPFC register."]
-   #[inline] fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
+   #[inline] pub fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
       let value = f(Rpfc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
 #[doc="Modify the RPFC register."]
-   #[inline] fn with_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Rpfc(::core::ptr::read_volatile((self.base() + 0x4) as *const u8))
-      };
+   #[inline] pub fn with_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
+      let tmp = self.rpfc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x4) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the RPFW register."]
-   #[inline] fn rpfw_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x5)
+   #[inline] pub fn rpfw_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x5) as *const u8
    }
 #[doc="Get the *mut pointer for the RPFW register."]
-   #[inline] fn rpfw_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x5)
+   #[inline] pub fn rpfw_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x5) as *mut u8
    }
 #[doc="Read the RPFW register."]
-   #[inline] fn rpfw(&self) -> Rpfw { 
+   #[inline] pub fn rpfw(&self) -> Rpfw { 
       unsafe {
-         Rpfw(::core::ptr::read_volatile((self.base() + 0x5) as *const u8))
+         Rpfw(::core::ptr::read_volatile((self.0 + 0x5) as *const u8))
       }
    }
 #[doc="Write the RPFW register."]
-   #[inline] fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
+   #[inline] pub fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
       let value = f(Rpfw(0));
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
 #[doc="Modify the RPFW register."]
-   #[inline] fn with_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
-      let tmp = unsafe {
-         Rpfw(::core::ptr::read_volatile((self.base() + 0x5) as *const u8))
-      };
+   #[inline] pub fn with_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
+      let tmp = self.rpfw();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.base() + 0x5) as *mut u8, value.0);
+         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
 
 #[doc="Get the *const pointer for the MR register."]
-   #[inline] fn mr_ptr(&self) -> *const u8 { 
-       <Self as Base>::addr(&self, 0x7)
+   #[inline] pub fn mr_ptr(&self) -> *const u8 { 
+      ((self.0 as usize) + 0x7) as *const u8
    }
 #[doc="Get the *mut pointer for the MR register."]
-   #[inline] fn mr_mut(&self) -> *mut u8 { 
-       <Self as Base>::addr(&self, 0x7)
+   #[inline] pub fn mr_mut(&self) -> *mut u8 { 
+      ((self.0 as usize) + 0x7) as *mut u8
    }
 #[doc="Read the MR register."]
-   #[inline] fn mr(&self) -> Mr { 
+   #[inline] pub fn mr(&self) -> Mr { 
       unsafe {
-         Mr(::core::ptr::read_volatile((self.base() + 0x7) as *const u8))
+         Mr(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 
