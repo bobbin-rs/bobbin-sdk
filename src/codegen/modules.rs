@@ -576,7 +576,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }
 
     if pg.has_pins {
-        try!(writeln!(out, "pub struct {}(pub {}, pub usize);", pin_type, pg_type));
+        try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
         // try!(writeln!(out, "pub trait Pin<T> {{"));
         // try!(writeln!(out, "   fn port(&self) -> T;"));
         // try!(writeln!(out, "   fn index(&self) -> usize;"));
@@ -657,7 +657,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     // Generate Peripheral Group Channels
 
     if pg.has_channels {
-        try!(writeln!(out, "pub struct {}(pub {}, pub usize);", ch_type, pg_type));
+        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
     }
 
 
@@ -934,7 +934,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     // Generate Channels
 
     if p.channels.len() > 0 {
-        try!(writeln!(out, "pub struct {}(pub {}, pub usize);", ch_type, p_type));
+        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize);", ch_type, p_type));
     }
 
     for ch in p.channels.iter() {
