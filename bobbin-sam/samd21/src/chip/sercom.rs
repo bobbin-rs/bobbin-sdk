@@ -63,8 +63,6 @@ impl super::sig::Signal<super::sig::Sercom5Pad3> for Sercom5 {}
 impl super::sig::SignalPad3<super::sig::Sercom5Pad3> for Sercom5 {}
 
 
-pub trait SercomPeriph : Base {}
-
 pub mod i2cm {
    #[allow(unused_imports)] use bobbin_common::*;
 

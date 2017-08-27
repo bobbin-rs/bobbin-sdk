@@ -2341,6 +2341,11 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(TIMER0A, Timer0a, TIMER0, Timer0, 0);
 channel!(TIMER0B, Timer0b, TIMER0, Timer0, 1);
 channel!(TIMER1A, Timer1a, TIMER1, Timer1, 0);

@@ -63,15 +63,15 @@ pub trait Base {
     }
 }
 
-pub trait Pin<T> {
-    fn periph(&self) -> T;
-    fn index(&self) -> usize;
-}
+// pub trait Pin<T> {
+//     fn periph(&self) -> T;
+//     fn index(&self) -> usize;
+// }
 
-pub trait Channel<T> {
-    fn periph(&self) -> T;
-    fn index(&self) -> usize;
-}
+// pub trait Channel<T> {
+//     fn periph(&self) -> T;
+//     fn index(&self) -> usize;
+// }
 
 pub trait AltFn<T> {
     fn alt_fn(&self) -> u8;

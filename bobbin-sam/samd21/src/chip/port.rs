@@ -1332,6 +1332,11 @@ impl ::core::fmt::Debug for Wrconfig {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 pin!(PA00, Pa00, PORTA, Porta, 0);
    alt_fn!(Pa00, super::sig::Extint0, 0);
    alt_fn!(Pa00, super::sig::Sercom1Pad0, 3);

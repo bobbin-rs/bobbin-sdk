@@ -432,3 +432,8 @@ impl ::core::fmt::Debug for Isfr {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

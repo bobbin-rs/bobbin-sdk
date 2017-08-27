@@ -506,8 +506,6 @@ impl ::core::fmt::Debug for Pc {
       Ok(())
    }
 }
-pub trait I2cPeriph : Base {}
-
 pub mod master {
    #[allow(unused_imports)] use bobbin_common::*;
 

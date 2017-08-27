@@ -4,17 +4,13 @@ pub use ::chip::adc::*;
 pub use super::sysctl::SysctlEnabled;
 pub use super::gpio::ModeAin;
 
-pub trait AdcExt {
-    fn init(&self) -> &Self;
-}
-
-impl<T> AdcExt for Periph<T> {
+pub trait AdcExt: AdcPeriph {
     fn init(&self) -> &Self {
         self
     }
 }
 
-impl<P, T> AnalogRead<U12> for Channel<P, T> {
+impl<T> AnalogRead<U12> for Channel<T> where T: AdcPeriph {
     fn start(&self) -> &Self {
         self.periph
             .with_actss(|r| r.set_asen(0, 0))

@@ -17,31 +17,7 @@ pub enum Mode {
 
 // NOTE: Uses timer in Mode 0, 32 bit timer configuration.
 
-pub trait TimerChExt {
-    fn tmr(&self) -> Tmr;
-    fn set_tmr(&self, Tmr) -> &Self;
-    fn with_tmr<F: FnOnce(Tmr) -> Tmr>(&self, F) -> &Self;
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, value: bool) -> &Self;
-    fn reload(&self) -> u32;
-    fn set_reload(&self, value: u32) -> &Self;
-    fn compare(&self) -> u32;
-    fn set_compare(&self, value: u32) -> &Self;
-    fn prescale(&self) -> u8;
-    fn set_prescale(&self, value: u8) -> &Self;
-    fn value(&self) -> u32;
-    fn set_value(&self, value: u32) -> &Self;
-    fn match_dmaen(&self) -> bool;
-    fn set_match_dmaen(&self, value: bool) -> &Self;
-    fn timeout_flag(&self) -> bool;
-    fn clr_timeout_flag(&self) -> &Self;
-    fn match_flag(&self) -> bool;
-    fn clr_match_flag(&self) -> &Self;
-    fn dma_done_flag(&self) -> bool;
-    fn clr_dma_done_flag(&self) -> &Self;
-}
-
-impl<P, T> TimerChExt for Channel<P, T> {
+pub trait TimerChExt<T> : Channel<T> where T: TimerPeriph {
     fn tmr(&self) -> Tmr {
         self.periph.tmr(self.index)
     }
@@ -135,7 +111,7 @@ impl<P, T> TimerChExt for Channel<P, T> {
 }
 
 
-impl<T> Delay<u32> for Periph<T> {    
+impl Delay<u32> for TimerPeriph {    
     fn delay(&self, value: u32) -> &Self {
         self
             .start_down_once(value)
@@ -144,7 +120,7 @@ impl<T> Delay<u32> for Periph<T> {
     }
 }
 
-impl<T> Timer<u32> for Periph<T> {
+impl Timer<u32> for TimerPeriph {
     fn stop(&self) -> &Self {
         self.with_ctl(|r| r.set_ten(0, 0))
     }
@@ -172,13 +148,13 @@ impl<T> Timer<u32> for Periph<T> {
 }
 
 
-impl<T> Start<u32> for Periph<T> {
+impl Start<u32> for TimerPeriph {
     fn start(&self, value: u32) -> &Self {
         self.start_down(value)
     }
 }
 
-impl<T> StartDown<u32> for Periph<T> {
+impl StartDown<u32> for TimerPeriph {
     fn start_down(&self, value: u32) -> &Self {    
         // disable timer a        
         self.with_ctl(|r| r.set_ten(0, 0));
@@ -194,7 +170,7 @@ impl<T> StartDown<u32> for Periph<T> {
     }
 }
 
-impl<T> StartUp<u32> for Periph<T> {
+impl StartUp<u32> for TimerPeriph {
     fn start_up(&self, value: u32) -> &Self {
         // disable timer a        
         self.with_ctl(|r| r.set_ten(0, 0));
@@ -210,7 +186,7 @@ impl<T> StartUp<u32> for Periph<T> {
     }
 }
 
-impl<T> StartDownOnce<u32> for Periph<T> {
+impl StartDownOnce<u32> for TimerPeriph {
     fn start_down_once(&self, value: u32) -> &Self {
         // disable timer a        
         self.with_ctl(|r| r.set_ten(0, 0));
@@ -226,7 +202,7 @@ impl<T> StartDownOnce<u32> for Periph<T> {
     }
 }
 
-impl<T> StartUpOnce<u32> for Periph<T> {
+impl StartUpOnce<u32> for TimerPeriph {
     fn start_up_once(&self, value: u32) -> &Self {
         // disable timer a        
         self.with_ctl(|r| r.set_ten(0, 0));
@@ -242,7 +218,7 @@ impl<T> StartUpOnce<u32> for Periph<T> {
     }
 }
 
-impl<T> Prescale<u8> for Periph<T> {
+impl Prescale<u8> for TimerPeriph {
     fn prescale(&self) -> u8 {
         self.tpr(0).tpsr().value()
     }
@@ -251,13 +227,13 @@ impl<T> Prescale<u8> for Periph<T> {
     }
 }
 
-impl<T> SetCounter<u32> for Periph<T> {
+impl SetCounter<u32> for TimerPeriph {
     fn set_counter(&self, value: u32) -> &Self {
         self.set_tv(0, |r| r.set_tv(value))
     }
 }
 
-impl<T> Compare<u32> for Periph<T> {
+impl Compare<u32> for TimerPeriph {
     fn compare(&self) -> u32 {
         self.tmtchr(0).tmtchr().value()
     }

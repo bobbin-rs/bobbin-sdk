@@ -20,12 +20,7 @@ pub use super::sysctl::SysctlEnabled;
     //  - Write the PWMENABLE register with a value of 0x0000.0003.
     
 
-pub trait PwmExt {
-    fn output_enabled(&self, index: usize) -> bool;
-    fn set_output_enabled(&self, index: usize, value: bool) -> &Self;
-}
-
-impl<T> PwmExt for Periph<T> {    
+pub trait PwmExt : PwmPeriph {    
     fn output_enabled(&self, index: usize) -> bool {
         self.enable().pwmen(index) != 0
     }
@@ -35,12 +30,7 @@ impl<T> PwmExt for Periph<T> {
     }    
 }
 
-pub trait PwmChExt {
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, value: bool) -> &Self;
-}
-
-impl<P, T> PwmChExt for Channel<P, T> {
+pub trait PwmChExt<T> : Channel<T> where T: PwmPeriph {
     fn enabled(&self) -> bool {
         self.periph().ch_ctl(self.index).enable() != 0
     }
@@ -51,7 +41,7 @@ impl<P, T> PwmChExt for Channel<P, T> {
     }
 }
 
-impl<P, T> Timer<u16> for Channel<P, T> {
+impl<T> Timer<u16> for Channel<T> where T: PwmPeriph {
     fn stop(&self) -> &Self {
         self.set_enabled(false)
     }
@@ -82,14 +72,14 @@ impl<P, T> Timer<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> SetCounter<u16> for Channel<P, T> {
+impl<T> SetCounter<u16> for Channel<T> where T: PwmPeriph {
     fn set_counter(&self, value: u16) -> &Self {
         self.periph().set_ch_count(self.index(), |r| r.set_count(value));
         self
     }    
 }
 
-impl<P, T> Compare<u16> for Channel<P, T> {
+impl<T> Compare<u16> for Channel<T> where T: PwmPeriph {
     fn compare(&self) -> u16 {
         self.periph().ch_cmpa(self.index).cmpa().value()
     }
@@ -109,7 +99,7 @@ impl<P, T> Compare<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
+impl<T> PwmDownHigh<u16> for Channel<T> where T: PwmPeriph {
     // Down Counting PWM, (Counter < Compare) => Output High
     fn pwm_down_high(&self, compare: u16, period: u16) -> &Self {
         self.periph().with_ch_gena(self.index(), |r| r .set_actload(0x2).set_actcmpad(0x3));
@@ -120,7 +110,7 @@ impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmDownLow<u16> for Channel<P, T> {
+impl<T> PwmDownLow<u16> for Channel<T> where T: PwmPeriph {
     // Down Counting PWM, (Counter < Compare) => Output Low
     fn pwm_down_low(&self, compare: u16, period: u16) -> &Self {
         self.periph().with_ch_gena(self.index(), |r| r .set_actload(0x3).set_actcmpad(0x2));

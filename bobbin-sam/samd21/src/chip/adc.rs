@@ -1744,6 +1744,11 @@ impl ::core::fmt::Debug for Winut {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(ADC_CH0, AdcCh0, ADC, Adc, 0);
 channel!(ADC_CH1, AdcCh1, ADC, Adc, 1);
 channel!(ADC_CH2, AdcCh2, ADC, Adc, 2);

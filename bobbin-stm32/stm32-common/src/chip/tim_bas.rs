@@ -606,3 +606,8 @@ impl ::core::fmt::Debug for Arr {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

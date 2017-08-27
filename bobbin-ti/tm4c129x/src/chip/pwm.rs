@@ -3429,6 +3429,11 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(PWM0_CH0, Pwm0Ch0, PWM0, Pwm0, 0);
 channel!(PWM0_CH1, Pwm0Ch1, PWM0, Pwm0, 1);
 channel!(PWM0_CH2, Pwm0Ch2, PWM0, Pwm0, 2);

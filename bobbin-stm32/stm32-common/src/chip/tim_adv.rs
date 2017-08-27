@@ -2796,3 +2796,8 @@ impl ::core::fmt::Debug for Or {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

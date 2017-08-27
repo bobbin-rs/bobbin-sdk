@@ -840,3 +840,8 @@ impl ::core::fmt::Debug for Tctrl {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

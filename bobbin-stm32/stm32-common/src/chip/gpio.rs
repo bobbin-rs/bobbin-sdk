@@ -931,3 +931,8 @@ impl ::core::fmt::Debug for Brr {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

@@ -729,3 +729,8 @@ impl ::core::fmt::Debug for Conf {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

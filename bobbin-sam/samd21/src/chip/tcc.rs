@@ -3800,6 +3800,11 @@ impl ::core::fmt::Debug for Wexctrl {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(TCC0_CH0, Tcc0Ch0, TCC0, Tcc0, 0);
 channel!(TCC0_CH1, Tcc0Ch1, TCC0, Tcc0, 1);
 channel!(TCC0_CH2, Tcc0Ch2, TCC0, Tcc0, 2);

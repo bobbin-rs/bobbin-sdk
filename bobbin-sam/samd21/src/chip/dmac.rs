@@ -2254,6 +2254,11 @@ impl ::core::fmt::Debug for Descaddr {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(DMAC_CH0, DmacCh0, DMAC, Dmac, 0);
 channel!(DMAC_CH1, DmacCh1, DMAC, Dmac, 1);
 channel!(DMAC_CH2, DmacCh2, DMAC, Dmac, 2);

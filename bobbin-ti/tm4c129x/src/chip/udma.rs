@@ -2211,6 +2211,11 @@ impl ::core::fmt::Debug for Chctl {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(UDMA_CH0, UdmaCh0, UDMA, Udma, 0);
 channel!(UDMA_CH1, UdmaCh1, UDMA, Udma, 1);
 channel!(UDMA_CH2, UdmaCh2, UDMA, Udma, 2);

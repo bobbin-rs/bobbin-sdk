@@ -2719,6 +2719,11 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, 0);
 channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, 1);
 channel!(ADC0_CH2, Adc0Ch2, ADC0, Adc0, 2);

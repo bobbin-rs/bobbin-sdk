@@ -21,8 +21,6 @@ impl super::sig::Signal<super::sig::Tc5Wo1> for Tc5Ch1 {}
 impl super::sig::SignalWo<super::sig::Tc5Wo1> for Tc5Ch1 {}
 
 
-pub trait TcPeriph : Base {}
-
 pub mod count8 {
    #[allow(unused_imports)] use bobbin_common::*;
 
@@ -4044,6 +4042,11 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
+}
+
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
 }
 
 channel!(TC3_CH0, Tc3Ch0, TC3, Tc3, 0);

@@ -1,4 +1,5 @@
 pub use bobbin_common::digital::*;
+use bobbin_common::*;
 pub use chip::gpio::*;
 pub use super::sysctl::SysctlEnabled;
 use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm, SignalAin};
@@ -8,79 +9,63 @@ pub enum Dir {
     Out = 1,    
 }
 
-pub trait ModeTx<T, S> {
-    fn mode_tx(&self, _: &S) -> &Self;
+pub trait ModeTx<SIG, PERIPH> {
+    fn mode_tx(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeRx<T, S> {
-    fn mode_rx(&self, _: &S) -> &Self;
+pub trait ModeRx<SIG, PERIPH> {
+    fn mode_rx(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeCcp<T, S> {
-    fn mode_ccp(&self, _: &S) -> &Self;
+pub trait ModeCcp<SIG, PERIPH> {
+    fn mode_ccp(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModePwm<T, S> {
-    fn mode_pwm(&self, _: &S) -> &Self;
+pub trait ModePwm<SIG, PERIPH> {
+    fn mode_pwm(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeAin<T, S> {
-    fn mode_ain(&self, _: &S) -> &Self;
+pub trait ModeAin<SIG, PERIPH> {
+    fn mode_ain(&self, _: &PERIPH) -> &Self;
 }
 
-impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
-    fn mode_tx(&self, _: &S) -> &Self {
+impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG> {
+    fn mode_tx(&self, _: &PERIPH) -> &Self {
         self.mode_altfn(self.id.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
-    fn mode_rx(&self, _: &S) -> &Self {
+impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG> {
+    fn mode_rx(&self, _: &PERIPH) -> &Self {
         self.mode_altfn(self.id.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeCcp<T, S> for Pin<P, O> where S: SignalCcp<T>, P: AltFn<T> {
-    fn mode_ccp(&self, _: &S) -> &Self {
+impl<PERIPH, PIN, SIG> ModeCcp<SIG, PERIPH> for PIN where PERIPH: SignalCcp<SIG>, PIN: AltFn<SIG> {
+    fn mode_ccp(&self, _: &PERIPH) -> &Self {
         self.mode_altfn(self.id.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModePwm<T, S> for Pin<P, O> where S: SignalPwm<T>, P: AltFn<T> {
-    fn mode_pwm(&self, _: &S) -> &Self {
+impl<PERIPH, PIN, SIG> ModePwm<SIG, PERIPH> for PIN where PERIPH: SignalPwm<SIG>, PIN: AltFn<SIG> {
+    fn mode_pwm(&self, _: &PERIPH) -> &Self {
         self.mode_altfn(self.id.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeAin<T, S> for Pin<P, O> where S: SignalAin<T>, P: AltFn<T> {
-    fn mode_ain(&self, _: &S) -> &Self {
+impl<PERIPH, PIN, SIG> ModeAin<SIG, PERIPH> for PIN where PERIPH: SignalAin<SIG>, PIN: AltFn<SIG> {
+    fn mode_ain(&self, _: &PERIPH) -> &Self {
         self.mode_altfn(self.id.alt_fn());        
         self.set_digital_enable(false).set_analog_select(true);
         self
     }
 }
 
-pub trait GpioExt {
-    fn set_dir(&self, value: Dir) -> &Self;
-    fn set_afsel(&self, value: bool) -> &Self;
-    fn set_pullup_select(&self, value: bool) -> &Self;
-    fn set_pulldown_select(&self, value: bool) -> &Self;
-    fn set_open_drain_select(&self, value: bool) -> &Self;
-    fn set_digital_enable(&self, value: bool) -> &Self;
-    fn set_analog_select(&self, value: bool) -> &Self;
-    fn set_port_control(&self, value: usize) -> &Self;
-    fn mode_input(&self) -> &Self;
-    fn mode_output(&self) -> &Self;
-    fn mode_altfn(&self, value: usize) -> &Self;
-    fn pull_up(&self) -> &Self;
-    fn pull_down(&self) -> &Self;
-}
-
-impl<P, T> GpioExt for Pin<P, T> {
+pub trait GpioExt<T: GpioPeriph> : Pin<T> {
     fn set_dir(&self, value: Dir) -> &Self {
         self.port.with_dir(|r| r.set_dir(self.index, value as u32));
         self
@@ -160,13 +145,13 @@ impl<P, T> GpioExt for Pin<P, T> {
     }
 }
 
-impl<P, T> DigitalInput for Pin<P, T> {        
+impl<T> DigitalInput for Pin<T> where T: GpioPeriph {        
     fn input(&self) -> bool {            
         self.port.data().data(self.index) != 0
     }           
 }
 
-impl<P, T> DigitalOutput for Pin<P, T> {        
+impl<T> DigitalOutput for Pin<T> where T: GpioPeriph {        
     fn output(&self) -> bool {
         self.port.data().data(self.index) != 0
     }   

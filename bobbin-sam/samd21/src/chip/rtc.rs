@@ -4,8 +4,6 @@
 periph!(RtcPeriph, RTC, Rtc, 0x40001400);
 
 #[doc="Real-Time Counter"]
-pub trait RtcPeriph : Base {}
-
 pub mod mode0 {
    #[allow(unused_imports)] use bobbin_common::*;
 

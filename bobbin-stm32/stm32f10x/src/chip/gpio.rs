@@ -655,6 +655,11 @@ impl ::core::fmt::Debug for Lckr {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 pin!(PA0, Pa0, GPIOA, Gpioa, 0);
 
 pin!(PA1, Pa1, GPIOA, Gpioa, 1);

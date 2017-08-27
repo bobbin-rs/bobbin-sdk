@@ -3051,3 +3051,8 @@ impl ::core::fmt::Debug for Calfact {
       Ok(())
    }
 }
+pub trait Channel<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+

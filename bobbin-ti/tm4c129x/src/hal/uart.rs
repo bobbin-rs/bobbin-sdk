@@ -2,20 +2,7 @@ pub use bobbin_common::serial::*;
 pub use chip::uart::*;
 pub use super::sysctl::SysctlEnabled;
 
-pub trait UartExt {
-    fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self;
-    fn enable(&self) -> &Self;
-    fn disable(&self) -> &Self;
-    // fn try_getc(&self) -> Option<u8>;
-    // fn putc(&self, c: u8);
-    // fn write(&self, buf: &[u8]);
-    fn data(&self) -> u8;
-    fn set_data(&self, value: u8) -> &Self;
-    fn rxfe(&self) -> bool;
-    fn txff(&self) -> bool;
-}
-
-impl<T> UartExt for Periph<T> {
+pub trait UartExt : UartPeriph {
     fn configure(&self, baud_hz: u32, sysclk_hz: u32) -> &Self {
         let baud_div = ((8 * sysclk_hz) / baud_hz) + 1;
         let baud_int = baud_div / 64;
@@ -74,7 +61,7 @@ impl<T> UartExt for Periph<T> {
 }
 
 
-impl<T> SerialTx<u8> for Periph<T> {    
+impl SerialTx<u8> for UartPeriph {    
     fn can_tx(&self) -> bool {
         !self.txff()
     }
@@ -84,7 +71,7 @@ impl<T> SerialTx<u8> for Periph<T> {
     }
 }
 
-impl<T> SerialRx<u8> for Periph<T> {
+impl SerialRx<u8> for UartPeriph {
     fn can_rx(&self) -> bool {
         !self.rxfe()
     }

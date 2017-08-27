@@ -2408,6 +2408,11 @@ impl ::core::fmt::Debug for Gpiowakestat {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
 pin!(PA0, Pa0, GPIOA, Gpioa, 0);
    alt_fn!(Pa0, super::sig::U0rx, 1);
    alt_fn!(Pa0, super::sig::I2c9scl, 2);

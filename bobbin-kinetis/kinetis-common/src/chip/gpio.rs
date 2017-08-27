@@ -547,3 +547,8 @@ impl ::core::fmt::Debug for Pddr {
       Ok(())
    }
 }
+pub trait Pin<T> {
+   fn periph(&self) -> T;
+   fn index(&self) -> usize;
+}
+
