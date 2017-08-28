@@ -5094,7 +5094,7 @@ impl En for super::dma::Dma1 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma1en(value)); }
 }
 
-impl En for super::crc_24::Crc {
+impl En for super::crc::Crc {
    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().crcen().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }
 }
@@ -5154,12 +5154,12 @@ impl En for super::gpio::Gpioa {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioaen(value)); }
 }
 
-impl En for super::usart_f24::Uart8 {
+impl En for super::usart::Uart8 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart8enr().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart8enr(value)); }
 }
 
-impl En for super::usart_f24::Uart7 {
+impl En for super::usart::Uart7 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart7enr().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart7enr(value)); }
 }
@@ -5179,22 +5179,22 @@ impl En for super::i2c::I2c1 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
 }
 
-impl En for super::usart_f24::Uart5 {
+impl En for super::usart::Uart5 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart5en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart5en(value)); }
 }
 
-impl En for super::usart_f24::Uart4 {
+impl En for super::usart::Uart4 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart4en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart4en(value)); }
 }
 
-impl En for super::usart_f24::Usart3 {
+impl En for super::usart::Usart3 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart3en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart3en(value)); }
 }
 
-impl En for super::usart_f24::Usart2 {
+impl En for super::usart::Usart2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
 }
@@ -5314,12 +5314,12 @@ impl En for super::adc::Adc1 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_adc1en(value)); }
 }
 
-impl En for super::usart_f24::Usart6 {
+impl En for super::usart::Usart6 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart6en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart6en(value)); }
 }
 
-impl En for super::usart_f24::Usart1 {
+impl En for super::usart::Usart1 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
 }

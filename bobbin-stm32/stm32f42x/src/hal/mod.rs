@@ -70,7 +70,7 @@ pub mod gpio {
 }
 
 pub mod usart {
-    pub use chip::usart_f24::*;
+    pub use chip::usart::*;
     pub use stm32_common::hal::usart_f24::*;
     pub use super::rcc::RccEnabled;
 }
@@ -88,7 +88,7 @@ pub mod tim_adv {
 }
 
 pub mod crc {
-    pub use chip::crc_24::*;
+    pub use chip::crc::*;
     pub use stm32_common::hal::crc_24::*;
     pub use super::rcc::RccEnabled;
 }

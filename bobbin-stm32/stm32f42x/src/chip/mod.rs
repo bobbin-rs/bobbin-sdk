@@ -1,5 +1,4 @@
 #[allow(unused_imports)] use bobbin_common::*;
-extern crate bobbin_cortexm;
 pub use bobbin_cortexm::chip::exc;
 pub use bobbin_cortexm::chip::nvic;
 pub use bobbin_cortexm::chip::scb;
@@ -9,7 +8,6 @@ pub use bobbin_cortexm::chip::fpu;
 pub use bobbin_cortexm::chip::dcb;
 pub use bobbin_cortexm::chip::itm;
 
-extern crate stm32_common;
 
 pub mod irq;
 pub mod sig;
@@ -25,7 +23,7 @@ pub mod dac;
 pub mod c_adc;
 pub mod iwdg;
 pub mod wwdg;
-pub mod crc_24;
+pub mod crc;
 pub mod exti;
 pub mod tim_bas;
 pub mod tim_gen;
@@ -34,5 +32,5 @@ pub mod adc;
 pub mod spi;
 pub mod i2c;
 pub mod gpio;
-pub mod usart_f24;
+pub mod usart;
 pub mod dma;
