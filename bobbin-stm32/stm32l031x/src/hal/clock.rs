@@ -76,6 +76,7 @@ pub struct DynamicClock {
 }
 
 impl ClockTree for DynamicClock {
+    #[inline]
     fn hsi16(&self) -> Hz {
         if RCC.cr().hsi16divf() != 0 {
             HSI16.map(|v| v >> 2)
@@ -84,10 +85,12 @@ impl ClockTree for DynamicClock {
         }
     }
 
+    #[inline]
     fn lsi(&self) -> Hz { 
         LSI 
     }
 
+    #[inline]
     fn msi(&self) -> Hz {
         match RCC.icscr().msirange() {
             U3::B000 => Some(65536),
@@ -101,14 +104,17 @@ impl ClockTree for DynamicClock {
         }
     }
 
+    #[inline]
     fn lse(&self) -> Hz {
         self.lse_osc
     }
 
+    #[inline]
     fn hse(&self) -> Hz {
         self.hse_osc
     }
 
+    #[inline]
     fn pllclk(&self) -> Hz {
         let cfgr = RCC.cfgr();
 
@@ -137,6 +143,7 @@ impl ClockTree for DynamicClock {
         }.map(|v| v * pll_mul / pll_div)
     }
 
+    #[inline]
     fn sysclk(&self) -> Hz {
         match RCC.cfgr().sws() {
             U2::B00 => self.msi(),
@@ -146,6 +153,7 @@ impl ClockTree for DynamicClock {
         }
     }
 
+    #[inline]
     fn hclk(&self) -> Hz {
         let shift = match RCC.cfgr().hpre() {
             U4::B0000 => 0,
@@ -169,6 +177,7 @@ impl ClockTree for DynamicClock {
         self.sysclk().map(|v| v >> shift)
     }
 
+    #[inline]
     fn pclk1(&self) -> Hz {
         let shift = match RCC.cfgr().ppre1() {
             U3::B000 => 0,
@@ -183,6 +192,7 @@ impl ClockTree for DynamicClock {
         self.hclk().map(|v| v >> shift)
     }
 
+    #[inline]
     fn tim_pclk1(&self) -> Hz {
         match RCC.cfgr().ppre1() {
             v if (v as u8) < 0b100  => self.pclk1(),
@@ -190,6 +200,7 @@ impl ClockTree for DynamicClock {
         }
     }
 
+    #[inline]
     fn pclk2(&self) -> Hz {
         let shift = match RCC.cfgr().ppre2() {
             v if (v as u8) < 0b100  => 0,
@@ -202,6 +213,7 @@ impl ClockTree for DynamicClock {
         self.hclk().map(|v| v >> shift)
     }
 
+    #[inline]
     fn tim_pclk2(&self) -> Hz {
         match RCC.cfgr().ppre2() {
             v if (v as u8) < 0b100  => self.pclk2(),
@@ -237,6 +249,7 @@ impl fmt::Debug for DynamicClock {
 }
 
 impl<T: ClockTree> Clock<T> for Lpuart1 {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().lpuart1sel() {
             U2::B00 => t.pclk1(),
@@ -248,6 +261,7 @@ impl<T: ClockTree> Clock<T> for Lpuart1 {
 }
 
 impl<T: ClockTree> Clock<T> for Usart2 {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().usart2sel() {
             U2::B00 => t.pclk1(),
@@ -260,6 +274,7 @@ impl<T: ClockTree> Clock<T> for Usart2 {
 
 
 impl<T: ClockTree> Clock<T> for Lptim {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         match RCC.ccipr().lptim1sel() {
             U2::B00 => t.pclk1(),
@@ -272,18 +287,21 @@ impl<T: ClockTree> Clock<T> for Lptim {
 
 
 impl<T: ClockTree> Clock<T> for Tim2 {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         t.tim_pclk1()
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim21 {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         t.tim_pclk2()
     }
 }
 
 impl<T: ClockTree> Clock<T> for Tim22 {
+    #[inline]
     fn clock(&self, t: &T) -> Hz {
         t.tim_pclk2()
     }

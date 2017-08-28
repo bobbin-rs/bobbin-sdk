@@ -42,6 +42,7 @@ pub mod gpio {
     }    
 
     impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+        #[inline]
         fn mode_tx(&self, _: &PERIPH) -> &Self {
             self.mode_alt_fn(self.alt_fn());
             self
@@ -49,6 +50,7 @@ pub mod gpio {
     }
 
     impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin>  {
+        #[inline]
         fn mode_rx(&self, _: &PERIPH) -> &Self {
             self.mode_alt_fn(self.alt_fn());
             self
@@ -56,6 +58,7 @@ pub mod gpio {
     }
     
     impl<PERIPH, PIN, SIG> ModeTim<SIG, PERIPH>  for PIN where PERIPH: SignalTim<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+        #[inline]
         fn mode_tim(&self, _: &PERIPH) -> &Self {
             self.mode_alt_fn(self.alt_fn());
             self
@@ -63,6 +66,7 @@ pub mod gpio {
     }    
 
     impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH>  for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+        #[inline]
         fn mode_adc(&self, _: &PERIPH) -> &Self {
             self.mode_alt_fn(self.alt_fn()).mode_analog();
             self
@@ -136,6 +140,7 @@ pub mod syscfg {
     }
 
     impl SyscfgExt for Syscfg {
+        #[inline]
         fn set_exti(&self, index: usize, source: Source) -> &Self {
             let source: u32 = source as u32;
             match index {

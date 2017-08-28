@@ -104,6 +104,7 @@ macro_rules! periph {
         pub struct $ty {}
         impl Deref for $ty {
             type Target = $pty;
+            #[inline(always)]            
             fn deref(&self) -> &$pty {
                 &$pid
             }
@@ -121,11 +122,14 @@ macro_rules! pin {
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
         pub struct $ty {}
         impl Pin<$port_type> for $ty {
+            #[inline(always)]
             fn port(&self) -> $port_type { $port_id }
+            #[inline(always)]            
             fn index(&self) -> usize { $index }
         }
         impl Deref for $ty {
             type Target = $base_type;
+            #[inline(always)]            
             fn deref(&self) -> &$base_type {
                 &$base_id
             }
@@ -140,11 +144,14 @@ macro_rules! channel {
         pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
         pub struct $ty {}
         impl Channel<$periph_type> for $ty {
+            #[inline(always)]
             fn periph(&self) -> $periph_type { $periph_id }
+            #[inline(always)]            
             fn index(&self) -> usize { $index }
         }
         impl Deref for $ty {
             type Target = $base_type;
+            #[inline(always)]            
             fn deref(&self) -> &$base_type {
                 &$base_id
             }
@@ -156,6 +163,7 @@ macro_rules! channel {
 macro_rules! alt_fn {
     ($ty:ty, $sig:ty, $num:expr) => (
         impl AltFn<$sig> for $ty {
+            #[inline(always)]            
             fn alt_fn(&self) -> usize { $num }
         }
         
@@ -169,6 +177,7 @@ macro_rules! irq {
         pub const $id: $ty = $ty {};
         pub struct $ty {}
         impl IrqNum for $ty {
+            #[inline(always)]            
             fn irq_num(&self) -> u8 { $num }
         }
         impl WrapHandleIrq for $ty {
