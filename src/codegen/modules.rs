@@ -511,7 +511,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let l_trait = format!("Link{}", to_camel(&l.name));
             let l_getter = field_getter(&l.name);
             let pg_mod = l.peripheral_group.to_lowercase();
-            let l_type = format!("super::{}::Periph<super::{}::{}Id>", pg_mod, pg_mod, to_camel(&l.peripheral));
+            let l_type = format!("super::{}::{} ", pg_mod, to_camel(&l.peripheral));
             //let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
 
             let p_const = l.peripheral.to_uppercase();            
