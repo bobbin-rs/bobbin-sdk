@@ -1,5 +1,5 @@
 (peripheral
-    (group-name UDM)
+    (group-name UDMA)
     (register
         (name STAT)
         (offset 0x0)
