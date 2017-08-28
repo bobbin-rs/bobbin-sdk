@@ -21,8 +21,8 @@ pub fn init() {
     UART.with_global(|r| r.set_rst(1));
     UART.with_global(|r| r.set_rst(0));
 
-    UART_TX.port.pcc_enable();
-    UART_RX.port.pcc_enable();
+    UART_TX.port().pcc_enable();
+    UART_RX.port().pcc_enable();
 
     // Set Pin Configuration
     UART_TX.mode_tx(&UART);

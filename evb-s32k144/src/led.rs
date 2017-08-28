@@ -34,7 +34,7 @@ impl<P, T, G> Led<P, T, G>
 where Pin<P, T> : GpioPin<P, G>, Periph<T> : Cgc
 {
     pub fn init(&self) -> &Self {
-        self.pin.port.pcc_enable();
+        self.pin.port().pcc_enable();
         self.pin.set_mux_gpio();
         self.pin.gpio_pin().set_dir_output().set_output(true);
         self
@@ -77,7 +77,7 @@ where
     Pin<P, T>: ModeFtm<SIG, ftm::Channel<TIMCH, TIM>>,
 {
     pub fn init(&self) -> &Self {
-        self.pin.port.pcc_enable();
+        self.pin.port().pcc_enable();
         self.pin.mode_ftm(&self.tim_ch);
         self.tim_ch.periph()
             .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
@@ -131,7 +131,7 @@ pub struct LedRgb {
 
 impl LedRgb {
     pub fn init(&self) -> &Self {
-        self.port.pcc_set_enabled(true);
+        self.port().pcc_set_enabled(true);
         self.pin_r.mode_ftm(&self.tim_r);
         self.pin_g.mode_ftm(&self.tim_g);
         self.pin_b.mode_ftm(&self.tim_b);

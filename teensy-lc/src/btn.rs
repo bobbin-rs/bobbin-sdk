@@ -4,7 +4,7 @@ use hal::gpio::GpioExt;
 pub const BTN0: Ptc3 = PTC3;
 
 pub fn init() {
-    BTN0.port.sim_enable();
+    BTN0.port().sim_enable();
     BTN0.set_mux_gpio();
     BTN0.gpio_pin().set_dir_input();
 }

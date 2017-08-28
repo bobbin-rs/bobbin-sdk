@@ -7,8 +7,8 @@ pub fn can0() -> CanDevice {
     // CAN0_RX = PTE4[5]
     // CAN0_TX = PTE5[5]
 
-    let _can0_rx = pin::pte4().into_altfn(5);
-    let _can0_tx = pin::pte5().into_altfn(5);
+    let _can0_rx = pin::pte4().into_alt_fn(5);
+    let _can0_tx = pin::pte5().into_alt_fn(5);
 
     pcc::set_can_enabled(CAN0, true);
     can::device(CAN0)

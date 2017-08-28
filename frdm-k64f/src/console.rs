@@ -13,8 +13,8 @@ pub const UART_BAUD: u32 = 115_200;
 pub fn init() {
     // Enable Clocks
     UART.sim_enable();
-    UART_TX.port.sim_enable();
-    UART_RX.port.sim_enable();
+    UART_TX.port().sim_enable();
+    UART_RX.port().sim_enable();
 
     // Set Pin Configuration
     UART_TX.mode_tx(&UART);

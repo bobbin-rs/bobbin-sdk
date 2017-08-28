@@ -9,8 +9,8 @@ pub const SERCOM_RX: Pa11 = PA11;
 
 pub fn init() {
     SERCOM.pm_set_enabled(true);
-    SERCOM_RX.port.pm_set_enabled(true);
-    SERCOM_TX.port.pm_set_enabled(true);
+    SERCOM_RX.port().pm_set_enabled(true);
+    SERCOM_TX.port().pm_set_enabled(true);
     // Set GCLK_GEN0 as source for SERCOM
 
     gclk::GCLK.set_clkctrl(|r| r

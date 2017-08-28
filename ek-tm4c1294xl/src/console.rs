@@ -11,8 +11,8 @@ pub const UART_BAUD: u32 = 115_200;
 pub fn init() {
     // Enable Clocks
     UART.sysctl_enable();
-    UART_TX.port.sysctl_enable();
-    UART_RX.port.sysctl_enable();
+    UART_TX.port().sysctl_enable();
+    UART_RX.port().sysctl_enable();
 
     // Set Pin Configuration
     UART_TX.mode_tx(&UART);

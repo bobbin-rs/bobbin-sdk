@@ -13,8 +13,8 @@ pub fn init() {
     let rx = PD9;
 
     rcc::set_usart_enabled(USART3, true);
-    let _ = gpio::pin(tx).into_altfn(tx.af_usart3_tx());
-    let _ = gpio::pin(rx).into_altfn(rx.af_usart3_rx());
+    let _ = gpio::pin(tx).into_alt_fn(tx.af_usart3_tx());
+    let _ = gpio::pin(rx).into_alt_fn(rx.af_usart3_rx());
     let u = usart::device(USART3);
     u.enable(30_000_000 / 115_200);    
 }

@@ -14,8 +14,8 @@ pub fn serial0() -> lpuart::LpuartDevice {
         LPUART0.with_global(|r| r.set_rst(0));        
     }
 
-    let _rx = pin::pta2().into_altfn(6);
-    let _tx = pin::pta3().into_altfn(6);
+    let _rx = pin::pta2().into_alt_fn(6);
+    let _tx = pin::pta3().into_alt_fn(6);
 
     
 
@@ -29,8 +29,8 @@ pub fn serial0_unchecked() -> lpuart::LpuartDevice {
 }
 
 // pub unsafe fn uart0_unchecked(rx: port::PinUnknown, tx: port::PinUnknown) -> uart::UartDevice {
-//     let tx = tx.into_altfn_unchecked();
-//     let rx = rx.into_altfn_unchecked();
+//     let tx = tx.into_alt_fn_unchecked();
+//     let rx = rx.into_alt_fn_unchecked();
 //     uart::device(UART0, tx, rx, 65) 
 // }
 
@@ -43,8 +43,8 @@ pub fn serial1() -> lpuart::LpuartDevice {
         LPUART1.with_global(|r| r.set_rst(0));        
     }
 
-    let _rx = pin::ptc6().into_altfn(2);
-    let _tx = pin::ptc7().into_altfn(2);
+    let _rx = pin::ptc6().into_alt_fn(2);
+    let _tx = pin::ptc7().into_alt_fn(2);
 
     let u = lpuart::device(LPUART1);
     u.set_osr(0b1111).set_sbr(22).set_te(true).set_re(true).set_txfe(true).set_rxfe(true);

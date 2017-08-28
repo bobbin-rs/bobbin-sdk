@@ -2,8 +2,8 @@
 // sim::set_uart0_enabled(true);  
 // sim::set_uart0_src(0x1);  
 
-// let tx = tx.into_altfn(2);
-// let rx = rx.into_altfn(2);
+// let tx = tx.into_alt_fn(2);
+// let rx = rx.into_alt_fn(2);
 // let u = uart0::device(UART0, tx, rx, 104);    
 
 use core::fmt::{self, Write, Arguments};
@@ -26,8 +26,8 @@ pub fn init() {
     UART.sim_set_src(0x1);
     // sim_src(0x1);
     
-    UART_TX.port.sim_enable();
-    UART_RX.port.sim_enable();
+    UART_TX.port().sim_enable();
+    UART_RX.port().sim_enable();
 
     // Set Pin Configuration
     UART_TX.mode_tx(&UART);
