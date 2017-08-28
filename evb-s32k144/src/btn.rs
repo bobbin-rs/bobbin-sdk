@@ -1,5 +1,5 @@
 use hal::port::*;
-use hal::gpio::{GpioExt};
+use hal::gpio::*;
 
 pub const BTN0: Ptc12 = PTC12;
 pub const BTN1: Ptc13 = PTC13;

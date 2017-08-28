@@ -16,8 +16,6 @@ pub const UART_TX: Pta2 = PTA2;
 pub const UART_BD: u16 = 104;
 
 pub fn init() {
-    use hal::uart0::Uart0Ext;
-
     // Enable Clocks
     UART.sim_enable();
     UART.sim_set_src(0x1);

@@ -19,14 +19,14 @@ pub mod lang_items;
 
 pub mod pin;
 pub mod clock;
-pub mod led;
-pub mod btn;
-pub mod pot;
+// pub mod led;
+// pub mod btn;
+// pub mod pot;
 pub mod tim;
 //pub mod serial;
 //pub mod can;
 //pub mod spi;
-pub mod uja1169;
+// pub mod uja1169;
 
 pub use tim::delay;
 
@@ -38,9 +38,9 @@ pub use tim::delay;
 
 pub fn init() {
     clock::init();
-    led::init();
-    btn::init();
-    pot::init();
+    // led::init();
+    // btn::init();
+    // pot::init();
     tim::init();
     console::init();
 }
