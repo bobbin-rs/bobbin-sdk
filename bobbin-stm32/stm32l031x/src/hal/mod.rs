@@ -20,7 +20,7 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
     pub use super::rcc::RccEnabled;
-    use bobbin_common::AltFn;
+    use bobbin_common::{AltFn, Pin};
     use chip::sig::{SignalTx, SignalRx, SignalTim, SignalAdc};
     use core::ops::Deref;
 

@@ -1,6 +1,6 @@
 pub use bobbin_common::digital::*;
 use bobbin_common::bits::*;
-use chip::gpio::*;
+pub use chip::gpio::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
