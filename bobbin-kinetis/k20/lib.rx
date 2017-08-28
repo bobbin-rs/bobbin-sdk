@@ -35,7 +35,7 @@
     )
 
     (peripheral-group
-        (name DMA)
+        (name EDMA)
         (module (name kinetis_common::chip::edma::*))
         (peripheral
             (name DMA)

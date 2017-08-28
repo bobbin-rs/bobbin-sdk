@@ -62,7 +62,7 @@
     )    
 
     (peripheral-group
-        (name CRC_24)
+        (name CRC)
         (module (name stm32_common::chip::crc_24::*))
         (peripheral
             (name CRC)
@@ -1756,7 +1756,7 @@
     )
 
     (peripheral-group 
-        (name USART_F24)
+        (name USART)
         (module (name stm32_common::chip::usart_f24::*))
         (peripheral 
             (name USART1)

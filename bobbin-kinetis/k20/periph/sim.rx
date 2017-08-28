@@ -2168,7 +2168,7 @@
             (bit-width 1)
             (access read-write)
             (description "DMA Clock Gate Control")
-            (link (name EN) (peripheral-group DMA) (peripheral DMA))
+            (link (name EN) (peripheral-group EDMA) (peripheral DMA))
             (value
                 (value "#0")
                 (name "0")
