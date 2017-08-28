@@ -15,7 +15,7 @@ pub mod sim;
 pub mod mcg;
 pub mod osc;
 pub mod dmamux;
-pub mod dma;
+pub mod edma;
 pub mod ftm;
 pub mod pit;
 pub mod spi;

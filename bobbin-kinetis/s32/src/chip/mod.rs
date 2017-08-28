@@ -20,7 +20,7 @@ pub mod crc;
 pub mod rtc;
 pub mod smc;
 pub mod dmamux;
-pub mod dma;
+pub mod edma;
 pub mod ftm;
 pub mod lpit;
 pub mod flexcan;

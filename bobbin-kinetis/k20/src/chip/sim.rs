@@ -2775,7 +2775,7 @@ impl En for super::ftm::Ftm2 {
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_ftm2(value)); }
 }
 
-impl En for super::dma::Dma {
+impl En for super::edma::Dma {
    #[inline] fn en(&self) -> u32 { SIM.scgc7().dma().into() }
    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc7(|r| r.set_dma(value)); }
 }

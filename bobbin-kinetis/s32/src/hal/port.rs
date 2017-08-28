@@ -2,7 +2,7 @@ pub use bobbin_common::{Pin, AltFn};
 pub use chip::port::*;    
 pub use kinetis_common::hal::port::*;
 pub use super::pcc::PccEnabled;
-use chip::gpio;
+// use chip::gpio;
 use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 use chip::sig::{SignalSpiSck, SignalSpiSin, SignalSpiSout};
 use chip::sig::{SignalSpiPcs0, SignalSpiPcs1, SignalSpiPcs2, SignalSpiPcs3};

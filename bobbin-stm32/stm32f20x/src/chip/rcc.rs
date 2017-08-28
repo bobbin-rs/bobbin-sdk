@@ -5066,7 +5066,7 @@ impl En for super::dma::Dma1 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma1en(value)); }
 }
 
-impl En for super::crc_24::Crc {
+impl En for super::crc::Crc {
    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().crcen().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }
 }
@@ -5176,22 +5176,22 @@ impl En for super::spi::Spi3 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi3en(value)); }
 }
 
-impl En for super::usart_f24::Usart2 {
+impl En for super::usart::Usart2 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
 }
 
-impl En for super::usart_f24::Usart3 {
+impl En for super::usart::Usart3 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart3en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart3en(value)); }
 }
 
-impl En for super::usart_f24::Uart4 {
+impl En for super::usart::Uart4 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart4en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart4en(value)); }
 }
 
-impl En for super::usart_f24::Uart5 {
+impl En for super::usart::Uart5 {
    #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart5en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart5en(value)); }
 }
@@ -5221,12 +5221,12 @@ impl En for super::tim_adv::Tim8 {
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim8en(value)); }
 }
 
-impl En for super::usart_f24::Usart1 {
+impl En for super::usart::Usart1 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
 }
 
-impl En for super::usart_f24::Usart6 {
+impl En for super::usart::Usart6 {
    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart6en().into() }
    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart6en(value)); }
 }

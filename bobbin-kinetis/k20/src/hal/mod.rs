@@ -16,7 +16,7 @@ pub mod port {
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    use chip::gpio;
+    // use chip::gpio;
     use chip::sig::{SignalTx, SignalRx, SignalFtm};
 
     use core::ops::Deref;
@@ -95,8 +95,8 @@ pub mod pit {
     pub use super::sim::SimEnabled;
 }
 
-pub mod dma {
-    pub use chip::dma::*;
-    pub use kinetis_common::hal::dma::*;
+pub mod edma {
+    pub use chip::edma::*;
+    pub use kinetis_common::hal::edma::*;
     pub use super::sim::SimEnabled;
 }

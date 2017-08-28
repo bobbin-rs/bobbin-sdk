@@ -6,7 +6,7 @@ pub mod clock;
 pub mod pcc;
 pub mod wdog;
 pub mod adc;
-pub mod lpspi;
+// pub mod lpspi;
 pub mod port;
 
 pub mod gpio {
@@ -41,9 +41,9 @@ pub mod flexcan {
     pub use super::pcc::{PccEnabled, PccClockSource};
 }
 
-pub mod dma {
-    pub use chip::dma::*;
-    pub use kinetis_common::hal::dma::*;
+pub mod edma {
+    pub use chip::edma::*;
+    pub use kinetis_common::hal::edma::*;
 }
 
 pub mod rtc {
