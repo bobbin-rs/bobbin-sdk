@@ -11,7 +11,7 @@ pub trait TccExt {
     fn mode_oneshot(&self) -> &Self;
 }
 
-impl<T> TccExt for Periph<T> {
+impl TccExt for TccPeriph {
     fn mode_up(&self) -> &Self {
         self.set_ctrlbclr(|r| r.set_dir(1))
     }
@@ -29,22 +29,17 @@ impl<T> TccExt for Periph<T> {
     }        
 }
 
-pub trait TccChExt {
-    fn cc(&self) -> u32;
-    fn set_cc(&self, u32) -> &Self;
-}
-
-impl<P, T> TccChExt for Channel<P, T> {
-    fn cc(&self) -> u32 {
+impl TccCh {
+    pub fn cc(&self) -> u32 {
         self.periph.cc(self.index).cc().value()
     }
-    fn set_cc(&self, value: u32) -> &Self {
+    pub fn set_cc(&self, value: u32) -> &Self {
         self.periph.with_cc(self.index, |r| r.set_cc(value));
         self
     }
 }
 
-impl<T> Timer<u16> for Periph<T> {
+impl Timer<u16> for TccPeriph {
     fn stop(&self) -> &Self {
         self.set_ctrlbset(|r| r.set_cmd(0x2));
         self.with_ctrla(|r| r.set_enable(0x0));
@@ -80,7 +75,7 @@ impl<T> Timer<u16> for Periph<T> {
     }    
 }
 
-impl<T> Start<u16> for Periph<T> {
+impl Start<u16> for TccPeriph {
     fn start(&self, value: u16) -> &Self {        
         self.set_period(value);        
         self.with_wave(|r| r.set_wavegen(0x0));
@@ -90,7 +85,7 @@ impl<T> Start<u16> for Periph<T> {
     }
 }
 
-impl<T> StartUp<u16> for Periph<T> {
+impl StartUp<u16> for TccPeriph {
     fn start_up(&self, value: u16) -> &Self {        
         self
             .set_period(value)
@@ -103,7 +98,7 @@ impl<T> StartUp<u16> for Periph<T> {
 }
 
 
-impl<T> StartDown<u16> for Periph<T> {
+impl StartDown<u16> for TccPeriph {
     fn start_down(&self, value: u16) -> &Self {        
         self
             .set_period(value)
@@ -116,7 +111,7 @@ impl<T> StartDown<u16> for Periph<T> {
 }
 
 
-impl<T> StartUpOnce<u16> for Periph<T> {
+impl StartUpOnce<u16> for TccPeriph {
     fn start_up_once(&self, value: u16) -> &Self {        
         self
             .set_period(value)
@@ -129,7 +124,7 @@ impl<T> StartUpOnce<u16> for Periph<T> {
 }
 
 
-impl<T> StartDownOnce<u16> for Periph<T> {
+impl StartDownOnce<u16> for TccPeriph {
     fn start_down_once(&self, value: u16) -> &Self {        
         self
             .set_period(value)
@@ -142,7 +137,7 @@ impl<T> StartDownOnce<u16> for Periph<T> {
 }
 
 
-impl<T> Prescale<u16> for Periph<T> {
+impl Prescale<u16> for TccPeriph {
     fn prescale(&self) -> u16 {
         1 << self.ctrla().prescaler().value() 
     }
@@ -165,7 +160,7 @@ impl<T> Prescale<u16> for Periph<T> {
     }
 }
 
-impl<T> SetCounter<u16> for Periph<T> {
+impl SetCounter<u16> for TccPeriph {
     fn set_counter(&self, value: u16) -> &Self {
         self.set_count(|r| r.set_count(value));
         self
@@ -173,61 +168,61 @@ impl<T> SetCounter<u16> for Periph<T> {
 }
 
 
-impl<P, T> Compare<u16> for Channel<P, T> {
+impl Compare<u16> for TccCh {
     fn compare(&self) -> u16 {
         // Discard Excess Bits
-        self.periph().cc(self.index()).cc().value() as u16
+        self.periph.cc(self.index).cc().value() as u16
     }
 
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_cc(self.index(), |r| r.set_cc(value));
+        self.periph.set_cc(self.index, |r| r.set_cc(value));
         self
     }
 
     fn compare_flag(&self) -> bool {
-        self.periph().intflag().mc(self.index()) != 0
+        self.periph.intflag().mc(self.index) != 0
     }
 
     fn clr_compare_flag(&self) -> &Self {
-        self.periph().set_intflag(|r| r.set_mc(self.index(), 1));
+        self.periph.set_intflag(|r| r.set_mc(self.index, 1));
         self
     }
 
 }
 
-impl<P, T> PwmUpLow<u16> for Channel<P, T> {
+impl PwmUpLow<u16> for TccCh {
     // Up Counting PWM, (Counter < Compare) => Output Low
     fn pwm_up_low(&self, compare: u16, period: u16) -> &Self {
         self.set_compare(compare);
-        self.periph()
+        self.periph
             .set_period(period)
-            .with_wave(|r| r.set_pol(self.index(), 0).set_wavegen(0x02))
+            .with_wave(|r| r.set_pol(self.index, 0).set_wavegen(0x02))
             .mode_up()
             .with_ctrla(|r| r.set_enable(0x1));
         self
     }
 }
 
-impl<P, T> PwmDownLow<u16> for Channel<P, T> {
+impl PwmDownLow<u16> for TccCh {
     // Down Counting PWM, (Counter < Compare) => Output Low
     fn pwm_down_low(&self, compare: u16, period: u16) -> &Self {
         self.set_compare(compare);
-        self.periph()
+        self.periph
             .set_period(period)
-            .with_wave(|r| r.set_pol(self.index(), 0).set_wavegen(0x02))
+            .with_wave(|r| r.set_pol(self.index, 0).set_wavegen(0x02))
             .mode_down()
             .with_ctrla(|r| r.set_enable(0x1));
         self
     }
 }
 
-impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
+impl PwmUpHigh<u16> for TccCh {
     // Up Counting PWM, (Counter < Compare) => Output High
     fn pwm_up_high(&self, compare: u16, period: u16) -> &Self {
         self.set_compare(compare);
-        self.periph()
+        self.periph
             .set_period(period)
-            .with_wave(|r| r.set_pol(self.index(), 1).set_wavegen(0x02))            
+            .with_wave(|r| r.set_pol(self.index, 1).set_wavegen(0x02))            
             .mode_up()
             .with_ctrla(|r| r.set_enable(0x1));
         self
@@ -235,13 +230,13 @@ impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
 }
 
 
-impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
+impl PwmDownHigh<u16> for TccCh {
     // Down Counting PWM, (Counter < Compare) => Output High
     fn pwm_down_high(&self, compare: u16, period: u16) -> &Self {
         self.set_compare(compare);
-        self.periph()
+        self.periph
             .set_period(period)
-            .with_wave(|r| r.set_pol(self.index(), 1).set_wavegen(0x02))
+            .with_wave(|r| r.set_pol(self.index, 1).set_wavegen(0x02))
             .mode_down()
             .with_ctrla(|r| r.set_enable(0x1));
         self

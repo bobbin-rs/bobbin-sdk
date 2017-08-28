@@ -1,19 +1,11 @@
+pub use bobbin_common::Pin;
 pub use bobbin_common::digital::*;
 pub use chip::gpio::*;
 pub use super::rcc::RccEnabled;
 
-pub trait PinExt {
-    // fn mode(&self) -> Mode;
-    // fn set_mode(&self, value: Mode) -> &Self;       
-    fn mode_input(&self) -> &Self;
-    fn mode_output(&self) -> &Self;
-    fn mode_altfn(&self) -> &Self;
-    fn mode_analog(&self) -> &Self;
-}
-
-impl<P, T> PinExt for Pin<P,T> {
+impl GpioPin {
     #[inline]
-    fn mode_output(&self) -> &Self {
+    pub fn mode_output(&self) -> &Self {
         match self.index {
             0 ... 8 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b00).set_mode(self.index, 0b01));
@@ -25,7 +17,7 @@ impl<P, T> PinExt for Pin<P,T> {
         self
     }
     #[inline]
-    fn mode_input(&self) -> &Self {
+    pub fn mode_input(&self) -> &Self {
         match self.index {
             0 ... 8 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b10).set_mode(self.index, 0b00));
@@ -38,7 +30,7 @@ impl<P, T> PinExt for Pin<P,T> {
     }
     
     #[inline]
-    fn mode_altfn(&self) -> &Self {
+    pub fn mode_alt_fn(&self) -> &Self {
         match self.index {
             0 ... 8 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b10).set_mode(self.index, 0b01));
@@ -50,7 +42,7 @@ impl<P, T> PinExt for Pin<P,T> {
         self
     }
     #[inline]
-    fn mode_analog(&self) -> &Self {
+    pub fn mode_analog(&self) -> &Self {
         match self.index {
             0 ... 8 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0).set_mode(self.index, 0));
@@ -63,7 +55,7 @@ impl<P, T> PinExt for Pin<P,T> {
     }    
 }
 
-impl<P, T> DigitalOutput for Pin<P, T> {
+impl DigitalOutput for GpioPin {
     #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0
@@ -90,7 +82,7 @@ impl<P, T> DigitalOutput for Pin<P, T> {
     }    
 }
 
-impl<P, T> DigitalInput for Pin<P, T> {
+impl DigitalInput for GpioPin {
     fn input(&self) -> bool {
         self.port.idr().idr(self.index) != 0
     }

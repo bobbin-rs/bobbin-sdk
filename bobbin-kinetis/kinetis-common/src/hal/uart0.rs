@@ -1,21 +1,8 @@
 pub use bobbin_common::serial::*;
 use chip::uart0::*;
 
-pub trait Uart0Ext {
-    fn enable(&self, bd: u16) -> &Self;
-    fn disable(&self) -> &Self;
-    fn tx_empty(&self) -> bool;
-    fn tx_complete(&self) -> bool;
-    fn rx_full(&self) -> bool;
-    fn idle(&self) -> bool;
-    // fn try_getc(&self) -> Option<u8>;
-    // fn getc(&self) -> u8;
-    // fn putc(&self, value: u8);
-    // fn write(&self, data: &[u8]);
-}
-
-impl<T> Uart0Ext for Periph<T> {
-    fn enable(&self, baud_divider: u16) -> &Self {
+impl Uart0Periph {
+    pub fn enable(&self, baud_divider: u16) -> &Self {
         let u = self;
         u.set_c1(|r| r);
         //Disable TX and Receive
@@ -33,26 +20,26 @@ impl<T> Uart0Ext for Periph<T> {
         self    
     }    
 
-    fn disable(&self) -> &Self {
+    pub fn disable(&self) -> &Self {
         self.set_c2(|r| r.set_te(0).set_re(0))
     }
-    fn tx_empty(&self) -> bool {
+    pub fn tx_empty(&self) -> bool {
         self.s1().tdre() != 0
     }
 
-    fn tx_complete(&self) -> bool {
+    pub fn tx_complete(&self) -> bool {
         self.s1().tc() != 0
     }
 
-    fn rx_full(&self) -> bool {
+    pub fn rx_full(&self) -> bool {
         self.s1().rdrf() != 0
     }
 
-    fn idle(&self) -> bool {
+    pub fn idle(&self) -> bool {
         self.s1().idle() != 0
     }        
 
-    // fn try_getc(&self) -> Option<u8> {
+    // pub fn try_getc(&self) -> Option<u8> {
     //     let uart = self;
     //     if uart.s1().rdrf() != 0 {
     //         Some(uart.d().rt().into())
@@ -61,26 +48,26 @@ impl<T> Uart0Ext for Periph<T> {
     //     }
     // }
 
-    // fn getc(&self) -> u8 {
+    // pub fn getc(&self) -> u8 {
     //     let uart = self;
     //     while uart.s1().rdrf() == 0 {}
     //     uart.d().rt().into()        
     // }
 
-    // fn putc(&self, value: u8) {            
+    // pub fn putc(&self, value: u8) {            
     //     let uart = self;
     //     while uart.s1().tdre() == 0 {}
     //     uart.set_d(|r| r.set_rt(value));
     // }
 
-    // fn write(&self, data: &[u8]) {
+    // pub fn write(&self, data: &[u8]) {
     //     for i in 0..data.len() {
     //         self.putc(data[i]);
     //     }
     // }        
 }
 
-impl<T> SerialTx<u8> for Periph<T> {    
+impl SerialTx<u8> for Uart0Periph {    
     fn can_tx(&self) -> bool {
         self.tx_empty()
     }
@@ -90,7 +77,7 @@ impl<T> SerialTx<u8> for Periph<T> {
     }
 }
 
-impl<T> SerialRx<u8> for Periph<T> {
+impl SerialRx<u8> for Uart0Periph {
     fn can_rx(&self) -> bool {
         self.rx_full()
     }

@@ -12,28 +12,28 @@ periph!( PORTC, Portc, _PORTC, PortPeriph, 0x4004b000);
 periph!( PORTD, Portd, _PORTD, PortPeriph, 0x4004c000);
 periph!( PORTE, Porte, _PORTE, PortPeriph, 0x4004d000);
 
-impl LinkGpio<super::gpio::Periph<super::gpio::GpioaId>> for Porta {
-   fn gpio(&self) -> super::gpio::Periph<super::gpio::GpioaId> { super::gpio::GPIOA }
+impl LinkGpio<super::gpio::Gpioa > for Porta {
+   fn gpio(&self) -> super::gpio::Gpioa  { super::gpio::GPIOA }
 }
 
 
-impl LinkGpio<super::gpio::Periph<super::gpio::GpiobId>> for Portb {
-   fn gpio(&self) -> super::gpio::Periph<super::gpio::GpiobId> { super::gpio::GPIOB }
+impl LinkGpio<super::gpio::Gpiob > for Portb {
+   fn gpio(&self) -> super::gpio::Gpiob  { super::gpio::GPIOB }
 }
 
 
-impl LinkGpio<super::gpio::Periph<super::gpio::GpiocId>> for Portc {
-   fn gpio(&self) -> super::gpio::Periph<super::gpio::GpiocId> { super::gpio::GPIOC }
+impl LinkGpio<super::gpio::Gpioc > for Portc {
+   fn gpio(&self) -> super::gpio::Gpioc  { super::gpio::GPIOC }
 }
 
 
-impl LinkGpio<super::gpio::Periph<super::gpio::GpiodId>> for Portd {
-   fn gpio(&self) -> super::gpio::Periph<super::gpio::GpiodId> { super::gpio::GPIOD }
+impl LinkGpio<super::gpio::Gpiod > for Portd {
+   fn gpio(&self) -> super::gpio::Gpiod  { super::gpio::GPIOD }
 }
 
 
-impl LinkGpio<super::gpio::Periph<super::gpio::GpioeId>> for Porte {
-   fn gpio(&self) -> super::gpio::Periph<super::gpio::GpioeId> { super::gpio::GPIOE }
+impl LinkGpio<super::gpio::Gpioe > for Porte {
+   fn gpio(&self) -> super::gpio::Gpioe  { super::gpio::GPIOE }
 }
 
 

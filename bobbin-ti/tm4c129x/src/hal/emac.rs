@@ -407,206 +407,206 @@ pub struct RxDesc([u32; 8]);
 
 impl TxDesc {
     pub fn owned(&self) -> bool {
-        self.0[0].get_bit(31)
+        self.periph[0].get_bit(31)
     }
     pub fn set_owned(&mut self, value: bool) {
-        self.0[0].set_bit(31, value);
+        self.periph[0].set_bit(31, value);
     }
 
     pub fn set_interrupt(&mut self, value: bool) {
-        self.0[0].set_bit(30, value);
+        self.periph[0].set_bit(30, value);
     }    
 
     pub fn is_last(&self) -> bool {
-        self.0[0].get_bit(29)
+        self.periph[0].get_bit(29)
     }    
 
     pub fn set_last(&mut self, value: bool) {
-        self.0[0].set_bit(29, value);
+        self.periph[0].set_bit(29, value);
     }
 
     pub fn is_first(&self) -> bool {
-        self.0[0].get_bit(28)
+        self.periph[0].get_bit(28)
     }    
 
     pub fn set_first(&mut self, value: bool) {
-        self.0[0].set_bit(28, value);
+        self.periph[0].set_bit(28, value);
     }    
 
     pub fn set_disable_crc(&mut self, value: bool) {
-        self.0[0].set_bit(27, value);
+        self.periph[0].set_bit(27, value);
     }    
 
     pub fn is_end_of_ring(&self) -> bool {
-        self.0[0].get_bit(21)
+        self.periph[0].get_bit(21)
     }
 
     pub fn set_end_of_ring(&mut self, value: bool) {
-        self.0[0].set_bit(21, value);
+        self.periph[0].set_bit(21, value);
     }
 
     pub fn is_chained(&self) -> bool {
-        self.0[0].get_bit(20)
+        self.periph[0].get_bit(20)
     }
 
     pub fn set_chained(&mut self, value: bool) {
-        self.0[0].set_bit(20, value);
+        self.periph[0].set_bit(20, value);
     }
 
     pub fn buffer_1(&self) -> &'static [u8] {
-        let len = self.0[1].get_range(0..13) as usize;
-        let ptr = self.0[2] as *const u8;        
+        let len = self.periph[1].get_range(0..13) as usize;
+        let ptr = self.periph[2] as *const u8;        
         unsafe { ::core::slice::from_raw_parts(ptr, len) }
     }
 
     pub fn buffer_1_mut(&self) -> &'static mut [u8] {
-        let len = self.0[1].get_range(0..13) as usize;
-        let ptr = self.0[2] as *mut  u8;        
+        let len = self.periph[1].get_range(0..13) as usize;
+        let ptr = self.periph[2] as *mut  u8;        
         unsafe { ::core::slice::from_raw_parts_mut(ptr, len) }
     }    
 
     pub fn set_buffer_1(&mut self, buf: &'static mut [u8]) {
         assert!(buf.len() & !0x1fff == 0);        
-        self.0[1].set_range(0..13, buf.len() as u32);
-        self.0[2] = buf.as_mut_ptr() as u32;        
+        self.periph[1].set_range(0..13, buf.len() as u32);
+        self.periph[2] = buf.as_mut_ptr() as u32;        
     }
 
     pub fn set_buffer_1_len(&mut self, len: usize) {
         assert!(len & !0x1fff == 0);        
-        self.0[1].set_range(0..13, len as u32);
+        self.periph[1].set_range(0..13, len as u32);
     }
 
     pub fn buffer_2(&self) -> &'static [u8] {
-        let len = self.0[1].get_range(16..29) as usize;
-        let ptr = self.0[3] as *const u8;        
+        let len = self.periph[1].get_range(16..29) as usize;
+        let ptr = self.periph[3] as *const u8;        
         unsafe { ::core::slice::from_raw_parts(ptr, len) }        
     }
 
     pub fn buffer_2_mut(&self) -> &'static mut [u8] {
-        let len = self.0[1].get_range(16..29) as usize;
-        let ptr = self.0[3] as *mut u8;        
+        let len = self.periph[1].get_range(16..29) as usize;
+        let ptr = self.periph[3] as *mut u8;        
         unsafe { ::core::slice::from_raw_parts_mut(ptr, len) }        
     }
 
     pub fn set_buffer_2(&mut self, buf: &'static mut [u8]) {
         assert!(buf.len() & !0x1fff == 0);        
-        self.0[1].set_range(16..29, buf.len() as u32);
-        self.0[3] = buf.as_mut_ptr() as u32;        
+        self.periph[1].set_range(16..29, buf.len() as u32);
+        self.periph[3] = buf.as_mut_ptr() as u32;        
     }
 
     pub fn set_buffer_2_len(&mut self, len: usize) {
         assert!(len & !0x1fff == 0);
-        self.0[1].set_range(16..29, len as u32);
+        self.periph[1].set_range(16..29, len as u32);
     }
 
 
     pub fn next(&self) -> &TxDesc {
-        unsafe { &*(self.0[3] as *const TxDesc) }
+        unsafe { &*(self.periph[3] as *const TxDesc) }
     }
 
     pub fn set_next(&mut self, next: &TxDesc) {
-        self.0[3] = next as *const TxDesc as u32;
+        self.periph[3] = next as *const TxDesc as u32;
     }
 }
 
 impl RxDesc {
 
     pub fn owned(&self) -> bool {
-        self.0[0].get_bit(31)
+        self.periph[0].get_bit(31)
     }
 
     pub fn set_owned(&mut self, value: bool) {
-        self.0[0].set_bit(31, value);
+        self.periph[0].set_bit(31, value);
     }
 
     pub fn frame_length(&self) -> usize {
-        self.0[0].get_range(16..30) as usize
+        self.periph[0].get_range(16..30) as usize
     }
 
     pub fn set_frame_length(&mut self, value: usize) {
-        self.0[0].set_range(16..30, value as u32);
+        self.periph[0].set_range(16..30, value as u32);
     }
 
     pub fn is_first(&self) -> bool {
-        self.0[0].get_bit(9)
+        self.periph[0].get_bit(9)
     }
 
     pub fn is_last(&self) -> bool {
-        self.0[0].get_bit(10)
+        self.periph[0].get_bit(10)
     }
 
     pub fn is_chained(&self) -> bool {
-        self.0[1].get_bit(14)
+        self.periph[1].get_bit(14)
     }
 
     pub fn set_chained(&mut self, value: bool) {
-        self.0[1].set_bit(14, value);
+        self.periph[1].set_bit(14, value);
     }
 
     pub fn is_end_of_ring(&self) -> bool {
-        self.0[1].get_bit(15)
+        self.periph[1].get_bit(15)
     }
 
     pub fn set_end_of_ring(&mut self, value: bool) {
-        self.0[1].set_bit(15, value);
+        self.periph[1].set_bit(15, value);
     }
 
     pub fn buffer_1(&self) -> &'static [u8] {
-        let len = self.0[1].get_range(0..13) as usize;
-        let ptr = self.0[2] as *const u8;        
+        let len = self.periph[1].get_range(0..13) as usize;
+        let ptr = self.periph[2] as *const u8;        
         unsafe { ::core::slice::from_raw_parts(ptr, len) }
     }
 
     pub fn buffer_1_mut(&self) -> &'static mut [u8] {
-        let len = self.0[1].get_range(0..13) as usize;
-        let ptr = self.0[2] as *mut  u8;        
+        let len = self.periph[1].get_range(0..13) as usize;
+        let ptr = self.periph[2] as *mut  u8;        
         unsafe { ::core::slice::from_raw_parts_mut(ptr, len) }
     }    
 
     pub fn set_buffer_1(&mut self, buf: &'static mut [u8]) {
         assert!(buf.len() & !0x1fff == 0);        
-        self.0[1].set_range(0..13, buf.len() as u32);
-        self.0[2] = buf.as_mut_ptr() as u32;        
+        self.periph[1].set_range(0..13, buf.len() as u32);
+        self.periph[2] = buf.as_mut_ptr() as u32;        
     }
 
     pub fn buffer_2(&self) -> &'static [u8] {
-        let len = self.0[1].get_range(16..29) as usize;
-        let ptr = self.0[3] as *const u8;        
+        let len = self.periph[1].get_range(16..29) as usize;
+        let ptr = self.periph[3] as *const u8;        
         unsafe { ::core::slice::from_raw_parts(ptr, len) }        
     }
 
     pub fn buffer_2_mut(&self) -> &'static mut [u8] {
-        let len = self.0[1].get_range(16..29) as usize;
-        let ptr = self.0[3] as *mut u8;        
+        let len = self.periph[1].get_range(16..29) as usize;
+        let ptr = self.periph[3] as *mut u8;        
         unsafe { ::core::slice::from_raw_parts_mut(ptr, len) }        
     }
 
     pub fn set_buffer_2(&mut self, buf: &'static mut [u8]) {
         assert!(buf.len() & !0x1fff == 0);        
-        self.0[1].set_range(16..29, buf.len() as u32);
-        self.0[3] = buf.as_mut_ptr() as u32;        
+        self.periph[1].set_range(16..29, buf.len() as u32);
+        self.periph[3] = buf.as_mut_ptr() as u32;        
     }
 
     pub fn next(&self) -> &RxDesc {
-        unsafe { &*(self.0[3] as *const RxDesc) }
+        unsafe { &*(self.periph[3] as *const RxDesc) }
     }
 
     pub fn set_next(&mut self, next: &RxDesc) {
-        self.0[3] = next as *const RxDesc as u32;
+        self.periph[3] = next as *const RxDesc as u32;
     }    
 }
 
 impl fmt::Debug for TxDesc {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         try!(write!(f, "TxDesc @ {:p}\n", self));
-        try!(write!(f, "  0: {:08x}\n", self.0[0]));
-        try!(write!(f, "  1: {:08x}\n", self.0[1]));
-        try!(write!(f, "  2: {:08x}\n", self.0[2]));
-        try!(write!(f, "  3: {:08x}\n", self.0[3]));
-        try!(write!(f, "  4: {:08x}\n", self.0[4]));
-        try!(write!(f, "  5: {:08x}\n", self.0[5]));
-        try!(write!(f, "  6: {:08x}\n", self.0[6]));
-        try!(write!(f, "  7: {:08x}\n", self.0[7]));
+        try!(write!(f, "  0: {:08x}\n", self.periph[0]));
+        try!(write!(f, "  1: {:08x}\n", self.periph[1]));
+        try!(write!(f, "  2: {:08x}\n", self.periph[2]));
+        try!(write!(f, "  3: {:08x}\n", self.periph[3]));
+        try!(write!(f, "  4: {:08x}\n", self.periph[4]));
+        try!(write!(f, "  5: {:08x}\n", self.periph[5]));
+        try!(write!(f, "  6: {:08x}\n", self.periph[6]));
+        try!(write!(f, "  7: {:08x}\n", self.periph[7]));
         Ok(())
     }
 }
@@ -614,14 +614,14 @@ impl fmt::Debug for TxDesc {
 impl fmt::Debug for RxDesc {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         try!(write!(f, "RxDesc @ {:p}\n", self));
-        try!(write!(f, "  0: {:08x}\n", self.0[0]));
-        try!(write!(f, "  1: {:08x}\n", self.0[1]));
-        try!(write!(f, "  2: {:08x}\n", self.0[2]));
-        try!(write!(f, "  3: {:08x}\n", self.0[3]));
-        try!(write!(f, "  4: {:08x}\n", self.0[4]));
-        try!(write!(f, "  5: {:08x}\n", self.0[5]));
-        try!(write!(f, "  6: {:08x}\n", self.0[6]));
-        try!(write!(f, "  7: {:08x}\n", self.0[7]));
+        try!(write!(f, "  0: {:08x}\n", self.periph[0]));
+        try!(write!(f, "  1: {:08x}\n", self.periph[1]));
+        try!(write!(f, "  2: {:08x}\n", self.periph[2]));
+        try!(write!(f, "  3: {:08x}\n", self.periph[3]));
+        try!(write!(f, "  4: {:08x}\n", self.periph[4]));
+        try!(write!(f, "  5: {:08x}\n", self.periph[5]));
+        try!(write!(f, "  6: {:08x}\n", self.periph[6]));
+        try!(write!(f, "  7: {:08x}\n", self.periph[7]));
         Ok(())
     }
 }

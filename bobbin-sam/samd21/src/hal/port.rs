@@ -1,3 +1,4 @@
+pub use bobbin_common::{Pin, AltFn};
 pub use bobbin_common::analog::*;
 pub use bobbin_common::digital::*;
 pub use chip::port::*;
@@ -6,43 +7,32 @@ pub use chip::port::*;
 use chip::sig::*;
 pub use super::pm::PmEnabled;
 
-use chip::port::Pin;
+use core::ops::Deref;
 
-pub trait PinExt {
-    fn set_pull_enabled(&self, value: bool) -> &Self;
-    fn set_pmux_enabled(&self, value: bool) -> &Self;
-    fn set_dir_output(&self) -> &Self;
-    fn set_dir_input(&self) -> &Self;
-    fn set_pmux(&self, value: usize) -> &Self;
-    fn set_mode_input(&self) -> &Self;
-    fn set_mode_output(&self) -> &Self;
-    fn set_mode_pmux(&self, value: usize) -> &Self;
-}
-
-impl<P, T> PinExt for Pin<P, T> {
-    fn set_pull_enabled(&self, value: bool) -> &Self {
+impl PortPin {
+    pub fn set_pull_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.port.with_pincfg(self.index, |r| r.set_pullen(value));
         self
     }
 
-    fn set_pmux_enabled(&self, value: bool) -> &Self {
+    pub fn set_pmux_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.port.with_pincfg(self.index, |r| r.set_pmuxen(value));
         self
     }
 
-    fn set_dir_output(&self) -> &Self {
+    pub fn set_dir_output(&self) -> &Self {
         self.port.set_dirset(|r| r.set_dirset(self.index, 1));
         self
     }
 
-    fn set_dir_input(&self) -> &Self {
+    pub fn set_dir_input(&self) -> &Self {
         self.port.set_dirclr(|r| r.set_dirclr(self.index, 1));
         self
     }
 
-    fn set_pmux(&self, value: usize) -> &Self {
+    pub fn set_pmux(&self, value: usize) -> &Self {
         let pin = self.index;
         let pin_row = pin >> 1;
         let pin_col = pin & 1;        
@@ -50,26 +40,26 @@ impl<P, T> PinExt for Pin<P, T> {
         self
     }
 
-    fn set_mode_input(&self) -> &Self {
+    pub fn set_mode_input(&self) -> &Self {
         self.set_dir_input().set_pmux(0)
     }
 
-    fn set_mode_output(&self) -> &Self {
+    pub fn set_mode_output(&self) -> &Self {
         self.set_dir_output().set_pmux(0)
     }
 
-    fn set_mode_pmux(&self, value: usize) -> &Self {
+    pub fn set_mode_pmux(&self, value: usize) -> &Self {
         self.set_pmux_enabled(true).set_pmux(value)
     }
 }
 
-impl<P, T> DigitalInput for Pin<P, T> {
+impl DigitalInput for PortPin {
     fn input(&self) -> bool {
         self.port._in()._in(self.index) != 0
     }
 }
 
-impl<P, T> DigitalOutput for Pin<P, T> {
+impl DigitalOutput for PortPin {
     fn output(&self) -> bool {
         self.port.out().out(self.index) != 0
     }
@@ -87,146 +77,146 @@ impl<P, T> DigitalOutput for Pin<P, T> {
     }    
 }
 
-pub trait ModePad0<T, S> {
-    fn mode_pad_0(&self, _: &S) -> &Self;
+pub trait ModePad0<SIG, PERIPH> {
+    fn mode_pad_0(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModePad1<T, S> {
-    fn mode_pad_1(&self, _: &S) -> &Self;
+pub trait ModePad1<SIG, PERIPH> {
+    fn mode_pad_1(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModePad2<T, S> {
-    fn mode_pad_2(&self, _: &S) -> &Self;
+pub trait ModePad2<SIG, PERIPH> {
+    fn mode_pad_2(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModePad3<T, S> {
-    fn mode_pad_3(&self, _: &S) -> &Self;
+pub trait ModePad3<SIG, PERIPH> {
+    fn mode_pad_3(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo0<T, S> {
-    fn mode_wo_0(&self, _: &S) -> &Self;
+pub trait ModeWo0<SIG, PERIPH> {
+    fn mode_wo_0(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo1<T, S> {
-    fn mode_wo_1(&self, _: &S) -> &Self;
+pub trait ModeWo1<SIG, PERIPH> {
+    fn mode_wo_1(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo2<T, S> {
-    fn mode_wo_2(&self, _: &S) -> &Self;
+pub trait ModeWo2<SIG, PERIPH> {
+    fn mode_wo_2(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo3<T, S> {
-    fn mode_wo_3(&self, _: &S) -> &Self;
+pub trait ModeWo3<SIG, PERIPH> {
+    fn mode_wo_3(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo4<T, S> {
-    fn mode_wo_4(&self, _: &S) -> &Self;
+pub trait ModeWo4<SIG, PERIPH> {
+    fn mode_wo_4(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo5<T, S> {
-    fn mode_wo_5(&self, _: &S) -> &Self;
+pub trait ModeWo5<SIG, PERIPH> {
+    fn mode_wo_5(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo6<T, S> {
-    fn mode_wo_6(&self, _: &S) -> &Self;
+pub trait ModeWo6<SIG, PERIPH> {
+    fn mode_wo_6(&self, _: &PERIPH) -> &Self;
 }
 
-pub trait ModeWo7<T, S> {
-    fn mode_wo_7(&self, _: &S) -> &Self;
+pub trait ModeWo7<SIG, PERIPH> {
+    fn mode_wo_7(&self, _: &PERIPH) -> &Self;
 }
 
-impl<P, O, S, T> ModePad0<T, S> for Pin<P, O> where S: SignalPad0<T>, P: AltFn<T> {
-    fn mode_pad_0(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModePad0<SIG, PERIPH> for PIN where PERIPH: SignalPad0<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_pad_0(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModePad1<T, S> for Pin<P, O> where S: SignalPad1<T>, P: AltFn<T> {
-    fn mode_pad_1(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModePad1<SIG, PERIPH> for PIN where PERIPH: SignalPad1<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_pad_1(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModePad2<T, S> for Pin<P, O> where S: SignalPad2<T>, P: AltFn<T> {
-    fn mode_pad_2(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModePad2<SIG, PERIPH> for PIN where PERIPH: SignalPad2<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_pad_2(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModePad3<T, S> for Pin<P, O> where S: SignalPad3<T>, P: AltFn<T> {
-    fn mode_pad_3(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModePad3<SIG, PERIPH> for PIN where PERIPH: SignalPad3<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_pad_3(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo0<T, S> for Pin<P, O> where S: SignalWo0<T>, P: AltFn<T> {
-    fn mode_wo_0(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo0<SIG, PERIPH> for PIN where PERIPH: SignalWo0<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_0(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo1<T, S> for Pin<P, O> where S: SignalWo1<T>, P: AltFn<T> {
-    fn mode_wo_1(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo1<SIG, PERIPH> for PIN where PERIPH: SignalWo1<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_1(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo2<T, S> for Pin<P, O> where S: SignalWo2<T>, P: AltFn<T> {
-    fn mode_wo_2(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo2<SIG, PERIPH> for PIN where PERIPH: SignalWo2<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_2(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo3<T, S> for Pin<P, O> where S: SignalWo3<T>, P: AltFn<T> {
-    fn mode_wo_3(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo3<SIG, PERIPH> for PIN where PERIPH: SignalWo3<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_3(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo4<T, S> for Pin<P, O> where S: SignalWo4<T>, P: AltFn<T> {
-    fn mode_wo_4(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo4<SIG, PERIPH> for PIN where PERIPH: SignalWo4<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_4(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo5<T, S> for Pin<P, O> where S: SignalWo5<T>, P: AltFn<T> {
-    fn mode_wo_5(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo5<SIG, PERIPH> for PIN where PERIPH: SignalWo5<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_5(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo6<T, S> for Pin<P, O> where S: SignalWo6<T>, P: AltFn<T> {
-    fn mode_wo_6(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo6<SIG, PERIPH> for PIN where PERIPH: SignalWo6<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_6(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
-impl<P, O, S, T> ModeWo7<T, S> for Pin<P, O> where S: SignalWo7<T>, P: AltFn<T> {
-    fn mode_wo_7(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> ModeWo7<SIG, PERIPH> for PIN where PERIPH: SignalWo7<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_wo_7(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }
 
 
-pub trait Ain<T, S> {
-    fn mode_ain(&self, _: &S) -> &Self;
+pub trait Ain<SIG, PERIPH> {
+    fn mode_ain(&self, _: &PERIPH) -> &Self;
 }
 
-impl<P, O, S, T> Ain<T, S> for Pin<P, O> where S: SignalAin<T>, P: AltFn<T> {
-    fn mode_ain(&self, _: &S) -> &Self {
-        self.set_mode_pmux(self.id.alt_fn());
+impl<PERIPH, PIN, SIG> Ain<SIG, PERIPH> for PIN where PERIPH: SignalAin<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    fn mode_ain(&self, _: &PERIPH) -> &Self {
+        self.set_mode_pmux(self.alt_fn());
         self
     }
 }

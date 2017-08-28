@@ -95,13 +95,13 @@ impl<T> Pin<T> {
         }
     }
 
-    pub fn into_altfn(self, value: u8) -> Pin<ModeAltFn> {
+    pub fn into_alt_fn(self, value: u8) -> Pin<ModeAltFn> {
         assert!(value > 1, "ModeAltFn only for mux values 2-7");
         self.set_mux(value);
         Pin { port: self.port, index: self.index, _phantom: PhantomData }
     }
 
-    pub fn into_altfn_unchecked(self) -> Pin<ModeAltFn> {
+    pub fn into_alt_fn_unchecked(self) -> Pin<ModeAltFn> {
         Pin { port: self.port, index: self.index, _phantom: PhantomData }
     }
 

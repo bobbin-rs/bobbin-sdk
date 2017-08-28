@@ -21,31 +21,18 @@ pub enum Pull {
     PullUp,
 }
 
-pub trait PinExt {
-    fn mux(&self) -> usize;
-    fn set_mux(&self, value: usize) -> &Self;
-    fn set_mux_gpio(&self) -> &Self;
-    fn set_pull(&self, value: Pull) -> &Self;
-    fn set_pull_down(&self) -> &Self;
-    fn set_pull_up(&self) -> &Self;
-    fn isf(&self) -> bool;
-    fn clr_isf(&self) -> &Self;
-    fn irqc(&self) -> InterruptConfig;
-    fn set_irqc(&self, value: InterruptConfig) -> &Self;    
-}
-
-impl<P, T> PinExt for Pin<P, T> {
-    fn mux(&self) -> usize {
+impl PortPin {
+    pub fn mux(&self) -> usize {
         self.port.pcr(self.index).mux() as usize
     }
-    fn set_mux(&self, value: usize) -> &Self {
+    pub fn set_mux(&self, value: usize) -> &Self {
         self.port.with_pcr(self.index, |r| r.set_mux(value as u32));
         self
     }
-    fn set_mux_gpio(&self) -> &Self {
+    pub fn set_mux_gpio(&self) -> &Self {
         self.set_mux(1)
     }
-    fn set_pull(&self, value: Pull) -> &Self {
+    pub fn set_pull(&self, value: Pull) -> &Self {
         self.port.with_pcr(self.index, |r| match value {
             Pull::None => r.set_pe(0).set_ps(0),
             Pull::PullDown => r.set_pe(1).set_ps(0),
@@ -53,21 +40,21 @@ impl<P, T> PinExt for Pin<P, T> {
         });
         self
     }
-    fn set_pull_down(&self) -> &Self {
+    pub fn set_pull_down(&self) -> &Self {
         self.set_pull(Pull::PullDown)
     }
-    fn set_pull_up(&self) -> &Self {
+    pub fn set_pull_up(&self) -> &Self {
         self.set_pull(Pull::PullUp)
     }
     
-    fn isf(&self) -> bool {
+    pub fn isf(&self) -> bool {
         self.port.pcr(self.index).isf() != 0
     }
-    fn clr_isf(&self) -> &Self {
+    pub fn clr_isf(&self) -> &Self {
         self.port.with_pcr(self.index, |r| r.set_isf(1));
         self
     }
-    fn irqc(&self) -> InterruptConfig {
+    pub fn irqc(&self) -> InterruptConfig {
         match self.port.pcr(self.index).irqc() {
             U4::B0000 => InterruptConfig::Disabled,
             U4::B0001 => InterruptConfig::DmaRisingEdge,
@@ -87,7 +74,7 @@ impl<P, T> PinExt for Pin<P, T> {
             U4::B1111 => unreachable!(),            
         }
     }
-    fn set_irqc(&self, value: InterruptConfig) -> &Self {
+    pub fn set_irqc(&self, value: InterruptConfig) -> &Self {
         self.port.with_pcr(self.index, |r| r.set_irqc(value as u8));
         self
     }    

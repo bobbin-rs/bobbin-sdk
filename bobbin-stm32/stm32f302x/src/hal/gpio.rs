@@ -19,9 +19,9 @@ pub fn pin_input<P: Pin>(pin: P) -> PinInput {
     gpio::pin_input((pin.port(), pin.index()))
 }
 
-pub fn pin_altfn<P: Pin>(pin: P) -> PinAltFn {
+pub fn pin_alt_fn<P: Pin>(pin: P) -> PinAltFn {
     rcc::set_gpio_enabled(pin.port(), true);
-    gpio::pin_altfn((pin.port(), pin.index()))
+    gpio::pin_alt_fn((pin.port(), pin.index()))
 }
 
 pub fn pin_analog<P: Pin>(pin: P) ->PinAnalog {

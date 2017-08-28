@@ -1,14 +1,14 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!( UDMA, Udma, _UDMA, UdmPeriph, 0x400ff000);
+periph!( UDMA, Udma, _UDMA, UdmaPeriph, 0x400ff000);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="UDMA Peripheral"]
-pub struct UdmPeriph(pub usize); 
+pub struct UdmaPeriph(pub usize); 
 
 
 
-impl UdmPeriph {
+impl UdmaPeriph {
 #[doc="Get the *const pointer for the STAT register."]
    #[inline] pub fn stat_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
@@ -2185,7 +2185,7 @@ impl ::core::fmt::Debug for Chctl {
       Ok(())
    }
 }
-pub struct UdmCh { pub periph: UdmPeriph, pub index: usize }
+pub struct UdmaCh { pub periph: UdmaPeriph, pub index: usize }
 channel!(UDMA_CH0, UdmaCh0, UDMA, Udma, _UDMA_CH0, UdmaCh, _UDMA, 0);
 channel!(UDMA_CH1, UdmaCh1, UDMA, Udma, _UDMA_CH1, UdmaCh, _UDMA, 1);
 channel!(UDMA_CH2, UdmaCh2, UDMA, Udma, _UDMA_CH2, UdmaCh, _UDMA, 2);

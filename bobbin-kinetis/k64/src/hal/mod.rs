@@ -6,67 +6,70 @@ pub mod sim;
 pub mod clock;
 
 pub mod port {
+    pub use bobbin_common::{AltFn, Pin};
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
     use chip::gpio;
     use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 
-    pub trait GpioPin<PIN_ID, GPIO_ID> {
-        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
+    use core::ops::Deref;
+
+    // pub trait GpioPin<T> {
+    //     fn gpio_pin(&self) -> T;
+    // }
+
+    // impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<T> for PIN
+    //  where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
+    //     fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
+    //         gpio::Pin {
+    //             port: self.port.gpio(),
+    //             index: self.index,
+    //             id: self.id,
+    //         }
+    //     }
+    // }
+
+    pub trait ModeTx<SIG, PERIPH> {
+        fn mode_tx(&self, _: &PERIPH) -> &Self;
     }
 
-    impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<PIN_ID, GPIO_ID> for Pin<PIN_ID, PORT_ID>
-     where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
-        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
-            gpio::Pin {
-                port: self.port.gpio(),
-                index: self.index,
-                id: self.id,
-            }
-        }
+    pub trait ModeRx<SIG, PERIPH> {
+        fn mode_rx(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeTx<T, S> {
-        fn mode_tx(&self, _: &S) -> &Self;
+    pub trait ModeFtm<SIG, PERIPH> {
+        fn mode_ftm(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeRx<T, S> {
-        fn mode_rx(&self, _: &S) -> &Self;
+    pub trait ModeAdc<SIG, PERIPH> {
+        fn mode_adc(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeFtm<T, S> {
-        fn mode_ftm(&self, _: &S) -> &Self;
-    }
-
-    pub trait ModeAdc<T, S> {
-        fn mode_adc(&self, _: &S) -> &Self;
-    }
-
-    impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
-        fn mode_tx(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_tx(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }
 
-    impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
-        fn mode_rx(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_rx(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }   
 
-    impl<P, O, S, T> ModeFtm<T, S> for Pin<P, O> where S: SignalFtm<T>, P: AltFn<T> {
-        fn mode_ftm(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeFtm<SIG, PERIPH> for PIN where PERIPH: SignalFtm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_ftm(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }        
 
-    impl<P, O, S, T> ModeAdc<T, S> for Pin<P, O> where S: SignalAdc<T>, P: AltFn<T> {
-        fn mode_adc(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH> for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_adc(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }
@@ -75,13 +78,13 @@ pub mod port {
     //     ($mode:ident, $fn:ident, $sig:ident) => (
     //         use chip::sig::$sig;
 
-    //         pub trait $mode<T, S> {
-    //             fn $fn(&self, _: &S) -> &Self;
+    //         pub trait $mode<SIG, PERIPH> {
+    //             fn $fn(&self, _: &PERIPH) -> &Self;
     //         }            
 
-    //         impl<P, O, S, T> $mode<T, S> for Pin<P, O> where S: $sig<T>, P: AltFn<T> {
-    //             fn $fn(&self, _: &S) -> &Self {
-    //                 self.set_mux(self.id.alt_fn());
+    //         impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    //             fn $fn(&self, _: &PERIPH) -> &Self {
+    //                 self.set_mux(self.alt_fn());
     //                 self
     //             }
     //         }                        
