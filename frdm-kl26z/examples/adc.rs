@@ -34,13 +34,13 @@ pub extern "C" fn main() -> ! {
 
     loop {
         // Read Temperature Sensor on AD26 (value ~ 55)
-        let v0: u8 = ch16.analog_read();
+        let v0: U8 = ch16.analog_read();
         // ch0.set_input_channel(26.into());        
         // while !ch0.conversion_complete() {}
         // let v0 = ch0.result();
 
         // Read A0 on AD8
-        let v1: U16 = ch8.analog_read();
+        let v1: U8 = ch8.analog_read();
 
         // ch0.set_input_channel(8.into());        
         // while !ch0.conversion_complete() {}

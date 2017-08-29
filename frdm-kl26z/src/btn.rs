@@ -1,12 +1,15 @@
+use hal::gpio::*;
 use hal::port::*;
-use hal::gpio::GpioExt;
 
-pub const BTN0: Ptc3 = PTC3;
+pub use common::digital::DigitalInput;
+
+pub const BTN0: Pc3 = PC3;
+pub const BTN0_PT: Ptc3 = PTC3;
 
 pub fn init() {
-    BTN0.port().sim_enable();
-    BTN0.set_mux_gpio();
-    BTN0.gpio_pin().set_dir_input();
+    BTN0_PT.port().sim_enable();
+    BTN0_PT.set_mux_gpio();
+    BTN0.set_dir_input();
 }
 
 // // SW2 = PTC6
