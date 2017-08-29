@@ -2,27 +2,11 @@ pub use bobbin_common::{Pin, AltFn};
 pub use chip::port::*;    
 pub use kinetis_common::hal::port::*;
 pub use super::pcc::PccEnabled;
-// use chip::gpio;
 use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 use chip::sig::{SignalSpiSck, SignalSpiSin, SignalSpiSout};
 use chip::sig::{SignalSpiPcs0, SignalSpiPcs1, SignalSpiPcs2, SignalSpiPcs3};
 
 use core::ops::Deref;
-
-// pub trait GpioPin<T> {
-//     fn gpio_pin(&self) -> T;
-// }
-
-// impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<PIN_ID, GPIO_ID> for Pin<PIN_ID, PORT_ID>
-//     where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
-//     fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
-//         gpio::Pin {
-//             port: self.port.gpio(),
-//             index: self.index,
-//             id: self.id,
-//         }
-//     }
-// }
 
 pub trait ModeTx<SIG, PERIPH> {
     fn mode_tx(&self, _: &PERIPH) -> &Self;
