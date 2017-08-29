@@ -86,7 +86,6 @@ pub trait IrqNum {
     fn irq_num(&self) -> u8;
 }
 
-
 pub type Handler = extern "C" fn();
 
 pub trait GetHandler {
@@ -101,8 +100,8 @@ pub trait HandleIrq {
    fn handle_irq(&self);
 }
 
-pub trait WrapHandleIrq {
-    fn wrap_handle_irq<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) -> Handler;
+pub trait WrapHandler {
+    fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
 }
 
 #[macro_export]
@@ -205,8 +204,8 @@ macro_rules! irq {
                 set_handler($num, h);
             }
         }
-        impl WrapHandleIrq for $ty {
-            fn wrap_handle_irq<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) -> Handler {
+        impl WrapHandler for $ty {
+            fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) {
                 static mut HANDLER: Option<usize> = None;                
                 unsafe { 
                     assert!(HANDLER.is_none(), "Irq is already wrapping a function");
@@ -215,7 +214,7 @@ macro_rules! irq {
                 extern "C" fn wrapper<W: HandleIrq>() {
                     unsafe { (*(HANDLER.unwrap() as *const W)).handle_irq() }
                 }
-                wrapper::<F>
+                set_handler($num, Some(wrapper::<F>));                
             }
         }
         impl ::core::fmt::Debug for $ty {
