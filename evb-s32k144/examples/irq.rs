@@ -6,7 +6,7 @@
 extern crate evb_s32k144 as board;
 
 use board::hal::nvic;
-use board::common::{IrqNum, SetHandler};
+use board::common::{IrqNum, WrapHandler, HandleIrq};
 use board::hal::port::*;
 use board::hal::gpio::*;
 // use board::hal::rtc::{RTC, PccEnabled};
@@ -36,19 +36,12 @@ pub extern "C" fn main() -> ! {
     l0.set_output(true);
     l1.set_output(true);
 
-    extern "C"
-    fn b0_handler() {
-        if BTN0.port_pin().isf() {
-            BTN0.port_pin().clr_isf();
-            println!("B0 IRQ");
-        }
-        if BTN1.port_pin().isf() {
-            BTN1.port_pin().clr_isf();
-            println!("B1 IRQ");
-        }        
-    }
+    let bh = BtnHandler {
+        b0: BTN0.port_pin().into(),
+        b1: BTN1.port_pin().into(),
+    };
 
-    p0.irq_port().set_handler(Some(b0_handler));
+    p0.irq_port().wrap_handler(&bh);
     
     nvic::set_enabled(p0.irq_port().irq_num() as usize, true);
 
@@ -74,19 +67,20 @@ pub extern "C" fn main() -> ! {
     }
 }
 
-// pub struct BtnHandler {}
+pub struct BtnHandler {
+    b0: PortPin,
+    b1: PortPin,
+}
 
-// impl HandlePort for BtnHandler {
-//     fn handle_port(&self) {
-//         let b0 = BTN0;
-//         let b1 = BTN1;
-//         if b0.isf() {
-//             b0.clr_isf();
-//             println!("B0");
-//         }
-//         if b1.isf() {
-//             b1.clr_isf();
-//             println!("B1");
-//         }        
-//     }
-// }
+impl HandleIrq for BtnHandler {
+    fn handle_irq(&self) {
+        if self.b0.isf() {
+            self.b0.clr_isf();
+            println!("B0");
+        }
+        if self.b1.isf() {
+            self.b1.clr_isf();
+            println!("B1");
+        }        
+    }
+}
