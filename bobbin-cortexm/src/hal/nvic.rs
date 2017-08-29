@@ -1,5 +1,10 @@
 pub use ::chip::nvic::*;
 
+pub trait NvicEnabled {
+    fn nvic_enabled(&self) -> bool;
+    fn set_nvic_enabled(&self, value: bool) -> &Self;
+}
+
 pub fn enabled(irq: usize) -> bool {
     NVIC.iser((irq >> 5)).setena(irq & 0b11111) != 0
 }

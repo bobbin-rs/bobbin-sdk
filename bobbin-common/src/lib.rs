@@ -118,6 +118,12 @@ macro_rules! periph {
                 &$pid
             }
         }
+        impl Into<$pty> for $ty {
+            #[inline(always)]
+            fn into(self) -> $pty {
+                $pid
+            }
+        }        
     );
     ($id:ident, $ty:ident, $base:expr) => (    
         pub const $id: $ty = $ty($base);
@@ -144,6 +150,12 @@ macro_rules! pin {
                 &$base_id
             }
         }
+        impl Into<$base_type> for $ty {
+            #[inline(always)]
+            fn into(self) -> $base_type {
+                $base_id
+            }
+        }
     )
 }
 
@@ -167,6 +179,12 @@ macro_rules! channel {
                 &$base_id
             }
         }
+        impl Into<$base_type> for $ty {
+            #[inline(always)]
+            fn into(self) -> $base_type {
+                $base_id
+            }
+        }        
     )    
 }
 
