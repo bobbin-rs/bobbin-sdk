@@ -18,7 +18,7 @@ pub mod exceptions;
 pub mod lang_items;
 
 pub mod clock;
-// pub mod led;
+pub mod led;
 pub mod tim;
 
 pub use tim::delay;
@@ -31,7 +31,7 @@ pub use tim::delay;
 
 pub fn init() {
     clock::init();
-    // led::init();
+    led::init();
     tim::init();
     console::init();
 }
