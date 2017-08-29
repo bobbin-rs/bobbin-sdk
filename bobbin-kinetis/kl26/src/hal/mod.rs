@@ -10,25 +10,9 @@ pub mod port {
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    // use chip::gpio;
     use chip::sig::{SignalTx, SignalRx, SignalTpm, SignalAdc};
 
     use core::ops::Deref;
-
-    // pub trait GpioPin<PIN_ID, GPIO_ID> {
-    //     fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
-    // }
-
-    // impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<PIN_ID, GPIO_ID> for Pin<PIN_ID, PORT_ID>
-    //  where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
-    //     fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
-    //         gpio::Pin {
-    //             port: self.port.gpio(),
-    //             index: self.index,
-    //             id: self.id,
-    //         }
-    //     }
-    // }
 
     pub trait ModeTx<SIG, PERIPH> {
         fn mode_tx(&self, _: &PERIPH) -> &Self;
@@ -79,6 +63,7 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use kinetis_common::hal::gpio::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Pin;
 }
 
 
@@ -110,10 +95,12 @@ pub mod dma {
     pub use chip::dma::*;
     pub use kinetis_common::hal::dma::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Channel;
 }
 
 pub mod adc {
     pub use chip::adc::*;
     pub use kinetis_common::hal::adc::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Channel;
 }
