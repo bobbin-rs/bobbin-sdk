@@ -9,7 +9,6 @@ use board::hal::nvic;
 use board::common::{IrqNum, WrapHandler, HandleIrq};
 use board::hal::port::*;
 use board::hal::gpio::*;
-// use board::hal::rtc::{RTC, PccEnabled};
 
 use board::btn::*;
 use board::led::*;
@@ -46,24 +45,9 @@ pub extern "C" fn main() -> ! {
     nvic::set_enabled(p0.irq_port().irq_num() as usize, true);
 
     println!("starting loop");
-    let mut count = 0;
     loop {        
-        if b0.isf() {
-            b0.clr_isf();            
-            println!("B0 {}", count);
-            count = 0;
-            // p0.irq_port().set_pending(false);
-        }
-        if b1.isf() {
-            b1.clr_isf();
-            println!("B1 {}", count);
-            count = 0;
-            // p0.irq_port().set_pending(false);
-        }        
         l0.set_output(!b0.gpio_pin().input());
         l1.set_output(!b1.gpio_pin().input());
-        count += 1; 
-        unsafe { asm!("wfi") }
     }
 }
 
