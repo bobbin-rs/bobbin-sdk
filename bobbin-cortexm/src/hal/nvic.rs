@@ -6,9 +6,9 @@ pub fn enabled(irq: usize) -> bool {
 
 pub fn set_enabled(irq: usize, value: bool) {
     if value {
-        NVIC.set_iser((irq >> 5), |r| r.set_setena(irq, 1));
+        NVIC.set_iser((irq >> 5), |r| r.set_setena(irq & 0b11111, 1));
     } else {
-        NVIC.set_icer((irq >> 5), |r| r.set_clrena(irq, 1));
+        NVIC.set_icer((irq >> 5), |r| r.set_clrena(irq & 0b11111, 1));
     }        
 }
 
