@@ -100,22 +100,6 @@ impl LinkPortPin<super::port::Pta19 > for Pa19 {
    #[inline] fn port_pin(&self) -> super::port::Pta19  { super::port::PTA19 }
 }
 
-impl LinkPortPin<super::port::Pta20 > for Pa20 {
-   #[inline] fn port_pin(&self) -> super::port::Pta20  { super::port::PTA20 }
-}
-
-impl LinkPortPin<super::port::Pta21 > for Pa21 {
-   #[inline] fn port_pin(&self) -> super::port::Pta21  { super::port::PTA21 }
-}
-
-impl LinkPortPin<super::port::Pta22 > for Pa22 {
-   #[inline] fn port_pin(&self) -> super::port::Pta22  { super::port::PTA22 }
-}
-
-impl LinkPortPin<super::port::Pta23 > for Pa23 {
-   #[inline] fn port_pin(&self) -> super::port::Pta23  { super::port::PTA23 }
-}
-
 impl LinkPortPin<super::port::Pta24 > for Pa24 {
    #[inline] fn port_pin(&self) -> super::port::Pta24  { super::port::PTA24 }
 }
@@ -199,14 +183,6 @@ impl LinkPortPin<super::port::Ptb12 > for Pb12 {
 
 impl LinkPortPin<super::port::Ptb13 > for Pb13 {
    #[inline] fn port_pin(&self) -> super::port::Ptb13  { super::port::PTB13 }
-}
-
-impl LinkPortPin<super::port::Ptb14 > for Pb14 {
-   #[inline] fn port_pin(&self) -> super::port::Ptb14  { super::port::PTB14 }
-}
-
-impl LinkPortPin<super::port::Ptb15 > for Pb15 {
-   #[inline] fn port_pin(&self) -> super::port::Ptb15  { super::port::PTB15 }
 }
 
 impl LinkPortPin<super::port::Ptb16 > for Pb16 {
@@ -452,50 +428,6 @@ impl LinkPortPin<super::port::Pte12 > for Pe12 {
    #[inline] fn port_pin(&self) -> super::port::Pte12  { super::port::PTE12 }
 }
 
-impl LinkPortPin<super::port::Pte13 > for Pe13 {
-   #[inline] fn port_pin(&self) -> super::port::Pte13  { super::port::PTE13 }
-}
-
-impl LinkPortPin<super::port::Pte14 > for Pe14 {
-   #[inline] fn port_pin(&self) -> super::port::Pte14  { super::port::PTE14 }
-}
-
-impl LinkPortPin<super::port::Pte15 > for Pe15 {
-   #[inline] fn port_pin(&self) -> super::port::Pte15  { super::port::PTE15 }
-}
-
-impl LinkPortPin<super::port::Pte16 > for Pe16 {
-   #[inline] fn port_pin(&self) -> super::port::Pte16  { super::port::PTE16 }
-}
-
-impl LinkPortPin<super::port::Pte17 > for Pe17 {
-   #[inline] fn port_pin(&self) -> super::port::Pte17  { super::port::PTE17 }
-}
-
-impl LinkPortPin<super::port::Pte18 > for Pe18 {
-   #[inline] fn port_pin(&self) -> super::port::Pte18  { super::port::PTE18 }
-}
-
-impl LinkPortPin<super::port::Pte19 > for Pe19 {
-   #[inline] fn port_pin(&self) -> super::port::Pte19  { super::port::PTE19 }
-}
-
-impl LinkPortPin<super::port::Pte20 > for Pe20 {
-   #[inline] fn port_pin(&self) -> super::port::Pte20  { super::port::PTE20 }
-}
-
-impl LinkPortPin<super::port::Pte21 > for Pe21 {
-   #[inline] fn port_pin(&self) -> super::port::Pte21  { super::port::PTE21 }
-}
-
-impl LinkPortPin<super::port::Pte22 > for Pe22 {
-   #[inline] fn port_pin(&self) -> super::port::Pte22  { super::port::PTE22 }
-}
-
-impl LinkPortPin<super::port::Pte23 > for Pe23 {
-   #[inline] fn port_pin(&self) -> super::port::Pte23  { super::port::PTE23 }
-}
-
 impl LinkPortPin<super::port::Pte24 > for Pe24 {
    #[inline] fn port_pin(&self) -> super::port::Pte24  { super::port::PTE24 }
 }
@@ -558,14 +490,6 @@ pin!(PA18, Pa18, GPIOA, Gpioa, _PA18, GpioPin, _GPIOA, 18);
 
 pin!(PA19, Pa19, GPIOA, Gpioa, _PA19, GpioPin, _GPIOA, 19);
 
-pin!(PA20, Pa20, GPIOA, Gpioa, _PA20, GpioPin, _GPIOA, 20);
-
-pin!(PA21, Pa21, GPIOA, Gpioa, _PA21, GpioPin, _GPIOA, 21);
-
-pin!(PA22, Pa22, GPIOA, Gpioa, _PA22, GpioPin, _GPIOA, 22);
-
-pin!(PA23, Pa23, GPIOA, Gpioa, _PA23, GpioPin, _GPIOA, 23);
-
 pin!(PA24, Pa24, GPIOA, Gpioa, _PA24, GpioPin, _GPIOA, 24);
 
 pin!(PA25, Pa25, GPIOA, Gpioa, _PA25, GpioPin, _GPIOA, 25);
@@ -605,10 +529,6 @@ pin!(PB11, Pb11, GPIOB, Gpiob, _PB11, GpioPin, _GPIOB, 11);
 pin!(PB12, Pb12, GPIOB, Gpiob, _PB12, GpioPin, _GPIOB, 12);
 
 pin!(PB13, Pb13, GPIOB, Gpiob, _PB13, GpioPin, _GPIOB, 13);
-
-pin!(PB14, Pb14, GPIOB, Gpiob, _PB14, GpioPin, _GPIOB, 14);
-
-pin!(PB15, Pb15, GPIOB, Gpiob, _PB15, GpioPin, _GPIOB, 15);
 
 pin!(PB16, Pb16, GPIOB, Gpiob, _PB16, GpioPin, _GPIOB, 16);
 
@@ -723,28 +643,6 @@ pin!(PE10, Pe10, GPIOE, Gpioe, _PE10, GpioPin, _GPIOE, 10);
 pin!(PE11, Pe11, GPIOE, Gpioe, _PE11, GpioPin, _GPIOE, 11);
 
 pin!(PE12, Pe12, GPIOE, Gpioe, _PE12, GpioPin, _GPIOE, 12);
-
-pin!(PE13, Pe13, GPIOE, Gpioe, _PE13, GpioPin, _GPIOE, 13);
-
-pin!(PE14, Pe14, GPIOE, Gpioe, _PE14, GpioPin, _GPIOE, 14);
-
-pin!(PE15, Pe15, GPIOE, Gpioe, _PE15, GpioPin, _GPIOE, 15);
-
-pin!(PE16, Pe16, GPIOE, Gpioe, _PE16, GpioPin, _GPIOE, 16);
-
-pin!(PE17, Pe17, GPIOE, Gpioe, _PE17, GpioPin, _GPIOE, 17);
-
-pin!(PE18, Pe18, GPIOE, Gpioe, _PE18, GpioPin, _GPIOE, 18);
-
-pin!(PE19, Pe19, GPIOE, Gpioe, _PE19, GpioPin, _GPIOE, 19);
-
-pin!(PE20, Pe20, GPIOE, Gpioe, _PE20, GpioPin, _GPIOE, 20);
-
-pin!(PE21, Pe21, GPIOE, Gpioe, _PE21, GpioPin, _GPIOE, 21);
-
-pin!(PE22, Pe22, GPIOE, Gpioe, _PE22, GpioPin, _GPIOE, 22);
-
-pin!(PE23, Pe23, GPIOE, Gpioe, _PE23, GpioPin, _GPIOE, 23);
 
 pin!(PE24, Pe24, GPIOE, Gpioe, _PE24, GpioPin, _GPIOE, 24);
 

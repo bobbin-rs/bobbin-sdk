@@ -19,7 +19,7 @@ pub mod port {
     use chip::sig::{SignalTx, SignalRx, SignalFtm};
 
     use core::ops::Deref;
-    
+
     pub trait ModeTx<SIG, PERIPH> {
         fn mode_tx(&self, _: &PERIPH) -> &Self;
     }
@@ -58,6 +58,7 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use kinetis_common::hal::gpio::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Pin;
 }
 
 
