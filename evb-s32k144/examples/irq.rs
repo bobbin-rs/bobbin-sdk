@@ -70,7 +70,7 @@ pub extern "C" fn main() -> ! {
         l0.set_output(!b0.gpio_pin().input());
         l1.set_output(!b1.gpio_pin().input());
         count += 1; 
-        // unsafe { asm!("wfi") }
+        unsafe { asm!("wfi") }
     }
 }
 
