@@ -4,23 +4,19 @@
 
 extern crate evb_s32k144 as board;
 
-use board::hal::port::GpioPin;
-use board::hal::gpio::{DigitalInput, DigitalOutput};
+use board::led::*;
+use board::btn::*;
+use board::hal::gpio::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let btn0 = board::btn::BTN0.gpio_pin();
-    let led0 = board::led::LED_B;
-    let led1 = board::led::LED_G;
-    let led2 = board::led::LED_R;
-    // let led1 = board::led::LED1.gpio_pin();
-    // let led2 = board::led::LED2.gpio_pin();
-    // LEDs are active LOW
+    let btn0 = BTN0;
+    let led0 = LED0;
+    let led1 = LED1;
+    let led2 = LED2;
 
-    // led0.set_output(true);
-    // led1.set_output(true);
-    // led2.set_output(true);
+    // LEDs are active LOW
 
     loop {
         led0.toggle_output();

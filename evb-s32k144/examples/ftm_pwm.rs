@@ -4,8 +4,10 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
+use board::led::*;
+
+use board::common::Channel;
 use board::hal::port::*;
-//use board::hal::gpio::GpioExt;
 use board::hal::ftm::*;
 use board::hal::pcc;
 
@@ -13,7 +15,7 @@ use board::hal::pcc;
 pub extern "C" fn main() -> ! {
     board::init();
     
-    let led0 = board::led::LED0;
+    let led0 = board::led::LEDPT0;
 
     println!("PWM Test");
     

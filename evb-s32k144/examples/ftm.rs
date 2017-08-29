@@ -4,6 +4,7 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
+use board::common::Channel;
 use board::hal::ftm::*;
 use board::hal::pcc;
 use board::hal::clock::Clock;
