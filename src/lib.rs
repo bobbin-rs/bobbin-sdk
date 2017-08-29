@@ -274,6 +274,7 @@ pub struct Link {
     pub peripheral_group: String,
     pub peripheral: String,
     pub channel: String,
+    pub pin: String,
 }
 
 #[derive(Debug, Clone, Default)]
@@ -298,6 +299,7 @@ pub struct Pin {
     pub index: Option<u64>,
     pub description: Option<String>,
     pub altfns: Vec<AltFn>,
+    pub links: Vec<Link>,
 }
 
 #[derive(Debug, Clone, Default)]
