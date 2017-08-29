@@ -448,6 +448,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     for p in pg.peripherals.iter() {
         let pg_type = to_camel(&pg.name);
         let p_type = to_camel(&p.name);
+
+        // Peripheral Links
         for l in p.links.iter() {
             let l_trait = format!("Link{}<T>", to_camel(&l.name));
             let l_getter = field_getter(&l.name);
@@ -459,6 +461,22 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
                 link_traits.insert(l_trait);
+            }
+        }
+
+        for pin in p.pins.iter() {
+            for l in pin.links.iter() {
+                let l_trait = format!("Link{}<T>", to_camel(&l.name));
+                let l_getter = field_getter(&l.name);
+                let pg_mod = l.peripheral_group.to_lowercase();
+
+                if !link_traits.contains(&l_trait) {
+                    try!(writeln!(out, "pub trait {} {{", l_trait));
+                    try!(writeln!(out, "   fn {}(&self) -> T;", l_getter));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+                    link_traits.insert(l_trait);
+                }                
             }
         }
     }
@@ -506,7 +524,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let p_type = to_camel(&p.name);
         let p_id = format!("{}Id", p_type);
         let p_name = p.name.to_uppercase();
-        // Generate Links
+
+        // Generate Peripheral Links
 
         for l in p.links.iter() {
             let l_trait = format!("Link{}", to_camel(&l.name));
@@ -521,6 +540,26 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             try!(writeln!(out, "   fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.peripheral.to_uppercase()));
             try!(writeln!(out, "}}"));
             try!(writeln!(out, ""));
+        }
+
+        // Generate Pin Links
+
+        for pin in p.pins.iter() {
+            let pin_type = to_camel(&pin.name);
+            
+            for l in pin.links.iter() {
+                let l_trait = format!("Link{}", to_camel(&l.name));
+                let l_getter = field_getter(&l.name);
+                let pg_mod = l.peripheral_group.to_lowercase();
+                let l_type = format!("super::{}::{} ", pg_mod, to_camel(&l.pin));
+
+                let p_const = l.peripheral.to_uppercase();            
+                    
+                try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, pin_type));
+                try!(writeln!(out, "   fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.pin.to_uppercase()));
+                try!(writeln!(out, "}}"));
+                try!(writeln!(out, ""));
+            }            
         }
 
 
