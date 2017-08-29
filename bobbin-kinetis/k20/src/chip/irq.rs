@@ -53,10 +53,16 @@ irq!(IRQ_PORTD, IrqPortd, 62);
 irq!(IRQ_PORTE, IrqPorte, 63);
 
 
+pub fn handler(index: usize) -> Option<Handler> {
+   unsafe { 
+      R_INTERRUPT_HANDLERS[index]
+   } 
+}
+
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { 
-     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-     R_INTERRUPT_HANDLERS[index] = handler
+   unsafe { 
+      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+      R_INTERRUPT_HANDLERS[index] = handler
   };
 }
 

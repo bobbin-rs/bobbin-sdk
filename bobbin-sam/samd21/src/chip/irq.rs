@@ -20,10 +20,16 @@ irq!(IRQ_SERCOM4, IrqSercom4, 13);
 irq!(IRQ_SERCOM5, IrqSercom5, 14);
 
 
+pub fn handler(index: usize) -> Option<Handler> {
+   unsafe { 
+      R_INTERRUPT_HANDLERS[index]
+   } 
+}
+
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { 
-     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-     R_INTERRUPT_HANDLERS[index] = handler
+   unsafe { 
+      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+      R_INTERRUPT_HANDLERS[index] = handler
   };
 }
 

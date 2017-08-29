@@ -92,10 +92,16 @@ irq!(IRQ_GPIOQ6, IrqGpioq6, 90);
 irq!(IRQ_GPIOQ7, IrqGpioq7, 91);
 
 
+pub fn handler(index: usize) -> Option<Handler> {
+   unsafe { 
+      R_INTERRUPT_HANDLERS[index]
+   } 
+}
+
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { 
-     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-     R_INTERRUPT_HANDLERS[index] = handler
+   unsafe { 
+      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+      R_INTERRUPT_HANDLERS[index] = handler
   };
 }
 

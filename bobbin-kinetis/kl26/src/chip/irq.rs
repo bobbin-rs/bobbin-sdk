@@ -21,10 +21,16 @@ irq!(IRQ_UART2, IrqUart2, 14);
 irq!(IRQ_ADC0, IrqAdc0, 39);
 
 
+pub fn handler(index: usize) -> Option<Handler> {
+   unsafe { 
+      R_INTERRUPT_HANDLERS[index]
+   } 
+}
+
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { 
-     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-     R_INTERRUPT_HANDLERS[index] = handler
+   unsafe { 
+      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+      R_INTERRUPT_HANDLERS[index] = handler
   };
 }
 

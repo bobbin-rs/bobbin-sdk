@@ -89,10 +89,16 @@ irq!(IRQ_DMA2_STREAM6, IrqDma2Stream6, 69);
 irq!(IRQ_DMA2_STREAM7, IrqDma2Stream7, 70);
 
 
+pub fn handler(index: usize) -> Option<Handler> {
+   unsafe { 
+      R_INTERRUPT_HANDLERS[index]
+   } 
+}
+
 pub fn set_handler(index: usize, handler: Option<Handler>) {
-  unsafe { 
-     assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-     R_INTERRUPT_HANDLERS[index] = handler
+   unsafe { 
+      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+      R_INTERRUPT_HANDLERS[index] = handler
   };
 }
 
