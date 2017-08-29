@@ -537,7 +537,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let p_const = l.peripheral.to_uppercase();            
                   
             try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, p_type));
-            try!(writeln!(out, "   fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.peripheral.to_uppercase()));
+            try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.peripheral.to_uppercase()));
             try!(writeln!(out, "}}"));
             try!(writeln!(out, ""));
         }
@@ -556,7 +556,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let p_const = l.peripheral.to_uppercase();            
                     
                 try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, pin_type));
-                try!(writeln!(out, "   fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.pin.to_uppercase()));
+                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.pin.to_uppercase()));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }            
