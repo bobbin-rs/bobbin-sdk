@@ -1,7 +1,7 @@
 pub use ::chip::nvic::*;
 
 pub fn enabled(irq: usize) -> bool {
-    NVIC.iser((irq >> 5)).setena(irq) != 0
+    NVIC.iser((irq >> 5)).setena(irq & 0b11111) != 0
 }
 
 pub fn set_enabled(irq: usize, value: bool) {
