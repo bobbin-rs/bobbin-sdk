@@ -793,6 +793,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     // Generate Peripheral Group Interrupts
 
+    try!(writeln!(out, ""));
+
     let mut interrupt_types = HashSet::new();
 
     for p in pg.peripherals.iter() {
