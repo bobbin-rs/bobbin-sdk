@@ -10,7 +10,6 @@ pub mod port {
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    use chip::gpio;
     use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 
     use core::ops::Deref;
