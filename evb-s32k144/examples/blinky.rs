@@ -6,7 +6,6 @@ extern crate evb_s32k144 as board;
 
 use board::led::*;
 use board::btn::*;
-use board::hal::gpio::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
