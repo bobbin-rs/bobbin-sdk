@@ -2171,3 +2171,16 @@ channel!(ADC1_IN0, Adc1In0, ADC1, Adc1, _ADC1_IN0, AdcCh, _ADC1, 21);
 channel!(ADC1_BANDGAP, Adc1Bandgap, ADC1, Adc1, _ADC1_BANDGAP, AdcCh, _ADC1, 27);
 channel!(ADC1_REFSH, Adc1Refsh, ADC1, Adc1, _ADC1_REFSH, AdcCh, _ADC1, 29);
 channel!(ADC1_REFSL, Adc1Refsl, ADC1, Adc1, _ADC1_REFSL, AdcCh, _ADC1, 30);
+
+pub trait IrqAdc<T> {
+   fn irq_adc(&self) -> T;
+}
+
+impl IrqAdc<super::irq::IrqAdc0> for Adc0 {
+   fn irq_adc(&self) -> super::irq::IrqAdc0 { super::irq::IRQ_ADC0 }
+}
+
+impl IrqAdc<super::irq::IrqAdc1> for Adc1 {
+   fn irq_adc(&self) -> super::irq::IrqAdc1 { super::irq::IRQ_ADC1 }
+}
+

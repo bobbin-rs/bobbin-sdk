@@ -2761,3 +2761,4 @@ impl ::core::fmt::Debug for Or {
    }
 }
 pub struct TimAdvCh { pub periph: TimAdvPeriph, pub index: usize }
+

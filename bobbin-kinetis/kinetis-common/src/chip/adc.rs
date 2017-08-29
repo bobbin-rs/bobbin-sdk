@@ -1867,3 +1867,4 @@ impl ::core::fmt::Debug for Clm0 {
    }
 }
 pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+

@@ -2710,3 +2710,4 @@ channel!(ADC1_CH16, Adc1Ch16, ADC1, Adc1, _ADC1_CH16, AdcCh, _ADC1, 16);
 channel!(ADC1_CH17, Adc1Ch17, ADC1, Adc1, _ADC1_CH17, AdcCh, _ADC1, 17);
 channel!(ADC1_CH18, Adc1Ch18, ADC1, Adc1, _ADC1_CH18, AdcCh, _ADC1, 18);
 channel!(ADC1_CH19, Adc1Ch19, ADC1, Adc1, _ADC1_CH19, AdcCh, _ADC1, 19);
+

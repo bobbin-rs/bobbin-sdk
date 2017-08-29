@@ -16,3 +16,4 @@ impl super::sig::Signal<super::sig::Uart2Rx> for Uart2 {}
 impl super::sig::SignalRx<super::sig::Uart2Rx> for Uart2 {}
 
 
+

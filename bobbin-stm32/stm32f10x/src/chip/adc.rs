@@ -40,3 +40,4 @@ channel!(ADC2_CH12, Adc2Ch12, ADC2, Adc2, _ADC2_CH12, AdcCh, _ADC2, 12);
 channel!(ADC2_CH13, Adc2Ch13, ADC2, Adc2, _ADC2_CH13, AdcCh, _ADC2, 13);
 channel!(ADC2_CH14, Adc2Ch14, ADC2, Adc2, _ADC2_CH14, AdcCh, _ADC2, 14);
 channel!(ADC2_CH15, Adc2Ch15, ADC2, Adc2, _ADC2_CH15, AdcCh, _ADC2, 15);
+

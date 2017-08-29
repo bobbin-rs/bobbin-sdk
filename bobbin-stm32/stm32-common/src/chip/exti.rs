@@ -610,3 +610,4 @@ impl ::core::fmt::Debug for Pr {
    }
 }
 pub struct ExtiCh { pub periph: ExtiPeriph, pub index: usize }
+

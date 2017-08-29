@@ -2237,3 +2237,12 @@ channel!(DMAC_CH8, DmacCh8, DMAC, Dmac, _DMAC_CH8, DmacCh, _DMAC, 8);
 channel!(DMAC_CH9, DmacCh9, DMAC, Dmac, _DMAC_CH9, DmacCh, _DMAC, 9);
 channel!(DMAC_CH10, DmacCh10, DMAC, Dmac, _DMAC_CH10, DmacCh, _DMAC, 10);
 channel!(DMAC_CH11, DmacCh11, DMAC, Dmac, _DMAC_CH11, DmacCh, _DMAC, 11);
+
+pub trait IrqDma<T> {
+   fn irq_dma(&self) -> T;
+}
+
+impl IrqDma<super::irq::IrqDmac> for Dmac {
+   fn irq_dma(&self) -> super::irq::IrqDmac { super::irq::IRQ_DMAC }
+}
+

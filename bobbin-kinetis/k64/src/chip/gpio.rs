@@ -654,3 +654,4 @@ pin!(PE27, Pe27, GPIOE, Gpioe, _PE27, GpioPin, _GPIOE, 27);
 
 pin!(PE28, Pe28, GPIOE, Gpioe, _PE28, GpioPin, _GPIOE, 28);
 
+

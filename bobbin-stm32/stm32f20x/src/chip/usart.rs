@@ -76,3 +76,4 @@ impl super::sig::Signal<super::sig::Usart6Ck> for Usart6 {}
 impl super::sig::SignalCk<super::sig::Usart6Ck> for Usart6 {}
 
 
+

@@ -2839,3 +2839,4 @@ impl ::core::fmt::Debug for Pwmload {
    }
 }
 pub struct FtmCh { pub periph: FtmPeriph, pub index: usize }
+

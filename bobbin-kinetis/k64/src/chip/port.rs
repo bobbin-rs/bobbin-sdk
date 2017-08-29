@@ -1194,3 +1194,28 @@ pin!(PTE27, Pte27, PORTE, Porte, _PTE27, PortPin, _PORTE, 27);
 pin!(PTE28, Pte28, PORTE, Porte, _PTE28, PortPin, _PORTE, 28);
    alt_fn!(Pte28, super::sig::Pte28, 1);
 
+
+pub trait IrqPort<T> {
+   fn irq_port(&self) -> T;
+}
+
+impl IrqPort<super::irq::IrqPorta> for Porta {
+   fn irq_port(&self) -> super::irq::IrqPorta { super::irq::IRQ_PORTA }
+}
+
+impl IrqPort<super::irq::IrqPortb> for Portb {
+   fn irq_port(&self) -> super::irq::IrqPortb { super::irq::IRQ_PORTB }
+}
+
+impl IrqPort<super::irq::IrqPortc> for Portc {
+   fn irq_port(&self) -> super::irq::IrqPortc { super::irq::IRQ_PORTC }
+}
+
+impl IrqPort<super::irq::IrqPortd> for Portd {
+   fn irq_port(&self) -> super::irq::IrqPortd { super::irq::IRQ_PORTD }
+}
+
+impl IrqPort<super::irq::IrqPorte> for Porte {
+   fn irq_port(&self) -> super::irq::IrqPorte { super::irq::IRQ_PORTE }
+}
+

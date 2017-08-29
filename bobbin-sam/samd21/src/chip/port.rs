@@ -1710,3 +1710,4 @@ pin!(PB31, Pb31, PORTB, Portb, _PB31, PortPin, _PORTB, 31);
    alt_fn!(Pb31, super::sig::Tcc0Wo1, 4);
    alt_fn!(Pb31, super::sig::Tcc1Wo3, 5);
 
+

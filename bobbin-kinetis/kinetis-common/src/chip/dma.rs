@@ -653,3 +653,4 @@ impl ::core::fmt::Debug for Dcr {
    }
 }
 pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
+

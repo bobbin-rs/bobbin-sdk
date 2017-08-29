@@ -2218,3 +2218,4 @@ channel!(UDMA_CH28, UdmaCh28, UDMA, Udma, _UDMA_CH28, UdmaCh, _UDMA, 28);
 channel!(UDMA_CH29, UdmaCh29, UDMA, Udma, _UDMA_CH29, UdmaCh, _UDMA, 29);
 channel!(UDMA_CH30, UdmaCh30, UDMA, Udma, _UDMA_CH30, UdmaCh, _UDMA, 30);
 channel!(UDMA_CH31, UdmaCh31, UDMA, Udma, _UDMA_CH31, UdmaCh, _UDMA, 31);
+

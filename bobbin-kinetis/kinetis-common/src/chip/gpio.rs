@@ -548,3 +548,4 @@ impl ::core::fmt::Debug for Pddr {
    }
 }
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+

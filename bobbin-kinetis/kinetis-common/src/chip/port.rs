@@ -433,3 +433,4 @@ impl ::core::fmt::Debug for Isfr {
    }
 }
 pub struct PortPin { pub port: PortPeriph, pub index: usize }
+

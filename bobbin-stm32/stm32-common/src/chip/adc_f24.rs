@@ -1614,3 +1614,4 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+

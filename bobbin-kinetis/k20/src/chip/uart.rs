@@ -40,3 +40,4 @@ impl super::sig::Signal<super::sig::Uart5Rx> for Uart5 {}
 impl super::sig::SignalRx<super::sig::Uart5Rx> for Uart5 {}
 
 
+

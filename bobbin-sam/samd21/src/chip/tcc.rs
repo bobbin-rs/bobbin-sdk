@@ -3769,3 +3769,4 @@ channel!(TCC1_CH0, Tcc1Ch0, TCC1, Tcc1, _TCC1_CH0, TccCh, _TCC1, 0);
 channel!(TCC1_CH1, Tcc1Ch1, TCC1, Tcc1, _TCC1_CH1, TccCh, _TCC1, 1);
 channel!(TCC2_CH0, Tcc2Ch0, TCC2, Tcc2, _TCC2_CH0, TccCh, _TCC2, 0);
 channel!(TCC2_CH1, Tcc2Ch1, TCC2, Tcc2, _TCC2_CH1, TccCh, _TCC2, 1);
+

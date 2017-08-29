@@ -2324,3 +2324,72 @@ channel!(TIMER6A, Timer6a, TIMER6, Timer6, _TIMER6A, TimerCh, _TIMER6, 0);
 channel!(TIMER6B, Timer6b, TIMER6, Timer6, _TIMER6B, TimerCh, _TIMER6, 1);
 channel!(TIMER7A, Timer7a, TIMER7, Timer7, _TIMER7A, TimerCh, _TIMER7, 0);
 channel!(TIMER7B, Timer7b, TIMER7, Timer7, _TIMER7B, TimerCh, _TIMER7, 1);
+
+pub trait IrqTimer<T> {
+   fn irq_timer(&self) -> T;
+}
+
+impl IrqTimer<super::irq::IrqTimer0a> for Timer0a {
+   fn irq_timer(&self) -> super::irq::IrqTimer0a { super::irq::IRQ_TIMER0A }
+}
+
+impl IrqTimer<super::irq::IrqTimer0b> for Timer0b {
+   fn irq_timer(&self) -> super::irq::IrqTimer0b { super::irq::IRQ_TIMER0B }
+}
+
+impl IrqTimer<super::irq::IrqTimer1a> for Timer1a {
+   fn irq_timer(&self) -> super::irq::IrqTimer1a { super::irq::IRQ_TIMER1A }
+}
+
+impl IrqTimer<super::irq::IrqTimer1b> for Timer1b {
+   fn irq_timer(&self) -> super::irq::IrqTimer1b { super::irq::IRQ_TIMER1B }
+}
+
+impl IrqTimer<super::irq::IrqTimer2a> for Timer2a {
+   fn irq_timer(&self) -> super::irq::IrqTimer2a { super::irq::IRQ_TIMER2A }
+}
+
+impl IrqTimer<super::irq::IrqTimer2b> for Timer2b {
+   fn irq_timer(&self) -> super::irq::IrqTimer2b { super::irq::IRQ_TIMER2B }
+}
+
+impl IrqTimer<super::irq::IrqTimer3a> for Timer3a {
+   fn irq_timer(&self) -> super::irq::IrqTimer3a { super::irq::IRQ_TIMER3A }
+}
+
+impl IrqTimer<super::irq::IrqTimer3b> for Timer3b {
+   fn irq_timer(&self) -> super::irq::IrqTimer3b { super::irq::IRQ_TIMER3B }
+}
+
+impl IrqTimer<super::irq::IrqTimer4a> for Timer4a {
+   fn irq_timer(&self) -> super::irq::IrqTimer4a { super::irq::IRQ_TIMER4A }
+}
+
+impl IrqTimer<super::irq::IrqTimer4b> for Timer4b {
+   fn irq_timer(&self) -> super::irq::IrqTimer4b { super::irq::IRQ_TIMER4B }
+}
+
+impl IrqTimer<super::irq::IrqTimer5a> for Timer5a {
+   fn irq_timer(&self) -> super::irq::IrqTimer5a { super::irq::IRQ_TIMER5A }
+}
+
+impl IrqTimer<super::irq::IrqTimer5b> for Timer5b {
+   fn irq_timer(&self) -> super::irq::IrqTimer5b { super::irq::IRQ_TIMER5B }
+}
+
+impl IrqTimer<super::irq::IrqTimer6a> for Timer6a {
+   fn irq_timer(&self) -> super::irq::IrqTimer6a { super::irq::IRQ_TIMER6A }
+}
+
+impl IrqTimer<super::irq::IrqTimer6b> for Timer6b {
+   fn irq_timer(&self) -> super::irq::IrqTimer6b { super::irq::IRQ_TIMER6B }
+}
+
+impl IrqTimer<super::irq::IrqTimer7a> for Timer7a {
+   fn irq_timer(&self) -> super::irq::IrqTimer7a { super::irq::IRQ_TIMER7A }
+}
+
+impl IrqTimer<super::irq::IrqTimer7b> for Timer7b {
+   fn irq_timer(&self) -> super::irq::IrqTimer7b { super::irq::IRQ_TIMER7B }
+}
+

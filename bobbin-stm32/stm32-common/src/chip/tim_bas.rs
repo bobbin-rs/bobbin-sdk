@@ -597,3 +597,4 @@ impl ::core::fmt::Debug for Arr {
    }
 }
 pub struct TimBasCh { pub periph: TimBasPeriph, pub index: usize }
+

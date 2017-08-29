@@ -198,3 +198,4 @@ channel!(ADC4_CH13, Adc4Ch13, ADC4, Adc4, _ADC4_CH13, AdcCh, _ADC4, 13);
 channel!(ADC4_CH14, Adc4Ch14, ADC4, Adc4, _ADC4_CH14, AdcCh, _ADC4, 14);
 channel!(ADC4_CH15, Adc4Ch15, ADC4, Adc4, _ADC4_CH15, AdcCh, _ADC4, 15);
 channel!(ADC4_REFINT, Adc4Refint, ADC4, Adc4, _ADC4_REFINT, AdcCh, _ADC4, 18);
+

@@ -370,3 +370,4 @@ pin!(PF1, Pf1, GPIOF, Gpiof, _PF1, GpioPin, _GPIOF, 1);
    alt_fn!(Pf1, super::sig::Spi2Sck, 5);
    alt_fn!(Pf1, super::sig::I2s2Ck, 5);
 
+

@@ -157,3 +157,4 @@ channel!(ADC3_CH12, Adc3Ch12, ADC3, Adc3, _ADC3_CH12, AdcCh, _ADC3, 12);
 channel!(ADC3_CH13, Adc3Ch13, ADC3, Adc3, _ADC3_CH13, AdcCh, _ADC3, 13);
 channel!(ADC3_CH14, Adc3Ch14, ADC3, Adc3, _ADC3_CH14, AdcCh, _ADC3, 14);
 channel!(ADC3_CH15, Adc3Ch15, ADC3, Adc3, _ADC3_CH15, AdcCh, _ADC3, 15);
+

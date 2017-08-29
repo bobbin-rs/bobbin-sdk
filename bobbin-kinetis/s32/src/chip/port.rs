@@ -1001,3 +1001,24 @@ pin!(PTE16, Pte16, PORTE, Porte, _PTE16, PortPin, _PORTE, 16);
    alt_fn!(Pte16, super::sig::FxioD3, 6);
    alt_fn!(Pte16, super::sig::TrgmuxOut7, 7);
 
+
+pub trait IrqPort<T> {
+   fn irq_port(&self) -> T;
+}
+
+impl IrqPort<super::irq::IrqPorta> for Porta {
+   fn irq_port(&self) -> super::irq::IrqPorta { super::irq::IRQ_PORTA }
+}
+
+impl IrqPort<super::irq::IrqPortb> for Portb {
+   fn irq_port(&self) -> super::irq::IrqPortb { super::irq::IRQ_PORTB }
+}
+
+impl IrqPort<super::irq::IrqPortc> for Portc {
+   fn irq_port(&self) -> super::irq::IrqPortc { super::irq::IRQ_PORTC }
+}
+
+impl IrqPort<super::irq::IrqPortd> for Portd {
+   fn irq_port(&self) -> super::irq::IrqPortd { super::irq::IRQ_PORTD }
+}
+

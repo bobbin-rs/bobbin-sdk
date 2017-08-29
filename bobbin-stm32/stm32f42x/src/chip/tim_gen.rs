@@ -96,3 +96,48 @@ channel!(TIM12_CH1, Tim12Ch1, TIM12, Tim12, _TIM12_CH1, TimGenCh, _TIM12, 0);
 channel!(TIM12_CH2, Tim12Ch2, TIM12, Tim12, _TIM12_CH2, TimGenCh, _TIM12, 1);
 channel!(TIM13_CH1, Tim13Ch1, TIM13, Tim13, _TIM13_CH1, TimGenCh, _TIM13, 0);
 channel!(TIM14_CH1, Tim14Ch1, TIM14, Tim14, _TIM14_CH1, TimGenCh, _TIM14, 0);
+
+pub trait IrqTim<T> {
+   fn irq_tim(&self) -> T;
+}
+
+impl IrqTim<super::irq::IrqTim2> for Tim2 {
+   fn irq_tim(&self) -> super::irq::IrqTim2 { super::irq::IRQ_TIM2 }
+}
+
+impl IrqTim<super::irq::IrqTim3> for Tim3 {
+   fn irq_tim(&self) -> super::irq::IrqTim3 { super::irq::IRQ_TIM3 }
+}
+
+impl IrqTim<super::irq::IrqTim4> for Tim4 {
+   fn irq_tim(&self) -> super::irq::IrqTim4 { super::irq::IRQ_TIM4 }
+}
+
+impl IrqTim<super::irq::IrqTim5> for Tim5 {
+   fn irq_tim(&self) -> super::irq::IrqTim5 { super::irq::IRQ_TIM5 }
+}
+
+impl IrqTim<super::irq::IrqTim9> for Tim9 {
+   fn irq_tim(&self) -> super::irq::IrqTim9 { super::irq::IRQ_TIM9 }
+}
+
+impl IrqTim<super::irq::IrqTim10> for Tim10 {
+   fn irq_tim(&self) -> super::irq::IrqTim10 { super::irq::IRQ_TIM10 }
+}
+
+impl IrqTim<super::irq::IrqTim11> for Tim11 {
+   fn irq_tim(&self) -> super::irq::IrqTim11 { super::irq::IRQ_TIM11 }
+}
+
+impl IrqTim<super::irq::IrqTim12> for Tim12 {
+   fn irq_tim(&self) -> super::irq::IrqTim12 { super::irq::IRQ_TIM12 }
+}
+
+impl IrqTim<super::irq::IrqTim13> for Tim13 {
+   fn irq_tim(&self) -> super::irq::IrqTim13 { super::irq::IRQ_TIM13 }
+}
+
+impl IrqTim<super::irq::IrqTim14> for Tim14 {
+   fn irq_tim(&self) -> super::irq::IrqTim14 { super::irq::IRQ_TIM14 }
+}
+

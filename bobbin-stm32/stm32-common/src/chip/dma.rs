@@ -2021,3 +2021,4 @@ impl ::core::fmt::Debug for Sfcr {
    }
 }
 pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
+

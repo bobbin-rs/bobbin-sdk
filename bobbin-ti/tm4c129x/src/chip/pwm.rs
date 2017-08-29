@@ -3378,3 +3378,4 @@ channel!(PWM0_CH0, Pwm0Ch0, PWM0, Pwm0, _PWM0_CH0, PwmCh, _PWM0, 0);
 channel!(PWM0_CH1, Pwm0Ch1, PWM0, Pwm0, _PWM0_CH1, PwmCh, _PWM0, 1);
 channel!(PWM0_CH2, Pwm0Ch2, PWM0, Pwm0, _PWM0_CH2, PwmCh, _PWM0, 2);
 channel!(PWM0_CH3, Pwm0Ch3, PWM0, Pwm0, _PWM0_CH3, PwmCh, _PWM0, 3);
+

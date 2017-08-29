@@ -728,3 +728,4 @@ impl ::core::fmt::Debug for Cmar {
    }
 }
 pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
+

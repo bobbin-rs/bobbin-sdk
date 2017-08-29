@@ -1194,3 +1194,4 @@ pin!(PTE27, Pte27, PORTE, Porte, _PTE27, PortPin, _PORTE, 27);
 pin!(PTE28, Pte28, PORTE, Porte, _PTE28, PortPin, _PORTE, 28);
    alt_fn!(Pte28, super::sig::Pte28, 1);
 
+

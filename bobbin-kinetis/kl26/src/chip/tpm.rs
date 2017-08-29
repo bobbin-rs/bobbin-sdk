@@ -64,3 +64,4 @@ channel!(TPM2_CH2, Tpm2Ch2, TPM2, Tpm2, _TPM2_CH2, TpmCh, _TPM2, 2);
 channel!(TPM2_CH3, Tpm2Ch3, TPM2, Tpm2, _TPM2_CH3, TpmCh, _TPM2, 3);
 channel!(TPM2_CH4, Tpm2Ch4, TPM2, Tpm2, _TPM2_CH4, TpmCh, _TPM2, 4);
 channel!(TPM2_CH5, Tpm2Ch5, TPM2, Tpm2, _TPM2_CH5, TpmCh, _TPM2, 5);
+

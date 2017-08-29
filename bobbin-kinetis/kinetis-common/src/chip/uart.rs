@@ -3000,3 +3000,4 @@ impl ::core::fmt::Debug for Tl7816 {
       Ok(())
    }
 }
+

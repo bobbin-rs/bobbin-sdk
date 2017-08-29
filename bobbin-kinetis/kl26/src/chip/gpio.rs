@@ -342,3 +342,4 @@ pin!(PE30, Pe30, GPIOE, Gpioe, _PE30, GpioPin, _GPIOE, 30);
 
 pin!(PE31, Pe31, GPIOE, Gpioe, _PE31, GpioPin, _GPIOE, 31);
 
+

@@ -68,3 +68,4 @@ channel!(TIM15_CH1, Tim15Ch1, TIM15, Tim15, _TIM15_CH1, TimGenCh, _TIM15, 0);
 channel!(TIM15_CH2, Tim15Ch2, TIM15, Tim15, _TIM15_CH2, TimGenCh, _TIM15, 1);
 channel!(TIM16_CH1, Tim16Ch1, TIM16, Tim16, _TIM16_CH1, TimGenCh, _TIM16, 0);
 channel!(TIM17_CH1, Tim17Ch1, TIM17, Tim17, _TIM17_CH1, TimGenCh, _TIM17, 0);
+

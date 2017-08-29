@@ -573,3 +573,4 @@ pin!(PTE31, Pte31, PORTE, Porte, _PTE31, PortPin, _PORTE, 31);
    alt_fn!(Pte31, super::sig::Pte31, 1);
    alt_fn!(Pte31, super::sig::Tpm0Ch4, 3);
 
+

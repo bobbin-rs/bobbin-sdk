@@ -1144,3 +1144,4 @@ pin!(PK7, Pk7, GPIOK, Gpiok, _PK7, GpioPin, _GPIOK, 7);
    alt_fn!(Pk7, super::sig::LcdDe, 14);
    alt_fn!(Pk7, super::sig::Eventout, 15);
 
+

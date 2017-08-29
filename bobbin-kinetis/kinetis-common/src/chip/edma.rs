@@ -2895,3 +2895,4 @@ impl ::core::fmt::Debug for TcdBiterElinkyes {
    }
 }
 pub struct EdmaCh { pub periph: EdmaPeriph, pub index: usize }
+

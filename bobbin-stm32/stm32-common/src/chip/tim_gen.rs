@@ -1980,3 +1980,4 @@ impl ::core::fmt::Debug for Or {
    }
 }
 pub struct TimGenCh { pub periph: TimGenPeriph, pub index: usize }
+

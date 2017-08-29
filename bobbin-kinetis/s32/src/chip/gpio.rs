@@ -576,3 +576,4 @@ pin!(PE15, Pe15, GPIOE, Gpioe, _PE15, GpioPin, _GPIOE, 15);
 
 pin!(PE16, Pe16, GPIOE, Gpioe, _PE16, GpioPin, _GPIOE, 16);
 
+

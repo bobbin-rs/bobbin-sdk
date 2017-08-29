@@ -101,6 +101,7 @@ macro_rules! periph {
     ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $pid: $pty = $pty($base);
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
         pub struct $ty {}
         impl Deref for $ty {
             type Target = $pty;
@@ -120,6 +121,7 @@ macro_rules! pin {
     ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
         pub struct $ty {}
         impl Pin<$port_type> for $ty {
             #[inline(always)]
@@ -142,6 +144,7 @@ macro_rules! channel {
     ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $index:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
         pub struct $ty {}
         impl Channel<$periph_type> for $ty {
             #[inline(always)]
@@ -175,6 +178,7 @@ macro_rules! alt_fn {
 macro_rules! irq {
     ($id:ident, $ty:ident, $num:expr) => (
         pub const $id: $ty = $ty {};
+        #[derive(PartialEq, Eq, Clone, Copy)]
         pub struct $ty {}
         impl IrqNum for $ty {
             #[inline(always)]            
@@ -193,5 +197,10 @@ macro_rules! irq {
                 wrapper::<F>
             }
         }
+        impl ::core::fmt::Debug for $ty {
+            fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+                write!(f, "[{} @ {}]", stringify!($id), $num)
+            }
+        }        
     )
 }

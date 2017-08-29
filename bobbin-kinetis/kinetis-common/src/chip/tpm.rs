@@ -720,3 +720,4 @@ impl ::core::fmt::Debug for Conf {
    }
 }
 pub struct TpmCh { pub periph: TpmPeriph, pub index: usize }
+

@@ -46,3 +46,4 @@ channel!(TIM20_CH1, Tim20Ch1, TIM20, Tim20, _TIM20_CH1, TimAdvCh, _TIM20, 0);
 channel!(TIM20_CH2, Tim20Ch2, TIM20, Tim20, _TIM20_CH2, TimAdvCh, _TIM20, 1);
 channel!(TIM20_CH3, Tim20Ch3, TIM20, Tim20, _TIM20_CH3, TimAdvCh, _TIM20, 2);
 channel!(TIM20_CH4, Tim20Ch4, TIM20, Tim20, _TIM20_CH4, TimAdvCh, _TIM20, 3);
+

@@ -1,6 +1,23 @@
 //! Interrupts
 
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub type Handler = extern "C" fn();
+
+irq!(IRQ_DMAC, IrqDmac, 6);
+irq!(IRQ_ADC, IrqAdc, 23);
+irq!(IRQ_TCC0, IrqTcc0, 15);
+irq!(IRQ_TCC1, IrqTcc1, 16);
+irq!(IRQ_TCC2, IrqTcc2, 17);
+irq!(IRQ_TC3, IrqTc3, 18);
+irq!(IRQ_TC4, IrqTc4, 19);
+irq!(IRQ_TC5, IrqTc5, 20);
+irq!(IRQ_SERCOM0, IrqSercom0, 9);
+irq!(IRQ_SERCOM1, IrqSercom1, 10);
+irq!(IRQ_SERCOM2, IrqSercom2, 11);
+irq!(IRQ_SERCOM3, IrqSercom3, 12);
+irq!(IRQ_SERCOM4, IrqSercom4, 13);
+irq!(IRQ_SERCOM5, IrqSercom5, 14);
 
 
 pub fn set_handler(index: usize, handler: Option<Handler>) {

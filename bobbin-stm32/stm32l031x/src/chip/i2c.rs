@@ -1571,3 +1571,12 @@ impl ::core::fmt::Debug for Txdr {
       Ok(())
    }
 }
+
+pub trait IrqI2c<T> {
+   fn irq_i2c(&self) -> T;
+}
+
+impl IrqI2c<super::irq::IrqI2c1> for I2c1 {
+   fn irq_i2c(&self) -> super::irq::IrqI2c1 { super::irq::IRQ_I2C1 }
+}
+

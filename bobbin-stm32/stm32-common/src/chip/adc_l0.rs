@@ -1326,3 +1326,4 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+

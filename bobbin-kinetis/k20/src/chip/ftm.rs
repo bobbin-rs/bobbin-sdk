@@ -82,3 +82,4 @@ channel!(FTM2_CH4, Ftm2Ch4, FTM2, Ftm2, _FTM2_CH4, FtmCh, _FTM2, 4);
 channel!(FTM2_CH5, Ftm2Ch5, FTM2, Ftm2, _FTM2_CH5, FtmCh, _FTM2, 5);
 channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, _FTM2_CH6, FtmCh, _FTM2, 6);
 channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, _FTM2_CH7, FtmCh, _FTM2, 7);
+

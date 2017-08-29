@@ -850,3 +850,4 @@ pin!(PH1, Ph1, GPIOH, Gpioh, _PH1, GpioPin, _GPIOH, 1);
 pin!(PH2, Ph2, GPIOH, Gpioh, _PH2, GpioPin, _GPIOH, 2);
    alt_fn!(Ph2, super::sig::EventOut, 1);
 
+

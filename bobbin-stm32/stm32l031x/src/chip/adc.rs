@@ -56,3 +56,4 @@ channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, _ADC1_CH14, AdcCh, _ADC1, 14);
 channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, _ADC1_CH15, AdcCh, _ADC1, 15);
 channel!(ADC1_REFINT, Adc1Refint, ADC1, Adc1, _ADC1_REFINT, AdcCh, _ADC1, 17);
 channel!(ADC1_TEMP, Adc1Temp, ADC1, Adc1, _ADC1_TEMP, AdcCh, _ADC1, 18);
+

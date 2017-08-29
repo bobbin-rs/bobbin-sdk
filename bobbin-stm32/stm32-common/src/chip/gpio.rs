@@ -920,3 +920,4 @@ impl ::core::fmt::Debug for Brr {
    }
 }
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+

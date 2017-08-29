@@ -831,3 +831,4 @@ impl ::core::fmt::Debug for Tctrl {
    }
 }
 pub struct LpitCh { pub periph: LpitPeriph, pub index: usize }
+

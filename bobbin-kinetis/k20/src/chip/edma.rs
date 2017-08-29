@@ -22,3 +22,4 @@ channel!(DMA12, Dma12, DMA, Dma, _DMA12, EdmaCh, _DMA, 12);
 channel!(DMA13, Dma13, DMA, Dma, _DMA13, EdmaCh, _DMA, 13);
 channel!(DMA14, Dma14, DMA, Dma, _DMA14, EdmaCh, _DMA, 14);
 channel!(DMA15, Dma15, DMA, Dma, _DMA15, EdmaCh, _DMA, 15);
+

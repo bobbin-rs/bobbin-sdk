@@ -98,3 +98,4 @@ channel!(ADC0_TEMP, Adc0Temp, ADC0, Adc0, _ADC0_TEMP, AdcCh, _ADC0, 26);
 channel!(ADC0_BANDGAP, Adc0Bandgap, ADC0, Adc0, _ADC0_BANDGAP, AdcCh, _ADC0, 27);
 channel!(ADC0_REFSH, Adc0Refsh, ADC0, Adc0, _ADC0_REFSH, AdcCh, _ADC0, 29);
 channel!(ADC0_REFSL, Adc0Refsl, ADC0, Adc0, _ADC0_REFSL, AdcCh, _ADC0, 30);
+

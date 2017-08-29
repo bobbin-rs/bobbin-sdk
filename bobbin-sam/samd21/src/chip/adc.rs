@@ -1733,3 +1733,4 @@ channel!(ADC_CH16, AdcCh16, ADC, Adc, _ADC_CH16, AdcCh, _ADC, 16);
 channel!(ADC_CH17, AdcCh17, ADC, Adc, _ADC_CH17, AdcCh, _ADC, 17);
 channel!(ADC_CH18, AdcCh18, ADC, Adc, _ADC_CH18, AdcCh, _ADC, 18);
 channel!(ADC_CH19, AdcCh19, ADC, Adc, _ADC_CH19, AdcCh, _ADC, 19);
+

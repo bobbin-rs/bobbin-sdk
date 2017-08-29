@@ -76,3 +76,32 @@ impl super::sig::Signal<super::sig::Usart6Ck> for Usart6 {}
 impl super::sig::SignalCk<super::sig::Usart6Ck> for Usart6 {}
 
 
+
+pub trait IrqUsart<T> {
+   fn irq_usart(&self) -> T;
+}
+
+impl IrqUsart<super::irq::IrqUsart1> for Usart1 {
+   fn irq_usart(&self) -> super::irq::IrqUsart1 { super::irq::IRQ_USART1 }
+}
+
+impl IrqUsart<super::irq::IrqUsart2> for Usart2 {
+   fn irq_usart(&self) -> super::irq::IrqUsart2 { super::irq::IRQ_USART2 }
+}
+
+impl IrqUsart<super::irq::IrqUsart3> for Usart3 {
+   fn irq_usart(&self) -> super::irq::IrqUsart3 { super::irq::IRQ_USART3 }
+}
+
+impl IrqUsart<super::irq::IrqUart4> for Uart4 {
+   fn irq_usart(&self) -> super::irq::IrqUart4 { super::irq::IRQ_UART4 }
+}
+
+impl IrqUsart<super::irq::IrqUart5> for Uart5 {
+   fn irq_usart(&self) -> super::irq::IrqUart5 { super::irq::IRQ_UART5 }
+}
+
+impl IrqUsart<super::irq::IrqUsart6> for Usart6 {
+   fn irq_usart(&self) -> super::irq::IrqUsart6 { super::irq::IRQ_USART6 }
+}
+

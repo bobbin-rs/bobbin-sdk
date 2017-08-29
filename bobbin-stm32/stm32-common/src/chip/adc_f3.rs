@@ -3012,3 +3012,4 @@ impl ::core::fmt::Debug for Calfact {
    }
 }
 pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+

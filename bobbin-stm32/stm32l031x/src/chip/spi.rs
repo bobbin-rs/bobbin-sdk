@@ -1056,3 +1056,12 @@ impl ::core::fmt::Debug for I2spr {
       Ok(())
    }
 }
+
+pub trait IrqSpi<T> {
+   fn irq_spi(&self) -> T;
+}
+
+impl IrqSpi<super::irq::IrqSpi1> for Spi1 {
+   fn irq_spi(&self) -> super::irq::IrqSpi1 { super::irq::IRQ_SPI1 }
+}
+

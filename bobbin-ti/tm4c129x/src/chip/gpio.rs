@@ -2830,3 +2830,4 @@ pin!(PQ4, Pq4, GPIOQ, Gpioq, _PQ4, GpioPin, _GPIOQ, 4);
    alt_fn!(Pq4, super::sig::U1rx, 1);
    alt_fn!(Pq4, super::sig::Divsclk, 7);
 
+

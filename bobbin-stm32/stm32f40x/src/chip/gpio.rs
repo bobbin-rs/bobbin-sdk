@@ -903,3 +903,4 @@ pin!(PI10, Pi10, GPIOI, Gpioi, _PI10, GpioPin, _GPIOI, 10);
    alt_fn!(Pi10, super::sig::EthMiiRxEr, 11);
    alt_fn!(Pi10, super::sig::Eventout, 15);
 
+

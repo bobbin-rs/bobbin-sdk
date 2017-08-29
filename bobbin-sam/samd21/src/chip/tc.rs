@@ -4004,3 +4004,4 @@ channel!(TC4_CH0, Tc4Ch0, TC4, Tc4, _TC4_CH0, TcCh, _TC4, 0);
 channel!(TC4_CH1, Tc4Ch1, TC4, Tc4, _TC4_CH1, TcCh, _TC4, 1);
 channel!(TC5_CH0, Tc5Ch0, TC5, Tc5, _TC5_CH0, TcCh, _TC5, 0);
 channel!(TC5_CH1, Tc5Ch1, TC5, Tc5, _TC5_CH1, TcCh, _TC5, 1);
+
