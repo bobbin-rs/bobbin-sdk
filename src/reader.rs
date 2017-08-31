@@ -547,6 +547,7 @@ fn read_pin(ctx: &Context, s: &[Sexp]) -> Result<Pin, ReadError> {
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("index") => p.index = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("altfn") => p.altfns.push(try!(read_altfn(ctx, &arr[1..]))),
+                Some("link") => p.links.push(try!(read_link(ctx, &arr[1..]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
@@ -741,6 +742,7 @@ fn read_link(ctx: &Context, s: &[Sexp]) -> Result<Link, ReadError> {
                 Some("peripheral-group") => l.peripheral_group = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral") => l.peripheral = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("channel") => l.channel = String::from(try!(read_name(ctx, &arr[1]))),
+                Some("pin") => l.pin = String::from(try!(read_name(ctx, &arr[1]))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))

@@ -1,0 +1,1 @@
+export PATH="`pwd`/target/debug/":$PATH
