@@ -22,7 +22,7 @@ pub fn init() {
 
     // Set Baud and Enable USART
     // UART.enable(UART_BD);
-    UART.enable((UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD)) as u16);
+    enable();
 }
 
 pub fn disable() {
@@ -31,8 +31,11 @@ pub fn disable() {
 }
 
 pub fn enable() {
-    UART.sim_enable();
-    UART.enable((UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD)) as u16);
+    let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
+    // UART.do_enable(baud_div as u16);
+    UART
+        .set_config(|c| c.set_baud_divisor(baud_div as u16))
+        .enable();
 }
 
 /// Macro for sending `print!`-formatted messages over the Console

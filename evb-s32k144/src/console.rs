@@ -28,37 +28,39 @@ pub fn init() {
     UART_TX.mode_tx(&UART);
     UART_RX.mode_rx(&UART);
 
-    let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
 
-    // Set Baud and Enable USART
-    UART
-        .set_osr(0b1111)
-        .set_sbr(sbr as u16)
-        .set_te(true)
-        .set_re(true)
-        .set_txfe(true)
-        .set_rxfe(true);
+    // // Set Baud and Enable USART
+    // UART
+    //     .set_config(|c| c.set_osr(0b1111).set_baud_divisor(sbr as u16))
+    //     .enable();
+    //     // .set_osr(0b1111)
+    //     // .set_sbr(sbr as u16)
+    //     // .set_te(true)
+    //     // .set_re(true)
+    //     // .set_txfe(true)
+    //     // .set_rxfe(true);
+    enable();
 }
 
 pub fn disable() {
-    UART
-        .set_te(false)
-        .set_re(false)
-        .set_txfe(false)
-        .set_rxfe(false);
+    UART.disable();
 }
 
-pub fn reinit() {
-    let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
-
-    // Set Baud and Enable USART
+pub fn enable() {
+    let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);    
     UART
-        .set_osr(0b1111)
-        .set_sbr(sbr as u16)
-        .set_te(true)
-        .set_re(true)
-        .set_txfe(true)
-        .set_rxfe(true);    
+        .set_config(|c| c.set_osr(0b1111.into()).set_baud_divisor(sbr.into()))
+        .enable();
+    // let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
+
+    // // Set Baud and Enable USART
+    // UART
+    //     .set_osr(0b1111)
+    //     .set_sbr(sbr as u16)
+    //     .set_te(true)
+    //     .set_re(true)
+    //     .set_txfe(true)
+    //     .set_rxfe(true);    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console

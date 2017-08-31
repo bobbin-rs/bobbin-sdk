@@ -20,14 +20,21 @@ pub fn init() {
 
     // Set Baud and Enable uart
 
-    UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
+    // UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
     // UART.configure(UART_BAUD, clock::sysclk_hz());
     // UART.configure(UART_BAUD, 120_000_000);
-    UART.enable();
+    enable();
 }
 
 pub fn enable() {
-    UART.enable();
+    UART
+        .set_config(|cfg| 
+            cfg
+                .set_baud(UART_BAUD, UART.clock(clock::clk()).unwrap())
+                .set_wlen(0x3.into())
+                .set_fen(1.into())
+        )
+        .enable();
 }
 
 pub fn disable() {
@@ -35,9 +42,6 @@ pub fn disable() {
 }
 
 pub fn reinit() {
-    UART.disable();
-    // UART.configure(UART_BAUD, UART.clock(clock::clk()).unwrap());
-    UART.configure(UART_BAUD, clock::sysclk_hz());
     UART.enable();    
 }
 
