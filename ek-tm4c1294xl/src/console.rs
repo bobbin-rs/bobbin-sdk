@@ -28,12 +28,7 @@ pub fn init() {
 
 pub fn enable() {
     UART
-        .set_config(|cfg| 
-            cfg
-                .set_baud(UART_BAUD, UART.clock(clock::clk()).unwrap())
-                .set_wlen(0x3.into())
-                .set_fen(1.into())
-        )
+        .set_config(|cfg| cfg.set_baud(UART_BAUD, UART.clock(clock::clk()).unwrap()))
         .enable();
 }
 

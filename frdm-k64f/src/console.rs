@@ -21,18 +21,15 @@ pub fn init() {
     UART_RX.mode_rx(&UART);
 
     // Set Baud and Enable USART
-    // UART.enable(UART_BD);
     enable();
 }
 
 pub fn disable() {
     UART.disable();
-    UART.sim_disable();
 }
 
 pub fn enable() {
     let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
-    // UART.do_enable(baud_div as u16);
     UART
         .set_config(|c| c.set_baud_divisor(baud_div as u16))
         .enable();

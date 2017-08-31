@@ -14,9 +14,7 @@ pub const UART_BAUD: u32 = 115_000;
 
 pub fn init() {
     // Clock source must be set before enabling clock
-    UART.pcc_set_enabled(false);
     UART.pcc_set_clock_source(UART_CLK);
-    UART.pcc_set_enabled(true);
 
     UART.with_global(|r| r.set_rst(1));
     UART.with_global(|r| r.set_rst(0));
@@ -28,17 +26,6 @@ pub fn init() {
     UART_TX.mode_tx(&UART);
     UART_RX.mode_rx(&UART);
 
-
-    // // Set Baud and Enable USART
-    // UART
-    //     .set_config(|c| c.set_osr(0b1111).set_baud_divisor(sbr as u16))
-    //     .enable();
-    //     // .set_osr(0b1111)
-    //     // .set_sbr(sbr as u16)
-    //     // .set_te(true)
-    //     // .set_re(true)
-    //     // .set_txfe(true)
-    //     // .set_rxfe(true);
     enable();
 }
 
@@ -49,18 +36,8 @@ pub fn disable() {
 pub fn enable() {
     let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);    
     UART
-        .set_config(|c| c.set_osr(0b1111.into()).set_baud_divisor(sbr.into()))
+        .set_config(|c| c.set_baud_divisor(sbr.into()))
         .enable();
-    // let sbr = UART.clock(&CLK).unwrap() / (UART_BAUD << 4);
-
-    // // Set Baud and Enable USART
-    // UART
-    //     .set_osr(0b1111)
-    //     .set_sbr(sbr as u16)
-    //     .set_te(true)
-    //     .set_re(true)
-    //     .set_txfe(true)
-    //     .set_rxfe(true);    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
