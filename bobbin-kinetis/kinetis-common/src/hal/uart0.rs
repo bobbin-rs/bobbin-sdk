@@ -1,75 +1,56 @@
+pub use bobbin_common::configure::*;
+pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
+
 use chip::uart0::*;
 
-impl Uart0Periph {
-    pub fn enable(&self, baud_divider: u16) -> &Self {
-        let u = self;
-        u.set_c1(|r| r);
-        //Disable TX and Receive
-        u.set_c2(|r| r);
-        // Set baud divider
-        u.set_bdh(|r| r.set_sbr((baud_divider >> 8) as u8));
-        u.set_bdl(|r| r.set_sbr(baud_divider as u8));
+#[derive(Debug, Default)]
+pub struct Config {
+    pub bdh: Bdh,
+    pub bdl: Bdl,
+}
 
-        u.set_c3(|r| r);                               
-        // Oversampling 4x
-        u.set_c4(|r| r.set_osr(0x3));        
-        u.set_c5(|r| r);
-        // Enable Transmit and Receive
-        u.set_c2(|r| r.set_te(1).set_re(1));    
-        self    
-    }    
-
-    pub fn disable(&self) -> &Self {
-        self.set_c2(|r| r.set_te(0).set_re(0))
+impl Config {
+    pub fn set_baud_divisor(mut self, baud_divisor: u16) -> Self {
+        self.bdh = self.bdh.set_sbr((baud_divisor >> 8) as u8);
+        self.bdl = self.bdl.set_sbr(baud_divisor as u8);
+        self
     }
-    pub fn tx_empty(&self) -> bool {
-        self.s1().tdre() != 0
+}
+
+impl Configure<Config> for Uart0Periph {
+    fn config(&self) -> Config {
+        Config {
+            bdh: self.bdh(),
+            bdl: self.bdl(),
+        }
+    }
+    fn configure(&self, cfg: Config) -> &Self {
+        self
+            .disable()
+            .set_bdh(|_| cfg.bdh)
+            .set_bdl(|_| cfg.bdl)
+    }
+}
+
+impl Enabled for Uart0Periph {
+    fn enabled(&self) -> bool {
+        let c2 = self.c2();
+        c2.te() != 0 || c2.re() != 0
     }
 
-    pub fn tx_complete(&self) -> bool {
-        self.s1().tc() != 0
+    fn set_enabled(&self, value: bool) -> &Self {
+        if value {
+            self.with_c2(|r| r.set_te(1).set_re(1))
+        } else {
+            self.with_c2(|r| r.set_te(0).set_re(0))
+        }
     }
-
-    pub fn rx_full(&self) -> bool {
-        self.s1().rdrf() != 0
-    }
-
-    pub fn idle(&self) -> bool {
-        self.s1().idle() != 0
-    }        
-
-    // pub fn try_getc(&self) -> Option<u8> {
-    //     let uart = self;
-    //     if uart.s1().rdrf() != 0 {
-    //         Some(uart.d().rt().into())
-    //     } else {
-    //         None
-    //     }
-    // }
-
-    // pub fn getc(&self) -> u8 {
-    //     let uart = self;
-    //     while uart.s1().rdrf() == 0 {}
-    //     uart.d().rt().into()        
-    // }
-
-    // pub fn putc(&self, value: u8) {            
-    //     let uart = self;
-    //     while uart.s1().tdre() == 0 {}
-    //     uart.set_d(|r| r.set_rt(value));
-    // }
-
-    // pub fn write(&self, data: &[u8]) {
-    //     for i in 0..data.len() {
-    //         self.putc(data[i]);
-    //     }
-    // }        
 }
 
 impl SerialTx<u8> for Uart0Periph {    
     fn can_tx(&self) -> bool {
-        self.tx_empty()
+        self.s1().tdre() != 0
     }
 
     fn tx(&self, c: u8) -> &Self {
@@ -79,7 +60,7 @@ impl SerialTx<u8> for Uart0Periph {
 
 impl SerialRx<u8> for Uart0Periph {
     fn can_rx(&self) -> bool {
-        self.rx_full()
+        self.s1().rdrf() != 0
     }
 
     fn rx(&self) -> u8 {
