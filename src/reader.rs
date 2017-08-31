@@ -159,7 +159,6 @@ pub fn read<R: Read>(r: &mut R, p: &Path) -> Result<TopLevel, ReadError> {
 
 fn read_buf(ctx: &Context) -> Result<TopLevel, ReadError> {
     let buf = ctx.buf();
-    let p = ctx.path();
     let s = try!(parse(buf));
     if let Some((head, rest)) = s.split_first() {
         match head {
@@ -173,7 +172,6 @@ fn read_buf(ctx: &Context) -> Result<TopLevel, ReadError> {
     }
 }
 fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
-    let path = ctx.path();
     let mut b = Board::default();
     for s in s.iter() {
         match s {
@@ -196,7 +194,6 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
 
 
 fn read_connections(ctx: &Context, s: &[Sexp]) -> Result<Vec<Connection>, ReadError> {
-    let path = ctx.path();
     let mut connections: Vec<Connection> = Vec::new();
 
     for s in s.iter() {
@@ -259,7 +256,6 @@ fn read_path(ctx: &Context, s: &[Sexp]) -> Result<::Path, ReadError> {
 }
 
 fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
-    let path = ctx.path();
     let mut d = Device::default();
     for s in s.iter() {
         match s {
@@ -291,7 +287,6 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
 }
 
 fn read_exceptions(ctx: &Context, s: &[Sexp]) -> Result<Vec<Exception>, ReadError> {
-    let path = ctx.path();
     let mut exceptions: Vec<Exception> = Vec::new();
 
     for s in s.iter() {
@@ -325,7 +320,6 @@ fn read_exception(ctx: &Context, s: &[Sexp]) -> Result<Exception, ReadError> {
 
 
 fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
-    let path = ctx.path();
     let mut c = Crate::default();
 
     for s in s.iter() {
@@ -343,7 +337,6 @@ fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
 }
 
 fn read_variants(ctx: &Context, s: &[Sexp]) -> Result<Vec<Variant>, ReadError> {
-    let path = ctx.path();
     let mut variants: Vec<Variant> = Vec::new();
 
     for s in s.iter() {
@@ -377,7 +370,6 @@ fn read_variant(ctx: &Context, s: &[Sexp]) -> Result<Variant, ReadError> {
 
 
 fn read_regions(ctx: &Context, s: &[Sexp]) -> Result<Vec<Region>, ReadError> {
-    let path = ctx.path();
     let mut regions: Vec<Region> = Vec::new();
 
     for s in s.iter() {
@@ -394,7 +386,6 @@ fn read_regions(ctx: &Context, s: &[Sexp]) -> Result<Vec<Region>, ReadError> {
 }
 
 fn read_region(ctx: &Context, s: &[Sexp]) -> Result<Region, ReadError> {
-    let path = ctx.path();
     let mut r = Region::default();
 
     for s in s.iter() {
@@ -537,7 +528,6 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
 }
 
 fn read_pin(ctx: &Context, s: &[Sexp]) -> Result<Pin, ReadError> {
-    let path = ctx.path();
     let mut p = Pin::default();
 
     for s in s.iter() {
@@ -558,7 +548,6 @@ fn read_pin(ctx: &Context, s: &[Sexp]) -> Result<Pin, ReadError> {
 }
 
 fn read_altfn(ctx: &Context, s: &[Sexp]) -> Result<AltFn, ReadError> {
-    let path = ctx.path();
     let mut af = AltFn::default();
 
     if s.len() != 2 {
@@ -572,7 +561,6 @@ fn read_altfn(ctx: &Context, s: &[Sexp]) -> Result<AltFn, ReadError> {
 }
 
 fn read_channel(ctx: &Context, s: &[Sexp]) -> Result<Channel, ReadError> {
-    let path = ctx.path();
     let mut ch = Channel::default();
 
     for s in s.iter() {

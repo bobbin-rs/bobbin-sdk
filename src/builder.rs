@@ -23,7 +23,7 @@ impl From<reader::ReadError> for BuildError {
     }
 }
 
-pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, setup_link: bool, in_cargo: bool) -> Result<(), BuildError> {
+pub fn build<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, _setup_link: bool, _in_cargo: bool) -> Result<(), BuildError> {
     build_inner(src_path, dst_path, true, true)
 }
 
@@ -33,13 +33,6 @@ pub fn build_inner<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, set
 
     let device = load_device(&src_path)?;    
 
-
-    // let rebuild = match fs::metadata(&dst_path) {        
-    //     Ok(dst_meta) => compare_modification_times(&fs::metadata(&src_path)?, &dst_meta),
-    //     Err(_) => true,
-    // };
-
-    //if rebuild {
     let src_dir = src_path.parent().expect("Source file name must be lib.rx or mod.rx");
     {
         let mut f_mod = try!(File::create(dst_path));

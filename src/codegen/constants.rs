@@ -122,9 +122,6 @@ pub fn gen_register_constants<W: Write>(out: &mut W, r: &Register, name: &str, a
         let r_offset = addr + r.offset as u32;
 
         try!(write!(out, "pub const   {:30}: *const {:3} = 0x{:08x};\n", r_name, r_size, r_offset));
-        for f in r.fields.iter() {
-            //try!(gen_field_constants(out, f, &r_name))
-        }
     }    
     Ok(())
 }

@@ -1,5 +1,3 @@
-#![allow(unused_variables)]
-
 extern crate bobbin_sexp as sexp;
 extern crate bobbin_sexp_tokenizer as sexp_tokenizer;
 extern crate clap;

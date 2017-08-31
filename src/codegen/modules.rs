@@ -4,7 +4,7 @@ use clap::{ArgMatches};
 use std::fs::File;
 use std::collections::HashSet;
 
-use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception, Pin};
+use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception};
 
 use super::{size_type, field_getter, field_setter, field_with, field_ptr, field_mut, field_name, to_camel};
 
@@ -22,7 +22,7 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
     }
 }
 
-fn gen_doc<W: Write>(cfg: &Config, out: &mut W, doc: &str) -> Result<()> {
+fn gen_doc<W: Write>(_cfg: &Config, out: &mut W, doc: &str) -> Result<()> {
     let doc = doc.trim();
     if doc.len() > 0 {
         try!(writeln!(out, "#[doc=\"{}\"]", doc))
@@ -30,7 +30,7 @@ fn gen_doc<W: Write>(cfg: &Config, out: &mut W, doc: &str) -> Result<()> {
     Ok(())
 }
 
-pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_modules<W: Write>(matches: &ArgMatches, _out: &mut W, d: &Device) -> Result<()> {
     let cfg = Config::from(matches);
     let out_path = &cfg.path;
     let p_mod = if cfg.is_root {
@@ -45,13 +45,6 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> R
 }
 
 pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-
-    // Only add module import if not generating cortex-core
-
-    let p_mod = if cfg.is_root { 
-        try!(writeln!(out, "#![no_std]"));
-    };
-
     try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
 
     // Generate Imports
@@ -116,7 +109,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
     Ok(())
 }
 
-pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exception>) -> Result<()> {
+pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exception>) -> Result<()> {
     try!(writeln!(out, "//! Exceptions"));
     try!(writeln!(out, ""));
     try!(writeln!(out, "pub type Handler = unsafe extern \"C\" fn();"));
@@ -174,7 +167,7 @@ pub fn gen_exceptions<W: Write>(cfg: &Config, out: &mut W, exceptions: &Vec<Exce
     try!(writeln!(out,"}}"));    
     Ok(())
 }
-pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
+pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
     let mut interrupts: Vec<Option<&Interrupt>> = Vec::with_capacity(interrupt_count as usize);
 
     try!(writeln!(out, "//! Interrupts"));
@@ -211,7 +204,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                 let id = format!("IRQ_{}", irq.name.to_uppercase());
                 let ty = format!("Irq{}", to_camel(&irq.name));
                 let num = irq.value;
-                let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+                // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
                 try!(writeln!(out, "irq!({id}, {ty}, {num});",
                     id=id,
                     ty=ty,
@@ -224,7 +217,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                     let id = format!("IRQ_{}", irq.name.to_uppercase());
                     let ty = format!("Irq{}", to_camel(&irq.name));
                     let num = irq.value;
-                    let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+                    // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
                     try!(writeln!(out, "irq!({id}, {ty}, {num});",
                         id=id,
                         ty=ty,
@@ -277,7 +270,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     Ok(())
 }
 
-pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
     let mut signals = HashSet::new();
     let mut signal_types = HashSet::new();
 
@@ -318,9 +311,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
 
     for pg in d.peripheral_groups.iter() {
         for p in pg.peripherals.iter() {
-            let p_type = to_camel(&p.name);
             for s in p.signals.iter() {
-                let s_const = s.name.to_uppercase();
                 let s_type = to_camel(&s.name);
                 if !signals.contains(&s_type) {
                     try!(writeln!(out, "pub struct {} {{}}", s_type));
@@ -328,9 +319,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                 }
             }
             for ch in p.channels.iter() {
-                let ch_type = to_camel(&ch.name);
                 for s in ch.signals.iter() {
-                    let s_const = s.name.to_uppercase();
                     let s_type = to_camel(&s.name);
                     if !signals.contains(&s_type) {
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
@@ -344,7 +333,6 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
         for p in pg.peripherals.iter() {
             for pin in p.pins.iter() {
                 for af in pin.altfns.iter() {
-                    let s_const = af.signal.to_uppercase();
                     let s_type = to_camel(&af.signal);
                     if !signals.contains(&s_type) {
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
@@ -372,7 +360,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     let pg_type = format!("{}Periph", to_camel(&pg_name));
     let pin_type = format!("{}Pin", to_camel(&pg_name));
     let ch_type = format!("{}Ch", to_camel(&pg_name));
-    let p_trait = pg_type.clone();
     
     let mut link_traits = HashSet::new();
 
@@ -399,14 +386,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     // Generate Link Traits
     for p in pg.peripherals.iter() {
-        let pg_type = to_camel(&pg.name);
-        let p_type = to_camel(&p.name);
-
         // Peripheral Links
         for l in p.links.iter() {
             let l_trait = format!("Link{}<T>", to_camel(&l.name));
             let l_getter = field_getter(&l.name);
-            let pg_mod = l.peripheral_group.to_lowercase();
 
             if !link_traits.contains(&l_trait) {
                 try!(writeln!(out, "pub trait {} {{", l_trait));
@@ -421,7 +404,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             for l in pin.links.iter() {
                 let l_trait = format!("Link{}<T>", to_camel(&l.name));
                 let l_getter = field_getter(&l.name);
-                let pg_mod = l.peripheral_group.to_lowercase();
 
                 if !link_traits.contains(&l_trait) {
                     try!(writeln!(out, "pub trait {} {{", l_trait));
@@ -434,8 +416,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }
 
-    let p_impl_type = format!("{}", &pg_type);
-    let mut p_count = 0;
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
             try!(writeln!(out, "#[cfg(any("));
@@ -444,7 +424,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             }
             try!(writeln!(out, "))]"));
         }
-        p_count += 1;
         let p_name = p.name.to_uppercase();
         let p_const = format!("_{}", p_name);
         let p_type = to_camel(&p.name);
@@ -463,8 +442,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     for p in pg.peripherals.iter() {
         let p_type = to_camel(&p.name);
-        let p_id = format!("{}Id", p_type);
-        let p_name = p.name.to_uppercase();
 
         // Generate Peripheral Links
 
@@ -473,11 +450,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let l_getter = field_getter(&l.name);
             let pg_mod = l.peripheral_group.to_lowercase();
             let l_type = format!("super::{}::{} ", pg_mod, to_camel(&l.peripheral));
-
             let p_const = l.peripheral.to_uppercase();            
                   
             try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, p_type));
-            try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.peripheral.to_uppercase()));
+            try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, p_const));
             try!(writeln!(out, "}}"));
             try!(writeln!(out, ""));
         }
@@ -492,11 +468,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let l_getter = field_getter(&l.name);
                 let pg_mod = l.peripheral_group.to_lowercase();
                 let l_type = format!("super::{}::{} ", pg_mod, to_camel(&l.pin));
-
-                let p_const = l.peripheral.to_uppercase();            
+                let pin_const = l.pin.to_uppercase();            
                     
                 try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, pin_type));
-                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, l.pin.to_uppercase()));
+                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, pin_const));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }            
@@ -707,7 +682,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
     try!(writeln!(out, ""));
 
-    if let Some(dim) = p.dim {
+    if let Some(_) = p.dim {
         unimplemented!()
         // for (offset, name) in p.iter_dim() {
         //     let p_name = name.replace("[","").replace("]","");            
@@ -844,7 +819,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
     Ok(())
 }
 
-pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &Descriptor) -> Result<()> {
+pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: &Descriptor) -> Result<()> {
     let d_type = to_camel(&desc.name);
     let d_size = desc.size.expect("Descriptor size is required");
 
@@ -862,8 +837,8 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
 
     for r in desc.registers.iter() {
         let r_type = format!("{}", to_camel(&r.name));
-        let r_ptr = field_ptr(&r.name);
-        let r_mut = field_mut(&r.name);
+        // let r_ptr = field_ptr(&r.name);
+        // let r_mut = field_mut(&r.name);
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
@@ -1180,8 +1155,7 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
     Ok(())
 }
 
-pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, access: Option<Access>) -> Result<()> {
-    let f_access = f.access.or(access).unwrap();
+pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _access: Option<Access>) -> Result<()> {
     let f_getter = field_getter(&f.name);
     let f_setter = field_setter(&f.name);
     let f_offset = f.bit_offset;
@@ -1193,7 +1167,6 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
     } else {
         ((1 << f_width) - 1)
     };
-    let f_shift_mask = f_mask << f_offset;   
     let f_bits = if f_width > 1 {
         format!("[{}:{}]", f_hi, f_lo)
     } else {

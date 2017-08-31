@@ -11,7 +11,7 @@ pub fn gen_registers<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) ->
     }
 }
 
-pub fn gen_registers_panic<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_registers_panic<W: Write>(_matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
     assert!(d.peripherals.len() == 1, "Only one peripheral allowed");
     let p = &d.peripherals[0];
     let r_size = size_type(p.size.or(d.size).unwrap());
@@ -101,7 +101,7 @@ pub fn gen_registers_panic<W: Write>(matches: &ArgMatches, out: &mut W, d: &Devi
     Ok(())
 }
 
-pub fn gen_registers_nopanic<W: Write>(matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_registers_nopanic<W: Write>(_matches: &ArgMatches, out: &mut W, d: &Device) -> Result<()> {
     assert!(d.peripherals.len() == 1, "Only one peripheral allowed");
     let p = &d.peripherals[0];
     let r_size = size_type(p.size.or(d.size).unwrap());
@@ -219,7 +219,6 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
         } else {
             ((1 << f_width) - 1)
         };
-        let f_shift_mask = f_mask << f_offset;   
         let f_bits = if f_width > 1 {
             format!("[{}:{}]", f_hi, f_lo)
         } else {
