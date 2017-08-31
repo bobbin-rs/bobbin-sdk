@@ -1,5 +1,52 @@
+pub use bobbin_common::configure::*;
 pub use bobbin_common::serial::*;
+
+use bobbin_common::bits::*;
 use chip::uart::*;
+
+#[derive(Default)]
+pub struct Config {
+    bdh: Bdh,
+    bdl: Bdl,
+    c1: C1,
+    c2: C2,
+    c3: C3,
+    c4: C4,
+    c5: C5,
+}
+
+impl Config {
+    pub fn set_baud_divisor(&mut self, value: U13) -> &Self {
+        let baud_divisor: u16 = value.into();
+        self.bdh.set_sbr((baud_divisor >> 8) as u8);
+        self.bdl.set_sbr(baud_divisor as u8);
+        self
+    }
+}
+
+impl Configure<Config> for UartPeriph {
+    fn config(&self) -> Config {
+        Config {
+            bdh: self.bdh(),
+            bdl: self.bdl(),
+            c1: self.c1(),
+            c2: self.c2(),
+            c3: self.c3(),
+            c4: self.c4(),
+            c5: self.c5(),
+        }
+    }
+    fn configure(&self, cfg: Config) -> &Self {
+        self
+            .set_bdh(|_| cfg.bdh)
+            .set_bdl(|_| cfg.bdl)
+            .set_c1(|_| cfg.c1)
+            .set_c2(|_| cfg.c2)
+            .set_c3(|_| cfg.c3)
+            .set_c4(|_| cfg.c4)
+            .set_c5(|_| cfg.c5)
+    }
+}
 
 impl UartPeriph {
     pub fn enable(&self, baud_divider: u16) -> &Self {

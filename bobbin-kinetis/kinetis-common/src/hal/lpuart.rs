@@ -1,7 +1,38 @@
+pub use bobbin_common::configure::*;
 pub use bobbin_common::serial::*;
+
+use bobbin_common::bits::*;
 use core::fmt::{self, Write};
 
 use chip::lpuart::*;
+
+#[derive(Default)]
+pub struct Config {
+    baud: Baud,
+    ctrl: Ctrl,
+}
+
+impl Config {
+    pub fn set_baud_divisor(&mut self, baud_divisor: U13) -> &Self {
+        self.baud.set_sbr(baud_divisor);
+        self
+    }
+}
+
+impl Configure<Config> for LpuartPeriph {
+    fn config(&self) -> Config {
+        Config {
+            baud: self.baud(),
+            ctrl: self.ctrl(),
+        }
+    }
+
+    fn configure(&self, cfg: Config) -> &Self {
+        self
+            .set_baud(|_| cfg.baud)
+            .set_ctrl(|_| cfg.ctrl)
+    }
+}
 
 impl LpuartPeriph {
     pub fn set_osr(&self, value: u16) -> &Self {
