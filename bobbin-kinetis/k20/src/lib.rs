@@ -9,3 +9,6 @@ extern crate kinetis_common;
 pub use bobbin_common as common;
 pub mod chip;
 pub mod hal;
+
+#[cfg(test)]
+mod tests;
