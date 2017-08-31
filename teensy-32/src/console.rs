@@ -18,7 +18,9 @@ pub fn init() {
     UART_RX.mode_rx(&UART);
 
     // Set Baud and Enable USART
-    UART.enable(UART_BD);
+    UART
+        .set_config(|c| c.set_baud_divisor(UART_BD))
+        .enable();    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
