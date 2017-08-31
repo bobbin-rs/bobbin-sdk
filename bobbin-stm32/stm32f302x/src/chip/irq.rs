@@ -89,7 +89,6 @@ irq!(IRQ_DMA2_CH3, IrqDma2Ch3, 58);
 irq!(IRQ_DMA2_CH4, IrqDma2Ch4, 59);
 irq!(IRQ_DMA2_CH5, IrqDma2Ch5, 60);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]

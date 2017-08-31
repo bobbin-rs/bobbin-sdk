@@ -90,7 +90,6 @@ irq!(IRQ_LPSPI2, IrqLpspi2, 28);
 irq!(IRQ_ADC0, IrqAdc0, 39);
 irq!(IRQ_ADC1, IrqAdc1, 40);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]

@@ -52,7 +52,6 @@ irq!(IRQ_PORTC, IrqPortc, 61);
 irq!(IRQ_PORTD, IrqPortd, 62);
 irq!(IRQ_PORTE, IrqPorte, 63);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]

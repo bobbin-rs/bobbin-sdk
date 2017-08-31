@@ -20,7 +20,6 @@ irq!(IRQ_UART1, IrqUart1, 13);
 irq!(IRQ_UART2, IrqUart2, 14);
 irq!(IRQ_ADC0, IrqAdc0, 39);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]

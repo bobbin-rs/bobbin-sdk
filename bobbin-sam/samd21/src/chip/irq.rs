@@ -19,7 +19,6 @@ irq!(IRQ_SERCOM3, IrqSercom3, 12);
 irq!(IRQ_SERCOM4, IrqSercom4, 13);
 irq!(IRQ_SERCOM5, IrqSercom5, 14);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]

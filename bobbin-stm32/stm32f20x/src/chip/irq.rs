@@ -86,7 +86,6 @@ irq!(IRQ_DMA2_STREAM5, IrqDma2Stream5, 68);
 irq!(IRQ_DMA2_STREAM6, IrqDma2Stream6, 69);
 irq!(IRQ_DMA2_STREAM7, IrqDma2Stream7, 70);
 
-
 pub fn handler(index: usize) -> Option<Handler> {
    unsafe { 
       R_INTERRUPT_HANDLERS[index]
