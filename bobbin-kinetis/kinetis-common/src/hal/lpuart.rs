@@ -8,9 +8,18 @@ use core::fmt::{self, Write};
 
 use chip::lpuart::*;
 
-#[derive(Debug, Default)]
+#[derive(Debug)]
 pub struct Config {
-    pub baud: Baud,
+    baud: Baud,
+}
+
+impl Default for Config {
+    #[inline]
+    fn default() -> Self {
+        Config {
+            baud: Baud(0).set_osr(0b1111)
+        }
+    }
 }
 
 impl Config {

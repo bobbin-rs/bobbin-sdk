@@ -7,12 +7,24 @@ pub use super::sysctl::SysctlEnabled;
 
 use bobbin_common::bits::*;
 
-#[derive(Debug, Default)]
+#[derive(Debug)]
 pub struct Config {
-    pub ibrd: Ibrd,
-    pub fbrd: Fbrd,
-    pub lcrh: Lcrh,
-    pub ctl: Ctl,
+    ibrd: Ibrd,
+    fbrd: Fbrd,
+    lcrh: Lcrh,
+    ctl: Ctl,
+}
+
+impl Default for Config {
+    #[inline]
+    fn default() -> Self {
+        Config {
+            ibrd: Ibrd(0),
+            fbrd: Fbrd(0),
+            lcrh: Lcrh(0).set_wlen(0x3).set_fen(1), // 8 bit, FIFO enabled
+            ctl: Ctl(0).set_hse(1), // High speed clock
+        }
+    }
 }
 
 impl Config {
@@ -22,7 +34,6 @@ impl Config {
         let baud_frac = baud_div % 64;
         self.ibrd = self.ibrd.set_divint(baud_int);
         self.fbrd = self.fbrd.set_divfrac(baud_frac);
-        self.ctl = self.ctl.set_hse(1);
         self
     }
     pub fn set_wlen(mut self, wlen: U2) -> Self {
