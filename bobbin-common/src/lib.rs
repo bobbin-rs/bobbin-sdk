@@ -11,58 +11,32 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 
+#[cfg(test)]
+mod vm;
+
 pub use core::ops::Deref;
 
-#[cfg(not(test))] use core::ptr::{read_volatile, write_volatile};
-
-
-#[cfg(test)] mod vm;
-#[cfg(test)] use vm::Vm;
-#[cfg(test)] use std::cell::RefCell;
-#[cfg(test)] thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
 
 #[cfg(not(test))]
-pub trait Base {
-    #[inline(always)]
-    fn base(&self) -> usize;
-
-    #[inline(always)]
-    fn addr<T>(&self, offset: usize) -> *mut T {
-        (self.base() + offset) as *mut T
-    }
-
-    #[inline(always)]
-    fn read<T>(&self, offset: usize) -> T {
-        unsafe { read_volatile(self.addr(offset)) }
-    }    
-
-    #[inline(always)]
-    fn write<T>(&self, offset: usize, value: T) -> &Self {
-        unsafe { write_volatile(self.addr(offset), value); }
-        self
-    }
-}
+pub use core::ptr::{read_volatile, write_volatile};
 
 #[cfg(test)]
-pub trait Base {
-    #[inline(always)]
-    fn base(&self) -> usize;
+pub mod rw {
+    use vm::Vm;
+    use std::cell::RefCell;
 
-    fn addr<T>(&self, offset: usize) -> *mut T {
-        (self.base() + offset) as *mut T
-    }
+    thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
 
-    fn read<T>(&self, offset: usize) -> T {
-        let addr = self.addr(offset);
+    pub fn read_volatile<T>(addr: *const T) -> T {
         MEM.with(|m| m.borrow().read(addr))
     }
 
-    fn write<T>(&self, offset: usize, value: T) -> &Self {
-        let addr = self.addr(offset);
+    pub fn write_volatile<T>(addr: *mut T, value: T) {
         MEM.with(|m| m.borrow_mut().write(addr, value));
-        self
     }
 }
+#[cfg(test)]
+pub use rw::{read_volatile, write_volatile};
 
 pub trait Pin<T> {
     fn port(&self) -> T;
