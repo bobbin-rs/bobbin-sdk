@@ -26,8 +26,7 @@ impl Exception {
    }
 }
 
-#[cfg(target_os="none")]
-#[link_section = ".vector.exceptions"]
+#[cfg_attr(target_os="none", link_section=".vector.exceptions")]
 #[no_mangle]
 pub static EXCEPTION_HANDLERS: [Option<Handler>; 15] = [
    Some(_reset),                  // Reset Handler
@@ -47,32 +46,7 @@ pub static EXCEPTION_HANDLERS: [Option<Handler>; 15] = [
    Some(_systick),                // System tick timer
 ];
 
-#[cfg(not(target_os="none"))]
-#[no_mangle]
-pub static EXCEPTION_HANDLERS: [Option<Handler>; 15] = [
-   Some(_reset),                  // Reset Handler
-   Some(_nmi),                    // Non-maskable interrupt.
-   Some(_hard_fault),             // All class of fault.
-   Some(_memmanage_fault),        // Memory Management
-   Some(_bus_fault),              // Pre-fetch fault, memory access fault.
-   Some(_usage_fault),            // Undefined instruction or illegal state.
-   None,
-   None,
-   None,
-   None,
-   Some(_svcall),                 // System service call via SWI instruction
-   Some(_debug),                  // Debug
-   None,
-   Some(_pendsv),                 // Pendable request for system service
-   Some(_systick),                // System tick timer
-];
-
-#[cfg(target_os="none")]
-#[link_section = ".bss.r_exceptions"]
-#[no_mangle]
-pub static mut R_EXCEPTION_HANDLERS: [Option<Handler>; 15] = [None; 15];
-
-#[cfg(not(target_os="none"))]
+#[cfg_attr(target_os="none", link_section=".bss.r_exceptions")]
 #[no_mangle]
 pub static mut R_EXCEPTION_HANDLERS: [Option<Handler>; 15] = [None; 15];
 
