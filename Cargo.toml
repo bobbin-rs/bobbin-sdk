@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "bobbin-build",
+    "bobbin-common",
+    "bobbin-cortexm",
+    "bobbin-kinetis/*/",
+    "bobbin-sam/*/",
+    "bobbin-stm32/*/",
+    "bobbin-ti/*/",
+]
+
+exclude = [
+    "bobbin-kinetis/target/",
+    "bobbin-sam/target/",
+    "bobbin-stm32/target/",
+    "bobbin-ti/target/",
+]
