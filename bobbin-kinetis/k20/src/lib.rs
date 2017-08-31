@@ -1,7 +1,7 @@
 #![no_std]
-#![feature(compiler_builtins_lib)]
+#![cfg_attr(not(test), feature(compiler_builtins_lib))]
 
-extern crate compiler_builtins;
+#[cfg(not(test))] extern crate compiler_builtins;
 pub extern crate bobbin_common;
 extern crate bobbin_cortexm;
 extern crate kinetis_common;

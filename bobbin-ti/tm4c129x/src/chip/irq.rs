@@ -104,7 +104,7 @@ pub fn set_handler(index: usize, handler: Option<Handler>) {
   };
 }
 
-#[link_section = ".vector.interrupts"]
+#[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,                          // IRQ 0: No Description
@@ -223,7 +223,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [
    None,
 ];
 
-#[link_section = ".bss.r_interrupts"]
+#[cfg_attr(target_os="none", link_section=".bss.r_interrupts")]
 #[no_mangle]
 pub static mut R_INTERRUPT_HANDLERS: [Option<Handler>; 114] = [None; 114];
 

@@ -6,6 +6,12 @@ use std::fs::{self, File};
 use std::path::{PathBuf, Path};
 
 pub fn setup_linker() {
+    let cfg_target_os = env::var("CARGO_CFG_TARGET_OS").unwrap();
+    if cfg_target_os != "none" {
+        // println!("cargo:warning=CFG_TARGET_OS is {}, skipping Linker Script", cfg_target_os);
+        return
+    }
+
     if let Some(ld_script) = find_ld_script("link").unwrap() {
         copy_link_script(ld_script);
     } else {
