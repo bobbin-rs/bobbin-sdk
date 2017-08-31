@@ -1,6 +1,6 @@
 #![no_std]
 
-#[cfg(test)]
+#[cfg(not(target_os="none"))]
 #[macro_use]
 extern crate std;
 
@@ -11,32 +11,76 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 
-#[cfg(test)]
+#[cfg(not(target_os="none"))]
 mod vm;
 
 pub use core::ops::Deref;
 
-
-#[cfg(not(test))]
+#[cfg(target_os="none")]
 pub use core::ptr::{read_volatile, write_volatile};
 
-#[cfg(test)]
+#[cfg(not(target_os="none"))]
 pub mod rw {
     use vm::Vm;
     use std::cell::RefCell;
 
     thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
 
-    pub fn read_volatile<T>(addr: *const T) -> T {
+    pub unsafe fn read_volatile<T>(addr: *const T) -> T {
         MEM.with(|m| m.borrow().read(addr))
     }
 
-    pub fn write_volatile<T>(addr: *mut T, value: T) {
+    pub unsafe fn write_volatile<T>(addr: *mut T, value: T) {
         MEM.with(|m| m.borrow_mut().write(addr, value));
     }
+
+    pub fn add_region(addr: usize, len: usize) {
+        MEM.with(|m| m.borrow_mut().add_region(addr, len));
+    }    
+
+    #[inline]
+    pub fn read<T>(addr: usize) -> T {
+        unsafe { read_volatile(addr as *const T) }
+    }
+
+    #[inline]
+    pub fn read_u32(addr: usize) -> u32 {
+        read(addr)
+    }
+
+    #[inline]
+    pub fn read_u16(addr: usize) -> u16 {
+        read(addr)
+    }
+
+    #[inline]
+    pub fn read_u8(addr: usize) -> u8 {
+        read(addr)
+    }
+
+    #[inline]
+    pub fn write<T>(addr: usize, value: T) {
+        unsafe { write_volatile(addr as *mut T, value) }
+    }
+
+    #[inline]
+    pub fn write_u32(addr: usize, value: u32) {
+        write(addr, value)
+    }
+
+    #[inline]
+    pub fn write_u16(addr: usize, value: u16) {
+        write(addr, value)
+    }
+
+    #[inline]
+    pub fn write_u8(addr: usize, value: u8) {
+        write(addr, value)
+    }    
 }
-#[cfg(test)]
-pub use rw::{read_volatile, write_volatile};
+
+#[cfg(not(target_os="none"))]
+pub use rw::*;
 
 pub trait Pin<T> {
     fn port(&self) -> T;
