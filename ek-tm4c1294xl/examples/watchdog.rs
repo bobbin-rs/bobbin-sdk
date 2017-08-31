@@ -17,13 +17,15 @@ pub extern "C" fn main() -> ! {
     w.sysctl_set_enabled(true);    
     while !w.sysctl_ready() {}
 
-    w.set_load(|_| Load(0x0500_0000));
+    // w.set_load(|_| Load(0x0500_0000));
+    w.set_timeout(0x500_0000);
     w.set_ctl(|r| r.set_resen(1));
     
     for i in 0..5 {
         // Refresh Watchdog
         println!("{} {}", i, w.value().value());
-        w.set_load(|_| Load(0x0500_0000));
+        // w.set_load(|_| Load(0x0500_0000));
+        w.refresh();
         board::delay(500);
     }
     println!("Waiting for watchdog timeout...");
