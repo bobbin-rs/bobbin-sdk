@@ -787,7 +787,7 @@ impl AdcPeriph {
 }
 
 #[doc="ADC Status and Control Registers 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc1(pub u32);
 impl Sc1 {
 #[doc="Input channel select"]
@@ -860,7 +860,7 @@ impl ::core::fmt::Debug for Sc1 {
    }
 }
 #[doc="ADC Configuration Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg1(pub u32);
 impl Cfg1 {
 #[doc="Input Clock Select"]
@@ -947,7 +947,7 @@ impl ::core::fmt::Debug for Cfg1 {
    }
 }
 #[doc="ADC Configuration Register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg2(pub u32);
 impl Cfg2 {
 #[doc="Long Sample Time Select"]
@@ -1020,7 +1020,7 @@ impl ::core::fmt::Debug for Cfg2 {
    }
 }
 #[doc="ADC Data Result Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct R(pub u32);
 impl R {
 #[doc="Data result"]
@@ -1107,7 +1107,7 @@ impl ::core::fmt::Debug for R {
    }
 }
 #[doc="Compare Value Registers"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cv(pub u32);
 impl Cv {
 #[doc="Compare Value."]
@@ -1138,7 +1138,7 @@ impl ::core::fmt::Debug for Cv {
    }
 }
 #[doc="Status and Control Register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc2(pub u32);
 impl Sc2 {
 #[doc="Voltage Reference Selection"]
@@ -1253,7 +1253,7 @@ impl ::core::fmt::Debug for Sc2 {
    }
 }
 #[doc="Status and Control Register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc3(pub u32);
 impl Sc3 {
 #[doc="Hardware Average Select"]
@@ -1340,7 +1340,7 @@ impl ::core::fmt::Debug for Sc3 {
    }
 }
 #[doc="ADC Offset Correction Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ofs(pub u32);
 impl Ofs {
 #[doc="Offset Error Correction Value"]
@@ -1371,7 +1371,7 @@ impl ::core::fmt::Debug for Ofs {
    }
 }
 #[doc="ADC Plus-Side Gain Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pg(pub u32);
 impl Pg {
 #[doc="Plus-Side Gain"]
@@ -1402,7 +1402,7 @@ impl ::core::fmt::Debug for Pg {
    }
 }
 #[doc="ADC Minus-Side Gain Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mg(pub u32);
 impl Mg {
 #[doc="Minus-Side Gain"]
@@ -1433,7 +1433,7 @@ impl ::core::fmt::Debug for Mg {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clpd(pub u32);
 impl Clpd {
 #[doc="Calibration Value"]
@@ -1464,7 +1464,7 @@ impl ::core::fmt::Debug for Clpd {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clps(pub u32);
 impl Clps {
 #[doc="Calibration Value"]
@@ -1495,7 +1495,7 @@ impl ::core::fmt::Debug for Clps {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp4(pub u32);
 impl Clp4 {
 #[doc="Calibration Value"]
@@ -1526,7 +1526,7 @@ impl ::core::fmt::Debug for Clp4 {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp3(pub u32);
 impl Clp3 {
 #[doc="Calibration Value"]
@@ -1557,7 +1557,7 @@ impl ::core::fmt::Debug for Clp3 {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp2(pub u32);
 impl Clp2 {
 #[doc="Calibration Value"]
@@ -1588,7 +1588,7 @@ impl ::core::fmt::Debug for Clp2 {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp1(pub u32);
 impl Clp1 {
 #[doc="Calibration Value"]
@@ -1619,7 +1619,7 @@ impl ::core::fmt::Debug for Clp1 {
    }
 }
 #[doc="ADC Plus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp0(pub u32);
 impl Clp0 {
 #[doc="Calibration Value"]
@@ -1650,7 +1650,7 @@ impl ::core::fmt::Debug for Clp0 {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clmd(pub u32);
 impl Clmd {
 #[doc="Calibration Value"]
@@ -1681,7 +1681,7 @@ impl ::core::fmt::Debug for Clmd {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clms(pub u32);
 impl Clms {
 #[doc="Calibration Value"]
@@ -1712,7 +1712,7 @@ impl ::core::fmt::Debug for Clms {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clm4(pub u32);
 impl Clm4 {
 #[doc="Calibration Value"]
@@ -1743,7 +1743,7 @@ impl ::core::fmt::Debug for Clm4 {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clm3(pub u32);
 impl Clm3 {
 #[doc="Calibration Value"]
@@ -1774,7 +1774,7 @@ impl ::core::fmt::Debug for Clm3 {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clm2(pub u32);
 impl Clm2 {
 #[doc="Calibration Value"]
@@ -1805,7 +1805,7 @@ impl ::core::fmt::Debug for Clm2 {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clm1(pub u32);
 impl Clm1 {
 #[doc="Calibration Value"]
@@ -1836,7 +1836,7 @@ impl ::core::fmt::Debug for Clm1 {
    }
 }
 #[doc="ADC Minus-Side General Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clm0(pub u32);
 impl Clm0 {
 #[doc="Calibration Value"]

@@ -59,17 +59,23 @@ impl Config {
 // }
 
 impl UsartPeriph {
-    pub fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(Config::default()))
-    }
-    pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(Config {
+    pub fn config(&self) -> Config {
+        Config {
             cr1: self.cr1(),
             cr2: self.cr2(),
             cr3: self.cr3(),
             brr: self.brr(),
-        }))
+        }
     }
+
+    pub fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+        self.configure(f(Config::default()))
+    }
+
+    pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
+        self.configure(f(self.config()))
+    }
+    
     pub fn configure(&self, cfg: Config) -> &Self {        
         self.set_cr1(|_| cfg.cr1);
         self.set_cr2(|_| cfg.cr2);

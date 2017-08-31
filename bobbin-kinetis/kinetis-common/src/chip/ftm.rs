@@ -830,7 +830,7 @@ impl FtmPeriph {
 }
 
 #[doc="Status And Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc(pub u32);
 impl Sc {
 #[doc="Prescale Factor Selection"]
@@ -958,7 +958,7 @@ impl ::core::fmt::Debug for Sc {
    }
 }
 #[doc="Counter"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Counter Value"]
@@ -989,7 +989,7 @@ impl ::core::fmt::Debug for Cnt {
    }
 }
 #[doc="Modulo"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mod(pub u32);
 impl Mod {
 #[doc="Modulo Value"]
@@ -1020,7 +1020,7 @@ impl ::core::fmt::Debug for Mod {
    }
 }
 #[doc="Channel (n) Status And Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csc(pub u32);
 impl Csc {
 #[doc="DMA Enable"]
@@ -1135,7 +1135,7 @@ impl ::core::fmt::Debug for Csc {
    }
 }
 #[doc="Channel (n) Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cv(pub u32);
 impl Cv {
 #[doc="Channel Value"]
@@ -1166,7 +1166,7 @@ impl ::core::fmt::Debug for Cv {
    }
 }
 #[doc="Counter Initial Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cntin(pub u32);
 impl Cntin {
 #[doc="Initial Value Of The FTM Counter"]
@@ -1197,7 +1197,7 @@ impl ::core::fmt::Debug for Cntin {
    }
 }
 #[doc="Capture And Compare Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
 #[doc="Channel n Flag"]
@@ -1241,7 +1241,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="Features Mode Selection"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mode(pub u32);
 impl Mode {
 #[doc="FTM Enable"]
@@ -1356,7 +1356,7 @@ impl ::core::fmt::Debug for Mode {
    }
 }
 #[doc="Synchronization"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Minimum Loading Point Enable"]
@@ -1485,7 +1485,7 @@ impl ::core::fmt::Debug for Sync {
    }
 }
 #[doc="Initial State For Channels Output"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Outinit(pub u32);
 impl Outinit {
 #[doc="Channel n Output Initialization Value"]
@@ -1529,7 +1529,7 @@ impl ::core::fmt::Debug for Outinit {
    }
 }
 #[doc="Output Mask"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Outmask(pub u32);
 impl Outmask {
 #[doc="Channel 0 Output Mask"]
@@ -1573,7 +1573,7 @@ impl ::core::fmt::Debug for Outmask {
    }
 }
 #[doc="Function For Linked Channels"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Combine(pub u32);
 impl Combine {
 #[doc="Combine Channels For n"]
@@ -1751,7 +1751,7 @@ impl ::core::fmt::Debug for Combine {
    }
 }
 #[doc="Deadtime Insertion Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Deadtime(pub u32);
 impl Deadtime {
 #[doc="Deadtime Value"]
@@ -1796,7 +1796,7 @@ impl ::core::fmt::Debug for Deadtime {
    }
 }
 #[doc="FTM External Trigger"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exttrig(pub u32);
 impl Exttrig {
 #[doc="Channel 2 Trigger Enable"]
@@ -1925,7 +1925,7 @@ impl ::core::fmt::Debug for Exttrig {
    }
 }
 #[doc="Channels Polarity"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pol(pub u32);
 impl Pol {
 #[doc="Channel n Polarity"]
@@ -1969,7 +1969,7 @@ impl ::core::fmt::Debug for Pol {
    }
 }
 #[doc="Fault Mode Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fms(pub u32);
 impl Fms {
 #[doc="Fault Detection Flag 0"]
@@ -2084,7 +2084,7 @@ impl ::core::fmt::Debug for Fms {
    }
 }
 #[doc="Input Capture Filter Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Filter(pub u32);
 impl Filter {
 #[doc="Channel n Input Filter"]
@@ -2124,7 +2124,7 @@ impl ::core::fmt::Debug for Filter {
    }
 }
 #[doc="Fault Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fltctrl(pub u32);
 impl Fltctrl {
 #[doc="Fault Input n Enable"]
@@ -2201,7 +2201,7 @@ impl ::core::fmt::Debug for Fltctrl {
    }
 }
 #[doc="Quadrature Decoder Control And Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Qdctrl(pub u32);
 impl Qdctrl {
 #[doc="Quadrature Decoder Mode Enable"]
@@ -2330,7 +2330,7 @@ impl ::core::fmt::Debug for Qdctrl {
    }
 }
 #[doc="Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Conf(pub u32);
 impl Conf {
 #[doc="TOF Frequency"]
@@ -2403,7 +2403,7 @@ impl ::core::fmt::Debug for Conf {
    }
 }
 #[doc="FTM Fault Input Polarity"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fltpol(pub u32);
 impl Fltpol {
 #[doc="Fault Input 0 Polarity"]
@@ -2443,7 +2443,7 @@ impl ::core::fmt::Debug for Fltpol {
    }
 }
 #[doc="Synchronization Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Synconf(pub u32);
 impl Synconf {
 #[doc="Hardware Trigger Mode"]
@@ -2670,7 +2670,7 @@ impl ::core::fmt::Debug for Synconf {
    }
 }
 #[doc="FTM Inverting Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Invctrl(pub u32);
 impl Invctrl {
 #[doc="Pair Channels n Inverting Enable"]
@@ -2710,7 +2710,7 @@ impl ::core::fmt::Debug for Invctrl {
    }
 }
 #[doc="FTM Software Output Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Swoctrl(pub u32);
 impl Swoctrl {
 #[doc="Channel 0 Software Output Control Enable"]
@@ -2781,7 +2781,7 @@ impl ::core::fmt::Debug for Swoctrl {
    }
 }
 #[doc="FTM PWM Load"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pwmload(pub u32);
 impl Pwmload {
 #[doc="Channel n Select"]

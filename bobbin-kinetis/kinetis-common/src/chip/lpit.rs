@@ -305,7 +305,7 @@ impl LpitPeriph {
 }
 
 #[doc="Version ID Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Feature Number"]
@@ -364,7 +364,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="Parameter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Number of Timer Channels"]
@@ -409,7 +409,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="Module Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="Module Clock Enable"]
@@ -482,7 +482,7 @@ impl ::core::fmt::Debug for Mcr {
    }
 }
 #[doc="Module Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Msr(pub u32);
 impl Msr {
 #[doc="Channel n Timer Interrupt Flag"]
@@ -522,7 +522,7 @@ impl ::core::fmt::Debug for Msr {
    }
 }
 #[doc="Module Interrupt Enable Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mier(pub u32);
 impl Mier {
 #[doc="Channel n Timer Interrupt Enable"]
@@ -562,7 +562,7 @@ impl ::core::fmt::Debug for Mier {
    }
 }
 #[doc="Set Timer Enable Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Setten(pub u32);
 impl Setten {
 #[doc="Set Timer n Enable"]
@@ -602,7 +602,7 @@ impl ::core::fmt::Debug for Setten {
    }
 }
 #[doc="Clear Timer Enable Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clrten(pub u32);
 impl Clrten {
 #[doc="Clear Timer n Enable"]
@@ -642,7 +642,7 @@ impl ::core::fmt::Debug for Clrten {
    }
 }
 #[doc="Timer Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tval(pub u32);
 impl Tval {
 #[doc="Timer Value"]
@@ -672,7 +672,7 @@ impl ::core::fmt::Debug for Tval {
    }
 }
 #[doc="Current Timer Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cval(pub u32);
 impl Cval {
 #[doc="Current Timer Value"]
@@ -702,7 +702,7 @@ impl ::core::fmt::Debug for Cval {
    }
 }
 #[doc="Timer Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tctrl(pub u32);
 impl Tctrl {
 #[doc="Timer Enable"]

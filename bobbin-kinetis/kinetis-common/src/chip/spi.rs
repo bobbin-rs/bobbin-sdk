@@ -333,7 +333,7 @@ impl SpiPeriph {
 }
 
 #[doc="Module Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="Halt"]
@@ -574,7 +574,7 @@ impl ::core::fmt::Debug for Mcr {
    }
 }
 #[doc="Transfer Count Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="SPI Transfer Counter"]
@@ -605,7 +605,7 @@ impl ::core::fmt::Debug for Tcr {
    }
 }
 #[doc="Clock and Transfer Attributes Register (In Master Mode)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctar(pub u32);
 impl Ctar {
 #[doc="Baud Rate Scaler"]
@@ -804,7 +804,7 @@ impl ::core::fmt::Debug for Ctar {
    }
 }
 #[doc="Clock and Transfer Attributes Register (In Slave Mode)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct CtarSlave(pub u32);
 impl CtarSlave {
 #[doc="Clock Phase"]
@@ -863,7 +863,7 @@ impl ::core::fmt::Debug for CtarSlave {
    }
 }
 #[doc="Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Pop Next Pointer"]
@@ -1034,7 +1034,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="DMA/Interrupt Request Select and Enable Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rser(pub u32);
 impl Rser {
 #[doc="Receive FIFO Drain DMA or Interrupt Request Select"]
@@ -1163,7 +1163,7 @@ impl ::core::fmt::Debug for Rser {
    }
 }
 #[doc="PUSH TX FIFO Register In Master Mode"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pushr(pub u32);
 impl Pushr {
 #[doc="Transmit Data"]
@@ -1264,7 +1264,7 @@ impl ::core::fmt::Debug for Pushr {
    }
 }
 #[doc="PUSH TX FIFO Register In Slave Mode"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct PushrSlave(pub u32);
 impl PushrSlave {
 #[doc="Transmit Data"]
@@ -1294,7 +1294,7 @@ impl ::core::fmt::Debug for PushrSlave {
    }
 }
 #[doc="POP RX FIFO Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Popr(pub u32);
 impl Popr {
 #[doc="Received Data"]
@@ -1324,7 +1324,7 @@ impl ::core::fmt::Debug for Popr {
    }
 }
 #[doc="Transmit FIFO Registers"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Txfr(pub u32);
 impl Txfr {
 #[doc="Transmit Data"]
@@ -1369,7 +1369,7 @@ impl ::core::fmt::Debug for Txfr {
    }
 }
 #[doc="Receive FIFO Registers"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxfr(pub u32);
 impl Rxfr {
 #[doc="Receive Data"]

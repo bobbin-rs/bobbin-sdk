@@ -234,7 +234,7 @@ impl Syscfg {
 }
 
 #[doc="SYSCFG configuration register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr1(pub u32);
 impl Cfgr1 {
 #[doc="Boot mode selected by the boot pins status bits"]
@@ -279,7 +279,7 @@ impl ::core::fmt::Debug for Cfgr1 {
    }
 }
 #[doc="SYSCFG configuration register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr2(pub u32);
 impl Cfgr2 {
 #[doc="I2C2 Fm+ drive capability enable bit"]
@@ -408,7 +408,7 @@ impl ::core::fmt::Debug for Cfgr2 {
    }
 }
 #[doc="external interrupt configuration register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr1(pub u32);
 impl Exticr1 {
 #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -481,7 +481,7 @@ impl ::core::fmt::Debug for Exticr1 {
    }
 }
 #[doc="external interrupt configuration register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr2(pub u32);
 impl Exticr2 {
 #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -554,7 +554,7 @@ impl ::core::fmt::Debug for Exticr2 {
    }
 }
 #[doc="external interrupt configuration register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr3(pub u32);
 impl Exticr3 {
 #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -627,7 +627,7 @@ impl ::core::fmt::Debug for Exticr3 {
    }
 }
 #[doc="external interrupt configuration register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr4(pub u32);
 impl Exticr4 {
 #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -700,7 +700,7 @@ impl ::core::fmt::Debug for Exticr4 {
    }
 }
 #[doc="SYSCFG configuration register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr3(pub u32);
 impl Cfgr3 {
 #[doc="REF_CTRL lock bit"]

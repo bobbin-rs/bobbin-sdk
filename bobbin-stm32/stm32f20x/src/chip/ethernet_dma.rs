@@ -390,7 +390,7 @@ impl EthernetDma {
 }
 
 #[doc="Ethernet DMA bus mode register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmabmr(pub u32);
 impl Dmabmr {
 #[doc="no description available"]
@@ -575,7 +575,7 @@ impl ::core::fmt::Debug for Dmabmr {
    }
 }
 #[doc="Ethernet DMA transmit poll demand register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmatpdr(pub u32);
 impl Dmatpdr {
 #[doc="no description available"]
@@ -605,7 +605,7 @@ impl ::core::fmt::Debug for Dmatpdr {
    }
 }
 #[doc="EHERNET DMA receive poll demand register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmarpdr(pub u32);
 impl Dmarpdr {
 #[doc="RPD"]
@@ -635,7 +635,7 @@ impl ::core::fmt::Debug for Dmarpdr {
    }
 }
 #[doc="Ethernet DMA receive descriptor list address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmardlar(pub u32);
 impl Dmardlar {
 #[doc="no description available"]
@@ -665,7 +665,7 @@ impl ::core::fmt::Debug for Dmardlar {
    }
 }
 #[doc="Ethernet DMA transmit descriptor list address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmatdlar(pub u32);
 impl Dmatdlar {
 #[doc="no description available"]
@@ -695,7 +695,7 @@ impl ::core::fmt::Debug for Dmatdlar {
    }
 }
 #[doc="Ethernet DMA status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmasr(pub u32);
 impl Dmasr {
 #[doc="no description available"]
@@ -1006,7 +1006,7 @@ impl ::core::fmt::Debug for Dmasr {
    }
 }
 #[doc="Ethernet DMA operation mode register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmaomr(pub u32);
 impl Dmaomr {
 #[doc="SR"]
@@ -1191,7 +1191,7 @@ impl ::core::fmt::Debug for Dmaomr {
    }
 }
 #[doc="Ethernet DMA interrupt enable register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmaier(pub u32);
 impl Dmaier {
 #[doc="no description available"]
@@ -1418,7 +1418,7 @@ impl ::core::fmt::Debug for Dmaier {
    }
 }
 #[doc="Ethernet DMA missed frame and buffer overflow counter register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmamfbocr(pub u32);
 impl Dmamfbocr {
 #[doc="no description available"]
@@ -1491,7 +1491,7 @@ impl ::core::fmt::Debug for Dmamfbocr {
    }
 }
 #[doc="Ethernet DMA receive status watchdog timer register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmarswtr(pub u32);
 impl Dmarswtr {
 #[doc="RSWTC"]
@@ -1522,7 +1522,7 @@ impl ::core::fmt::Debug for Dmarswtr {
    }
 }
 #[doc="Ethernet DMA current host transmit descriptor register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmachtdr(pub u32);
 impl Dmachtdr {
 #[doc="HTDAP"]
@@ -1552,7 +1552,7 @@ impl ::core::fmt::Debug for Dmachtdr {
    }
 }
 #[doc="Ethernet DMA current host receive descriptor register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmachrdr(pub u32);
 impl Dmachrdr {
 #[doc="HRDAP"]
@@ -1582,7 +1582,7 @@ impl ::core::fmt::Debug for Dmachrdr {
    }
 }
 #[doc="Ethernet DMA current host transmit buffer address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmachtbar(pub u32);
 impl Dmachtbar {
 #[doc="no description available"]
@@ -1612,7 +1612,7 @@ impl ::core::fmt::Debug for Dmachtbar {
    }
 }
 #[doc="Ethernet DMA current host receive buffer address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmachrbar(pub u32);
 impl Dmachrbar {
 #[doc="no description available"]

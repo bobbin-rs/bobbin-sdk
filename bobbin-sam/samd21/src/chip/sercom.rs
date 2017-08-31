@@ -430,7 +430,7 @@ impl I2cm {
 }
 
 #[doc="I2CM Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Addr(pub u32);
 impl Addr {
 #[doc="Address Value"]
@@ -517,7 +517,7 @@ impl ::core::fmt::Debug for Addr {
    }
 }
 #[doc="I2CM Baud Rate"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Baud(pub u32);
 impl Baud {
 #[doc="Baud Rate Value"]
@@ -590,7 +590,7 @@ impl ::core::fmt::Debug for Baud {
    }
 }
 #[doc="I2CM Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u32);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -775,7 +775,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="I2CM Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="Smart Mode Enable"]
@@ -848,7 +848,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="I2CM Data"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u8);
 impl Data {
 #[doc="Data Value"]
@@ -879,7 +879,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="I2CM Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Mode"]
@@ -910,7 +910,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="I2CM Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Master On Bus Interrupt Disable"]
@@ -969,7 +969,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="I2CM Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Master On Bus Interrupt Enable"]
@@ -1028,7 +1028,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="I2CM Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Master On Bus Interrupt"]
@@ -1087,7 +1087,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="I2CM Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u16);
 impl Status {
 #[doc="Bus Error"]
@@ -1230,7 +1230,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="I2CM Syncbusy"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncbusy(pub u32);
 impl Syncbusy {
 #[doc="Software Reset Synchronization Busy"]
@@ -1603,7 +1603,7 @@ impl I2cs {
 }
 
 #[doc="I2CS Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Addr(pub u32);
 impl Addr {
 #[doc="General Call Address Enable"]
@@ -1676,7 +1676,7 @@ impl ::core::fmt::Debug for Addr {
    }
 }
 #[doc="I2CS Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u32);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -1833,7 +1833,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="I2CS Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="Smart Mode Enable"]
@@ -1934,7 +1934,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="I2CS Data"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u8);
 impl Data {
 #[doc="Data Value"]
@@ -1965,7 +1965,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="I2CS Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Mode"]
@@ -1996,7 +1996,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="I2CS Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Stop Received Interrupt Disable"]
@@ -2069,7 +2069,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="I2CS Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Stop Received Interrupt Enable"]
@@ -2142,7 +2142,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="I2CS Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Stop Received Interrupt"]
@@ -2215,7 +2215,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="I2CS Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u16);
 impl Status {
 #[doc="Bus Error"]
@@ -2358,7 +2358,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="I2CS Syncbusy"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncbusy(pub u32);
 impl Syncbusy {
 #[doc="Software Reset Synchronization Busy"]
@@ -2749,7 +2749,7 @@ impl Spi {
 }
 
 #[doc="SPI Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Addr(pub u32);
 impl Addr {
 #[doc="Address Value"]
@@ -2794,7 +2794,7 @@ impl ::core::fmt::Debug for Addr {
    }
 }
 #[doc="SPI Baud Rate"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Baud(pub u8);
 impl Baud {
 #[doc="Baud Rate Value"]
@@ -2825,7 +2825,7 @@ impl ::core::fmt::Debug for Baud {
    }
 }
 #[doc="SPI Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u32);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -2996,7 +2996,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="SPI Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="Character Size"]
@@ -3097,7 +3097,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="SPI Data"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
 #[doc="Data Value"]
@@ -3128,7 +3128,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="SPI Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Mode"]
@@ -3159,7 +3159,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="SPI Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Data Register Empty Interrupt Disable"]
@@ -3246,7 +3246,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="SPI Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Data Register Empty Interrupt Enable"]
@@ -3333,7 +3333,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="SPI Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Data Register Empty Interrupt"]
@@ -3420,7 +3420,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="SPI Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u16);
 impl Status {
 #[doc="Buffer Overflow"]
@@ -3451,7 +3451,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="SPI Syncbusy"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncbusy(pub u32);
 impl Syncbusy {
 #[doc="Software Reset Synchronization Busy"]
@@ -3856,7 +3856,7 @@ impl Usart {
 }
 
 #[doc="USART Baud Rate"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Baud(pub u16);
 impl Baud {
 #[doc="Baud Rate Value"]
@@ -3901,7 +3901,7 @@ impl ::core::fmt::Debug for Baud {
    }
 }
 #[doc="USART Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u32);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -4100,7 +4100,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="USART Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="Character Size"]
@@ -4229,7 +4229,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="USART Data"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u16);
 impl Data {
 #[doc="Data Value"]
@@ -4260,7 +4260,7 @@ impl ::core::fmt::Debug for Data {
    }
 }
 #[doc="USART Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Mode"]
@@ -4291,7 +4291,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="USART Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Data Register Empty Interrupt Disable"]
@@ -4406,7 +4406,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="USART Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Data Register Empty Interrupt Enable"]
@@ -4521,7 +4521,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="USART Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Data Register Empty Interrupt"]
@@ -4636,7 +4636,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="USART Receive Pulse Length"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxpl(pub u8);
 impl Rxpl {
 #[doc="Receive Pulse Length"]
@@ -4667,7 +4667,7 @@ impl ::core::fmt::Debug for Rxpl {
    }
 }
 #[doc="USART Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u16);
 impl Status {
 #[doc="Parity Error"]
@@ -4768,7 +4768,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="USART Syncbusy"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncbusy(pub u32);
 impl Syncbusy {
 #[doc="Software Reset Synchronization Busy"]

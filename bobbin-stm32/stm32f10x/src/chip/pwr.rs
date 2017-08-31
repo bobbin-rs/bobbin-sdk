@@ -74,7 +74,7 @@ impl Pwr {
 }
 
 #[doc="Power control register (PWR_CR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Low Power Deep Sleep"]
@@ -189,7 +189,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Power control register (PWR_CR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Wake-Up Flag"]

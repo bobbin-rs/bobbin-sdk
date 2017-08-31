@@ -298,7 +298,7 @@ impl Nvmctrl {
 }
 
 #[doc="Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Addr(pub u32);
 impl Addr {
 #[doc="NVM Address"]
@@ -329,7 +329,7 @@ impl ::core::fmt::Debug for Addr {
    }
 }
 #[doc="Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u16);
 impl Ctrla {
 #[doc="Command"]
@@ -374,7 +374,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlb(pub u32);
 impl Ctrlb {
 #[doc="NVM Read Wait States"]
@@ -461,7 +461,7 @@ impl ::core::fmt::Debug for Ctrlb {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="NVM Ready Interrupt Enable"]
@@ -506,7 +506,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="NVM Ready Interrupt Enable"]
@@ -551,7 +551,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="NVM Ready"]
@@ -596,7 +596,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Lock Section"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lock(pub u16);
 impl Lock {
 #[doc="Region Lock Bits"]
@@ -627,7 +627,7 @@ impl ::core::fmt::Debug for Lock {
    }
 }
 #[doc="NVM Parameter"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="NVM Pages"]
@@ -672,7 +672,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u16);
 impl Status {
 #[doc="Power Reduction Mode"]

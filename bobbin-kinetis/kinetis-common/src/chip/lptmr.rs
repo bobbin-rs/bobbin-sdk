@@ -138,7 +138,7 @@ impl LptmrPeriph {
 }
 
 #[doc="Low Power Timer Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Timer Enable"]
@@ -253,7 +253,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="Low Power Timer Prescale Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Psr(pub u32);
 impl Psr {
 #[doc="Prescaler Clock Select"]
@@ -312,7 +312,7 @@ impl ::core::fmt::Debug for Psr {
    }
 }
 #[doc="Low Power Timer Compare Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cmr(pub u32);
 impl Cmr {
 #[doc="Compare Value"]
@@ -343,7 +343,7 @@ impl ::core::fmt::Debug for Cmr {
    }
 }
 #[doc="Low Power Timer Counter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cnr(pub u32);
 impl Cnr {
 #[doc="Counter Value"]

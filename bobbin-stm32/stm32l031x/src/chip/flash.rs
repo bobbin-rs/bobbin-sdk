@@ -221,7 +221,7 @@ impl Flash {
 }
 
 #[doc="Access control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Acr(pub u32);
 impl Acr {
 #[doc="Latency"]
@@ -322,7 +322,7 @@ impl ::core::fmt::Debug for Acr {
    }
 }
 #[doc="Program/erase control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pecr(pub u32);
 impl Pecr {
 #[doc="FLASH_PECR and data EEPROM lock"]
@@ -507,7 +507,7 @@ impl ::core::fmt::Debug for Pecr {
    }
 }
 #[doc="Power down key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdkeyr(pub u32);
 impl Pdkeyr {
 #[doc="RUN_PD in FLASH_ACR key"]
@@ -537,7 +537,7 @@ impl ::core::fmt::Debug for Pdkeyr {
    }
 }
 #[doc="Program/erase key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pekeyr(pub u32);
 impl Pekeyr {
 #[doc="FLASH_PEC and data EEPROM key"]
@@ -567,7 +567,7 @@ impl ::core::fmt::Debug for Pekeyr {
    }
 }
 #[doc="Program memory key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Prgkeyr(pub u32);
 impl Prgkeyr {
 #[doc="Program memory key"]
@@ -597,7 +597,7 @@ impl ::core::fmt::Debug for Prgkeyr {
    }
 }
 #[doc="Option byte key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Optkeyr(pub u32);
 impl Optkeyr {
 #[doc="Option byte key"]
@@ -627,7 +627,7 @@ impl ::core::fmt::Debug for Optkeyr {
    }
 }
 #[doc="Status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Write/erase operations in progress"]
@@ -798,7 +798,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Option byte register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Obr(pub u32);
 impl Obr {
 #[doc="Read protection"]
@@ -857,7 +857,7 @@ impl ::core::fmt::Debug for Obr {
    }
 }
 #[doc="Write protection register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wrpr(pub u32);
 impl Wrpr {
 #[doc="Write protection"]

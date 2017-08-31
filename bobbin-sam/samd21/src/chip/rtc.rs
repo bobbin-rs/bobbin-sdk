@@ -392,7 +392,7 @@ impl Mode0 {
 }
 
 #[doc="Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Run During Debug"]
@@ -423,7 +423,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Frequency Correction"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
 impl Freqcorr {
 #[doc="Correction Value"]
@@ -468,7 +468,7 @@ impl ::core::fmt::Debug for Freqcorr {
    }
 }
 #[doc="MODE0 Compare n Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Comp(pub u32);
 impl Comp {
 #[doc="Compare Value"]
@@ -498,7 +498,7 @@ impl ::core::fmt::Debug for Comp {
    }
 }
 #[doc="MODE0 Counter Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u32);
 impl Count {
 #[doc="Counter Value"]
@@ -528,7 +528,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="MODE0 Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u16);
 impl Ctrl {
 #[doc="Software Reset"]
@@ -615,7 +615,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="MODE0 Event Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Periodic Interval 0 Event Output Enable"]
@@ -772,7 +772,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="MODE0 Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Compare 0 Interrupt Enable"]
@@ -831,7 +831,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="MODE0 Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Compare 0 Interrupt Enable"]
@@ -890,7 +890,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="MODE0 Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Compare 0"]
@@ -949,7 +949,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Read Request"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -1008,7 +1008,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]
@@ -1444,7 +1444,7 @@ impl Mode1 {
 }
 
 #[doc="Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Run During Debug"]
@@ -1475,7 +1475,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Frequency Correction"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
 impl Freqcorr {
 #[doc="Correction Value"]
@@ -1520,7 +1520,7 @@ impl ::core::fmt::Debug for Freqcorr {
    }
 }
 #[doc="MODE1 Compare n Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Comp(pub u16);
 impl Comp {
 #[doc="Compare Value"]
@@ -1551,7 +1551,7 @@ impl ::core::fmt::Debug for Comp {
    }
 }
 #[doc="MODE1 Counter Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u16);
 impl Count {
 #[doc="Counter Value"]
@@ -1582,7 +1582,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="MODE1 Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u16);
 impl Ctrl {
 #[doc="Software Reset"]
@@ -1655,7 +1655,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="MODE1 Event Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Periodic Interval 0 Event Output Enable"]
@@ -1826,7 +1826,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="MODE1 Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Compare 0 Interrupt Enable"]
@@ -1899,7 +1899,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="MODE1 Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Compare 0 Interrupt Enable"]
@@ -1972,7 +1972,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="MODE1 Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Compare 0"]
@@ -2045,7 +2045,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="MODE1 Counter Period"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Per(pub u16);
 impl Per {
 #[doc="Counter Period"]
@@ -2076,7 +2076,7 @@ impl ::core::fmt::Debug for Per {
    }
 }
 #[doc="Read Request"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -2135,7 +2135,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]
@@ -2581,7 +2581,7 @@ impl Mode2 {
 }
 
 #[doc="Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Run During Debug"]
@@ -2612,7 +2612,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Frequency Correction"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Freqcorr(pub u8);
 impl Freqcorr {
 #[doc="Correction Value"]
@@ -2657,7 +2657,7 @@ impl ::core::fmt::Debug for Freqcorr {
    }
 }
 #[doc="MODE2 Clock Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clock(pub u32);
 impl Clock {
 #[doc="Second"]
@@ -2758,7 +2758,7 @@ impl ::core::fmt::Debug for Clock {
    }
 }
 #[doc="MODE2 Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u16);
 impl Ctrl {
 #[doc="Software Reset"]
@@ -2859,7 +2859,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="MODE2 Event Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u16);
 impl Evctrl {
 #[doc="Periodic Interval 0 Event Output Enable"]
@@ -3016,7 +3016,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="MODE2 Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
 #[doc="Alarm 0 Interrupt Enable"]
@@ -3075,7 +3075,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="MODE2 Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
 #[doc="Alarm 0 Interrupt Enable"]
@@ -3134,7 +3134,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="MODE2 Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
 #[doc="Alarm 0"]
@@ -3193,7 +3193,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="MODE2 Alarm n Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Alarm(pub u32);
 impl Alarm {
 #[doc="Second"]
@@ -3294,7 +3294,7 @@ impl ::core::fmt::Debug for Alarm {
    }
 }
 #[doc="MODE2 Alarm n Mask"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mask(pub u8);
 impl Mask {
 #[doc="Alarm Mask Selection"]
@@ -3325,7 +3325,7 @@ impl ::core::fmt::Debug for Mask {
    }
 }
 #[doc="Read Request"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Readreq(pub u16);
 impl Readreq {
 #[doc="Address"]
@@ -3384,7 +3384,7 @@ impl ::core::fmt::Debug for Readreq {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy"]

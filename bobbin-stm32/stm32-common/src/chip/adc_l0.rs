@@ -345,7 +345,7 @@ impl AdcPeriph {
 }
 
 #[doc="interrupt and status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="ADC ready"]
@@ -460,7 +460,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="interrupt enable register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
 #[doc="ADC ready interrupt enable"]
@@ -575,7 +575,7 @@ impl ::core::fmt::Debug for Ier {
    }
 }
 #[doc="control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="ADC enable command"]
@@ -676,7 +676,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="configuration register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr1(pub u32);
 impl Cfgr1 {
 #[doc="Analog watchdog channel selection"]
@@ -903,7 +903,7 @@ impl ::core::fmt::Debug for Cfgr1 {
    }
 }
 #[doc="configuration register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfgr2(pub u32);
 impl Cfgr2 {
 #[doc="Oversampler Enable"]
@@ -990,7 +990,7 @@ impl ::core::fmt::Debug for Cfgr2 {
    }
 }
 #[doc="sampling time register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Smpr(pub u32);
 impl Smpr {
 #[doc="Sampling time selection"]
@@ -1021,7 +1021,7 @@ impl ::core::fmt::Debug for Smpr {
    }
 }
 #[doc="watchdog threshold register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
 #[doc="Analog watchdog higher threshold"]
@@ -1066,7 +1066,7 @@ impl ::core::fmt::Debug for Tr {
    }
 }
 #[doc="channel selection register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chselr(pub u32);
 impl Chselr {
 #[doc="Channel-x selection"]
@@ -1121,7 +1121,7 @@ impl ::core::fmt::Debug for Chselr {
    }
 }
 #[doc="data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Converted data"]
@@ -1208,7 +1208,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="ADC Calibration factor"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Calfact(pub u32);
 impl Calfact {
 #[doc="Calibration factor"]
@@ -1239,7 +1239,7 @@ impl ::core::fmt::Debug for Calfact {
    }
 }
 #[doc="ADC common configuration register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="ADC prescaler"]

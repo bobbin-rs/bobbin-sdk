@@ -121,7 +121,7 @@ impl Dbg {
 }
 
 #[doc="IDCODE"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DbgmcuIdcode(pub u32);
 impl DbgmcuIdcode {
 #[doc="DEV_ID"]
@@ -166,7 +166,7 @@ impl ::core::fmt::Debug for DbgmcuIdcode {
    }
 }
 #[doc="Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DbgmcuCr(pub u32);
 impl DbgmcuCr {
 #[doc="DBG_SLEEP"]
@@ -323,7 +323,7 @@ impl ::core::fmt::Debug for DbgmcuCr {
    }
 }
 #[doc="Debug MCU APB1 Freeze registe"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DbgmcuApb1Fz(pub u32);
 impl DbgmcuApb1Fz {
 #[doc="DBG_TIM2_STOP"]
@@ -564,7 +564,7 @@ impl ::core::fmt::Debug for DbgmcuApb1Fz {
    }
 }
 #[doc="Debug MCU APB2 Freeze registe"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DbgmcuApb2Fz(pub u32);
 impl DbgmcuApb2Fz {
 #[doc="TIM1 counter stopped when core is halted"]

@@ -234,7 +234,7 @@ impl LpuartPeriph {
 }
 
 #[doc="Control register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Word length"]
@@ -615,7 +615,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="Control register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Address of the USART node"]
@@ -772,7 +772,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="Control register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr3(pub u32);
 impl Cr3 {
 #[doc="Wakeup from Stop mode interrupt enable"]
@@ -971,7 +971,7 @@ impl ::core::fmt::Debug for Cr3 {
    }
 }
 #[doc="Baud rate register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="BRR"]
@@ -1002,7 +1002,7 @@ impl ::core::fmt::Debug for Brr {
    }
 }
 #[doc="Request register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rqr(pub u32);
 impl Rqr {
 #[doc="Receive data flush request"]
@@ -1061,7 +1061,7 @@ impl ::core::fmt::Debug for Rqr {
    }
 }
 #[doc="Interrupt & status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Isr(pub u32);
 impl Isr {
 #[doc="REACK"]
@@ -1316,7 +1316,7 @@ impl ::core::fmt::Debug for Isr {
    }
 }
 #[doc="Interrupt flag clear register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Wakeup from Stop mode clear flag"]
@@ -1459,7 +1459,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="Receive data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rdr(pub u32);
 impl Rdr {
 #[doc="Receive data value"]
@@ -1490,7 +1490,7 @@ impl ::core::fmt::Debug for Rdr {
    }
 }
 #[doc="Transmit data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tdr(pub u32);
 impl Tdr {
 #[doc="Transmit data value"]

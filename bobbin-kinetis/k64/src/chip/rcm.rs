@@ -119,7 +119,7 @@ impl Rcm {
 }
 
 #[doc="System Reset Status Register 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Srs0(pub u8);
 impl Srs0 {
 #[doc="Low Leakage Wakeup Reset"]
@@ -234,7 +234,7 @@ impl ::core::fmt::Debug for Srs0 {
    }
 }
 #[doc="System Reset Status Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Srs1(pub u8);
 impl Srs1 {
 #[doc="JTAG Generated Reset"]
@@ -335,7 +335,7 @@ impl ::core::fmt::Debug for Srs1 {
    }
 }
 #[doc="Reset Pin Filter Control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rpfc(pub u8);
 impl Rpfc {
 #[doc="Reset Pin Filter Select in Run and Wait Modes"]
@@ -380,7 +380,7 @@ impl ::core::fmt::Debug for Rpfc {
    }
 }
 #[doc="Reset Pin Filter Width register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rpfw(pub u8);
 impl Rpfw {
 #[doc="Reset Pin Filter Bus Clock Select"]
@@ -411,7 +411,7 @@ impl ::core::fmt::Debug for Rpfw {
    }
 }
 #[doc="Mode Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mr(pub u8);
 impl Mr {
 #[doc="EZP_MS_B pin state"]

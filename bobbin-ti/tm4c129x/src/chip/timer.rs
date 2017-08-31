@@ -763,7 +763,7 @@ impl TimerPeriph {
 }
 
 #[doc="GPTM Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg(pub u32);
 impl Cfg {
 #[doc="GPTM Configuration"]
@@ -794,7 +794,7 @@ impl ::core::fmt::Debug for Cfg {
    }
 }
 #[doc="GPTM Timer n Mode"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tmr(pub u32);
 impl Tmr {
 #[doc="GPTM Timer n Mode"]
@@ -993,7 +993,7 @@ impl ::core::fmt::Debug for Tmr {
    }
 }
 #[doc="GPTM Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="GPTM Timer n Enable"]
@@ -1129,7 +1129,7 @@ impl ::core::fmt::Debug for Ctl {
    }
 }
 #[doc="GPTM Synchronize"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sync(pub u32);
 impl Sync {
 #[doc="Synchronize GPTM Timer n"]
@@ -1173,7 +1173,7 @@ impl ::core::fmt::Debug for Sync {
    }
 }
 #[doc="GPTM Interrupt Mask"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Imr(pub u32);
 impl Imr {
 #[doc="GPTM Timer n Time-Out Interrupt Mask"]
@@ -1309,7 +1309,7 @@ impl ::core::fmt::Debug for Imr {
    }
 }
 #[doc="GPTM Raw Interrupt Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
@@ -1452,7 +1452,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="GPTM Masked Interrupt Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="GPTM Timer n Time-Out Masked Interrupt"]
@@ -1595,7 +1595,7 @@ impl ::core::fmt::Debug for Mis {
    }
 }
 #[doc="GPTM Interrupt Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="GPTM Timer n Time-Out Raw Interrupt"]
@@ -1738,7 +1738,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="GPTM Timer n Interval Load"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tilr(pub u32);
 impl Tilr {
    #[inline] pub fn tilr(&self) -> bits::U32 {
@@ -1766,7 +1766,7 @@ impl ::core::fmt::Debug for Tilr {
    }
 }
 #[doc="GPTM Timer n Match"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tmtchr(pub u32);
 impl Tmtchr {
    #[inline] pub fn tmtchr(&self) -> bits::U32 {
@@ -1794,7 +1794,7 @@ impl ::core::fmt::Debug for Tmtchr {
    }
 }
 #[doc="GPTM Timer n Prescale"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tpr(pub u32);
 impl Tpr {
 #[doc="GPTM Timer n Prescale"]
@@ -1825,7 +1825,7 @@ impl ::core::fmt::Debug for Tpr {
    }
 }
 #[doc="GPTM Timer n Prescale Match"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tpmr(pub u32);
 impl Tpmr {
 #[doc="GPTM Timer n Prescale Match"]
@@ -1856,7 +1856,7 @@ impl ::core::fmt::Debug for Tpmr {
    }
 }
 #[doc="GPTM Timer n"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
    #[inline] pub fn tr(&self) -> bits::U32 {
@@ -1884,7 +1884,7 @@ impl ::core::fmt::Debug for Tr {
    }
 }
 #[doc="GPTM Timer n Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tv(pub u32);
 impl Tv {
    #[inline] pub fn tv(&self) -> bits::U32 {
@@ -1912,7 +1912,7 @@ impl ::core::fmt::Debug for Tv {
    }
 }
 #[doc="GPTM RTC Predivide"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rtcpd(pub u32);
 impl Rtcpd {
 #[doc="RTC Predivide Counter Value"]
@@ -1943,7 +1943,7 @@ impl ::core::fmt::Debug for Rtcpd {
    }
 }
 #[doc="GPTM Timer n Prescale Snapshot"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tps(pub u32);
 impl Tps {
 #[doc="GPTM Timer n Prescaler Snapshot"]
@@ -1974,7 +1974,7 @@ impl ::core::fmt::Debug for Tps {
    }
 }
 #[doc="GPTM DMA Event"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmaev(pub u32);
 impl Dmaev {
 #[doc="GPTM n Time-Out Event DMA Trigger Enable"]
@@ -2089,7 +2089,7 @@ impl ::core::fmt::Debug for Dmaev {
    }
 }
 #[doc="GPTM ADC Event"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Adcev(pub u32);
 impl Adcev {
 #[doc="GPTM n Time-Out Event ADC Trigger Enable"]
@@ -2204,7 +2204,7 @@ impl ::core::fmt::Debug for Adcev {
    }
 }
 #[doc="GPTM Peripheral Properties"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Count Size"]
@@ -2277,7 +2277,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="GPTM Clock Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="Alternate Clock Source"]

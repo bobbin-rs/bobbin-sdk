@@ -180,7 +180,7 @@ impl CrcPeriph {
 }
 
 #[doc="Data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Data register bits"]
@@ -210,7 +210,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="Independent data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="General-purpose 8-bit data register bits"]
@@ -241,7 +241,7 @@ impl ::core::fmt::Debug for Idr {
    }
 }
 #[doc="Control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="reset bit"]
@@ -300,7 +300,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Initial CRC value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Init(pub u32);
 impl Init {
 #[doc="Programmable initial CRC value"]
@@ -330,7 +330,7 @@ impl ::core::fmt::Debug for Init {
    }
 }
 #[doc="DUMMY Array Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dummy(pub u32);
 impl Dummy {
 #[doc="DUMMY DATA field"]

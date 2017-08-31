@@ -1075,7 +1075,7 @@ impl AdcPeriph {
 }
 
 #[doc="ADC Active Sample Sequencer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Actss(pub u32);
 impl Actss {
 #[doc="ADC SS Enable"]
@@ -1152,7 +1152,7 @@ impl ::core::fmt::Debug for Actss {
    }
 }
 #[doc="ADC Raw Interrupt Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="SS Raw Interrupt Status"]
@@ -1229,7 +1229,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="ADC Interrupt Mask"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
 #[doc="SS Interrupt Mask"]
@@ -1315,7 +1315,7 @@ impl ::core::fmt::Debug for Im {
    }
 }
 #[doc="ADC Interrupt Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Isc(pub u32);
 impl Isc {
 #[doc="SS Interrupt Status and Clear"]
@@ -1401,7 +1401,7 @@ impl ::core::fmt::Debug for Isc {
    }
 }
 #[doc="ADC Overflow Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ostat(pub u32);
 impl Ostat {
 #[doc="SS FIFO Overflow"]
@@ -1441,7 +1441,7 @@ impl ::core::fmt::Debug for Ostat {
    }
 }
 #[doc="ADC Event Multiplexer Select"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Emux(pub u32);
 impl Emux {
 #[doc="SS Trigger Select"]
@@ -1481,7 +1481,7 @@ impl ::core::fmt::Debug for Emux {
    }
 }
 #[doc="ADC Underflow Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ustat(pub u32);
 impl Ustat {
 #[doc="SS FIFO Underflow"]
@@ -1521,7 +1521,7 @@ impl ::core::fmt::Debug for Ustat {
    }
 }
 #[doc="ADC Trigger Source Select"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tssel(pub u32);
 impl Tssel {
 #[doc="Generator PWM Module Trigger Select"]
@@ -1561,7 +1561,7 @@ impl ::core::fmt::Debug for Tssel {
    }
 }
 #[doc="ADC Sample Sequencer Priority"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sspri(pub u32);
 impl Sspri {
 #[doc="SS Priority"]
@@ -1601,7 +1601,7 @@ impl ::core::fmt::Debug for Sspri {
    }
 }
 #[doc="ADC Sample Phase Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Spc(pub u32);
 impl Spc {
 #[doc="Phase Difference"]
@@ -1632,7 +1632,7 @@ impl ::core::fmt::Debug for Spc {
    }
 }
 #[doc="ADC Processor Sample Sequence Initiate"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pssi(pub u32);
 impl Pssi {
 #[doc="SS Initiate"]
@@ -1700,7 +1700,7 @@ impl ::core::fmt::Debug for Pssi {
    }
 }
 #[doc="ADC Sample Averaging Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sac(pub u32);
 impl Sac {
 #[doc="Hardware Averaging Control"]
@@ -1731,7 +1731,7 @@ impl ::core::fmt::Debug for Sac {
    }
 }
 #[doc="ADC Digital Comparator Interrupt Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dcisc(pub u32);
 impl Dcisc {
 #[doc="Digital Comparator Interrupt Status and Clear"]
@@ -1775,7 +1775,7 @@ impl ::core::fmt::Debug for Dcisc {
    }
 }
 #[doc="ADC Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Voltage Reference Select"]
@@ -1820,7 +1820,7 @@ impl ::core::fmt::Debug for Ctl {
    }
 }
 #[doc="ADC Sample Sequence Input Multiplexer Select"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssmux(pub u32);
 impl Ssmux {
 #[doc="1st Sample Input Select"]
@@ -1864,7 +1864,7 @@ impl ::core::fmt::Debug for Ssmux {
    }
 }
 #[doc="ADC Sample Sequence Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssctl(pub u32);
 impl Ssctl {
 #[doc="Sample Differential Input Select"]
@@ -1989,7 +1989,7 @@ impl ::core::fmt::Debug for Ssctl {
    }
 }
 #[doc="ADC Sample Sequence Result FIFO"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssfifo(pub u32);
 impl Ssfifo {
 #[doc="Conversion Result Data"]
@@ -2020,7 +2020,7 @@ impl ::core::fmt::Debug for Ssfifo {
    }
 }
 #[doc="ADC Sample Sequence FIFO Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssfstat(pub u32);
 impl Ssfstat {
 #[doc="FIFO Tail Pointer"]
@@ -2093,7 +2093,7 @@ impl ::core::fmt::Debug for Ssfstat {
    }
 }
 #[doc="ADC Sample Sequence Operation"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssop(pub u32);
 impl Ssop {
 #[doc="Sample Digital Comparator Operation"]
@@ -2137,7 +2137,7 @@ impl ::core::fmt::Debug for Ssop {
    }
 }
 #[doc="ADC Sample Sequence Digital Comparator Select"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssdc(pub u32);
 impl Ssdc {
 #[doc="Sample Digital Comparator Select"]
@@ -2181,7 +2181,7 @@ impl ::core::fmt::Debug for Ssdc {
    }
 }
 #[doc="ADC Sample Sequence Extended Input Multiplexer Select"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssemux(pub u32);
 impl Ssemux {
 #[doc="Sample Input Select (Upper Bit)"]
@@ -2225,7 +2225,7 @@ impl ::core::fmt::Debug for Ssemux {
    }
 }
 #[doc="ADC Sample Sequence Sample and Hold Time"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sstsh(pub u32);
 impl Sstsh {
 #[doc="Sample and Hold Period Select"]
@@ -2269,7 +2269,7 @@ impl ::core::fmt::Debug for Sstsh {
    }
 }
 #[doc="ADC Digital Comparator Reset Initial Conditions"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dcric(pub u32);
 impl Dcric {
 #[doc="Digital Comparator Interrupt"]
@@ -2340,7 +2340,7 @@ impl ::core::fmt::Debug for Dcric {
    }
 }
 #[doc="ADC Digital Comparator Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dcctl(pub u32);
 impl Dcctl {
 #[doc="Comparison Interrupt Mode"]
@@ -2441,7 +2441,7 @@ impl ::core::fmt::Debug for Dcctl {
    }
 }
 #[doc="ADC Digital Comparator Range"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dccmp(pub u32);
 impl Dccmp {
 #[doc="Compare"]
@@ -2479,7 +2479,7 @@ impl ::core::fmt::Debug for Dccmp {
    }
 }
 #[doc="ADC Peripheral Properties"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
 #[doc="Maximum Conversion Rate"]
@@ -2594,7 +2594,7 @@ impl ::core::fmt::Debug for Pp {
    }
 }
 #[doc="ADC Peripheral Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pc(pub u32);
 impl Pc {
 #[doc="Conversion Rate"]
@@ -2625,7 +2625,7 @@ impl ::core::fmt::Debug for Pc {
    }
 }
 #[doc="ADC Clock Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="ADC Clock Source"]

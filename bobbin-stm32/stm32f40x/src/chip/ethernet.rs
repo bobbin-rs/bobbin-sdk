@@ -633,7 +633,7 @@ impl Ethernet {
 }
 
 #[doc="Ethernet MAC configuration register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maccr(pub u32);
 impl Maccr {
 #[doc="RE"]
@@ -874,7 +874,7 @@ impl ::core::fmt::Debug for Maccr {
    }
 }
 #[doc="Ethernet MAC frame filter register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macffr(pub u32);
 impl Macffr {
 #[doc="no description available"]
@@ -1045,7 +1045,7 @@ impl ::core::fmt::Debug for Macffr {
    }
 }
 #[doc="Ethernet MAC hash table high register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Machthr(pub u32);
 impl Machthr {
 #[doc="no description available"]
@@ -1075,7 +1075,7 @@ impl ::core::fmt::Debug for Machthr {
    }
 }
 #[doc="Ethernet MAC hash table low register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Machtlr(pub u32);
 impl Machtlr {
 #[doc="no description available"]
@@ -1105,7 +1105,7 @@ impl ::core::fmt::Debug for Machtlr {
    }
 }
 #[doc="Ethernet MAC MII address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macmiiar(pub u32);
 impl Macmiiar {
 #[doc="no description available"]
@@ -1192,7 +1192,7 @@ impl ::core::fmt::Debug for Macmiiar {
    }
 }
 #[doc="Ethernet MAC MII data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macmiidr(pub u32);
 impl Macmiidr {
 #[doc="no description available"]
@@ -1223,7 +1223,7 @@ impl ::core::fmt::Debug for Macmiidr {
    }
 }
 #[doc="Ethernet MAC flow control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macfcr(pub u32);
 impl Macfcr {
 #[doc="no description available"]
@@ -1338,7 +1338,7 @@ impl ::core::fmt::Debug for Macfcr {
    }
 }
 #[doc="Ethernet MAC VLAN tag register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macvlantr(pub u32);
 impl Macvlantr {
 #[doc="no description available"]
@@ -1383,7 +1383,7 @@ impl ::core::fmt::Debug for Macvlantr {
    }
 }
 #[doc="Ethernet MAC PMT control and status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macpmtcsr(pub u32);
 impl Macpmtcsr {
 #[doc="no description available"]
@@ -1498,7 +1498,7 @@ impl ::core::fmt::Debug for Macpmtcsr {
    }
 }
 #[doc="Ethernet MAC debug register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macdbgr(pub u32);
 impl Macdbgr {
 #[doc="CR"]
@@ -1599,7 +1599,7 @@ impl ::core::fmt::Debug for Macdbgr {
    }
 }
 #[doc="Ethernet MAC interrupt status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macsr(pub u32);
 impl Macsr {
 #[doc="no description available"]
@@ -1686,7 +1686,7 @@ impl ::core::fmt::Debug for Macsr {
    }
 }
 #[doc="Ethernet MAC interrupt mask register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Macimr(pub u32);
 impl Macimr {
 #[doc="no description available"]
@@ -1731,7 +1731,7 @@ impl ::core::fmt::Debug for Macimr {
    }
 }
 #[doc="Ethernet MAC address 0 high register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca0hr(pub u32);
 impl Maca0hr {
 #[doc="MAC address0 high"]
@@ -1776,7 +1776,7 @@ impl ::core::fmt::Debug for Maca0hr {
    }
 }
 #[doc="Ethernet MAC address 0 low register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca0lr(pub u32);
 impl Maca0lr {
 #[doc="0"]
@@ -1806,7 +1806,7 @@ impl ::core::fmt::Debug for Maca0lr {
    }
 }
 #[doc="Ethernet MAC address 1 high register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca1hr(pub u32);
 impl Maca1hr {
 #[doc="no description available"]
@@ -1879,7 +1879,7 @@ impl ::core::fmt::Debug for Maca1hr {
    }
 }
 #[doc="Ethernet MAC address1 low register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca1lr(pub u32);
 impl Maca1lr {
 #[doc="no description available"]
@@ -1909,7 +1909,7 @@ impl ::core::fmt::Debug for Maca1lr {
    }
 }
 #[doc="Ethernet MAC address 2 high register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca2hr(pub u32);
 impl Maca2hr {
 #[doc="no description available"]
@@ -1982,7 +1982,7 @@ impl ::core::fmt::Debug for Maca2hr {
    }
 }
 #[doc="Ethernet MAC address 2 low register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca2lr(pub u32);
 impl Maca2lr {
 #[doc="no description available"]
@@ -2013,7 +2013,7 @@ impl ::core::fmt::Debug for Maca2lr {
    }
 }
 #[doc="Ethernet MAC address 3 high register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca3hr(pub u32);
 impl Maca3hr {
 #[doc="no description available"]
@@ -2086,7 +2086,7 @@ impl ::core::fmt::Debug for Maca3hr {
    }
 }
 #[doc="Ethernet MAC address 3 low register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Maca3lr(pub u32);
 impl Maca3lr {
 #[doc="no description available"]

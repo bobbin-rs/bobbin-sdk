@@ -140,7 +140,7 @@ impl GpioPeriph {
 }
 
 #[doc="Port Data Output Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdor(pub u32);
 impl Pdor {
 #[doc="Port Data Output"]
@@ -208,7 +208,7 @@ impl ::core::fmt::Debug for Pdor {
    }
 }
 #[doc="Port Set Output Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Psor(pub u32);
 impl Psor {
 #[doc="Port Set Output"]
@@ -276,7 +276,7 @@ impl ::core::fmt::Debug for Psor {
    }
 }
 #[doc="Port Clear Output Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcor(pub u32);
 impl Pcor {
 #[doc="Port Clear Output"]
@@ -344,7 +344,7 @@ impl ::core::fmt::Debug for Pcor {
    }
 }
 #[doc="Port Toggle Output Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ptor(pub u32);
 impl Ptor {
 #[doc="Port Toggle Output"]
@@ -412,7 +412,7 @@ impl ::core::fmt::Debug for Ptor {
    }
 }
 #[doc="Port Data Input Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdir(pub u32);
 impl Pdir {
 #[doc="Port Data Input"]
@@ -480,7 +480,7 @@ impl ::core::fmt::Debug for Pdir {
    }
 }
 #[doc="Port Data Direction Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pddr(pub u32);
 impl Pddr {
 #[doc="Port Data Direction"]

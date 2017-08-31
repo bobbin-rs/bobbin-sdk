@@ -89,7 +89,7 @@ impl RngPeriph {
 }
 
 #[doc="control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Interrupt enable"]
@@ -134,7 +134,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Seed error interrupt status"]
@@ -221,7 +221,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Random data"]

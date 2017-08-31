@@ -202,7 +202,7 @@ impl ExtiPeriph {
 }
 
 #[doc="Interrupt mask register (EXTI_IMR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Imr(pub u32);
 impl Imr {
 #[doc="Interrupt Mask on line n = 0..32"]
@@ -270,7 +270,7 @@ impl ::core::fmt::Debug for Imr {
    }
 }
 #[doc="Event mask register (EXTI_EMR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Emr(pub u32);
 impl Emr {
 #[doc="Event Mask on line n = 0..32"]
@@ -338,7 +338,7 @@ impl ::core::fmt::Debug for Emr {
    }
 }
 #[doc="Rising Trigger selection register (EXTI_RTSR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rtsr(pub u32);
 impl Rtsr {
 #[doc="Rising trigger event configuration of line n = 0..32"]
@@ -406,7 +406,7 @@ impl ::core::fmt::Debug for Rtsr {
    }
 }
 #[doc="Falling Trigger selection register (EXTI_FTSR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ftsr(pub u32);
 impl Ftsr {
 #[doc="Falling trigger event configuration of line n = 0..32"]
@@ -474,7 +474,7 @@ impl ::core::fmt::Debug for Ftsr {
    }
 }
 #[doc="Software interrupt event register (EXTI_SWIER)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Swier(pub u32);
 impl Swier {
 #[doc="Software Interrupt on line n = 0..32"]
@@ -542,7 +542,7 @@ impl ::core::fmt::Debug for Swier {
    }
 }
 #[doc="Pending interrupt register (EXTI_PR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pr(pub u32);
 impl Pr {
 #[doc="Pending Interrupt bit n = 0..32"]

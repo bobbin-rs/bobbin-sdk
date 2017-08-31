@@ -784,7 +784,7 @@ impl TccPeriph {
 }
 
 #[doc="Compare and Capture"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
 #[doc="Compare and Capture value"]
@@ -815,7 +815,7 @@ impl ::core::fmt::Debug for Cc {
    }
 }
 #[doc="Compare and Capture Buffer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ccb(pub u32);
 impl Ccb {
 #[doc="Compare and Capture buffer value"]
@@ -846,7 +846,7 @@ impl ::core::fmt::Debug for Ccb {
    }
 }
 #[doc="Count"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Count(pub u32);
 impl Count {
 #[doc="Count Value"]
@@ -877,7 +877,7 @@ impl ::core::fmt::Debug for Count {
    }
 }
 #[doc="Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrla(pub u32);
 impl Ctrla {
 #[doc="Software Reset"]
@@ -1029,7 +1029,7 @@ impl ::core::fmt::Debug for Ctrla {
    }
 }
 #[doc="Control B Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbclr(pub u8);
 impl Ctrlbclr {
 #[doc="Counter Direction"]
@@ -1116,7 +1116,7 @@ impl ::core::fmt::Debug for Ctrlbclr {
    }
 }
 #[doc="Control B Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrlbset(pub u8);
 impl Ctrlbset {
 #[doc="Counter Direction"]
@@ -1203,7 +1203,7 @@ impl ::core::fmt::Debug for Ctrlbset {
    }
 }
 #[doc="Debug Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dbgctrl(pub u8);
 impl Dbgctrl {
 #[doc="Debug Running Mode"]
@@ -1248,7 +1248,7 @@ impl ::core::fmt::Debug for Dbgctrl {
    }
 }
 #[doc="Driver Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Drvctrl(pub u32);
 impl Drvctrl {
 #[doc="Non-Recoverable State 0 Output Enable"]
@@ -1629,7 +1629,7 @@ impl ::core::fmt::Debug for Drvctrl {
    }
 }
 #[doc="Event Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Evctrl(pub u32);
 impl Evctrl {
 #[doc="Timer/counter Input Event0 Action"]
@@ -1898,7 +1898,7 @@ impl ::core::fmt::Debug for Evctrl {
    }
 }
 #[doc="Recoverable FaultA Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fctrla(pub u32);
 impl Fctrla {
 #[doc="FaultA Source"]
@@ -2055,7 +2055,7 @@ impl ::core::fmt::Debug for Fctrla {
    }
 }
 #[doc="Recoverable FaultB Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fctrlb(pub u32);
 impl Fctrlb {
 #[doc="FaultB Source"]
@@ -2212,7 +2212,7 @@ impl ::core::fmt::Debug for Fctrlb {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u32);
 impl Intenclr {
 #[doc="Overflow Interrupt Enable"]
@@ -2411,7 +2411,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u32);
 impl Intenset {
 #[doc="Overflow Interrupt Enable"]
@@ -2577,7 +2577,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u32);
 impl Intflag {
 #[doc="Overflow"]
@@ -2743,7 +2743,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="Pattern"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Patt(pub u16);
 impl Patt {
 #[doc="Pattern Generator n Output Enable"]
@@ -2814,7 +2814,7 @@ impl ::core::fmt::Debug for Patt {
    }
 }
 #[doc="Pattern Buffer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pattb(pub u16);
 impl Pattb {
 #[doc="Pattern Generator n Output Enable Buffer"]
@@ -2885,7 +2885,7 @@ impl ::core::fmt::Debug for Pattb {
    }
 }
 #[doc="Period"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Per(pub u32);
 impl Per {
 #[doc="Period Value"]
@@ -2916,7 +2916,7 @@ impl ::core::fmt::Debug for Per {
    }
 }
 #[doc="Period Buffer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Perb(pub u32);
 impl Perb {
 #[doc="Period Value"]
@@ -2947,7 +2947,7 @@ impl ::core::fmt::Debug for Perb {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
 #[doc="Stop"]
@@ -3206,7 +3206,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="Synchronization Busy"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncbusy(pub u32);
 impl Syncbusy {
 #[doc="Swrst Busy"]
@@ -3423,7 +3423,7 @@ impl ::core::fmt::Debug for Syncbusy {
    }
 }
 #[doc="Waveform Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wave(pub u32);
 impl Wave {
 #[doc="Waveform Generation"]
@@ -3551,7 +3551,7 @@ impl ::core::fmt::Debug for Wave {
    }
 }
 #[doc="Waveform Control Buffer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Waveb(pub u32);
 impl Waveb {
 #[doc="Waveform Generation Buffer"]
@@ -3679,7 +3679,7 @@ impl ::core::fmt::Debug for Waveb {
    }
 }
 #[doc="Waveform Extension Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wexctrl(pub u32);
 impl Wexctrl {
 #[doc="Output Matrix"]

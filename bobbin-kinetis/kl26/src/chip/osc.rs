@@ -42,7 +42,7 @@ impl Osc {
 }
 
 #[doc="OSC Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u8);
 impl Cr {
 #[doc="Oscillator 16 pF Capacitor Load Configure"]

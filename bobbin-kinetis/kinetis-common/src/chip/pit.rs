@@ -189,7 +189,7 @@ impl PitPeriph {
 }
 
 #[doc="PIT Module Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="Freeze"]
@@ -234,7 +234,7 @@ impl ::core::fmt::Debug for Mcr {
    }
 }
 #[doc="Timer Load Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ldval(pub u32);
 impl Ldval {
 #[doc="Timer Start Value"]
@@ -264,7 +264,7 @@ impl ::core::fmt::Debug for Ldval {
    }
 }
 #[doc="Current Timer Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cval(pub u32);
 impl Cval {
 #[doc="Current Timer Value"]
@@ -294,7 +294,7 @@ impl ::core::fmt::Debug for Cval {
    }
 }
 #[doc="Timer Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tctrl(pub u32);
 impl Tctrl {
 #[doc="Timer Enable"]
@@ -353,7 +353,7 @@ impl ::core::fmt::Debug for Tctrl {
    }
 }
 #[doc="Timer Flag Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tflg(pub u32);
 impl Tflg {
 #[doc="Timer Interrupt Flag"]

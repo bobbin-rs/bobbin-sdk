@@ -440,7 +440,7 @@ impl AdcPeriph {
 }
 
 #[doc="status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Overrun"]
@@ -541,7 +541,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="control register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Analog watchdog enable on regular channels"]
@@ -740,7 +740,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="control register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="Temperature sensor and Vrefint enable"]
@@ -939,7 +939,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="sample time register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Smpr1(pub u32);
 impl Smpr1 {
 #[doc="Sample time bits"]
@@ -983,7 +983,7 @@ impl ::core::fmt::Debug for Smpr1 {
    }
 }
 #[doc="sample time register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Smpr2(pub u32);
 impl Smpr2 {
 #[doc="Sample time bits"]
@@ -1028,7 +1028,7 @@ impl ::core::fmt::Debug for Smpr2 {
    }
 }
 #[doc="injected channel data offset register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Jofr(pub u32);
 impl Jofr {
 #[doc="Data offset for injected channel x"]
@@ -1059,7 +1059,7 @@ impl ::core::fmt::Debug for Jofr {
    }
 }
 #[doc="watchdog higher threshold register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Htr(pub u32);
 impl Htr {
 #[doc="Analog watchdog higher threshold"]
@@ -1090,7 +1090,7 @@ impl ::core::fmt::Debug for Htr {
    }
 }
 #[doc="watchdog lower threshold register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ltr(pub u32);
 impl Ltr {
 #[doc="Analog watchdog lower threshold"]
@@ -1121,7 +1121,7 @@ impl ::core::fmt::Debug for Ltr {
    }
 }
 #[doc="regular sequence register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sqr1(pub u32);
 impl Sqr1 {
 #[doc="Regular channel sequence length"]
@@ -1208,7 +1208,7 @@ impl ::core::fmt::Debug for Sqr1 {
    }
 }
 #[doc="regular sequence register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sqr2(pub u32);
 impl Sqr2 {
 #[doc="12th conversion in regular sequence"]
@@ -1309,7 +1309,7 @@ impl ::core::fmt::Debug for Sqr2 {
    }
 }
 #[doc="regular sequence register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sqr3(pub u32);
 impl Sqr3 {
 #[doc="6th conversion in regular sequence"]
@@ -1410,7 +1410,7 @@ impl ::core::fmt::Debug for Sqr3 {
    }
 }
 #[doc="injected sequence register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Jsqr(pub u32);
 impl Jsqr {
 #[doc="Injected sequence length"]
@@ -1497,7 +1497,7 @@ impl ::core::fmt::Debug for Jsqr {
    }
 }
 #[doc="injected data register x"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Jdr(pub u32);
 impl Jdr {
 #[doc="Injected data"]
@@ -1528,7 +1528,7 @@ impl ::core::fmt::Debug for Jdr {
    }
 }
 #[doc="regular data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="Regular data"]

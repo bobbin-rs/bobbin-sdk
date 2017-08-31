@@ -52,7 +52,7 @@ impl DmamuxPeriph {
 }
 
 #[doc="Channel Configuration register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chcfg(pub u8);
 impl Chcfg {
 #[doc="DMA Channel Source (Slot)"]

@@ -151,7 +151,7 @@ impl Smc {
 }
 
 #[doc="SMC Version ID Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="Feature Specification Number"]
@@ -210,7 +210,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="SMC Parameter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Existence of HSRUN feature"]
@@ -283,7 +283,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="Power Mode Protection register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmprot(pub u32);
 impl Pmprot {
 #[doc="Allow Very-Low-Power Modes"]
@@ -328,7 +328,7 @@ impl ::core::fmt::Debug for Pmprot {
    }
 }
 #[doc="Power Mode Control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmctrl(pub u32);
 impl Pmctrl {
 #[doc="Stop Mode Control"]
@@ -387,7 +387,7 @@ impl ::core::fmt::Debug for Pmctrl {
    }
 }
 #[doc="Stop Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Stopctrl(pub u32);
 impl Stopctrl {
 #[doc="Stop Option"]
@@ -418,7 +418,7 @@ impl ::core::fmt::Debug for Stopctrl {
    }
 }
 #[doc="Power Mode Status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmstat(pub u32);
 impl Pmstat {
 #[doc="Power Mode Status"]

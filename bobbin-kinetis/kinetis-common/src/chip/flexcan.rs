@@ -1362,7 +1362,7 @@ impl FlexcanPeriph {
 }
 
 #[doc="Module Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mcr(pub u32);
 impl Mcr {
 #[doc="Number Of The Last Message Buffer"]
@@ -1645,7 +1645,7 @@ impl ::core::fmt::Debug for Mcr {
    }
 }
 #[doc="Control 1 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl1(pub u32);
 impl Ctrl1 {
 #[doc="Propagation Segment"]
@@ -1886,7 +1886,7 @@ impl ::core::fmt::Debug for Ctrl1 {
    }
 }
 #[doc="Free Running Timer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Timer(pub u32);
 impl Timer {
 #[doc="Timer Value"]
@@ -1917,7 +1917,7 @@ impl ::core::fmt::Debug for Timer {
    }
 }
 #[doc="Rx Mailboxes Global Mask Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxmgmask(pub u32);
 impl Rxmgmask {
 #[doc="Rx Mailboxes Global Mask Bits"]
@@ -1947,7 +1947,7 @@ impl ::core::fmt::Debug for Rxmgmask {
    }
 }
 #[doc="Rx 14 Mask register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rx14mask(pub u32);
 impl Rx14mask {
 #[doc="Rx Buffer 14 Mask Bits"]
@@ -1977,7 +1977,7 @@ impl ::core::fmt::Debug for Rx14mask {
    }
 }
 #[doc="Rx 15 Mask register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rx15mask(pub u32);
 impl Rx15mask {
 #[doc="Rx Buffer 15 Mask Bits"]
@@ -2007,7 +2007,7 @@ impl ::core::fmt::Debug for Rx15mask {
    }
 }
 #[doc="Error Counter"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ecr(pub u32);
 impl Ecr {
 #[doc="Transmit Error Counter"]
@@ -2080,7 +2080,7 @@ impl ::core::fmt::Debug for Ecr {
    }
 }
 #[doc="Error and Status 1 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Esr1(pub u32);
 impl Esr1 {
 #[doc="Error Interrupt"]
@@ -2447,7 +2447,7 @@ impl ::core::fmt::Debug for Esr1 {
    }
 }
 #[doc="Interrupt Masks 1 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Imask1(pub u32);
 impl Imask1 {
 #[doc="Buffer MB i Mask"]
@@ -2477,7 +2477,7 @@ impl ::core::fmt::Debug for Imask1 {
    }
 }
 #[doc="Interrupt Flags 1 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Iflag1(pub u32);
 impl Iflag1 {
 #[doc="Buffer MB Interrupt"]
@@ -2545,7 +2545,7 @@ impl ::core::fmt::Debug for Iflag1 {
    }
 }
 #[doc="Control 2 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl2(pub u32);
 impl Ctrl2 {
 #[doc="Edge Filter Disable"]
@@ -2716,7 +2716,7 @@ impl ::core::fmt::Debug for Ctrl2 {
    }
 }
 #[doc="Error and Status 2 register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Esr2(pub u32);
 impl Esr2 {
 #[doc="Inactive Mailbox"]
@@ -2775,7 +2775,7 @@ impl ::core::fmt::Debug for Esr2 {
    }
 }
 #[doc="CRC Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Crcr(pub u32);
 impl Crcr {
 #[doc="Transmitted CRC value"]
@@ -2820,7 +2820,7 @@ impl ::core::fmt::Debug for Crcr {
    }
 }
 #[doc="Rx FIFO Global Mask register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxfgmask(pub u32);
 impl Rxfgmask {
 #[doc="Rx FIFO Global Mask Bits"]
@@ -2850,7 +2850,7 @@ impl ::core::fmt::Debug for Rxfgmask {
    }
 }
 #[doc="Rx FIFO Information Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxfir(pub u32);
 impl Rxfir {
 #[doc="Identifier Acceptance Filter Hit Indicator"]
@@ -2881,7 +2881,7 @@ impl ::core::fmt::Debug for Rxfir {
    }
 }
 #[doc="CAN Bit Timing Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cbt(pub u32);
 impl Cbt {
 #[doc="Extended Phase Segment 2"]
@@ -2982,7 +2982,7 @@ impl ::core::fmt::Debug for Cbt {
    }
 }
 #[doc="Embedded RAM"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ram(pub u32);
 impl Ram {
 #[doc="Data byte 3 of Rx/Tx frame."]
@@ -3022,7 +3022,7 @@ impl ::core::fmt::Debug for Ram {
    }
 }
 #[doc="Message Buffer Header Word 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8h0(pub u32);
 impl Mb8h0 {
    #[inline] pub fn edl(&self) -> bits::U1 {
@@ -3147,7 +3147,7 @@ impl ::core::fmt::Debug for Mb8h0 {
    }
 }
 #[doc="Message Buffer Header Word 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8h1(pub u32);
 impl Mb8h1 {
    #[inline] pub fn prio(&self) -> bits::U3 {
@@ -3200,7 +3200,7 @@ impl ::core::fmt::Debug for Mb8h1 {
    }
 }
 #[doc="Message Buffer Data Word"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8d0(pub u32);
 impl Mb8d0 {
    #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
@@ -3238,7 +3238,7 @@ impl ::core::fmt::Debug for Mb8d0 {
    }
 }
 #[doc="Message Buffer Data Word"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8d1(pub u32);
 impl Mb8d1 {
    #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
@@ -3276,7 +3276,7 @@ impl ::core::fmt::Debug for Mb8d1 {
    }
 }
 #[doc="Rx Individual Mask Registers"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rximr(pub u32);
 impl Rximr {
 #[doc="Individual Mask Bits"]
@@ -3306,7 +3306,7 @@ impl ::core::fmt::Debug for Rximr {
    }
 }
 #[doc="Pretended Networking Control 1 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl1Pn(pub u32);
 impl Ctrl1Pn {
 #[doc="Filtering Combination Selection"]
@@ -3407,7 +3407,7 @@ impl ::core::fmt::Debug for Ctrl1Pn {
    }
 }
 #[doc="Pretended Networking Control 2 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl2Pn(pub u32);
 impl Ctrl2Pn {
 #[doc="Timeout for No Message Matching the Filtering Criteria"]
@@ -3438,7 +3438,7 @@ impl ::core::fmt::Debug for Ctrl2Pn {
    }
 }
 #[doc="Pretended Networking Wake Up Match Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct WuMtc(pub u32);
 impl WuMtc {
 #[doc="Number of Matches while in Pretended Networking"]
@@ -3497,7 +3497,7 @@ impl ::core::fmt::Debug for WuMtc {
    }
 }
 #[doc="Pretended Networking ID Filter 1 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct FltId1(pub u32);
 impl FltId1 {
 #[doc="ID Filter 1 for Pretended Networking filtering"]
@@ -3556,7 +3556,7 @@ impl ::core::fmt::Debug for FltId1 {
    }
 }
 #[doc="Pretended Networking DLC Filter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct FltDlc(pub u32);
 impl FltDlc {
 #[doc="Upper Limit for Length of Data Bytes Filter"]
@@ -3601,7 +3601,7 @@ impl ::core::fmt::Debug for FltDlc {
    }
 }
 #[doc="Pretended Networking Payload Low Filter 1 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pl1Lo(pub u32);
 impl Pl1Lo {
 #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
@@ -3674,7 +3674,7 @@ impl ::core::fmt::Debug for Pl1Lo {
    }
 }
 #[doc="Pretended Networking Payload High Filter 1 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pl1Hi(pub u32);
 impl Pl1Hi {
 #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
@@ -3747,7 +3747,7 @@ impl ::core::fmt::Debug for Pl1Hi {
    }
 }
 #[doc="Pretended Networking ID Filter 2 Register / ID Mask Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct FltId2Idmask(pub u32);
 impl FltId2Idmask {
 #[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
@@ -3806,7 +3806,7 @@ impl ::core::fmt::Debug for FltId2Idmask {
    }
 }
 #[doc="Pretended Networking Payload Low Filter 2 Register / Payload Low Mask Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pl2PlmaskLo(pub u32);
 impl Pl2PlmaskLo {
 #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
@@ -3879,7 +3879,7 @@ impl ::core::fmt::Debug for Pl2PlmaskLo {
    }
 }
 #[doc="Pretended Networking Payload High Filter 2 low order bits / Payload High Mask Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pl2PlmaskHi(pub u32);
 impl Pl2PlmaskHi {
 #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
@@ -3952,7 +3952,7 @@ impl ::core::fmt::Debug for Pl2PlmaskHi {
    }
 }
 #[doc="Wake Up Message Buffer Register for C/S"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb0Cs(pub u32);
 impl Wmb0Cs {
 #[doc="Length of Data in Bytes"]
@@ -4025,7 +4025,7 @@ impl ::core::fmt::Debug for Wmb0Cs {
    }
 }
 #[doc="Wake Up Message Buffer Register for ID"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb0Id(pub u32);
 impl Wmb0Id {
 #[doc="Received ID under Pretended Networking mode"]
@@ -4056,7 +4056,7 @@ impl ::core::fmt::Debug for Wmb0Id {
    }
 }
 #[doc="Wake Up Message Buffer Register for Data 0-3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb0D03(pub u32);
 impl Wmb0D03 {
 #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -4129,7 +4129,7 @@ impl ::core::fmt::Debug for Wmb0D03 {
    }
 }
 #[doc="Wake Up Message Buffer Register Data 4-7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb0D47(pub u32);
 impl Wmb0D47 {
 #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -4202,7 +4202,7 @@ impl ::core::fmt::Debug for Wmb0D47 {
    }
 }
 #[doc="Wake Up Message Buffer Register for C/S"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb1Cs(pub u32);
 impl Wmb1Cs {
 #[doc="Length of Data in Bytes"]
@@ -4275,7 +4275,7 @@ impl ::core::fmt::Debug for Wmb1Cs {
    }
 }
 #[doc="Wake Up Message Buffer Register for ID"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb1Id(pub u32);
 impl Wmb1Id {
 #[doc="Received ID under Pretended Networking mode"]
@@ -4306,7 +4306,7 @@ impl ::core::fmt::Debug for Wmb1Id {
    }
 }
 #[doc="Wake Up Message Buffer Register for Data 0-3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb1D03(pub u32);
 impl Wmb1D03 {
 #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -4379,7 +4379,7 @@ impl ::core::fmt::Debug for Wmb1D03 {
    }
 }
 #[doc="Wake Up Message Buffer Register Data 4-7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb1D47(pub u32);
 impl Wmb1D47 {
 #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -4452,7 +4452,7 @@ impl ::core::fmt::Debug for Wmb1D47 {
    }
 }
 #[doc="Wake Up Message Buffer Register for C/S"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb2Cs(pub u32);
 impl Wmb2Cs {
 #[doc="Length of Data in Bytes"]
@@ -4525,7 +4525,7 @@ impl ::core::fmt::Debug for Wmb2Cs {
    }
 }
 #[doc="Wake Up Message Buffer Register for ID"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb2Id(pub u32);
 impl Wmb2Id {
 #[doc="Received ID under Pretended Networking mode"]
@@ -4556,7 +4556,7 @@ impl ::core::fmt::Debug for Wmb2Id {
    }
 }
 #[doc="Wake Up Message Buffer Register for Data 0-3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb2D03(pub u32);
 impl Wmb2D03 {
 #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -4629,7 +4629,7 @@ impl ::core::fmt::Debug for Wmb2D03 {
    }
 }
 #[doc="Wake Up Message Buffer Register Data 4-7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb2D47(pub u32);
 impl Wmb2D47 {
 #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -4702,7 +4702,7 @@ impl ::core::fmt::Debug for Wmb2D47 {
    }
 }
 #[doc="Wake Up Message Buffer Register for C/S"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb3Cs(pub u32);
 impl Wmb3Cs {
 #[doc="Length of Data in Bytes"]
@@ -4775,7 +4775,7 @@ impl ::core::fmt::Debug for Wmb3Cs {
    }
 }
 #[doc="Wake Up Message Buffer Register for ID"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb3Id(pub u32);
 impl Wmb3Id {
 #[doc="Received ID under Pretended Networking mode"]
@@ -4806,7 +4806,7 @@ impl ::core::fmt::Debug for Wmb3Id {
    }
 }
 #[doc="Wake Up Message Buffer Register for Data 0-3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb3D03(pub u32);
 impl Wmb3D03 {
 #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -4879,7 +4879,7 @@ impl ::core::fmt::Debug for Wmb3D03 {
    }
 }
 #[doc="Wake Up Message Buffer Register Data 4-7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wmb3D47(pub u32);
 impl Wmb3D47 {
 #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -4952,7 +4952,7 @@ impl ::core::fmt::Debug for Wmb3D47 {
    }
 }
 #[doc="CAN FD Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fdctrl(pub u32);
 impl Fdctrl {
 #[doc="Transceiver Delay Compensation Value"]
@@ -5053,7 +5053,7 @@ impl ::core::fmt::Debug for Fdctrl {
    }
 }
 #[doc="CAN FD Bit Timing Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fdcbt(pub u32);
 impl Fdcbt {
 #[doc="Fast Phase Segment 2"]
@@ -5140,7 +5140,7 @@ impl ::core::fmt::Debug for Fdcbt {
    }
 }
 #[doc="CAN FD CRC Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fdcrc(pub u32);
 impl Fdcrc {
 #[doc="Extended Transmitted CRC value"]

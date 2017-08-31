@@ -255,7 +255,7 @@ impl WatchdogPeriph {
 }
 
 #[doc="Watchdog Load"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Load(pub u32);
 impl Load {
 #[doc="Watchdog Load Value"]
@@ -285,7 +285,7 @@ impl ::core::fmt::Debug for Load {
    }
 }
 #[doc="Watchdog Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Value(pub u32);
 impl Value {
 #[doc="Watchdog Value"]
@@ -315,7 +315,7 @@ impl ::core::fmt::Debug for Value {
    }
 }
 #[doc="Watchdog Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
 #[doc="Watchdog Interrupt Enable"]
@@ -388,7 +388,7 @@ impl ::core::fmt::Debug for Ctl {
    }
 }
 #[doc="Watchdog Interrupt Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
 #[doc="Watchdog Interrupt Clear"]
@@ -418,7 +418,7 @@ impl ::core::fmt::Debug for Icr {
    }
 }
 #[doc="Watchdog Raw Interrupt Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
 #[doc="Watchdog Raw Interrupt Status"]
@@ -449,7 +449,7 @@ impl ::core::fmt::Debug for Ris {
    }
 }
 #[doc="Watchdog Masked Interrupt Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
 #[doc="Watchdog Masked Interrupt Status"]
@@ -480,7 +480,7 @@ impl ::core::fmt::Debug for Mis {
    }
 }
 #[doc="Watchdog Test"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Test(pub u32);
 impl Test {
 #[doc="Watchdog Stall Enable"]
@@ -511,7 +511,7 @@ impl ::core::fmt::Debug for Test {
    }
 }
 #[doc="Watchdog Lock"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lock(pub u32);
 impl Lock {
 #[doc="Watchdog Lock"]

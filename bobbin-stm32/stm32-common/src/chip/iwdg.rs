@@ -138,7 +138,7 @@ impl IwdgPeriph {
 }
 
 #[doc="Key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Kr(pub u32);
 impl Kr {
 #[doc="Key value (write only, read 0x0000)"]
@@ -169,7 +169,7 @@ impl ::core::fmt::Debug for Kr {
    }
 }
 #[doc="Prescaler register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pr(pub u32);
 impl Pr {
 #[doc="Prescaler divider"]
@@ -200,7 +200,7 @@ impl ::core::fmt::Debug for Pr {
    }
 }
 #[doc="Reload register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rlr(pub u32);
 impl Rlr {
 #[doc="Watchdog counter reload value"]
@@ -231,7 +231,7 @@ impl ::core::fmt::Debug for Rlr {
    }
 }
 #[doc="Status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Watchdog counter window value update"]
@@ -290,7 +290,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Window register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Winr(pub u32);
 impl Winr {
 #[doc="Watchdog counter window value"]

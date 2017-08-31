@@ -567,7 +567,7 @@ impl Scg {
 }
 
 #[doc="Version ID Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Verid(pub u32);
 impl Verid {
 #[doc="SCG Version Number"]
@@ -597,7 +597,7 @@ impl ::core::fmt::Debug for Verid {
    }
 }
 #[doc="Parameter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Param(pub u32);
 impl Param {
 #[doc="Clock Present"]
@@ -642,7 +642,7 @@ impl ::core::fmt::Debug for Param {
    }
 }
 #[doc="Clock Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Slow Clock Divide Ratio"]
@@ -715,7 +715,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="Run Clock Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rccr(pub u32);
 impl Rccr {
 #[doc="Slow Clock Divide Ratio"]
@@ -788,7 +788,7 @@ impl ::core::fmt::Debug for Rccr {
    }
 }
 #[doc="VLPR Clock Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Vccr(pub u32);
 impl Vccr {
 #[doc="Slow Clock Divide Ratio"]
@@ -861,7 +861,7 @@ impl ::core::fmt::Debug for Vccr {
    }
 }
 #[doc="HSRUN Clock Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Hccr(pub u32);
 impl Hccr {
 #[doc="Slow Clock Divide Ratio"]
@@ -934,7 +934,7 @@ impl ::core::fmt::Debug for Hccr {
    }
 }
 #[doc="SCG CLKOUT Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clkoutcnfg(pub u32);
 impl Clkoutcnfg {
 #[doc="SCG Clkout Select"]
@@ -965,7 +965,7 @@ impl ::core::fmt::Debug for Clkoutcnfg {
    }
 }
 #[doc="System OSC Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sosccsr(pub u32);
 impl Sosccsr {
 #[doc="System OSC Enable"]
@@ -1080,7 +1080,7 @@ impl ::core::fmt::Debug for Sosccsr {
    }
 }
 #[doc="System OSC Divide Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Soscdiv(pub u32);
 impl Soscdiv {
 #[doc="System OSC Clock Divide 1"]
@@ -1125,7 +1125,7 @@ impl ::core::fmt::Debug for Soscdiv {
    }
 }
 #[doc="System Oscillator Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sosccfg(pub u32);
 impl Sosccfg {
 #[doc="External Reference Select"]
@@ -1184,7 +1184,7 @@ impl ::core::fmt::Debug for Sosccfg {
    }
 }
 #[doc="Slow IRC Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sirccsr(pub u32);
 impl Sirccsr {
 #[doc="Slow IRC Enable"]
@@ -1285,7 +1285,7 @@ impl ::core::fmt::Debug for Sirccsr {
    }
 }
 #[doc="Slow IRC Divide Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sircdiv(pub u32);
 impl Sircdiv {
 #[doc="Slow IRC Clock Divide 1"]
@@ -1330,7 +1330,7 @@ impl ::core::fmt::Debug for Sircdiv {
    }
 }
 #[doc="Slow IRC Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sirccfg(pub u32);
 impl Sirccfg {
 #[doc="Frequency Range"]
@@ -1361,7 +1361,7 @@ impl ::core::fmt::Debug for Sirccfg {
    }
 }
 #[doc="Fast IRC Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Firccsr(pub u32);
 impl Firccsr {
 #[doc="Fast IRC Enable"]
@@ -1462,7 +1462,7 @@ impl ::core::fmt::Debug for Firccsr {
    }
 }
 #[doc="Fast IRC Divide Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fircdiv(pub u32);
 impl Fircdiv {
 #[doc="Fast IRC Clock Divide 1"]
@@ -1507,7 +1507,7 @@ impl ::core::fmt::Debug for Fircdiv {
    }
 }
 #[doc="Fast IRC Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Firccfg(pub u32);
 impl Firccfg {
 #[doc="Frequency Range"]
@@ -1538,7 +1538,7 @@ impl ::core::fmt::Debug for Firccfg {
    }
 }
 #[doc="System PLL Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Spllcsr(pub u32);
 impl Spllcsr {
 #[doc="System PLL Enable"]
@@ -1653,7 +1653,7 @@ impl ::core::fmt::Debug for Spllcsr {
    }
 }
 #[doc="System PLL Divide Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Splldiv(pub u32);
 impl Splldiv {
 #[doc="System PLL Clock Divide 1"]
@@ -1698,7 +1698,7 @@ impl ::core::fmt::Debug for Splldiv {
    }
 }
 #[doc="System PLL Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Spllcfg(pub u32);
 impl Spllcfg {
 #[doc="PLL Reference Clock Divider"]

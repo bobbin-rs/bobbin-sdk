@@ -840,7 +840,7 @@ impl Fsmc {
 }
 
 #[doc="SRAM/NOR-Flash chip-select control register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bcr1(pub u32);
 impl Bcr1 {
 #[doc="CBURSTRW"]
@@ -1039,7 +1039,7 @@ impl ::core::fmt::Debug for Bcr1 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select timing register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Btr1(pub u32);
 impl Btr1 {
 #[doc="ACCMOD"]
@@ -1154,7 +1154,7 @@ impl ::core::fmt::Debug for Btr1 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select control register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bcr2(pub u32);
 impl Bcr2 {
 #[doc="CBURSTRW"]
@@ -1367,7 +1367,7 @@ impl ::core::fmt::Debug for Bcr2 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select timing register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Btr2(pub u32);
 impl Btr2 {
 #[doc="ACCMOD"]
@@ -1482,7 +1482,7 @@ impl ::core::fmt::Debug for Btr2 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select control register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bcr3(pub u32);
 impl Bcr3 {
 #[doc="CBURSTRW"]
@@ -1695,7 +1695,7 @@ impl ::core::fmt::Debug for Bcr3 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select timing register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Btr3(pub u32);
 impl Btr3 {
 #[doc="ACCMOD"]
@@ -1810,7 +1810,7 @@ impl ::core::fmt::Debug for Btr3 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select control register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bcr4(pub u32);
 impl Bcr4 {
 #[doc="CBURSTRW"]
@@ -2023,7 +2023,7 @@ impl ::core::fmt::Debug for Bcr4 {
    }
 }
 #[doc="SRAM/NOR-Flash chip-select timing register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Btr4(pub u32);
 impl Btr4 {
 #[doc="ACCMOD"]
@@ -2138,7 +2138,7 @@ impl ::core::fmt::Debug for Btr4 {
    }
 }
 #[doc="PC Card/NAND Flash control register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcr2(pub u32);
 impl Pcr2 {
 #[doc="ECCPS"]
@@ -2267,7 +2267,7 @@ impl ::core::fmt::Debug for Pcr2 {
    }
 }
 #[doc="FIFO status and interrupt register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr2(pub u32);
 impl Sr2 {
 #[doc="FEMPT"]
@@ -2382,7 +2382,7 @@ impl ::core::fmt::Debug for Sr2 {
    }
 }
 #[doc="Common memory space timing register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmem2(pub u32);
 impl Pmem2 {
 #[doc="MEMHIZx"]
@@ -2455,7 +2455,7 @@ impl ::core::fmt::Debug for Pmem2 {
    }
 }
 #[doc="Attribute memory space timing register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Patt2(pub u32);
 impl Patt2 {
 #[doc="Attribute memory x databus HiZ time"]
@@ -2528,7 +2528,7 @@ impl ::core::fmt::Debug for Patt2 {
    }
 }
 #[doc="ECC result register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Eccr2(pub u32);
 impl Eccr2 {
 #[doc="ECC result"]
@@ -2558,7 +2558,7 @@ impl ::core::fmt::Debug for Eccr2 {
    }
 }
 #[doc="PC Card/NAND Flash control register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcr3(pub u32);
 impl Pcr3 {
 #[doc="ECCPS"]
@@ -2687,7 +2687,7 @@ impl ::core::fmt::Debug for Pcr3 {
    }
 }
 #[doc="FIFO status and interrupt register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr3(pub u32);
 impl Sr3 {
 #[doc="FEMPT"]
@@ -2802,7 +2802,7 @@ impl ::core::fmt::Debug for Sr3 {
    }
 }
 #[doc="Common memory space timing register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmem3(pub u32);
 impl Pmem3 {
 #[doc="MEMHIZx"]
@@ -2875,7 +2875,7 @@ impl ::core::fmt::Debug for Pmem3 {
    }
 }
 #[doc="Attribute memory space timing register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Patt3(pub u32);
 impl Patt3 {
 #[doc="ATTHIZx"]
@@ -2948,7 +2948,7 @@ impl ::core::fmt::Debug for Patt3 {
    }
 }
 #[doc="ECC result register 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Eccr3(pub u32);
 impl Eccr3 {
 #[doc="ECCx"]
@@ -2978,7 +2978,7 @@ impl ::core::fmt::Debug for Eccr3 {
    }
 }
 #[doc="PC Card/NAND Flash control register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcr4(pub u32);
 impl Pcr4 {
 #[doc="ECCPS"]
@@ -3107,7 +3107,7 @@ impl ::core::fmt::Debug for Pcr4 {
    }
 }
 #[doc="FIFO status and interrupt register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr4(pub u32);
 impl Sr4 {
 #[doc="FEMPT"]
@@ -3222,7 +3222,7 @@ impl ::core::fmt::Debug for Sr4 {
    }
 }
 #[doc="Common memory space timing register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmem4(pub u32);
 impl Pmem4 {
 #[doc="MEMHIZx"]
@@ -3295,7 +3295,7 @@ impl ::core::fmt::Debug for Pmem4 {
    }
 }
 #[doc="Attribute memory space timing register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Patt4(pub u32);
 impl Patt4 {
 #[doc="ATTHIZx"]
@@ -3368,7 +3368,7 @@ impl ::core::fmt::Debug for Patt4 {
    }
 }
 #[doc="I/O space timing register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pio4(pub u32);
 impl Pio4 {
 #[doc="IOHIZx"]
@@ -3441,7 +3441,7 @@ impl ::core::fmt::Debug for Pio4 {
    }
 }
 #[doc="SRAM/NOR-Flash write timing registers 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bwtr1(pub u32);
 impl Bwtr1 {
 #[doc="ACCMOD"]
@@ -3542,7 +3542,7 @@ impl ::core::fmt::Debug for Bwtr1 {
    }
 }
 #[doc="SRAM/NOR-Flash write timing registers 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bwtr2(pub u32);
 impl Bwtr2 {
 #[doc="ACCMOD"]
@@ -3643,7 +3643,7 @@ impl ::core::fmt::Debug for Bwtr2 {
    }
 }
 #[doc="SRAM/NOR-Flash write timing registers 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bwtr3(pub u32);
 impl Bwtr3 {
 #[doc="ACCMOD"]
@@ -3744,7 +3744,7 @@ impl ::core::fmt::Debug for Bwtr3 {
    }
 }
 #[doc="SRAM/NOR-Flash write timing registers 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bwtr4(pub u32);
 impl Bwtr4 {
 #[doc="ACCMOD"]

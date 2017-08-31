@@ -611,7 +611,7 @@ impl UdmaPeriph {
 }
 
 #[doc="DMA Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Stat(pub u32);
 impl Stat {
 #[doc="Master Enable Status"]
@@ -670,7 +670,7 @@ impl ::core::fmt::Debug for Stat {
    }
 }
 #[doc="DMA Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg(pub u32);
 impl Cfg {
 #[doc="Controller Master Enable"]
@@ -701,7 +701,7 @@ impl ::core::fmt::Debug for Cfg {
    }
 }
 #[doc="DMA Channel Control Base Pointer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctlbase(pub u32);
 impl Ctlbase {
 #[doc="Channel Control Base Address"]
@@ -732,7 +732,7 @@ impl ::core::fmt::Debug for Ctlbase {
    }
 }
 #[doc="DMA Alternate Channel Control Base Pointer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Altbase(pub u32);
 impl Altbase {
 #[doc="Alternate Channel Address Pointer"]
@@ -762,7 +762,7 @@ impl ::core::fmt::Debug for Altbase {
    }
 }
 #[doc="DMA Channel Wait-on-Request Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Waitstat(pub u32);
 impl Waitstat {
 #[doc="Channel [n] Wait Status"]
@@ -830,7 +830,7 @@ impl ::core::fmt::Debug for Waitstat {
    }
 }
 #[doc="DMA Channel Software Request"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Swreq(pub u32);
 impl Swreq {
 #[doc="Channel [n] Software Request"]
@@ -898,7 +898,7 @@ impl ::core::fmt::Debug for Swreq {
    }
 }
 #[doc="DMA Channel Useburst Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Useburstset(pub u32);
 impl Useburstset {
 #[doc="Channel [n] Useburst Set"]
@@ -966,7 +966,7 @@ impl ::core::fmt::Debug for Useburstset {
    }
 }
 #[doc="DMA Channel Useburst Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Useburstclr(pub u32);
 impl Useburstclr {
 #[doc="Channel [n] Useburst Clear"]
@@ -1034,7 +1034,7 @@ impl ::core::fmt::Debug for Useburstclr {
    }
 }
 #[doc="DMA Channel Request Mask Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Reqmaskset(pub u32);
 impl Reqmaskset {
 #[doc="Channel [n] Request Mask Set"]
@@ -1102,7 +1102,7 @@ impl ::core::fmt::Debug for Reqmaskset {
    }
 }
 #[doc="DMA Channel Request Mask Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Reqmaskclr(pub u32);
 impl Reqmaskclr {
 #[doc="Channel [n] Request Mask Clear"]
@@ -1170,7 +1170,7 @@ impl ::core::fmt::Debug for Reqmaskclr {
    }
 }
 #[doc="DMA Channel Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Enaset(pub u32);
 impl Enaset {
 #[doc="Channel [n] Enable Set"]
@@ -1238,7 +1238,7 @@ impl ::core::fmt::Debug for Enaset {
    }
 }
 #[doc="DMA Channel Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Enaclr(pub u32);
 impl Enaclr {
 #[doc="Clear Channel [n] Enable Clear"]
@@ -1306,7 +1306,7 @@ impl ::core::fmt::Debug for Enaclr {
    }
 }
 #[doc="DMA Channel Primary Alternate Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Altset(pub u32);
 impl Altset {
 #[doc="Channel [n] Alternate Set"]
@@ -1374,7 +1374,7 @@ impl ::core::fmt::Debug for Altset {
    }
 }
 #[doc="DMA Channel Primary Alternate Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Altclr(pub u32);
 impl Altclr {
 #[doc="Channel [n] Alternate Clear"]
@@ -1442,7 +1442,7 @@ impl ::core::fmt::Debug for Altclr {
    }
 }
 #[doc="DMA Channel Priority Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Prioset(pub u32);
 impl Prioset {
 #[doc="Channel [n] Priority Set"]
@@ -1510,7 +1510,7 @@ impl ::core::fmt::Debug for Prioset {
    }
 }
 #[doc="DMA Channel Priority Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Prioclr(pub u32);
 impl Prioclr {
 #[doc="Channel [n] Priority Clear"]
@@ -1578,7 +1578,7 @@ impl ::core::fmt::Debug for Prioclr {
    }
 }
 #[doc="DMA Bus Error Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Errclr(pub u32);
 impl Errclr {
 #[doc="uDMA Bus Error Status"]
@@ -1646,7 +1646,7 @@ impl ::core::fmt::Debug for Errclr {
    }
 }
 #[doc="DMA Channel Assignment"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chasgn(pub u32);
 impl Chasgn {
 #[doc="Channel [n] Assignment Select"]
@@ -1714,7 +1714,7 @@ impl ::core::fmt::Debug for Chasgn {
    }
 }
 #[doc="DMA Channel Map Select 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chmap0(pub u32);
 impl Chmap0 {
 #[doc="uDMA Channel n Source Select"]
@@ -1758,7 +1758,7 @@ impl ::core::fmt::Debug for Chmap0 {
    }
 }
 #[doc="DMA Channel Map Select 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chmap1(pub u32);
 impl Chmap1 {
 #[doc="uDMA Channel n Source Select"]
@@ -1802,7 +1802,7 @@ impl ::core::fmt::Debug for Chmap1 {
    }
 }
 #[doc="DMA Channel Map Select 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chmap2(pub u32);
 impl Chmap2 {
 #[doc="uDMA Channel n Source Select"]
@@ -1846,7 +1846,7 @@ impl ::core::fmt::Debug for Chmap2 {
    }
 }
 #[doc="DMA Channel Map Select 3"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chmap3(pub u32);
 impl Chmap3 {
 #[doc="uDMA Channel n Source Select"]
@@ -1969,7 +1969,7 @@ impl Chdesc {
 
 }
 #[doc="DMA Channel Source Address End Pointer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Srcendp(pub u32);
 impl Srcendp {
 #[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
@@ -1999,7 +1999,7 @@ impl ::core::fmt::Debug for Srcendp {
    }
 }
 #[doc="DMA Channel Destination Address End Pointer"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dstendp(pub u32);
 impl Dstendp {
 #[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
@@ -2029,7 +2029,7 @@ impl ::core::fmt::Debug for Dstendp {
    }
 }
 #[doc="DMA Channel Control Word"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chctl(pub u32);
 impl Chctl {
 #[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]

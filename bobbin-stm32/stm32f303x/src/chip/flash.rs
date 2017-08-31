@@ -187,7 +187,7 @@ impl Flash {
 }
 
 #[doc="Flash access control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Acr(pub u32);
 impl Acr {
 #[doc="LATENCY"]
@@ -246,7 +246,7 @@ impl ::core::fmt::Debug for Acr {
    }
 }
 #[doc="Flash key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Keyr(pub u32);
 impl Keyr {
 #[doc="Flash Key"]
@@ -276,7 +276,7 @@ impl ::core::fmt::Debug for Keyr {
    }
 }
 #[doc="Flash option key register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Optkeyr(pub u32);
 impl Optkeyr {
 #[doc="Option byte key"]
@@ -306,7 +306,7 @@ impl ::core::fmt::Debug for Optkeyr {
    }
 }
 #[doc="Flash status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="End of operation"]
@@ -379,7 +379,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="Flash control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Force option byte loading"]
@@ -550,7 +550,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Flash address register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ar(pub u32);
 impl Ar {
 #[doc="Flash address"]
@@ -580,7 +580,7 @@ impl ::core::fmt::Debug for Ar {
    }
 }
 #[doc="Option byte register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Obr(pub u32);
 impl Obr {
 #[doc="Option byte error"]
@@ -751,7 +751,7 @@ impl ::core::fmt::Debug for Obr {
    }
 }
 #[doc="Write protection register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wrpr(pub u32);
 impl Wrpr {
 #[doc="Write protect"]

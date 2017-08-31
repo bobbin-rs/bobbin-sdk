@@ -220,7 +220,7 @@ impl Ftfa {
 }
 
 #[doc="Backdoor Comparison Key 3."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey3(pub u8);
 impl Backkey3 {
 #[doc="Backdoor Comparison Key."]
@@ -251,7 +251,7 @@ impl ::core::fmt::Debug for Backkey3 {
    }
 }
 #[doc="Backdoor Comparison Key 2."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey2(pub u8);
 impl Backkey2 {
 #[doc="Backdoor Comparison Key."]
@@ -282,7 +282,7 @@ impl ::core::fmt::Debug for Backkey2 {
    }
 }
 #[doc="Backdoor Comparison Key 1."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey1(pub u8);
 impl Backkey1 {
 #[doc="Backdoor Comparison Key."]
@@ -313,7 +313,7 @@ impl ::core::fmt::Debug for Backkey1 {
    }
 }
 #[doc="Backdoor Comparison Key 0."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey0(pub u8);
 impl Backkey0 {
 #[doc="Backdoor Comparison Key."]
@@ -344,7 +344,7 @@ impl ::core::fmt::Debug for Backkey0 {
    }
 }
 #[doc="Backdoor Comparison Key 7."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey7(pub u8);
 impl Backkey7 {
 #[doc="Backdoor Comparison Key."]
@@ -375,7 +375,7 @@ impl ::core::fmt::Debug for Backkey7 {
    }
 }
 #[doc="Backdoor Comparison Key 6."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey6(pub u8);
 impl Backkey6 {
 #[doc="Backdoor Comparison Key."]
@@ -406,7 +406,7 @@ impl ::core::fmt::Debug for Backkey6 {
    }
 }
 #[doc="Backdoor Comparison Key 5."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey5(pub u8);
 impl Backkey5 {
 #[doc="Backdoor Comparison Key."]
@@ -437,7 +437,7 @@ impl ::core::fmt::Debug for Backkey5 {
    }
 }
 #[doc="Backdoor Comparison Key 4."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Backkey4(pub u8);
 impl Backkey4 {
 #[doc="Backdoor Comparison Key."]
@@ -468,7 +468,7 @@ impl ::core::fmt::Debug for Backkey4 {
    }
 }
 #[doc="Non-volatile P-Flash Protection 1 - Low Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fprot3(pub u8);
 impl Fprot3 {
 #[doc="P-Flash Region Protect"]
@@ -499,7 +499,7 @@ impl ::core::fmt::Debug for Fprot3 {
    }
 }
 #[doc="Non-volatile P-Flash Protection 1 - High Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fprot2(pub u8);
 impl Fprot2 {
 #[doc="P-Flash Region Protect"]
@@ -530,7 +530,7 @@ impl ::core::fmt::Debug for Fprot2 {
    }
 }
 #[doc="Non-volatile P-Flash Protection 0 - Low Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fprot1(pub u8);
 impl Fprot1 {
 #[doc="P-Flash Region Protect"]
@@ -561,7 +561,7 @@ impl ::core::fmt::Debug for Fprot1 {
    }
 }
 #[doc="Non-volatile P-Flash Protection 0 - High Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fprot0(pub u8);
 impl Fprot0 {
 #[doc="P-Flash Region Protect"]
@@ -592,7 +592,7 @@ impl ::core::fmt::Debug for Fprot0 {
    }
 }
 #[doc="Non-volatile Flash Security Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fsec(pub u8);
 impl Fsec {
 #[doc="Flash Security"]
@@ -665,7 +665,7 @@ impl ::core::fmt::Debug for Fsec {
    }
 }
 #[doc="Non-volatile Flash Option Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fopt(pub u8);
 impl Fopt {
 #[doc="no description available"]

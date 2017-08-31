@@ -118,7 +118,7 @@ impl PortPeriph {
 }
 
 #[doc="Pin Control Register n"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcr(pub u32);
 impl Pcr {
 #[doc="Pull Select"]
@@ -275,7 +275,7 @@ impl ::core::fmt::Debug for Pcr {
    }
 }
 #[doc="Global Pin Control Low Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpclr(pub u32);
 impl Gpclr {
 #[doc="Global Pin Write Data"]
@@ -320,7 +320,7 @@ impl ::core::fmt::Debug for Gpclr {
    }
 }
 #[doc="Global Pin Control High Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpchr(pub u32);
 impl Gpchr {
 #[doc="Global Pin Write Data"]
@@ -365,7 +365,7 @@ impl ::core::fmt::Debug for Gpchr {
    }
 }
 #[doc="Interrupt Status Flag Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Isfr(pub u32);
 impl Isfr {
 #[doc="Interrupt Status Flag"]

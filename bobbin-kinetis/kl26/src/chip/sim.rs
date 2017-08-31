@@ -518,7 +518,7 @@ impl Sim {
 }
 
 #[doc="System Options Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt1(pub u32);
 impl Sopt1 {
 #[doc="32K Oscillator Clock Select"]
@@ -591,7 +591,7 @@ impl ::core::fmt::Debug for Sopt1 {
    }
 }
 #[doc="SOPT1 Configuration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt1cfg(pub u32);
 impl Sopt1cfg {
 #[doc="USB voltage regulator enable write enable"]
@@ -650,7 +650,7 @@ impl ::core::fmt::Debug for Sopt1cfg {
    }
 }
 #[doc="System Options Register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt2(pub u32);
 impl Sopt2 {
 #[doc="RTC Clock Out Select"]
@@ -751,7 +751,7 @@ impl ::core::fmt::Debug for Sopt2 {
    }
 }
 #[doc="System Options Register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt4(pub u32);
 impl Sopt4 {
 #[doc="TPM1 channel 0 input capture source select"]
@@ -838,7 +838,7 @@ impl ::core::fmt::Debug for Sopt4 {
    }
 }
 #[doc="System Options Register 5"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt5(pub u32);
 impl Sopt5 {
 #[doc="UART0 Transmit Data Source Select"]
@@ -953,7 +953,7 @@ impl ::core::fmt::Debug for Sopt5 {
    }
 }
 #[doc="System Options Register 7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sopt7(pub u32);
 impl Sopt7 {
 #[doc="ADC0 Trigger Select"]
@@ -1012,7 +1012,7 @@ impl ::core::fmt::Debug for Sopt7 {
    }
 }
 #[doc="System Device Identification Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sdid(pub u32);
 impl Sdid {
 #[doc="Pincount Identification"]
@@ -1127,7 +1127,7 @@ impl ::core::fmt::Debug for Sdid {
    }
 }
 #[doc="System Clock Gating Control Register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Scgc4(pub u32);
 impl Scgc4 {
 #[doc="I2C0 Clock Gate Control"]
@@ -1270,7 +1270,7 @@ impl ::core::fmt::Debug for Scgc4 {
    }
 }
 #[doc="System Clock Gating Control Register 5"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Scgc5(pub u32);
 impl Scgc5 {
 #[doc="Low Power Timer Access Control"]
@@ -1385,7 +1385,7 @@ impl ::core::fmt::Debug for Scgc5 {
    }
 }
 #[doc="System Clock Gating Control Register 6"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Scgc6(pub u32);
 impl Scgc6 {
 #[doc="Flash Memory Clock Gate Control"]
@@ -1542,7 +1542,7 @@ impl ::core::fmt::Debug for Scgc6 {
    }
 }
 #[doc="System Clock Gating Control Register 7"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Scgc7(pub u32);
 impl Scgc7 {
 #[doc="DMA Clock Gate Control"]
@@ -1573,7 +1573,7 @@ impl ::core::fmt::Debug for Scgc7 {
    }
 }
 #[doc="System Clock Divider Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clkdiv1(pub u32);
 impl Clkdiv1 {
 #[doc="Clock 4 Output Divider value"]
@@ -1618,7 +1618,7 @@ impl ::core::fmt::Debug for Clkdiv1 {
    }
 }
 #[doc="Flash Configuration Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fcfg1(pub u32);
 impl Fcfg1 {
 #[doc="Flash Disable"]
@@ -1677,7 +1677,7 @@ impl ::core::fmt::Debug for Fcfg1 {
    }
 }
 #[doc="Flash Configuration Register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fcfg2(pub u32);
 impl Fcfg2 {
 #[doc="This field concatenated with leading zeros plus the value of the MAXADDR1 field indicates the first invalid address of the second program flash block (flash block 1)"]
@@ -1722,7 +1722,7 @@ impl ::core::fmt::Debug for Fcfg2 {
    }
 }
 #[doc="Unique Identification Register Mid-High"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidmh(pub u32);
 impl Uidmh {
 #[doc="Unique Identification"]
@@ -1753,7 +1753,7 @@ impl ::core::fmt::Debug for Uidmh {
    }
 }
 #[doc="Unique Identification Register Mid Low"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidml(pub u32);
 impl Uidml {
 #[doc="Unique Identification"]
@@ -1783,7 +1783,7 @@ impl ::core::fmt::Debug for Uidml {
    }
 }
 #[doc="Unique Identification Register Low"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidl(pub u32);
 impl Uidl {
 #[doc="Unique Identification"]
@@ -1813,7 +1813,7 @@ impl ::core::fmt::Debug for Uidl {
    }
 }
 #[doc="COP Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Copc(pub u32);
 impl Copc {
 #[doc="COP Windowed Mode"]
@@ -1872,7 +1872,7 @@ impl ::core::fmt::Debug for Copc {
    }
 }
 #[doc="Service COP"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Srvcop(pub u32);
 impl Srvcop {
 #[doc="Service COP Register"]

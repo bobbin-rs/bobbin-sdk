@@ -201,7 +201,7 @@ impl GpioPeriph {
 }
 
 #[doc="Port configuration register low (GPIOn_CRL)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Crl(pub u32);
 impl Crl {
 #[doc="Port n.m mode bits"]
@@ -272,7 +272,7 @@ impl ::core::fmt::Debug for Crl {
    }
 }
 #[doc="Port configuration register high (GPIOn_CRL)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Crh(pub u32);
 impl Crh {
 #[doc="Port n.m mode bits"]
@@ -343,7 +343,7 @@ impl ::core::fmt::Debug for Crh {
    }
 }
 #[doc="Port input data register (GPIOn_IDR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Idr(pub u32);
 impl Idr {
 #[doc="Port input data"]
@@ -395,7 +395,7 @@ impl ::core::fmt::Debug for Idr {
    }
 }
 #[doc="Port output data register (GPIOn_ODR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
 #[doc="Port output data"]
@@ -447,7 +447,7 @@ impl ::core::fmt::Debug for Odr {
    }
 }
 #[doc="Port bit set/reset register (GPIOn_BSRR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bsrr(pub u32);
 impl Bsrr {
 #[doc="Set bit n"]
@@ -534,7 +534,7 @@ impl ::core::fmt::Debug for Bsrr {
    }
 }
 #[doc="Port bit reset register (GPIOn_BRR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
 #[doc="Reset bit n"]
@@ -586,7 +586,7 @@ impl ::core::fmt::Debug for Brr {
    }
 }
 #[doc="Port configuration lock register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lckr(pub u32);
 impl Lckr {
 #[doc="Port Lock bit n"]

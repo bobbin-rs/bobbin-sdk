@@ -411,7 +411,7 @@ impl DacPeriph {
 }
 
 #[doc="control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="DAC channel2 DMA underrun interrupt enable"]
@@ -652,7 +652,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="software trigger register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Swtrigr(pub u32);
 impl Swtrigr {
 #[doc="DAC channel2 software trigger"]
@@ -697,7 +697,7 @@ impl ::core::fmt::Debug for Swtrigr {
    }
 }
 #[doc="channel1 12-bit right-aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12r1(pub u32);
 impl Dhr12r1 {
 #[doc="DAC channel1 12-bit right-aligned data"]
@@ -728,7 +728,7 @@ impl ::core::fmt::Debug for Dhr12r1 {
    }
 }
 #[doc="channel1 12-bit left aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12l1(pub u32);
 impl Dhr12l1 {
 #[doc="DAC channel1 12-bit left-aligned data"]
@@ -759,7 +759,7 @@ impl ::core::fmt::Debug for Dhr12l1 {
    }
 }
 #[doc="channel1 8-bit right aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr8r1(pub u32);
 impl Dhr8r1 {
 #[doc="DAC channel1 8-bit right-aligned data"]
@@ -790,7 +790,7 @@ impl ::core::fmt::Debug for Dhr8r1 {
    }
 }
 #[doc="channel2 12-bit right aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12r2(pub u32);
 impl Dhr12r2 {
 #[doc="DAC channel2 12-bit right-aligned data"]
@@ -821,7 +821,7 @@ impl ::core::fmt::Debug for Dhr12r2 {
    }
 }
 #[doc="channel2 12-bit left aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12l2(pub u32);
 impl Dhr12l2 {
 #[doc="DAC channel2 12-bit left-aligned data"]
@@ -852,7 +852,7 @@ impl ::core::fmt::Debug for Dhr12l2 {
    }
 }
 #[doc="channel2 8-bit right-aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr8r2(pub u32);
 impl Dhr8r2 {
 #[doc="DAC channel2 8-bit right-aligned data"]
@@ -883,7 +883,7 @@ impl ::core::fmt::Debug for Dhr8r2 {
    }
 }
 #[doc="Dual DAC 12-bit right-aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12rd(pub u32);
 impl Dhr12rd {
 #[doc="DAC channel2 12-bit right-aligned data"]
@@ -928,7 +928,7 @@ impl ::core::fmt::Debug for Dhr12rd {
    }
 }
 #[doc="DUAL DAC 12-bit left aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr12ld(pub u32);
 impl Dhr12ld {
 #[doc="DAC channel2 12-bit left-aligned data"]
@@ -973,7 +973,7 @@ impl ::core::fmt::Debug for Dhr12ld {
    }
 }
 #[doc="DUAL DAC 8-bit right aligned data holding register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dhr8rd(pub u32);
 impl Dhr8rd {
 #[doc="DAC channel2 8-bit right-aligned data"]
@@ -1018,7 +1018,7 @@ impl ::core::fmt::Debug for Dhr8rd {
    }
 }
 #[doc="channel1 data output register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dor1(pub u32);
 impl Dor1 {
 #[doc="DAC channel1 data output"]
@@ -1049,7 +1049,7 @@ impl ::core::fmt::Debug for Dor1 {
    }
 }
 #[doc="channel2 data output register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dor2(pub u32);
 impl Dor2 {
 #[doc="DAC channel2 data output"]
@@ -1080,7 +1080,7 @@ impl ::core::fmt::Debug for Dor2 {
    }
 }
 #[doc="status register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="DAC channel2 DMA underrun flag"]

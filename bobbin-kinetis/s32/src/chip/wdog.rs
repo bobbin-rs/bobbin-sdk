@@ -138,7 +138,7 @@ impl Wdog {
 }
 
 #[doc="Watchdog Control and Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cs(pub u32);
 impl Cs {
 #[doc="Stop Enable"]
@@ -351,7 +351,7 @@ impl ::core::fmt::Debug for Cs {
    }
 }
 #[doc="Watchdog Counter Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Low byte of the Watchdog Counter"]
@@ -396,7 +396,7 @@ impl ::core::fmt::Debug for Cnt {
    }
 }
 #[doc="Watchdog Timeout Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Toval(pub u32);
 impl Toval {
 #[doc="Low byte of the timeout value"]
@@ -441,7 +441,7 @@ impl ::core::fmt::Debug for Toval {
    }
 }
 #[doc="Watchdog Window Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Win(pub u32);
 impl Win {
 #[doc="Low byte of Watchdog Window"]

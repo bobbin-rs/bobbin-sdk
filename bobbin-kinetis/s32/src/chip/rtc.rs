@@ -266,7 +266,7 @@ impl Rtc {
 }
 
 #[doc="RTC Time Seconds Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tsr(pub u32);
 impl Tsr {
 #[doc="Time Seconds Register"]
@@ -296,7 +296,7 @@ impl ::core::fmt::Debug for Tsr {
    }
 }
 #[doc="RTC Time Prescaler Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tpr(pub u32);
 impl Tpr {
 #[doc="Time Prescaler Register"]
@@ -327,7 +327,7 @@ impl ::core::fmt::Debug for Tpr {
    }
 }
 #[doc="RTC Time Alarm Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tar(pub u32);
 impl Tar {
 #[doc="Time Alarm Register"]
@@ -357,7 +357,7 @@ impl ::core::fmt::Debug for Tar {
    }
 }
 #[doc="RTC Time Compensation Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="Time Compensation Register"]
@@ -430,7 +430,7 @@ impl ::core::fmt::Debug for Tcr {
    }
 }
 #[doc="RTC Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Software Reset"]
@@ -531,7 +531,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="RTC Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
 #[doc="Time Invalid Flag"]
@@ -604,7 +604,7 @@ impl ::core::fmt::Debug for Sr {
    }
 }
 #[doc="RTC Lock Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lr(pub u32);
 impl Lr {
 #[doc="Time Compensation Lock"]
@@ -677,7 +677,7 @@ impl ::core::fmt::Debug for Lr {
    }
 }
 #[doc="RTC Interrupt Enable Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ier(pub u32);
 impl Ier {
 #[doc="Time Invalid Interrupt Enable"]

@@ -405,7 +405,7 @@ impl Sim {
 }
 
 #[doc="Chip Control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chipctl(pub u32);
 impl Chipctl {
 #[doc="ADC interleave channel enable"]
@@ -562,7 +562,7 @@ impl ::core::fmt::Debug for Chipctl {
    }
 }
 #[doc="FTM Option Register 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ftmopt0(pub u32);
 impl Ftmopt0 {
 #[doc="FTM0 Fault X Select"]
@@ -691,7 +691,7 @@ impl ::core::fmt::Debug for Ftmopt0 {
    }
 }
 #[doc="LPO Clock Select Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lpoclks(pub u32);
 impl Lpoclks {
 #[doc="1 kHz LPO_CLK enable"]
@@ -764,7 +764,7 @@ impl ::core::fmt::Debug for Lpoclks {
    }
 }
 #[doc="ADC Options Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Adcopt(pub u32);
 impl Adcopt {
 #[doc="ADC0 trigger source select"]
@@ -865,7 +865,7 @@ impl ::core::fmt::Debug for Adcopt {
    }
 }
 #[doc="FTM Option Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ftmopt1(pub u32);
 impl Ftmopt1 {
 #[doc="FTM0 Sync Bit"]
@@ -1022,7 +1022,7 @@ impl ::core::fmt::Debug for Ftmopt1 {
    }
 }
 #[doc="Miscellaneous control register 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Misctrl0(pub u32);
 impl Misctrl0 {
 #[doc="FTM0 OBE CTRL bit"]
@@ -1095,7 +1095,7 @@ impl ::core::fmt::Debug for Misctrl0 {
    }
 }
 #[doc="System Device Identification Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sdid(pub u32);
 impl Sdid {
 #[doc="Features"]
@@ -1210,7 +1210,7 @@ impl ::core::fmt::Debug for Sdid {
    }
 }
 #[doc="Platform Clock Gating Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Platcgc(pub u32);
 impl Platcgc {
 #[doc="MSCM Clock Gating Control"]
@@ -1297,7 +1297,7 @@ impl ::core::fmt::Debug for Platcgc {
    }
 }
 #[doc="Flash Configuration Register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fcfg1(pub u32);
 impl Fcfg1 {
 #[doc="FlexNVM partition"]
@@ -1342,7 +1342,7 @@ impl ::core::fmt::Debug for Fcfg1 {
    }
 }
 #[doc="Unique Identification Register High"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidh(pub u32);
 impl Uidh {
 #[doc="Unique Identification"]
@@ -1372,7 +1372,7 @@ impl ::core::fmt::Debug for Uidh {
    }
 }
 #[doc="Unique Identification Register Mid-High"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidmh(pub u32);
 impl Uidmh {
 #[doc="Unique Identification"]
@@ -1402,7 +1402,7 @@ impl ::core::fmt::Debug for Uidmh {
    }
 }
 #[doc="Unique Identification Register Mid Low"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidml(pub u32);
 impl Uidml {
 #[doc="Unique Identification"]
@@ -1432,7 +1432,7 @@ impl ::core::fmt::Debug for Uidml {
    }
 }
 #[doc="Unique Identification Register Low"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Uidl(pub u32);
 impl Uidl {
 #[doc="Unique Identification"]
@@ -1462,7 +1462,7 @@ impl ::core::fmt::Debug for Uidl {
    }
 }
 #[doc="System Clock Divider Register 4"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clkdiv4(pub u32);
 impl Clkdiv4 {
 #[doc="Trace Clock Divider fraction To configure TRACEDIV and TRACEFRAC, you must first clear TRACEDIVEN to disable the trace clock divide function."]
@@ -1521,7 +1521,7 @@ impl ::core::fmt::Debug for Clkdiv4 {
    }
 }
 #[doc="Miscellaneous Control register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Misctrl1(pub u32);
 impl Misctrl1 {
 #[doc="Software trigger to TRGMUX. Writing to this bit generates software trigger to peripherals through TRGMUX (Refer to Figure: Trigger interconnectivity)."]

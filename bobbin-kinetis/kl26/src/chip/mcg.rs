@@ -424,7 +424,7 @@ impl Mcg {
 }
 
 #[doc="MCG Control 1 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C1(pub u8);
 impl C1 {
 #[doc="Internal Reference Stop Enable"]
@@ -511,7 +511,7 @@ impl ::core::fmt::Debug for C1 {
    }
 }
 #[doc="MCG Control 2 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C2(pub u8);
 impl C2 {
 #[doc="Internal Reference Clock Select"]
@@ -626,7 +626,7 @@ impl ::core::fmt::Debug for C2 {
    }
 }
 #[doc="MCG Control 3 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C3(pub u8);
 impl C3 {
 #[doc="Slow Internal Reference Clock Trim Setting"]
@@ -657,7 +657,7 @@ impl ::core::fmt::Debug for C3 {
    }
 }
 #[doc="MCG Control 4 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C4(pub u8);
 impl C4 {
 #[doc="Slow Internal Reference Clock Fine Trim"]
@@ -730,7 +730,7 @@ impl ::core::fmt::Debug for C4 {
    }
 }
 #[doc="MCG Control 5 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C5(pub u8);
 impl C5 {
 #[doc="PLL External Reference Divider"]
@@ -789,7 +789,7 @@ impl ::core::fmt::Debug for C5 {
    }
 }
 #[doc="MCG Control 6 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C6(pub u8);
 impl C6 {
 #[doc="VCO 0 Divider"]
@@ -862,7 +862,7 @@ impl ::core::fmt::Debug for C6 {
    }
 }
 #[doc="MCG Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct S(pub u8);
 impl S {
 #[doc="Internal Reference Clock Status"]
@@ -977,7 +977,7 @@ impl ::core::fmt::Debug for S {
    }
 }
 #[doc="MCG Status and Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc(pub u8);
 impl Sc {
 #[doc="OSC0 Loss of Clock Status"]
@@ -1078,7 +1078,7 @@ impl ::core::fmt::Debug for Sc {
    }
 }
 #[doc="MCG Auto Trim Compare Value High Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atcvh(pub u8);
 impl Atcvh {
 #[doc="ATM Compare Value High"]
@@ -1109,7 +1109,7 @@ impl ::core::fmt::Debug for Atcvh {
    }
 }
 #[doc="MCG Auto Trim Compare Value Low Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atcvl(pub u8);
 impl Atcvl {
 #[doc="ATM Compare Value Low"]
@@ -1140,7 +1140,7 @@ impl ::core::fmt::Debug for Atcvl {
    }
 }
 #[doc="MCG Control 7 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C7(pub u8);
 impl C7 {
 #[doc="MCG OSC Clock Select"]
@@ -1171,7 +1171,7 @@ impl ::core::fmt::Debug for C7 {
    }
 }
 #[doc="MCG Control 8 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C8(pub u8);
 impl C8 {
 #[doc="PLL Loss of Lock Reset Enable"]
@@ -1202,7 +1202,7 @@ impl ::core::fmt::Debug for C8 {
    }
 }
 #[doc="MCG Control 9 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C9(pub u8);
 impl C9 {
 }
@@ -1219,7 +1219,7 @@ impl ::core::fmt::Debug for C9 {
    }
 }
 #[doc="MCG Control 10 Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct C10(pub u8);
 impl C10 {
 }

@@ -249,7 +249,7 @@ impl Gclk {
 }
 
 #[doc="Generic Clock Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clkctrl(pub u16);
 impl Clkctrl {
 #[doc="Generic Clock Selection ID"]
@@ -322,7 +322,7 @@ impl ::core::fmt::Debug for Clkctrl {
    }
 }
 #[doc="Generic Clock Control - ID Field"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct ClkctrlId(pub u8);
 impl ClkctrlId {
 #[doc="Generic Clock Selection ID"]
@@ -353,7 +353,7 @@ impl ::core::fmt::Debug for ClkctrlId {
    }
 }
 #[doc="Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
 #[doc="Software Reset"]
@@ -384,7 +384,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="Generic Clock Generator Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Genctrl(pub u32);
 impl Genctrl {
 #[doc="Generic Clock Generator Selection"]
@@ -513,7 +513,7 @@ impl ::core::fmt::Debug for Genctrl {
    }
 }
 #[doc="Generic Clock Generator Control - ID Only"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct GenctrlId(pub u8);
 impl GenctrlId {
 #[doc="Generic Clock Generator Selection"]
@@ -544,7 +544,7 @@ impl ::core::fmt::Debug for GenctrlId {
    }
 }
 #[doc="Generic Clock Generator Division"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gendiv(pub u32);
 impl Gendiv {
 #[doc="Generic Clock Generator Selection"]
@@ -589,7 +589,7 @@ impl ::core::fmt::Debug for Gendiv {
    }
 }
 #[doc="Generic Clock Generator Division - ID Only"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct GendivId(pub u8);
 impl GendivId {
 #[doc="Generic Clock Generator Selection"]
@@ -620,7 +620,7 @@ impl ::core::fmt::Debug for GendivId {
    }
 }
 #[doc="Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
 #[doc="Synchronization Busy Status"]

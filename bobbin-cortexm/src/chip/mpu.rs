@@ -362,7 +362,7 @@ impl Mpu {
 }
 
 #[doc="MPU Type Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuType(pub u32);
 impl MpuType {
 #[doc="Indicates the number of supported MPU instruction regions. Always contains 0x00. The MPU memory map is unified and is described by the DREGION field."]
@@ -421,7 +421,7 @@ impl ::core::fmt::Debug for MpuType {
    }
 }
 #[doc="MPU Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuCtrl(pub u32);
 impl MpuCtrl {
 #[doc="Enables privileged software access to the default memory map: 0 = If the MPU is enabled, disables use of the default memory map. Any memory access to a location not covered by any enabled region causes a fault. 1 = If the MPU is enabled, enables use of the default memory map as a background region for privileged software accesses. When enabled, the background region acts as if it is region number -1. Any region that is defined and enabled has priority over this default map. If the MPU is disabled, the processor ignores this bit."]
@@ -480,7 +480,7 @@ impl ::core::fmt::Debug for MpuCtrl {
    }
 }
 #[doc="MPU Region Number Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRnr(pub u32);
 impl MpuRnr {
 #[doc="Indicates the MPU region referenced by the MPU_RBAR and MPU_RASR registers. The MPU supports 8 memory regions, so the permitted values of this field are 0-7."]
@@ -511,7 +511,7 @@ impl ::core::fmt::Debug for MpuRnr {
    }
 }
 #[doc="MPU Region Base Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRbar(pub u32);
 impl MpuRbar {
 #[doc="Region base address field. The value of N depends on the region size."]
@@ -572,7 +572,7 @@ impl ::core::fmt::Debug for MpuRbar {
    }
 }
 #[doc="MPU Region Attribute and Size Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasr(pub u32);
 impl MpuRasr {
 #[doc="Instruction access disable bit: 0 = instruction fetches enabled, 1 = instruction fetches disabled."]
@@ -715,7 +715,7 @@ impl ::core::fmt::Debug for MpuRasr {
    }
 }
 #[doc="Alias of RBAR, MPU Region Base Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRbarA1(pub u32);
 impl MpuRbarA1 {
 }
@@ -732,7 +732,7 @@ impl ::core::fmt::Debug for MpuRbarA1 {
    }
 }
 #[doc="Alias of RASR, MPU Region Attribute and Size Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA1(pub u32);
 impl MpuRasrA1 {
 }
@@ -749,7 +749,7 @@ impl ::core::fmt::Debug for MpuRasrA1 {
    }
 }
 #[doc="Alias of RBAR, MPU Region Base Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRbarA2(pub u32);
 impl MpuRbarA2 {
 }
@@ -766,7 +766,7 @@ impl ::core::fmt::Debug for MpuRbarA2 {
    }
 }
 #[doc="Alias of RASR, MPU Region Attribute and Size Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA2(pub u32);
 impl MpuRasrA2 {
 }
@@ -783,7 +783,7 @@ impl ::core::fmt::Debug for MpuRasrA2 {
    }
 }
 #[doc="Alias of RBAR, MPU Region Base Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRbarA3(pub u32);
 impl MpuRbarA3 {
 }
@@ -800,7 +800,7 @@ impl ::core::fmt::Debug for MpuRbarA3 {
    }
 }
 #[doc="Alias of RASR, MPU Region Attribute and Size Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA3(pub u32);
 impl MpuRasrA3 {
 }

@@ -234,7 +234,7 @@ impl Afio {
 }
 
 #[doc="Event Control Register (AFIO_EVCR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Evcr(pub u32);
 impl Evcr {
 #[doc="Pin selection"]
@@ -293,7 +293,7 @@ impl ::core::fmt::Debug for Evcr {
    }
 }
 #[doc="AF remap and debug I/O configuration register (AFIO_MAPR)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mapr(pub u32);
 impl Mapr {
 #[doc="SPI1 remapping"]
@@ -548,7 +548,7 @@ impl ::core::fmt::Debug for Mapr {
    }
 }
 #[doc="External interrupt configuration register 1 (AFIO_EXTICR1)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr1(pub u32);
 impl Exticr1 {
 #[doc="EXTI0 configuration"]
@@ -621,7 +621,7 @@ impl ::core::fmt::Debug for Exticr1 {
    }
 }
 #[doc="External interrupt configuration register 2 (AFIO_EXTICR2)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr2(pub u32);
 impl Exticr2 {
 #[doc="EXTI4 configuration"]
@@ -694,7 +694,7 @@ impl ::core::fmt::Debug for Exticr2 {
    }
 }
 #[doc="External interrupt configuration register 3 (AFIO_EXTICR3)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr3(pub u32);
 impl Exticr3 {
 #[doc="EXTI8 configuration"]
@@ -767,7 +767,7 @@ impl ::core::fmt::Debug for Exticr3 {
    }
 }
 #[doc="External interrupt configuration register 4 (AFIO_EXTICR4)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Exticr4(pub u32);
 impl Exticr4 {
 #[doc="EXTI12 configuration"]
@@ -840,7 +840,7 @@ impl ::core::fmt::Debug for Exticr4 {
    }
 }
 #[doc="AF remap and debug I/O configuration register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mapr2(pub u32);
 impl Mapr2 {
 #[doc="TIM9 remapping"]

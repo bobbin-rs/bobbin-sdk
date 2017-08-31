@@ -220,7 +220,7 @@ impl DmaPeriph {
 }
 
 #[doc="Source Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sar(pub u32);
 impl Sar {
 #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
@@ -250,7 +250,7 @@ impl ::core::fmt::Debug for Sar {
    }
 }
 #[doc="Destination Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dar(pub u32);
 impl Dar {
 #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
@@ -280,7 +280,7 @@ impl ::core::fmt::Debug for Dar {
    }
 }
 #[doc="DMA Status Register / Byte Count Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DsrBcr(pub u32);
 impl DsrBcr {
 #[doc="This field contains the number of bytes yet to be transferred for a given block"]
@@ -395,7 +395,7 @@ impl ::core::fmt::Debug for DsrBcr {
    }
 }
 #[doc="DMA_DSR0 register."]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dsr(pub u8);
 impl Dsr {
 }
@@ -412,7 +412,7 @@ impl ::core::fmt::Debug for Dsr {
    }
 }
 #[doc="DMA Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dcr(pub u32);
 impl Dcr {
 #[doc="Link Channel 2"]

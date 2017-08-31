@@ -584,7 +584,7 @@ impl Sysctrl {
 }
 
 #[doc="3.3V Brown-Out Detector (BOD33) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bod33(pub u32);
 impl Bod33 {
 #[doc="Enable"]
@@ -713,7 +713,7 @@ impl ::core::fmt::Debug for Bod33 {
    }
 }
 #[doc="DFLL48M Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dfllctrl(pub u16);
 impl Dfllctrl {
 #[doc="DFLL Enable"]
@@ -884,7 +884,7 @@ impl ::core::fmt::Debug for Dfllctrl {
    }
 }
 #[doc="DFLL48M Multiplier"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dfllmul(pub u32);
 impl Dfllmul {
 #[doc="DFLL Multiply Factor"]
@@ -943,7 +943,7 @@ impl ::core::fmt::Debug for Dfllmul {
    }
 }
 #[doc="DFLL48M Synchronization"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dfllsync(pub u8);
 impl Dfllsync {
 #[doc="Read Request"]
@@ -974,7 +974,7 @@ impl ::core::fmt::Debug for Dfllsync {
    }
 }
 #[doc="DFLL48M Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dfllval(pub u32);
 impl Dfllval {
 #[doc="Fine Value"]
@@ -1033,7 +1033,7 @@ impl ::core::fmt::Debug for Dfllval {
    }
 }
 #[doc="DPLL Control A"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dpllctrla(pub u8);
 impl Dpllctrla {
 #[doc="DPLL Enable"]
@@ -1092,7 +1092,7 @@ impl ::core::fmt::Debug for Dpllctrla {
    }
 }
 #[doc="DPLL Control B"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dpllctrlb(pub u32);
 impl Dpllctrlb {
 #[doc="Proportional Integral Filter Selection"]
@@ -1207,7 +1207,7 @@ impl ::core::fmt::Debug for Dpllctrlb {
    }
 }
 #[doc="DPLL Ratio Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dpllratio(pub u32);
 impl Dpllratio {
 #[doc="Loop Divider Ratio"]
@@ -1252,7 +1252,7 @@ impl ::core::fmt::Debug for Dpllratio {
    }
 }
 #[doc="DPLL Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dpllstatus(pub u8);
 impl Dpllstatus {
 #[doc="DPLL Lock Status"]
@@ -1325,7 +1325,7 @@ impl ::core::fmt::Debug for Dpllstatus {
    }
 }
 #[doc="Interrupt Enable Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u32);
 impl Intenclr {
 #[doc="XOSC Ready Interrupt Enable"]
@@ -1552,7 +1552,7 @@ impl ::core::fmt::Debug for Intenclr {
    }
 }
 #[doc="Interrupt Enable Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u32);
 impl Intenset {
 #[doc="XOSC Ready Interrupt Enable"]
@@ -1779,7 +1779,7 @@ impl ::core::fmt::Debug for Intenset {
    }
 }
 #[doc="Interrupt Flag Status and Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u32);
 impl Intflag {
 #[doc="XOSC Ready"]
@@ -2006,7 +2006,7 @@ impl ::core::fmt::Debug for Intflag {
    }
 }
 #[doc="32kHz Ultra Low Power Internal Oscillator (OSCULP32K) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Osculp32k(pub u8);
 impl Osculp32k {
 #[doc="Oscillator Calibration"]
@@ -2051,7 +2051,7 @@ impl ::core::fmt::Debug for Osculp32k {
    }
 }
 #[doc="8MHz Internal Oscillator (OSC8M) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Osc8m(pub u32);
 impl Osc8m {
 #[doc="Oscillator Enable"]
@@ -2152,7 +2152,7 @@ impl ::core::fmt::Debug for Osc8m {
    }
 }
 #[doc="32kHz Internal Oscillator (OSC32K) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Osc32k(pub u32);
 impl Osc32k {
 #[doc="Oscillator Enable"]
@@ -2281,7 +2281,7 @@ impl ::core::fmt::Debug for Osc32k {
    }
 }
 #[doc="Power and Clocks Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pclksr(pub u32);
 impl Pclksr {
 #[doc="XOSC Ready"]
@@ -2508,7 +2508,7 @@ impl ::core::fmt::Debug for Pclksr {
    }
 }
 #[doc="Voltage References System (VREF) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Vref(pub u32);
 impl Vref {
 #[doc="Temperature Sensor Enable"]
@@ -2567,7 +2567,7 @@ impl ::core::fmt::Debug for Vref {
    }
 }
 #[doc="External Multipurpose Crystal Oscillator (XOSC) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Xosc(pub u16);
 impl Xosc {
 #[doc="Oscillator Enable"]
@@ -2682,7 +2682,7 @@ impl ::core::fmt::Debug for Xosc {
    }
 }
 #[doc="32kHz External Crystal Oscillator (XOSC32K) Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Xosc32k(pub u16);
 impl Xosc32k {
 #[doc="Oscillator Enable"]

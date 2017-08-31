@@ -138,7 +138,7 @@ impl Systick {
 }
 
 #[doc="Control and Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
 #[doc="Returns 1 if timer counted to 0 since last time this was read."]
@@ -211,7 +211,7 @@ impl ::core::fmt::Debug for Csr {
    }
 }
 #[doc="Reload Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rvr(pub u32);
 impl Rvr {
 #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
@@ -242,7 +242,7 @@ impl ::core::fmt::Debug for Rvr {
    }
 }
 #[doc="Current Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cvr(pub u32);
 impl Cvr {
 #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
@@ -273,7 +273,7 @@ impl ::core::fmt::Debug for Cvr {
    }
 }
 #[doc="Calibration Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Calib(pub u32);
 impl Calib {
 #[doc="Indicates whether the device provides a reference clock to the processor"]

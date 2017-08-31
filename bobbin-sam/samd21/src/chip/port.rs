@@ -419,7 +419,7 @@ impl PortPeriph {
 }
 
 #[doc="Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u32);
 impl Ctrl {
 #[doc="Input Sampling Mode"]
@@ -449,7 +449,7 @@ impl ::core::fmt::Debug for Ctrl {
    }
 }
 #[doc="Data Direction"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dir(pub u32);
 impl Dir {
 #[doc="Port Data Direction"]
@@ -517,7 +517,7 @@ impl ::core::fmt::Debug for Dir {
    }
 }
 #[doc="Data Direction Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dirclr(pub u32);
 impl Dirclr {
 #[doc="Port Data Direction Clear"]
@@ -585,7 +585,7 @@ impl ::core::fmt::Debug for Dirclr {
    }
 }
 #[doc="Data Direction Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dirset(pub u32);
 impl Dirset {
 #[doc="Port Data Direction Set"]
@@ -653,7 +653,7 @@ impl ::core::fmt::Debug for Dirset {
    }
 }
 #[doc="Data Direction Toggle"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dirtgl(pub u32);
 impl Dirtgl {
 #[doc="Port Data Direction Toggle"]
@@ -721,7 +721,7 @@ impl ::core::fmt::Debug for Dirtgl {
    }
 }
 #[doc="Data Input Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct In(pub u32);
 impl In {
 #[doc="Port Data Input Value"]
@@ -789,7 +789,7 @@ impl ::core::fmt::Debug for In {
    }
 }
 #[doc="Data Output Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Out(pub u32);
 impl Out {
 #[doc="Port Data Output Value"]
@@ -857,7 +857,7 @@ impl ::core::fmt::Debug for Out {
    }
 }
 #[doc="Data Output Value Clear"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Outclr(pub u32);
 impl Outclr {
 #[doc="Port Data Output Value Clear"]
@@ -925,7 +925,7 @@ impl ::core::fmt::Debug for Outclr {
    }
 }
 #[doc="Data Output Value Set"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Outset(pub u32);
 impl Outset {
 #[doc="Port Data Output Value Set"]
@@ -993,7 +993,7 @@ impl ::core::fmt::Debug for Outset {
    }
 }
 #[doc="Data Output Value Toggle"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Outtgl(pub u32);
 impl Outtgl {
 #[doc="Port Data Output Value Toggle"]
@@ -1061,7 +1061,7 @@ impl ::core::fmt::Debug for Outtgl {
    }
 }
 #[doc="Pin Configuration n"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pincfg(pub u8);
 impl Pincfg {
 #[doc="Peripheral Multiplexer Enable"]
@@ -1134,7 +1134,7 @@ impl ::core::fmt::Debug for Pincfg {
    }
 }
 #[doc="Peripheral Multiplexing n - Group 0"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pmux(pub u8);
 impl Pmux {
 #[doc="Peripheral Multiplexing Even"]
@@ -1172,7 +1172,7 @@ impl ::core::fmt::Debug for Pmux {
    }
 }
 #[doc="Write Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Wrconfig(pub u32);
 impl Wrconfig {
 #[doc="Pin Mask for Multiple Pin Configuration"]

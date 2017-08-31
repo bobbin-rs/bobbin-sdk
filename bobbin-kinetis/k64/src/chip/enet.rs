@@ -2107,7 +2107,7 @@ impl Enet {
 }
 
 #[doc="Interrupt Event Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Eir(pub u32);
 impl Eir {
 #[doc="Timestamp Timer"]
@@ -2348,7 +2348,7 @@ impl ::core::fmt::Debug for Eir {
    }
 }
 #[doc="Interrupt Mask Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Eimr(pub u32);
 impl Eimr {
 #[doc="TS_TIMER Interrupt Mask"]
@@ -2589,7 +2589,7 @@ impl ::core::fmt::Debug for Eimr {
    }
 }
 #[doc="Receive Descriptor Active Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rdar(pub u32);
 impl Rdar {
 #[doc="Receive Descriptor Active"]
@@ -2620,7 +2620,7 @@ impl ::core::fmt::Debug for Rdar {
    }
 }
 #[doc="Transmit Descriptor Active Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tdar(pub u32);
 impl Tdar {
 #[doc="Transmit Descriptor Active"]
@@ -2651,7 +2651,7 @@ impl ::core::fmt::Debug for Tdar {
    }
 }
 #[doc="Ethernet Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ecr(pub u32);
 impl Ecr {
 #[doc="Ethernet MAC Reset"]
@@ -2780,7 +2780,7 @@ impl ::core::fmt::Debug for Ecr {
    }
 }
 #[doc="MII Management Frame Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mmfr(pub u32);
 impl Mmfr {
 #[doc="Management Frame Data"]
@@ -2881,7 +2881,7 @@ impl ::core::fmt::Debug for Mmfr {
    }
 }
 #[doc="MII Speed Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mscr(pub u32);
 impl Mscr {
 #[doc="MII Speed"]
@@ -2940,7 +2940,7 @@ impl ::core::fmt::Debug for Mscr {
    }
 }
 #[doc="MIB Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mibc(pub u32);
 impl Mibc {
 #[doc="MIB Clear"]
@@ -2999,7 +2999,7 @@ impl ::core::fmt::Debug for Mibc {
    }
 }
 #[doc="Receive Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rcr(pub u32);
 impl Rcr {
 #[doc="Internal Loopback"]
@@ -3226,7 +3226,7 @@ impl ::core::fmt::Debug for Rcr {
    }
 }
 #[doc="Transmit Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tcr(pub u32);
 impl Tcr {
 #[doc="Graceful Transmit Stop"]
@@ -3341,7 +3341,7 @@ impl ::core::fmt::Debug for Tcr {
    }
 }
 #[doc="Physical Address Lower Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Palr(pub u32);
 impl Palr {
 #[doc="Pause Address"]
@@ -3371,7 +3371,7 @@ impl ::core::fmt::Debug for Palr {
    }
 }
 #[doc="Physical Address Upper Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Paur(pub u32);
 impl Paur {
 #[doc="Type Field In PAUSE Frames"]
@@ -3416,7 +3416,7 @@ impl ::core::fmt::Debug for Paur {
    }
 }
 #[doc="Opcode/Pause Duration Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Opd(pub u32);
 impl Opd {
 #[doc="Pause Duration"]
@@ -3461,7 +3461,7 @@ impl ::core::fmt::Debug for Opd {
    }
 }
 #[doc="Descriptor Individual Upper Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Iaur(pub u32);
 impl Iaur {
 #[doc="Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address"]
@@ -3491,7 +3491,7 @@ impl ::core::fmt::Debug for Iaur {
    }
 }
 #[doc="Descriptor Individual Lower Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ialr(pub u32);
 impl Ialr {
 #[doc="Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address"]
@@ -3521,7 +3521,7 @@ impl ::core::fmt::Debug for Ialr {
    }
 }
 #[doc="Descriptor Group Upper Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gaur(pub u32);
 impl Gaur {
 #[doc="Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address"]
@@ -3551,7 +3551,7 @@ impl ::core::fmt::Debug for Gaur {
    }
 }
 #[doc="Descriptor Group Lower Address Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Galr(pub u32);
 impl Galr {
 #[doc="Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address"]
@@ -3581,7 +3581,7 @@ impl ::core::fmt::Debug for Galr {
    }
 }
 #[doc="Transmit FIFO Watermark Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tfwr(pub u32);
 impl Tfwr {
 #[doc="Transmit FIFO Write"]
@@ -3626,7 +3626,7 @@ impl ::core::fmt::Debug for Tfwr {
    }
 }
 #[doc="Receive Descriptor Ring Start Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rdsr(pub u32);
 impl Rdsr {
 #[doc="Pointer to the beginning of the receive buffer descriptor queue."]
@@ -3657,7 +3657,7 @@ impl ::core::fmt::Debug for Rdsr {
    }
 }
 #[doc="Transmit Buffer Descriptor Ring Start Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tdsr(pub u32);
 impl Tdsr {
 #[doc="Pointer to the beginning of the transmit buffer descriptor queue."]
@@ -3688,7 +3688,7 @@ impl ::core::fmt::Debug for Tdsr {
    }
 }
 #[doc="Maximum Receive Buffer Size Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mrbr(pub u32);
 impl Mrbr {
 #[doc="Receive buffer size in bytes."]
@@ -3719,7 +3719,7 @@ impl ::core::fmt::Debug for Mrbr {
    }
 }
 #[doc="Receive FIFO Section Full Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rsfl(pub u32);
 impl Rsfl {
 #[doc="Value Of Receive FIFO Section Full Threshold"]
@@ -3750,7 +3750,7 @@ impl ::core::fmt::Debug for Rsfl {
    }
 }
 #[doc="Receive FIFO Section Empty Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rsem(pub u32);
 impl Rsem {
 #[doc="Value Of The Receive FIFO Section Empty Threshold"]
@@ -3795,7 +3795,7 @@ impl ::core::fmt::Debug for Rsem {
    }
 }
 #[doc="Receive FIFO Almost Empty Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Raem(pub u32);
 impl Raem {
 #[doc="Value Of The Receive FIFO Almost Empty Threshold"]
@@ -3826,7 +3826,7 @@ impl ::core::fmt::Debug for Raem {
    }
 }
 #[doc="Receive FIFO Almost Full Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rafl(pub u32);
 impl Rafl {
 #[doc="Value Of The Receive FIFO Almost Full Threshold"]
@@ -3857,7 +3857,7 @@ impl ::core::fmt::Debug for Rafl {
    }
 }
 #[doc="Transmit FIFO Section Empty Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tsem(pub u32);
 impl Tsem {
 #[doc="Value Of The Transmit FIFO Section Empty Threshold"]
@@ -3888,7 +3888,7 @@ impl ::core::fmt::Debug for Tsem {
    }
 }
 #[doc="Transmit FIFO Almost Empty Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Taem(pub u32);
 impl Taem {
 #[doc="Value of Transmit FIFO Almost Empty Threshold"]
@@ -3919,7 +3919,7 @@ impl ::core::fmt::Debug for Taem {
    }
 }
 #[doc="Transmit FIFO Almost Full Threshold"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tafl(pub u32);
 impl Tafl {
 #[doc="Value Of The Transmit FIFO Almost Full Threshold"]
@@ -3950,7 +3950,7 @@ impl ::core::fmt::Debug for Tafl {
    }
 }
 #[doc="Transmit Inter-Packet Gap"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tipg(pub u32);
 impl Tipg {
 #[doc="Transmit Inter-Packet Gap"]
@@ -3981,7 +3981,7 @@ impl ::core::fmt::Debug for Tipg {
    }
 }
 #[doc="Frame Truncation Length"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ftrl(pub u32);
 impl Ftrl {
 #[doc="Frame Truncation Length"]
@@ -4012,7 +4012,7 @@ impl ::core::fmt::Debug for Ftrl {
    }
 }
 #[doc="Transmit Accelerator Function Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tacc(pub u32);
 impl Tacc {
 #[doc="TX FIFO Shift-16"]
@@ -4071,7 +4071,7 @@ impl ::core::fmt::Debug for Tacc {
    }
 }
 #[doc="Receive Accelerator Function Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Racc(pub u32);
 impl Racc {
 #[doc="Enable Padding Removal For Short IP Frames"]
@@ -4158,7 +4158,7 @@ impl ::core::fmt::Debug for Racc {
    }
 }
 #[doc="Tx Packet Count Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTPackets(pub u32);
 impl RmonTPackets {
 #[doc="Packet count"]
@@ -4189,7 +4189,7 @@ impl ::core::fmt::Debug for RmonTPackets {
    }
 }
 #[doc="Tx Broadcast Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTBcPkt(pub u32);
 impl RmonTBcPkt {
 #[doc="Broadcast packets"]
@@ -4220,7 +4220,7 @@ impl ::core::fmt::Debug for RmonTBcPkt {
    }
 }
 #[doc="Tx Multicast Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTMcPkt(pub u32);
 impl RmonTMcPkt {
 #[doc="Multicast packets"]
@@ -4251,7 +4251,7 @@ impl ::core::fmt::Debug for RmonTMcPkt {
    }
 }
 #[doc="Tx Packets with CRC/Align Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTCrcAlign(pub u32);
 impl RmonTCrcAlign {
 #[doc="Packets with CRC/align error"]
@@ -4282,7 +4282,7 @@ impl ::core::fmt::Debug for RmonTCrcAlign {
    }
 }
 #[doc="Tx Packets Less Than Bytes and Good CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTUndersize(pub u32);
 impl RmonTUndersize {
 #[doc="Packet count"]
@@ -4313,7 +4313,7 @@ impl ::core::fmt::Debug for RmonTUndersize {
    }
 }
 #[doc="Tx Packets GT MAX_FL bytes and Good CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTOversize(pub u32);
 impl RmonTOversize {
 #[doc="Packet count"]
@@ -4344,7 +4344,7 @@ impl ::core::fmt::Debug for RmonTOversize {
    }
 }
 #[doc="Tx Packets Less Than 64 Bytes and Bad CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTFrag(pub u32);
 impl RmonTFrag {
 #[doc="Packet count"]
@@ -4375,7 +4375,7 @@ impl ::core::fmt::Debug for RmonTFrag {
    }
 }
 #[doc="Tx Packets Greater Than MAX_FL bytes and Bad CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTJab(pub u32);
 impl RmonTJab {
 #[doc="Packet count"]
@@ -4406,7 +4406,7 @@ impl ::core::fmt::Debug for RmonTJab {
    }
 }
 #[doc="Tx Collision Count Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTCol(pub u32);
 impl RmonTCol {
 #[doc="Packet count"]
@@ -4437,7 +4437,7 @@ impl ::core::fmt::Debug for RmonTCol {
    }
 }
 #[doc="Tx 64-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP64(pub u32);
 impl RmonTP64 {
 #[doc="Packet count"]
@@ -4468,7 +4468,7 @@ impl ::core::fmt::Debug for RmonTP64 {
    }
 }
 #[doc="Tx 65- to 127-byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP65to127(pub u32);
 impl RmonTP65to127 {
 #[doc="Packet count"]
@@ -4499,7 +4499,7 @@ impl ::core::fmt::Debug for RmonTP65to127 {
    }
 }
 #[doc="Tx 128- to 255-byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP128to255(pub u32);
 impl RmonTP128to255 {
 #[doc="Packet count"]
@@ -4530,7 +4530,7 @@ impl ::core::fmt::Debug for RmonTP128to255 {
    }
 }
 #[doc="Tx 256- to 511-byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP256to511(pub u32);
 impl RmonTP256to511 {
 #[doc="Packet count"]
@@ -4561,7 +4561,7 @@ impl ::core::fmt::Debug for RmonTP256to511 {
    }
 }
 #[doc="Tx 512- to 1023-byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP512to1023(pub u32);
 impl RmonTP512to1023 {
 #[doc="Packet count"]
@@ -4592,7 +4592,7 @@ impl ::core::fmt::Debug for RmonTP512to1023 {
    }
 }
 #[doc="Tx 1024- to 2047-byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTP1024to2047(pub u32);
 impl RmonTP1024to2047 {
 #[doc="Packet count"]
@@ -4623,7 +4623,7 @@ impl ::core::fmt::Debug for RmonTP1024to2047 {
    }
 }
 #[doc="Tx Packets Greater Than 2048 Bytes Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTPGte2048(pub u32);
 impl RmonTPGte2048 {
 #[doc="Packet count"]
@@ -4654,7 +4654,7 @@ impl ::core::fmt::Debug for RmonTPGte2048 {
    }
 }
 #[doc="Tx Octets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonTOctets(pub u32);
 impl RmonTOctets {
 #[doc="Octet count"]
@@ -4684,7 +4684,7 @@ impl ::core::fmt::Debug for RmonTOctets {
    }
 }
 #[doc="Frames Transmitted OK Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTFrameOk(pub u32);
 impl IeeeTFrameOk {
 #[doc="Frame count"]
@@ -4715,7 +4715,7 @@ impl ::core::fmt::Debug for IeeeTFrameOk {
    }
 }
 #[doc="Frames Transmitted with Single Collision Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeT1col(pub u32);
 impl IeeeT1col {
 #[doc="Frame count"]
@@ -4746,7 +4746,7 @@ impl ::core::fmt::Debug for IeeeT1col {
    }
 }
 #[doc="Frames Transmitted with Multiple Collisions Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTMcol(pub u32);
 impl IeeeTMcol {
 #[doc="Frame count"]
@@ -4777,7 +4777,7 @@ impl ::core::fmt::Debug for IeeeTMcol {
    }
 }
 #[doc="Frames Transmitted after Deferral Delay Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTDef(pub u32);
 impl IeeeTDef {
 #[doc="Frame count"]
@@ -4808,7 +4808,7 @@ impl ::core::fmt::Debug for IeeeTDef {
    }
 }
 #[doc="Frames Transmitted with Late Collision Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTLcol(pub u32);
 impl IeeeTLcol {
 #[doc="Frame count"]
@@ -4839,7 +4839,7 @@ impl ::core::fmt::Debug for IeeeTLcol {
    }
 }
 #[doc="Frames Transmitted with Excessive Collisions Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTExcol(pub u32);
 impl IeeeTExcol {
 #[doc="Frame count"]
@@ -4870,7 +4870,7 @@ impl ::core::fmt::Debug for IeeeTExcol {
    }
 }
 #[doc="Frames Transmitted with Tx FIFO Underrun Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTMacerr(pub u32);
 impl IeeeTMacerr {
 #[doc="Frame count"]
@@ -4901,7 +4901,7 @@ impl ::core::fmt::Debug for IeeeTMacerr {
    }
 }
 #[doc="Frames Transmitted with Carrier Sense Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTCserr(pub u32);
 impl IeeeTCserr {
 #[doc="Frame count"]
@@ -4932,7 +4932,7 @@ impl ::core::fmt::Debug for IeeeTCserr {
    }
 }
 #[doc="Flow Control Pause Frames Transmitted Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTFdxfc(pub u32);
 impl IeeeTFdxfc {
 #[doc="Frame count"]
@@ -4963,7 +4963,7 @@ impl ::core::fmt::Debug for IeeeTFdxfc {
    }
 }
 #[doc="Octet Count for Frames Transmitted w/o Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeTOctetsOk(pub u32);
 impl IeeeTOctetsOk {
 #[doc="Octet count"]
@@ -4993,7 +4993,7 @@ impl ::core::fmt::Debug for IeeeTOctetsOk {
    }
 }
 #[doc="Rx Packet Count Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRPackets(pub u32);
 impl RmonRPackets {
 #[doc="Packet count"]
@@ -5024,7 +5024,7 @@ impl ::core::fmt::Debug for RmonRPackets {
    }
 }
 #[doc="Rx Broadcast Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRBcPkt(pub u32);
 impl RmonRBcPkt {
 #[doc="Packet count"]
@@ -5055,7 +5055,7 @@ impl ::core::fmt::Debug for RmonRBcPkt {
    }
 }
 #[doc="Rx Multicast Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRMcPkt(pub u32);
 impl RmonRMcPkt {
 #[doc="Packet count"]
@@ -5086,7 +5086,7 @@ impl ::core::fmt::Debug for RmonRMcPkt {
    }
 }
 #[doc="Rx Packets with CRC/Align Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRCrcAlign(pub u32);
 impl RmonRCrcAlign {
 #[doc="Packet count"]
@@ -5117,7 +5117,7 @@ impl ::core::fmt::Debug for RmonRCrcAlign {
    }
 }
 #[doc="Rx Packets with Less Than 64 Bytes and Good CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRUndersize(pub u32);
 impl RmonRUndersize {
 #[doc="Packet count"]
@@ -5148,7 +5148,7 @@ impl ::core::fmt::Debug for RmonRUndersize {
    }
 }
 #[doc="Rx Packets Greater Than MAX_FL and Good CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonROversize(pub u32);
 impl RmonROversize {
 #[doc="Packet count"]
@@ -5179,7 +5179,7 @@ impl ::core::fmt::Debug for RmonROversize {
    }
 }
 #[doc="Rx Packets Less Than 64 Bytes and Bad CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRFrag(pub u32);
 impl RmonRFrag {
 #[doc="Packet count"]
@@ -5210,7 +5210,7 @@ impl ::core::fmt::Debug for RmonRFrag {
    }
 }
 #[doc="Rx Packets Greater Than MAX_FL Bytes and Bad CRC Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRJab(pub u32);
 impl RmonRJab {
 #[doc="Packet count"]
@@ -5241,7 +5241,7 @@ impl ::core::fmt::Debug for RmonRJab {
    }
 }
 #[doc="Rx 64-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP64(pub u32);
 impl RmonRP64 {
 #[doc="Packet count"]
@@ -5272,7 +5272,7 @@ impl ::core::fmt::Debug for RmonRP64 {
    }
 }
 #[doc="Rx 65- to 127-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP65to127(pub u32);
 impl RmonRP65to127 {
 #[doc="Packet count"]
@@ -5303,7 +5303,7 @@ impl ::core::fmt::Debug for RmonRP65to127 {
    }
 }
 #[doc="Rx 128- to 255-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP128to255(pub u32);
 impl RmonRP128to255 {
 #[doc="Packet count"]
@@ -5334,7 +5334,7 @@ impl ::core::fmt::Debug for RmonRP128to255 {
    }
 }
 #[doc="Rx 256- to 511-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP256to511(pub u32);
 impl RmonRP256to511 {
 #[doc="Packet count"]
@@ -5365,7 +5365,7 @@ impl ::core::fmt::Debug for RmonRP256to511 {
    }
 }
 #[doc="Rx 512- to 1023-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP512to1023(pub u32);
 impl RmonRP512to1023 {
 #[doc="Packet count"]
@@ -5396,7 +5396,7 @@ impl ::core::fmt::Debug for RmonRP512to1023 {
    }
 }
 #[doc="Rx 1024- to 2047-Byte Packets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRP1024to2047(pub u32);
 impl RmonRP1024to2047 {
 #[doc="Packet count"]
@@ -5427,7 +5427,7 @@ impl ::core::fmt::Debug for RmonRP1024to2047 {
    }
 }
 #[doc="Rx Packets Greater than 2048 Bytes Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonRPGte2048(pub u32);
 impl RmonRPGte2048 {
 #[doc="Packet count"]
@@ -5458,7 +5458,7 @@ impl ::core::fmt::Debug for RmonRPGte2048 {
    }
 }
 #[doc="Rx Octets Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct RmonROctets(pub u32);
 impl RmonROctets {
 #[doc="Octet count"]
@@ -5488,7 +5488,7 @@ impl ::core::fmt::Debug for RmonROctets {
    }
 }
 #[doc="Frames not Counted Correctly Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRDrop(pub u32);
 impl IeeeRDrop {
 #[doc="Frame count"]
@@ -5519,7 +5519,7 @@ impl ::core::fmt::Debug for IeeeRDrop {
    }
 }
 #[doc="Frames Received OK Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRFrameOk(pub u32);
 impl IeeeRFrameOk {
 #[doc="Frame count"]
@@ -5550,7 +5550,7 @@ impl ::core::fmt::Debug for IeeeRFrameOk {
    }
 }
 #[doc="Frames Received with CRC Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRCrc(pub u32);
 impl IeeeRCrc {
 #[doc="Frame count"]
@@ -5581,7 +5581,7 @@ impl ::core::fmt::Debug for IeeeRCrc {
    }
 }
 #[doc="Frames Received with Alignment Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRAlign(pub u32);
 impl IeeeRAlign {
 #[doc="Frame count"]
@@ -5612,7 +5612,7 @@ impl ::core::fmt::Debug for IeeeRAlign {
    }
 }
 #[doc="Receive FIFO Overflow Count Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRMacerr(pub u32);
 impl IeeeRMacerr {
 #[doc="Count"]
@@ -5643,7 +5643,7 @@ impl ::core::fmt::Debug for IeeeRMacerr {
    }
 }
 #[doc="Flow Control Pause Frames Received Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeRFdxfc(pub u32);
 impl IeeeRFdxfc {
 #[doc="Pause frame count"]
@@ -5674,7 +5674,7 @@ impl ::core::fmt::Debug for IeeeRFdxfc {
    }
 }
 #[doc="Octet Count for Frames Received without Error Statistic Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct IeeeROctetsOk(pub u32);
 impl IeeeROctetsOk {
 #[doc="Octet count"]
@@ -5704,7 +5704,7 @@ impl ::core::fmt::Debug for IeeeROctetsOk {
    }
 }
 #[doc="Adjustable Timer Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atcr(pub u32);
 impl Atcr {
 #[doc="Enable Timer"]
@@ -5833,7 +5833,7 @@ impl ::core::fmt::Debug for Atcr {
    }
 }
 #[doc="Timer Value Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atvr(pub u32);
 impl Atvr {
 #[doc="A write sets the timer"]
@@ -5863,7 +5863,7 @@ impl ::core::fmt::Debug for Atvr {
    }
 }
 #[doc="Timer Offset Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atoff(pub u32);
 impl Atoff {
 #[doc="Offset value for one-shot event generation"]
@@ -5893,7 +5893,7 @@ impl ::core::fmt::Debug for Atoff {
    }
 }
 #[doc="Timer Period Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atper(pub u32);
 impl Atper {
 #[doc="Value for generating periodic events"]
@@ -5923,7 +5923,7 @@ impl ::core::fmt::Debug for Atper {
    }
 }
 #[doc="Timer Correction Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atcor(pub u32);
 impl Atcor {
 #[doc="Correction Counter Wrap-Around Value"]
@@ -5954,7 +5954,7 @@ impl ::core::fmt::Debug for Atcor {
    }
 }
 #[doc="Time-Stamping Clock Period Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atinc(pub u32);
 impl Atinc {
 #[doc="Clock Period Of The Timestamping Clock (ts_clk) In Nanoseconds"]
@@ -5999,7 +5999,7 @@ impl ::core::fmt::Debug for Atinc {
    }
 }
 #[doc="Timestamp of Last Transmitted Frame"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Atstmp(pub u32);
 impl Atstmp {
 #[doc="Timestamp of the last frame transmitted by the core that had TxBD[TS] set"]
@@ -6029,7 +6029,7 @@ impl ::core::fmt::Debug for Atstmp {
    }
 }
 #[doc="Timer Global Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tgsr(pub u32);
 impl Tgsr {
 #[doc="Copy Of Timer Flag For Channel 0"]
@@ -6102,7 +6102,7 @@ impl ::core::fmt::Debug for Tgsr {
    }
 }
 #[doc="Timer Control Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tcsr(pub u32);
 impl Tcsr {
 #[doc="Timer DMA Request Enable"]
@@ -6175,7 +6175,7 @@ impl ::core::fmt::Debug for Tcsr {
    }
 }
 #[doc="Timer Compare Capture Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tccr(pub u32);
 impl Tccr {
 #[doc="Timer Capture Compare"]

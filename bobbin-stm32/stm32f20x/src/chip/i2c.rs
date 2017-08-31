@@ -319,7 +319,7 @@ impl I2cPeriph {
 }
 
 #[doc="Control register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
 #[doc="Software reset"]
@@ -532,7 +532,7 @@ impl ::core::fmt::Debug for Cr1 {
    }
 }
 #[doc="Control register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr2(pub u32);
 impl Cr2 {
 #[doc="DMA last transfer"]
@@ -633,7 +633,7 @@ impl ::core::fmt::Debug for Cr2 {
    }
 }
 #[doc="Own address register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Oar1(pub u32);
 impl Oar1 {
 #[doc="Addressing mode (slave mode)"]
@@ -706,7 +706,7 @@ impl ::core::fmt::Debug for Oar1 {
    }
 }
 #[doc="Own address register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Oar2(pub u32);
 impl Oar2 {
 #[doc="Interface address"]
@@ -751,7 +751,7 @@ impl ::core::fmt::Debug for Oar2 {
    }
 }
 #[doc="Data register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
 #[doc="8-bit data register"]
@@ -782,7 +782,7 @@ impl ::core::fmt::Debug for Dr {
    }
 }
 #[doc="Status register 1"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr1(pub u32);
 impl Sr1 {
 #[doc="SMBus alert"]
@@ -995,7 +995,7 @@ impl ::core::fmt::Debug for Sr1 {
    }
 }
 #[doc="Status register 2"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr2(pub u32);
 impl Sr2 {
 #[doc="acket error checking register"]
@@ -1124,7 +1124,7 @@ impl ::core::fmt::Debug for Sr2 {
    }
 }
 #[doc="Clock control register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
 #[doc="I2C master mode selection"]
@@ -1183,7 +1183,7 @@ impl ::core::fmt::Debug for Ccr {
    }
 }
 #[doc="TRISE register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Trise(pub u32);
 impl Trise {
 #[doc="Maximum rise time in Fast/Standard mode (Master mode)"]
@@ -1214,7 +1214,7 @@ impl ::core::fmt::Debug for Trise {
    }
 }
 #[doc="I2C FLTR register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fltr(pub u32);
 impl Fltr {
 #[doc="Digital noise filter"]

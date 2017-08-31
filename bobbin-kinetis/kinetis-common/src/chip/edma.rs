@@ -1008,7 +1008,7 @@ impl EdmaPeriph {
 }
 
 #[doc="Control Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
 #[doc="Enable Debug"]
@@ -1137,7 +1137,7 @@ impl ::core::fmt::Debug for Cr {
    }
 }
 #[doc="Error Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Es(pub u32);
 impl Es {
 #[doc="Destination Bus Error"]
@@ -1322,7 +1322,7 @@ impl ::core::fmt::Debug for Es {
    }
 }
 #[doc="Enable Request Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Erq(pub u32);
 impl Erq {
 #[doc="Enable DMA Request n"]
@@ -1374,7 +1374,7 @@ impl ::core::fmt::Debug for Erq {
    }
 }
 #[doc="Enable Error Interrupt Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Eei(pub u32);
 impl Eei {
 #[doc="Enable Error Interrupt No"]
@@ -1426,7 +1426,7 @@ impl ::core::fmt::Debug for Eei {
    }
 }
 #[doc="Clear Enable Error Interrupt Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ceei(pub u8);
 impl Ceei {
 #[doc="Clear Enable Error Interrupt"]
@@ -1485,7 +1485,7 @@ impl ::core::fmt::Debug for Ceei {
    }
 }
 #[doc="Set Enable Error Interrupt Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Seei(pub u8);
 impl Seei {
 #[doc="Set Enable Error Interrupt"]
@@ -1544,7 +1544,7 @@ impl ::core::fmt::Debug for Seei {
    }
 }
 #[doc="Clear Enable Request Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cerq(pub u8);
 impl Cerq {
 #[doc="Clear Enable Request"]
@@ -1603,7 +1603,7 @@ impl ::core::fmt::Debug for Cerq {
    }
 }
 #[doc="Set Enable Request Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Serq(pub u8);
 impl Serq {
 #[doc="Set enable request"]
@@ -1662,7 +1662,7 @@ impl ::core::fmt::Debug for Serq {
    }
 }
 #[doc="Clear DONE Status Bit Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cdne(pub u8);
 impl Cdne {
 #[doc="Clear DONE Bit"]
@@ -1721,7 +1721,7 @@ impl ::core::fmt::Debug for Cdne {
    }
 }
 #[doc="Set START Bit Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ssrt(pub u8);
 impl Ssrt {
 #[doc="Set START Bit"]
@@ -1780,7 +1780,7 @@ impl ::core::fmt::Debug for Ssrt {
    }
 }
 #[doc="Clear Error Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cerr(pub u8);
 impl Cerr {
 #[doc="Clear Error Indicator"]
@@ -1839,7 +1839,7 @@ impl ::core::fmt::Debug for Cerr {
    }
 }
 #[doc="Clear Interrupt Request Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cint(pub u8);
 impl Cint {
 #[doc="Clear Interrupt Request"]
@@ -1898,7 +1898,7 @@ impl ::core::fmt::Debug for Cint {
    }
 }
 #[doc="Interrupt Request Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Int(pub u32);
 impl Int {
 #[doc="Interrupt Request n"]
@@ -1950,7 +1950,7 @@ impl ::core::fmt::Debug for Int {
    }
 }
 #[doc="Error Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Err(pub u32);
 impl Err {
 #[doc="Error In Channel n"]
@@ -2002,7 +2002,7 @@ impl ::core::fmt::Debug for Err {
    }
 }
 #[doc="Hardware Request Status Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Hrs(pub u32);
 impl Hrs {
 #[doc="Hardware Request Status Channel n"]
@@ -2054,7 +2054,7 @@ impl ::core::fmt::Debug for Hrs {
    }
 }
 #[doc="Channel n Priority Register"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dchpri(pub u8);
 impl Dchpri {
 #[doc="Channel n Arbitration Priority"]
@@ -2113,7 +2113,7 @@ impl ::core::fmt::Debug for Dchpri {
    }
 }
 #[doc="TCD Source Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdSaddr(pub u32);
 impl TcdSaddr {
 #[doc="Source Address"]
@@ -2143,7 +2143,7 @@ impl ::core::fmt::Debug for TcdSaddr {
    }
 }
 #[doc="TCD Signed Source Address Offset"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdSoff(pub u16);
 impl TcdSoff {
 #[doc="Source address signed offset"]
@@ -2174,7 +2174,7 @@ impl ::core::fmt::Debug for TcdSoff {
    }
 }
 #[doc="TCD Transfer Attributes"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdAttr(pub u16);
 impl TcdAttr {
 #[doc="Destination Data Transfer Size"]
@@ -2247,7 +2247,7 @@ impl ::core::fmt::Debug for TcdAttr {
    }
 }
 #[doc="TCD Minor Byte Count (Minor Loop Disabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdNbytesMlno(pub u32);
 impl TcdNbytesMlno {
 #[doc="Minor Byte Transfer Count"]
@@ -2277,7 +2277,7 @@ impl ::core::fmt::Debug for TcdNbytesMlno {
    }
 }
 #[doc="TCD Signed Minor Loop Offset (Minor Loop Enabled and Offset Disabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdNbytesMloffno(pub u32);
 impl TcdNbytesMloffno {
 #[doc="Minor Byte Transfer Count"]
@@ -2336,7 +2336,7 @@ impl ::core::fmt::Debug for TcdNbytesMloffno {
    }
 }
 #[doc="TCD Signed Minor Loop Offset (Minor Loop and Offset Enabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdNbytesMloffyes(pub u32);
 impl TcdNbytesMloffyes {
 #[doc="Minor Byte Transfer Count"]
@@ -2409,7 +2409,7 @@ impl ::core::fmt::Debug for TcdNbytesMloffyes {
    }
 }
 #[doc="TCD Last Source Address Adjustment"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdSlast(pub u32);
 impl TcdSlast {
 #[doc="Last source Address Adjustment"]
@@ -2439,7 +2439,7 @@ impl ::core::fmt::Debug for TcdSlast {
    }
 }
 #[doc="TCD Destination Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdDaddr(pub u32);
 impl TcdDaddr {
 #[doc="Destination Address"]
@@ -2469,7 +2469,7 @@ impl ::core::fmt::Debug for TcdDaddr {
    }
 }
 #[doc="TCD Signed Destination Address Offset"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdDoff(pub u16);
 impl TcdDoff {
 #[doc="Destination Address Signed offset"]
@@ -2500,7 +2500,7 @@ impl ::core::fmt::Debug for TcdDoff {
    }
 }
 #[doc="TCD Current Minor Loop Link, Major Loop Count (Channel Linking Disabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdCiterElinkno(pub u16);
 impl TcdCiterElinkno {
 #[doc="Current Major Iteration Count"]
@@ -2545,7 +2545,7 @@ impl ::core::fmt::Debug for TcdCiterElinkno {
    }
 }
 #[doc="TCD Current Minor Loop Link, Major Loop Count (Channel Linking Enabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdCiterElinkyes(pub u16);
 impl TcdCiterElinkyes {
 #[doc="Current Major Iteration Count"]
@@ -2604,7 +2604,7 @@ impl ::core::fmt::Debug for TcdCiterElinkyes {
    }
 }
 #[doc="TCD Last Destination Address Adjustment/Scatter Gather Address"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdDlastsga(pub u32);
 impl TcdDlastsga {
 #[doc="Destination last address adjustment or the memory address for the next transfer control descriptor to be loaded into this channel (scatter/gather)"]
@@ -2634,7 +2634,7 @@ impl ::core::fmt::Debug for TcdDlastsga {
    }
 }
 #[doc="TCD Control and Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdCsr(pub u16);
 impl TcdCsr {
 #[doc="Channel Start"]
@@ -2791,7 +2791,7 @@ impl ::core::fmt::Debug for TcdCsr {
    }
 }
 #[doc="TCD Beginning Minor Loop Link, Major Loop Count (Channel Linking Disabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdBiterElinkno(pub u16);
 impl TcdBiterElinkno {
 #[doc="Starting Major Iteration Count"]
@@ -2836,7 +2836,7 @@ impl ::core::fmt::Debug for TcdBiterElinkno {
    }
 }
 #[doc="TCD Beginning Minor Loop Link, Major Loop Count (Channel Linking Enabled)"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct TcdBiterElinkyes(pub u16);
 impl TcdBiterElinkyes {
 #[doc="Starting Major Iteration Count"]

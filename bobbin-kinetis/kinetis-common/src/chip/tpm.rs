@@ -254,7 +254,7 @@ impl TpmPeriph {
 }
 
 #[doc="Status and Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc(pub u32);
 impl Sc {
 #[doc="Prescale Factor Selection"]
@@ -355,7 +355,7 @@ impl ::core::fmt::Debug for Sc {
    }
 }
 #[doc="Counter"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
 #[doc="Counter value"]
@@ -386,7 +386,7 @@ impl ::core::fmt::Debug for Cnt {
    }
 }
 #[doc="Modulo"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mod(pub u32);
 impl Mod {
 #[doc="Modulo value"]
@@ -417,7 +417,7 @@ impl ::core::fmt::Debug for Mod {
    }
 }
 #[doc="Channel (n) Status and Control"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csc(pub u32);
 impl Csc {
 #[doc="DMA Enable"]
@@ -532,7 +532,7 @@ impl ::core::fmt::Debug for Csc {
    }
 }
 #[doc="Channel (n) Value"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cv(pub u32);
 impl Cv {
 #[doc="Channel Value"]
@@ -563,7 +563,7 @@ impl ::core::fmt::Debug for Cv {
    }
 }
 #[doc="Capture and Compare Status"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u32);
 impl Status {
 #[doc="Channel n Flag"]
@@ -605,7 +605,7 @@ impl ::core::fmt::Debug for Status {
    }
 }
 #[doc="Configuration"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Conf(pub u32);
 impl Conf {
 #[doc="Doze Enable"]
