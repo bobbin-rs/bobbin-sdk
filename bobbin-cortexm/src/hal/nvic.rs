@@ -31,22 +31,22 @@ pub fn set_pending(irq: usize, value: bool) {
     }        
 }
 
-/// `true` if IRQ `irq` is active.
+/// Returns `true` if IRQ `irq` is active.
 pub fn active(irq: usize) -> bool {
     NVIC.iabr((irq >> 5)).active(irq & 011111) != 0
 }
 
 /// Returns the priority level of IRQ `irq`.
 pub fn priority(irq: usize) -> u8 {
-    NVIC.ipr((irq >> 4)).pri(irq & 0b1111).into()
+    NVIC.ipr((irq >> 4)).pri(irq & 0b1111).value()
 }
 
 /// Set the priority level of IRQ `irq`.
 pub fn set_priority(irq: usize, value: u8) {
-    NVIC.with_ipr((irq >> 4), |r| r.set_pri(irq & 0b1111, value as u32));
+    NVIC.with_ipr((irq >> 4), |r| r.set_pri(irq & 0b1111, value));
 }
 
 /// Trigger IRQ `irq`.
 pub fn trigger_interrupt(irq: usize) {
-    NVIC.set_stir(|r| r.set_intid(irq as u32));
+    NVIC.set_stir(|r| r.set_intid(irq));
 }
