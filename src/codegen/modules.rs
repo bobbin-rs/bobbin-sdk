@@ -138,6 +138,7 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
+    try!(writeln!(out,"#[cfg(target_os=\"none\")]"));
     try!(writeln!(out,"#[link_section = \".vector.exceptions\"]"));
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static EXCEPTION_HANDLERS: [Option<Handler>; {}] = [", exceptions.len()));
@@ -151,12 +152,32 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out,"];"));
     try!(writeln!(out,""));
    
-    
 
+    try!(writeln!(out,"#[cfg(not(target_os=\"none\"))]"));
+    try!(writeln!(out,"#[no_mangle]"));
+    try!(writeln!(out,"pub static EXCEPTION_HANDLERS: [Option<Handler>; {}] = [", exceptions.len()));
+    for e in exceptions.iter() {
+        if e.name != "" {
+            try!(writeln!(out, "   {:30} // {}", format!("Some(_{}),", e.name), e.description.as_ref().unwrap()));
+        } else {
+            try!(writeln!(out, "   None,"));
+        }        
+    }
+    try!(writeln!(out,"];"));
+    try!(writeln!(out,""));
+
+
+    try!(writeln!(out,"#[cfg(target_os=\"none\")]"));
     try!(writeln!(out,"#[link_section = \".bss.r_exceptions\"]"));
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static mut R_EXCEPTION_HANDLERS: [Option<Handler>; {}] = [None; {}];", exceptions.len(), exceptions.len()));
     try!(writeln!(out,""));    
+
+    try!(writeln!(out,"#[cfg(not(target_os=\"none\"))]"));
+    try!(writeln!(out,"#[no_mangle]"));
+    try!(writeln!(out,"pub static mut R_EXCEPTION_HANDLERS: [Option<Handler>; {}] = [None; {}];", exceptions.len(), exceptions.len()));
+    try!(writeln!(out,""));    
+
 
     try!(writeln!(out, "extern \"C\" {{"));
     for e in exceptions.iter() {
