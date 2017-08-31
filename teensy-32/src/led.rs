@@ -1,10 +1,11 @@
-use hal::port::*;
-use hal::gpio::{GpioExt, DigitalOutput};
+use hal::gpio::*;
+pub use common::digital::DigitalOutput;
 
-pub const LED0: Ptc5 = PTC5; // Red
+pub const LED0: Pc5 = PC5; // Red
 
 pub fn init() {
-    LED0.port().sim_enable();
-    LED0.gpio_pin().set_dir_output().set_output(true);
-    LED0.set_mux_gpio();
+    LED0.port_pin().port().sim_enable();
+    LED0.port_pin().set_mux_gpio();
+    LED0.set_dir_output().set_output(true);
+    
 }

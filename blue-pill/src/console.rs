@@ -19,7 +19,7 @@ pub fn init() {
     AFIO.rcc_enable();
     AFIO.with_mapr(|r| r.set_usart1_remap(1));
 
-    USART_TX.mode_altfn();
+    USART_TX.mode_alt_fn();
     USART_RX.mode_input();
 
     // Set Baud and Enable USART

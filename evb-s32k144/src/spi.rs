@@ -13,10 +13,10 @@ pub fn lpspi0_unchecked() -> LpspiDevice {
 }
 
 pub fn lpspi1() -> LpspiDevice {
-    let _sck = pin::ptb14().into_altfn(3);
-    let _miso = pin::ptb15().into_altfn(3);
-    let _mosi = pin::ptb16().into_altfn(3);
-    let _cs3 = pin::ptb17().into_altfn(3);    
+    let _sck = pin::ptb14().into_alt_fn(3);
+    let _miso = pin::ptb15().into_alt_fn(3);
+    let _mosi = pin::ptb16().into_alt_fn(3);
+    let _cs3 = pin::ptb17().into_alt_fn(3);    
     pcc::set_lpspi_enabled(LPSPI1, true, pcc::Source::SPLLDIV2);
     lpspi::device(LPSPI1)
 }

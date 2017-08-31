@@ -1,4 +1,5 @@
 use hal::gpio::*;
+use common::Pin;
 
 pub const BTN0: Pa12 = PA12;
 

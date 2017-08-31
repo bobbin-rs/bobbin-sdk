@@ -7,8 +7,8 @@ use pin;
 pub fn init() -> uart::UartDevice {
     sysctl::set_uart_enabled(UART0, true);
 
-    pin::pa0().into_altfn(1);
-    pin::pa1().into_altfn(1);
+    pin::pa0().into_alt_fn(1);
+    pin::pa1().into_alt_fn(1);
 
     let u = uart::device(UART0);
     u.enable(115_200);

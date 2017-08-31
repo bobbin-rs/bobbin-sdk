@@ -1,4 +1,5 @@
 use hal::gpio::*;
+use common::Pin;
 
 pub const LED0: Pb3 = PB3;
 

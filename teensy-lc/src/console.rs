@@ -2,8 +2,8 @@
 // sim::set_uart0_enabled(true);  
 // sim::set_uart0_src(0x1);  
 
-// let tx = tx.into_altfn(2);
-// let rx = rx.into_altfn(2);
+// let tx = tx.into_alt_fn(2);
+// let rx = rx.into_alt_fn(2);
 // let u = uart0::device(UART0, tx, rx, 104);    
 
 use core::fmt::{self, Write, Arguments};
@@ -16,8 +16,6 @@ pub const UART_TX: Pta2 = PTA2;
 pub const UART_BD: u16 = 104;
 
 pub fn init() {
-    use hal::uart0::Uart0Ext;
-
     // Enable Clocks
     UART.sim_enable();
     UART.sim_set_src(0x1);

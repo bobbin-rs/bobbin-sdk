@@ -4,7 +4,8 @@
 #[macro_use]
 extern crate evb_s32k144 as board;
 
-use board::hal::dma::*;
+use board::common::Channel;
+use board::hal::edma::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

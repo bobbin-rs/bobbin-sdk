@@ -20,9 +20,6 @@ pub mod lang_items;
 pub mod clock;
 pub mod led;
 pub mod btn;
-
-// pub mod led;
-// pub mod sw;
 pub mod pin;
 pub mod tim;
 // pub mod uart;

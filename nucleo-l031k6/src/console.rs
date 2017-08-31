@@ -3,7 +3,7 @@ use hal::clock::Clock;
 use clock::CLK;
 use hal::gpio::*;
 use hal::usart::*;
-
+use common::Pin;
 pub const USART: Usart2 = USART2;
 pub const USART_TX: Pa2 = PA2;
 pub const USART_RX: Pa15 = PA15;
