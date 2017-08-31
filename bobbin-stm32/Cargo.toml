@@ -3,9 +3,9 @@ members = [
     "stm32-common", 
     "stm32f10x", 
     "stm32f20x", 
-    "stm32f3023x",
-    "stm32f303x", 
     "stm32f40x", 
     "stm32f42x", 
+    "stm32f302x",
+    "stm32f303x", 
     "stm32l031x",
     ]
