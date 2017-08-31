@@ -245,7 +245,7 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));    
 
-    try!(writeln!(out,"#[link_section = \".vector.interrupts\"]"));
+    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector.interrupts\")]"));
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static mut INTERRUPT_HANDLERS: [Option<Handler>; {}] = [", interrupts.len()));
 
@@ -261,7 +261,7 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
     try!(writeln!(out,"];"));
     try!(writeln!(out,""));
     
-    try!(writeln!(out,"#[link_section = \".bss.r_interrupts\"]"));
+    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".bss.r_interrupts\")]"));    
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static mut R_INTERRUPT_HANDLERS: [Option<Handler>; {}] = [None; {}];",
          interrupts.len(), interrupts.len()));
