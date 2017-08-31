@@ -236,78 +236,6 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         }
     }
     try!(writeln!(out, ""));
-
-
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         for irq in p.interrupts.iter() {
-    //             let irq_type = format!("Irq{}", to_camel(&irq.name));
-    //             let irq_id = format!("{}Id", to_camel(&irq.name));
-
-    //             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-    //             try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
-    //                 irq.name.to_uppercase(), 
-    //                 irq_type,
-    //                 irq.value,
-    //                 irq_id,                
-    //             ));
-    //         }
-    //         for ch in p.channels.iter() {
-    //             for irq in ch.interrupts.iter() {
-    //                 let irq_type = format!("Irq{}", to_camel(&irq.name));
-    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
-
-    //                 let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-    //                 try!(writeln!(out, "pub const IRQ_{}: {} = Irq({}, {} {{}});", 
-    //                     irq.name.to_uppercase(), 
-    //                     irq_type,
-    //                     irq.value,
-    //                     irq_id,                
-    //                 ));
-    //             }                
-    //         }
-
-    //     }
-    // }
-    // try!(writeln!(out, ""));
-
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         for irq in p.interrupts.iter() {
-    //             let irq_type = format!("Irq{}", to_camel(&irq.name));
-    //             let irq_id = format!("{}Id", to_camel(&irq.name));
-    //             try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
-    //         }
-    //         for ch in p.channels.iter() {
-    //             for irq in ch.interrupts.iter() {
-    //                 let irq_type = format!("Irq{}", to_camel(&irq.name));
-    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
-    //                 try!(writeln!(out, "pub type {} = Irq<{}>;", irq_type, irq_id));
-    //             }                
-    //         }
-    //     }
-    // }
-    
-    // try!(writeln!(out, ""));    
-
-    // for pg in d.peripheral_groups.iter() {
-    //     for p in pg.peripherals.iter() {
-    //         for irq in p.interrupts.iter() {
-    //             let irq_id = format!("{}Id", to_camel(&irq.name));
-    //             try!(writeln!(out, "#[doc(hidden)]"));
-    //             try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
-    //         }
-    //         for ch in p.channels.iter() {
-    //             for irq in ch.interrupts.iter() {
-    //                 let irq_id = format!("{}Id", to_camel(&irq.name));
-    //                 try!(writeln!(out, "#[doc(hidden)]"));
-    //                 try!(writeln!(out, "pub struct {} {{}} // IRQ {}", irq_id, irq.value));
-    //             }                
-    //         }
-    //     }
-    // }
-    
-    try!(writeln!(out, ""));    
     
     // TODO: Assert that NVIC is disabled before setting handler to None
     try!(writeln!(out, "pub fn handler(index: usize) -> Option<Handler> {{"));
@@ -395,13 +323,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                 let s_const = s.name.to_uppercase();
                 let s_type = to_camel(&s.name);
                 if !signals.contains(&s_type) {
-                    // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                     try!(writeln!(out, "pub struct {} {{}}", s_type));
-                    // for st in s.types.iter() {
-                    //     let st_type = to_camel(&st);
-                    //     try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
-                    // }                
-                    // try!(writeln!(out, ""));
                     signals.insert(s_type);
                 }
             }
@@ -411,13 +333,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     let s_const = s.name.to_uppercase();
                     let s_type = to_camel(&s.name);
                     if !signals.contains(&s_type) {
-                        // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
-                        // for st in s.types.iter() {
-                        //     let st_type = to_camel(&st);
-                        //     try!(writeln!(out, "impl {} for {} {{}}", st_type, s_type));
-                        // }                
-                        // try!(writeln!(out, ""));
                         signals.insert(s_type);
                     }
                 }                
@@ -431,9 +347,7 @@ pub fn gen_signals<W: Write>(cfg: &Config, out: &mut W, d: &Device) -> Result<()
                     let s_const = af.signal.to_uppercase();
                     let s_type = to_camel(&af.signal);
                     if !signals.contains(&s_type) {
-                        // try!(writeln!(out, "pub const {}: {} = {} {{}};", s_const, s_type, s_type));
                         try!(writeln!(out, "pub struct {} {{}}", s_type));
-                        // try!(writeln!(out, ""));
                         signals.insert(s_type);
                     }
                 }
@@ -482,8 +396,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
         try!(writeln!(out, ""));
     }
-
-    // let mut count: usize = 0;
 
     // Generate Link Traits
     for p in pg.peripherals.iter() {
@@ -536,8 +448,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let p_name = p.name.to_uppercase();
         let p_const = format!("_{}", p_name);
         let p_type = to_camel(&p.name);
-        // let p_id = format!("{}Id", p_type);
-        // try!(writeln!(out, "pub const {}: {} = {}(0x{:08x}, {} {{}});", p_name, p_type, pg_type, p.address, p_id));
         try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x});", 
             p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address));
         
@@ -551,16 +461,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         try!(writeln!(out, ""));        
     }
 
-    // for p in pg.peripherals.iter() {
-    //     let p_type = to_camel(&p.name);
-    //     let p_id = format!("{}Id", p_type);
-    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-    //     try!(writeln!(out, "#[doc(hidden)]"));
-    //     try!(writeln!(out, "pub struct {} {{}}", p_id));
-    //     try!(writeln!(out, "pub type {} = Periph<{}>;", p_type, p_id));
-    // }
-    // try!(writeln!(out, ""));
-
     for p in pg.peripherals.iter() {
         let p_type = to_camel(&p.name);
         let p_id = format!("{}Id", p_type);
@@ -573,7 +473,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let l_getter = field_getter(&l.name);
             let pg_mod = l.peripheral_group.to_lowercase();
             let l_type = format!("super::{}::{} ", pg_mod, to_camel(&l.peripheral));
-            //let l_type = format!("::core::ops::Deref<Target=super::{}::{}Impl>", pg_mod, to_camel(&l.peripheral_group));
 
             let p_const = l.peripheral.to_uppercase();            
                   
@@ -656,33 +555,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     if pg.has_pins {
         try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
-        // try!(writeln!(out, "pub trait Pin<T> {{"));
-        // try!(writeln!(out, "   fn port(&self) -> T;"));
-        // try!(writeln!(out, "   fn index(&self) -> usize;"));
-        // try!(writeln!(out, "}}"));
-        // try!(writeln!(out, ""));
     }
-
-
-    // if pg.has_pins {
-    //     // Generate Pin Impl
-    //     try!(gen_doc(cfg, out, &format!("{} Pin", pg.name.to_uppercase())));
-    //     try!(writeln!(out, "pub struct Pin<P, T> {{ pub port: {}<T>, pub index: usize, pub id: P }}",pg_type));
-    //     try!(writeln!(out, ""));
-
-    //     try!(writeln!(out, "impl<P,T> Pin<P,T> {{"));
-    //     try!(writeln!(out, "   #[inline] pub fn port(&self) -> &Periph<T> {{ &self.port }}"));
-    //     try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
-    //     try!(writeln!(out, "}}"));
-
-    //     // Generate AltFn Trait
-
-    //     try!(writeln!(out, "pub trait AltFn<T> {{"));
-    //     try!(writeln!(out, "   fn alt_fn(&self) -> usize;"));
-    //     try!(writeln!(out, "}}"));
-    //     try!(writeln!(out, ""));
-    // }
-
 
     if pin_count > 0 {       
         for p in pg.peripherals.iter() {
@@ -707,13 +580,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     index=pin.index.unwrap(),
                 ));
 
-                // try!(writeln!(out, "pub const {}: Pin<{}, {}> = Pin {{ port: {}, index: {}, id: {} {{}} }}; ", 
-                //     pin_name, pin_id, p_id, p_name, pin.index.unwrap(), pin_id));                
-
-                // try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-                // try!(writeln!(out, "#[doc(hidden)]"));
-                // try!(writeln!(out, "pub struct {} {{}}", pin_id));
-                // try!(writeln!(out, "pub type {} = Pin<{}, {}>;", pin_type, pin_id, p_id));
                 for af in pin.altfns.iter() {
                     let s_type = format!("super::sig::{}", to_camel(&af.signal));
 
@@ -722,11 +588,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                         s_type=s_type,
                         s_index=af.index,
                     ));
-
-                    // try!(writeln!(out, "impl AltFn<super::sig::{}> for {} {{", s_type, pin_id));
-                    // try!(writeln!(out, "   #[inline] fn alt_fn(&self) -> usize {{ {} }}", af.index));
-                    // try!(writeln!(out, "}}"));
-                    // try!(writeln!(out, ""));
                 }
                 try!(writeln!(out, ""));
             }        
@@ -738,22 +599,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     if pg.has_channels {
         try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
     }
-
-
-    // if pg.has_channels {
-    //     // Generate Channel Impl
-
-    //     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-    //     try!(gen_doc(cfg, out, &format!("{} Channel", pg.name.to_uppercase())));        
-    //     try!(writeln!(out, "pub struct Channel<P, T> {{ pub periph: Periph<T>, pub index: usize, pub id: P }}"));
-    //     try!(writeln!(out, ""));
-
-    //     try!(writeln!(out, "impl<P,T> Channel<P,T> {{"));
-    //     try!(writeln!(out, "   #[inline] pub fn periph(&self) -> &Periph<T> {{ &self.periph }}"));
-    //     try!(writeln!(out, "   #[inline] pub fn index(&self) -> usize {{ self.index }}"));
-    //     try!(writeln!(out, "}}"));        
-    //     try!(writeln!(out, ""));
-    // }
 
     for p in pg.peripherals.iter() {
         let p_name = p.name.to_uppercase();
@@ -776,23 +621,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 base_periph=base_periph,
                 index=ch.index.unwrap(),
             ));            
-            // try!(writeln!(out, "channel!({ch_name}, {ch_type}, {p_name}, {p_type}, {ch_index});",
-            //     ch_name=ch_name,
-            //     ch_type=ch_type,
-            //     p_name=p_name,
-            //     p_type=p_type,
-            //     ch_index=ch.index.unwrap(),
-            // ));
-
-
-            // try!(writeln!(out, "pub const {}: Channel<{}, {}> = Channel {{ periph: {}, index: {}, id: {} {{}} }}; ", 
-            //     ch_name, ch_id, p_id, p_name, ch.index.unwrap(), ch_id));
-
-            // try!(writeln!(out, "#[derive(Clone, Copy, PartialEq)]"));
-            // try!(writeln!(out, "#[doc(hidden)]"));            
-            // try!(writeln!(out, "pub struct {} {{}}", ch_id));
-            // try!(writeln!(out, "pub type {} = Channel<{}, {}>;", ch_type, ch_id, p_id));
-            // try!(writeln!(out, ""));
         }        
     }
 
@@ -808,21 +636,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             for itype in irq.types.iter() {
                 if !interrupt_types.contains(&itype) {
                     let itype_itrait = format!("Irq{}", to_camel(itype));
-                    // let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                    // let itype_trait = format!("Handle{}", to_camel(itype));
-                    // let itype_meth = format!("handle_{}", itype.to_lowercase());
                     try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
                     try!(writeln!(out, "   fn irq_{}(&self) -> T;", itype.to_lowercase()));
                     try!(writeln!(out, "}}"));        
                     try!(writeln!(out, ""));                
-                    // try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-                    // try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
-                    // try!(writeln!(out, "}}"));        
-                    // try!(writeln!(out, ""));                
-                    // try!(writeln!(out, "pub trait {} {{", itype_trait));    
-                    // try!(writeln!(out, "   fn {}(&self);", itype_meth));
-                    // try!(writeln!(out, "}}"));
-                    // try!(writeln!(out, ""));
                     interrupt_types.insert(itype);
                 }
             }
@@ -832,21 +649,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 for itype in irq.types.iter() {
                     if !interrupt_types.contains(&itype) {
                         let itype_itrait = format!("Irq{}", to_camel(itype));
-                        // let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                        // let itype_trait = format!("Handle{}", to_camel(itype));
-                        // let itype_meth = format!("handle_{}", itype.to_lowercase());
                         try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
                         try!(writeln!(out, "   fn irq_{}(&self) -> T;", itype.to_lowercase()));
                         try!(writeln!(out, "}}"));        
                         try!(writeln!(out, ""));                
-                        // try!(writeln!(out, "pub trait {} {{", itype_rtrait));
-                        // try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a>;", itype.to_lowercase(), itype_trait));
-                        // try!(writeln!(out, "}}"));        
-                        // try!(writeln!(out, ""));                
-                        // try!(writeln!(out, "pub trait {} {{", itype_trait));    
-                        // try!(writeln!(out, "   fn {}(&self);", itype_meth));
-                        // try!(writeln!(out, "}}"));
-                        // try!(writeln!(out, ""));
                         interrupt_types.insert(itype);
                     }
                 }
@@ -862,26 +668,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                         
             for itype in irq.types.iter() {
                 let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
-                // let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                // let itype_trait = format!("Handle{}", to_camel(itype));
-                // let itype_meth = format!("handle_{}", itype.to_lowercase());
                 try!(writeln!(out, "impl {} for {} {{", itype_itrait, p_type));
                 try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
-
-                // try!(writeln!(out, "impl {} for {} {{", itype_rtrait, p_type));
-                // try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
-                // try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                // try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                // try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
-                // try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
-                // try!(writeln!(out, "       }}"));
-                // try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
-                // try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
-                // try!(writeln!(out, "   }}"));
-                // try!(writeln!(out, "}}"));
-                // try!(writeln!(out, ""));
             }
         }
         for ch in p.channels.iter() {
@@ -891,26 +681,10 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                             
                 for itype in irq.types.iter() {
                     let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
-                    // let itype_rtrait = format!("Register{}Handler", to_camel(itype));
-                    // let itype_trait = format!("Handle{}", to_camel(itype));
-                    // let itype_meth = format!("handle_{}", itype.to_lowercase());
                     try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
                     try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
                     try!(writeln!(out, "}}"));
                     try!(writeln!(out, ""));
-
-                    // try!(writeln!(out, "impl {} for {} {{", itype_rtrait, ch_type));
-                    // try!(writeln!(out, "   fn register_{}_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + {}>(&self, f: &F) -> super::irq::IrqGuard<'a> {{", itype.to_lowercase(), itype_trait));
-                    // try!(writeln!(out, "       static mut HANDLER: Option<usize> = None;"));
-                    // try!(writeln!(out, "       unsafe {{ HANDLER = Some(f as *const F as usize) }}"));
-                    // try!(writeln!(out, "       extern \"C\" fn wrapper<W: {}>() {{", itype_trait));
-                    // try!(writeln!(out, "          unsafe {{ (*(HANDLER.unwrap() as *const W)).{}() }}", itype_meth));
-                    // try!(writeln!(out, "       }}"));
-                    // try!(writeln!(out, "       super::irq::set_handler({}, Some(wrapper::<F>));", irq.value));
-                    // try!(writeln!(out, "       super::irq::IrqGuard::new({})", irq.value));
-                    // try!(writeln!(out, "   }}"));
-                    // try!(writeln!(out, "}}"));
-                    // try!(writeln!(out, ""));
                 }
             }            
         }
@@ -988,7 +762,6 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
             for link in f.links.iter() {
                 // FIXME: Should not be using peripheral size as return value
                 let pg_mod = link.peripheral_group.to_lowercase();
-                //let l_type = format!("super::{}::{}<super::{}::{}>", pg_mod, to_camel(&link.peripheral_group), pg_mod, to_camel(&link.peripheral));
                 let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
                 try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ {}.{}().{}().into() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
@@ -1048,11 +821,6 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
     try!(writeln!(out, "}}"));
 
     // Find the right place to generate the main periph trait if not already created
-
-    // if clusters.len() > 0 {
-    //     try!(writeln!(out, "pub trait {} : Base {{}} //cluster ", p_type));
-    //     try!(writeln!(out, ""));
-    // }
 
     for c in clusters.iter() {        
         let c_type = to_camel(&c.name);
@@ -1140,7 +908,6 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                // try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&mut self, index: I, value: {}) -> &mut Self {{", r_setter, i_type, r_type));
                 try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "     let index: {} = index.into();", i_type));
                 try!(writeln!(out, "     let index: usize = index.value() as usize;"));
@@ -1181,7 +948,6 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, p_type: &str, desc: &
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                // try!(writeln!(out, "   #[inline] pub fn {}(&mut self, value: {}) -> &mut Self {{", r_setter, r_type));
                 try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "      let value = f({}(0));", r_type));
                 try!(writeln!(out, "      unsafe {{"));
@@ -1534,56 +1300,4 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, acc
 
 
     Ok(())
-}
-
-pub fn gen_pins<W: Write>(cfg: &Config, out: &mut W, p_type: &str, p_name: &str, pins: &[Pin]) -> Result<()> {
-
-    for pin in pins.iter() {
-        try!(writeln!(out, "pub const {}: Pin = ({}, {});", 
-            pin.name, p_name, pin.index.unwrap()));
-
-        for af in pin.altfns.iter() {
-            let name = format!("{}_{}", pin.name, af.signal);
-            try!(writeln!(out, "pub const {}: PinFn = ({}, {}, {});", 
-                name, p_name, pin.index.unwrap(), af.index));
-        }
-        try!(writeln!(out,""));
-    }
-
-    Ok(())
-}
-#[cfg(xtest)]
-mod tests {
-    extern crate core;
-
-    #[derive(Debug, Clone, Copy)]
-    pub enum Gpio {
-        GpioA = 0x10000000,
-        GpioB = 0x10000100,
-    }
-
-    impl Gpio {
-        pub unsafe fn moder(&self) -> ModeR {
-            ModeR(core::ptr::read_volatile(((*self as usize) + 0) as *const u32))
-        }
-    }
-
-    pub struct ModeR(pub u32);
-
-    impl ModeR {
-        pub fn moder15(&self) -> u32 {
-            (self.0 >> 30) & 0b11
-        }
-
-        pub fn with_moder15<F: FnOnce(u32) -> u32>(&mut self, f: F) {
-            let tmp = self.moder15();
-            self.set_moder15(f(tmp));
-        }
-
-        pub fn set_moder15(&mut self, value: u32) {
-            assert!((value & !0b11) == 0);
-            self.0 &= !(0b11 << 30);
-            self.0 |= value << 30;
-        }
-    }
 }
