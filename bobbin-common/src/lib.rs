@@ -11,6 +11,8 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 pub mod configure;
+pub mod enabled;
+pub mod reset;
 
 #[cfg(not(target_os="none"))]
 mod vm;
