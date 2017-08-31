@@ -18,14 +18,14 @@ impl Rcc {
 #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
-         Cr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Rcc {
       let tmp = self.cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Rcc {
 #[doc="Read the PLLCFGR register."]
    #[inline] pub fn pllcfgr(&self) -> Pllcfgr { 
       unsafe {
-         Pllcfgr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Pllcfgr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PLLCFGR register."]
    #[inline] pub fn set_pllcfgr<F: FnOnce(Pllcfgr) -> Pllcfgr>(&self, f: F) -> &Self {
       let value = f(Pllcfgr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Rcc {
       let tmp = self.pllcfgr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Rcc {
 #[doc="Read the CFGR register."]
    #[inline] pub fn cfgr(&self) -> Cfgr { 
       unsafe {
-         Cfgr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cfgr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the CFGR register."]
    #[inline] pub fn set_cfgr<F: FnOnce(Cfgr) -> Cfgr>(&self, f: F) -> &Self {
       let value = f(Cfgr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Rcc {
       let tmp = self.cfgr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Rcc {
 #[doc="Read the CIR register."]
    #[inline] pub fn cir(&self) -> Cir { 
       unsafe {
-         Cir(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Cir(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the CIR register."]
    #[inline] pub fn set_cir<F: FnOnce(Cir) -> Cir>(&self, f: F) -> &Self {
       let value = f(Cir(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Rcc {
       let tmp = self.cir();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Rcc {
 #[doc="Read the AHB1RSTR register."]
    #[inline] pub fn ahb1rstr(&self) -> Ahb1rstr { 
       unsafe {
-         Ahb1rstr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Ahb1rstr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the AHB1RSTR register."]
    #[inline] pub fn set_ahb1rstr<F: FnOnce(Ahb1rstr) -> Ahb1rstr>(&self, f: F) -> &Self {
       let value = f(Ahb1rstr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Rcc {
       let tmp = self.ahb1rstr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Rcc {
 #[doc="Read the AHB2RSTR register."]
    #[inline] pub fn ahb2rstr(&self) -> Ahb2rstr { 
       unsafe {
-         Ahb2rstr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Ahb2rstr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the AHB2RSTR register."]
    #[inline] pub fn set_ahb2rstr<F: FnOnce(Ahb2rstr) -> Ahb2rstr>(&self, f: F) -> &Self {
       let value = f(Ahb2rstr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Rcc {
       let tmp = self.ahb2rstr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Rcc {
 #[doc="Read the AHB3RSTR register."]
    #[inline] pub fn ahb3rstr(&self) -> Ahb3rstr { 
       unsafe {
-         Ahb3rstr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Ahb3rstr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the AHB3RSTR register."]
    #[inline] pub fn set_ahb3rstr<F: FnOnce(Ahb3rstr) -> Ahb3rstr>(&self, f: F) -> &Self {
       let value = f(Ahb3rstr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Rcc {
       let tmp = self.ahb3rstr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Rcc {
 #[doc="Read the APB1RSTR register."]
    #[inline] pub fn apb1rstr(&self) -> Apb1rstr { 
       unsafe {
-         Apb1rstr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Apb1rstr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the APB1RSTR register."]
    #[inline] pub fn set_apb1rstr<F: FnOnce(Apb1rstr) -> Apb1rstr>(&self, f: F) -> &Self {
       let value = f(Apb1rstr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Rcc {
       let tmp = self.apb1rstr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Rcc {
 #[doc="Read the APB2RSTR register."]
    #[inline] pub fn apb2rstr(&self) -> Apb2rstr { 
       unsafe {
-         Apb2rstr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Apb2rstr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the APB2RSTR register."]
    #[inline] pub fn set_apb2rstr<F: FnOnce(Apb2rstr) -> Apb2rstr>(&self, f: F) -> &Self {
       let value = f(Apb2rstr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Rcc {
       let tmp = self.apb2rstr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl Rcc {
 #[doc="Read the AHB1ENR register."]
    #[inline] pub fn ahb1enr(&self) -> Ahb1enr { 
       unsafe {
-         Ahb1enr(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
+         Ahb1enr(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the AHB1ENR register."]
    #[inline] pub fn set_ahb1enr<F: FnOnce(Ahb1enr) -> Ahb1enr>(&self, f: F) -> &Self {
       let value = f(Ahb1enr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl Rcc {
       let tmp = self.ahb1enr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl Rcc {
 #[doc="Read the AHB2ENR register."]
    #[inline] pub fn ahb2enr(&self) -> Ahb2enr { 
       unsafe {
-         Ahb2enr(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Ahb2enr(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the AHB2ENR register."]
    #[inline] pub fn set_ahb2enr<F: FnOnce(Ahb2enr) -> Ahb2enr>(&self, f: F) -> &Self {
       let value = f(Ahb2enr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl Rcc {
       let tmp = self.ahb2enr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl Rcc {
 #[doc="Read the AHB3ENR register."]
    #[inline] pub fn ahb3enr(&self) -> Ahb3enr { 
       unsafe {
-         Ahb3enr(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Ahb3enr(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the AHB3ENR register."]
    #[inline] pub fn set_ahb3enr<F: FnOnce(Ahb3enr) -> Ahb3enr>(&self, f: F) -> &Self {
       let value = f(Ahb3enr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl Rcc {
       let tmp = self.ahb3enr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -402,14 +402,14 @@ impl Rcc {
 #[doc="Read the APB1ENR register."]
    #[inline] pub fn apb1enr(&self) -> Apb1enr { 
       unsafe {
-         Apb1enr(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Apb1enr(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the APB1ENR register."]
    #[inline] pub fn set_apb1enr<F: FnOnce(Apb1enr) -> Apb1enr>(&self, f: F) -> &Self {
       let value = f(Apb1enr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -418,7 +418,7 @@ impl Rcc {
       let tmp = self.apb1enr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -434,14 +434,14 @@ impl Rcc {
 #[doc="Read the APB2ENR register."]
    #[inline] pub fn apb2enr(&self) -> Apb2enr { 
       unsafe {
-         Apb2enr(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Apb2enr(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the APB2ENR register."]
    #[inline] pub fn set_apb2enr<F: FnOnce(Apb2enr) -> Apb2enr>(&self, f: F) -> &Self {
       let value = f(Apb2enr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -450,7 +450,7 @@ impl Rcc {
       let tmp = self.apb2enr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -466,14 +466,14 @@ impl Rcc {
 #[doc="Read the AHB1LPENR register."]
    #[inline] pub fn ahb1lpenr(&self) -> Ahb1lpenr { 
       unsafe {
-         Ahb1lpenr(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
+         Ahb1lpenr(read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the AHB1LPENR register."]
    #[inline] pub fn set_ahb1lpenr<F: FnOnce(Ahb1lpenr) -> Ahb1lpenr>(&self, f: F) -> &Self {
       let value = f(Ahb1lpenr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -482,7 +482,7 @@ impl Rcc {
       let tmp = self.ahb1lpenr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -498,14 +498,14 @@ impl Rcc {
 #[doc="Read the AHB2LPENR register."]
    #[inline] pub fn ahb2lpenr(&self) -> Ahb2lpenr { 
       unsafe {
-         Ahb2lpenr(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Ahb2lpenr(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the AHB2LPENR register."]
    #[inline] pub fn set_ahb2lpenr<F: FnOnce(Ahb2lpenr) -> Ahb2lpenr>(&self, f: F) -> &Self {
       let value = f(Ahb2lpenr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -514,7 +514,7 @@ impl Rcc {
       let tmp = self.ahb2lpenr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -530,14 +530,14 @@ impl Rcc {
 #[doc="Read the AHB3LPENR register."]
    #[inline] pub fn ahb3lpenr(&self) -> Ahb3lpenr { 
       unsafe {
-         Ahb3lpenr(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Ahb3lpenr(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the AHB3LPENR register."]
    #[inline] pub fn set_ahb3lpenr<F: FnOnce(Ahb3lpenr) -> Ahb3lpenr>(&self, f: F) -> &Self {
       let value = f(Ahb3lpenr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -546,7 +546,7 @@ impl Rcc {
       let tmp = self.ahb3lpenr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -562,14 +562,14 @@ impl Rcc {
 #[doc="Read the APB1LPENR register."]
    #[inline] pub fn apb1lpenr(&self) -> Apb1lpenr { 
       unsafe {
-         Apb1lpenr(::core::ptr::read_volatile((self.0 + 0x60) as *const u32))
+         Apb1lpenr(read_volatile((self.0 + 0x60) as *const u32))
       }
    }
 #[doc="Write the APB1LPENR register."]
    #[inline] pub fn set_apb1lpenr<F: FnOnce(Apb1lpenr) -> Apb1lpenr>(&self, f: F) -> &Self {
       let value = f(Apb1lpenr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -578,7 +578,7 @@ impl Rcc {
       let tmp = self.apb1lpenr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -594,14 +594,14 @@ impl Rcc {
 #[doc="Read the APB2LPENR register."]
    #[inline] pub fn apb2lpenr(&self) -> Apb2lpenr { 
       unsafe {
-         Apb2lpenr(::core::ptr::read_volatile((self.0 + 0x64) as *const u32))
+         Apb2lpenr(read_volatile((self.0 + 0x64) as *const u32))
       }
    }
 #[doc="Write the APB2LPENR register."]
    #[inline] pub fn set_apb2lpenr<F: FnOnce(Apb2lpenr) -> Apb2lpenr>(&self, f: F) -> &Self {
       let value = f(Apb2lpenr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -610,7 +610,7 @@ impl Rcc {
       let tmp = self.apb2lpenr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -626,14 +626,14 @@ impl Rcc {
 #[doc="Read the BDCR register."]
    #[inline] pub fn bdcr(&self) -> Bdcr { 
       unsafe {
-         Bdcr(::core::ptr::read_volatile((self.0 + 0x70) as *const u32))
+         Bdcr(read_volatile((self.0 + 0x70) as *const u32))
       }
    }
 #[doc="Write the BDCR register."]
    #[inline] pub fn set_bdcr<F: FnOnce(Bdcr) -> Bdcr>(&self, f: F) -> &Self {
       let value = f(Bdcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70) as *mut u32, value.0);
       }
       self
    }
@@ -642,7 +642,7 @@ impl Rcc {
       let tmp = self.bdcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70) as *mut u32, value.0);
       }
       self
    }
@@ -658,14 +658,14 @@ impl Rcc {
 #[doc="Read the CSR register."]
    #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
-         Csr(::core::ptr::read_volatile((self.0 + 0x74) as *const u32))
+         Csr(read_volatile((self.0 + 0x74) as *const u32))
       }
    }
 #[doc="Write the CSR register."]
    #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
       let value = f(Csr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x74) as *mut u32, value.0);
+         write_volatile((self.0 + 0x74) as *mut u32, value.0);
       }
       self
    }
@@ -674,7 +674,7 @@ impl Rcc {
       let tmp = self.csr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x74) as *mut u32, value.0);
+         write_volatile((self.0 + 0x74) as *mut u32, value.0);
       }
       self
    }
@@ -690,14 +690,14 @@ impl Rcc {
 #[doc="Read the SSCGR register."]
    #[inline] pub fn sscgr(&self) -> Sscgr { 
       unsafe {
-         Sscgr(::core::ptr::read_volatile((self.0 + 0x80) as *const u32))
+         Sscgr(read_volatile((self.0 + 0x80) as *const u32))
       }
    }
 #[doc="Write the SSCGR register."]
    #[inline] pub fn set_sscgr<F: FnOnce(Sscgr) -> Sscgr>(&self, f: F) -> &Self {
       let value = f(Sscgr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl Rcc {
       let tmp = self.sscgr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
@@ -722,14 +722,14 @@ impl Rcc {
 #[doc="Read the PLLI2SCFGR register."]
    #[inline] pub fn plli2scfgr(&self) -> Plli2scfgr { 
       unsafe {
-         Plli2scfgr(::core::ptr::read_volatile((self.0 + 0x84) as *const u32))
+         Plli2scfgr(read_volatile((self.0 + 0x84) as *const u32))
       }
    }
 #[doc="Write the PLLI2SCFGR register."]
    #[inline] pub fn set_plli2scfgr<F: FnOnce(Plli2scfgr) -> Plli2scfgr>(&self, f: F) -> &Self {
       let value = f(Plli2scfgr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -738,7 +738,7 @@ impl Rcc {
       let tmp = self.plli2scfgr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }

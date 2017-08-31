@@ -18,14 +18,14 @@ impl UsartPeriph {
 #[doc="Read the CR1 register."]
    #[inline] pub fn cr1(&self) -> Cr1 { 
       unsafe {
-         Cr1(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr1(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR1 register."]
    #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
       let value = f(Cr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl UsartPeriph {
       let tmp = self.cr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl UsartPeriph {
 #[doc="Read the CR2 register."]
    #[inline] pub fn cr2(&self) -> Cr2 { 
       unsafe {
-         Cr2(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cr2(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR2 register."]
    #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
       let value = f(Cr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl UsartPeriph {
       let tmp = self.cr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl UsartPeriph {
 #[doc="Read the CR3 register."]
    #[inline] pub fn cr3(&self) -> Cr3 { 
       unsafe {
-         Cr3(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cr3(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the CR3 register."]
    #[inline] pub fn set_cr3<F: FnOnce(Cr3) -> Cr3>(&self, f: F) -> &Self {
       let value = f(Cr3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl UsartPeriph {
       let tmp = self.cr3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl UsartPeriph {
 #[doc="Read the BRR register."]
    #[inline] pub fn brr(&self) -> Brr { 
       unsafe {
-         Brr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Brr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the BRR register."]
    #[inline] pub fn set_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
       let value = f(Brr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl UsartPeriph {
       let tmp = self.brr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl UsartPeriph {
 #[doc="Read the GTPR register."]
    #[inline] pub fn gtpr(&self) -> Gtpr { 
       unsafe {
-         Gtpr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Gtpr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the GTPR register."]
    #[inline] pub fn set_gtpr<F: FnOnce(Gtpr) -> Gtpr>(&self, f: F) -> &Self {
       let value = f(Gtpr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl UsartPeriph {
       let tmp = self.gtpr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl UsartPeriph {
 #[doc="Read the RTOR register."]
    #[inline] pub fn rtor(&self) -> Rtor { 
       unsafe {
-         Rtor(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Rtor(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the RTOR register."]
    #[inline] pub fn set_rtor<F: FnOnce(Rtor) -> Rtor>(&self, f: F) -> &Self {
       let value = f(Rtor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl UsartPeriph {
       let tmp = self.rtor();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl UsartPeriph {
 #[doc="Read the RQR register."]
    #[inline] pub fn rqr(&self) -> Rqr { 
       unsafe {
-         Rqr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Rqr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the RQR register."]
    #[inline] pub fn set_rqr<F: FnOnce(Rqr) -> Rqr>(&self, f: F) -> &Self {
       let value = f(Rqr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl UsartPeriph {
       let tmp = self.rqr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -242,7 +242,7 @@ impl UsartPeriph {
 #[doc="Read the ISR register."]
    #[inline] pub fn isr(&self) -> Isr { 
       unsafe {
-         Isr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Isr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 
@@ -257,14 +257,14 @@ impl UsartPeriph {
 #[doc="Read the ICR register."]
    #[inline] pub fn icr(&self) -> Icr { 
       unsafe {
-         Icr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Icr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the ICR register."]
    #[inline] pub fn set_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &Self {
       let value = f(Icr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -273,7 +273,7 @@ impl UsartPeriph {
       let tmp = self.icr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -289,7 +289,7 @@ impl UsartPeriph {
 #[doc="Read the RDR register."]
    #[inline] pub fn rdr(&self) -> Rdr { 
       unsafe {
-         Rdr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Rdr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 
@@ -304,14 +304,14 @@ impl UsartPeriph {
 #[doc="Read the TDR register."]
    #[inline] pub fn tdr(&self) -> Tdr { 
       unsafe {
-         Tdr(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Tdr(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the TDR register."]
    #[inline] pub fn set_tdr<F: FnOnce(Tdr) -> Tdr>(&self, f: F) -> &Self {
       let value = f(Tdr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -320,7 +320,7 @@ impl UsartPeriph {
       let tmp = self.tdr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }

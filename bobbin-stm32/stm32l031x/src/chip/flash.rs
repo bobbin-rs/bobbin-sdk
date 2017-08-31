@@ -18,14 +18,14 @@ impl Flash {
 #[doc="Read the ACR register."]
    #[inline] pub fn acr(&self) -> Acr { 
       unsafe {
-         Acr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Acr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the ACR register."]
    #[inline] pub fn set_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
       let value = f(Acr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Flash {
       let tmp = self.acr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Flash {
 #[doc="Read the PECR register."]
    #[inline] pub fn pecr(&self) -> Pecr { 
       unsafe {
-         Pecr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Pecr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PECR register."]
    #[inline] pub fn set_pecr<F: FnOnce(Pecr) -> Pecr>(&self, f: F) -> &Self {
       let value = f(Pecr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Flash {
       let tmp = self.pecr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -83,7 +83,7 @@ impl Flash {
    #[inline] pub fn set_pdkeyr<F: FnOnce(Pdkeyr) -> Pdkeyr>(&self, f: F) -> &Self {
       let value = f(Pdkeyr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -100,7 +100,7 @@ impl Flash {
    #[inline] pub fn set_pekeyr<F: FnOnce(Pekeyr) -> Pekeyr>(&self, f: F) -> &Self {
       let value = f(Pekeyr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -117,7 +117,7 @@ impl Flash {
    #[inline] pub fn set_prgkeyr<F: FnOnce(Prgkeyr) -> Prgkeyr>(&self, f: F) -> &Self {
       let value = f(Prgkeyr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -134,7 +134,7 @@ impl Flash {
    #[inline] pub fn set_optkeyr<F: FnOnce(Optkeyr) -> Optkeyr>(&self, f: F) -> &Self {
       let value = f(Optkeyr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -150,14 +150,14 @@ impl Flash {
 #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
-         Sr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Sr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the SR register."]
    #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -166,7 +166,7 @@ impl Flash {
       let tmp = self.sr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -182,7 +182,7 @@ impl Flash {
 #[doc="Read the OBR register."]
    #[inline] pub fn obr(&self) -> Obr { 
       unsafe {
-         Obr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Obr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 
@@ -197,14 +197,14 @@ impl Flash {
 #[doc="Read the WRPR register."]
    #[inline] pub fn wrpr(&self) -> Wrpr { 
       unsafe {
-         Wrpr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Wrpr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the WRPR register."]
    #[inline] pub fn set_wrpr<F: FnOnce(Wrpr) -> Wrpr>(&self, f: F) -> &Self {
       let value = f(Wrpr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -213,7 +213,7 @@ impl Flash {
       let tmp = self.wrpr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }

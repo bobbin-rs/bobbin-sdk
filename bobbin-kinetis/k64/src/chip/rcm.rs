@@ -18,7 +18,7 @@ impl Rcm {
 #[doc="Read the SRS0 register."]
    #[inline] pub fn srs0(&self) -> Srs0 { 
       unsafe {
-         Srs0(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
+         Srs0(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 
@@ -33,7 +33,7 @@ impl Rcm {
 #[doc="Read the SRS1 register."]
    #[inline] pub fn srs1(&self) -> Srs1 { 
       unsafe {
-         Srs1(::core::ptr::read_volatile((self.0 + 0x1) as *const u8))
+         Srs1(read_volatile((self.0 + 0x1) as *const u8))
       }
    }
 
@@ -48,14 +48,14 @@ impl Rcm {
 #[doc="Read the RPFC register."]
    #[inline] pub fn rpfc(&self) -> Rpfc { 
       unsafe {
-         Rpfc(::core::ptr::read_volatile((self.0 + 0x4) as *const u8))
+         Rpfc(read_volatile((self.0 + 0x4) as *const u8))
       }
    }
 #[doc="Write the RPFC register."]
    #[inline] pub fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
       let value = f(Rpfc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -64,7 +64,7 @@ impl Rcm {
       let tmp = self.rpfc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -80,14 +80,14 @@ impl Rcm {
 #[doc="Read the RPFW register."]
    #[inline] pub fn rpfw(&self) -> Rpfw { 
       unsafe {
-         Rpfw(::core::ptr::read_volatile((self.0 + 0x5) as *const u8))
+         Rpfw(read_volatile((self.0 + 0x5) as *const u8))
       }
    }
 #[doc="Write the RPFW register."]
    #[inline] pub fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
       let value = f(Rpfw(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
+         write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
@@ -96,7 +96,7 @@ impl Rcm {
       let tmp = self.rpfw();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
+         write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
@@ -112,7 +112,7 @@ impl Rcm {
 #[doc="Read the MR register."]
    #[inline] pub fn mr(&self) -> Mr { 
       unsafe {
-         Mr(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
+         Mr(read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 

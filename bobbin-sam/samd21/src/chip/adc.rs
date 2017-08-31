@@ -61,14 +61,14 @@ impl AdcPeriph {
 #[doc="Read the AVGCTRL register."]
    #[inline] pub fn avgctrl(&self) -> Avgctrl { 
       unsafe {
-         Avgctrl(::core::ptr::read_volatile((self.0 + 0x2) as *const u8))
+         Avgctrl(read_volatile((self.0 + 0x2) as *const u8))
       }
    }
 #[doc="Write the AVGCTRL register."]
    #[inline] pub fn set_avgctrl<F: FnOnce(Avgctrl) -> Avgctrl>(&self, f: F) -> &Self {
       let value = f(Avgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2) as *mut u8, value.0);
       }
       self
    }
@@ -77,7 +77,7 @@ impl AdcPeriph {
       let tmp = self.avgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2) as *mut u8, value.0);
       }
       self
    }
@@ -93,14 +93,14 @@ impl AdcPeriph {
 #[doc="Read the CALIB register."]
    #[inline] pub fn calib(&self) -> Calib { 
       unsafe {
-         Calib(::core::ptr::read_volatile((self.0 + 0x28) as *const u16))
+         Calib(read_volatile((self.0 + 0x28) as *const u16))
       }
    }
 #[doc="Write the CALIB register."]
    #[inline] pub fn set_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
       let value = f(Calib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u16, value.0);
+         write_volatile((self.0 + 0x28) as *mut u16, value.0);
       }
       self
    }
@@ -109,7 +109,7 @@ impl AdcPeriph {
       let tmp = self.calib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u16, value.0);
+         write_volatile((self.0 + 0x28) as *mut u16, value.0);
       }
       self
    }
@@ -125,14 +125,14 @@ impl AdcPeriph {
 #[doc="Read the CTRLA register."]
    #[inline] pub fn ctrla(&self) -> Ctrla { 
       unsafe {
-         Ctrla(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
+         Ctrla(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 #[doc="Write the CTRLA register."]
    #[inline] pub fn set_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
       let value = f(Ctrla(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }
@@ -141,7 +141,7 @@ impl AdcPeriph {
       let tmp = self.ctrla();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }
@@ -157,14 +157,14 @@ impl AdcPeriph {
 #[doc="Read the CTRLB register."]
    #[inline] pub fn ctrlb(&self) -> Ctrlb { 
       unsafe {
-         Ctrlb(::core::ptr::read_volatile((self.0 + 0x4) as *const u16))
+         Ctrlb(read_volatile((self.0 + 0x4) as *const u16))
       }
    }
 #[doc="Write the CTRLB register."]
    #[inline] pub fn set_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
       let value = f(Ctrlb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -173,7 +173,7 @@ impl AdcPeriph {
       let tmp = self.ctrlb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -189,14 +189,14 @@ impl AdcPeriph {
 #[doc="Read the DBGCTRL register."]
    #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
       unsafe {
-         Dbgctrl(::core::ptr::read_volatile((self.0 + 0x2a) as *const u8))
+         Dbgctrl(read_volatile((self.0 + 0x2a) as *const u8))
       }
    }
 #[doc="Write the DBGCTRL register."]
    #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
       let value = f(Dbgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2a) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2a) as *mut u8, value.0);
       }
       self
    }
@@ -205,7 +205,7 @@ impl AdcPeriph {
       let tmp = self.dbgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2a) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2a) as *mut u8, value.0);
       }
       self
    }
@@ -221,14 +221,14 @@ impl AdcPeriph {
 #[doc="Read the EVCTRL register."]
    #[inline] pub fn evctrl(&self) -> Evctrl { 
       unsafe {
-         Evctrl(::core::ptr::read_volatile((self.0 + 0x14) as *const u8))
+         Evctrl(read_volatile((self.0 + 0x14) as *const u8))
       }
    }
 #[doc="Write the EVCTRL register."]
    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
       let value = f(Evctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u8, value.0);
+         write_volatile((self.0 + 0x14) as *mut u8, value.0);
       }
       self
    }
@@ -237,7 +237,7 @@ impl AdcPeriph {
       let tmp = self.evctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u8, value.0);
+         write_volatile((self.0 + 0x14) as *mut u8, value.0);
       }
       self
    }
@@ -253,14 +253,14 @@ impl AdcPeriph {
 #[doc="Read the GAINCORR register."]
    #[inline] pub fn gaincorr(&self) -> Gaincorr { 
       unsafe {
-         Gaincorr(::core::ptr::read_volatile((self.0 + 0x24) as *const u16))
+         Gaincorr(read_volatile((self.0 + 0x24) as *const u16))
       }
    }
 #[doc="Write the GAINCORR register."]
    #[inline] pub fn set_gaincorr<F: FnOnce(Gaincorr) -> Gaincorr>(&self, f: F) -> &Self {
       let value = f(Gaincorr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u16, value.0);
+         write_volatile((self.0 + 0x24) as *mut u16, value.0);
       }
       self
    }
@@ -269,7 +269,7 @@ impl AdcPeriph {
       let tmp = self.gaincorr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u16, value.0);
+         write_volatile((self.0 + 0x24) as *mut u16, value.0);
       }
       self
    }
@@ -285,14 +285,14 @@ impl AdcPeriph {
 #[doc="Read the INPUTCTRL register."]
    #[inline] pub fn inputctrl(&self) -> Inputctrl { 
       unsafe {
-         Inputctrl(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Inputctrl(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the INPUTCTRL register."]
    #[inline] pub fn set_inputctrl<F: FnOnce(Inputctrl) -> Inputctrl>(&self, f: F) -> &Self {
       let value = f(Inputctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -301,7 +301,7 @@ impl AdcPeriph {
       let tmp = self.inputctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -317,14 +317,14 @@ impl AdcPeriph {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x16) as *const u8))
+         Intenclr(read_volatile((self.0 + 0x16) as *const u8))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16) as *mut u8, value.0);
+         write_volatile((self.0 + 0x16) as *mut u8, value.0);
       }
       self
    }
@@ -333,7 +333,7 @@ impl AdcPeriph {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16) as *mut u8, value.0);
+         write_volatile((self.0 + 0x16) as *mut u8, value.0);
       }
       self
    }
@@ -349,14 +349,14 @@ impl AdcPeriph {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x17) as *const u8))
+         Intenset(read_volatile((self.0 + 0x17) as *const u8))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x17) as *mut u8, value.0);
+         write_volatile((self.0 + 0x17) as *mut u8, value.0);
       }
       self
    }
@@ -365,7 +365,7 @@ impl AdcPeriph {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x17) as *mut u8, value.0);
+         write_volatile((self.0 + 0x17) as *mut u8, value.0);
       }
       self
    }
@@ -381,14 +381,14 @@ impl AdcPeriph {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x18) as *const u8))
+         Intflag(read_volatile((self.0 + 0x18) as *const u8))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u8, value.0);
+         write_volatile((self.0 + 0x18) as *mut u8, value.0);
       }
       self
    }
@@ -397,7 +397,7 @@ impl AdcPeriph {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u8, value.0);
+         write_volatile((self.0 + 0x18) as *mut u8, value.0);
       }
       self
    }
@@ -413,14 +413,14 @@ impl AdcPeriph {
 #[doc="Read the OFFSETCORR register."]
    #[inline] pub fn offsetcorr(&self) -> Offsetcorr { 
       unsafe {
-         Offsetcorr(::core::ptr::read_volatile((self.0 + 0x26) as *const u16))
+         Offsetcorr(read_volatile((self.0 + 0x26) as *const u16))
       }
    }
 #[doc="Write the OFFSETCORR register."]
    #[inline] pub fn set_offsetcorr<F: FnOnce(Offsetcorr) -> Offsetcorr>(&self, f: F) -> &Self {
       let value = f(Offsetcorr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x26) as *mut u16, value.0);
+         write_volatile((self.0 + 0x26) as *mut u16, value.0);
       }
       self
    }
@@ -429,7 +429,7 @@ impl AdcPeriph {
       let tmp = self.offsetcorr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x26) as *mut u16, value.0);
+         write_volatile((self.0 + 0x26) as *mut u16, value.0);
       }
       self
    }
@@ -445,14 +445,14 @@ impl AdcPeriph {
 #[doc="Read the REFCTRL register."]
    #[inline] pub fn refctrl(&self) -> Refctrl { 
       unsafe {
-         Refctrl(::core::ptr::read_volatile((self.0 + 0x1) as *const u8))
+         Refctrl(read_volatile((self.0 + 0x1) as *const u8))
       }
    }
 #[doc="Write the REFCTRL register."]
    #[inline] pub fn set_refctrl<F: FnOnce(Refctrl) -> Refctrl>(&self, f: F) -> &Self {
       let value = f(Refctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1) as *mut u8, value.0);
       }
       self
    }
@@ -461,7 +461,7 @@ impl AdcPeriph {
       let tmp = self.refctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1) as *mut u8, value.0);
       }
       self
    }
@@ -477,7 +477,7 @@ impl AdcPeriph {
 #[doc="Read the RESULT register."]
    #[inline] pub fn result(&self) -> Result { 
       unsafe {
-         Result(::core::ptr::read_volatile((self.0 + 0x1a) as *const u16))
+         Result(read_volatile((self.0 + 0x1a) as *const u16))
       }
    }
 
@@ -492,14 +492,14 @@ impl AdcPeriph {
 #[doc="Read the SAMPCTRL register."]
    #[inline] pub fn sampctrl(&self) -> Sampctrl { 
       unsafe {
-         Sampctrl(::core::ptr::read_volatile((self.0 + 0x3) as *const u8))
+         Sampctrl(read_volatile((self.0 + 0x3) as *const u8))
       }
    }
 #[doc="Write the SAMPCTRL register."]
    #[inline] pub fn set_sampctrl<F: FnOnce(Sampctrl) -> Sampctrl>(&self, f: F) -> &Self {
       let value = f(Sampctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3) as *mut u8, value.0);
+         write_volatile((self.0 + 0x3) as *mut u8, value.0);
       }
       self
    }
@@ -508,7 +508,7 @@ impl AdcPeriph {
       let tmp = self.sampctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3) as *mut u8, value.0);
+         write_volatile((self.0 + 0x3) as *mut u8, value.0);
       }
       self
    }
@@ -524,7 +524,7 @@ impl AdcPeriph {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0x19) as *const u8))
+         Status(read_volatile((self.0 + 0x19) as *const u8))
       }
    }
 
@@ -539,14 +539,14 @@ impl AdcPeriph {
 #[doc="Read the SWTRIG register."]
    #[inline] pub fn swtrig(&self) -> Swtrig { 
       unsafe {
-         Swtrig(::core::ptr::read_volatile((self.0 + 0xc) as *const u8))
+         Swtrig(read_volatile((self.0 + 0xc) as *const u8))
       }
    }
 #[doc="Write the SWTRIG register."]
    #[inline] pub fn set_swtrig<F: FnOnce(Swtrig) -> Swtrig>(&self, f: F) -> &Self {
       let value = f(Swtrig(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -555,7 +555,7 @@ impl AdcPeriph {
       let tmp = self.swtrig();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -571,14 +571,14 @@ impl AdcPeriph {
 #[doc="Read the WINCTRL register."]
    #[inline] pub fn winctrl(&self) -> Winctrl { 
       unsafe {
-         Winctrl(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         Winctrl(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 #[doc="Write the WINCTRL register."]
    #[inline] pub fn set_winctrl<F: FnOnce(Winctrl) -> Winctrl>(&self, f: F) -> &Self {
       let value = f(Winctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -587,7 +587,7 @@ impl AdcPeriph {
       let tmp = self.winctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -603,14 +603,14 @@ impl AdcPeriph {
 #[doc="Read the WINLT register."]
    #[inline] pub fn winlt(&self) -> Winlt { 
       unsafe {
-         Winlt(::core::ptr::read_volatile((self.0 + 0x1c) as *const u16))
+         Winlt(read_volatile((self.0 + 0x1c) as *const u16))
       }
    }
 #[doc="Write the WINLT register."]
    #[inline] pub fn set_winlt<F: FnOnce(Winlt) -> Winlt>(&self, f: F) -> &Self {
       let value = f(Winlt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u16, value.0);
       }
       self
    }
@@ -619,7 +619,7 @@ impl AdcPeriph {
       let tmp = self.winlt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u16, value.0);
       }
       self
    }
@@ -635,14 +635,14 @@ impl AdcPeriph {
 #[doc="Read the WINUT register."]
    #[inline] pub fn winut(&self) -> Winut { 
       unsafe {
-         Winut(::core::ptr::read_volatile((self.0 + 0x20) as *const u16))
+         Winut(read_volatile((self.0 + 0x20) as *const u16))
       }
    }
 #[doc="Write the WINUT register."]
    #[inline] pub fn set_winut<F: FnOnce(Winut) -> Winut>(&self, f: F) -> &Self {
       let value = f(Winut(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u16, value.0);
+         write_volatile((self.0 + 0x20) as *mut u16, value.0);
       }
       self
    }
@@ -651,7 +651,7 @@ impl AdcPeriph {
       let tmp = self.winut();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u16, value.0);
+         write_volatile((self.0 + 0x20) as *mut u16, value.0);
       }
       self
    }

@@ -18,14 +18,14 @@ impl Syscfg {
 #[doc="Read the MEMRM register."]
    #[inline] pub fn memrm(&self) -> Memrm { 
       unsafe {
-         Memrm(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Memrm(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the MEMRM register."]
    #[inline] pub fn set_memrm<F: FnOnce(Memrm) -> Memrm>(&self, f: F) -> &Self {
       let value = f(Memrm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Syscfg {
       let tmp = self.memrm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Syscfg {
 #[doc="Read the PMC register."]
    #[inline] pub fn pmc(&self) -> Pmc { 
       unsafe {
-         Pmc(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Pmc(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PMC register."]
    #[inline] pub fn set_pmc<F: FnOnce(Pmc) -> Pmc>(&self, f: F) -> &Self {
       let value = f(Pmc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Syscfg {
       let tmp = self.pmc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Syscfg {
 #[doc="Read the EXTICR1 register."]
    #[inline] pub fn exticr1(&self) -> Exticr1 { 
       unsafe {
-         Exticr1(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Exticr1(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the EXTICR1 register."]
    #[inline] pub fn set_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
       let value = f(Exticr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Syscfg {
       let tmp = self.exticr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Syscfg {
 #[doc="Read the EXTICR2 register."]
    #[inline] pub fn exticr2(&self) -> Exticr2 { 
       unsafe {
-         Exticr2(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Exticr2(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the EXTICR2 register."]
    #[inline] pub fn set_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
       let value = f(Exticr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Syscfg {
       let tmp = self.exticr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Syscfg {
 #[doc="Read the EXTICR3 register."]
    #[inline] pub fn exticr3(&self) -> Exticr3 { 
       unsafe {
-         Exticr3(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Exticr3(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the EXTICR3 register."]
    #[inline] pub fn set_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
       let value = f(Exticr3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Syscfg {
       let tmp = self.exticr3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Syscfg {
 #[doc="Read the EXTICR4 register."]
    #[inline] pub fn exticr4(&self) -> Exticr4 { 
       unsafe {
-         Exticr4(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Exticr4(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the EXTICR4 register."]
    #[inline] pub fn set_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
       let value = f(Exticr4(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Syscfg {
       let tmp = self.exticr4();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,7 +210,7 @@ impl Syscfg {
 #[doc="Read the CMPCR register."]
    #[inline] pub fn cmpcr(&self) -> Cmpcr { 
       unsafe {
-         Cmpcr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Cmpcr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 

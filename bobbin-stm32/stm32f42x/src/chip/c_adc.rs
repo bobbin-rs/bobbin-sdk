@@ -18,7 +18,7 @@ impl CAdc {
 #[doc="Read the CSR register."]
    #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
-         Csr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Csr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,14 +33,14 @@ impl CAdc {
 #[doc="Read the CCR register."]
    #[inline] pub fn ccr(&self) -> Ccr { 
       unsafe {
-         Ccr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Ccr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CCR register."]
    #[inline] pub fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
       let value = f(Ccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -49,7 +49,7 @@ impl CAdc {
       let tmp = self.ccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -65,7 +65,7 @@ impl CAdc {
 #[doc="Read the CDR register."]
    #[inline] pub fn cdr(&self) -> Cdr { 
       unsafe {
-         Cdr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cdr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 

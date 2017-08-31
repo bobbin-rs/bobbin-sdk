@@ -18,14 +18,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTSCR register."]
    #[inline] pub fn ptptscr(&self) -> Ptptscr { 
       unsafe {
-         Ptptscr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Ptptscr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the PTPTSCR register."]
    #[inline] pub fn set_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
       let value = f(Ptptscr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl EthernetPtp {
       let tmp = self.ptptscr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl EthernetPtp {
 #[doc="Read the PTPSSIR register."]
    #[inline] pub fn ptpssir(&self) -> Ptpssir { 
       unsafe {
-         Ptpssir(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Ptpssir(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PTPSSIR register."]
    #[inline] pub fn set_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
       let value = f(Ptpssir(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl EthernetPtp {
       let tmp = self.ptpssir();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,7 +82,7 @@ impl EthernetPtp {
 #[doc="Read the PTPTSHR register."]
    #[inline] pub fn ptptshr(&self) -> Ptptshr { 
       unsafe {
-         Ptptshr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Ptptshr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 
@@ -97,7 +97,7 @@ impl EthernetPtp {
 #[doc="Read the PTPTSLR register."]
    #[inline] pub fn ptptslr(&self) -> Ptptslr { 
       unsafe {
-         Ptptslr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Ptptslr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 
@@ -112,14 +112,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTSHUR register."]
    #[inline] pub fn ptptshur(&self) -> Ptptshur { 
       unsafe {
-         Ptptshur(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Ptptshur(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the PTPTSHUR register."]
    #[inline] pub fn set_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
       let value = f(Ptptshur(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -128,7 +128,7 @@ impl EthernetPtp {
       let tmp = self.ptptshur();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -144,14 +144,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTSLUR register."]
    #[inline] pub fn ptptslur(&self) -> Ptptslur { 
       unsafe {
-         Ptptslur(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Ptptslur(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the PTPTSLUR register."]
    #[inline] pub fn set_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
       let value = f(Ptptslur(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -160,7 +160,7 @@ impl EthernetPtp {
       let tmp = self.ptptslur();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -176,14 +176,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTSAR register."]
    #[inline] pub fn ptptsar(&self) -> Ptptsar { 
       unsafe {
-         Ptptsar(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Ptptsar(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the PTPTSAR register."]
    #[inline] pub fn set_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
       let value = f(Ptptsar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -192,7 +192,7 @@ impl EthernetPtp {
       let tmp = self.ptptsar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -208,14 +208,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTTHR register."]
    #[inline] pub fn ptptthr(&self) -> Ptptthr { 
       unsafe {
-         Ptptthr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Ptptthr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the PTPTTHR register."]
    #[inline] pub fn set_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
       let value = f(Ptptthr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -224,7 +224,7 @@ impl EthernetPtp {
       let tmp = self.ptptthr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -240,14 +240,14 @@ impl EthernetPtp {
 #[doc="Read the PTPTTLR register."]
    #[inline] pub fn ptpttlr(&self) -> Ptpttlr { 
       unsafe {
-         Ptpttlr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Ptpttlr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the PTPTTLR register."]
    #[inline] pub fn set_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
       let value = f(Ptpttlr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -256,7 +256,7 @@ impl EthernetPtp {
       let tmp = self.ptpttlr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -272,7 +272,7 @@ impl EthernetPtp {
 #[doc="Read the PTPTSSR register."]
    #[inline] pub fn ptptssr(&self) -> Ptptssr { 
       unsafe {
-         Ptptssr(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Ptptssr(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 
@@ -287,7 +287,7 @@ impl EthernetPtp {
 #[doc="Read the PTPPPSCR register."]
    #[inline] pub fn ptpppscr(&self) -> Ptpppscr { 
       unsafe {
-         Ptpppscr(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Ptpppscr(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 

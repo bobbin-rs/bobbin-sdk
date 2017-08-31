@@ -18,14 +18,14 @@ impl Fpu {
 #[doc="Read the CPACR register."]
    #[inline] pub fn cpacr(&self) -> Cpacr { 
       unsafe {
-         Cpacr(::core::ptr::read_volatile((self.0 + 0xd88) as *const u32))
+         Cpacr(read_volatile((self.0 + 0xd88) as *const u32))
       }
    }
 #[doc="Write the CPACR register."]
    #[inline] pub fn set_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
       let value = f(Cpacr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd88) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd88) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Fpu {
       let tmp = self.cpacr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd88) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd88) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Fpu {
 #[doc="Read the FPCCR register."]
    #[inline] pub fn fpccr(&self) -> Fpccr { 
       unsafe {
-         Fpccr(::core::ptr::read_volatile((self.0 + 0xf34) as *const u32))
+         Fpccr(read_volatile((self.0 + 0xf34) as *const u32))
       }
    }
 #[doc="Write the FPCCR register."]
    #[inline] pub fn set_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
       let value = f(Fpccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf34) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf34) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Fpu {
       let tmp = self.fpccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf34) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf34) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Fpu {
 #[doc="Read the FPCAR register."]
    #[inline] pub fn fpcar(&self) -> Fpcar { 
       unsafe {
-         Fpcar(::core::ptr::read_volatile((self.0 + 0xf38) as *const u32))
+         Fpcar(read_volatile((self.0 + 0xf38) as *const u32))
       }
    }
 #[doc="Write the FPCAR register."]
    #[inline] pub fn set_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
       let value = f(Fpcar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf38) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf38) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Fpu {
       let tmp = self.fpcar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf38) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf38) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Fpu {
 #[doc="Read the FPDSCR register."]
    #[inline] pub fn fpdscr(&self) -> Fpdscr { 
       unsafe {
-         Fpdscr(::core::ptr::read_volatile((self.0 + 0xf3c) as *const u32))
+         Fpdscr(read_volatile((self.0 + 0xf3c) as *const u32))
       }
    }
 #[doc="Write the FPDSCR register."]
    #[inline] pub fn set_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
       let value = f(Fpdscr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf3c) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Fpu {
       let tmp = self.fpdscr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf3c) as *mut u32, value.0);
       }
       self
    }

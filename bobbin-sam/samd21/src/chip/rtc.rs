@@ -38,14 +38,14 @@ impl Mode0 {
 #[doc="Read the DBGCTRL register."]
    #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
       unsafe {
-         Dbgctrl(::core::ptr::read_volatile((self.0 + 0xb) as *const u8))
+         Dbgctrl(read_volatile((self.0 + 0xb) as *const u8))
       }
    }
 #[doc="Write the DBGCTRL register."]
    #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
       let value = f(Dbgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -54,7 +54,7 @@ impl Mode0 {
       let tmp = self.dbgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -70,14 +70,14 @@ impl Mode0 {
 #[doc="Read the FREQCORR register."]
    #[inline] pub fn freqcorr(&self) -> Freqcorr { 
       unsafe {
-         Freqcorr(::core::ptr::read_volatile((self.0 + 0xc) as *const u8))
+         Freqcorr(read_volatile((self.0 + 0xc) as *const u8))
       }
    }
 #[doc="Write the FREQCORR register."]
    #[inline] pub fn set_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Self {
       let value = f(Freqcorr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -86,7 +86,7 @@ impl Mode0 {
       let tmp = self.freqcorr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -108,7 +108,7 @@ impl Mode0 {
       let index: bits::R1 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Comp(::core::ptr::read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
+         Comp(read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the COMP register."]
@@ -117,7 +117,7 @@ impl Mode0 {
       let index: usize = index.value() as usize;
       let value = f(Comp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -128,7 +128,7 @@ impl Mode0 {
       let tmp = self.comp(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -144,14 +144,14 @@ impl Mode0 {
 #[doc="Read the COUNT register."]
    #[inline] pub fn count(&self) -> Count { 
       unsafe {
-         Count(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Count(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the COUNT register."]
    #[inline] pub fn set_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Self {
       let value = f(Count(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -160,7 +160,7 @@ impl Mode0 {
       let tmp = self.count();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -176,14 +176,14 @@ impl Mode0 {
 #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
-         Ctrl(::core::ptr::read_volatile((self.0 + 0x0) as *const u16))
+         Ctrl(read_volatile((self.0 + 0x0) as *const u16))
       }
    }
 #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -192,7 +192,7 @@ impl Mode0 {
       let tmp = self.ctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -208,14 +208,14 @@ impl Mode0 {
 #[doc="Read the EVCTRL register."]
    #[inline] pub fn evctrl(&self) -> Evctrl { 
       unsafe {
-         Evctrl(::core::ptr::read_volatile((self.0 + 0x4) as *const u16))
+         Evctrl(read_volatile((self.0 + 0x4) as *const u16))
       }
    }
 #[doc="Write the EVCTRL register."]
    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
       let value = f(Evctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -224,7 +224,7 @@ impl Mode0 {
       let tmp = self.evctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -240,14 +240,14 @@ impl Mode0 {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x6) as *const u8))
+         Intenclr(read_volatile((self.0 + 0x6) as *const u8))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -256,7 +256,7 @@ impl Mode0 {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -272,14 +272,14 @@ impl Mode0 {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
+         Intenset(read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -288,7 +288,7 @@ impl Mode0 {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -304,14 +304,14 @@ impl Mode0 {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         Intflag(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -320,7 +320,7 @@ impl Mode0 {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -336,14 +336,14 @@ impl Mode0 {
 #[doc="Read the READREQ register."]
    #[inline] pub fn readreq(&self) -> Readreq { 
       unsafe {
-         Readreq(::core::ptr::read_volatile((self.0 + 0x2) as *const u16))
+         Readreq(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
 #[doc="Write the READREQ register."]
    #[inline] pub fn set_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Self {
       let value = f(Readreq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -352,7 +352,7 @@ impl Mode0 {
       let tmp = self.readreq();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -368,14 +368,14 @@ impl Mode0 {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0xa) as *const u8))
+         Status(read_volatile((self.0 + 0xa) as *const u8))
       }
    }
 #[doc="Write the STATUS register."]
    #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
       let value = f(Status(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }
@@ -384,7 +384,7 @@ impl Mode0 {
       let tmp = self.status();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }
@@ -1058,14 +1058,14 @@ impl Mode1 {
 #[doc="Read the DBGCTRL register."]
    #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
       unsafe {
-         Dbgctrl(::core::ptr::read_volatile((self.0 + 0xb) as *const u8))
+         Dbgctrl(read_volatile((self.0 + 0xb) as *const u8))
       }
    }
 #[doc="Write the DBGCTRL register."]
    #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
       let value = f(Dbgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -1074,7 +1074,7 @@ impl Mode1 {
       let tmp = self.dbgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -1090,14 +1090,14 @@ impl Mode1 {
 #[doc="Read the FREQCORR register."]
    #[inline] pub fn freqcorr(&self) -> Freqcorr { 
       unsafe {
-         Freqcorr(::core::ptr::read_volatile((self.0 + 0xc) as *const u8))
+         Freqcorr(read_volatile((self.0 + 0xc) as *const u8))
       }
    }
 #[doc="Write the FREQCORR register."]
    #[inline] pub fn set_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Self {
       let value = f(Freqcorr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -1106,7 +1106,7 @@ impl Mode1 {
       let tmp = self.freqcorr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -1128,7 +1128,7 @@ impl Mode1 {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Comp(::core::ptr::read_volatile((self.0 + 0x18 + (index << 1)) as *const u16))
+         Comp(read_volatile((self.0 + 0x18 + (index << 1)) as *const u16))
       }
    }
 #[doc="Write the COMP register."]
@@ -1137,7 +1137,7 @@ impl Mode1 {
       let index: usize = index.value() as usize;
       let value = f(Comp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 1)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x18 + (index << 1)) as *mut u16, value.0);
       }
       self
    }
@@ -1148,7 +1148,7 @@ impl Mode1 {
       let tmp = self.comp(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 1)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x18 + (index << 1)) as *mut u16, value.0);
       }
       self
    }
@@ -1164,14 +1164,14 @@ impl Mode1 {
 #[doc="Read the COUNT register."]
    #[inline] pub fn count(&self) -> Count { 
       unsafe {
-         Count(::core::ptr::read_volatile((self.0 + 0x10) as *const u16))
+         Count(read_volatile((self.0 + 0x10) as *const u16))
       }
    }
 #[doc="Write the COUNT register."]
    #[inline] pub fn set_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Self {
       let value = f(Count(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -1180,7 +1180,7 @@ impl Mode1 {
       let tmp = self.count();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -1196,14 +1196,14 @@ impl Mode1 {
 #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
-         Ctrl(::core::ptr::read_volatile((self.0 + 0x0) as *const u16))
+         Ctrl(read_volatile((self.0 + 0x0) as *const u16))
       }
    }
 #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -1212,7 +1212,7 @@ impl Mode1 {
       let tmp = self.ctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -1228,14 +1228,14 @@ impl Mode1 {
 #[doc="Read the EVCTRL register."]
    #[inline] pub fn evctrl(&self) -> Evctrl { 
       unsafe {
-         Evctrl(::core::ptr::read_volatile((self.0 + 0x4) as *const u16))
+         Evctrl(read_volatile((self.0 + 0x4) as *const u16))
       }
    }
 #[doc="Write the EVCTRL register."]
    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
       let value = f(Evctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -1244,7 +1244,7 @@ impl Mode1 {
       let tmp = self.evctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -1260,14 +1260,14 @@ impl Mode1 {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x6) as *const u8))
+         Intenclr(read_volatile((self.0 + 0x6) as *const u8))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -1276,7 +1276,7 @@ impl Mode1 {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -1292,14 +1292,14 @@ impl Mode1 {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
+         Intenset(read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -1308,7 +1308,7 @@ impl Mode1 {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -1324,14 +1324,14 @@ impl Mode1 {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         Intflag(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -1340,7 +1340,7 @@ impl Mode1 {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -1356,14 +1356,14 @@ impl Mode1 {
 #[doc="Read the PER register."]
    #[inline] pub fn per(&self) -> Per { 
       unsafe {
-         Per(::core::ptr::read_volatile((self.0 + 0x14) as *const u16))
+         Per(read_volatile((self.0 + 0x14) as *const u16))
       }
    }
 #[doc="Write the PER register."]
    #[inline] pub fn set_per<F: FnOnce(Per) -> Per>(&self, f: F) -> &Self {
       let value = f(Per(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }
@@ -1372,7 +1372,7 @@ impl Mode1 {
       let tmp = self.per();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }
@@ -1388,14 +1388,14 @@ impl Mode1 {
 #[doc="Read the READREQ register."]
    #[inline] pub fn readreq(&self) -> Readreq { 
       unsafe {
-         Readreq(::core::ptr::read_volatile((self.0 + 0x2) as *const u16))
+         Readreq(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
 #[doc="Write the READREQ register."]
    #[inline] pub fn set_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Self {
       let value = f(Readreq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -1404,7 +1404,7 @@ impl Mode1 {
       let tmp = self.readreq();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -1420,14 +1420,14 @@ impl Mode1 {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0xa) as *const u8))
+         Status(read_volatile((self.0 + 0xa) as *const u8))
       }
    }
 #[doc="Write the STATUS register."]
    #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
       let value = f(Status(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }
@@ -1436,7 +1436,7 @@ impl Mode1 {
       let tmp = self.status();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }
@@ -2185,14 +2185,14 @@ impl Mode2 {
 #[doc="Read the DBGCTRL register."]
    #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
       unsafe {
-         Dbgctrl(::core::ptr::read_volatile((self.0 + 0xb) as *const u8))
+         Dbgctrl(read_volatile((self.0 + 0xb) as *const u8))
       }
    }
 #[doc="Write the DBGCTRL register."]
    #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
       let value = f(Dbgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -2201,7 +2201,7 @@ impl Mode2 {
       let tmp = self.dbgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb) as *mut u8, value.0);
+         write_volatile((self.0 + 0xb) as *mut u8, value.0);
       }
       self
    }
@@ -2217,14 +2217,14 @@ impl Mode2 {
 #[doc="Read the FREQCORR register."]
    #[inline] pub fn freqcorr(&self) -> Freqcorr { 
       unsafe {
-         Freqcorr(::core::ptr::read_volatile((self.0 + 0xc) as *const u8))
+         Freqcorr(read_volatile((self.0 + 0xc) as *const u8))
       }
    }
 #[doc="Write the FREQCORR register."]
    #[inline] pub fn set_freqcorr<F: FnOnce(Freqcorr) -> Freqcorr>(&self, f: F) -> &Self {
       let value = f(Freqcorr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -2233,7 +2233,7 @@ impl Mode2 {
       let tmp = self.freqcorr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u8, value.0);
+         write_volatile((self.0 + 0xc) as *mut u8, value.0);
       }
       self
    }
@@ -2249,14 +2249,14 @@ impl Mode2 {
 #[doc="Read the CLOCK register."]
    #[inline] pub fn clock(&self) -> Clock { 
       unsafe {
-         Clock(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Clock(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the CLOCK register."]
    #[inline] pub fn set_clock<F: FnOnce(Clock) -> Clock>(&self, f: F) -> &Self {
       let value = f(Clock(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -2265,7 +2265,7 @@ impl Mode2 {
       let tmp = self.clock();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -2281,14 +2281,14 @@ impl Mode2 {
 #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
-         Ctrl(::core::ptr::read_volatile((self.0 + 0x0) as *const u16))
+         Ctrl(read_volatile((self.0 + 0x0) as *const u16))
       }
    }
 #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -2297,7 +2297,7 @@ impl Mode2 {
       let tmp = self.ctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -2313,14 +2313,14 @@ impl Mode2 {
 #[doc="Read the EVCTRL register."]
    #[inline] pub fn evctrl(&self) -> Evctrl { 
       unsafe {
-         Evctrl(::core::ptr::read_volatile((self.0 + 0x4) as *const u16))
+         Evctrl(read_volatile((self.0 + 0x4) as *const u16))
       }
    }
 #[doc="Write the EVCTRL register."]
    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
       let value = f(Evctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -2329,7 +2329,7 @@ impl Mode2 {
       let tmp = self.evctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -2345,14 +2345,14 @@ impl Mode2 {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x6) as *const u8))
+         Intenclr(read_volatile((self.0 + 0x6) as *const u8))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -2361,7 +2361,7 @@ impl Mode2 {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u8, value.0);
+         write_volatile((self.0 + 0x6) as *mut u8, value.0);
       }
       self
    }
@@ -2377,14 +2377,14 @@ impl Mode2 {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
+         Intenset(read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -2393,7 +2393,7 @@ impl Mode2 {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7) as *mut u8, value.0);
+         write_volatile((self.0 + 0x7) as *mut u8, value.0);
       }
       self
    }
@@ -2409,14 +2409,14 @@ impl Mode2 {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         Intflag(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -2425,7 +2425,7 @@ impl Mode2 {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -2447,7 +2447,7 @@ impl Mode2 {
       let index: bits::R1 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Alarm(::core::ptr::read_volatile((self.0 + 0x18 + (index << 3)) as *const u32))
+         Alarm(read_volatile((self.0 + 0x18 + (index << 3)) as *const u32))
       }
    }
 #[doc="Write the ALARM register."]
@@ -2456,7 +2456,7 @@ impl Mode2 {
       let index: usize = index.value() as usize;
       let value = f(Alarm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 3)) as *mut u32, value.0);
       }
       self
    }
@@ -2467,7 +2467,7 @@ impl Mode2 {
       let tmp = self.alarm(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 3)) as *mut u32, value.0);
       }
       self
    }
@@ -2489,7 +2489,7 @@ impl Mode2 {
       let index: bits::R1 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Mask(::core::ptr::read_volatile((self.0 + 0x1c + (index << 3)) as *const u8))
+         Mask(read_volatile((self.0 + 0x1c + (index << 3)) as *const u8))
       }
    }
 #[doc="Write the MASK register."]
@@ -2498,7 +2498,7 @@ impl Mode2 {
       let index: usize = index.value() as usize;
       let value = f(Mask(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c + (index << 3)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1c + (index << 3)) as *mut u8, value.0);
       }
       self
    }
@@ -2509,7 +2509,7 @@ impl Mode2 {
       let tmp = self.mask(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c + (index << 3)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1c + (index << 3)) as *mut u8, value.0);
       }
       self
    }
@@ -2525,14 +2525,14 @@ impl Mode2 {
 #[doc="Read the READREQ register."]
    #[inline] pub fn readreq(&self) -> Readreq { 
       unsafe {
-         Readreq(::core::ptr::read_volatile((self.0 + 0x2) as *const u16))
+         Readreq(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
 #[doc="Write the READREQ register."]
    #[inline] pub fn set_readreq<F: FnOnce(Readreq) -> Readreq>(&self, f: F) -> &Self {
       let value = f(Readreq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -2541,7 +2541,7 @@ impl Mode2 {
       let tmp = self.readreq();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -2557,14 +2557,14 @@ impl Mode2 {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0xa) as *const u8))
+         Status(read_volatile((self.0 + 0xa) as *const u8))
       }
    }
 #[doc="Write the STATUS register."]
    #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
       let value = f(Status(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }
@@ -2573,7 +2573,7 @@ impl Mode2 {
       let tmp = self.status();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u8, value.0);
+         write_volatile((self.0 + 0xa) as *mut u8, value.0);
       }
       self
    }

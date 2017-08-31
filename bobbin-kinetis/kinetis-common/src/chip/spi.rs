@@ -18,14 +18,14 @@ impl SpiPeriph {
 #[doc="Read the MCR register."]
    #[inline] pub fn mcr(&self) -> Mcr { 
       unsafe {
-         Mcr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Mcr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the MCR register."]
    #[inline] pub fn set_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
       let value = f(Mcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl SpiPeriph {
       let tmp = self.mcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl SpiPeriph {
 #[doc="Read the TCR register."]
    #[inline] pub fn tcr(&self) -> Tcr { 
       unsafe {
-         Tcr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Tcr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the TCR register."]
    #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
       let value = f(Tcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl SpiPeriph {
       let tmp = self.tcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -88,7 +88,7 @@ impl SpiPeriph {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Ctar(::core::ptr::read_volatile((self.0 + 0xc + (index << 2)) as *const u32))
+         Ctar(read_volatile((self.0 + 0xc + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CTAR register."]
@@ -97,7 +97,7 @@ impl SpiPeriph {
       let index: usize = index.value() as usize;
       let value = f(Ctar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -108,7 +108,7 @@ impl SpiPeriph {
       let tmp = self.ctar(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -124,14 +124,14 @@ impl SpiPeriph {
 #[doc="Read the CTAR_SLAVE register."]
    #[inline] pub fn ctar_slave(&self) -> CtarSlave { 
       unsafe {
-         CtarSlave(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         CtarSlave(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the CTAR_SLAVE register."]
    #[inline] pub fn set_ctar_slave<F: FnOnce(CtarSlave) -> CtarSlave>(&self, f: F) -> &Self {
       let value = f(CtarSlave(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -140,7 +140,7 @@ impl SpiPeriph {
       let tmp = self.ctar_slave();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -156,14 +156,14 @@ impl SpiPeriph {
 #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
-         Sr(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Sr(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the SR register."]
    #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -172,7 +172,7 @@ impl SpiPeriph {
       let tmp = self.sr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -188,14 +188,14 @@ impl SpiPeriph {
 #[doc="Read the RSER register."]
    #[inline] pub fn rser(&self) -> Rser { 
       unsafe {
-         Rser(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
+         Rser(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the RSER register."]
    #[inline] pub fn set_rser<F: FnOnce(Rser) -> Rser>(&self, f: F) -> &Self {
       let value = f(Rser(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -204,7 +204,7 @@ impl SpiPeriph {
       let tmp = self.rser();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -220,14 +220,14 @@ impl SpiPeriph {
 #[doc="Read the PUSHR register."]
    #[inline] pub fn pushr(&self) -> Pushr { 
       unsafe {
-         Pushr(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Pushr(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the PUSHR register."]
    #[inline] pub fn set_pushr<F: FnOnce(Pushr) -> Pushr>(&self, f: F) -> &Self {
       let value = f(Pushr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -236,7 +236,7 @@ impl SpiPeriph {
       let tmp = self.pushr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -252,14 +252,14 @@ impl SpiPeriph {
 #[doc="Read the PUSHR_SLAVE register."]
    #[inline] pub fn pushr_slave(&self) -> PushrSlave { 
       unsafe {
-         PushrSlave(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         PushrSlave(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the PUSHR_SLAVE register."]
    #[inline] pub fn set_pushr_slave<F: FnOnce(PushrSlave) -> PushrSlave>(&self, f: F) -> &Self {
       let value = f(PushrSlave(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -268,7 +268,7 @@ impl SpiPeriph {
       let tmp = self.pushr_slave();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -284,7 +284,7 @@ impl SpiPeriph {
 #[doc="Read the POPR register."]
    #[inline] pub fn popr(&self) -> Popr { 
       unsafe {
-         Popr(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Popr(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 
@@ -305,7 +305,7 @@ impl SpiPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Txfr(::core::ptr::read_volatile((self.0 + 0x3c + (index << 2)) as *const u32))
+         Txfr(read_volatile((self.0 + 0x3c + (index << 2)) as *const u32))
       }
    }
 
@@ -326,7 +326,7 @@ impl SpiPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Rxfr(::core::ptr::read_volatile((self.0 + 0x7c + (index << 2)) as *const u32))
+         Rxfr(read_volatile((self.0 + 0x7c + (index << 2)) as *const u32))
       }
    }
 

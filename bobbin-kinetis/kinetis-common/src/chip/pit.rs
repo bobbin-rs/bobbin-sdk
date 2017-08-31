@@ -18,14 +18,14 @@ impl PitPeriph {
 #[doc="Read the MCR register."]
    #[inline] pub fn mcr(&self) -> Mcr { 
       unsafe {
-         Mcr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Mcr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the MCR register."]
    #[inline] pub fn set_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
       let value = f(Mcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl PitPeriph {
       let tmp = self.mcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -56,7 +56,7 @@ impl PitPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Ldval(::core::ptr::read_volatile((self.0 + 0x100 + (index << 4)) as *const u32))
+         Ldval(read_volatile((self.0 + 0x100 + (index << 4)) as *const u32))
       }
    }
 #[doc="Write the LDVAL register."]
@@ -65,7 +65,7 @@ impl PitPeriph {
       let index: usize = index.value() as usize;
       let value = f(Ldval(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100 + (index << 4)) as *mut u32, value.0);
       }
       self
    }
@@ -76,7 +76,7 @@ impl PitPeriph {
       let tmp = self.ldval(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100 + (index << 4)) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl PitPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cval(::core::ptr::read_volatile((self.0 + 0x104 + (index << 4)) as *const u32))
+         Cval(read_volatile((self.0 + 0x104 + (index << 4)) as *const u32))
       }
    }
 
@@ -119,7 +119,7 @@ impl PitPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Tctrl(::core::ptr::read_volatile((self.0 + 0x108 + (index << 4)) as *const u32))
+         Tctrl(read_volatile((self.0 + 0x108 + (index << 4)) as *const u32))
       }
    }
 #[doc="Write the TCTRL register."]
@@ -128,7 +128,7 @@ impl PitPeriph {
       let index: usize = index.value() as usize;
       let value = f(Tctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108 + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108 + (index << 4)) as *mut u32, value.0);
       }
       self
    }
@@ -139,7 +139,7 @@ impl PitPeriph {
       let tmp = self.tctrl(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108 + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108 + (index << 4)) as *mut u32, value.0);
       }
       self
    }
@@ -161,7 +161,7 @@ impl PitPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Tflg(::core::ptr::read_volatile((self.0 + 0x10c + (index << 4)) as *const u32))
+         Tflg(read_volatile((self.0 + 0x10c + (index << 4)) as *const u32))
       }
    }
 #[doc="Write the TFLG register."]
@@ -170,7 +170,7 @@ impl PitPeriph {
       let index: usize = index.value() as usize;
       let value = f(Tflg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c + (index << 4)) as *mut u32, value.0);
       }
       self
    }
@@ -181,7 +181,7 @@ impl PitPeriph {
       let tmp = self.tflg(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c + (index << 4)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c + (index << 4)) as *mut u32, value.0);
       }
       self
    }

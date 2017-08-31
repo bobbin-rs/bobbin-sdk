@@ -18,14 +18,14 @@ impl Ethernet {
 #[doc="Read the MACCR register."]
    #[inline] pub fn maccr(&self) -> Maccr { 
       unsafe {
-         Maccr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Maccr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the MACCR register."]
    #[inline] pub fn set_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
       let value = f(Maccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Ethernet {
       let tmp = self.maccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Ethernet {
 #[doc="Read the MACFFR register."]
    #[inline] pub fn macffr(&self) -> Macffr { 
       unsafe {
-         Macffr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Macffr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the MACFFR register."]
    #[inline] pub fn set_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
       let value = f(Macffr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Ethernet {
       let tmp = self.macffr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Ethernet {
 #[doc="Read the MACHTHR register."]
    #[inline] pub fn machthr(&self) -> Machthr { 
       unsafe {
-         Machthr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Machthr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the MACHTHR register."]
    #[inline] pub fn set_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
       let value = f(Machthr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Ethernet {
       let tmp = self.machthr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Ethernet {
 #[doc="Read the MACHTLR register."]
    #[inline] pub fn machtlr(&self) -> Machtlr { 
       unsafe {
-         Machtlr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Machtlr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the MACHTLR register."]
    #[inline] pub fn set_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
       let value = f(Machtlr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Ethernet {
       let tmp = self.machtlr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Ethernet {
 #[doc="Read the MACMIIAR register."]
    #[inline] pub fn macmiiar(&self) -> Macmiiar { 
       unsafe {
-         Macmiiar(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Macmiiar(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the MACMIIAR register."]
    #[inline] pub fn set_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
       let value = f(Macmiiar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Ethernet {
       let tmp = self.macmiiar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Ethernet {
 #[doc="Read the MACMIIDR register."]
    #[inline] pub fn macmiidr(&self) -> Macmiidr { 
       unsafe {
-         Macmiidr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Macmiidr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the MACMIIDR register."]
    #[inline] pub fn set_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
       let value = f(Macmiidr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Ethernet {
       let tmp = self.macmiidr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Ethernet {
 #[doc="Read the MACFCR register."]
    #[inline] pub fn macfcr(&self) -> Macfcr { 
       unsafe {
-         Macfcr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Macfcr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the MACFCR register."]
    #[inline] pub fn set_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
       let value = f(Macfcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Ethernet {
       let tmp = self.macfcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Ethernet {
 #[doc="Read the MACVLANTR register."]
    #[inline] pub fn macvlantr(&self) -> Macvlantr { 
       unsafe {
-         Macvlantr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Macvlantr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the MACVLANTR register."]
    #[inline] pub fn set_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
       let value = f(Macvlantr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Ethernet {
       let tmp = self.macvlantr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Ethernet {
 #[doc="Read the MACPMTCSR register."]
    #[inline] pub fn macpmtcsr(&self) -> Macpmtcsr { 
       unsafe {
-         Macpmtcsr(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Macpmtcsr(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the MACPMTCSR register."]
    #[inline] pub fn set_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
       let value = f(Macpmtcsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Ethernet {
       let tmp = self.macpmtcsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -306,7 +306,7 @@ impl Ethernet {
 #[doc="Read the MACDBGR register."]
    #[inline] pub fn macdbgr(&self) -> Macdbgr { 
       unsafe {
-         Macdbgr(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Macdbgr(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 
@@ -321,14 +321,14 @@ impl Ethernet {
 #[doc="Read the MACSR register."]
    #[inline] pub fn macsr(&self) -> Macsr { 
       unsafe {
-         Macsr(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Macsr(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the MACSR register."]
    #[inline] pub fn set_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
       let value = f(Macsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -337,7 +337,7 @@ impl Ethernet {
       let tmp = self.macsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -353,14 +353,14 @@ impl Ethernet {
 #[doc="Read the MACIMR register."]
    #[inline] pub fn macimr(&self) -> Macimr { 
       unsafe {
-         Macimr(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
+         Macimr(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the MACIMR register."]
    #[inline] pub fn set_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
       let value = f(Macimr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -369,7 +369,7 @@ impl Ethernet {
       let tmp = self.macimr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -385,14 +385,14 @@ impl Ethernet {
 #[doc="Read the MACA0HR register."]
    #[inline] pub fn maca0hr(&self) -> Maca0hr { 
       unsafe {
-         Maca0hr(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Maca0hr(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the MACA0HR register."]
    #[inline] pub fn set_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
       let value = f(Maca0hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -401,7 +401,7 @@ impl Ethernet {
       let tmp = self.maca0hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -417,14 +417,14 @@ impl Ethernet {
 #[doc="Read the MACA0LR register."]
    #[inline] pub fn maca0lr(&self) -> Maca0lr { 
       unsafe {
-         Maca0lr(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Maca0lr(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the MACA0LR register."]
    #[inline] pub fn set_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
       let value = f(Maca0lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -433,7 +433,7 @@ impl Ethernet {
       let tmp = self.maca0lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -449,14 +449,14 @@ impl Ethernet {
 #[doc="Read the MACA1HR register."]
    #[inline] pub fn maca1hr(&self) -> Maca1hr { 
       unsafe {
-         Maca1hr(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
+         Maca1hr(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the MACA1HR register."]
    #[inline] pub fn set_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
       let value = f(Maca1hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -465,7 +465,7 @@ impl Ethernet {
       let tmp = self.maca1hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -481,14 +481,14 @@ impl Ethernet {
 #[doc="Read the MACA1LR register."]
    #[inline] pub fn maca1lr(&self) -> Maca1lr { 
       unsafe {
-         Maca1lr(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
+         Maca1lr(read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the MACA1LR register."]
    #[inline] pub fn set_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
       let value = f(Maca1lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -497,7 +497,7 @@ impl Ethernet {
       let tmp = self.maca1lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -513,14 +513,14 @@ impl Ethernet {
 #[doc="Read the MACA2HR register."]
    #[inline] pub fn maca2hr(&self) -> Maca2hr { 
       unsafe {
-         Maca2hr(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
+         Maca2hr(read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the MACA2HR register."]
    #[inline] pub fn set_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
       let value = f(Maca2hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -529,7 +529,7 @@ impl Ethernet {
       let tmp = self.maca2hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -545,14 +545,14 @@ impl Ethernet {
 #[doc="Read the MACA2LR register."]
    #[inline] pub fn maca2lr(&self) -> Maca2lr { 
       unsafe {
-         Maca2lr(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Maca2lr(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the MACA2LR register."]
    #[inline] pub fn set_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
       let value = f(Maca2lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -561,7 +561,7 @@ impl Ethernet {
       let tmp = self.maca2lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -577,14 +577,14 @@ impl Ethernet {
 #[doc="Read the MACA3HR register."]
    #[inline] pub fn maca3hr(&self) -> Maca3hr { 
       unsafe {
-         Maca3hr(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Maca3hr(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the MACA3HR register."]
    #[inline] pub fn set_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
       let value = f(Maca3hr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -593,7 +593,7 @@ impl Ethernet {
       let tmp = self.maca3hr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -609,14 +609,14 @@ impl Ethernet {
 #[doc="Read the MACA3LR register."]
    #[inline] pub fn maca3lr(&self) -> Maca3lr { 
       unsafe {
-         Maca3lr(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
+         Maca3lr(read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the MACA3LR register."]
    #[inline] pub fn set_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
       let value = f(Maca3lr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -625,7 +625,7 @@ impl Ethernet {
       let tmp = self.maca3lr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }

@@ -18,7 +18,7 @@ impl LpuartPeriph {
 #[doc="Read the VERID register."]
    #[inline] pub fn verid(&self) -> Verid { 
       unsafe {
-         Verid(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Verid(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,7 +33,7 @@ impl LpuartPeriph {
 #[doc="Read the PARAM register."]
    #[inline] pub fn param(&self) -> Param { 
       unsafe {
-         Param(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Param(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 
@@ -48,14 +48,14 @@ impl LpuartPeriph {
 #[doc="Read the GLOBAL register."]
    #[inline] pub fn global(&self) -> Global { 
       unsafe {
-         Global(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Global(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the GLOBAL register."]
    #[inline] pub fn set_global<F: FnOnce(Global) -> Global>(&self, f: F) -> &Self {
       let value = f(Global(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -64,7 +64,7 @@ impl LpuartPeriph {
       let tmp = self.global();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -80,14 +80,14 @@ impl LpuartPeriph {
 #[doc="Read the PINCFG register."]
    #[inline] pub fn pincfg(&self) -> Pincfg { 
       unsafe {
-         Pincfg(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Pincfg(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the PINCFG register."]
    #[inline] pub fn set_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, f: F) -> &Self {
       let value = f(Pincfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -96,7 +96,7 @@ impl LpuartPeriph {
       let tmp = self.pincfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -112,14 +112,14 @@ impl LpuartPeriph {
 #[doc="Read the BAUD register."]
    #[inline] pub fn baud(&self) -> Baud { 
       unsafe {
-         Baud(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Baud(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the BAUD register."]
    #[inline] pub fn set_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
       let value = f(Baud(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -128,7 +128,7 @@ impl LpuartPeriph {
       let tmp = self.baud();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -144,14 +144,14 @@ impl LpuartPeriph {
 #[doc="Read the STAT register."]
    #[inline] pub fn stat(&self) -> Stat { 
       unsafe {
-         Stat(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Stat(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the STAT register."]
    #[inline] pub fn set_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
       let value = f(Stat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -160,7 +160,7 @@ impl LpuartPeriph {
       let tmp = self.stat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -176,14 +176,14 @@ impl LpuartPeriph {
 #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
-         Ctrl(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Ctrl(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -192,7 +192,7 @@ impl LpuartPeriph {
       let tmp = self.ctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -208,14 +208,14 @@ impl LpuartPeriph {
 #[doc="Read the DATA register."]
    #[inline] pub fn data(&self) -> Data { 
       unsafe {
-         Data(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Data(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the DATA register."]
    #[inline] pub fn set_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
       let value = f(Data(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -224,7 +224,7 @@ impl LpuartPeriph {
       let tmp = self.data();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -240,14 +240,14 @@ impl LpuartPeriph {
 #[doc="Read the MATCH register."]
    #[inline] pub fn _match(&self) -> Match { 
       unsafe {
-         Match(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Match(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the MATCH register."]
    #[inline] pub fn set_match<F: FnOnce(Match) -> Match>(&self, f: F) -> &Self {
       let value = f(Match(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -256,7 +256,7 @@ impl LpuartPeriph {
       let tmp = self._match();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -272,14 +272,14 @@ impl LpuartPeriph {
 #[doc="Read the MODIR register."]
    #[inline] pub fn modir(&self) -> Modir { 
       unsafe {
-         Modir(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Modir(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the MODIR register."]
    #[inline] pub fn set_modir<F: FnOnce(Modir) -> Modir>(&self, f: F) -> &Self {
       let value = f(Modir(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -288,7 +288,7 @@ impl LpuartPeriph {
       let tmp = self.modir();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -304,14 +304,14 @@ impl LpuartPeriph {
 #[doc="Read the FIFO register."]
    #[inline] pub fn fifo(&self) -> Fifo { 
       unsafe {
-         Fifo(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Fifo(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the FIFO register."]
    #[inline] pub fn set_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> &Self {
       let value = f(Fifo(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -320,7 +320,7 @@ impl LpuartPeriph {
       let tmp = self.fifo();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -336,14 +336,14 @@ impl LpuartPeriph {
 #[doc="Read the WATER register."]
    #[inline] pub fn water(&self) -> Water { 
       unsafe {
-         Water(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Water(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the WATER register."]
    #[inline] pub fn set_water<F: FnOnce(Water) -> Water>(&self, f: F) -> &Self {
       let value = f(Water(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -352,7 +352,7 @@ impl LpuartPeriph {
       let tmp = self.water();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }

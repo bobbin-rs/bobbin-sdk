@@ -18,7 +18,7 @@ impl Smc {
 #[doc="Read the VERID register."]
    #[inline] pub fn verid(&self) -> Verid { 
       unsafe {
-         Verid(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Verid(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,7 +33,7 @@ impl Smc {
 #[doc="Read the PARAM register."]
    #[inline] pub fn param(&self) -> Param { 
       unsafe {
-         Param(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Param(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 
@@ -48,14 +48,14 @@ impl Smc {
 #[doc="Read the PMPROT register."]
    #[inline] pub fn pmprot(&self) -> Pmprot { 
       unsafe {
-         Pmprot(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Pmprot(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the PMPROT register."]
    #[inline] pub fn set_pmprot<F: FnOnce(Pmprot) -> Pmprot>(&self, f: F) -> &Self {
       let value = f(Pmprot(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -64,7 +64,7 @@ impl Smc {
       let tmp = self.pmprot();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -80,14 +80,14 @@ impl Smc {
 #[doc="Read the PMCTRL register."]
    #[inline] pub fn pmctrl(&self) -> Pmctrl { 
       unsafe {
-         Pmctrl(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Pmctrl(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the PMCTRL register."]
    #[inline] pub fn set_pmctrl<F: FnOnce(Pmctrl) -> Pmctrl>(&self, f: F) -> &Self {
       let value = f(Pmctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -96,7 +96,7 @@ impl Smc {
       let tmp = self.pmctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -112,14 +112,14 @@ impl Smc {
 #[doc="Read the STOPCTRL register."]
    #[inline] pub fn stopctrl(&self) -> Stopctrl { 
       unsafe {
-         Stopctrl(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Stopctrl(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the STOPCTRL register."]
    #[inline] pub fn set_stopctrl<F: FnOnce(Stopctrl) -> Stopctrl>(&self, f: F) -> &Self {
       let value = f(Stopctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -128,7 +128,7 @@ impl Smc {
       let tmp = self.stopctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -144,7 +144,7 @@ impl Smc {
 #[doc="Read the PMSTAT register."]
    #[inline] pub fn pmstat(&self) -> Pmstat { 
       unsafe {
-         Pmstat(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Pmstat(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 

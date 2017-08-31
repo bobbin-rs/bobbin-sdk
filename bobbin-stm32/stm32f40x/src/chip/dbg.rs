@@ -18,7 +18,7 @@ impl Dbg {
 #[doc="Read the DBGMCU_IDCODE register."]
    #[inline] pub fn dbgmcu_idcode(&self) -> DbgmcuIdcode { 
       unsafe {
-         DbgmcuIdcode(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         DbgmcuIdcode(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,14 +33,14 @@ impl Dbg {
 #[doc="Read the DBGMCU_CR register."]
    #[inline] pub fn dbgmcu_cr(&self) -> DbgmcuCr { 
       unsafe {
-         DbgmcuCr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         DbgmcuCr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the DBGMCU_CR register."]
    #[inline] pub fn set_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
       let value = f(DbgmcuCr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -49,7 +49,7 @@ impl Dbg {
       let tmp = self.dbgmcu_cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -65,14 +65,14 @@ impl Dbg {
 #[doc="Read the DBGMCU_APB1_FZ register."]
    #[inline] pub fn dbgmcu_apb1_fz(&self) -> DbgmcuApb1Fz { 
       unsafe {
-         DbgmcuApb1Fz(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         DbgmcuApb1Fz(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the DBGMCU_APB1_FZ register."]
    #[inline] pub fn set_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
       let value = f(DbgmcuApb1Fz(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -81,7 +81,7 @@ impl Dbg {
       let tmp = self.dbgmcu_apb1_fz();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -97,14 +97,14 @@ impl Dbg {
 #[doc="Read the DBGMCU_APB2_FZ register."]
    #[inline] pub fn dbgmcu_apb2_fz(&self) -> DbgmcuApb2Fz { 
       unsafe {
-         DbgmcuApb2Fz(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         DbgmcuApb2Fz(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the DBGMCU_APB2_FZ register."]
    #[inline] pub fn set_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
       let value = f(DbgmcuApb2Fz(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -113,7 +113,7 @@ impl Dbg {
       let tmp = self.dbgmcu_apb2_fz();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }

@@ -24,7 +24,7 @@ impl AdcPeriph {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Sc1(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
+         Sc1(read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the SC1 register."]
@@ -33,7 +33,7 @@ impl AdcPeriph {
       let index: usize = index.value() as usize;
       let value = f(Sc1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -44,7 +44,7 @@ impl AdcPeriph {
       let tmp = self.sc1(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -60,14 +60,14 @@ impl AdcPeriph {
 #[doc="Read the CFG1 register."]
    #[inline] pub fn cfg1(&self) -> Cfg1 { 
       unsafe {
-         Cfg1(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cfg1(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the CFG1 register."]
    #[inline] pub fn set_cfg1<F: FnOnce(Cfg1) -> Cfg1>(&self, f: F) -> &Self {
       let value = f(Cfg1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -76,7 +76,7 @@ impl AdcPeriph {
       let tmp = self.cfg1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -92,14 +92,14 @@ impl AdcPeriph {
 #[doc="Read the CFG2 register."]
    #[inline] pub fn cfg2(&self) -> Cfg2 { 
       unsafe {
-         Cfg2(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Cfg2(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the CFG2 register."]
    #[inline] pub fn set_cfg2<F: FnOnce(Cfg2) -> Cfg2>(&self, f: F) -> &Self {
       let value = f(Cfg2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -108,7 +108,7 @@ impl AdcPeriph {
       let tmp = self.cfg2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl AdcPeriph {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         R(::core::ptr::read_volatile((self.0 + 0x10 + (index << 2)) as *const u32))
+         R(read_volatile((self.0 + 0x10 + (index << 2)) as *const u32))
       }
    }
 
@@ -151,7 +151,7 @@ impl AdcPeriph {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cv(::core::ptr::read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
+         Cv(read_volatile((self.0 + 0x18 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CV register."]
@@ -160,7 +160,7 @@ impl AdcPeriph {
       let index: usize = index.value() as usize;
       let value = f(Cv(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -171,7 +171,7 @@ impl AdcPeriph {
       let tmp = self.cv(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -187,14 +187,14 @@ impl AdcPeriph {
 #[doc="Read the SC2 register."]
    #[inline] pub fn sc2(&self) -> Sc2 { 
       unsafe {
-         Sc2(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Sc2(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the SC2 register."]
    #[inline] pub fn set_sc2<F: FnOnce(Sc2) -> Sc2>(&self, f: F) -> &Self {
       let value = f(Sc2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -203,7 +203,7 @@ impl AdcPeriph {
       let tmp = self.sc2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -219,14 +219,14 @@ impl AdcPeriph {
 #[doc="Read the SC3 register."]
    #[inline] pub fn sc3(&self) -> Sc3 { 
       unsafe {
-         Sc3(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Sc3(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the SC3 register."]
    #[inline] pub fn set_sc3<F: FnOnce(Sc3) -> Sc3>(&self, f: F) -> &Self {
       let value = f(Sc3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -235,7 +235,7 @@ impl AdcPeriph {
       let tmp = self.sc3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -251,14 +251,14 @@ impl AdcPeriph {
 #[doc="Read the OFS register."]
    #[inline] pub fn ofs(&self) -> Ofs { 
       unsafe {
-         Ofs(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Ofs(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the OFS register."]
    #[inline] pub fn set_ofs<F: FnOnce(Ofs) -> Ofs>(&self, f: F) -> &Self {
       let value = f(Ofs(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -267,7 +267,7 @@ impl AdcPeriph {
       let tmp = self.ofs();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -283,14 +283,14 @@ impl AdcPeriph {
 #[doc="Read the PG register."]
    #[inline] pub fn pg(&self) -> Pg { 
       unsafe {
-         Pg(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Pg(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the PG register."]
    #[inline] pub fn set_pg<F: FnOnce(Pg) -> Pg>(&self, f: F) -> &Self {
       let value = f(Pg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -299,7 +299,7 @@ impl AdcPeriph {
       let tmp = self.pg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -315,14 +315,14 @@ impl AdcPeriph {
 #[doc="Read the MG register."]
    #[inline] pub fn mg(&self) -> Mg { 
       unsafe {
-         Mg(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
+         Mg(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the MG register."]
    #[inline] pub fn set_mg<F: FnOnce(Mg) -> Mg>(&self, f: F) -> &Self {
       let value = f(Mg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -331,7 +331,7 @@ impl AdcPeriph {
       let tmp = self.mg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -347,14 +347,14 @@ impl AdcPeriph {
 #[doc="Read the CLPD register."]
    #[inline] pub fn clpd(&self) -> Clpd { 
       unsafe {
-         Clpd(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Clpd(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the CLPD register."]
    #[inline] pub fn set_clpd<F: FnOnce(Clpd) -> Clpd>(&self, f: F) -> &Self {
       let value = f(Clpd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -363,7 +363,7 @@ impl AdcPeriph {
       let tmp = self.clpd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -379,14 +379,14 @@ impl AdcPeriph {
 #[doc="Read the CLPS register."]
    #[inline] pub fn clps(&self) -> Clps { 
       unsafe {
-         Clps(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Clps(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the CLPS register."]
    #[inline] pub fn set_clps<F: FnOnce(Clps) -> Clps>(&self, f: F) -> &Self {
       let value = f(Clps(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -395,7 +395,7 @@ impl AdcPeriph {
       let tmp = self.clps();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -411,14 +411,14 @@ impl AdcPeriph {
 #[doc="Read the CLP4 register."]
    #[inline] pub fn clp4(&self) -> Clp4 { 
       unsafe {
-         Clp4(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
+         Clp4(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the CLP4 register."]
    #[inline] pub fn set_clp4<F: FnOnce(Clp4) -> Clp4>(&self, f: F) -> &Self {
       let value = f(Clp4(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -427,7 +427,7 @@ impl AdcPeriph {
       let tmp = self.clp4();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -443,14 +443,14 @@ impl AdcPeriph {
 #[doc="Read the CLP3 register."]
    #[inline] pub fn clp3(&self) -> Clp3 { 
       unsafe {
-         Clp3(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Clp3(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the CLP3 register."]
    #[inline] pub fn set_clp3<F: FnOnce(Clp3) -> Clp3>(&self, f: F) -> &Self {
       let value = f(Clp3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -459,7 +459,7 @@ impl AdcPeriph {
       let tmp = self.clp3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -475,14 +475,14 @@ impl AdcPeriph {
 #[doc="Read the CLP2 register."]
    #[inline] pub fn clp2(&self) -> Clp2 { 
       unsafe {
-         Clp2(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Clp2(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the CLP2 register."]
    #[inline] pub fn set_clp2<F: FnOnce(Clp2) -> Clp2>(&self, f: F) -> &Self {
       let value = f(Clp2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -491,7 +491,7 @@ impl AdcPeriph {
       let tmp = self.clp2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -507,14 +507,14 @@ impl AdcPeriph {
 #[doc="Read the CLP1 register."]
    #[inline] pub fn clp1(&self) -> Clp1 { 
       unsafe {
-         Clp1(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
+         Clp1(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the CLP1 register."]
    #[inline] pub fn set_clp1<F: FnOnce(Clp1) -> Clp1>(&self, f: F) -> &Self {
       let value = f(Clp1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -523,7 +523,7 @@ impl AdcPeriph {
       let tmp = self.clp1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -539,14 +539,14 @@ impl AdcPeriph {
 #[doc="Read the CLP0 register."]
    #[inline] pub fn clp0(&self) -> Clp0 { 
       unsafe {
-         Clp0(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
+         Clp0(read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the CLP0 register."]
    #[inline] pub fn set_clp0<F: FnOnce(Clp0) -> Clp0>(&self, f: F) -> &Self {
       let value = f(Clp0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -555,7 +555,7 @@ impl AdcPeriph {
       let tmp = self.clp0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -571,14 +571,14 @@ impl AdcPeriph {
 #[doc="Read the CLMD register."]
    #[inline] pub fn clmd(&self) -> Clmd { 
       unsafe {
-         Clmd(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Clmd(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the CLMD register."]
    #[inline] pub fn set_clmd<F: FnOnce(Clmd) -> Clmd>(&self, f: F) -> &Self {
       let value = f(Clmd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -587,7 +587,7 @@ impl AdcPeriph {
       let tmp = self.clmd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -603,14 +603,14 @@ impl AdcPeriph {
 #[doc="Read the CLMS register."]
    #[inline] pub fn clms(&self) -> Clms { 
       unsafe {
-         Clms(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Clms(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the CLMS register."]
    #[inline] pub fn set_clms<F: FnOnce(Clms) -> Clms>(&self, f: F) -> &Self {
       let value = f(Clms(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -619,7 +619,7 @@ impl AdcPeriph {
       let tmp = self.clms();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -635,14 +635,14 @@ impl AdcPeriph {
 #[doc="Read the CLM4 register."]
    #[inline] pub fn clm4(&self) -> Clm4 { 
       unsafe {
-         Clm4(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
+         Clm4(read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the CLM4 register."]
    #[inline] pub fn set_clm4<F: FnOnce(Clm4) -> Clm4>(&self, f: F) -> &Self {
       let value = f(Clm4(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -651,7 +651,7 @@ impl AdcPeriph {
       let tmp = self.clm4();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -667,14 +667,14 @@ impl AdcPeriph {
 #[doc="Read the CLM3 register."]
    #[inline] pub fn clm3(&self) -> Clm3 { 
       unsafe {
-         Clm3(::core::ptr::read_volatile((self.0 + 0x60) as *const u32))
+         Clm3(read_volatile((self.0 + 0x60) as *const u32))
       }
    }
 #[doc="Write the CLM3 register."]
    #[inline] pub fn set_clm3<F: FnOnce(Clm3) -> Clm3>(&self, f: F) -> &Self {
       let value = f(Clm3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -683,7 +683,7 @@ impl AdcPeriph {
       let tmp = self.clm3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -699,14 +699,14 @@ impl AdcPeriph {
 #[doc="Read the CLM2 register."]
    #[inline] pub fn clm2(&self) -> Clm2 { 
       unsafe {
-         Clm2(::core::ptr::read_volatile((self.0 + 0x64) as *const u32))
+         Clm2(read_volatile((self.0 + 0x64) as *const u32))
       }
    }
 #[doc="Write the CLM2 register."]
    #[inline] pub fn set_clm2<F: FnOnce(Clm2) -> Clm2>(&self, f: F) -> &Self {
       let value = f(Clm2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -715,7 +715,7 @@ impl AdcPeriph {
       let tmp = self.clm2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -731,14 +731,14 @@ impl AdcPeriph {
 #[doc="Read the CLM1 register."]
    #[inline] pub fn clm1(&self) -> Clm1 { 
       unsafe {
-         Clm1(::core::ptr::read_volatile((self.0 + 0x68) as *const u32))
+         Clm1(read_volatile((self.0 + 0x68) as *const u32))
       }
    }
 #[doc="Write the CLM1 register."]
    #[inline] pub fn set_clm1<F: FnOnce(Clm1) -> Clm1>(&self, f: F) -> &Self {
       let value = f(Clm1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -747,7 +747,7 @@ impl AdcPeriph {
       let tmp = self.clm1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -763,14 +763,14 @@ impl AdcPeriph {
 #[doc="Read the CLM0 register."]
    #[inline] pub fn clm0(&self) -> Clm0 { 
       unsafe {
-         Clm0(::core::ptr::read_volatile((self.0 + 0x6c) as *const u32))
+         Clm0(read_volatile((self.0 + 0x6c) as *const u32))
       }
    }
 #[doc="Write the CLM0 register."]
    #[inline] pub fn set_clm0<F: FnOnce(Clm0) -> Clm0>(&self, f: F) -> &Self {
       let value = f(Clm0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }
@@ -779,7 +779,7 @@ impl AdcPeriph {
       let tmp = self.clm0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }

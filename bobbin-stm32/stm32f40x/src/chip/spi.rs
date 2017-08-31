@@ -34,14 +34,14 @@ impl SpiPeriph {
 #[doc="Read the CR1 register."]
    #[inline] pub fn cr1(&self) -> Cr1 { 
       unsafe {
-         Cr1(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr1(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR1 register."]
    #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
       let value = f(Cr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,7 +50,7 @@ impl SpiPeriph {
       let tmp = self.cr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -66,14 +66,14 @@ impl SpiPeriph {
 #[doc="Read the CR2 register."]
    #[inline] pub fn cr2(&self) -> Cr2 { 
       unsafe {
-         Cr2(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cr2(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR2 register."]
    #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
       let value = f(Cr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,7 +82,7 @@ impl SpiPeriph {
       let tmp = self.cr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -98,14 +98,14 @@ impl SpiPeriph {
 #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
-         Sr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Sr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the SR register."]
    #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,7 +114,7 @@ impl SpiPeriph {
       let tmp = self.sr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -130,14 +130,14 @@ impl SpiPeriph {
 #[doc="Read the DR register."]
    #[inline] pub fn dr(&self) -> Dr { 
       unsafe {
-         Dr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Dr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the DR register."]
    #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
       let value = f(Dr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,7 +146,7 @@ impl SpiPeriph {
       let tmp = self.dr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -162,14 +162,14 @@ impl SpiPeriph {
 #[doc="Read the CRCPR register."]
    #[inline] pub fn crcpr(&self) -> Crcpr { 
       unsafe {
-         Crcpr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Crcpr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the CRCPR register."]
    #[inline] pub fn set_crcpr<F: FnOnce(Crcpr) -> Crcpr>(&self, f: F) -> &Self {
       let value = f(Crcpr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,7 +178,7 @@ impl SpiPeriph {
       let tmp = self.crcpr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl SpiPeriph {
 #[doc="Read the RXCRCR register."]
    #[inline] pub fn rxcrcr(&self) -> Rxcrcr { 
       unsafe {
-         Rxcrcr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Rxcrcr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 
@@ -209,7 +209,7 @@ impl SpiPeriph {
 #[doc="Read the TXCRCR register."]
    #[inline] pub fn txcrcr(&self) -> Txcrcr { 
       unsafe {
-         Txcrcr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Txcrcr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 
@@ -224,14 +224,14 @@ impl SpiPeriph {
 #[doc="Read the I2SCFGR register."]
    #[inline] pub fn i2scfgr(&self) -> I2scfgr { 
       unsafe {
-         I2scfgr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         I2scfgr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the I2SCFGR register."]
    #[inline] pub fn set_i2scfgr<F: FnOnce(I2scfgr) -> I2scfgr>(&self, f: F) -> &Self {
       let value = f(I2scfgr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -240,7 +240,7 @@ impl SpiPeriph {
       let tmp = self.i2scfgr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -256,14 +256,14 @@ impl SpiPeriph {
 #[doc="Read the I2SPR register."]
    #[inline] pub fn i2spr(&self) -> I2spr { 
       unsafe {
-         I2spr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         I2spr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the I2SPR register."]
    #[inline] pub fn set_i2spr<F: FnOnce(I2spr) -> I2spr>(&self, f: F) -> &Self {
       let value = f(I2spr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -272,7 +272,7 @@ impl SpiPeriph {
       let tmp = self.i2spr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }

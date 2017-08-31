@@ -24,7 +24,7 @@ impl PortPeriph {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Pcr(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
+         Pcr(read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the PCR register."]
@@ -33,7 +33,7 @@ impl PortPeriph {
       let index: usize = index.value() as usize;
       let value = f(Pcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -44,7 +44,7 @@ impl PortPeriph {
       let tmp = self.pcr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -61,7 +61,7 @@ impl PortPeriph {
    #[inline] pub fn set_gpclr<F: FnOnce(Gpclr) -> Gpclr>(&self, f: F) -> &Self {
       let value = f(Gpclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
@@ -78,7 +78,7 @@ impl PortPeriph {
    #[inline] pub fn set_gpchr<F: FnOnce(Gpchr) -> Gpchr>(&self, f: F) -> &Self {
       let value = f(Gpchr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -94,14 +94,14 @@ impl PortPeriph {
 #[doc="Read the ISFR register."]
    #[inline] pub fn isfr(&self) -> Isfr { 
       unsafe {
-         Isfr(::core::ptr::read_volatile((self.0 + 0xa0) as *const u32))
+         Isfr(read_volatile((self.0 + 0xa0) as *const u32))
       }
    }
 #[doc="Write the ISFR register."]
    #[inline] pub fn set_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
       let value = f(Isfr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }
@@ -110,7 +110,7 @@ impl PortPeriph {
       let tmp = self.isfr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }

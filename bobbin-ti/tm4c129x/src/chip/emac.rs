@@ -18,14 +18,14 @@ impl Emac {
 #[doc="Read the CFG register."]
    #[inline] pub fn cfg(&self) -> Cfg { 
       unsafe {
-         Cfg(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cfg(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CFG register."]
    #[inline] pub fn set_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Self {
       let value = f(Cfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Emac {
       let tmp = self.cfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Emac {
 #[doc="Read the FRAMEFLTR register."]
    #[inline] pub fn framefltr(&self) -> Framefltr { 
       unsafe {
-         Framefltr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Framefltr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the FRAMEFLTR register."]
    #[inline] pub fn set_framefltr<F: FnOnce(Framefltr) -> Framefltr>(&self, f: F) -> &Self {
       let value = f(Framefltr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Emac {
       let tmp = self.framefltr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Emac {
 #[doc="Read the HASHTBLH register."]
    #[inline] pub fn hashtblh(&self) -> Hashtblh { 
       unsafe {
-         Hashtblh(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Hashtblh(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the HASHTBLH register."]
    #[inline] pub fn set_hashtblh<F: FnOnce(Hashtblh) -> Hashtblh>(&self, f: F) -> &Self {
       let value = f(Hashtblh(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Emac {
       let tmp = self.hashtblh();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Emac {
 #[doc="Read the HASHTBLL register."]
    #[inline] pub fn hashtbll(&self) -> Hashtbll { 
       unsafe {
-         Hashtbll(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Hashtbll(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the HASHTBLL register."]
    #[inline] pub fn set_hashtbll<F: FnOnce(Hashtbll) -> Hashtbll>(&self, f: F) -> &Self {
       let value = f(Hashtbll(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Emac {
       let tmp = self.hashtbll();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Emac {
 #[doc="Read the MIIADDR register."]
    #[inline] pub fn miiaddr(&self) -> Miiaddr { 
       unsafe {
-         Miiaddr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Miiaddr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the MIIADDR register."]
    #[inline] pub fn set_miiaddr<F: FnOnce(Miiaddr) -> Miiaddr>(&self, f: F) -> &Self {
       let value = f(Miiaddr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Emac {
       let tmp = self.miiaddr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Emac {
 #[doc="Read the MIIDATA register."]
    #[inline] pub fn miidata(&self) -> Miidata { 
       unsafe {
-         Miidata(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Miidata(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the MIIDATA register."]
    #[inline] pub fn set_miidata<F: FnOnce(Miidata) -> Miidata>(&self, f: F) -> &Self {
       let value = f(Miidata(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Emac {
       let tmp = self.miidata();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Emac {
 #[doc="Read the FLOWCTL register."]
    #[inline] pub fn flowctl(&self) -> Flowctl { 
       unsafe {
-         Flowctl(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Flowctl(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the FLOWCTL register."]
    #[inline] pub fn set_flowctl<F: FnOnce(Flowctl) -> Flowctl>(&self, f: F) -> &Self {
       let value = f(Flowctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Emac {
       let tmp = self.flowctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Emac {
 #[doc="Read the VLANTG register."]
    #[inline] pub fn vlantg(&self) -> Vlantg { 
       unsafe {
-         Vlantg(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Vlantg(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the VLANTG register."]
    #[inline] pub fn set_vlantg<F: FnOnce(Vlantg) -> Vlantg>(&self, f: F) -> &Self {
       let value = f(Vlantg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Emac {
       let tmp = self.vlantg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Emac {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Status(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the STATUS register."]
    #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
       let value = f(Status(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Emac {
       let tmp = self.status();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl Emac {
 #[doc="Read the RWUFF register."]
    #[inline] pub fn rwuff(&self) -> Rwuff { 
       unsafe {
-         Rwuff(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Rwuff(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the RWUFF register."]
    #[inline] pub fn set_rwuff<F: FnOnce(Rwuff) -> Rwuff>(&self, f: F) -> &Self {
       let value = f(Rwuff(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl Emac {
       let tmp = self.rwuff();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl Emac {
 #[doc="Read the PMTCTLSTAT register."]
    #[inline] pub fn pmtctlstat(&self) -> Pmtctlstat { 
       unsafe {
-         Pmtctlstat(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Pmtctlstat(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the PMTCTLSTAT register."]
    #[inline] pub fn set_pmtctlstat<F: FnOnce(Pmtctlstat) -> Pmtctlstat>(&self, f: F) -> &Self {
       let value = f(Pmtctlstat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl Emac {
       let tmp = self.pmtctlstat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl Emac {
 #[doc="Read the RIS register."]
    #[inline] pub fn ris(&self) -> Ris { 
       unsafe {
-         Ris(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Ris(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the RIS register."]
    #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let value = f(Ris(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl Emac {
       let tmp = self.ris();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -402,14 +402,14 @@ impl Emac {
 #[doc="Read the IM register."]
    #[inline] pub fn im(&self) -> Im { 
       unsafe {
-         Im(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
+         Im(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the IM register."]
    #[inline] pub fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
       let value = f(Im(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -418,7 +418,7 @@ impl Emac {
       let tmp = self.im();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -434,14 +434,14 @@ impl Emac {
 #[doc="Read the ADDR0H register."]
    #[inline] pub fn addr0h(&self) -> Addr0h { 
       unsafe {
-         Addr0h(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Addr0h(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the ADDR0H register."]
    #[inline] pub fn set_addr0h<F: FnOnce(Addr0h) -> Addr0h>(&self, f: F) -> &Self {
       let value = f(Addr0h(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -450,7 +450,7 @@ impl Emac {
       let tmp = self.addr0h();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -466,14 +466,14 @@ impl Emac {
 #[doc="Read the ADDR0L register."]
    #[inline] pub fn addr0l(&self) -> Addr0l { 
       unsafe {
-         Addr0l(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Addr0l(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the ADDR0L register."]
    #[inline] pub fn set_addr0l<F: FnOnce(Addr0l) -> Addr0l>(&self, f: F) -> &Self {
       let value = f(Addr0l(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -482,7 +482,7 @@ impl Emac {
       let tmp = self.addr0l();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -498,14 +498,14 @@ impl Emac {
 #[doc="Read the ADDR1H register."]
    #[inline] pub fn addr1h(&self) -> Addr1h { 
       unsafe {
-         Addr1h(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
+         Addr1h(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the ADDR1H register."]
    #[inline] pub fn set_addr1h<F: FnOnce(Addr1h) -> Addr1h>(&self, f: F) -> &Self {
       let value = f(Addr1h(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -514,7 +514,7 @@ impl Emac {
       let tmp = self.addr1h();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -530,14 +530,14 @@ impl Emac {
 #[doc="Read the ADDR1L register."]
    #[inline] pub fn addr1l(&self) -> Addr1l { 
       unsafe {
-         Addr1l(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
+         Addr1l(read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the ADDR1L register."]
    #[inline] pub fn set_addr1l<F: FnOnce(Addr1l) -> Addr1l>(&self, f: F) -> &Self {
       let value = f(Addr1l(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -546,7 +546,7 @@ impl Emac {
       let tmp = self.addr1l();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -562,14 +562,14 @@ impl Emac {
 #[doc="Read the ADDR2H register."]
    #[inline] pub fn addr2h(&self) -> Addr2h { 
       unsafe {
-         Addr2h(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
+         Addr2h(read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the ADDR2H register."]
    #[inline] pub fn set_addr2h<F: FnOnce(Addr2h) -> Addr2h>(&self, f: F) -> &Self {
       let value = f(Addr2h(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -578,7 +578,7 @@ impl Emac {
       let tmp = self.addr2h();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -594,14 +594,14 @@ impl Emac {
 #[doc="Read the ADDR2L register."]
    #[inline] pub fn addr2l(&self) -> Addr2l { 
       unsafe {
-         Addr2l(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Addr2l(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the ADDR2L register."]
    #[inline] pub fn set_addr2l<F: FnOnce(Addr2l) -> Addr2l>(&self, f: F) -> &Self {
       let value = f(Addr2l(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -610,7 +610,7 @@ impl Emac {
       let tmp = self.addr2l();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -626,14 +626,14 @@ impl Emac {
 #[doc="Read the ADDR3H register."]
    #[inline] pub fn addr3h(&self) -> Addr3h { 
       unsafe {
-         Addr3h(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Addr3h(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the ADDR3H register."]
    #[inline] pub fn set_addr3h<F: FnOnce(Addr3h) -> Addr3h>(&self, f: F) -> &Self {
       let value = f(Addr3h(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -642,7 +642,7 @@ impl Emac {
       let tmp = self.addr3h();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -658,14 +658,14 @@ impl Emac {
 #[doc="Read the ADDR3L register."]
    #[inline] pub fn addr3l(&self) -> Addr3l { 
       unsafe {
-         Addr3l(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
+         Addr3l(read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the ADDR3L register."]
    #[inline] pub fn set_addr3l<F: FnOnce(Addr3l) -> Addr3l>(&self, f: F) -> &Self {
       let value = f(Addr3l(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -674,7 +674,7 @@ impl Emac {
       let tmp = self.addr3l();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -690,14 +690,14 @@ impl Emac {
 #[doc="Read the WDOGTO register."]
    #[inline] pub fn wdogto(&self) -> Wdogto { 
       unsafe {
-         Wdogto(::core::ptr::read_volatile((self.0 + 0xdc) as *const u32))
+         Wdogto(read_volatile((self.0 + 0xdc) as *const u32))
       }
    }
 #[doc="Write the WDOGTO register."]
    #[inline] pub fn set_wdogto<F: FnOnce(Wdogto) -> Wdogto>(&self, f: F) -> &Self {
       let value = f(Wdogto(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xdc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xdc) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl Emac {
       let tmp = self.wdogto();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xdc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xdc) as *mut u32, value.0);
       }
       self
    }
@@ -722,14 +722,14 @@ impl Emac {
 #[doc="Read the MMCCTRL register."]
    #[inline] pub fn mmcctrl(&self) -> Mmcctrl { 
       unsafe {
-         Mmcctrl(::core::ptr::read_volatile((self.0 + 0x100) as *const u32))
+         Mmcctrl(read_volatile((self.0 + 0x100) as *const u32))
       }
    }
 #[doc="Write the MMCCTRL register."]
    #[inline] pub fn set_mmcctrl<F: FnOnce(Mmcctrl) -> Mmcctrl>(&self, f: F) -> &Self {
       let value = f(Mmcctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100) as *mut u32, value.0);
       }
       self
    }
@@ -738,7 +738,7 @@ impl Emac {
       let tmp = self.mmcctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100) as *mut u32, value.0);
       }
       self
    }
@@ -754,14 +754,14 @@ impl Emac {
 #[doc="Read the MMCRXRIS register."]
    #[inline] pub fn mmcrxris(&self) -> Mmcrxris { 
       unsafe {
-         Mmcrxris(::core::ptr::read_volatile((self.0 + 0x104) as *const u32))
+         Mmcrxris(read_volatile((self.0 + 0x104) as *const u32))
       }
    }
 #[doc="Write the MMCRXRIS register."]
    #[inline] pub fn set_mmcrxris<F: FnOnce(Mmcrxris) -> Mmcrxris>(&self, f: F) -> &Self {
       let value = f(Mmcrxris(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x104) as *mut u32, value.0);
+         write_volatile((self.0 + 0x104) as *mut u32, value.0);
       }
       self
    }
@@ -770,7 +770,7 @@ impl Emac {
       let tmp = self.mmcrxris();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x104) as *mut u32, value.0);
+         write_volatile((self.0 + 0x104) as *mut u32, value.0);
       }
       self
    }
@@ -786,14 +786,14 @@ impl Emac {
 #[doc="Read the MMCTXRIS register."]
    #[inline] pub fn mmctxris(&self) -> Mmctxris { 
       unsafe {
-         Mmctxris(::core::ptr::read_volatile((self.0 + 0x108) as *const u32))
+         Mmctxris(read_volatile((self.0 + 0x108) as *const u32))
       }
    }
 #[doc="Write the MMCTXRIS register."]
    #[inline] pub fn set_mmctxris<F: FnOnce(Mmctxris) -> Mmctxris>(&self, f: F) -> &Self {
       let value = f(Mmctxris(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108) as *mut u32, value.0);
       }
       self
    }
@@ -802,7 +802,7 @@ impl Emac {
       let tmp = self.mmctxris();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108) as *mut u32, value.0);
       }
       self
    }
@@ -818,14 +818,14 @@ impl Emac {
 #[doc="Read the MMCRXIM register."]
    #[inline] pub fn mmcrxim(&self) -> Mmcrxim { 
       unsafe {
-         Mmcrxim(::core::ptr::read_volatile((self.0 + 0x10c) as *const u32))
+         Mmcrxim(read_volatile((self.0 + 0x10c) as *const u32))
       }
    }
 #[doc="Write the MMCRXIM register."]
    #[inline] pub fn set_mmcrxim<F: FnOnce(Mmcrxim) -> Mmcrxim>(&self, f: F) -> &Self {
       let value = f(Mmcrxim(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c) as *mut u32, value.0);
       }
       self
    }
@@ -834,7 +834,7 @@ impl Emac {
       let tmp = self.mmcrxim();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c) as *mut u32, value.0);
       }
       self
    }
@@ -850,14 +850,14 @@ impl Emac {
 #[doc="Read the MMCTXIM register."]
    #[inline] pub fn mmctxim(&self) -> Mmctxim { 
       unsafe {
-         Mmctxim(::core::ptr::read_volatile((self.0 + 0x110) as *const u32))
+         Mmctxim(read_volatile((self.0 + 0x110) as *const u32))
       }
    }
 #[doc="Write the MMCTXIM register."]
    #[inline] pub fn set_mmctxim<F: FnOnce(Mmctxim) -> Mmctxim>(&self, f: F) -> &Self {
       let value = f(Mmctxim(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x110) as *mut u32, value.0);
+         write_volatile((self.0 + 0x110) as *mut u32, value.0);
       }
       self
    }
@@ -866,7 +866,7 @@ impl Emac {
       let tmp = self.mmctxim();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x110) as *mut u32, value.0);
+         write_volatile((self.0 + 0x110) as *mut u32, value.0);
       }
       self
    }
@@ -882,14 +882,14 @@ impl Emac {
 #[doc="Read the TXCNTGB register."]
    #[inline] pub fn txcntgb(&self) -> Txcntgb { 
       unsafe {
-         Txcntgb(::core::ptr::read_volatile((self.0 + 0x118) as *const u32))
+         Txcntgb(read_volatile((self.0 + 0x118) as *const u32))
       }
    }
 #[doc="Write the TXCNTGB register."]
    #[inline] pub fn set_txcntgb<F: FnOnce(Txcntgb) -> Txcntgb>(&self, f: F) -> &Self {
       let value = f(Txcntgb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -898,7 +898,7 @@ impl Emac {
       let tmp = self.txcntgb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -914,14 +914,14 @@ impl Emac {
 #[doc="Read the TXCNTSCOL register."]
    #[inline] pub fn txcntscol(&self) -> Txcntscol { 
       unsafe {
-         Txcntscol(::core::ptr::read_volatile((self.0 + 0x14c) as *const u32))
+         Txcntscol(read_volatile((self.0 + 0x14c) as *const u32))
       }
    }
 #[doc="Write the TXCNTSCOL register."]
    #[inline] pub fn set_txcntscol<F: FnOnce(Txcntscol) -> Txcntscol>(&self, f: F) -> &Self {
       let value = f(Txcntscol(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -930,7 +930,7 @@ impl Emac {
       let tmp = self.txcntscol();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -946,14 +946,14 @@ impl Emac {
 #[doc="Read the TXCNTMCOL register."]
    #[inline] pub fn txcntmcol(&self) -> Txcntmcol { 
       unsafe {
-         Txcntmcol(::core::ptr::read_volatile((self.0 + 0x150) as *const u32))
+         Txcntmcol(read_volatile((self.0 + 0x150) as *const u32))
       }
    }
 #[doc="Write the TXCNTMCOL register."]
    #[inline] pub fn set_txcntmcol<F: FnOnce(Txcntmcol) -> Txcntmcol>(&self, f: F) -> &Self {
       let value = f(Txcntmcol(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -962,7 +962,7 @@ impl Emac {
       let tmp = self.txcntmcol();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -978,14 +978,14 @@ impl Emac {
 #[doc="Read the TXOCTCNTG register."]
    #[inline] pub fn txoctcntg(&self) -> Txoctcntg { 
       unsafe {
-         Txoctcntg(::core::ptr::read_volatile((self.0 + 0x164) as *const u32))
+         Txoctcntg(read_volatile((self.0 + 0x164) as *const u32))
       }
    }
 #[doc="Write the TXOCTCNTG register."]
    #[inline] pub fn set_txoctcntg<F: FnOnce(Txoctcntg) -> Txoctcntg>(&self, f: F) -> &Self {
       let value = f(Txoctcntg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -994,7 +994,7 @@ impl Emac {
       let tmp = self.txoctcntg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -1010,14 +1010,14 @@ impl Emac {
 #[doc="Read the RXCNTGB register."]
    #[inline] pub fn rxcntgb(&self) -> Rxcntgb { 
       unsafe {
-         Rxcntgb(::core::ptr::read_volatile((self.0 + 0x180) as *const u32))
+         Rxcntgb(read_volatile((self.0 + 0x180) as *const u32))
       }
    }
 #[doc="Write the RXCNTGB register."]
    #[inline] pub fn set_rxcntgb<F: FnOnce(Rxcntgb) -> Rxcntgb>(&self, f: F) -> &Self {
       let value = f(Rxcntgb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -1026,7 +1026,7 @@ impl Emac {
       let tmp = self.rxcntgb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -1042,14 +1042,14 @@ impl Emac {
 #[doc="Read the RXCNTCRCERR register."]
    #[inline] pub fn rxcntcrcerr(&self) -> Rxcntcrcerr { 
       unsafe {
-         Rxcntcrcerr(::core::ptr::read_volatile((self.0 + 0x194) as *const u32))
+         Rxcntcrcerr(read_volatile((self.0 + 0x194) as *const u32))
       }
    }
 #[doc="Write the RXCNTCRCERR register."]
    #[inline] pub fn set_rxcntcrcerr<F: FnOnce(Rxcntcrcerr) -> Rxcntcrcerr>(&self, f: F) -> &Self {
       let value = f(Rxcntcrcerr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -1058,7 +1058,7 @@ impl Emac {
       let tmp = self.rxcntcrcerr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -1074,14 +1074,14 @@ impl Emac {
 #[doc="Read the RXCNTALGNERR register."]
    #[inline] pub fn rxcntalgnerr(&self) -> Rxcntalgnerr { 
       unsafe {
-         Rxcntalgnerr(::core::ptr::read_volatile((self.0 + 0x198) as *const u32))
+         Rxcntalgnerr(read_volatile((self.0 + 0x198) as *const u32))
       }
    }
 #[doc="Write the RXCNTALGNERR register."]
    #[inline] pub fn set_rxcntalgnerr<F: FnOnce(Rxcntalgnerr) -> Rxcntalgnerr>(&self, f: F) -> &Self {
       let value = f(Rxcntalgnerr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -1090,7 +1090,7 @@ impl Emac {
       let tmp = self.rxcntalgnerr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -1106,14 +1106,14 @@ impl Emac {
 #[doc="Read the RXCNTGUNI register."]
    #[inline] pub fn rxcntguni(&self) -> Rxcntguni { 
       unsafe {
-         Rxcntguni(::core::ptr::read_volatile((self.0 + 0x1c4) as *const u32))
+         Rxcntguni(read_volatile((self.0 + 0x1c4) as *const u32))
       }
    }
 #[doc="Write the RXCNTGUNI register."]
    #[inline] pub fn set_rxcntguni<F: FnOnce(Rxcntguni) -> Rxcntguni>(&self, f: F) -> &Self {
       let value = f(Rxcntguni(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -1122,7 +1122,7 @@ impl Emac {
       let tmp = self.rxcntguni();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -1138,14 +1138,14 @@ impl Emac {
 #[doc="Read the VLNINCREP register."]
    #[inline] pub fn vlnincrep(&self) -> Vlnincrep { 
       unsafe {
-         Vlnincrep(::core::ptr::read_volatile((self.0 + 0x584) as *const u32))
+         Vlnincrep(read_volatile((self.0 + 0x584) as *const u32))
       }
    }
 #[doc="Write the VLNINCREP register."]
    #[inline] pub fn set_vlnincrep<F: FnOnce(Vlnincrep) -> Vlnincrep>(&self, f: F) -> &Self {
       let value = f(Vlnincrep(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x584) as *mut u32, value.0);
+         write_volatile((self.0 + 0x584) as *mut u32, value.0);
       }
       self
    }
@@ -1154,7 +1154,7 @@ impl Emac {
       let tmp = self.vlnincrep();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x584) as *mut u32, value.0);
+         write_volatile((self.0 + 0x584) as *mut u32, value.0);
       }
       self
    }
@@ -1170,14 +1170,14 @@ impl Emac {
 #[doc="Read the VLANHASH register."]
    #[inline] pub fn vlanhash(&self) -> Vlanhash { 
       unsafe {
-         Vlanhash(::core::ptr::read_volatile((self.0 + 0x588) as *const u32))
+         Vlanhash(read_volatile((self.0 + 0x588) as *const u32))
       }
    }
 #[doc="Write the VLANHASH register."]
    #[inline] pub fn set_vlanhash<F: FnOnce(Vlanhash) -> Vlanhash>(&self, f: F) -> &Self {
       let value = f(Vlanhash(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x588) as *mut u32, value.0);
+         write_volatile((self.0 + 0x588) as *mut u32, value.0);
       }
       self
    }
@@ -1186,7 +1186,7 @@ impl Emac {
       let tmp = self.vlanhash();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x588) as *mut u32, value.0);
+         write_volatile((self.0 + 0x588) as *mut u32, value.0);
       }
       self
    }
@@ -1202,14 +1202,14 @@ impl Emac {
 #[doc="Read the TIMSTCTRL register."]
    #[inline] pub fn timstctrl(&self) -> Timstctrl { 
       unsafe {
-         Timstctrl(::core::ptr::read_volatile((self.0 + 0x700) as *const u32))
+         Timstctrl(read_volatile((self.0 + 0x700) as *const u32))
       }
    }
 #[doc="Write the TIMSTCTRL register."]
    #[inline] pub fn set_timstctrl<F: FnOnce(Timstctrl) -> Timstctrl>(&self, f: F) -> &Self {
       let value = f(Timstctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x700) as *mut u32, value.0);
+         write_volatile((self.0 + 0x700) as *mut u32, value.0);
       }
       self
    }
@@ -1218,7 +1218,7 @@ impl Emac {
       let tmp = self.timstctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x700) as *mut u32, value.0);
+         write_volatile((self.0 + 0x700) as *mut u32, value.0);
       }
       self
    }
@@ -1234,14 +1234,14 @@ impl Emac {
 #[doc="Read the SUBSECINC register."]
    #[inline] pub fn subsecinc(&self) -> Subsecinc { 
       unsafe {
-         Subsecinc(::core::ptr::read_volatile((self.0 + 0x704) as *const u32))
+         Subsecinc(read_volatile((self.0 + 0x704) as *const u32))
       }
    }
 #[doc="Write the SUBSECINC register."]
    #[inline] pub fn set_subsecinc<F: FnOnce(Subsecinc) -> Subsecinc>(&self, f: F) -> &Self {
       let value = f(Subsecinc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x704) as *mut u32, value.0);
+         write_volatile((self.0 + 0x704) as *mut u32, value.0);
       }
       self
    }
@@ -1250,7 +1250,7 @@ impl Emac {
       let tmp = self.subsecinc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x704) as *mut u32, value.0);
+         write_volatile((self.0 + 0x704) as *mut u32, value.0);
       }
       self
    }
@@ -1266,14 +1266,14 @@ impl Emac {
 #[doc="Read the TIMSEC register."]
    #[inline] pub fn timsec(&self) -> Timsec { 
       unsafe {
-         Timsec(::core::ptr::read_volatile((self.0 + 0x708) as *const u32))
+         Timsec(read_volatile((self.0 + 0x708) as *const u32))
       }
    }
 #[doc="Write the TIMSEC register."]
    #[inline] pub fn set_timsec<F: FnOnce(Timsec) -> Timsec>(&self, f: F) -> &Self {
       let value = f(Timsec(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x708) as *mut u32, value.0);
+         write_volatile((self.0 + 0x708) as *mut u32, value.0);
       }
       self
    }
@@ -1282,7 +1282,7 @@ impl Emac {
       let tmp = self.timsec();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x708) as *mut u32, value.0);
+         write_volatile((self.0 + 0x708) as *mut u32, value.0);
       }
       self
    }
@@ -1298,14 +1298,14 @@ impl Emac {
 #[doc="Read the TIMNANO register."]
    #[inline] pub fn timnano(&self) -> Timnano { 
       unsafe {
-         Timnano(::core::ptr::read_volatile((self.0 + 0x70c) as *const u32))
+         Timnano(read_volatile((self.0 + 0x70c) as *const u32))
       }
    }
 #[doc="Write the TIMNANO register."]
    #[inline] pub fn set_timnano<F: FnOnce(Timnano) -> Timnano>(&self, f: F) -> &Self {
       let value = f(Timnano(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70c) as *mut u32, value.0);
       }
       self
    }
@@ -1314,7 +1314,7 @@ impl Emac {
       let tmp = self.timnano();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70c) as *mut u32, value.0);
       }
       self
    }
@@ -1330,14 +1330,14 @@ impl Emac {
 #[doc="Read the TIMSECU register."]
    #[inline] pub fn timsecu(&self) -> Timsecu { 
       unsafe {
-         Timsecu(::core::ptr::read_volatile((self.0 + 0x710) as *const u32))
+         Timsecu(read_volatile((self.0 + 0x710) as *const u32))
       }
    }
 #[doc="Write the TIMSECU register."]
    #[inline] pub fn set_timsecu<F: FnOnce(Timsecu) -> Timsecu>(&self, f: F) -> &Self {
       let value = f(Timsecu(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x710) as *mut u32, value.0);
+         write_volatile((self.0 + 0x710) as *mut u32, value.0);
       }
       self
    }
@@ -1346,7 +1346,7 @@ impl Emac {
       let tmp = self.timsecu();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x710) as *mut u32, value.0);
+         write_volatile((self.0 + 0x710) as *mut u32, value.0);
       }
       self
    }
@@ -1362,14 +1362,14 @@ impl Emac {
 #[doc="Read the TIMNANOU register."]
    #[inline] pub fn timnanou(&self) -> Timnanou { 
       unsafe {
-         Timnanou(::core::ptr::read_volatile((self.0 + 0x714) as *const u32))
+         Timnanou(read_volatile((self.0 + 0x714) as *const u32))
       }
    }
 #[doc="Write the TIMNANOU register."]
    #[inline] pub fn set_timnanou<F: FnOnce(Timnanou) -> Timnanou>(&self, f: F) -> &Self {
       let value = f(Timnanou(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x714) as *mut u32, value.0);
+         write_volatile((self.0 + 0x714) as *mut u32, value.0);
       }
       self
    }
@@ -1378,7 +1378,7 @@ impl Emac {
       let tmp = self.timnanou();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x714) as *mut u32, value.0);
+         write_volatile((self.0 + 0x714) as *mut u32, value.0);
       }
       self
    }
@@ -1394,14 +1394,14 @@ impl Emac {
 #[doc="Read the TIMADD register."]
    #[inline] pub fn timadd(&self) -> Timadd { 
       unsafe {
-         Timadd(::core::ptr::read_volatile((self.0 + 0x718) as *const u32))
+         Timadd(read_volatile((self.0 + 0x718) as *const u32))
       }
    }
 #[doc="Write the TIMADD register."]
    #[inline] pub fn set_timadd<F: FnOnce(Timadd) -> Timadd>(&self, f: F) -> &Self {
       let value = f(Timadd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x718) as *mut u32, value.0);
+         write_volatile((self.0 + 0x718) as *mut u32, value.0);
       }
       self
    }
@@ -1410,7 +1410,7 @@ impl Emac {
       let tmp = self.timadd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x718) as *mut u32, value.0);
+         write_volatile((self.0 + 0x718) as *mut u32, value.0);
       }
       self
    }
@@ -1426,14 +1426,14 @@ impl Emac {
 #[doc="Read the TARGSEC register."]
    #[inline] pub fn targsec(&self) -> Targsec { 
       unsafe {
-         Targsec(::core::ptr::read_volatile((self.0 + 0x71c) as *const u32))
+         Targsec(read_volatile((self.0 + 0x71c) as *const u32))
       }
    }
 #[doc="Write the TARGSEC register."]
    #[inline] pub fn set_targsec<F: FnOnce(Targsec) -> Targsec>(&self, f: F) -> &Self {
       let value = f(Targsec(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x71c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x71c) as *mut u32, value.0);
       }
       self
    }
@@ -1442,7 +1442,7 @@ impl Emac {
       let tmp = self.targsec();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x71c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x71c) as *mut u32, value.0);
       }
       self
    }
@@ -1458,14 +1458,14 @@ impl Emac {
 #[doc="Read the TARGNANO register."]
    #[inline] pub fn targnano(&self) -> Targnano { 
       unsafe {
-         Targnano(::core::ptr::read_volatile((self.0 + 0x720) as *const u32))
+         Targnano(read_volatile((self.0 + 0x720) as *const u32))
       }
    }
 #[doc="Write the TARGNANO register."]
    #[inline] pub fn set_targnano<F: FnOnce(Targnano) -> Targnano>(&self, f: F) -> &Self {
       let value = f(Targnano(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x720) as *mut u32, value.0);
+         write_volatile((self.0 + 0x720) as *mut u32, value.0);
       }
       self
    }
@@ -1474,7 +1474,7 @@ impl Emac {
       let tmp = self.targnano();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x720) as *mut u32, value.0);
+         write_volatile((self.0 + 0x720) as *mut u32, value.0);
       }
       self
    }
@@ -1490,14 +1490,14 @@ impl Emac {
 #[doc="Read the HWORDSEC register."]
    #[inline] pub fn hwordsec(&self) -> Hwordsec { 
       unsafe {
-         Hwordsec(::core::ptr::read_volatile((self.0 + 0x724) as *const u32))
+         Hwordsec(read_volatile((self.0 + 0x724) as *const u32))
       }
    }
 #[doc="Write the HWORDSEC register."]
    #[inline] pub fn set_hwordsec<F: FnOnce(Hwordsec) -> Hwordsec>(&self, f: F) -> &Self {
       let value = f(Hwordsec(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x724) as *mut u32, value.0);
+         write_volatile((self.0 + 0x724) as *mut u32, value.0);
       }
       self
    }
@@ -1506,7 +1506,7 @@ impl Emac {
       let tmp = self.hwordsec();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x724) as *mut u32, value.0);
+         write_volatile((self.0 + 0x724) as *mut u32, value.0);
       }
       self
    }
@@ -1522,14 +1522,14 @@ impl Emac {
 #[doc="Read the TIMSTAT register."]
    #[inline] pub fn timstat(&self) -> Timstat { 
       unsafe {
-         Timstat(::core::ptr::read_volatile((self.0 + 0x728) as *const u32))
+         Timstat(read_volatile((self.0 + 0x728) as *const u32))
       }
    }
 #[doc="Write the TIMSTAT register."]
    #[inline] pub fn set_timstat<F: FnOnce(Timstat) -> Timstat>(&self, f: F) -> &Self {
       let value = f(Timstat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x728) as *mut u32, value.0);
+         write_volatile((self.0 + 0x728) as *mut u32, value.0);
       }
       self
    }
@@ -1538,7 +1538,7 @@ impl Emac {
       let tmp = self.timstat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x728) as *mut u32, value.0);
+         write_volatile((self.0 + 0x728) as *mut u32, value.0);
       }
       self
    }
@@ -1554,14 +1554,14 @@ impl Emac {
 #[doc="Read the PPSCTRL register."]
    #[inline] pub fn ppsctrl(&self) -> Ppsctrl { 
       unsafe {
-         Ppsctrl(::core::ptr::read_volatile((self.0 + 0x72c) as *const u32))
+         Ppsctrl(read_volatile((self.0 + 0x72c) as *const u32))
       }
    }
 #[doc="Write the PPSCTRL register."]
    #[inline] pub fn set_ppsctrl<F: FnOnce(Ppsctrl) -> Ppsctrl>(&self, f: F) -> &Self {
       let value = f(Ppsctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x72c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x72c) as *mut u32, value.0);
       }
       self
    }
@@ -1570,7 +1570,7 @@ impl Emac {
       let tmp = self.ppsctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x72c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x72c) as *mut u32, value.0);
       }
       self
    }
@@ -1586,14 +1586,14 @@ impl Emac {
 #[doc="Read the PPS0INTVL register."]
    #[inline] pub fn pps0intvl(&self) -> Pps0intvl { 
       unsafe {
-         Pps0intvl(::core::ptr::read_volatile((self.0 + 0x760) as *const u32))
+         Pps0intvl(read_volatile((self.0 + 0x760) as *const u32))
       }
    }
 #[doc="Write the PPS0INTVL register."]
    #[inline] pub fn set_pps0intvl<F: FnOnce(Pps0intvl) -> Pps0intvl>(&self, f: F) -> &Self {
       let value = f(Pps0intvl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x760) as *mut u32, value.0);
+         write_volatile((self.0 + 0x760) as *mut u32, value.0);
       }
       self
    }
@@ -1602,7 +1602,7 @@ impl Emac {
       let tmp = self.pps0intvl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x760) as *mut u32, value.0);
+         write_volatile((self.0 + 0x760) as *mut u32, value.0);
       }
       self
    }
@@ -1618,14 +1618,14 @@ impl Emac {
 #[doc="Read the PPS0WIDTH register."]
    #[inline] pub fn pps0width(&self) -> Pps0width { 
       unsafe {
-         Pps0width(::core::ptr::read_volatile((self.0 + 0x764) as *const u32))
+         Pps0width(read_volatile((self.0 + 0x764) as *const u32))
       }
    }
 #[doc="Write the PPS0WIDTH register."]
    #[inline] pub fn set_pps0width<F: FnOnce(Pps0width) -> Pps0width>(&self, f: F) -> &Self {
       let value = f(Pps0width(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x764) as *mut u32, value.0);
+         write_volatile((self.0 + 0x764) as *mut u32, value.0);
       }
       self
    }
@@ -1634,7 +1634,7 @@ impl Emac {
       let tmp = self.pps0width();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x764) as *mut u32, value.0);
+         write_volatile((self.0 + 0x764) as *mut u32, value.0);
       }
       self
    }
@@ -1650,14 +1650,14 @@ impl Emac {
 #[doc="Read the DMABUSMOD register."]
    #[inline] pub fn dmabusmod(&self) -> Dmabusmod { 
       unsafe {
-         Dmabusmod(::core::ptr::read_volatile((self.0 + 0xc00) as *const u32))
+         Dmabusmod(read_volatile((self.0 + 0xc00) as *const u32))
       }
    }
 #[doc="Write the DMABUSMOD register."]
    #[inline] pub fn set_dmabusmod<F: FnOnce(Dmabusmod) -> Dmabusmod>(&self, f: F) -> &Self {
       let value = f(Dmabusmod(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc00) as *mut u32, value.0);
       }
       self
    }
@@ -1666,7 +1666,7 @@ impl Emac {
       let tmp = self.dmabusmod();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc00) as *mut u32, value.0);
       }
       self
    }
@@ -1683,7 +1683,7 @@ impl Emac {
    #[inline] pub fn set_txpolld<F: FnOnce(Txpolld) -> Txpolld>(&self, f: F) -> &Self {
       let value = f(Txpolld(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc04) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc04) as *mut u32, value.0);
       }
       self
    }
@@ -1700,7 +1700,7 @@ impl Emac {
    #[inline] pub fn set_rxpolld<F: FnOnce(Rxpolld) -> Rxpolld>(&self, f: F) -> &Self {
       let value = f(Rxpolld(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc08) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc08) as *mut u32, value.0);
       }
       self
    }
@@ -1716,14 +1716,14 @@ impl Emac {
 #[doc="Read the RXDLADDR register."]
    #[inline] pub fn rxdladdr(&self) -> Rxdladdr { 
       unsafe {
-         Rxdladdr(::core::ptr::read_volatile((self.0 + 0xc0c) as *const u32))
+         Rxdladdr(read_volatile((self.0 + 0xc0c) as *const u32))
       }
    }
 #[doc="Write the RXDLADDR register."]
    #[inline] pub fn set_rxdladdr<F: FnOnce(Rxdladdr) -> Rxdladdr>(&self, f: F) -> &Self {
       let value = f(Rxdladdr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0c) as *mut u32, value.0);
       }
       self
    }
@@ -1732,7 +1732,7 @@ impl Emac {
       let tmp = self.rxdladdr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0c) as *mut u32, value.0);
       }
       self
    }
@@ -1748,14 +1748,14 @@ impl Emac {
 #[doc="Read the TXDLADDR register."]
    #[inline] pub fn txdladdr(&self) -> Txdladdr { 
       unsafe {
-         Txdladdr(::core::ptr::read_volatile((self.0 + 0xc10) as *const u32))
+         Txdladdr(read_volatile((self.0 + 0xc10) as *const u32))
       }
    }
 #[doc="Write the TXDLADDR register."]
    #[inline] pub fn set_txdladdr<F: FnOnce(Txdladdr) -> Txdladdr>(&self, f: F) -> &Self {
       let value = f(Txdladdr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc10) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc10) as *mut u32, value.0);
       }
       self
    }
@@ -1764,7 +1764,7 @@ impl Emac {
       let tmp = self.txdladdr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc10) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc10) as *mut u32, value.0);
       }
       self
    }
@@ -1780,14 +1780,14 @@ impl Emac {
 #[doc="Read the DMARIS register."]
    #[inline] pub fn dmaris(&self) -> Dmaris { 
       unsafe {
-         Dmaris(::core::ptr::read_volatile((self.0 + 0xc14) as *const u32))
+         Dmaris(read_volatile((self.0 + 0xc14) as *const u32))
       }
    }
 #[doc="Write the DMARIS register."]
    #[inline] pub fn set_dmaris<F: FnOnce(Dmaris) -> Dmaris>(&self, f: F) -> &Self {
       let value = f(Dmaris(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc14) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc14) as *mut u32, value.0);
       }
       self
    }
@@ -1796,7 +1796,7 @@ impl Emac {
       let tmp = self.dmaris();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc14) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc14) as *mut u32, value.0);
       }
       self
    }
@@ -1812,14 +1812,14 @@ impl Emac {
 #[doc="Read the DMAOPMODE register."]
    #[inline] pub fn dmaopmode(&self) -> Dmaopmode { 
       unsafe {
-         Dmaopmode(::core::ptr::read_volatile((self.0 + 0xc18) as *const u32))
+         Dmaopmode(read_volatile((self.0 + 0xc18) as *const u32))
       }
    }
 #[doc="Write the DMAOPMODE register."]
    #[inline] pub fn set_dmaopmode<F: FnOnce(Dmaopmode) -> Dmaopmode>(&self, f: F) -> &Self {
       let value = f(Dmaopmode(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc18) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc18) as *mut u32, value.0);
       }
       self
    }
@@ -1828,7 +1828,7 @@ impl Emac {
       let tmp = self.dmaopmode();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc18) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc18) as *mut u32, value.0);
       }
       self
    }
@@ -1844,14 +1844,14 @@ impl Emac {
 #[doc="Read the DMAIM register."]
    #[inline] pub fn dmaim(&self) -> Dmaim { 
       unsafe {
-         Dmaim(::core::ptr::read_volatile((self.0 + 0xc1c) as *const u32))
+         Dmaim(read_volatile((self.0 + 0xc1c) as *const u32))
       }
    }
 #[doc="Write the DMAIM register."]
    #[inline] pub fn set_dmaim<F: FnOnce(Dmaim) -> Dmaim>(&self, f: F) -> &Self {
       let value = f(Dmaim(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc1c) as *mut u32, value.0);
       }
       self
    }
@@ -1860,7 +1860,7 @@ impl Emac {
       let tmp = self.dmaim();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc1c) as *mut u32, value.0);
       }
       self
    }
@@ -1876,14 +1876,14 @@ impl Emac {
 #[doc="Read the MFBOC register."]
    #[inline] pub fn mfboc(&self) -> Mfboc { 
       unsafe {
-         Mfboc(::core::ptr::read_volatile((self.0 + 0xc20) as *const u32))
+         Mfboc(read_volatile((self.0 + 0xc20) as *const u32))
       }
    }
 #[doc="Write the MFBOC register."]
    #[inline] pub fn set_mfboc<F: FnOnce(Mfboc) -> Mfboc>(&self, f: F) -> &Self {
       let value = f(Mfboc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc20) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc20) as *mut u32, value.0);
       }
       self
    }
@@ -1892,7 +1892,7 @@ impl Emac {
       let tmp = self.mfboc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc20) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc20) as *mut u32, value.0);
       }
       self
    }
@@ -1908,14 +1908,14 @@ impl Emac {
 #[doc="Read the RXINTWDT register."]
    #[inline] pub fn rxintwdt(&self) -> Rxintwdt { 
       unsafe {
-         Rxintwdt(::core::ptr::read_volatile((self.0 + 0xc24) as *const u32))
+         Rxintwdt(read_volatile((self.0 + 0xc24) as *const u32))
       }
    }
 #[doc="Write the RXINTWDT register."]
    #[inline] pub fn set_rxintwdt<F: FnOnce(Rxintwdt) -> Rxintwdt>(&self, f: F) -> &Self {
       let value = f(Rxintwdt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc24) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc24) as *mut u32, value.0);
       }
       self
    }
@@ -1924,7 +1924,7 @@ impl Emac {
       let tmp = self.rxintwdt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc24) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc24) as *mut u32, value.0);
       }
       self
    }
@@ -1940,14 +1940,14 @@ impl Emac {
 #[doc="Read the HOSTXDESC register."]
    #[inline] pub fn hostxdesc(&self) -> Hostxdesc { 
       unsafe {
-         Hostxdesc(::core::ptr::read_volatile((self.0 + 0xc48) as *const u32))
+         Hostxdesc(read_volatile((self.0 + 0xc48) as *const u32))
       }
    }
 #[doc="Write the HOSTXDESC register."]
    #[inline] pub fn set_hostxdesc<F: FnOnce(Hostxdesc) -> Hostxdesc>(&self, f: F) -> &Self {
       let value = f(Hostxdesc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc48) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc48) as *mut u32, value.0);
       }
       self
    }
@@ -1956,7 +1956,7 @@ impl Emac {
       let tmp = self.hostxdesc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc48) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc48) as *mut u32, value.0);
       }
       self
    }
@@ -1972,14 +1972,14 @@ impl Emac {
 #[doc="Read the HOSRXDESC register."]
    #[inline] pub fn hosrxdesc(&self) -> Hosrxdesc { 
       unsafe {
-         Hosrxdesc(::core::ptr::read_volatile((self.0 + 0xc4c) as *const u32))
+         Hosrxdesc(read_volatile((self.0 + 0xc4c) as *const u32))
       }
    }
 #[doc="Write the HOSRXDESC register."]
    #[inline] pub fn set_hosrxdesc<F: FnOnce(Hosrxdesc) -> Hosrxdesc>(&self, f: F) -> &Self {
       let value = f(Hosrxdesc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4c) as *mut u32, value.0);
       }
       self
    }
@@ -1988,7 +1988,7 @@ impl Emac {
       let tmp = self.hosrxdesc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4c) as *mut u32, value.0);
       }
       self
    }
@@ -2004,14 +2004,14 @@ impl Emac {
 #[doc="Read the HOSTXBA register."]
    #[inline] pub fn hostxba(&self) -> Hostxba { 
       unsafe {
-         Hostxba(::core::ptr::read_volatile((self.0 + 0xc50) as *const u32))
+         Hostxba(read_volatile((self.0 + 0xc50) as *const u32))
       }
    }
 #[doc="Write the HOSTXBA register."]
    #[inline] pub fn set_hostxba<F: FnOnce(Hostxba) -> Hostxba>(&self, f: F) -> &Self {
       let value = f(Hostxba(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc50) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc50) as *mut u32, value.0);
       }
       self
    }
@@ -2020,7 +2020,7 @@ impl Emac {
       let tmp = self.hostxba();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc50) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc50) as *mut u32, value.0);
       }
       self
    }
@@ -2036,14 +2036,14 @@ impl Emac {
 #[doc="Read the HOSRXBA register."]
    #[inline] pub fn hosrxba(&self) -> Hosrxba { 
       unsafe {
-         Hosrxba(::core::ptr::read_volatile((self.0 + 0xc54) as *const u32))
+         Hosrxba(read_volatile((self.0 + 0xc54) as *const u32))
       }
    }
 #[doc="Write the HOSRXBA register."]
    #[inline] pub fn set_hosrxba<F: FnOnce(Hosrxba) -> Hosrxba>(&self, f: F) -> &Self {
       let value = f(Hosrxba(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc54) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc54) as *mut u32, value.0);
       }
       self
    }
@@ -2052,7 +2052,7 @@ impl Emac {
       let tmp = self.hosrxba();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc54) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc54) as *mut u32, value.0);
       }
       self
    }
@@ -2068,14 +2068,14 @@ impl Emac {
 #[doc="Read the PP register."]
    #[inline] pub fn pp(&self) -> Pp { 
       unsafe {
-         Pp(::core::ptr::read_volatile((self.0 + 0xfc0) as *const u32))
+         Pp(read_volatile((self.0 + 0xfc0) as *const u32))
       }
    }
 #[doc="Write the PP register."]
    #[inline] pub fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
       let value = f(Pp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc0) as *mut u32, value.0);
       }
       self
    }
@@ -2084,7 +2084,7 @@ impl Emac {
       let tmp = self.pp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc0) as *mut u32, value.0);
       }
       self
    }
@@ -2100,14 +2100,14 @@ impl Emac {
 #[doc="Read the PC register."]
    #[inline] pub fn pc(&self) -> Pc { 
       unsafe {
-         Pc(::core::ptr::read_volatile((self.0 + 0xfc4) as *const u32))
+         Pc(read_volatile((self.0 + 0xfc4) as *const u32))
       }
    }
 #[doc="Write the PC register."]
    #[inline] pub fn set_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
       let value = f(Pc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc4) as *mut u32, value.0);
       }
       self
    }
@@ -2116,7 +2116,7 @@ impl Emac {
       let tmp = self.pc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc4) as *mut u32, value.0);
       }
       self
    }
@@ -2132,14 +2132,14 @@ impl Emac {
 #[doc="Read the CC register."]
    #[inline] pub fn cc(&self) -> Cc { 
       unsafe {
-         Cc(::core::ptr::read_volatile((self.0 + 0xfc8) as *const u32))
+         Cc(read_volatile((self.0 + 0xfc8) as *const u32))
       }
    }
 #[doc="Write the CC register."]
    #[inline] pub fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
       let value = f(Cc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc8) as *mut u32, value.0);
       }
       self
    }
@@ -2148,7 +2148,7 @@ impl Emac {
       let tmp = self.cc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc8) as *mut u32, value.0);
       }
       self
    }

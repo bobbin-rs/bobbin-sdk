@@ -24,7 +24,7 @@ impl Itm {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Stim(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
+         Stim(read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the STIM register."]
@@ -33,7 +33,7 @@ impl Itm {
       let index: usize = index.value() as usize;
       let value = f(Stim(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -44,7 +44,7 @@ impl Itm {
       let tmp = self.stim(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Itm {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Stim16(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u16))
+         Stim16(read_volatile((self.0 + 0x0 + (index << 2)) as *const u16))
       }
    }
 #[doc="Write the STIM16 register."]
@@ -75,7 +75,7 @@ impl Itm {
       let index: usize = index.value() as usize;
       let value = f(Stim16(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u16, value.0);
       }
       self
    }
@@ -86,7 +86,7 @@ impl Itm {
       let tmp = self.stim16(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u16, value.0);
       }
       self
    }
@@ -108,7 +108,7 @@ impl Itm {
       let index: bits::R32 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Stim8(::core::ptr::read_volatile((self.0 + 0x0 + (index << 2)) as *const u8))
+         Stim8(read_volatile((self.0 + 0x0 + (index << 2)) as *const u8))
       }
    }
 #[doc="Write the STIM8 register."]
@@ -117,7 +117,7 @@ impl Itm {
       let index: usize = index.value() as usize;
       let value = f(Stim8(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u8, value.0);
       }
       self
    }
@@ -128,7 +128,7 @@ impl Itm {
       let tmp = self.stim8(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index << 2)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0 + (index << 2)) as *mut u8, value.0);
       }
       self
    }
@@ -144,14 +144,14 @@ impl Itm {
 #[doc="Read the TER register."]
    #[inline] pub fn ter(&self) -> Ter { 
       unsafe {
-         Ter(::core::ptr::read_volatile((self.0 + 0xe00) as *const u32))
+         Ter(read_volatile((self.0 + 0xe00) as *const u32))
       }
    }
 #[doc="Write the TER register."]
    #[inline] pub fn set_ter<F: FnOnce(Ter) -> Ter>(&self, f: F) -> &Self {
       let value = f(Ter(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe00) as *mut u32, value.0);
       }
       self
    }
@@ -160,7 +160,7 @@ impl Itm {
       let tmp = self.ter();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe00) as *mut u32, value.0);
       }
       self
    }
@@ -176,14 +176,14 @@ impl Itm {
 #[doc="Read the TPR register."]
    #[inline] pub fn tpr(&self) -> Tpr { 
       unsafe {
-         Tpr(::core::ptr::read_volatile((self.0 + 0xe40) as *const u32))
+         Tpr(read_volatile((self.0 + 0xe40) as *const u32))
       }
    }
 #[doc="Write the TPR register."]
    #[inline] pub fn set_tpr<F: FnOnce(Tpr) -> Tpr>(&self, f: F) -> &Self {
       let value = f(Tpr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe40) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe40) as *mut u32, value.0);
       }
       self
    }
@@ -192,7 +192,7 @@ impl Itm {
       let tmp = self.tpr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe40) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe40) as *mut u32, value.0);
       }
       self
    }
@@ -208,14 +208,14 @@ impl Itm {
 #[doc="Read the TCR register."]
    #[inline] pub fn tcr(&self) -> Tcr { 
       unsafe {
-         Tcr(::core::ptr::read_volatile((self.0 + 0xe80) as *const u32))
+         Tcr(read_volatile((self.0 + 0xe80) as *const u32))
       }
    }
 #[doc="Write the TCR register."]
    #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
       let value = f(Tcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe80) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe80) as *mut u32, value.0);
       }
       self
    }
@@ -224,7 +224,7 @@ impl Itm {
       let tmp = self.tcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe80) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe80) as *mut u32, value.0);
       }
       self
    }
@@ -241,7 +241,7 @@ impl Itm {
    #[inline] pub fn set_lar<F: FnOnce(Lar) -> Lar>(&self, f: F) -> &Self {
       let value = f(Lar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfb0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfb0) as *mut u32, value.0);
       }
       self
    }
@@ -257,7 +257,7 @@ impl Itm {
 #[doc="Read the LSR register."]
    #[inline] pub fn lsr(&self) -> Lsr { 
       unsafe {
-         Lsr(::core::ptr::read_volatile((self.0 + 0xfb4) as *const u32))
+         Lsr(read_volatile((self.0 + 0xfb4) as *const u32))
       }
    }
 

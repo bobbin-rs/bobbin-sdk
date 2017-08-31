@@ -18,14 +18,14 @@ impl GpioPeriph {
 #[doc="Read the PDOR register."]
    #[inline] pub fn pdor(&self) -> Pdor { 
       unsafe {
-         Pdor(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Pdor(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the PDOR register."]
    #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
       let value = f(Pdor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl GpioPeriph {
       let tmp = self.pdor();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -51,7 +51,7 @@ impl GpioPeriph {
    #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
       let value = f(Psor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -68,7 +68,7 @@ impl GpioPeriph {
    #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
       let value = f(Pcor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -85,7 +85,7 @@ impl GpioPeriph {
    #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
       let value = f(Ptor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -101,7 +101,7 @@ impl GpioPeriph {
 #[doc="Read the PDIR register."]
    #[inline] pub fn pdir(&self) -> Pdir { 
       unsafe {
-         Pdir(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Pdir(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 
@@ -116,14 +116,14 @@ impl GpioPeriph {
 #[doc="Read the PDDR register."]
    #[inline] pub fn pddr(&self) -> Pddr { 
       unsafe {
-         Pddr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Pddr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the PDDR register."]
    #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
       let value = f(Pddr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -132,7 +132,7 @@ impl GpioPeriph {
       let tmp = self.pddr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }

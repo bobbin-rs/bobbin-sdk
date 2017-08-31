@@ -26,14 +26,14 @@ impl I2cPeriph {
 #[doc="Read the CR1 register."]
    #[inline] pub fn cr1(&self) -> Cr1 { 
       unsafe {
-         Cr1(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr1(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR1 register."]
    #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
       let value = f(Cr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -42,7 +42,7 @@ impl I2cPeriph {
       let tmp = self.cr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -58,14 +58,14 @@ impl I2cPeriph {
 #[doc="Read the CR2 register."]
    #[inline] pub fn cr2(&self) -> Cr2 { 
       unsafe {
-         Cr2(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cr2(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR2 register."]
    #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
       let value = f(Cr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -74,7 +74,7 @@ impl I2cPeriph {
       let tmp = self.cr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -90,14 +90,14 @@ impl I2cPeriph {
 #[doc="Read the OAR1 register."]
    #[inline] pub fn oar1(&self) -> Oar1 { 
       unsafe {
-         Oar1(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Oar1(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the OAR1 register."]
    #[inline] pub fn set_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
       let value = f(Oar1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -106,7 +106,7 @@ impl I2cPeriph {
       let tmp = self.oar1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -122,14 +122,14 @@ impl I2cPeriph {
 #[doc="Read the OAR2 register."]
    #[inline] pub fn oar2(&self) -> Oar2 { 
       unsafe {
-         Oar2(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Oar2(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the OAR2 register."]
    #[inline] pub fn set_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
       let value = f(Oar2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -138,7 +138,7 @@ impl I2cPeriph {
       let tmp = self.oar2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -154,14 +154,14 @@ impl I2cPeriph {
 #[doc="Read the TIMINGR register."]
    #[inline] pub fn timingr(&self) -> Timingr { 
       unsafe {
-         Timingr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Timingr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the TIMINGR register."]
    #[inline] pub fn set_timingr<F: FnOnce(Timingr) -> Timingr>(&self, f: F) -> &Self {
       let value = f(Timingr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -170,7 +170,7 @@ impl I2cPeriph {
       let tmp = self.timingr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -186,14 +186,14 @@ impl I2cPeriph {
 #[doc="Read the TIMEOUTR register."]
    #[inline] pub fn timeoutr(&self) -> Timeoutr { 
       unsafe {
-         Timeoutr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Timeoutr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the TIMEOUTR register."]
    #[inline] pub fn set_timeoutr<F: FnOnce(Timeoutr) -> Timeoutr>(&self, f: F) -> &Self {
       let value = f(Timeoutr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -202,7 +202,7 @@ impl I2cPeriph {
       let tmp = self.timeoutr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -218,14 +218,14 @@ impl I2cPeriph {
 #[doc="Read the ISR register."]
    #[inline] pub fn isr(&self) -> Isr { 
       unsafe {
-         Isr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Isr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the ISR register."]
    #[inline] pub fn set_isr<F: FnOnce(Isr) -> Isr>(&self, f: F) -> &Self {
       let value = f(Isr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -234,7 +234,7 @@ impl I2cPeriph {
       let tmp = self.isr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -251,7 +251,7 @@ impl I2cPeriph {
    #[inline] pub fn set_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &Self {
       let value = f(Icr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -267,7 +267,7 @@ impl I2cPeriph {
 #[doc="Read the PECR register."]
    #[inline] pub fn pecr(&self) -> Pecr { 
       unsafe {
-         Pecr(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Pecr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 
@@ -282,7 +282,7 @@ impl I2cPeriph {
 #[doc="Read the RXDR register."]
    #[inline] pub fn rxdr(&self) -> Rxdr { 
       unsafe {
-         Rxdr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Rxdr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 
@@ -297,14 +297,14 @@ impl I2cPeriph {
 #[doc="Read the TXDR register."]
    #[inline] pub fn txdr(&self) -> Txdr { 
       unsafe {
-         Txdr(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Txdr(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the TXDR register."]
    #[inline] pub fn set_txdr<F: FnOnce(Txdr) -> Txdr>(&self, f: F) -> &Self {
       let value = f(Txdr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -313,7 +313,7 @@ impl I2cPeriph {
       let tmp = self.txdr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }

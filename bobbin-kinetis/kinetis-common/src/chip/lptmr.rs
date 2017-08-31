@@ -18,14 +18,14 @@ impl LptmrPeriph {
 #[doc="Read the CSR register."]
    #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
-         Csr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Csr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CSR register."]
    #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
       let value = f(Csr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl LptmrPeriph {
       let tmp = self.csr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl LptmrPeriph {
 #[doc="Read the PSR register."]
    #[inline] pub fn psr(&self) -> Psr { 
       unsafe {
-         Psr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Psr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PSR register."]
    #[inline] pub fn set_psr<F: FnOnce(Psr) -> Psr>(&self, f: F) -> &Self {
       let value = f(Psr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl LptmrPeriph {
       let tmp = self.psr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl LptmrPeriph {
 #[doc="Read the CMR register."]
    #[inline] pub fn cmr(&self) -> Cmr { 
       unsafe {
-         Cmr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cmr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the CMR register."]
    #[inline] pub fn set_cmr<F: FnOnce(Cmr) -> Cmr>(&self, f: F) -> &Self {
       let value = f(Cmr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl LptmrPeriph {
       let tmp = self.cmr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl LptmrPeriph {
 #[doc="Read the CNR register."]
    #[inline] pub fn cnr(&self) -> Cnr { 
       unsafe {
-         Cnr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Cnr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the CNR register."]
    #[inline] pub fn set_cnr<F: FnOnce(Cnr) -> Cnr>(&self, f: F) -> &Self {
       let value = f(Cnr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl LptmrPeriph {
       let tmp = self.cnr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }

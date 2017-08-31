@@ -18,14 +18,14 @@ impl CrcPeriph {
 #[doc="Read the DR register."]
    #[inline] pub fn dr(&self) -> Dr { 
       unsafe {
-         Dr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Dr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the DR register."]
    #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
       let value = f(Dr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl CrcPeriph {
       let tmp = self.dr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl CrcPeriph {
 #[doc="Read the IDR register."]
    #[inline] pub fn idr(&self) -> Idr { 
       unsafe {
-         Idr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Idr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the IDR register."]
    #[inline] pub fn set_idr<F: FnOnce(Idr) -> Idr>(&self, f: F) -> &Self {
       let value = f(Idr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl CrcPeriph {
       let tmp = self.idr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl CrcPeriph {
 #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
-         Cr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Cr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl CrcPeriph {
       let tmp = self.cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl CrcPeriph {
 #[doc="Read the INIT register."]
    #[inline] pub fn init(&self) -> Init { 
       unsafe {
-         Init(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Init(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the INIT register."]
    #[inline] pub fn set_init<F: FnOnce(Init) -> Init>(&self, f: F) -> &Self {
       let value = f(Init(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl CrcPeriph {
       let tmp = self.init();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -152,7 +152,7 @@ impl CrcPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Dummy(::core::ptr::read_volatile((self.0 + 0x100 + (index << 2)) as *const u32))
+         Dummy(read_volatile((self.0 + 0x100 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the DUMMY register."]
@@ -161,7 +161,7 @@ impl CrcPeriph {
       let index: usize = index.value() as usize;
       let value = f(Dummy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -172,7 +172,7 @@ impl CrcPeriph {
       let tmp = self.dummy(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100 + (index << 2)) as *mut u32, value.0);
       }
       self
    }

@@ -18,14 +18,14 @@ impl WdogPeriph {
 #[doc="Read the STCTRLH register."]
    #[inline] pub fn stctrlh(&self) -> Stctrlh { 
       unsafe {
-         Stctrlh(::core::ptr::read_volatile((self.0 + 0x0) as *const u16))
+         Stctrlh(read_volatile((self.0 + 0x0) as *const u16))
       }
    }
 #[doc="Write the STCTRLH register."]
    #[inline] pub fn set_stctrlh<F: FnOnce(Stctrlh) -> Stctrlh>(&self, f: F) -> &Self {
       let value = f(Stctrlh(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl WdogPeriph {
       let tmp = self.stctrlh();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u16, value.0);
+         write_volatile((self.0 + 0x0) as *mut u16, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl WdogPeriph {
 #[doc="Read the STCTRLL register."]
    #[inline] pub fn stctrll(&self) -> Stctrll { 
       unsafe {
-         Stctrll(::core::ptr::read_volatile((self.0 + 0x2) as *const u16))
+         Stctrll(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
 #[doc="Write the STCTRLL register."]
    #[inline] pub fn set_stctrll<F: FnOnce(Stctrll) -> Stctrll>(&self, f: F) -> &Self {
       let value = f(Stctrll(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl WdogPeriph {
       let tmp = self.stctrll();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl WdogPeriph {
 #[doc="Read the TOVALH register."]
    #[inline] pub fn tovalh(&self) -> Tovalh { 
       unsafe {
-         Tovalh(::core::ptr::read_volatile((self.0 + 0x4) as *const u16))
+         Tovalh(read_volatile((self.0 + 0x4) as *const u16))
       }
    }
 #[doc="Write the TOVALH register."]
    #[inline] pub fn set_tovalh<F: FnOnce(Tovalh) -> Tovalh>(&self, f: F) -> &Self {
       let value = f(Tovalh(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl WdogPeriph {
       let tmp = self.tovalh();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u16, value.0);
+         write_volatile((self.0 + 0x4) as *mut u16, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl WdogPeriph {
 #[doc="Read the TOVALL register."]
    #[inline] pub fn tovall(&self) -> Tovall { 
       unsafe {
-         Tovall(::core::ptr::read_volatile((self.0 + 0x6) as *const u16))
+         Tovall(read_volatile((self.0 + 0x6) as *const u16))
       }
    }
 #[doc="Write the TOVALL register."]
    #[inline] pub fn set_tovall<F: FnOnce(Tovall) -> Tovall>(&self, f: F) -> &Self {
       let value = f(Tovall(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u16, value.0);
+         write_volatile((self.0 + 0x6) as *mut u16, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl WdogPeriph {
       let tmp = self.tovall();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6) as *mut u16, value.0);
+         write_volatile((self.0 + 0x6) as *mut u16, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl WdogPeriph {
 #[doc="Read the WINH register."]
    #[inline] pub fn winh(&self) -> Winh { 
       unsafe {
-         Winh(::core::ptr::read_volatile((self.0 + 0x8) as *const u16))
+         Winh(read_volatile((self.0 + 0x8) as *const u16))
       }
    }
 #[doc="Write the WINH register."]
    #[inline] pub fn set_winh<F: FnOnce(Winh) -> Winh>(&self, f: F) -> &Self {
       let value = f(Winh(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u16, value.0);
+         write_volatile((self.0 + 0x8) as *mut u16, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl WdogPeriph {
       let tmp = self.winh();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u16, value.0);
+         write_volatile((self.0 + 0x8) as *mut u16, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl WdogPeriph {
 #[doc="Read the WINL register."]
    #[inline] pub fn winl(&self) -> Winl { 
       unsafe {
-         Winl(::core::ptr::read_volatile((self.0 + 0xa) as *const u16))
+         Winl(read_volatile((self.0 + 0xa) as *const u16))
       }
    }
 #[doc="Write the WINL register."]
    #[inline] pub fn set_winl<F: FnOnce(Winl) -> Winl>(&self, f: F) -> &Self {
       let value = f(Winl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u16, value.0);
+         write_volatile((self.0 + 0xa) as *mut u16, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl WdogPeriph {
       let tmp = self.winl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa) as *mut u16, value.0);
+         write_volatile((self.0 + 0xa) as *mut u16, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl WdogPeriph {
 #[doc="Read the REFRESH register."]
    #[inline] pub fn refresh(&self) -> Refresh { 
       unsafe {
-         Refresh(::core::ptr::read_volatile((self.0 + 0xc) as *const u16))
+         Refresh(read_volatile((self.0 + 0xc) as *const u16))
       }
    }
 #[doc="Write the REFRESH register."]
    #[inline] pub fn set_refresh<F: FnOnce(Refresh) -> Refresh>(&self, f: F) -> &Self {
       let value = f(Refresh(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u16, value.0);
+         write_volatile((self.0 + 0xc) as *mut u16, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl WdogPeriph {
       let tmp = self.refresh();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u16, value.0);
+         write_volatile((self.0 + 0xc) as *mut u16, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl WdogPeriph {
 #[doc="Read the UNLOCK register."]
    #[inline] pub fn unlock(&self) -> Unlock { 
       unsafe {
-         Unlock(::core::ptr::read_volatile((self.0 + 0xe) as *const u16))
+         Unlock(read_volatile((self.0 + 0xe) as *const u16))
       }
    }
 #[doc="Write the UNLOCK register."]
    #[inline] pub fn set_unlock<F: FnOnce(Unlock) -> Unlock>(&self, f: F) -> &Self {
       let value = f(Unlock(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe) as *mut u16, value.0);
+         write_volatile((self.0 + 0xe) as *mut u16, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl WdogPeriph {
       let tmp = self.unlock();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe) as *mut u16, value.0);
+         write_volatile((self.0 + 0xe) as *mut u16, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl WdogPeriph {
 #[doc="Read the TMROUTH register."]
    #[inline] pub fn tmrouth(&self) -> Tmrouth { 
       unsafe {
-         Tmrouth(::core::ptr::read_volatile((self.0 + 0x10) as *const u16))
+         Tmrouth(read_volatile((self.0 + 0x10) as *const u16))
       }
    }
 #[doc="Write the TMROUTH register."]
    #[inline] pub fn set_tmrouth<F: FnOnce(Tmrouth) -> Tmrouth>(&self, f: F) -> &Self {
       let value = f(Tmrouth(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl WdogPeriph {
       let tmp = self.tmrouth();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl WdogPeriph {
 #[doc="Read the TMROUTL register."]
    #[inline] pub fn tmroutl(&self) -> Tmroutl { 
       unsafe {
-         Tmroutl(::core::ptr::read_volatile((self.0 + 0x12) as *const u16))
+         Tmroutl(read_volatile((self.0 + 0x12) as *const u16))
       }
    }
 #[doc="Write the TMROUTL register."]
    #[inline] pub fn set_tmroutl<F: FnOnce(Tmroutl) -> Tmroutl>(&self, f: F) -> &Self {
       let value = f(Tmroutl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x12) as *mut u16, value.0);
+         write_volatile((self.0 + 0x12) as *mut u16, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl WdogPeriph {
       let tmp = self.tmroutl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x12) as *mut u16, value.0);
+         write_volatile((self.0 + 0x12) as *mut u16, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl WdogPeriph {
 #[doc="Read the RSTCNT register."]
    #[inline] pub fn rstcnt(&self) -> Rstcnt { 
       unsafe {
-         Rstcnt(::core::ptr::read_volatile((self.0 + 0x14) as *const u16))
+         Rstcnt(read_volatile((self.0 + 0x14) as *const u16))
       }
    }
 #[doc="Write the RSTCNT register."]
    #[inline] pub fn set_rstcnt<F: FnOnce(Rstcnt) -> Rstcnt>(&self, f: F) -> &Self {
       let value = f(Rstcnt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl WdogPeriph {
       let tmp = self.rstcnt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl WdogPeriph {
 #[doc="Read the PRESC register."]
    #[inline] pub fn presc(&self) -> Presc { 
       unsafe {
-         Presc(::core::ptr::read_volatile((self.0 + 0x16) as *const u16))
+         Presc(read_volatile((self.0 + 0x16) as *const u16))
       }
    }
 #[doc="Write the PRESC register."]
    #[inline] pub fn set_presc<F: FnOnce(Presc) -> Presc>(&self, f: F) -> &Self {
       let value = f(Presc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16) as *mut u16, value.0);
+         write_volatile((self.0 + 0x16) as *mut u16, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl WdogPeriph {
       let tmp = self.presc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16) as *mut u16, value.0);
+         write_volatile((self.0 + 0x16) as *mut u16, value.0);
       }
       self
    }

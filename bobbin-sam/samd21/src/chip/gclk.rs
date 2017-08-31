@@ -18,14 +18,14 @@ impl Gclk {
 #[doc="Read the CLKCTRL register."]
    #[inline] pub fn clkctrl(&self) -> Clkctrl { 
       unsafe {
-         Clkctrl(::core::ptr::read_volatile((self.0 + 0x2) as *const u16))
+         Clkctrl(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
 #[doc="Write the CLKCTRL register."]
    #[inline] pub fn set_clkctrl<F: FnOnce(Clkctrl) -> Clkctrl>(&self, f: F) -> &Self {
       let value = f(Clkctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Gclk {
       let tmp = self.clkctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u16, value.0);
+         write_volatile((self.0 + 0x2) as *mut u16, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Gclk {
 #[doc="Read the CLKCTRL_ID register."]
    #[inline] pub fn clkctrl_id(&self) -> ClkctrlId { 
       unsafe {
-         ClkctrlId(::core::ptr::read_volatile((self.0 + 0x2) as *const u8))
+         ClkctrlId(read_volatile((self.0 + 0x2) as *const u8))
       }
    }
 #[doc="Write the CLKCTRL_ID register."]
    #[inline] pub fn set_clkctrl_id<F: FnOnce(ClkctrlId) -> ClkctrlId>(&self, f: F) -> &Self {
       let value = f(ClkctrlId(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2) as *mut u8, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Gclk {
       let tmp = self.clkctrl_id();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2) as *mut u8, value.0);
+         write_volatile((self.0 + 0x2) as *mut u8, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Gclk {
 #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
-         Ctrl(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
+         Ctrl(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Gclk {
       let tmp = self.ctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0) as *mut u8, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Gclk {
 #[doc="Read the GENCTRL register."]
    #[inline] pub fn genctrl(&self) -> Genctrl { 
       unsafe {
-         Genctrl(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Genctrl(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the GENCTRL register."]
    #[inline] pub fn set_genctrl<F: FnOnce(Genctrl) -> Genctrl>(&self, f: F) -> &Self {
       let value = f(Genctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Gclk {
       let tmp = self.genctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Gclk {
 #[doc="Read the GENCTRL_ID register."]
    #[inline] pub fn genctrl_id(&self) -> GenctrlId { 
       unsafe {
-         GenctrlId(::core::ptr::read_volatile((self.0 + 0x4) as *const u8))
+         GenctrlId(read_volatile((self.0 + 0x4) as *const u8))
       }
    }
 #[doc="Write the GENCTRL_ID register."]
    #[inline] pub fn set_genctrl_id<F: FnOnce(GenctrlId) -> GenctrlId>(&self, f: F) -> &Self {
       let value = f(GenctrlId(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Gclk {
       let tmp = self.genctrl_id();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Gclk {
 #[doc="Read the GENDIV register."]
    #[inline] pub fn gendiv(&self) -> Gendiv { 
       unsafe {
-         Gendiv(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Gendiv(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the GENDIV register."]
    #[inline] pub fn set_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Self {
       let value = f(Gendiv(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Gclk {
       let tmp = self.gendiv();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Gclk {
 #[doc="Read the GENDIV_ID register."]
    #[inline] pub fn gendiv_id(&self) -> GendivId { 
       unsafe {
-         GendivId(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         GendivId(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 #[doc="Write the GENDIV_ID register."]
    #[inline] pub fn set_gendiv_id<F: FnOnce(GendivId) -> GendivId>(&self, f: F) -> &Self {
       let value = f(GendivId(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Gclk {
       let tmp = self.gendiv_id();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u8, value.0);
+         write_volatile((self.0 + 0x8) as *mut u8, value.0);
       }
       self
    }
@@ -242,7 +242,7 @@ impl Gclk {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0x1) as *const u8))
+         Status(read_volatile((self.0 + 0x1) as *const u8))
       }
    }
 

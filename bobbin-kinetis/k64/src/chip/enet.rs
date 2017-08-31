@@ -18,14 +18,14 @@ impl Enet {
 #[doc="Read the EIR register."]
    #[inline] pub fn eir(&self) -> Eir { 
       unsafe {
-         Eir(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Eir(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the EIR register."]
    #[inline] pub fn set_eir<F: FnOnce(Eir) -> Eir>(&self, f: F) -> &Self {
       let value = f(Eir(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Enet {
       let tmp = self.eir();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Enet {
 #[doc="Read the EIMR register."]
    #[inline] pub fn eimr(&self) -> Eimr { 
       unsafe {
-         Eimr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Eimr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the EIMR register."]
    #[inline] pub fn set_eimr<F: FnOnce(Eimr) -> Eimr>(&self, f: F) -> &Self {
       let value = f(Eimr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Enet {
       let tmp = self.eimr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Enet {
 #[doc="Read the RDAR register."]
    #[inline] pub fn rdar(&self) -> Rdar { 
       unsafe {
-         Rdar(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Rdar(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the RDAR register."]
    #[inline] pub fn set_rdar<F: FnOnce(Rdar) -> Rdar>(&self, f: F) -> &Self {
       let value = f(Rdar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Enet {
       let tmp = self.rdar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Enet {
 #[doc="Read the TDAR register."]
    #[inline] pub fn tdar(&self) -> Tdar { 
       unsafe {
-         Tdar(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Tdar(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the TDAR register."]
    #[inline] pub fn set_tdar<F: FnOnce(Tdar) -> Tdar>(&self, f: F) -> &Self {
       let value = f(Tdar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Enet {
       let tmp = self.tdar();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Enet {
 #[doc="Read the ECR register."]
    #[inline] pub fn ecr(&self) -> Ecr { 
       unsafe {
-         Ecr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Ecr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the ECR register."]
    #[inline] pub fn set_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
       let value = f(Ecr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Enet {
       let tmp = self.ecr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Enet {
 #[doc="Read the MMFR register."]
    #[inline] pub fn mmfr(&self) -> Mmfr { 
       unsafe {
-         Mmfr(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Mmfr(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the MMFR register."]
    #[inline] pub fn set_mmfr<F: FnOnce(Mmfr) -> Mmfr>(&self, f: F) -> &Self {
       let value = f(Mmfr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Enet {
       let tmp = self.mmfr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Enet {
 #[doc="Read the MSCR register."]
    #[inline] pub fn mscr(&self) -> Mscr { 
       unsafe {
-         Mscr(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Mscr(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the MSCR register."]
    #[inline] pub fn set_mscr<F: FnOnce(Mscr) -> Mscr>(&self, f: F) -> &Self {
       let value = f(Mscr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Enet {
       let tmp = self.mscr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Enet {
 #[doc="Read the MIBC register."]
    #[inline] pub fn mibc(&self) -> Mibc { 
       unsafe {
-         Mibc(::core::ptr::read_volatile((self.0 + 0x64) as *const u32))
+         Mibc(read_volatile((self.0 + 0x64) as *const u32))
       }
    }
 #[doc="Write the MIBC register."]
    #[inline] pub fn set_mibc<F: FnOnce(Mibc) -> Mibc>(&self, f: F) -> &Self {
       let value = f(Mibc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Enet {
       let tmp = self.mibc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Enet {
 #[doc="Read the RCR register."]
    #[inline] pub fn rcr(&self) -> Rcr { 
       unsafe {
-         Rcr(::core::ptr::read_volatile((self.0 + 0x84) as *const u32))
+         Rcr(read_volatile((self.0 + 0x84) as *const u32))
       }
    }
 #[doc="Write the RCR register."]
    #[inline] pub fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
       let value = f(Rcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Enet {
       let tmp = self.rcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl Enet {
 #[doc="Read the TCR register."]
    #[inline] pub fn tcr(&self) -> Tcr { 
       unsafe {
-         Tcr(::core::ptr::read_volatile((self.0 + 0xc4) as *const u32))
+         Tcr(read_volatile((self.0 + 0xc4) as *const u32))
       }
    }
 #[doc="Write the TCR register."]
    #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
       let value = f(Tcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4) as *mut u32, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl Enet {
       let tmp = self.tcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4) as *mut u32, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl Enet {
 #[doc="Read the PALR register."]
    #[inline] pub fn palr(&self) -> Palr { 
       unsafe {
-         Palr(::core::ptr::read_volatile((self.0 + 0xe4) as *const u32))
+         Palr(read_volatile((self.0 + 0xe4) as *const u32))
       }
    }
 #[doc="Write the PALR register."]
    #[inline] pub fn set_palr<F: FnOnce(Palr) -> Palr>(&self, f: F) -> &Self {
       let value = f(Palr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe4) as *mut u32, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl Enet {
       let tmp = self.palr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe4) as *mut u32, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl Enet {
 #[doc="Read the PAUR register."]
    #[inline] pub fn paur(&self) -> Paur { 
       unsafe {
-         Paur(::core::ptr::read_volatile((self.0 + 0xe8) as *const u32))
+         Paur(read_volatile((self.0 + 0xe8) as *const u32))
       }
    }
 #[doc="Write the PAUR register."]
    #[inline] pub fn set_paur<F: FnOnce(Paur) -> Paur>(&self, f: F) -> &Self {
       let value = f(Paur(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe8) as *mut u32, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl Enet {
       let tmp = self.paur();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe8) as *mut u32, value.0);
       }
       self
    }
@@ -402,14 +402,14 @@ impl Enet {
 #[doc="Read the OPD register."]
    #[inline] pub fn opd(&self) -> Opd { 
       unsafe {
-         Opd(::core::ptr::read_volatile((self.0 + 0xec) as *const u32))
+         Opd(read_volatile((self.0 + 0xec) as *const u32))
       }
    }
 #[doc="Write the OPD register."]
    #[inline] pub fn set_opd<F: FnOnce(Opd) -> Opd>(&self, f: F) -> &Self {
       let value = f(Opd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xec) as *mut u32, value.0);
+         write_volatile((self.0 + 0xec) as *mut u32, value.0);
       }
       self
    }
@@ -418,7 +418,7 @@ impl Enet {
       let tmp = self.opd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xec) as *mut u32, value.0);
+         write_volatile((self.0 + 0xec) as *mut u32, value.0);
       }
       self
    }
@@ -434,14 +434,14 @@ impl Enet {
 #[doc="Read the IAUR register."]
    #[inline] pub fn iaur(&self) -> Iaur { 
       unsafe {
-         Iaur(::core::ptr::read_volatile((self.0 + 0x118) as *const u32))
+         Iaur(read_volatile((self.0 + 0x118) as *const u32))
       }
    }
 #[doc="Write the IAUR register."]
    #[inline] pub fn set_iaur<F: FnOnce(Iaur) -> Iaur>(&self, f: F) -> &Self {
       let value = f(Iaur(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -450,7 +450,7 @@ impl Enet {
       let tmp = self.iaur();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -466,14 +466,14 @@ impl Enet {
 #[doc="Read the IALR register."]
    #[inline] pub fn ialr(&self) -> Ialr { 
       unsafe {
-         Ialr(::core::ptr::read_volatile((self.0 + 0x11c) as *const u32))
+         Ialr(read_volatile((self.0 + 0x11c) as *const u32))
       }
    }
 #[doc="Write the IALR register."]
    #[inline] pub fn set_ialr<F: FnOnce(Ialr) -> Ialr>(&self, f: F) -> &Self {
       let value = f(Ialr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x11c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x11c) as *mut u32, value.0);
       }
       self
    }
@@ -482,7 +482,7 @@ impl Enet {
       let tmp = self.ialr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x11c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x11c) as *mut u32, value.0);
       }
       self
    }
@@ -498,14 +498,14 @@ impl Enet {
 #[doc="Read the GAUR register."]
    #[inline] pub fn gaur(&self) -> Gaur { 
       unsafe {
-         Gaur(::core::ptr::read_volatile((self.0 + 0x120) as *const u32))
+         Gaur(read_volatile((self.0 + 0x120) as *const u32))
       }
    }
 #[doc="Write the GAUR register."]
    #[inline] pub fn set_gaur<F: FnOnce(Gaur) -> Gaur>(&self, f: F) -> &Self {
       let value = f(Gaur(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x120) as *mut u32, value.0);
+         write_volatile((self.0 + 0x120) as *mut u32, value.0);
       }
       self
    }
@@ -514,7 +514,7 @@ impl Enet {
       let tmp = self.gaur();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x120) as *mut u32, value.0);
+         write_volatile((self.0 + 0x120) as *mut u32, value.0);
       }
       self
    }
@@ -530,14 +530,14 @@ impl Enet {
 #[doc="Read the GALR register."]
    #[inline] pub fn galr(&self) -> Galr { 
       unsafe {
-         Galr(::core::ptr::read_volatile((self.0 + 0x124) as *const u32))
+         Galr(read_volatile((self.0 + 0x124) as *const u32))
       }
    }
 #[doc="Write the GALR register."]
    #[inline] pub fn set_galr<F: FnOnce(Galr) -> Galr>(&self, f: F) -> &Self {
       let value = f(Galr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x124) as *mut u32, value.0);
+         write_volatile((self.0 + 0x124) as *mut u32, value.0);
       }
       self
    }
@@ -546,7 +546,7 @@ impl Enet {
       let tmp = self.galr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x124) as *mut u32, value.0);
+         write_volatile((self.0 + 0x124) as *mut u32, value.0);
       }
       self
    }
@@ -562,14 +562,14 @@ impl Enet {
 #[doc="Read the TFWR register."]
    #[inline] pub fn tfwr(&self) -> Tfwr { 
       unsafe {
-         Tfwr(::core::ptr::read_volatile((self.0 + 0x144) as *const u32))
+         Tfwr(read_volatile((self.0 + 0x144) as *const u32))
       }
    }
 #[doc="Write the TFWR register."]
    #[inline] pub fn set_tfwr<F: FnOnce(Tfwr) -> Tfwr>(&self, f: F) -> &Self {
       let value = f(Tfwr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -578,7 +578,7 @@ impl Enet {
       let tmp = self.tfwr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -594,14 +594,14 @@ impl Enet {
 #[doc="Read the RDSR register."]
    #[inline] pub fn rdsr(&self) -> Rdsr { 
       unsafe {
-         Rdsr(::core::ptr::read_volatile((self.0 + 0x180) as *const u32))
+         Rdsr(read_volatile((self.0 + 0x180) as *const u32))
       }
    }
 #[doc="Write the RDSR register."]
    #[inline] pub fn set_rdsr<F: FnOnce(Rdsr) -> Rdsr>(&self, f: F) -> &Self {
       let value = f(Rdsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -610,7 +610,7 @@ impl Enet {
       let tmp = self.rdsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -626,14 +626,14 @@ impl Enet {
 #[doc="Read the TDSR register."]
    #[inline] pub fn tdsr(&self) -> Tdsr { 
       unsafe {
-         Tdsr(::core::ptr::read_volatile((self.0 + 0x184) as *const u32))
+         Tdsr(read_volatile((self.0 + 0x184) as *const u32))
       }
    }
 #[doc="Write the TDSR register."]
    #[inline] pub fn set_tdsr<F: FnOnce(Tdsr) -> Tdsr>(&self, f: F) -> &Self {
       let value = f(Tdsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x184) as *mut u32, value.0);
+         write_volatile((self.0 + 0x184) as *mut u32, value.0);
       }
       self
    }
@@ -642,7 +642,7 @@ impl Enet {
       let tmp = self.tdsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x184) as *mut u32, value.0);
+         write_volatile((self.0 + 0x184) as *mut u32, value.0);
       }
       self
    }
@@ -658,14 +658,14 @@ impl Enet {
 #[doc="Read the MRBR register."]
    #[inline] pub fn mrbr(&self) -> Mrbr { 
       unsafe {
-         Mrbr(::core::ptr::read_volatile((self.0 + 0x188) as *const u32))
+         Mrbr(read_volatile((self.0 + 0x188) as *const u32))
       }
    }
 #[doc="Write the MRBR register."]
    #[inline] pub fn set_mrbr<F: FnOnce(Mrbr) -> Mrbr>(&self, f: F) -> &Self {
       let value = f(Mrbr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -674,7 +674,7 @@ impl Enet {
       let tmp = self.mrbr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -690,14 +690,14 @@ impl Enet {
 #[doc="Read the RSFL register."]
    #[inline] pub fn rsfl(&self) -> Rsfl { 
       unsafe {
-         Rsfl(::core::ptr::read_volatile((self.0 + 0x190) as *const u32))
+         Rsfl(read_volatile((self.0 + 0x190) as *const u32))
       }
    }
 #[doc="Write the RSFL register."]
    #[inline] pub fn set_rsfl<F: FnOnce(Rsfl) -> Rsfl>(&self, f: F) -> &Self {
       let value = f(Rsfl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x190) as *mut u32, value.0);
+         write_volatile((self.0 + 0x190) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl Enet {
       let tmp = self.rsfl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x190) as *mut u32, value.0);
+         write_volatile((self.0 + 0x190) as *mut u32, value.0);
       }
       self
    }
@@ -722,14 +722,14 @@ impl Enet {
 #[doc="Read the RSEM register."]
    #[inline] pub fn rsem(&self) -> Rsem { 
       unsafe {
-         Rsem(::core::ptr::read_volatile((self.0 + 0x194) as *const u32))
+         Rsem(read_volatile((self.0 + 0x194) as *const u32))
       }
    }
 #[doc="Write the RSEM register."]
    #[inline] pub fn set_rsem<F: FnOnce(Rsem) -> Rsem>(&self, f: F) -> &Self {
       let value = f(Rsem(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -738,7 +738,7 @@ impl Enet {
       let tmp = self.rsem();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -754,14 +754,14 @@ impl Enet {
 #[doc="Read the RAEM register."]
    #[inline] pub fn raem(&self) -> Raem { 
       unsafe {
-         Raem(::core::ptr::read_volatile((self.0 + 0x198) as *const u32))
+         Raem(read_volatile((self.0 + 0x198) as *const u32))
       }
    }
 #[doc="Write the RAEM register."]
    #[inline] pub fn set_raem<F: FnOnce(Raem) -> Raem>(&self, f: F) -> &Self {
       let value = f(Raem(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -770,7 +770,7 @@ impl Enet {
       let tmp = self.raem();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -786,14 +786,14 @@ impl Enet {
 #[doc="Read the RAFL register."]
    #[inline] pub fn rafl(&self) -> Rafl { 
       unsafe {
-         Rafl(::core::ptr::read_volatile((self.0 + 0x19c) as *const u32))
+         Rafl(read_volatile((self.0 + 0x19c) as *const u32))
       }
    }
 #[doc="Write the RAFL register."]
    #[inline] pub fn set_rafl<F: FnOnce(Rafl) -> Rafl>(&self, f: F) -> &Self {
       let value = f(Rafl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x19c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x19c) as *mut u32, value.0);
       }
       self
    }
@@ -802,7 +802,7 @@ impl Enet {
       let tmp = self.rafl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x19c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x19c) as *mut u32, value.0);
       }
       self
    }
@@ -818,14 +818,14 @@ impl Enet {
 #[doc="Read the TSEM register."]
    #[inline] pub fn tsem(&self) -> Tsem { 
       unsafe {
-         Tsem(::core::ptr::read_volatile((self.0 + 0x1a0) as *const u32))
+         Tsem(read_volatile((self.0 + 0x1a0) as *const u32))
       }
    }
 #[doc="Write the TSEM register."]
    #[inline] pub fn set_tsem<F: FnOnce(Tsem) -> Tsem>(&self, f: F) -> &Self {
       let value = f(Tsem(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -834,7 +834,7 @@ impl Enet {
       let tmp = self.tsem();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -850,14 +850,14 @@ impl Enet {
 #[doc="Read the TAEM register."]
    #[inline] pub fn taem(&self) -> Taem { 
       unsafe {
-         Taem(::core::ptr::read_volatile((self.0 + 0x1a4) as *const u32))
+         Taem(read_volatile((self.0 + 0x1a4) as *const u32))
       }
    }
 #[doc="Write the TAEM register."]
    #[inline] pub fn set_taem<F: FnOnce(Taem) -> Taem>(&self, f: F) -> &Self {
       let value = f(Taem(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
       }
       self
    }
@@ -866,7 +866,7 @@ impl Enet {
       let tmp = self.taem();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
       }
       self
    }
@@ -882,14 +882,14 @@ impl Enet {
 #[doc="Read the TAFL register."]
    #[inline] pub fn tafl(&self) -> Tafl { 
       unsafe {
-         Tafl(::core::ptr::read_volatile((self.0 + 0x1a8) as *const u32))
+         Tafl(read_volatile((self.0 + 0x1a8) as *const u32))
       }
    }
 #[doc="Write the TAFL register."]
    #[inline] pub fn set_tafl<F: FnOnce(Tafl) -> Tafl>(&self, f: F) -> &Self {
       let value = f(Tafl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
       }
       self
    }
@@ -898,7 +898,7 @@ impl Enet {
       let tmp = self.tafl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
       }
       self
    }
@@ -914,14 +914,14 @@ impl Enet {
 #[doc="Read the TIPG register."]
    #[inline] pub fn tipg(&self) -> Tipg { 
       unsafe {
-         Tipg(::core::ptr::read_volatile((self.0 + 0x1ac) as *const u32))
+         Tipg(read_volatile((self.0 + 0x1ac) as *const u32))
       }
    }
 #[doc="Write the TIPG register."]
    #[inline] pub fn set_tipg<F: FnOnce(Tipg) -> Tipg>(&self, f: F) -> &Self {
       let value = f(Tipg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
       }
       self
    }
@@ -930,7 +930,7 @@ impl Enet {
       let tmp = self.tipg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
       }
       self
    }
@@ -946,14 +946,14 @@ impl Enet {
 #[doc="Read the FTRL register."]
    #[inline] pub fn ftrl(&self) -> Ftrl { 
       unsafe {
-         Ftrl(::core::ptr::read_volatile((self.0 + 0x1b0) as *const u32))
+         Ftrl(read_volatile((self.0 + 0x1b0) as *const u32))
       }
    }
 #[doc="Write the FTRL register."]
    #[inline] pub fn set_ftrl<F: FnOnce(Ftrl) -> Ftrl>(&self, f: F) -> &Self {
       let value = f(Ftrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
       }
       self
    }
@@ -962,7 +962,7 @@ impl Enet {
       let tmp = self.ftrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
       }
       self
    }
@@ -978,14 +978,14 @@ impl Enet {
 #[doc="Read the TACC register."]
    #[inline] pub fn tacc(&self) -> Tacc { 
       unsafe {
-         Tacc(::core::ptr::read_volatile((self.0 + 0x1c0) as *const u32))
+         Tacc(read_volatile((self.0 + 0x1c0) as *const u32))
       }
    }
 #[doc="Write the TACC register."]
    #[inline] pub fn set_tacc<F: FnOnce(Tacc) -> Tacc>(&self, f: F) -> &Self {
       let value = f(Tacc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
       }
       self
    }
@@ -994,7 +994,7 @@ impl Enet {
       let tmp = self.tacc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
       }
       self
    }
@@ -1010,14 +1010,14 @@ impl Enet {
 #[doc="Read the RACC register."]
    #[inline] pub fn racc(&self) -> Racc { 
       unsafe {
-         Racc(::core::ptr::read_volatile((self.0 + 0x1c4) as *const u32))
+         Racc(read_volatile((self.0 + 0x1c4) as *const u32))
       }
    }
 #[doc="Write the RACC register."]
    #[inline] pub fn set_racc<F: FnOnce(Racc) -> Racc>(&self, f: F) -> &Self {
       let value = f(Racc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -1026,7 +1026,7 @@ impl Enet {
       let tmp = self.racc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -1042,7 +1042,7 @@ impl Enet {
 #[doc="Read the RMON_T_PACKETS register."]
    #[inline] pub fn rmon_t_packets(&self) -> RmonTPackets { 
       unsafe {
-         RmonTPackets(::core::ptr::read_volatile((self.0 + 0x204) as *const u32))
+         RmonTPackets(read_volatile((self.0 + 0x204) as *const u32))
       }
    }
 
@@ -1057,7 +1057,7 @@ impl Enet {
 #[doc="Read the RMON_T_BC_PKT register."]
    #[inline] pub fn rmon_t_bc_pkt(&self) -> RmonTBcPkt { 
       unsafe {
-         RmonTBcPkt(::core::ptr::read_volatile((self.0 + 0x208) as *const u32))
+         RmonTBcPkt(read_volatile((self.0 + 0x208) as *const u32))
       }
    }
 
@@ -1072,7 +1072,7 @@ impl Enet {
 #[doc="Read the RMON_T_MC_PKT register."]
    #[inline] pub fn rmon_t_mc_pkt(&self) -> RmonTMcPkt { 
       unsafe {
-         RmonTMcPkt(::core::ptr::read_volatile((self.0 + 0x20c) as *const u32))
+         RmonTMcPkt(read_volatile((self.0 + 0x20c) as *const u32))
       }
    }
 
@@ -1087,7 +1087,7 @@ impl Enet {
 #[doc="Read the RMON_T_CRC_ALIGN register."]
    #[inline] pub fn rmon_t_crc_align(&self) -> RmonTCrcAlign { 
       unsafe {
-         RmonTCrcAlign(::core::ptr::read_volatile((self.0 + 0x210) as *const u32))
+         RmonTCrcAlign(read_volatile((self.0 + 0x210) as *const u32))
       }
    }
 
@@ -1102,7 +1102,7 @@ impl Enet {
 #[doc="Read the RMON_T_UNDERSIZE register."]
    #[inline] pub fn rmon_t_undersize(&self) -> RmonTUndersize { 
       unsafe {
-         RmonTUndersize(::core::ptr::read_volatile((self.0 + 0x214) as *const u32))
+         RmonTUndersize(read_volatile((self.0 + 0x214) as *const u32))
       }
    }
 
@@ -1117,7 +1117,7 @@ impl Enet {
 #[doc="Read the RMON_T_OVERSIZE register."]
    #[inline] pub fn rmon_t_oversize(&self) -> RmonTOversize { 
       unsafe {
-         RmonTOversize(::core::ptr::read_volatile((self.0 + 0x218) as *const u32))
+         RmonTOversize(read_volatile((self.0 + 0x218) as *const u32))
       }
    }
 
@@ -1132,7 +1132,7 @@ impl Enet {
 #[doc="Read the RMON_T_FRAG register."]
    #[inline] pub fn rmon_t_frag(&self) -> RmonTFrag { 
       unsafe {
-         RmonTFrag(::core::ptr::read_volatile((self.0 + 0x21c) as *const u32))
+         RmonTFrag(read_volatile((self.0 + 0x21c) as *const u32))
       }
    }
 
@@ -1147,7 +1147,7 @@ impl Enet {
 #[doc="Read the RMON_T_JAB register."]
    #[inline] pub fn rmon_t_jab(&self) -> RmonTJab { 
       unsafe {
-         RmonTJab(::core::ptr::read_volatile((self.0 + 0x220) as *const u32))
+         RmonTJab(read_volatile((self.0 + 0x220) as *const u32))
       }
    }
 
@@ -1162,7 +1162,7 @@ impl Enet {
 #[doc="Read the RMON_T_COL register."]
    #[inline] pub fn rmon_t_col(&self) -> RmonTCol { 
       unsafe {
-         RmonTCol(::core::ptr::read_volatile((self.0 + 0x224) as *const u32))
+         RmonTCol(read_volatile((self.0 + 0x224) as *const u32))
       }
    }
 
@@ -1177,7 +1177,7 @@ impl Enet {
 #[doc="Read the RMON_T_P64 register."]
    #[inline] pub fn rmon_t_p64(&self) -> RmonTP64 { 
       unsafe {
-         RmonTP64(::core::ptr::read_volatile((self.0 + 0x228) as *const u32))
+         RmonTP64(read_volatile((self.0 + 0x228) as *const u32))
       }
    }
 
@@ -1192,7 +1192,7 @@ impl Enet {
 #[doc="Read the RMON_T_P65TO127 register."]
    #[inline] pub fn rmon_t_p65to127(&self) -> RmonTP65to127 { 
       unsafe {
-         RmonTP65to127(::core::ptr::read_volatile((self.0 + 0x22c) as *const u32))
+         RmonTP65to127(read_volatile((self.0 + 0x22c) as *const u32))
       }
    }
 
@@ -1207,7 +1207,7 @@ impl Enet {
 #[doc="Read the RMON_T_P128TO255 register."]
    #[inline] pub fn rmon_t_p128to255(&self) -> RmonTP128to255 { 
       unsafe {
-         RmonTP128to255(::core::ptr::read_volatile((self.0 + 0x230) as *const u32))
+         RmonTP128to255(read_volatile((self.0 + 0x230) as *const u32))
       }
    }
 
@@ -1222,7 +1222,7 @@ impl Enet {
 #[doc="Read the RMON_T_P256TO511 register."]
    #[inline] pub fn rmon_t_p256to511(&self) -> RmonTP256to511 { 
       unsafe {
-         RmonTP256to511(::core::ptr::read_volatile((self.0 + 0x234) as *const u32))
+         RmonTP256to511(read_volatile((self.0 + 0x234) as *const u32))
       }
    }
 
@@ -1237,7 +1237,7 @@ impl Enet {
 #[doc="Read the RMON_T_P512TO1023 register."]
    #[inline] pub fn rmon_t_p512to1023(&self) -> RmonTP512to1023 { 
       unsafe {
-         RmonTP512to1023(::core::ptr::read_volatile((self.0 + 0x238) as *const u32))
+         RmonTP512to1023(read_volatile((self.0 + 0x238) as *const u32))
       }
    }
 
@@ -1252,7 +1252,7 @@ impl Enet {
 #[doc="Read the RMON_T_P1024TO2047 register."]
    #[inline] pub fn rmon_t_p1024to2047(&self) -> RmonTP1024to2047 { 
       unsafe {
-         RmonTP1024to2047(::core::ptr::read_volatile((self.0 + 0x23c) as *const u32))
+         RmonTP1024to2047(read_volatile((self.0 + 0x23c) as *const u32))
       }
    }
 
@@ -1267,7 +1267,7 @@ impl Enet {
 #[doc="Read the RMON_T_P_GTE2048 register."]
    #[inline] pub fn rmon_t_p_gte2048(&self) -> RmonTPGte2048 { 
       unsafe {
-         RmonTPGte2048(::core::ptr::read_volatile((self.0 + 0x240) as *const u32))
+         RmonTPGte2048(read_volatile((self.0 + 0x240) as *const u32))
       }
    }
 
@@ -1282,7 +1282,7 @@ impl Enet {
 #[doc="Read the RMON_T_OCTETS register."]
    #[inline] pub fn rmon_t_octets(&self) -> RmonTOctets { 
       unsafe {
-         RmonTOctets(::core::ptr::read_volatile((self.0 + 0x244) as *const u32))
+         RmonTOctets(read_volatile((self.0 + 0x244) as *const u32))
       }
    }
 
@@ -1297,7 +1297,7 @@ impl Enet {
 #[doc="Read the IEEE_T_FRAME_OK register."]
    #[inline] pub fn ieee_t_frame_ok(&self) -> IeeeTFrameOk { 
       unsafe {
-         IeeeTFrameOk(::core::ptr::read_volatile((self.0 + 0x24c) as *const u32))
+         IeeeTFrameOk(read_volatile((self.0 + 0x24c) as *const u32))
       }
    }
 
@@ -1312,7 +1312,7 @@ impl Enet {
 #[doc="Read the IEEE_T_1COL register."]
    #[inline] pub fn ieee_t_1col(&self) -> IeeeT1col { 
       unsafe {
-         IeeeT1col(::core::ptr::read_volatile((self.0 + 0x250) as *const u32))
+         IeeeT1col(read_volatile((self.0 + 0x250) as *const u32))
       }
    }
 
@@ -1327,7 +1327,7 @@ impl Enet {
 #[doc="Read the IEEE_T_MCOL register."]
    #[inline] pub fn ieee_t_mcol(&self) -> IeeeTMcol { 
       unsafe {
-         IeeeTMcol(::core::ptr::read_volatile((self.0 + 0x254) as *const u32))
+         IeeeTMcol(read_volatile((self.0 + 0x254) as *const u32))
       }
    }
 
@@ -1342,7 +1342,7 @@ impl Enet {
 #[doc="Read the IEEE_T_DEF register."]
    #[inline] pub fn ieee_t_def(&self) -> IeeeTDef { 
       unsafe {
-         IeeeTDef(::core::ptr::read_volatile((self.0 + 0x258) as *const u32))
+         IeeeTDef(read_volatile((self.0 + 0x258) as *const u32))
       }
    }
 
@@ -1357,7 +1357,7 @@ impl Enet {
 #[doc="Read the IEEE_T_LCOL register."]
    #[inline] pub fn ieee_t_lcol(&self) -> IeeeTLcol { 
       unsafe {
-         IeeeTLcol(::core::ptr::read_volatile((self.0 + 0x25c) as *const u32))
+         IeeeTLcol(read_volatile((self.0 + 0x25c) as *const u32))
       }
    }
 
@@ -1372,7 +1372,7 @@ impl Enet {
 #[doc="Read the IEEE_T_EXCOL register."]
    #[inline] pub fn ieee_t_excol(&self) -> IeeeTExcol { 
       unsafe {
-         IeeeTExcol(::core::ptr::read_volatile((self.0 + 0x260) as *const u32))
+         IeeeTExcol(read_volatile((self.0 + 0x260) as *const u32))
       }
    }
 
@@ -1387,7 +1387,7 @@ impl Enet {
 #[doc="Read the IEEE_T_MACERR register."]
    #[inline] pub fn ieee_t_macerr(&self) -> IeeeTMacerr { 
       unsafe {
-         IeeeTMacerr(::core::ptr::read_volatile((self.0 + 0x264) as *const u32))
+         IeeeTMacerr(read_volatile((self.0 + 0x264) as *const u32))
       }
    }
 
@@ -1402,7 +1402,7 @@ impl Enet {
 #[doc="Read the IEEE_T_CSERR register."]
    #[inline] pub fn ieee_t_cserr(&self) -> IeeeTCserr { 
       unsafe {
-         IeeeTCserr(::core::ptr::read_volatile((self.0 + 0x268) as *const u32))
+         IeeeTCserr(read_volatile((self.0 + 0x268) as *const u32))
       }
    }
 
@@ -1417,7 +1417,7 @@ impl Enet {
 #[doc="Read the IEEE_T_FDXFC register."]
    #[inline] pub fn ieee_t_fdxfc(&self) -> IeeeTFdxfc { 
       unsafe {
-         IeeeTFdxfc(::core::ptr::read_volatile((self.0 + 0x270) as *const u32))
+         IeeeTFdxfc(read_volatile((self.0 + 0x270) as *const u32))
       }
    }
 
@@ -1432,7 +1432,7 @@ impl Enet {
 #[doc="Read the IEEE_T_OCTETS_OK register."]
    #[inline] pub fn ieee_t_octets_ok(&self) -> IeeeTOctetsOk { 
       unsafe {
-         IeeeTOctetsOk(::core::ptr::read_volatile((self.0 + 0x274) as *const u32))
+         IeeeTOctetsOk(read_volatile((self.0 + 0x274) as *const u32))
       }
    }
 
@@ -1447,7 +1447,7 @@ impl Enet {
 #[doc="Read the RMON_R_PACKETS register."]
    #[inline] pub fn rmon_r_packets(&self) -> RmonRPackets { 
       unsafe {
-         RmonRPackets(::core::ptr::read_volatile((self.0 + 0x284) as *const u32))
+         RmonRPackets(read_volatile((self.0 + 0x284) as *const u32))
       }
    }
 
@@ -1462,7 +1462,7 @@ impl Enet {
 #[doc="Read the RMON_R_BC_PKT register."]
    #[inline] pub fn rmon_r_bc_pkt(&self) -> RmonRBcPkt { 
       unsafe {
-         RmonRBcPkt(::core::ptr::read_volatile((self.0 + 0x288) as *const u32))
+         RmonRBcPkt(read_volatile((self.0 + 0x288) as *const u32))
       }
    }
 
@@ -1477,7 +1477,7 @@ impl Enet {
 #[doc="Read the RMON_R_MC_PKT register."]
    #[inline] pub fn rmon_r_mc_pkt(&self) -> RmonRMcPkt { 
       unsafe {
-         RmonRMcPkt(::core::ptr::read_volatile((self.0 + 0x28c) as *const u32))
+         RmonRMcPkt(read_volatile((self.0 + 0x28c) as *const u32))
       }
    }
 
@@ -1492,7 +1492,7 @@ impl Enet {
 #[doc="Read the RMON_R_CRC_ALIGN register."]
    #[inline] pub fn rmon_r_crc_align(&self) -> RmonRCrcAlign { 
       unsafe {
-         RmonRCrcAlign(::core::ptr::read_volatile((self.0 + 0x290) as *const u32))
+         RmonRCrcAlign(read_volatile((self.0 + 0x290) as *const u32))
       }
    }
 
@@ -1507,7 +1507,7 @@ impl Enet {
 #[doc="Read the RMON_R_UNDERSIZE register."]
    #[inline] pub fn rmon_r_undersize(&self) -> RmonRUndersize { 
       unsafe {
-         RmonRUndersize(::core::ptr::read_volatile((self.0 + 0x294) as *const u32))
+         RmonRUndersize(read_volatile((self.0 + 0x294) as *const u32))
       }
    }
 
@@ -1522,7 +1522,7 @@ impl Enet {
 #[doc="Read the RMON_R_OVERSIZE register."]
    #[inline] pub fn rmon_r_oversize(&self) -> RmonROversize { 
       unsafe {
-         RmonROversize(::core::ptr::read_volatile((self.0 + 0x298) as *const u32))
+         RmonROversize(read_volatile((self.0 + 0x298) as *const u32))
       }
    }
 
@@ -1537,7 +1537,7 @@ impl Enet {
 #[doc="Read the RMON_R_FRAG register."]
    #[inline] pub fn rmon_r_frag(&self) -> RmonRFrag { 
       unsafe {
-         RmonRFrag(::core::ptr::read_volatile((self.0 + 0x29c) as *const u32))
+         RmonRFrag(read_volatile((self.0 + 0x29c) as *const u32))
       }
    }
 
@@ -1552,7 +1552,7 @@ impl Enet {
 #[doc="Read the RMON_R_JAB register."]
    #[inline] pub fn rmon_r_jab(&self) -> RmonRJab { 
       unsafe {
-         RmonRJab(::core::ptr::read_volatile((self.0 + 0x2a0) as *const u32))
+         RmonRJab(read_volatile((self.0 + 0x2a0) as *const u32))
       }
    }
 
@@ -1567,7 +1567,7 @@ impl Enet {
 #[doc="Read the RMON_R_P64 register."]
    #[inline] pub fn rmon_r_p64(&self) -> RmonRP64 { 
       unsafe {
-         RmonRP64(::core::ptr::read_volatile((self.0 + 0x2a8) as *const u32))
+         RmonRP64(read_volatile((self.0 + 0x2a8) as *const u32))
       }
    }
 
@@ -1582,7 +1582,7 @@ impl Enet {
 #[doc="Read the RMON_R_P65TO127 register."]
    #[inline] pub fn rmon_r_p65to127(&self) -> RmonRP65to127 { 
       unsafe {
-         RmonRP65to127(::core::ptr::read_volatile((self.0 + 0x2ac) as *const u32))
+         RmonRP65to127(read_volatile((self.0 + 0x2ac) as *const u32))
       }
    }
 
@@ -1597,7 +1597,7 @@ impl Enet {
 #[doc="Read the RMON_R_P128TO255 register."]
    #[inline] pub fn rmon_r_p128to255(&self) -> RmonRP128to255 { 
       unsafe {
-         RmonRP128to255(::core::ptr::read_volatile((self.0 + 0x2b0) as *const u32))
+         RmonRP128to255(read_volatile((self.0 + 0x2b0) as *const u32))
       }
    }
 
@@ -1612,7 +1612,7 @@ impl Enet {
 #[doc="Read the RMON_R_P256TO511 register."]
    #[inline] pub fn rmon_r_p256to511(&self) -> RmonRP256to511 { 
       unsafe {
-         RmonRP256to511(::core::ptr::read_volatile((self.0 + 0x2b4) as *const u32))
+         RmonRP256to511(read_volatile((self.0 + 0x2b4) as *const u32))
       }
    }
 
@@ -1627,7 +1627,7 @@ impl Enet {
 #[doc="Read the RMON_R_P512TO1023 register."]
    #[inline] pub fn rmon_r_p512to1023(&self) -> RmonRP512to1023 { 
       unsafe {
-         RmonRP512to1023(::core::ptr::read_volatile((self.0 + 0x2b8) as *const u32))
+         RmonRP512to1023(read_volatile((self.0 + 0x2b8) as *const u32))
       }
    }
 
@@ -1642,7 +1642,7 @@ impl Enet {
 #[doc="Read the RMON_R_P1024TO2047 register."]
    #[inline] pub fn rmon_r_p1024to2047(&self) -> RmonRP1024to2047 { 
       unsafe {
-         RmonRP1024to2047(::core::ptr::read_volatile((self.0 + 0x2bc) as *const u32))
+         RmonRP1024to2047(read_volatile((self.0 + 0x2bc) as *const u32))
       }
    }
 
@@ -1657,7 +1657,7 @@ impl Enet {
 #[doc="Read the RMON_R_P_GTE2048 register."]
    #[inline] pub fn rmon_r_p_gte2048(&self) -> RmonRPGte2048 { 
       unsafe {
-         RmonRPGte2048(::core::ptr::read_volatile((self.0 + 0x2c0) as *const u32))
+         RmonRPGte2048(read_volatile((self.0 + 0x2c0) as *const u32))
       }
    }
 
@@ -1672,7 +1672,7 @@ impl Enet {
 #[doc="Read the RMON_R_OCTETS register."]
    #[inline] pub fn rmon_r_octets(&self) -> RmonROctets { 
       unsafe {
-         RmonROctets(::core::ptr::read_volatile((self.0 + 0x2c4) as *const u32))
+         RmonROctets(read_volatile((self.0 + 0x2c4) as *const u32))
       }
    }
 
@@ -1687,7 +1687,7 @@ impl Enet {
 #[doc="Read the IEEE_R_DROP register."]
    #[inline] pub fn ieee_r_drop(&self) -> IeeeRDrop { 
       unsafe {
-         IeeeRDrop(::core::ptr::read_volatile((self.0 + 0x2c8) as *const u32))
+         IeeeRDrop(read_volatile((self.0 + 0x2c8) as *const u32))
       }
    }
 
@@ -1702,7 +1702,7 @@ impl Enet {
 #[doc="Read the IEEE_R_FRAME_OK register."]
    #[inline] pub fn ieee_r_frame_ok(&self) -> IeeeRFrameOk { 
       unsafe {
-         IeeeRFrameOk(::core::ptr::read_volatile((self.0 + 0x2cc) as *const u32))
+         IeeeRFrameOk(read_volatile((self.0 + 0x2cc) as *const u32))
       }
    }
 
@@ -1717,7 +1717,7 @@ impl Enet {
 #[doc="Read the IEEE_R_CRC register."]
    #[inline] pub fn ieee_r_crc(&self) -> IeeeRCrc { 
       unsafe {
-         IeeeRCrc(::core::ptr::read_volatile((self.0 + 0x2d0) as *const u32))
+         IeeeRCrc(read_volatile((self.0 + 0x2d0) as *const u32))
       }
    }
 
@@ -1732,7 +1732,7 @@ impl Enet {
 #[doc="Read the IEEE_R_ALIGN register."]
    #[inline] pub fn ieee_r_align(&self) -> IeeeRAlign { 
       unsafe {
-         IeeeRAlign(::core::ptr::read_volatile((self.0 + 0x2d4) as *const u32))
+         IeeeRAlign(read_volatile((self.0 + 0x2d4) as *const u32))
       }
    }
 
@@ -1747,7 +1747,7 @@ impl Enet {
 #[doc="Read the IEEE_R_MACERR register."]
    #[inline] pub fn ieee_r_macerr(&self) -> IeeeRMacerr { 
       unsafe {
-         IeeeRMacerr(::core::ptr::read_volatile((self.0 + 0x2d8) as *const u32))
+         IeeeRMacerr(read_volatile((self.0 + 0x2d8) as *const u32))
       }
    }
 
@@ -1762,7 +1762,7 @@ impl Enet {
 #[doc="Read the IEEE_R_FDXFC register."]
    #[inline] pub fn ieee_r_fdxfc(&self) -> IeeeRFdxfc { 
       unsafe {
-         IeeeRFdxfc(::core::ptr::read_volatile((self.0 + 0x2dc) as *const u32))
+         IeeeRFdxfc(read_volatile((self.0 + 0x2dc) as *const u32))
       }
    }
 
@@ -1777,7 +1777,7 @@ impl Enet {
 #[doc="Read the IEEE_R_OCTETS_OK register."]
    #[inline] pub fn ieee_r_octets_ok(&self) -> IeeeROctetsOk { 
       unsafe {
-         IeeeROctetsOk(::core::ptr::read_volatile((self.0 + 0x2e0) as *const u32))
+         IeeeROctetsOk(read_volatile((self.0 + 0x2e0) as *const u32))
       }
    }
 
@@ -1792,14 +1792,14 @@ impl Enet {
 #[doc="Read the ATCR register."]
    #[inline] pub fn atcr(&self) -> Atcr { 
       unsafe {
-         Atcr(::core::ptr::read_volatile((self.0 + 0x400) as *const u32))
+         Atcr(read_volatile((self.0 + 0x400) as *const u32))
       }
    }
 #[doc="Write the ATCR register."]
    #[inline] pub fn set_atcr<F: FnOnce(Atcr) -> Atcr>(&self, f: F) -> &Self {
       let value = f(Atcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x400) as *mut u32, value.0);
+         write_volatile((self.0 + 0x400) as *mut u32, value.0);
       }
       self
    }
@@ -1808,7 +1808,7 @@ impl Enet {
       let tmp = self.atcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x400) as *mut u32, value.0);
+         write_volatile((self.0 + 0x400) as *mut u32, value.0);
       }
       self
    }
@@ -1824,14 +1824,14 @@ impl Enet {
 #[doc="Read the ATVR register."]
    #[inline] pub fn atvr(&self) -> Atvr { 
       unsafe {
-         Atvr(::core::ptr::read_volatile((self.0 + 0x404) as *const u32))
+         Atvr(read_volatile((self.0 + 0x404) as *const u32))
       }
    }
 #[doc="Write the ATVR register."]
    #[inline] pub fn set_atvr<F: FnOnce(Atvr) -> Atvr>(&self, f: F) -> &Self {
       let value = f(Atvr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x404) as *mut u32, value.0);
+         write_volatile((self.0 + 0x404) as *mut u32, value.0);
       }
       self
    }
@@ -1840,7 +1840,7 @@ impl Enet {
       let tmp = self.atvr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x404) as *mut u32, value.0);
+         write_volatile((self.0 + 0x404) as *mut u32, value.0);
       }
       self
    }
@@ -1856,14 +1856,14 @@ impl Enet {
 #[doc="Read the ATOFF register."]
    #[inline] pub fn atoff(&self) -> Atoff { 
       unsafe {
-         Atoff(::core::ptr::read_volatile((self.0 + 0x408) as *const u32))
+         Atoff(read_volatile((self.0 + 0x408) as *const u32))
       }
    }
 #[doc="Write the ATOFF register."]
    #[inline] pub fn set_atoff<F: FnOnce(Atoff) -> Atoff>(&self, f: F) -> &Self {
       let value = f(Atoff(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x408) as *mut u32, value.0);
+         write_volatile((self.0 + 0x408) as *mut u32, value.0);
       }
       self
    }
@@ -1872,7 +1872,7 @@ impl Enet {
       let tmp = self.atoff();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x408) as *mut u32, value.0);
+         write_volatile((self.0 + 0x408) as *mut u32, value.0);
       }
       self
    }
@@ -1888,14 +1888,14 @@ impl Enet {
 #[doc="Read the ATPER register."]
    #[inline] pub fn atper(&self) -> Atper { 
       unsafe {
-         Atper(::core::ptr::read_volatile((self.0 + 0x40c) as *const u32))
+         Atper(read_volatile((self.0 + 0x40c) as *const u32))
       }
    }
 #[doc="Write the ATPER register."]
    #[inline] pub fn set_atper<F: FnOnce(Atper) -> Atper>(&self, f: F) -> &Self {
       let value = f(Atper(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40c) as *mut u32, value.0);
       }
       self
    }
@@ -1904,7 +1904,7 @@ impl Enet {
       let tmp = self.atper();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40c) as *mut u32, value.0);
       }
       self
    }
@@ -1920,14 +1920,14 @@ impl Enet {
 #[doc="Read the ATCOR register."]
    #[inline] pub fn atcor(&self) -> Atcor { 
       unsafe {
-         Atcor(::core::ptr::read_volatile((self.0 + 0x410) as *const u32))
+         Atcor(read_volatile((self.0 + 0x410) as *const u32))
       }
    }
 #[doc="Write the ATCOR register."]
    #[inline] pub fn set_atcor<F: FnOnce(Atcor) -> Atcor>(&self, f: F) -> &Self {
       let value = f(Atcor(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x410) as *mut u32, value.0);
+         write_volatile((self.0 + 0x410) as *mut u32, value.0);
       }
       self
    }
@@ -1936,7 +1936,7 @@ impl Enet {
       let tmp = self.atcor();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x410) as *mut u32, value.0);
+         write_volatile((self.0 + 0x410) as *mut u32, value.0);
       }
       self
    }
@@ -1952,14 +1952,14 @@ impl Enet {
 #[doc="Read the ATINC register."]
    #[inline] pub fn atinc(&self) -> Atinc { 
       unsafe {
-         Atinc(::core::ptr::read_volatile((self.0 + 0x414) as *const u32))
+         Atinc(read_volatile((self.0 + 0x414) as *const u32))
       }
    }
 #[doc="Write the ATINC register."]
    #[inline] pub fn set_atinc<F: FnOnce(Atinc) -> Atinc>(&self, f: F) -> &Self {
       let value = f(Atinc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x414) as *mut u32, value.0);
+         write_volatile((self.0 + 0x414) as *mut u32, value.0);
       }
       self
    }
@@ -1968,7 +1968,7 @@ impl Enet {
       let tmp = self.atinc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x414) as *mut u32, value.0);
+         write_volatile((self.0 + 0x414) as *mut u32, value.0);
       }
       self
    }
@@ -1984,7 +1984,7 @@ impl Enet {
 #[doc="Read the ATSTMP register."]
    #[inline] pub fn atstmp(&self) -> Atstmp { 
       unsafe {
-         Atstmp(::core::ptr::read_volatile((self.0 + 0x418) as *const u32))
+         Atstmp(read_volatile((self.0 + 0x418) as *const u32))
       }
    }
 
@@ -1999,14 +1999,14 @@ impl Enet {
 #[doc="Read the TGSR register."]
    #[inline] pub fn tgsr(&self) -> Tgsr { 
       unsafe {
-         Tgsr(::core::ptr::read_volatile((self.0 + 0x604) as *const u32))
+         Tgsr(read_volatile((self.0 + 0x604) as *const u32))
       }
    }
 #[doc="Write the TGSR register."]
    #[inline] pub fn set_tgsr<F: FnOnce(Tgsr) -> Tgsr>(&self, f: F) -> &Self {
       let value = f(Tgsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x604) as *mut u32, value.0);
+         write_volatile((self.0 + 0x604) as *mut u32, value.0);
       }
       self
    }
@@ -2015,7 +2015,7 @@ impl Enet {
       let tmp = self.tgsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x604) as *mut u32, value.0);
+         write_volatile((self.0 + 0x604) as *mut u32, value.0);
       }
       self
    }
@@ -2037,7 +2037,7 @@ impl Enet {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Tcsr(::core::ptr::read_volatile((self.0 + 0x608 + (index << 3)) as *const u32))
+         Tcsr(read_volatile((self.0 + 0x608 + (index << 3)) as *const u32))
       }
    }
 #[doc="Write the TCSR register."]
@@ -2046,7 +2046,7 @@ impl Enet {
       let index: usize = index.value() as usize;
       let value = f(Tcsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x608 + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x608 + (index << 3)) as *mut u32, value.0);
       }
       self
    }
@@ -2057,7 +2057,7 @@ impl Enet {
       let tmp = self.tcsr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x608 + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x608 + (index << 3)) as *mut u32, value.0);
       }
       self
    }
@@ -2079,7 +2079,7 @@ impl Enet {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Tccr(::core::ptr::read_volatile((self.0 + 0x60c + (index << 3)) as *const u32))
+         Tccr(read_volatile((self.0 + 0x60c + (index << 3)) as *const u32))
       }
    }
 #[doc="Write the TCCR register."]
@@ -2088,7 +2088,7 @@ impl Enet {
       let index: usize = index.value() as usize;
       let value = f(Tccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60c + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60c + (index << 3)) as *mut u32, value.0);
       }
       self
    }
@@ -2099,7 +2099,7 @@ impl Enet {
       let tmp = self.tccr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60c + (index << 3)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60c + (index << 3)) as *mut u32, value.0);
       }
       self
    }

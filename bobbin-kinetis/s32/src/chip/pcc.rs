@@ -18,14 +18,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY0 register."]
    #[inline] pub fn pccdummy0(&self) -> Pccdummy0 { 
       unsafe {
-         Pccdummy0(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Pccdummy0(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY0 register."]
    #[inline] pub fn set_pccdummy0<F: FnOnce(Pccdummy0) -> Pccdummy0>(&self, f: F) -> &Self {
       let value = f(Pccdummy0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Pcc {
       let tmp = self.pccdummy0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY1 register."]
    #[inline] pub fn pccdummy1(&self) -> Pccdummy1 { 
       unsafe {
-         Pccdummy1(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Pccdummy1(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY1 register."]
    #[inline] pub fn set_pccdummy1<F: FnOnce(Pccdummy1) -> Pccdummy1>(&self, f: F) -> &Self {
       let value = f(Pccdummy1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Pcc {
       let tmp = self.pccdummy1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY2 register."]
    #[inline] pub fn pccdummy2(&self) -> Pccdummy2 { 
       unsafe {
-         Pccdummy2(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Pccdummy2(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY2 register."]
    #[inline] pub fn set_pccdummy2<F: FnOnce(Pccdummy2) -> Pccdummy2>(&self, f: F) -> &Self {
       let value = f(Pccdummy2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Pcc {
       let tmp = self.pccdummy2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY3 register."]
    #[inline] pub fn pccdummy3(&self) -> Pccdummy3 { 
       unsafe {
-         Pccdummy3(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Pccdummy3(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY3 register."]
    #[inline] pub fn set_pccdummy3<F: FnOnce(Pccdummy3) -> Pccdummy3>(&self, f: F) -> &Self {
       let value = f(Pccdummy3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Pcc {
       let tmp = self.pccdummy3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY4 register."]
    #[inline] pub fn pccdummy4(&self) -> Pccdummy4 { 
       unsafe {
-         Pccdummy4(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Pccdummy4(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY4 register."]
    #[inline] pub fn set_pccdummy4<F: FnOnce(Pccdummy4) -> Pccdummy4>(&self, f: F) -> &Self {
       let value = f(Pccdummy4(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Pcc {
       let tmp = self.pccdummy4();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY5 register."]
    #[inline] pub fn pccdummy5(&self) -> Pccdummy5 { 
       unsafe {
-         Pccdummy5(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Pccdummy5(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY5 register."]
    #[inline] pub fn set_pccdummy5<F: FnOnce(Pccdummy5) -> Pccdummy5>(&self, f: F) -> &Self {
       let value = f(Pccdummy5(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Pcc {
       let tmp = self.pccdummy5();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY6 register."]
    #[inline] pub fn pccdummy6(&self) -> Pccdummy6 { 
       unsafe {
-         Pccdummy6(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Pccdummy6(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY6 register."]
    #[inline] pub fn set_pccdummy6<F: FnOnce(Pccdummy6) -> Pccdummy6>(&self, f: F) -> &Self {
       let value = f(Pccdummy6(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Pcc {
       let tmp = self.pccdummy6();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY7 register."]
    #[inline] pub fn pccdummy7(&self) -> Pccdummy7 { 
       unsafe {
-         Pccdummy7(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Pccdummy7(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY7 register."]
    #[inline] pub fn set_pccdummy7<F: FnOnce(Pccdummy7) -> Pccdummy7>(&self, f: F) -> &Self {
       let value = f(Pccdummy7(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Pcc {
       let tmp = self.pccdummy7();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY8 register."]
    #[inline] pub fn pccdummy8(&self) -> Pccdummy8 { 
       unsafe {
-         Pccdummy8(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Pccdummy8(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY8 register."]
    #[inline] pub fn set_pccdummy8<F: FnOnce(Pccdummy8) -> Pccdummy8>(&self, f: F) -> &Self {
       let value = f(Pccdummy8(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Pcc {
       let tmp = self.pccdummy8();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY9 register."]
    #[inline] pub fn pccdummy9(&self) -> Pccdummy9 { 
       unsafe {
-         Pccdummy9(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Pccdummy9(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY9 register."]
    #[inline] pub fn set_pccdummy9<F: FnOnce(Pccdummy9) -> Pccdummy9>(&self, f: F) -> &Self {
       let value = f(Pccdummy9(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl Pcc {
       let tmp = self.pccdummy9();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY10 register."]
    #[inline] pub fn pccdummy10(&self) -> Pccdummy10 { 
       unsafe {
-         Pccdummy10(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Pccdummy10(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY10 register."]
    #[inline] pub fn set_pccdummy10<F: FnOnce(Pccdummy10) -> Pccdummy10>(&self, f: F) -> &Self {
       let value = f(Pccdummy10(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl Pcc {
       let tmp = self.pccdummy10();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY11 register."]
    #[inline] pub fn pccdummy11(&self) -> Pccdummy11 { 
       unsafe {
-         Pccdummy11(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Pccdummy11(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY11 register."]
    #[inline] pub fn set_pccdummy11<F: FnOnce(Pccdummy11) -> Pccdummy11>(&self, f: F) -> &Self {
       let value = f(Pccdummy11(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl Pcc {
       let tmp = self.pccdummy11();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -402,14 +402,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY12 register."]
    #[inline] pub fn pccdummy12(&self) -> Pccdummy12 { 
       unsafe {
-         Pccdummy12(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
+         Pccdummy12(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY12 register."]
    #[inline] pub fn set_pccdummy12<F: FnOnce(Pccdummy12) -> Pccdummy12>(&self, f: F) -> &Self {
       let value = f(Pccdummy12(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -418,7 +418,7 @@ impl Pcc {
       let tmp = self.pccdummy12();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -434,14 +434,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY13 register."]
    #[inline] pub fn pccdummy13(&self) -> Pccdummy13 { 
       unsafe {
-         Pccdummy13(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Pccdummy13(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY13 register."]
    #[inline] pub fn set_pccdummy13<F: FnOnce(Pccdummy13) -> Pccdummy13>(&self, f: F) -> &Self {
       let value = f(Pccdummy13(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -450,7 +450,7 @@ impl Pcc {
       let tmp = self.pccdummy13();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -466,14 +466,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY14 register."]
    #[inline] pub fn pccdummy14(&self) -> Pccdummy14 { 
       unsafe {
-         Pccdummy14(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Pccdummy14(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY14 register."]
    #[inline] pub fn set_pccdummy14<F: FnOnce(Pccdummy14) -> Pccdummy14>(&self, f: F) -> &Self {
       let value = f(Pccdummy14(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -482,7 +482,7 @@ impl Pcc {
       let tmp = self.pccdummy14();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -498,14 +498,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY15 register."]
    #[inline] pub fn pccdummy15(&self) -> Pccdummy15 { 
       unsafe {
-         Pccdummy15(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
+         Pccdummy15(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY15 register."]
    #[inline] pub fn set_pccdummy15<F: FnOnce(Pccdummy15) -> Pccdummy15>(&self, f: F) -> &Self {
       let value = f(Pccdummy15(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -514,7 +514,7 @@ impl Pcc {
       let tmp = self.pccdummy15();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -530,14 +530,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY16 register."]
    #[inline] pub fn pccdummy16(&self) -> Pccdummy16 { 
       unsafe {
-         Pccdummy16(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Pccdummy16(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY16 register."]
    #[inline] pub fn set_pccdummy16<F: FnOnce(Pccdummy16) -> Pccdummy16>(&self, f: F) -> &Self {
       let value = f(Pccdummy16(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -546,7 +546,7 @@ impl Pcc {
       let tmp = self.pccdummy16();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -562,14 +562,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY17 register."]
    #[inline] pub fn pccdummy17(&self) -> Pccdummy17 { 
       unsafe {
-         Pccdummy17(::core::ptr::read_volatile((self.0 + 0x44) as *const u32))
+         Pccdummy17(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY17 register."]
    #[inline] pub fn set_pccdummy17<F: FnOnce(Pccdummy17) -> Pccdummy17>(&self, f: F) -> &Self {
       let value = f(Pccdummy17(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -578,7 +578,7 @@ impl Pcc {
       let tmp = self.pccdummy17();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44) as *mut u32, value.0);
       }
       self
    }
@@ -594,14 +594,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY18 register."]
    #[inline] pub fn pccdummy18(&self) -> Pccdummy18 { 
       unsafe {
-         Pccdummy18(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
+         Pccdummy18(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY18 register."]
    #[inline] pub fn set_pccdummy18<F: FnOnce(Pccdummy18) -> Pccdummy18>(&self, f: F) -> &Self {
       let value = f(Pccdummy18(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -610,7 +610,7 @@ impl Pcc {
       let tmp = self.pccdummy18();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -626,14 +626,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY19 register."]
    #[inline] pub fn pccdummy19(&self) -> Pccdummy19 { 
       unsafe {
-         Pccdummy19(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
+         Pccdummy19(read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY19 register."]
    #[inline] pub fn set_pccdummy19<F: FnOnce(Pccdummy19) -> Pccdummy19>(&self, f: F) -> &Self {
       let value = f(Pccdummy19(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -642,7 +642,7 @@ impl Pcc {
       let tmp = self.pccdummy19();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -658,14 +658,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY20 register."]
    #[inline] pub fn pccdummy20(&self) -> Pccdummy20 { 
       unsafe {
-         Pccdummy20(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
+         Pccdummy20(read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY20 register."]
    #[inline] pub fn set_pccdummy20<F: FnOnce(Pccdummy20) -> Pccdummy20>(&self, f: F) -> &Self {
       let value = f(Pccdummy20(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -674,7 +674,7 @@ impl Pcc {
       let tmp = self.pccdummy20();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -690,14 +690,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY21 register."]
    #[inline] pub fn pccdummy21(&self) -> Pccdummy21 { 
       unsafe {
-         Pccdummy21(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Pccdummy21(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY21 register."]
    #[inline] pub fn set_pccdummy21<F: FnOnce(Pccdummy21) -> Pccdummy21>(&self, f: F) -> &Self {
       let value = f(Pccdummy21(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl Pcc {
       let tmp = self.pccdummy21();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -722,14 +722,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY22 register."]
    #[inline] pub fn pccdummy22(&self) -> Pccdummy22 { 
       unsafe {
-         Pccdummy22(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Pccdummy22(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY22 register."]
    #[inline] pub fn set_pccdummy22<F: FnOnce(Pccdummy22) -> Pccdummy22>(&self, f: F) -> &Self {
       let value = f(Pccdummy22(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -738,7 +738,7 @@ impl Pcc {
       let tmp = self.pccdummy22();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -754,14 +754,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY23 register."]
    #[inline] pub fn pccdummy23(&self) -> Pccdummy23 { 
       unsafe {
-         Pccdummy23(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
+         Pccdummy23(read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY23 register."]
    #[inline] pub fn set_pccdummy23<F: FnOnce(Pccdummy23) -> Pccdummy23>(&self, f: F) -> &Self {
       let value = f(Pccdummy23(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -770,7 +770,7 @@ impl Pcc {
       let tmp = self.pccdummy23();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -786,14 +786,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY24 register."]
    #[inline] pub fn pccdummy24(&self) -> Pccdummy24 { 
       unsafe {
-         Pccdummy24(::core::ptr::read_volatile((self.0 + 0x60) as *const u32))
+         Pccdummy24(read_volatile((self.0 + 0x60) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY24 register."]
    #[inline] pub fn set_pccdummy24<F: FnOnce(Pccdummy24) -> Pccdummy24>(&self, f: F) -> &Self {
       let value = f(Pccdummy24(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -802,7 +802,7 @@ impl Pcc {
       let tmp = self.pccdummy24();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -818,14 +818,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY25 register."]
    #[inline] pub fn pccdummy25(&self) -> Pccdummy25 { 
       unsafe {
-         Pccdummy25(::core::ptr::read_volatile((self.0 + 0x64) as *const u32))
+         Pccdummy25(read_volatile((self.0 + 0x64) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY25 register."]
    #[inline] pub fn set_pccdummy25<F: FnOnce(Pccdummy25) -> Pccdummy25>(&self, f: F) -> &Self {
       let value = f(Pccdummy25(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -834,7 +834,7 @@ impl Pcc {
       let tmp = self.pccdummy25();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -850,14 +850,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY26 register."]
    #[inline] pub fn pccdummy26(&self) -> Pccdummy26 { 
       unsafe {
-         Pccdummy26(::core::ptr::read_volatile((self.0 + 0x68) as *const u32))
+         Pccdummy26(read_volatile((self.0 + 0x68) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY26 register."]
    #[inline] pub fn set_pccdummy26<F: FnOnce(Pccdummy26) -> Pccdummy26>(&self, f: F) -> &Self {
       let value = f(Pccdummy26(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -866,7 +866,7 @@ impl Pcc {
       let tmp = self.pccdummy26();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -882,14 +882,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY27 register."]
    #[inline] pub fn pccdummy27(&self) -> Pccdummy27 { 
       unsafe {
-         Pccdummy27(::core::ptr::read_volatile((self.0 + 0x6c) as *const u32))
+         Pccdummy27(read_volatile((self.0 + 0x6c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY27 register."]
    #[inline] pub fn set_pccdummy27<F: FnOnce(Pccdummy27) -> Pccdummy27>(&self, f: F) -> &Self {
       let value = f(Pccdummy27(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }
@@ -898,7 +898,7 @@ impl Pcc {
       let tmp = self.pccdummy27();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }
@@ -914,14 +914,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY28 register."]
    #[inline] pub fn pccdummy28(&self) -> Pccdummy28 { 
       unsafe {
-         Pccdummy28(::core::ptr::read_volatile((self.0 + 0x70) as *const u32))
+         Pccdummy28(read_volatile((self.0 + 0x70) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY28 register."]
    #[inline] pub fn set_pccdummy28<F: FnOnce(Pccdummy28) -> Pccdummy28>(&self, f: F) -> &Self {
       let value = f(Pccdummy28(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70) as *mut u32, value.0);
       }
       self
    }
@@ -930,7 +930,7 @@ impl Pcc {
       let tmp = self.pccdummy28();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70) as *mut u32, value.0);
       }
       self
    }
@@ -946,14 +946,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY29 register."]
    #[inline] pub fn pccdummy29(&self) -> Pccdummy29 { 
       unsafe {
-         Pccdummy29(::core::ptr::read_volatile((self.0 + 0x74) as *const u32))
+         Pccdummy29(read_volatile((self.0 + 0x74) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY29 register."]
    #[inline] pub fn set_pccdummy29<F: FnOnce(Pccdummy29) -> Pccdummy29>(&self, f: F) -> &Self {
       let value = f(Pccdummy29(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x74) as *mut u32, value.0);
+         write_volatile((self.0 + 0x74) as *mut u32, value.0);
       }
       self
    }
@@ -962,7 +962,7 @@ impl Pcc {
       let tmp = self.pccdummy29();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x74) as *mut u32, value.0);
+         write_volatile((self.0 + 0x74) as *mut u32, value.0);
       }
       self
    }
@@ -978,14 +978,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY30 register."]
    #[inline] pub fn pccdummy30(&self) -> Pccdummy30 { 
       unsafe {
-         Pccdummy30(::core::ptr::read_volatile((self.0 + 0x78) as *const u32))
+         Pccdummy30(read_volatile((self.0 + 0x78) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY30 register."]
    #[inline] pub fn set_pccdummy30<F: FnOnce(Pccdummy30) -> Pccdummy30>(&self, f: F) -> &Self {
       let value = f(Pccdummy30(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x78) as *mut u32, value.0);
+         write_volatile((self.0 + 0x78) as *mut u32, value.0);
       }
       self
    }
@@ -994,7 +994,7 @@ impl Pcc {
       let tmp = self.pccdummy30();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x78) as *mut u32, value.0);
+         write_volatile((self.0 + 0x78) as *mut u32, value.0);
       }
       self
    }
@@ -1010,14 +1010,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY31 register."]
    #[inline] pub fn pccdummy31(&self) -> Pccdummy31 { 
       unsafe {
-         Pccdummy31(::core::ptr::read_volatile((self.0 + 0x7c) as *const u32))
+         Pccdummy31(read_volatile((self.0 + 0x7c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY31 register."]
    #[inline] pub fn set_pccdummy31<F: FnOnce(Pccdummy31) -> Pccdummy31>(&self, f: F) -> &Self {
       let value = f(Pccdummy31(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x7c) as *mut u32, value.0);
       }
       self
    }
@@ -1026,7 +1026,7 @@ impl Pcc {
       let tmp = self.pccdummy31();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x7c) as *mut u32, value.0);
       }
       self
    }
@@ -1042,14 +1042,14 @@ impl Pcc {
 #[doc="Read the FTFC register."]
    #[inline] pub fn ftfc(&self) -> Ftfc { 
       unsafe {
-         Ftfc(::core::ptr::read_volatile((self.0 + 0x80) as *const u32))
+         Ftfc(read_volatile((self.0 + 0x80) as *const u32))
       }
    }
 #[doc="Write the FTFC register."]
    #[inline] pub fn set_ftfc<F: FnOnce(Ftfc) -> Ftfc>(&self, f: F) -> &Self {
       let value = f(Ftfc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
@@ -1058,7 +1058,7 @@ impl Pcc {
       let tmp = self.ftfc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80) as *mut u32, value.0);
       }
       self
    }
@@ -1074,14 +1074,14 @@ impl Pcc {
 #[doc="Read the DMAMUX register."]
    #[inline] pub fn dmamux(&self) -> Dmamux { 
       unsafe {
-         Dmamux(::core::ptr::read_volatile((self.0 + 0x84) as *const u32))
+         Dmamux(read_volatile((self.0 + 0x84) as *const u32))
       }
    }
 #[doc="Write the DMAMUX register."]
    #[inline] pub fn set_dmamux<F: FnOnce(Dmamux) -> Dmamux>(&self, f: F) -> &Self {
       let value = f(Dmamux(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -1090,7 +1090,7 @@ impl Pcc {
       let tmp = self.dmamux();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x84) as *mut u32, value.0);
+         write_volatile((self.0 + 0x84) as *mut u32, value.0);
       }
       self
    }
@@ -1106,14 +1106,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY34 register."]
    #[inline] pub fn pccdummy34(&self) -> Pccdummy34 { 
       unsafe {
-         Pccdummy34(::core::ptr::read_volatile((self.0 + 0x88) as *const u32))
+         Pccdummy34(read_volatile((self.0 + 0x88) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY34 register."]
    #[inline] pub fn set_pccdummy34<F: FnOnce(Pccdummy34) -> Pccdummy34>(&self, f: F) -> &Self {
       let value = f(Pccdummy34(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x88) as *mut u32, value.0);
+         write_volatile((self.0 + 0x88) as *mut u32, value.0);
       }
       self
    }
@@ -1122,7 +1122,7 @@ impl Pcc {
       let tmp = self.pccdummy34();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x88) as *mut u32, value.0);
+         write_volatile((self.0 + 0x88) as *mut u32, value.0);
       }
       self
    }
@@ -1138,14 +1138,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY35 register."]
    #[inline] pub fn pccdummy35(&self) -> Pccdummy35 { 
       unsafe {
-         Pccdummy35(::core::ptr::read_volatile((self.0 + 0x8c) as *const u32))
+         Pccdummy35(read_volatile((self.0 + 0x8c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY35 register."]
    #[inline] pub fn set_pccdummy35<F: FnOnce(Pccdummy35) -> Pccdummy35>(&self, f: F) -> &Self {
       let value = f(Pccdummy35(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8c) as *mut u32, value.0);
       }
       self
    }
@@ -1154,7 +1154,7 @@ impl Pcc {
       let tmp = self.pccdummy35();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8c) as *mut u32, value.0);
       }
       self
    }
@@ -1170,14 +1170,14 @@ impl Pcc {
 #[doc="Read the FLEXCAN0 register."]
    #[inline] pub fn flexcan0(&self) -> Flexcan0 { 
       unsafe {
-         Flexcan0(::core::ptr::read_volatile((self.0 + 0x90) as *const u32))
+         Flexcan0(read_volatile((self.0 + 0x90) as *const u32))
       }
    }
 #[doc="Write the FLEXCAN0 register."]
    #[inline] pub fn set_flexcan0<F: FnOnce(Flexcan0) -> Flexcan0>(&self, f: F) -> &Self {
       let value = f(Flexcan0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x90) as *mut u32, value.0);
+         write_volatile((self.0 + 0x90) as *mut u32, value.0);
       }
       self
    }
@@ -1186,7 +1186,7 @@ impl Pcc {
       let tmp = self.flexcan0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x90) as *mut u32, value.0);
+         write_volatile((self.0 + 0x90) as *mut u32, value.0);
       }
       self
    }
@@ -1202,14 +1202,14 @@ impl Pcc {
 #[doc="Read the FLEXCAN1 register."]
    #[inline] pub fn flexcan1(&self) -> Flexcan1 { 
       unsafe {
-         Flexcan1(::core::ptr::read_volatile((self.0 + 0x94) as *const u32))
+         Flexcan1(read_volatile((self.0 + 0x94) as *const u32))
       }
    }
 #[doc="Write the FLEXCAN1 register."]
    #[inline] pub fn set_flexcan1<F: FnOnce(Flexcan1) -> Flexcan1>(&self, f: F) -> &Self {
       let value = f(Flexcan1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x94) as *mut u32, value.0);
+         write_volatile((self.0 + 0x94) as *mut u32, value.0);
       }
       self
    }
@@ -1218,7 +1218,7 @@ impl Pcc {
       let tmp = self.flexcan1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x94) as *mut u32, value.0);
+         write_volatile((self.0 + 0x94) as *mut u32, value.0);
       }
       self
    }
@@ -1234,14 +1234,14 @@ impl Pcc {
 #[doc="Read the FTM3 register."]
    #[inline] pub fn ftm3(&self) -> Ftm3 { 
       unsafe {
-         Ftm3(::core::ptr::read_volatile((self.0 + 0x98) as *const u32))
+         Ftm3(read_volatile((self.0 + 0x98) as *const u32))
       }
    }
 #[doc="Write the FTM3 register."]
    #[inline] pub fn set_ftm3<F: FnOnce(Ftm3) -> Ftm3>(&self, f: F) -> &Self {
       let value = f(Ftm3(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x98) as *mut u32, value.0);
+         write_volatile((self.0 + 0x98) as *mut u32, value.0);
       }
       self
    }
@@ -1250,7 +1250,7 @@ impl Pcc {
       let tmp = self.ftm3();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x98) as *mut u32, value.0);
+         write_volatile((self.0 + 0x98) as *mut u32, value.0);
       }
       self
    }
@@ -1266,14 +1266,14 @@ impl Pcc {
 #[doc="Read the ADC1 register."]
    #[inline] pub fn adc1(&self) -> Adc1 { 
       unsafe {
-         Adc1(::core::ptr::read_volatile((self.0 + 0x9c) as *const u32))
+         Adc1(read_volatile((self.0 + 0x9c) as *const u32))
       }
    }
 #[doc="Write the ADC1 register."]
    #[inline] pub fn set_adc1<F: FnOnce(Adc1) -> Adc1>(&self, f: F) -> &Self {
       let value = f(Adc1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x9c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x9c) as *mut u32, value.0);
       }
       self
    }
@@ -1282,7 +1282,7 @@ impl Pcc {
       let tmp = self.adc1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x9c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x9c) as *mut u32, value.0);
       }
       self
    }
@@ -1298,14 +1298,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY40 register."]
    #[inline] pub fn pccdummy40(&self) -> Pccdummy40 { 
       unsafe {
-         Pccdummy40(::core::ptr::read_volatile((self.0 + 0xa0) as *const u32))
+         Pccdummy40(read_volatile((self.0 + 0xa0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY40 register."]
    #[inline] pub fn set_pccdummy40<F: FnOnce(Pccdummy40) -> Pccdummy40>(&self, f: F) -> &Self {
       let value = f(Pccdummy40(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }
@@ -1314,7 +1314,7 @@ impl Pcc {
       let tmp = self.pccdummy40();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0) as *mut u32, value.0);
       }
       self
    }
@@ -1330,14 +1330,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY41 register."]
    #[inline] pub fn pccdummy41(&self) -> Pccdummy41 { 
       unsafe {
-         Pccdummy41(::core::ptr::read_volatile((self.0 + 0xa4) as *const u32))
+         Pccdummy41(read_volatile((self.0 + 0xa4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY41 register."]
    #[inline] pub fn set_pccdummy41<F: FnOnce(Pccdummy41) -> Pccdummy41>(&self, f: F) -> &Self {
       let value = f(Pccdummy41(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa4) as *mut u32, value.0);
       }
       self
    }
@@ -1346,7 +1346,7 @@ impl Pcc {
       let tmp = self.pccdummy41();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa4) as *mut u32, value.0);
       }
       self
    }
@@ -1362,14 +1362,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY42 register."]
    #[inline] pub fn pccdummy42(&self) -> Pccdummy42 { 
       unsafe {
-         Pccdummy42(::core::ptr::read_volatile((self.0 + 0xa8) as *const u32))
+         Pccdummy42(read_volatile((self.0 + 0xa8) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY42 register."]
    #[inline] pub fn set_pccdummy42<F: FnOnce(Pccdummy42) -> Pccdummy42>(&self, f: F) -> &Self {
       let value = f(Pccdummy42(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa8) as *mut u32, value.0);
       }
       self
    }
@@ -1378,7 +1378,7 @@ impl Pcc {
       let tmp = self.pccdummy42();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa8) as *mut u32, value.0);
       }
       self
    }
@@ -1394,14 +1394,14 @@ impl Pcc {
 #[doc="Read the FLEXCAN2 register."]
    #[inline] pub fn flexcan2(&self) -> Flexcan2 { 
       unsafe {
-         Flexcan2(::core::ptr::read_volatile((self.0 + 0xac) as *const u32))
+         Flexcan2(read_volatile((self.0 + 0xac) as *const u32))
       }
    }
 #[doc="Write the FLEXCAN2 register."]
    #[inline] pub fn set_flexcan2<F: FnOnce(Flexcan2) -> Flexcan2>(&self, f: F) -> &Self {
       let value = f(Flexcan2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xac) as *mut u32, value.0);
+         write_volatile((self.0 + 0xac) as *mut u32, value.0);
       }
       self
    }
@@ -1410,7 +1410,7 @@ impl Pcc {
       let tmp = self.flexcan2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xac) as *mut u32, value.0);
+         write_volatile((self.0 + 0xac) as *mut u32, value.0);
       }
       self
    }
@@ -1426,14 +1426,14 @@ impl Pcc {
 #[doc="Read the LPSPI0 register."]
    #[inline] pub fn lpspi0(&self) -> Lpspi0 { 
       unsafe {
-         Lpspi0(::core::ptr::read_volatile((self.0 + 0xb0) as *const u32))
+         Lpspi0(read_volatile((self.0 + 0xb0) as *const u32))
       }
    }
 #[doc="Write the LPSPI0 register."]
    #[inline] pub fn set_lpspi0<F: FnOnce(Lpspi0) -> Lpspi0>(&self, f: F) -> &Self {
       let value = f(Lpspi0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb0) as *mut u32, value.0);
       }
       self
    }
@@ -1442,7 +1442,7 @@ impl Pcc {
       let tmp = self.lpspi0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb0) as *mut u32, value.0);
       }
       self
    }
@@ -1458,14 +1458,14 @@ impl Pcc {
 #[doc="Read the LPSPI1 register."]
    #[inline] pub fn lpspi1(&self) -> Lpspi1 { 
       unsafe {
-         Lpspi1(::core::ptr::read_volatile((self.0 + 0xb4) as *const u32))
+         Lpspi1(read_volatile((self.0 + 0xb4) as *const u32))
       }
    }
 #[doc="Write the LPSPI1 register."]
    #[inline] pub fn set_lpspi1<F: FnOnce(Lpspi1) -> Lpspi1>(&self, f: F) -> &Self {
       let value = f(Lpspi1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb4) as *mut u32, value.0);
       }
       self
    }
@@ -1474,7 +1474,7 @@ impl Pcc {
       let tmp = self.lpspi1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb4) as *mut u32, value.0);
       }
       self
    }
@@ -1490,14 +1490,14 @@ impl Pcc {
 #[doc="Read the LPSPI2 register."]
    #[inline] pub fn lpspi2(&self) -> Lpspi2 { 
       unsafe {
-         Lpspi2(::core::ptr::read_volatile((self.0 + 0xb8) as *const u32))
+         Lpspi2(read_volatile((self.0 + 0xb8) as *const u32))
       }
    }
 #[doc="Write the LPSPI2 register."]
    #[inline] pub fn set_lpspi2<F: FnOnce(Lpspi2) -> Lpspi2>(&self, f: F) -> &Self {
       let value = f(Lpspi2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb8) as *mut u32, value.0);
       }
       self
    }
@@ -1506,7 +1506,7 @@ impl Pcc {
       let tmp = self.lpspi2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb8) as *mut u32, value.0);
       }
       self
    }
@@ -1522,14 +1522,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY47 register."]
    #[inline] pub fn pccdummy47(&self) -> Pccdummy47 { 
       unsafe {
-         Pccdummy47(::core::ptr::read_volatile((self.0 + 0xbc) as *const u32))
+         Pccdummy47(read_volatile((self.0 + 0xbc) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY47 register."]
    #[inline] pub fn set_pccdummy47<F: FnOnce(Pccdummy47) -> Pccdummy47>(&self, f: F) -> &Self {
       let value = f(Pccdummy47(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xbc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xbc) as *mut u32, value.0);
       }
       self
    }
@@ -1538,7 +1538,7 @@ impl Pcc {
       let tmp = self.pccdummy47();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xbc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xbc) as *mut u32, value.0);
       }
       self
    }
@@ -1554,14 +1554,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY48 register."]
    #[inline] pub fn pccdummy48(&self) -> Pccdummy48 { 
       unsafe {
-         Pccdummy48(::core::ptr::read_volatile((self.0 + 0xc0) as *const u32))
+         Pccdummy48(read_volatile((self.0 + 0xc0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY48 register."]
    #[inline] pub fn set_pccdummy48<F: FnOnce(Pccdummy48) -> Pccdummy48>(&self, f: F) -> &Self {
       let value = f(Pccdummy48(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0) as *mut u32, value.0);
       }
       self
    }
@@ -1570,7 +1570,7 @@ impl Pcc {
       let tmp = self.pccdummy48();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0) as *mut u32, value.0);
       }
       self
    }
@@ -1586,14 +1586,14 @@ impl Pcc {
 #[doc="Read the PDB1 register."]
    #[inline] pub fn pdb1(&self) -> Pdb1 { 
       unsafe {
-         Pdb1(::core::ptr::read_volatile((self.0 + 0xc4) as *const u32))
+         Pdb1(read_volatile((self.0 + 0xc4) as *const u32))
       }
    }
 #[doc="Write the PDB1 register."]
    #[inline] pub fn set_pdb1<F: FnOnce(Pdb1) -> Pdb1>(&self, f: F) -> &Self {
       let value = f(Pdb1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4) as *mut u32, value.0);
       }
       self
    }
@@ -1602,7 +1602,7 @@ impl Pcc {
       let tmp = self.pdb1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc4) as *mut u32, value.0);
       }
       self
    }
@@ -1618,14 +1618,14 @@ impl Pcc {
 #[doc="Read the CRC register."]
    #[inline] pub fn crc(&self) -> Crc { 
       unsafe {
-         Crc(::core::ptr::read_volatile((self.0 + 0xc8) as *const u32))
+         Crc(read_volatile((self.0 + 0xc8) as *const u32))
       }
    }
 #[doc="Write the CRC register."]
    #[inline] pub fn set_crc<F: FnOnce(Crc) -> Crc>(&self, f: F) -> &Self {
       let value = f(Crc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc8) as *mut u32, value.0);
       }
       self
    }
@@ -1634,7 +1634,7 @@ impl Pcc {
       let tmp = self.crc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc8) as *mut u32, value.0);
       }
       self
    }
@@ -1650,14 +1650,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY51 register."]
    #[inline] pub fn pccdummy51(&self) -> Pccdummy51 { 
       unsafe {
-         Pccdummy51(::core::ptr::read_volatile((self.0 + 0xcc) as *const u32))
+         Pccdummy51(read_volatile((self.0 + 0xcc) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY51 register."]
    #[inline] pub fn set_pccdummy51<F: FnOnce(Pccdummy51) -> Pccdummy51>(&self, f: F) -> &Self {
       let value = f(Pccdummy51(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xcc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xcc) as *mut u32, value.0);
       }
       self
    }
@@ -1666,7 +1666,7 @@ impl Pcc {
       let tmp = self.pccdummy51();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xcc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xcc) as *mut u32, value.0);
       }
       self
    }
@@ -1682,14 +1682,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY52 register."]
    #[inline] pub fn pccdummy52(&self) -> Pccdummy52 { 
       unsafe {
-         Pccdummy52(::core::ptr::read_volatile((self.0 + 0xd0) as *const u32))
+         Pccdummy52(read_volatile((self.0 + 0xd0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY52 register."]
    #[inline] pub fn set_pccdummy52<F: FnOnce(Pccdummy52) -> Pccdummy52>(&self, f: F) -> &Self {
       let value = f(Pccdummy52(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd0) as *mut u32, value.0);
       }
       self
    }
@@ -1698,7 +1698,7 @@ impl Pcc {
       let tmp = self.pccdummy52();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd0) as *mut u32, value.0);
       }
       self
    }
@@ -1714,14 +1714,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY53 register."]
    #[inline] pub fn pccdummy53(&self) -> Pccdummy53 { 
       unsafe {
-         Pccdummy53(::core::ptr::read_volatile((self.0 + 0xd4) as *const u32))
+         Pccdummy53(read_volatile((self.0 + 0xd4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY53 register."]
    #[inline] pub fn set_pccdummy53<F: FnOnce(Pccdummy53) -> Pccdummy53>(&self, f: F) -> &Self {
       let value = f(Pccdummy53(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd4) as *mut u32, value.0);
       }
       self
    }
@@ -1730,7 +1730,7 @@ impl Pcc {
       let tmp = self.pccdummy53();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd4) as *mut u32, value.0);
       }
       self
    }
@@ -1746,14 +1746,14 @@ impl Pcc {
 #[doc="Read the PDB0 register."]
    #[inline] pub fn pdb0(&self) -> Pdb0 { 
       unsafe {
-         Pdb0(::core::ptr::read_volatile((self.0 + 0xd8) as *const u32))
+         Pdb0(read_volatile((self.0 + 0xd8) as *const u32))
       }
    }
 #[doc="Write the PDB0 register."]
    #[inline] pub fn set_pdb0<F: FnOnce(Pdb0) -> Pdb0>(&self, f: F) -> &Self {
       let value = f(Pdb0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd8) as *mut u32, value.0);
       }
       self
    }
@@ -1762,7 +1762,7 @@ impl Pcc {
       let tmp = self.pdb0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xd8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xd8) as *mut u32, value.0);
       }
       self
    }
@@ -1778,14 +1778,14 @@ impl Pcc {
 #[doc="Read the LPIT register."]
    #[inline] pub fn lpit(&self) -> Lpit { 
       unsafe {
-         Lpit(::core::ptr::read_volatile((self.0 + 0xdc) as *const u32))
+         Lpit(read_volatile((self.0 + 0xdc) as *const u32))
       }
    }
 #[doc="Write the LPIT register."]
    #[inline] pub fn set_lpit<F: FnOnce(Lpit) -> Lpit>(&self, f: F) -> &Self {
       let value = f(Lpit(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xdc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xdc) as *mut u32, value.0);
       }
       self
    }
@@ -1794,7 +1794,7 @@ impl Pcc {
       let tmp = self.lpit();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xdc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xdc) as *mut u32, value.0);
       }
       self
    }
@@ -1810,14 +1810,14 @@ impl Pcc {
 #[doc="Read the FTM0 register."]
    #[inline] pub fn ftm0(&self) -> Ftm0 { 
       unsafe {
-         Ftm0(::core::ptr::read_volatile((self.0 + 0xe0) as *const u32))
+         Ftm0(read_volatile((self.0 + 0xe0) as *const u32))
       }
    }
 #[doc="Write the FTM0 register."]
    #[inline] pub fn set_ftm0<F: FnOnce(Ftm0) -> Ftm0>(&self, f: F) -> &Self {
       let value = f(Ftm0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe0) as *mut u32, value.0);
       }
       self
    }
@@ -1826,7 +1826,7 @@ impl Pcc {
       let tmp = self.ftm0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe0) as *mut u32, value.0);
       }
       self
    }
@@ -1842,14 +1842,14 @@ impl Pcc {
 #[doc="Read the FTM1 register."]
    #[inline] pub fn ftm1(&self) -> Ftm1 { 
       unsafe {
-         Ftm1(::core::ptr::read_volatile((self.0 + 0xe4) as *const u32))
+         Ftm1(read_volatile((self.0 + 0xe4) as *const u32))
       }
    }
 #[doc="Write the FTM1 register."]
    #[inline] pub fn set_ftm1<F: FnOnce(Ftm1) -> Ftm1>(&self, f: F) -> &Self {
       let value = f(Ftm1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe4) as *mut u32, value.0);
       }
       self
    }
@@ -1858,7 +1858,7 @@ impl Pcc {
       let tmp = self.ftm1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe4) as *mut u32, value.0);
       }
       self
    }
@@ -1874,14 +1874,14 @@ impl Pcc {
 #[doc="Read the FTM2 register."]
    #[inline] pub fn ftm2(&self) -> Ftm2 { 
       unsafe {
-         Ftm2(::core::ptr::read_volatile((self.0 + 0xe8) as *const u32))
+         Ftm2(read_volatile((self.0 + 0xe8) as *const u32))
       }
    }
 #[doc="Write the FTM2 register."]
    #[inline] pub fn set_ftm2<F: FnOnce(Ftm2) -> Ftm2>(&self, f: F) -> &Self {
       let value = f(Ftm2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe8) as *mut u32, value.0);
       }
       self
    }
@@ -1890,7 +1890,7 @@ impl Pcc {
       let tmp = self.ftm2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xe8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xe8) as *mut u32, value.0);
       }
       self
    }
@@ -1906,14 +1906,14 @@ impl Pcc {
 #[doc="Read the ADC0 register."]
    #[inline] pub fn adc0(&self) -> Adc0 { 
       unsafe {
-         Adc0(::core::ptr::read_volatile((self.0 + 0xec) as *const u32))
+         Adc0(read_volatile((self.0 + 0xec) as *const u32))
       }
    }
 #[doc="Write the ADC0 register."]
    #[inline] pub fn set_adc0<F: FnOnce(Adc0) -> Adc0>(&self, f: F) -> &Self {
       let value = f(Adc0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xec) as *mut u32, value.0);
+         write_volatile((self.0 + 0xec) as *mut u32, value.0);
       }
       self
    }
@@ -1922,7 +1922,7 @@ impl Pcc {
       let tmp = self.adc0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xec) as *mut u32, value.0);
+         write_volatile((self.0 + 0xec) as *mut u32, value.0);
       }
       self
    }
@@ -1938,14 +1938,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY60 register."]
    #[inline] pub fn pccdummy60(&self) -> Pccdummy60 { 
       unsafe {
-         Pccdummy60(::core::ptr::read_volatile((self.0 + 0xf0) as *const u32))
+         Pccdummy60(read_volatile((self.0 + 0xf0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY60 register."]
    #[inline] pub fn set_pccdummy60<F: FnOnce(Pccdummy60) -> Pccdummy60>(&self, f: F) -> &Self {
       let value = f(Pccdummy60(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf0) as *mut u32, value.0);
       }
       self
    }
@@ -1954,7 +1954,7 @@ impl Pcc {
       let tmp = self.pccdummy60();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf0) as *mut u32, value.0);
       }
       self
    }
@@ -1970,14 +1970,14 @@ impl Pcc {
 #[doc="Read the RTC register."]
    #[inline] pub fn rtc(&self) -> Rtc { 
       unsafe {
-         Rtc(::core::ptr::read_volatile((self.0 + 0xf4) as *const u32))
+         Rtc(read_volatile((self.0 + 0xf4) as *const u32))
       }
    }
 #[doc="Write the RTC register."]
    #[inline] pub fn set_rtc<F: FnOnce(Rtc) -> Rtc>(&self, f: F) -> &Self {
       let value = f(Rtc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf4) as *mut u32, value.0);
       }
       self
    }
@@ -1986,7 +1986,7 @@ impl Pcc {
       let tmp = self.rtc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf4) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf4) as *mut u32, value.0);
       }
       self
    }
@@ -2002,14 +2002,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY62 register."]
    #[inline] pub fn pccdummy62(&self) -> Pccdummy62 { 
       unsafe {
-         Pccdummy62(::core::ptr::read_volatile((self.0 + 0xf8) as *const u32))
+         Pccdummy62(read_volatile((self.0 + 0xf8) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY62 register."]
    #[inline] pub fn set_pccdummy62<F: FnOnce(Pccdummy62) -> Pccdummy62>(&self, f: F) -> &Self {
       let value = f(Pccdummy62(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf8) as *mut u32, value.0);
       }
       self
    }
@@ -2018,7 +2018,7 @@ impl Pcc {
       let tmp = self.pccdummy62();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xf8) as *mut u32, value.0);
+         write_volatile((self.0 + 0xf8) as *mut u32, value.0);
       }
       self
    }
@@ -2034,14 +2034,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY63 register."]
    #[inline] pub fn pccdummy63(&self) -> Pccdummy63 { 
       unsafe {
-         Pccdummy63(::core::ptr::read_volatile((self.0 + 0xfc) as *const u32))
+         Pccdummy63(read_volatile((self.0 + 0xfc) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY63 register."]
    #[inline] pub fn set_pccdummy63<F: FnOnce(Pccdummy63) -> Pccdummy63>(&self, f: F) -> &Self {
       let value = f(Pccdummy63(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc) as *mut u32, value.0);
       }
       self
    }
@@ -2050,7 +2050,7 @@ impl Pcc {
       let tmp = self.pccdummy63();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xfc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xfc) as *mut u32, value.0);
       }
       self
    }
@@ -2066,14 +2066,14 @@ impl Pcc {
 #[doc="Read the LPTMR0 register."]
    #[inline] pub fn lptmr0(&self) -> Lptmr0 { 
       unsafe {
-         Lptmr0(::core::ptr::read_volatile((self.0 + 0x100) as *const u32))
+         Lptmr0(read_volatile((self.0 + 0x100) as *const u32))
       }
    }
 #[doc="Write the LPTMR0 register."]
    #[inline] pub fn set_lptmr0<F: FnOnce(Lptmr0) -> Lptmr0>(&self, f: F) -> &Self {
       let value = f(Lptmr0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100) as *mut u32, value.0);
       }
       self
    }
@@ -2082,7 +2082,7 @@ impl Pcc {
       let tmp = self.lptmr0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100) as *mut u32, value.0);
       }
       self
    }
@@ -2098,14 +2098,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY65 register."]
    #[inline] pub fn pccdummy65(&self) -> Pccdummy65 { 
       unsafe {
-         Pccdummy65(::core::ptr::read_volatile((self.0 + 0x104) as *const u32))
+         Pccdummy65(read_volatile((self.0 + 0x104) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY65 register."]
    #[inline] pub fn set_pccdummy65<F: FnOnce(Pccdummy65) -> Pccdummy65>(&self, f: F) -> &Self {
       let value = f(Pccdummy65(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x104) as *mut u32, value.0);
+         write_volatile((self.0 + 0x104) as *mut u32, value.0);
       }
       self
    }
@@ -2114,7 +2114,7 @@ impl Pcc {
       let tmp = self.pccdummy65();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x104) as *mut u32, value.0);
+         write_volatile((self.0 + 0x104) as *mut u32, value.0);
       }
       self
    }
@@ -2130,14 +2130,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY66 register."]
    #[inline] pub fn pccdummy66(&self) -> Pccdummy66 { 
       unsafe {
-         Pccdummy66(::core::ptr::read_volatile((self.0 + 0x108) as *const u32))
+         Pccdummy66(read_volatile((self.0 + 0x108) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY66 register."]
    #[inline] pub fn set_pccdummy66<F: FnOnce(Pccdummy66) -> Pccdummy66>(&self, f: F) -> &Self {
       let value = f(Pccdummy66(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108) as *mut u32, value.0);
       }
       self
    }
@@ -2146,7 +2146,7 @@ impl Pcc {
       let tmp = self.pccdummy66();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x108) as *mut u32, value.0);
+         write_volatile((self.0 + 0x108) as *mut u32, value.0);
       }
       self
    }
@@ -2162,14 +2162,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY67 register."]
    #[inline] pub fn pccdummy67(&self) -> Pccdummy67 { 
       unsafe {
-         Pccdummy67(::core::ptr::read_volatile((self.0 + 0x10c) as *const u32))
+         Pccdummy67(read_volatile((self.0 + 0x10c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY67 register."]
    #[inline] pub fn set_pccdummy67<F: FnOnce(Pccdummy67) -> Pccdummy67>(&self, f: F) -> &Self {
       let value = f(Pccdummy67(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c) as *mut u32, value.0);
       }
       self
    }
@@ -2178,7 +2178,7 @@ impl Pcc {
       let tmp = self.pccdummy67();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10c) as *mut u32, value.0);
       }
       self
    }
@@ -2194,14 +2194,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY68 register."]
    #[inline] pub fn pccdummy68(&self) -> Pccdummy68 { 
       unsafe {
-         Pccdummy68(::core::ptr::read_volatile((self.0 + 0x110) as *const u32))
+         Pccdummy68(read_volatile((self.0 + 0x110) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY68 register."]
    #[inline] pub fn set_pccdummy68<F: FnOnce(Pccdummy68) -> Pccdummy68>(&self, f: F) -> &Self {
       let value = f(Pccdummy68(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x110) as *mut u32, value.0);
+         write_volatile((self.0 + 0x110) as *mut u32, value.0);
       }
       self
    }
@@ -2210,7 +2210,7 @@ impl Pcc {
       let tmp = self.pccdummy68();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x110) as *mut u32, value.0);
+         write_volatile((self.0 + 0x110) as *mut u32, value.0);
       }
       self
    }
@@ -2226,14 +2226,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY69 register."]
    #[inline] pub fn pccdummy69(&self) -> Pccdummy69 { 
       unsafe {
-         Pccdummy69(::core::ptr::read_volatile((self.0 + 0x114) as *const u32))
+         Pccdummy69(read_volatile((self.0 + 0x114) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY69 register."]
    #[inline] pub fn set_pccdummy69<F: FnOnce(Pccdummy69) -> Pccdummy69>(&self, f: F) -> &Self {
       let value = f(Pccdummy69(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x114) as *mut u32, value.0);
+         write_volatile((self.0 + 0x114) as *mut u32, value.0);
       }
       self
    }
@@ -2242,7 +2242,7 @@ impl Pcc {
       let tmp = self.pccdummy69();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x114) as *mut u32, value.0);
+         write_volatile((self.0 + 0x114) as *mut u32, value.0);
       }
       self
    }
@@ -2258,14 +2258,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY70 register."]
    #[inline] pub fn pccdummy70(&self) -> Pccdummy70 { 
       unsafe {
-         Pccdummy70(::core::ptr::read_volatile((self.0 + 0x118) as *const u32))
+         Pccdummy70(read_volatile((self.0 + 0x118) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY70 register."]
    #[inline] pub fn set_pccdummy70<F: FnOnce(Pccdummy70) -> Pccdummy70>(&self, f: F) -> &Self {
       let value = f(Pccdummy70(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -2274,7 +2274,7 @@ impl Pcc {
       let tmp = self.pccdummy70();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x118) as *mut u32, value.0);
+         write_volatile((self.0 + 0x118) as *mut u32, value.0);
       }
       self
    }
@@ -2290,14 +2290,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY71 register."]
    #[inline] pub fn pccdummy71(&self) -> Pccdummy71 { 
       unsafe {
-         Pccdummy71(::core::ptr::read_volatile((self.0 + 0x11c) as *const u32))
+         Pccdummy71(read_volatile((self.0 + 0x11c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY71 register."]
    #[inline] pub fn set_pccdummy71<F: FnOnce(Pccdummy71) -> Pccdummy71>(&self, f: F) -> &Self {
       let value = f(Pccdummy71(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x11c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x11c) as *mut u32, value.0);
       }
       self
    }
@@ -2306,7 +2306,7 @@ impl Pcc {
       let tmp = self.pccdummy71();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x11c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x11c) as *mut u32, value.0);
       }
       self
    }
@@ -2322,14 +2322,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY72 register."]
    #[inline] pub fn pccdummy72(&self) -> Pccdummy72 { 
       unsafe {
-         Pccdummy72(::core::ptr::read_volatile((self.0 + 0x120) as *const u32))
+         Pccdummy72(read_volatile((self.0 + 0x120) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY72 register."]
    #[inline] pub fn set_pccdummy72<F: FnOnce(Pccdummy72) -> Pccdummy72>(&self, f: F) -> &Self {
       let value = f(Pccdummy72(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x120) as *mut u32, value.0);
+         write_volatile((self.0 + 0x120) as *mut u32, value.0);
       }
       self
    }
@@ -2338,7 +2338,7 @@ impl Pcc {
       let tmp = self.pccdummy72();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x120) as *mut u32, value.0);
+         write_volatile((self.0 + 0x120) as *mut u32, value.0);
       }
       self
    }
@@ -2354,14 +2354,14 @@ impl Pcc {
 #[doc="Read the PORTA register."]
    #[inline] pub fn porta(&self) -> Porta { 
       unsafe {
-         Porta(::core::ptr::read_volatile((self.0 + 0x124) as *const u32))
+         Porta(read_volatile((self.0 + 0x124) as *const u32))
       }
    }
 #[doc="Write the PORTA register."]
    #[inline] pub fn set_porta<F: FnOnce(Porta) -> Porta>(&self, f: F) -> &Self {
       let value = f(Porta(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x124) as *mut u32, value.0);
+         write_volatile((self.0 + 0x124) as *mut u32, value.0);
       }
       self
    }
@@ -2370,7 +2370,7 @@ impl Pcc {
       let tmp = self.porta();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x124) as *mut u32, value.0);
+         write_volatile((self.0 + 0x124) as *mut u32, value.0);
       }
       self
    }
@@ -2386,14 +2386,14 @@ impl Pcc {
 #[doc="Read the PORTB register."]
    #[inline] pub fn portb(&self) -> Portb { 
       unsafe {
-         Portb(::core::ptr::read_volatile((self.0 + 0x128) as *const u32))
+         Portb(read_volatile((self.0 + 0x128) as *const u32))
       }
    }
 #[doc="Write the PORTB register."]
    #[inline] pub fn set_portb<F: FnOnce(Portb) -> Portb>(&self, f: F) -> &Self {
       let value = f(Portb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x128) as *mut u32, value.0);
+         write_volatile((self.0 + 0x128) as *mut u32, value.0);
       }
       self
    }
@@ -2402,7 +2402,7 @@ impl Pcc {
       let tmp = self.portb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x128) as *mut u32, value.0);
+         write_volatile((self.0 + 0x128) as *mut u32, value.0);
       }
       self
    }
@@ -2418,14 +2418,14 @@ impl Pcc {
 #[doc="Read the PORTC register."]
    #[inline] pub fn portc(&self) -> Portc { 
       unsafe {
-         Portc(::core::ptr::read_volatile((self.0 + 0x12c) as *const u32))
+         Portc(read_volatile((self.0 + 0x12c) as *const u32))
       }
    }
 #[doc="Write the PORTC register."]
    #[inline] pub fn set_portc<F: FnOnce(Portc) -> Portc>(&self, f: F) -> &Self {
       let value = f(Portc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x12c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x12c) as *mut u32, value.0);
       }
       self
    }
@@ -2434,7 +2434,7 @@ impl Pcc {
       let tmp = self.portc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x12c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x12c) as *mut u32, value.0);
       }
       self
    }
@@ -2450,14 +2450,14 @@ impl Pcc {
 #[doc="Read the PORTD register."]
    #[inline] pub fn portd(&self) -> Portd { 
       unsafe {
-         Portd(::core::ptr::read_volatile((self.0 + 0x130) as *const u32))
+         Portd(read_volatile((self.0 + 0x130) as *const u32))
       }
    }
 #[doc="Write the PORTD register."]
    #[inline] pub fn set_portd<F: FnOnce(Portd) -> Portd>(&self, f: F) -> &Self {
       let value = f(Portd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x130) as *mut u32, value.0);
+         write_volatile((self.0 + 0x130) as *mut u32, value.0);
       }
       self
    }
@@ -2466,7 +2466,7 @@ impl Pcc {
       let tmp = self.portd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x130) as *mut u32, value.0);
+         write_volatile((self.0 + 0x130) as *mut u32, value.0);
       }
       self
    }
@@ -2482,14 +2482,14 @@ impl Pcc {
 #[doc="Read the PORTE register."]
    #[inline] pub fn porte(&self) -> Porte { 
       unsafe {
-         Porte(::core::ptr::read_volatile((self.0 + 0x134) as *const u32))
+         Porte(read_volatile((self.0 + 0x134) as *const u32))
       }
    }
 #[doc="Write the PORTE register."]
    #[inline] pub fn set_porte<F: FnOnce(Porte) -> Porte>(&self, f: F) -> &Self {
       let value = f(Porte(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x134) as *mut u32, value.0);
+         write_volatile((self.0 + 0x134) as *mut u32, value.0);
       }
       self
    }
@@ -2498,7 +2498,7 @@ impl Pcc {
       let tmp = self.porte();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x134) as *mut u32, value.0);
+         write_volatile((self.0 + 0x134) as *mut u32, value.0);
       }
       self
    }
@@ -2514,14 +2514,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY78 register."]
    #[inline] pub fn pccdummy78(&self) -> Pccdummy78 { 
       unsafe {
-         Pccdummy78(::core::ptr::read_volatile((self.0 + 0x138) as *const u32))
+         Pccdummy78(read_volatile((self.0 + 0x138) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY78 register."]
    #[inline] pub fn set_pccdummy78<F: FnOnce(Pccdummy78) -> Pccdummy78>(&self, f: F) -> &Self {
       let value = f(Pccdummy78(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x138) as *mut u32, value.0);
+         write_volatile((self.0 + 0x138) as *mut u32, value.0);
       }
       self
    }
@@ -2530,7 +2530,7 @@ impl Pcc {
       let tmp = self.pccdummy78();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x138) as *mut u32, value.0);
+         write_volatile((self.0 + 0x138) as *mut u32, value.0);
       }
       self
    }
@@ -2546,14 +2546,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY79 register."]
    #[inline] pub fn pccdummy79(&self) -> Pccdummy79 { 
       unsafe {
-         Pccdummy79(::core::ptr::read_volatile((self.0 + 0x13c) as *const u32))
+         Pccdummy79(read_volatile((self.0 + 0x13c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY79 register."]
    #[inline] pub fn set_pccdummy79<F: FnOnce(Pccdummy79) -> Pccdummy79>(&self, f: F) -> &Self {
       let value = f(Pccdummy79(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x13c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x13c) as *mut u32, value.0);
       }
       self
    }
@@ -2562,7 +2562,7 @@ impl Pcc {
       let tmp = self.pccdummy79();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x13c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x13c) as *mut u32, value.0);
       }
       self
    }
@@ -2578,14 +2578,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY80 register."]
    #[inline] pub fn pccdummy80(&self) -> Pccdummy80 { 
       unsafe {
-         Pccdummy80(::core::ptr::read_volatile((self.0 + 0x140) as *const u32))
+         Pccdummy80(read_volatile((self.0 + 0x140) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY80 register."]
    #[inline] pub fn set_pccdummy80<F: FnOnce(Pccdummy80) -> Pccdummy80>(&self, f: F) -> &Self {
       let value = f(Pccdummy80(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x140) as *mut u32, value.0);
+         write_volatile((self.0 + 0x140) as *mut u32, value.0);
       }
       self
    }
@@ -2594,7 +2594,7 @@ impl Pcc {
       let tmp = self.pccdummy80();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x140) as *mut u32, value.0);
+         write_volatile((self.0 + 0x140) as *mut u32, value.0);
       }
       self
    }
@@ -2610,14 +2610,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY81 register."]
    #[inline] pub fn pccdummy81(&self) -> Pccdummy81 { 
       unsafe {
-         Pccdummy81(::core::ptr::read_volatile((self.0 + 0x144) as *const u32))
+         Pccdummy81(read_volatile((self.0 + 0x144) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY81 register."]
    #[inline] pub fn set_pccdummy81<F: FnOnce(Pccdummy81) -> Pccdummy81>(&self, f: F) -> &Self {
       let value = f(Pccdummy81(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -2626,7 +2626,7 @@ impl Pcc {
       let tmp = self.pccdummy81();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -2642,14 +2642,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY82 register."]
    #[inline] pub fn pccdummy82(&self) -> Pccdummy82 { 
       unsafe {
-         Pccdummy82(::core::ptr::read_volatile((self.0 + 0x148) as *const u32))
+         Pccdummy82(read_volatile((self.0 + 0x148) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY82 register."]
    #[inline] pub fn set_pccdummy82<F: FnOnce(Pccdummy82) -> Pccdummy82>(&self, f: F) -> &Self {
       let value = f(Pccdummy82(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x148) as *mut u32, value.0);
+         write_volatile((self.0 + 0x148) as *mut u32, value.0);
       }
       self
    }
@@ -2658,7 +2658,7 @@ impl Pcc {
       let tmp = self.pccdummy82();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x148) as *mut u32, value.0);
+         write_volatile((self.0 + 0x148) as *mut u32, value.0);
       }
       self
    }
@@ -2674,14 +2674,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY83 register."]
    #[inline] pub fn pccdummy83(&self) -> Pccdummy83 { 
       unsafe {
-         Pccdummy83(::core::ptr::read_volatile((self.0 + 0x14c) as *const u32))
+         Pccdummy83(read_volatile((self.0 + 0x14c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY83 register."]
    #[inline] pub fn set_pccdummy83<F: FnOnce(Pccdummy83) -> Pccdummy83>(&self, f: F) -> &Self {
       let value = f(Pccdummy83(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -2690,7 +2690,7 @@ impl Pcc {
       let tmp = self.pccdummy83();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -2706,14 +2706,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY84 register."]
    #[inline] pub fn pccdummy84(&self) -> Pccdummy84 { 
       unsafe {
-         Pccdummy84(::core::ptr::read_volatile((self.0 + 0x150) as *const u32))
+         Pccdummy84(read_volatile((self.0 + 0x150) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY84 register."]
    #[inline] pub fn set_pccdummy84<F: FnOnce(Pccdummy84) -> Pccdummy84>(&self, f: F) -> &Self {
       let value = f(Pccdummy84(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -2722,7 +2722,7 @@ impl Pcc {
       let tmp = self.pccdummy84();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -2738,14 +2738,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY85 register."]
    #[inline] pub fn pccdummy85(&self) -> Pccdummy85 { 
       unsafe {
-         Pccdummy85(::core::ptr::read_volatile((self.0 + 0x154) as *const u32))
+         Pccdummy85(read_volatile((self.0 + 0x154) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY85 register."]
    #[inline] pub fn set_pccdummy85<F: FnOnce(Pccdummy85) -> Pccdummy85>(&self, f: F) -> &Self {
       let value = f(Pccdummy85(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x154) as *mut u32, value.0);
+         write_volatile((self.0 + 0x154) as *mut u32, value.0);
       }
       self
    }
@@ -2754,7 +2754,7 @@ impl Pcc {
       let tmp = self.pccdummy85();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x154) as *mut u32, value.0);
+         write_volatile((self.0 + 0x154) as *mut u32, value.0);
       }
       self
    }
@@ -2770,14 +2770,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY86 register."]
    #[inline] pub fn pccdummy86(&self) -> Pccdummy86 { 
       unsafe {
-         Pccdummy86(::core::ptr::read_volatile((self.0 + 0x158) as *const u32))
+         Pccdummy86(read_volatile((self.0 + 0x158) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY86 register."]
    #[inline] pub fn set_pccdummy86<F: FnOnce(Pccdummy86) -> Pccdummy86>(&self, f: F) -> &Self {
       let value = f(Pccdummy86(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x158) as *mut u32, value.0);
+         write_volatile((self.0 + 0x158) as *mut u32, value.0);
       }
       self
    }
@@ -2786,7 +2786,7 @@ impl Pcc {
       let tmp = self.pccdummy86();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x158) as *mut u32, value.0);
+         write_volatile((self.0 + 0x158) as *mut u32, value.0);
       }
       self
    }
@@ -2802,14 +2802,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY87 register."]
    #[inline] pub fn pccdummy87(&self) -> Pccdummy87 { 
       unsafe {
-         Pccdummy87(::core::ptr::read_volatile((self.0 + 0x15c) as *const u32))
+         Pccdummy87(read_volatile((self.0 + 0x15c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY87 register."]
    #[inline] pub fn set_pccdummy87<F: FnOnce(Pccdummy87) -> Pccdummy87>(&self, f: F) -> &Self {
       let value = f(Pccdummy87(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x15c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x15c) as *mut u32, value.0);
       }
       self
    }
@@ -2818,7 +2818,7 @@ impl Pcc {
       let tmp = self.pccdummy87();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x15c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x15c) as *mut u32, value.0);
       }
       self
    }
@@ -2834,14 +2834,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY88 register."]
    #[inline] pub fn pccdummy88(&self) -> Pccdummy88 { 
       unsafe {
-         Pccdummy88(::core::ptr::read_volatile((self.0 + 0x160) as *const u32))
+         Pccdummy88(read_volatile((self.0 + 0x160) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY88 register."]
    #[inline] pub fn set_pccdummy88<F: FnOnce(Pccdummy88) -> Pccdummy88>(&self, f: F) -> &Self {
       let value = f(Pccdummy88(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x160) as *mut u32, value.0);
+         write_volatile((self.0 + 0x160) as *mut u32, value.0);
       }
       self
    }
@@ -2850,7 +2850,7 @@ impl Pcc {
       let tmp = self.pccdummy88();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x160) as *mut u32, value.0);
+         write_volatile((self.0 + 0x160) as *mut u32, value.0);
       }
       self
    }
@@ -2866,14 +2866,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY89 register."]
    #[inline] pub fn pccdummy89(&self) -> Pccdummy89 { 
       unsafe {
-         Pccdummy89(::core::ptr::read_volatile((self.0 + 0x164) as *const u32))
+         Pccdummy89(read_volatile((self.0 + 0x164) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY89 register."]
    #[inline] pub fn set_pccdummy89<F: FnOnce(Pccdummy89) -> Pccdummy89>(&self, f: F) -> &Self {
       let value = f(Pccdummy89(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -2882,7 +2882,7 @@ impl Pcc {
       let tmp = self.pccdummy89();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -2898,14 +2898,14 @@ impl Pcc {
 #[doc="Read the FLEXIO register."]
    #[inline] pub fn flexio(&self) -> Flexio { 
       unsafe {
-         Flexio(::core::ptr::read_volatile((self.0 + 0x168) as *const u32))
+         Flexio(read_volatile((self.0 + 0x168) as *const u32))
       }
    }
 #[doc="Write the FLEXIO register."]
    #[inline] pub fn set_flexio<F: FnOnce(Flexio) -> Flexio>(&self, f: F) -> &Self {
       let value = f(Flexio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x168) as *mut u32, value.0);
+         write_volatile((self.0 + 0x168) as *mut u32, value.0);
       }
       self
    }
@@ -2914,7 +2914,7 @@ impl Pcc {
       let tmp = self.flexio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x168) as *mut u32, value.0);
+         write_volatile((self.0 + 0x168) as *mut u32, value.0);
       }
       self
    }
@@ -2930,14 +2930,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY91 register."]
    #[inline] pub fn pccdummy91(&self) -> Pccdummy91 { 
       unsafe {
-         Pccdummy91(::core::ptr::read_volatile((self.0 + 0x16c) as *const u32))
+         Pccdummy91(read_volatile((self.0 + 0x16c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY91 register."]
    #[inline] pub fn set_pccdummy91<F: FnOnce(Pccdummy91) -> Pccdummy91>(&self, f: F) -> &Self {
       let value = f(Pccdummy91(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x16c) as *mut u32, value.0);
       }
       self
    }
@@ -2946,7 +2946,7 @@ impl Pcc {
       let tmp = self.pccdummy91();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x16c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x16c) as *mut u32, value.0);
       }
       self
    }
@@ -2962,14 +2962,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY92 register."]
    #[inline] pub fn pccdummy92(&self) -> Pccdummy92 { 
       unsafe {
-         Pccdummy92(::core::ptr::read_volatile((self.0 + 0x170) as *const u32))
+         Pccdummy92(read_volatile((self.0 + 0x170) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY92 register."]
    #[inline] pub fn set_pccdummy92<F: FnOnce(Pccdummy92) -> Pccdummy92>(&self, f: F) -> &Self {
       let value = f(Pccdummy92(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x170) as *mut u32, value.0);
+         write_volatile((self.0 + 0x170) as *mut u32, value.0);
       }
       self
    }
@@ -2978,7 +2978,7 @@ impl Pcc {
       let tmp = self.pccdummy92();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x170) as *mut u32, value.0);
+         write_volatile((self.0 + 0x170) as *mut u32, value.0);
       }
       self
    }
@@ -2994,14 +2994,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY93 register."]
    #[inline] pub fn pccdummy93(&self) -> Pccdummy93 { 
       unsafe {
-         Pccdummy93(::core::ptr::read_volatile((self.0 + 0x174) as *const u32))
+         Pccdummy93(read_volatile((self.0 + 0x174) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY93 register."]
    #[inline] pub fn set_pccdummy93<F: FnOnce(Pccdummy93) -> Pccdummy93>(&self, f: F) -> &Self {
       let value = f(Pccdummy93(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x174) as *mut u32, value.0);
+         write_volatile((self.0 + 0x174) as *mut u32, value.0);
       }
       self
    }
@@ -3010,7 +3010,7 @@ impl Pcc {
       let tmp = self.pccdummy93();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x174) as *mut u32, value.0);
+         write_volatile((self.0 + 0x174) as *mut u32, value.0);
       }
       self
    }
@@ -3026,14 +3026,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY94 register."]
    #[inline] pub fn pccdummy94(&self) -> Pccdummy94 { 
       unsafe {
-         Pccdummy94(::core::ptr::read_volatile((self.0 + 0x178) as *const u32))
+         Pccdummy94(read_volatile((self.0 + 0x178) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY94 register."]
    #[inline] pub fn set_pccdummy94<F: FnOnce(Pccdummy94) -> Pccdummy94>(&self, f: F) -> &Self {
       let value = f(Pccdummy94(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x178) as *mut u32, value.0);
+         write_volatile((self.0 + 0x178) as *mut u32, value.0);
       }
       self
    }
@@ -3042,7 +3042,7 @@ impl Pcc {
       let tmp = self.pccdummy94();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x178) as *mut u32, value.0);
+         write_volatile((self.0 + 0x178) as *mut u32, value.0);
       }
       self
    }
@@ -3058,14 +3058,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY95 register."]
    #[inline] pub fn pccdummy95(&self) -> Pccdummy95 { 
       unsafe {
-         Pccdummy95(::core::ptr::read_volatile((self.0 + 0x17c) as *const u32))
+         Pccdummy95(read_volatile((self.0 + 0x17c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY95 register."]
    #[inline] pub fn set_pccdummy95<F: FnOnce(Pccdummy95) -> Pccdummy95>(&self, f: F) -> &Self {
       let value = f(Pccdummy95(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x17c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x17c) as *mut u32, value.0);
       }
       self
    }
@@ -3074,7 +3074,7 @@ impl Pcc {
       let tmp = self.pccdummy95();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x17c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x17c) as *mut u32, value.0);
       }
       self
    }
@@ -3090,14 +3090,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY96 register."]
    #[inline] pub fn pccdummy96(&self) -> Pccdummy96 { 
       unsafe {
-         Pccdummy96(::core::ptr::read_volatile((self.0 + 0x180) as *const u32))
+         Pccdummy96(read_volatile((self.0 + 0x180) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY96 register."]
    #[inline] pub fn set_pccdummy96<F: FnOnce(Pccdummy96) -> Pccdummy96>(&self, f: F) -> &Self {
       let value = f(Pccdummy96(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -3106,7 +3106,7 @@ impl Pcc {
       let tmp = self.pccdummy96();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x180) as *mut u32, value.0);
+         write_volatile((self.0 + 0x180) as *mut u32, value.0);
       }
       self
    }
@@ -3122,14 +3122,14 @@ impl Pcc {
 #[doc="Read the EWM register."]
    #[inline] pub fn ewm(&self) -> Ewm { 
       unsafe {
-         Ewm(::core::ptr::read_volatile((self.0 + 0x184) as *const u32))
+         Ewm(read_volatile((self.0 + 0x184) as *const u32))
       }
    }
 #[doc="Write the EWM register."]
    #[inline] pub fn set_ewm<F: FnOnce(Ewm) -> Ewm>(&self, f: F) -> &Self {
       let value = f(Ewm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x184) as *mut u32, value.0);
+         write_volatile((self.0 + 0x184) as *mut u32, value.0);
       }
       self
    }
@@ -3138,7 +3138,7 @@ impl Pcc {
       let tmp = self.ewm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x184) as *mut u32, value.0);
+         write_volatile((self.0 + 0x184) as *mut u32, value.0);
       }
       self
    }
@@ -3154,14 +3154,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY98 register."]
    #[inline] pub fn pccdummy98(&self) -> Pccdummy98 { 
       unsafe {
-         Pccdummy98(::core::ptr::read_volatile((self.0 + 0x188) as *const u32))
+         Pccdummy98(read_volatile((self.0 + 0x188) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY98 register."]
    #[inline] pub fn set_pccdummy98<F: FnOnce(Pccdummy98) -> Pccdummy98>(&self, f: F) -> &Self {
       let value = f(Pccdummy98(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -3170,7 +3170,7 @@ impl Pcc {
       let tmp = self.pccdummy98();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -3186,14 +3186,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY99 register."]
    #[inline] pub fn pccdummy99(&self) -> Pccdummy99 { 
       unsafe {
-         Pccdummy99(::core::ptr::read_volatile((self.0 + 0x18c) as *const u32))
+         Pccdummy99(read_volatile((self.0 + 0x18c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY99 register."]
    #[inline] pub fn set_pccdummy99<F: FnOnce(Pccdummy99) -> Pccdummy99>(&self, f: F) -> &Self {
       let value = f(Pccdummy99(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18c) as *mut u32, value.0);
       }
       self
    }
@@ -3202,7 +3202,7 @@ impl Pcc {
       let tmp = self.pccdummy99();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18c) as *mut u32, value.0);
       }
       self
    }
@@ -3218,14 +3218,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY100 register."]
    #[inline] pub fn pccdummy100(&self) -> Pccdummy100 { 
       unsafe {
-         Pccdummy100(::core::ptr::read_volatile((self.0 + 0x190) as *const u32))
+         Pccdummy100(read_volatile((self.0 + 0x190) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY100 register."]
    #[inline] pub fn set_pccdummy100<F: FnOnce(Pccdummy100) -> Pccdummy100>(&self, f: F) -> &Self {
       let value = f(Pccdummy100(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x190) as *mut u32, value.0);
+         write_volatile((self.0 + 0x190) as *mut u32, value.0);
       }
       self
    }
@@ -3234,7 +3234,7 @@ impl Pcc {
       let tmp = self.pccdummy100();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x190) as *mut u32, value.0);
+         write_volatile((self.0 + 0x190) as *mut u32, value.0);
       }
       self
    }
@@ -3250,14 +3250,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY101 register."]
    #[inline] pub fn pccdummy101(&self) -> Pccdummy101 { 
       unsafe {
-         Pccdummy101(::core::ptr::read_volatile((self.0 + 0x194) as *const u32))
+         Pccdummy101(read_volatile((self.0 + 0x194) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY101 register."]
    #[inline] pub fn set_pccdummy101<F: FnOnce(Pccdummy101) -> Pccdummy101>(&self, f: F) -> &Self {
       let value = f(Pccdummy101(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -3266,7 +3266,7 @@ impl Pcc {
       let tmp = self.pccdummy101();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x194) as *mut u32, value.0);
+         write_volatile((self.0 + 0x194) as *mut u32, value.0);
       }
       self
    }
@@ -3282,14 +3282,14 @@ impl Pcc {
 #[doc="Read the LPI2C0 register."]
    #[inline] pub fn lpi2c0(&self) -> Lpi2c0 { 
       unsafe {
-         Lpi2c0(::core::ptr::read_volatile((self.0 + 0x198) as *const u32))
+         Lpi2c0(read_volatile((self.0 + 0x198) as *const u32))
       }
    }
 #[doc="Write the LPI2C0 register."]
    #[inline] pub fn set_lpi2c0<F: FnOnce(Lpi2c0) -> Lpi2c0>(&self, f: F) -> &Self {
       let value = f(Lpi2c0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -3298,7 +3298,7 @@ impl Pcc {
       let tmp = self.lpi2c0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x198) as *mut u32, value.0);
+         write_volatile((self.0 + 0x198) as *mut u32, value.0);
       }
       self
    }
@@ -3314,14 +3314,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY103 register."]
    #[inline] pub fn pccdummy103(&self) -> Pccdummy103 { 
       unsafe {
-         Pccdummy103(::core::ptr::read_volatile((self.0 + 0x19c) as *const u32))
+         Pccdummy103(read_volatile((self.0 + 0x19c) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY103 register."]
    #[inline] pub fn set_pccdummy103<F: FnOnce(Pccdummy103) -> Pccdummy103>(&self, f: F) -> &Self {
       let value = f(Pccdummy103(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x19c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x19c) as *mut u32, value.0);
       }
       self
    }
@@ -3330,7 +3330,7 @@ impl Pcc {
       let tmp = self.pccdummy103();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x19c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x19c) as *mut u32, value.0);
       }
       self
    }
@@ -3346,14 +3346,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY104 register."]
    #[inline] pub fn pccdummy104(&self) -> Pccdummy104 { 
       unsafe {
-         Pccdummy104(::core::ptr::read_volatile((self.0 + 0x1a0) as *const u32))
+         Pccdummy104(read_volatile((self.0 + 0x1a0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY104 register."]
    #[inline] pub fn set_pccdummy104<F: FnOnce(Pccdummy104) -> Pccdummy104>(&self, f: F) -> &Self {
       let value = f(Pccdummy104(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -3362,7 +3362,7 @@ impl Pcc {
       let tmp = self.pccdummy104();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -3378,14 +3378,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY105 register."]
    #[inline] pub fn pccdummy105(&self) -> Pccdummy105 { 
       unsafe {
-         Pccdummy105(::core::ptr::read_volatile((self.0 + 0x1a4) as *const u32))
+         Pccdummy105(read_volatile((self.0 + 0x1a4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY105 register."]
    #[inline] pub fn set_pccdummy105<F: FnOnce(Pccdummy105) -> Pccdummy105>(&self, f: F) -> &Self {
       let value = f(Pccdummy105(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
       }
       self
    }
@@ -3394,7 +3394,7 @@ impl Pcc {
       let tmp = self.pccdummy105();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a4) as *mut u32, value.0);
       }
       self
    }
@@ -3410,14 +3410,14 @@ impl Pcc {
 #[doc="Read the LPUART0 register."]
    #[inline] pub fn lpuart0(&self) -> Lpuart0 { 
       unsafe {
-         Lpuart0(::core::ptr::read_volatile((self.0 + 0x1a8) as *const u32))
+         Lpuart0(read_volatile((self.0 + 0x1a8) as *const u32))
       }
    }
 #[doc="Write the LPUART0 register."]
    #[inline] pub fn set_lpuart0<F: FnOnce(Lpuart0) -> Lpuart0>(&self, f: F) -> &Self {
       let value = f(Lpuart0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
       }
       self
    }
@@ -3426,7 +3426,7 @@ impl Pcc {
       let tmp = self.lpuart0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a8) as *mut u32, value.0);
       }
       self
    }
@@ -3442,14 +3442,14 @@ impl Pcc {
 #[doc="Read the LPUART1 register."]
    #[inline] pub fn lpuart1(&self) -> Lpuart1 { 
       unsafe {
-         Lpuart1(::core::ptr::read_volatile((self.0 + 0x1ac) as *const u32))
+         Lpuart1(read_volatile((self.0 + 0x1ac) as *const u32))
       }
    }
 #[doc="Write the LPUART1 register."]
    #[inline] pub fn set_lpuart1<F: FnOnce(Lpuart1) -> Lpuart1>(&self, f: F) -> &Self {
       let value = f(Lpuart1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
       }
       self
    }
@@ -3458,7 +3458,7 @@ impl Pcc {
       let tmp = self.lpuart1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1ac) as *mut u32, value.0);
       }
       self
    }
@@ -3474,14 +3474,14 @@ impl Pcc {
 #[doc="Read the LPUART2 register."]
    #[inline] pub fn lpuart2(&self) -> Lpuart2 { 
       unsafe {
-         Lpuart2(::core::ptr::read_volatile((self.0 + 0x1b0) as *const u32))
+         Lpuart2(read_volatile((self.0 + 0x1b0) as *const u32))
       }
    }
 #[doc="Write the LPUART2 register."]
    #[inline] pub fn set_lpuart2<F: FnOnce(Lpuart2) -> Lpuart2>(&self, f: F) -> &Self {
       let value = f(Lpuart2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
       }
       self
    }
@@ -3490,7 +3490,7 @@ impl Pcc {
       let tmp = self.lpuart2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b0) as *mut u32, value.0);
       }
       self
    }
@@ -3506,14 +3506,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY109 register."]
    #[inline] pub fn pccdummy109(&self) -> Pccdummy109 { 
       unsafe {
-         Pccdummy109(::core::ptr::read_volatile((self.0 + 0x1b4) as *const u32))
+         Pccdummy109(read_volatile((self.0 + 0x1b4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY109 register."]
    #[inline] pub fn set_pccdummy109<F: FnOnce(Pccdummy109) -> Pccdummy109>(&self, f: F) -> &Self {
       let value = f(Pccdummy109(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
       }
       self
    }
@@ -3522,7 +3522,7 @@ impl Pcc {
       let tmp = self.pccdummy109();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
       }
       self
    }
@@ -3538,14 +3538,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY110 register."]
    #[inline] pub fn pccdummy110(&self) -> Pccdummy110 { 
       unsafe {
-         Pccdummy110(::core::ptr::read_volatile((self.0 + 0x1b8) as *const u32))
+         Pccdummy110(read_volatile((self.0 + 0x1b8) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY110 register."]
    #[inline] pub fn set_pccdummy110<F: FnOnce(Pccdummy110) -> Pccdummy110>(&self, f: F) -> &Self {
       let value = f(Pccdummy110(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b8) as *mut u32, value.0);
       }
       self
    }
@@ -3554,7 +3554,7 @@ impl Pcc {
       let tmp = self.pccdummy110();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b8) as *mut u32, value.0);
       }
       self
    }
@@ -3570,14 +3570,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY111 register."]
    #[inline] pub fn pccdummy111(&self) -> Pccdummy111 { 
       unsafe {
-         Pccdummy111(::core::ptr::read_volatile((self.0 + 0x1bc) as *const u32))
+         Pccdummy111(read_volatile((self.0 + 0x1bc) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY111 register."]
    #[inline] pub fn set_pccdummy111<F: FnOnce(Pccdummy111) -> Pccdummy111>(&self, f: F) -> &Self {
       let value = f(Pccdummy111(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
       }
       self
    }
@@ -3586,7 +3586,7 @@ impl Pcc {
       let tmp = self.pccdummy111();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
       }
       self
    }
@@ -3602,14 +3602,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY112 register."]
    #[inline] pub fn pccdummy112(&self) -> Pccdummy112 { 
       unsafe {
-         Pccdummy112(::core::ptr::read_volatile((self.0 + 0x1c0) as *const u32))
+         Pccdummy112(read_volatile((self.0 + 0x1c0) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY112 register."]
    #[inline] pub fn set_pccdummy112<F: FnOnce(Pccdummy112) -> Pccdummy112>(&self, f: F) -> &Self {
       let value = f(Pccdummy112(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
       }
       self
    }
@@ -3618,7 +3618,7 @@ impl Pcc {
       let tmp = self.pccdummy112();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c0) as *mut u32, value.0);
       }
       self
    }
@@ -3634,14 +3634,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY113 register."]
    #[inline] pub fn pccdummy113(&self) -> Pccdummy113 { 
       unsafe {
-         Pccdummy113(::core::ptr::read_volatile((self.0 + 0x1c4) as *const u32))
+         Pccdummy113(read_volatile((self.0 + 0x1c4) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY113 register."]
    #[inline] pub fn set_pccdummy113<F: FnOnce(Pccdummy113) -> Pccdummy113>(&self, f: F) -> &Self {
       let value = f(Pccdummy113(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -3650,7 +3650,7 @@ impl Pcc {
       let tmp = self.pccdummy113();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c4) as *mut u32, value.0);
       }
       self
    }
@@ -3666,14 +3666,14 @@ impl Pcc {
 #[doc="Read the PCCDUMMY114 register."]
    #[inline] pub fn pccdummy114(&self) -> Pccdummy114 { 
       unsafe {
-         Pccdummy114(::core::ptr::read_volatile((self.0 + 0x1c8) as *const u32))
+         Pccdummy114(read_volatile((self.0 + 0x1c8) as *const u32))
       }
    }
 #[doc="Write the PCCDUMMY114 register."]
    #[inline] pub fn set_pccdummy114<F: FnOnce(Pccdummy114) -> Pccdummy114>(&self, f: F) -> &Self {
       let value = f(Pccdummy114(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c8) as *mut u32, value.0);
       }
       self
    }
@@ -3682,7 +3682,7 @@ impl Pcc {
       let tmp = self.pccdummy114();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c8) as *mut u32, value.0);
       }
       self
    }
@@ -3698,14 +3698,14 @@ impl Pcc {
 #[doc="Read the CMP0 register."]
    #[inline] pub fn cmp0(&self) -> Cmp0 { 
       unsafe {
-         Cmp0(::core::ptr::read_volatile((self.0 + 0x1cc) as *const u32))
+         Cmp0(read_volatile((self.0 + 0x1cc) as *const u32))
       }
    }
 #[doc="Write the CMP0 register."]
    #[inline] pub fn set_cmp0<F: FnOnce(Cmp0) -> Cmp0>(&self, f: F) -> &Self {
       let value = f(Cmp0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1cc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1cc) as *mut u32, value.0);
       }
       self
    }
@@ -3714,7 +3714,7 @@ impl Pcc {
       let tmp = self.cmp0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1cc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1cc) as *mut u32, value.0);
       }
       self
    }

@@ -19,7 +19,7 @@ impl IwdgPeriph {
    #[inline] pub fn set_kr<F: FnOnce(Kr) -> Kr>(&self, f: F) -> &Self {
       let value = f(Kr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -35,14 +35,14 @@ impl IwdgPeriph {
 #[doc="Read the PR register."]
    #[inline] pub fn pr(&self) -> Pr { 
       unsafe {
-         Pr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Pr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the PR register."]
    #[inline] pub fn set_pr<F: FnOnce(Pr) -> Pr>(&self, f: F) -> &Self {
       let value = f(Pr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -51,7 +51,7 @@ impl IwdgPeriph {
       let tmp = self.pr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -67,14 +67,14 @@ impl IwdgPeriph {
 #[doc="Read the RLR register."]
    #[inline] pub fn rlr(&self) -> Rlr { 
       unsafe {
-         Rlr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Rlr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the RLR register."]
    #[inline] pub fn set_rlr<F: FnOnce(Rlr) -> Rlr>(&self, f: F) -> &Self {
       let value = f(Rlr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -83,7 +83,7 @@ impl IwdgPeriph {
       let tmp = self.rlr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -99,7 +99,7 @@ impl IwdgPeriph {
 #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
-         Sr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Sr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 
@@ -114,14 +114,14 @@ impl IwdgPeriph {
 #[doc="Read the WINR register."]
    #[inline] pub fn winr(&self) -> Winr { 
       unsafe {
-         Winr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Winr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the WINR register."]
    #[inline] pub fn set_winr<F: FnOnce(Winr) -> Winr>(&self, f: F) -> &Self {
       let value = f(Winr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl IwdgPeriph {
       let tmp = self.winr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }

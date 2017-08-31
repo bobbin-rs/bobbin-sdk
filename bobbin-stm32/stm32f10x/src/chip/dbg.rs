@@ -18,7 +18,7 @@ impl Dbg {
 #[doc="Read the IDCODE register."]
    #[inline] pub fn idcode(&self) -> Idcode { 
       unsafe {
-         Idcode(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Idcode(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,14 +33,14 @@ impl Dbg {
 #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
-         Cr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -49,7 +49,7 @@ impl Dbg {
       let tmp = self.cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }

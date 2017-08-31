@@ -18,7 +18,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY3 register."]
    #[inline] pub fn backkey3(&self) -> Backkey3 { 
       unsafe {
-         Backkey3(::core::ptr::read_volatile((self.0 + 0x0) as *const u8))
+         Backkey3(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
 
@@ -33,7 +33,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY2 register."]
    #[inline] pub fn backkey2(&self) -> Backkey2 { 
       unsafe {
-         Backkey2(::core::ptr::read_volatile((self.0 + 0x1) as *const u8))
+         Backkey2(read_volatile((self.0 + 0x1) as *const u8))
       }
    }
 
@@ -48,7 +48,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY1 register."]
    #[inline] pub fn backkey1(&self) -> Backkey1 { 
       unsafe {
-         Backkey1(::core::ptr::read_volatile((self.0 + 0x2) as *const u8))
+         Backkey1(read_volatile((self.0 + 0x2) as *const u8))
       }
    }
 
@@ -63,7 +63,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY0 register."]
    #[inline] pub fn backkey0(&self) -> Backkey0 { 
       unsafe {
-         Backkey0(::core::ptr::read_volatile((self.0 + 0x3) as *const u8))
+         Backkey0(read_volatile((self.0 + 0x3) as *const u8))
       }
    }
 
@@ -78,7 +78,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY7 register."]
    #[inline] pub fn backkey7(&self) -> Backkey7 { 
       unsafe {
-         Backkey7(::core::ptr::read_volatile((self.0 + 0x4) as *const u8))
+         Backkey7(read_volatile((self.0 + 0x4) as *const u8))
       }
    }
 
@@ -93,7 +93,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY6 register."]
    #[inline] pub fn backkey6(&self) -> Backkey6 { 
       unsafe {
-         Backkey6(::core::ptr::read_volatile((self.0 + 0x5) as *const u8))
+         Backkey6(read_volatile((self.0 + 0x5) as *const u8))
       }
    }
 
@@ -108,7 +108,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY5 register."]
    #[inline] pub fn backkey5(&self) -> Backkey5 { 
       unsafe {
-         Backkey5(::core::ptr::read_volatile((self.0 + 0x6) as *const u8))
+         Backkey5(read_volatile((self.0 + 0x6) as *const u8))
       }
    }
 
@@ -123,7 +123,7 @@ impl Ftfa {
 #[doc="Read the BACKKEY4 register."]
    #[inline] pub fn backkey4(&self) -> Backkey4 { 
       unsafe {
-         Backkey4(::core::ptr::read_volatile((self.0 + 0x7) as *const u8))
+         Backkey4(read_volatile((self.0 + 0x7) as *const u8))
       }
    }
 
@@ -138,7 +138,7 @@ impl Ftfa {
 #[doc="Read the FPROT3 register."]
    #[inline] pub fn fprot3(&self) -> Fprot3 { 
       unsafe {
-         Fprot3(::core::ptr::read_volatile((self.0 + 0x8) as *const u8))
+         Fprot3(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
 
@@ -153,7 +153,7 @@ impl Ftfa {
 #[doc="Read the FPROT2 register."]
    #[inline] pub fn fprot2(&self) -> Fprot2 { 
       unsafe {
-         Fprot2(::core::ptr::read_volatile((self.0 + 0x9) as *const u8))
+         Fprot2(read_volatile((self.0 + 0x9) as *const u8))
       }
    }
 
@@ -168,7 +168,7 @@ impl Ftfa {
 #[doc="Read the FPROT1 register."]
    #[inline] pub fn fprot1(&self) -> Fprot1 { 
       unsafe {
-         Fprot1(::core::ptr::read_volatile((self.0 + 0xa) as *const u8))
+         Fprot1(read_volatile((self.0 + 0xa) as *const u8))
       }
    }
 
@@ -183,7 +183,7 @@ impl Ftfa {
 #[doc="Read the FPROT0 register."]
    #[inline] pub fn fprot0(&self) -> Fprot0 { 
       unsafe {
-         Fprot0(::core::ptr::read_volatile((self.0 + 0xb) as *const u8))
+         Fprot0(read_volatile((self.0 + 0xb) as *const u8))
       }
    }
 
@@ -198,7 +198,7 @@ impl Ftfa {
 #[doc="Read the FSEC register."]
    #[inline] pub fn fsec(&self) -> Fsec { 
       unsafe {
-         Fsec(::core::ptr::read_volatile((self.0 + 0xc) as *const u8))
+         Fsec(read_volatile((self.0 + 0xc) as *const u8))
       }
    }
 
@@ -213,7 +213,7 @@ impl Ftfa {
 #[doc="Read the FOPT register."]
    #[inline] pub fn fopt(&self) -> Fopt { 
       unsafe {
-         Fopt(::core::ptr::read_volatile((self.0 + 0xd) as *const u8))
+         Fopt(read_volatile((self.0 + 0xd) as *const u8))
       }
    }
 

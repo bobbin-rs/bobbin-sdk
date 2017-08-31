@@ -18,14 +18,14 @@ impl Dcb {
 #[doc="Read the DHCSR register."]
    #[inline] pub fn dhcsr(&self) -> Dhcsr { 
       unsafe {
-         Dhcsr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Dhcsr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the DHCSR register."]
    #[inline] pub fn set_dhcsr<F: FnOnce(Dhcsr) -> Dhcsr>(&self, f: F) -> &Self {
       let value = f(Dhcsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Dcb {
       let tmp = self.dhcsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Dcb {
 #[doc="Read the DCRSR register."]
    #[inline] pub fn dcrsr(&self) -> Dcrsr { 
       unsafe {
-         Dcrsr(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Dcrsr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the DCRSR register."]
    #[inline] pub fn set_dcrsr<F: FnOnce(Dcrsr) -> Dcrsr>(&self, f: F) -> &Self {
       let value = f(Dcrsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Dcb {
       let tmp = self.dcrsr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Dcb {
 #[doc="Read the DERDR register."]
    #[inline] pub fn derdr(&self) -> Derdr { 
       unsafe {
-         Derdr(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Derdr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the DERDR register."]
    #[inline] pub fn set_derdr<F: FnOnce(Derdr) -> Derdr>(&self, f: F) -> &Self {
       let value = f(Derdr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Dcb {
       let tmp = self.derdr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Dcb {
 #[doc="Read the DEMCR register."]
    #[inline] pub fn demcr(&self) -> Demcr { 
       unsafe {
-         Demcr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Demcr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the DEMCR register."]
    #[inline] pub fn set_demcr<F: FnOnce(Demcr) -> Demcr>(&self, f: F) -> &Self {
       let value = f(Demcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Dcb {
       let tmp = self.demcr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }

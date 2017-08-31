@@ -24,7 +24,7 @@ impl DmamuxPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Chcfg(::core::ptr::read_volatile((self.0 + 0x0 + (index)) as *const u8))
+         Chcfg(read_volatile((self.0 + 0x0 + (index)) as *const u8))
       }
    }
 #[doc="Write the CHCFG register."]
@@ -33,7 +33,7 @@ impl DmamuxPeriph {
       let index: usize = index.value() as usize;
       let value = f(Chcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0 + (index)) as *mut u8, value.0);
       }
       self
    }
@@ -44,7 +44,7 @@ impl DmamuxPeriph {
       let tmp = self.chcfg(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0 + (index)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x0 + (index)) as *mut u8, value.0);
       }
       self
    }

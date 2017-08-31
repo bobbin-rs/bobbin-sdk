@@ -18,14 +18,14 @@ impl Wdog {
 #[doc="Read the CS register."]
    #[inline] pub fn cs(&self) -> Cs { 
       unsafe {
-         Cs(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cs(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CS register."]
    #[inline] pub fn set_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
       let value = f(Cs(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Wdog {
       let tmp = self.cs();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Wdog {
 #[doc="Read the CNT register."]
    #[inline] pub fn cnt(&self) -> Cnt { 
       unsafe {
-         Cnt(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cnt(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CNT register."]
    #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
       let value = f(Cnt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Wdog {
       let tmp = self.cnt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Wdog {
 #[doc="Read the TOVAL register."]
    #[inline] pub fn toval(&self) -> Toval { 
       unsafe {
-         Toval(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Toval(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the TOVAL register."]
    #[inline] pub fn set_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
       let value = f(Toval(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Wdog {
       let tmp = self.toval();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Wdog {
 #[doc="Read the WIN register."]
    #[inline] pub fn win(&self) -> Win { 
       unsafe {
-         Win(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Win(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the WIN register."]
    #[inline] pub fn set_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
       let value = f(Win(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Wdog {
       let tmp = self.win();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }

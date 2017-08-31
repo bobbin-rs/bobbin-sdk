@@ -18,7 +18,7 @@ impl Rcm {
 #[doc="Read the VERID register."]
    #[inline] pub fn verid(&self) -> Verid { 
       unsafe {
-         Verid(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Verid(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -33,7 +33,7 @@ impl Rcm {
 #[doc="Read the PARAM register."]
    #[inline] pub fn param(&self) -> Param { 
       unsafe {
-         Param(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Param(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 
@@ -48,7 +48,7 @@ impl Rcm {
 #[doc="Read the SRS register."]
    #[inline] pub fn srs(&self) -> Srs { 
       unsafe {
-         Srs(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Srs(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 
@@ -63,14 +63,14 @@ impl Rcm {
 #[doc="Read the RPC register."]
    #[inline] pub fn rpc(&self) -> Rpc { 
       unsafe {
-         Rpc(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Rpc(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the RPC register."]
    #[inline] pub fn set_rpc<F: FnOnce(Rpc) -> Rpc>(&self, f: F) -> &Self {
       let value = f(Rpc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -79,7 +79,7 @@ impl Rcm {
       let tmp = self.rpc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -95,14 +95,14 @@ impl Rcm {
 #[doc="Read the SSRS register."]
    #[inline] pub fn ssrs(&self) -> Ssrs { 
       unsafe {
-         Ssrs(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Ssrs(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the SSRS register."]
    #[inline] pub fn set_ssrs<F: FnOnce(Ssrs) -> Ssrs>(&self, f: F) -> &Self {
       let value = f(Ssrs(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -111,7 +111,7 @@ impl Rcm {
       let tmp = self.ssrs();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -127,14 +127,14 @@ impl Rcm {
 #[doc="Read the SRIE register."]
    #[inline] pub fn srie(&self) -> Srie { 
       unsafe {
-         Srie(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Srie(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the SRIE register."]
    #[inline] pub fn set_srie<F: FnOnce(Srie) -> Srie>(&self, f: F) -> &Self {
       let value = f(Srie(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -143,7 +143,7 @@ impl Rcm {
       let tmp = self.srie();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }

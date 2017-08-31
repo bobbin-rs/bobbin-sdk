@@ -18,14 +18,14 @@ impl EdmaPeriph {
 #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
-         Cr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl EdmaPeriph {
       let tmp = self.cr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,7 +50,7 @@ impl EdmaPeriph {
 #[doc="Read the ES register."]
    #[inline] pub fn es(&self) -> Es { 
       unsafe {
-         Es(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Es(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 
@@ -65,14 +65,14 @@ impl EdmaPeriph {
 #[doc="Read the ERQ register."]
    #[inline] pub fn erq(&self) -> Erq { 
       unsafe {
-         Erq(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Erq(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the ERQ register."]
    #[inline] pub fn set_erq<F: FnOnce(Erq) -> Erq>(&self, f: F) -> &Self {
       let value = f(Erq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -81,7 +81,7 @@ impl EdmaPeriph {
       let tmp = self.erq();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -97,14 +97,14 @@ impl EdmaPeriph {
 #[doc="Read the EEI register."]
    #[inline] pub fn eei(&self) -> Eei { 
       unsafe {
-         Eei(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Eei(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the EEI register."]
    #[inline] pub fn set_eei<F: FnOnce(Eei) -> Eei>(&self, f: F) -> &Self {
       let value = f(Eei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -113,7 +113,7 @@ impl EdmaPeriph {
       let tmp = self.eei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_ceei<F: FnOnce(Ceei) -> Ceei>(&self, f: F) -> &Self {
       let value = f(Ceei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u8, value.0);
+         write_volatile((self.0 + 0x18) as *mut u8, value.0);
       }
       self
    }
@@ -147,7 +147,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_seei<F: FnOnce(Seei) -> Seei>(&self, f: F) -> &Self {
       let value = f(Seei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x19) as *mut u8, value.0);
+         write_volatile((self.0 + 0x19) as *mut u8, value.0);
       }
       self
    }
@@ -164,7 +164,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_cerq<F: FnOnce(Cerq) -> Cerq>(&self, f: F) -> &Self {
       let value = f(Cerq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1a) as *mut u8, value.0);
       }
       self
    }
@@ -181,7 +181,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_serq<F: FnOnce(Serq) -> Serq>(&self, f: F) -> &Self {
       let value = f(Serq(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1b) as *mut u8, value.0);
       }
       self
    }
@@ -198,7 +198,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_cdne<F: FnOnce(Cdne) -> Cdne>(&self, f: F) -> &Self {
       let value = f(Cdne(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u8, value.0);
       }
       self
    }
@@ -215,7 +215,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_ssrt<F: FnOnce(Ssrt) -> Ssrt>(&self, f: F) -> &Self {
       let value = f(Ssrt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1d) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1d) as *mut u8, value.0);
       }
       self
    }
@@ -232,7 +232,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_cerr<F: FnOnce(Cerr) -> Cerr>(&self, f: F) -> &Self {
       let value = f(Cerr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1e) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1e) as *mut u8, value.0);
       }
       self
    }
@@ -249,7 +249,7 @@ impl EdmaPeriph {
    #[inline] pub fn set_cint<F: FnOnce(Cint) -> Cint>(&self, f: F) -> &Self {
       let value = f(Cint(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1f) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1f) as *mut u8, value.0);
       }
       self
    }
@@ -265,14 +265,14 @@ impl EdmaPeriph {
 #[doc="Read the INT register."]
    #[inline] pub fn int(&self) -> Int { 
       unsafe {
-         Int(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Int(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the INT register."]
    #[inline] pub fn set_int<F: FnOnce(Int) -> Int>(&self, f: F) -> &Self {
       let value = f(Int(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -281,7 +281,7 @@ impl EdmaPeriph {
       let tmp = self.int();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -297,14 +297,14 @@ impl EdmaPeriph {
 #[doc="Read the ERR register."]
    #[inline] pub fn err(&self) -> Err { 
       unsafe {
-         Err(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Err(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the ERR register."]
    #[inline] pub fn set_err<F: FnOnce(Err) -> Err>(&self, f: F) -> &Self {
       let value = f(Err(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -313,7 +313,7 @@ impl EdmaPeriph {
       let tmp = self.err();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -329,7 +329,7 @@ impl EdmaPeriph {
 #[doc="Read the HRS register."]
    #[inline] pub fn hrs(&self) -> Hrs { 
       unsafe {
-         Hrs(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Hrs(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 
@@ -350,7 +350,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Dchpri(::core::ptr::read_volatile((self.0 + 0x100 + (index)) as *const u8))
+         Dchpri(read_volatile((self.0 + 0x100 + (index)) as *const u8))
       }
    }
 #[doc="Write the DCHPRI register."]
@@ -359,7 +359,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(Dchpri(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x100 + (index)) as *mut u8, value.0);
       }
       self
    }
@@ -370,7 +370,7 @@ impl EdmaPeriph {
       let tmp = self.dchpri(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100 + (index)) as *mut u8, value.0);
+         write_volatile((self.0 + 0x100 + (index)) as *mut u8, value.0);
       }
       self
    }
@@ -392,7 +392,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdSaddr(::core::ptr::read_volatile((self.0 + 0x1000 + (index * 32)) as *const u32))
+         TcdSaddr(read_volatile((self.0 + 0x1000 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_SADDR register."]
@@ -401,7 +401,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdSaddr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1000 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1000 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -412,7 +412,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_saddr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1000 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1000 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -434,7 +434,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdSoff(::core::ptr::read_volatile((self.0 + 0x1004 + (index * 32)) as *const u16))
+         TcdSoff(read_volatile((self.0 + 0x1004 + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_SOFF register."]
@@ -443,7 +443,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdSoff(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1004 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1004 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -454,7 +454,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_soff(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1004 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1004 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -476,7 +476,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdAttr(::core::ptr::read_volatile((self.0 + 0x1006 + (index * 32)) as *const u16))
+         TcdAttr(read_volatile((self.0 + 0x1006 + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_ATTR register."]
@@ -485,7 +485,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdAttr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1006 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1006 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -496,7 +496,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_attr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1006 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1006 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -518,7 +518,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdNbytesMlno(::core::ptr::read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
+         TcdNbytesMlno(read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_NBYTES_MLNO register."]
@@ -527,7 +527,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdNbytesMlno(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -538,7 +538,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_nbytes_mlno(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -560,7 +560,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdNbytesMloffno(::core::ptr::read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
+         TcdNbytesMloffno(read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_NBYTES_MLOFFNO register."]
@@ -569,7 +569,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdNbytesMloffno(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -580,7 +580,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_nbytes_mloffno(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -602,7 +602,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdNbytesMloffyes(::core::ptr::read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
+         TcdNbytesMloffyes(read_volatile((self.0 + 0x1008 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_NBYTES_MLOFFYES register."]
@@ -611,7 +611,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdNbytesMloffyes(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -622,7 +622,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_nbytes_mloffyes(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1008 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -644,7 +644,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdSlast(::core::ptr::read_volatile((self.0 + 0x100c + (index * 32)) as *const u32))
+         TcdSlast(read_volatile((self.0 + 0x100c + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_SLAST register."]
@@ -653,7 +653,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdSlast(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100c + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100c + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -664,7 +664,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_slast(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x100c + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x100c + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -686,7 +686,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdDaddr(::core::ptr::read_volatile((self.0 + 0x1010 + (index * 32)) as *const u32))
+         TcdDaddr(read_volatile((self.0 + 0x1010 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_DADDR register."]
@@ -695,7 +695,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdDaddr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1010 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1010 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_daddr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1010 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1010 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -728,7 +728,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdDoff(::core::ptr::read_volatile((self.0 + 0x1014 + (index * 32)) as *const u16))
+         TcdDoff(read_volatile((self.0 + 0x1014 + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_DOFF register."]
@@ -737,7 +737,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdDoff(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1014 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1014 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -748,7 +748,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_doff(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1014 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1014 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -770,7 +770,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdCiterElinkno(::core::ptr::read_volatile((self.0 + 0x1016 + (index * 32)) as *const u16))
+         TcdCiterElinkno(read_volatile((self.0 + 0x1016 + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_CITER_ELINKNO register."]
@@ -779,7 +779,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdCiterElinkno(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -790,7 +790,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_citer_elinkno(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -812,7 +812,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdCiterElinkyes(::core::ptr::read_volatile((self.0 + 0x1016 + (index * 32)) as *const u16))
+         TcdCiterElinkyes(read_volatile((self.0 + 0x1016 + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_CITER_ELINKYES register."]
@@ -821,7 +821,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdCiterElinkyes(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -832,7 +832,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_citer_elinkyes(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x1016 + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -854,7 +854,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdDlastsga(::core::ptr::read_volatile((self.0 + 0x1018 + (index * 32)) as *const u32))
+         TcdDlastsga(read_volatile((self.0 + 0x1018 + (index * 32)) as *const u32))
       }
    }
 #[doc="Write the TCD_DLASTSGA register."]
@@ -863,7 +863,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdDlastsga(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1018 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1018 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -874,7 +874,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_dlastsga(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1018 + (index * 32)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1018 + (index * 32)) as *mut u32, value.0);
       }
       self
    }
@@ -896,7 +896,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdCsr(::core::ptr::read_volatile((self.0 + 0x101c + (index * 32)) as *const u16))
+         TcdCsr(read_volatile((self.0 + 0x101c + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_CSR register."]
@@ -905,7 +905,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdCsr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101c + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101c + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -916,7 +916,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_csr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101c + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101c + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -938,7 +938,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdBiterElinkno(::core::ptr::read_volatile((self.0 + 0x101e + (index * 32)) as *const u16))
+         TcdBiterElinkno(read_volatile((self.0 + 0x101e + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_BITER_ELINKNO register."]
@@ -947,7 +947,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdBiterElinkno(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -958,7 +958,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_biter_elinkno(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -980,7 +980,7 @@ impl EdmaPeriph {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         TcdBiterElinkyes(::core::ptr::read_volatile((self.0 + 0x101e + (index * 32)) as *const u16))
+         TcdBiterElinkyes(read_volatile((self.0 + 0x101e + (index * 32)) as *const u16))
       }
    }
 #[doc="Write the TCD_BITER_ELINKYES register."]
@@ -989,7 +989,7 @@ impl EdmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(TcdBiterElinkyes(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
       }
       self
    }
@@ -1000,7 +1000,7 @@ impl EdmaPeriph {
       let tmp = self.tcd_biter_elinkyes(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
+         write_volatile((self.0 + 0x101e + (index * 32)) as *mut u16, value.0);
       }
       self
    }

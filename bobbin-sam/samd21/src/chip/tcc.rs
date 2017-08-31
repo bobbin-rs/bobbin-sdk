@@ -59,7 +59,7 @@ impl TccPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cc(::core::ptr::read_volatile((self.0 + 0x44 + (index << 2)) as *const u32))
+         Cc(read_volatile((self.0 + 0x44 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CC register."]
@@ -68,7 +68,7 @@ impl TccPeriph {
       let index: usize = index.value() as usize;
       let value = f(Cc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -79,7 +79,7 @@ impl TccPeriph {
       let tmp = self.cc(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x44 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -101,7 +101,7 @@ impl TccPeriph {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Ccb(::core::ptr::read_volatile((self.0 + 0x70 + (index << 2)) as *const u32))
+         Ccb(read_volatile((self.0 + 0x70 + (index << 2)) as *const u32))
       }
    }
 #[doc="Write the CCB register."]
@@ -110,7 +110,7 @@ impl TccPeriph {
       let index: usize = index.value() as usize;
       let value = f(Ccb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -121,7 +121,7 @@ impl TccPeriph {
       let tmp = self.ccb(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70 + (index << 2)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70 + (index << 2)) as *mut u32, value.0);
       }
       self
    }
@@ -137,14 +137,14 @@ impl TccPeriph {
 #[doc="Read the COUNT register."]
    #[inline] pub fn count(&self) -> Count { 
       unsafe {
-         Count(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Count(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the COUNT register."]
    #[inline] pub fn set_count<F: FnOnce(Count) -> Count>(&self, f: F) -> &Self {
       let value = f(Count(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -153,7 +153,7 @@ impl TccPeriph {
       let tmp = self.count();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -169,14 +169,14 @@ impl TccPeriph {
 #[doc="Read the CTRLA register."]
    #[inline] pub fn ctrla(&self) -> Ctrla { 
       unsafe {
-         Ctrla(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Ctrla(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CTRLA register."]
    #[inline] pub fn set_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
       let value = f(Ctrla(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -185,7 +185,7 @@ impl TccPeriph {
       let tmp = self.ctrla();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -201,14 +201,14 @@ impl TccPeriph {
 #[doc="Read the CTRLBCLR register."]
    #[inline] pub fn ctrlbclr(&self) -> Ctrlbclr { 
       unsafe {
-         Ctrlbclr(::core::ptr::read_volatile((self.0 + 0x4) as *const u8))
+         Ctrlbclr(read_volatile((self.0 + 0x4) as *const u8))
       }
    }
 #[doc="Write the CTRLBCLR register."]
    #[inline] pub fn set_ctrlbclr<F: FnOnce(Ctrlbclr) -> Ctrlbclr>(&self, f: F) -> &Self {
       let value = f(Ctrlbclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -217,7 +217,7 @@ impl TccPeriph {
       let tmp = self.ctrlbclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u8, value.0);
+         write_volatile((self.0 + 0x4) as *mut u8, value.0);
       }
       self
    }
@@ -233,14 +233,14 @@ impl TccPeriph {
 #[doc="Read the CTRLBSET register."]
    #[inline] pub fn ctrlbset(&self) -> Ctrlbset { 
       unsafe {
-         Ctrlbset(::core::ptr::read_volatile((self.0 + 0x5) as *const u8))
+         Ctrlbset(read_volatile((self.0 + 0x5) as *const u8))
       }
    }
 #[doc="Write the CTRLBSET register."]
    #[inline] pub fn set_ctrlbset<F: FnOnce(Ctrlbset) -> Ctrlbset>(&self, f: F) -> &Self {
       let value = f(Ctrlbset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
+         write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
@@ -249,7 +249,7 @@ impl TccPeriph {
       let tmp = self.ctrlbset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5) as *mut u8, value.0);
+         write_volatile((self.0 + 0x5) as *mut u8, value.0);
       }
       self
    }
@@ -265,14 +265,14 @@ impl TccPeriph {
 #[doc="Read the DBGCTRL register."]
    #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
       unsafe {
-         Dbgctrl(::core::ptr::read_volatile((self.0 + 0x1e) as *const u8))
+         Dbgctrl(read_volatile((self.0 + 0x1e) as *const u8))
       }
    }
 #[doc="Write the DBGCTRL register."]
    #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
       let value = f(Dbgctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1e) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1e) as *mut u8, value.0);
       }
       self
    }
@@ -281,7 +281,7 @@ impl TccPeriph {
       let tmp = self.dbgctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1e) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1e) as *mut u8, value.0);
       }
       self
    }
@@ -297,14 +297,14 @@ impl TccPeriph {
 #[doc="Read the DRVCTRL register."]
    #[inline] pub fn drvctrl(&self) -> Drvctrl { 
       unsafe {
-         Drvctrl(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Drvctrl(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the DRVCTRL register."]
    #[inline] pub fn set_drvctrl<F: FnOnce(Drvctrl) -> Drvctrl>(&self, f: F) -> &Self {
       let value = f(Drvctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -313,7 +313,7 @@ impl TccPeriph {
       let tmp = self.drvctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -329,14 +329,14 @@ impl TccPeriph {
 #[doc="Read the EVCTRL register."]
    #[inline] pub fn evctrl(&self) -> Evctrl { 
       unsafe {
-         Evctrl(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Evctrl(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the EVCTRL register."]
    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
       let value = f(Evctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -345,7 +345,7 @@ impl TccPeriph {
       let tmp = self.evctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -361,14 +361,14 @@ impl TccPeriph {
 #[doc="Read the FCTRLA register."]
    #[inline] pub fn fctrla(&self) -> Fctrla { 
       unsafe {
-         Fctrla(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Fctrla(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the FCTRLA register."]
    #[inline] pub fn set_fctrla<F: FnOnce(Fctrla) -> Fctrla>(&self, f: F) -> &Self {
       let value = f(Fctrla(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -377,7 +377,7 @@ impl TccPeriph {
       let tmp = self.fctrla();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -393,14 +393,14 @@ impl TccPeriph {
 #[doc="Read the FCTRLB register."]
    #[inline] pub fn fctrlb(&self) -> Fctrlb { 
       unsafe {
-         Fctrlb(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Fctrlb(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the FCTRLB register."]
    #[inline] pub fn set_fctrlb<F: FnOnce(Fctrlb) -> Fctrlb>(&self, f: F) -> &Self {
       let value = f(Fctrlb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -409,7 +409,7 @@ impl TccPeriph {
       let tmp = self.fctrlb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -425,14 +425,14 @@ impl TccPeriph {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Intenclr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -441,7 +441,7 @@ impl TccPeriph {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -457,14 +457,14 @@ impl TccPeriph {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Intenset(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -473,7 +473,7 @@ impl TccPeriph {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -489,14 +489,14 @@ impl TccPeriph {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Intflag(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -505,7 +505,7 @@ impl TccPeriph {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -521,14 +521,14 @@ impl TccPeriph {
 #[doc="Read the PATT register."]
    #[inline] pub fn patt(&self) -> Patt { 
       unsafe {
-         Patt(::core::ptr::read_volatile((self.0 + 0x38) as *const u16))
+         Patt(read_volatile((self.0 + 0x38) as *const u16))
       }
    }
 #[doc="Write the PATT register."]
    #[inline] pub fn set_patt<F: FnOnce(Patt) -> Patt>(&self, f: F) -> &Self {
       let value = f(Patt(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u16, value.0);
+         write_volatile((self.0 + 0x38) as *mut u16, value.0);
       }
       self
    }
@@ -537,7 +537,7 @@ impl TccPeriph {
       let tmp = self.patt();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u16, value.0);
+         write_volatile((self.0 + 0x38) as *mut u16, value.0);
       }
       self
    }
@@ -553,14 +553,14 @@ impl TccPeriph {
 #[doc="Read the PATTB register."]
    #[inline] pub fn pattb(&self) -> Pattb { 
       unsafe {
-         Pattb(::core::ptr::read_volatile((self.0 + 0x64) as *const u16))
+         Pattb(read_volatile((self.0 + 0x64) as *const u16))
       }
    }
 #[doc="Write the PATTB register."]
    #[inline] pub fn set_pattb<F: FnOnce(Pattb) -> Pattb>(&self, f: F) -> &Self {
       let value = f(Pattb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u16, value.0);
+         write_volatile((self.0 + 0x64) as *mut u16, value.0);
       }
       self
    }
@@ -569,7 +569,7 @@ impl TccPeriph {
       let tmp = self.pattb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u16, value.0);
+         write_volatile((self.0 + 0x64) as *mut u16, value.0);
       }
       self
    }
@@ -585,14 +585,14 @@ impl TccPeriph {
 #[doc="Read the PER register."]
    #[inline] pub fn per(&self) -> Per { 
       unsafe {
-         Per(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Per(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the PER register."]
    #[inline] pub fn set_per<F: FnOnce(Per) -> Per>(&self, f: F) -> &Self {
       let value = f(Per(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -601,7 +601,7 @@ impl TccPeriph {
       let tmp = self.per();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -617,14 +617,14 @@ impl TccPeriph {
 #[doc="Read the PERB register."]
    #[inline] pub fn perb(&self) -> Perb { 
       unsafe {
-         Perb(::core::ptr::read_volatile((self.0 + 0x6c) as *const u32))
+         Perb(read_volatile((self.0 + 0x6c) as *const u32))
       }
    }
 #[doc="Write the PERB register."]
    #[inline] pub fn set_perb<F: FnOnce(Perb) -> Perb>(&self, f: F) -> &Self {
       let value = f(Perb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }
@@ -633,7 +633,7 @@ impl TccPeriph {
       let tmp = self.perb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x6c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x6c) as *mut u32, value.0);
       }
       self
    }
@@ -649,14 +649,14 @@ impl TccPeriph {
 #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
-         Status(::core::ptr::read_volatile((self.0 + 0x30) as *const u32))
+         Status(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
 #[doc="Write the STATUS register."]
    #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
       let value = f(Status(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -665,7 +665,7 @@ impl TccPeriph {
       let tmp = self.status();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30) as *mut u32, value.0);
       }
       self
    }
@@ -681,7 +681,7 @@ impl TccPeriph {
 #[doc="Read the SYNCBUSY register."]
    #[inline] pub fn syncbusy(&self) -> Syncbusy { 
       unsafe {
-         Syncbusy(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Syncbusy(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 
@@ -696,14 +696,14 @@ impl TccPeriph {
 #[doc="Read the WAVE register."]
    #[inline] pub fn wave(&self) -> Wave { 
       unsafe {
-         Wave(::core::ptr::read_volatile((self.0 + 0x3c) as *const u32))
+         Wave(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
 #[doc="Write the WAVE register."]
    #[inline] pub fn set_wave<F: FnOnce(Wave) -> Wave>(&self, f: F) -> &Self {
       let value = f(Wave(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -712,7 +712,7 @@ impl TccPeriph {
       let tmp = self.wave();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3c) as *mut u32, value.0);
       }
       self
    }
@@ -728,14 +728,14 @@ impl TccPeriph {
 #[doc="Read the WAVEB register."]
    #[inline] pub fn waveb(&self) -> Waveb { 
       unsafe {
-         Waveb(::core::ptr::read_volatile((self.0 + 0x68) as *const u32))
+         Waveb(read_volatile((self.0 + 0x68) as *const u32))
       }
    }
 #[doc="Write the WAVEB register."]
    #[inline] pub fn set_waveb<F: FnOnce(Waveb) -> Waveb>(&self, f: F) -> &Self {
       let value = f(Waveb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -744,7 +744,7 @@ impl TccPeriph {
       let tmp = self.waveb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x68) as *mut u32, value.0);
+         write_volatile((self.0 + 0x68) as *mut u32, value.0);
       }
       self
    }
@@ -760,14 +760,14 @@ impl TccPeriph {
 #[doc="Read the WEXCTRL register."]
    #[inline] pub fn wexctrl(&self) -> Wexctrl { 
       unsafe {
-         Wexctrl(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Wexctrl(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the WEXCTRL register."]
    #[inline] pub fn set_wexctrl<F: FnOnce(Wexctrl) -> Wexctrl>(&self, f: F) -> &Self {
       let value = f(Wexctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -776,7 +776,7 @@ impl TccPeriph {
       let tmp = self.wexctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }

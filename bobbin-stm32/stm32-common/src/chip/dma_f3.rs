@@ -18,7 +18,7 @@ impl DmaPeriph {
 #[doc="Read the ISR register."]
    #[inline] pub fn isr(&self) -> Isr { 
       unsafe {
-         Isr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Isr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
@@ -34,7 +34,7 @@ impl DmaPeriph {
    #[inline] pub fn set_ifcr<F: FnOnce(Ifcr) -> Ifcr>(&self, f: F) -> &Self {
       let value = f(Ifcr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -56,7 +56,7 @@ impl DmaPeriph {
       let index: bits::R7 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Ccr(::core::ptr::read_volatile((self.0 + 0x8 + (index * 20)) as *const u32))
+         Ccr(read_volatile((self.0 + 0x8 + (index * 20)) as *const u32))
       }
    }
 #[doc="Write the CCR register."]
@@ -65,7 +65,7 @@ impl DmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(Ccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8 + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -76,7 +76,7 @@ impl DmaPeriph {
       let tmp = self.ccr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8 + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl DmaPeriph {
       let index: bits::R7 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cndtr(::core::ptr::read_volatile((self.0 + 0xc + (index * 20)) as *const u32))
+         Cndtr(read_volatile((self.0 + 0xc + (index * 20)) as *const u32))
       }
    }
 #[doc="Write the CNDTR register."]
@@ -107,7 +107,7 @@ impl DmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(Cndtr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -118,7 +118,7 @@ impl DmaPeriph {
       let tmp = self.cndtr(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -140,7 +140,7 @@ impl DmaPeriph {
       let index: bits::R7 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cpar(::core::ptr::read_volatile((self.0 + 0x10 + (index * 20)) as *const u32))
+         Cpar(read_volatile((self.0 + 0x10 + (index * 20)) as *const u32))
       }
    }
 #[doc="Write the CPAR register."]
@@ -149,7 +149,7 @@ impl DmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(Cpar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10 + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -160,7 +160,7 @@ impl DmaPeriph {
       let tmp = self.cpar(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10 + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -182,7 +182,7 @@ impl DmaPeriph {
       let index: bits::R7 = index.into();
       let index: usize = index.value() as usize;
       unsafe {
-         Cmar(::core::ptr::read_volatile((self.0 + 0x14 + (index * 20)) as *const u32))
+         Cmar(read_volatile((self.0 + 0x14 + (index * 20)) as *const u32))
       }
    }
 #[doc="Write the CMAR register."]
@@ -191,7 +191,7 @@ impl DmaPeriph {
       let index: usize = index.value() as usize;
       let value = f(Cmar(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14 + (index * 20)) as *mut u32, value.0);
       }
       self
    }
@@ -202,7 +202,7 @@ impl DmaPeriph {
       let tmp = self.cmar(index);
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14 + (index * 20)) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14 + (index * 20)) as *mut u32, value.0);
       }
       self
    }

@@ -18,14 +18,14 @@ impl Sysctl {
 #[doc="Read the DID0 register."]
    #[inline] pub fn did0(&self) -> Did0 { 
       unsafe {
-         Did0(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Did0(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the DID0 register."]
    #[inline] pub fn set_did0<F: FnOnce(Did0) -> Did0>(&self, f: F) -> &Self {
       let value = f(Did0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Sysctl {
       let tmp = self.did0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Sysctl {
 #[doc="Read the DID1 register."]
    #[inline] pub fn did1(&self) -> Did1 { 
       unsafe {
-         Did1(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Did1(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the DID1 register."]
    #[inline] pub fn set_did1<F: FnOnce(Did1) -> Did1>(&self, f: F) -> &Self {
       let value = f(Did1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Sysctl {
       let tmp = self.did1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Sysctl {
 #[doc="Read the PTBOCTL register."]
    #[inline] pub fn ptboctl(&self) -> Ptboctl { 
       unsafe {
-         Ptboctl(::core::ptr::read_volatile((self.0 + 0x38) as *const u32))
+         Ptboctl(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
 #[doc="Write the PTBOCTL register."]
    #[inline] pub fn set_ptboctl<F: FnOnce(Ptboctl) -> Ptboctl>(&self, f: F) -> &Self {
       let value = f(Ptboctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Sysctl {
       let tmp = self.ptboctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x38) as *mut u32, value.0);
+         write_volatile((self.0 + 0x38) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Sysctl {
 #[doc="Read the RIS register."]
    #[inline] pub fn ris(&self) -> Ris { 
       unsafe {
-         Ris(::core::ptr::read_volatile((self.0 + 0x50) as *const u32))
+         Ris(read_volatile((self.0 + 0x50) as *const u32))
       }
    }
 #[doc="Write the RIS register."]
    #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let value = f(Ris(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Sysctl {
       let tmp = self.ris();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50) as *mut u32, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Sysctl {
 #[doc="Read the IMC register."]
    #[inline] pub fn imc(&self) -> Imc { 
       unsafe {
-         Imc(::core::ptr::read_volatile((self.0 + 0x54) as *const u32))
+         Imc(read_volatile((self.0 + 0x54) as *const u32))
       }
    }
 #[doc="Write the IMC register."]
    #[inline] pub fn set_imc<F: FnOnce(Imc) -> Imc>(&self, f: F) -> &Self {
       let value = f(Imc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Sysctl {
       let tmp = self.imc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x54) as *mut u32, value.0);
+         write_volatile((self.0 + 0x54) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Sysctl {
 #[doc="Read the MISC register."]
    #[inline] pub fn misc(&self) -> Misc { 
       unsafe {
-         Misc(::core::ptr::read_volatile((self.0 + 0x58) as *const u32))
+         Misc(read_volatile((self.0 + 0x58) as *const u32))
       }
    }
 #[doc="Write the MISC register."]
    #[inline] pub fn set_misc<F: FnOnce(Misc) -> Misc>(&self, f: F) -> &Self {
       let value = f(Misc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Sysctl {
       let tmp = self.misc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x58) as *mut u32, value.0);
+         write_volatile((self.0 + 0x58) as *mut u32, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Sysctl {
 #[doc="Read the RESC register."]
    #[inline] pub fn resc(&self) -> Resc { 
       unsafe {
-         Resc(::core::ptr::read_volatile((self.0 + 0x5c) as *const u32))
+         Resc(read_volatile((self.0 + 0x5c) as *const u32))
       }
    }
 #[doc="Write the RESC register."]
    #[inline] pub fn set_resc<F: FnOnce(Resc) -> Resc>(&self, f: F) -> &Self {
       let value = f(Resc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Sysctl {
       let tmp = self.resc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x5c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x5c) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Sysctl {
 #[doc="Read the PWRTC register."]
    #[inline] pub fn pwrtc(&self) -> Pwrtc { 
       unsafe {
-         Pwrtc(::core::ptr::read_volatile((self.0 + 0x60) as *const u32))
+         Pwrtc(read_volatile((self.0 + 0x60) as *const u32))
       }
    }
 #[doc="Write the PWRTC register."]
    #[inline] pub fn set_pwrtc<F: FnOnce(Pwrtc) -> Pwrtc>(&self, f: F) -> &Self {
       let value = f(Pwrtc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Sysctl {
       let tmp = self.pwrtc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60) as *mut u32, value.0);
       }
       self
    }
@@ -274,14 +274,14 @@ impl Sysctl {
 #[doc="Read the NMIC register."]
    #[inline] pub fn nmic(&self) -> Nmic { 
       unsafe {
-         Nmic(::core::ptr::read_volatile((self.0 + 0x64) as *const u32))
+         Nmic(read_volatile((self.0 + 0x64) as *const u32))
       }
    }
 #[doc="Write the NMIC register."]
    #[inline] pub fn set_nmic<F: FnOnce(Nmic) -> Nmic>(&self, f: F) -> &Self {
       let value = f(Nmic(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -290,7 +290,7 @@ impl Sysctl {
       let tmp = self.nmic();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x64) as *mut u32, value.0);
+         write_volatile((self.0 + 0x64) as *mut u32, value.0);
       }
       self
    }
@@ -306,14 +306,14 @@ impl Sysctl {
 #[doc="Read the MOSCCTL register."]
    #[inline] pub fn moscctl(&self) -> Moscctl { 
       unsafe {
-         Moscctl(::core::ptr::read_volatile((self.0 + 0x7c) as *const u32))
+         Moscctl(read_volatile((self.0 + 0x7c) as *const u32))
       }
    }
 #[doc="Write the MOSCCTL register."]
    #[inline] pub fn set_moscctl<F: FnOnce(Moscctl) -> Moscctl>(&self, f: F) -> &Self {
       let value = f(Moscctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x7c) as *mut u32, value.0);
       }
       self
    }
@@ -322,7 +322,7 @@ impl Sysctl {
       let tmp = self.moscctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x7c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x7c) as *mut u32, value.0);
       }
       self
    }
@@ -338,14 +338,14 @@ impl Sysctl {
 #[doc="Read the RSCLKCFG register."]
    #[inline] pub fn rsclkcfg(&self) -> Rsclkcfg { 
       unsafe {
-         Rsclkcfg(::core::ptr::read_volatile((self.0 + 0xb0) as *const u32))
+         Rsclkcfg(read_volatile((self.0 + 0xb0) as *const u32))
       }
    }
 #[doc="Write the RSCLKCFG register."]
    #[inline] pub fn set_rsclkcfg<F: FnOnce(Rsclkcfg) -> Rsclkcfg>(&self, f: F) -> &Self {
       let value = f(Rsclkcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb0) as *mut u32, value.0);
       }
       self
    }
@@ -354,7 +354,7 @@ impl Sysctl {
       let tmp = self.rsclkcfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xb0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xb0) as *mut u32, value.0);
       }
       self
    }
@@ -370,14 +370,14 @@ impl Sysctl {
 #[doc="Read the MEMTIM0 register."]
    #[inline] pub fn memtim0(&self) -> Memtim0 { 
       unsafe {
-         Memtim0(::core::ptr::read_volatile((self.0 + 0xc0) as *const u32))
+         Memtim0(read_volatile((self.0 + 0xc0) as *const u32))
       }
    }
 #[doc="Write the MEMTIM0 register."]
    #[inline] pub fn set_memtim0<F: FnOnce(Memtim0) -> Memtim0>(&self, f: F) -> &Self {
       let value = f(Memtim0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0) as *mut u32, value.0);
       }
       self
    }
@@ -386,7 +386,7 @@ impl Sysctl {
       let tmp = self.memtim0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc0) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc0) as *mut u32, value.0);
       }
       self
    }
@@ -402,14 +402,14 @@ impl Sysctl {
 #[doc="Read the ALTCLKCFG register."]
    #[inline] pub fn altclkcfg(&self) -> Altclkcfg { 
       unsafe {
-         Altclkcfg(::core::ptr::read_volatile((self.0 + 0x138) as *const u32))
+         Altclkcfg(read_volatile((self.0 + 0x138) as *const u32))
       }
    }
 #[doc="Write the ALTCLKCFG register."]
    #[inline] pub fn set_altclkcfg<F: FnOnce(Altclkcfg) -> Altclkcfg>(&self, f: F) -> &Self {
       let value = f(Altclkcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x138) as *mut u32, value.0);
+         write_volatile((self.0 + 0x138) as *mut u32, value.0);
       }
       self
    }
@@ -418,7 +418,7 @@ impl Sysctl {
       let tmp = self.altclkcfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x138) as *mut u32, value.0);
+         write_volatile((self.0 + 0x138) as *mut u32, value.0);
       }
       self
    }
@@ -434,14 +434,14 @@ impl Sysctl {
 #[doc="Read the DSCLKCFG register."]
    #[inline] pub fn dsclkcfg(&self) -> Dsclkcfg { 
       unsafe {
-         Dsclkcfg(::core::ptr::read_volatile((self.0 + 0x144) as *const u32))
+         Dsclkcfg(read_volatile((self.0 + 0x144) as *const u32))
       }
    }
 #[doc="Write the DSCLKCFG register."]
    #[inline] pub fn set_dsclkcfg<F: FnOnce(Dsclkcfg) -> Dsclkcfg>(&self, f: F) -> &Self {
       let value = f(Dsclkcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -450,7 +450,7 @@ impl Sysctl {
       let tmp = self.dsclkcfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x144) as *mut u32, value.0);
+         write_volatile((self.0 + 0x144) as *mut u32, value.0);
       }
       self
    }
@@ -466,14 +466,14 @@ impl Sysctl {
 #[doc="Read the DIVSCLK register."]
    #[inline] pub fn divsclk(&self) -> Divsclk { 
       unsafe {
-         Divsclk(::core::ptr::read_volatile((self.0 + 0x148) as *const u32))
+         Divsclk(read_volatile((self.0 + 0x148) as *const u32))
       }
    }
 #[doc="Write the DIVSCLK register."]
    #[inline] pub fn set_divsclk<F: FnOnce(Divsclk) -> Divsclk>(&self, f: F) -> &Self {
       let value = f(Divsclk(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x148) as *mut u32, value.0);
+         write_volatile((self.0 + 0x148) as *mut u32, value.0);
       }
       self
    }
@@ -482,7 +482,7 @@ impl Sysctl {
       let tmp = self.divsclk();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x148) as *mut u32, value.0);
+         write_volatile((self.0 + 0x148) as *mut u32, value.0);
       }
       self
    }
@@ -498,14 +498,14 @@ impl Sysctl {
 #[doc="Read the SYSPROP register."]
    #[inline] pub fn sysprop(&self) -> Sysprop { 
       unsafe {
-         Sysprop(::core::ptr::read_volatile((self.0 + 0x14c) as *const u32))
+         Sysprop(read_volatile((self.0 + 0x14c) as *const u32))
       }
    }
 #[doc="Write the SYSPROP register."]
    #[inline] pub fn set_sysprop<F: FnOnce(Sysprop) -> Sysprop>(&self, f: F) -> &Self {
       let value = f(Sysprop(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -514,7 +514,7 @@ impl Sysctl {
       let tmp = self.sysprop();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14c) as *mut u32, value.0);
       }
       self
    }
@@ -530,14 +530,14 @@ impl Sysctl {
 #[doc="Read the PIOSCCAL register."]
    #[inline] pub fn piosccal(&self) -> Piosccal { 
       unsafe {
-         Piosccal(::core::ptr::read_volatile((self.0 + 0x150) as *const u32))
+         Piosccal(read_volatile((self.0 + 0x150) as *const u32))
       }
    }
 #[doc="Write the PIOSCCAL register."]
    #[inline] pub fn set_piosccal<F: FnOnce(Piosccal) -> Piosccal>(&self, f: F) -> &Self {
       let value = f(Piosccal(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -546,7 +546,7 @@ impl Sysctl {
       let tmp = self.piosccal();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x150) as *mut u32, value.0);
+         write_volatile((self.0 + 0x150) as *mut u32, value.0);
       }
       self
    }
@@ -562,14 +562,14 @@ impl Sysctl {
 #[doc="Read the PIOSCSTAT register."]
    #[inline] pub fn pioscstat(&self) -> Pioscstat { 
       unsafe {
-         Pioscstat(::core::ptr::read_volatile((self.0 + 0x154) as *const u32))
+         Pioscstat(read_volatile((self.0 + 0x154) as *const u32))
       }
    }
 #[doc="Write the PIOSCSTAT register."]
    #[inline] pub fn set_pioscstat<F: FnOnce(Pioscstat) -> Pioscstat>(&self, f: F) -> &Self {
       let value = f(Pioscstat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x154) as *mut u32, value.0);
+         write_volatile((self.0 + 0x154) as *mut u32, value.0);
       }
       self
    }
@@ -578,7 +578,7 @@ impl Sysctl {
       let tmp = self.pioscstat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x154) as *mut u32, value.0);
+         write_volatile((self.0 + 0x154) as *mut u32, value.0);
       }
       self
    }
@@ -594,14 +594,14 @@ impl Sysctl {
 #[doc="Read the PLLFREQ0 register."]
    #[inline] pub fn pllfreq0(&self) -> Pllfreq0 { 
       unsafe {
-         Pllfreq0(::core::ptr::read_volatile((self.0 + 0x160) as *const u32))
+         Pllfreq0(read_volatile((self.0 + 0x160) as *const u32))
       }
    }
 #[doc="Write the PLLFREQ0 register."]
    #[inline] pub fn set_pllfreq0<F: FnOnce(Pllfreq0) -> Pllfreq0>(&self, f: F) -> &Self {
       let value = f(Pllfreq0(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x160) as *mut u32, value.0);
+         write_volatile((self.0 + 0x160) as *mut u32, value.0);
       }
       self
    }
@@ -610,7 +610,7 @@ impl Sysctl {
       let tmp = self.pllfreq0();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x160) as *mut u32, value.0);
+         write_volatile((self.0 + 0x160) as *mut u32, value.0);
       }
       self
    }
@@ -626,14 +626,14 @@ impl Sysctl {
 #[doc="Read the PLLFREQ1 register."]
    #[inline] pub fn pllfreq1(&self) -> Pllfreq1 { 
       unsafe {
-         Pllfreq1(::core::ptr::read_volatile((self.0 + 0x164) as *const u32))
+         Pllfreq1(read_volatile((self.0 + 0x164) as *const u32))
       }
    }
 #[doc="Write the PLLFREQ1 register."]
    #[inline] pub fn set_pllfreq1<F: FnOnce(Pllfreq1) -> Pllfreq1>(&self, f: F) -> &Self {
       let value = f(Pllfreq1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -642,7 +642,7 @@ impl Sysctl {
       let tmp = self.pllfreq1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x164) as *mut u32, value.0);
+         write_volatile((self.0 + 0x164) as *mut u32, value.0);
       }
       self
    }
@@ -658,14 +658,14 @@ impl Sysctl {
 #[doc="Read the PLLSTAT register."]
    #[inline] pub fn pllstat(&self) -> Pllstat { 
       unsafe {
-         Pllstat(::core::ptr::read_volatile((self.0 + 0x168) as *const u32))
+         Pllstat(read_volatile((self.0 + 0x168) as *const u32))
       }
    }
 #[doc="Write the PLLSTAT register."]
    #[inline] pub fn set_pllstat<F: FnOnce(Pllstat) -> Pllstat>(&self, f: F) -> &Self {
       let value = f(Pllstat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x168) as *mut u32, value.0);
+         write_volatile((self.0 + 0x168) as *mut u32, value.0);
       }
       self
    }
@@ -674,7 +674,7 @@ impl Sysctl {
       let tmp = self.pllstat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x168) as *mut u32, value.0);
+         write_volatile((self.0 + 0x168) as *mut u32, value.0);
       }
       self
    }
@@ -690,14 +690,14 @@ impl Sysctl {
 #[doc="Read the SLPPWRCFG register."]
    #[inline] pub fn slppwrcfg(&self) -> Slppwrcfg { 
       unsafe {
-         Slppwrcfg(::core::ptr::read_volatile((self.0 + 0x188) as *const u32))
+         Slppwrcfg(read_volatile((self.0 + 0x188) as *const u32))
       }
    }
 #[doc="Write the SLPPWRCFG register."]
    #[inline] pub fn set_slppwrcfg<F: FnOnce(Slppwrcfg) -> Slppwrcfg>(&self, f: F) -> &Self {
       let value = f(Slppwrcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -706,7 +706,7 @@ impl Sysctl {
       let tmp = self.slppwrcfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x188) as *mut u32, value.0);
+         write_volatile((self.0 + 0x188) as *mut u32, value.0);
       }
       self
    }
@@ -722,14 +722,14 @@ impl Sysctl {
 #[doc="Read the DSLPPWRCFG register."]
    #[inline] pub fn dslppwrcfg(&self) -> Dslppwrcfg { 
       unsafe {
-         Dslppwrcfg(::core::ptr::read_volatile((self.0 + 0x18c) as *const u32))
+         Dslppwrcfg(read_volatile((self.0 + 0x18c) as *const u32))
       }
    }
 #[doc="Write the DSLPPWRCFG register."]
    #[inline] pub fn set_dslppwrcfg<F: FnOnce(Dslppwrcfg) -> Dslppwrcfg>(&self, f: F) -> &Self {
       let value = f(Dslppwrcfg(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18c) as *mut u32, value.0);
       }
       self
    }
@@ -738,7 +738,7 @@ impl Sysctl {
       let tmp = self.dslppwrcfg();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18c) as *mut u32, value.0);
       }
       self
    }
@@ -754,14 +754,14 @@ impl Sysctl {
 #[doc="Read the NVMSTAT register."]
    #[inline] pub fn nvmstat(&self) -> Nvmstat { 
       unsafe {
-         Nvmstat(::core::ptr::read_volatile((self.0 + 0x1a0) as *const u32))
+         Nvmstat(read_volatile((self.0 + 0x1a0) as *const u32))
       }
    }
 #[doc="Write the NVMSTAT register."]
    #[inline] pub fn set_nvmstat<F: FnOnce(Nvmstat) -> Nvmstat>(&self, f: F) -> &Self {
       let value = f(Nvmstat(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -770,7 +770,7 @@ impl Sysctl {
       let tmp = self.nvmstat();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1a0) as *mut u32, value.0);
       }
       self
    }
@@ -786,14 +786,14 @@ impl Sysctl {
 #[doc="Read the LDOSPCTL register."]
    #[inline] pub fn ldospctl(&self) -> Ldospctl { 
       unsafe {
-         Ldospctl(::core::ptr::read_volatile((self.0 + 0x1b4) as *const u32))
+         Ldospctl(read_volatile((self.0 + 0x1b4) as *const u32))
       }
    }
 #[doc="Write the LDOSPCTL register."]
    #[inline] pub fn set_ldospctl<F: FnOnce(Ldospctl) -> Ldospctl>(&self, f: F) -> &Self {
       let value = f(Ldospctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
       }
       self
    }
@@ -802,7 +802,7 @@ impl Sysctl {
       let tmp = self.ldospctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1b4) as *mut u32, value.0);
       }
       self
    }
@@ -818,14 +818,14 @@ impl Sysctl {
 #[doc="Read the LDODPCTL register."]
    #[inline] pub fn ldodpctl(&self) -> Ldodpctl { 
       unsafe {
-         Ldodpctl(::core::ptr::read_volatile((self.0 + 0x1bc) as *const u32))
+         Ldodpctl(read_volatile((self.0 + 0x1bc) as *const u32))
       }
    }
 #[doc="Write the LDODPCTL register."]
    #[inline] pub fn set_ldodpctl<F: FnOnce(Ldodpctl) -> Ldodpctl>(&self, f: F) -> &Self {
       let value = f(Ldodpctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
       }
       self
    }
@@ -834,7 +834,7 @@ impl Sysctl {
       let tmp = self.ldodpctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1bc) as *mut u32, value.0);
       }
       self
    }
@@ -850,14 +850,14 @@ impl Sysctl {
 #[doc="Read the RESBEHAVCTL register."]
    #[inline] pub fn resbehavctl(&self) -> Resbehavctl { 
       unsafe {
-         Resbehavctl(::core::ptr::read_volatile((self.0 + 0x1d8) as *const u32))
+         Resbehavctl(read_volatile((self.0 + 0x1d8) as *const u32))
       }
    }
 #[doc="Write the RESBEHAVCTL register."]
    #[inline] pub fn set_resbehavctl<F: FnOnce(Resbehavctl) -> Resbehavctl>(&self, f: F) -> &Self {
       let value = f(Resbehavctl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1d8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1d8) as *mut u32, value.0);
       }
       self
    }
@@ -866,7 +866,7 @@ impl Sysctl {
       let tmp = self.resbehavctl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1d8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1d8) as *mut u32, value.0);
       }
       self
    }
@@ -882,14 +882,14 @@ impl Sysctl {
 #[doc="Read the HSSR register."]
    #[inline] pub fn hssr(&self) -> Hssr { 
       unsafe {
-         Hssr(::core::ptr::read_volatile((self.0 + 0x1f4) as *const u32))
+         Hssr(read_volatile((self.0 + 0x1f4) as *const u32))
       }
    }
 #[doc="Write the HSSR register."]
    #[inline] pub fn set_hssr<F: FnOnce(Hssr) -> Hssr>(&self, f: F) -> &Self {
       let value = f(Hssr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1f4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1f4) as *mut u32, value.0);
       }
       self
    }
@@ -898,7 +898,7 @@ impl Sysctl {
       let tmp = self.hssr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1f4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1f4) as *mut u32, value.0);
       }
       self
    }
@@ -914,14 +914,14 @@ impl Sysctl {
 #[doc="Read the USBPDS register."]
    #[inline] pub fn usbpds(&self) -> Usbpds { 
       unsafe {
-         Usbpds(::core::ptr::read_volatile((self.0 + 0x280) as *const u32))
+         Usbpds(read_volatile((self.0 + 0x280) as *const u32))
       }
    }
 #[doc="Write the USBPDS register."]
    #[inline] pub fn set_usbpds<F: FnOnce(Usbpds) -> Usbpds>(&self, f: F) -> &Self {
       let value = f(Usbpds(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x280) as *mut u32, value.0);
+         write_volatile((self.0 + 0x280) as *mut u32, value.0);
       }
       self
    }
@@ -930,7 +930,7 @@ impl Sysctl {
       let tmp = self.usbpds();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x280) as *mut u32, value.0);
+         write_volatile((self.0 + 0x280) as *mut u32, value.0);
       }
       self
    }
@@ -946,14 +946,14 @@ impl Sysctl {
 #[doc="Read the USBMPC register."]
    #[inline] pub fn usbmpc(&self) -> Usbmpc { 
       unsafe {
-         Usbmpc(::core::ptr::read_volatile((self.0 + 0x284) as *const u32))
+         Usbmpc(read_volatile((self.0 + 0x284) as *const u32))
       }
    }
 #[doc="Write the USBMPC register."]
    #[inline] pub fn set_usbmpc<F: FnOnce(Usbmpc) -> Usbmpc>(&self, f: F) -> &Self {
       let value = f(Usbmpc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x284) as *mut u32, value.0);
+         write_volatile((self.0 + 0x284) as *mut u32, value.0);
       }
       self
    }
@@ -962,7 +962,7 @@ impl Sysctl {
       let tmp = self.usbmpc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x284) as *mut u32, value.0);
+         write_volatile((self.0 + 0x284) as *mut u32, value.0);
       }
       self
    }
@@ -978,14 +978,14 @@ impl Sysctl {
 #[doc="Read the EMACPDS register."]
    #[inline] pub fn emacpds(&self) -> Emacpds { 
       unsafe {
-         Emacpds(::core::ptr::read_volatile((self.0 + 0x288) as *const u32))
+         Emacpds(read_volatile((self.0 + 0x288) as *const u32))
       }
    }
 #[doc="Write the EMACPDS register."]
    #[inline] pub fn set_emacpds<F: FnOnce(Emacpds) -> Emacpds>(&self, f: F) -> &Self {
       let value = f(Emacpds(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x288) as *mut u32, value.0);
+         write_volatile((self.0 + 0x288) as *mut u32, value.0);
       }
       self
    }
@@ -994,7 +994,7 @@ impl Sysctl {
       let tmp = self.emacpds();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x288) as *mut u32, value.0);
+         write_volatile((self.0 + 0x288) as *mut u32, value.0);
       }
       self
    }
@@ -1010,14 +1010,14 @@ impl Sysctl {
 #[doc="Read the EMACMPC register."]
    #[inline] pub fn emacmpc(&self) -> Emacmpc { 
       unsafe {
-         Emacmpc(::core::ptr::read_volatile((self.0 + 0x28c) as *const u32))
+         Emacmpc(read_volatile((self.0 + 0x28c) as *const u32))
       }
    }
 #[doc="Write the EMACMPC register."]
    #[inline] pub fn set_emacmpc<F: FnOnce(Emacmpc) -> Emacmpc>(&self, f: F) -> &Self {
       let value = f(Emacmpc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28c) as *mut u32, value.0);
       }
       self
    }
@@ -1026,7 +1026,7 @@ impl Sysctl {
       let tmp = self.emacmpc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28c) as *mut u32, value.0);
       }
       self
    }
@@ -1042,14 +1042,14 @@ impl Sysctl {
 #[doc="Read the PPWD register."]
    #[inline] pub fn ppwd(&self) -> Ppwd { 
       unsafe {
-         Ppwd(::core::ptr::read_volatile((self.0 + 0x300) as *const u32))
+         Ppwd(read_volatile((self.0 + 0x300) as *const u32))
       }
    }
 #[doc="Write the PPWD register."]
    #[inline] pub fn set_ppwd<F: FnOnce(Ppwd) -> Ppwd>(&self, f: F) -> &Self {
       let value = f(Ppwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x300) as *mut u32, value.0);
+         write_volatile((self.0 + 0x300) as *mut u32, value.0);
       }
       self
    }
@@ -1058,7 +1058,7 @@ impl Sysctl {
       let tmp = self.ppwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x300) as *mut u32, value.0);
+         write_volatile((self.0 + 0x300) as *mut u32, value.0);
       }
       self
    }
@@ -1074,14 +1074,14 @@ impl Sysctl {
 #[doc="Read the PPTIMER register."]
    #[inline] pub fn pptimer(&self) -> Pptimer { 
       unsafe {
-         Pptimer(::core::ptr::read_volatile((self.0 + 0x304) as *const u32))
+         Pptimer(read_volatile((self.0 + 0x304) as *const u32))
       }
    }
 #[doc="Write the PPTIMER register."]
    #[inline] pub fn set_pptimer<F: FnOnce(Pptimer) -> Pptimer>(&self, f: F) -> &Self {
       let value = f(Pptimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x304) as *mut u32, value.0);
+         write_volatile((self.0 + 0x304) as *mut u32, value.0);
       }
       self
    }
@@ -1090,7 +1090,7 @@ impl Sysctl {
       let tmp = self.pptimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x304) as *mut u32, value.0);
+         write_volatile((self.0 + 0x304) as *mut u32, value.0);
       }
       self
    }
@@ -1106,14 +1106,14 @@ impl Sysctl {
 #[doc="Read the PPGPIO register."]
    #[inline] pub fn ppgpio(&self) -> Ppgpio { 
       unsafe {
-         Ppgpio(::core::ptr::read_volatile((self.0 + 0x308) as *const u32))
+         Ppgpio(read_volatile((self.0 + 0x308) as *const u32))
       }
    }
 #[doc="Write the PPGPIO register."]
    #[inline] pub fn set_ppgpio<F: FnOnce(Ppgpio) -> Ppgpio>(&self, f: F) -> &Self {
       let value = f(Ppgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x308) as *mut u32, value.0);
+         write_volatile((self.0 + 0x308) as *mut u32, value.0);
       }
       self
    }
@@ -1122,7 +1122,7 @@ impl Sysctl {
       let tmp = self.ppgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x308) as *mut u32, value.0);
+         write_volatile((self.0 + 0x308) as *mut u32, value.0);
       }
       self
    }
@@ -1138,14 +1138,14 @@ impl Sysctl {
 #[doc="Read the PPDMA register."]
    #[inline] pub fn ppdma(&self) -> Ppdma { 
       unsafe {
-         Ppdma(::core::ptr::read_volatile((self.0 + 0x30c) as *const u32))
+         Ppdma(read_volatile((self.0 + 0x30c) as *const u32))
       }
    }
 #[doc="Write the PPDMA register."]
    #[inline] pub fn set_ppdma<F: FnOnce(Ppdma) -> Ppdma>(&self, f: F) -> &Self {
       let value = f(Ppdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30c) as *mut u32, value.0);
       }
       self
    }
@@ -1154,7 +1154,7 @@ impl Sysctl {
       let tmp = self.ppdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x30c) as *mut u32, value.0);
       }
       self
    }
@@ -1170,14 +1170,14 @@ impl Sysctl {
 #[doc="Read the PPEPI register."]
    #[inline] pub fn ppepi(&self) -> Ppepi { 
       unsafe {
-         Ppepi(::core::ptr::read_volatile((self.0 + 0x310) as *const u32))
+         Ppepi(read_volatile((self.0 + 0x310) as *const u32))
       }
    }
 #[doc="Write the PPEPI register."]
    #[inline] pub fn set_ppepi<F: FnOnce(Ppepi) -> Ppepi>(&self, f: F) -> &Self {
       let value = f(Ppepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x310) as *mut u32, value.0);
+         write_volatile((self.0 + 0x310) as *mut u32, value.0);
       }
       self
    }
@@ -1186,7 +1186,7 @@ impl Sysctl {
       let tmp = self.ppepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x310) as *mut u32, value.0);
+         write_volatile((self.0 + 0x310) as *mut u32, value.0);
       }
       self
    }
@@ -1202,14 +1202,14 @@ impl Sysctl {
 #[doc="Read the PPHIB register."]
    #[inline] pub fn pphib(&self) -> Pphib { 
       unsafe {
-         Pphib(::core::ptr::read_volatile((self.0 + 0x314) as *const u32))
+         Pphib(read_volatile((self.0 + 0x314) as *const u32))
       }
    }
 #[doc="Write the PPHIB register."]
    #[inline] pub fn set_pphib<F: FnOnce(Pphib) -> Pphib>(&self, f: F) -> &Self {
       let value = f(Pphib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x314) as *mut u32, value.0);
+         write_volatile((self.0 + 0x314) as *mut u32, value.0);
       }
       self
    }
@@ -1218,7 +1218,7 @@ impl Sysctl {
       let tmp = self.pphib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x314) as *mut u32, value.0);
+         write_volatile((self.0 + 0x314) as *mut u32, value.0);
       }
       self
    }
@@ -1234,14 +1234,14 @@ impl Sysctl {
 #[doc="Read the PPUART register."]
    #[inline] pub fn ppuart(&self) -> Ppuart { 
       unsafe {
-         Ppuart(::core::ptr::read_volatile((self.0 + 0x318) as *const u32))
+         Ppuart(read_volatile((self.0 + 0x318) as *const u32))
       }
    }
 #[doc="Write the PPUART register."]
    #[inline] pub fn set_ppuart<F: FnOnce(Ppuart) -> Ppuart>(&self, f: F) -> &Self {
       let value = f(Ppuart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x318) as *mut u32, value.0);
+         write_volatile((self.0 + 0x318) as *mut u32, value.0);
       }
       self
    }
@@ -1250,7 +1250,7 @@ impl Sysctl {
       let tmp = self.ppuart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x318) as *mut u32, value.0);
+         write_volatile((self.0 + 0x318) as *mut u32, value.0);
       }
       self
    }
@@ -1266,14 +1266,14 @@ impl Sysctl {
 #[doc="Read the PPSSI register."]
    #[inline] pub fn ppssi(&self) -> Ppssi { 
       unsafe {
-         Ppssi(::core::ptr::read_volatile((self.0 + 0x31c) as *const u32))
+         Ppssi(read_volatile((self.0 + 0x31c) as *const u32))
       }
    }
 #[doc="Write the PPSSI register."]
    #[inline] pub fn set_ppssi<F: FnOnce(Ppssi) -> Ppssi>(&self, f: F) -> &Self {
       let value = f(Ppssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x31c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x31c) as *mut u32, value.0);
       }
       self
    }
@@ -1282,7 +1282,7 @@ impl Sysctl {
       let tmp = self.ppssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x31c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x31c) as *mut u32, value.0);
       }
       self
    }
@@ -1298,14 +1298,14 @@ impl Sysctl {
 #[doc="Read the PPI2C register."]
    #[inline] pub fn ppi2c(&self) -> Ppi2c { 
       unsafe {
-         Ppi2c(::core::ptr::read_volatile((self.0 + 0x320) as *const u32))
+         Ppi2c(read_volatile((self.0 + 0x320) as *const u32))
       }
    }
 #[doc="Write the PPI2C register."]
    #[inline] pub fn set_ppi2c<F: FnOnce(Ppi2c) -> Ppi2c>(&self, f: F) -> &Self {
       let value = f(Ppi2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x320) as *mut u32, value.0);
+         write_volatile((self.0 + 0x320) as *mut u32, value.0);
       }
       self
    }
@@ -1314,7 +1314,7 @@ impl Sysctl {
       let tmp = self.ppi2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x320) as *mut u32, value.0);
+         write_volatile((self.0 + 0x320) as *mut u32, value.0);
       }
       self
    }
@@ -1330,14 +1330,14 @@ impl Sysctl {
 #[doc="Read the PPUSB register."]
    #[inline] pub fn ppusb(&self) -> Ppusb { 
       unsafe {
-         Ppusb(::core::ptr::read_volatile((self.0 + 0x328) as *const u32))
+         Ppusb(read_volatile((self.0 + 0x328) as *const u32))
       }
    }
 #[doc="Write the PPUSB register."]
    #[inline] pub fn set_ppusb<F: FnOnce(Ppusb) -> Ppusb>(&self, f: F) -> &Self {
       let value = f(Ppusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x328) as *mut u32, value.0);
+         write_volatile((self.0 + 0x328) as *mut u32, value.0);
       }
       self
    }
@@ -1346,7 +1346,7 @@ impl Sysctl {
       let tmp = self.ppusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x328) as *mut u32, value.0);
+         write_volatile((self.0 + 0x328) as *mut u32, value.0);
       }
       self
    }
@@ -1362,14 +1362,14 @@ impl Sysctl {
 #[doc="Read the PPEPHY register."]
    #[inline] pub fn ppephy(&self) -> Ppephy { 
       unsafe {
-         Ppephy(::core::ptr::read_volatile((self.0 + 0x330) as *const u32))
+         Ppephy(read_volatile((self.0 + 0x330) as *const u32))
       }
    }
 #[doc="Write the PPEPHY register."]
    #[inline] pub fn set_ppephy<F: FnOnce(Ppephy) -> Ppephy>(&self, f: F) -> &Self {
       let value = f(Ppephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x330) as *mut u32, value.0);
+         write_volatile((self.0 + 0x330) as *mut u32, value.0);
       }
       self
    }
@@ -1378,7 +1378,7 @@ impl Sysctl {
       let tmp = self.ppephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x330) as *mut u32, value.0);
+         write_volatile((self.0 + 0x330) as *mut u32, value.0);
       }
       self
    }
@@ -1394,14 +1394,14 @@ impl Sysctl {
 #[doc="Read the PPCAN register."]
    #[inline] pub fn ppcan(&self) -> Ppcan { 
       unsafe {
-         Ppcan(::core::ptr::read_volatile((self.0 + 0x334) as *const u32))
+         Ppcan(read_volatile((self.0 + 0x334) as *const u32))
       }
    }
 #[doc="Write the PPCAN register."]
    #[inline] pub fn set_ppcan<F: FnOnce(Ppcan) -> Ppcan>(&self, f: F) -> &Self {
       let value = f(Ppcan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x334) as *mut u32, value.0);
+         write_volatile((self.0 + 0x334) as *mut u32, value.0);
       }
       self
    }
@@ -1410,7 +1410,7 @@ impl Sysctl {
       let tmp = self.ppcan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x334) as *mut u32, value.0);
+         write_volatile((self.0 + 0x334) as *mut u32, value.0);
       }
       self
    }
@@ -1426,14 +1426,14 @@ impl Sysctl {
 #[doc="Read the PPADC register."]
    #[inline] pub fn ppadc(&self) -> Ppadc { 
       unsafe {
-         Ppadc(::core::ptr::read_volatile((self.0 + 0x338) as *const u32))
+         Ppadc(read_volatile((self.0 + 0x338) as *const u32))
       }
    }
 #[doc="Write the PPADC register."]
    #[inline] pub fn set_ppadc<F: FnOnce(Ppadc) -> Ppadc>(&self, f: F) -> &Self {
       let value = f(Ppadc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x338) as *mut u32, value.0);
+         write_volatile((self.0 + 0x338) as *mut u32, value.0);
       }
       self
    }
@@ -1442,7 +1442,7 @@ impl Sysctl {
       let tmp = self.ppadc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x338) as *mut u32, value.0);
+         write_volatile((self.0 + 0x338) as *mut u32, value.0);
       }
       self
    }
@@ -1458,14 +1458,14 @@ impl Sysctl {
 #[doc="Read the PPACMP register."]
    #[inline] pub fn ppacmp(&self) -> Ppacmp { 
       unsafe {
-         Ppacmp(::core::ptr::read_volatile((self.0 + 0x33c) as *const u32))
+         Ppacmp(read_volatile((self.0 + 0x33c) as *const u32))
       }
    }
 #[doc="Write the PPACMP register."]
    #[inline] pub fn set_ppacmp<F: FnOnce(Ppacmp) -> Ppacmp>(&self, f: F) -> &Self {
       let value = f(Ppacmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x33c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x33c) as *mut u32, value.0);
       }
       self
    }
@@ -1474,7 +1474,7 @@ impl Sysctl {
       let tmp = self.ppacmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x33c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x33c) as *mut u32, value.0);
       }
       self
    }
@@ -1490,14 +1490,14 @@ impl Sysctl {
 #[doc="Read the PPPWM register."]
    #[inline] pub fn pppwm(&self) -> Pppwm { 
       unsafe {
-         Pppwm(::core::ptr::read_volatile((self.0 + 0x340) as *const u32))
+         Pppwm(read_volatile((self.0 + 0x340) as *const u32))
       }
    }
 #[doc="Write the PPPWM register."]
    #[inline] pub fn set_pppwm<F: FnOnce(Pppwm) -> Pppwm>(&self, f: F) -> &Self {
       let value = f(Pppwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x340) as *mut u32, value.0);
+         write_volatile((self.0 + 0x340) as *mut u32, value.0);
       }
       self
    }
@@ -1506,7 +1506,7 @@ impl Sysctl {
       let tmp = self.pppwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x340) as *mut u32, value.0);
+         write_volatile((self.0 + 0x340) as *mut u32, value.0);
       }
       self
    }
@@ -1522,14 +1522,14 @@ impl Sysctl {
 #[doc="Read the PPQEI register."]
    #[inline] pub fn ppqei(&self) -> Ppqei { 
       unsafe {
-         Ppqei(::core::ptr::read_volatile((self.0 + 0x344) as *const u32))
+         Ppqei(read_volatile((self.0 + 0x344) as *const u32))
       }
    }
 #[doc="Write the PPQEI register."]
    #[inline] pub fn set_ppqei<F: FnOnce(Ppqei) -> Ppqei>(&self, f: F) -> &Self {
       let value = f(Ppqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x344) as *mut u32, value.0);
+         write_volatile((self.0 + 0x344) as *mut u32, value.0);
       }
       self
    }
@@ -1538,7 +1538,7 @@ impl Sysctl {
       let tmp = self.ppqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x344) as *mut u32, value.0);
+         write_volatile((self.0 + 0x344) as *mut u32, value.0);
       }
       self
    }
@@ -1554,14 +1554,14 @@ impl Sysctl {
 #[doc="Read the PPLPC register."]
    #[inline] pub fn pplpc(&self) -> Pplpc { 
       unsafe {
-         Pplpc(::core::ptr::read_volatile((self.0 + 0x348) as *const u32))
+         Pplpc(read_volatile((self.0 + 0x348) as *const u32))
       }
    }
 #[doc="Write the PPLPC register."]
    #[inline] pub fn set_pplpc<F: FnOnce(Pplpc) -> Pplpc>(&self, f: F) -> &Self {
       let value = f(Pplpc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x348) as *mut u32, value.0);
+         write_volatile((self.0 + 0x348) as *mut u32, value.0);
       }
       self
    }
@@ -1570,7 +1570,7 @@ impl Sysctl {
       let tmp = self.pplpc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x348) as *mut u32, value.0);
+         write_volatile((self.0 + 0x348) as *mut u32, value.0);
       }
       self
    }
@@ -1586,14 +1586,14 @@ impl Sysctl {
 #[doc="Read the PPPECI register."]
    #[inline] pub fn pppeci(&self) -> Pppeci { 
       unsafe {
-         Pppeci(::core::ptr::read_volatile((self.0 + 0x350) as *const u32))
+         Pppeci(read_volatile((self.0 + 0x350) as *const u32))
       }
    }
 #[doc="Write the PPPECI register."]
    #[inline] pub fn set_pppeci<F: FnOnce(Pppeci) -> Pppeci>(&self, f: F) -> &Self {
       let value = f(Pppeci(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x350) as *mut u32, value.0);
+         write_volatile((self.0 + 0x350) as *mut u32, value.0);
       }
       self
    }
@@ -1602,7 +1602,7 @@ impl Sysctl {
       let tmp = self.pppeci();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x350) as *mut u32, value.0);
+         write_volatile((self.0 + 0x350) as *mut u32, value.0);
       }
       self
    }
@@ -1618,14 +1618,14 @@ impl Sysctl {
 #[doc="Read the PPFAN register."]
    #[inline] pub fn ppfan(&self) -> Ppfan { 
       unsafe {
-         Ppfan(::core::ptr::read_volatile((self.0 + 0x354) as *const u32))
+         Ppfan(read_volatile((self.0 + 0x354) as *const u32))
       }
    }
 #[doc="Write the PPFAN register."]
    #[inline] pub fn set_ppfan<F: FnOnce(Ppfan) -> Ppfan>(&self, f: F) -> &Self {
       let value = f(Ppfan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x354) as *mut u32, value.0);
+         write_volatile((self.0 + 0x354) as *mut u32, value.0);
       }
       self
    }
@@ -1634,7 +1634,7 @@ impl Sysctl {
       let tmp = self.ppfan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x354) as *mut u32, value.0);
+         write_volatile((self.0 + 0x354) as *mut u32, value.0);
       }
       self
    }
@@ -1650,14 +1650,14 @@ impl Sysctl {
 #[doc="Read the PPEEPROM register."]
    #[inline] pub fn ppeeprom(&self) -> Ppeeprom { 
       unsafe {
-         Ppeeprom(::core::ptr::read_volatile((self.0 + 0x358) as *const u32))
+         Ppeeprom(read_volatile((self.0 + 0x358) as *const u32))
       }
    }
 #[doc="Write the PPEEPROM register."]
    #[inline] pub fn set_ppeeprom<F: FnOnce(Ppeeprom) -> Ppeeprom>(&self, f: F) -> &Self {
       let value = f(Ppeeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x358) as *mut u32, value.0);
+         write_volatile((self.0 + 0x358) as *mut u32, value.0);
       }
       self
    }
@@ -1666,7 +1666,7 @@ impl Sysctl {
       let tmp = self.ppeeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x358) as *mut u32, value.0);
+         write_volatile((self.0 + 0x358) as *mut u32, value.0);
       }
       self
    }
@@ -1682,14 +1682,14 @@ impl Sysctl {
 #[doc="Read the PPWTIMER register."]
    #[inline] pub fn ppwtimer(&self) -> Ppwtimer { 
       unsafe {
-         Ppwtimer(::core::ptr::read_volatile((self.0 + 0x35c) as *const u32))
+         Ppwtimer(read_volatile((self.0 + 0x35c) as *const u32))
       }
    }
 #[doc="Write the PPWTIMER register."]
    #[inline] pub fn set_ppwtimer<F: FnOnce(Ppwtimer) -> Ppwtimer>(&self, f: F) -> &Self {
       let value = f(Ppwtimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x35c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x35c) as *mut u32, value.0);
       }
       self
    }
@@ -1698,7 +1698,7 @@ impl Sysctl {
       let tmp = self.ppwtimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x35c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x35c) as *mut u32, value.0);
       }
       self
    }
@@ -1714,14 +1714,14 @@ impl Sysctl {
 #[doc="Read the PPRTS register."]
    #[inline] pub fn pprts(&self) -> Pprts { 
       unsafe {
-         Pprts(::core::ptr::read_volatile((self.0 + 0x370) as *const u32))
+         Pprts(read_volatile((self.0 + 0x370) as *const u32))
       }
    }
 #[doc="Write the PPRTS register."]
    #[inline] pub fn set_pprts<F: FnOnce(Pprts) -> Pprts>(&self, f: F) -> &Self {
       let value = f(Pprts(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x370) as *mut u32, value.0);
+         write_volatile((self.0 + 0x370) as *mut u32, value.0);
       }
       self
    }
@@ -1730,7 +1730,7 @@ impl Sysctl {
       let tmp = self.pprts();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x370) as *mut u32, value.0);
+         write_volatile((self.0 + 0x370) as *mut u32, value.0);
       }
       self
    }
@@ -1746,14 +1746,14 @@ impl Sysctl {
 #[doc="Read the PPCCM register."]
    #[inline] pub fn ppccm(&self) -> Ppccm { 
       unsafe {
-         Ppccm(::core::ptr::read_volatile((self.0 + 0x374) as *const u32))
+         Ppccm(read_volatile((self.0 + 0x374) as *const u32))
       }
    }
 #[doc="Write the PPCCM register."]
    #[inline] pub fn set_ppccm<F: FnOnce(Ppccm) -> Ppccm>(&self, f: F) -> &Self {
       let value = f(Ppccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x374) as *mut u32, value.0);
+         write_volatile((self.0 + 0x374) as *mut u32, value.0);
       }
       self
    }
@@ -1762,7 +1762,7 @@ impl Sysctl {
       let tmp = self.ppccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x374) as *mut u32, value.0);
+         write_volatile((self.0 + 0x374) as *mut u32, value.0);
       }
       self
    }
@@ -1778,14 +1778,14 @@ impl Sysctl {
 #[doc="Read the PPLCD register."]
    #[inline] pub fn pplcd(&self) -> Pplcd { 
       unsafe {
-         Pplcd(::core::ptr::read_volatile((self.0 + 0x390) as *const u32))
+         Pplcd(read_volatile((self.0 + 0x390) as *const u32))
       }
    }
 #[doc="Write the PPLCD register."]
    #[inline] pub fn set_pplcd<F: FnOnce(Pplcd) -> Pplcd>(&self, f: F) -> &Self {
       let value = f(Pplcd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x390) as *mut u32, value.0);
+         write_volatile((self.0 + 0x390) as *mut u32, value.0);
       }
       self
    }
@@ -1794,7 +1794,7 @@ impl Sysctl {
       let tmp = self.pplcd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x390) as *mut u32, value.0);
+         write_volatile((self.0 + 0x390) as *mut u32, value.0);
       }
       self
    }
@@ -1810,14 +1810,14 @@ impl Sysctl {
 #[doc="Read the PPOWIRE register."]
    #[inline] pub fn ppowire(&self) -> Ppowire { 
       unsafe {
-         Ppowire(::core::ptr::read_volatile((self.0 + 0x398) as *const u32))
+         Ppowire(read_volatile((self.0 + 0x398) as *const u32))
       }
    }
 #[doc="Write the PPOWIRE register."]
    #[inline] pub fn set_ppowire<F: FnOnce(Ppowire) -> Ppowire>(&self, f: F) -> &Self {
       let value = f(Ppowire(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x398) as *mut u32, value.0);
+         write_volatile((self.0 + 0x398) as *mut u32, value.0);
       }
       self
    }
@@ -1826,7 +1826,7 @@ impl Sysctl {
       let tmp = self.ppowire();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x398) as *mut u32, value.0);
+         write_volatile((self.0 + 0x398) as *mut u32, value.0);
       }
       self
    }
@@ -1842,14 +1842,14 @@ impl Sysctl {
 #[doc="Read the PPEMAC register."]
    #[inline] pub fn ppemac(&self) -> Ppemac { 
       unsafe {
-         Ppemac(::core::ptr::read_volatile((self.0 + 0x39c) as *const u32))
+         Ppemac(read_volatile((self.0 + 0x39c) as *const u32))
       }
    }
 #[doc="Write the PPEMAC register."]
    #[inline] pub fn set_ppemac<F: FnOnce(Ppemac) -> Ppemac>(&self, f: F) -> &Self {
       let value = f(Ppemac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x39c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x39c) as *mut u32, value.0);
       }
       self
    }
@@ -1858,7 +1858,7 @@ impl Sysctl {
       let tmp = self.ppemac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x39c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x39c) as *mut u32, value.0);
       }
       self
    }
@@ -1874,14 +1874,14 @@ impl Sysctl {
 #[doc="Read the PPHIM register."]
    #[inline] pub fn pphim(&self) -> Pphim { 
       unsafe {
-         Pphim(::core::ptr::read_volatile((self.0 + 0x3a4) as *const u32))
+         Pphim(read_volatile((self.0 + 0x3a4) as *const u32))
       }
    }
 #[doc="Write the PPHIM register."]
    #[inline] pub fn set_pphim<F: FnOnce(Pphim) -> Pphim>(&self, f: F) -> &Self {
       let value = f(Pphim(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3a4) as *mut u32, value.0);
       }
       self
    }
@@ -1890,7 +1890,7 @@ impl Sysctl {
       let tmp = self.pphim();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x3a4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x3a4) as *mut u32, value.0);
       }
       self
    }
@@ -1906,14 +1906,14 @@ impl Sysctl {
 #[doc="Read the SRWD register."]
    #[inline] pub fn srwd(&self) -> Srwd { 
       unsafe {
-         Srwd(::core::ptr::read_volatile((self.0 + 0x500) as *const u32))
+         Srwd(read_volatile((self.0 + 0x500) as *const u32))
       }
    }
 #[doc="Write the SRWD register."]
    #[inline] pub fn set_srwd<F: FnOnce(Srwd) -> Srwd>(&self, f: F) -> &Self {
       let value = f(Srwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x500) as *mut u32, value.0);
+         write_volatile((self.0 + 0x500) as *mut u32, value.0);
       }
       self
    }
@@ -1922,7 +1922,7 @@ impl Sysctl {
       let tmp = self.srwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x500) as *mut u32, value.0);
+         write_volatile((self.0 + 0x500) as *mut u32, value.0);
       }
       self
    }
@@ -1938,14 +1938,14 @@ impl Sysctl {
 #[doc="Read the SRTIMER register."]
    #[inline] pub fn srtimer(&self) -> Srtimer { 
       unsafe {
-         Srtimer(::core::ptr::read_volatile((self.0 + 0x504) as *const u32))
+         Srtimer(read_volatile((self.0 + 0x504) as *const u32))
       }
    }
 #[doc="Write the SRTIMER register."]
    #[inline] pub fn set_srtimer<F: FnOnce(Srtimer) -> Srtimer>(&self, f: F) -> &Self {
       let value = f(Srtimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x504) as *mut u32, value.0);
+         write_volatile((self.0 + 0x504) as *mut u32, value.0);
       }
       self
    }
@@ -1954,7 +1954,7 @@ impl Sysctl {
       let tmp = self.srtimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x504) as *mut u32, value.0);
+         write_volatile((self.0 + 0x504) as *mut u32, value.0);
       }
       self
    }
@@ -1970,14 +1970,14 @@ impl Sysctl {
 #[doc="Read the SRGPIO register."]
    #[inline] pub fn srgpio(&self) -> Srgpio { 
       unsafe {
-         Srgpio(::core::ptr::read_volatile((self.0 + 0x508) as *const u32))
+         Srgpio(read_volatile((self.0 + 0x508) as *const u32))
       }
    }
 #[doc="Write the SRGPIO register."]
    #[inline] pub fn set_srgpio<F: FnOnce(Srgpio) -> Srgpio>(&self, f: F) -> &Self {
       let value = f(Srgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x508) as *mut u32, value.0);
+         write_volatile((self.0 + 0x508) as *mut u32, value.0);
       }
       self
    }
@@ -1986,7 +1986,7 @@ impl Sysctl {
       let tmp = self.srgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x508) as *mut u32, value.0);
+         write_volatile((self.0 + 0x508) as *mut u32, value.0);
       }
       self
    }
@@ -2002,14 +2002,14 @@ impl Sysctl {
 #[doc="Read the SRDMA register."]
    #[inline] pub fn srdma(&self) -> Srdma { 
       unsafe {
-         Srdma(::core::ptr::read_volatile((self.0 + 0x50c) as *const u32))
+         Srdma(read_volatile((self.0 + 0x50c) as *const u32))
       }
    }
 #[doc="Write the SRDMA register."]
    #[inline] pub fn set_srdma<F: FnOnce(Srdma) -> Srdma>(&self, f: F) -> &Self {
       let value = f(Srdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50c) as *mut u32, value.0);
       }
       self
    }
@@ -2018,7 +2018,7 @@ impl Sysctl {
       let tmp = self.srdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x50c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x50c) as *mut u32, value.0);
       }
       self
    }
@@ -2034,14 +2034,14 @@ impl Sysctl {
 #[doc="Read the SREPI register."]
    #[inline] pub fn srepi(&self) -> Srepi { 
       unsafe {
-         Srepi(::core::ptr::read_volatile((self.0 + 0x510) as *const u32))
+         Srepi(read_volatile((self.0 + 0x510) as *const u32))
       }
    }
 #[doc="Write the SREPI register."]
    #[inline] pub fn set_srepi<F: FnOnce(Srepi) -> Srepi>(&self, f: F) -> &Self {
       let value = f(Srepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x510) as *mut u32, value.0);
+         write_volatile((self.0 + 0x510) as *mut u32, value.0);
       }
       self
    }
@@ -2050,7 +2050,7 @@ impl Sysctl {
       let tmp = self.srepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x510) as *mut u32, value.0);
+         write_volatile((self.0 + 0x510) as *mut u32, value.0);
       }
       self
    }
@@ -2066,14 +2066,14 @@ impl Sysctl {
 #[doc="Read the SRHIB register."]
    #[inline] pub fn srhib(&self) -> Srhib { 
       unsafe {
-         Srhib(::core::ptr::read_volatile((self.0 + 0x514) as *const u32))
+         Srhib(read_volatile((self.0 + 0x514) as *const u32))
       }
    }
 #[doc="Write the SRHIB register."]
    #[inline] pub fn set_srhib<F: FnOnce(Srhib) -> Srhib>(&self, f: F) -> &Self {
       let value = f(Srhib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x514) as *mut u32, value.0);
+         write_volatile((self.0 + 0x514) as *mut u32, value.0);
       }
       self
    }
@@ -2082,7 +2082,7 @@ impl Sysctl {
       let tmp = self.srhib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x514) as *mut u32, value.0);
+         write_volatile((self.0 + 0x514) as *mut u32, value.0);
       }
       self
    }
@@ -2098,14 +2098,14 @@ impl Sysctl {
 #[doc="Read the SRUART register."]
    #[inline] pub fn sruart(&self) -> Sruart { 
       unsafe {
-         Sruart(::core::ptr::read_volatile((self.0 + 0x518) as *const u32))
+         Sruart(read_volatile((self.0 + 0x518) as *const u32))
       }
    }
 #[doc="Write the SRUART register."]
    #[inline] pub fn set_sruart<F: FnOnce(Sruart) -> Sruart>(&self, f: F) -> &Self {
       let value = f(Sruart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x518) as *mut u32, value.0);
+         write_volatile((self.0 + 0x518) as *mut u32, value.0);
       }
       self
    }
@@ -2114,7 +2114,7 @@ impl Sysctl {
       let tmp = self.sruart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x518) as *mut u32, value.0);
+         write_volatile((self.0 + 0x518) as *mut u32, value.0);
       }
       self
    }
@@ -2130,14 +2130,14 @@ impl Sysctl {
 #[doc="Read the SRSSI register."]
    #[inline] pub fn srssi(&self) -> Srssi { 
       unsafe {
-         Srssi(::core::ptr::read_volatile((self.0 + 0x51c) as *const u32))
+         Srssi(read_volatile((self.0 + 0x51c) as *const u32))
       }
    }
 #[doc="Write the SRSSI register."]
    #[inline] pub fn set_srssi<F: FnOnce(Srssi) -> Srssi>(&self, f: F) -> &Self {
       let value = f(Srssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x51c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x51c) as *mut u32, value.0);
       }
       self
    }
@@ -2146,7 +2146,7 @@ impl Sysctl {
       let tmp = self.srssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x51c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x51c) as *mut u32, value.0);
       }
       self
    }
@@ -2162,14 +2162,14 @@ impl Sysctl {
 #[doc="Read the SRI2C register."]
    #[inline] pub fn sri2c(&self) -> Sri2c { 
       unsafe {
-         Sri2c(::core::ptr::read_volatile((self.0 + 0x520) as *const u32))
+         Sri2c(read_volatile((self.0 + 0x520) as *const u32))
       }
    }
 #[doc="Write the SRI2C register."]
    #[inline] pub fn set_sri2c<F: FnOnce(Sri2c) -> Sri2c>(&self, f: F) -> &Self {
       let value = f(Sri2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x520) as *mut u32, value.0);
+         write_volatile((self.0 + 0x520) as *mut u32, value.0);
       }
       self
    }
@@ -2178,7 +2178,7 @@ impl Sysctl {
       let tmp = self.sri2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x520) as *mut u32, value.0);
+         write_volatile((self.0 + 0x520) as *mut u32, value.0);
       }
       self
    }
@@ -2194,14 +2194,14 @@ impl Sysctl {
 #[doc="Read the SRUSB register."]
    #[inline] pub fn srusb(&self) -> Srusb { 
       unsafe {
-         Srusb(::core::ptr::read_volatile((self.0 + 0x528) as *const u32))
+         Srusb(read_volatile((self.0 + 0x528) as *const u32))
       }
    }
 #[doc="Write the SRUSB register."]
    #[inline] pub fn set_srusb<F: FnOnce(Srusb) -> Srusb>(&self, f: F) -> &Self {
       let value = f(Srusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x528) as *mut u32, value.0);
+         write_volatile((self.0 + 0x528) as *mut u32, value.0);
       }
       self
    }
@@ -2210,7 +2210,7 @@ impl Sysctl {
       let tmp = self.srusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x528) as *mut u32, value.0);
+         write_volatile((self.0 + 0x528) as *mut u32, value.0);
       }
       self
    }
@@ -2226,14 +2226,14 @@ impl Sysctl {
 #[doc="Read the SREPHY register."]
    #[inline] pub fn srephy(&self) -> Srephy { 
       unsafe {
-         Srephy(::core::ptr::read_volatile((self.0 + 0x530) as *const u32))
+         Srephy(read_volatile((self.0 + 0x530) as *const u32))
       }
    }
 #[doc="Write the SREPHY register."]
    #[inline] pub fn set_srephy<F: FnOnce(Srephy) -> Srephy>(&self, f: F) -> &Self {
       let value = f(Srephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x530) as *mut u32, value.0);
+         write_volatile((self.0 + 0x530) as *mut u32, value.0);
       }
       self
    }
@@ -2242,7 +2242,7 @@ impl Sysctl {
       let tmp = self.srephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x530) as *mut u32, value.0);
+         write_volatile((self.0 + 0x530) as *mut u32, value.0);
       }
       self
    }
@@ -2258,14 +2258,14 @@ impl Sysctl {
 #[doc="Read the SRCAN register."]
    #[inline] pub fn srcan(&self) -> Srcan { 
       unsafe {
-         Srcan(::core::ptr::read_volatile((self.0 + 0x534) as *const u32))
+         Srcan(read_volatile((self.0 + 0x534) as *const u32))
       }
    }
 #[doc="Write the SRCAN register."]
    #[inline] pub fn set_srcan<F: FnOnce(Srcan) -> Srcan>(&self, f: F) -> &Self {
       let value = f(Srcan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x534) as *mut u32, value.0);
+         write_volatile((self.0 + 0x534) as *mut u32, value.0);
       }
       self
    }
@@ -2274,7 +2274,7 @@ impl Sysctl {
       let tmp = self.srcan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x534) as *mut u32, value.0);
+         write_volatile((self.0 + 0x534) as *mut u32, value.0);
       }
       self
    }
@@ -2290,14 +2290,14 @@ impl Sysctl {
 #[doc="Read the SRADC register."]
    #[inline] pub fn sradc(&self) -> Sradc { 
       unsafe {
-         Sradc(::core::ptr::read_volatile((self.0 + 0x538) as *const u32))
+         Sradc(read_volatile((self.0 + 0x538) as *const u32))
       }
    }
 #[doc="Write the SRADC register."]
    #[inline] pub fn set_sradc<F: FnOnce(Sradc) -> Sradc>(&self, f: F) -> &Self {
       let value = f(Sradc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x538) as *mut u32, value.0);
+         write_volatile((self.0 + 0x538) as *mut u32, value.0);
       }
       self
    }
@@ -2306,7 +2306,7 @@ impl Sysctl {
       let tmp = self.sradc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x538) as *mut u32, value.0);
+         write_volatile((self.0 + 0x538) as *mut u32, value.0);
       }
       self
    }
@@ -2322,14 +2322,14 @@ impl Sysctl {
 #[doc="Read the SRACMP register."]
    #[inline] pub fn sracmp(&self) -> Sracmp { 
       unsafe {
-         Sracmp(::core::ptr::read_volatile((self.0 + 0x53c) as *const u32))
+         Sracmp(read_volatile((self.0 + 0x53c) as *const u32))
       }
    }
 #[doc="Write the SRACMP register."]
    #[inline] pub fn set_sracmp<F: FnOnce(Sracmp) -> Sracmp>(&self, f: F) -> &Self {
       let value = f(Sracmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x53c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x53c) as *mut u32, value.0);
       }
       self
    }
@@ -2338,7 +2338,7 @@ impl Sysctl {
       let tmp = self.sracmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x53c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x53c) as *mut u32, value.0);
       }
       self
    }
@@ -2354,14 +2354,14 @@ impl Sysctl {
 #[doc="Read the SRPWM register."]
    #[inline] pub fn srpwm(&self) -> Srpwm { 
       unsafe {
-         Srpwm(::core::ptr::read_volatile((self.0 + 0x540) as *const u32))
+         Srpwm(read_volatile((self.0 + 0x540) as *const u32))
       }
    }
 #[doc="Write the SRPWM register."]
    #[inline] pub fn set_srpwm<F: FnOnce(Srpwm) -> Srpwm>(&self, f: F) -> &Self {
       let value = f(Srpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x540) as *mut u32, value.0);
+         write_volatile((self.0 + 0x540) as *mut u32, value.0);
       }
       self
    }
@@ -2370,7 +2370,7 @@ impl Sysctl {
       let tmp = self.srpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x540) as *mut u32, value.0);
+         write_volatile((self.0 + 0x540) as *mut u32, value.0);
       }
       self
    }
@@ -2386,14 +2386,14 @@ impl Sysctl {
 #[doc="Read the SRQEI register."]
    #[inline] pub fn srqei(&self) -> Srqei { 
       unsafe {
-         Srqei(::core::ptr::read_volatile((self.0 + 0x544) as *const u32))
+         Srqei(read_volatile((self.0 + 0x544) as *const u32))
       }
    }
 #[doc="Write the SRQEI register."]
    #[inline] pub fn set_srqei<F: FnOnce(Srqei) -> Srqei>(&self, f: F) -> &Self {
       let value = f(Srqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x544) as *mut u32, value.0);
+         write_volatile((self.0 + 0x544) as *mut u32, value.0);
       }
       self
    }
@@ -2402,7 +2402,7 @@ impl Sysctl {
       let tmp = self.srqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x544) as *mut u32, value.0);
+         write_volatile((self.0 + 0x544) as *mut u32, value.0);
       }
       self
    }
@@ -2418,14 +2418,14 @@ impl Sysctl {
 #[doc="Read the SREEPROM register."]
    #[inline] pub fn sreeprom(&self) -> Sreeprom { 
       unsafe {
-         Sreeprom(::core::ptr::read_volatile((self.0 + 0x558) as *const u32))
+         Sreeprom(read_volatile((self.0 + 0x558) as *const u32))
       }
    }
 #[doc="Write the SREEPROM register."]
    #[inline] pub fn set_sreeprom<F: FnOnce(Sreeprom) -> Sreeprom>(&self, f: F) -> &Self {
       let value = f(Sreeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x558) as *mut u32, value.0);
+         write_volatile((self.0 + 0x558) as *mut u32, value.0);
       }
       self
    }
@@ -2434,7 +2434,7 @@ impl Sysctl {
       let tmp = self.sreeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x558) as *mut u32, value.0);
+         write_volatile((self.0 + 0x558) as *mut u32, value.0);
       }
       self
    }
@@ -2450,14 +2450,14 @@ impl Sysctl {
 #[doc="Read the SRCCM register."]
    #[inline] pub fn srccm(&self) -> Srccm { 
       unsafe {
-         Srccm(::core::ptr::read_volatile((self.0 + 0x574) as *const u32))
+         Srccm(read_volatile((self.0 + 0x574) as *const u32))
       }
    }
 #[doc="Write the SRCCM register."]
    #[inline] pub fn set_srccm<F: FnOnce(Srccm) -> Srccm>(&self, f: F) -> &Self {
       let value = f(Srccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x574) as *mut u32, value.0);
+         write_volatile((self.0 + 0x574) as *mut u32, value.0);
       }
       self
    }
@@ -2466,7 +2466,7 @@ impl Sysctl {
       let tmp = self.srccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x574) as *mut u32, value.0);
+         write_volatile((self.0 + 0x574) as *mut u32, value.0);
       }
       self
    }
@@ -2482,14 +2482,14 @@ impl Sysctl {
 #[doc="Read the SREMAC register."]
    #[inline] pub fn sremac(&self) -> Sremac { 
       unsafe {
-         Sremac(::core::ptr::read_volatile((self.0 + 0x59c) as *const u32))
+         Sremac(read_volatile((self.0 + 0x59c) as *const u32))
       }
    }
 #[doc="Write the SREMAC register."]
    #[inline] pub fn set_sremac<F: FnOnce(Sremac) -> Sremac>(&self, f: F) -> &Self {
       let value = f(Sremac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x59c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x59c) as *mut u32, value.0);
       }
       self
    }
@@ -2498,7 +2498,7 @@ impl Sysctl {
       let tmp = self.sremac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x59c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x59c) as *mut u32, value.0);
       }
       self
    }
@@ -2514,14 +2514,14 @@ impl Sysctl {
 #[doc="Read the RCGCWD register."]
    #[inline] pub fn rcgcwd(&self) -> Rcgcwd { 
       unsafe {
-         Rcgcwd(::core::ptr::read_volatile((self.0 + 0x600) as *const u32))
+         Rcgcwd(read_volatile((self.0 + 0x600) as *const u32))
       }
    }
 #[doc="Write the RCGCWD register."]
    #[inline] pub fn set_rcgcwd<F: FnOnce(Rcgcwd) -> Rcgcwd>(&self, f: F) -> &Self {
       let value = f(Rcgcwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x600) as *mut u32, value.0);
+         write_volatile((self.0 + 0x600) as *mut u32, value.0);
       }
       self
    }
@@ -2530,7 +2530,7 @@ impl Sysctl {
       let tmp = self.rcgcwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x600) as *mut u32, value.0);
+         write_volatile((self.0 + 0x600) as *mut u32, value.0);
       }
       self
    }
@@ -2546,14 +2546,14 @@ impl Sysctl {
 #[doc="Read the RCGCTIMER register."]
    #[inline] pub fn rcgctimer(&self) -> Rcgctimer { 
       unsafe {
-         Rcgctimer(::core::ptr::read_volatile((self.0 + 0x604) as *const u32))
+         Rcgctimer(read_volatile((self.0 + 0x604) as *const u32))
       }
    }
 #[doc="Write the RCGCTIMER register."]
    #[inline] pub fn set_rcgctimer<F: FnOnce(Rcgctimer) -> Rcgctimer>(&self, f: F) -> &Self {
       let value = f(Rcgctimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x604) as *mut u32, value.0);
+         write_volatile((self.0 + 0x604) as *mut u32, value.0);
       }
       self
    }
@@ -2562,7 +2562,7 @@ impl Sysctl {
       let tmp = self.rcgctimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x604) as *mut u32, value.0);
+         write_volatile((self.0 + 0x604) as *mut u32, value.0);
       }
       self
    }
@@ -2578,14 +2578,14 @@ impl Sysctl {
 #[doc="Read the RCGCGPIO register."]
    #[inline] pub fn rcgcgpio(&self) -> Rcgcgpio { 
       unsafe {
-         Rcgcgpio(::core::ptr::read_volatile((self.0 + 0x608) as *const u32))
+         Rcgcgpio(read_volatile((self.0 + 0x608) as *const u32))
       }
    }
 #[doc="Write the RCGCGPIO register."]
    #[inline] pub fn set_rcgcgpio<F: FnOnce(Rcgcgpio) -> Rcgcgpio>(&self, f: F) -> &Self {
       let value = f(Rcgcgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x608) as *mut u32, value.0);
+         write_volatile((self.0 + 0x608) as *mut u32, value.0);
       }
       self
    }
@@ -2594,7 +2594,7 @@ impl Sysctl {
       let tmp = self.rcgcgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x608) as *mut u32, value.0);
+         write_volatile((self.0 + 0x608) as *mut u32, value.0);
       }
       self
    }
@@ -2610,14 +2610,14 @@ impl Sysctl {
 #[doc="Read the RCGCDMA register."]
    #[inline] pub fn rcgcdma(&self) -> Rcgcdma { 
       unsafe {
-         Rcgcdma(::core::ptr::read_volatile((self.0 + 0x60c) as *const u32))
+         Rcgcdma(read_volatile((self.0 + 0x60c) as *const u32))
       }
    }
 #[doc="Write the RCGCDMA register."]
    #[inline] pub fn set_rcgcdma<F: FnOnce(Rcgcdma) -> Rcgcdma>(&self, f: F) -> &Self {
       let value = f(Rcgcdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60c) as *mut u32, value.0);
       }
       self
    }
@@ -2626,7 +2626,7 @@ impl Sysctl {
       let tmp = self.rcgcdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x60c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x60c) as *mut u32, value.0);
       }
       self
    }
@@ -2642,14 +2642,14 @@ impl Sysctl {
 #[doc="Read the RCGCEPI register."]
    #[inline] pub fn rcgcepi(&self) -> Rcgcepi { 
       unsafe {
-         Rcgcepi(::core::ptr::read_volatile((self.0 + 0x610) as *const u32))
+         Rcgcepi(read_volatile((self.0 + 0x610) as *const u32))
       }
    }
 #[doc="Write the RCGCEPI register."]
    #[inline] pub fn set_rcgcepi<F: FnOnce(Rcgcepi) -> Rcgcepi>(&self, f: F) -> &Self {
       let value = f(Rcgcepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x610) as *mut u32, value.0);
+         write_volatile((self.0 + 0x610) as *mut u32, value.0);
       }
       self
    }
@@ -2658,7 +2658,7 @@ impl Sysctl {
       let tmp = self.rcgcepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x610) as *mut u32, value.0);
+         write_volatile((self.0 + 0x610) as *mut u32, value.0);
       }
       self
    }
@@ -2674,14 +2674,14 @@ impl Sysctl {
 #[doc="Read the RCGCHIB register."]
    #[inline] pub fn rcgchib(&self) -> Rcgchib { 
       unsafe {
-         Rcgchib(::core::ptr::read_volatile((self.0 + 0x614) as *const u32))
+         Rcgchib(read_volatile((self.0 + 0x614) as *const u32))
       }
    }
 #[doc="Write the RCGCHIB register."]
    #[inline] pub fn set_rcgchib<F: FnOnce(Rcgchib) -> Rcgchib>(&self, f: F) -> &Self {
       let value = f(Rcgchib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x614) as *mut u32, value.0);
+         write_volatile((self.0 + 0x614) as *mut u32, value.0);
       }
       self
    }
@@ -2690,7 +2690,7 @@ impl Sysctl {
       let tmp = self.rcgchib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x614) as *mut u32, value.0);
+         write_volatile((self.0 + 0x614) as *mut u32, value.0);
       }
       self
    }
@@ -2706,14 +2706,14 @@ impl Sysctl {
 #[doc="Read the RCGCUART register."]
    #[inline] pub fn rcgcuart(&self) -> Rcgcuart { 
       unsafe {
-         Rcgcuart(::core::ptr::read_volatile((self.0 + 0x618) as *const u32))
+         Rcgcuart(read_volatile((self.0 + 0x618) as *const u32))
       }
    }
 #[doc="Write the RCGCUART register."]
    #[inline] pub fn set_rcgcuart<F: FnOnce(Rcgcuart) -> Rcgcuart>(&self, f: F) -> &Self {
       let value = f(Rcgcuart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x618) as *mut u32, value.0);
+         write_volatile((self.0 + 0x618) as *mut u32, value.0);
       }
       self
    }
@@ -2722,7 +2722,7 @@ impl Sysctl {
       let tmp = self.rcgcuart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x618) as *mut u32, value.0);
+         write_volatile((self.0 + 0x618) as *mut u32, value.0);
       }
       self
    }
@@ -2738,14 +2738,14 @@ impl Sysctl {
 #[doc="Read the RCGCSSI register."]
    #[inline] pub fn rcgcssi(&self) -> Rcgcssi { 
       unsafe {
-         Rcgcssi(::core::ptr::read_volatile((self.0 + 0x61c) as *const u32))
+         Rcgcssi(read_volatile((self.0 + 0x61c) as *const u32))
       }
    }
 #[doc="Write the RCGCSSI register."]
    #[inline] pub fn set_rcgcssi<F: FnOnce(Rcgcssi) -> Rcgcssi>(&self, f: F) -> &Self {
       let value = f(Rcgcssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x61c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x61c) as *mut u32, value.0);
       }
       self
    }
@@ -2754,7 +2754,7 @@ impl Sysctl {
       let tmp = self.rcgcssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x61c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x61c) as *mut u32, value.0);
       }
       self
    }
@@ -2770,14 +2770,14 @@ impl Sysctl {
 #[doc="Read the RCGCI2C register."]
    #[inline] pub fn rcgci2c(&self) -> Rcgci2c { 
       unsafe {
-         Rcgci2c(::core::ptr::read_volatile((self.0 + 0x620) as *const u32))
+         Rcgci2c(read_volatile((self.0 + 0x620) as *const u32))
       }
    }
 #[doc="Write the RCGCI2C register."]
    #[inline] pub fn set_rcgci2c<F: FnOnce(Rcgci2c) -> Rcgci2c>(&self, f: F) -> &Self {
       let value = f(Rcgci2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x620) as *mut u32, value.0);
+         write_volatile((self.0 + 0x620) as *mut u32, value.0);
       }
       self
    }
@@ -2786,7 +2786,7 @@ impl Sysctl {
       let tmp = self.rcgci2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x620) as *mut u32, value.0);
+         write_volatile((self.0 + 0x620) as *mut u32, value.0);
       }
       self
    }
@@ -2802,14 +2802,14 @@ impl Sysctl {
 #[doc="Read the RCGCUSB register."]
    #[inline] pub fn rcgcusb(&self) -> Rcgcusb { 
       unsafe {
-         Rcgcusb(::core::ptr::read_volatile((self.0 + 0x628) as *const u32))
+         Rcgcusb(read_volatile((self.0 + 0x628) as *const u32))
       }
    }
 #[doc="Write the RCGCUSB register."]
    #[inline] pub fn set_rcgcusb<F: FnOnce(Rcgcusb) -> Rcgcusb>(&self, f: F) -> &Self {
       let value = f(Rcgcusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x628) as *mut u32, value.0);
+         write_volatile((self.0 + 0x628) as *mut u32, value.0);
       }
       self
    }
@@ -2818,7 +2818,7 @@ impl Sysctl {
       let tmp = self.rcgcusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x628) as *mut u32, value.0);
+         write_volatile((self.0 + 0x628) as *mut u32, value.0);
       }
       self
    }
@@ -2834,14 +2834,14 @@ impl Sysctl {
 #[doc="Read the RCGCEPHY register."]
    #[inline] pub fn rcgcephy(&self) -> Rcgcephy { 
       unsafe {
-         Rcgcephy(::core::ptr::read_volatile((self.0 + 0x630) as *const u32))
+         Rcgcephy(read_volatile((self.0 + 0x630) as *const u32))
       }
    }
 #[doc="Write the RCGCEPHY register."]
    #[inline] pub fn set_rcgcephy<F: FnOnce(Rcgcephy) -> Rcgcephy>(&self, f: F) -> &Self {
       let value = f(Rcgcephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x630) as *mut u32, value.0);
+         write_volatile((self.0 + 0x630) as *mut u32, value.0);
       }
       self
    }
@@ -2850,7 +2850,7 @@ impl Sysctl {
       let tmp = self.rcgcephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x630) as *mut u32, value.0);
+         write_volatile((self.0 + 0x630) as *mut u32, value.0);
       }
       self
    }
@@ -2866,14 +2866,14 @@ impl Sysctl {
 #[doc="Read the RCGCCAN register."]
    #[inline] pub fn rcgccan(&self) -> Rcgccan { 
       unsafe {
-         Rcgccan(::core::ptr::read_volatile((self.0 + 0x634) as *const u32))
+         Rcgccan(read_volatile((self.0 + 0x634) as *const u32))
       }
    }
 #[doc="Write the RCGCCAN register."]
    #[inline] pub fn set_rcgccan<F: FnOnce(Rcgccan) -> Rcgccan>(&self, f: F) -> &Self {
       let value = f(Rcgccan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x634) as *mut u32, value.0);
+         write_volatile((self.0 + 0x634) as *mut u32, value.0);
       }
       self
    }
@@ -2882,7 +2882,7 @@ impl Sysctl {
       let tmp = self.rcgccan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x634) as *mut u32, value.0);
+         write_volatile((self.0 + 0x634) as *mut u32, value.0);
       }
       self
    }
@@ -2898,14 +2898,14 @@ impl Sysctl {
 #[doc="Read the RCGCADC register."]
    #[inline] pub fn rcgcadc(&self) -> Rcgcadc { 
       unsafe {
-         Rcgcadc(::core::ptr::read_volatile((self.0 + 0x638) as *const u32))
+         Rcgcadc(read_volatile((self.0 + 0x638) as *const u32))
       }
    }
 #[doc="Write the RCGCADC register."]
    #[inline] pub fn set_rcgcadc<F: FnOnce(Rcgcadc) -> Rcgcadc>(&self, f: F) -> &Self {
       let value = f(Rcgcadc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x638) as *mut u32, value.0);
+         write_volatile((self.0 + 0x638) as *mut u32, value.0);
       }
       self
    }
@@ -2914,7 +2914,7 @@ impl Sysctl {
       let tmp = self.rcgcadc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x638) as *mut u32, value.0);
+         write_volatile((self.0 + 0x638) as *mut u32, value.0);
       }
       self
    }
@@ -2930,14 +2930,14 @@ impl Sysctl {
 #[doc="Read the RCGCACMP register."]
    #[inline] pub fn rcgcacmp(&self) -> Rcgcacmp { 
       unsafe {
-         Rcgcacmp(::core::ptr::read_volatile((self.0 + 0x63c) as *const u32))
+         Rcgcacmp(read_volatile((self.0 + 0x63c) as *const u32))
       }
    }
 #[doc="Write the RCGCACMP register."]
    #[inline] pub fn set_rcgcacmp<F: FnOnce(Rcgcacmp) -> Rcgcacmp>(&self, f: F) -> &Self {
       let value = f(Rcgcacmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x63c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x63c) as *mut u32, value.0);
       }
       self
    }
@@ -2946,7 +2946,7 @@ impl Sysctl {
       let tmp = self.rcgcacmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x63c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x63c) as *mut u32, value.0);
       }
       self
    }
@@ -2962,14 +2962,14 @@ impl Sysctl {
 #[doc="Read the RCGCPWM register."]
    #[inline] pub fn rcgcpwm(&self) -> Rcgcpwm { 
       unsafe {
-         Rcgcpwm(::core::ptr::read_volatile((self.0 + 0x640) as *const u32))
+         Rcgcpwm(read_volatile((self.0 + 0x640) as *const u32))
       }
    }
 #[doc="Write the RCGCPWM register."]
    #[inline] pub fn set_rcgcpwm<F: FnOnce(Rcgcpwm) -> Rcgcpwm>(&self, f: F) -> &Self {
       let value = f(Rcgcpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x640) as *mut u32, value.0);
+         write_volatile((self.0 + 0x640) as *mut u32, value.0);
       }
       self
    }
@@ -2978,7 +2978,7 @@ impl Sysctl {
       let tmp = self.rcgcpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x640) as *mut u32, value.0);
+         write_volatile((self.0 + 0x640) as *mut u32, value.0);
       }
       self
    }
@@ -2994,14 +2994,14 @@ impl Sysctl {
 #[doc="Read the RCGCQEI register."]
    #[inline] pub fn rcgcqei(&self) -> Rcgcqei { 
       unsafe {
-         Rcgcqei(::core::ptr::read_volatile((self.0 + 0x644) as *const u32))
+         Rcgcqei(read_volatile((self.0 + 0x644) as *const u32))
       }
    }
 #[doc="Write the RCGCQEI register."]
    #[inline] pub fn set_rcgcqei<F: FnOnce(Rcgcqei) -> Rcgcqei>(&self, f: F) -> &Self {
       let value = f(Rcgcqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x644) as *mut u32, value.0);
+         write_volatile((self.0 + 0x644) as *mut u32, value.0);
       }
       self
    }
@@ -3010,7 +3010,7 @@ impl Sysctl {
       let tmp = self.rcgcqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x644) as *mut u32, value.0);
+         write_volatile((self.0 + 0x644) as *mut u32, value.0);
       }
       self
    }
@@ -3026,14 +3026,14 @@ impl Sysctl {
 #[doc="Read the RCGCEEPROM register."]
    #[inline] pub fn rcgceeprom(&self) -> Rcgceeprom { 
       unsafe {
-         Rcgceeprom(::core::ptr::read_volatile((self.0 + 0x658) as *const u32))
+         Rcgceeprom(read_volatile((self.0 + 0x658) as *const u32))
       }
    }
 #[doc="Write the RCGCEEPROM register."]
    #[inline] pub fn set_rcgceeprom<F: FnOnce(Rcgceeprom) -> Rcgceeprom>(&self, f: F) -> &Self {
       let value = f(Rcgceeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x658) as *mut u32, value.0);
+         write_volatile((self.0 + 0x658) as *mut u32, value.0);
       }
       self
    }
@@ -3042,7 +3042,7 @@ impl Sysctl {
       let tmp = self.rcgceeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x658) as *mut u32, value.0);
+         write_volatile((self.0 + 0x658) as *mut u32, value.0);
       }
       self
    }
@@ -3058,14 +3058,14 @@ impl Sysctl {
 #[doc="Read the RCGCCCM register."]
    #[inline] pub fn rcgcccm(&self) -> Rcgcccm { 
       unsafe {
-         Rcgcccm(::core::ptr::read_volatile((self.0 + 0x674) as *const u32))
+         Rcgcccm(read_volatile((self.0 + 0x674) as *const u32))
       }
    }
 #[doc="Write the RCGCCCM register."]
    #[inline] pub fn set_rcgcccm<F: FnOnce(Rcgcccm) -> Rcgcccm>(&self, f: F) -> &Self {
       let value = f(Rcgcccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x674) as *mut u32, value.0);
+         write_volatile((self.0 + 0x674) as *mut u32, value.0);
       }
       self
    }
@@ -3074,7 +3074,7 @@ impl Sysctl {
       let tmp = self.rcgcccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x674) as *mut u32, value.0);
+         write_volatile((self.0 + 0x674) as *mut u32, value.0);
       }
       self
    }
@@ -3090,14 +3090,14 @@ impl Sysctl {
 #[doc="Read the RCGCEMAC register."]
    #[inline] pub fn rcgcemac(&self) -> Rcgcemac { 
       unsafe {
-         Rcgcemac(::core::ptr::read_volatile((self.0 + 0x69c) as *const u32))
+         Rcgcemac(read_volatile((self.0 + 0x69c) as *const u32))
       }
    }
 #[doc="Write the RCGCEMAC register."]
    #[inline] pub fn set_rcgcemac<F: FnOnce(Rcgcemac) -> Rcgcemac>(&self, f: F) -> &Self {
       let value = f(Rcgcemac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x69c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x69c) as *mut u32, value.0);
       }
       self
    }
@@ -3106,7 +3106,7 @@ impl Sysctl {
       let tmp = self.rcgcemac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x69c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x69c) as *mut u32, value.0);
       }
       self
    }
@@ -3122,14 +3122,14 @@ impl Sysctl {
 #[doc="Read the SCGCWD register."]
    #[inline] pub fn scgcwd(&self) -> Scgcwd { 
       unsafe {
-         Scgcwd(::core::ptr::read_volatile((self.0 + 0x700) as *const u32))
+         Scgcwd(read_volatile((self.0 + 0x700) as *const u32))
       }
    }
 #[doc="Write the SCGCWD register."]
    #[inline] pub fn set_scgcwd<F: FnOnce(Scgcwd) -> Scgcwd>(&self, f: F) -> &Self {
       let value = f(Scgcwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x700) as *mut u32, value.0);
+         write_volatile((self.0 + 0x700) as *mut u32, value.0);
       }
       self
    }
@@ -3138,7 +3138,7 @@ impl Sysctl {
       let tmp = self.scgcwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x700) as *mut u32, value.0);
+         write_volatile((self.0 + 0x700) as *mut u32, value.0);
       }
       self
    }
@@ -3154,14 +3154,14 @@ impl Sysctl {
 #[doc="Read the SCGCTIMER register."]
    #[inline] pub fn scgctimer(&self) -> Scgctimer { 
       unsafe {
-         Scgctimer(::core::ptr::read_volatile((self.0 + 0x704) as *const u32))
+         Scgctimer(read_volatile((self.0 + 0x704) as *const u32))
       }
    }
 #[doc="Write the SCGCTIMER register."]
    #[inline] pub fn set_scgctimer<F: FnOnce(Scgctimer) -> Scgctimer>(&self, f: F) -> &Self {
       let value = f(Scgctimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x704) as *mut u32, value.0);
+         write_volatile((self.0 + 0x704) as *mut u32, value.0);
       }
       self
    }
@@ -3170,7 +3170,7 @@ impl Sysctl {
       let tmp = self.scgctimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x704) as *mut u32, value.0);
+         write_volatile((self.0 + 0x704) as *mut u32, value.0);
       }
       self
    }
@@ -3186,14 +3186,14 @@ impl Sysctl {
 #[doc="Read the SCGCGPIO register."]
    #[inline] pub fn scgcgpio(&self) -> Scgcgpio { 
       unsafe {
-         Scgcgpio(::core::ptr::read_volatile((self.0 + 0x708) as *const u32))
+         Scgcgpio(read_volatile((self.0 + 0x708) as *const u32))
       }
    }
 #[doc="Write the SCGCGPIO register."]
    #[inline] pub fn set_scgcgpio<F: FnOnce(Scgcgpio) -> Scgcgpio>(&self, f: F) -> &Self {
       let value = f(Scgcgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x708) as *mut u32, value.0);
+         write_volatile((self.0 + 0x708) as *mut u32, value.0);
       }
       self
    }
@@ -3202,7 +3202,7 @@ impl Sysctl {
       let tmp = self.scgcgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x708) as *mut u32, value.0);
+         write_volatile((self.0 + 0x708) as *mut u32, value.0);
       }
       self
    }
@@ -3218,14 +3218,14 @@ impl Sysctl {
 #[doc="Read the SCGCDMA register."]
    #[inline] pub fn scgcdma(&self) -> Scgcdma { 
       unsafe {
-         Scgcdma(::core::ptr::read_volatile((self.0 + 0x70c) as *const u32))
+         Scgcdma(read_volatile((self.0 + 0x70c) as *const u32))
       }
    }
 #[doc="Write the SCGCDMA register."]
    #[inline] pub fn set_scgcdma<F: FnOnce(Scgcdma) -> Scgcdma>(&self, f: F) -> &Self {
       let value = f(Scgcdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70c) as *mut u32, value.0);
       }
       self
    }
@@ -3234,7 +3234,7 @@ impl Sysctl {
       let tmp = self.scgcdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x70c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x70c) as *mut u32, value.0);
       }
       self
    }
@@ -3250,14 +3250,14 @@ impl Sysctl {
 #[doc="Read the SCGCEPI register."]
    #[inline] pub fn scgcepi(&self) -> Scgcepi { 
       unsafe {
-         Scgcepi(::core::ptr::read_volatile((self.0 + 0x710) as *const u32))
+         Scgcepi(read_volatile((self.0 + 0x710) as *const u32))
       }
    }
 #[doc="Write the SCGCEPI register."]
    #[inline] pub fn set_scgcepi<F: FnOnce(Scgcepi) -> Scgcepi>(&self, f: F) -> &Self {
       let value = f(Scgcepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x710) as *mut u32, value.0);
+         write_volatile((self.0 + 0x710) as *mut u32, value.0);
       }
       self
    }
@@ -3266,7 +3266,7 @@ impl Sysctl {
       let tmp = self.scgcepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x710) as *mut u32, value.0);
+         write_volatile((self.0 + 0x710) as *mut u32, value.0);
       }
       self
    }
@@ -3282,14 +3282,14 @@ impl Sysctl {
 #[doc="Read the SCGCHIB register."]
    #[inline] pub fn scgchib(&self) -> Scgchib { 
       unsafe {
-         Scgchib(::core::ptr::read_volatile((self.0 + 0x714) as *const u32))
+         Scgchib(read_volatile((self.0 + 0x714) as *const u32))
       }
    }
 #[doc="Write the SCGCHIB register."]
    #[inline] pub fn set_scgchib<F: FnOnce(Scgchib) -> Scgchib>(&self, f: F) -> &Self {
       let value = f(Scgchib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x714) as *mut u32, value.0);
+         write_volatile((self.0 + 0x714) as *mut u32, value.0);
       }
       self
    }
@@ -3298,7 +3298,7 @@ impl Sysctl {
       let tmp = self.scgchib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x714) as *mut u32, value.0);
+         write_volatile((self.0 + 0x714) as *mut u32, value.0);
       }
       self
    }
@@ -3314,14 +3314,14 @@ impl Sysctl {
 #[doc="Read the SCGCUART register."]
    #[inline] pub fn scgcuart(&self) -> Scgcuart { 
       unsafe {
-         Scgcuart(::core::ptr::read_volatile((self.0 + 0x718) as *const u32))
+         Scgcuart(read_volatile((self.0 + 0x718) as *const u32))
       }
    }
 #[doc="Write the SCGCUART register."]
    #[inline] pub fn set_scgcuart<F: FnOnce(Scgcuart) -> Scgcuart>(&self, f: F) -> &Self {
       let value = f(Scgcuart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x718) as *mut u32, value.0);
+         write_volatile((self.0 + 0x718) as *mut u32, value.0);
       }
       self
    }
@@ -3330,7 +3330,7 @@ impl Sysctl {
       let tmp = self.scgcuart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x718) as *mut u32, value.0);
+         write_volatile((self.0 + 0x718) as *mut u32, value.0);
       }
       self
    }
@@ -3346,14 +3346,14 @@ impl Sysctl {
 #[doc="Read the SCGCSSI register."]
    #[inline] pub fn scgcssi(&self) -> Scgcssi { 
       unsafe {
-         Scgcssi(::core::ptr::read_volatile((self.0 + 0x71c) as *const u32))
+         Scgcssi(read_volatile((self.0 + 0x71c) as *const u32))
       }
    }
 #[doc="Write the SCGCSSI register."]
    #[inline] pub fn set_scgcssi<F: FnOnce(Scgcssi) -> Scgcssi>(&self, f: F) -> &Self {
       let value = f(Scgcssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x71c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x71c) as *mut u32, value.0);
       }
       self
    }
@@ -3362,7 +3362,7 @@ impl Sysctl {
       let tmp = self.scgcssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x71c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x71c) as *mut u32, value.0);
       }
       self
    }
@@ -3378,14 +3378,14 @@ impl Sysctl {
 #[doc="Read the SCGCI2C register."]
    #[inline] pub fn scgci2c(&self) -> Scgci2c { 
       unsafe {
-         Scgci2c(::core::ptr::read_volatile((self.0 + 0x720) as *const u32))
+         Scgci2c(read_volatile((self.0 + 0x720) as *const u32))
       }
    }
 #[doc="Write the SCGCI2C register."]
    #[inline] pub fn set_scgci2c<F: FnOnce(Scgci2c) -> Scgci2c>(&self, f: F) -> &Self {
       let value = f(Scgci2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x720) as *mut u32, value.0);
+         write_volatile((self.0 + 0x720) as *mut u32, value.0);
       }
       self
    }
@@ -3394,7 +3394,7 @@ impl Sysctl {
       let tmp = self.scgci2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x720) as *mut u32, value.0);
+         write_volatile((self.0 + 0x720) as *mut u32, value.0);
       }
       self
    }
@@ -3410,14 +3410,14 @@ impl Sysctl {
 #[doc="Read the SCGCUSB register."]
    #[inline] pub fn scgcusb(&self) -> Scgcusb { 
       unsafe {
-         Scgcusb(::core::ptr::read_volatile((self.0 + 0x728) as *const u32))
+         Scgcusb(read_volatile((self.0 + 0x728) as *const u32))
       }
    }
 #[doc="Write the SCGCUSB register."]
    #[inline] pub fn set_scgcusb<F: FnOnce(Scgcusb) -> Scgcusb>(&self, f: F) -> &Self {
       let value = f(Scgcusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x728) as *mut u32, value.0);
+         write_volatile((self.0 + 0x728) as *mut u32, value.0);
       }
       self
    }
@@ -3426,7 +3426,7 @@ impl Sysctl {
       let tmp = self.scgcusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x728) as *mut u32, value.0);
+         write_volatile((self.0 + 0x728) as *mut u32, value.0);
       }
       self
    }
@@ -3442,14 +3442,14 @@ impl Sysctl {
 #[doc="Read the SCGCEPHY register."]
    #[inline] pub fn scgcephy(&self) -> Scgcephy { 
       unsafe {
-         Scgcephy(::core::ptr::read_volatile((self.0 + 0x730) as *const u32))
+         Scgcephy(read_volatile((self.0 + 0x730) as *const u32))
       }
    }
 #[doc="Write the SCGCEPHY register."]
    #[inline] pub fn set_scgcephy<F: FnOnce(Scgcephy) -> Scgcephy>(&self, f: F) -> &Self {
       let value = f(Scgcephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x730) as *mut u32, value.0);
+         write_volatile((self.0 + 0x730) as *mut u32, value.0);
       }
       self
    }
@@ -3458,7 +3458,7 @@ impl Sysctl {
       let tmp = self.scgcephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x730) as *mut u32, value.0);
+         write_volatile((self.0 + 0x730) as *mut u32, value.0);
       }
       self
    }
@@ -3474,14 +3474,14 @@ impl Sysctl {
 #[doc="Read the SCGCCAN register."]
    #[inline] pub fn scgccan(&self) -> Scgccan { 
       unsafe {
-         Scgccan(::core::ptr::read_volatile((self.0 + 0x734) as *const u32))
+         Scgccan(read_volatile((self.0 + 0x734) as *const u32))
       }
    }
 #[doc="Write the SCGCCAN register."]
    #[inline] pub fn set_scgccan<F: FnOnce(Scgccan) -> Scgccan>(&self, f: F) -> &Self {
       let value = f(Scgccan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x734) as *mut u32, value.0);
+         write_volatile((self.0 + 0x734) as *mut u32, value.0);
       }
       self
    }
@@ -3490,7 +3490,7 @@ impl Sysctl {
       let tmp = self.scgccan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x734) as *mut u32, value.0);
+         write_volatile((self.0 + 0x734) as *mut u32, value.0);
       }
       self
    }
@@ -3506,14 +3506,14 @@ impl Sysctl {
 #[doc="Read the SCGCADC register."]
    #[inline] pub fn scgcadc(&self) -> Scgcadc { 
       unsafe {
-         Scgcadc(::core::ptr::read_volatile((self.0 + 0x738) as *const u32))
+         Scgcadc(read_volatile((self.0 + 0x738) as *const u32))
       }
    }
 #[doc="Write the SCGCADC register."]
    #[inline] pub fn set_scgcadc<F: FnOnce(Scgcadc) -> Scgcadc>(&self, f: F) -> &Self {
       let value = f(Scgcadc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x738) as *mut u32, value.0);
+         write_volatile((self.0 + 0x738) as *mut u32, value.0);
       }
       self
    }
@@ -3522,7 +3522,7 @@ impl Sysctl {
       let tmp = self.scgcadc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x738) as *mut u32, value.0);
+         write_volatile((self.0 + 0x738) as *mut u32, value.0);
       }
       self
    }
@@ -3538,14 +3538,14 @@ impl Sysctl {
 #[doc="Read the SCGCACMP register."]
    #[inline] pub fn scgcacmp(&self) -> Scgcacmp { 
       unsafe {
-         Scgcacmp(::core::ptr::read_volatile((self.0 + 0x73c) as *const u32))
+         Scgcacmp(read_volatile((self.0 + 0x73c) as *const u32))
       }
    }
 #[doc="Write the SCGCACMP register."]
    #[inline] pub fn set_scgcacmp<F: FnOnce(Scgcacmp) -> Scgcacmp>(&self, f: F) -> &Self {
       let value = f(Scgcacmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x73c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x73c) as *mut u32, value.0);
       }
       self
    }
@@ -3554,7 +3554,7 @@ impl Sysctl {
       let tmp = self.scgcacmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x73c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x73c) as *mut u32, value.0);
       }
       self
    }
@@ -3570,14 +3570,14 @@ impl Sysctl {
 #[doc="Read the SCGCPWM register."]
    #[inline] pub fn scgcpwm(&self) -> Scgcpwm { 
       unsafe {
-         Scgcpwm(::core::ptr::read_volatile((self.0 + 0x740) as *const u32))
+         Scgcpwm(read_volatile((self.0 + 0x740) as *const u32))
       }
    }
 #[doc="Write the SCGCPWM register."]
    #[inline] pub fn set_scgcpwm<F: FnOnce(Scgcpwm) -> Scgcpwm>(&self, f: F) -> &Self {
       let value = f(Scgcpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x740) as *mut u32, value.0);
+         write_volatile((self.0 + 0x740) as *mut u32, value.0);
       }
       self
    }
@@ -3586,7 +3586,7 @@ impl Sysctl {
       let tmp = self.scgcpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x740) as *mut u32, value.0);
+         write_volatile((self.0 + 0x740) as *mut u32, value.0);
       }
       self
    }
@@ -3602,14 +3602,14 @@ impl Sysctl {
 #[doc="Read the SCGCQEI register."]
    #[inline] pub fn scgcqei(&self) -> Scgcqei { 
       unsafe {
-         Scgcqei(::core::ptr::read_volatile((self.0 + 0x744) as *const u32))
+         Scgcqei(read_volatile((self.0 + 0x744) as *const u32))
       }
    }
 #[doc="Write the SCGCQEI register."]
    #[inline] pub fn set_scgcqei<F: FnOnce(Scgcqei) -> Scgcqei>(&self, f: F) -> &Self {
       let value = f(Scgcqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x744) as *mut u32, value.0);
+         write_volatile((self.0 + 0x744) as *mut u32, value.0);
       }
       self
    }
@@ -3618,7 +3618,7 @@ impl Sysctl {
       let tmp = self.scgcqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x744) as *mut u32, value.0);
+         write_volatile((self.0 + 0x744) as *mut u32, value.0);
       }
       self
    }
@@ -3634,14 +3634,14 @@ impl Sysctl {
 #[doc="Read the SCGCEEPROM register."]
    #[inline] pub fn scgceeprom(&self) -> Scgceeprom { 
       unsafe {
-         Scgceeprom(::core::ptr::read_volatile((self.0 + 0x758) as *const u32))
+         Scgceeprom(read_volatile((self.0 + 0x758) as *const u32))
       }
    }
 #[doc="Write the SCGCEEPROM register."]
    #[inline] pub fn set_scgceeprom<F: FnOnce(Scgceeprom) -> Scgceeprom>(&self, f: F) -> &Self {
       let value = f(Scgceeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x758) as *mut u32, value.0);
+         write_volatile((self.0 + 0x758) as *mut u32, value.0);
       }
       self
    }
@@ -3650,7 +3650,7 @@ impl Sysctl {
       let tmp = self.scgceeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x758) as *mut u32, value.0);
+         write_volatile((self.0 + 0x758) as *mut u32, value.0);
       }
       self
    }
@@ -3666,14 +3666,14 @@ impl Sysctl {
 #[doc="Read the SCGCCCM register."]
    #[inline] pub fn scgcccm(&self) -> Scgcccm { 
       unsafe {
-         Scgcccm(::core::ptr::read_volatile((self.0 + 0x774) as *const u32))
+         Scgcccm(read_volatile((self.0 + 0x774) as *const u32))
       }
    }
 #[doc="Write the SCGCCCM register."]
    #[inline] pub fn set_scgcccm<F: FnOnce(Scgcccm) -> Scgcccm>(&self, f: F) -> &Self {
       let value = f(Scgcccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x774) as *mut u32, value.0);
+         write_volatile((self.0 + 0x774) as *mut u32, value.0);
       }
       self
    }
@@ -3682,7 +3682,7 @@ impl Sysctl {
       let tmp = self.scgcccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x774) as *mut u32, value.0);
+         write_volatile((self.0 + 0x774) as *mut u32, value.0);
       }
       self
    }
@@ -3698,14 +3698,14 @@ impl Sysctl {
 #[doc="Read the SCGCEMAC register."]
    #[inline] pub fn scgcemac(&self) -> Scgcemac { 
       unsafe {
-         Scgcemac(::core::ptr::read_volatile((self.0 + 0x79c) as *const u32))
+         Scgcemac(read_volatile((self.0 + 0x79c) as *const u32))
       }
    }
 #[doc="Write the SCGCEMAC register."]
    #[inline] pub fn set_scgcemac<F: FnOnce(Scgcemac) -> Scgcemac>(&self, f: F) -> &Self {
       let value = f(Scgcemac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x79c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x79c) as *mut u32, value.0);
       }
       self
    }
@@ -3714,7 +3714,7 @@ impl Sysctl {
       let tmp = self.scgcemac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x79c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x79c) as *mut u32, value.0);
       }
       self
    }
@@ -3730,14 +3730,14 @@ impl Sysctl {
 #[doc="Read the DCGCWD register."]
    #[inline] pub fn dcgcwd(&self) -> Dcgcwd { 
       unsafe {
-         Dcgcwd(::core::ptr::read_volatile((self.0 + 0x800) as *const u32))
+         Dcgcwd(read_volatile((self.0 + 0x800) as *const u32))
       }
    }
 #[doc="Write the DCGCWD register."]
    #[inline] pub fn set_dcgcwd<F: FnOnce(Dcgcwd) -> Dcgcwd>(&self, f: F) -> &Self {
       let value = f(Dcgcwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x800) as *mut u32, value.0);
+         write_volatile((self.0 + 0x800) as *mut u32, value.0);
       }
       self
    }
@@ -3746,7 +3746,7 @@ impl Sysctl {
       let tmp = self.dcgcwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x800) as *mut u32, value.0);
+         write_volatile((self.0 + 0x800) as *mut u32, value.0);
       }
       self
    }
@@ -3762,14 +3762,14 @@ impl Sysctl {
 #[doc="Read the DCGCTIMER register."]
    #[inline] pub fn dcgctimer(&self) -> Dcgctimer { 
       unsafe {
-         Dcgctimer(::core::ptr::read_volatile((self.0 + 0x804) as *const u32))
+         Dcgctimer(read_volatile((self.0 + 0x804) as *const u32))
       }
    }
 #[doc="Write the DCGCTIMER register."]
    #[inline] pub fn set_dcgctimer<F: FnOnce(Dcgctimer) -> Dcgctimer>(&self, f: F) -> &Self {
       let value = f(Dcgctimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x804) as *mut u32, value.0);
+         write_volatile((self.0 + 0x804) as *mut u32, value.0);
       }
       self
    }
@@ -3778,7 +3778,7 @@ impl Sysctl {
       let tmp = self.dcgctimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x804) as *mut u32, value.0);
+         write_volatile((self.0 + 0x804) as *mut u32, value.0);
       }
       self
    }
@@ -3794,14 +3794,14 @@ impl Sysctl {
 #[doc="Read the DCGCGPIO register."]
    #[inline] pub fn dcgcgpio(&self) -> Dcgcgpio { 
       unsafe {
-         Dcgcgpio(::core::ptr::read_volatile((self.0 + 0x808) as *const u32))
+         Dcgcgpio(read_volatile((self.0 + 0x808) as *const u32))
       }
    }
 #[doc="Write the DCGCGPIO register."]
    #[inline] pub fn set_dcgcgpio<F: FnOnce(Dcgcgpio) -> Dcgcgpio>(&self, f: F) -> &Self {
       let value = f(Dcgcgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x808) as *mut u32, value.0);
+         write_volatile((self.0 + 0x808) as *mut u32, value.0);
       }
       self
    }
@@ -3810,7 +3810,7 @@ impl Sysctl {
       let tmp = self.dcgcgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x808) as *mut u32, value.0);
+         write_volatile((self.0 + 0x808) as *mut u32, value.0);
       }
       self
    }
@@ -3826,14 +3826,14 @@ impl Sysctl {
 #[doc="Read the DCGCDMA register."]
    #[inline] pub fn dcgcdma(&self) -> Dcgcdma { 
       unsafe {
-         Dcgcdma(::core::ptr::read_volatile((self.0 + 0x80c) as *const u32))
+         Dcgcdma(read_volatile((self.0 + 0x80c) as *const u32))
       }
    }
 #[doc="Write the DCGCDMA register."]
    #[inline] pub fn set_dcgcdma<F: FnOnce(Dcgcdma) -> Dcgcdma>(&self, f: F) -> &Self {
       let value = f(Dcgcdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80c) as *mut u32, value.0);
       }
       self
    }
@@ -3842,7 +3842,7 @@ impl Sysctl {
       let tmp = self.dcgcdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x80c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x80c) as *mut u32, value.0);
       }
       self
    }
@@ -3858,14 +3858,14 @@ impl Sysctl {
 #[doc="Read the DCGCEPI register."]
    #[inline] pub fn dcgcepi(&self) -> Dcgcepi { 
       unsafe {
-         Dcgcepi(::core::ptr::read_volatile((self.0 + 0x810) as *const u32))
+         Dcgcepi(read_volatile((self.0 + 0x810) as *const u32))
       }
    }
 #[doc="Write the DCGCEPI register."]
    #[inline] pub fn set_dcgcepi<F: FnOnce(Dcgcepi) -> Dcgcepi>(&self, f: F) -> &Self {
       let value = f(Dcgcepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x810) as *mut u32, value.0);
+         write_volatile((self.0 + 0x810) as *mut u32, value.0);
       }
       self
    }
@@ -3874,7 +3874,7 @@ impl Sysctl {
       let tmp = self.dcgcepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x810) as *mut u32, value.0);
+         write_volatile((self.0 + 0x810) as *mut u32, value.0);
       }
       self
    }
@@ -3890,14 +3890,14 @@ impl Sysctl {
 #[doc="Read the DCGCHIB register."]
    #[inline] pub fn dcgchib(&self) -> Dcgchib { 
       unsafe {
-         Dcgchib(::core::ptr::read_volatile((self.0 + 0x814) as *const u32))
+         Dcgchib(read_volatile((self.0 + 0x814) as *const u32))
       }
    }
 #[doc="Write the DCGCHIB register."]
    #[inline] pub fn set_dcgchib<F: FnOnce(Dcgchib) -> Dcgchib>(&self, f: F) -> &Self {
       let value = f(Dcgchib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x814) as *mut u32, value.0);
+         write_volatile((self.0 + 0x814) as *mut u32, value.0);
       }
       self
    }
@@ -3906,7 +3906,7 @@ impl Sysctl {
       let tmp = self.dcgchib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x814) as *mut u32, value.0);
+         write_volatile((self.0 + 0x814) as *mut u32, value.0);
       }
       self
    }
@@ -3922,14 +3922,14 @@ impl Sysctl {
 #[doc="Read the DCGCUART register."]
    #[inline] pub fn dcgcuart(&self) -> Dcgcuart { 
       unsafe {
-         Dcgcuart(::core::ptr::read_volatile((self.0 + 0x818) as *const u32))
+         Dcgcuart(read_volatile((self.0 + 0x818) as *const u32))
       }
    }
 #[doc="Write the DCGCUART register."]
    #[inline] pub fn set_dcgcuart<F: FnOnce(Dcgcuart) -> Dcgcuart>(&self, f: F) -> &Self {
       let value = f(Dcgcuart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x818) as *mut u32, value.0);
+         write_volatile((self.0 + 0x818) as *mut u32, value.0);
       }
       self
    }
@@ -3938,7 +3938,7 @@ impl Sysctl {
       let tmp = self.dcgcuart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x818) as *mut u32, value.0);
+         write_volatile((self.0 + 0x818) as *mut u32, value.0);
       }
       self
    }
@@ -3954,14 +3954,14 @@ impl Sysctl {
 #[doc="Read the DCGCSSI register."]
    #[inline] pub fn dcgcssi(&self) -> Dcgcssi { 
       unsafe {
-         Dcgcssi(::core::ptr::read_volatile((self.0 + 0x81c) as *const u32))
+         Dcgcssi(read_volatile((self.0 + 0x81c) as *const u32))
       }
    }
 #[doc="Write the DCGCSSI register."]
    #[inline] pub fn set_dcgcssi<F: FnOnce(Dcgcssi) -> Dcgcssi>(&self, f: F) -> &Self {
       let value = f(Dcgcssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x81c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x81c) as *mut u32, value.0);
       }
       self
    }
@@ -3970,7 +3970,7 @@ impl Sysctl {
       let tmp = self.dcgcssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x81c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x81c) as *mut u32, value.0);
       }
       self
    }
@@ -3986,14 +3986,14 @@ impl Sysctl {
 #[doc="Read the DCGCI2C register."]
    #[inline] pub fn dcgci2c(&self) -> Dcgci2c { 
       unsafe {
-         Dcgci2c(::core::ptr::read_volatile((self.0 + 0x820) as *const u32))
+         Dcgci2c(read_volatile((self.0 + 0x820) as *const u32))
       }
    }
 #[doc="Write the DCGCI2C register."]
    #[inline] pub fn set_dcgci2c<F: FnOnce(Dcgci2c) -> Dcgci2c>(&self, f: F) -> &Self {
       let value = f(Dcgci2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x820) as *mut u32, value.0);
+         write_volatile((self.0 + 0x820) as *mut u32, value.0);
       }
       self
    }
@@ -4002,7 +4002,7 @@ impl Sysctl {
       let tmp = self.dcgci2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x820) as *mut u32, value.0);
+         write_volatile((self.0 + 0x820) as *mut u32, value.0);
       }
       self
    }
@@ -4018,14 +4018,14 @@ impl Sysctl {
 #[doc="Read the DCGCUSB register."]
    #[inline] pub fn dcgcusb(&self) -> Dcgcusb { 
       unsafe {
-         Dcgcusb(::core::ptr::read_volatile((self.0 + 0x828) as *const u32))
+         Dcgcusb(read_volatile((self.0 + 0x828) as *const u32))
       }
    }
 #[doc="Write the DCGCUSB register."]
    #[inline] pub fn set_dcgcusb<F: FnOnce(Dcgcusb) -> Dcgcusb>(&self, f: F) -> &Self {
       let value = f(Dcgcusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x828) as *mut u32, value.0);
+         write_volatile((self.0 + 0x828) as *mut u32, value.0);
       }
       self
    }
@@ -4034,7 +4034,7 @@ impl Sysctl {
       let tmp = self.dcgcusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x828) as *mut u32, value.0);
+         write_volatile((self.0 + 0x828) as *mut u32, value.0);
       }
       self
    }
@@ -4050,14 +4050,14 @@ impl Sysctl {
 #[doc="Read the DCGCEPHY register."]
    #[inline] pub fn dcgcephy(&self) -> Dcgcephy { 
       unsafe {
-         Dcgcephy(::core::ptr::read_volatile((self.0 + 0x830) as *const u32))
+         Dcgcephy(read_volatile((self.0 + 0x830) as *const u32))
       }
    }
 #[doc="Write the DCGCEPHY register."]
    #[inline] pub fn set_dcgcephy<F: FnOnce(Dcgcephy) -> Dcgcephy>(&self, f: F) -> &Self {
       let value = f(Dcgcephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x830) as *mut u32, value.0);
+         write_volatile((self.0 + 0x830) as *mut u32, value.0);
       }
       self
    }
@@ -4066,7 +4066,7 @@ impl Sysctl {
       let tmp = self.dcgcephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x830) as *mut u32, value.0);
+         write_volatile((self.0 + 0x830) as *mut u32, value.0);
       }
       self
    }
@@ -4082,14 +4082,14 @@ impl Sysctl {
 #[doc="Read the DCGCCAN register."]
    #[inline] pub fn dcgccan(&self) -> Dcgccan { 
       unsafe {
-         Dcgccan(::core::ptr::read_volatile((self.0 + 0x834) as *const u32))
+         Dcgccan(read_volatile((self.0 + 0x834) as *const u32))
       }
    }
 #[doc="Write the DCGCCAN register."]
    #[inline] pub fn set_dcgccan<F: FnOnce(Dcgccan) -> Dcgccan>(&self, f: F) -> &Self {
       let value = f(Dcgccan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x834) as *mut u32, value.0);
+         write_volatile((self.0 + 0x834) as *mut u32, value.0);
       }
       self
    }
@@ -4098,7 +4098,7 @@ impl Sysctl {
       let tmp = self.dcgccan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x834) as *mut u32, value.0);
+         write_volatile((self.0 + 0x834) as *mut u32, value.0);
       }
       self
    }
@@ -4114,14 +4114,14 @@ impl Sysctl {
 #[doc="Read the DCGCADC register."]
    #[inline] pub fn dcgcadc(&self) -> Dcgcadc { 
       unsafe {
-         Dcgcadc(::core::ptr::read_volatile((self.0 + 0x838) as *const u32))
+         Dcgcadc(read_volatile((self.0 + 0x838) as *const u32))
       }
    }
 #[doc="Write the DCGCADC register."]
    #[inline] pub fn set_dcgcadc<F: FnOnce(Dcgcadc) -> Dcgcadc>(&self, f: F) -> &Self {
       let value = f(Dcgcadc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x838) as *mut u32, value.0);
+         write_volatile((self.0 + 0x838) as *mut u32, value.0);
       }
       self
    }
@@ -4130,7 +4130,7 @@ impl Sysctl {
       let tmp = self.dcgcadc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x838) as *mut u32, value.0);
+         write_volatile((self.0 + 0x838) as *mut u32, value.0);
       }
       self
    }
@@ -4146,14 +4146,14 @@ impl Sysctl {
 #[doc="Read the DCGCACMP register."]
    #[inline] pub fn dcgcacmp(&self) -> Dcgcacmp { 
       unsafe {
-         Dcgcacmp(::core::ptr::read_volatile((self.0 + 0x83c) as *const u32))
+         Dcgcacmp(read_volatile((self.0 + 0x83c) as *const u32))
       }
    }
 #[doc="Write the DCGCACMP register."]
    #[inline] pub fn set_dcgcacmp<F: FnOnce(Dcgcacmp) -> Dcgcacmp>(&self, f: F) -> &Self {
       let value = f(Dcgcacmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x83c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x83c) as *mut u32, value.0);
       }
       self
    }
@@ -4162,7 +4162,7 @@ impl Sysctl {
       let tmp = self.dcgcacmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x83c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x83c) as *mut u32, value.0);
       }
       self
    }
@@ -4178,14 +4178,14 @@ impl Sysctl {
 #[doc="Read the DCGCPWM register."]
    #[inline] pub fn dcgcpwm(&self) -> Dcgcpwm { 
       unsafe {
-         Dcgcpwm(::core::ptr::read_volatile((self.0 + 0x840) as *const u32))
+         Dcgcpwm(read_volatile((self.0 + 0x840) as *const u32))
       }
    }
 #[doc="Write the DCGCPWM register."]
    #[inline] pub fn set_dcgcpwm<F: FnOnce(Dcgcpwm) -> Dcgcpwm>(&self, f: F) -> &Self {
       let value = f(Dcgcpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x840) as *mut u32, value.0);
+         write_volatile((self.0 + 0x840) as *mut u32, value.0);
       }
       self
    }
@@ -4194,7 +4194,7 @@ impl Sysctl {
       let tmp = self.dcgcpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x840) as *mut u32, value.0);
+         write_volatile((self.0 + 0x840) as *mut u32, value.0);
       }
       self
    }
@@ -4210,14 +4210,14 @@ impl Sysctl {
 #[doc="Read the DCGCQEI register."]
    #[inline] pub fn dcgcqei(&self) -> Dcgcqei { 
       unsafe {
-         Dcgcqei(::core::ptr::read_volatile((self.0 + 0x844) as *const u32))
+         Dcgcqei(read_volatile((self.0 + 0x844) as *const u32))
       }
    }
 #[doc="Write the DCGCQEI register."]
    #[inline] pub fn set_dcgcqei<F: FnOnce(Dcgcqei) -> Dcgcqei>(&self, f: F) -> &Self {
       let value = f(Dcgcqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x844) as *mut u32, value.0);
+         write_volatile((self.0 + 0x844) as *mut u32, value.0);
       }
       self
    }
@@ -4226,7 +4226,7 @@ impl Sysctl {
       let tmp = self.dcgcqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x844) as *mut u32, value.0);
+         write_volatile((self.0 + 0x844) as *mut u32, value.0);
       }
       self
    }
@@ -4242,14 +4242,14 @@ impl Sysctl {
 #[doc="Read the DCGCEEPROM register."]
    #[inline] pub fn dcgceeprom(&self) -> Dcgceeprom { 
       unsafe {
-         Dcgceeprom(::core::ptr::read_volatile((self.0 + 0x858) as *const u32))
+         Dcgceeprom(read_volatile((self.0 + 0x858) as *const u32))
       }
    }
 #[doc="Write the DCGCEEPROM register."]
    #[inline] pub fn set_dcgceeprom<F: FnOnce(Dcgceeprom) -> Dcgceeprom>(&self, f: F) -> &Self {
       let value = f(Dcgceeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x858) as *mut u32, value.0);
+         write_volatile((self.0 + 0x858) as *mut u32, value.0);
       }
       self
    }
@@ -4258,7 +4258,7 @@ impl Sysctl {
       let tmp = self.dcgceeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x858) as *mut u32, value.0);
+         write_volatile((self.0 + 0x858) as *mut u32, value.0);
       }
       self
    }
@@ -4274,14 +4274,14 @@ impl Sysctl {
 #[doc="Read the DCGCCCM register."]
    #[inline] pub fn dcgcccm(&self) -> Dcgcccm { 
       unsafe {
-         Dcgcccm(::core::ptr::read_volatile((self.0 + 0x874) as *const u32))
+         Dcgcccm(read_volatile((self.0 + 0x874) as *const u32))
       }
    }
 #[doc="Write the DCGCCCM register."]
    #[inline] pub fn set_dcgcccm<F: FnOnce(Dcgcccm) -> Dcgcccm>(&self, f: F) -> &Self {
       let value = f(Dcgcccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x874) as *mut u32, value.0);
+         write_volatile((self.0 + 0x874) as *mut u32, value.0);
       }
       self
    }
@@ -4290,7 +4290,7 @@ impl Sysctl {
       let tmp = self.dcgcccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x874) as *mut u32, value.0);
+         write_volatile((self.0 + 0x874) as *mut u32, value.0);
       }
       self
    }
@@ -4306,14 +4306,14 @@ impl Sysctl {
 #[doc="Read the DCGCEMAC register."]
    #[inline] pub fn dcgcemac(&self) -> Dcgcemac { 
       unsafe {
-         Dcgcemac(::core::ptr::read_volatile((self.0 + 0x89c) as *const u32))
+         Dcgcemac(read_volatile((self.0 + 0x89c) as *const u32))
       }
    }
 #[doc="Write the DCGCEMAC register."]
    #[inline] pub fn set_dcgcemac<F: FnOnce(Dcgcemac) -> Dcgcemac>(&self, f: F) -> &Self {
       let value = f(Dcgcemac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x89c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x89c) as *mut u32, value.0);
       }
       self
    }
@@ -4322,7 +4322,7 @@ impl Sysctl {
       let tmp = self.dcgcemac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x89c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x89c) as *mut u32, value.0);
       }
       self
    }
@@ -4338,14 +4338,14 @@ impl Sysctl {
 #[doc="Read the PCWD register."]
    #[inline] pub fn pcwd(&self) -> Pcwd { 
       unsafe {
-         Pcwd(::core::ptr::read_volatile((self.0 + 0x900) as *const u32))
+         Pcwd(read_volatile((self.0 + 0x900) as *const u32))
       }
    }
 #[doc="Write the PCWD register."]
    #[inline] pub fn set_pcwd<F: FnOnce(Pcwd) -> Pcwd>(&self, f: F) -> &Self {
       let value = f(Pcwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x900) as *mut u32, value.0);
+         write_volatile((self.0 + 0x900) as *mut u32, value.0);
       }
       self
    }
@@ -4354,7 +4354,7 @@ impl Sysctl {
       let tmp = self.pcwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x900) as *mut u32, value.0);
+         write_volatile((self.0 + 0x900) as *mut u32, value.0);
       }
       self
    }
@@ -4370,14 +4370,14 @@ impl Sysctl {
 #[doc="Read the PCTIMER register."]
    #[inline] pub fn pctimer(&self) -> Pctimer { 
       unsafe {
-         Pctimer(::core::ptr::read_volatile((self.0 + 0x904) as *const u32))
+         Pctimer(read_volatile((self.0 + 0x904) as *const u32))
       }
    }
 #[doc="Write the PCTIMER register."]
    #[inline] pub fn set_pctimer<F: FnOnce(Pctimer) -> Pctimer>(&self, f: F) -> &Self {
       let value = f(Pctimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x904) as *mut u32, value.0);
+         write_volatile((self.0 + 0x904) as *mut u32, value.0);
       }
       self
    }
@@ -4386,7 +4386,7 @@ impl Sysctl {
       let tmp = self.pctimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x904) as *mut u32, value.0);
+         write_volatile((self.0 + 0x904) as *mut u32, value.0);
       }
       self
    }
@@ -4402,14 +4402,14 @@ impl Sysctl {
 #[doc="Read the PCGPIO register."]
    #[inline] pub fn pcgpio(&self) -> Pcgpio { 
       unsafe {
-         Pcgpio(::core::ptr::read_volatile((self.0 + 0x908) as *const u32))
+         Pcgpio(read_volatile((self.0 + 0x908) as *const u32))
       }
    }
 #[doc="Write the PCGPIO register."]
    #[inline] pub fn set_pcgpio<F: FnOnce(Pcgpio) -> Pcgpio>(&self, f: F) -> &Self {
       let value = f(Pcgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x908) as *mut u32, value.0);
+         write_volatile((self.0 + 0x908) as *mut u32, value.0);
       }
       self
    }
@@ -4418,7 +4418,7 @@ impl Sysctl {
       let tmp = self.pcgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x908) as *mut u32, value.0);
+         write_volatile((self.0 + 0x908) as *mut u32, value.0);
       }
       self
    }
@@ -4434,14 +4434,14 @@ impl Sysctl {
 #[doc="Read the PCDMA register."]
    #[inline] pub fn pcdma(&self) -> Pcdma { 
       unsafe {
-         Pcdma(::core::ptr::read_volatile((self.0 + 0x90c) as *const u32))
+         Pcdma(read_volatile((self.0 + 0x90c) as *const u32))
       }
    }
 #[doc="Write the PCDMA register."]
    #[inline] pub fn set_pcdma<F: FnOnce(Pcdma) -> Pcdma>(&self, f: F) -> &Self {
       let value = f(Pcdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x90c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x90c) as *mut u32, value.0);
       }
       self
    }
@@ -4450,7 +4450,7 @@ impl Sysctl {
       let tmp = self.pcdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x90c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x90c) as *mut u32, value.0);
       }
       self
    }
@@ -4466,14 +4466,14 @@ impl Sysctl {
 #[doc="Read the PCEPI register."]
    #[inline] pub fn pcepi(&self) -> Pcepi { 
       unsafe {
-         Pcepi(::core::ptr::read_volatile((self.0 + 0x910) as *const u32))
+         Pcepi(read_volatile((self.0 + 0x910) as *const u32))
       }
    }
 #[doc="Write the PCEPI register."]
    #[inline] pub fn set_pcepi<F: FnOnce(Pcepi) -> Pcepi>(&self, f: F) -> &Self {
       let value = f(Pcepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x910) as *mut u32, value.0);
+         write_volatile((self.0 + 0x910) as *mut u32, value.0);
       }
       self
    }
@@ -4482,7 +4482,7 @@ impl Sysctl {
       let tmp = self.pcepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x910) as *mut u32, value.0);
+         write_volatile((self.0 + 0x910) as *mut u32, value.0);
       }
       self
    }
@@ -4498,14 +4498,14 @@ impl Sysctl {
 #[doc="Read the PCHIB register."]
    #[inline] pub fn pchib(&self) -> Pchib { 
       unsafe {
-         Pchib(::core::ptr::read_volatile((self.0 + 0x914) as *const u32))
+         Pchib(read_volatile((self.0 + 0x914) as *const u32))
       }
    }
 #[doc="Write the PCHIB register."]
    #[inline] pub fn set_pchib<F: FnOnce(Pchib) -> Pchib>(&self, f: F) -> &Self {
       let value = f(Pchib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x914) as *mut u32, value.0);
+         write_volatile((self.0 + 0x914) as *mut u32, value.0);
       }
       self
    }
@@ -4514,7 +4514,7 @@ impl Sysctl {
       let tmp = self.pchib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x914) as *mut u32, value.0);
+         write_volatile((self.0 + 0x914) as *mut u32, value.0);
       }
       self
    }
@@ -4530,14 +4530,14 @@ impl Sysctl {
 #[doc="Read the PCUART register."]
    #[inline] pub fn pcuart(&self) -> Pcuart { 
       unsafe {
-         Pcuart(::core::ptr::read_volatile((self.0 + 0x918) as *const u32))
+         Pcuart(read_volatile((self.0 + 0x918) as *const u32))
       }
    }
 #[doc="Write the PCUART register."]
    #[inline] pub fn set_pcuart<F: FnOnce(Pcuart) -> Pcuart>(&self, f: F) -> &Self {
       let value = f(Pcuart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x918) as *mut u32, value.0);
+         write_volatile((self.0 + 0x918) as *mut u32, value.0);
       }
       self
    }
@@ -4546,7 +4546,7 @@ impl Sysctl {
       let tmp = self.pcuart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x918) as *mut u32, value.0);
+         write_volatile((self.0 + 0x918) as *mut u32, value.0);
       }
       self
    }
@@ -4562,14 +4562,14 @@ impl Sysctl {
 #[doc="Read the PCSSI register."]
    #[inline] pub fn pcssi(&self) -> Pcssi { 
       unsafe {
-         Pcssi(::core::ptr::read_volatile((self.0 + 0x91c) as *const u32))
+         Pcssi(read_volatile((self.0 + 0x91c) as *const u32))
       }
    }
 #[doc="Write the PCSSI register."]
    #[inline] pub fn set_pcssi<F: FnOnce(Pcssi) -> Pcssi>(&self, f: F) -> &Self {
       let value = f(Pcssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x91c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x91c) as *mut u32, value.0);
       }
       self
    }
@@ -4578,7 +4578,7 @@ impl Sysctl {
       let tmp = self.pcssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x91c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x91c) as *mut u32, value.0);
       }
       self
    }
@@ -4594,14 +4594,14 @@ impl Sysctl {
 #[doc="Read the PCI2C register."]
    #[inline] pub fn pci2c(&self) -> Pci2c { 
       unsafe {
-         Pci2c(::core::ptr::read_volatile((self.0 + 0x920) as *const u32))
+         Pci2c(read_volatile((self.0 + 0x920) as *const u32))
       }
    }
 #[doc="Write the PCI2C register."]
    #[inline] pub fn set_pci2c<F: FnOnce(Pci2c) -> Pci2c>(&self, f: F) -> &Self {
       let value = f(Pci2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x920) as *mut u32, value.0);
+         write_volatile((self.0 + 0x920) as *mut u32, value.0);
       }
       self
    }
@@ -4610,7 +4610,7 @@ impl Sysctl {
       let tmp = self.pci2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x920) as *mut u32, value.0);
+         write_volatile((self.0 + 0x920) as *mut u32, value.0);
       }
       self
    }
@@ -4626,14 +4626,14 @@ impl Sysctl {
 #[doc="Read the PCUSB register."]
    #[inline] pub fn pcusb(&self) -> Pcusb { 
       unsafe {
-         Pcusb(::core::ptr::read_volatile((self.0 + 0x928) as *const u32))
+         Pcusb(read_volatile((self.0 + 0x928) as *const u32))
       }
    }
 #[doc="Write the PCUSB register."]
    #[inline] pub fn set_pcusb<F: FnOnce(Pcusb) -> Pcusb>(&self, f: F) -> &Self {
       let value = f(Pcusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x928) as *mut u32, value.0);
+         write_volatile((self.0 + 0x928) as *mut u32, value.0);
       }
       self
    }
@@ -4642,7 +4642,7 @@ impl Sysctl {
       let tmp = self.pcusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x928) as *mut u32, value.0);
+         write_volatile((self.0 + 0x928) as *mut u32, value.0);
       }
       self
    }
@@ -4658,14 +4658,14 @@ impl Sysctl {
 #[doc="Read the PCEPHY register."]
    #[inline] pub fn pcephy(&self) -> Pcephy { 
       unsafe {
-         Pcephy(::core::ptr::read_volatile((self.0 + 0x930) as *const u32))
+         Pcephy(read_volatile((self.0 + 0x930) as *const u32))
       }
    }
 #[doc="Write the PCEPHY register."]
    #[inline] pub fn set_pcephy<F: FnOnce(Pcephy) -> Pcephy>(&self, f: F) -> &Self {
       let value = f(Pcephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x930) as *mut u32, value.0);
+         write_volatile((self.0 + 0x930) as *mut u32, value.0);
       }
       self
    }
@@ -4674,7 +4674,7 @@ impl Sysctl {
       let tmp = self.pcephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x930) as *mut u32, value.0);
+         write_volatile((self.0 + 0x930) as *mut u32, value.0);
       }
       self
    }
@@ -4690,14 +4690,14 @@ impl Sysctl {
 #[doc="Read the PCCAN register."]
    #[inline] pub fn pccan(&self) -> Pccan { 
       unsafe {
-         Pccan(::core::ptr::read_volatile((self.0 + 0x934) as *const u32))
+         Pccan(read_volatile((self.0 + 0x934) as *const u32))
       }
    }
 #[doc="Write the PCCAN register."]
    #[inline] pub fn set_pccan<F: FnOnce(Pccan) -> Pccan>(&self, f: F) -> &Self {
       let value = f(Pccan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x934) as *mut u32, value.0);
+         write_volatile((self.0 + 0x934) as *mut u32, value.0);
       }
       self
    }
@@ -4706,7 +4706,7 @@ impl Sysctl {
       let tmp = self.pccan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x934) as *mut u32, value.0);
+         write_volatile((self.0 + 0x934) as *mut u32, value.0);
       }
       self
    }
@@ -4722,14 +4722,14 @@ impl Sysctl {
 #[doc="Read the PCADC register."]
    #[inline] pub fn pcadc(&self) -> Pcadc { 
       unsafe {
-         Pcadc(::core::ptr::read_volatile((self.0 + 0x938) as *const u32))
+         Pcadc(read_volatile((self.0 + 0x938) as *const u32))
       }
    }
 #[doc="Write the PCADC register."]
    #[inline] pub fn set_pcadc<F: FnOnce(Pcadc) -> Pcadc>(&self, f: F) -> &Self {
       let value = f(Pcadc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x938) as *mut u32, value.0);
+         write_volatile((self.0 + 0x938) as *mut u32, value.0);
       }
       self
    }
@@ -4738,7 +4738,7 @@ impl Sysctl {
       let tmp = self.pcadc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x938) as *mut u32, value.0);
+         write_volatile((self.0 + 0x938) as *mut u32, value.0);
       }
       self
    }
@@ -4754,14 +4754,14 @@ impl Sysctl {
 #[doc="Read the PCACMP register."]
    #[inline] pub fn pcacmp(&self) -> Pcacmp { 
       unsafe {
-         Pcacmp(::core::ptr::read_volatile((self.0 + 0x93c) as *const u32))
+         Pcacmp(read_volatile((self.0 + 0x93c) as *const u32))
       }
    }
 #[doc="Write the PCACMP register."]
    #[inline] pub fn set_pcacmp<F: FnOnce(Pcacmp) -> Pcacmp>(&self, f: F) -> &Self {
       let value = f(Pcacmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x93c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x93c) as *mut u32, value.0);
       }
       self
    }
@@ -4770,7 +4770,7 @@ impl Sysctl {
       let tmp = self.pcacmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x93c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x93c) as *mut u32, value.0);
       }
       self
    }
@@ -4786,14 +4786,14 @@ impl Sysctl {
 #[doc="Read the PCPWM register."]
    #[inline] pub fn pcpwm(&self) -> Pcpwm { 
       unsafe {
-         Pcpwm(::core::ptr::read_volatile((self.0 + 0x940) as *const u32))
+         Pcpwm(read_volatile((self.0 + 0x940) as *const u32))
       }
    }
 #[doc="Write the PCPWM register."]
    #[inline] pub fn set_pcpwm<F: FnOnce(Pcpwm) -> Pcpwm>(&self, f: F) -> &Self {
       let value = f(Pcpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x940) as *mut u32, value.0);
+         write_volatile((self.0 + 0x940) as *mut u32, value.0);
       }
       self
    }
@@ -4802,7 +4802,7 @@ impl Sysctl {
       let tmp = self.pcpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x940) as *mut u32, value.0);
+         write_volatile((self.0 + 0x940) as *mut u32, value.0);
       }
       self
    }
@@ -4818,14 +4818,14 @@ impl Sysctl {
 #[doc="Read the PCQEI register."]
    #[inline] pub fn pcqei(&self) -> Pcqei { 
       unsafe {
-         Pcqei(::core::ptr::read_volatile((self.0 + 0x944) as *const u32))
+         Pcqei(read_volatile((self.0 + 0x944) as *const u32))
       }
    }
 #[doc="Write the PCQEI register."]
    #[inline] pub fn set_pcqei<F: FnOnce(Pcqei) -> Pcqei>(&self, f: F) -> &Self {
       let value = f(Pcqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x944) as *mut u32, value.0);
+         write_volatile((self.0 + 0x944) as *mut u32, value.0);
       }
       self
    }
@@ -4834,7 +4834,7 @@ impl Sysctl {
       let tmp = self.pcqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x944) as *mut u32, value.0);
+         write_volatile((self.0 + 0x944) as *mut u32, value.0);
       }
       self
    }
@@ -4850,14 +4850,14 @@ impl Sysctl {
 #[doc="Read the PCEEPROM register."]
    #[inline] pub fn pceeprom(&self) -> Pceeprom { 
       unsafe {
-         Pceeprom(::core::ptr::read_volatile((self.0 + 0x958) as *const u32))
+         Pceeprom(read_volatile((self.0 + 0x958) as *const u32))
       }
    }
 #[doc="Write the PCEEPROM register."]
    #[inline] pub fn set_pceeprom<F: FnOnce(Pceeprom) -> Pceeprom>(&self, f: F) -> &Self {
       let value = f(Pceeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x958) as *mut u32, value.0);
+         write_volatile((self.0 + 0x958) as *mut u32, value.0);
       }
       self
    }
@@ -4866,7 +4866,7 @@ impl Sysctl {
       let tmp = self.pceeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x958) as *mut u32, value.0);
+         write_volatile((self.0 + 0x958) as *mut u32, value.0);
       }
       self
    }
@@ -4882,14 +4882,14 @@ impl Sysctl {
 #[doc="Read the PCCCM register."]
    #[inline] pub fn pcccm(&self) -> Pcccm { 
       unsafe {
-         Pcccm(::core::ptr::read_volatile((self.0 + 0x974) as *const u32))
+         Pcccm(read_volatile((self.0 + 0x974) as *const u32))
       }
    }
 #[doc="Write the PCCCM register."]
    #[inline] pub fn set_pcccm<F: FnOnce(Pcccm) -> Pcccm>(&self, f: F) -> &Self {
       let value = f(Pcccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x974) as *mut u32, value.0);
+         write_volatile((self.0 + 0x974) as *mut u32, value.0);
       }
       self
    }
@@ -4898,7 +4898,7 @@ impl Sysctl {
       let tmp = self.pcccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x974) as *mut u32, value.0);
+         write_volatile((self.0 + 0x974) as *mut u32, value.0);
       }
       self
    }
@@ -4914,14 +4914,14 @@ impl Sysctl {
 #[doc="Read the PCEMAC register."]
    #[inline] pub fn pcemac(&self) -> Pcemac { 
       unsafe {
-         Pcemac(::core::ptr::read_volatile((self.0 + 0x99c) as *const u32))
+         Pcemac(read_volatile((self.0 + 0x99c) as *const u32))
       }
    }
 #[doc="Write the PCEMAC register."]
    #[inline] pub fn set_pcemac<F: FnOnce(Pcemac) -> Pcemac>(&self, f: F) -> &Self {
       let value = f(Pcemac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x99c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x99c) as *mut u32, value.0);
       }
       self
    }
@@ -4930,7 +4930,7 @@ impl Sysctl {
       let tmp = self.pcemac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x99c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x99c) as *mut u32, value.0);
       }
       self
    }
@@ -4946,14 +4946,14 @@ impl Sysctl {
 #[doc="Read the PRWD register."]
    #[inline] pub fn prwd(&self) -> Prwd { 
       unsafe {
-         Prwd(::core::ptr::read_volatile((self.0 + 0xa00) as *const u32))
+         Prwd(read_volatile((self.0 + 0xa00) as *const u32))
       }
    }
 #[doc="Write the PRWD register."]
    #[inline] pub fn set_prwd<F: FnOnce(Prwd) -> Prwd>(&self, f: F) -> &Self {
       let value = f(Prwd(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa00) as *mut u32, value.0);
       }
       self
    }
@@ -4962,7 +4962,7 @@ impl Sysctl {
       let tmp = self.prwd();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa00) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa00) as *mut u32, value.0);
       }
       self
    }
@@ -4978,14 +4978,14 @@ impl Sysctl {
 #[doc="Read the PRTIMER register."]
    #[inline] pub fn prtimer(&self) -> Prtimer { 
       unsafe {
-         Prtimer(::core::ptr::read_volatile((self.0 + 0xa04) as *const u32))
+         Prtimer(read_volatile((self.0 + 0xa04) as *const u32))
       }
    }
 #[doc="Write the PRTIMER register."]
    #[inline] pub fn set_prtimer<F: FnOnce(Prtimer) -> Prtimer>(&self, f: F) -> &Self {
       let value = f(Prtimer(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa04) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa04) as *mut u32, value.0);
       }
       self
    }
@@ -4994,7 +4994,7 @@ impl Sysctl {
       let tmp = self.prtimer();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa04) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa04) as *mut u32, value.0);
       }
       self
    }
@@ -5010,14 +5010,14 @@ impl Sysctl {
 #[doc="Read the PRGPIO register."]
    #[inline] pub fn prgpio(&self) -> Prgpio { 
       unsafe {
-         Prgpio(::core::ptr::read_volatile((self.0 + 0xa08) as *const u32))
+         Prgpio(read_volatile((self.0 + 0xa08) as *const u32))
       }
    }
 #[doc="Write the PRGPIO register."]
    #[inline] pub fn set_prgpio<F: FnOnce(Prgpio) -> Prgpio>(&self, f: F) -> &Self {
       let value = f(Prgpio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa08) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa08) as *mut u32, value.0);
       }
       self
    }
@@ -5026,7 +5026,7 @@ impl Sysctl {
       let tmp = self.prgpio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa08) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa08) as *mut u32, value.0);
       }
       self
    }
@@ -5042,14 +5042,14 @@ impl Sysctl {
 #[doc="Read the PRDMA register."]
    #[inline] pub fn prdma(&self) -> Prdma { 
       unsafe {
-         Prdma(::core::ptr::read_volatile((self.0 + 0xa0c) as *const u32))
+         Prdma(read_volatile((self.0 + 0xa0c) as *const u32))
       }
    }
 #[doc="Write the PRDMA register."]
    #[inline] pub fn set_prdma<F: FnOnce(Prdma) -> Prdma>(&self, f: F) -> &Self {
       let value = f(Prdma(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0c) as *mut u32, value.0);
       }
       self
    }
@@ -5058,7 +5058,7 @@ impl Sysctl {
       let tmp = self.prdma();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa0c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa0c) as *mut u32, value.0);
       }
       self
    }
@@ -5074,14 +5074,14 @@ impl Sysctl {
 #[doc="Read the PREPI register."]
    #[inline] pub fn prepi(&self) -> Prepi { 
       unsafe {
-         Prepi(::core::ptr::read_volatile((self.0 + 0xa10) as *const u32))
+         Prepi(read_volatile((self.0 + 0xa10) as *const u32))
       }
    }
 #[doc="Write the PREPI register."]
    #[inline] pub fn set_prepi<F: FnOnce(Prepi) -> Prepi>(&self, f: F) -> &Self {
       let value = f(Prepi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa10) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa10) as *mut u32, value.0);
       }
       self
    }
@@ -5090,7 +5090,7 @@ impl Sysctl {
       let tmp = self.prepi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa10) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa10) as *mut u32, value.0);
       }
       self
    }
@@ -5106,14 +5106,14 @@ impl Sysctl {
 #[doc="Read the PRHIB register."]
    #[inline] pub fn prhib(&self) -> Prhib { 
       unsafe {
-         Prhib(::core::ptr::read_volatile((self.0 + 0xa14) as *const u32))
+         Prhib(read_volatile((self.0 + 0xa14) as *const u32))
       }
    }
 #[doc="Write the PRHIB register."]
    #[inline] pub fn set_prhib<F: FnOnce(Prhib) -> Prhib>(&self, f: F) -> &Self {
       let value = f(Prhib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa14) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa14) as *mut u32, value.0);
       }
       self
    }
@@ -5122,7 +5122,7 @@ impl Sysctl {
       let tmp = self.prhib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa14) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa14) as *mut u32, value.0);
       }
       self
    }
@@ -5138,14 +5138,14 @@ impl Sysctl {
 #[doc="Read the PRUART register."]
    #[inline] pub fn pruart(&self) -> Pruart { 
       unsafe {
-         Pruart(::core::ptr::read_volatile((self.0 + 0xa18) as *const u32))
+         Pruart(read_volatile((self.0 + 0xa18) as *const u32))
       }
    }
 #[doc="Write the PRUART register."]
    #[inline] pub fn set_pruart<F: FnOnce(Pruart) -> Pruart>(&self, f: F) -> &Self {
       let value = f(Pruart(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa18) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa18) as *mut u32, value.0);
       }
       self
    }
@@ -5154,7 +5154,7 @@ impl Sysctl {
       let tmp = self.pruart();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa18) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa18) as *mut u32, value.0);
       }
       self
    }
@@ -5170,14 +5170,14 @@ impl Sysctl {
 #[doc="Read the PRSSI register."]
    #[inline] pub fn prssi(&self) -> Prssi { 
       unsafe {
-         Prssi(::core::ptr::read_volatile((self.0 + 0xa1c) as *const u32))
+         Prssi(read_volatile((self.0 + 0xa1c) as *const u32))
       }
    }
 #[doc="Write the PRSSI register."]
    #[inline] pub fn set_prssi<F: FnOnce(Prssi) -> Prssi>(&self, f: F) -> &Self {
       let value = f(Prssi(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa1c) as *mut u32, value.0);
       }
       self
    }
@@ -5186,7 +5186,7 @@ impl Sysctl {
       let tmp = self.prssi();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa1c) as *mut u32, value.0);
       }
       self
    }
@@ -5202,14 +5202,14 @@ impl Sysctl {
 #[doc="Read the PRI2C register."]
    #[inline] pub fn pri2c(&self) -> Pri2c { 
       unsafe {
-         Pri2c(::core::ptr::read_volatile((self.0 + 0xa20) as *const u32))
+         Pri2c(read_volatile((self.0 + 0xa20) as *const u32))
       }
    }
 #[doc="Write the PRI2C register."]
    #[inline] pub fn set_pri2c<F: FnOnce(Pri2c) -> Pri2c>(&self, f: F) -> &Self {
       let value = f(Pri2c(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa20) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa20) as *mut u32, value.0);
       }
       self
    }
@@ -5218,7 +5218,7 @@ impl Sysctl {
       let tmp = self.pri2c();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa20) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa20) as *mut u32, value.0);
       }
       self
    }
@@ -5234,14 +5234,14 @@ impl Sysctl {
 #[doc="Read the PRUSB register."]
    #[inline] pub fn prusb(&self) -> Prusb { 
       unsafe {
-         Prusb(::core::ptr::read_volatile((self.0 + 0xa28) as *const u32))
+         Prusb(read_volatile((self.0 + 0xa28) as *const u32))
       }
    }
 #[doc="Write the PRUSB register."]
    #[inline] pub fn set_prusb<F: FnOnce(Prusb) -> Prusb>(&self, f: F) -> &Self {
       let value = f(Prusb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa28) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa28) as *mut u32, value.0);
       }
       self
    }
@@ -5250,7 +5250,7 @@ impl Sysctl {
       let tmp = self.prusb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa28) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa28) as *mut u32, value.0);
       }
       self
    }
@@ -5266,14 +5266,14 @@ impl Sysctl {
 #[doc="Read the PREPHY register."]
    #[inline] pub fn prephy(&self) -> Prephy { 
       unsafe {
-         Prephy(::core::ptr::read_volatile((self.0 + 0xa30) as *const u32))
+         Prephy(read_volatile((self.0 + 0xa30) as *const u32))
       }
    }
 #[doc="Write the PREPHY register."]
    #[inline] pub fn set_prephy<F: FnOnce(Prephy) -> Prephy>(&self, f: F) -> &Self {
       let value = f(Prephy(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa30) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa30) as *mut u32, value.0);
       }
       self
    }
@@ -5282,7 +5282,7 @@ impl Sysctl {
       let tmp = self.prephy();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa30) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa30) as *mut u32, value.0);
       }
       self
    }
@@ -5298,14 +5298,14 @@ impl Sysctl {
 #[doc="Read the PRCAN register."]
    #[inline] pub fn prcan(&self) -> Prcan { 
       unsafe {
-         Prcan(::core::ptr::read_volatile((self.0 + 0xa34) as *const u32))
+         Prcan(read_volatile((self.0 + 0xa34) as *const u32))
       }
    }
 #[doc="Write the PRCAN register."]
    #[inline] pub fn set_prcan<F: FnOnce(Prcan) -> Prcan>(&self, f: F) -> &Self {
       let value = f(Prcan(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa34) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa34) as *mut u32, value.0);
       }
       self
    }
@@ -5314,7 +5314,7 @@ impl Sysctl {
       let tmp = self.prcan();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa34) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa34) as *mut u32, value.0);
       }
       self
    }
@@ -5330,14 +5330,14 @@ impl Sysctl {
 #[doc="Read the PRADC register."]
    #[inline] pub fn pradc(&self) -> Pradc { 
       unsafe {
-         Pradc(::core::ptr::read_volatile((self.0 + 0xa38) as *const u32))
+         Pradc(read_volatile((self.0 + 0xa38) as *const u32))
       }
    }
 #[doc="Write the PRADC register."]
    #[inline] pub fn set_pradc<F: FnOnce(Pradc) -> Pradc>(&self, f: F) -> &Self {
       let value = f(Pradc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa38) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa38) as *mut u32, value.0);
       }
       self
    }
@@ -5346,7 +5346,7 @@ impl Sysctl {
       let tmp = self.pradc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa38) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa38) as *mut u32, value.0);
       }
       self
    }
@@ -5362,14 +5362,14 @@ impl Sysctl {
 #[doc="Read the PRACMP register."]
    #[inline] pub fn pracmp(&self) -> Pracmp { 
       unsafe {
-         Pracmp(::core::ptr::read_volatile((self.0 + 0xa3c) as *const u32))
+         Pracmp(read_volatile((self.0 + 0xa3c) as *const u32))
       }
    }
 #[doc="Write the PRACMP register."]
    #[inline] pub fn set_pracmp<F: FnOnce(Pracmp) -> Pracmp>(&self, f: F) -> &Self {
       let value = f(Pracmp(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa3c) as *mut u32, value.0);
       }
       self
    }
@@ -5378,7 +5378,7 @@ impl Sysctl {
       let tmp = self.pracmp();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa3c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa3c) as *mut u32, value.0);
       }
       self
    }
@@ -5394,14 +5394,14 @@ impl Sysctl {
 #[doc="Read the PRPWM register."]
    #[inline] pub fn prpwm(&self) -> Prpwm { 
       unsafe {
-         Prpwm(::core::ptr::read_volatile((self.0 + 0xa40) as *const u32))
+         Prpwm(read_volatile((self.0 + 0xa40) as *const u32))
       }
    }
 #[doc="Write the PRPWM register."]
    #[inline] pub fn set_prpwm<F: FnOnce(Prpwm) -> Prpwm>(&self, f: F) -> &Self {
       let value = f(Prpwm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa40) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa40) as *mut u32, value.0);
       }
       self
    }
@@ -5410,7 +5410,7 @@ impl Sysctl {
       let tmp = self.prpwm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa40) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa40) as *mut u32, value.0);
       }
       self
    }
@@ -5426,14 +5426,14 @@ impl Sysctl {
 #[doc="Read the PRQEI register."]
    #[inline] pub fn prqei(&self) -> Prqei { 
       unsafe {
-         Prqei(::core::ptr::read_volatile((self.0 + 0xa44) as *const u32))
+         Prqei(read_volatile((self.0 + 0xa44) as *const u32))
       }
    }
 #[doc="Write the PRQEI register."]
    #[inline] pub fn set_prqei<F: FnOnce(Prqei) -> Prqei>(&self, f: F) -> &Self {
       let value = f(Prqei(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa44) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa44) as *mut u32, value.0);
       }
       self
    }
@@ -5442,7 +5442,7 @@ impl Sysctl {
       let tmp = self.prqei();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa44) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa44) as *mut u32, value.0);
       }
       self
    }
@@ -5458,14 +5458,14 @@ impl Sysctl {
 #[doc="Read the PREEPROM register."]
    #[inline] pub fn preeprom(&self) -> Preeprom { 
       unsafe {
-         Preeprom(::core::ptr::read_volatile((self.0 + 0xa58) as *const u32))
+         Preeprom(read_volatile((self.0 + 0xa58) as *const u32))
       }
    }
 #[doc="Write the PREEPROM register."]
    #[inline] pub fn set_preeprom<F: FnOnce(Preeprom) -> Preeprom>(&self, f: F) -> &Self {
       let value = f(Preeprom(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa58) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa58) as *mut u32, value.0);
       }
       self
    }
@@ -5474,7 +5474,7 @@ impl Sysctl {
       let tmp = self.preeprom();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa58) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa58) as *mut u32, value.0);
       }
       self
    }
@@ -5490,14 +5490,14 @@ impl Sysctl {
 #[doc="Read the PRCCM register."]
    #[inline] pub fn prccm(&self) -> Prccm { 
       unsafe {
-         Prccm(::core::ptr::read_volatile((self.0 + 0xa74) as *const u32))
+         Prccm(read_volatile((self.0 + 0xa74) as *const u32))
       }
    }
 #[doc="Write the PRCCM register."]
    #[inline] pub fn set_prccm<F: FnOnce(Prccm) -> Prccm>(&self, f: F) -> &Self {
       let value = f(Prccm(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa74) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa74) as *mut u32, value.0);
       }
       self
    }
@@ -5506,7 +5506,7 @@ impl Sysctl {
       let tmp = self.prccm();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa74) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa74) as *mut u32, value.0);
       }
       self
    }
@@ -5522,14 +5522,14 @@ impl Sysctl {
 #[doc="Read the PREMAC register."]
    #[inline] pub fn premac(&self) -> Premac { 
       unsafe {
-         Premac(::core::ptr::read_volatile((self.0 + 0xa9c) as *const u32))
+         Premac(read_volatile((self.0 + 0xa9c) as *const u32))
       }
    }
 #[doc="Write the PREMAC register."]
    #[inline] pub fn set_premac<F: FnOnce(Premac) -> Premac>(&self, f: F) -> &Self {
       let value = f(Premac(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa9c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa9c) as *mut u32, value.0);
       }
       self
    }
@@ -5538,7 +5538,7 @@ impl Sysctl {
       let tmp = self.premac();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xa9c) as *mut u32, value.0);
+         write_volatile((self.0 + 0xa9c) as *mut u32, value.0);
       }
       self
    }

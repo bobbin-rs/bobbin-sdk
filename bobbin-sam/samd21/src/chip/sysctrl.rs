@@ -18,14 +18,14 @@ impl Sysctrl {
 #[doc="Read the BOD33 register."]
    #[inline] pub fn bod33(&self) -> Bod33 { 
       unsafe {
-         Bod33(::core::ptr::read_volatile((self.0 + 0x34) as *const u32))
+         Bod33(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
 #[doc="Write the BOD33 register."]
    #[inline] pub fn set_bod33<F: FnOnce(Bod33) -> Bod33>(&self, f: F) -> &Self {
       let value = f(Bod33(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Sysctrl {
       let tmp = self.bod33();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x34) as *mut u32, value.0);
+         write_volatile((self.0 + 0x34) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Sysctrl {
 #[doc="Read the DFLLCTRL register."]
    #[inline] pub fn dfllctrl(&self) -> Dfllctrl { 
       unsafe {
-         Dfllctrl(::core::ptr::read_volatile((self.0 + 0x24) as *const u16))
+         Dfllctrl(read_volatile((self.0 + 0x24) as *const u16))
       }
    }
 #[doc="Write the DFLLCTRL register."]
    #[inline] pub fn set_dfllctrl<F: FnOnce(Dfllctrl) -> Dfllctrl>(&self, f: F) -> &Self {
       let value = f(Dfllctrl(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u16, value.0);
+         write_volatile((self.0 + 0x24) as *mut u16, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Sysctrl {
       let tmp = self.dfllctrl();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u16, value.0);
+         write_volatile((self.0 + 0x24) as *mut u16, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Sysctrl {
 #[doc="Read the DFLLMUL register."]
    #[inline] pub fn dfllmul(&self) -> Dfllmul { 
       unsafe {
-         Dfllmul(::core::ptr::read_volatile((self.0 + 0x2c) as *const u32))
+         Dfllmul(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
 #[doc="Write the DFLLMUL register."]
    #[inline] pub fn set_dfllmul<F: FnOnce(Dfllmul) -> Dfllmul>(&self, f: F) -> &Self {
       let value = f(Dfllmul(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Sysctrl {
       let tmp = self.dfllmul();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x2c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x2c) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Sysctrl {
 #[doc="Read the DFLLSYNC register."]
    #[inline] pub fn dfllsync(&self) -> Dfllsync { 
       unsafe {
-         Dfllsync(::core::ptr::read_volatile((self.0 + 0x30) as *const u8))
+         Dfllsync(read_volatile((self.0 + 0x30) as *const u8))
       }
    }
 #[doc="Write the DFLLSYNC register."]
    #[inline] pub fn set_dfllsync<F: FnOnce(Dfllsync) -> Dfllsync>(&self, f: F) -> &Self {
       let value = f(Dfllsync(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u8, value.0);
+         write_volatile((self.0 + 0x30) as *mut u8, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Sysctrl {
       let tmp = self.dfllsync();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x30) as *mut u8, value.0);
+         write_volatile((self.0 + 0x30) as *mut u8, value.0);
       }
       self
    }
@@ -146,14 +146,14 @@ impl Sysctrl {
 #[doc="Read the DFLLVAL register."]
    #[inline] pub fn dfllval(&self) -> Dfllval { 
       unsafe {
-         Dfllval(::core::ptr::read_volatile((self.0 + 0x28) as *const u32))
+         Dfllval(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
 #[doc="Write the DFLLVAL register."]
    #[inline] pub fn set_dfllval<F: FnOnce(Dfllval) -> Dfllval>(&self, f: F) -> &Self {
       let value = f(Dfllval(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -162,7 +162,7 @@ impl Sysctrl {
       let tmp = self.dfllval();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x28) as *mut u32, value.0);
+         write_volatile((self.0 + 0x28) as *mut u32, value.0);
       }
       self
    }
@@ -178,14 +178,14 @@ impl Sysctrl {
 #[doc="Read the DPLLCTRLA register."]
    #[inline] pub fn dpllctrla(&self) -> Dpllctrla { 
       unsafe {
-         Dpllctrla(::core::ptr::read_volatile((self.0 + 0x44) as *const u8))
+         Dpllctrla(read_volatile((self.0 + 0x44) as *const u8))
       }
    }
 #[doc="Write the DPLLCTRLA register."]
    #[inline] pub fn set_dpllctrla<F: FnOnce(Dpllctrla) -> Dpllctrla>(&self, f: F) -> &Self {
       let value = f(Dpllctrla(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u8, value.0);
+         write_volatile((self.0 + 0x44) as *mut u8, value.0);
       }
       self
    }
@@ -194,7 +194,7 @@ impl Sysctrl {
       let tmp = self.dpllctrla();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x44) as *mut u8, value.0);
+         write_volatile((self.0 + 0x44) as *mut u8, value.0);
       }
       self
    }
@@ -210,14 +210,14 @@ impl Sysctrl {
 #[doc="Read the DPLLCTRLB register."]
    #[inline] pub fn dpllctrlb(&self) -> Dpllctrlb { 
       unsafe {
-         Dpllctrlb(::core::ptr::read_volatile((self.0 + 0x4c) as *const u32))
+         Dpllctrlb(read_volatile((self.0 + 0x4c) as *const u32))
       }
    }
 #[doc="Write the DPLLCTRLB register."]
    #[inline] pub fn set_dpllctrlb<F: FnOnce(Dpllctrlb) -> Dpllctrlb>(&self, f: F) -> &Self {
       let value = f(Dpllctrlb(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -226,7 +226,7 @@ impl Sysctrl {
       let tmp = self.dpllctrlb();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4c) as *mut u32, value.0);
       }
       self
    }
@@ -242,14 +242,14 @@ impl Sysctrl {
 #[doc="Read the DPLLRATIO register."]
    #[inline] pub fn dpllratio(&self) -> Dpllratio { 
       unsafe {
-         Dpllratio(::core::ptr::read_volatile((self.0 + 0x48) as *const u32))
+         Dpllratio(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
 #[doc="Write the DPLLRATIO register."]
    #[inline] pub fn set_dpllratio<F: FnOnce(Dpllratio) -> Dpllratio>(&self, f: F) -> &Self {
       let value = f(Dpllratio(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -258,7 +258,7 @@ impl Sysctrl {
       let tmp = self.dpllratio();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x48) as *mut u32, value.0);
+         write_volatile((self.0 + 0x48) as *mut u32, value.0);
       }
       self
    }
@@ -274,7 +274,7 @@ impl Sysctrl {
 #[doc="Read the DPLLSTATUS register."]
    #[inline] pub fn dpllstatus(&self) -> Dpllstatus { 
       unsafe {
-         Dpllstatus(::core::ptr::read_volatile((self.0 + 0x50) as *const u8))
+         Dpllstatus(read_volatile((self.0 + 0x50) as *const u8))
       }
    }
 
@@ -289,14 +289,14 @@ impl Sysctrl {
 #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
-         Intenclr(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Intenclr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -305,7 +305,7 @@ impl Sysctrl {
       let tmp = self.intenclr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -321,14 +321,14 @@ impl Sysctrl {
 #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
-         Intenset(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Intenset(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -337,7 +337,7 @@ impl Sysctrl {
       let tmp = self.intenset();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -353,14 +353,14 @@ impl Sysctrl {
 #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
-         Intflag(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Intflag(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -369,7 +369,7 @@ impl Sysctrl {
       let tmp = self.intflag();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -385,14 +385,14 @@ impl Sysctrl {
 #[doc="Read the OSCULP32K register."]
    #[inline] pub fn osculp32k(&self) -> Osculp32k { 
       unsafe {
-         Osculp32k(::core::ptr::read_volatile((self.0 + 0x1c) as *const u8))
+         Osculp32k(read_volatile((self.0 + 0x1c) as *const u8))
       }
    }
 #[doc="Write the OSCULP32K register."]
    #[inline] pub fn set_osculp32k<F: FnOnce(Osculp32k) -> Osculp32k>(&self, f: F) -> &Self {
       let value = f(Osculp32k(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u8, value.0);
       }
       self
    }
@@ -401,7 +401,7 @@ impl Sysctrl {
       let tmp = self.osculp32k();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u8, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u8, value.0);
       }
       self
    }
@@ -417,14 +417,14 @@ impl Sysctrl {
 #[doc="Read the OSC8M register."]
    #[inline] pub fn osc8m(&self) -> Osc8m { 
       unsafe {
-         Osc8m(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Osc8m(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the OSC8M register."]
    #[inline] pub fn set_osc8m<F: FnOnce(Osc8m) -> Osc8m>(&self, f: F) -> &Self {
       let value = f(Osc8m(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -433,7 +433,7 @@ impl Sysctrl {
       let tmp = self.osc8m();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -449,14 +449,14 @@ impl Sysctrl {
 #[doc="Read the OSC32K register."]
    #[inline] pub fn osc32k(&self) -> Osc32k { 
       unsafe {
-         Osc32k(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Osc32k(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the OSC32K register."]
    #[inline] pub fn set_osc32k<F: FnOnce(Osc32k) -> Osc32k>(&self, f: F) -> &Self {
       let value = f(Osc32k(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -465,7 +465,7 @@ impl Sysctrl {
       let tmp = self.osc32k();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -481,7 +481,7 @@ impl Sysctrl {
 #[doc="Read the PCLKSR register."]
    #[inline] pub fn pclksr(&self) -> Pclksr { 
       unsafe {
-         Pclksr(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Pclksr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 
@@ -496,14 +496,14 @@ impl Sysctrl {
 #[doc="Read the VREF register."]
    #[inline] pub fn vref(&self) -> Vref { 
       unsafe {
-         Vref(::core::ptr::read_volatile((self.0 + 0x40) as *const u32))
+         Vref(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
 #[doc="Write the VREF register."]
    #[inline] pub fn set_vref<F: FnOnce(Vref) -> Vref>(&self, f: F) -> &Self {
       let value = f(Vref(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -512,7 +512,7 @@ impl Sysctrl {
       let tmp = self.vref();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x40) as *mut u32, value.0);
+         write_volatile((self.0 + 0x40) as *mut u32, value.0);
       }
       self
    }
@@ -528,14 +528,14 @@ impl Sysctrl {
 #[doc="Read the XOSC register."]
    #[inline] pub fn xosc(&self) -> Xosc { 
       unsafe {
-         Xosc(::core::ptr::read_volatile((self.0 + 0x10) as *const u16))
+         Xosc(read_volatile((self.0 + 0x10) as *const u16))
       }
    }
 #[doc="Write the XOSC register."]
    #[inline] pub fn set_xosc<F: FnOnce(Xosc) -> Xosc>(&self, f: F) -> &Self {
       let value = f(Xosc(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -544,7 +544,7 @@ impl Sysctrl {
       let tmp = self.xosc();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u16, value.0);
+         write_volatile((self.0 + 0x10) as *mut u16, value.0);
       }
       self
    }
@@ -560,14 +560,14 @@ impl Sysctrl {
 #[doc="Read the XOSC32K register."]
    #[inline] pub fn xosc32k(&self) -> Xosc32k { 
       unsafe {
-         Xosc32k(::core::ptr::read_volatile((self.0 + 0x14) as *const u16))
+         Xosc32k(read_volatile((self.0 + 0x14) as *const u16))
       }
    }
 #[doc="Write the XOSC32K register."]
    #[inline] pub fn set_xosc32k<F: FnOnce(Xosc32k) -> Xosc32k>(&self, f: F) -> &Self {
       let value = f(Xosc32k(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }
@@ -576,7 +576,7 @@ impl Sysctrl {
       let tmp = self.xosc32k();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u16, value.0);
+         write_volatile((self.0 + 0x14) as *mut u16, value.0);
       }
       self
    }

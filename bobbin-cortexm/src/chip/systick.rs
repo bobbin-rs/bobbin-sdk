@@ -18,14 +18,14 @@ impl Systick {
 #[doc="Read the CSR register."]
    #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
-         Csr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Csr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the CSR register."]
    #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
       let value = f(Csr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -34,7 +34,7 @@ impl Systick {
       let tmp = self.csr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -50,14 +50,14 @@ impl Systick {
 #[doc="Read the RVR register."]
    #[inline] pub fn rvr(&self) -> Rvr { 
       unsafe {
-         Rvr(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Rvr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the RVR register."]
    #[inline] pub fn set_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
       let value = f(Rvr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -66,7 +66,7 @@ impl Systick {
       let tmp = self.rvr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -82,14 +82,14 @@ impl Systick {
 #[doc="Read the CVR register."]
    #[inline] pub fn cvr(&self) -> Cvr { 
       unsafe {
-         Cvr(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Cvr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 #[doc="Write the CVR register."]
    #[inline] pub fn set_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
       let value = f(Cvr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -98,7 +98,7 @@ impl Systick {
       let tmp = self.cvr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x18) as *mut u32, value.0);
+         write_volatile((self.0 + 0x18) as *mut u32, value.0);
       }
       self
    }
@@ -114,14 +114,14 @@ impl Systick {
 #[doc="Read the CALIB register."]
    #[inline] pub fn calib(&self) -> Calib { 
       unsafe {
-         Calib(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Calib(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the CALIB register."]
    #[inline] pub fn set_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
       let value = f(Calib(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -130,7 +130,7 @@ impl Systick {
       let tmp = self.calib();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }

@@ -24,14 +24,14 @@ impl I2cPeriph {
 #[doc="Read the CR1 register."]
    #[inline] pub fn cr1(&self) -> Cr1 { 
       unsafe {
-         Cr1(::core::ptr::read_volatile((self.0 + 0x0) as *const u32))
+         Cr1(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 #[doc="Write the CR1 register."]
    #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
       let value = f(Cr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -40,7 +40,7 @@ impl I2cPeriph {
       let tmp = self.cr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x0) as *mut u32, value.0);
+         write_volatile((self.0 + 0x0) as *mut u32, value.0);
       }
       self
    }
@@ -56,14 +56,14 @@ impl I2cPeriph {
 #[doc="Read the CR2 register."]
    #[inline] pub fn cr2(&self) -> Cr2 { 
       unsafe {
-         Cr2(::core::ptr::read_volatile((self.0 + 0x4) as *const u32))
+         Cr2(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
 #[doc="Write the CR2 register."]
    #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
       let value = f(Cr2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -72,7 +72,7 @@ impl I2cPeriph {
       let tmp = self.cr2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x4) as *mut u32, value.0);
+         write_volatile((self.0 + 0x4) as *mut u32, value.0);
       }
       self
    }
@@ -88,14 +88,14 @@ impl I2cPeriph {
 #[doc="Read the OAR1 register."]
    #[inline] pub fn oar1(&self) -> Oar1 { 
       unsafe {
-         Oar1(::core::ptr::read_volatile((self.0 + 0x8) as *const u32))
+         Oar1(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 #[doc="Write the OAR1 register."]
    #[inline] pub fn set_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
       let value = f(Oar1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -104,7 +104,7 @@ impl I2cPeriph {
       let tmp = self.oar1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x8) as *mut u32, value.0);
+         write_volatile((self.0 + 0x8) as *mut u32, value.0);
       }
       self
    }
@@ -120,14 +120,14 @@ impl I2cPeriph {
 #[doc="Read the OAR2 register."]
    #[inline] pub fn oar2(&self) -> Oar2 { 
       unsafe {
-         Oar2(::core::ptr::read_volatile((self.0 + 0xc) as *const u32))
+         Oar2(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
 #[doc="Write the OAR2 register."]
    #[inline] pub fn set_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
       let value = f(Oar2(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -136,7 +136,7 @@ impl I2cPeriph {
       let tmp = self.oar2();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0xc) as *mut u32, value.0);
+         write_volatile((self.0 + 0xc) as *mut u32, value.0);
       }
       self
    }
@@ -152,14 +152,14 @@ impl I2cPeriph {
 #[doc="Read the DR register."]
    #[inline] pub fn dr(&self) -> Dr { 
       unsafe {
-         Dr(::core::ptr::read_volatile((self.0 + 0x10) as *const u32))
+         Dr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 #[doc="Write the DR register."]
    #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
       let value = f(Dr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -168,7 +168,7 @@ impl I2cPeriph {
       let tmp = self.dr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x10) as *mut u32, value.0);
+         write_volatile((self.0 + 0x10) as *mut u32, value.0);
       }
       self
    }
@@ -184,14 +184,14 @@ impl I2cPeriph {
 #[doc="Read the SR1 register."]
    #[inline] pub fn sr1(&self) -> Sr1 { 
       unsafe {
-         Sr1(::core::ptr::read_volatile((self.0 + 0x14) as *const u32))
+         Sr1(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
 #[doc="Write the SR1 register."]
    #[inline] pub fn set_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &Self {
       let value = f(Sr1(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -200,7 +200,7 @@ impl I2cPeriph {
       let tmp = self.sr1();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x14) as *mut u32, value.0);
+         write_volatile((self.0 + 0x14) as *mut u32, value.0);
       }
       self
    }
@@ -216,7 +216,7 @@ impl I2cPeriph {
 #[doc="Read the SR2 register."]
    #[inline] pub fn sr2(&self) -> Sr2 { 
       unsafe {
-         Sr2(::core::ptr::read_volatile((self.0 + 0x18) as *const u32))
+         Sr2(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
 
@@ -231,14 +231,14 @@ impl I2cPeriph {
 #[doc="Read the CCR register."]
    #[inline] pub fn ccr(&self) -> Ccr { 
       unsafe {
-         Ccr(::core::ptr::read_volatile((self.0 + 0x1c) as *const u32))
+         Ccr(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
 #[doc="Write the CCR register."]
    #[inline] pub fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
       let value = f(Ccr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -247,7 +247,7 @@ impl I2cPeriph {
       let tmp = self.ccr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x1c) as *mut u32, value.0);
+         write_volatile((self.0 + 0x1c) as *mut u32, value.0);
       }
       self
    }
@@ -263,14 +263,14 @@ impl I2cPeriph {
 #[doc="Read the TRISE register."]
    #[inline] pub fn trise(&self) -> Trise { 
       unsafe {
-         Trise(::core::ptr::read_volatile((self.0 + 0x20) as *const u32))
+         Trise(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
 #[doc="Write the TRISE register."]
    #[inline] pub fn set_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &Self {
       let value = f(Trise(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -279,7 +279,7 @@ impl I2cPeriph {
       let tmp = self.trise();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x20) as *mut u32, value.0);
+         write_volatile((self.0 + 0x20) as *mut u32, value.0);
       }
       self
    }
@@ -295,14 +295,14 @@ impl I2cPeriph {
 #[doc="Read the FLTR register."]
    #[inline] pub fn fltr(&self) -> Fltr { 
       unsafe {
-         Fltr(::core::ptr::read_volatile((self.0 + 0x24) as *const u32))
+         Fltr(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
 #[doc="Write the FLTR register."]
    #[inline] pub fn set_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &Self {
       let value = f(Fltr(0));
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
@@ -311,7 +311,7 @@ impl I2cPeriph {
       let tmp = self.fltr();
       let value = f(tmp);
       unsafe {
-         ::core::ptr::write_volatile((self.0 + 0x24) as *mut u32, value.0);
+         write_volatile((self.0 + 0x24) as *mut u32, value.0);
       }
       self
    }
