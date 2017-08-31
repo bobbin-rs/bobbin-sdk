@@ -15,6 +15,10 @@ impl Vm {
         }
     }
 
+    pub fn reset(&mut self) {
+        self.regions.clear()        
+    }
+
     pub fn at(&self, addr: usize) -> Option<&Region> {
         self.overlaps(addr, 0)
     }

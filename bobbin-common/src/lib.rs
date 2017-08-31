@@ -26,6 +26,14 @@ pub mod rw {
 
     thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
 
+    pub fn reset_vm() {
+        MEM.with(|m| m.borrow_mut().reset());
+    }    
+
+    pub fn add_region(addr: usize, len: usize) {
+        MEM.with(|m| m.borrow_mut().add_region(addr, len));
+    }    
+
     pub unsafe fn read_volatile<T>(addr: *const T) -> T {
         MEM.with(|m| m.borrow().read(addr))
     }
@@ -34,9 +42,7 @@ pub mod rw {
         MEM.with(|m| m.borrow_mut().write(addr, value));
     }
 
-    pub fn add_region(addr: usize, len: usize) {
-        MEM.with(|m| m.borrow_mut().add_region(addr, len));
-    }    
+
 
     #[inline]
     pub fn read<T>(addr: usize) -> T {
