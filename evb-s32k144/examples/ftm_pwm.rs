@@ -15,18 +15,17 @@ use board::hal::pcc;
 pub extern "C" fn main() -> ! {
     board::init();
     
-    let led0 = board::led::LEDPT0;
+    let led0 = LED0;
 
     println!("PWM Test");
     
     let ch = FTM0_CH2;
     let t0 = ch.periph();
 
-    led0.mode_ftm(&ch);
+    led0.port_pin().mode_ftm(&ch);
 
     t0
         .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
-        .pcc_set_enabled(true)
         .set_prescale(64);
 
 

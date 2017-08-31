@@ -15,7 +15,5 @@ pub struct Pot0 {}
 pub fn init() {
     PORTC.pcc_set_enabled(true);
     POT0_PT.mode_adc(&POT0);
-    POT0_ADC
-        .pcc_set_clock_source(ClockSource::SPLLDIV2)
-        .pcc_set_enabled(true);        
+    POT0_ADC.pcc_set_clock_source(ClockSource::SPLLDIV2);
 }

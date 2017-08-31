@@ -24,7 +24,6 @@ pub extern "C" fn main() -> ! {
 
     pwm_ch.periph()
         .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
-        .pcc_set_enabled(true)
         .set_prescale(64);
 
     // LED is active low, use pwm_low
