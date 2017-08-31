@@ -1,2 +1,2 @@
 [workspace]
-members = [ "kinetis-common", "k20", "k62", "kl26", "s32" ]
+members = [ "kinetis-common", "k20", "k64", "kl26", "s32" ]
