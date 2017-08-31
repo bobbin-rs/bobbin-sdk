@@ -10,6 +10,7 @@ pub mod timer;
 pub mod digital;
 pub mod analog;
 pub mod serial;
+pub mod configure;
 
 #[cfg(not(target_os="none"))]
 mod vm;
