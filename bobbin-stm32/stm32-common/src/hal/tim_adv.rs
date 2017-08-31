@@ -27,63 +27,45 @@ pub enum CcSelect {
     InputTRC = 0b11,
 }
 
-pub trait TimAdvExt {
-    fn set_enabled(&self, value: bool) -> &Self;
-    fn set_direction(&self, value: Direction) -> &Self;
-    fn set_prescaler(&self, value: u16) -> &Self;
-    fn set_update_event(&self) -> &Self;
-    fn update_interrupt_flag(&self) -> bool;
-    fn clr_update_interrupt_flag(&self) -> &Self;
-    fn set_auto_reload(&self, value: u32) -> &Self;
-    fn counter(&self) -> u32;
-    fn set_counter(&self, value: u32) -> &Self;
-    fn delay(&self, reload: u32, prescaler: u16);
-    fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self;
-    fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self;
-    fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self;
-    fn set_capture_compare(&self, index: usize, value: u32) -> &Self;
-    fn set_preload_enable(&self, index: usize, value: bool) -> &Self;
-}
-
-impl<T> TimAdvExt for Periph<T> {
-    fn set_enabled(&self, value: bool) -> &Self {
+impl TimAdvPeriph {
+    pub fn set_enabled(&self, value: bool) -> &Self {
         self.with_cr1(|r| r.set_cen(value))
     }
 
-    fn set_direction(&self, value: Direction) -> &Self {
+    pub fn set_direction(&self, value: Direction) -> &Self {
         self.with_cr1(|r| r.set_dir(value as u32))
     }
 
-    fn set_prescaler(&self, value: u16) -> &Self {
+    pub fn set_prescaler(&self, value: u16) -> &Self {
         self.set_psc(|r| r.set_psc(value as u32))
     }
 
-    fn set_update_event(&self) -> &Self {
+    pub fn set_update_event(&self) -> &Self {
         self.set_egr(|r| r.set_ug(1))
     }
 
-    fn update_interrupt_flag(&self) -> bool {
+    pub fn update_interrupt_flag(&self) -> bool {
         self.sr().uif() != 0
     }
 
-    fn clr_update_interrupt_flag(&self) -> &Self {
+    pub fn clr_update_interrupt_flag(&self) -> &Self {
         self.with_sr(|r| r.set_uif(0))
     }    
 
-    fn set_auto_reload(&self, value: u32) -> &Self {
+    pub fn set_auto_reload(&self, value: u32) -> &Self {
         self.set_arr(|r| r.set_arr(value))
     }
 
-    fn counter(&self) -> u32 {
+    pub fn counter(&self) -> u32 {
         self.cnt().cnt().into()
     }
 
-    fn set_counter(&self, value: u32) -> &Self {
+    pub fn set_counter(&self, value: u32) -> &Self {
         self.set_cnt(|r| r.set_cnt(value))
     }
     
 
-    fn delay(&self, reload: u32, prescaler: u16) {
+    pub fn delay(&self, reload: u32, prescaler: u16) {
         self
             .set_prescaler(prescaler)
             .set_update_event()
@@ -96,7 +78,7 @@ impl<T> TimAdvExt for Periph<T> {
             .set_enabled(false);
     }    
 
-    fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
+    pub fn set_output_compare_preload_enabled(&self, index: usize, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         match index {
             0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value as u32)),
@@ -105,7 +87,7 @@ impl<T> TimAdvExt for Periph<T> {
         }
     }    
 
-    fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self {
+    pub fn set_output_compare_mode(&self, index: usize, value: OcMode) -> &Self {
         let value = value as u32;
         let v012 = value & 0b111;
         let v3 = value >> 3;
@@ -116,7 +98,7 @@ impl<T> TimAdvExt for Periph<T> {
         }
     }    
 
-    fn set_preload_enable(&self, index: usize, value: bool) -> &Self {
+    pub fn set_preload_enable(&self, index: usize, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         match index {
             0...1 => self.with_ccmr_output(0, |r| r.set_ocpe(index, value)),
@@ -125,39 +107,32 @@ impl<T> TimAdvExt for Periph<T> {
         }
     }       
 
-    fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self {
+    pub fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.with_ccer(|r| r.set_cce(index, value))
     }
 
-    fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
+    pub fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
         self.set_ccr(index, |r| r.set_ccr(value))
     }    
 
 }
 
-pub trait TimGenChExt {
-    fn set_preload_enable(&self, bool) -> &Self;
-    fn set_output_compare_mode(&self, value: OcMode) -> &Self;
-    fn set_capture_compare_enabled(&self, value: bool) -> &Self;
-    fn set_capture_compare(&self, value: u32) -> &Self;
-}
-
-impl<P, T> TimGenChExt for Channel<P, T> {
-    fn set_preload_enable(&self, value: bool) -> &Self {
-        self.periph().set_preload_enable(self.index(), value);
+impl TimAdvCh {
+    pub fn set_preload_enable(&self, value: bool) -> &Self {
+        self.periph.set_preload_enable(self.index, value);
         self        
     }
-    fn set_output_compare_mode(&self, value: OcMode) -> &Self {
-        self.periph().set_output_compare_mode(self.index(), value);
+    pub fn set_output_compare_mode(&self, value: OcMode) -> &Self {
+        self.periph.set_output_compare_mode(self.index, value);
         self
     }
-    fn set_capture_compare_enabled(&self, value: bool) -> &Self {
-        self.periph().set_capture_compare_enabled(self.index(), value);
+    pub fn set_capture_compare_enabled(&self, value: bool) -> &Self {
+        self.periph.set_capture_compare_enabled(self.index, value);
         self
     }
-    fn set_capture_compare(&self, value: u32) -> &Self {
-        self.periph().set_capture_compare(self.index(), value);
+    pub fn set_capture_compare(&self, value: u32) -> &Self {
+        self.periph.set_capture_compare(self.index, value);
         self
     }
 }

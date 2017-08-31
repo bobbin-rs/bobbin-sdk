@@ -2,7 +2,7 @@ use bobbin_common::bits::*;
 use ::chip::rcc::{self, RCC, En};
 use ::chip::flash;
 use ::chip::pwr;
-use ::chip::usart_f24::*;
+use ::chip::usart::*;
 use ::chip::tim_bas::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;

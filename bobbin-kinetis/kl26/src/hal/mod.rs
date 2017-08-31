@@ -6,68 +6,54 @@ pub mod sim;
 pub mod clock;
 
 pub mod port {
+    pub use bobbin_common::{AltFn, Pin};
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    use chip::gpio;
     use chip::sig::{SignalTx, SignalRx, SignalTpm, SignalAdc};
-    //use core::ops::Deref;
 
-    pub trait GpioPin<PIN_ID, GPIO_ID> {
-        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID>;
+    use core::ops::Deref;
+
+    pub trait ModeTx<SIG, PERIPH> {
+        fn mode_tx(&self, _: &PERIPH) -> &Self;
     }
 
-    impl<PIN_ID, PORT_ID, GPIO_ID> GpioPin<PIN_ID, GPIO_ID> for Pin<PIN_ID, PORT_ID>
-     where PIN_ID: Copy, Periph<PORT_ID>: LinkGpio<gpio::Periph<GPIO_ID>> {
-        fn gpio_pin(&self) -> gpio::Pin<PIN_ID, GPIO_ID> {
-            gpio::Pin {
-                port: self.port.gpio(),
-                index: self.index,
-                id: self.id,
-            }
-        }
+    pub trait ModeRx<SIG, PERIPH> {
+        fn mode_rx(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeTx<T, S> {
-        fn mode_tx(&self, _: &S) -> &Self;
+    pub trait ModeTpm<SIG, PERIPH> {
+        fn mode_tpm(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeRx<T, S> {
-        fn mode_rx(&self, _: &S) -> &Self;
+    pub trait ModeAdc<SIG, PERIPH> {
+        fn mode_adc(&self, _: &PERIPH) -> &Self;
     }
 
-    pub trait ModeTpm<T, S> {
-        fn mode_tpm(&self, _: &S) -> &Self;
-    }
-
-    pub trait ModeAdc<T, S> {
-        fn mode_adc(&self, _: &S) -> &Self;
-    }
-
-    impl<P, O, S, T> ModeTx<T, S> for Pin<P, O> where S: SignalTx<T>, P: AltFn<T> {
-        fn mode_tx(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_tx(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }
 
-    impl<P, O, S, T> ModeRx<T, S> for Pin<P, O> where S: SignalRx<T>, P: AltFn<T> {
-        fn mode_rx(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_rx(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }    
 
-    impl<P, O, S, T> ModeTpm<T, S> for Pin<P, O> where S: SignalTpm<T>, P: AltFn<T> {
-        fn mode_tpm(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeTpm<SIG, PERIPH> for PIN where PERIPH: SignalTpm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_tpm(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }        
 
-    impl<P, O, S, T> ModeAdc<T, S> for Pin<P, O> where S: SignalAdc<T>, P: AltFn<T> {
-        fn mode_adc(&self, _: &S) -> &Self {
-            self.set_mux(self.id.alt_fn());
+    impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH> for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+        fn mode_adc(&self, _: &PERIPH) -> &Self {
+            self.set_mux(self.alt_fn());
             self
         }
     }          
@@ -77,6 +63,7 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use kinetis_common::hal::gpio::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Pin;
 }
 
 
@@ -108,10 +95,12 @@ pub mod dma {
     pub use chip::dma::*;
     pub use kinetis_common::hal::dma::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Channel;
 }
 
 pub mod adc {
     pub use chip::adc::*;
     pub use kinetis_common::hal::adc::*;
     pub use super::sim::SimEnabled;
+    pub use bobbin_common::Channel;
 }

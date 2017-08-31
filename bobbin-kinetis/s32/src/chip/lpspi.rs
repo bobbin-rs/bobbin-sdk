@@ -1,22 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::lpspi::*;
 
-pub const LPSPI0: Lpspi0 = Periph(0x4002c000, Lpspi0Id {});
-pub const LPSPI1: Lpspi1 = Periph(0x4002d000, Lpspi1Id {});
-pub const LPSPI2: Lpspi2 = Periph(0x4002e000, Lpspi2Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi0Id {}
-pub type Lpspi0 = Periph<Lpspi0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi1Id {}
-pub type Lpspi1 = Periph<Lpspi1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Lpspi2Id {}
-pub type Lpspi2 = Periph<Lpspi2Id>;
+periph!( LPSPI0, Lpspi0, _LPSPI0, LpspiPeriph, 0x4002c000);
+periph!( LPSPI1, Lpspi1, _LPSPI1, LpspiPeriph, 0x4002d000);
+periph!( LPSPI2, Lpspi2, _LPSPI2, LpspiPeriph, 0x4002e000);
 
 impl super::sig::Signal<super::sig::Lpspi0Sck> for Lpspi0 {}
 impl super::sig::SignalSpiSck<super::sig::Lpspi0Sck> for Lpspi0 {}
@@ -64,63 +52,20 @@ impl super::sig::Signal<super::sig::Lpspi2Pcs3> for Lpspi2 {}
 impl super::sig::SignalSpiPcs3<super::sig::Lpspi2Pcs3> for Lpspi2 {}
 
 
+
 pub trait IrqLpspi<T> {
-   fn irq_lpspi(&self) -> super::irq::Irq<T>;
+   fn irq_lpspi(&self) -> T;
 }
 
-pub trait RegisterLpspiHandler {
-   fn register_lpspi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleLpspi>(&self, f: &F) -> super::irq::IrqGuard<'a>;
-}
-
-pub trait HandleLpspi {
-   fn handle_lpspi(&self);
-}
-
-impl IrqLpspi<super::irq::Lpspi0Id> for Lpspi0 {
+impl IrqLpspi<super::irq::IrqLpspi0> for Lpspi0 {
    fn irq_lpspi(&self) -> super::irq::IrqLpspi0 { super::irq::IRQ_LPSPI0 }
 }
 
-impl RegisterLpspiHandler for Lpspi0 {
-   fn register_lpspi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleLpspi>(&self, f: &F) -> super::irq::IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleLpspi>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_lpspi() }
-       }
-       super::irq::set_handler(26, Some(wrapper::<F>));
-       super::irq::IrqGuard::new(26)
-   }
-}
-
-impl IrqLpspi<super::irq::Lpspi1Id> for Lpspi1 {
+impl IrqLpspi<super::irq::IrqLpspi1> for Lpspi1 {
    fn irq_lpspi(&self) -> super::irq::IrqLpspi1 { super::irq::IRQ_LPSPI1 }
 }
 
-impl RegisterLpspiHandler for Lpspi1 {
-   fn register_lpspi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleLpspi>(&self, f: &F) -> super::irq::IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleLpspi>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_lpspi() }
-       }
-       super::irq::set_handler(27, Some(wrapper::<F>));
-       super::irq::IrqGuard::new(27)
-   }
-}
-
-impl IrqLpspi<super::irq::Lpspi2Id> for Lpspi2 {
+impl IrqLpspi<super::irq::IrqLpspi2> for Lpspi2 {
    fn irq_lpspi(&self) -> super::irq::IrqLpspi2 { super::irq::IRQ_LPSPI2 }
-}
-
-impl RegisterLpspiHandler for Lpspi2 {
-   fn register_lpspi_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleLpspi>(&self, f: &F) -> super::irq::IrqGuard<'a> {
-       static mut HANDLER: Option<usize> = None;
-       unsafe { HANDLER = Some(f as *const F as usize) }
-       extern "C" fn wrapper<W: HandleLpspi>() {
-          unsafe { (*(HANDLER.unwrap() as *const W)).handle_lpspi() }
-       }
-       super::irq::set_handler(28, Some(wrapper::<F>));
-       super::irq::IrqGuard::new(28)
-   }
 }
 

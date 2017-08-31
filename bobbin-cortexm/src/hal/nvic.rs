@@ -1,39 +1,44 @@
 pub use ::chip::nvic::*;
 
+pub trait NvicEnabled {
+    fn nvic_enabled(&self) -> bool;
+    fn set_nvic_enabled(&self, value: bool) -> &Self;
+}
+
 pub fn enabled(irq: usize) -> bool {
-    NVIC.iser((irq >> 5)).setena(irq) != 0
+    NVIC.iser((irq >> 5)).setena(irq & 0b11111) != 0
 }
 
 pub fn set_enabled(irq: usize, value: bool) {
     if value {
-        NVIC.set_iser((irq >> 5), |r| r.set_setena(irq, 1));
+        NVIC.set_iser((irq >> 5), |r| r.set_setena(irq & 0b11111, 1));
     } else {
-        NVIC.set_icer((irq >> 5), |r| r.set_clrena(irq, 1));
+        NVIC.set_icer((irq >> 5), |r| r.set_clrena(irq & 0b11111, 1));
     }        
 }
 
 pub fn pending(irq: usize) -> bool {
-    NVIC.ispr((irq >> 5)).setpend(irq) != 0
+    NVIC.ispr((irq >> 5)).setpend(irq & 0b11111) != 0
 }
 
 pub fn set_pending(irq: usize, value: bool) {
     if value {
-        NVIC.set_ispr((irq >> 5), |r| r.set_setpend(irq, 1));
+        NVIC.set_ispr((irq >> 5), |r| r.set_setpend(irq & 0b11111, 1));
     } else {
-        NVIC.set_icpr((irq >> 5), |r| r.set_clrpend(irq, 1));
+        NVIC.set_icpr((irq >> 5), |r| r.set_clrpend(irq & 0b11111, 1));
     }        
 }
 
 pub fn active(irq: usize) -> bool {
-    NVIC.iabr((irq >> 5)).active(irq) != 0
+    NVIC.iabr((irq >> 5)).active(irq & 011111) != 0
 }
 
 pub fn priority(irq: usize) -> u8 {
-    NVIC.ipr((irq >> 4)).pri(irq).into()
+    NVIC.ipr((irq >> 4)).pri(irq & 0b1111).into()
 }
 
 pub fn set_priority(irq: usize, value: u8) {
-    NVIC.with_ipr((irq >> 4), |r| r.set_pri(irq, value as u32));
+    NVIC.with_ipr((irq >> 4), |r| r.set_pri(irq & 0b1111, value as u32));
 }
 
 pub fn trigger_interrupt(irq: usize) {

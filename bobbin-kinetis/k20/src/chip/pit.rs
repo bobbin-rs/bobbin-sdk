@@ -1,12 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::pit::*;
 
-pub const PIT: Pit = Periph(0x40037000, PitId {});
+periph!( PIT, Pit, _PIT, PitPeriph, 0x40037000);
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct PitId {}
-pub type Pit = Periph<PitId>;
 
 
 

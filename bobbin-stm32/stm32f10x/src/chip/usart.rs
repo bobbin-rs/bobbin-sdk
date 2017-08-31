@@ -1,22 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::usart_f24::*;
 
-pub const USART1: Usart1 = Periph(0x40013800, Usart1Id {});
-pub const USART2: Usart2 = Periph(0x40004400, Usart2Id {});
-pub const USART3: Usart3 = Periph(0x40004800, Usart3Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Usart1Id {}
-pub type Usart1 = Periph<Usart1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Usart2Id {}
-pub type Usart2 = Periph<Usart2Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Usart3Id {}
-pub type Usart3 = Periph<Usart3Id>;
+periph!( USART1, Usart1, _USART1, UsartPeriph, 0x40013800);
+periph!( USART2, Usart2, _USART2, UsartPeriph, 0x40004400);
+periph!( USART3, Usart3, _USART3, UsartPeriph, 0x40004800);
 
 impl super::sig::Signal<super::sig::Usart1Tx> for Usart1 {}
 impl super::sig::SignalTx<super::sig::Usart1Tx> for Usart1 {}
@@ -50,5 +38,6 @@ impl super::sig::Signal<super::sig::Usart3Rts> for Usart3 {}
 impl super::sig::SignalRts<super::sig::Usart3Rts> for Usart3 {}
 impl super::sig::Signal<super::sig::Usart3Ck> for Usart3 {}
 impl super::sig::SignalCk<super::sig::Usart3Ck> for Usart3 {}
+
 
 

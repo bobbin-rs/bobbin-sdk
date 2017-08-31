@@ -79,7 +79,7 @@ impl<M> Pin<M> {
     }
     
 
-    pub fn into_altfn(self, value: u8) -> Pin<ModeAltFn> {
+    pub fn into_alt_fn(self, value: u8) -> Pin<ModeAltFn> {
         sysctl::set_gpio_enabled(self.gpio, true);
         let mut gpio = self.gpio;
         unsafe {            
@@ -91,7 +91,7 @@ impl<M> Pin<M> {
         Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
     }     
 
-    pub fn into_altfn_unchecked(self) -> Pin<ModeAltFn> {
+    pub fn into_alt_fn_unchecked(self) -> Pin<ModeAltFn> {
         Pin { gpio: self.gpio, pin: self.pin, _phantom: PhantomData }
     }
 

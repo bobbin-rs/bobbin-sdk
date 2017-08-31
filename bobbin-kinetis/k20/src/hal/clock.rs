@@ -1,5 +1,5 @@
 use chip::sim::SIM;
-use chip::osc::{self, OSC};
+use chip::osc::OSC;
 use chip::mcg::{self, MCG};
 // use hal::mcg::MCG;
 // use hal::sim::SIM;

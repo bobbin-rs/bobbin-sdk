@@ -18,16 +18,8 @@ pub struct Config {
     pub window: u32,
 }
 
-pub trait IwdgExt {
-    fn configure(&self, cfg: Config) -> &Self;
-    fn unlock(&self) -> &Self;
-    fn lock(&self) -> &Self;
-    fn refresh(&self) -> &Self;
-    fn start(&self) -> &Self;
-}
-
-impl<T> IwdgExt for Periph<T> {
-    fn configure(&self, cfg: Config) -> &Self {
+impl IwdgPeriph {
+    pub fn configure(&self, cfg: Config) -> &Self {
         self.start().unlock();
         self.set_pr(|r| r.set_pr(cfg.prescaler as u32));
         self.set_rlr(|r| r.set_rl(cfg.reload));
@@ -35,16 +27,16 @@ impl<T> IwdgExt for Periph<T> {
         self.set_winr(|r| r.set_win(cfg.window));
         self.refresh()
     }
-    fn unlock(&self) -> &Self {
+    pub fn unlock(&self) -> &Self {
         self.set_kr(|r| r.set_key(0x5555))
     }
-    fn lock(&self) -> &Self {
+    pub fn lock(&self) -> &Self {
         self.set_kr(|r| r.set_key(0xABCD))
     }
-    fn refresh(&self) -> &Self {
+    pub fn refresh(&self) -> &Self {
         self.set_kr(|r| r.set_key(0xAAAA))
     }
-    fn start(&self) -> &Self {
+    pub fn start(&self) -> &Self {
         self.set_kr(|r| r.set_key(0xCCCC))
     }
 }

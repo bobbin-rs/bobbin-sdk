@@ -1,5 +1,9 @@
 #![no_std]
 
+#[cfg(test)]
+#[macro_use]
+extern crate std;
+
 pub extern crate bobbin_bits as bits;
 pub mod clock;
 pub mod timer;
@@ -7,232 +11,234 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 
-pub struct Pin<T, P>(T, P, usize);
+pub use core::ops::Deref;
 
-impl<T, P> Pin<T, P> {
-    pub fn id(&self) -> &T { &self.0 }
-    pub fn periph(&self) -> &P { &self.1 }
-    pub fn index(&self) -> usize { self.2 }
-    
-}
+#[cfg(not(test))] use core::ptr::{read_volatile, write_volatile};
 
-pub struct Channel<T, P>(T, P, usize);
 
-impl<T, P> Channel<T, P> {
-    pub fn id(&self) -> &T { &self.0 }
-    pub fn periph(&self) -> &P { &self.1 }
-    pub fn index(&self) -> usize { self.2 }    
-}
+#[cfg(test)] mod vm;
+#[cfg(test)] use vm::Vm;
+#[cfg(test)] use std::cell::RefCell;
+#[cfg(test)] thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
 
-pub trait AltFn<S> {
-    fn alt_fn(&self) -> usize;
-}
+#[cfg(not(test))]
+pub trait Base {
+    #[inline(always)]
+    fn base(&self) -> usize;
 
-impl<T, P, S> AltFn<S> for Pin<T, P> where T: AltFn<S> {
-    fn alt_fn(&self) -> usize { self.id().alt_fn() }
-}
-
-pub enum PinMode {
-    Analog,
-    Input,
-    Output,
-    AltFn(usize),
-}
-
-pub trait PortConfigMode {
-    fn mode(&self, index: usize) -> PinMode;
-    fn set_mode(&self, index: usize, value: PinMode) -> &Self;
-}
-
-pub trait PinConfigMode {
-    fn mode(&self) -> PinMode;
-    fn set_mode(&self, value: PinMode) -> &Self;
-}
-
-impl<T, P> PinConfigMode for Pin<T, P> where P: PortConfigMode {
-    fn mode(&self) -> PinMode {
-        self.periph().mode(self.index())
+    #[inline(always)]
+    fn addr<T>(&self, offset: usize) -> *mut T {
+        (self.base() + offset) as *mut T
     }
-    fn set_mode(&self, value: PinMode) -> &Self {
-        self.periph().set_mode(self.index(), value);
-        self
-    }
-}
 
-pub enum PinPull {
-    None,
-    PullUp,
-    PullDown,
-}
+    #[inline(always)]
+    fn read<T>(&self, offset: usize) -> T {
+        unsafe { read_volatile(self.addr(offset)) }
+    }    
 
-pub trait PortConfigPull {
-    fn pull(&self, index: usize) -> PinPull;
-    fn set_pull(&self, index: usize, value: PinPull) -> &Self;
-}
-
-pub trait PinConfigPull {
-    fn pull(&self) -> PinPull;
-    fn set_pull(&self, value: PinPull) -> &Self;
-}
-
-impl<T, P> PinConfigPull for Pin<T, P> where P: PortConfigPull {
-    fn pull(&self) -> PinPull {
-        self.periph().pull(self.index())
-    }
-    fn set_pull(&self, value: PinPull) -> &Self {
-        self.periph().set_pull(self.index(), value);
-        self
-    }
-}
-
-pub trait PortConfigOpenDrain {
-    fn open_drain(&self, index: usize) -> bool;
-    fn set_open_drain(&self, index: usize, value: bool) -> &Self;
-}
-
-pub trait PinConfigOpenDrain {
-    fn open_drain(&self) -> bool;
-    fn set_open_drain(&self, value: bool) -> &Self;
-}
-
-impl<T, P> PinConfigOpenDrain for Pin<T, P> where P: PortConfigOpenDrain {
-    fn open_drain(&self) -> bool {
-        self.periph().open_drain(self.index())
-    }
-    fn set_open_drain(&self, value: bool) -> &Self {
-        self.periph().set_open_drain(self.index(), value);
-        self
-    }
-}
-
-pub trait PortOutput {
-    fn output(&self, index: usize) -> bool;
-    fn set_output(&self, index: usize, value: bool) -> &Self;
-    fn toggle_output(&self, index: usize) -> &Self { self.set_output(index, !self.output(index)) }
-}
-
-pub trait PinOutput {
-    fn output(&self) -> bool;
-    fn set_output(&self, value: bool) -> &Self;
-    fn toggle_output(&self) -> &Self { self.set_output(!self.output()) }
-}
-
-impl<T, P> PinOutput for Pin<T, P> where P: PortOutput {
-    fn output(&self) -> bool {
-        self.periph().output(self.index())
-    }
-    fn set_output(&self, value: bool) -> &Self {
-        self.periph().set_output(self.index(), value);
-        self
-    }
-}
-
-pub trait PinInput {
-    fn input(&self) -> bool;
-}
-
-pub trait PortInput {
-    fn input(&self, index: usize) -> bool;
-}
-
-
-impl<T, P> PinInput for Pin<T, P> where P: PortInput {
-    fn input(&self) -> bool {
-        self.periph().input(self.index())
-    }
-}
-
-pub trait Reset {
-    fn reset(&self);
-}
-
-pub trait ClockEnable {
-    fn clock_is_enabled(&self) -> bool;
-    fn clock_set_enabled(&self, value: bool) -> &Self;
-    fn clock_enable(&self) -> &Self { self.clock_set_enabled(true) }
-    fn clock_disable(&self) -> &Self { self.clock_set_enabled(false) }    
-}
-
-impl<P, T> ClockEnable for Pin<P, T> where T: ClockEnable {
-    fn clock_is_enabled(&self) -> bool {
-        self.periph().clock_is_enabled()
-    }
-    fn clock_set_enabled(&self, value: bool) -> &Self {
-        self.periph().clock_set_enabled(value);
+    #[inline(always)]
+    fn write<T>(&self, offset: usize, value: T) -> &Self {
+        unsafe { write_volatile(self.addr(offset), value); }
         self
     }
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
+pub trait Base {
+    #[inline(always)]
+    fn base(&self) -> usize;
 
-    pub const P0: Pin0 = Pin0 {};
-    pub const P1: Pin1 = Pin1 {};
-    pub const P2: Pin2 = Pin2 {};
-    pub const P3: Pin3 = Pin3 {};
-
-    pub struct Pin0 {}
-    pub struct Pin1 {}
-    pub struct Pin2 {}
-    pub struct Pin3 {}
-
-    #[test]
-    fn test_inputs() {
-        impl<'a> PortInput for &'a [bool] {
-            fn input(&self, index: usize) -> bool {
-                self[index]
-            }            
-        }
-
-        let inputs = &[true, false, true, true][..];
-        assert_eq!(inputs.input(0), true);
-        assert_eq!(inputs.input(1), false);
-        assert_eq!(inputs.input(2), true);
-        assert_eq!(inputs.input(3), true);
-        
-        let p0 = Pin(P0, inputs, 0);
-        let p1 = Pin(P1, inputs, 1);
-        let p2 = Pin(P2, inputs, 2);
-        let p3 = Pin(P3, inputs, 3);
-
-        assert_eq!(p0.input(), true);
-        assert_eq!(p1.input(), false);
-        assert_eq!(p2.input(), true);
-        assert_eq!(p3.input(), true);
+    fn addr<T>(&self, offset: usize) -> *mut T {
+        (self.base() + offset) as *mut T
     }
 
-    #[test]
-    fn test_outputs() {
-        use core::cell::Cell;
-        pub struct Port { 
-            cells: [Cell<bool>; 4],
-        }
+    fn read<T>(&self, offset: usize) -> T {
+        let addr = self.addr(offset);
+        MEM.with(|m| m.borrow().read(addr))
+    }
 
-        impl<'a> PortOutput for &'a Port {
-            fn output(&self, index: usize) -> bool {
-                self.cells[index].get()
-            }
-            fn set_output(&self, index: usize, value: bool) -> &Self {
-                self.cells[index].set(value);
-                self
+    fn write<T>(&self, offset: usize, value: T) -> &Self {
+        let addr = self.addr(offset);
+        MEM.with(|m| m.borrow_mut().write(addr, value));
+        self
+    }
+}
+
+pub trait Pin<T> {
+    fn port(&self) -> T;
+    fn index(&self) -> usize;
+}
+
+pub trait Channel<T> {
+    fn periph(&self) -> T;
+    fn index(&self) -> usize;
+}
+
+pub trait AltFn<T> {
+    fn alt_fn(&self) -> usize;
+}
+
+pub trait Irq<T> {
+    fn irq(&self) -> T;
+}
+
+pub trait IrqNum {
+    fn irq_num(&self) -> u8;
+}
+
+pub type Handler = extern "C" fn();
+
+pub trait GetHandler {
+    fn handler(&self) -> Option<Handler>;
+}
+
+pub trait SetHandler {
+    fn set_handler(&self, Option<Handler>);
+}
+
+pub trait HandleIrq {
+   fn handle_irq(&self);
+}
+
+pub trait WrapHandler {
+    fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
+}
+
+#[macro_export]
+macro_rules! periph {
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $pid: $pty = $pty($base);
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
+        pub struct $ty {}
+        impl Deref for $ty {
+            type Target = $pty;
+            #[inline(always)]            
+            fn deref(&self) -> &$pty {
+                &$pid
             }
         }
+        impl Into<$pty> for $ty {
+            #[inline(always)]
+            fn into(self) -> $pty {
+                $pid
+            }
+        }        
+    );
+    ($id:ident, $ty:ident, $base:expr) => (    
+        pub const $id: $ty = $ty($base);
+    )
+}
 
-        let port = &Port { cells: [Cell::new(true), Cell::new(false), Cell::new(true), Cell::new(true)]};
-        assert_eq!(port.output(0), true);
-        assert_eq!(port.output(1), false);
-        assert_eq!(port.output(2), true);
-        assert_eq!(port.output(3), true);
+#[macro_export]
+macro_rules! pin {
+    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
+        pub struct $ty {}
+        impl Pin<$port_type> for $ty {
+            #[inline(always)]
+            fn port(&self) -> $port_type { $port_id }
+            #[inline(always)]            
+            fn index(&self) -> usize { $index }
+        }
+        impl Deref for $ty {
+            type Target = $base_type;
+            #[inline(always)]            
+            fn deref(&self) -> &$base_type {
+                &$base_id
+            }
+        }
+        impl Into<$base_type> for $ty {
+            #[inline(always)]
+            fn into(self) -> $base_type {
+                $base_id
+            }
+        }
+    )
+}
+
+#[macro_export]
+macro_rules! channel {
+    ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $index:expr) => (
+        pub const $id: $ty = $ty {};     
+        pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
+        #[derive(Debug, PartialEq, Eq, Clone, Copy)]
+        pub struct $ty {}
+        impl Channel<$periph_type> for $ty {
+            #[inline(always)]
+            fn periph(&self) -> $periph_type { $periph_id }
+            #[inline(always)]            
+            fn index(&self) -> usize { $index }
+        }
+        impl Deref for $ty {
+            type Target = $base_type;
+            #[inline(always)]            
+            fn deref(&self) -> &$base_type {
+                &$base_id
+            }
+        }
+        impl Into<$base_type> for $ty {
+            #[inline(always)]
+            fn into(self) -> $base_type {
+                $base_id
+            }
+        }        
+    )    
+}
+
+#[macro_export]
+macro_rules! alt_fn {
+    ($ty:ty, $sig:ty, $num:expr) => (
+        impl AltFn<$sig> for $ty {
+            #[inline(always)]            
+            fn alt_fn(&self) -> usize { $num }
+        }
         
-        let p0 = Pin(P0, port, 0);
-        let p1 = Pin(P1, port, 1);
-        let p2 = Pin(P2, port, 2);
-        let p3 = Pin(P3, port, 3);
+    )
 
-        assert_eq!(p0.output(), true);
-        assert_eq!(p1.output(), false);
-        assert_eq!(p2.output(), true);
-        assert_eq!(p3.output(), true);
-    }    
+}
+
+#[macro_export]
+macro_rules! irq {
+    ($id:ident, $ty:ident, $num:expr) => (
+        pub const $id: $ty = $ty {};
+        #[derive(PartialEq, Eq, Clone, Copy)]
+        pub struct $ty {}
+        impl IrqNum for $ty {
+            #[inline(always)]            
+            fn irq_num(&self) -> u8 { $num }
+        }
+        impl GetHandler for $ty {
+            #[inline]
+            fn handler(&self) ->  Option<Handler> {
+                handler($num)
+            }
+        }        
+        impl SetHandler for $ty {
+            #[inline]
+            fn set_handler(&self, h: Option<Handler>) {
+                set_handler($num, h);
+            }
+        }
+        impl WrapHandler for $ty {
+            fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) {
+                static mut HANDLER: Option<usize> = None;                
+                unsafe { 
+                    assert!(HANDLER.is_none(), "Irq is already wrapping a function");
+                    HANDLER = Some(f as *const F as usize)
+                }
+                extern "C" fn wrapper<W: HandleIrq>() {
+                    unsafe { (*(HANDLER.unwrap() as *const W)).handle_irq() }
+                }
+                set_handler($num, Some(wrapper::<F>));                
+            }
+        }
+        impl ::core::fmt::Debug for $ty {
+            fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+                write!(f, "[{} @ {}]", stringify!($id), $num)
+            }
+        }        
+    )
 }

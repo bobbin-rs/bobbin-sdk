@@ -17,43 +17,30 @@ pub enum ClockMode {
     ExtClk = 0b10,
 }
 
-pub trait TpmExt {
-    fn set_clock(&self, value: ClockMode) -> &Self;
-    fn set_prescale(&self, value: Prescale) -> &Self;
-    fn timer_overflow(&self) -> bool;
-    fn clr_timer_overflow(&self) -> &Self;
-}
-
-impl<T> TpmExt for Periph<T> {
-    fn set_clock(&self, value: ClockMode) -> &Self {
+impl TpmPeriph {
+    pub fn set_clock(&self, value: ClockMode) -> &Self {
         self.with_sc(|r| r.set_cmod(value as u32))
     }
-    fn set_prescale(&self, value: Prescale) -> &Self {
+    pub fn set_prescale(&self, value: Prescale) -> &Self {
         self.with_sc(|r| r.set_ps(value as u32))
     }
-    fn timer_overflow(&self) -> bool {
+    pub fn timer_overflow(&self) -> bool {
         self.sc().tof() != 0
     }
-    fn clr_timer_overflow(&self) -> &Self {
+    pub fn clr_timer_overflow(&self) -> &Self {
         self.with_sc(|r| r.set_tof(1))
     }
 }
 
-pub trait TpmChExt {
-    fn csc(&self) -> Csc;
-    fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self;
-    fn set_value(&self, value: u16) -> &Self;
-}
-
-impl<P, T> TpmChExt for Channel<P, T> {
-    fn csc(&self) -> Csc {
+impl TpmCh {
+    pub fn csc(&self) -> Csc {
         self.periph.csc(self.index)
     }
-    fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self {
+    pub fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self {
         self.periph.with_csc(self.index, f);
         self
     }
-    fn set_value(&self, value: u16) -> &Self {
+    pub fn set_value(&self, value: u16) -> &Self {
         self.periph.set_cv(self.index, |r| r.set_val(value as u32));
         self
     }

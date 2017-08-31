@@ -11,10 +11,10 @@ pub mod dmac;
 pub mod wdt;
 pub mod adc;
 
-// pub mod port;
-// pub mod usart;
-// // pub mod spi;
-// // pub mod i2c;
-// pub mod tc;
-// pub mod tcc;
-// pub mod adc;
+// // pub mod port;
+// // pub mod usart;
+// // // pub mod spi;
+// // // pub mod i2c;
+// // pub mod tc;
+// // pub mod tcc;
+// // pub mod adc;

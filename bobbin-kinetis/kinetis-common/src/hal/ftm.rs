@@ -18,80 +18,59 @@ pub enum ClockSource {
     FixedClk = 0b10,
 }
 
-pub trait FtmExt {
-    fn set_clock(&self, value: ClockSource) -> &Self;
-    // fn set_prescale(&self, value: FtmPrescale) -> &Self;
-    fn timer_overflow(&self) -> bool;
-    fn clr_timer_overflow(&self) -> &Self;
-    fn count(&self) -> u16;
-    fn set_count(&self, value: u16) -> &Self;
-    fn modulo(&self) -> u16;
-    fn set_modulo(&self, value: u16) -> &Self;
-    fn set_center(&self, value: bool) -> &Self;
-}
-
-impl<T> FtmExt for Periph<T> {
-    fn set_clock(&self, value: ClockSource) -> &Self {
+impl FtmPeriph {
+    pub fn set_clock(&self, value: ClockSource) -> &Self {
         self.with_sc(|r| r.set_clks(value as u32))
     }
-    // fn set_prescale(&self, value: FtmPrescale) -> &Self {
+    // pub fn set_prescale(&self, value: FtmPrescale) -> &Self {
     //     self.with_sc(|r| r.set_ps(value as u32))
     // }
-    fn timer_overflow(&self) -> bool {
+    pub fn timer_overflow(&self) -> bool {
         self.sc().tof() != 0
     }
-    fn clr_timer_overflow(&self) -> &Self {
+    pub fn clr_timer_overflow(&self) -> &Self {
         self.with_sc(|r| r.set_tof(1))    
     }
-    fn count(&self) -> u16 {
+    pub fn count(&self) -> u16 {
         self.cnt().count().into()
     }
-    fn set_count(&self, value: u16) -> &Self {
+    pub fn set_count(&self, value: u16) -> &Self {
         self.set_cnt(|r| r.set_count(value as u32))
     }
-    fn modulo(&self) -> u16 {
+    pub fn modulo(&self) -> u16 {
         self._mod()._mod().into()
     }
-    fn set_modulo(&self, value: u16) -> &Self {
+    pub fn set_modulo(&self, value: u16) -> &Self {
         self.set_mod(|r| r.set_mod(value as u32))
     }    
-    fn set_center(&self, value: bool) -> &Self {
+    pub fn set_center(&self, value: bool) -> &Self {
         self.with_sc(|r| r.set_cpwms(value))
     }
 }
 
-pub trait FtmChExt {
-    fn csc(&self) -> Csc;
-    fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self;
-    fn value(&self) -> u16;
-    fn set_value(&self, value: u16) -> &Self;
-    fn chf(&self) -> bool { self.csc().chf() != 0}
-    fn set_pwmen(&self, value: bool) -> &Self;
-}
-
-impl<P, T> FtmChExt for Channel<P, T> {
-    fn csc(&self) -> Csc {
+impl FtmCh {
+    pub fn csc(&self) -> Csc {
         self.periph.csc(self.index)
     }
-    fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self {
+    pub fn with_csc<F: FnOnce(Csc) -> Csc>(&self, f: F) -> &Self {
         self.periph.with_csc(self.index, f);
         self
     }
-    fn value(&self) -> u16 {
+    pub fn value(&self) -> u16 {
         self.periph.cv(self.index).val().value()
     }
-    fn set_value(&self, value: u16) -> &Self {
+    pub fn set_value(&self, value: u16) -> &Self {
         self.periph.set_cv(self.index, |r| r.set_val(value));
         self
     }
-    fn set_pwmen(&self, value: bool) -> &Self {
+    pub fn set_pwmen(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.periph.with_sc(|r| r.set_pwmen(self.index, value));
         self
     }
 }
 
-impl<T> Start<u16> for Periph<T> {
+impl Start<u16> for FtmPeriph {
     fn start(&self, value: u16) -> &Self {
         self
             .set_modulo(value - 1)
@@ -100,7 +79,7 @@ impl<T> Start<u16> for Periph<T> {
     }
 }
 
-impl<T> Delay<u16> for Periph<T> {
+impl Delay<u16> for FtmPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .start(value)
@@ -109,7 +88,7 @@ impl<T> Delay<u16> for Periph<T> {
             .stop()
     }
 }
-impl<T> Timer<u16> for Periph<T> {
+impl Timer<u16> for FtmPeriph {
     fn stop(&self) -> &Self {
         self.set_clock(ClockSource::Disabled)
     }
@@ -139,13 +118,13 @@ impl<T> Timer<u16> for Periph<T> {
     }    
 }
 
-impl<T> SetCounter<u16> for Periph<T> {
+impl SetCounter<u16> for FtmPeriph {
     fn set_counter(&self, value: u16) -> &Self {
         self.set_cnt(|r| r.set_count(value))
     }
 }
 
-impl<T> Prescale<u16> for Periph<T> {
+impl Prescale<u16> for FtmPeriph {
     fn prescale(&self) -> u16 {
         1u16 << self.sc().ps().value()
     }
@@ -166,40 +145,40 @@ impl<T> Prescale<u16> for Periph<T> {
     }    
 }
 
-impl<P, T> Compare<u16> for Channel<P, T> {
+impl Compare<u16> for FtmCh {
     fn compare(&self) -> u16 {
-        self.periph().cv(self.index).val().value()
+        self.periph.cv(self.index).val().value()
     }
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_cv(self.index, |r| r.set_val(value));
+        self.periph.set_cv(self.index, |r| r.set_val(value));
         self
     }
 
     fn compare_flag(&self) -> bool {
-        self.periph().csc(self.index()).chf() != 0
+        self.periph.csc(self.index).chf() != 0
     }
 
     fn clr_compare_flag(&self) -> &Self {
-        self.periph().with_csc(self.index(), |r| r.set_chf(0));
+        self.periph.with_csc(self.index, |r| r.set_chf(0));
         self    
     }
 }
 
-impl<P, T> PwmLow<u16> for Channel<P, T> {
+impl PwmLow<u16> for FtmCh {
     // PWM, (Counter < Compare) => Output Low
     fn pwm_low(&self, compare: u16, period: u16) -> &Self {
         self.pwm_up_low(compare, period)
     }
 }
 
-impl<P, T> PwmHigh<u16> for Channel<P, T> {
+impl PwmHigh<u16> for FtmCh {
     // PWM, (Counter < Compare) => Output High
     fn pwm_high(&self, compare: u16, period: u16) -> &Self {
         self.pwm_up_high(compare, period)
     }
 }
 
-impl<P, T> PwmUpLow<u16> for Channel<P, T> {
+impl PwmUpLow<u16> for FtmCh {
     // Up Counting PWM, (Counter < Compare) => Output Low
     fn pwm_up_low(&self, compare: u16, period: u16) -> &Self {
         self
@@ -211,7 +190,7 @@ impl<P, T> PwmUpLow<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
+impl PwmUpHigh<u16> for FtmCh {
     // Up Counting PWM, (Counter < Compare) => Output High
     fn pwm_up_high(&self, compare: u16, period: u16) -> &Self {
         self
@@ -223,7 +202,7 @@ impl<P, T> PwmUpHigh<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmCenterLow<u16> for Channel<P, T> {
+impl PwmCenterLow<u16> for FtmCh {
     // Center Aligned PWM, (Counter < Compare) => Output Low
     fn pwm_center_low(&self, compare: u16, period: u16) -> &Self {
         self
@@ -238,7 +217,7 @@ impl<P, T> PwmCenterLow<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmCenterHigh<u16> for Channel<P, T> {
+impl PwmCenterHigh<u16> for FtmCh {
     // Center Aligned PWM, (Counter < Compare) => Output High
     fn pwm_center_high(&self, compare: u16, period: u16) -> &Self {
         self

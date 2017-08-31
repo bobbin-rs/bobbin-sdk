@@ -1,5 +1,4 @@
-#[allow(unused_imports)] use bobbin_common::bits;
-extern crate bobbin_cortexm;
+#[allow(unused_imports)] use bobbin_common::*;
 pub use bobbin_cortexm::chip::exc;
 pub use bobbin_cortexm::chip::nvic;
 pub use bobbin_cortexm::chip::scb;
@@ -9,7 +8,6 @@ pub use bobbin_cortexm::chip::fpu;
 pub use bobbin_cortexm::chip::dcb;
 pub use bobbin_cortexm::chip::itm;
 
-extern crate kinetis_common;
 
 pub mod irq;
 pub mod sig;

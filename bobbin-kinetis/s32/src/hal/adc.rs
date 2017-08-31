@@ -91,47 +91,16 @@ pub enum InputChannel {
     Ad31 = 0x1f,
 }
 
-
-pub trait AdcExt {
-    fn init(&self) -> &Self;
-    fn is_active(&self) -> bool;
-    fn clock_divide(&self) -> ClockDivide;
-    fn set_clock_divide(&self, value: ClockDivide) -> &Self;
-    fn sample_time(&self) -> u8;
-    fn set_sample_time(&self, value: u8) -> &Self;
-    fn resolution(&self) -> Resolution;
-    fn set_resolution(&self, value: Resolution) -> &Self;
-    fn input_clock(&self) -> AltClock;
-    fn set_input_clock(&self, value: AltClock) -> &Self;
-    fn trigger_mode(&self) -> TriggerMode;
-    fn set_trigger_mode(&self, value: TriggerMode) -> &Self;
-    fn dma_enabled(&self) -> bool;
-    fn set_dma_enabled(&self, value: bool) -> &Self;
-    fn voltage_reference(&self) -> VoltageReference;
-    fn set_voltage_reference(&self, value: VoltageReference) -> &Self;
-    fn continuous_conversion(&self) -> bool;    
-    fn set_continuous_conversion(&self, value: bool) -> &Self;
-    fn calibration_active(&self) -> bool;
-    fn set_calibration_active(&self, value: bool) -> &Self;
-    fn conversion_complete(&self, index: usize) -> bool;
-    fn wait_conversion_complete(&self, index: usize) -> &Self;
-    fn channel_input(&self, index: usize) -> U5;
-    fn set_channel_input(&self, index: usize, value: U5) -> &Self;
-    fn read_12(&self, index: usize) -> U12;
-    fn read_10(&self, index: usize) -> U10;
-    fn read_8(&self, index: usize) -> U8;
-}
-
-impl<T> AdcExt for Periph<T> {
-    fn init(&self) -> &Self {
+impl AdcPeriph {
+    pub fn init(&self) -> &Self {
         self
     }
 
-    fn is_active(&self) -> bool {
+    pub fn is_active(&self) -> bool {
         self.sc2().adact() != 0
     }
 
-    fn clock_divide(&self) -> ClockDivide {
+    pub fn clock_divide(&self) -> ClockDivide {
         match self.cfg1().adiv() {
             U2::B00 => ClockDivide::Div1,
             U2::B01 => ClockDivide::Div2,
@@ -140,19 +109,19 @@ impl<T> AdcExt for Periph<T> {
         }
     }
 
-    fn set_clock_divide(&self, value: ClockDivide) -> &Self {
+    pub fn set_clock_divide(&self, value: ClockDivide) -> &Self {
         self.with_cfg1(|r| r.set_adiv(value as u32))
     }
 
-    fn sample_time(&self) -> u8 {
+    pub fn sample_time(&self) -> u8 {
         self.cfg2().smplts().value()
     }
 
-    fn set_sample_time(&self, value: u8) -> &Self {
+    pub fn set_sample_time(&self, value: u8) -> &Self {
         self.with_cfg2(|r| r.set_smplts(value))
     }
 
-    fn resolution(&self) -> Resolution {
+    pub fn resolution(&self) -> Resolution {
         match self.cfg1().mode() {
             U2::B00 => Resolution::Bits8,
             U2::B01 => Resolution::Bits12,
@@ -161,11 +130,11 @@ impl<T> AdcExt for Periph<T> {
         }
     }
 
-    fn set_resolution(&self, value: Resolution) -> &Self {
+    pub fn set_resolution(&self, value: Resolution) -> &Self {
         self.with_cfg1(|r| r.set_mode(value as u8))
     }
 
-    fn input_clock(&self) -> AltClock {
+    pub fn input_clock(&self) -> AltClock {
         match self.cfg1().adiclk() {
             U2::B00 => AltClock::Alt1,
             U2::B01 => AltClock::Alt2,
@@ -174,30 +143,30 @@ impl<T> AdcExt for Periph<T> {
         }
     }
 
-    fn set_input_clock(&self, value: AltClock) -> &Self {
+    pub fn set_input_clock(&self, value: AltClock) -> &Self {
         self.with_cfg1(|r| r.set_adiclk(value as u8))
     }
 
-    fn trigger_mode(&self) -> TriggerMode {
+    pub fn trigger_mode(&self) -> TriggerMode {
         match self.sc2().adtrg() {
             U1::B0 => TriggerMode::Software,
             U1::B1 => TriggerMode::Hardware,
         }
     }
 
-    fn set_trigger_mode(&self, value: TriggerMode) -> &Self {
+    pub fn set_trigger_mode(&self, value: TriggerMode) -> &Self {
         self.with_sc2(|r| r.set_adtrg(value as u8))
     }
 
-    fn dma_enabled(&self) -> bool {
+    pub fn dma_enabled(&self) -> bool {
         self.sc2().dmaen() != 0
     }
 
-    fn set_dma_enabled(&self, value: bool) -> &Self {
+    pub fn set_dma_enabled(&self, value: bool) -> &Self {
         self.with_sc2(|r| r.set_dmaen(value))
     }
 
-    fn voltage_reference(&self) -> VoltageReference {
+    pub fn voltage_reference(&self) -> VoltageReference {
         match self.sc2().refsel() {
             U2::B00 => VoltageReference::VRef,
             U2::B01 => VoltageReference::VAlt,
@@ -206,59 +175,59 @@ impl<T> AdcExt for Periph<T> {
         }
     }
 
-    fn set_voltage_reference(&self, value: VoltageReference) -> &Self {
+    pub fn set_voltage_reference(&self, value: VoltageReference) -> &Self {
         self.with_sc2(|r| r.set_refsel(value as u8))
     }
 
-    fn continuous_conversion(&self) -> bool {
+    pub fn continuous_conversion(&self) -> bool {
         self.sc3().adco() != 0
     }
 
-    fn set_continuous_conversion(&self, value: bool) -> &Self {
+    pub fn set_continuous_conversion(&self, value: bool) -> &Self {
         self.with_sc3(|r| r.set_adco(value))
     }
 
-    fn calibration_active(&self) -> bool {
+    pub fn calibration_active(&self) -> bool {
         self.sc3().cal() != 0
     }
 
-    fn set_calibration_active(&self, value: bool) -> &Self {
+    pub fn set_calibration_active(&self, value: bool) -> &Self {
         self.with_sc3(|r| r.set_cal(value))
     }
 
-    fn conversion_complete(&self, index: usize) -> bool {
+    pub fn conversion_complete(&self, index: usize) -> bool {
         self.sc1(index).coco() != 0
     }
 
-    fn wait_conversion_complete(&self, index: usize) -> &Self {
+    pub fn wait_conversion_complete(&self, index: usize) -> &Self {
         while self.sc1(index).coco() == 0 {}
         self
     }
 
-    fn channel_input(&self, index: usize) -> U5 {
+    pub fn channel_input(&self, index: usize) -> U5 {
         self.sc1(index).adch()
     }
 
-    fn set_channel_input(&self, index: usize, value: U5) -> &Self {
+    pub fn set_channel_input(&self, index: usize, value: U5) -> &Self {
         self.with_sc1(index, |r| r.set_adch(value))
     }
 
-    fn read_12(&self, index: usize) -> U12 {
+    pub fn read_12(&self, index: usize) -> U12 {
         self.r(index).d12()
     }
 
-    fn read_10(&self, index: usize) -> U10 {
+    pub fn read_10(&self, index: usize) -> U10 {
         self.r(index).d10()
     }
 
-    fn read_8(&self, index: usize) -> U8 {
+    pub fn read_8(&self, index: usize) -> U8 {
         self.r(index).d8()
     }
 }
 
 macro_rules! impl_analog_read {
     ($t:ty, $res:expr, $read:ident) => (
-        impl<P, T> AnalogRead<$t> for Channel<P, T> {
+        impl AnalogRead<$t> for AdcCh {
             fn start(&self) -> &Self {
                 self.periph
                     .set_resolution($res)

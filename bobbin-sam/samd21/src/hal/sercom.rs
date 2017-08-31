@@ -17,15 +17,8 @@ pub use super::pm::PmEnabled;
 // while gclk::GCLK.status().syncbusy() != 0 {}
 
 
-pub trait Usart {
-    fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self;
-    fn set_baud(&self, baud: u16) -> &Self;
-    fn set_enabled(&self, bool) -> &Self;
-    // fn write(&self, buf: &[u8]) -> &Self;
-}
-
-impl<T> Usart for Periph<T> {
-    fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self {
+impl SercomPeriph {
+    pub fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self {
         let s = self.usart();
 
         // Before Use: Power up SERCOM
@@ -76,20 +69,20 @@ impl<T> Usart for Periph<T> {
         self
     }
 
-    fn set_baud(&self, value: u16) -> &Self {
+    pub fn set_baud(&self, value: u16) -> &Self {
         let s = self.usart();
         s.set_baud(|_| usart::Baud(value));
         while s.syncbusy().enable() != 0 {}
         self
     }
 
-    fn set_enabled(&self, value: bool) -> &Self {
+    pub fn set_enabled(&self, value: bool) -> &Self {
         let s = self.usart();
         s.with_ctrla(|r| r.set_enable(value));
         self
     }
 
-    // fn write(&self, buf: &[u8]) -> &Self {
+    // pub fn write(&self, buf: &[u8]) -> &Self {
     //     for b in buf.iter() {
     //         self.putc(*b);
     //     }
@@ -97,7 +90,7 @@ impl<T> Usart for Periph<T> {
     // }
 }
 
-impl<T> SerialTx<u8> for Periph<T> {    
+impl SerialTx<u8> for SercomPeriph {    
     fn can_tx(&self) -> bool {
         self.usart().intflag().dre() != 0
     }
@@ -108,7 +101,7 @@ impl<T> SerialTx<u8> for Periph<T> {
     }
 }
 
-impl<T> SerialRx<u8> for Periph<T> {
+impl SerialRx<u8> for SercomPeriph {
     fn can_rx(&self) -> bool {
         self.usart().intflag().rxc() != 0
     }

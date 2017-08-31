@@ -393,23 +393,23 @@ impl EnetDevice {
 //     const AF_ENET: u8 = 4;
 
 //     //rmii_rxer.set_pull(port::Pull::PullUp);
-//     let rmii_rxd1 = port::pin(port::PORTA, 12).into_altfn(AF_ENET);
-//     let rmii_rxd0 = port::pin(port::PORTA, 13).into_altfn(AF_ENET);
-//     let rmii_crs_dv = port::pin(port::PORTA, 14).into_altfn(AF_ENET);
-//     let rmii_txen = port::pin(port::PORTA, 15).into_altfn(AF_ENET);
-//     let rmii_txd0 = port::pin(port::PORTA, 16).into_altfn(AF_ENET);
-//     let rmii_txd1 = port::pin(port::PORTA, 17).into_altfn(AF_ENET);    
-//     //let _ = port::pin(port::PORTA, 28).into_altfn(AF_ENET);    
-//     let rmii_rxer = port::pin(port::PORTA, 5).into_altfn(AF_ENET);
+//     let rmii_rxd1 = port::pin(port::PORTA, 12).into_alt_fn(AF_ENET);
+//     let rmii_rxd0 = port::pin(port::PORTA, 13).into_alt_fn(AF_ENET);
+//     let rmii_crs_dv = port::pin(port::PORTA, 14).into_alt_fn(AF_ENET);
+//     let rmii_txen = port::pin(port::PORTA, 15).into_alt_fn(AF_ENET);
+//     let rmii_txd0 = port::pin(port::PORTA, 16).into_alt_fn(AF_ENET);
+//     let rmii_txd1 = port::pin(port::PORTA, 17).into_alt_fn(AF_ENET);    
+//     //let _ = port::pin(port::PORTA, 28).into_alt_fn(AF_ENET);    
+//     let rmii_rxer = port::pin(port::PORTA, 5).into_alt_fn(AF_ENET);
 
 //     //let _ = port::pin(port::PORTA, 18).into_analog();
 
 //     //let rmii_txer = PTA28
-//     //let rmii_rxclk = port::pin(port::PORTA, 18).into_altfn(AF_ENET);
+//     //let rmii_rxclk = port::pin(port::PORTA, 18).into_alt_fn(AF_ENET);
 //     // Check - PTA28 / PTA11 (RXCLK)
 
-//     let rmii_mdio = port::pin(port::PORTB, 0).into_altfn(AF_ENET);  
-//     let rmii_mdc = port::pin(port::PORTB, 1).into_altfn(AF_ENET);    
+//     let rmii_mdio = port::pin(port::PORTB, 0).into_alt_fn(AF_ENET);  
+//     let rmii_mdc = port::pin(port::PORTB, 1).into_alt_fn(AF_ENET);    
     
 //     rmii_mdio.set_pull(port::Pull::PullUp);
 //     rmii_mdio.set_ode(true);

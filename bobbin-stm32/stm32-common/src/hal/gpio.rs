@@ -1,6 +1,6 @@
 pub use bobbin_common::digital::*;
 use bobbin_common::bits::*;
-use chip::gpio::Pin;
+pub use chip::gpio::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
@@ -32,39 +32,9 @@ pub enum Pull {
     Reserved = 0b11,
 }
 
-pub trait PinExt {
-    fn mode(&self) -> Mode;
-    fn set_mode(&self, value: Mode) -> &Self;
-    fn output_type(&self) -> OutputType;
-    fn set_output_type(&self, value: OutputType) -> &Self;
-    fn output_speed(&self) -> OutputSpeed;
-    fn set_output_speed(&self, value: OutputSpeed) -> &Self;
-    fn pull(&self) -> Pull;
-    fn set_pull(&self, value: Pull) -> &Self;
-    fn altfn(&self) -> usize;
-    fn set_altfn(&self, value: usize) -> &Self;
-
-    fn mode_input(&self) -> &Self;
-    fn mode_output(&self) -> &Self;
-    fn mode_altfn(&self, usize) -> &Self;
-    fn mode_analog(&self) -> &Self;
-
-    fn pull_none(&self) -> &Self;
-    fn pull_up(&self) -> &Self;
-    fn pull_down(&self) -> &Self;
-
-    fn push_pull(&self) -> &Self;
-    fn open_drain(&self) -> &Self;
-
-    // fn input(&self) -> bool;
-    // fn output(&self) -> bool;
-    // fn set_output(&self, value: bool) -> &Self;
-    // fn toggle_output(&self) -> &Self;
-}
-
-impl<P, T> PinExt for Pin<P,T> {
+impl GpioPin {
     #[inline]
-    fn mode(&self) -> Mode {
+    pub fn mode(&self) -> Mode {
         match self.port.moder().moder(self.index) {
             U2::B00 => Mode::Input,
             U2::B01 => Mode::Output,
@@ -74,13 +44,13 @@ impl<P, T> PinExt for Pin<P,T> {
     }
 
     #[inline]
-    fn set_mode(&self, value: Mode) -> &Self {
+    pub fn set_mode(&self, value: Mode) -> &Self {
         self.port.with_moder(|r| r.set_moder(self.index, value as u32));
         self
     }
 
     #[inline]
-    fn output_type(&self) -> OutputType {
+    pub fn output_type(&self) -> OutputType {
         match self.port.otyper().ot(self.index) {
             U1::B0 => OutputType::PushPull,
             U1::B1 => OutputType::OpenDrain,
@@ -88,13 +58,13 @@ impl<P, T> PinExt for Pin<P,T> {
     }
 
     #[inline]
-    fn set_output_type(&self, value: OutputType) -> &Self {
+    pub fn set_output_type(&self, value: OutputType) -> &Self {
         self.port.with_otyper(|r| r.set_ot(self.index, value as u32));
         self
     }
 
     #[inline]
-    fn output_speed(&self) -> OutputSpeed {
+    pub fn output_speed(&self) -> OutputSpeed {
         match self.port.ospeedr().ospeedr(self.index) {
             U2::B00 => OutputSpeed::LowSpeed,
             U2::B01 => OutputSpeed::MediumSpeed,
@@ -104,13 +74,13 @@ impl<P, T> PinExt for Pin<P,T> {
     }
 
     #[inline]
-    fn set_output_speed(&self, value: OutputSpeed) -> &Self {
+    pub fn set_output_speed(&self, value: OutputSpeed) -> &Self {
         self.port.with_ospeedr(|r| r.set_ospeedr(self.index, value as u32));
         self
     }
 
     #[inline]
-    fn pull(&self) -> Pull {
+    pub fn pull(&self) -> Pull {
         match self.port.pupdr().pupdr(self.index) {
             U2::B00 => Pull::None,
             U2::B01 => Pull::PullUp,
@@ -120,13 +90,13 @@ impl<P, T> PinExt for Pin<P,T> {
     }
 
     #[inline]
-    fn set_pull(&self, value: Pull) -> &Self {
+    pub fn set_pull(&self, value: Pull) -> &Self {
         self.port.with_pupdr(|r| r.set_pupdr(self.index, value as u32));
         self
     }
 
     #[inline]
-    fn altfn(&self) -> usize {
+    pub fn alt_fn(&self) -> usize {
         if self.index < 8 {
             self.port.afrl().afrl(self.index) as usize
         } else {
@@ -135,69 +105,69 @@ impl<P, T> PinExt for Pin<P,T> {
     }
     
     #[inline]
-    fn set_altfn(&self, value: usize) -> &Self {
+    pub fn set_alt_fn(&self, value: usize) -> &Self {
         if self.index < 8 {
-            self.port.with_afrl(|r| r.set_afrl(self.index, value as u32))
+            self.port.with_afrl(|r| r.set_afrl(self.index, value as u32));
         } else {
-            self.port.with_afrh(|r| r.set_afrh(self.index - 8, value as u32))
+            self.port.with_afrh(|r| r.set_afrh(self.index - 8, value as u32));
         };
         self
     }
 
     #[inline]
-    fn mode_output(&self) -> &Self {
+    pub fn mode_output(&self) -> &Self {
         self.set_mode(Mode::Output)
     }
 
     #[inline]
-    fn mode_input(&self) -> &Self {
+    pub fn mode_input(&self) -> &Self {
         self.set_mode(Mode::Input)
     }
 
     #[inline]
-    fn mode_altfn(&self, af: usize) -> &Self {
-        self.set_mode(Mode::AltFn).set_altfn(af)
+    pub fn mode_alt_fn(&self, af: usize) -> &Self {
+        self.set_mode(Mode::AltFn).set_alt_fn(af)
     }
 
     #[inline]
-    fn mode_analog(&self) -> &Self {
+    pub fn mode_analog(&self) -> &Self {
         self.set_mode(Mode::Analog)
     }
 
     #[inline]
-    fn pull_none(&self) -> &Self {
+    pub fn pull_none(&self) -> &Self {
         self.set_pull(Pull::None)
     }
 
     #[inline]
-    fn pull_up(&self) -> &Self {
+    pub fn pull_up(&self) -> &Self {
         self.set_pull(Pull::PullUp)
     }
 
     #[inline]
-    fn pull_down(&self) -> &Self {
+    pub fn pull_down(&self) -> &Self {
         self.set_pull(Pull::PullDown)
     }
 
     #[inline]
-    fn push_pull(&self) -> &Self {
+    pub fn push_pull(&self) -> &Self {
         self.set_output_type(OutputType::PushPull)
     }
 
     #[inline]
-    fn open_drain(&self) -> &Self {
+    pub fn open_drain(&self) -> &Self {
         self.set_output_type(OutputType::OpenDrain)
     }
 }
 
-impl<P, T> DigitalInput for Pin<P,T> {
+impl DigitalInput for GpioPin {
     #[inline]
     fn input(&self) -> bool {
         self.port.idr().idr(self.index) != 0
     }
 }
 
-impl<P, T> DigitalOutput for Pin<P,T> {
+impl DigitalOutput for GpioPin {
     #[inline]
     fn output(&self) -> bool {
         self.port.odr().odr(self.index) != 0

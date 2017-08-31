@@ -1,27 +1,22 @@
 pub use bobbin_common::timer::*;
 pub use chip::lptim::*;
 
-pub trait LptimExt {    
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, value: bool) -> &Self;
-}
-
-impl<T> LptimExt for Periph<T> {
-    fn enabled(&self) -> bool {
+impl LptimPeriph {
+    pub fn enabled(&self) -> bool {
         self.cr().enable() != 0
     }
-    fn set_enabled(&self, value: bool) -> &Self {
+    pub fn set_enabled(&self, value: bool) -> &Self {
         self.with_cr(|r| r.set_enable(value as u32))
     }
 }
 
-impl<T> Start<u16> for Periph<T> {
+impl Start<u16> for LptimPeriph {
     fn start(&self, value: u16) -> &Self {
         self.start_up(value)
     }
 }
 
-impl<T> StartUp<u16> for Periph<T> {
+impl StartUp<u16> for LptimPeriph {
     fn start_up(&self, value: u16) -> &Self {
         self
             .set_period(value)
@@ -29,7 +24,7 @@ impl<T> StartUp<u16> for Periph<T> {
     }
 }
 
-impl<T> StartUpOnce<u16> for Periph<T> {
+impl StartUpOnce<u16> for LptimPeriph {
     fn start_up_once(&self, value: u16) -> &Self {
         self
             .set_period(value)
@@ -37,7 +32,7 @@ impl<T> StartUpOnce<u16> for Periph<T> {
     }
 }
 
-impl<T> Delay<u16> for Periph<T> {
+impl Delay<u16> for LptimPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .start_up_once(value)
@@ -47,7 +42,7 @@ impl<T> Delay<u16> for Periph<T> {
     }
 }
 
-impl<T> Timer<u16> for Periph<T> {
+impl Timer<u16> for LptimPeriph {
     fn stop(&self) -> &Self {
         self.set_enabled(false)
     }
@@ -81,7 +76,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
 }
 
-impl<T> Prescale<u16> for Periph<T> {
+impl Prescale<u16> for LptimPeriph {
     fn prescale(&self) -> u16 {
         1 << self.cfgr().presc().value()
     }
@@ -101,7 +96,7 @@ impl<T> Prescale<u16> for Periph<T> {
     }
 }
 
-impl<T> Compare<u16> for Periph<T> {
+impl Compare<u16> for LptimPeriph {
     fn compare(&self) -> u16 {
         self.cmp().cmp().value()
     }

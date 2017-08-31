@@ -48,78 +48,10 @@ pub enum FifoThreshold {
     Q4 = 0b11,
 }
 
-pub trait ChannelExt {
-    fn feif(&self) -> bool;
-    fn dmeif(&self) -> bool;
-    fn teif(&self) -> bool;
-    fn htif(&self) -> bool;
-    fn tcif(&self) -> bool;
-
-    fn clr_feif(&self) -> &Self;
-    fn clr_dmeif(&self) -> &Self;
-    fn clr_teif(&self) -> &Self;
-    fn clr_htif(&self) -> &Self;
-    fn clr_tcif(&self) -> &Self;
-    
-    fn scr(&self) -> Scr;
-    fn set_scr(&self, Scr) -> &Self;
-    fn with_scr<F: FnOnce(Scr) -> Scr>(&self, F) -> &Self;
-
-    fn is_enabled(&self) -> bool {
-        self.scr().en() != 0
-    }
-    fn set_enabled(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_scr(|r| r.set_en(value))        
-    }
-    fn set_dir(&self, value: Dir) -> &Self { self.with_scr(|r| r.set_dir(value as u32)) }
-    fn set_psize(&self, value: Size) -> &Self { self.with_scr(|r| r.set_psize(value as u32)) }
-    fn set_msize(&self, value: Size) -> &Self { self.with_scr(|r| r.set_msize(value as u32)) }
-
-    fn set_pinc(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_scr(|r| r.set_pinc(value))
-    }
-
-    fn set_minc(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_scr(|r| r.set_minc(value))
-    }
-
-    fn set_circ(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_scr(|r| r.set_circ(value))
-    }
-
-    fn set_tcie(&self, value: bool) -> &Self {
-        let value = if value { 1 } else { 0 };
-        self.with_scr(|r| r.set_tcie(value))
-    }
-
-
-    fn ndt(&self) -> u16;
-    fn set_ndt(&self, value: u16) -> &Self;
-
-    fn pa(&self) -> u32;
-    fn set_pa(&self, value: u32) -> &Self;    
-
-    fn m0a(&self) -> u32;
-    fn set_m0a(&self, value: u32) -> &Self;    
-
-    fn m1a(&self) -> u32;
-    fn set_m1a(&self, value: u32) -> &Self;    
-
-    fn sfcr(&self) -> Sfcr;
-    fn set_sfcr(&self, Sfcr) -> &Self;
-    fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, F) -> &Self;
-
-    fn set_chsel(&self, value: u8) -> &Self;
-}
-
-impl<P, T> ChannelExt for Channel<P, T> {
-    fn feif(&self) -> bool {
-        let p = self.periph();
-        match self.index() {
+impl DmaCh {
+    pub fn feif(&self) -> bool {
+        let p = self.periph;
+        match self.index {
             0 => p.lisr().feif0() != 0,
             1 => p.lisr().feif1() != 0,
             2 => p.lisr().feif2() != 0,
@@ -132,9 +64,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         }
     }
 
-    fn dmeif(&self) -> bool {
-        let p = self.periph();
-        match self.index() {
+    pub fn dmeif(&self) -> bool {
+        let p = self.periph;
+        match self.index {
             0 => p.lisr().dmeif0() != 0,
             1 => p.lisr().dmeif1() != 0,
             2 => p.lisr().dmeif2() != 0,
@@ -147,9 +79,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         }
     }
 
-    fn teif(&self) -> bool {
-        let p = self.periph();
-        match self.index() {
+    pub fn teif(&self) -> bool {
+        let p = self.periph;
+        match self.index {
             0 => p.lisr().teif0() != 0,
             1 => p.lisr().teif1() != 0,
             2 => p.lisr().teif2() != 0,
@@ -162,9 +94,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         }
     }    
 
-    fn htif(&self) -> bool {
-        let p = self.periph();
-        match self.index() {
+    pub fn htif(&self) -> bool {
+        let p = self.periph;
+        match self.index {
             0 => p.lisr().htif0() != 0,
             1 => p.lisr().htif1() != 0,
             2 => p.lisr().htif2() != 0,
@@ -177,9 +109,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         }
     }    
 
-    fn tcif(&self) -> bool {
-        let p = self.periph();
-        match self.index() {
+    pub fn tcif(&self) -> bool {
+        let p = self.periph;
+        match self.index {
             0 => p.lisr().tcif0() != 0,
             1 => p.lisr().tcif1() != 0,
             2 => p.lisr().tcif2() != 0,
@@ -192,9 +124,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         }
     }            
 
-    fn clr_feif(&self) -> &Self {
-        let p = self.periph();
-        match self.index() {
+    pub fn clr_feif(&self) -> &Self {
+        let p = self.periph;
+        match self.index {
             0 => p.set_lifcr(|r| r.set_cfeif0(1)),
             1 => p.set_lifcr(|r| r.set_cfeif1(1)),
             2 => p.set_lifcr(|r| r.set_cfeif2(1)),
@@ -208,9 +140,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }      
 
-    fn clr_dmeif(&self) -> &Self {
-        let p = self.periph();
-        match self.index() {
+    pub fn clr_dmeif(&self) -> &Self {
+        let p = self.periph;
+        match self.index {
             0 => p.set_lifcr(|r| r.set_cdmeif0(1)),
             1 => p.set_lifcr(|r| r.set_cdmeif1(1)),
             2 => p.set_lifcr(|r| r.set_cdmeif2(1)),
@@ -224,9 +156,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }      
 
-    fn clr_teif(&self) -> &Self {
-        let p = self.periph();
-        match self.index() {
+    pub fn clr_teif(&self) -> &Self {
+        let p = self.periph;
+        match self.index {
             0 => p.set_lifcr(|r| r.set_cteif0(1)),
             1 => p.set_lifcr(|r| r.set_cteif1(1)),
             2 => p.set_lifcr(|r| r.set_cteif2(1)),
@@ -240,9 +172,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }
 
-    fn clr_htif(&self) -> &Self {
-        let p = self.periph();
-        match self.index() {
+    pub fn clr_htif(&self) -> &Self {
+        let p = self.periph;
+        match self.index {
             0 => p.set_lifcr(|r| r.set_chtif0(1)),
             1 => p.set_lifcr(|r| r.set_chtif1(1)),
             2 => p.set_lifcr(|r| r.set_chtif2(1)),
@@ -256,9 +188,9 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }                  
 
-    fn clr_tcif(&self) -> &Self {
-        let p = self.periph();
-        match self.index() {
+    pub fn clr_tcif(&self) -> &Self {
+        let p = self.periph;
+        match self.index {
             0 => p.set_lifcr(|r| r.set_ctcif0(1)),
             1 => p.set_lifcr(|r| r.set_ctcif1(1)),
             2 => p.set_lifcr(|r| r.set_ctcif2(1)),
@@ -272,67 +204,98 @@ impl<P, T> ChannelExt for Channel<P, T> {
         self
     }
 
-    fn scr(&self) -> Scr {
-        self.periph().scr(self.index)
+    pub fn scr(&self) -> Scr {
+        self.periph.scr(self.index)
     }
-    fn set_scr(&self, value: Scr) -> &Self {
-        self.periph().set_scr(self.index, |_| value);
+    pub fn set_scr(&self, value: Scr) -> &Self {
+        self.periph.set_scr(self.index, |_| value);
         self
     }
-    fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Self {
-        self.periph().with_scr(self.index, f);
-        self
-    }
-
-    fn ndt(&self) -> u16 {
-        self.periph().sndtr(self.index).ndt().into()
-    }
-
-    fn set_ndt(&self, value: u16) -> &Self {
-        self.periph().set_sndtr(self.index, |r| r.set_ndt(value));
+    pub fn with_scr<F: FnOnce(Scr) -> Scr>(&self, f: F) -> &Self {
+        self.periph.with_scr(self.index, f);
         self
     }
 
-    fn pa(&self) -> u32 {
-        self.periph().spar(self.index).pa().into()
+    pub fn ndt(&self) -> u16 {
+        self.periph.sndtr(self.index).ndt().into()
     }
 
-    fn set_pa(&self, value: u32) -> &Self {
-        self.periph().set_spar(self.index, |r| r.set_pa(value));
+    pub fn set_ndt(&self, value: u16) -> &Self {
+        self.periph.set_sndtr(self.index, |r| r.set_ndt(value));
+        self
+    }
+
+    pub fn pa(&self) -> u32 {
+        self.periph.spar(self.index).pa().into()
+    }
+
+    pub fn set_pa(&self, value: u32) -> &Self {
+        self.periph.set_spar(self.index, |r| r.set_pa(value));
         self
     }    
     
-    fn m0a(&self) -> u32 {
-        self.periph().sm0ar(self.index).m0a().into()
+    pub fn m0a(&self) -> u32 {
+        self.periph.sm0ar(self.index).m0a().into()
     }
 
-    fn set_m0a(&self, value: u32) -> &Self {
-        self.periph().set_sm0ar(self.index, |r| r.set_m0a(value));
+    pub fn set_m0a(&self, value: u32) -> &Self {
+        self.periph.set_sm0ar(self.index, |r| r.set_m0a(value));
         self
     }    
 
-    fn m1a(&self) -> u32 {
-        self.periph().sm1ar(self.index).m1a().into()
+    pub fn m1a(&self) -> u32 {
+        self.periph.sm1ar(self.index).m1a().into()
     }
 
-    fn set_m1a(&self, value: u32) -> &Self {
-        self.periph().set_sm1ar(self.index, |r| r.set_m1a(value));
+    pub fn set_m1a(&self, value: u32) -> &Self {
+        self.periph.set_sm1ar(self.index, |r| r.set_m1a(value));
         self
     }            
 
-    fn sfcr(&self) -> Sfcr {
-        self.periph().sfcr(self.index)
+    pub fn sfcr(&self) -> Sfcr {
+        self.periph.sfcr(self.index)
     }
-    fn set_sfcr(&self, value: Sfcr) -> &Self {
-        self.periph().set_sfcr(self.index, |_| value);
+    pub fn set_sfcr(&self, value: Sfcr) -> &Self {
+        self.periph.set_sfcr(self.index, |_| value);
         self
     }
-    fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, f: F) -> &Self {
-        self.periph().with_sfcr(self.index, f);
+    pub fn with_sfcr<F: FnOnce(Sfcr) -> Sfcr>(&self, f: F) -> &Self {
+        self.periph.with_sfcr(self.index, f);
         self
     }    
-    fn set_chsel(&self, value: u8) -> &Self {
-        self.periph().with_scr(self.index, |r| r.set_chsel(value));
+    pub fn set_chsel(&self, value: u8) -> &Self {
+        self.periph.with_scr(self.index, |r| r.set_chsel(value));
         self
+    }
+
+    pub fn is_enabled(&self) -> bool {
+        self.scr().en() != 0
+    }
+    pub fn set_enabled(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_scr(|r| r.set_en(value))        
+    }
+    pub fn set_dir(&self, value: Dir) -> &Self { self.with_scr(|r| r.set_dir(value as u32)) }
+    pub fn set_psize(&self, value: Size) -> &Self { self.with_scr(|r| r.set_psize(value as u32)) }
+    pub fn set_msize(&self, value: Size) -> &Self { self.with_scr(|r| r.set_msize(value as u32)) }
+
+    pub fn set_pinc(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_scr(|r| r.set_pinc(value))
+    }
+
+    pub fn set_minc(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_scr(|r| r.set_minc(value))
+    }
+
+    pub fn set_circ(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_scr(|r| r.set_circ(value))
+    }
+
+    pub fn set_tcie(&self, value: bool) -> &Self {
+        let value = if value { 1 } else { 0 };
+        self.with_scr(|r| r.set_tcie(value))
     }
 }

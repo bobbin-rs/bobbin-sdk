@@ -18,40 +18,28 @@ pub use super::sysctl::SysctlEnabled;
     //  - Write the PWM0CMPB register with a value of 0x0000.0063. 10. Start the timers in PWM generator 0.
     //  - Write the PWM0CTL register with a value of 0x0000.0001. 11. Enable PWM outputs.
     //  - Write the PWMENABLE register with a value of 0x0000.0003.
-    
-
-pub trait PwmExt {
-    fn output_enabled(&self, index: usize) -> bool;
-    fn set_output_enabled(&self, index: usize, value: bool) -> &Self;
-}
-
-impl<T> PwmExt for Periph<T> {    
-    fn output_enabled(&self, index: usize) -> bool {
+impl PwmPeriph {    
+    pub fn output_enabled(&self, index: usize) -> bool {
         self.enable().pwmen(index) != 0
     }
 
-    fn set_output_enabled(&self, index: usize, value: bool) -> &Self {
+    pub fn set_output_enabled(&self, index: usize, value: bool) -> &Self {
         self.with_enable(|r| r.set_pwmen(index, value))
     }    
 }
 
-pub trait PwmChExt {
-    fn enabled(&self) -> bool;
-    fn set_enabled(&self, value: bool) -> &Self;
-}
-
-impl<P, T> PwmChExt for Channel<P, T> {
-    fn enabled(&self) -> bool {
-        self.periph().ch_ctl(self.index).enable() != 0
+impl PwmCh {
+    pub fn enabled(&self) -> bool {
+        self.periph.ch_ctl(self.index).enable() != 0
     }
 
-    fn set_enabled(&self, value: bool) -> &Self {
-        self.periph().with_ch_ctl(self.index, |r| r.set_enable(value));
+    pub fn set_enabled(&self, value: bool) -> &Self {
+        self.periph.with_ch_ctl(self.index, |r| r.set_enable(value));
         self
     }
 }
 
-impl<P, T> Timer<u16> for Channel<P, T> {
+impl Timer<u16> for PwmCh {
     fn stop(&self) -> &Self {
         self.set_enabled(false)
     }
@@ -60,59 +48,59 @@ impl<P, T> Timer<u16> for Channel<P, T> {
     }
 
     fn period(&self) -> u16 {
-        self.periph().ch_load(self.index()).load().value()
+        self.periph.ch_load(self.index).load().value()
     }
 
     fn set_period(&self, value: u16) -> &Self {
-        self.periph().set_ch_load(self.index(), |r| r.set_load(value));
+        self.periph.set_ch_load(self.index, |r| r.set_load(value));
         self
     }
 
     fn counter(&self) -> u16 {
-        self.periph().ch_count(self.index()).count().value()
+        self.periph.ch_count(self.index).count().value()
     }
 
     fn timeout_flag(&self) -> bool {
-        self.periph().ch_ris(self.index).intcntload() != 0
+        self.periph.ch_ris(self.index).intcntload() != 0
     }
 
     fn clr_timeout_flag(&self) -> &Self {
-        self.periph().set_ch_isc(self.index, |r| r.set_intcntload(1));
+        self.periph.set_ch_isc(self.index, |r| r.set_intcntload(1));
         self        
     }
 }
 
-impl<P, T> SetCounter<u16> for Channel<P, T> {
+impl SetCounter<u16> for PwmCh {
     fn set_counter(&self, value: u16) -> &Self {
-        self.periph().set_ch_count(self.index(), |r| r.set_count(value));
+        self.periph.set_ch_count(self.index, |r| r.set_count(value));
         self
     }    
 }
 
-impl<P, T> Compare<u16> for Channel<P, T> {
+impl Compare<u16> for PwmCh {
     fn compare(&self) -> u16 {
-        self.periph().ch_cmpa(self.index).cmpa().value()
+        self.periph.ch_cmpa(self.index).cmpa().value()
     }
 
     fn set_compare(&self, value: u16) -> &Self {
-        self.periph().set_ch_cmpa(self.index, |r| r.set_cmpa(value));
+        self.periph.set_ch_cmpa(self.index, |r| r.set_cmpa(value));
         self
     }
 
     fn compare_flag(&self) -> bool {
-        self.periph().ch_ris(self.index).intcmpau() != 0
+        self.periph.ch_ris(self.index).intcmpau() != 0
     }
 
     fn clr_compare_flag(&self) -> &Self {
-        self.periph().set_ch_isc(self.index, |r| r.set_intcmpau(1));
+        self.periph.set_ch_isc(self.index, |r| r.set_intcmpau(1));
         self
     }
 }
 
-impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
+impl PwmDownHigh<u16> for PwmCh {
     // Down Counting PWM, (Counter < Compare) => Output High
     fn pwm_down_high(&self, compare: u16, period: u16) -> &Self {
-        self.periph().with_ch_gena(self.index(), |r| r .set_actload(0x2).set_actcmpad(0x3));
+        self.periph.with_ch_gena(self.index, |r| r .set_actload(0x2).set_actcmpad(0x3));
         self
             .set_compare(compare)
             .set_period(period)
@@ -120,10 +108,10 @@ impl<P, T> PwmDownHigh<u16> for Channel<P, T> {
     }
 }
 
-impl<P, T> PwmDownLow<u16> for Channel<P, T> {
+impl PwmDownLow<u16> for PwmCh {
     // Down Counting PWM, (Counter < Compare) => Output Low
     fn pwm_down_low(&self, compare: u16, period: u16) -> &Self {
-        self.periph().with_ch_gena(self.index(), |r| r .set_actload(0x3).set_actcmpad(0x2));
+        self.periph.with_ch_gena(self.index, |r| r .set_actload(0x3).set_actcmpad(0x2));
         self
             .set_compare(compare)
             .set_period(period)

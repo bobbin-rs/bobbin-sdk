@@ -1,12 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::iwdg::*;
 
-pub const IWDG: Iwdg = Periph(0x40003000, IwdgId {});
+periph!( IWDG, Iwdg, _IWDG, IwdgPeriph, 0x40003000);
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct IwdgId {}
-pub type Iwdg = Periph<IwdgId>;
 
 
 

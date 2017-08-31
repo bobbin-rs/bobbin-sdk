@@ -10,30 +10,25 @@ pub enum PrescalerClock {
     OscErClk = 0b11,
 }
 
-pub trait LptmrExt {
-    fn pcs(&self) -> PrescalerClock;
-    fn set_pcs(&self, value: PrescalerClock) -> &Self;
-}
-
-impl<T> LptmrExt for Periph<T> {
-    fn pcs(&self) -> PrescalerClock {
+impl LptmrPeriph {
+    pub fn pcs(&self) -> PrescalerClock {
         unsafe {
             ::core::mem::transmute(self.psr().pcs())
         }
     }
 
-    fn set_pcs(&self, value: PrescalerClock) -> &Self {
+    pub fn set_pcs(&self, value: PrescalerClock) -> &Self {
         self.with_psr(|r| r.set_pcs(value as u8))
     }
 }
 
-impl<T> Start<u16> for Periph<T> {
+impl Start<u16> for LptmrPeriph {
     fn start(&self, value: u16) -> &Self {
         self.start_up(value)
     }
 }
 
-impl<T> StartUp<u16> for Periph<T> {
+impl StartUp<u16> for LptmrPeriph {
     fn start_up(&self, value: u16) -> &Self {
         self
             .set_period(value)
@@ -41,7 +36,7 @@ impl<T> StartUp<u16> for Periph<T> {
     }
 }
 
-impl<T> StartUpOnce<u16> for Periph<T> {
+impl StartUpOnce<u16> for LptmrPeriph {
     fn start_up_once(&self, value: u16) -> &Self {
         self
             .set_period(value)
@@ -49,7 +44,7 @@ impl<T> StartUpOnce<u16> for Periph<T> {
     }
 }
 
-impl<T> Delay<u16> for Periph<T> {
+impl Delay<u16> for LptmrPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .set_period(value)
@@ -60,7 +55,7 @@ impl<T> Delay<u16> for Periph<T> {
 }
 
 
-impl<T> Timer<u16> for Periph<T> {
+impl Timer<u16> for LptmrPeriph {
     fn stop(&self) -> &Self {
         self.with_csr(|r| r.set_ten(0))
     }

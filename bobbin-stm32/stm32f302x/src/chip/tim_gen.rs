@@ -1,37 +1,13 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::tim_gen::*;
 
-pub const TIM2: Tim2 = Periph(0x40000000, Tim2Id {});
-pub const TIM3: Tim3 = Periph(0x40000400, Tim3Id {});
-pub const TIM4: Tim4 = Periph(0x40000800, Tim4Id {});
-pub const TIM15: Tim15 = Periph(0x40014000, Tim15Id {});
-pub const TIM16: Tim16 = Periph(0x40014400, Tim16Id {});
-pub const TIM17: Tim17 = Periph(0x40014800, Tim17Id {});
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim2Id {}
-pub type Tim2 = Periph<Tim2Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim3Id {}
-pub type Tim3 = Periph<Tim3Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim4Id {}
-pub type Tim4 = Periph<Tim4Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim15Id {}
-pub type Tim15 = Periph<Tim15Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim16Id {}
-pub type Tim16 = Periph<Tim16Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim17Id {}
-pub type Tim17 = Periph<Tim17Id>;
+periph!( TIM2, Tim2, _TIM2, TimGenPeriph, 0x40000000);
+periph!( TIM3, Tim3, _TIM3, TimGenPeriph, 0x40000400);
+periph!( TIM4, Tim4, _TIM4, TimGenPeriph, 0x40000800);
+periph!( TIM15, Tim15, _TIM15, TimGenPeriph, 0x40014000);
+periph!( TIM16, Tim16, _TIM16, TimGenPeriph, 0x40014400);
+periph!( TIM17, Tim17, _TIM17, TimGenPeriph, 0x40014800);
 
 impl super::sig::Signal<super::sig::Tim2Ch1> for Tim2Ch1 {}
 impl super::sig::SignalTim<super::sig::Tim2Ch1> for Tim2Ch1 {}
@@ -76,99 +52,20 @@ impl super::sig::Signal<super::sig::Tim17Ch1n> for Tim17Ch1 {}
 impl super::sig::SignalTimn<super::sig::Tim17Ch1n> for Tim17Ch1 {}
 
 
-pub const TIM2_CH1: Channel<Tim2Ch1Id, Tim2Id> = Channel { periph: TIM2, index: 0, id: Tim2Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim2Ch1Id {}
-pub type Tim2Ch1 = Channel<Tim2Ch1Id, Tim2Id>;
-
-pub const TIM2_CH2: Channel<Tim2Ch2Id, Tim2Id> = Channel { periph: TIM2, index: 1, id: Tim2Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim2Ch2Id {}
-pub type Tim2Ch2 = Channel<Tim2Ch2Id, Tim2Id>;
-
-pub const TIM2_CH3: Channel<Tim2Ch3Id, Tim2Id> = Channel { periph: TIM2, index: 2, id: Tim2Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim2Ch3Id {}
-pub type Tim2Ch3 = Channel<Tim2Ch3Id, Tim2Id>;
-
-pub const TIM2_CH4: Channel<Tim2Ch4Id, Tim2Id> = Channel { periph: TIM2, index: 3, id: Tim2Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim2Ch4Id {}
-pub type Tim2Ch4 = Channel<Tim2Ch4Id, Tim2Id>;
-
-pub const TIM3_CH1: Channel<Tim3Ch1Id, Tim3Id> = Channel { periph: TIM3, index: 0, id: Tim3Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim3Ch1Id {}
-pub type Tim3Ch1 = Channel<Tim3Ch1Id, Tim3Id>;
-
-pub const TIM3_CH2: Channel<Tim3Ch2Id, Tim3Id> = Channel { periph: TIM3, index: 1, id: Tim3Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim3Ch2Id {}
-pub type Tim3Ch2 = Channel<Tim3Ch2Id, Tim3Id>;
-
-pub const TIM3_CH3: Channel<Tim3Ch3Id, Tim3Id> = Channel { periph: TIM3, index: 2, id: Tim3Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim3Ch3Id {}
-pub type Tim3Ch3 = Channel<Tim3Ch3Id, Tim3Id>;
-
-pub const TIM3_CH4: Channel<Tim3Ch4Id, Tim3Id> = Channel { periph: TIM3, index: 3, id: Tim3Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim3Ch4Id {}
-pub type Tim3Ch4 = Channel<Tim3Ch4Id, Tim3Id>;
-
-pub const TIM4_CH1: Channel<Tim4Ch1Id, Tim4Id> = Channel { periph: TIM4, index: 0, id: Tim4Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim4Ch1Id {}
-pub type Tim4Ch1 = Channel<Tim4Ch1Id, Tim4Id>;
-
-pub const TIM4_CH2: Channel<Tim4Ch2Id, Tim4Id> = Channel { periph: TIM4, index: 1, id: Tim4Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim4Ch2Id {}
-pub type Tim4Ch2 = Channel<Tim4Ch2Id, Tim4Id>;
-
-pub const TIM4_CH3: Channel<Tim4Ch3Id, Tim4Id> = Channel { periph: TIM4, index: 2, id: Tim4Ch3Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim4Ch3Id {}
-pub type Tim4Ch3 = Channel<Tim4Ch3Id, Tim4Id>;
-
-pub const TIM4_CH4: Channel<Tim4Ch4Id, Tim4Id> = Channel { periph: TIM4, index: 3, id: Tim4Ch4Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim4Ch4Id {}
-pub type Tim4Ch4 = Channel<Tim4Ch4Id, Tim4Id>;
-
-pub const TIM15_CH1: Channel<Tim15Ch1Id, Tim15Id> = Channel { periph: TIM15, index: 0, id: Tim15Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim15Ch1Id {}
-pub type Tim15Ch1 = Channel<Tim15Ch1Id, Tim15Id>;
-
-pub const TIM15_CH2: Channel<Tim15Ch2Id, Tim15Id> = Channel { periph: TIM15, index: 1, id: Tim15Ch2Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim15Ch2Id {}
-pub type Tim15Ch2 = Channel<Tim15Ch2Id, Tim15Id>;
-
-pub const TIM16_CH1: Channel<Tim16Ch1Id, Tim16Id> = Channel { periph: TIM16, index: 0, id: Tim16Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim16Ch1Id {}
-pub type Tim16Ch1 = Channel<Tim16Ch1Id, Tim16Id>;
-
-pub const TIM17_CH1: Channel<Tim17Ch1Id, Tim17Id> = Channel { periph: TIM17, index: 0, id: Tim17Ch1Id {} }; 
-#[derive(Clone, Copy, PartialEq)]
-#[doc(hidden)]
-pub struct Tim17Ch1Id {}
-pub type Tim17Ch1 = Channel<Tim17Ch1Id, Tim17Id>;
+channel!(TIM2_CH1, Tim2Ch1, TIM2, Tim2, _TIM2_CH1, TimGenCh, _TIM2, 0);
+channel!(TIM2_CH2, Tim2Ch2, TIM2, Tim2, _TIM2_CH2, TimGenCh, _TIM2, 1);
+channel!(TIM2_CH3, Tim2Ch3, TIM2, Tim2, _TIM2_CH3, TimGenCh, _TIM2, 2);
+channel!(TIM2_CH4, Tim2Ch4, TIM2, Tim2, _TIM2_CH4, TimGenCh, _TIM2, 3);
+channel!(TIM3_CH1, Tim3Ch1, TIM3, Tim3, _TIM3_CH1, TimGenCh, _TIM3, 0);
+channel!(TIM3_CH2, Tim3Ch2, TIM3, Tim3, _TIM3_CH2, TimGenCh, _TIM3, 1);
+channel!(TIM3_CH3, Tim3Ch3, TIM3, Tim3, _TIM3_CH3, TimGenCh, _TIM3, 2);
+channel!(TIM3_CH4, Tim3Ch4, TIM3, Tim3, _TIM3_CH4, TimGenCh, _TIM3, 3);
+channel!(TIM4_CH1, Tim4Ch1, TIM4, Tim4, _TIM4_CH1, TimGenCh, _TIM4, 0);
+channel!(TIM4_CH2, Tim4Ch2, TIM4, Tim4, _TIM4_CH2, TimGenCh, _TIM4, 1);
+channel!(TIM4_CH3, Tim4Ch3, TIM4, Tim4, _TIM4_CH3, TimGenCh, _TIM4, 2);
+channel!(TIM4_CH4, Tim4Ch4, TIM4, Tim4, _TIM4_CH4, TimGenCh, _TIM4, 3);
+channel!(TIM15_CH1, Tim15Ch1, TIM15, Tim15, _TIM15_CH1, TimGenCh, _TIM15, 0);
+channel!(TIM15_CH2, Tim15Ch2, TIM15, Tim15, _TIM15_CH2, TimGenCh, _TIM15, 1);
+channel!(TIM16_CH1, Tim16Ch1, TIM16, Tim16, _TIM16_CH1, TimGenCh, _TIM16, 0);
+channel!(TIM17_CH1, Tim17Ch1, TIM17, Tim17, _TIM17_CH1, TimGenCh, _TIM17, 0);
 

@@ -2,23 +2,12 @@ use bobbin_common::bits::*;
 pub use bobbin_common::analog::AnalogRead;
 pub use ::chip::adc_f1::*;
 
-pub trait AdcExt {
-    fn set_enabled(&self, value: bool) -> &Self;
-    fn set_sequence_channel(&self, sequence: u8, channel: u8) -> &Self;
-    fn set_sequence_length(&self, length: u8) -> &Self;
-    fn calibrate(&self) -> &Self;
-    fn start(&self) -> &Self;
-    fn complete(&self) -> bool;
-    fn data(&self) -> u16;
-    fn start_single(&self, channel: usize) -> &Self;
-}
-
-impl<T> AdcExt for Periph<T> {
-    fn set_enabled(&self, value: bool) -> &Self {
+impl AdcPeriph {
+    pub fn set_enabled(&self, value: bool) -> &Self {
         self.with_cr2(|r| r.set_adon(value))
     }
 
-    fn set_sequence_channel(&self, sequence: u8, channel: u8) -> &Self {
+    pub fn set_sequence_channel(&self, sequence: u8, channel: u8) -> &Self {
         assert!(channel < 16, "Channel must b 0..15");
         let channel = channel as u32;
         match sequence {
@@ -43,42 +32,42 @@ impl<T> AdcExt for Periph<T> {
         self
     }
 
-    fn set_sequence_length(&self, length: u8) -> &Self {
+    pub fn set_sequence_length(&self, length: u8) -> &Self {
         assert!(length > 0 && length <= 16, "length must be 1..16");
         self.with_sqr1(|r| r.set_l((length - 1) as u32))
     }
 
-    fn start(&self) -> &Self {
+    pub fn start(&self) -> &Self {
         // self.with_cr2(|r| r.set_extsel(0b111));
         self.with_cr2(|r| r.set_adon(1))
     }
 
-    // fn set_continuous(&self, value: bool) {
+    // pub fn set_continuous(&self, value: bool) {
     //     let value = if value { 1 } else { 0 };
     //     self.with_cr2(|r| r.set_cont(value))
     // }
 
-    // fn set_resolution(&self, value: Resolution) {
+    // pub fn set_resolution(&self, value: Resolution) {
     //     self.with_cr1(|r| r.set_res(value as u32))
     // }
 
-    fn calibrate(&self) -> &Self {
+    pub fn calibrate(&self) -> &Self {
         self.with_cr2(|r| r.set_cal(true));
         while self.cr2().cal() == 1 {}
         self
     }
 
     #[inline]
-    fn complete(&self) -> bool {
+    pub fn complete(&self) -> bool {
         self.sr().eoc() != 0
     }
 
     #[inline]
-    fn data(&self) -> u16 {
+    pub fn data(&self) -> u16 {
         self.dr().data().value()
     }
 
-    fn start_single(&self, channel: usize) -> &Self {
+    pub fn start_single(&self, channel: usize) -> &Self {
         self
             .set_sequence_channel(1, channel as u8)
             .set_sequence_length(1)
@@ -95,38 +84,38 @@ impl<T> AdcExt for Periph<T> {
 
 // impl<P, T> AdcChExt for Channel<P, T> {
 //     fn start(&self) -> &Self {
-//         self.periph()
-//             .set_sequence_channel(1, self.index() as u8)
+//         self.periph
+//             .set_sequence_channel(1, self.index as u8)
 //             .set_sequence_length(1)
 //             .start();
 //         self
 //     }
 
 //     fn complete(&self) -> bool {
-//         self.periph().complete()
+//         self.periph.complete()
 //     }
 
 //     fn wait(&self) -> &Self {
-//         while !self.periph().complete() {}
+//         while !self.periph.complete() {}
 //         self
 //     }
 
 //     fn read(&self) -> u16 {
-//         self.periph().data()
+//         self.periph.data()
 //     }
 // }
 
-impl<P, T> AnalogRead<U12> for Channel<P, T> {
+impl AnalogRead<U12> for AdcCh {
     fn start(&self) -> &Self {
-        self.periph().start_single(self.index());
+        self.periph.start_single(self.index);
         self
     }
 
     fn is_complete(&self) -> bool {
-        self.periph().complete()
+        self.periph.complete()
     }
 
     fn read(&self) -> U12 {
-        self.periph().dr().data_12()
+        self.periph.dr().data_12()
     }
 }

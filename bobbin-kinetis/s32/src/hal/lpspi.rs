@@ -227,13 +227,7 @@ impl<T> Target<T> {
     }
 }
 
-pub trait LpspiExt<T> {
-    fn configure(&self, config: Config) -> &Self;
-    fn set_enabled(&self, value: bool) -> &Self;
-    fn target(self) -> Target<T>;
-}
-
-impl<T> LpspiExt<T> for Periph<T> {
+impl LpspiPeriph {
     fn configure(&self, config: Config) -> &Self {
         self
             .set_cfgr0(|_| config.cfgr0)

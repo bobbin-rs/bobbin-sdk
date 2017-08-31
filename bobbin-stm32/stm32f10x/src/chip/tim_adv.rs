@@ -1,12 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::tim_adv::*;
 
-pub const TIM1: Tim1 = Periph(0x40012c00, Tim1Id {});
+periph!( TIM1, Tim1, _TIM1, TimAdvPeriph, 0x40012c00);
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Tim1Id {}
-pub type Tim1 = Periph<Tim1Id>;
 
 
 

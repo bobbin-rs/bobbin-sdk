@@ -42,17 +42,8 @@ pub struct Config {
     pub prescsync: Prescsync,
 }
 
-pub trait TcExt {
-    fn configure_16bit(&self, cfg: Config) -> &Self;
-    fn intflag(&self) -> count16::Intflag;
-    fn set_enabled(&self, value: bool) -> &Self;
-    fn set_cc(&self, index: usize, value: u16) -> &Self;
-    fn clr_syncrdy(&self) -> &Self;
-    fn set_mc0_enabled(&self, value: bool) -> &Self;
-}
-
-impl<T> TcExt for Periph<T> {
-    fn configure_16bit(&self, cfg: Config) -> &Self {
+impl TcPeriph {
+    pub fn configure_16bit(&self, cfg: Config) -> &Self {
         let tc16 = self.count16();
         tc16.set_ctrla(|r| r.set_enable(0));
         tc16.set_ctrla(|r| r.set_swrst(1));
@@ -71,31 +62,31 @@ impl<T> TcExt for Periph<T> {
     }
 
 
-    fn intflag(&self) -> count16::Intflag {
+    pub fn intflag(&self) -> count16::Intflag {
         let tc16 = self.count16();
         tc16.intflag()
     }    
 
-    fn set_enabled(&self, value: bool) -> &Self {
+    pub fn set_enabled(&self, value: bool) -> &Self {
         let tc16 = self.count16();
         tc16.with_ctrla(|r| r.set_enable(value));
         self
     }    
 
-    fn set_cc(&self, index: usize, value: u16) -> &Self {
+    pub fn set_cc(&self, index: usize, value: u16) -> &Self {
         let tc16 = self.count16();
         tc16.set_cc(index, |r| r.set_cc(value));
         self
     }    
 
 
-    fn clr_syncrdy(&self) -> &Self {
+    pub fn clr_syncrdy(&self) -> &Self {
         let tc16 = self.count16();
         tc16.set_intflag(|r| r.set_syncrdy(1));
         self
     }    
         
-    fn set_mc0_enabled(&self, value: bool) -> &Self {
+    pub fn set_mc0_enabled(&self, value: bool) -> &Self {
         let tc16 = self.count16();
         match value {
             true => tc16.set_intenset(|r| r.set_mc0(1)),
@@ -105,7 +96,7 @@ impl<T> TcExt for Periph<T> {
     }
 }
 
-impl<T> Timer<u16> for Periph<T> {
+impl Timer<u16> for TcPeriph {
     fn stop(&self) -> &Self {
         self.count16().set_ctrlbset(|r| r.set_cmd(0x2));
         self.count16().with_ctrla(|r| r.set_enable(0x0));
@@ -139,7 +130,7 @@ impl<T> Timer<u16> for Periph<T> {
     }
 }
 
-impl<T> Start<u16> for Periph<T> {
+impl Start<u16> for TcPeriph {
     fn start(&self, value: u16) -> &Self {        
         self.set_period(value);        
         self.count16().with_ctrla(|r| r.set_enable(0x1).set_wavegen(0x1));
@@ -149,7 +140,7 @@ impl<T> Start<u16> for Periph<T> {
     }    
 }
 
-impl<T> Prescale<u16> for Periph<T> {
+impl Prescale<u16> for TcPeriph {
     fn prescale(&self) -> u16 {
         1 << self.count16().ctrla().prescaler().value() 
     }
@@ -173,14 +164,14 @@ impl<T> Prescale<u16> for Periph<T> {
     }
 }
 
-impl<T> SetCounter<u16> for Periph<T> {
+impl SetCounter<u16> for TcPeriph {
     fn set_counter(&self, value: u16) -> &Self {
         self.count16().set_count(|r| r.set_count(value));
         self
     }
 }
 
-impl<T> Compare<u16> for Periph<T> {
+impl Compare<u16> for TcPeriph {
     fn compare(&self) -> u16 {
         self.count16().cc(1).cc().value()
     }
@@ -201,7 +192,7 @@ impl<T> Compare<u16> for Periph<T> {
 
 }
 
-impl<T> Delay<u16> for Periph<T> {
+impl Delay<u16> for TcPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .start(value)

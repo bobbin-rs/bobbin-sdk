@@ -432,6 +432,31 @@ impl<T: ClockTree> Clock<T> for Uart1 {
     }
 }
 
+impl<T: ClockTree> Clock<T> for Uart2 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Uart3 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
+
+
+impl<T: ClockTree> Clock<T> for Uart4 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Uart5 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
+
 impl<T: ClockTree> Clock<T> for Pit {
     fn clock(&self, t: &T) -> Hz {
         t.bus()

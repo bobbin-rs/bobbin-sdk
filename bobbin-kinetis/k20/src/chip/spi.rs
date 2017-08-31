@@ -1,22 +1,11 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use kinetis_common::chip::spi::*;
 
-pub const SPI0: Spi0 = Periph(0x4002c000, Spi0Id {});
-pub const SPI1: Spi1 = Periph(0x4002d000, Spi1Id {});
-pub const SPI2: Spi2 = Periph(0x400ac000, Spi2Id {});
+periph!( SPI0, Spi0, _SPI0, SpiPeriph, 0x4002c000);
+periph!( SPI1, Spi1, _SPI1, SpiPeriph, 0x4002d000);
+periph!( SPI2, Spi2, _SPI2, SpiPeriph, 0x400ac000);
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Spi0Id {}
-pub type Spi0 = Periph<Spi0Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Spi1Id {}
-pub type Spi1 = Periph<Spi1Id>;
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct Spi2Id {}
-pub type Spi2 = Periph<Spi2Id>;
 
 
 

@@ -1,12 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::bits;
+#[allow(unused_imports)] use bobbin_common::*;
+
 pub use stm32_common::chip::crc::*;
 
-pub const CRC: Crc = Periph(0x40023000, CrcId {});
+periph!( CRC, Crc, _CRC, CrcPeriph, 0x40023000);
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(hidden)]
-pub struct CrcId {}
-pub type Crc = Periph<CrcId>;
 
 
 
