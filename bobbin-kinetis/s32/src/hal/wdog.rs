@@ -9,6 +9,18 @@ impl Unlock for Wdog {
     }
 }
 
+impl Enable for Wdog {
+    fn enable(&self) -> &Self {
+        self.with_cs(|r| r.set_en(1))
+    }
+}
+
+impl Disable for Wdog {
+    fn disable(&self) -> &Self {
+        self.with_cs(|r| r.set_en(0))
+    }
+}
+
 impl Timeout<u16> for Wdog {
     fn timeout(&self) -> u16 {
         let toval = self.toval();

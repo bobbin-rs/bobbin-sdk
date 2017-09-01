@@ -15,6 +15,18 @@ impl ::bobbin_common::watchdog::Lock for WatchdogPeriph {
     }
 }
 
+impl Enable for WatchdogPeriph {
+    fn enable(&self) -> &Self {
+        self.with_ctl(|r| r.set_resen(1))
+    }
+}
+
+impl Disable for WatchdogPeriph {
+    fn disable(&self) -> &Self {
+        self.with_ctl(|r| r.set_resen(0))
+    }
+}
+
 impl Timeout<u32> for WatchdogPeriph {
     fn timeout(&self) -> u32 {
         self.load().load().value()

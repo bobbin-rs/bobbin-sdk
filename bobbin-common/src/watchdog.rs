@@ -8,6 +8,16 @@ pub trait Lock {
     fn lock(&self) -> &Self;
 }
 
+pub trait Enable {
+    /// Enable the Watchdog
+    fn enable(&self) -> &Self;
+}
+
+pub trait Disable {
+    /// Disable the Watchdog
+    fn disable(&self) -> &Self;
+}
+
 pub trait Refresh {
     /// Refresh the Watchdog timer
     fn refresh(&self) -> &Self;
